@@ -92,17 +92,43 @@ def candidates(title, marker, pages):
             continue
         if b == want:
             score = 0
-        elif b.startswith(want + " ") or want.startswith(b + " "):
-            score = 2          # «Осень» vs «Осень (Октябрь уж наступил…)»
+        elif (b.startswith(want + " ") or want.startswith(b + " ")) and min(len(b), len(want)) >= 6:
+            score = 2          # «Осень» vs «Осень (Октябрь уж наступил…)» — but never «К***» for «К Чаадаеву»
         elif (" " + want + " ") in (" " + b + " ") and len(want) > 12:
             score = 3          # a poem filed under «К *** (Я помню чудное мгновенье…)»
         else:
             continue
         if "/" in p:
-            score += 1         # an edition subpage: fine, but the plain page first
+            if "(ДО)" in p or "ДО)" in p:
+                continue       # pre-reform spelling: ять and ер, not for learners
+            score += 1
         out.append((score, len(p), p))
     out.sort()
     return out
+
+
+# Edition subpages: «Бородино (Лермонтов)/ПСС 1989 (СО)». Where a work has
+# them, its plain page is a list of editions, not the text, so the reading
+# edition is taken instead — modern spelling first.
+EDITION = re.compile(r"\((СО|ВТ:Ё|ВТ)\)\s*$")
+EDITION_RANK = {"СО": 0, "ВТ:Ё": 1, "ВТ": 2}
+
+
+def choose(cands):
+    """The page to import from the candidates, best first."""
+    best = cands[0]
+    base = best[2].split("/")[0]
+    eds = []
+    for c in cands:
+        if c[2].split("/")[0] != base or "/" not in c[2]:
+            continue
+        m = EDITION.search(c[2])
+        if m:
+            eds.append((EDITION_RANK[m.group(1)], len(c[2]), c[2]))
+    if eds:
+        eds.sort()
+        return eds[0][2]
+    return best[2]
 
 
 def surname(author):
@@ -155,6 +181,13 @@ def main():
             works.append((a, m, t, k))
 
     pages_by_marker = {}
+    # Wikisource's title lists, kept so a second run (after editing works.py)
+    # asks nothing again. Delete the file to fetch fresh.
+    cache_path = os.path.join(HERE, ".titles-cache.json")
+    try:
+        cache = json.load(open(cache_path, encoding="utf-8"))
+    except Exception:
+        cache = {}
     rows, review, missing, dups = [], [], [], []
     n_have = 0
     for a, m, t, k in works:
@@ -176,13 +209,17 @@ def main():
             n_have += 1
             continue
         if m not in pages_by_marker:
-            print("… %s" % m, flush=True)
-            pages_by_marker[m] = titles_for(m)
+            if m in cache:
+                pages_by_marker[m] = cache[m]
+            else:
+                print("… %s" % m, flush=True)
+                pages_by_marker[m] = cache[m] = titles_for(m)
+                json.dump(cache, open(cache_path, "w", encoding="utf-8"), ensure_ascii=False)
         cands = candidates(t, m, pages_by_marker[m])
         if not cands:
             missing.append("%s — %s" % (a, t))
             continue
-        page = cands[0][2]
+        page = choose(cands)
         if page in have_pages or page in used_pages:
             # Already imported from this very page, or two names in the list
             # led to the same page.
@@ -199,7 +236,14 @@ def main():
             n += 1
         slugs.add(slug)
         rows.append("%s\t%s\t%s\t%s\t%s\t" % (slug, page, a, t, CATEGORY[k]))
-        others = [c[2] for c in cands[1:4] if c[0] <= cands[0][0] + 1]
+        # Worth a look: found only by its first line, or another WORK of the
+        # same name (a different poem, not another edition of this one).
+        others = []
+        for c in cands:
+            b2 = c[2].split("/")[0]
+            if b2 != page.split("/")[0] and c[0] <= cands[0][0] + 1 and b2 not in others:
+                others.append(b2)
+        others = others[:3]
         if cands[0][0] >= 2 or others:
             review.append("%s — %s\n    chose: %s%s" % (a, t, page,
                           "".join("\n    also:  %s" % o for o in others)))
