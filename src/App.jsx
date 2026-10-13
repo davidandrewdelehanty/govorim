@@ -14735,7 +14735,7 @@ export default function App() {
         .psay:hover{color:rgba(42,31,20,.85);background:rgba(42,31,20,.08);border-color:rgba(42,31,20,.28)}
         .rv-w{border-radius:3px;padding:0 2px;transition:background .15s,color .15s}
         .rv-w.on{background:rgba(160,110,20,.18);color:#2a1f14}
-        .rv-conj{display:flex;flex-wrap:wrap;gap:8px;margin:-4px 0 12px}
+        .rv-conj{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:2px auto 28px;max-width:560px}
         .psay.on{color:#2a1f14;border-color:rgba(160,110,20,.4);background:rgba(160,110,20,.08)}
         .srsp{display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;margin-top:8px;font-size:11.5px;color:rgba(0,0,0,.55);font-family:'IBM Plex Sans',sans-serif}
         .srsp b{color:#000;font-weight:600;font-variant-numeric:tabular-nums}
@@ -14761,7 +14761,7 @@ export default function App() {
         .rv-word-row{display:flex;justify-content:center;align-items:center;gap:12px;margin-bottom:30px;flex-wrap:wrap}
         .rv-word{font-size:42px;font-family:'Old Standard TT',serif;color:#000;font-weight:600;text-align:center}
         .rv-card .qex{margin:-14px auto 22px}
-        .rv-opts{display:flex;flex-direction:column;gap:10px;max-width:560px;margin:0 auto}
+        .rv-opts{display:flex;flex-direction:column;gap:10px;max-width:560px;margin:12px auto 0}
         .rv-opt{background:rgba(42,31,20,.04);border:1px solid rgba(42,31,20,.16);color:#000;padding:14px 18px;border-radius:10px;font-size:16px;font-family:'Literata',serif;cursor:pointer;text-align:left;transition:all .15s}
         .rv-opt:disabled{cursor:default}
         .rv-opt.ok{background:rgba(90,133,86,.18);border-color:rgba(90,133,86,.6);color:#2f5a2a}
