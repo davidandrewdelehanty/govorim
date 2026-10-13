@@ -793,6 +793,8 @@ def main():
     ap.add_argument("--no-catalogue", action="store_true")
     ap.add_argument("--pause", type=float, default=1.0,
                     help="seconds between exports; the service builds each one on demand")
+    ap.add_argument("--allow-duplicate", action="store_true",
+                    help="import even when the shelf already has this author and title")
     ap.add_argument("--replace-entry", action="store_true",
                     help="overwrite an existing entry instead of merging")
     a = ap.parse_args()
@@ -818,8 +820,30 @@ def main():
         cached_html = json.load(open(a.html_json, encoding="utf-8"))
 
     os.makedirs(a.books_dir, exist_ok=True)
-    ok = fail = 0
+    # Never shelve a second copy of a book. An entry with the same slug is
+    # updated in place (upsert), but a different slug with the same author and
+    # title, or text from the same Wikisource page, is a duplicate and is
+    # skipped. --allow-duplicate overrides, for a genuinely different work
+    # that happens to share a title.
+    def _key(s):
+        s = (s or "").lower().replace("ё", "е")
+        return re.sub(r"\s+", " ", re.sub(r"[«»\"“”„'’…!?.,:;()\[\]*—–-]+", " ", s)).strip()
+    shelf_titles, shelf_pages = {}, {}
+    if os.path.exists(a.manifest):
+        for b in json.load(open(a.manifest, encoding="utf-8")):
+            shelf_titles[(b.get("author", ""), _key(b.get("title", "")))] = b.get("slug")
+            m = re.search(r"ru\.wikisource\.org/wiki/(\S+)", b.get("_note", "") or "")
+            if m:
+                shelf_pages[urllib.parse.unquote(m.group(1)).replace("_", " ")] = b.get("slug")
+    ok = fail = dup = 0
     for j in jobs:
+        if not a.allow_duplicate:
+            other = (shelf_titles.get((j.get("author") or "", _key(j.get("title"))))
+                     or shelf_pages.get(j["page"].lstrip("@")))
+            if other and other != j["slug"]:
+                print("== %-25s already on the shelf as %s — skipped" % (j["slug"], other))
+                dup += 1
+                continue
         try:
             page = j["page"]
             if j["slug"] in cached_html:
@@ -877,7 +901,7 @@ def main():
         except Exception as e:
             print("!! %-25s %s" % (j.get("slug") or j["page"], e))
             fail += 1
-    print("\n%d added, %d failed" % (ok, fail))
+    print("\n%d added, %d failed, %d skipped as already on the shelf" % (ok, fail, dup))
     return 1 if fail else 0
 
 
