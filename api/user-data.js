@@ -617,6 +617,10 @@ export default async function handler(req, res) {
       // found every book at chapter one with no way to say otherwise. It is
       // their own place; it should follow them.
       const progress = await r2Get(userId, "progress");
+      // How many of each work's words have been credited to words read —
+      // { [workKey]: words }. Kept with the account so a book read on one
+      // device cannot be credited again on another.
+      const readpaid = await r2Get(userId, "readpaid");
 
       return res.status(200).json({
         vocab: Array.isArray(vocab) ? vocab : [],
@@ -629,6 +633,7 @@ export default async function handler(req, res) {
         bibleread: (bibleread && typeof bibleread === "object" && !Array.isArray(bibleread)) ? bibleread : {},
         annots: (annots && typeof annots === "object" && annots.items) ? annots : { items: {} },
         progress: (progress && typeof progress === "object" && !Array.isArray(progress)) ? progress : {},
+        readpaid: (readpaid && typeof readpaid === "object" && !Array.isArray(readpaid)) ? readpaid : {},
       });
     }
 
@@ -792,6 +797,25 @@ export default async function handler(req, res) {
         await r2Put(userId, "drills", merged);
         await noteBoard(user, { drills: drillsDone(merged) });
         return res.status(200).json({ ok: true, drills: merged });
+      }
+
+      if (type === "readpaid") {
+        // Credited words per work only ever go up: the larger figure wins.
+        const inc = body.readpaid;
+        if (!inc || typeof inc !== "object" || Array.isArray(inc)) {
+          return res.status(400).json({ error: "readpaid must be an object" });
+        }
+        let existing = null;
+        try { existing = await r2Get(userId, "readpaid"); } catch (e) {}
+        const merged = (existing && typeof existing === "object" && !Array.isArray(existing)) ? existing : {};
+        for (const k of Object.keys(inc).slice(0, 6000)) {
+          const key = String(k).slice(0, 300);
+          const n = Math.max(0, Math.min(3000000, Math.round(Number(inc[k]) || 0)));
+          if (!key || !n) continue;
+          if (!(Number(merged[key]) >= n)) merged[key] = n;
+        }
+        await r2Put(userId, "readpaid", merged);
+        return res.status(200).json({ ok: true });
       }
 
       if (type === "bibleread") {

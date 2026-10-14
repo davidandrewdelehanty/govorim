@@ -7374,11 +7374,42 @@ export default function App() {
       if (r && r.value) { try { readPaid.current = JSON.parse(r.value) || {}; } catch (e) {} }
     }).catch(function(){});
   }, []);
+  // The paid ledger follows the account (type=readpaid), merged by the
+  // larger figure per work. It used to live only in this browser, so a book
+  // read on the laptop was credited again when read on the phone, or after
+  // the browser's storage was cleared.
+  var readPaidPush = useRef(null);
   var saveReadMark = function() {
     if (!readMarkLoaded.current) return;
     try { storage.set("gv_readmark_v1", JSON.stringify(readMark.current)).catch(function(){}); } catch (e) {}
     try { storage.set("gv_readpaid_v1", JSON.stringify(readPaid.current)).catch(function(){}); } catch (e) {}
+    if (me && syncedFromServer) {
+      if (readPaidPush.current) clearTimeout(readPaidPush.current);
+      readPaidPush.current = setTimeout(function() {
+        authFetch("/api/user-data?type=readpaid", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ readpaid: readPaid.current }),
+        }).catch(function(){});
+      }, 3000);
+    }
   };
+  var mergeReadPaid = function(remote) {
+    if (!remote || typeof remote !== "object") return;
+    var changed = false;
+    Object.keys(remote).forEach(function(k) {
+      var n = Number(remote[k]) || 0;
+      if (n > (Number(readPaid.current[k]) || 0)) { readPaid.current[k] = n; changed = true; }
+    });
+    if (changed) { try { storage.set("gv_readpaid_v1", JSON.stringify(readPaid.current)).catch(function(){}); } catch (e) {} }
+  };
+  // Once signed in and in step with the server, send this device's ledger up
+  // too, so what it credited before the ledger was shared is known everywhere.
+  useEffect(function() {
+    if (!me || !syncedFromServer) return;
+    var t = setTimeout(function(){ if (Object.keys(readPaid.current).length) saveReadMark(); }, 4000);
+    return function(){ clearTimeout(t); };
+  }, [me && me.email, syncedFromServer]);
   // Russian words in a chapter, and up to a character offset within it.
   var ruCount = function(t) { return (String(t || "").match(/[А-Яа-яЁё][А-Яа-яЁё-]*/g) || []).length; };
   // Short enough to read at a sitting and see whole — a lyric, a fable, a
@@ -7430,6 +7461,10 @@ export default function App() {
     }
     var paid = readPaid.current[wk] || 0;
     var total = bookWords.total || 0;
+    // Until a signed-in reader's ledger has come down from the server, this
+    // device cannot know what another one already counted, so nothing is
+    // credited yet (the mark still moves).
+    if (me && !syncedFromServer) credit = false;
     if (mark && credit) {
       var from = wordsBefore(mark.cidx, mark.off || 0);
       var gain = to - from;
@@ -8304,6 +8339,7 @@ export default function App() {
         if (data.drills && typeof data.drills === "object") {
           setDrills(function(d){ return mergeDrills(d, data.drills); });
         }
+        if (data.readpaid && typeof data.readpaid === "object") mergeReadPaid(data.readpaid);
         if (data.bibleread && typeof data.bibleread === "object") {
           setBibleRead(function(m){ return mergeBibleRead(m, data.bibleread); });
         }
