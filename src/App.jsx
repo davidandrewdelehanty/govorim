@@ -12508,6 +12508,9 @@ export default function App() {
       setVocab(function(list){ return list.filter(function(v){ return (v._key || v.id || v.ru) !== key; }); });
       setLearned(function(l){ return mergeLearned(l, [retired]); });
       setQuizLearnedNow(function(l){ return l.concat([retired.ru]); });
+      // Said at the moment it happens, the way a badge is — but only here,
+      // with no dot on the profile picture: it is news, not something owed.
+      setRetireToast({ word: retired.ru, en: retired.en || "", total: (learned || []).length + 1, at: now });
     } else {
       setVocab(function(list){ return list.map(function(v){ return (v._key || v.id || v.ru) === key ? next : v; }); });
     }
@@ -12547,6 +12550,12 @@ export default function App() {
     });
   }, [presetBooks, finishedMap, stats, learned, vocab.length, drills, songsRead, bibleRead]);
   var [badgeToast, setBadgeToast] = useState(null);
+  var [retireToast, setRetireToast] = useState(null);   // { word, en, total, at } — a card just retired
+  useEffect(function() {
+    if (!retireToast) return;
+    var t = setTimeout(function(){ setRetireToast(null); }, 7000);
+    return function(){ clearTimeout(t); };
+  }, [retireToast && retireToast.at]);
   // Badges earned and not yet looked at: a red dot on the profile picture
   // until the profile is opened. Kept on the device, so a dot survives a reload.
   var [badgeUnread, setBadgeUnread] = useState(function(){
@@ -15943,6 +15952,9 @@ export default function App() {
         .bdg-toast-t{min-width:0}
         .bdg-toast-b{background:#2a1f14;color:#fbf8f2;border:none;border-radius:8px;padding:6px 12px;font-size:13px;cursor:pointer;font-family:'IBM Plex Sans',sans-serif}
         .bdg-toast-x{background:none;border:none;font-size:20px;color:rgba(42,31,20,.5);cursor:pointer;padding:0 4px}
+        .rt-toast.stacked{bottom:104px}
+        .rt-medal{background:radial-gradient(circle at 35% 30%,#eaf6e6,#7fae74);color:#1f4a17;font-size:18px}
+        .rt-sub{font-family:'IBM Plex Sans',sans-serif;font-size:12px;color:rgba(42,31,20,.6);margin-top:1px;max-width:62vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
         .acct-cnt{font-family:var(--sans);font-size:12px;font-weight:400;color:var(--ink-3);margin-left:6px;text-transform:none;letter-spacing:0}
         .acct-li.go{cursor:pointer}
         .acct-li.go:hover .t{text-decoration:underline}
@@ -17034,6 +17046,17 @@ export default function App() {
           </div>
           {me && <button type="button" className="bdg-toast-b" onClick={function(){ setBadgeToast(null); setShowAcct(true); }}>See</button>}
           <button type="button" className="bdg-toast-x" aria-label="Close" onClick={function(){ setBadgeToast(null); }}>×</button>
+        </div>
+      )}
+      {retireToast && (
+        <div className={"bdg-toast rt-toast" + (badgeToast && badgeToast.list.length > 0 ? " stacked" : "")} role="status">
+          <div className="bdg-medal rt-medal" aria-hidden="true">✓</div>
+          <div className="bdg-toast-t">
+            <div className="bdg-toast-k">Слово выучено</div>
+            <div className="bdg-toast-n" lang="ru">{retireToast.word}</div>
+            <div className="rt-sub">{retireToast.en ? retireToast.en + " · " : ""}retired from review — {retireToast.total} learned in all</div>
+          </div>
+          <button type="button" className="bdg-toast-x" aria-label="Close" onClick={function(){ setRetireToast(null); }}>×</button>
         </div>
       )}
       {showAcct && me && (
