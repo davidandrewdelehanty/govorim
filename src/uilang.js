@@ -430,6 +430,7 @@ export var UI_RU = {
   "Speeches": "Речи",
   "Speeches by Soviet Leaders": "Речи советских руководителей",
   "Soviet Textbooks": "Советские учебники",
+  "History": "История",
   "Soviet textbooks": "Советские учебники",
   "Textbooks": "Учебники",
   "Works": "Произведения",
