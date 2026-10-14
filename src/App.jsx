@@ -12645,19 +12645,20 @@ export default function App() {
   var srsProgress = function(v, compact) {
     var srs = v && v.srs;
     if (v && v.learnedAt) return <div className="srsp srsp-done">Learned · retired from your deck</div>;
-    if (!srs || !srs.S) return <div className="srsp srsp-new">Not reviewed yet · retires after 4 reviews, 3 right in a row, and a memory strength of {LEARNED_STABILITY_DAYS} days</div>;
+    if (!srs || !srs.S) return <div className="srsp srsp-new">Not reviewed yet · retires once you would remember it for {LEARNED_STABILITY_DAYS} days — usually about four right answers, spread over two months</div>;
     var S = srs.S;
     var pct = Math.max(2, Math.min(100, S / LEARNED_STABILITY_DAYS * 100));
     var run = Math.min(srs.run || 0, 3), reps = srs.reps || 0;
     var dueIn = srs.due ? Math.round((srs.due - Date.now()) / 86400000) : null;
     var next = dueIn === null ? "" : dueIn <= 0 ? "due now" : dueIn === 1 ? "next review tomorrow" : "next review in " + dueIn + " days";
     return (
-      <div className={"srsp" + (compact ? " srsp-c" : "")} title="A word retires once all three are met">
+      <div className={"srsp" + (compact ? " srsp-c" : "")}
+           title={"Retires when memory reaches " + LEARNED_STABILITY_DAYS + " days. Each right answer on its review day multiplies it — roughly 2, 11, 46, then past 90 days — and a wrong one cuts it back. Answers on the same day barely move it, and the last three answers must be right."}>
         <span className="srsp-item">
-          <span className="srsp-k">Memory</span> <b>{S < 1 ? Math.round(S * 10) / 10 : Math.round(S)}</b> of {LEARNED_STABILITY_DAYS} days
+          <span className="srsp-k">Memory</span> <b>{S < 1 ? Math.round(S * 10) / 10 : Math.round(S)}</b> of {LEARNED_STABILITY_DAYS} days to retire
           <span className="srsp-bar"><span style={{width: pct + "%"}}></span></span>
         </span>
-        <span className="srsp-item"><span className="srsp-k">Right in a row</span> <b>{run}</b> of 3</span>
+        {run < 3 && <span className="srsp-item"><span className="srsp-k">Last answers right</span> <b>{run}</b> of 3</span>}
         {reps < 4 && <span className="srsp-item"><span className="srsp-k">Reviews</span> <b>{reps}</b> of 4</span>}
         {next && !compact && <span className="srsp-item srsp-next">{next}</span>}
       </div>
