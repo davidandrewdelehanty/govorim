@@ -55,6 +55,9 @@ def main():
     ap.add_argument("--author", action="append", default=[],
                     help="match on the catalogue's author field, e.g. Булгаков")
     ap.add_argument("--slug", action="append", default=[])
+    ap.add_argument("--slugs-file",
+                    help="a file of slugs, one per line or in the first column of a TSV "
+                         "(e.g. tools/top500/wanted.tsv); # lines are ignored")
     ap.add_argument("--force", action="store_true",
                     help="include books that already have a videos map")
     ap.add_argument("--min-words", type=int, default=0,
@@ -74,8 +77,13 @@ def main():
     ap.add_argument("--no-captions", action="store_true",
                     help="run the search but do not pull transcripts")
     a = ap.parse_args()
+    if a.slugs_file:
+        for line in io.open(a.slugs_file, encoding="utf-8"):
+            first = line.split("\t")[0].strip()
+            if first and not first.startswith("#"):
+                a.slug.append(first)
     if not a.author and not a.slug:
-        ap.error("give --author or --slug")
+        ap.error("give --author, --slug or --slugs-file")
 
     books = load_manifest(a.manifest)
     wanted = []
