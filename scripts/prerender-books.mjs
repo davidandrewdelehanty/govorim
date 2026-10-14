@@ -92,6 +92,7 @@ const CATEGORY_EN = {
   "Novels": "novel", "Novellas": "novella", "Short Stories": "short story",
   "Plays": "play", "Poetry": "poem", "Religious Texts": "religious text",
   "Speeches by Soviet Leaders": "speech", "Spectacle": "radio play",
+  "Soviet Textbooks": "textbook",
 };
 
 function headSwap(html, re, replacement, what, slug) {

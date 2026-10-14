@@ -114,7 +114,17 @@ async def main():
     async with TelegramClient(SESSION, int(api_id), api_hash) as client:
         chan = await find_channel(client, a.channel)
         rows = []
-        async for msg in client.iter_messages(chan, limit=a.limit or None):
+        if a.ids:                                 # fetch just these posts, no channel scan
+            print("fetching %d posts by id…" % len(a.ids), flush=True)
+            msgs = [m for m in await client.get_messages(chan, ids=a.ids) if m]
+        else:
+            print("reading the channel (this takes a few minutes for ~8,000 posts)…", flush=True)
+            msgs = []
+            async for msg in client.iter_messages(chan, limit=a.limit or None):
+                msgs.append(msg)
+                if len(msgs) % 500 == 0:
+                    print("   %d posts read" % len(msgs), flush=True)
+        for msg in msgs:
             name = file_name(msg)
             if not name or not name.lower().endswith(KEEP):
                 continue
@@ -122,25 +132,32 @@ async def main():
             rows.append({"id": msg.id, "file": name, "mb": round((msg.file.size or 0) / 1e6, 1),
                          "posted": msg.date.strftime("%Y-%m-%d"), "year": guess_year(name, cap),
                          "caption": cap[:300], "msg": msg})
-        rows.reverse()                            # oldest post first
-
-        listing = os.path.join(a.out, "list.tsv")
-        with open(listing, "w", encoding="utf-8", newline="") as f:
-            w = csv.writer(f, delimiter="\t")
-            w.writerow(["id", "year?", "MB", "posted", "file", "caption"])
-            for r in rows:
-                w.writerow([r["id"], r["year"], r["mb"], r["posted"], r["file"], r["caption"]])
-        print("%d files listed → %s" % (len(rows), listing))
-        dated = [r for r in rows if r["year"]]
-        print("   %d with a year in the name or caption, %d of them 1930 or earlier"
-              % (len(dated), sum(1 for r in dated if r["year"] <= 1930)))
-        if not a.download:
-            print("\nNothing downloaded. Read the list, then add --download with --ids, --match or --year-max.")
-            return
-
-        pick = rows
+        rows.sort(key=lambda r: r["id"])          # oldest post first
         if a.ids:
-            pick = [r for r in pick if r["id"] in set(a.ids)]
+            missing = sorted(set(a.ids) - {r["id"] for r in rows})
+            if missing:
+                print("   no book file in posts: %s" % " ".join(map(str, missing)))
+            for r in rows:
+                print("   %d  %s  (%.1f MB)" % (r["id"], r["file"], r["mb"]))
+            if not a.download:
+                return
+            pick = rows
+        else:
+            listing = os.path.join(a.out, "list.tsv")
+            with open(listing, "w", encoding="utf-8", newline="") as f:
+                w = csv.writer(f, delimiter="\t")
+                w.writerow(["id", "year?", "MB", "posted", "file", "caption"])
+                for r in rows:
+                    w.writerow([r["id"], r["year"], r["mb"], r["posted"], r["file"], r["caption"]])
+            print("%d files listed → %s" % (len(rows), listing))
+            dated = [r for r in rows if r["year"]]
+            print("   %d with a year in the name or caption, %d of them 1930 or earlier"
+                  % (len(dated), sum(1 for r in dated if r["year"] <= 1930)))
+            if not a.download:
+                print("\nNothing downloaded. Read the list, then add --download with --ids, --match or --year-max.")
+                return
+
+            pick = rows
         if a.match:
             rx = re.compile(a.match, re.I)
             pick = [r for r in pick if rx.search(r["file"]) or rx.search(r["caption"])]
@@ -156,12 +173,20 @@ async def main():
             while True:
                 try:
                     print("[%d/%d] fetch  %s  (%.1f MB)" % (i, len(pick), r["file"], r["mb"]), flush=True)
-                    await client.download_media(r["msg"], file=dest)
+                    shown = [0]
+                    def prog(got, total, shown=shown):
+                        pct = int(got * 100 / total) if total else 0
+                        if pct >= shown[0] + 10 or got == total:
+                            shown[0] = pct
+                            print("   %3d%%  %.1f / %.1f MB" % (pct, got / 1e6, total / 1e6), flush=True)
+                    part = dest + ".part"
+                    await client.download_media(r["msg"], file=part, progress_callback=prog)
+                    os.replace(part, dest)
                     break
                 except FloodWaitError as e:
                     print("   Telegram asks for a %ds pause — waiting" % e.seconds, flush=True)
-                    time.sleep(e.seconds + 1)
-            time.sleep(a.pause)
+                    await asyncio.sleep(e.seconds + 1)
+            await asyncio.sleep(a.pause)
         print("\ndone.")
 
 

@@ -81,6 +81,9 @@ for (const e of publicEntries) {
     // drills are generated and then pruned away.
     slugs.add(base.replace(/[^A-Za-z0-9_-]/g, "_"));
   }
+  // A scanned textbook's illustrations and title-page cover live in their own
+  // folder beside the FB2 (textbooks/<slug>/), named by the entry.
+  if (e.assets) keepDirs.add(path.posix.normalize(String(e.assets)));
   if (e.parallelEn) {
     keepDirs.add(path.posix.normalize(e.parallelEn));
     slugs.add(String(e.parallelEn).replace(/-en$/, ""));

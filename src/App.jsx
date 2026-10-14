@@ -3825,6 +3825,14 @@ async function parseFb2(buffer, options) {
     // mark their stage directions that way, and it is a far better signal than
     // any guess made from the words. Recorded beside the text, never in it.
     out.emphIdx = [];
+    // Pictures and in-chapter headings. Both are recorded beside the text and
+    // never in it, like tightIdx, so word offsets, audio sync and the chapter
+    // splitting are untouched. A figure belongs before paragraph `at`; an `at`
+    // equal to the paragraph count means after the last one. The scanned
+    // textbooks carry their illustrations as <image l:href="textbooks/…">
+    // pointing at files beside the book rather than base64 <binary> blobs.
+    out.figs = [];
+    out.subIdx = [];
     var whollyEmphasised = function(el) {
       var sawEm = false;
       for (var ci = 0; ci < el.childNodes.length; ci++) {
@@ -3844,6 +3852,15 @@ async function parseFb2(buffer, options) {
         var tag = c.tagName.toLowerCase();
         if (tag === "section") { if (!ownOnly) walk(c, inVerse); continue; }
         if (tag === "title") continue;   // headings live in chapter.heading
+        if (tag === "image") {
+          var href = c.getAttribute("l:href") || c.getAttribute("xlink:href") ||
+                     c.getAttributeNS("http://www.w3.org/1999/xlink", "href") || c.getAttribute("href") || "";
+          if (href && href.charAt(0) !== "#") {
+            out.figs.push({ at: out.length, src: href, cap: c.getAttribute("title") || "",
+                            w: +c.getAttribute("width") || 0, h: +c.getAttribute("height") || 0 });
+          }
+          continue;
+        }
         if (tag === "p" || tag === "v" || tag === "subtitle") {
           var t = c.textContent.replace(/\s+/g, " ").trim();
           if (!t) continue;
@@ -3864,10 +3881,14 @@ async function parseFb2(buffer, options) {
           }
           if (inVerse) out.tightIdx.push(out.length);
           if (tag === "p" && whollyEmphasised(c)) out.emphIdx.push(out.length);
+          if (tag === "subtitle") out.subIdx.push(out.length);
           out.push(t);
           continue;
         }
-        walk(c, inVerse || tag === "epigraph");   // wrapper containers: epigraph, poem, cite, …
+        // A <poem data-tight> is set tight too: the textbooks mark runs of short
+        // lines that way (verse, a primer's sentence-per-line reading). Plain
+        // <poem> keeps normal spacing — see the Горе от ума note above.
+        walk(c, inVerse || tag === "epigraph" || (tag === "poem" && !!c.getAttribute("data-tight")));   // wrapper containers: epigraph, poem, cite, …
       }
     };
     walk(sec, false);
@@ -3884,7 +3905,9 @@ async function parseFb2(buffer, options) {
     if ((body.match(/[а-яёА-ЯЁ]/g) || []).length < 5) return;   // no Russian text
     out.push({ heading: heading || ("Глава " + (out.length + 1)), text: body,
                tightIdx: (paras && paras.tightIdx) || [],
-               emphIdx: (paras && paras.emphIdx) || [] });
+               emphIdx: (paras && paras.emphIdx) || [],
+               figs: (paras && paras.figs) || [],
+               subIdx: (paras && paras.subIdx) || [] });
   };
 
   // Depth-first: one chapter per LEAF <section>, in document order. FB2s vary
@@ -5518,6 +5541,8 @@ export default function App() {
   // The pin asks rather than assumes: a reader marking a paragraph is not
   // always listening, and one who is may want the page without the second.
   var [bmMenu, setBmMenu] = useState(null);   // {x, y, off, here} | null
+  // A textbook illustration opened full size: {src, cap} | null.
+  var [figZoom, setFigZoom] = useState(null);
   useEffect(function() {
     if (!bmMenu) return;
     var close = function(){ setBmMenu(null); };
@@ -13063,9 +13088,47 @@ export default function App() {
     });
     var videoAt = Object.create(null);
     ((curChapter && curChapter.videosAt) || []).forEach(function(v) { videoAt[v.at] = v; });
+    // Illustrations (scanned textbooks). Each sits before the paragraph it was
+    // printed above; one recorded past the last paragraph goes after it, on
+    // whichever page that last paragraph lands.
+    var figAt = Object.create(null), figTail = [];
+    var subAt = Object.create(null);
+    var chParaCount = (curChapter && curChapter.figs && curChapter.figs.length && curChapter.text)
+      ? chapterParagraphs(curChapter.text).length : 0;
+    ((curChapter && curChapter.figs) || []).forEach(function(f) {
+      if (f.at >= chParaCount) figTail.push(f);
+      else (figAt[f.at] = figAt[f.at] || []).push(f);
+    });
+    ((curChapter && curChapter.subIdx) || []).forEach(function(x) { subAt[x] = true; });
+    var isTextbook = !!(bookMeta && bookMeta.category === "Soviet Textbooks");
+    // A textbook's chapter argument (the italic summary under a chapter title)
+    // and its notes to the teacher come through as wholly-emphasised paragraphs.
+    var argAt = Object.create(null);
+    if (isTextbook) ((curChapter && curChapter.emphIdx) || []).forEach(function(x) { argAt[x] = true; });
+    var figSrc = function(src) {
+      return /^(https?:)?\/\//.test(src) || src.charAt(0) === "/" ? src : ("/books/" + src);
+    };
+    var renderFigs = function(list, key) {
+      if (!list || !list.length) return null;
+      return list.map(function(f, fi) {
+        var wide = f.w && f.h && f.w / f.h > 1.25;
+        return (
+          <figure key={key + "-" + fi} className={"tb-fig" + (wide ? " wide" : "")} data-noxl="">
+            <img src={figSrc(f.src)} alt={f.cap || "Illustration"} loading="lazy" decoding="async"
+                 width={f.w || undefined} height={f.h || undefined}
+                 onClick={function(e){ e.stopPropagation(); setFigZoom({ src: figSrc(f.src), cap: f.cap || "" }); }} />
+            {f.cap && <figcaption lang="ru">{f.cap}</figcaption>}
+          </figure>
+        );
+      });
+    };
     var litRendered = litEntries.map(function(entry, pi, paraArr) {
       var secHead = sectionAt[entry.chIdx];
       var secVid = videoAt[entry.chIdx];
+      var figsHere = renderFigs(figAt[entry.chIdx], "f" + entry.chIdx);
+      var figsAfter = (entry.chIdx === chParaCount - 1) ? renderFigs(figTail, "ft") : null;
+      var isSub = !!subAt[entry.chIdx];
+      var isArg = !!argAt[entry.chIdx];
         var para = entry.para;
         var paraText = para.map(function(t){ return t.text; }).join("");
         var paraBase = para[0] ? para[0].start : 0;
@@ -13390,9 +13453,11 @@ export default function App() {
                         allowFullScreen />
               </div>
             )}
-            <p id={"sp" + entry.chIdx} lang="ru" style={playKind ? undefined : pMargin}
+            {figsHere}
+            <p id={"sp" + entry.chIdx} lang="ru" style={playKind ? undefined : (isSub && isTextbook ? undefined : pMargin)}
                className={playKind ? ("play-p play-" + playKind.kind)
-                                   : (bibleChapterMark ? "bible-chapter" : undefined)}>
+                                   : (bibleChapterMark ? "bible-chapter"
+                                   : (isSub && isTextbook ? "tb-sub" : (isArg ? "tb-arg" : undefined)))}>
               {jumpBtn}{bmBtn}{ruBody}
               {/* The Russian line already carries its verse number, so the
                   English beneath it does not repeat one. A book-sized page
@@ -13404,6 +13469,7 @@ export default function App() {
                       lang="en">{bibleHeadingLine || bibleEnLine || proseEnLine}</span>
               )}
             </p>
+            {figsAfter}
           </Fragment>
         );
       });
@@ -15462,6 +15528,25 @@ export default function App() {
           .lib-card-meta{justify-content:flex-start;padding-top:4px}
           .lib-card-title .a{display:block;margin:2px 0 0;white-space:normal}
         }
+        /* The textbook shelf: title pages in a row, like the spines-out end of
+           a second-hand stall turned face-forward. */
+        .tb-shelf{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:26px 20px;padding:18px 0 6px}
+        .tb-card{position:relative;cursor:pointer;display:flex;flex-direction:column;gap:3px;outline:none}
+        .tb-card.is-disabled{opacity:.5;pointer-events:none}
+        .tb-cover{position:relative;aspect-ratio:3/4;background:var(--paper-3);border:1px solid var(--rule);
+          display:flex;align-items:center;justify-content:center;overflow:hidden;margin-bottom:8px;
+          box-shadow:3px 3px 0 var(--paper-2);transition:box-shadow .15s,transform .15s}
+        .tb-cover img{width:100%;height:100%;object-fit:cover;object-position:top center;mix-blend-mode:multiply;filter:sepia(.12) contrast(1.05)}
+        .tb-cover-t{font-family:var(--display);font-size:16px;line-height:1.3;text-align:center;padding:14px;color:var(--ink-2)}
+        .tb-card:hover .tb-cover,.tb-card:focus-visible .tb-cover{box-shadow:5px 5px 0 var(--rubric-soft);transform:translate(-1px,-1px);border-color:var(--ink-3)}
+        .tb-card:hover .tb-card-t,.tb-card:focus-visible .tb-card-t{color:var(--rubric)}
+        .tb-card-t{font-family:var(--display);font-size:16px;line-height:1.25;color:var(--ink)}
+        .tb-card-a{font-family:var(--serif);font-style:italic;font-size:13.5px;color:var(--ink-2);display:flex;gap:8px;flex-wrap:wrap;align-items:baseline}
+        .tb-card-a .y{font-style:normal;font-family:var(--sans);font-size:10.5px;letter-spacing:.14em;color:var(--ink-3)}
+        .tb-card-b{font-family:var(--serif);font-size:13px;line-height:1.45;color:var(--ink-2);margin-top:3px}
+        .tb-read{position:absolute;top:8px;right:8px;background:var(--paper);border:1px solid var(--rubric);color:var(--rubric);
+          font-family:var(--sans);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;padding:2px 6px}
+        @media(max-width:600px){ .tb-shelf{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 14px} }
         /* Continue reading: a short list, not a stack of tiles. */
         .lcard{padding:10px 0;border:0;border-bottom:1px solid var(--rule-soft);background:none;display:grid;
           grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"head when" "pct pct" "bar bar";gap:2px 16px;align-items:baseline}
@@ -15534,6 +15619,28 @@ export default function App() {
         .story-index-link{border:0;padding:2px 0;font-family:var(--display);font-size:15px;color:var(--ink-2);letter-spacing:.04em}
         .story-index-link:hover{background:none;color:var(--rubric)}
         .sec-div{font-family:var(--display);color:var(--ink);border-top:1px solid var(--rule)}
+        /* Textbook plates. A scan's own paper is darker than ours, so the image
+           is multiplied onto the page: the paper disappears and the print stays,
+           the way a plate looks in a well-made reprint. */
+        .tb-fig{margin:26px auto 24px;text-align:center;max-width:min(100%,520px);break-inside:avoid}
+        .tb-fig.wide{max-width:100%}
+        .tb-fig img{display:block;margin:0 auto;max-width:100%;height:auto;max-height:62vh;width:auto;
+          mix-blend-mode:multiply;cursor:zoom-in;filter:contrast(1.04)}
+        .tb-fig figcaption{margin:9px auto 0;max-width:34em;font-family:var(--serif);font-style:italic;
+          font-size:14px;line-height:1.45;color:var(--ink-2)}
+        .tb-fig figcaption::before{content:"";display:block;width:28px;margin:0 auto 7px;border-top:1px solid var(--rubric)}
+        p.tb-sub{font-family:var(--display);font-size:1.12em;font-weight:700;line-height:1.3;color:var(--ink);
+          margin:1.7em 0 .55em;letter-spacing:.01em}
+        p.tb-sub .rw{font-weight:700}
+        p.tb-arg{font-style:italic;color:var(--ink-2);font-size:.94em;line-height:1.6;padding-left:14px;border-left:2px solid var(--rubric-soft)}
+        .tb-zoom{position:fixed;inset:0;z-index:4000;background:rgba(244,239,229,.97);display:flex;
+          align-items:center;justify-content:center;padding:28px 16px;cursor:zoom-out;outline:none}
+        .tb-zoom figure{margin:0;max-width:100%;max-height:100%;display:flex;flex-direction:column;align-items:center;cursor:default}
+        .tb-zoom img{max-width:min(96vw,1100px);max-height:84vh;width:auto;height:auto;mix-blend-mode:multiply}
+        .tb-zoom figcaption{margin-top:12px;font-family:var(--serif);font-style:italic;font-size:15px;color:var(--ink-2);text-align:center;max-width:40em}
+        .tb-zoom-x{position:absolute;top:10px;right:14px;border:0;background:none;font-size:30px;line-height:1;
+          color:var(--ink-2);cursor:pointer;padding:6px 10px}
+        .tb-zoom-x:hover{color:var(--rubric)}
         .lch-heading{font-family:var(--display);font-size:30px;font-weight:400;line-height:1.15;margin:6px 0 6px;color:var(--ink)}
         .lch-en{font-family:var(--serif);font-style:italic;font-size:14.5px;letter-spacing:0;color:var(--ink-2);margin:0 0 20px;padding-bottom:12px;border-bottom:1px solid var(--rule-soft)}
         .lch-en i{font-style:normal}
@@ -18408,6 +18515,7 @@ export default function App() {
                       <option value="Spectacle">Spectacle</option>
                       <option value="Speeches">Speeches</option>
                       <option value="Speeches by Soviet Leaders">Speeches by Soviet Leaders</option>
+                      <option value="Soviet Textbooks">Soviet Textbooks</option>
                     </select>
                   </div>
                   <div style={{display:"flex",gap:10,alignItems:"center",marginTop:4}}>
@@ -20010,10 +20118,10 @@ export default function App() {
                         // "Works" is kept only as a legacy fallback so a book that still carries
                         // the old category (an older upload, a hand-edited entry) keeps rendering
                         // instead of vanishing into "Other".
-                        var CATEGORIES = ["Novels", "Novellas", "Short Stories", "Plays", "Poetry", "Song Lyrics", "Religious Texts", "Theatrical Performances", "Speeches", "Speeches by Soviet Leaders", "Works", "Texts Without English"];
+                        var CATEGORIES = ["Novels", "Novellas", "Short Stories", "Plays", "Poetry", "Song Lyrics", "Religious Texts", "Theatrical Performances", "Speeches", "Speeches by Soviet Leaders", "Works", "Soviet Textbooks", "Texts Without English"];
                         // Render order: "Texts Without English" sits at the very bottom,
                         // after the catch-all "Other" bucket.
-                        var ORDER = ["Novels", "Novellas", "Short Stories", "Plays", "Poetry", "Song Lyrics", "Religious Texts", "Theatrical Performances", "Speeches", "Speeches by Soviet Leaders", "Works", "Other", "Texts Without English"];
+                        var ORDER = ["Novels", "Novellas", "Short Stories", "Plays", "Poetry", "Song Lyrics", "Religious Texts", "Theatrical Performances", "Speeches", "Speeches by Soviet Leaders", "Works", "Soviet Textbooks", "Other", "Texts Without English"];
                         var normalize = function(cat) {
                           // Singular legacy spellings written by older uploads.
                           if (cat === "Novel") return "Novels";
@@ -20066,6 +20174,7 @@ export default function App() {
                           : (openCat && buckets[openCat] && buckets[openCat].length) ? [openCat] : [];
                         var chipLabel = function(c) {
                           if (c === "Speeches by Soviet Leaders") return "Soviet speeches";
+                          if (c === "Soviet Textbooks") return "Textbooks";
                           if (c === "Texts Without English") return "Russian only";
                           if (c === "Theatrical Performances") return "Performances";
                           if (c === "Short Stories") return "Stories";
@@ -20276,6 +20385,53 @@ export default function App() {
                                   </div>
                                 );
                               };
+                              if (cat === "Soviet Textbooks") {
+                                // A shelf of title pages. These are scans of real
+                                // books, and the title page — the publisher's
+                                // device, the old type, the year — says more
+                                // about each than a line of blurb could.
+                                var renderTb = function(entry) {
+                                  var book = entry.book;
+                                  var isLoading = bookLoading === book.filename;
+                                  var isDisabled = bookLoading !== null && !isLoading;
+                                  return (
+                                    <div key={entry.idx}
+                                      className={"tb-card" + (isLoading ? " is-loading" : "") + (isDisabled ? " is-disabled" : "")}
+                                      role="button" tabIndex={0}
+                                      onKeyDown={function(e){ if ((e.key === "Enter" || e.key === " ") && bookLoading === null) { e.preventDefault(); loadPresetBook(book); } }}
+                                      onClick={function(){ if (bookLoading === null) loadPresetBook(book); }}>
+                                      <div className="tb-cover">
+                                        {book.cover
+                                          ? <img src={"/books/" + book.cover} alt="" loading="lazy" decoding="async" />
+                                          : <span className="tb-cover-t" lang="ru">{book.title}</span>}
+                                        {isFinished(book) && <span className="tb-read">read</span>}
+                                      </div>
+                                      <div className="tb-card-t" lang="ru">{book.title}</div>
+                                      <div className="tb-card-a">
+                                        {book.author && <span lang="ru">{book.author}</span>}
+                                        {book.year ? <span className="y">{book.year}</span> : null}
+                                      </div>
+                                      {book.blurb && <div className="tb-card-b">{book.blurb}</div>}
+                                      {isLoading && (
+                                        <div className="lib-card-loader">
+                                          <div className="typing"><div className="dot"/><div className="dot"/><div className="dot"/></div>
+                                          <span>Loading…</span>
+                                        </div>
+                                      )}
+                                    </div>
+                                  );
+                                };
+                                var tbSorted = entries.slice().sort(function(a, b){
+                                  return ((a.book.year || 9999) - (b.book.year || 9999)) ||
+                                    String(a.book.title).localeCompare(String(b.book.title), "ru");
+                                });
+                                return (
+                                  <div key={cat} className="lib-section">
+                                    <div className="lib-section-hdr">Soviet textbooks</div>
+                                    <div className="tb-shelf">{tbSorted.map(renderTb)}</div>
+                                  </div>
+                                );
+                              }
                               if (cat === "Texts Without English") {
                                 // One undivided group: what these share is the missing
                                 // translation, not whether they have a recording (the 🎧
@@ -21216,6 +21372,19 @@ export default function App() {
                             </div>
                           );
                         })()}
+                        {figZoom && (
+                          <div className="tb-zoom" role="dialog" aria-label={figZoom.cap || "Illustration"}
+                               onClick={function(){ setFigZoom(null); }}
+                               onKeyDown={function(e){ if (e.key === "Escape") setFigZoom(null); }}
+                               tabIndex={-1} ref={function(el){ if (el) try { el.focus(); } catch (x) {} }}>
+                            <figure onClick={function(e){ e.stopPropagation(); }}>
+                              <img src={figZoom.src} alt={figZoom.cap || "Illustration"} />
+                              {figZoom.cap && <figcaption lang="ru">{figZoom.cap}</figcaption>}
+                            </figure>
+                            <button type="button" className="tb-zoom-x" aria-label="Close"
+                              onClick={function(e){ e.stopPropagation(); setFigZoom(null); }}>×</button>
+                          </div>
+                        )}
                         {bmMenu && (
                           <div className="bm-menu" style={{left: bmMenu.x + "px", top: bmMenu.y + "px"}}
                                onMouseDown={function(e){ e.stopPropagation(); }}>
