@@ -547,6 +547,30 @@ function saveFile(name, text, mime) {
   } catch (e) { return false; }
 }
 
+// Print hyphenation left in a sentence: «привлека- тельное» → «привлекательное».
+// A particle after the hyphen keeps it («что- нибудь» → «что-нибудь»); a
+// right-hand piece that is itself a common word is left alone, since «говорит-
+// нет» is a dash, not a broken word; «двух- и трёхэтажный» is never touched.
+// `at`, a character position in the sentence, is moved to match.
+function dehyphenRu(s, at) {
+  var text = String(s || "");
+  var pos = (typeof at === "number") ? at : null;
+  var out = "", last = 0;
+  var rx = /([А-Яа-яЁё]{2,})-[ \u00a0]+([а-яё]{2,})/g, m;
+  while ((m = rx.exec(text))) {
+    var a = m[1], b = m[2], rep = null;
+    if (/^(и|или|а|либо|да|ни)$/.test(b)) continue;
+    if (/^(нибудь|либо|то|ка|таки|де)$/.test(b)) rep = a + "-" + b;
+    else if (!isCommonWord(b)) rep = a + b;
+    if (rep == null) continue;
+    out += text.slice(last, m.index) + rep;
+    if (pos != null && pos > m.index + a.length) pos -= Math.min(pos - (m.index + a.length), m[0].length - rep.length);
+    last = m.index + m[0].length;
+  }
+  if (!last) return { s: text, at: at };
+  return { s: out + text.slice(last), at: pos };
+}
+
 function bookKey(meta) {
   if (!meta) return "";
   return (meta.filename || "") + "::" + (meta.title || "");
@@ -12727,6 +12751,45 @@ export default function App() {
         out[out.indexOf(into)] = joined;
       });
       return merged ? out : list;
+    });
+  }, [localLoaded, syncedFromServer]);
+
+  // One-time repair (Oct 14 2026). Sentences saved on cards before the books
+  // lost their print hyphenation still carry it — «привлека- тельное». The
+  // book text is clean now; this cleans the copies already sitting on cards
+  // (and moves each sentence's word position to match), once per device,
+  // after the server's list has arrived, so the clean list is what syncs.
+  useEffect(function() {
+    if (!localLoaded || (me && !syncedFromServer)) return;
+    var FLAG = "gv_dehyphen_v1";
+    try { if (localStorage.getItem(FLAG) === "done") return; } catch (e) { return; }
+    try { localStorage.setItem(FLAG, "done"); } catch (e) {}
+    setVocab(function(list) {
+      var changed = 0;
+      var out = (list || []).map(function(v) {
+        if (!v) return v;
+        var n = Object.assign({}, v), touched = false;
+        if (Array.isArray(v.sentences)) {
+          n.sentences = v.sentences.map(function(y) {
+            if (!y || !y.s) return y;
+            var r = dehyphenRu(y.s, typeof y.p === "number" ? y.p : null);
+            if (r.s === y.s) return y;
+            touched = true;
+            var z = Object.assign({}, y, { s: r.s });
+            if (typeof y.p === "number") z.p = r.at;
+            return z;
+          });
+        }
+        ["srcSentence", "example"].forEach(function(k) {
+          if (typeof v[k] === "string") {
+            var r = dehyphenRu(v[k], null);
+            if (r.s !== v[k]) { n[k] = r.s; touched = true; }
+          }
+        });
+        if (touched) changed++;
+        return touched ? n : v;
+      });
+      return changed ? out : list;
     });
   }, [localLoaded, syncedFromServer]);
 
