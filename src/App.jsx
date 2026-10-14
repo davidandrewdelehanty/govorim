@@ -11487,7 +11487,11 @@ export default function App() {
           // Single chapter from spine — strip any auto-generated heading.
           var h = chs[0].heading || "";
           if (/^глава\s+\d+$/i.test(h.trim()) || /^chapter\s+\d+$/i.test(h.trim())) h = "";
-          chs = [{ heading: h, text: chs[0].text || "" }];
+          // Keep everything else the parser recorded beside the text — the
+          // pictures of a one-chapter textbook (Советская азбука), its tight
+          // verse lines, its subheadings. Rebuilding the chapter from heading
+          // and text alone dropped all of them.
+          chs = [Object.assign({}, chs[0], { heading: h, text: chs[0].text || "" })];
         }
       }
       // Attach per-chapter YouTube URLs from the optional `songs` array on the
@@ -15622,7 +15626,8 @@ export default function App() {
         /* Textbook plates. A scan's own paper is darker than ours, so the image
            is multiplied onto the page: the paper disappears and the print stays,
            the way a plate looks in a well-made reprint. */
-        .tb-fig{margin:26px auto 24px;text-align:center;max-width:min(100%,520px);break-inside:avoid}
+        .tb-fig{margin:26px auto 24px;text-align:center;max-width:min(100%,520px);break-inside:avoid;
+          background:var(--paper);isolation:isolate}
         .tb-fig.wide{max-width:100%}
         .tb-fig img{display:block;margin:0 auto;max-width:100%;height:auto;max-height:62vh;width:auto;
           mix-blend-mode:multiply;cursor:zoom-in;filter:contrast(1.04)}
