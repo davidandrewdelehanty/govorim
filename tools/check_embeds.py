@@ -5,6 +5,16 @@ inside the page.
 Run from WSL (it needs the network; nothing else does):
     python3 tools/check_embeds.py              # the whole catalogue + music
     python3 tools/check_embeds.py --ids P84Jlrdg5dY uIz2Mpcen-A   # spot-check
+    python3 tools/check_embeds.py --max-age 0  # re-ask about every video, even ones that played before
+    python3 tools/check_embeds.py --fix        # also take dead videos out of the catalogue
+    python3 tools/check_embeds.py --from-browser tools/embed-browser.json   # merge real-player results
+
+Videos YouTube answers with a bot check stay "unknown". Those are settled by
+tools/embed_browser_check.js, which loads each one in a real embedded player on
+samovar.live (paste it into the browser console there) and saves
+embed-browser.json; --from-browser merges that file into the cache without
+touching the network: a player that started is "ok", player error 150/101
+(owner forbids embedding, or age-restricted) is "embed_off", 100/2 is "gone".
 
 Two independent signals per video, both from YouTube itself:
   * oEmbed — youtube.com/oembed answers 401 when the owner has switched
@@ -18,8 +28,15 @@ Results are cached in tools/embed-check.json, so a run cut short — or one that
 YouTube starts rate-limiting — picks up where it stopped. Anything YouTube
 answered with a bot check is recorded as "unknown" and is asked again next run.
 
+A video that played last time is asked about again once its check is older
+than --max-age days (default 14): owners switch embedding off, take videos
+down and make them private long after we placed them.
+
 Writes tools/embed-issues.csv: one row per problem video per place it is used
-(book + chapter, or song). Nothing in the catalogue is changed.
+(book + chapter, or song). Nothing in the catalogue is changed unless --fix,
+which removes every video that is gone, private, age-restricted or has
+embedding off from its chapter (or song), so the reader shows text instead of
+a broken player. A backup of the catalogue is written first.
 """
 import argparse, csv, io, json, os, re, sys, time, threading
 import urllib.request, urllib.error
@@ -33,6 +50,7 @@ UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/129.0 Safari/537.36")
 HEADERS = {"User-Agent": UA, "Accept-Language": "en-US,en;q=0.9",
            "Cookie": "CONSENT=YES+1; SOCS=CAI"}
+UNKNOWN = "tools/embed-unknown.json"
 DEFINITE = {"ok", "embed_off", "age", "private", "gone", "unplayable"}
 
 
@@ -47,6 +65,12 @@ def uses():
                 out.setdefault(v["youtube"], []).append(
                     ("book", b.get("title") or b.get("filename"),
                      "ch %s %s" % (k, v.get("heading") or "")))
+        # Song-collection entries list one YouTube URL per song.
+        for i, url in enumerate(b.get("songs") or []):
+            m = re.search(r"(?:v=|youtu\.be/|embed/)([A-Za-z0-9_-]{11})", str(url or ""))
+            if m:
+                out.setdefault(m.group(1), []).append(
+                    ("song", b.get("title") or b.get("filename"), "song %d" % (i + 1)))
     for a in json.load(io.open(MUSIC, encoding="utf-8")):
         for s in a.get("songs") or []:
             if s.get("youtube"):
@@ -120,6 +144,12 @@ def main():
     ap.add_argument("--ids", nargs="*", help="check just these ids (not cached)")
     ap.add_argument("--recheck", action="store_true", help="ignore the cache")
     ap.add_argument("--workers", type=int, default=6)
+    ap.add_argument("--max-age", type=float, default=14,
+                    help="re-ask about videos that played if their check is older than this many days")
+    ap.add_argument("--fix", action="store_true",
+                    help="remove dead videos from the catalogue (backup written first)")
+    ap.add_argument("--from-browser", metavar="JSON",
+                    help="merge {id: 'ok'|'err150'|...} from embed_browser_check.js; no network")
     a = ap.parse_args()
 
     if a.ids:
@@ -131,7 +161,33 @@ def main():
     cache = {}
     if os.path.exists(CACHE) and not a.recheck:
         cache = json.load(io.open(CACHE, encoding="utf-8"))
-    todo = [v for v in u if cache.get(v, {}).get("verdict") not in DEFINITE]
+    def stale(r):
+        try:
+            age = (time.time() - time.mktime(time.strptime(r.get("checked", ""), "%Y-%m-%d %H:%M"))) / 86400
+        except ValueError:
+            return True
+        return age > a.max_age
+    # Settled answers are kept, except that a video which played is asked about
+    # again once its check is old: that is the one answer that goes stale.
+    todo = [v for v in u if cache.get(v, {}).get("verdict") not in DEFINITE
+            or (cache[v]["verdict"] == "ok" and stale(cache[v]))]
+    if a.from_browser:
+        got = json.load(io.open(a.from_browser, encoding="utf-8"))
+        BV = {"ok": "ok", "okr": "ok", "ok3": "ok", "err150": "embed_off", "err101": "embed_off",
+              "err100": "gone", "err2": "gone"}
+        now, n = time.strftime("%Y-%m-%d %H:%M"), {}
+        for vid, res in got.items():
+            v = BV.get(res)
+            if not v:
+                continue                      # timeout / err5: still unknown
+            r = dict(cache.get(vid) or {"id": vid})
+            r.update(verdict=v, checked=now,
+                     reason=("" if v == "ok" else "embedded player: error " + res[3:]),
+                     via="browser")
+            cache[vid] = r
+            n[v] = n.get(v, 0) + 1
+        print("merged from browser:", "  ".join("%s %d" % kv for kv in sorted(n.items())))
+        todo = []
     print("%d videos in use, %d cached, %d to check" % (len(u), len(u) - len(todo), len(todo)))
 
     lock = threading.Lock()
@@ -185,6 +241,36 @@ def main():
         tally[v] = tally.get(v, 0) + 1
     print("\n" + "  ".join("%s %d" % kv for kv in sorted(tally.items())))
     print("problem rows → %s" % REPORT)
+    unk = sorted(v for v in u if (cache.get(v) or {}).get("verdict", "unknown") not in DEFINITE)
+    io.open(UNKNOWN, "w", encoding="utf-8").write(json.dumps(unk) + "\n")
+    if unk:
+        print("%d unknown → %s (settle them with tools/embed_browser_check.js)" % (len(unk), UNKNOWN))
+
+    if a.fix:
+        dead = {vid for vid in u if (cache.get(vid) or {}).get("verdict") in
+                ("embed_off", "age", "private", "gone", "unplayable")}
+        if not dead:
+            print("--fix: nothing to remove"); return 0
+        raw = io.open(MANIFEST, encoding="utf-8").read()
+        bak = MANIFEST + ".bak-embeds-" + time.strftime("%Y%m%d%H%M")
+        io.open(bak, "w", encoding="utf-8").write(raw)
+        idx = json.loads(raw)
+        removed = 0
+        for b in idx:
+            vids = b.get("videos")
+            if isinstance(vids, dict):
+                for k in [k for k, v in vids.items() if isinstance(v, dict) and v.get("youtube") in dead]:
+                    del vids[k]; removed += 1
+                if not vids:
+                    b.pop("videos", None)
+            if isinstance(b.get("songs"), list):
+                for i, url in enumerate(b["songs"]):
+                    m = re.search(r"(?:v=|youtu\.be/|embed/)([A-Za-z0-9_-]{11})", str(url or ""))
+                    if m and m.group(1) in dead:
+                        b["songs"][i] = None; removed += 1
+        io.open(MANIFEST, "w", encoding="utf-8").write(json.dumps(idx, ensure_ascii=False, indent=2) + "\n")
+        print("--fix: removed %d chapter/song video(s) using %d dead id(s); backup %s" % (removed, len(dead), bak))
+        print("       (music videos in %s are listed in the report but not edited)" % MUSIC)
     return 0
 
 
