@@ -431,6 +431,7 @@ export var UI_RU = {
   "Speeches by Soviet Leaders": "Речи советских руководителей",
   "Soviet Textbooks": "Советские учебники",
   "History": "История",
+  "Translations": "Переводы",
   "Soviet textbooks": "Советские учебники",
   "Textbooks": "Учебники",
   "Works": "Произведения",

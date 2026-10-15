@@ -94,6 +94,7 @@ const CATEGORY_EN = {
   "Speeches by Soviet Leaders": "speech", "Spectacle": "radio play",
   "Soviet Textbooks": "textbook",
   "History": "history",
+  "Translations": "translation",
 };
 
 function headSwap(html, re, replacement, what, slug) {
@@ -147,14 +148,24 @@ for (const book of books) {
   const hasAudio = !!(book.publicAudiobook || (book.audiobook && book.publicAudio === true));
   const kind = CATEGORY_EN[book.category] || "work";
 
-  const title = `«${book.title}» — ${book.author || ""} · read in Russian${hasEn ? " with English translation" : ""} | Самовар`;
-  const descEn =
-    `Read ${book.title} by ${book.author || "?"} in the original Russian, free` +
+  // The Translations shelf runs the other way round: the Russian is a
+  // translation and the English beside it is the original.
+  const isTr = book.category === "Translations";
+  const orig = isTr ? `${book.enTitle || book.title}${book.enAuthor ? " by " + book.enAuthor : ""}` : "";
+  const title = isTr
+    ? `«${book.title}» — ${orig} in Russian, with the English original | Самовар`
+    : `«${book.title}» — ${book.author || ""} · read in Russian${hasEn ? " with English translation" : ""} | Самовар`;
+  const descEn = isTr
+    ? `Read ${orig} in a public-domain Russian translation` +
+      (book.translator && book.translator !== "anonymous" ? ` by ${book.translator}` : "") +
+      `, free, with the English original beside the text. Tap any Russian word for a dictionary definition.`
+    : `Read ${book.title} by ${book.author || "?"} in the original Russian, free` +
     (hasEn ? `, with ${translator ? translator + "’s" : "a"} public-domain English translation beside the text` : "") +
     (hasAudio ? ", and an audiobook recording to listen along to" : "") +
     ". Tap any word for a dictionary definition.";
-  const descRu =
-    `«${book.title}» — ${book.author || ""}: читать онлайн бесплатно в оригинале` +
+  const descRu = isTr
+    ? `«${book.title}» — ${book.author || ""}: читать онлайн бесплатно в русском переводе, с английским оригиналом рядом.`
+    : `«${book.title}» — ${book.author || ""}: читать онлайн бесплатно в оригинале` +
     (hasEn ? ", с параллельным английским переводом" : "") +
     (hasAudio ? " и аудиокнигой" : "") + ".";
   const desc = descEn + " — " + descRu;
@@ -186,7 +197,12 @@ for (const book of books) {
     url,
     isAccessibleForFree: true,
   };
-  if (hasEn && translator) ld.translator = { "@type": "Person", name: translator };
+  if (hasEn && translator && !isTr) ld.translator = { "@type": "Person", name: translator };
+  if (isTr) {
+    if (book.translator && book.translator !== "anonymous") ld.translator = { "@type": "Person", name: book.translator };
+    ld.translationOfWork = { "@type": "Book", name: book.enTitle || "", inLanguage: "en",
+                             author: { "@type": "Person", name: book.enAuthor || "" } };
+  }
   html = html.replace("</head>",
     `  <script type="application/ld+json">${JSON.stringify(ld)}</script>\n  </head>`);
 
@@ -196,8 +212,10 @@ for (const book of books) {
     `<div class="nojs">` +
     `<h1 lang="ru">${esc(book.title)}</h1>` +
     `<p lang="ru">${esc(book.author || "")}</p>` +
-    `<p lang="en">Read this Russian ${esc(kind)} in the original on Самовар — free, no account needed` +
-    (hasEn ? `, with ${translator ? esc(translator) + "’s" : "an"} English translation beside the text` : "") +
+    (isTr
+      ? `<p lang="en">Read ${esc(orig)} in Russian translation on Самовар — free, no account needed, with the English original beside the text` 
+      : `<p lang="en">Read this Russian ${esc(kind)} in the original on Самовар — free, no account needed` +
+        (hasEn ? `, with ${translator ? esc(translator) + "’s" : "an"} English translation beside the text` : "")) +
     (hasAudio ? ", and an audiobook to listen along to" : "") + `.</p>` +
     (book.translationNote ? `<p lang="en">${esc(book.translationNote)}</p>` : "") +
     (paras.length ? `<h2 lang="ru">Начало</h2>` + paras.map((p) => `<p lang="ru">${esc(p)}</p>`).join("") : "") +
