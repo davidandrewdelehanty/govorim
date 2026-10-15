@@ -5640,6 +5640,11 @@ export default function App() {
   var [uploadedBooks, setUploadedBooks] = useState([]);
   // Which length band the shelf is filtered to, or "" for all of them.
   var [libLength, setLibLength] = useState("");
+  // Whether the shelf shows books with an English text beside the Russian
+  // ("en"), books without one ("ru"), or both (""). It replaces the old
+  // hand-filed "Texts Without English" shelf, which only ever knew about the
+  // books someone had remembered to file there.
+  var [libEn, setLibEn] = useState("");
   // The reader's own book: the recording pasted beside it, and the map of
   // every link they have pasted so far (book key -> YouTube id), so a book
   // reopened next week still has its recording.
@@ -19998,6 +20003,15 @@ export default function App() {
                             })}
                           </select>
                         )}
+                        <select
+                          className="lib-len"
+                          value={libEn}
+                          onChange={function(e){ setLibEn(e.target.value); }}
+                          title="Books with an English text beside the Russian, or the ones in Russian only">
+                          <option value="">Any language</option>
+                          <option value="en">With English</option>
+                          <option value="ru">Russian only</option>
+                        </select>
                         {(function() {
                           var nbm = Object.keys(bookmarkMap).length;
                           if (!nbm && !showBookmarks) return null;
@@ -20094,6 +20108,10 @@ export default function App() {
                           // hidden by a length filter it cannot be judged against.
                           if (libLength && book.words &&
                               lengthBandOf(book.words, lenBands) !== libLength) return false;
+                          if (libEn) {
+                            var hasEn = !!(book.parallelEn || isBibleBook(book));
+                            if (libEn === "en" ? !hasEn : hasEn) return false;
+                          }
                           if (!q) return true;
                           var hay0 = ((book.title || "") + " " + (book.author || "") + " " + (book.filename || "")).toLowerCase();
                           return hay0.indexOf(q) !== -1;
@@ -20174,7 +20192,7 @@ export default function App() {
                         // way they always do. A category chosen as well narrows to it:
                         // then the reader has asked a narrower question.
                         var openCat = (searching || authorView) ? "__all__"
-                                    : (libLength && !libCat) ? "__all__"
+                                    : ((libLength || libEn) && !libCat) ? "__all__"
                                     : libCat;
                         var shelvesToRender = inAuthors ? []
                           : (openCat === "__all__") ? shelves
