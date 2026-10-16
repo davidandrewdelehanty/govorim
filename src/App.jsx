@@ -8,7 +8,7 @@ import { review as srsReview, isLearned, dueWords, weakestWords, recallNow,
 import { dayKey, dayMet, bump as bumpStats, streaks, mergeStats,
          totals as statsTotals, GOAL_WORDS, GOAL_CARDS } from "./stats.js";
 import { AnnotLayer, HL_COLORS, INK_COLORS, annotId } from "./annotations.jsx";
-import { readUiLang, saveUiLang, applyUiLang } from "./uilang.js";
+import { readUiLang, saveUiLang, applyUiLang, trUi } from "./uilang.js";
 
 // localStorage-backed storage shim, matching the previous window.storage Promise API.
 // Keeps the rest of the app code unchanged (still uses await storage.get/set/delete).
@@ -20258,9 +20258,29 @@ export default function App() {
                         if (q && totalResults === 0) {
                           return <div style={{padding:"40px 16px",textAlign:"center",color:"rgba(0,0,0,.5)",fontStyle:"italic"}}>No books match «{bookSearch}»</div>;
                         }
+                        var chipLabel = function(c) {
+                          if (c === "Speeches by Soviet Leaders") return "Soviet speeches";
+                          if (c === "Soviet Textbooks") return "Textbooks";
+                          if (c === "Texts Without English") return "Russian only";
+                          if (c === "Theatrical Performances") return "Performances";
+                          if (c === "Short Stories") return "Stories";
+                          if (c === "Religious Texts") return "Scripture";
+                          return c;
+                        };
                         // The shelves that actually hold something right now, which is
                         // what the chips offer: an empty shelf is not a choice.
-                        var shelves = ORDER.filter(function(c){ return buckets[c].length > 0; });
+                        // In alphabetical order of the names the reader sees — the chip
+                        // labels, in Russian when the interface is Russian — with the
+                        // catch-all "Other" kept last.
+                        var shelfName = function(c) {
+                          var l = chipLabel(c);
+                          return uiLang === "ru" ? (trUi(l) || l) : l;
+                        };
+                        var shelves = ORDER.filter(function(c){ return buckets[c].length > 0; })
+                          .sort(function(a, b){
+                            if (a === "Other" || b === "Other") return a === "Other" ? 1 : -1;
+                            return shelfName(a).localeCompare(shelfName(b), uiLang === "ru" ? "ru" : "en");
+                          });
                         // A search is a question about the whole library, so it shows
                         // every match regardless of which shelf is open.
                         var searching = !!q;
@@ -20283,15 +20303,6 @@ export default function App() {
                         var shelvesToRender = inAuthors ? []
                           : (openCat === "__all__") ? shelves
                           : (openCat && buckets[openCat] && buckets[openCat].length) ? [openCat] : [];
-                        var chipLabel = function(c) {
-                          if (c === "Speeches by Soviet Leaders") return "Soviet speeches";
-                          if (c === "Soviet Textbooks") return "Textbooks";
-                          if (c === "Texts Without English") return "Russian only";
-                          if (c === "Theatrical Performances") return "Performances";
-                          if (c === "Short Stories") return "Stories";
-                          if (c === "Religious Texts") return "Scripture";
-                          return c;
-                        };
                         return (
                           <>
                             {/* Shelf chips. The launch screen opens on these rather than on
