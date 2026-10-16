@@ -11,7 +11,8 @@ For every speech it:
   3. writes public/books/novel/<slug>.fb2 and adds (or updates) the catalogue
      entry: category "Speeches by Soviet Leaders", year, words, public, and
      videos {"0": {youtube, heading, start, end}};
-then builds stress maps for the new books.
+then fetches each video's Russian captions and builds jump points
+(tools/sync_all.py), and stress maps for the new books.
 
     python3 tools/import_soviet_speeches.py            # everything
     python3 tools/import_soviet_speeches.py --only lenin-o-prodnaloge
@@ -224,6 +225,26 @@ def main():
         done.append(s["slug"])
     if done and not dry:
         io.open(MANIFEST, "w", encoding="utf-8").write(json.dumps(idx, ensure_ascii=False, indent=2) + "\n")
+        # Jump points: the video's Russian auto-captions, aligned to the text
+        # (tools/sync_all.py — the same as every other book with a video).
+        print("\njump points:")
+        vtt = os.path.join(ROOT, "tools", "vtt")
+        os.makedirs(vtt, exist_ok=True)
+        os.chdir(ROOT)
+        sys.path.insert(0, os.path.join(ROOT, "tools"))
+        import sync_all
+        for slug in done:
+            vid = by[slug]["videos"]["0"]["youtube"]
+            if not os.path.exists(os.path.join(vtt, vid + ".ru.vtt")):
+                subprocess.call(["yt-dlp", "--write-auto-sub", "--write-sub", "--sub-lang", "ru",
+                                 "--skip-download", "--quiet", "-o", os.path.join(vtt, "%(id)s"),
+                                 "https://youtu.be/" + vid])
+            if not os.path.exists(os.path.join(vtt, vid + ".ru.vtt")):
+                print("   %-44s no Russian captions on %s — no jump points" % (slug, vid)); continue
+            try:
+                print("   %-44s %s" % (slug, sync_all.run(by[slug], verbose=False)))
+            except Exception as ex:
+                print("   %-44s sync failed: %s" % (slug, ex))
         print("\nstress marks for the new books:")
         subprocess.run([sys.executable, os.path.join(ROOT, "tools", "gen_stress_maps.py")])
     print("\n%d added/updated%s" % (len(done), ("; FAILED: " + " ".join(failed)) if failed else ""))
