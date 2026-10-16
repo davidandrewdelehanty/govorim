@@ -2040,9 +2040,16 @@ var BADGE_KINDS = [
   { cat: "Fairytales", champ: "Чемпион сказок", first: "Первая сказка",             ru: "Сказки",          one: "сказку",     tiers: [1, 5, 10, 20],
     en: "fairy tale", enMany: "fairy tales" },
 ];
+// Every kind also counts 5, 10, 15 and 20 finished, whatever else its own
+// steps are (a tier larger than the shelf holds is never offered).
+var BADGE_STEP_TIERS = [5, 10, 15, 20];
+BADGE_KINDS.forEach(function(k) {
+  k.tiers = k.tiers.concat(BADGE_STEP_TIERS).filter(function(t, i, a){ return a.indexOf(t) === i; })
+    .sort(function(a, b){ return a - b; });
+});
 // The great long novels of Russian literature (catalogue entries carrying
 // "great": true) earn a badge of their own on top of the novel badges.
-var BADGE_GREAT_TIERS = [1, 3, 5, 10, 20];
+var BADGE_GREAT_TIERS = [1, 3, 5, 10, 15, 20];
 var BADGE_MILESTONES = [
   { id: "words",   ru: "Прочитано слов",       en: "Russian words read",    tiers: [10000, 50000, 100000, 250000, 500000, 1000000, 2500000] },
   { id: "streak",  ru: "Дней подряд",          en: "longest streak, in days", tiers: [3, 7, 14, 30, 100, 365] },
