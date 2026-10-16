@@ -16,6 +16,7 @@ For each tale in tools/fairytales.json:
     python3 tools/import_fairytales.py --dry      # fetch and report only
     python3 tools/import_fairytales.py
     python3 tools/import_fairytales.py --only morozko kolobok
+    python3 tools/import_fairytales.py --pictures-only    # look again for the tales without a picture
 """
 import html, io, json, os, re, subprocess, sys, time, urllib.parse, urllib.request
 
@@ -28,14 +29,15 @@ MANIFEST = "private/books/index.json"
 
 
 def get_json(url):
-    for k in range(4):
+    time.sleep(1.5)                       # Wikimedia answers 429 to a fast run
+    for k in range(6):
         try:
             with urllib.request.urlopen(urllib.request.Request(url, headers=UA), timeout=40) as r:
                 return json.loads(r.read())
         except Exception:
-            if k == 3:
+            if k == 5:
                 raise
-            time.sleep(3 * (k + 1))
+            time.sleep(15 * (k + 1))
 
 
 def ws(params):
@@ -48,7 +50,9 @@ def commons(params):
 
 def clean(t):
     t = re.sub(r"\[\d+\]", "", html.unescape(re.sub(r"(?s)<[^>]+>", " ", t)))
-    return re.sub(r"\s+", " ", t.replace("\xa0", " ").replace("‎", "")).strip()
+    t = re.sub(r"\s+", " ", t.replace("\xa0", " ").replace("\u200e", "")).strip()
+    # a drop cap comes through as its own word: «Ж или-были» → «Жили-были»
+    return re.sub(r"^([А-ЯЁ]) ([а-яё])", r"\1\2", t)
 
 
 def text_of(title):
@@ -56,7 +60,14 @@ def text_of(title):
     if "parse" not in d:
         return None, None
     h = d["parse"]["text"]["*"]
-    h = re.split(r'(?i)<h2[^>]*>\s*(?:<span[^>]*>)?\s*(?:См\. также|Примечания)', h)[0]
+    h = re.split(r'(?i)<h2[^>]*>\s*(?:<span[^>]*>)?\s*(?:См\. также|Примечания|Комментари)', h)[0]
+    # Afanasyev's pages hold several numbered variants (№ 95, № 96 …) under
+    # <h2> headings: keep the first one only.
+    parts = re.split(r"(?is)<h[23][^>]*>.*?</h[23]>", h)
+    if len(parts) > 2:
+        body = [x for x in parts[1:] if re.search(r"(?is)<p[^>]*>\s*[^<\s]", x)]
+        if body:
+            h = body[0]
     h = re.sub(r"(?is)<(table|style|sup|script)[^>]*>.*?</\1>", " ", h)
     h = re.sub(r'(?is)<div[^>]*class="[^"]*(?:licenseContainer|ws-noexport|noprint|mw-references-wrap)[^"]*".*?</div>', " ", h)
     ps = [clean(m.group(1)) for m in re.finditer(r"(?is)<(?:p|dd)[^>]*>(.*?)</(?:p|dd)>", h)]
@@ -69,6 +80,8 @@ def find_text(t):
         got, ps = text_of(title)
         if ps:
             return got, ps
+    if not t.get("search"):
+        return None, None
     hits = ws({"action": "query", "list": "search", "srlimit": 10, "srsearch": t["search"]})["query"]["search"]
     name = t["title"].lower().replace("ё", "е")
     for h in hits:
@@ -82,7 +95,9 @@ def find_text(t):
 
 def pictures(t):
     out = []
-    for q in t.get("img", []):
+    name = t["title"]
+    queries = list(t.get("img", [])) + [name + " лубок", name + " иллюстрация", name + " сказка", name]
+    for q in queries:
         r = commons({"action": "query", "list": "search", "srnamespace": 6, "srlimit": 12, "srsearch": q})
         names = [x["title"] for x in r["query"]["search"] if re.search(r"\.(jpe?g|png)$", x["title"], re.I)]
         if not names:
@@ -143,6 +158,22 @@ def main():
         if only and t["slug"] not in only:
             continue
         print("==", t["slug"])
+        if "--pictures-only" in a:
+            e = by.get(t["slug"])
+            if not e or "<image" in io.open("public/books/" + e["filename"], encoding="utf-8").read():
+                continue                      # has pictures already
+            from reader_chapters import reader_chapters
+            paras = reader_chapters("public/books/" + e["filename"])[0][0]["paras"]
+            pics = pictures(t)
+            for p in pics:
+                print("   picture:", p[0][:90], "|", p[1][:40])
+            if pics and not dry:
+                io.open("public/books/" + e["filename"], "w", encoding="utf-8", newline="\n").write(fb2(t, paras, pics))
+                e["cover"] = url_for(pics[0][0], 500)
+                done.append(t["slug"])
+            elif not pics:
+                print("   still nothing public-domain")
+            continue
         try:
             src, paras = find_text(t)
         except Exception as e:
