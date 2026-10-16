@@ -17,7 +17,7 @@ scored inside their own window and keep their listed video.
     python3 tools/pick_speech_videos.py
     python3 tools/pick_speech_videos.py --only bratya-i-syostry stalin-rech-na-xix-sezde-1952
 """
-import io, json, os, re, subprocess, sys
+import io, json, os, re, subprocess, sys, time
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(ROOT)
@@ -37,6 +37,7 @@ def words(t):
 def captions(vid):
     path = os.path.join(VTT, vid + ".ru.vtt")
     if not os.path.exists(path):
+        time.sleep(4)            # YouTube answers 429 to a fast run of caption requests
         subprocess.call(["yt-dlp", "--write-auto-sub", "--write-sub", "--sub-lang", "ru",
                          "--skip-download", "--quiet", "--no-warnings",
                          "-o", os.path.join(VTT, "%(id)s"), "https://youtu.be/" + vid])
@@ -92,17 +93,25 @@ def main():
         if not windowed:
             surname = e["author"].split()[0]
             q = s.get("query") or "%s %s" % (surname, re.sub(r"\s*\(\d{4}\)", "", s["title"]) + " " + str(s["year"]))
-            cands += [v for v in search(q) if v not in cands]
-        best = (0.0, None)
+            for qq in [q] + list(s.get("more_queries") or []):
+                cands += [v for v in search(qq) if v not in cands]
+        cands = [v for v in cands if v not in set(s.get("exclude") or [])]
+        # Score each by how many PARAGRAPHS its captions contain, in order —
+        # word overlap alone let a reading that skips lines score 0.89.
+        paras = [p for c in chs for p in c["paras"]]
+        best = (0.0, 0.0, None)
         for vid in cands:
             cov = coverage(tw, vid, s.get("start") or 0, s.get("end") or 0)
-            print("   %.2f  %s" % (cov, vid))
-            if cov > best[0]:
-                best = (cov, vid)
-            if cov >= 0.9:
-                break
-        cov, vid = best
-        if not vid or cov < mn:
+            heard = 0.0
+            if cov >= 0.3:
+                m, an, tot = sync_all.align_chapter(paras, sync_all.toks_for(vid),
+                                                    s.get("start") or 0, s.get("end") or 0)
+                heard = an / max(tot, 1)
+            print("   words %.2f  paragraphs %.2f  %s" % (cov, heard, vid))
+            if (heard, cov) > best[:2]:
+                best = (heard, cov, vid)
+        heard, cov, vid = best
+        if not vid or cov < mn or (not windowed and heard < 0.5):
             print("   !! no video covers the text (best %.2f) — left as it was" % cov)
             report.append((s["slug"], "no full recording found (best %.2f)" % cov)); continue
         if not windowed:
@@ -111,7 +120,14 @@ def main():
                 print("   !! %s cannot be embedded" % vid)
                 report.append((s["slug"], "best video not embeddable")); continue
         seg = dict((e.get("videos") or {}).get("0") or {})
-        seg.update({"youtube": vid, "heading": s["title"], "start": s.get("start") or 0})
+        st = s.get("start") or 0
+        if not windowed:
+            # start where the speech starts, not at the announcer's intro
+            m, _, _ = sync_all.align_chapter(paras, sync_all.toks_for(vid), 0, 0)
+            first = [m[k] for k in sorted(m, key=int)][:1]
+            if first and m.get("0") is not None:
+                st = max(0, int(m["0"]) - 1)
+        seg.update({"youtube": vid, "heading": s["title"], "start": st})
         if s.get("end"):
             seg["end"] = s["end"]
         else:
@@ -119,7 +135,7 @@ def main():
         e["videos"] = {"0": seg}
         e.pop("audiobook", None); e.pop("publicAudio", None)
         r = sync_all.run(e, verbose=False)
-        report.append((s["slug"], "%s  coverage %.2f  jump points: %s" % (vid, cov,
+        report.append((s["slug"], "%s  words %.2f  paragraphs %.2f  jump points: %s" % (vid, cov, heard,
                        "yes (%s%% anchored)" % r.get("median_anchor") if r and r.get("chapters") else "none")))
     io.open(MANIFEST, "w", encoding="utf-8").write(json.dumps(idx, ensure_ascii=False, indent=2) + "\n")
     print("\n" + "\n".join("%-46s %s" % x for x in report))

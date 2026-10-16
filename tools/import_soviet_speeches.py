@@ -89,6 +89,9 @@ def from_marxists(url):
         if re.search(r"marxists\.org|MIA|Русский отдел", p):
             continue
         out.append(p)
+    # the transcriber's credit line, and the volume's page markers «[c.61]»
+    out = [re.sub(r"\s*\[c\.\s*\d+\]\s*", " ", p).strip() for p in out]
+    out = [p for p in out if p and not re.search(r"^(Оригинал находится|Последнее обновление)|narod\.ru", p)]
     # a trailing newspaper credit («Правда» 10 мая 1945 г.) is not the speech
     while out and re.match(r"^[«\"]?(Правда|Известия|Большевик)\b.*\d{4}", out[-1]) and len(out[-1]) < 80:
         out.pop()
