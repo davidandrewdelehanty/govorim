@@ -432,6 +432,7 @@ export var UI_RU = {
   "Soviet Textbooks": "Советские учебники",
   "History": "История",
   "Translations": "Переводы",
+  "Fairytales": "Сказки",
   "With English": "С английским",
   "Any language": "Любой язык",
   "Soviet textbooks": "Советские учебники",

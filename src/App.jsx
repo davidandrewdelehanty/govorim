@@ -15631,6 +15631,8 @@ export default function App() {
         .tb-read{position:absolute;top:8px;right:8px;background:var(--paper);border:1px solid var(--rubric);color:var(--rubric);
           font-family:var(--sans);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;padding:2px 6px}
         @media(max-width:600px){ .tb-shelf{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 14px} }
+        /* Fairytales: the tale's own picture as its cover, in full colour. */
+        .ft-shelf .tb-cover img{mix-blend-mode:normal;filter:none;object-position:center}
         /* Soviet speeches: the speakers' portraits, then one leader's list. */
         .ld-photo img{mix-blend-mode:normal;filter:grayscale(1) sepia(.18) contrast(1.04);object-position:center 18%}
         .ld-credit{font-family:var(--sans);font-size:9.5px;letter-spacing:.04em;color:var(--ink-3)}
@@ -18644,6 +18646,7 @@ export default function App() {
                       <option value="Speeches">Speeches</option>
                       <option value="Speeches by Soviet Leaders">Speeches by Soviet Leaders</option>
                       <option value="Soviet Textbooks">Soviet Textbooks</option>
+                      <option value="Fairytales">Fairytales</option>
                       <option value="History">History</option>
                       <option value="Translations">Translations</option>
                     </select>
@@ -20261,10 +20264,10 @@ export default function App() {
                         // "Works" is kept only as a legacy fallback so a book that still carries
                         // the old category (an older upload, a hand-edited entry) keeps rendering
                         // instead of vanishing into "Other".
-                        var CATEGORIES = ["Novels", "Novellas", "Short Stories", "Plays", "Translations", "Poetry", "Song Lyrics", "Religious Texts", "Theatrical Performances", "Speeches", "Speeches by Soviet Leaders", "Works", "History", "Soviet Textbooks", "Texts Without English"];
+                        var CATEGORIES = ["Novels", "Novellas", "Short Stories", "Plays", "Translations", "Fairytales", "Poetry", "Song Lyrics", "Religious Texts", "Theatrical Performances", "Speeches", "Speeches by Soviet Leaders", "Works", "History", "Soviet Textbooks", "Texts Without English"];
                         // Render order: "Texts Without English" sits at the very bottom,
                         // after the catch-all "Other" bucket.
-                        var ORDER = ["Novels", "Novellas", "Short Stories", "Plays", "Translations", "Poetry", "Song Lyrics", "Religious Texts", "Theatrical Performances", "Speeches", "Speeches by Soviet Leaders", "Works", "History", "Soviet Textbooks", "Other", "Texts Without English"];
+                        var ORDER = ["Novels", "Novellas", "Short Stories", "Plays", "Translations", "Fairytales", "Poetry", "Song Lyrics", "Religious Texts", "Theatrical Performances", "Speeches", "Speeches by Soviet Leaders", "Works", "History", "Soviet Textbooks", "Other", "Texts Without English"];
                         var normalize = function(cat) {
                           // Singular legacy spellings written by older uploads.
                           if (cat === "Novel") return "Novels";
@@ -20593,7 +20596,7 @@ export default function App() {
                                   </div>
                                 );
                               }
-                              if (cat === "Soviet Textbooks") {
+                              if (cat === "Soviet Textbooks" || cat === "Fairytales") {
                                 // A shelf of title pages. These are scans of real
                                 // books, and the title page — the publisher's
                                 // device, the old type, the year — says more
@@ -20610,7 +20613,7 @@ export default function App() {
                                       onClick={function(){ if (bookLoading === null) loadPresetBook(book); }}>
                                       <div className="tb-cover">
                                         {book.cover
-                                          ? <img src={"/books/" + book.cover} alt="" loading="lazy" decoding="async" />
+                                          ? <img src={/^https?:\/\//.test(book.cover) ? book.cover : "/books/" + book.cover} alt="" loading="lazy" decoding="async" />
                                           : <span className="tb-cover-t" lang="ru">{book.title}</span>}
                                         {isFinished(book) && <span className="tb-read">read</span>}
                                       </div>
@@ -20635,8 +20638,8 @@ export default function App() {
                                 });
                                 return (
                                   <div key={cat} className="lib-section">
-                                    <div className="lib-section-hdr">Soviet textbooks</div>
-                                    <div className="tb-shelf">{tbSorted.map(renderTb)}</div>
+                                    <div className="lib-section-hdr">{cat === "Fairytales" ? "Fairytales" : "Soviet textbooks"}</div>
+                                    <div className={"tb-shelf" + (cat === "Fairytales" ? " ft-shelf" : "")}>{tbSorted.map(renderTb)}</div>
                                   </div>
                                 );
                               }
