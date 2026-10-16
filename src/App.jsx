@@ -3835,6 +3835,12 @@ async function parseFb2(buffer, options) {
     // stanza ends with a gap instead of every line floating a paragraph apart.
     out.verseIdx = [];
     out.stanzaEndIdx = [];
+    // <subtitle data-booktitle>: the book's own title printed at the head of
+    // its text (a translation's title page). Drawn as a title, not a line.
+    out.titleIdx = [];
+    // <subtitle data-byline>: the lines under it — «Роман Джона Голсуорси»,
+    // «Перевод М. Жаринцевой», «С английского» — set as a title page sets them.
+    out.bylineIdx = [];
     // Pictures and in-chapter headings. Both are recorded beside the text and
     // never in it, like tightIdx, so word offsets, audio sync and the chapter
     // splitting are untouched. A figure belongs before paragraph `at`; an `at`
@@ -3893,6 +3899,8 @@ async function parseFb2(buffer, options) {
           if (out.verseOn) out.verseIdx.push(out.length);
           if (tag === "p" && whollyEmphasised(c)) out.emphIdx.push(out.length);
           if (tag === "subtitle") out.subIdx.push(out.length);
+          if (tag === "subtitle" && c.getAttribute("data-booktitle")) out.titleIdx.push(out.length);
+          if (tag === "subtitle" && c.getAttribute("data-byline")) out.bylineIdx.push(out.length);
           out.push(t);
           continue;
         }
@@ -3930,6 +3938,8 @@ async function parseFb2(buffer, options) {
                tightIdx: (paras && paras.tightIdx) || [],
                emphIdx: (paras && paras.emphIdx) || [],
                verseIdx: (paras && paras.verseIdx) || [],
+               titleIdx: (paras && paras.titleIdx) || [],
+               bylineIdx: (paras && paras.bylineIdx) || [],
                stanzaEndIdx: (paras && paras.stanzaEndIdx) || [],
                figs: (paras && paras.figs) || [],
                subIdx: (paras && paras.subIdx) || [] });
@@ -13244,7 +13254,15 @@ export default function App() {
         // when the chapter ships a sync map and the player is up to be driven.
         var jumpSec = (paraSync && curChapter && curChapter.youtubeId)
           ? paraSync[String(entry.chIdx)] : null;
-        var jumpBtn = (typeof jumpSec === "number") ? (
+        // A poem gets one set of margin controls per stanza, not one per line —
+        // a flag beside every line of verse is a column of clutter — and a
+        // book's title line gets none.
+        var vIdxs = (curChapter && curChapter.verseIdx) || [];
+        var midStanza = vIdxs.indexOf(entry.chIdx) !== -1 && vIdxs.indexOf(entry.chIdx - 1) !== -1
+          && !((curChapter.stanzaEndIdx || []).indexOf(entry.chIdx - 1) !== -1);
+        var isByline = !!(curChapter && curChapter.bylineIdx && curChapter.bylineIdx.indexOf(entry.chIdx) !== -1);
+        var noMarks = midStanza || isByline || !!(curChapter && curChapter.titleIdx && curChapter.titleIdx.indexOf(entry.chIdx) !== -1);
+        var jumpBtn = (!noMarks && typeof jumpSec === "number") ? (
           <button className="pjump" type="button" data-annot-keep=""
             title={"Play from here — " + fmtClock(jumpSec - (curChapter.youtubeStart || 0))}
             aria-label="Play the recording from this paragraph"
@@ -13272,7 +13290,7 @@ export default function App() {
         // a flag on every line was more furniture than poem. The cut-off is the
         // whole work rather than the chapter, so a short chapter of a long book
         // keeps its flags: that book is still one you put down.
-        var bmBtn = (paraOff !== null && !tinyWork) ? (
+        var bmBtn = (!noMarks && paraOff !== null && !tinyWork) ? (
           <button className={"pbm" + (bmHere ? " on" : "")} type="button"
             title={bmHere ? "Remove bookmark"
               : (curChapter.youtubeId
@@ -13289,7 +13307,12 @@ export default function App() {
         var isTight = !!(curChapter && curChapter.tightIdx && curChapter.tightIdx.indexOf(entry.chIdx) !== -1);
         var isVerse = !!(curChapter && curChapter.verseIdx && curChapter.verseIdx.indexOf(entry.chIdx) !== -1);
         var isStanzaEnd = isVerse && curChapter.stanzaEndIdx && curChapter.stanzaEndIdx.indexOf(entry.chIdx) !== -1;
-        var pMargin = {marginBottom: isVerse ? (isStanzaEnd ? "1.3em" : "0.12em")
+        var isBookTitle = !!(curChapter && curChapter.titleIdx && curChapter.titleIdx.indexOf(entry.chIdx) !== -1);
+        var isHeadLine = isBookTitle || (isSub && !isTextbook);
+        var nextIsByline = !!(curChapter && curChapter.bylineIdx && curChapter.bylineIdx.indexOf(entry.chIdx + 1) !== -1);
+        var pMargin = {marginBottom: (isBookTitle || isByline) && nextIsByline ? "0.25em"
+          : isBookTitle || isByline ? "2em" : isHeadLine ? "0.9em"
+          : isVerse ? (isStanzaEnd ? "1.35em" : "0.1em")
           : singlePageMode ? "0.35em"
           : (bookMeta && bookMeta.filename && bookMeta.filename.indexOf("негин") !== -1 ? "0.1em"
           : (isTight ? "0.15em" : "1.2em"))};
@@ -13431,7 +13454,7 @@ export default function App() {
             ];
           }
           var dualCells = [
-            <p key={"ru" + pi} className={"dual-ru" + (playKind ? " play-" + playKind.kind : "") + (isVerse ? " pverse" : "")} lang="ru" id={"sp" + entry.chIdx}
+            <p key={"ru" + pi} className={"dual-ru" + (playKind ? " play-" + playKind.kind : "") + (isVerse ? " pverse" : "") + (isBookTitle ? " pbooktitle" : isByline ? " pbyline" : (isHeadLine ? " psub" : ""))} lang="ru" id={"sp" + entry.chIdx}
                style={Object.assign(flowEn ? {} : {gridColumn: 1, gridRow: String(pi + 1)}, pMargin)}>{jumpBtn}{bmBtn}{ruBody}</p>
           ];
           // Flow mode: the Russian keeps its rows, the English does not get a
@@ -13494,7 +13517,8 @@ export default function App() {
             <p id={"sp" + entry.chIdx} lang="ru" style={playKind ? undefined : (isSub && isTextbook ? undefined : pMargin)}
                className={playKind ? ("play-p play-" + playKind.kind)
                                    : (bibleChapterMark ? "bible-chapter"
-                                   : (isSub && isTextbook ? "tb-sub" : (isArg ? "tb-arg" : (isVerse ? "pverse" : undefined))))}>
+                                   : (isSub && isTextbook ? "tb-sub" : (isArg ? "tb-arg"
+                                   : (isBookTitle ? "pbooktitle" : isByline ? "pbyline" : (isSub ? "psub" : (isVerse ? "pverse" : undefined))))))}>
               {jumpBtn}{bmBtn}{ruBody}
               {/* The Russian line already carries its verse number, so the
                   English beneath it does not repeat one. A book-sized page
@@ -15686,8 +15710,31 @@ export default function App() {
         .ltxt p,.dual-ru{font-variant-numeric:oldstyle-nums}
         /* A poem inside prose: set as verse — no first-line indent, the block
            stepped in from the margin, lines close together, a gap per stanza. */
-        .ltxt p.pverse,.dual-ru.pverse{text-indent:0;padding-left:2.4em;line-height:1.55}
-        @media(max-width:600px){.ltxt p.pverse,.dual-ru.pverse{padding-left:1.2em}}
+        /* Verse set as a printed book sets it: a column of lines standing in
+           the middle of the measure (the left edge stays straight, so the
+           block is centred, not each line), close leading, a gap per stanza,
+           and a hanging indent so a line too long for the screen carries on
+           visibly indented rather than looking like a new line. */
+        .ltxt p.pverse,.dual-ru.pverse{text-indent:-1.4em;padding-left:calc(max(1.6em, 50% - 13em) + 1.4em);
+          padding-right:1em;line-height:1.5;font-size:.97em;position:relative}
+        /* The one bookmark / play mark a stanza keeps hangs in the margin to
+           the left of the verse column instead of pushing its line in. */
+        .ltxt p.pverse>.pbm,.ltxt p.pverse>.pjump,.dual-ru.pverse>.pbm,.dual-ru.pverse>.pjump{
+          position:absolute;left:calc(max(1.6em, 50% - 13em) - 1.2em);top:.2em;float:none;margin:0}
+        @media(max-width:600px){
+          .ltxt p.pverse,.dual-ru.pverse{padding-left:2.4em;padding-right:.4em}
+          .ltxt p.pverse>.pbm,.ltxt p.pverse>.pjump,.dual-ru.pverse>.pbm,.dual-ru.pverse>.pjump{left:.1em}
+        }
+        /* The book's title at the head of its text, and headings inside a
+           chapter (FB2 <subtitle>): centred and set in the display face. */
+        .ltxt p.pbooktitle,.dual-ru.pbooktitle{text-align:center;text-indent:0;font-family:var(--display);
+          font-size:1.6em;font-weight:700;line-height:1.25;letter-spacing:.01em;color:var(--ink);
+          margin-top:.6em;padding:0 .5em}
+        .ltxt p.pbooktitle .rw,.dual-ru.pbooktitle .rw{font-weight:700}
+        .ltxt p.pbyline,.dual-ru.pbyline{text-align:center;text-indent:0;font-style:italic;font-size:.95em;
+          line-height:1.4;color:var(--ink-2);padding:0 .5em}
+        .ltxt p.psub,.dual-ru.psub{text-align:center;text-indent:0;font-family:var(--display);
+          font-size:1.12em;font-weight:600;line-height:1.35;color:var(--ink);margin-top:1.3em;padding:0 .5em}
         .dual-en{font-family:var(--serif);color:var(--ink-2)}
         .dual-hint{font-family:var(--sans);letter-spacing:.14em;color:var(--ink-3)}
         .dual-toggle{background:var(--paper-3);border:1px solid var(--ink);color:var(--ink);box-shadow:none;font-family:var(--sans);letter-spacing:.14em;padding:8px 10px}
