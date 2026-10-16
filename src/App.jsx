@@ -4781,6 +4781,7 @@ export default function App() {
   var [admQ, setAdmQ] = useState("");
   var [admSort, setAdmSort] = useState("seen");
   var [admFilter, setAdmFilter] = useState("all");
+  var [admShowNever, setAdmShowNever] = useState(false);
   var [adminErr, setAdminErr]     = useState("");
   // Upload-song panel state — admin-only, accessed via "📤 Upload" trigger.
   // Pasted song goes to a per-artist .txt in public/books/lyrics/ via the
@@ -16061,7 +16062,9 @@ export default function App() {
         .admu-tools{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px}
         .admu-q{flex:1 1 180px;min-width:0;padding:8px 10px;border:1px solid var(--rule);background:var(--paper);font:inherit;font-size:14px}
         .admu-sel{padding:8px;border:1px solid var(--rule);background:var(--paper);font:inherit;font-size:13px}
-        .admu-count{font-family:var(--sans);font-size:11px;color:var(--ink-3);margin:4px 0 8px}
+        .admu-count{font-family:var(--sans);font-size:11px;color:var(--ink-3);margin:4px 0 8px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+        .admu-never{font-family:var(--sans);font-size:11px;letter-spacing:.04em;background:none;border:1px solid var(--rule);color:var(--ink-2);padding:4px 8px;cursor:pointer}
+        .admu-never:hover{color:var(--rubric);border-color:var(--rubric)}
         .admu-card{border:1px solid var(--rule);background:var(--paper);padding:12px 14px;margin-bottom:10px;display:flex;flex-direction:column;gap:8px}
         .admu-card.fresh{border-left:3px solid var(--rubric)}
         .admu-top{display:flex;gap:10px;align-items:center;min-width:0}
@@ -17828,7 +17831,19 @@ export default function App() {
                 var st = function(u, k){ return (u.stats && u.stats[k]) || 0; };
                 var q = admQ.trim().toLowerCase();
                 var DAY = 86400000, now = Date.now();
+                // Never really used: no sign-in or visit on record at all, or only the
+                // sign-up itself (registering signs a reader in) with nothing read
+                // and no visit after the first ten minutes.
+                var neverUsed = function(u){
+                  if (u.isAdmin) return false;
+                  var seen = seenOf(u);
+                  if (!seen && !u.loginCount) return true;
+                  return (u.loginCount || 0) <= 1 && seen - (u.createdAt || 0) < 10 * 60000 &&
+                    !st(u, "words") && !st(u, "read") && !st(u, "reviewed");
+                };
+                var neverN = adminUsers.filter(neverUsed).length;
                 var list = adminUsers.filter(function(u){
+                  if (!admShowNever && !q && neverUsed(u)) return false;
                   if (q && (String(u.email) + " " + String(u.username || "")).toLowerCase().indexOf(q) < 0) return false;
                   if (admFilter === "pending") return !u.isAdmin && !u.approved;
                   if (admFilter === "active7") return seenOf(u) > now - 7 * DAY;
@@ -17888,7 +17903,15 @@ export default function App() {
                         <option value="pending">Awaiting approval</option>
                       </select>
                     </div>
-                    <div className="admu-count">{list.length} of {adminUsers.length} shown</div>
+                    <div className="admu-count">
+                      {list.length} of {adminUsers.length} shown
+                      {neverN > 0 && (
+                        <button type="button" className="admu-never" onClick={function(){ setAdmShowNever(!admShowNever); }}>
+                          {admShowNever ? "Hide the " + neverN + " who never used their account"
+                                        : "Show " + neverN + " who never used their account"}
+                        </button>
+                      )}
+                    </div>
                     {list.map(function(u){
                       var seenAt = seenOf(u);
                       var fresh = seenAt > now - DAY;
