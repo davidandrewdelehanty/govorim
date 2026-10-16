@@ -1603,6 +1603,32 @@ function playNamesStageLine(t, words) {
 // A short third-person sentence between speeches — "Пьют.", "Няня уходит.",
 // "Окно закрывается." A question, an exclamation or a first- or second-person
 // pronoun means somebody is talking, not the stage.
+// Speakers on the Soviet-speeches shelf, in order of when they led. `key` is the
+// surname the catalogue's author field starts with. Portraits come from
+// Wikimedia Commons; the two that are not public domain carry their credit.
+var SPEECH_LEADERS = [
+  { key: "Ленин",    name: "Владимир Ленин",    years: "1917–1924", file: "Vladimir_Lenin_in_July_1920_by_Pavel_Zhukov.jpg" },
+  { key: "Сталин",   name: "Иосиф Сталин",      years: "1924–1953", file: "Joseph_Stalin_official_portrait.jpg" },
+  { key: "Молотов",  name: "Вячеслав Молотов",  years: "1930–1941", file: "V.M._Molotov_TASS_Portrait_Trim_Edit.jpg" },
+  { key: "Хрущёв",   name: "Никита Хрущёв",     years: "1953–1964", file: "Nikita_Khrushchev_official_portrait.jpg" },
+  { key: "Брежнев",  name: "Леонид Брежнев",    years: "1964–1982", file: "Leonid_Brezjnev,_leider_van_de_Sovjet-Unie,_Bestanddeelnr_925-6564.jpg" },
+  { key: "Андропов", name: "Юрий Андропов",     years: "1982–1984", file: "Yuri_Andropov.jpg" },
+  { key: "Черненко", name: "Константин Черненко", years: "1984–1985", file: "Константин_Черненко_(1981).jpg",
+    credit: "Photo: V. Egorov, E. Pesov, CC BY 4.0" },
+  { key: "Горбачёв", name: "Михаил Горбачёв",   years: "1985–1991", file: "GorbachevMS.jpg",
+    credit: "Photo: Leo Medvedev, CC BY-SA 4.0" }
+];
+function speechLeaderOf(book) {
+  var a = String((book && book.author) || "").replace(/ё/g, "е");
+  for (var i = 0; i < SPEECH_LEADERS.length; i++) {
+    if (a.indexOf(SPEECH_LEADERS[i].key.replace(/ё/g, "е")) === 0) return SPEECH_LEADERS[i];
+  }
+  return null;
+}
+function leaderPhoto(file) {
+  return "https://commons.wikimedia.org/wiki/Special:FilePath/" + encodeURIComponent(file) + "?width=400";
+}
+
 function playShortStageLine(t) {
   if (!/\.$/.test(t) || /[?!…]/.test(t)) return false;
   if (PLAY_PERSON_RE.test(t)) return false;
@@ -6342,6 +6368,10 @@ export default function App() {
   // for anyone who would rather scroll than choose. A search overrides all
   // three, because searching is asking about the whole library by definition.
   var [libCat, setLibCat] = useState("");
+  // The Soviet-speeches shelf opens on its speakers, one portrait each; the
+  // chosen leader's speeches list below it. Cleared whenever the shelf changes.
+  var [speechLeader, setSpeechLeader] = useState("");
+  useEffect(function(){ setSpeechLeader(""); }, [libCat]);
   // The library's public tallies: { opens: {filename: n}, songs: {id: n} }.
   // Fetched the first time somebody opens the Most-read shelf, not on every
   // page load — most visits never ask, and the answer is cached for five
@@ -15601,6 +15631,15 @@ export default function App() {
         .tb-read{position:absolute;top:8px;right:8px;background:var(--paper);border:1px solid var(--rubric);color:var(--rubric);
           font-family:var(--sans);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;padding:2px 6px}
         @media(max-width:600px){ .tb-shelf{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 14px} }
+        /* Soviet speeches: the speakers' portraits, then one leader's list. */
+        .ld-photo img{mix-blend-mode:normal;filter:grayscale(1) sepia(.18) contrast(1.04);object-position:center 18%}
+        .ld-credit{font-family:var(--sans);font-size:9.5px;letter-spacing:.04em;color:var(--ink-3)}
+        .ld-head{display:flex;align-items:center;gap:14px;margin:6px 0 16px;flex-wrap:wrap}
+        .ld-back{font-family:var(--sans);font-size:12px;letter-spacing:.06em;background:none;border:1px solid var(--rule);color:var(--ink-2);padding:6px 10px;cursor:pointer}
+        .ld-back:hover{color:var(--rubric);border-color:var(--rubric)}
+        .ld-head-img{width:56px;height:72px;object-fit:cover;object-position:center 18%;border:1px solid var(--rule);filter:grayscale(1) sepia(.18)}
+        .ld-head-n{font-family:var(--display);font-size:22px;color:var(--ink)}
+        .ld-head-y{font-family:var(--sans);font-size:11px;letter-spacing:.12em;color:var(--ink-3)}
         /* Continue reading: a short list, not a stack of tiles. */
         .lcard{padding:10px 0;border:0;border-bottom:1px solid var(--rule-soft);background:none;display:grid;
           grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"head when" "pct pct" "bar bar";gap:2px 16px;align-items:baseline}
@@ -20500,6 +20539,60 @@ export default function App() {
                                   </div>
                                 );
                               };
+                              if (cat === "Speeches by Soviet Leaders" && !searching && !authorView) {
+                                // A shelf of speakers: one portrait per leader, and the
+                                // chosen one's speeches listed beneath, oldest first.
+                                var byLeader = {};
+                                entries.forEach(function(e){
+                                  var L = speechLeaderOf(e.book);
+                                  var k = L ? L.key : "—";
+                                  (byLeader[k] = byLeader[k] || []).push(e);
+                                });
+                                var leaders = SPEECH_LEADERS.filter(function(L){ return byLeader[L.key]; });
+                                var openL = speechLeader && byLeader[speechLeader] ? SPEECH_LEADERS.find(function(L){ return L.key === speechLeader; }) : null;
+                                if (openL) {
+                                  var list = byLeader[openL.key].slice().sort(function(a, b){
+                                    return ((a.book.year || 9999) - (b.book.year || 9999)) ||
+                                      String(a.book.title).localeCompare(String(b.book.title), "ru");
+                                  });
+                                  return (
+                                    <div key={cat} className="lib-section">
+                                      <div className="ld-head">
+                                        <button type="button" className="ld-back" onClick={function(){ setSpeechLeader(""); }}>← All leaders</button>
+                                        <img className="ld-head-img" src={leaderPhoto(openL.file)} alt="" />
+                                        <div>
+                                          <div className="ld-head-n" lang="ru">{openL.name}</div>
+                                          <div className="ld-head-y">{openL.years} · {list.length} {list.length === 1 ? "speech" : "speeches"}</div>
+                                        </div>
+                                      </div>
+                                      <div className="lib-grid">{list.map(renderCard)}</div>
+                                    </div>
+                                  );
+                                }
+                                return (
+                                  <div key={cat} className="lib-section">
+                                    <div className="lib-section-hdr">Speeches by Soviet leaders</div>
+                                    <div className="tb-shelf">
+                                      {leaders.map(function(L){
+                                        var n = byLeader[L.key].length;
+                                        return (
+                                          <div key={L.key} className="tb-card ld-card" role="button" tabIndex={0}
+                                            onKeyDown={function(e){ if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setSpeechLeader(L.key); } }}
+                                            onClick={function(){ setSpeechLeader(L.key); }}>
+                                            <div className="tb-cover ld-photo">
+                                              <img src={leaderPhoto(L.file)} alt="" loading="lazy" decoding="async" />
+                                            </div>
+                                            <div className="tb-card-t" lang="ru">{L.name}</div>
+                                            <div className="tb-card-a"><span>{n} {n === 1 ? "speech" : "speeches"}</span><span className="y">{L.years}</span></div>
+                                            {L.credit && <div className="ld-credit">{L.credit}</div>}
+                                          </div>
+                                        );
+                                      })}
+                                    </div>
+                                    {byLeader["—"] && <div className="lib-grid" style={{marginTop:18}}>{byLeader["—"].map(renderCard)}</div>}
+                                  </div>
+                                );
+                              }
                               if (cat === "Soviet Textbooks") {
                                 // A shelf of title pages. These are scans of real
                                 // books, and the title page — the publisher's
