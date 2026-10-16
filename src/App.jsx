@@ -2122,7 +2122,7 @@ function computeBadges(src) {
       var first = i === 0;
       var when = mine.length >= t ? mine.map(function(d){ return d.at; }).sort(function(a,b){ return a-b; })[t - 1] : 0;
       add({
-        id: "kind:" + k.cat + ":" + t, group: "kind", tier: i,
+        id: "kind:" + k.cat + ":" + t, group: "kind", tier: i, cat: k.cat,
         mark: first ? k.ru.slice(0, 1) : String(t),
         title: first ? k.first : (k.ru + ": " + t),
         desc: first ? ("Finish your first " + (k.en || k.cat.toLowerCase().replace(/s$/, "")))
@@ -2140,7 +2140,7 @@ function computeBadges(src) {
     var mine = done.filter(function(d){ return d.cat === k.cat; });
     var ats = mine.map(function(d){ return d.at; }).sort(function(a, b){ return a - b; });
     add({
-      id: "champ:" + k.cat, group: "kind", tier: 9, mark: "♛",
+      id: "champ:" + k.cat, group: "kind", tier: 9, mark: "♛", cat: k.cat,
       title: k.champ, desc: "Finish every one of the " + available + " " + (k.enMany || k.cat.toLowerCase()) + " in the library",
       earned: mine.length >= available, n: Math.min(mine.length, available), of: available,
       at: mine.length >= available ? ats[available - 1] : 0,
@@ -2156,14 +2156,14 @@ function computeBadges(src) {
     BADGE_GREAT_TIERS.forEach(function(t, i) {
       if (t > greatAll) return;
       add({
-        id: "great:" + t, group: "kind", tier: i, mark: i === 0 ? "★" : String(t),
+        id: "great:" + t, group: "kind", tier: i, mark: i === 0 ? "★" : String(t), great: true,
         title: i === 0 ? "Великий роман" : ("Великие романы: " + t),
         desc: i === 0 ? "Finish one of the great Russian novels" : ("Finish " + t + " of the great Russian novels"),
         earned: mineG.length >= t, n: Math.min(mineG.length, t), of: t, at: mineG.length >= t ? ats[t - 1] : 0,
       });
     });
     add({
-      id: "champ:great", group: "kind", tier: 9, mark: "♛",
+      id: "champ:great", group: "kind", tier: 9, mark: "♛", great: true,
       title: "Чемпион великих романов", desc: "Finish all " + greatAll + " of the great Russian novels",
       earned: mineG.length >= greatAll, n: Math.min(mineG.length, greatAll), of: greatAll,
       at: mineG.length >= greatAll ? ats[greatAll - 1] : 0,
@@ -12739,6 +12739,8 @@ export default function App() {
     try { localStorage.setItem("gv_badges_unread_v1", JSON.stringify(badgeUnread)); } catch (e) {}
   }, [badgeUnread]);
   var [badgeAll, setBadgeAll] = useState(false);
+  // The badge whose checklist is open on the profile page (its id), or null.
+  var [badgeOpen, setBadgeOpen] = useState(null);
   useEffect(function(){
     var ready = presetBooks.length > 0 && finishedLoaded && localLoaded && (!me || syncedFromServer);
     if (!ready) return;
@@ -16252,6 +16254,28 @@ export default function App() {
         .acct-li{flex-wrap:wrap}
         .bdg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:14px 10px;margin-top:6px}
         .bdgm{display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px}
+        .bdgm.go{cursor:pointer}
+        .bdgm.go:hover .bdg-t,.bdgm.go:focus-visible .bdg-t{color:var(--rubric)}
+        .bdg-dlg-back{position:fixed;inset:0;z-index:1200;background:rgba(20,14,8,.42);display:flex;align-items:center;justify-content:center;padding:16px}
+        .bdg-dlg{position:relative;background:var(--paper);border:1px solid var(--rule);box-shadow:0 18px 50px rgba(0,0,0,.25);
+          width:min(560px,100%);max-height:min(80vh,720px);display:flex;flex-direction:column;padding:20px 20px 12px}
+        .bdg-dlg-x{position:absolute;top:8px;right:10px;background:none;border:0;font-size:24px;line-height:1;color:var(--ink-3);cursor:pointer}
+        .bdg-dlg-x:hover{color:var(--rubric)}
+        .bdg-dlg-h{display:flex;gap:14px;align-items:center;padding-right:24px}
+        .bdg-dlg-t{font-family:var(--display);font-size:20px;color:var(--ink)}
+        .bdg-dlg-d{font-family:var(--serif);font-size:14px;color:var(--ink-2)}
+        .bdg-dlg-p{font-family:var(--sans);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin-top:3px}
+        .bdg-dlg-sub{font-family:var(--sans);font-size:11.5px;letter-spacing:.06em;color:var(--ink-3);margin:14px 0 6px}
+        .bdg-dlg-list{list-style:none;margin:0;padding:0;overflow-y:auto;border-top:1px solid var(--rule-soft)}
+        .bdg-dlg-list li{display:flex;gap:10px;align-items:baseline;padding:7px 2px;border-bottom:1px solid var(--rule-soft);font-family:var(--serif);font-size:15px;color:var(--ink)}
+        .bdg-dlg-list li.go{cursor:pointer}
+        .bdg-dlg-list li.go:hover .t{color:var(--rubric)}
+        .bdg-dlg-list li .ck{flex:0 0 18px;height:18px;border:1px solid var(--ink-3);display:inline-flex;align-items:center;justify-content:center;font-size:13px;line-height:1;color:var(--paper);transform:translateY(3px)}
+        .bdg-dlg-list li.done .ck{background:var(--rubric);border-color:var(--rubric)}
+        .bdg-dlg-list li.done .t{color:var(--ink-2)}
+        .bdg-dlg-list li .a{color:var(--ink-3);font-style:italic;font-size:13.5px}
+        .bdg-dlg-bar{height:8px;background:var(--paper-3);border:1px solid var(--rule);margin:16px 0 8px}
+        .bdg-dlg-bar span{display:block;height:100%;background:var(--rubric)}
         .bdgm.locked{opacity:.42}
         .bdgm.locked .bdg-medal{filter:grayscale(1)}
         .bdg-t{font-family:var(--serif);font-size:13px;line-height:1.25;color:var(--ink)}
@@ -17594,7 +17618,10 @@ export default function App() {
                         .sort(function(a, b){ return (b.n / b.of) - (a.n / a.of); }).slice(0, 6);
                       var medal = function(b, key) {
                         return (
-                          <div key={key} className={"bdgm" + (b.earned ? "" : " locked") + (badgeFresh.indexOf(b.id) >= 0 ? " fresh" : "")} title={b.desc}>
+                          <div key={key} className={"bdgm go" + (b.earned ? "" : " locked") + (badgeFresh.indexOf(b.id) >= 0 ? " fresh" : "")}
+                               title={b.desc} role="button" tabIndex={0}
+                               onClick={function(){ setBadgeOpen(b.id); }}
+                               onKeyDown={function(e){ if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setBadgeOpen(b.id); } }}>
                             <div className={"bdg-medal t" + Math.min(b.tier || 0, 4)}>{b.mark}</div>
                             <div className="bdg-t">{b.title}</div>
                             <div className="bdg-s">{b.earned
@@ -17628,6 +17655,77 @@ export default function App() {
                               </div>
                             );
                           })}
+                          {(function(){
+                            // A badge's checklist: everything it asks for, the
+                            // ones already done ticked. Opened by tapping a badge.
+                            var b = badgeOpen && badges.filter(function(x){ return x.id === badgeOpen; })[0];
+                            if (!b) return null;
+                            var doneFiles = {};
+                            Object.keys(finishedMap || {}).forEach(function(k){
+                              var r = finishedMap[k];
+                              if (r && !r.removed) doneFiles[k.split("::")[0]] = 1;
+                            });
+                            var items = null;
+                            var pool = null;
+                            if (b.cat) pool = presetBooks.filter(function(x){ return x && x.category === b.cat; });
+                            else if (b.great) pool = presetBooks.filter(function(x){ return x && x.great; });
+                            else if (b.author) pool = presetBooks.filter(function(x){ return x && x.author === b.author; });
+                            if (pool) {
+                              items = pool.map(function(x){
+                                return { key: x.filename, t: x.title || x.filename, a: b.author ? "" : (x.author || ""),
+                                         done: !!doneFiles[x.filename], book: x };
+                              }).sort(function(p, q){
+                                return (q.done - p.done) || String(p.t).localeCompare(String(q.t), "ru");
+                              });
+                            } else if (/^bible:/.test(b.id)) {
+                              var bk = null;
+                              BIBLE_BOOKS.forEach(function(e){ if ("bible:" + e[0] === b.id) bk = e; });
+                              if (bk) {
+                                items = [];
+                                for (var c = 1; c <= bk[1]; c++) {
+                                  items.push({ key: bk[0] + c, t: bk[0] + " " + c, a: "", done: !!(bibleRead || {})[bk[0] + " " + c] });
+                                }
+                              }
+                            }
+                            var have = items ? items.filter(function(x){ return x.done; }).length : b.n;
+                            return (
+                              <div className="bdg-dlg-back" onClick={function(){ setBadgeOpen(null); }}>
+                                <div className="bdg-dlg" role="dialog" aria-label={b.title} onClick={function(e){ e.stopPropagation(); }}>
+                                  <button type="button" className="bdg-dlg-x" aria-label="Close" onClick={function(){ setBadgeOpen(null); }}>×</button>
+                                  <div className="bdg-dlg-h">
+                                    <div className={"bdg-medal t" + Math.min(b.tier || 0, 4)}>{b.mark}</div>
+                                    <div>
+                                      <div className="bdg-dlg-t">{b.title}</div>
+                                      <div className="bdg-dlg-d">{b.desc}</div>
+                                      <div className="bdg-dlg-p">{b.earned ? "Earned" + (b.at ? " " + new Date(b.at).toLocaleDateString() : "")
+                                        : fmtInt(Math.min(b.n, b.of)) + " of " + fmtInt(b.of) + " done"}</div>
+                                    </div>
+                                  </div>
+                                  {items ? (
+                                    <>
+                                      <div className="bdg-dlg-sub">{items.length > b.of
+                                        ? "Any " + fmtInt(b.of) + " of these " + fmtInt(items.length) + " · " + fmtInt(have) + " finished"
+                                        : fmtInt(have) + " of " + fmtInt(items.length) + " finished"}</div>
+                                      <ul className="bdg-dlg-list">
+                                        {items.map(function(x){
+                                          var m = x.book ? { type: "preset", book: x.book } : null;
+                                          return (
+                                            <li key={x.key} className={(x.done ? "done" : "") + (m ? " go" : "")}
+                                                onClick={function(){ if (m) { setBadgeOpen(null); openRec(m); } }}>
+                                              <span className="ck" aria-hidden="true">{x.done ? "✓" : ""}</span>
+                                              <span className="t" lang="ru">{x.t}{x.a ? <span className="a"> — {x.a}</span> : null}</span>
+                                            </li>
+                                          );
+                                        })}
+                                      </ul>
+                                    </>
+                                  ) : (
+                                    <div className="bdg-dlg-bar"><span style={{width: Math.round(100 * Math.min(b.n, b.of) / Math.max(b.of, 1)) + "%"}} /></div>
+                                  )}
+                                </div>
+                              </div>
+                            );
+                          })()}
                         </div>
                       );
                     })()}
