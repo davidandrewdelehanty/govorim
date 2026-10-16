@@ -34,6 +34,8 @@ import { requireUser, currentUser, bumpDaily, touchSeen, findAccount,
   songsCount, drillsDone, uidForUsername, isHiddenUid } from "../lib/auth.js";
 import { sendEmail } from "../lib/admin/helpers.js";
 import { r2Endpoint } from "../lib/r2-endpoint.js";
+import { computeBadges } from "../src/badges.js";
+import { streaks, totals as statsTotals, GOAL_WORDS, GOAL_CARDS } from "../src/stats.js";
 
 const s3 = new S3Client({
   region: "auto",
@@ -167,12 +169,39 @@ export default async function handler(req, res) {
       try {
         const uid = await uidForUsername(String(req.query.name || "").slice(0, 40));
         if (!uid || isHiddenUid(uid)) return res.status(200).json({ badges: [] });
-        const b = await r2Get(uid, "badges");
         res.setHeader("Cache-Control", "public, s-maxage=60, stale-while-revalidate=300");
-        return res.status(200).json({
-          badges: (b && Array.isArray(b.badges)) ? b.badges : [],
-          total: (b && b.total) || 0, at: (b && b.at) || 0,
-        });
+        // Worked out here from the reader's own files with the same code the
+        // app uses (src/badges.js), so a reader who has not opened the site
+        // since badges arrived still shows theirs. Only the badges leave —
+        // never the books or the log they were worked out from.
+        try {
+          const [finished, stats, learned, vocab, drills, songs, bibleread] = await Promise.all(
+            ["finished", "stats", "learned", "vocab", "drills", "songs", "bibleread"].map(function (t) {
+              return r2Get(uid, t).catch(function () { return null; });
+            }));
+          const st = (stats && typeof stats === "object" && !Array.isArray(stats)) ? stats : {};
+          const tot = statsTotals(st);
+          const songMap = (songs && typeof songs === "object") ? songs : {};
+          const all = computeBadges({
+            books: siteCatalogue(), finished: (finished && typeof finished === "object") ? finished : {},
+            wordsRead: tot.read || 0, longestStreak: streaks(st, { words: GOAL_WORDS, cards: GOAL_CARDS }).longest || 0,
+            cardsReviewed: tot.practiced || 0,
+            learned: Array.isArray(learned) ? learned.length : 0, saved: Array.isArray(vocab) ? vocab.length : 0,
+            drills: (drills && drills.correct) || 0,
+            songs: Object.keys(songMap).filter(function (k) { return ((songMap[k] || {}).n || 0) > 0; }).length,
+            bibleRead: (bibleread && typeof bibleread === "object") ? bibleread : {},
+          });
+          const earned = all.filter(function (b) { return b.earned; }).map(function (b) {
+            return { id: b.id, title: b.title, mark: b.mark, group: b.group, tier: b.tier, at: b.at };
+          });
+          return res.status(200).json({ badges: earned, total: all.length, at: Date.now() });
+        } catch (e) {
+          const b = await r2Get(uid, "badges").catch(function () { return null; });
+          return res.status(200).json({
+            badges: (b && Array.isArray(b.badges)) ? b.badges : [],
+            total: (b && b.total) || 0, at: (b && b.at) || 0,
+          });
+        }
       } catch (e) {
         return res.status(200).json({ badges: [] });
       }
@@ -1263,6 +1292,17 @@ async function r2Update(key, fn) {
     }
   }
   throw new Error("Too many people writing at once — try again.");
+}
+
+// The catalogue as this site's readers see it — what badges are counted against.
+let _siteCat = null;
+function siteCatalogue() {
+  if (_siteCat) return _siteCat;
+  try {
+    const all = JSON.parse(fs.readFileSync(path.join(process.cwd(), "private", "books", "index.json"), "utf8"));
+    _siteCat = all.filter(function (b) { return b && !b.restricted && (!isPublicSite() || b.public); });
+  } catch (e) { _siteCat = []; }
+  return _siteCat;
 }
 
 function catalogueBook(filename) {
