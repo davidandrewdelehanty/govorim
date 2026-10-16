@@ -31,7 +31,7 @@ import {
 import { listAccounts, userIdFor, r2GetJson as authGetJson, userDataKey as authDataKey, isAdminEmail } from "../lib/auth.js";
 import { requireUser, currentUser, bumpDaily, touchSeen, findAccount,
   updateBoardRow, readBoards, learnedCount, finishedCount, wordsRead, cardsReviewed,
-  songsCount, drillsDone } from "../lib/auth.js";
+  songsCount, drillsDone, uidForUsername, isHiddenUid } from "../lib/auth.js";
 import { sendEmail } from "../lib/admin/helpers.js";
 import { r2Endpoint } from "../lib/r2-endpoint.js";
 
@@ -156,6 +156,25 @@ export default async function handler(req, res) {
       } catch (e) {
         return res.status(200).json({ learned: [], words: [], read: [],
                                       error: "unavailable", note: e.message || String(e) });
+      }
+    }
+
+    // Another reader's badges, by username — what a tap on their name on the
+    // boards, a shared quote or a group read shows. Only the badges they have
+    // EARNED are kept (the reader's own page publishes them), never the books
+    // or the reading log behind them.
+    if (req.query.anon === "badges" && req.method === "GET") {
+      try {
+        const uid = await uidForUsername(String(req.query.name || "").slice(0, 40));
+        if (!uid || isHiddenUid(uid)) return res.status(200).json({ badges: [] });
+        const b = await r2Get(uid, "badges");
+        res.setHeader("Cache-Control", "public, s-maxage=60, stale-while-revalidate=300");
+        return res.status(200).json({
+          badges: (b && Array.isArray(b.badges)) ? b.badges : [],
+          total: (b && b.total) || 0, at: (b && b.at) || 0,
+        });
+      } catch (e) {
+        return res.status(200).json({ badges: [] });
       }
     }
 
@@ -815,6 +834,22 @@ export default async function handler(req, res) {
           if (!(Number(merged[key]) >= n)) merged[key] = n;
         }
         await r2Put(userId, "readpaid", merged);
+        return res.status(200).json({ ok: true });
+      }
+
+      if (type === "badges") {
+        // The reader's earned badges, as their own page worked them out —
+        // published so others can see them from a tap on the reader's name.
+        const list = Array.isArray(body.badges) ? body.badges.slice(0, 1500) : null;
+        if (!list) return res.status(400).json({ error: "badges must be a list" });
+        const clean = list.map(function (b) {
+          return {
+            id: String((b && b.id) || "").slice(0, 160), title: String((b && b.title) || "").slice(0, 90),
+            mark: String((b && b.mark) || "").slice(0, 8), group: String((b && b.group) || "").slice(0, 12),
+            tier: Math.max(0, Math.min(9, Number(b && b.tier) || 0)), at: Number(b && b.at) || 0,
+          };
+        }).filter(function (b) { return b.id && b.title; });
+        await r2Put(userId, "badges", { badges: clean, total: Number(body.total) || 0, at: Date.now() });
         return res.status(200).json({ ok: true });
       }
 

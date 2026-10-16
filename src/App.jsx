@@ -12730,6 +12730,27 @@ export default function App() {
       bibleRead: bibleRead,
     });
   }, [presetBooks, finishedMap, stats, learned, vocab.length, drills, songsRead, bibleRead]);
+  // Publish the earned badges, so a tap on this reader's name elsewhere — the
+  // boards, a shared quote, a group read — can show them. Sent only when the
+  // set changes.
+  useEffect(function() {
+    if (!me || !me.username || !syncedFromServer) return;
+    var earned = (badges || []).filter(function(b){ return b.earned; });
+    var sig = earned.map(function(b){ return b.id; }).sort().join("|") + "#" + (badges || []).length;
+    try { if (localStorage.getItem("gv_badges_pub_v1") === me.username + "::" + sig) return; } catch (e) {}
+    var t = setTimeout(function() {
+      authFetch("/api/user-data?type=badges", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ total: (badges || []).length, badges: earned.map(function(b){
+          return { id: b.id, title: b.title, mark: b.mark, group: b.group, tier: b.tier, at: b.at };
+        }) }),
+      }).then(function(r){
+        if (r && r.ok) { try { localStorage.setItem("gv_badges_pub_v1", me.username + "::" + sig); } catch (e) {} }
+      }).catch(function(){});
+    }, 4000);
+    return function(){ clearTimeout(t); };
+  }, [badges, me, syncedFromServer]);
   var [badgeToast, setBadgeToast] = useState(null);
   var [retireToast, setRetireToast] = useState(null);   // { word, en, total, at } — a card just retired
   useEffect(function() {
@@ -12746,6 +12767,17 @@ export default function App() {
     try { localStorage.setItem("gv_badges_unread_v1", JSON.stringify(badgeUnread)); } catch (e) {}
   }, [badgeUnread]);
   var [badgeAll, setBadgeAll] = useState(false);
+  // Another reader's badges, opened by tapping their name: { name, avatar,
+  // badges|null while loading, total }.
+  var [peek, setPeek] = useState(null);
+  var openPeek = function(name, avatar) {
+    if (!name) return;
+    setPeek({ name: name, avatar: avatar || "", badges: null, total: 0 });
+    fetch("/api/user-data?anon=badges&name=" + encodeURIComponent(name))
+      .then(function(r){ return r.ok ? r.json() : { badges: [] }; })
+      .then(function(j){ setPeek(function(p){ return p && p.name === name ? Object.assign({}, p, { badges: j.badges || [], total: j.total || 0 }) : p; }); })
+      .catch(function(){ setPeek(function(p){ return p && p.name === name ? Object.assign({}, p, { badges: [] }) : p; }); });
+  };
   // The badge whose checklist is open on the profile page (its id), or null.
   var [badgeOpen, setBadgeOpen] = useState(null);
   useEffect(function(){
@@ -16262,6 +16294,10 @@ export default function App() {
         .bdg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:14px 10px;margin-top:6px}
         .bdgm{display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px}
         .bdgm.go{cursor:pointer}
+        .who-link{background:none;border:0;padding:0;margin:0;font:inherit;color:inherit;cursor:pointer;text-align:left}
+        .who-link:hover,.who-link:focus-visible{color:var(--rubric);text-decoration:underline;text-underline-offset:3px}
+        .grp-m.go{cursor:pointer}
+        .peek-grid{overflow-y:auto;padding:4px 2px 8px;margin-top:12px}
         .bdgm.go:hover .bdg-t,.bdgm.go:focus-visible .bdg-t{color:var(--rubric)}
         .bdg-dlg-back{position:fixed;inset:0;z-index:1200;background:rgba(20,14,8,.42);display:flex;align-items:center;justify-content:center;padding:16px}
         .bdg-dlg{position:relative;background:var(--paper);border:1px solid var(--rule);box-shadow:0 18px 50px rgba(0,0,0,.25);
@@ -16753,7 +16789,7 @@ export default function App() {
                     {(!cont || dayBreak) && (
                       <div className="gchat-who">
                         <Avatar id={m.avatar} name={m.name} size={20} />
-                        <span className="nm">{m.name}</span>
+                        <button type="button" className="nm who-link" onClick={function(){ openPeek(m.name, m.avatar); }}>{m.name}</button>
                         <span className="at">{fmtAt(m.at)}</span>
                       </div>
                     )}
@@ -16813,7 +16849,7 @@ export default function App() {
                       <span className={"note-chip c-" + it.color} />
                       <span className="note-stack-b">
                         {it.by ? (
-                          <span className="note-stack-by"><Avatar id={it.by.avatar} name={it.by.name} size={18} />{it.by.name}</span>
+                          <span className="note-stack-by"><Avatar id={it.by.avatar} name={it.by.name} size={18} /><button type="button" className="who-link" onClick={function(e){ e.stopPropagation(); openPeek(it.by.name, it.by.avatar); }}>{it.by.name}</button></span>
                         ) : <span className="note-stack-by">You</span>}
                         <span className="note-stack-q">«{it.quote && it.quote.length > 70 ? it.quote.slice(0, 70) + "…" : it.quote}»</span>
                         {it.note ? <span className="note-stack-t">{it.note.length > 120 ? it.note.slice(0, 120) + "…" : it.note}</span> : null}
@@ -17095,7 +17131,8 @@ export default function App() {
                       <div className="grp-now-who">
                         {grpMembers.map(function(m, i){
                           return (
-                            <span key={i} className={"grp-m" + (m.here ? " here" : "")} title={m.name + (m.here ? " — reading now" : "")}>
+                            <span key={i} className={"grp-m go" + (m.here ? " here" : "")} title={m.name + (m.here ? " — reading now" : "")}
+                                  role="button" tabIndex={0} onClick={function(){ openPeek(m.name, m.avatar); }}>
                               <Avatar id={m.avatar} name={m.name} size={22} />
                             </span>
                           );
@@ -17388,7 +17425,37 @@ export default function App() {
           </div>
         </div>
       )}
-      {badgeToast && badgeToast.list.length > 0 && (
+      {peek && (
+          <div className="bdg-dlg-back" onClick={function(){ setPeek(null); }}>
+            <div className="bdg-dlg" role="dialog" aria-label={peek.name} onClick={function(e){ e.stopPropagation(); }}>
+              <button type="button" className="bdg-dlg-x" aria-label="Close" onClick={function(){ setPeek(null); }}>×</button>
+              <div className="bdg-dlg-h">
+                <Avatar id={peek.avatar} name={peek.name} size={44} />
+                <div>
+                  <div className="bdg-dlg-t">{peek.name}</div>
+                  <div className="bdg-dlg-p">{peek.badges === null ? "Loading…"
+                    : peek.badges.length + (peek.total ? " of " + peek.total : "") + " " + (peek.badges.length === 1 ? "badge" : "badges")}</div>
+                </div>
+              </div>
+              {peek.badges !== null && (peek.badges.length ? (
+                <div className="bdg-grid peek-grid">
+                  {peek.badges.slice().sort(function(a, b){ return (b.tier || 0) - (a.tier || 0) || (b.at || 0) - (a.at || 0); }).map(function(b){
+                    return (
+                      <div key={b.id} className="bdgm" title={b.title}>
+                        <div className={"bdg-medal t" + Math.min(b.tier || 0, 4)}>{b.mark}</div>
+                        <div className="bdg-t">{b.title}</div>
+                        {b.at ? <div className="bdg-s">{new Date(b.at).toLocaleDateString()}</div> : null}
+                      </div>
+                    );
+                  })}
+                </div>
+              ) : (
+                <div className="acct-note">No badges to show yet.</div>
+              ))}
+            </div>
+          </div>
+        )}
+        {badgeToast && badgeToast.list.length > 0 && (
         <div className="bdg-toast" role="status">
           <div className={"bdg-medal t" + Math.min(badgeToast.list[0].tier || 0, 4)}>{badgeToast.list[0].mark}</div>
           <div className="bdg-toast-t">
@@ -19141,7 +19208,7 @@ export default function App() {
                         {!mine && q.by && (
                           <div className="fq-by">
                             <Avatar id={q.by.avatar || ""} name={q.by.name} size={18} />
-                            <span>{q.by.name}</span>
+                            <button type="button" className="who-link" onClick={function(e){ e.stopPropagation(); openPeek(q.by.name, q.by.avatar); }}>{q.by.name}</button>
                             {q.at ? <span className="fq-when"> · {new Date(q.at).toLocaleDateString()}</span> : null}
                           </div>
                         )}
@@ -19271,7 +19338,7 @@ export default function App() {
                               <li key={r.name} className={"lb-row" + (mine ? " me" : "")}>
                                 <span className="rk">{i + 1}</span>
                                 <Avatar id={r.avatar} name={r.name} size={26} />
-                                <span className="tt">{r.name}</span>
+                                <span className="tt"><button type="button" className="who-link" onClick={function(){ openPeek(r.name, r.avatar); }}>{r.name}</button></span>
                                 <span className="ct" title={r.n + " " + col.unit}>{fmtInt(r.n)}</span>
                               </li>
                             );
@@ -21440,7 +21507,8 @@ export default function App() {
                           <span className="grp-who">
                             {grpMembers.map(function(m, i){
                               return (
-                                <span key={i} className={"grp-m" + (m.here ? " here" : "")}
+                                <span key={i} className={"grp-m go" + (m.here ? " here" : "")} role="button" tabIndex={0}
+                                  onClick={function(e){ e.stopPropagation(); openPeek(m.name, m.avatar); }}
                                   title={m.name + (m.owner ? " — started this group" : "") + (m.here ? " — reading now" : "")}>
                                   <Avatar id={m.avatar} name={m.name} size={22} />
                                 </span>
