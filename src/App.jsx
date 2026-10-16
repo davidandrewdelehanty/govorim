@@ -2028,16 +2028,16 @@ function ruPlural(n, one, few, many) {
 //   · milestones for words read, days in a row, cards reviewed, words
 //     learned, case drills and songs.
 var BADGE_KINDS = [
-  { cat: "Novels", first: "Первый роман",                  ru: "Романы",          one: "роман",      tiers: [1, 3, 5, 10, 25] },
-  { cat: "Novellas", first: "Первая повесть",                ru: "Повести",         one: "повесть",    tiers: [1, 3, 5, 10, 25] },
-  { cat: "Short Stories", first: "Первый рассказ",           ru: "Рассказы",        one: "рассказ",    tiers: [1, 10, 25, 50, 100, 250] },
-  { cat: "Poetry", first: "Первое стихотворение",                  ru: "Стихи",           one: "стихотворение", tiers: [1, 10, 25, 50, 100, 250] },
-  { cat: "Plays", first: "Первая пьеса",                   ru: "Пьесы",           one: "пьесу",      tiers: [1, 3, 5, 10, 25] },
-  { cat: "Theatrical Performances", first: "Первый спектакль", ru: "Спектакли",       one: "спектакль",  tiers: [1, 3, 5] },
-  { cat: "Religious Texts", first: "Первая священная книга",         ru: "Священные тексты", one: "книгу",     tiers: [1] },
-  { cat: "Speeches by Soviet Leaders", first: "Первая речь", ru: "Речи",         one: "речь",       tiers: [1, 5, 10, 25],
+  { cat: "Novels", champ: "Чемпион романов", first: "Первый роман",                  ru: "Романы",          one: "роман",      tiers: [1, 3, 5, 10, 25] },
+  { cat: "Novellas", champ: "Чемпион повестей", first: "Первая повесть",                ru: "Повести",         one: "повесть",    tiers: [1, 3, 5, 10, 25] },
+  { cat: "Short Stories", champ: "Чемпион рассказов", first: "Первый рассказ",           ru: "Рассказы",        one: "рассказ",    tiers: [1, 10, 25, 50, 100, 250] },
+  { cat: "Poetry", champ: "Чемпион поэзии", first: "Первое стихотворение",                  ru: "Стихи",           one: "стихотворение", tiers: [1, 10, 25, 50, 100, 250] },
+  { cat: "Plays", champ: "Чемпион пьес", first: "Первая пьеса",                   ru: "Пьесы",           one: "пьесу",      tiers: [1, 3, 5, 10, 25] },
+  { cat: "Theatrical Performances", champ: "Чемпион спектаклей", first: "Первый спектакль", ru: "Спектакли",       one: "спектакль",  tiers: [1, 3, 5] },
+  { cat: "Religious Texts", champ: "Чемпион священных текстов", first: "Первая священная книга",         ru: "Священные тексты", one: "книгу",     tiers: [1] },
+  { cat: "Speeches by Soviet Leaders", champ: "Чемпион речей", first: "Первая речь", ru: "Речи",         one: "речь",       tiers: [1, 5, 10, 25],
     en: "speech", enMany: "speeches" },
-  { cat: "Fairytales", first: "Первая сказка",             ru: "Сказки",          one: "сказку",     tiers: [1, 5, 10, 20],
+  { cat: "Fairytales", champ: "Чемпион сказок", first: "Первая сказка",             ru: "Сказки",          one: "сказку",     tiers: [1, 5, 10, 20],
     en: "fairy tale", enMany: "fairy tales" },
 ];
 // The great long novels of Russian literature (catalogue entries carrying
@@ -2132,6 +2132,21 @@ function computeBadges(src) {
     });
   });
 
+  // Champions: every work of a kind on the shelf, finished. Recounted from the
+  // shelf as it stands, so a new tale or speech puts the badge back in reach.
+  BADGE_KINDS.forEach(function(k) {
+    var available = books.filter(function(b){ return b && b.category === k.cat; }).length;
+    if (available < 2 || !k.champ) return;
+    var mine = done.filter(function(d){ return d.cat === k.cat; });
+    var ats = mine.map(function(d){ return d.at; }).sort(function(a, b){ return a - b; });
+    add({
+      id: "champ:" + k.cat, group: "kind", tier: 9, mark: "♛",
+      title: k.champ, desc: "Finish every one of the " + available + " " + (k.enMany || k.cat.toLowerCase()) + " in the library",
+      earned: mine.length >= available, n: Math.min(mine.length, available), of: available,
+      at: mine.length >= available ? ats[available - 1] : 0,
+    });
+  });
+
   // The great novels: Война и мир, Братья Карамазовы, Тихий Дон and the rest.
   (function() {
     var greatAll = books.filter(function(b){ return b && b.great; }).length;
@@ -2146,6 +2161,12 @@ function computeBadges(src) {
         desc: i === 0 ? "Finish one of the great Russian novels" : ("Finish " + t + " of the great Russian novels"),
         earned: mineG.length >= t, n: Math.min(mineG.length, t), of: t, at: mineG.length >= t ? ats[t - 1] : 0,
       });
+    });
+    add({
+      id: "champ:great", group: "kind", tier: 9, mark: "♛",
+      title: "Чемпион великих романов", desc: "Finish all " + greatAll + " of the great Russian novels",
+      earned: mineG.length >= greatAll, n: Math.min(mineG.length, greatAll), of: greatAll,
+      at: mineG.length >= greatAll ? ats[greatAll - 1] : 0,
     });
   })();
 
