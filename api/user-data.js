@@ -394,6 +394,8 @@ export default async function handler(req, res) {
           const meaning = { 101: "embedding disabled by the uploader",
                             150: "embedding disabled by the uploader",
                             100: "video removed or private",
+                            152: "YouTube could not tell which site was asking — the reader's browser (often an in-app browser or a strict privacy setting) stripped the referrer; the video itself is usually fine",
+                            153: "the reader's browser sent no referrer, so YouTube refused the embed; the video itself is usually fine",
                             2: "malformed video id", 5: "player error" }[code] || ("error code " + code);
           await sendEmail({
             to,

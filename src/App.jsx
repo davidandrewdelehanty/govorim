@@ -980,6 +980,10 @@ function ytEmbed(id, start, end) {
   var q = ["hl=ru"];
   if (start) q.push("start=" + start);
   if (end)   q.push("end=" + end);
+  // origin: YouTube refuses an embed (error 152/153) when it cannot tell
+  // which site is asking — in-app browsers and strict privacy settings drop
+  // the referrer. Saying it outright in the URL covers most of those.
+  try { q.push("origin=" + encodeURIComponent(window.location.origin)); } catch (e) {}
   return "https://www.youtube.com/embed/" + id + (q.length ? "?" + q.join("&") : "");
 }
 
@@ -1192,6 +1196,7 @@ function ChapterVideo(props) {
       var f = document.createElement("iframe");
       f.src = ytEmbed(id, start, end);
       f.title = props.title || "Video";
+      f.referrerPolicy = "strict-origin-when-cross-origin";
       f.allow = "accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
       f.setAttribute("allowfullscreen", "");
       node.appendChild(f);
@@ -1204,6 +1209,13 @@ function ChapterVideo(props) {
           videoId: id,
           playerVars: (function(){
             var v = { rel: 0, modestbranding: 1, playsinline: 1 };
+            // Name the site to YouTube in so many words. Without it a reader
+            // whose browser strips the referrer gets error 152/153 ("video
+            // unavailable") on a video that plays fine everywhere else.
+            try {
+              v.origin = window.location.origin;
+              v.widget_referrer = window.location.href;
+            } catch (x) {}
             if (start) v.start = start;
             return v;   // the end is enforced in the poll, so it can move
           })(),
@@ -1252,7 +1264,8 @@ function ChapterVideo(props) {
                   method: "POST",
                   headers: { "Content-Type": "application/json" },
                   body: JSON.stringify({ v: id, code: (e && e.data) || 0,
-                    where: props.title || "" }),
+                    where: (props.book ? props.book + " — " : "") + (props.title || "") +
+                      " · " + (navigator.userAgent || "").slice(0, 140) }),
                 }).catch(function(){});
               } catch (x) {}
               // 101 and 150 both mean the same thing: whoever posted it has
@@ -1261,6 +1274,12 @@ function ChapterVideo(props) {
               // and offer the link, instead of leaving a blank rectangle.
               var code = (e && e.data) || 0;
               if (code === 101 || code === 150) { setNoEmbed(true); setStuck(true); return; }
+              // 152/153: YouTube could not tell which site was asking — the
+              // reader's browser (often an in-app one, or a privacy setting)
+              // stripped the referrer. Try the bare iframe, which sends it
+              // explicitly, and show the YouTube link under it in case that
+              // is refused too.
+              if (code === 152 || code === 153) { setReady(false); plain(); setStuck(true); return; }
               plain();
             }
           }
@@ -21731,6 +21750,7 @@ export default function App() {
                               start={curChapter.youtubeStart}
                               end={curChapter.youtubeEnd}
                               ctrl={ytCtrlRef}
+                              book={bookMeta.title || ""}
                               title={curChapter.heading || bookMeta.title || "Video"} />
                             {/* `dubbed` marks videos with a YouTube English
                                 voice-over. The embed was tested to play the
