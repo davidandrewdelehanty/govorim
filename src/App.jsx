@@ -6553,19 +6553,12 @@ export default function App() {
   // dictionary are present — homographs (за́мок/замо́к, ру́ки/руки́) are
   // excluded at build time, so every mark shown is certain. Words the
   // dictionary doesn't know simply go unmarked.
+  // Always on, for every book — there is no toggle: a reader should meet
+  // each word with its stress wherever the stress is certain.
   // The marks are DISPLAY ONLY: the acute is inserted while rendering the
   // word span, so clicks, definitions, TTS, audio offsets and search all
   // keep working on the clean text.
-  var [accentsOn, setAccentsOn] = useState(false);
   var [stressMap, setStressMap] = useState(null);
-  useEffect(function() {
-    storage.get("accents_on").then(function(r){ if (r && r.value === "1") setAccentsOn(true); }).catch(function(){});
-  }, []);
-  var toggleAccents = function() {
-    var next = !accentsOn;
-    setAccentsOn(next);
-    storage.set("accents_on", next ? "1" : "0").catch(function(){});
-  };
   useEffect(function() {
     setStressMap(null);
     var fn = bookMeta && bookMeta.filename;
@@ -6577,7 +6570,7 @@ export default function App() {
       .catch(function(){ /* no stress data for this book — fine */ });
   }, [bookMeta && bookMeta.filename]);
   var accented = function(w) {
-    if (!accentsOn || !stressMap) return w;
+    if (!stressMap) return w;
     var i = stressMap[w.toLowerCase()];
     if (i === undefined || i >= w.length) return w;
     return w.slice(0, i + 1) + "\u0301" + w.slice(i + 1);
@@ -21145,10 +21138,6 @@ export default function App() {
                         setOwnVideoErr("");
                         setOwnVidOpen(!ownVidOpen);
                       }}>Recording</button>
-                  )}
-                  {stressMap && !singlePageMode && (
-                    <button className={"ltab"+(accentsOn?" on":"")} onClick={toggleAccents}
-                      title="Show stress marks — only on words whose stress is unambiguous">Stress marks</button>
                   )}
                   {exData && (exData.cases||[]).length > 0 && <button className={"ltab"+(lview==="exercises"?" on":"")} onClick={function(){ setLview("exercises"); }}>Exercises</button>}
                   </div>
