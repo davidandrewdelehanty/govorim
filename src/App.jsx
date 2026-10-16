@@ -5021,6 +5021,10 @@ export default function App() {
   var [adminLegacyId, setAdminLegacyId]     = useState("");
   var [adminLegacyMsg, setAdminLegacyMsg]   = useState("");
   var [adminLoad, setAdminLoad]   = useState(false);
+  // Reader list controls: search, sort and filter.
+  var [admQ, setAdmQ] = useState("");
+  var [admSort, setAdmSort] = useState("seen");
+  var [admFilter, setAdmFilter] = useState("all");
   var [adminErr, setAdminErr]     = useState("");
   // Upload-song panel state — admin-only, accessed via "📤 Upload" trigger.
   // Pasted song goes to a per-artist .txt in public/books/lyrics/ via the
@@ -16294,6 +16298,46 @@ export default function App() {
         .bdg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:14px 10px;margin-top:6px}
         .bdgm{display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px}
         .bdgm.go{cursor:pointer}
+        .admu-pulse{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:4px 0 14px}
+        .admu-pulse-c{border:1px solid var(--rule);padding:8px 10px;display:flex;flex-direction:column;gap:2px;background:var(--paper)}
+        .admu-pulse-c .n{font-family:var(--display);font-size:20px;color:var(--ink)}
+        .admu-pulse-c .l{font-family:var(--sans);font-size:10.5px;letter-spacing:.04em;color:var(--ink-3);line-height:1.3}
+        .admu-tools{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px}
+        .admu-q{flex:1 1 180px;min-width:0;padding:8px 10px;border:1px solid var(--rule);background:var(--paper);font:inherit;font-size:14px}
+        .admu-sel{padding:8px;border:1px solid var(--rule);background:var(--paper);font:inherit;font-size:13px}
+        .admu-count{font-family:var(--sans);font-size:11px;color:var(--ink-3);margin:4px 0 8px}
+        .admu-card{border:1px solid var(--rule);background:var(--paper);padding:12px 14px;margin-bottom:10px;display:flex;flex-direction:column;gap:8px}
+        .admu-card.fresh{border-left:3px solid var(--rubric)}
+        .admu-top{display:flex;gap:10px;align-items:center;min-width:0}
+        .admu-id{min-width:0;flex:1}
+        .admu-name{font-family:var(--display);font-size:17px;color:var(--ink);display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+        .admu-name .nouser{color:var(--ink-3);font-style:italic;font-size:14px}
+        .admu-email{font-family:var(--sans);font-size:12.5px;color:var(--ink-2);overflow-wrap:anywhere}
+        .admu-chip{font-family:var(--sans);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;padding:2px 6px;border:1px solid var(--rule)}
+        .admu-chip.ok{color:#3d6b3d;border-color:#9bbf9b}
+        .admu-chip.wait{color:#9a5b14;border-color:#e0b47a}
+        .admu-chip.admin{color:var(--rubric);border-color:var(--rubric)}
+        .admu-when{font-family:var(--sans);font-size:12.5px;color:var(--ink);display:flex;flex-direction:column;gap:2px}
+        .admu-when .k{color:var(--ink-3);text-transform:uppercase;font-size:10px;letter-spacing:.1em}
+        .admu-when .d{color:var(--ink-3)}
+        .admu-stats{display:flex;flex-wrap:wrap;gap:4px 14px;font-family:var(--sans);font-size:12px;color:var(--ink-2)}
+        .admu-st b{color:var(--ink);font-weight:600}
+        .admu-badges{display:flex;flex-wrap:wrap;gap:4px;align-items:center}
+        .admu-badges .k{font-family:var(--sans);font-size:11px;color:var(--ink-3);margin-right:4px}
+        .admu-acts{display:flex;gap:8px;flex-wrap:wrap}
+        .admu-dbadges{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:6px 12px}
+        .admu-db{display:flex;gap:8px;align-items:center;font-family:var(--serif);font-size:13.5px;min-width:0}
+        .admu-db .t{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+        .admu-db .d,.admu-bl .d{font-family:var(--sans);font-size:11px;color:var(--ink-3);white-space:nowrap}
+        .admu-blist{display:flex;flex-direction:column;max-height:320px;overflow-y:auto;border-top:1px solid var(--rule-soft)}
+        .admu-bl{display:flex;gap:10px;justify-content:space-between;align-items:baseline;padding:6px 0;border-bottom:1px solid var(--rule-soft);font-family:var(--serif);font-size:14px}
+        .admu-bl .a{color:var(--ink-3);font-style:italic;font-size:12.5px}
+        .admu-bl .pbar{display:block;height:3px;background:var(--paper-3);margin-top:4px;max-width:220px}
+        .admu-bl .pbar span{display:block;height:100%;background:var(--rubric)}
+        @media(max-width:600px){
+          .admu-pulse{grid-template-columns:repeat(2,minmax(0,1fr))}
+          .admu-bl{flex-direction:column;gap:2px}
+        }
         .who-link{background:none;border:0;padding:0;margin:0;font:inherit;color:inherit;cursor:pointer;text-align:left}
         .who-link:hover,.who-link:focus-visible{color:var(--rubric);text-decoration:underline;text-underline-offset:3px}
         .grp-m.go{cursor:pointer}
@@ -18010,51 +18054,137 @@ export default function App() {
               )}
               {adminLoad && <div className="adm-empty">Loading users…</div>}
               {!adminLoad && adminUsers.length === 0 && <div className="adm-empty">No users yet.</div>}
-              {!adminLoad && adminUsers.map(function(u){
-                var when = function(t){ return t ? new Date(t).toLocaleDateString() : "—"; };
-                // "Seen" must mean seen. A thirty-day cookie lets someone read
-                // daily for a month while their last sign-in stays a month old,
-                // so the later of the two is the honest answer.
-                var seenAt = Math.max(u.lastSeenAt || 0, u.lastLoginAt || 0);
+              {!adminLoad && adminUsers.length > 0 && (function(){
+                var when = function(t){ return t ? new Date(t).toLocaleDateString(undefined, { day: "numeric", month: "short", year: "numeric" }) : "—"; };
+                var whenTime = function(t){ return t ? new Date(t).toLocaleString(undefined, { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" }) : "—"; };
                 var ago = function(t){
                   if (!t) return "never";
                   var m = Math.floor((Date.now() - t) / 60000);
                   if (m < 1) return "just now";
-                  if (m < 60) return m + "m ago";
+                  if (m < 60) return m + " min ago";
                   var h = Math.floor(m / 60);
-                  if (h < 24) return h + "h ago";
+                  if (h < 24) return h + " h ago";
                   var d2 = Math.floor(h / 24);
-                  return d2 < 30 ? d2 + "d ago" : when(t);
+                  if (d2 < 60) return d2 + (d2 === 1 ? " day ago" : " days ago");
+                  return Math.round(d2 / 30) + " months ago";
                 };
+                var seenOf = function(u){ return Math.max(u.lastSeenAt || 0, u.lastLoginAt || 0); };
+                var st = function(u, k){ return (u.stats && u.stats[k]) || 0; };
+                var q = admQ.trim().toLowerCase();
+                var DAY = 86400000, now = Date.now();
+                var list = adminUsers.filter(function(u){
+                  if (q && (String(u.email) + " " + String(u.username || "")).toLowerCase().indexOf(q) < 0) return false;
+                  if (admFilter === "pending") return !u.isAdmin && !u.approved;
+                  if (admFilter === "active7") return seenOf(u) > now - 7 * DAY;
+                  if (admFilter === "active30") return seenOf(u) > now - 30 * DAY;
+                  if (admFilter === "dormant") return seenOf(u) <= now - 30 * DAY;
+                  if (admFilter === "named") return !!u.username;
+                  if (admFilter === "readers") return st(u, "words") > 0;
+                  return true;
+                });
+                var keyOf = {
+                  seen: function(u){ return seenOf(u); }, login: function(u){ return u.lastLoginAt || 0; },
+                  joined: function(u){ return u.createdAt || 0; }, logins: function(u){ return u.loginCount || 0; },
+                  words: function(u){ return st(u, "words"); }, books: function(u){ return st(u, "read"); },
+                  learned: function(u){ return st(u, "learned"); }, reviewed: function(u){ return st(u, "reviewed"); },
+                  badges: function(u){ return (u.badges && u.badges.n) || 0; },
+                };
+                var kf = keyOf[admSort] || keyOf.seen;
+                list = list.slice().sort(function(x, y){ return kf(y) - kf(x); });
+                // Site pulse over the whole list, before the filter.
+                var act = function(days){ return adminUsers.filter(function(u){ return seenOf(u) > now - days * DAY; }).length; };
+                var sum = function(k){ return adminUsers.reduce(function(n, u){ return n + st(u, k); }, 0); };
+                var joined7 = adminUsers.filter(function(u){ return (u.createdAt || 0) > now - 7 * DAY; }).length;
+                var pulse = [
+                  [act(1), "active today"], [act(7), "active this week"], [act(30), "active this month"],
+                  [joined7, "joined this week"], [fmtInt(sum("words")), "words read, all readers"],
+                  [fmtInt(sum("read")), "books finished"], [fmtInt(sum("learned")), "words learned"],
+                  [fmtInt(sum("reviewed")), "cards reviewed"],
+                ];
                 return (
-                  <div key={u.id} className="adm-row">
-                    <div className="adm-info">
-                      <div className="adm-name">{u.email}</div>
-                      <div className="adm-email" title={seenAt ? new Date(seenAt).toLocaleString() : ""}>
-                        joined {when(u.createdAt)} · seen {ago(seenAt)}
-                      </div>
+                  <>
+                    <div className="admu-pulse">
+                      {pulse.map(function(p, i){
+                        return <div key={i} className="admu-pulse-c"><span className="n">{p[0]}</span><span className="l">{p[1]}</span></div>;
+                      })}
                     </div>
-                    {u.isAdmin && <div className="adm-status admin">Admin</div>}
-                    {!u.isAdmin && (
-                      <div className={"adm-status " + (u.approved ? "approved" : "pending")}>
-                        {u.approved ? (u.grandfathered ? "Existing" : "Approved") : "Pending"}
-                      </div>
-                    )}
-                    <div className="adm-actions">
-                      <button className="adm-btn" disabled={adminDetailLoad}
-                        onClick={function(){ loadUserDetail(u.email); }}>Details</button>
-                      {!u.isAdmin && !u.approved && (
-                        <button className="adm-btn approve" disabled={adminLoad}
-                          onClick={function(){ setUserApproval(u.email, true); }}>Approve</button>
-                      )}
-                      {!u.isAdmin && u.approved && (
-                        <button className="adm-btn reject" disabled={adminLoad}
-                          onClick={function(){ setUserApproval(u.email, false); }}>Revoke</button>
-                      )}
+                    <div className="admu-tools">
+                      <input className="admu-q" type="search" placeholder="Search email or username"
+                        value={admQ} onChange={function(e){ setAdmQ(e.target.value); }} />
+                      <select className="admu-sel" value={admSort} onChange={function(e){ setAdmSort(e.target.value); }} aria-label="Sort by">
+                        <option value="seen">Last active</option>
+                        <option value="login">Last login</option>
+                        <option value="joined">Newest</option>
+                        <option value="logins">Most logins</option>
+                        <option value="words">Words read</option>
+                        <option value="books">Books finished</option>
+                        <option value="learned">Words learned</option>
+                        <option value="reviewed">Cards reviewed</option>
+                        <option value="badges">Badges</option>
+                      </select>
+                      <select className="admu-sel" value={admFilter} onChange={function(e){ setAdmFilter(e.target.value); }} aria-label="Show">
+                        <option value="all">Everyone</option>
+                        <option value="active7">Active this week</option>
+                        <option value="active30">Active this month</option>
+                        <option value="dormant">Not seen in 30 days</option>
+                        <option value="readers">Has read something</option>
+                        <option value="named">Has a username</option>
+                        <option value="pending">Awaiting approval</option>
+                      </select>
                     </div>
-                  </div>
+                    <div className="admu-count">{list.length} of {adminUsers.length} shown</div>
+                    {list.map(function(u){
+                      var seenAt = seenOf(u);
+                      var fresh = seenAt > now - DAY;
+                      var stat = function(n, l){ return <span className="admu-st"><b>{n}</b> {l}</span>; };
+                      return (
+                        <div key={u.id} className={"admu-card" + (fresh ? " fresh" : "")}>
+                          <div className="admu-top">
+                            <Avatar id={u.avatar} name={u.username || u.email} size={38} />
+                            <div className="admu-id">
+                              <div className="admu-name">{u.username || <span className="nouser">no username</span>}
+                                {u.isAdmin && <span className="admu-chip admin">admin</span>}
+                                {!u.isAdmin && <span className={"admu-chip " + (u.approved ? "ok" : "wait")}>{u.approved ? (u.grandfathered ? "existing" : "approved") : "pending"}</span>}
+                              </div>
+                              <div className="admu-email">{u.email}</div>
+                            </div>
+                          </div>
+                          <div className="admu-when">
+                            <div><span className="k">Last login</span> <b>{ago(u.lastLoginAt)}</b> <span className="d">{whenTime(u.lastLoginAt)}</span></div>
+                            <div><span className="k">Last seen</span> <b>{ago(seenAt)}</b> <span className="d">{whenTime(seenAt)}</span></div>
+                            <div><span className="k">Joined</span> {when(u.createdAt)} · <span className="k">logins</span> {u.loginCount || 0}{u.approvedAt ? <> · <span className="k">approved</span> {when(u.approvedAt)}</> : null}</div>
+                          </div>
+                          <div className="admu-stats">
+                            {stat(fmtInt(st(u, "words")), "words read")}
+                            {stat(st(u, "read"), "books finished")}
+                            {stat(st(u, "learned"), "learned")}
+                            {stat(fmtInt(st(u, "reviewed")), "cards")}
+                            {stat(st(u, "drills"), "drills right")}
+                            {stat(st(u, "songs"), "songs")}
+                          </div>
+                          {u.badges && u.badges.n > 0 && (
+                            <div className="admu-badges" title={u.badges.top.map(function(b){ return b.title; }).join(", ")}>
+                              <span className="k">{u.badges.n}{u.badges.total ? "/" + u.badges.total : ""} badges</span>
+                              {u.badges.top.map(function(b, i){
+                                return <span key={i} className={"bdg-medal sm t" + Math.min(b.tier || 0, 4)} title={b.title}>{b.mark}</span>;
+                              })}
+                            </div>
+                          )}
+                          <div className="admu-acts">
+                            <button className="adm-btn" disabled={adminDetailLoad} onClick={function(){ loadUserDetail(u.email); }}>Details</button>
+                            {!u.isAdmin && !u.approved && (
+                              <button className="adm-btn approve" disabled={adminLoad} onClick={function(){ setUserApproval(u.email, true); }}>Approve</button>
+                            )}
+                            {!u.isAdmin && u.approved && (
+                              <button className="adm-btn reject" disabled={adminLoad} onClick={function(){ setUserApproval(u.email, false); }}>Revoke</button>
+                            )}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </>
                 );
-              })}
+              })()}
             </div>
             <div className="adm-foot">
               <span style={{fontSize:12,color:"rgba(0,0,0,.5)"}}>
@@ -18741,6 +18871,60 @@ export default function App() {
                     {/* Where the panel looked, and what answered. On a site with
                         one reader an empty panel is a mystery; this makes it a
                         fact — and offers the one repair it usually needs. */}
+                    {(d.badges || []).length > 0 && (
+                      <>
+                        <div className="admd-sechdr">Badges · {d.badges.length}{d.badgeTotal ? " of " + d.badgeTotal : ""}</div>
+                        <div className="admu-dbadges">
+                          {d.badges.slice().sort(function(a, b){ return (b.at || 0) - (a.at || 0); }).map(function(b){
+                            return (
+                              <div key={b.id} className="admu-db" title={b.title}>
+                                <span className={"bdg-medal sm t" + Math.min(b.tier || 0, 4)}>{b.mark}</span>
+                                <span className="t">{b.title}</span>
+                                <span className="d">{b.at ? when(b.at) : ""}</span>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </>
+                    )}
+                    {(d.finished || []).length > 0 && (
+                      <>
+                        <div className="admd-sechdr">Books finished · {d.finished.length}</div>
+                        <div className="admu-blist">
+                          {d.finished.map(function(f){
+                            return (
+                              <div key={f.key} className="admu-bl">
+                                <span className="t" lang="ru">{f.title}{f.author ? <span className="a"> — {f.author}</span> : null}</span>
+                                <span className="d">{whenFull(f.at)}</span>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </>
+                    )}
+                    {(d.reading || []).length > 0 && (
+                      <>
+                        <div className="admd-sechdr">Reading · {d.reading.length} opened</div>
+                        <div className="admu-blist">
+                          {d.reading.slice(0, 40).map(function(rb){
+                            var pct = rb.totalChapters ? Math.round(100 * (rb.cidx + 1) / rb.totalChapters) : 0;
+                            return (
+                              <div key={rb.key} className="admu-bl">
+                                <span className="t" lang="ru">{rb.title}{rb.author ? <span className="a"> — {rb.author}</span> : null}
+                                  {rb.totalChapters ? <span className="pbar"><span style={{width: pct + "%"}} /></span> : null}</span>
+                                <span className="d">{rb.totalChapters ? "ch " + (rb.cidx + 1) + "/" + rb.totalChapters + " · " : ""}{whenFull(rb.lastRead)}</span>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </>
+                    )}
+                    {(d.bibleChapters || d.annotations) ? (
+                      <div className="admd-s" style={{lineHeight:1.6}}>
+                        {d.bibleChapters ? <>{d.bibleChapters} Bible chapters read. </> : null}
+                        {d.annotations ? <>{d.annotations} highlights, notes and drawings.</> : null}
+                      </div>
+                    ) : null}
                     <details className="admd-store">
                       <summary>Stored data</summary>
                       <div className="admd-facts" style={{marginTop:8}}>
