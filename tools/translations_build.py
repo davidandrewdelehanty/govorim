@@ -124,6 +124,10 @@ def en_paragraphs(slug):
         t = re.sub(r"\s+", " ", t).strip()
         if not t or re.fullmatch(r"[*.\s\-—_=]+", t):
             continue
+        # A table of contents arrives as one paragraph ("CHAPTER I. … CHAPTER II. …")
+        # or as a bare "Contents" line; neither is text the Russian translates.
+        if re.fullmatch(r"(?i)(table of )?contents\.?", t) or len(re.findall(r"\b(?:CHAPTER|Chapter|STAVE|BOOK)\s+[IVXLC\d]+\b", t)) >= 3:
+            continue
         out.append(t)
     return out
 
@@ -278,9 +282,26 @@ def align(ru, en, chap_start, ratio=1.1):
     return pairs, j
 
 
+# Front matter the TRANSLATOR wrote has no English. An author's own preface
+# does, so only these are taken out by name; the rest are listed per book in
+# tools/translations/ru_skip.json.
+TRANSLATOR_FM = re.compile(r"к русскому переводу|от переводчика|от издател|от редакци|исторический очерк|вместо предисловия|биографи", re.I)
+
+
+def ru_skipped(slug, heading):
+    try:
+        extra = json.load(io.open(os.path.join(DIR, "ru_skip.json"), encoding="utf-8")).get(slug, [])
+    except FileNotFoundError:
+        extra = []
+    h = (heading or "").strip()
+    return bool(TRANSLATOR_FM.search(h)) or any(h.startswith(x) for x in extra)
+
+
 def build_en(slug, ru_chs, en, report_only=False):
     flat, chap_start, owner = [], [], []
     for ci, c in enumerate(ru_chs):
+        if ru_skipped(slug, c["heading"]):
+            continue
         chap_start.append(len(flat))
         for pi, p in enumerate(c["paras"]):
             flat.append(p); owner.append((ci, pi))

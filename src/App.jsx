@@ -1433,7 +1433,7 @@ var JUNK_SECTION = /^(примечани|комментари|оглавлени
 // instead of being realigned — and an off-by-one there would put every English
 // line against the wrong Russian one.
 function mergeStorySections(chs) {
-  var texts = [], sections = [], offsets = [], tight = [], videosAt = [], at = 0;
+  var texts = [], sections = [], offsets = [], tight = [], verseM = [], stanzaM = [], videosAt = [], at = 0;
   for (var i = 0; i < chs.length; i++) {
     var c = chs[i] || {};
     var body = String(c.text || "");
@@ -1445,6 +1445,8 @@ function mergeStorySections(chs) {
     // section whose heading was filtered out of the index can still carry one.
     if (c.youtubeId) videosAt.push({ at: at, id: c.youtubeId, start: c.youtubeStart || 0, end: c.youtubeEnd || 0 });
     (c.tightIdx || []).forEach(function(x) { tight.push(x + at); });
+    (c.verseIdx || []).forEach(function(x) { verseM.push(x + at); });
+    (c.stanzaEndIdx || []).forEach(function(x) { stanzaM.push(x + at); });
     texts.push(body);
     at += body.split("\n\n").length;
   }
@@ -1452,6 +1454,8 @@ function mergeStorySections(chs) {
     heading: "",                 // the book's title already sits above the page
     text: texts.join("\n\n"),
     tightIdx: tight,
+    verseIdx: verseM,
+    stanzaEndIdx: stanzaM,
     sections: sections,          // for the jump index and the inline dividers
     offsets: offsets,            // paragraph index each source chapter starts at
     videosAt: videosAt,          // a video shows where its own section begins
@@ -3825,6 +3829,12 @@ async function parseFb2(buffer, options) {
     // mark their stage directions that way, and it is a far better signal than
     // any guess made from the words. Recorded beside the text, never in it.
     out.emphIdx = [];
+    // Verse set as verse: <poem data-verse> marks a real poem inside prose (the
+    // opening poem of Алиса). Its lines are recorded here and drawn tight and
+    // indented, and the last line of each <stanza> is recorded too, so a
+    // stanza ends with a gap instead of every line floating a paragraph apart.
+    out.verseIdx = [];
+    out.stanzaEndIdx = [];
     // Pictures and in-chapter headings. Both are recorded beside the text and
     // never in it, like tightIdx, so word offsets, audio sync and the chapter
     // splitting are untouched. A figure belongs before paragraph `at`; an `at`
@@ -3880,6 +3890,7 @@ async function parseFb2(buffer, options) {
             }
           }
           if (inVerse) out.tightIdx.push(out.length);
+          if (out.verseOn) out.verseIdx.push(out.length);
           if (tag === "p" && whollyEmphasised(c)) out.emphIdx.push(out.length);
           if (tag === "subtitle") out.subIdx.push(out.length);
           out.push(t);
@@ -3888,6 +3899,18 @@ async function parseFb2(buffer, options) {
         // A <poem data-tight> is set tight too: the textbooks mark runs of short
         // lines that way (verse, a primer's sentence-per-line reading). Plain
         // <poem> keeps normal spacing — see the Горе от ума note above.
+        if (tag === "poem" && c.getAttribute("data-verse")) {
+          out.verseOn = (out.verseOn || 0) + 1;
+          walk(c, inVerse);
+          out.verseOn--;
+          if (out.length && out.stanzaEndIdx.indexOf(out.length - 1) === -1) out.stanzaEndIdx.push(out.length - 1);
+          continue;
+        }
+        if (tag === "stanza" && out.verseOn) {
+          walk(c, inVerse);
+          if (out.length) out.stanzaEndIdx.push(out.length - 1);
+          continue;
+        }
         walk(c, inVerse || tag === "epigraph" || (tag === "poem" && !!c.getAttribute("data-tight")));   // wrapper containers: epigraph, poem, cite, …
       }
     };
@@ -3906,6 +3929,8 @@ async function parseFb2(buffer, options) {
     out.push({ heading: heading || ("Глава " + (out.length + 1)), text: body,
                tightIdx: (paras && paras.tightIdx) || [],
                emphIdx: (paras && paras.emphIdx) || [],
+               verseIdx: (paras && paras.verseIdx) || [],
+               stanzaEndIdx: (paras && paras.stanzaEndIdx) || [],
                figs: (paras && paras.figs) || [],
                subIdx: (paras && paras.subIdx) || [] });
   };
@@ -13262,7 +13287,10 @@ export default function App() {
             }}>⚑</button>
         ) : null;
         var isTight = !!(curChapter && curChapter.tightIdx && curChapter.tightIdx.indexOf(entry.chIdx) !== -1);
-        var pMargin = {marginBottom: singlePageMode ? "0.35em"
+        var isVerse = !!(curChapter && curChapter.verseIdx && curChapter.verseIdx.indexOf(entry.chIdx) !== -1);
+        var isStanzaEnd = isVerse && curChapter.stanzaEndIdx && curChapter.stanzaEndIdx.indexOf(entry.chIdx) !== -1;
+        var pMargin = {marginBottom: isVerse ? (isStanzaEnd ? "1.3em" : "0.12em")
+          : singlePageMode ? "0.35em"
           : (bookMeta && bookMeta.filename && bookMeta.filename.indexOf("негин") !== -1 ? "0.1em"
           : (isTight ? "0.15em" : "1.2em"))};
         var ruBody = (function(){
@@ -13403,7 +13431,7 @@ export default function App() {
             ];
           }
           var dualCells = [
-            <p key={"ru" + pi} className={"dual-ru" + (playKind ? " play-" + playKind.kind : "")} lang="ru" id={"sp" + entry.chIdx}
+            <p key={"ru" + pi} className={"dual-ru" + (playKind ? " play-" + playKind.kind : "") + (isVerse ? " pverse" : "")} lang="ru" id={"sp" + entry.chIdx}
                style={Object.assign(flowEn ? {} : {gridColumn: 1, gridRow: String(pi + 1)}, pMargin)}>{jumpBtn}{bmBtn}{ruBody}</p>
           ];
           // Flow mode: the Russian keeps its rows, the English does not get a
@@ -13466,7 +13494,7 @@ export default function App() {
             <p id={"sp" + entry.chIdx} lang="ru" style={playKind ? undefined : (isSub && isTextbook ? undefined : pMargin)}
                className={playKind ? ("play-p play-" + playKind.kind)
                                    : (bibleChapterMark ? "bible-chapter"
-                                   : (isSub && isTextbook ? "tb-sub" : (isArg ? "tb-arg" : undefined)))}>
+                                   : (isSub && isTextbook ? "tb-sub" : (isArg ? "tb-arg" : (isVerse ? "pverse" : undefined))))}>
               {jumpBtn}{bmBtn}{ruBody}
               {/* The Russian line already carries its verse number, so the
                   English beneath it does not repeat one. A book-sized page
@@ -15656,6 +15684,10 @@ export default function App() {
         .lch-en i{font-style:normal}
         .ltxt{font-family:var(--serif);font-size:18px;line-height:1.72;color:var(--ink);letter-spacing:0}
         .ltxt p,.dual-ru{font-variant-numeric:oldstyle-nums}
+        /* A poem inside prose: set as verse — no first-line indent, the block
+           stepped in from the margin, lines close together, a gap per stanza. */
+        .ltxt p.pverse,.dual-ru.pverse{text-indent:0;padding-left:2.4em;line-height:1.55}
+        @media(max-width:600px){.ltxt p.pverse,.dual-ru.pverse{padding-left:1.2em}}
         .dual-en{font-family:var(--serif);color:var(--ink-2)}
         .dual-hint{font-family:var(--sans);letter-spacing:.14em;color:var(--ink-3)}
         .dual-toggle{background:var(--paper-3);border:1px solid var(--ink);color:var(--ink);box-shadow:none;font-family:var(--sans);letter-spacing:.14em;padding:8px 10px}
@@ -15974,7 +16006,14 @@ export default function App() {
         .note-link-h{font-family:var(--sans);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;
           color:var(--ink-3);margin-left:6px;white-space:nowrap}
         .note-none{color:var(--ink-3);font-style:italic}
-        .notes-panel{max-width:680px;margin:0 auto;padding:22px 20px 60px}
+        /* The panel is its own scroll box. On desktop .lit-wrap is locked to the
+           window (overflow:hidden) and every other view scrolls inside it — the
+           notes didn't, so a long list was cut off at the window edge, and only
+           a narrow window (where the page itself scrolls) showed it all. The
+           column stays 680px; the side padding centres it, so the scrollbar
+           sits at the window edge, not beside the text. */
+        .notes-panel{flex:1;min-height:0;overflow-y:auto;width:100%;box-sizing:border-box;
+          padding:22px max(20px, calc((100% - 680px) / 2)) 60px}
         .notes-h{display:flex;flex-direction:column;gap:3px;margin-bottom:12px}
         .notes-h>span:first-child{font-family:var(--display);font-size:24px;color:var(--ink)}
         .notes-sub{font-family:var(--serif);font-style:italic;font-size:13.5px;color:var(--ink-3)}

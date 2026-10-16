@@ -60,6 +60,7 @@ async function sameAsCandidates(words, signal, timeLeft) {
   return null;
 }
 import { lemmaCandidates } from "../lib/morph.js";
+import { pymorphyLemmas } from "../lib/lemmatable.js";
 import { mtLookup } from "../lib/mt.js";
 
 const YANDEX_URL = "https://dictionary.yandex.net/api/v1/dicservice.json/lookup";
@@ -921,7 +922,9 @@ export default async function handler(req, res) {
       let real = [];
       if (!hit && leftR() > 2500) {
         try {
-          const guesses = lemmaCandidates(lowerR, 12).concat(also ? lemmaCandidates(also, 8) : []);
+          const pmR = process.env.PYMORPHY_LEMMAS !== "0" ? pymorphyLemmas(lowerR) : null;
+          const guesses = (pmR ? pmR.readings.map(function (r) { return r.lemma; }) : [])
+            .concat(lemmaCandidates(lowerR, 12)).concat(also ? lemmaCandidates(also, 8) : []);
           real = guesses.length ? await existingTitles(guesses, ctrlR.signal) : [];
           if (real.length) hit = await ruWiktionaryLookup(real.slice(0, 3), word, ctrlR.signal, leftR);
         } catch (e) { if (e && e.name === "AbortError") throw e; }
@@ -1033,12 +1036,35 @@ export default async function handler(req, res) {
       // is a search engine rather than a lemmatiser, so it goes second.
       let lemma = "", lemmas = [], weakWikt = null;
       const readings = [];   // every headword this form can belong to — see withReadings
-      if (process.env.LEMMA_LOOKUP !== "0" && timeLeft() > 2500) {
+      // pymorphy3 first (lib/lemmatable.js): a dictionary analysis of every
+      // form in the library, built offline. A form its dictionary KNOWS is
+      // settled here — lemma and part of speech, homographs as readings — with
+      // no guessing and no round trip to Wikimedia. A form it only guessed
+      // from the ending joins the rule-based guesses below, to be checked.
+      let pmGuess = [];
+      if (process.env.PYMORPHY_LEMMAS !== "0") {
+        let pm = null;
+        try { pm = pymorphyLemmas(lower); } catch (e) { trace.push("pymorphy:error " + ((e && e.message) || e)); }
+        if (pm && pm.known) {
+          lemmas = pm.readings.map(function (r) { return r.lemma; })
+            .filter(function (l, i, a) { return a.indexOf(l) === i; }).slice(0, 3);
+          if (lemmas.length >= 2 || (lemmas.length === 1 && pm.readings.length >= 2)) {
+            for (const r of pm.readings) addReading(readings, r.lemma, r.pos, r.lemma === lower ? "" : "form of " + r.lemma);
+          }
+          trace.push("pymorphy:" + pm.readings.map(function (r) { return r.lemma + "(" + r.pos + ")"; }).join("/"));
+        } else if (pm) {
+          pmGuess = pm.readings.map(function (r) { return r.lemma; });
+          trace.push("pymorphy:?" + pmGuess.join("/"));
+        } else {
+          trace.push("pymorphy:none");
+        }
+      }
+      if (!lemmas.length && process.env.LEMMA_LOOKUP !== "0" && timeLeft() > 2500) {
         // ё first: books print «подъем» for подъём, and the е-spelling can
         // lose to a pre-1918 orthography page that ending-stripping finds
         // («подъ», an old spelling of под). A word-final ъ is never a modern
         // headword, so no guess may end in one.
-        const guesses = (/\u0451/.test(lower) ? [] : yoVariants(lower).slice(0, 3)).concat(lemmaCandidates(lower, 12))
+        const guesses = pmGuess.concat((/\u0451/.test(lower) ? [] : yoVariants(lower).slice(0, 3)).concat(lemmaCandidates(lower, 12)))
           .filter(function (g, i, arr) { return !/\u044a$/.test(g) && arr.indexOf(g) === i; });
         if (guesses.length) {
           try {
@@ -1068,6 +1094,7 @@ export default async function handler(req, res) {
         // Unlabelled here; the Wiktionary page labels them when it has them.
         if (lemmas.length >= 2) for (const lm of lemmas) addReading(readings, lm, "", "");
       }
+      lemma = lemma || lemmas[0] || "";
       const candsWith = function (extra) {
         return [lower, deyo].concat(lemmas)
           .concat(extra ? [String(extra).toLowerCase()] : [])
