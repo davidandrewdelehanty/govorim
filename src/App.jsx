@@ -2035,8 +2035,14 @@ var BADGE_KINDS = [
   { cat: "Plays", first: "Первая пьеса",                   ru: "Пьесы",           one: "пьесу",      tiers: [1, 3, 5, 10, 25] },
   { cat: "Theatrical Performances", first: "Первый спектакль", ru: "Спектакли",       one: "спектакль",  tiers: [1, 3, 5] },
   { cat: "Religious Texts", first: "Первая священная книга",         ru: "Священные тексты", one: "книгу",     tiers: [1] },
-  { cat: "Speeches by Soviet Leaders", first: "Первая речь", ru: "Речи",         one: "речь",       tiers: [1] },
+  { cat: "Speeches by Soviet Leaders", first: "Первая речь", ru: "Речи",         one: "речь",       tiers: [1, 5, 10, 25],
+    en: "speech", enMany: "speeches" },
+  { cat: "Fairytales", first: "Первая сказка",             ru: "Сказки",          one: "сказку",     tiers: [1, 5, 10, 20],
+    en: "fairy tale", enMany: "fairy tales" },
 ];
+// The great long novels of Russian literature (catalogue entries carrying
+// "great": true) earn a badge of their own on top of the novel badges.
+var BADGE_GREAT_TIERS = [1, 3, 5, 10, 20];
 var BADGE_MILESTONES = [
   { id: "words",   ru: "Прочитано слов",       en: "Russian words read",    tiers: [10000, 50000, 100000, 250000, 500000, 1000000, 2500000] },
   { id: "streak",  ru: "Дней подряд",          en: "longest streak, in days", tiers: [3, 7, 14, 30, 100, 365] },
@@ -2100,7 +2106,8 @@ function computeBadges(src) {
     var tag = fn + "|" + cat;
     if (seen[tag]) return;
     seen[tag] = 1;
-    done.push({ title: (b && b.title) || f.title || "", author: author, cat: cat, at: f.at || 0 });
+    done.push({ title: (b && b.title) || f.title || "", author: author, cat: cat, at: f.at || 0,
+                great: !!(b && b.great) });
   });
   var out = [];
   var add = function(b) { out.push(b); };
@@ -2118,11 +2125,29 @@ function computeBadges(src) {
         id: "kind:" + k.cat + ":" + t, group: "kind", tier: i,
         mark: first ? k.ru.slice(0, 1) : String(t),
         title: first ? k.first : (k.ru + ": " + t),
-        desc: first ? ("Finish your first " + k.cat.toLowerCase().replace(/s$/, "")) : ("Finish " + t + " " + k.cat.toLowerCase()),
+        desc: first ? ("Finish your first " + (k.en || k.cat.toLowerCase().replace(/s$/, "")))
+                    : ("Finish " + t + " " + (k.enMany || k.cat.toLowerCase())),
         earned: mine.length >= t, n: Math.min(mine.length, t), of: t, at: when,
       });
     });
   });
+
+  // The great novels: Война и мир, Братья Карамазовы, Тихий Дон and the rest.
+  (function() {
+    var greatAll = books.filter(function(b){ return b && b.great; }).length;
+    if (!greatAll) return;
+    var mineG = done.filter(function(d){ return d.great; });
+    var ats = mineG.map(function(d){ return d.at; }).sort(function(a, b){ return a - b; });
+    BADGE_GREAT_TIERS.forEach(function(t, i) {
+      if (t > greatAll) return;
+      add({
+        id: "great:" + t, group: "kind", tier: i, mark: i === 0 ? "★" : String(t),
+        title: i === 0 ? "Великий роман" : ("Великие романы: " + t),
+        desc: i === 0 ? "Finish one of the great Russian novels" : ("Finish " + t + " of the great Russian novels"),
+        earned: mineG.length >= t, n: Math.min(mineG.length, t), of: t, at: mineG.length >= t ? ats[t - 1] : 0,
+      });
+    });
+  })();
 
   // Authors.
   var authorsAll = {};
