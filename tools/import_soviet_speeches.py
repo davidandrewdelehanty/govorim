@@ -94,6 +94,41 @@ def from_marxists(url):
     return out
 
 
+def review_pdf(s):
+    """Pull a newspaper scan's text layer into tools/speech-src/<slug>.txt.
+    Newspaper columns and OCR need a human eye, so this is never published."""
+    d = os.path.join(ROOT, "tools", "speech-src")
+    os.makedirs(d, exist_ok=True)
+    for i, url in enumerate(s["pdf"]):
+        pdf = os.path.join(d, "%s-%d.pdf" % (s["slug"], i))
+        if not os.path.exists(pdf):
+            io.open(pdf, "wb").write(get(url))
+        txt = os.path.join(d, "%s-%d.txt" % (s["slug"], i))
+        subprocess.run(["pdftotext", "-layout", pdf, txt])
+        n = os.path.getsize(txt) if os.path.exists(txt) else 0
+        print("   scan text for review: %s (%d bytes)" % (os.path.relpath(txt, ROOT), n))
+
+
+def current_text(entry):
+    if not entry:
+        return []
+    sys.path.insert(0, os.path.join(ROOT, "tools"))
+    from reader_chapters import reader_chapters
+    chs, _ = reader_chapters(os.path.join(ROOT, "public", "books", entry["filename"]))
+    return [p for c in chs for p in c["paras"]]
+
+
+def search_ids(q, n=8):
+    r = subprocess.run(["yt-dlp", "--flat-playlist", "--print", "%(id)s\t%(duration)s\t%(title)s",
+                        "ytsearch%d:%s" % (n, q)], capture_output=True, text=True, timeout=180)
+    rows = [l.split("\t", 2) for l in r.stdout.splitlines() if l.count("\t") >= 2]
+    for vid, dur, title in rows:
+        print("     search hit: %s %ss %s" % (vid, dur, title[:70]))
+    # longest first: the full speech, not a clip of it
+    rows.sort(key=lambda x: -float(x[1]) if x[1] not in ("NA", "None", "") else 0)
+    return [x[0] for x in rows]
+
+
 def check_video(cands):
     for vid in cands:
         try:
@@ -139,7 +174,10 @@ def main():
             continue
         print("==", s["slug"])
         try:
-            if s.get("ws"):
+            if s.get("pdf") and not s.get("text_file"):
+                review_pdf(s)
+                paras = None
+            elif s.get("ws"):
                 paras, src = from_wikisource(s["ws"]), "https://ru.wikisource.org/wiki/" + urllib.parse.quote(s["ws"].replace(" ", "_"))
             elif s.get("mia"):
                 paras, src = from_marxists(s["mia"]), s["mia"]
@@ -148,6 +186,10 @@ def main():
                 src = s.get("source", "")
         except Exception as e:
             print("   !! text:", e); failed.append(s["slug"]); continue
+        if paras is None:
+            paras = current_text(by.get(s["slug"]))
+            src = (by.get(s["slug"]) or {}).get("_note", "").replace("Text: ", "")
+            print("   text kept as it is until the scan's text is checked")
         words = len(re.findall(r"[А-Яа-яЁё][А-Яа-яЁё-]*", " ".join(paras)))
         if words < 40:
             print("   !! only %d words — extraction failed, skipped" % words); failed.append(s["slug"]); continue
@@ -155,13 +197,17 @@ def main():
         print("   first:", paras[0][:110])
         print("   last: ", paras[-1][:110])
         vid, dur, vtitle = check_video(s["youtube"])
+        if not vid and s.get("youtube_search"):
+            print("   listed videos failed; searching YouTube — CHECK the pick below")
+            vid, dur, vtitle = check_video(search_ids(s["youtube_search"]))
         if not vid:
             print("   !! no playable, embeddable video"); failed.append(s["slug"]); continue
         print("   video: %s (%ss) %s" % (vid, dur, vtitle[:70]))
         if dry:
             continue
-        fn = "novel/%s.fb2" % s["slug"]
-        io.open(os.path.join(NOVEL, s["slug"] + ".fb2"), "w", encoding="utf-8", newline="\n").write(fb2(s, paras))
+        e = by.get(s["slug"])
+        fn = e["filename"] if (s.get("existing") and e) else "novel/%s.fb2" % s["slug"]
+        io.open(os.path.join(ROOT, "public", "books", fn), "w", encoding="utf-8", newline="\n").write(fb2(s, paras))
         seg = {"youtube": vid, "heading": s["title"], "start": s.get("start") or 0}
         if s.get("end"):
             seg["end"] = s["end"]
@@ -172,6 +218,9 @@ def main():
         e.update({"filename": fn, "title": s["title"], "author": s["author"], "category": CAT,
                   "year": s["year"], "public": True, "blurb": s["blurb"], "words": words,
                   "videos": {"0": seg}, "_note": "Text: " + src})
+        if s.get("existing"):
+            # the YouTube recording replaces the R2 player
+            e.pop("audiobook", None); e.pop("publicAudio", None)
         done.append(s["slug"])
     if done and not dry:
         io.open(MANIFEST, "w", encoding="utf-8").write(json.dumps(idx, ensure_ascii=False, indent=2) + "\n")
