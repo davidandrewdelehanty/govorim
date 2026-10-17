@@ -157,6 +157,25 @@ export var AUTHORS = {
 // in. The two Bibles get the title page of the Ostrog Bible (1581), the
 // first complete printed Bible in Church Slavonic.
 AUTHORS["Ребельский И.В."] = { name: "Иван Ребельский", img: "/books/textbooks/rebelsky-azbuka/cover.webp" };
+// Plato as Raphael painted him in «Афинская школа» (1509–1511), cropped
+// to the head from the Plato-and-Aristotle detail.
+AUTHORS["Платон"] = { name: "Платон", years: "ок. 428–348 до н. э.", file: "Sanzio 01 Plato Aristotle.jpg",
+  crop: [0.08, 0.0, 0.44, 0.367] };
+AUTHORS["Аристотель"] = { name: "Аристотель", years: "384–322 до н. э.", file: "Sanzio 01 Plato Aristotle.jpg",
+  crop: [0.48, 0.0, 0.84, 0.367] };
+AUTHORS["Ницше Ф."] = { name: "Фридрих Ницше", years: "1844–1900", file: "Nietzsche187a.jpg" };
+AUTHORS["Макиавелли Н."] = { name: "Никколо Макиавелли", years: "1469–1527", file: "Portrait of Niccolò Machiavelli by Santi di Tito.jpg" };
+AUTHORS["Шопенгауэр А."] = { name: "Артур Шопенгауэр", years: "1788–1860", file: "Arthur Schopenhauer by J Schäfer, 1859b.jpg" };
+AUTHORS["Эпиктет"] = { name: "Эпиктет", years: "ок. 50–138", file: "Epictetus.jpg" };
+AUTHORS["Чаадаев П.Я."] = { name: "Пётр Чаадаев", years: "1794–1856", file: "Chaadaev portrait.jpeg" };
+AUTHORS["Соловьёв В.С."] = { name: "Владимир Соловьёв", years: "1853–1900", file: "VS Solovyov.jpg" };
+AUTHORS["Бердяев Н.А."] = { name: "Николай Бердяев", years: "1874–1948", file: "NBerdyaev.jpg" };
+AUTHORS["Шестов Л."] = { name: "Лев Шестов", years: "1866–1938", file: "Si Léon Chestov noong 1927.jpg" };
+AUTHORS["Розанов В.В."] = { name: "Василий Розанов", years: "1856–1919", file: "Vasily Rozanov.jpg" };
+AUTHORS["Фёдоров Н.Ф."] = { name: "Николай Фёдоров", years: "1829–1903", file: "Pasternak fedorov.jpg" };
+AUTHORS["Кропоткин П.А."] = { name: "Пётр Кропоткин", years: "1842–1921", file: "Kropotkin1.jpg" };
+AUTHORS["Бакунин М.А."] = { name: "Михаил Бакунин", years: "1814–1876", file: "Bakunin Nadar.jpg" };
+AUTHORS["Леонтьев К.Н."] = { name: "Константин Леонтьев", years: "1831–1891", file: "Leont'ev.jpg" };
 AUTHORS["Religious Texts"] = { name: "Библия", file: "Ostrog Bible, title page, 1581.jpg" };
 
 export function authorInfo(key) {

@@ -90,6 +90,7 @@ function translatorOf(note) {
 
 const CATEGORY_EN = {
   "Fairytales": "fairy tale",
+  "Philosophy": "philosophical dialogue",
   "Novels": "novel", "Novellas": "novella", "Short Stories": "short story",
   "Plays": "play", "Poetry": "poem", "Religious Texts": "religious text",
   "Speeches by Soviet Leaders": "speech", "Spectacle": "radio play",
