@@ -15609,6 +15609,7 @@ export default function App() {
         .au-mono{font-family:var(--display);font-size:44px;letter-spacing:.04em;color:var(--ink-3)}
         .au-head-img{filter:none}
         .au-crop{width:100%;height:100%}
+        .wk-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:3px}
         /* Continue reading: a short list, not a stack of tiles. */
         .lcard{padding:10px 0;border:0;border-bottom:1px solid var(--rule-soft);background:none;display:grid;
           grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"head when" "pct pct" "bar bar";gap:2px 16px;align-items:baseline}
@@ -20878,6 +20879,67 @@ export default function App() {
                                   </div>
                                 );
                               };
+                              // The entire library is a list of works, not of authors: every book as
+                              // its own tile, the cover where it has one and the
+                              // author's portrait where it does not, under its
+                              // shelf's heading.
+                              if (openCat === "__all__" && !searching && !authorView &&
+                                  cat !== "Soviet Textbooks" && cat !== "Fairytales") {
+                                var works = entries.slice().sort(function(a, b){
+                                  return String(a.book.title || a.book.filename).localeCompare(String(b.book.title || b.book.filename), "ru");
+                                });
+                                return (
+                                  <div key={cat} className="lib-section">
+                                    <div className="lib-section-hdr">{shelfName(cat)}</div>
+                                    <div className="tb-shelf wk-shelf">{works.map(function(entry){
+                                      var book = entry.book;
+                                      var isLoading = bookLoading === book.filename;
+                                      var isDisabled = bookLoading !== null && !isLoading;
+                                      var open = function(){
+                                        if (bookLoading !== null) return;
+                                        if (book.category === "Song Lyrics") openSongPicker(book); else loadPresetBook(book);
+                                      };
+                                      var info = authorInfo(book.author);
+                                      var cover = book.cover ? (/^https?:\/\//.test(book.cover) ? book.cover : "/books/" + book.cover) : "";
+                                      var hasVid = !!(book.videos && Object.keys(book.videos).length);
+                                      return (
+                                        <div key={entry.idx}
+                                          className={"tb-card wk-card" + (isLoading ? " is-loading" : "") + (isDisabled ? " is-disabled" : "")}
+                                          role="button" tabIndex={0}
+                                          onKeyDown={function(e){ if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); } }}
+                                          onClick={open}>
+                                          <div className={"tb-cover" + (cover ? "" : " au-photo")}>
+                                            {cover
+                                              ? <img src={cover} alt="" loading="lazy" decoding="async" />
+                                              : (info && info.crop)
+                                              ? <div className="au-crop" style={authorCropStyle(info)} />
+                                              : (info && (info.file || info.img))
+                                              ? <img src={authorSrc(info, 400)} alt="" loading="lazy" decoding="async" />
+                                              : <span className="tb-cover-t" lang="ru">{book.title}</span>}
+                                            {isFinished(book) && <span className="tb-read">read</span>}
+                                          </div>
+                                          <div className="tb-card-t" lang="ru">{book.title || book.filename}</div>
+                                          <div className="tb-card-a">
+                                            {book.author && book.author !== book.title && <span lang="ru">{(info && info.name) || book.author}</span>}
+                                            {book.year ? <span className="y">{book.year}</span> : null}
+                                          </div>
+                                          <div className="wk-tags">
+                                            {(book.parallelEn || book.isBible) && <span className="lib-tag">en</span>}
+                                            {(book.audiobook || hasVid) && <span className="lib-tag">{(cat === "Theatrical Performances" && hasVid) ? "video" : "audio"}</span>}
+                                            {book.words ? <span className="lib-tag len">{fmtWords(book.words)}</span> : null}
+                                          </div>
+                                          {isLoading && (
+                                            <div className="lib-card-loader">
+                                              <div className="typing"><div className="dot"/><div className="dot"/><div className="dot"/></div>
+                                              <span>Loading…</span>
+                                            </div>
+                                          )}
+                                        </div>
+                                      );
+                                    })}</div>
+                                  </div>
+                                );
+                              }
                               if (cat === "Speeches by Soviet Leaders" && !searching && !authorView) {
                                 // A shelf of speakers: one portrait per leader, and the
                                 // chosen one's speeches listed beneath, oldest first.
