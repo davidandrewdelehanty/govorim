@@ -738,6 +738,7 @@ export default async function handler(req, res) {
   // POST is the curator's door: the reader popup, for the admin account only,
   // writes a hand-authored entry for a word every tier missed. Folded into this
   // function rather than a new one — the Vercel free plan counts functions.
+  if (req.method === "POST" && req.query && req.query.relemma) return handleRelemma(req, res);
   if (req.method === "POST") return handleCurate(req, res);
   if (req.method !== "GET") return res.status(405).json({ error: "Method not allowed" });
 
@@ -1399,6 +1400,74 @@ export default async function handler(req, res) {
 // One hand-authored glossary entry, written straight from the reader popup.
 // Keeps блатной жаргон curation where it actually happens — mid-page, at the
 // moment the word stops you — instead of in a repo round trip.
+
+// ---- Re-lemmatising old cards --------------------------------------------
+//
+// Cards saved before pymorphy3 joined the stack (Oct 2026) were filed under
+// whatever the older guessers settled on, and some are wrong: «ласков», the
+// short form of ласковый, became a card for the noun «ласка». The card still
+// carries the form the reader tapped (sentences[].f / forms) or at least the
+// sentence it came from, so the pymorphy table can say what that form
+// actually is. POST { items: [{ k, ru, forms: [], sents: [] }] } →
+// { fixes: { "<k>": { lemma, pos } } }, only for cards where NO tapped form
+// can belong to the card's headword and every form agrees on one other lemma.
+// Dictionary-known forms only; a guess from the ending never renames a card.
+const RL_POS = { noun: "noun", adjective: "adjective", verb: "verb", adverb: "adverb" };
+function rlNorm(w) {
+  return String(w || "").toLowerCase().replace(/\u0301/g, "").replace(/ё/g, "е").trim();
+}
+function rlPrefix(a, b) {
+  let i = 0;
+  while (i < a.length && i < b.length && a[i] === b[i]) i++;
+  return i;
+}
+async function handleRelemma(req, res) {
+  res.setHeader("Cache-Control", "no-store");
+  const body = (req.body && typeof req.body === "object") ? req.body : {};
+  const items = Array.isArray(body.items) ? body.items.slice(0, 400) : [];
+  const fixes = {};
+  for (let idx = 0; idx < items.length; idx++) {
+    const it = items[idx];
+    if (!it || typeof it.ru !== "string") continue;
+    const heads = it.ru.split(/\s*\/\s*/).map(rlNorm).filter(Boolean);
+    if (!heads.length || heads.some(function (h) { return /\s/.test(h); })) continue;   // phrases stay as they are
+    const h0 = heads[0];
+    // The tapped forms, when the card kept them; otherwise every word of its
+    // sentences that looks like it could be the saved word.
+    let forms = (Array.isArray(it.forms) ? it.forms : []).map(rlNorm).filter(Boolean);
+    if (!forms.length) {
+      for (const sent of (Array.isArray(it.sents) ? it.sents : []).slice(0, 3)) {
+        const toks = String(sent || "").toLowerCase().replace(/\u0301/g, "").match(/[а-яё]+(?:-[а-яё]+)?/g) || [];
+        for (const t of toks) {
+          const n = rlNorm(t);
+          const need = Math.max(3, Math.min(n.length, h0.length) - 2);
+          if (rlPrefix(n, h0) >= need) forms.push(n);
+        }
+      }
+    }
+    forms = forms.filter(function (f, i, a) { return a.indexOf(f) === i; }).slice(0, 8);
+    if (!forms.length) continue;
+    let ok = false, vote = null, agree = true;
+    for (const f of forms) {
+      let pm = null;
+      try { pm = pymorphyLemmas(f); } catch (e) { pm = null; }
+      if (!pm || !pm.known || !pm.readings || !pm.readings.length) continue;
+      const lems = pm.readings.map(function (r) { return rlNorm(r.lemma); });
+      if (lems.some(function (l) { return heads.indexOf(l) >= 0; }) || heads.indexOf(f) >= 0) { ok = true; break; }
+      // The reading closest to the saved headword is the one it was meant to be.
+      let best = pm.readings[0], bestP = -1;
+      for (const r of pm.readings) {
+        const pp = rlPrefix(rlNorm(r.lemma), h0);
+        if (pp > bestP) { best = r; bestP = pp; }
+      }
+      if (bestP < 3) continue;
+      if (vote && rlNorm(vote.lemma) !== rlNorm(best.lemma)) { agree = false; break; }
+      vote = vote || best;
+    }
+    if (!ok && agree && vote) fixes[String(it.k != null ? it.k : idx)] = { lemma: vote.lemma, pos: RL_POS[vote.pos] || vote.pos || "" };
+  }
+  return res.status(200).json({ fixes });
+}
 
 async function handleCurate(req, res) {
   const user = currentUser(req);

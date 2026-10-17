@@ -12696,6 +12696,95 @@ export default function App() {
     };
   };
 
+  // One-time repair (Oct 17 2026). Cards saved before pymorphy3 joined the
+  // define stack were filed under whatever the older guessers settled on, and
+  // some are wrong — «ласков», the short form of ласковый, became a card for
+  // the noun «ласка», with the noun's meanings. The server checks every
+  // card's tapped forms (or, for older cards, the words of its sentences)
+  // against the pymorphy table and names the cards none of whose forms can
+  // belong to their headword. Each of those is re-filed under the real lemma
+  // with that word's definition; its review history, sentences and forms
+  // stay. If the real word already has a card, the two become one. Once per
+  // device, after the server's list has arrived, so the repaired list syncs.
+  useEffect(function() {
+    if (!localLoaded || (me && !syncedFromServer)) return;
+    var FLAG = "gv_relemma_v1";
+    try { if (localStorage.getItem(FLAG) === "done") return; } catch (e) { return; }
+    try { localStorage.setItem(FLAG, "done"); } catch (e) {}
+    var idOf = function(v){ return String(v._key || v.id || v.created || v.ru); };
+    var collect = function(list, tag) {
+      return (list || []).filter(function(v){ return v && v.ru; }).map(function(v) {
+        var sents = Array.isArray(v.sentences) ? v.sentences : (v.srcSentence ? [{ s: v.srcSentence }] : []);
+        var forms = (Array.isArray(v.forms) ? v.forms : []).concat(sents.map(function(x){ return x && x.f; }))
+          .filter(function(f, i, a){ return f && a.indexOf(f) === i; });
+        return { k: tag + idOf(v), ru: String(v.ru), forms: forms, sents: sents.map(function(x){ return x && x.s; }).filter(Boolean) };
+      });
+    };
+    var items = collect(vocab, "v:").concat(collect(learned, "l:"));
+    if (!items.length) return;
+    (async function() {
+      var fixes = {};
+      for (var i = 0; i < items.length; i += 300) {
+        try {
+          var r = await authFetch("/api/define?relemma=1", {
+            method: "POST", headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ items: items.slice(i, i + 300) }),
+          });
+          if (!r.ok) return;
+          Object.assign(fixes, ((await r.json()) || {}).fixes || {});
+        } catch (e) { return; }
+      }
+      var keys = Object.keys(fixes);
+      if (!keys.length) return;
+      // The real word's definition, one look-up per lemma.
+      var defs = {};
+      for (var j = 0; j < keys.length; j++) {
+        var lem = fixes[keys[j]].lemma;
+        if (defs[lem] !== undefined) continue;
+        try { defs[lem] = await fetchDef(lem); } catch (e) { defs[lem] = null; }
+      }
+      var repair = function(list, tag) {
+        var out = (list || []).slice(), changed = 0;
+        out.slice().forEach(function(v) {
+          if (!v) return;
+          var fx = fixes[tag + idOf(v)];
+          if (!fx) return;
+          var data = defs[fx.lemma];
+          if (!data || !data.translation) return;
+          var e = formatVocabEntry(data, fx.lemma);
+          var forms = (Array.isArray(v.forms) ? v.forms : []).concat((v.sentences || []).map(function(x){ return x && x.f; }))
+            .map(function(f){ return String(f || "").toLowerCase().trim(); })
+            .filter(function(f, k, a){ return f && a.indexOf(f) === k; });
+          var fixed = Object.assign({}, v, {
+            ru: e.ru, lemma: e.lemma, en: e.en, pos: e.pos || fx.pos, aspect: e.aspect, grammar: e.grammar,
+            example: e.example, exampleTranslation: e.exampleTranslation, forms: forms.slice(-40),
+            relemmaFrom: v.ru
+          });
+          var at = out.indexOf(v);
+          var others = out.filter(function(x){ return x !== v; });
+          var into = findVocabMatch(others, fixed);
+          if (into) {
+            // The real word already has a card: fold this one's sentences and
+            // forms into it and let this one go.
+            var sents = (into.sentences || []).slice();
+            (fixed.sentences || []).forEach(function(y){
+              if (y && y.s && !sents.some(function(z){ return String(z.s).trim() === String(y.s).trim(); })) sents.push(y);
+            });
+            var f2 = (into.forms || []).concat(forms).filter(function(f, k, a){ return f && a.indexOf(f) === k; });
+            out[out.indexOf(into)] = Object.assign({}, into, { sentences: sents.slice(-3), forms: f2.slice(-40) });
+            out.splice(at, 1);
+          } else {
+            out[at] = fixed;
+          }
+          changed++;
+        });
+        return changed ? out : list;
+      };
+      setVocab(function(list){ return repair(list, "v:"); });
+      setLearned(function(list){ return repair(list, "l:"); });
+    })();
+  }, [localLoaded, syncedFromServer]);
+
   // One-time clean-up for one reader, at their request (Oct 11 2026): the
   // Bible bookmarks outside Genesis go. Bookmarks live on the device, so this
   // runs on each of their devices once. Genesis is the first fifty chapters
