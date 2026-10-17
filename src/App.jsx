@@ -15610,6 +15610,9 @@ export default function App() {
         .au-head-img{filter:none}
         .au-crop{width:100%;height:100%}
         .wk-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:3px}
+        .wk-blurb{display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden}
+        .lib-blurb-src{font-family:var(--sans);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);text-decoration:none;border-bottom:1px solid var(--rule-soft);white-space:nowrap}
+        .lib-blurb-src:hover{color:var(--rubric);border-bottom-color:var(--rubric)}
         /* Continue reading: a short list, not a stack of tiles. */
         .lcard{padding:10px 0;border:0;border-bottom:1px solid var(--rule-soft);background:none;display:grid;
           grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"head when" "pct pct" "bar bar";gap:2px 16px;align-items:baseline}
@@ -20822,7 +20825,11 @@ export default function App() {
                                         there, because a reader browsing a library has
                                         not read these yet. */}
                                     {book.blurb && (
-                                      <div className="lib-card-blurb">{book.blurb}</div>
+                                      <div className="lib-card-blurb" lang={book.blurbLang || undefined}>{book.blurb}
+                                        {/* Quoted from the work's Wikipedia article (CC BY-SA),
+                                            so it says where it came from. */}
+                                        {book.blurbSrc && <>{" "}<a className="lib-blurb-src" href={book.blurbSrc} target="_blank" rel="noopener noreferrer"
+                                          onClick={function(e){ e.stopPropagation(); }}>Wikipedia</a></>}</div>
                                     )}
                                     <div className="lib-card-meta">
                                       {/* Sits first in the meta row, where the eye already goes for
@@ -20883,14 +20890,13 @@ export default function App() {
                               // its own tile, the cover where it has one and the
                               // author's portrait where it does not, under its
                               // shelf's heading.
-                              // Scripture, and any shelf with a single author, has no
-                              // wall of authors to choose from: its works are the tiles.
-                              var oneAuthor = entries.every(function(e){
-                                return String(e.book.author || "").trim() === String(entries[0].book.author || "").trim();
-                              });
-                              if ((openCat === "__all__" || cat === "Religious Texts" || oneAuthor) && !searching && !authorView &&
+                              // Every shelf lists its works, one tile each, with the
+                              // author's portrait (the Bible's title page for scripture);
+                              // fairytales and textbooks keep their own pictures, and the
+                              // speeches shelf opens on its speakers.
+                              if (!searching &&
                                   cat !== "Soviet Textbooks" && cat !== "Fairytales" &&
-                                  (cat !== "Speeches by Soviet Leaders" || openCat === "__all__")) {
+                                  (cat !== "Speeches by Soviet Leaders" || openCat === "__all__" || authorView)) {
                                 var works = entries.slice().sort(function(a, b){
                                   return String(a.book.title || a.book.filename).localeCompare(String(b.book.title || b.book.filename), "ru");
                                 });
@@ -20929,10 +20935,15 @@ export default function App() {
                                             {book.author && book.author !== book.title && book.author !== "Religious Texts" && <span lang="ru">{(info && info.name) || book.author}</span>}
                                             {book.year ? <span className="y">{book.year}</span> : null}
                                           </div>
+                                          {book.blurb && (
+                                            <div className="tb-card-b wk-blurb" lang={book.blurbLang || undefined}>{book.blurb}</div>
+                                          )}
                                           <div className="wk-tags">
                                             {(book.parallelEn || book.isBible) && <span className="lib-tag">en</span>}
                                             {(book.audiobook || hasVid) && <span className="lib-tag">{(cat === "Theatrical Performances" && hasVid) ? "video" : "audio"}</span>}
                                             {book.words ? <span className="lib-tag len">{fmtWords(book.words)}</span> : null}
+                                            {book.blurb && book.blurbSrc && <a className="lib-blurb-src" href={book.blurbSrc} target="_blank" rel="noopener noreferrer"
+                                              onClick={function(e){ e.stopPropagation(); }}>Wikipedia</a>}
                                           </div>
                                           {isLoading && (
                                             <div className="lib-card-loader">
