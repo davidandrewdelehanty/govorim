@@ -97,6 +97,24 @@ WORKS = [
      None, None, None, None),
     ("leontev-vizantizm", "Византизм и славянство (Леонтьев)", "Леонтьев К.Н.", "Византизм и славянство", None, "1875",
      None, None, None, None),
+    # Lenin's books (his speeches have their own shelf). Russian only: the
+    # English most people know is the Moscow Progress Publishers translation
+    # of the 1960s, which is not clearly free; Gutenberg has one short letter.
+    ("lenin-chto-delat", "Что делать? (Ленин)", "Ленин В.И.", "Что делать?", None, "1902", None, None, None, None),
+    ("lenin-materializm", "Материализм и эмпириокритицизм (Ленин)", "Ленин В.И.", "Материализм и эмпириокритицизм",
+     None, "1909", None, None, None, None),
+    ("lenin-tri-istochnika", "Три источника и три составных части марксизма (Ленин)", "Ленин В.И.",
+     "Три источника и три составных части марксизма", None, "1913", None, None, None, None),
+    ("lenin-imperializm", "Империализм, как высшая стадия капитализма (Ленин)", "Ленин В.И.",
+     "Империализм, как высшая стадия капитализма", None, "1917", None, None, None, None),
+    ("lenin-aprelskie-tezisy", "О задачах пролетариата в данной революции (Ленин)", "Ленин В.И.",
+     "О задачах пролетариата в данной революции (Апрельские тезисы)", None, "1917", None, None, None, None),
+    ("lenin-gosudarstvo-i-revolyutsiya", "Государство и революция (Ленин)", "Ленин В.И.", "Государство и революция",
+     None, "1917", None, None, None, None),
+    ("lenin-renegat-kautskiy", "Пролетарская революция и ренегат Каутский (Ленин)", "Ленин В.И.",
+     "Пролетарская революция и ренегат Каутский", None, "1918", None, None, None, None),
+    ("lenin-detskaya-bolezn", "Детская болезнь «левизны» в коммунизме (Ленин)", "Ленин В.И.",
+     "Детская болезнь «левизны» в коммунизме", None, "1920", None, None, None, None),
 ]
 
 EN_BY = {1642: "Benjamin Jowett (1871, revised 1892)", 1656: "Benjamin Jowett (1871, revised 1892)",
@@ -121,6 +139,50 @@ def note_for(translator, year, gid):
             "EN button on the right." % (EN_BY.get(gid, "a public-domain translator"), translator, year))
 
 
+def dedupe_sections(raw):
+    """Wikisource's EPUB lists a page once per heading inside it, so a page
+    with six numbered sections arrived six times over («Государство и
+    революция» came in at four times its length). Keep the first copy of
+    each section body, and title it by the heading the page itself opens
+    with («Глава I. Классовое общество и государство») rather than the
+    last sub-heading the table of contents happened to name."""
+    seen, out, dropped = set(), [], 0
+    pos = 0
+    for m in re.finditer(r"<section>(.*?)</section>", raw, flags=re.S):
+        out.append(raw[pos:m.start()])
+        pos = m.end()
+        inner = m.group(1)
+        body = re.sub(r"<title>.*?</title>", "", inner, count=1, flags=re.S)
+        key = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", body)).strip()
+        if key and key in seen:
+            dropped += 1
+            continue
+        seen.add(key)
+        out.append("<section>" + inner + "</section>")
+    out.append(raw[pos:])
+    return tidy_titles("".join(out)), dropped
+
+
+def tidy_titles(raw):
+    """A section whose page opens with its own bold heading: drop that line
+    from the text (the title already says it), and where the title ran on
+    into the first sub-heading («Глава I Классовое общество и государство.
+    1. Государство — продукт…»), cut it back to the chapter's own name."""
+    def fix(m):
+        title, body = m.group(1), m.group(2)
+        tt = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", "", title)).strip()
+        f = re.match(r"\s*<p><strong>([^<]{2,160})</strong></p>", body)
+        if not f:
+            return m.group(0)
+        head = re.sub(r"\s+", " ", f.group(1)).strip()
+        if not tt.startswith(head):
+            return m.group(0)
+        if re.search(r"\. \d+\. ", tt[len(head):len(head) + 6] + " "):
+            tt = head
+        return "<section>\n<title><p>%s</p></title>%s" % (tt, body[f.end():])
+    return re.sub(r"<section>\s*<title>(.*?)</title>(.*?)(?=</section>)", fix, raw, flags=re.S)
+
+
 def clean_fb2(slug):
     """What Wikisource's Карпов pages carry that is not Plato."""
     path = os.path.join(BOOKS, "novel", slug + ".fb2")
@@ -136,6 +198,13 @@ def clean_fb2(slug):
     raw = re.sub(r"(?<![A-Za-zА-Яа-яЁё])[A-E]\.\s*(?=[А-ЯЁ«—])", "", raw)
     # Карпов's endnotes: a section headed «Примечания» to the end of the body.
     raw = re.sub(r"<section>\s*<title>\s*<p>\s*Примечания\s*</p>\s*</title>.*?</section>", "", raw, flags=re.S)
+    raw, dup = dedupe_sections(raw)
+    # A one-page work has the Wikisource page name as its only chapter title.
+    w = next((x for x in WORKS if x[0] == slug), None)
+    if w:
+        raw = raw.replace("<title><p>%s</p></title>" % w[1], "<title><p>%s</p></title>" % w[3])
+    if dup:
+        print("   dropped %d repeated section(s)" % dup)
     io.open(path, "w", encoding="utf-8", newline="\n").write(raw)
     return n0 - len(raw)
 
@@ -252,6 +321,29 @@ def catalogue(w):
 def main():
     a = sys.argv[1:]
     only = a[a.index("--only") + 1:] if "--only" in a else None
+    if "--dedupe" in a:
+        # Repair the shelf in place, no network: repeated sections out, word
+        # counts in the catalogue brought back down to the real length.
+        idx = json.load(io.open(MANIFEST, encoding="utf-8"))
+        by = {b.get("slug"): b for b in idx}
+        for w in WORKS:
+            path = os.path.join(BOOKS, "novel", w[0] + ".fb2")
+            if not os.path.exists(path):
+                continue
+            raw = io.open(path, encoding="utf-8").read()
+            new, dup = dedupe_sections(raw)
+            if new != raw:
+                io.open(path, "w", encoding="utf-8", newline="\n").write(new)
+                chs, _ = reader_chapters(path)
+                words = sum(len(p.split()) for c in chs for p in c["paras"])
+                if w[0] in by:
+                    by[w[0]]["words"] = words
+                print("%-34s %3d repeated section(s) dropped → %d chapters, %s words" % (w[0], dup, len(chs), format(words, ",")))
+                if w[8]:
+                    paras = english_range(en_paragraphs(w[0]), w[9])
+                    flow_english(w[0], paras)
+        io.open(MANIFEST, "w", encoding="utf-8").write(json.dumps(idx, ensure_ascii=False, indent=2) + "\n")
+        return
     for w in WORKS:
         slug, page, author, ru_title, translator, year, en_title, en_author, gid, rule = w
         if only and slug not in only:
