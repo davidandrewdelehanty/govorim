@@ -15610,6 +15610,8 @@ export default function App() {
         .au-head-img{filter:none}
         .au-crop{width:100%;height:100%}
         .wk-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:3px}
+        /* A work's own picture — a painting or a stage photograph — in its own colours. */
+        .wk-card .tb-cover img{mix-blend-mode:normal;filter:none;object-position:center 30%}
         .wk-blurb{display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden}
         .lib-blurb-src{font-family:var(--sans);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);text-decoration:none;border-bottom:1px solid var(--rule-soft);white-space:nowrap}
         .lib-blurb-src:hover{color:var(--rubric);border-bottom-color:var(--rubric)}
