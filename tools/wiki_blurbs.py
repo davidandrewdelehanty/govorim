@@ -21,6 +21,7 @@ Russian text (`blurbLang: "ru"`), unless --en-only.
     python3 tools/wiki_blurbs.py --apply        # write the reviewed file into the catalogue
     python3 tools/wiki_blurbs.py --en-only      # skip Russian-only articles
     python3 tools/wiki_blurbs.py --author "Чехов А.П."   # one author only
+    python3 tools/wiki_blurbs.py --refresh      # re-cut the articles already found
 
 Safe to stop and re-run: finished authors are kept in tools/out/wiki-blurbs.json.
 """
@@ -317,11 +318,33 @@ def extracts(host, titles):
     return out
 
 
+ABBR = re.compile(r"(?:\b[A-ZА-ЯЁ]|\bMr|\bMrs|\bDr|\bSt|\bJr|\bvs|\bгг?|\bт\. ?е|\bт\. ?н|\bдр|\bим|\bсв|\bок|\bстр|\bсм|\bрус|\bангл|\bлат|\bнем|\bфр|\bпер)\.$")
+NOT_A_WORK = re.compile(r"\b(film|album|song|band|TV series|television|opera by|ballet by|фильм|альбом|песня|группа|телесериал|опера|балет)\b", re.I)
+LITERARY = re.compile(r"\b(short story|story by|novel|novella|poem|play by|play written|fable|ballad|рассказ|повесть|роман|стихотворени|поэм|пьес|басн|баллад|очерк|сказк)", re.I)
+
+
+def sentences(t):
+    """Split on sentence ends, but not after an initial («А. П. Чехова»)
+    or a common abbreviation."""
+    parts = re.split(r"(?<=[.!?…])\s+(?=[A-ZА-ЯЁ«\"(])", t)
+    out = []
+    for p in parts:
+        if out and ABBR.search(out[-1]):
+            out[-1] = out[-1] + " " + p
+        else:
+            out.append(p)
+    return out
+
+
 def lead(text):
     """The opening sentence or two of an article, as Wikipedia wrote it."""
     t = re.sub(r"\s+", " ", text).strip()
-    t = re.sub(r"\s*\([^()]*(?:listen|pronounced|рус\.|англ\.)[^()]*\)", "", t)
-    parts = re.split(r"(?<=[.!?…])\s+(?=[A-ZА-ЯЁ«\"])", t)
+    # A hatnote ahead of the lead: «О карточной игре см. стос «Штосс» …»
+    t = re.sub(r"^(?:О|Об|Не следует путать)[^«]{0,120}?см\. [^«]{0,60}?(?=«)", "", t)
+    t = re.sub(r"\s*\([^()]*(?:listen|pronounced)[^()]*\)", "", t)
+    parts = sentences(t)
+    if not parts or (NOT_A_WORK.search(parts[0]) and not LITERARY.search(parts[0])):
+        return ""
     out = ""
     for n, s in enumerate(parts):
         # Two sentences at most: past that, an article's lead is usually
@@ -335,6 +358,29 @@ def lead(text):
         cut = out[:MAXLEN].rsplit(" ", 1)[0]
         out = cut.rstrip(",;:—– ") + "…"
     return out
+
+
+def refresh(state):
+    """Re-read the articles already found and cut their openings again —
+    for when lead() changes, without searching for every work afresh."""
+    by_host = {}
+    for fn, h in state["works"].items():
+        m = re.match(r"https://([^/]+)/wiki/(.+)$", h["url"])
+        if m:
+            by_host.setdefault(m.group(1), {})[urllib.parse.unquote(m.group(2)).replace("_", " ")] = fn
+    drop = []
+    for host, titles in by_host.items():
+        ex = extracts(host, sorted(titles))
+        for t, fn in titles.items():
+            got = ex.get(t)
+            b = lead(got[1]) if got else ""
+            if len(b) < 25:
+                drop.append(fn)
+            else:
+                state["works"][fn]["blurb"] = b
+    for fn in drop:
+        state["works"].pop(fn, None)
+    print("refreshed; %d dropped as not about a literary work" % len(drop))
 
 
 def main():
@@ -368,11 +414,16 @@ def main():
 
     os.makedirs("tools/out", exist_ok=True)
     state = json.load(open(OUT, encoding="utf-8")) if os.path.exists(OUT) else {"works": {}, "authorsDone": []}
+    if "--refresh" in args:
+        refresh(state)
+        with open(OUT, "w", encoding="utf-8") as f:
+            json.dump(state, f, ensure_ascii=False, indent=1)
+        order = []
     missing = [b for b in manifest if not b.get("blurb") and b.get("author") in AUTHOR_PAGES]
     by_author = {}
     for b in missing:
         by_author.setdefault(b["author"], []).append(b)
-    order = sorted(by_author, key=lambda a: -len(by_author[a]))
+    order = [] if "--refresh" in args else sorted(by_author, key=lambda a: -len(by_author[a]))
     if only:
         order = [only]
     for a in order:
