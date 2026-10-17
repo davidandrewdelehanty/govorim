@@ -20590,9 +20590,20 @@ export default function App() {
                           var cat = normalize((book && book.category) || "");
                           var bucket = CATEGORIES.indexOf(cat) !== -1 ? cat : "Other";
                           buckets[bucket].push({ book: book, idx: idx });
+                          // A book can sit on a second shelf too — Hamlet in Russian
+                          // is both a play and a translation.
+                          (Array.isArray(book.alsoIn) ? book.alsoIn : []).forEach(function(c2){
+                            c2 = normalize(c2);
+                            if (c2 !== bucket && CATEGORIES.indexOf(c2) !== -1) buckets[c2].push({ book: book, idx: idx });
+                          });
                         });
 
-                        var presetCount = ORDER.reduce(function(a, c){ return a + buckets[c].length; }, 0);
+                        // Counted once each, however many shelves a book sits on.
+                        var presetCount = (function(){
+                          var seen = {};
+                          ORDER.forEach(function(c){ buckets[c].forEach(function(e){ seen[e.idx] = 1; }); });
+                          return Object.keys(seen).length;
+                        })();
                         var totalResults = presetCount + filteredUploads.length;
                         if (q && totalResults === 0) {
                           return <div style={{padding:"40px 16px",textAlign:"center",color:"rgba(0,0,0,.5)",fontStyle:"italic"}}>No books match «{bookSearch}»</div>;
