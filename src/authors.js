@@ -71,7 +71,7 @@ export var AUTHORS = {
   "Рылеев К.Ф.": {"name": "Кондратий Рылеев", "years": "1795–1826", "file": "Rylejew.jpg"},
   "Северянин И.": {"name": "Игорь Северянин", "years": "1887–1941", "file": "Igor Severyanin.jpg"},
   "Ходасевич В.Ф.": {"name": "Владислав Ходасевич", "years": "1886–1939", "file": "Khodasevich 1.jpg"},
-  "Багрицкий Э.Г.": {"name": "Эдуард Багрицкий", "years": "1895–1934"},
+  "Багрицкий Э.Г.": {"name": "Эдуард Багрицкий", "years": "1895–1934", "file": "E. Bagritskiy by anonymous (1920-1930s, Akhmatova's museum).jpg"},
   "Скотт В.": {"name": "Вальтер Скотт", "years": "1771–1832", "file": "Sir Henry Raeburn - Portrait of Sir Walter Scott.jpg"},
   "Киплинг Р.": {"name": "Редьярд Киплинг", "years": "1865–1936", "file": "Kipling nd.jpg"},
   "Майн Рид Т.": {"name": "Майн Рид", "years": "1818–1883", "file": "Portrait of Thomas Mayne Reid, circa 1850 (cropped).jpg"},
