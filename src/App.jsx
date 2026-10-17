@@ -20883,8 +20883,14 @@ export default function App() {
                               // its own tile, the cover where it has one and the
                               // author's portrait where it does not, under its
                               // shelf's heading.
-                              if (openCat === "__all__" && !searching && !authorView &&
-                                  cat !== "Soviet Textbooks" && cat !== "Fairytales") {
+                              // Scripture, and any shelf with a single author, has no
+                              // wall of authors to choose from: its works are the tiles.
+                              var oneAuthor = entries.every(function(e){
+                                return String(e.book.author || "").trim() === String(entries[0].book.author || "").trim();
+                              });
+                              if ((openCat === "__all__" || cat === "Religious Texts" || oneAuthor) && !searching && !authorView &&
+                                  cat !== "Soviet Textbooks" && cat !== "Fairytales" &&
+                                  (cat !== "Speeches by Soviet Leaders" || openCat === "__all__")) {
                                 var works = entries.slice().sort(function(a, b){
                                   return String(a.book.title || a.book.filename).localeCompare(String(b.book.title || b.book.filename), "ru");
                                 });
@@ -20920,7 +20926,7 @@ export default function App() {
                                           </div>
                                           <div className="tb-card-t" lang="ru">{book.title || book.filename}</div>
                                           <div className="tb-card-a">
-                                            {book.author && book.author !== book.title && <span lang="ru">{(info && info.name) || book.author}</span>}
+                                            {book.author && book.author !== book.title && book.author !== "Religious Texts" && <span lang="ru">{(info && info.name) || book.author}</span>}
                                             {book.year ? <span className="y">{book.year}</span> : null}
                                           </div>
                                           <div className="wk-tags">
