@@ -10,6 +10,7 @@ import { dayKey, dayMet, bump as bumpStats, streaks, mergeStats,
          totals as statsTotals, GOAL_WORDS, GOAL_CARDS } from "./stats.js";
 import { AnnotLayer, HL_COLORS, INK_COLORS, annotId } from "./annotations.jsx";
 import { readUiLang, saveUiLang, applyUiLang, trUi } from "./uilang.js";
+import { authorInfo, authorPhoto } from "./authors.js";
 
 // localStorage-backed storage shim, matching the previous window.storage Promise API.
 // Keeps the rest of the app code unchanged (still uses await storage.get/set/delete).
@@ -6205,6 +6206,10 @@ export default function App() {
   // chosen leader's speeches list below it. Cleared whenever the shelf changes.
   var [speechLeader, setSpeechLeader] = useState("");
   useEffect(function(){ setSpeechLeader(""); }, [libCat]);
+  // Every other shelf opens on its authors the same way: "<shelf>|<author>"
+  // when one is open, "" for the wall of portraits.
+  var [shelfAuthor, setShelfAuthor] = useState("");
+  useEffect(function(){ setShelfAuthor(""); }, [libCat]);
   // The library's public tallies: { opens: {filename: n}, songs: {id: n} }.
   // Fetched the first time somebody opens the Most-read shelf, not on every
   // page load — most visits never ask, and the answer is cached for five
@@ -15509,6 +15514,11 @@ export default function App() {
         .ld-head-img{width:56px;height:72px;object-fit:cover;object-position:center 18%;border:1px solid var(--rule);filter:grayscale(1) sepia(.18)}
         .ld-head-n{font-family:var(--display);font-size:22px;color:var(--ink)}
         .ld-head-y{font-family:var(--sans);font-size:11px;letter-spacing:.12em;color:var(--ink-3)}
+        /* Author shelves: the writer's portrait — a painting or a photograph —
+           in its own colours, faces kept in frame. */
+        .au-photo img{mix-blend-mode:normal;filter:none;object-position:center 20%}
+        .au-mono{font-family:var(--display);font-size:44px;letter-spacing:.04em;color:var(--ink-3)}
+        .au-head-img{filter:none}
         /* Continue reading: a short list, not a stack of tiles. */
         .lcard{padding:10px 0;border:0;border-bottom:1px solid var(--rule-soft);background:none;display:grid;
           grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"head when" "pct pct" "bar bar";gap:2px 16px;align-items:baseline}
@@ -20493,6 +20503,41 @@ export default function App() {
                         if (q && totalResults === 0) {
                           return <div style={{padding:"40px 16px",textAlign:"center",color:"rgba(0,0,0,.5)",fontStyle:"italic"}}>No books match «{bookSearch}»</div>;
                         }
+                        // One author as a tile: the portrait (or a monogram where
+                        // Commons has none), the name, how much of them is here and
+                        // their years. Shared by every shelf and the Authors chip.
+                        var authorTile = function(a, n, open) {
+                          var info = authorInfo(a);
+                          var nm = (info && info.name) || a;
+                          var mono = nm.split(/\s+/).filter(Boolean).map(function(w){ return w.charAt(0); }).join("").slice(0, 2);
+                          return (
+                            <div key={a} className="tb-card ld-card au-card" role="button" tabIndex={0}
+                              onKeyDown={function(e){ if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); } }}
+                              onClick={open}>
+                              <div className="tb-cover au-photo">
+                                {info && info.file
+                                  ? <img src={authorPhoto(info.file)} alt="" loading="lazy" decoding="async" />
+                                  : <span className="au-mono" lang="ru">{mono}</span>}
+                              </div>
+                              <div className="tb-card-t" lang="ru">{nm}</div>
+                              <div className="tb-card-a"><span>{n} {n === 1 ? "work" : "works"}</span>{info && info.years ? <span className="y">{info.years}</span> : null}</div>
+                              {info && info.credit && <div className="ld-credit">{info.credit}</div>}
+                            </div>
+                          );
+                        };
+                        var authorHead = function(a, n, back, backLabel) {
+                          var info = authorInfo(a);
+                          return (
+                            <div className="ld-head">
+                              <button type="button" className="ld-back" onClick={back}>{backLabel}</button>
+                              {info && info.file ? <img className="ld-head-img au-head-img" src={authorPhoto(info.file, 200)} alt="" /> : null}
+                              <div>
+                                <div className="ld-head-n" lang="ru">{(info && info.name) || a}</div>
+                                <div className="ld-head-y">{info && info.years ? info.years + " · " : ""}{n} {n === 1 ? "work" : "works"}</div>
+                              </div>
+                            </div>
+                          );
+                        };
                         var chipLabel = function(c) {
                           if (c === "Speeches by Soviet Leaders") return "Soviet speeches";
                           if (c === "Soviet Textbooks") return "Textbooks";
@@ -20591,20 +20636,18 @@ export default function App() {
                             {/* The Authors shelf: every name in the library once,
                                 with how much of them is on it. */}
                             {inAuthors && (
-                              <div className="lib-authors">
+                              <div className="tb-shelf au-shelf">
                                 {authorList.map(function(a){
-                                  return (
-                                    <button key={a} type="button" className="lib-author"
-                                      onClick={function(){ setLibAuthor(a); }}>
-                                      <span className="nm">{a}</span>
-                                      <span className="n">{authorCounts[a]}</span>
-                                    </button>
-                                  );
+                                  return authorTile(a, authorCounts[a], function(){ setLibAuthor(a); });
                                 })}
                                 {!authorList.length && (
                                   <div className="lib-cat-hint">No authors to show.</div>
                                 )}
                               </div>
+                            )}
+                            {authorView && authorInfo(libAuthor) && (
+                              <div className="lib-section">{authorHead(libAuthor, authorCounts[libAuthor] || 0,
+                                function(){ setLibAuthor(""); setLibCat("__authors__"); }, "← All authors")}</div>
                             )}
                             {/* My Uploads section — only when there are uploaded books matching the filter */}
                             {filteredUploads.length > 0 && (
@@ -20843,12 +20886,45 @@ export default function App() {
                                   </div>
                                 );
                               }
+                              // Every other shelf: a wall of author portraits first, and
+                              // the chosen author's books on this shelf beneath them —
+                              // the way the speeches shelf opens on its speakers. A
+                              // shelf with one author has nothing to choose between, so
+                              // it goes straight to the books.
+                              var aHead = null;
+                              if (!searching && !authorView && cat !== "Religious Texts") {
+                                var byAuth = {};
+                                entries.forEach(function(e){
+                                  var a = String(e.book.author || "").trim() || "—";
+                                  (byAuth[a] = byAuth[a] || []).push(e);
+                                });
+                                var aKeys = Object.keys(byAuth).sort(function(a, b){ return a.localeCompare(b, "ru"); });
+                                var openA = shelfAuthor.indexOf(cat + "|") === 0 ? shelfAuthor.slice(cat.length + 1) : "";
+                                if (openA && byAuth[openA]) {
+                                  entries = byAuth[openA];
+                                  withAudio = entries.filter(function(e){ return hasRec(e.book); });
+                                  textOnly  = entries.filter(function(e){ return !hasRec(e.book); });
+                                  aHead = authorHead(openA, entries.length, function(){ setShelfAuthor(""); }, "← All authors");
+                                } else if (aKeys.length > 1) {
+                                  return (
+                                    <div key={cat} className="lib-section">
+                                      <div className="lib-section-hdr">{shelfName(cat)}</div>
+                                      <div className="tb-shelf au-shelf">
+                                        {aKeys.map(function(a){
+                                          return authorTile(a, byAuth[a].length, function(){ setShelfAuthor(cat + "|" + a); });
+                                        })}
+                                      </div>
+                                    </div>
+                                  );
+                                }
+                              }
                               if (cat === "Texts Without English") {
                                 // One undivided group: what these share is the missing
                                 // translation, not whether they have a recording (the 🎧
                                 // badge on each card already says that).
                                 return (
                                   <div key={cat} className="lib-section">
+                                    {aHead}
                                     <div className="lib-section-hdr">Texts without English</div>
                                     <div className="lib-grid">{entries.map(renderCard)}</div>
                                   </div>
@@ -20856,6 +20932,7 @@ export default function App() {
                               }
                               return (
                                 <div key={cat} className="lib-section">
+                                  {aHead}
                                   {withAudio.length > 0 && (
                                     <>
                                       <div className="lib-section-hdr">{cat} · with a recording</div>
