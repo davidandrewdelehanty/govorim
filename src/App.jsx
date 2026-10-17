@@ -10,7 +10,7 @@ import { dayKey, dayMet, bump as bumpStats, streaks, mergeStats,
          totals as statsTotals, GOAL_WORDS, GOAL_CARDS } from "./stats.js";
 import { AnnotLayer, HL_COLORS, INK_COLORS, annotId } from "./annotations.jsx";
 import { readUiLang, saveUiLang, applyUiLang, trUi } from "./uilang.js";
-import { authorInfo, authorPhoto } from "./authors.js";
+import { authorInfo, authorSrc, authorCropStyle } from "./authors.js";
 
 // localStorage-backed storage shim, matching the previous window.storage Promise API.
 // Keeps the rest of the app code unchanged (still uses await storage.get/set/delete).
@@ -15608,6 +15608,7 @@ export default function App() {
         .au-photo img{mix-blend-mode:normal;filter:none;object-position:center 20%}
         .au-mono{font-family:var(--display);font-size:44px;letter-spacing:.04em;color:var(--ink-3)}
         .au-head-img{filter:none}
+        .au-crop{width:100%;height:100%}
         /* Continue reading: a short list, not a stack of tiles. */
         .lcard{padding:10px 0;border:0;border-bottom:1px solid var(--rule-soft);background:none;display:grid;
           grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"head when" "pct pct" "bar bar";gap:2px 16px;align-items:baseline}
@@ -20604,8 +20605,10 @@ export default function App() {
                               onKeyDown={function(e){ if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); } }}
                               onClick={open}>
                               <div className="tb-cover au-photo">
-                                {info && info.file
-                                  ? <img src={authorPhoto(info.file)} alt="" loading="lazy" decoding="async" />
+                                {info && info.crop
+                                  ? <div className="au-crop" style={authorCropStyle(info)} />
+                                  : (info && (info.file || info.img))
+                                  ? <img src={authorSrc(info, 400)} alt="" loading="lazy" decoding="async" />
                                   : <span className="au-mono" lang="ru">{mono}</span>}
                               </div>
                               <div className="tb-card-t" lang="ru">{nm}</div>
@@ -20619,7 +20622,8 @@ export default function App() {
                           return (
                             <div className="ld-head">
                               <button type="button" className="ld-back" onClick={back}>{backLabel}</button>
-                              {info && info.file ? <img className="ld-head-img au-head-img" src={authorPhoto(info.file, 200)} alt="" /> : null}
+                              {info && info.crop ? <div className="ld-head-img au-head-img au-crop" style={authorCropStyle(info)} />
+                                : (info && (info.file || info.img)) ? <img className="ld-head-img au-head-img" src={authorSrc(info, 200)} alt="" /> : null}
                               <div>
                                 <div className="ld-head-n" lang="ru">{(info && info.name) || a}</div>
                                 <div className="ld-head-y">{info && info.years ? info.years + " · " : ""}{n} {n === 1 ? "work" : "works"}</div>

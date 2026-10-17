@@ -135,7 +135,10 @@ export var AUTHORS = {
   "Саша Чёрный": {"name": "Саша Чёрный", "years": "1880–1932", "file": "Sasha cherny.jpg"},
   "Вахтеров В.П.": {"name": "Василий Вахтеров", "years": "1853–1924", "file": "Vasily Porfirievich Vakhterov.jpg", "credit": "Photo: Iliaz, CC BY-SA 3.0"},
   "Богораз-Тан В.Г.": {"name": "Владимир Богораз-Тан", "years": "1865–1936", "file": "Тан Богораз.jpg"},
-  "Щерба Л.В.": {"name": "Лев Щерба", "years": "1880–1944", "file": "Щерба Лев Владимирович (конверт).jpg"},
+  "Щерба Л.В.": {"name": "Лев Щерба", "years": "1880–1944", "file": "Щерба Лев Владимирович (конверт).jpg",
+    // The only free portrait is the one printed on a 1979 Soviet envelope:
+    // show just the portrait, not the envelope (fractions of the image).
+    "crop": [0.081, 0.140, 0.331, 0.613]},
   "Олкотт Л. М.": {"name": "Луиза Мэй Олкотт", "years": "1832–1888", "file": "Louisa May Alcott, c. 1870 - Warren's Portraits, Boston.jpg"},
   "Драйзер Т.": {"name": "Теодор Драйзер", "years": "1871–1945", "file": "Theodore Dreiser.jpg"},
   "Гарди Т.": {"name": "Томас Гарди", "years": "1840–1928", "file": "Thomashardy restored.jpg"},
@@ -149,8 +152,33 @@ export var AUTHORS = {
   "Горбачёв М.С.": {"name": "Михаил Горбачёв", "years": "1931–2022", "file": "GorbachevMS.jpg", "credit": "Photo: Leo Medvedev, CC BY-SA 4.0"},
   "Ильф И. и Петров Е.": {"name": "Ильф и Петров", "file": "Ilf Petrov.jpg"}
 };
+// Not people, or people Commons has no picture of, drawn from elsewhere.
+// Ребельский has no portrait anywhere free; his own 1929 title page stands
+// in. The two Bibles get the title page of the Ostrog Bible (1581), the
+// first complete printed Bible in Church Slavonic.
+AUTHORS["Ребельский И.В."] = { name: "Иван Ребельский", img: "/books/textbooks/rebelsky-azbuka/cover.webp" };
+AUTHORS["Religious Texts"] = { name: "Библия", file: "Ostrog Bible, title page, 1581.jpg" };
+
 export function authorInfo(key) {
   return AUTHORS[String(key || "").trim()] || null;
+}
+// The picture for an author entry: a page of our own, or a Commons file.
+export function authorSrc(info, width) {
+  if (!info) return "";
+  if (info.img) return info.img;
+  return info.file ? authorPhoto(info.file, info.crop ? 1200 : width) : "";
+}
+// A crop as CSS background geometry: the chosen box fills the tile.
+export function authorCropStyle(info, width) {
+  const c = info && info.crop;
+  if (!c) return null;
+  const w = c[2] - c[0], h = c[3] - c[1];
+  return {
+    backgroundImage: "url(\"" + authorSrc(info, width) + "\")",
+    backgroundSize: (100 / w) + "% " + (100 / h) + "%",
+    backgroundPosition: (w < 1 ? c[0] / (1 - w) * 100 : 0) + "% " + (h < 1 ? c[1] / (1 - h) * 100 : 0) + "%",
+    backgroundRepeat: "no-repeat",
+  };
 }
 export function authorPhoto(file, width) {
   return "https://commons.wikimedia.org/wiki/Special:FilePath/" + encodeURIComponent(file) + "?width=" + (width || 400);
