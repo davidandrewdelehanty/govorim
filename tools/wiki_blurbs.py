@@ -14,14 +14,18 @@ How a work is found:
   3. failing that, Russian Wikipedia page titles tried directly — «Тоска
      (рассказ)», «Тоска (рассказ Чехова)» and so on — kept only if the page's
      Wikidata item names this author.
-The English article is preferred; a work with only a Russian article gets the
-Russian text (`blurbLang: "ru"`), unless --en-only.
+Descriptions are Russian (`blurbLang: "ru"`), from Russian Wikipedia; an
+English-only article is used only with --allow-en. With --described the
+works that already carry a hand-written English description get a Russian
+one too, and --apply keeps the English as `blurbEn`.
 
     python3 tools/wiki_blurbs.py                # fetch, write tools/out/wiki-blurbs.json + .tsv to review
     python3 tools/wiki_blurbs.py --apply        # write the reviewed file into the catalogue
     python3 tools/wiki_blurbs.py --en-only      # skip Russian-only articles
     python3 tools/wiki_blurbs.py --author "Чехов А.П."   # one author only
-    python3 tools/wiki_blurbs.py --refresh      # re-cut the articles already found
+    python3 tools/wiki_blurbs.py --refresh      # re-cut the articles already found (English → Russian)
+    python3 tools/wiki_blurbs.py --described    # also the works that already have an English description
+    python3 tools/wiki_blurbs.py --allow-en     # take an English article where there is no Russian one
 
 Safe to stop and re-run: finished authors are kept in tools/out/wiki-blurbs.json.
 """
@@ -340,7 +344,7 @@ def lead(text):
     """The opening sentence or two of an article, as Wikipedia wrote it."""
     t = re.sub(r"\s+", " ", text).strip()
     # A hatnote ahead of the lead: «О карточной игре см. стос «Штосс» …»
-    t = re.sub(r"^(?:О|Об|Не следует путать)[^«]{0,120}?см\. [^«]{0,60}?(?=«)", "", t)
+    t = re.sub(r"^(?:О|Об|Это статья|Не следует путать)[^«]{0,120}?см\. [^«]{0,60}?(?=«)", "", t)
     t = re.sub(r"\s*\([^()]*(?:listen|pronounced)[^()]*\)", "", t)
     parts = sentences(t)
     if not parts or (NOT_A_WORK.search(parts[0]) and not LITERARY.search(parts[0])):
@@ -360,9 +364,48 @@ def lead(text):
     return out
 
 
-def refresh(state):
+def ru_titles_for(en_titles):
+    """English article → its Russian counterpart, through the language links."""
+    out = {}
+    en_titles = sorted(set(en_titles))
+    for i in range(0, len(en_titles), 50):
+        r = api("en.wikipedia.org", action="query", prop="langlinks", lllang="ru", lllimit="max",
+                redirects=1, titles="|".join(en_titles[i:i + 50]))
+        q = r["query"]
+        back = {}
+        for n in q.get("normalized", []) + q.get("redirects", []):
+            back[n["to"]] = back.get(n["from"], n["from"])
+        for pg in q.get("pages", []):
+            for ll in pg.get("langlinks", []) or []:
+                if ll.get("lang") == "ru" and ll.get("title"):
+                    out[back.get(pg["title"], pg["title"])] = ll["title"]
+    return out
+
+
+def wiki_url(host, title):
+    return "https://%s/wiki/%s" % (host, urllib.parse.quote(title.replace(" ", "_")))
+
+
+def refresh(state, allow_en=False):
     """Re-read the articles already found and cut their openings again —
-    for when lead() changes, without searching for every work afresh."""
+    for when lead() changes, without searching for every work afresh. Unless
+    English is allowed, an English article is swapped for its Russian one,
+    and a work with no Russian article is dropped."""
+    if not allow_en:
+        en = {}
+        for fn, h in state["works"].items():
+            m = re.match(r"https://en\.wikipedia\.org/wiki/(.+)$", h["url"])
+            if m:
+                en[fn] = urllib.parse.unquote(m.group(1)).replace("_", " ")
+        ru = ru_titles_for(en.values())
+        gone = 0
+        for fn, t in en.items():
+            if t in ru:
+                state["works"][fn].update(url=wiki_url("ru.wikipedia.org", ru[t]), lang="ru")
+            else:
+                state["works"].pop(fn, None)
+                gone += 1
+        print("%d English articles swapped for Russian, %d had no Russian article" % (len(en) - gone, gone))
     by_host = {}
     for fn, h in state["works"].items():
         m = re.match(r"https://([^/]+)/wiki/(.+)$", h["url"])
@@ -386,6 +429,12 @@ def refresh(state):
 def main():
     args = sys.argv[1:]
     en_only = "--en-only" in args
+    # Russian Wikipedia is the source; English only with --allow-en.
+    allow_en = "--allow-en" in args or en_only
+    # --described: also the works that already have a (hand-written English)
+    # description, so that every shelf description can be Russian.
+    described = "--described" in args
+    done_key = "authorsDoneDescribed" if described else "authorsDone"
     only = args[args.index("--author") + 1] if "--author" in args else None
     manifest = json.load(open(MANIFEST, encoding="utf-8"))
 
@@ -397,14 +446,20 @@ def main():
         n = 0
         for b in manifest:
             hit = found.get("works", {}).get(b.get("filename"))
-            if not hit or b.get("blurb"):
+            if not hit or b.get("blurbSrc") == hit["url"]:
                 continue
+            if b.get("blurb") and not b.get("blurbSrc"):
+                if hit.get("lang") != "ru":
+                    continue
+                b["blurbEn"] = b["blurb"]          # the English one is kept, just not shown
             if en_only and hit.get("lang") == "ru":
                 continue
             b["blurb"] = hit["blurb"]
             b["blurbSrc"] = hit["url"]
             if hit.get("lang") == "ru":
                 b["blurbLang"] = "ru"
+            else:
+                b.pop("blurbLang", None)
             n += 1
         with open(MANIFEST, "w", encoding="utf-8") as f:
             json.dump(manifest, f, ensure_ascii=False, indent=2)
@@ -414,12 +469,14 @@ def main():
 
     os.makedirs("tools/out", exist_ok=True)
     state = json.load(open(OUT, encoding="utf-8")) if os.path.exists(OUT) else {"works": {}, "authorsDone": []}
+    state.setdefault(done_key, [])
     if "--refresh" in args:
-        refresh(state)
+        refresh(state, allow_en)
         with open(OUT, "w", encoding="utf-8") as f:
             json.dump(state, f, ensure_ascii=False, indent=1)
         order = []
-    missing = [b for b in manifest if not b.get("blurb") and b.get("author") in AUTHOR_PAGES]
+    missing = [b for b in manifest if b.get("author") in AUTHOR_PAGES and
+               (not b.get("blurb") if not described else (b.get("blurb") and not b.get("blurbSrc")))]
     by_author = {}
     for b in missing:
         by_author.setdefault(b["author"], []).append(b)
@@ -427,7 +484,7 @@ def main():
     if only:
         order = [only]
     for a in order:
-        if a in state["authorsDone"] and not only:
+        if a in state[done_key] and not only:
             continue
         books = by_author.get(a, [])
         print("%s — %d works" % (a, len(books)), flush=True)
@@ -470,19 +527,19 @@ def main():
                 if fn not in pick:
                     pick[fn] = {"ru": title, "en": m["en"]}
         # 3. The article openings
-        en_ex = extracts("en.wikipedia.org", sorted({p["en"] for p in pick.values() if p["en"]}))
-        ru_ex = {} if en_only else extracts("ru.wikipedia.org", sorted({p["ru"] for p in pick.values() if p["ru"] and not p["en"]}))
+        ru_ex = {} if en_only else extracts("ru.wikipedia.org", sorted({p["ru"] for p in pick.values() if p["ru"]}))
+        en_ex = extracts("en.wikipedia.org", sorted({p["en"] for p in pick.values() if p["en"] and (en_only or not p["ru"])})) if allow_en else {}
         got = 0
         for b in books:
             p = pick.get(b["filename"])
             if not p:
                 continue
-            if p["en"] and p["en"] in en_ex:
-                title, text = en_ex[p["en"]]
-                host, lang = "en.wikipedia.org", "en"
-            elif p["ru"] and p["ru"] in ru_ex:
+            if p["ru"] and p["ru"] in ru_ex:
                 title, text = ru_ex[p["ru"]]
                 host, lang = "ru.wikipedia.org", "ru"
+            elif p["en"] and p["en"] in en_ex:
+                title, text = en_ex[p["en"]]
+                host, lang = "en.wikipedia.org", "en"
             else:
                 continue
             blurb = lead(text)
@@ -490,12 +547,12 @@ def main():
                 continue
             state["works"][b["filename"]] = {
                 "title": b.get("title"), "author": a, "lang": lang, "blurb": blurb,
-                "url": "https://%s/wiki/%s" % (host, urllib.parse.quote(title.replace(" ", "_"))),
+                "url": wiki_url(host, title), "replaces": bool(b.get("blurb")),
             }
             got += 1
         print("  found %d of %d" % (got, len(books)), flush=True)
-        if a not in state["authorsDone"]:
-            state["authorsDone"].append(a)
+        if a not in state[done_key]:
+            state[done_key].append(a)
         with open(OUT, "w", encoding="utf-8") as f:
             json.dump(state, f, ensure_ascii=False, indent=1)
     with open(TSV, "w", encoding="utf-8") as f:
@@ -503,7 +560,7 @@ def main():
         for fn, h in sorted(state["works"].items(), key=lambda kv: (kv[1]["author"], kv[1]["title"] or "")):
             f.write("\t".join([h["author"], h["title"] or "", h["lang"], h["blurb"], h["url"]]) + "\n")
     w = state["works"]
-    print("\n%d descriptions found (%d English, %d Russian) of %d works missing one."
+    print("\n%d descriptions found (%d English, %d Russian) of %d works searched."
           % (len(w), sum(1 for h in w.values() if h["lang"] == "en"), sum(1 for h in w.values() if h["lang"] == "ru"), len(missing)))
     print("Review %s, then: python3 tools/wiki_blurbs.py --apply" % TSV)
 
