@@ -2332,11 +2332,15 @@ function sentenceAround(text, pos, maxLen) {
 // backup to Wiktionary's own recording, in the definition popup and on review
 // cards. Answers are remembered on the device, misses for a week.
 var LL_MEM = {};
-function linguaLibreUrl(word) {
+// `lang` "eng" looks for an English recording instead (LL-Q1860 (eng)).
+var LL_LANG = { rus: "Q7737", eng: "Q1860" };
+function linguaLibreUrl(word, lang) {
+  lang = LL_LANG[lang] ? lang : "rus";
+  var qid = LL_LANG[lang];
   var w = String(word || "").replace(/\u0301/g, "").trim();
   if (!w || /\s/.test(w)) return Promise.resolve(null);
   var norm = function(x){ return String(x).toLowerCase().replace(/ё/g, "е"); };
-  var key = "gv_ll_v1:" + norm(w);
+  var key = (lang === "rus" ? "gv_ll_v1:" : "gv_ll_" + lang + "_v1:") + norm(w);
   if (LL_MEM[key] !== undefined) return LL_MEM[key];
   try {
     var hit = JSON.parse(localStorage.getItem(key) || "null");
@@ -2344,13 +2348,13 @@ function linguaLibreUrl(word) {
       return (LL_MEM[key] = Promise.resolve(hit.u || null));
     }
   } catch (e) {}
-  var q = 'intitle:"LL-Q7737" intitle:"' + w.replace(/"/g, "") + '"';
+  var q = 'intitle:"LL-' + qid + '" intitle:"' + w.replace(/"/g, "") + '"';
   var url = "https://commons.wikimedia.org/w/api.php?action=query&list=search&srnamespace=6" +
             "&srlimit=50&format=json&origin=*&srsearch=" + encodeURIComponent(q);
   LL_MEM[key] = fetch(url).then(function(r){ return r.ok ? r.json() : null; }).then(function(j){
     var titles = ((j && j.query && j.query.search) || []).map(function(x){ return x.title; });
     var title = titles.find(function(t){
-      var m = /^File:LL-Q7737 \(rus\)-.+-([^-]+)\.(wav|ogg|oga|flac|mp3|opus)$/i.exec(t);
+      var m = new RegExp("^File:LL-" + qid + " \\(" + lang + "\\)-.+-([^-]+)\\.(wav|ogg|oga|flac|mp3|opus)$", "i").exec(t);
       return m && norm(m[1]) === norm(w);
     }) || null;
     var u = title ? "https://commons.wikimedia.org/wiki/Special:FilePath/" + encodeURIComponent(title.replace(/^File:/, "")) : null;
@@ -2358,6 +2362,38 @@ function linguaLibreUrl(word) {
     return u;
   }).catch(function(){ delete LL_MEM[key]; return null; });
   return LL_MEM[key];
+}
+
+// Which of these Commons files exist, in one request: { name: url } for the
+// ones that do. Used to find recordings (Ru-<form>.ogg, En-us-<word>.ogg)
+// without a 404 per guess. Remembered for the session.
+var COMMONS_HAVE = {};
+function commonsFiles(names) {
+  var want = names.filter(function(n){ return n && !(n in COMMONS_HAVE); });
+  var answer = function(){
+    var out = {};
+    names.forEach(function(n){ if (COMMONS_HAVE[n]) out[n] = COMMONS_HAVE[n]; });
+    return out;
+  };
+  if (!want.length) return Promise.resolve(answer());
+  var chunks = [];
+  for (var i = 0; i < want.length; i += 50) chunks.push(want.slice(i, i + 50));
+  return Promise.all(chunks.map(function(ch){
+    var url = "https://commons.wikimedia.org/w/api.php?action=query&format=json&origin=*&titles=" +
+      encodeURIComponent(ch.map(function(n){ return "File:" + n; }).join("|"));
+    return fetch(url).then(function(r){ return r.ok ? r.json() : null; }).then(function(j){
+      if (!j || !j.query) return;
+      var back = {};
+      (j.query.normalized || []).forEach(function(x){ back[x.to] = x.from; });
+      Object.keys(j.query.pages || {}).forEach(function(k){
+        var pg = j.query.pages[k];
+        var asked = (back[pg.title] || pg.title).replace(/^File:/, "");
+        var nm = pg.title.replace(/^File:/, "");
+        COMMONS_HAVE[asked] = ("missing" in pg || "invalid" in pg) ? "" :
+          "https://commons.wikimedia.org/wiki/Special:FilePath/" + encodeURIComponent(nm);
+      });
+    }).catch(function(){});
+  })).then(answer);
 }
 
 // `word` may be one string or a list of every spelling the word is known by
@@ -6490,6 +6526,10 @@ export default function App() {
   // /books/audio-sync/<book>/<chapter>.json — a 404 simply means no jump
   // buttons for this chapter, so books opt in by having the files.
   var [paraSync, setParaSync] = useState(null);
+  // The same for the English column's own recording (bookMeta.videosEn):
+  // /books/audio-sync-en/<parallelEn>/<chapter>.json, keyed by the same
+  // paragraph index the English is keyed by.
+  var [enSync, setEnSync] = useState(null);
   var ytCtrlRef = useRef(null);
   // Seek the chapter's recording to `sec` as soon as its player exists. The
   // player is raised asynchronously (book parse, chapter render, YT API,
@@ -7747,6 +7787,20 @@ export default function App() {
       .catch(function() {});
     return function() { cancelled = true; };
   }, [bookMeta && bookMeta.audiobook, cidx]);
+
+  // The English recording's jump points for this chapter, when it has one.
+  useEffect(function() {
+    setEnSync(null);
+    var dir = bookMeta && bookMeta.parallelEn;
+    if (!dir || !(bookMeta.videosEn && bookMeta.videosEn[String(cidx)])) return;
+    var nn = String(cidx); if (nn.length < 2) nn = "0" + nn;
+    var cancelled = false;
+    fetch("/books/audio-sync-en/" + dir + "/" + nn + ".json")
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(m){ if (!cancelled && m && typeof m === "object") setEnSync(m); })
+      .catch(function(){});
+    return function(){ cancelled = true; };
+  }, [bookMeta && bookMeta.parallelEn, bookMeta && bookMeta.videosEn, cidx]);
 
   // Fetch this chapter's paragraph->seconds map, when the book ships one.
   useEffect(function() {
@@ -10573,6 +10627,7 @@ export default function App() {
     setPopup(null);
     var key = clean.toLowerCase();
     var hit = enDefCache.current[key];
+    setEnSay("");
     if (hit) { setEnPop({ word: clean, top: top, left: left, width: w, data: hit, loading: false }); return; }
     setEnPop({ word: clean, top: top, left: left, width: w, loading: true });
     try {
@@ -10951,6 +11006,122 @@ export default function App() {
     if (data || /no conjugation/.test(error)) conjMemo.current[w.toLowerCase()] = res;
     return res;
   };
+  // Recordings for the forms in the conjugation window. Real voices only
+  // (robot narration is off — see TTS_ENABLED): Wiktionary's Ru-<form>.ogg on
+  // Commons, found for the whole table in one request so the forms that have
+  // one can say so, then Lingua Libre when a form is tapped. A compound form
+  // (буду читать) plays its words one after another.
+  var [cjAud, setCjAud] = useState({});        // form -> url | ""
+  var [cjSay, setCjSay] = useState("");        // form playing, or "miss:" + form
+  var cjClean = function(x){ return String(x || "").replace(/\u0301/g, "").toLowerCase().trim(); };
+  useEffect(function(){
+    var d = conj && conj.data;
+    if (!d) return;
+    var forms = {};
+    var add = function(v){
+      String(v || "").split(/\s*[,/;]\s*/).forEach(function(f){
+        cjClean(f).split(/\s+/).forEach(function(w){ if (w && /^[а-яё-]+$/.test(w)) forms[w] = 1; });
+      });
+    };
+    ["present", "future"].forEach(function(t){ if (d[t]) Object.keys(d[t]).forEach(function(k){ add(d[t][k]); }); });
+    if (d.past) Object.keys(d.past).forEach(function(k){ add(d.past[k]); });
+    if (d.imperative) { add(d.imperative.sg); add(d.imperative.pl); }
+    if (d.participles) Object.keys(d.participles).forEach(function(k){ add(d.participles[k]); });
+    add(d.infinitive);
+    ["бу́ду", "бу́дешь", "бу́дет", "бу́дем", "бу́дете", "бу́дут"].forEach(add);
+    var list = Object.keys(forms);
+    var cancelled = false;
+    commonsFiles(list.map(function(w){ return "Ru-" + w + ".ogg"; })).then(function(have){
+      if (cancelled) return;
+      var m = {};
+      list.forEach(function(w){ m[w] = have["Ru-" + w + ".ogg"] || ""; });
+      setCjAud(m);
+    });
+    return function(){ cancelled = true; };
+  }, [conj && conj.data]);
+  var sayForm = function(raw) {
+    var f = cjClean(raw);
+    if (!f) return;
+    var ws = f.split(/\s+/);
+    var urlFor = function(w){
+      if (cjAud[w]) return Promise.resolve(cjAud[w]);
+      return linguaLibreUrl(w).then(function(u){ return u || null; });
+    };
+    Promise.all(ws.map(urlFor)).then(function(urls){
+      if (urls.some(function(u){ return !u; })) {
+        setCjSay("miss:" + f);
+        setTimeout(function(){ setCjSay(function(c){ return c === "miss:" + f ? "" : c; }); }, 1600);
+        return;
+      }
+      try { if (sayAudioRef.current) sayAudioRef.current.pause(); } catch (e) {}
+      var i = 0;
+      var next = function(){
+        if (i >= urls.length) { setCjSay(""); return; }
+        var a = new Audio(urls[i++]);
+        sayAudioRef.current = a;
+        a.onended = next;
+        a.onerror = function(){ setCjSay("miss:" + f); };
+        var pr = a.play();
+        if (pr && pr.catch) pr.catch(function(){ setCjSay("miss:" + f); });
+      };
+      setCjSay(f);
+      next();
+    });
+  };
+  // One table cell: each alternative form tappable on its own.
+  var cjCell = function(v) {
+    if (!v) return "—";
+    var parts = String(v).split(/\s*,\s*/);
+    return parts.map(function(f, i){
+      var c = cjClean(f);
+      var known = c.split(/\s+/).every(function(w){ return !!cjAud[w]; });
+      return (
+        <Fragment key={i}>
+          {i > 0 ? ", " : null}
+          <span role="button" tabIndex={0}
+            className={"cj-f" + (known ? " has" : "") + (cjSay === c ? " on" : "") + (cjSay === "miss:" + c ? " miss" : "")}
+            title={cjSay === "miss:" + c ? "No recording of this form" : (known ? "Play the recording" : "Look for a recording")}
+            onClick={function(e){ e.stopPropagation(); sayForm(f); }}
+            onKeyDown={function(e){ if (e.key === "Enter" || e.key === " ") { e.preventDefault(); sayForm(f); } }}>{f}</span>
+        </Fragment>
+      );
+    });
+  };
+
+  // The English word in the English-define popup, said by a real voice:
+  // Wiktionary's own recordings on Commons (En-us-, En-uk-, En-au-), then
+  // Lingua Libre's English ones. Nothing found → says so; no robot voice.
+  var [enSay, setEnSay] = useState("");        // "" | "loading" | "playing" | "none"
+  var sayEnglish = function(lemma, clicked) {
+    var cands = [];
+    [lemma, clicked].forEach(function(w){
+      w = String(w || "").toLowerCase().replace(/\u2019/g, "'").trim();
+      if (w && cands.indexOf(w) < 0) cands.push(w);
+    });
+    if (!cands.length) return;
+    var names = [];
+    cands.forEach(function(w){ ["us", "uk", "au", "ca"].forEach(function(r){ names.push("En-" + r + "-" + w + ".ogg"); }); });
+    setEnSay("loading");
+    commonsFiles(names).then(function(have){
+      var url = null;
+      for (var i = 0; i < names.length && !url; i++) url = have[names[i]] || null;
+      if (url) return url;
+      return cands.reduce(function(pr, w){
+        return pr.then(function(u){ return u || linguaLibreUrl(w, "eng"); });
+      }, Promise.resolve(null));
+    }).then(function(url){
+      if (!url) { setEnSay("none"); return; }
+      try { if (sayAudioRef.current) sayAudioRef.current.pause(); } catch (e) {}
+      var a = new Audio(url);
+      sayAudioRef.current = a;
+      a.onplaying = function(){ setEnSay("playing"); };
+      a.onended = function(){ setEnSay(""); };
+      a.onerror = function(){ setEnSay("none"); };
+      var pr = a.play();
+      if (pr && pr.catch) pr.catch(function(){ setEnSay("none"); });
+    });
+  };
+
   var openConj = async function(word) {
     var w = String(word || "").replace(/\u0301/g, "").split(/\s*\/\s*/)[0].trim();
     if (!w) return;
@@ -11577,6 +11748,9 @@ export default function App() {
         // JSON and audio through /api/media rather than from /books/.
         restricted: !!opts.restricted,
         parallelEn: opts.parallelEn || null,
+        // English recordings for the English column, keyed by chapter like
+        // `videos` (tools/en_videos.py); shown when the English pane is up.
+        videosEn: (opts.videosEn && typeof opts.videosEn === "object") ? opts.videosEn : null,
         flowEn: !!opts.flowEn,
         // Shown above the English pane. A verse translation is a work in its
         // own right and does not track the Russian line for line, so a book
@@ -11773,6 +11947,7 @@ export default function App() {
         isBible: !!book.isBible,
         bibleEn: book.bibleEn || null,
         parallelEn: book.parallelEn || null,
+        videosEn: (book.videosEn && typeof book.videosEn === "object") ? book.videosEn : null,
         translationNote: book.translationNote || "",
         enTitle: book.enTitle || "",
         translator: book.translator || "",
@@ -13658,6 +13833,9 @@ export default function App() {
     // length. No row is claimed for it, so nothing here can put the wrong
     // paragraph beside a Russian one.
     var flowEnBlocks = null;
+    // Block index → the paragraph key its English came from, for the first
+    // block of each key: that is where an English jump point belongs.
+    var flowEnKeyAt = {};
     if (dualActive && flowEn && isBibleView) {
       // Scripture's English, verse by verse and numbered, for the verses this
       // page covers. The KJV (the Synodal's pairing) is kept by verse position
@@ -13698,6 +13876,7 @@ export default function App() {
       litEntries.forEach(function(e) {
         var t = proseEn[String(e.chIdx)];
         if (!t || !String(t).trim()) return;
+        flowEnKeyAt[flowEnBlocks.length] = String(e.chIdx);
         // One index can hold more than one English paragraph — where the
         // translation runs longer than the Russian there are more paragraphs
         // than there are places to hang them. They are stored with a blank
@@ -13738,7 +13917,19 @@ export default function App() {
                     if (t && typeof t === "object") {
                       return <p key={i} className="dual-en"><span className="bible-en-vno">{t.n}</span> {enWords(t.t)}</p>;
                     }
-                    return <p key={i} className="dual-en">{enWords(t)}</p>;
+                    var ek = flowEnKeyAt[i];
+                    var es = (enSync && ek !== undefined) ? enSync[ek] : undefined;
+                    var ej = (typeof es === "number" && dualPane === 1) ? (
+                      <button className="pjump" type="button" data-annot-keep=""
+                        title={"Play the English from here — " + fmtClock(es)}
+                        aria-label="Play the English recording from this paragraph"
+                        onClick={function(e){
+                          e.stopPropagation();
+                          if (ytCtrlRef.current) { try { ytCtrlRef.current.seekAbs(es); } catch (x) { seekWhenReady(es); } }
+                          else seekWhenReady(es);
+                        }}>▶</button>
+                    ) : null;
+                    return <p key={i} className="dual-en">{ej}{enWords(t)}</p>;
                   })}
                 </div>
               )}
@@ -15071,6 +15262,15 @@ export default function App() {
         .cj-t{width:100%;border-collapse:collapse;font-family:'Literata',serif;font-size:15px;color:#2a1f14}
         .cj-t th{font-family:'IBM Plex Sans',sans-serif;font-size:11px;font-weight:600;text-align:left;color:rgba(42,31,20,.6);padding:2px 6px 4px}
         .cj-t td{padding:4px 6px;border-top:1px solid rgba(42,31,20,.1);vertical-align:top}
+        .cj-f{cursor:pointer;border-radius:3px;padding:0 1px}
+        .cj-f:hover{background:rgba(160,110,20,.12)}
+        .cj-f.has{text-decoration:underline dotted rgba(160,110,20,.7);text-underline-offset:3px}
+        .cj-f.on{background:rgba(160,110,20,.2)}
+        .cj-f.miss{color:rgba(42,31,20,.4);text-decoration:line-through}
+        .cj-tip{font-family:'IBM Plex Sans',sans-serif;font-size:11px;color:rgba(42,31,20,.5);margin:-2px 0 8px}
+        .enpop-say{margin-left:8px;padding:2px 8px;font-size:13px}
+        .enpop-say.off{opacity:.55}
+        .enpop-nosay{font-size:11px;color:rgba(42,31,20,.5);margin:-2px 0 6px}
         .cj-p{color:rgba(42,31,20,.55);font-size:13px;white-space:nowrap;width:1%}
         .pru-btn{background:none;border:1px solid rgba(42,31,20,.22);border-radius:7px;padding:4px 10px;font-size:12px;font-family:'IBM Plex Sans',sans-serif;color:rgba(42,31,20,.75);cursor:pointer}
         .pru-btn:hover,.pru-btn.on{border-color:rgba(42,31,20,.55);color:#2a1f14;background:rgba(42,31,20,.04)}
@@ -17416,7 +17616,8 @@ export default function App() {
         <div className="cj-over" onClick={function(e){ if (e.target === e.currentTarget) setConj(null); }}>
           <div className="cj" role="dialog" aria-label={"Conjugation of " + conj.word}>
             <button type="button" className="pcl" onClick={function(){ setConj(null); }} aria-label="Close">×</button>
-            <div className="cj-h" lang="ru">{(conj.data && conj.data.infinitive) || conj.word}</div>
+            <div className="cj-h" lang="ru">{cjCell((conj.data && conj.data.infinitive) || conj.word)}</div>
+            {conj.data && <div className="cj-tip">Tap a form to hear it. Underlined forms have a recording.</div>}
             {conj.data && (
               <div className="cj-sub">
                 {conj.data.aspect ? conj.data.aspect + " verb" : "verb"}
@@ -17451,8 +17652,8 @@ export default function App() {
                         return (
                           <tr key={p[0]}>
                             <td className="cj-p">{p[1]}</td>
-                            {tenseRow && <td>{tenseRow.r[p[0]] || "—"}</td>}
-                            {futRow && <td>{fut(p[0]) || "—"}</td>}
+                            {tenseRow && <td>{cjCell(tenseRow.r[p[0]])}</td>}
+                            {futRow && <td>{cjCell(fut(p[0]))}</td>}
                           </tr>
                         );
                       })}
@@ -17460,17 +17661,17 @@ export default function App() {
                   </table>
                   <div className="cj-sec">Past</div>
                   <table className="cj-t"><tbody>
-                    <tr><td className="cj-p">он</td><td>{d.past.m || "—"}</td></tr>
-                    <tr><td className="cj-p">она</td><td>{d.past.f || "—"}</td></tr>
-                    <tr><td className="cj-p">оно</td><td>{d.past.n || "—"}</td></tr>
-                    <tr><td className="cj-p">они</td><td>{d.past.pl || "—"}</td></tr>
+                    <tr><td className="cj-p">он</td><td>{cjCell(d.past.m)}</td></tr>
+                    <tr><td className="cj-p">она</td><td>{cjCell(d.past.f)}</td></tr>
+                    <tr><td className="cj-p">оно</td><td>{cjCell(d.past.n)}</td></tr>
+                    <tr><td className="cj-p">они</td><td>{cjCell(d.past.pl)}</td></tr>
                   </tbody></table>
                   {(d.imperative.sg || d.imperative.pl) && (
                     <>
                       <div className="cj-sec">Imperative</div>
                       <table className="cj-t"><tbody>
-                        <tr><td className="cj-p">ты</td><td>{d.imperative.sg || "—"}</td></tr>
-                        <tr><td className="cj-p">вы</td><td>{d.imperative.pl || "—"}</td></tr>
+                        <tr><td className="cj-p">ты</td><td>{cjCell(d.imperative.sg)}</td></tr>
+                        <tr><td className="cj-p">вы</td><td>{cjCell(d.imperative.pl)}</td></tr>
                       </tbody></table>
                     </>
                   )}
@@ -17478,12 +17679,12 @@ export default function App() {
                     <>
                       <div className="cj-sec">Participles</div>
                       <table className="cj-t"><tbody>
-                        {pt.activePresent && <tr><td className="cj-p">active present</td><td>{pt.activePresent}</td></tr>}
-                        {pt.activePast && <tr><td className="cj-p">active past</td><td>{pt.activePast}</td></tr>}
-                        {pt.passivePresent && <tr><td className="cj-p">passive present</td><td>{pt.passivePresent}</td></tr>}
-                        {pt.passivePast && <tr><td className="cj-p">passive past</td><td>{pt.passivePast}</td></tr>}
-                        {pt.adverbialPresent && <tr><td className="cj-p">adverbial present</td><td>{pt.adverbialPresent}</td></tr>}
-                        {pt.adverbialPast && <tr><td className="cj-p">adverbial past</td><td>{pt.adverbialPast}</td></tr>}
+                        {pt.activePresent && <tr><td className="cj-p">active present</td><td>{cjCell(pt.activePresent)}</td></tr>}
+                        {pt.activePast && <tr><td className="cj-p">active past</td><td>{cjCell(pt.activePast)}</td></tr>}
+                        {pt.passivePresent && <tr><td className="cj-p">passive present</td><td>{cjCell(pt.passivePresent)}</td></tr>}
+                        {pt.passivePast && <tr><td className="cj-p">passive past</td><td>{cjCell(pt.passivePast)}</td></tr>}
+                        {pt.adverbialPresent && <tr><td className="cj-p">adverbial present</td><td>{cjCell(pt.adverbialPresent)}</td></tr>}
+                        {pt.adverbialPast && <tr><td className="cj-p">adverbial past</td><td>{cjCell(pt.adverbialPast)}</td></tr>}
                       </tbody></table>
                     </>
                   )}
@@ -22148,7 +22349,26 @@ export default function App() {
                               ctrl={ytCtrlRef} />
                           </div>
                         )}
-                        {curChapter.youtubeId && !curChapter.merged && (
+                        {(function(){
+                          // The English pane is up and the English has its own
+                          // recording: that one plays in the dock instead.
+                          var ev = (dualPane === 1 && bookMeta && bookMeta.videosEn) ? bookMeta.videosEn[String(cidx)] : null;
+                          if (!ev || !ev.youtube) return null;
+                          return (
+                            <div className={"chvid-dock" + (vidStuck ? " stuck" : "")}>
+                              <ChapterVideo
+                                key={"en-" + ev.youtube + "-" + (ev.start || 0)}
+                                id={ev.youtube}
+                                start={ev.start}
+                                end={ev.end}
+                                ctrl={ytCtrlRef}
+                                book={(bookMeta.enTitle || bookMeta.title || "") + " (English)"}
+                                title={(bookMeta.enTitle || bookMeta.title || "Video") + " — English"} />
+                            </div>
+                          );
+                        })()}
+                        {curChapter.youtubeId && !curChapter.merged &&
+                         !(dualPane === 1 && bookMeta && bookMeta.videosEn && bookMeta.videosEn[String(cidx)]) && (
                           <div className={"chvid-dock" + (vidStuck ? " stuck" : "")}>
                             <ChapterVideo
                               key={curChapter.youtubeId}
@@ -23604,7 +23824,14 @@ export default function App() {
               <button className="pcl" onClick={function(){ setEnPop(null); }}>×</button>
               <div className="pwrow">
                 <div className="pw" lang="en">{(enPop.data && enPop.data.lemma) || enPop.word}</div>
+                <button type="button" className={"psay enpop-say" + (enSay === "playing" ? " on" : "") + (enSay === "none" ? " off" : "")}
+                  title={enSay === "none" ? "No recording of this word" : "Hear it said"}
+                  aria-label="Hear the English word"
+                  onClick={function(e){ e.stopPropagation(); sayEnglish(enPop.data && enPop.data.lemma, enPop.word); }}>
+                  {enSay === "loading" ? "…" : enSay === "none" ? "🔇" : "🔊"}
+                </button>
               </div>
+              {enSay === "none" && <div className="enpop-nosay" lang="en">No recording of this word on Wikimedia Commons.</div>}
               {enPop.data && enPop.data.ipa && <div className="enpop-ipa" lang="en">[{enPop.data.ipa}]</div>}
               {enPop.data && enPop.data.lemma && enPop.data.lemma.toLowerCase() !== enPop.word.toLowerCase() && (
                 <div style={{fontSize:11,color:"rgba(0,0,0,.4)",marginBottom:6,marginTop:-2}} lang="en">you clicked: {enPop.word}</div>

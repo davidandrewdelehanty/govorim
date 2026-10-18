@@ -51,6 +51,7 @@ patriot.fb2|authorship and term not established
 bible-synodal.fb2|the Bible has its own keying — use make_case_drills.py --bible
 brezhnev-oktyabr-60-1977.fb2|Brezhnev d.1982 — still in copyright in Russia
 brezhnev-den-pobedy-1975.fb2|Brezhnev d.1982 — still in copyright in Russia
+povest-vremennykh-let.fb2|Old Russian text — the parser would drill forms no learner meets
 SKIPLIST
 )
 export SKIP_REASONS
