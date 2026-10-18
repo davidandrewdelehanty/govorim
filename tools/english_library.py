@@ -102,13 +102,26 @@ def load_catalog():
 
 
 SKIP_SUBJ = re.compile(r"cookery|cooking|dictionar|encyclop|periodicals|indexes|bibliograph|catalogs|"
-                       r"language and languages|grammar|textbooks|handbooks|manuals|"
-                       r"etiquette|sex instruction|law -- |statutes|census|registers", re.I)
-SKIP_TITLE = re.compile(r"\b(index|dictionary|encyclop|magazine|journal|almanac|cookbook|"
+                       r"language and languages|grammar|textbooks|handbooks|manuals|thesauri|synonyms|"
+                       r"etiquette|sex instruction|law -- |statutes|census|registers|erotic|pornograph|"
+                       r"mathematics|calculus|arithmetic|algebra|geometry|sabotage|military art", re.I)
+SKIP_TITLE = re.compile(r"\b(index|dictionary|thesaurus|manual|encyclop|magazine|journal|almanac|cookbook|erotic|"
                         r"complete works|collected works|works of|vol\.|volume \d|the bible|"
                         r"punch, or the london|notes and queries|report of)\b", re.I)
 RUSSIAN = re.compile(r"tolstoy|dostoevsk|dostoyevsk|chekhov|gogol|turgenev|pushkin|lermontov|gorky|"
                      r"goncharov|bulgakov|andreyev|kuprin|bunin|leskov|saltykov", re.I)
+# Writers who did not write in English. Gutenberg often leaves the translator
+# off the record, so a translation would otherwise pass as an original.
+FOREIGN = re.compile(
+    r"\b(dumas|verne|hugo, victor|balzac|flaubert|zola|maupassant|stendhal|proust|voltaire|rousseau|"
+    r"moli[eè]re|rabelais|montaigne|descartes|pascal|leroux|gaboriau|sue, eug|saint-exup|"
+    r"goethe|schiller|kafka|nietzsche|kant|hegel|marx|engels|freud|hesse|mann, thomas|grimm|"
+    r"spyri|wyss|andersen|ibsen|strindberg|lagerl|kierkegaard|collodi|dante|boccaccio|machiavelli|"
+    r"cervantes|homer|virgil|ovid|sophocles|euripides|aeschylus|aristophanes|aristotle|plato|"
+    r"marcus aurelius|epictetus|seneca|cicero|plutarch|herodotus|thucydides|augustine|"
+    r"kempis|erasmus|spinoza|sun tzu|sunzi|laozi|lao-tzu|confucius|musashi|vatsyayana|"
+    r"sienkiewicz|ha[sš]ek|cap|more, thomas|luther|calvin|tacitus|livy|lucretius|"
+    r"apuleius|petronius|chrétien|chretien|alighieri|tolstoi)\b", re.I)
 
 
 def author_display(authors):
@@ -398,7 +411,9 @@ def main():
     state = json.load(io.open(STATE, encoding="utf-8")) if os.path.exists(STATE) else {}
     cat = load_catalog()
     idx = json.load(io.open(MANIFEST, encoding="utf-8"))
-    have_titles = {norm(b.get("enTitle") or "") for b in idx if b.get("enTitle")}
+    have_titles = {norm(b.get("enTitle") or "") for b in idx if b.get("enTitle") and b.get("lang") != "en"}
+    h_auth = {norm(b.get("enTitle") or ""): (b.get("enAuthor") or "").lower() for b in idx if b.get("enTitle")}
+    surname_of = lambda row: author_display(row.get("Authors"))[2].lower()
     have_gids = {b.get("gutenberg") for b in idx if b.get("gutenberg")}
     try:
         res = json.load(io.open("tools/translations/resolved.json", encoding="utf-8"))
@@ -415,14 +430,22 @@ def main():
         if not r or r.get("Type") != "Text" or (r.get("Language") or "").strip() != "en":
             continue
         authors = r.get("Authors") or ""
-        if re.search(r"\[(Translator|Editor)\]", authors) or RUSSIAN.search(authors):
+        if re.search(r"\[(Translator|Editor)\]", authors) or RUSSIAN.search(authors) or FOREIGN.search(authors):
             continue
-        title = re.sub(r"\s+", " ", (r.get("Title") or "").replace("\n", " ")).strip()
+        title = re.sub(r"\s+", " ", r.get("Title") or "").strip()
         if SKIP_TITLE.search(title) or SKIP_SUBJ.search(r.get("Subjects") or ""):
             continue
         if n in have_gids:
             continue
         key = norm(title)
+        # The same book as one already on the site, under a longer title
+        # ("A Christmas Carol in Prose", an illustrated Alice), or one volume
+        # of a work in several.
+        if re.search(r"\bvol(\.|ume)? ?\d+ \(of \d+\)", title, re.I):
+            continue
+        if any(len(h) > 8 and key.startswith(h + " ") and surname_of(r) in h_auth.get(h, "")
+               for h in have_titles):
+            continue
         if not key or key in have_titles or key in seen_titles:
             continue
         seen_titles.add(key)
@@ -433,14 +456,31 @@ def main():
     if a.dry_run:
         for n in picked:
             r = cat[n]
-            print("  %6d  %-60s %s" % (n, r["Title"][:60].replace("\n", " "), author_display(r.get("Authors"))[0]))
+            print("  %6d  %-60s %s" % (n, re.sub(r"\s+", " ", r["Title"])[:60], author_display(r.get("Authors"))[0]))
         return
+
+    # Anything an earlier run added that the list no longer takes (a rule
+    # tightened since) comes back off the catalogue.
+    keep = set(picked)
+    idx = json.load(io.open(MANIFEST, encoding="utf-8"))
+    gone = [b for b in idx if b.get("lang") == "en" and b.get("gutenberg") and b["gutenberg"] not in keep]
+    if gone:
+        idx = [b for b in idx if b not in gone]
+        io.open(MANIFEST, "w", encoding="utf-8").write(json.dumps(idx, ensure_ascii=False, indent=2) + "\n")
+        for b in gone:
+            state.get("done", {}).pop(str(b["gutenberg"]), None)
+            try:
+                os.remove(os.path.join("public/books", b["filename"]))
+            except Exception:
+                pass
+        io.open(STATE, "w", encoding="utf-8").write(json.dumps(state))
+        print("took back %d book(s) the list no longer includes" % len(gone))
 
     added = 0
     pending = []
     for i, n in enumerate(picked, 1):
         r = cat[n]
-        title = re.sub(r"\s+", " ", r["Title"].replace("\n", " ")).strip()
+        title = re.sub(r"\s+", " ", r["Title"]).strip()
         short = re.split(r"\s*[;:]\s*", title)[0].strip()
         name, years, surname = author_display(r.get("Authors"))
         slug = "en-" + slugify(short + " " + surname)
