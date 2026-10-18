@@ -236,7 +236,14 @@ export default async function handler(req, res) {
         const book = quoteBooks().get(filename);
         if (!book) return res.status(400).json({ error: "Only quotes from the library's books are shared." });
         const origin = "https://" + String(req.headers["x-forwarded-host"] || req.headers.host || "samovar.live");
-        if (!(await quoteInBook(filename, quote, origin))) {
+        // An English quote (Read in English mode) is checked against the
+        // book's English, chapter by chapter, and kept on its own board.
+        const lang = b.lang === "en" ? "en" : "ru";
+        if (lang === "en") {
+          if (!book.parallelEn || !(await quoteInEnglish(book.parallelEn, Number(b.cidx) || 0, quote, origin))) {
+            return res.status(400).json({ error: "Those words were not found in the book's English." });
+          }
+        } else if (!(await quoteInBook(filename, quote, origin))) {
           return res.status(400).json({ error: "Those words were not found in the book." });
         }
         let name = "", avatar = "";
@@ -256,6 +263,11 @@ export default async function handler(req, res) {
           by: { name: name, avatar: avatar, guest: name.indexOf("Гость ") === 0 },
           owner: readerHash(ownerId),
         };
+        if (lang === "en") {
+          item.lang = "en";
+          item.src.enTitle = book.enTitle || "";
+          item.src.enAuthor = book.enAuthor || "";
+        }
         await quotesUpdate(function (cur) {
           if (cur.items.some(function (q) { return q.id === id; })) return null;
           cur.items.unshift(item);
@@ -1169,6 +1181,18 @@ async function quoteInBook(filename, quote, origin) {
     let text;
     try { text = new TextDecoder(m && !/utf-?8/i.test(m[1]) ? m[1].toLowerCase() : "utf-8").decode(raw); }
     catch (e) { text = raw.toString("utf8"); }
+    return quoteFold(text).indexOf(quoteFold(quote)) >= 0;
+  } catch (e) { return false; }
+}
+// The English column's chapter files: is this quote in this chapter's English?
+async function quoteInEnglish(dir, cidx, quote, origin) {
+  try {
+    const nn = String(Math.max(0, Math.floor(cidx)) + 1).padStart(2, "0");
+    const r = await fetch(origin + "/books/" + encodeURIComponent(dir) + "/" + nn + ".json");
+    if (!r.ok) return false;
+    const j = await r.json();
+    const text = Object.keys(j || {}).filter(function (k) { return k !== "_note"; })
+      .map(function (k) { return String(j[k]); }).join(" ");
     return quoteFold(text).indexOf(quoteFold(quote)) >= 0;
   } catch (e) { return false; }
 }

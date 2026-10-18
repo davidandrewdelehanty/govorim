@@ -9329,6 +9329,19 @@ export default function App() {
     var fn = src.filename || String(q.bookKey || "").split("::")[0];
     setShowAcct(false);
     setTab("chat"); setMode("read"); setLview("read");
+    if (q.lang === "en") {
+      // No offsets into the Russian to aim at: open the chapter, and the
+      // English page comes up on its own in English mode.
+      if (started && bookMeta && bookMeta.filename === fn) { if (q.cidx !== cidx) navLit(q.cidx || 0); return; }
+      for (var e = 0; e < presetBooks.length; e++) {
+        if (presetBooks[e].filename === fn) {
+          srcJumpChapterRef.current = q.cidx || 0;
+          loadPresetBook(presetBooks[e]);
+          return;
+        }
+      }
+      return;
+    }
     if (started && bookKey(bookMeta) === q.bookKey) {
       if (q.cidx === cidx) { setTimeout(function(){ scrollToOffset(q.start); }, 60); }
       else { requestSrcJump(q.start, bookMeta); navLit(q.cidx); }
@@ -9358,12 +9371,80 @@ export default function App() {
       body: JSON.stringify({ id: q.id, rid: readerRid() }),
     }).catch(function(){});
   };
+  // ── English quotes (Read in English mode) ──
+  // Their own board: select words on the English page, tap ★ Quote. Kept
+  // apart from the Russian quotes in both directions. The reader's own list
+  // lives on this device; the shared list is the server's, marked lang "en".
+  var [enQuotesMine, setEnQuotesMine] = useState(function(){
+    try { var v = JSON.parse(localStorage.getItem("gv_en_quotes_v1") || "[]"); return Array.isArray(v) ? v : []; }
+    catch (e) { return []; }
+  });
+  useEffect(function(){
+    try { localStorage.setItem("gv_en_quotes_v1", JSON.stringify(enQuotesMine.slice(0, 500))); } catch (e) {}
+  }, [enQuotesMine]);
+  var [enSel, setEnSel] = useState(null);     // { quote, x, y, bottom }
+  useEffect(function(){
+    if (targetLang !== "en") { setEnSel(null); return; }
+    var onSel = function(){
+      try {
+        var sel = window.getSelection();
+        if (!sel || sel.isCollapsed || !sel.rangeCount) { setEnSel(null); return; }
+        var node = sel.anchorNode && (sel.anchorNode.nodeType === 1 ? sel.anchorNode : sel.anchorNode.parentElement);
+        if (!node || !node.closest || !node.closest(".dual-en-flow")) { setEnSel(null); return; }
+        var q = String(sel.toString() || "").replace(/\s+/g, " ").trim();
+        if (q.length < 3) { setEnSel(null); return; }
+        var r = sel.getRangeAt(0).getBoundingClientRect();
+        setEnSel({ quote: q.slice(0, 600), x: r.left + r.width / 2, y: r.top, bottom: r.bottom });
+      } catch (e) { setEnSel(null); }
+    };
+    document.addEventListener("selectionchange", onSel);
+    return function(){ document.removeEventListener("selectionchange", onSel); };
+  }, [targetLang]);
+  var makeEnQuote = function() {
+    var sq = enSel;
+    if (!sq || !sq.quote || !bookMeta) return;
+    var ch = chapters[cidx] || {};
+    var id = "en" + Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
+    var mineItem = { id: id, quote: sq.quote, at: Date.now(), lang: "en", cidx: cidx,
+      src: { title: bookMeta.title || "", author: bookMeta.author || "", filename: bookMeta.filename || "",
+             slug: bookMeta.slug || "", heading: String(ch.heading || "").trim(),
+             enTitle: bookMeta.enTitle || "", enAuthor: bookMeta.enAuthor || "" } };
+    setEnQuotesMine(function(l){ return [mineItem].concat(l || []); });
+    try { window.getSelection().removeAllRanges(); } catch (e) {}
+    setEnSel(null);
+    setQuoteSaved({ at: Date.now(), note: "" });
+    authFetch("/api/user-data?anon=quote", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id: id, quote: sq.quote, filename: bookMeta.filename || "", lang: "en",
+                             heading: String(ch.heading || "").trim(), cidx: cidx, start: 0, end: 0,
+                             rid: readerRid() }),
+    }).then(function(r){ return r.json().then(function(j){ return { ok: r.ok, j: j }; }); })
+      .then(function(res){
+        if (res.ok && res.j && res.j.item) {
+          setPubQuotes(function(list){ return [res.j.item].concat((list || []).filter(function(q){ return q.id !== res.j.item.id; })); });
+        } else {
+          setQuoteSaved({ at: Date.now(), note: "Saved to your quotes, but not shared: " + ((res.j && res.j.error) || "the server said no") });
+        }
+      }).catch(function(){});
+  };
+  var removeEnQuote = function(q) {
+    setEnQuotesMine(function(l){ return (l || []).filter(function(x){ return x.id !== q.id; }); });
+    setPubQuotes(function(list){ return (list || []).filter(function(x){ return x.id !== q.id; }); });
+    authFetch("/api/user-data?anon=unquote", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id: q.id, rid: readerRid() }),
+    }).catch(function(){});
+  };
   var myQuoteIds = useMemo(function(){
     var m = {};
     Object.keys(annots || {}).forEach(function(k){ var a = annots[k]; if (a && a.fav) m[k] = 1; });
+    enQuotesMine.forEach(function(q){ m[q.id] = 1; });
     return m;
-  }, [annots]);
-  var quotesUnread = (pubQuotes || []).filter(function(q){ return q.at > quotesSeenAt && !myQuoteIds[q.id]; }).length;
+  }, [annots, enQuotesMine]);
+  // Each board counts its own new quotes.
+  var quotesUnread = (pubQuotes || []).filter(function(q){
+    return q.at > quotesSeenAt && !myQuoteIds[q.id] && ((q.lang === "en") === (targetLang === "en"));
+  }).length;
 
   var addInk = function(stroke) {
     if (groupClosedNow()) return;
@@ -14140,9 +14221,9 @@ export default function App() {
       clearTimeout(first);
     };
   }, [targetLang, dualPane, started, isLit, cidx, pidx, proseEn, bookMeta && bookMeta.filename]);
-  // English mode has no quotes or case drills: leave those tabs if open.
+  // English mode has no case drills: leave that tab if it is open.
   useEffect(function(){
-    if (targetLang === "en" && (tab === "quotes" || tab === "drills")) setTab("chat");
+    if (targetLang === "en" && tab === "drills") setTab("chat");
   }, [targetLang, tab]);
 
   var renderBubble = function(text) {
@@ -17161,6 +17242,20 @@ export default function App() {
           </div>
         );
       })()}
+      {enSel && started && targetLang === "en" && !selBox && (function(){
+        var w = 120;
+        var left = Math.max(8, Math.min(window.innerWidth - w - 8, enSel.x - w / 2));
+        var top = enSel.y - 50 > 8 ? enSel.y - 50 : enSel.bottom + 12;
+        return (
+          <div className="annot-pop" data-annot-keep="" style={{ left: left + "px", top: top + "px", width: w + "px" }}
+            onMouseDown={function(e){ e.preventDefault(); }}>
+            <div className="annot-pop-row">
+              <button type="button" className="pop-btn quote" title="Save these words to the English quotes"
+                onClick={makeEnQuote}>★ Quote</button>
+            </div>
+          </div>
+        );
+      })()}
 {/* The group's chat. It hangs off the group rather than off the book:
           a member who has not opened the group's file yet — an own-file group
           where the copy is still on somebody's desktop — can still come in,
@@ -19671,8 +19766,9 @@ export default function App() {
             {["chat","ranked","leaders","vocab","drills","quotes","grammar","forum","music"].filter(function(t){
               if (t === "forum") return FORUM_ENABLED;
               if (t === "grammar") return GRAMMAR_ENABLED;
-              // Quotes and case drills are Russian exercises: not in English mode.
-              if (targetLang === "en" && (t === "quotes" || t === "drills")) return false;
+              // Case drills are a Russian exercise: not in English mode. Quotes
+              // stay, with their own English board.
+              if (targetLang === "en" && t === "drills") return false;
               return true;
             }).map(function(t){
               return (
@@ -19772,24 +19868,29 @@ export default function App() {
 
         {tab==="quotes" && (function(){
           var mine = quoteView === "mine";
+          var enMode = targetLang === "en";
+          // Two boards: English quotes in Read in English mode, Russian otherwise.
           var list = mine
-            ? favQuotes.map(function(q){ return Object.assign({}, q, { at: q.favAt || q.createdAt }); })
-            : (pubQuotes || []).map(function(q){
+            ? (enMode ? enQuotesMine
+                      : favQuotes.map(function(q){ return Object.assign({}, q, { at: q.favAt || q.createdAt }); }))
+            : (pubQuotes || []).filter(function(q){ return (q.lang === "en") === enMode; }).map(function(q){
                 return Object.assign({ bookKey: (q.src && q.src.filename ? q.src.filename + "::" + (q.src.title || "") : "") }, q);
               });
+          var mineCount = enMode ? enQuotesMine.length : favQuotes.length;
           return (
             <div className="main">
               <div className="ss">
-                <h1 className="sti">Quotes</h1>
+                <h1 className="sti">{enMode ? "Quotes — Read in English" : "Quotes"}</h1>
                 <p className="sde">
-                  Lines readers have saved from the library — select words in any book and tap ★ Quote to add one.
-                  Click a quote to open the book at it.
+                  {enMode
+                    ? "Lines readers have saved from the English of the library's books — select words on an English page and tap ★ Quote to add one. Click a quote to open the book at its chapter."
+                    : "Lines readers have saved from the library — select words in any book and tap ★ Quote to add one. Click a quote to open the book at it."}
                 </p>
                 <div className="fq-tabs" role="tablist">
                   <button type="button" role="tab" aria-selected={!mine} className={"fq-tab" + (!mine ? " on" : "")}
                     onClick={function(){ setQuoteView("all"); }}>Everyone's</button>
                   <button type="button" role="tab" aria-selected={mine} className={"fq-tab" + (mine ? " on" : "")}
-                    onClick={function(){ setQuoteView("mine"); }}>Mine{favQuotes.length ? " (" + favQuotes.length + ")" : ""}</button>
+                    onClick={function(){ setQuoteView("mine"); }}>Mine{mineCount ? " (" + mineCount + ")" : ""}</button>
                 </div>
                 {!mine && pubQuotes === null && <div className="lib-cat-hint">Loading…</div>}
                 {list.length === 0 && (mine || pubQuotes !== null) && (
@@ -19808,11 +19909,14 @@ export default function App() {
                         title="Open the book at this quote"
                         onClick={function(){ openQuote(q); }}
                         onKeyDown={function(e){ if (e.key === "Enter") openQuote(q); }}>
-                        <blockquote className="fq-q" lang="ru">«{q.quote}»</blockquote>
+                        {q.lang === "en"
+                          ? <blockquote className="fq-q" lang="en">“{q.quote}”</blockquote>
+                          : <blockquote className="fq-q" lang="ru">«{q.quote}»</blockquote>}
                         <div className="fq-src">
-                          {src.author ? <span className="fq-a">{src.author}</span> : null}
-                          {src.author && title ? ", " : ""}
-                          <span className="fq-t">{title}</span>
+                          {(q.lang === "en" && src.enAuthor ? src.enAuthor.replace(/\s*\(.*\)$/, "") : src.author)
+                            ? <span className="fq-a">{q.lang === "en" && src.enAuthor ? src.enAuthor.replace(/\s*\(.*\)$/, "") : src.author}</span> : null}
+                          {(src.author || src.enAuthor) && title ? ", " : ""}
+                          <span className="fq-t">{q.lang === "en" && src.enTitle ? src.enTitle : title}</span>
                           {src.heading && src.heading !== title ? <span className="fq-h"> · {src.heading}</span> : null}
                         </div>
                         {!mine && q.by && (
@@ -19825,7 +19929,7 @@ export default function App() {
                         {canRemove && (
                           <button type="button" className="fq-x"
                             title={mine || myQuoteIds[q.id] ? "Remove this quote (the highlight stays in the book)" : "Remove this quote (admin)"}
-                            onClick={function(e){ e.stopPropagation(); unfavQuote(q); }}>×</button>
+                            onClick={function(e){ e.stopPropagation(); if (q.lang === "en") removeEnQuote(q); else unfavQuote(q); }}>×</button>
                         )}
                       </div>
                     );
