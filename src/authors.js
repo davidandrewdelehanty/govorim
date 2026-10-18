@@ -200,6 +200,22 @@ AUTHORS["Бакунин М.А."] = { name: "Михаил Бакунин", years:
 AUTHORS["Леонтьев К.Н."] = { name: "Константин Леонтьев", years: "1831–1891", file: "Leont'ev.jpg" };
 AUTHORS["Religious Texts"] = { name: "Библия", file: "Ostrog Bible, title page, 1581.jpg" };
 
+// The Russian writers' names in English, for Read in English mode. (Writers
+// of other languages are named by their books' English columns.)
+export var AUTHOR_EN = {
+  "Толстой Л.Н.": "Leo Tolstoy", "Тургенев И.С.": "Ivan Turgenev", "Достоевский Ф.М.": "Fyodor Dostoevsky",
+  "Короленко В.Г.": "Vladimir Korolenko", "Чехов А.П.": "Anton Chekhov", "Гоголь Н.В.": "Nikolai Gogol",
+  "Лермонтов М.Ю.": "Mikhail Lermontov", "Салтыков-Щедрин М.Е.": "Mikhail Saltykov-Shchedrin",
+  "Пушкин А.С.": "Alexander Pushkin", "Андреев Л.Н.": "Leonid Andreyev", "Куприн А.И.": "Alexander Kuprin",
+  "Горький М.": "Maxim Gorky", "Бунин И.А.": "Ivan Bunin", "Грибоедов А.С.": "Alexander Griboyedov",
+  "Островский А.Н.": "Alexander Ostrovsky", "Булгаков М.А.": "Mikhail Bulgakov",
+  "Чернышевский Н.Г.": "Nikolay Chernyshevsky", "Religious Texts": "The Bible",
+  "Тютчев Ф.И.": "Fyodor Tyutchev", "Блок А.А.": "Alexander Blok", "Есенин С.А.": "Sergei Yesenin",
+  "Маяковский В.В.": "Vladimir Mayakovsky", "Некрасов Н.А.": "Nikolay Nekrasov", "Фет А.А.": "Afanasy Fet",
+  "Крылов И.А.": "Ivan Krylov", "Лесков Н.С.": "Nikolai Leskov", "Толстой А.К.": "Aleksey K. Tolstoy",
+  "Гончаров И.А.": "Ivan Goncharov", "Платон": "Plato", "Аристотель": "Aristotle", "Гомер": "Homer", "Эзоп": "Aesop",
+};
+
 export function authorInfo(key) {
   return AUTHORS[String(key || "").trim()] || null;
 }

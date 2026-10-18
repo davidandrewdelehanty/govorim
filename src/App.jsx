@@ -10,7 +10,7 @@ import { dayKey, dayMet, bump as bumpStats, streaks, mergeStats,
          totals as statsTotals, GOAL_WORDS, GOAL_CARDS } from "./stats.js";
 import { AnnotLayer, HL_COLORS, INK_COLORS, annotId } from "./annotations.jsx";
 import { readUiLang, saveUiLang, applyUiLang, trUi } from "./uilang.js";
-import { authorInfo, authorSrc, authorCropStyle } from "./authors.js";
+import { authorInfo, authorSrc, authorCropStyle, AUTHOR_EN } from "./authors.js";
 import IMAGE_MAP from "./image-map.json";
 
 // localStorage-backed storage shim, matching the previous window.storage Promise API.
@@ -6494,9 +6494,40 @@ export default function App() {
     if (!book) return "";
     return (targetLang === "en" && book.enTitle) ? book.enTitle : (book.title || book.filename || "");
   };
+  // An author's name in English: the English library's own books carry it;
+  // a translation's English column names it (minus the translator); the
+  // Russian writers are named in AUTHOR_EN (authors.js).
+  var enAuthorName = function(book) {
+    if (!book) return "";
+    var a = String(book.author || "").trim();
+    if (book.lang === "en") return a;
+    if (book.enAuthor) return String(book.enAuthor).replace(/\s*\(tr\.[^)]*\)\s*$/, "").trim();
+    var info = authorInfo(a);
+    return AUTHOR_EN[a] || (info && info.name) || a;
+  };
   var shownAuthor = function(book, fallback) {
-    if (targetLang === "en" && book && book.enAuthor) return String(book.enAuthor).replace(/\s*\(tr\.[^)]*\)\s*$/, "");
+    if (targetLang === "en" && book) return enAuthorName(book) || fallback;
     return fallback;
+  };
+  // Grouping key for the Authors shelf and lists: the English name in
+  // English mode, so Dickens in Russian translation and Dickens in English
+  // are one author, not two.
+  var authorKeyOf = function(book) {
+    return targetLang === "en" ? enAuthorName(book) : String((book && book.author) || "").trim();
+  };
+  // English name → the portrait entry of whoever carries it in the catalogue.
+  var enAuthorInfo = useMemo(function(){
+    var m = {};
+    (presetBooks || []).forEach(function(b){
+      var info = authorInfo(b && b.author);
+      if (!info) return;
+      var k = enAuthorName(b);
+      if (k && !m[k]) m[k] = info;
+    });
+    return m;
+  }, [presetBooks]);
+  var authorInfoFor = function(a) {
+    return targetLang === "en" ? (enAuthorInfo[a] || authorInfo(a)) : authorInfo(a);
   };
   var shownBlurb = function(book) {
     if (!book) return "";
@@ -20968,7 +20999,7 @@ export default function App() {
                                 // document. Its category is the heading a
                                 // reader would look under, so use that before
                                 // falling back to the unattributed bucket.
-                                var author = String((book && book.author) || "").trim()
+                                var author = authorKeyOf(book)
                                   || String((book && book.category) || "").trim()
                                   || "Other";
                                 if (!groups[author]) groups[author] = [];
@@ -20979,7 +21010,7 @@ export default function App() {
                               var authors = Object.keys(groups).sort(function(a, b) {
                                 if (a === "Other") return 1;
                                 if (b === "Other") return -1;
-                                return a.localeCompare(b, "ru");
+                                return a.localeCompare(b, targetLang === "en" ? "en" : "ru");
                               });
                               return authors.map(function(author) {
                                 var entries = groups[author].slice().sort(function(a, b) {
@@ -21240,15 +21271,20 @@ export default function App() {
                         var authorCounts = {};
                         presetBooks.forEach(function(book){
                           if (!matchesBase(book)) return;
-                          var a = (book.author || "").trim();
+                          var a = authorKeyOf(book);
                           if (a) authorCounts[a] = (authorCounts[a] || 0) + 1;
                         });
                         var authorList = Object.keys(authorCounts).sort(function(a, b){
+                          if (targetLang === "en") {
+                            // By surname, as an English shelf would be.
+                            var sa = a.split(/\s+/).pop(), sb = b.split(/\s+/).pop();
+                            return sa.localeCompare(sb, "en") || a.localeCompare(b, "en");
+                          }
                           return a.localeCompare(b, "ru");
                         });
                         var matches = function(book) {
                           if (!matchesBase(book)) return false;
-                          if (libAuthor && !q && (book.author || "").trim() !== libAuthor) return false;
+                          if (libAuthor && !q && authorKeyOf(book) !== libAuthor) return false;
                           if (!q) return true;
                           var hay = ((book.title || "") + " " + (book.author || "") + " " + (book.filename || "")).toLowerCase();
                           return hay.indexOf(q) !== -1;
@@ -21316,8 +21352,8 @@ export default function App() {
                         // Commons has none), the name, how much of them is here and
                         // their years. Shared by every shelf and the Authors chip.
                         var authorTile = function(a, n, open) {
-                          var info = authorInfo(a);
-                          var nm = (info && info.name) || a;
+                          var info = authorInfoFor(a);
+                          var nm = targetLang === "en" ? a : ((info && info.name) || a);
                           var mono = nm.split(/\s+/).filter(Boolean).map(function(w){ return w.charAt(0); }).join("").slice(0, 2);
                           return (
                             <div key={a} className="tb-card ld-card au-card" role="button" tabIndex={0}
@@ -21337,14 +21373,14 @@ export default function App() {
                           );
                         };
                         var authorHead = function(a, n, back, backLabel) {
-                          var info = authorInfo(a);
+                          var info = authorInfoFor(a);
                           return (
                             <div className="ld-head">
                               <button type="button" className="ld-back" onClick={back}>{backLabel}</button>
                               {info && info.crop ? <div className="ld-head-img au-head-img au-crop" style={authorCropStyle(info)} />
                                 : (info && (info.file || info.img)) ? <img className="ld-head-img au-head-img" src={authorSrc(info, 200)} alt="" /> : null}
                               <div>
-                                <div className="ld-head-n" lang="ru">{(info && info.name) || a}</div>
+                                <div className="ld-head-n" lang={targetLang === "en" ? "en" : "ru"}>{targetLang === "en" ? a : ((info && info.name) || a)}</div>
                                 <div className="ld-head-y">{info && info.years ? info.years + " · " : ""}{n} {n === 1 ? "work" : "works"}</div>
                               </div>
                             </div>
@@ -21457,7 +21493,7 @@ export default function App() {
                                 )}
                               </div>
                             )}
-                            {authorView && authorInfo(libAuthor) && (
+                            {authorView && (authorInfoFor(libAuthor) || targetLang === "en") && (
                               <div className="lib-section">{authorHead(libAuthor, authorCounts[libAuthor] || 0,
                                 function(){ setLibAuthor(""); setLibCat("__authors__"); }, "← All authors")}</div>
                             )}
@@ -21783,7 +21819,7 @@ export default function App() {
                               if (!searching && !authorView && cat !== "Religious Texts") {
                                 var byAuth = {};
                                 entries.forEach(function(e){
-                                  var a = String(e.book.author || "").trim() || "—";
+                                  var a = authorKeyOf(e.book) || "—";
                                   (byAuth[a] = byAuth[a] || []).push(e);
                                 });
                                 var aKeys = Object.keys(byAuth).sort(function(a, b){ return a.localeCompare(b, "ru"); });
