@@ -6664,6 +6664,9 @@ export default function App() {
   var [bibleEn, setBibleEn] = useState(null);
   // Dual-language prose (bookMeta.parallelEn): chapter's paragraph-index → English map.
   var [proseEn, setProseEn] = useState(null);
+  // The chapter whose English came back empty, so Read in English mode can
+  // say why it is showing the Russian. -1: none.
+  var [enMissingAt, setEnMissingAt] = useState(-1);
   // Paragraph-level times into the chapter's recording, produced offline from
   // the video's transcript (tools/para_sync.py). Keyed by the same paragraph
   // index as the English (entry.chIdx), fetched by convention from
@@ -8038,7 +8041,12 @@ export default function App() {
       return function() { cancelled = true; };
     }
 
-    get(cidx + 1).then(function(j) { if (!cancelled && j) setProseEn(j); });
+    get(cidx + 1).then(function(j) {
+      if (cancelled) return;
+      if (j) setProseEn(j);
+      var has = !!(j && Object.keys(j).some(function(k){ return k !== "_note" && String(j[k] || "").trim(); }));
+      setEnMissingAt(has ? -1 : cidx);
+    });
     return function() { cancelled = true; };
   }, [bookMeta && bookMeta.parallelEn, cidx, curChapter && curChapter.merged]);
 
@@ -14157,10 +14165,15 @@ export default function App() {
                   Dead Souls runs well past Gogol, which is why that book read
                   as a column of gaps. Each text is now a column of its own and
                   neither can set the other's spacing. */}
-              {flowEn ? <div className="dual-ru-flow" lang="ru">{litRendered}</div> : litRendered}
+              {/* In Read in English mode the English is the first column, the
+                  one a page opens on, and the Russian the one a swipe away —
+                  laid out that way rather than scrolled to, which a phone's
+                  snap scrolling could undo. */}
+              {flowEn ? <div className="dual-ru-flow" lang="ru"
+                             style={enFirst ? {gridColumn: 2} : undefined}>{litRendered}</div> : litRendered}
               {flowEn && flowEnBlocks && flowEnBlocks.length > 0 && (
                 <div className="dual-en-flow" lang="en"
-                     style={{gridColumn: 2, gridRow: 1}}>
+                     style={{gridColumn: enFirst ? 1 : 2, gridRow: 1}}>
                   {flowEnBlocks.map(function(t, i) {
                     if (t && typeof t === "object") {
                       return <p key={i} className="dual-en" data-enk={cidx + ":" + pidx + ":" + i}><span className="bible-en-vno">{t.n}</span> {enWords(t.t)}</p>;
@@ -14189,7 +14202,7 @@ export default function App() {
             aria-label={dualPane === 0 ? "Show the English translation" : "Back to the Russian text"}
             title={dualPane === 0 ? "Show English" : "Back to Russian"}
           >
-            {dualPane === 0 ? "EN →" : "← RU"}
+            {enFirst ? (dualPane === 1 ? "RU →" : "← EN") : (dualPane === 0 ? "EN →" : "← RU")}
           </button>
         </div>
       );
@@ -14201,16 +14214,28 @@ export default function App() {
       return [<div key="tnote" className="pmt tnote">{bookMeta.translationNote}</div>]
         .concat(litRendered);
     }
+    // Read in English mode, and this part of the book has no English: say so,
+    // rather than leave the reader wondering why the Russian came up.
+    if (targetLang === "en" && bookMeta && bookMeta.parallelEn && enMissingAt === cidx) {
+      return [<div key="noen" className="pmt tnote">This part of the book has no English translation, so the Russian is shown. Use Next to go on to the parts that have it.</div>]
+        .concat(litRendered);
+    }
     return litRendered;
   };
 
   // Scroll the pane rather than moving it: the container keeps its scroll-snap,
   // so swipe and shift-wheel keep working exactly as before and this is just a
   // third way to drive the same thing.
+  // dualPane is the language on screen (0 Russian, 1 English); which side of
+  // the scroller that is depends on the mode — English is on the left in
+  // Read in English mode (enFirst).
+  var enFirst = targetLang === "en";
   var toggleDual = function() {
     var el = dualRef.current;
     if (!el) return;
-    var to = dualPane === 0 ? el.clientWidth : 0;
+    var want = dualPane === 0 ? 1 : 0;              // the other language
+    var side = enFirst ? 1 - want : want;           // 0 = left, 1 = right
+    var to = side ? el.clientWidth : 0;
     try { el.scrollTo({ left: to, behavior: "smooth" }); }
     catch (e) { el.scrollLeft = to; }          // older browsers: jump, don't fail
   };
@@ -14219,33 +14244,25 @@ export default function App() {
   var onDualScroll = function(e) {
     var el = e.currentTarget;
     if (!el || !el.clientWidth) return;
-    var pane = el.scrollLeft > el.clientWidth / 2 ? 1 : 0;
+    var side = el.scrollLeft > el.clientWidth / 2 ? 1 : 0;
+    var pane = enFirst ? 1 - side : side;
     setDualPane(function(prev){ return prev === pane ? prev : pane; });
   };
 
   // A new page opens on the side of the language being learned: Russian,
   // or — with English chosen at the top — the English, where the book has it.
-  useEffect(function(){ setDualPane(0); }, [cidx, pidx]);
+  // A page opens on its first column — the Russian, or in Read in English
+  // mode the English (which is laid out first). Back to the left edge, and
+  // the pane state to match.
   useEffect(function(){
-    if (targetLang !== "en") {
-      var el0 = dualRef.current;
-      if (el0 && el0.scrollLeft > 0) { el0.scrollLeft = 0; setDualPane(0); }
-      return;
-    }
-    // The English arrives a moment after the page; try until the pane exists.
-    var tries = 0, t = null;
-    var go = function() {
-      var el = dualRef.current;
-      if (el && el.clientWidth) {
-        el.scrollLeft = el.clientWidth;
-        setDualPane(1);
-        return;
-      }
-      if (++tries < 20) t = setTimeout(go, 150);
-    };
-    t = setTimeout(go, 0);
-    return function(){ if (t) clearTimeout(t); };
-  }, [targetLang, cidx, pidx, proseEn, bibleEn]);
+    setDualPane(targetLang === "en" ? 1 : 0);
+    var el = dualRef.current;
+    if (el && el.scrollLeft > 0) el.scrollLeft = 0;
+  }, [cidx, pidx, targetLang]);
+  useEffect(function(){
+    var el = dualRef.current;
+    if (el && el.scrollLeft > 0) el.scrollLeft = 0;
+  }, [proseEn, bibleEn]);
 
   // "Read in English": English words count as they scroll past, on their own
   // daily figure (readEn) and their own leaderboard. Only while the English
