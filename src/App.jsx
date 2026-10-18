@@ -6483,6 +6483,19 @@ export default function App() {
   useEffect(function(){
     try { localStorage.setItem("gv_target_lang", targetLang); } catch (e) {}
   }, [targetLang]);
+  // In Read in English mode a book is shown under its English name.
+  var shownTitle = function(book) {
+    if (!book) return "";
+    return (targetLang === "en" && book.enTitle) ? book.enTitle : (book.title || book.filename || "");
+  };
+  var shownAuthor = function(book, fallback) {
+    if (targetLang === "en" && book && book.enAuthor) return String(book.enAuthor).replace(/\s*\(tr\.[^)]*\)\s*$/, "");
+    return fallback;
+  };
+  var shownBlurb = function(book) {
+    if (!book) return "";
+    return (targetLang === "en" && book.blurbEn) ? book.blurbEn : book.blurb;
+  };
   // English paragraphs already counted, per book: "<chapter>:<page>:<block>".
   // Each counts once per reading; "Start over" clears the book's set.
   var enSeen = useRef(null);
@@ -14221,6 +14234,30 @@ export default function App() {
       clearTimeout(first);
     };
   }, [targetLang, dualPane, started, isLit, cidx, pidx, proseEn, bookMeta && bookMeta.filename]);
+  // A book opened fresh in English mode starts at its first chapter that has
+  // English: many open with a translator's preface or an introduction that
+  // was never paired, and would otherwise open on the Russian alone.
+  var enStartDone = useRef({});
+  useEffect(function(){
+    if (targetLang !== "en" || !(started && isLit) || !bookMeta || !bookMeta.parallelEn) return;
+    var key = bookKey(bookMeta);
+    if (!key || enStartDone.current[key] || !chapters.length) return;
+    enStartDone.current[key] = 1;
+    if (cidx !== 0 || pidx !== 0) return;
+    var dir = bookMeta.parallelEn, n = Math.min(chapters.length, 12), cancelled = false;
+    var pad = function(i){ var x = String(i); return x.length < 2 ? "0" + x : x; };
+    (async function(){
+      for (var i = 1; i <= n; i++) {
+        try {
+          var r = await fetch("/books/" + dir + "/" + pad(i) + ".json");
+          var j = r.ok ? await r.json() : null;
+          var has = j && Object.keys(j).some(function(k){ return k !== "_note" && String(j[k] || "").trim(); });
+          if (has) { if (!cancelled && i > 1) navLit(i - 1); return; }
+        } catch (e) { return; }
+      }
+    })();
+    return function(){ cancelled = true; };
+  }, [targetLang, started, isLit, bookMeta && bookMeta.filename, chapters.length]);
   // English mode has no case drills: leave that tab if it is open.
   useEffect(function(){
     if (targetLang === "en" && tab === "drills") setTab("chat");
@@ -19812,7 +19849,7 @@ export default function App() {
                 {LEVELS.map(function(l){ return <option key={l.code} value={l.code}>{l.label}</option>; })}
               </select>
             </div>}
-            {started && isLit && <button className="tbadge" onClick={function(){ setShowTopic(true); }}>{bookMeta.title || "Book"}</button>}
+            {started && isLit && <button className="tbadge" onClick={function(){ setShowTopic(true); }}>{shownTitle(bookMeta) || "Book"}</button>}
             <select className="level-pill tlang-pill" value={targetLang}
               title="The language you are learning. English opens a book's English text first, with the Russian a tab away — for books that have an English translation."
               aria-label="Target language"
@@ -21464,7 +21501,7 @@ export default function App() {
                                         loadPresetBook(book);
                                       }
                                     }}>
-                                    <div className="lib-card-title">{book.title || book.filename}{book.author && book.author !== book.title ? <span className="a">{book.author}</span> : null}</div>
+                                    <div className="lib-card-title">{shownTitle(book)}{book.author && book.author !== book.title ? <span className="a">{shownAuthor(book, book.author)}</span> : null}</div>
                                     {/* What the book is about, in a line — enough to
                                         choose by. Deliberately spoiler-free: it gives
                                         the situation the work opens on and stops
@@ -21570,17 +21607,17 @@ export default function App() {
                                             {(!cover && info && info.crop)
                                               ? <div className="au-crop" style={authorCropStyle(info)} />
                                               : <TileImg srcs={[cover, (info && (info.file || info.img) && !info.crop) ? authorSrc(info, 400) : ""]}
-                                                  title={book.title}
+                                                  title={shownTitle(book)}
                                                   fallback={(info && info.crop) ? <div className="au-crop" style={authorCropStyle(info)} /> : null} />}
                                             {isFinished(book) && <span className="tb-read">read</span>}
                                           </div>
-                                          <div className="tb-card-t" lang="ru">{book.title || book.filename}</div>
+                                          <div className="tb-card-t" lang={targetLang === "en" && book.enTitle ? "en" : "ru"}>{shownTitle(book)}</div>
                                           <div className="tb-card-a">
-                                            {book.author && book.author !== book.title && book.author !== "Religious Texts" && <span lang="ru">{(info && info.name) || book.author}</span>}
+                                            {book.author && book.author !== book.title && book.author !== "Religious Texts" && <span lang="ru">{shownAuthor(book, (info && info.name) || book.author)}</span>}
                                             {book.year ? <span className="y">{book.year}</span> : null}
                                           </div>
-                                          {book.blurb && (
-                                            <div className="tb-card-b wk-blurb" lang={book.blurbLang || undefined}>{book.blurb}</div>
+                                          {shownBlurb(book) && (
+                                            <div className="tb-card-b wk-blurb" lang={(targetLang === "en" && book.blurbEn) ? "en" : (book.blurbLang || undefined)}>{shownBlurb(book)}</div>
                                           )}
                                           <div className="wk-tags">
                                             {(book.parallelEn || book.isBible) && <span className="lib-tag">en</span>}
@@ -21679,12 +21716,12 @@ export default function App() {
                                         })()}
                                         {isFinished(book) && <span className="tb-read">read</span>}
                                       </div>
-                                      <div className="tb-card-t" lang="ru">{book.title}</div>
+                                      <div className="tb-card-t" lang={targetLang === "en" && book.enTitle ? "en" : "ru"}>{shownTitle(book)}</div>
                                       <div className="tb-card-a">
-                                        {book.author && <span lang="ru">{book.author}</span>}
+                                        {book.author && <span lang="ru">{shownAuthor(book, book.author)}</span>}
                                         {book.year ? <span className="y">{book.year}</span> : null}
                                       </div>
-                                      {book.blurb && <div className="tb-card-b">{book.blurb}</div>}
+                                      {shownBlurb(book) && <div className="tb-card-b">{shownBlurb(book)}</div>}
                                       {isLoading && (
                                         <div className="lib-card-loader">
                                           <div className="typing"><div className="dot"/><div className="dot"/><div className="dot"/></div>
