@@ -167,6 +167,7 @@ AUTHORS["Ницше Ф."] = { name: "Фридрих Ницше", years: "1844–
 AUTHORS["Макиавелли Н."] = { name: "Никколо Макиавелли", years: "1469–1527", file: "Portrait of Niccolò Machiavelli by Santi di Tito.jpg" };
 AUTHORS["Шопенгауэр А."] = { name: "Артур Шопенгауэр", years: "1788–1860", file: "Arthur Schopenhauer by J Schäfer, 1859b.jpg" };
 AUTHORS["Эпиктет"] = { name: "Эпиктет", years: "ок. 50–138", file: "Epictetus.jpg" };
+AUTHORS["Гомер"] = { name: "Гомер", years: "VIII в. до н. э.", file: "Homer British Museum.jpg" };
 AUTHORS["Чаадаев П.Я."] = { name: "Пётр Чаадаев", years: "1794–1856", file: "Chaadaev portrait.jpeg" };
 AUTHORS["Соловьёв В.С."] = { name: "Владимир Соловьёв", years: "1853–1900", file: "VS Solovyov.jpg" };
 AUTHORS["Бердяев Н.А."] = { name: "Николай Бердяев", years: "1874–1948", file: "NBerdyaev.jpg" };
