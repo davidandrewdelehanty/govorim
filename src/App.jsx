@@ -11,6 +11,7 @@ import { dayKey, dayMet, bump as bumpStats, streaks, mergeStats,
 import { AnnotLayer, HL_COLORS, INK_COLORS, annotId } from "./annotations.jsx";
 import { readUiLang, saveUiLang, applyUiLang, trUi } from "./uilang.js";
 import { authorInfo, authorSrc, authorCropStyle } from "./authors.js";
+import IMAGE_MAP from "./image-map.json";
 
 // localStorage-backed storage shim, matching the previous window.storage Promise API.
 // Keeps the rest of the app code unchanged (still uses await storage.get/set/delete).
@@ -1738,7 +1739,29 @@ function speechLeaderOf(book) {
   return null;
 }
 function leaderPhoto(file) {
+  // Our own copy when tools/localize_images.py has made one.
+  if (IMAGE_MAP[file]) return IMAGE_MAP[file];
   return "https://commons.wikimedia.org/wiki/Special:FilePath/" + encodeURIComponent(file) + "?width=400";
+}
+
+// A tile's picture that never shows as a broken image: each source is tried
+// in turn (the book's own cover, then its author's portrait), and when none
+// loads the tile shows its title instead.
+function TileImg(props) {
+  var srcs = (props.srcs || []).filter(Boolean);
+  var [i, setI] = useState(0);
+  var key = srcs.join("|");
+  useEffect(function(){ setI(0); }, [key]);
+  if (i >= srcs.length) {
+    return props.fallback || <span className="tb-cover-t" lang="ru">{props.title || ""}</span>;
+  }
+  return <img src={srcs[i]} alt="" loading="lazy" decoding="async"
+              onError={function(){ setI(function(n){ return n + 1; }); }} />;
+}
+function coverSrc(book) {
+  var c = book && book.cover;
+  if (!c) return "";
+  return /^https?:\/\//.test(c) || c.charAt(0) === "/" ? c : "/books/" + c;
 }
 
 function playShortStageLine(t) {
@@ -9078,7 +9101,11 @@ export default function App() {
   var [quoteView, setQuoteView] = useState("all");
   // The interface language: English or Russian, chosen with EN · RU in the
   // header. The book text is never touched — see uilang.js.
-  var [uiLang, setUiLang] = useState(readUiLang);
+  // The EN · RU interface switch is set aside for now (Oct 2026) — its uses
+  // below are commented out, not deleted. Until it comes back the interface
+  // is English, so nobody is left in a Russian interface with no way out.
+  // var [uiLang, setUiLang] = useState(readUiLang);
+  var [uiLang, setUiLang] = useState("en");
   useEffect(function(){ saveUiLang(uiLang); applyUiLang(uiLang); }, [uiLang]);
   var langPick = (
     <span className="langpick" data-noxl="1" role="group" aria-label="Interface language · Язык интерфейса">
@@ -19441,7 +19468,7 @@ export default function App() {
 
       {authReady && !me && !guest && (
         <div className="auth-page">
-          <div className="auth-lang">{langPick}</div>
+          {/* <div className="auth-lang">{langPick}</div> — interface switch set aside */}
           <div className="auth-foot">{siteFoot}</div>
           <div className="auth-card">
             <div className="auth-brand">
@@ -19640,7 +19667,7 @@ export default function App() {
                 <button className="adm-trigger" onClick={function(){ setAuthMode("login"); setAuthErr(""); setAuthNotice(""); setAuthOpen(true); }} title="Sign in to sync vocabulary">Sign in</button>
               </div>
             ))}
-            {langPick}
+            {/* {langPick} — interface switch set aside */}
           </div>
         </header>
         {ttsErr && (
@@ -20672,6 +20699,7 @@ export default function App() {
                                 // hidden here too, or the two lists disagree about
                                 // what the library contains.
                                 if (hideFinished && isFinished(book)) return;
+                                if (targetLang === "en" && !(book.parallelEn || isBibleBook(book))) return;
                                 // Fully-equipped filter: a translation to read
                                 // beside the Russian, and something to hear it
                                 // in — a narrated recording or a chapter video,
@@ -20940,6 +20968,8 @@ export default function App() {
                           // consumer of this predicate — the grid, its category
                           // counts, and the uploads row — agrees on what is visible.
                           if (hideFinished && isFinished(book)) return false;
+                          // Learning English: only the works that have their English.
+                          if (targetLang === "en" && !(book.parallelEn || isBibleBook(book))) return false;
                           // A book with no count (an upload not yet opened) is not
                           // hidden by a length filter it cannot be judged against.
                           if (libLength && book.words &&
@@ -21034,7 +21064,7 @@ export default function App() {
                                 {info && info.crop
                                   ? <div className="au-crop" style={authorCropStyle(info)} />
                                   : (info && (info.file || info.img))
-                                  ? <img src={authorSrc(info, 400)} alt="" loading="lazy" decoding="async" />
+                                  ? <TileImg srcs={[authorSrc(info, 400)]} fallback={<span className="au-mono" lang="ru">{mono}</span>} />
                                   : <span className="au-mono" lang="ru">{mono}</span>}
                               </div>
                               <div className="tb-card-t" lang="ru">{nm}</div>
@@ -21334,7 +21364,7 @@ export default function App() {
                                         if (book.category === "Song Lyrics") openSongPicker(book); else loadPresetBook(book);
                                       };
                                       var info = authorInfo(book.author);
-                                      var cover = book.cover ? (/^https?:\/\//.test(book.cover) ? book.cover : "/books/" + book.cover) : "";
+                                      var cover = coverSrc(book);
                                       var hasVid = !!(book.videos && Object.keys(book.videos).length);
                                       return (
                                         <div key={entry.idx}
@@ -21343,13 +21373,11 @@ export default function App() {
                                           onKeyDown={function(e){ if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); } }}
                                           onClick={open}>
                                           <div className={"tb-cover" + (cover ? "" : " au-photo")}>
-                                            {cover
-                                              ? <img src={cover} alt="" loading="lazy" decoding="async" />
-                                              : (info && info.crop)
+                                            {(!cover && info && info.crop)
                                               ? <div className="au-crop" style={authorCropStyle(info)} />
-                                              : (info && (info.file || info.img))
-                                              ? <img src={authorSrc(info, 400)} alt="" loading="lazy" decoding="async" />
-                                              : <span className="tb-cover-t" lang="ru">{book.title}</span>}
+                                              : <TileImg srcs={[cover, (info && (info.file || info.img) && !info.crop) ? authorSrc(info, 400) : ""]}
+                                                  title={book.title}
+                                                  fallback={(info && info.crop) ? <div className="au-crop" style={authorCropStyle(info)} /> : null} />}
                                             {isFinished(book) && <span className="tb-read">read</span>}
                                           </div>
                                           <div className="tb-card-t" lang="ru">{book.title || book.filename}</div>
@@ -21449,9 +21477,12 @@ export default function App() {
                                       onKeyDown={function(e){ if ((e.key === "Enter" || e.key === " ") && bookLoading === null) { e.preventDefault(); loadPresetBook(book); } }}
                                       onClick={function(){ if (bookLoading === null) loadPresetBook(book); }}>
                                       <div className="tb-cover">
-                                        {book.cover
-                                          ? <img src={/^https?:\/\//.test(book.cover) ? book.cover : "/books/" + book.cover} alt="" loading="lazy" decoding="async" />
-                                          : <span className="tb-cover-t" lang="ru">{book.title}</span>}
+                                        {(function(){
+                                          var ai = authorInfo(book.author);
+                                          return <TileImg srcs={[coverSrc(book), (ai && (ai.file || ai.img) && !ai.crop) ? authorSrc(ai, 400) : ""]}
+                                                   title={book.title}
+                                                   fallback={(ai && ai.crop) ? <div className="au-crop" style={authorCropStyle(ai)} /> : null} />;
+                                        })()}
                                         {isFinished(book) && <span className="tb-read">read</span>}
                                       </div>
                                       <div className="tb-card-t" lang="ru">{book.title}</div>

@@ -1,3 +1,4 @@
+import IMAGE_MAP from "./image-map.json";
 // Authors on the library shelves: the catalogue's author string (surname and
 // initials, as the FB2s spell it) -> a display name, life years and a portrait.
 // Portraits are Wikidata's image (P18) for each writer, hotlinked from Wikimedia
@@ -221,5 +222,7 @@ export function authorCropStyle(info, width) {
   };
 }
 export function authorPhoto(file, width) {
+  // Our own copy, made by tools/localize_images.py, when there is one.
+  if (IMAGE_MAP[file]) return IMAGE_MAP[file];
   return "https://commons.wikimedia.org/wiki/Special:FilePath/" + encodeURIComponent(file) + "?width=" + (width || 400);
 }
