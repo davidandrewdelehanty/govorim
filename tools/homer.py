@@ -69,7 +69,7 @@ def book_no(heading):
         for i, s in sorted(enumerate(ORD[:9]), key=lambda a: -len(a[1])):
             if w[1].startswith(s):
                 return 21 + i
-        return None
+        return 20          # «Песнь двадцатая. Битва богов» — the next word is the title
     for i, s in sorted(enumerate(ORD), key=lambda a: -len(a[1])):   # пятнадцатая before пятая
         if w[0].startswith(s):
             return i + 1

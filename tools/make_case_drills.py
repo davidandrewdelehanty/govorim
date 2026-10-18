@@ -365,6 +365,7 @@ def main():
     ap.add_argument('--all-parallel',action='store_true',help='every book with a parallelEn translation')
     ap.add_argument('--all-prose',action='store_true',help='every book that is not verse (category Poetry)')
     ap.add_argument('--max-per-chapter',type=int,default=100000)
+    ap.add_argument('--min-per-chapter',type=int,default=3,help='fewer clean drills than this and the chapter is skipped (1 suits fables)')
     ap.add_argument('--force',action='store_true')
     ap.add_argument('--bible',action='store_true',help='Bible only')
     ap.add_argument('--all',action='store_true',help='every parallelEn book AND the Bible')
@@ -414,7 +415,7 @@ def main():
                         d['id']='c%d'%(len(drills)+1)
                         drills.append(d)
                 if len(drills)>=a.max_per_chapter: break
-            if len(drills)>=3:
+            if len(drills)>=max(1,a.min_per_chapter):
                 json.dump({'cases':drills},open(fpath,'w',encoding='utf-8'),ensure_ascii=False,indent=1)
                 print('  ch%d: %d drills → %s'%(ci,len(drills),fkey))
             else:
