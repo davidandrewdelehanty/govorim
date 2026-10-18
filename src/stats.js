@@ -60,6 +60,8 @@ export function mergeStats(a, b) {
       out[k] = {
         read: Math.max(cur.read || 0, rec.read || 0),
         practiced: Math.max(cur.practiced || 0, rec.practiced || 0),
+        // English words read in "Read in English" mode — its own board.
+        readEn: Math.max(cur.readEn || 0, rec.readEn || 0),
       };
     });
   });

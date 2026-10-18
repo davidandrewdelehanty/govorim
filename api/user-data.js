@@ -30,7 +30,7 @@ import {
 } from "@aws-sdk/client-s3";
 import { listAccounts, userIdFor, r2GetJson as authGetJson, userDataKey as authDataKey, isAdminEmail } from "../lib/auth.js";
 import { requireUser, currentUser, bumpDaily, touchSeen, findAccount,
-  updateBoardRow, readBoards, learnedCount, finishedCount, wordsRead, cardsReviewed,
+  updateBoardRow, readBoards, learnedCount, finishedCount, wordsRead, wordsReadEn, cardsReviewed,
   songsCount, drillsDone, uidForUsername, isHiddenUid } from "../lib/auth.js";
 import { sendEmail } from "../lib/admin/helpers.js";
 import { r2Endpoint } from "../lib/r2-endpoint.js";
@@ -742,10 +742,12 @@ export default async function handler(req, res) {
           merged[k] = {
             read: Math.max(Number(a.read) || 0, Number(b.read) || 0),
             practiced: Math.max(Number(a.practiced) || 0, Number(b.practiced) || 0),
+            readEn: Math.max(Number(a.readEn) || 0, Number(b.readEn) || 0),
           };
         }
         await r2Put(userId, "stats", merged);
-        await noteBoard(user, { words: wordsRead(merged), reviewed: cardsReviewed(merged) });
+        await noteBoard(user, { words: wordsRead(merged), reviewed: cardsReviewed(merged),
+                                wordsEn: wordsReadEn(merged) });
         return res.status(200).json({ ok: true, stats: merged });
       }
 

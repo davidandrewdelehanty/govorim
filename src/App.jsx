@@ -6212,6 +6212,7 @@ export default function App() {
   };
   var resetBookProgress = function(key, meta) {
     if (!key) return;
+    try { var es = enSeenFor(key); Object.keys(es).forEach(function(k){ delete es[k]; }); saveEnSeen(); } catch (e) {}
     // Starting over is a second reading, and a second reading is reading:
     // it counts again, once. The ledger keys each reading of a work by its
     // round («work@2»), so the guard against counting the same words twice
@@ -6471,6 +6472,8 @@ export default function App() {
   // BOTTOM of a full chapter, so a reader had to scroll to the end of the page
   // to find the control that reveals the translation. Hence a floating toggle.
   var [dualPane, setDualPane]   = useState(0);  // 0 = Russian, 1 = English
+  var dualPaneRef = useRef(0);
+  useEffect(function(){ dualPaneRef.current = dualPane; }, [dualPane]);
   // The language the reader is learning. "en" turns the book round: where a
   // book has its English beside it, the English is the page that opens and
   // the Russian is the one a swipe away. Kept on this device.
@@ -6480,6 +6483,24 @@ export default function App() {
   useEffect(function(){
     try { localStorage.setItem("gv_target_lang", targetLang); } catch (e) {}
   }, [targetLang]);
+  // English paragraphs already counted, per book: "<chapter>:<page>:<block>".
+  // Each counts once per reading; "Start over" clears the book's set.
+  var enSeen = useRef(null);
+  var enSeenSave = useRef(null);
+  var enSeenFor = function(key) {
+    if (!enSeen.current) {
+      try { enSeen.current = JSON.parse(localStorage.getItem("gv_en_seen_v1") || "{}") || {}; }
+      catch (e) { enSeen.current = {}; }
+    }
+    if (!enSeen.current[key]) enSeen.current[key] = {};
+    return enSeen.current[key];
+  };
+  var saveEnSeen = function() {
+    if (enSeenSave.current) clearTimeout(enSeenSave.current);
+    enSeenSave.current = setTimeout(function(){
+      try { localStorage.setItem("gv_en_seen_v1", JSON.stringify(enSeen.current || {})); } catch (e) {}
+    }, 1500);
+  };
   var dualRef                   = useRef(null);
   var [cbm,  setCbm]            = useState(0);
   var [lview, setLview]         = useState("read");
@@ -7207,6 +7228,8 @@ export default function App() {
     var timer = null;
     var measure = function() {
       timer = null;
+      // The English pane is the one on screen: the Russian is not being read.
+      if (dualPaneRef.current === 1) return;
       var nodes = document.querySelectorAll(".lit-body [data-rw-start]");
       if (!nodes.length) return;
       // The last word that has been on screen: anything above the fold has
@@ -13996,7 +14019,7 @@ export default function App() {
                      style={{gridColumn: 2, gridRow: 1}}>
                   {flowEnBlocks.map(function(t, i) {
                     if (t && typeof t === "object") {
-                      return <p key={i} className="dual-en"><span className="bible-en-vno">{t.n}</span> {enWords(t.t)}</p>;
+                      return <p key={i} className="dual-en" data-enk={cidx + ":" + pidx + ":" + i}><span className="bible-en-vno">{t.n}</span> {enWords(t.t)}</p>;
                     }
                     var ek = flowEnKeyAt[i];
                     var es = (enSync && ek !== undefined) ? enSync[ek] : undefined;
@@ -14010,7 +14033,7 @@ export default function App() {
                           else seekWhenReady(es);
                         }}>▶</button>
                     ) : null;
-                    return <p key={i} className="dual-en">{ej}{enWords(t)}</p>;
+                    return <p key={i} className="dual-en" data-enk={cidx + ":" + pidx + ":" + i}>{ej}{enWords(t)}</p>;
                   })}
                 </div>
               )}
@@ -14079,6 +14102,48 @@ export default function App() {
     t = setTimeout(go, 0);
     return function(){ if (t) clearTimeout(t); };
   }, [targetLang, cidx, pidx, proseEn, bibleEn]);
+
+  // "Read in English": English words count as they scroll past, on their own
+  // daily figure (readEn) and their own leaderboard. Only while the English
+  // pane is the one on screen, and each paragraph once per reading.
+  useEffect(function(){
+    if (targetLang !== "en" || dualPane !== 1 || !(started && isLit)) return;
+    var key = bookKey(bookMeta);
+    if (!key) return;
+    var timer = null;
+    var measure = function() {
+      timer = null;
+      var seen = enSeenFor(key);
+      var fold = (window.innerHeight || 0) - 10;
+      var gain = 0;
+      var nodes = document.querySelectorAll(".dual-en-flow [data-enk]");
+      for (var i = 0; i < nodes.length; i++) {
+        var k = nodes[i].getAttribute("data-enk");
+        if (!k || seen[k]) continue;
+        var r = nodes[i].getBoundingClientRect();
+        if (r.width > 0 && r.bottom <= fold && r.right > 0 && r.left < (window.innerWidth || 9999)) {
+          seen[k] = 1;
+          gain += (String(nodes[i].textContent || "").match(/[A-Za-z][A-Za-z'\u2019-]*/g) || []).length;
+        }
+      }
+      if (gain > 0 && !(me && !syncedFromServer)) { bumpToday("readEn", gain); saveEnSeen(); }
+    };
+    var onScroll = function(){ if (!timer) timer = setTimeout(measure, 400); };
+    var box = document.querySelector(".lit-left");
+    window.addEventListener("scroll", onScroll, { passive: true });
+    if (box) box.addEventListener("scroll", onScroll, { passive: true });
+    var first = setTimeout(measure, 1200);
+    return function(){
+      window.removeEventListener("scroll", onScroll);
+      if (box) box.removeEventListener("scroll", onScroll);
+      if (timer) clearTimeout(timer);
+      clearTimeout(first);
+    };
+  }, [targetLang, dualPane, started, isLit, cidx, pidx, proseEn, bookMeta && bookMeta.filename]);
+  // English mode has no quotes or case drills: leave those tabs if open.
+  useEffect(function(){
+    if (targetLang === "en" && (tab === "quotes" || tab === "drills")) setTab("chat");
+  }, [targetLang, tab]);
 
   var renderBubble = function(text) {
     // Diagnostic: log the raw AI message so we can verify whether footnotes
@@ -19606,6 +19671,8 @@ export default function App() {
             {["chat","ranked","leaders","vocab","drills","quotes","grammar","forum","music"].filter(function(t){
               if (t === "forum") return FORUM_ENABLED;
               if (t === "grammar") return GRAMMAR_ENABLED;
+              // Quotes and case drills are Russian exercises: not in English mode.
+              if (targetLang === "en" && (t === "quotes" || t === "drills")) return false;
               return true;
             }).map(function(t){
               return (
@@ -19843,9 +19910,11 @@ export default function App() {
         {tab==="leaders" && (
           <div className="main">
             <div className="ss">
-              <h1 className="sti">Leaderboard</h1>
+              <h1 className="sti">{targetLang === "en" ? "Leaderboard — Read in English" : "Leaderboard"}</h1>
               <p className="sde">
-                The readers who have reviewed the most cards, read the most words, answered the most case drills correctly and listened to the most songs.
+                {targetLang === "en"
+                  ? "The readers who have read the most in English. Switch the menu at the top to Read in Russian for the Russian boards."
+                  : "The readers who have reviewed the most cards, read the most words, answered the most case drills correctly and listened to the most songs."}
               </p>
               {me && !me.username && (
                 <div className="lb-join">
@@ -19860,12 +19929,14 @@ export default function App() {
                 <div className="lib-cat-hint">{boardsLoad ? "Counting…" : "Nothing counted yet."}</div>
               ) : (
                 <div className="lb-cols">
-                  {[
+                  {(targetLang === "en" ? [
+                    { key: "wordsEn", h: "English words read", sub: "words read in Read in English mode, counted as each paragraph scrolls past", unit: "words" },
+                  ] : [
                     { key: "reviewed", h: "Cards reviewed", sub: "every answer given in vocabulary review, right or wrong", unit: "cards" },
                     { key: "words", h: "Words read", sub: "Russian words read, counted as you go — a short story counts what it is, and so does a novel", unit: "words" },
                     { key: "drills", h: "Case drills right", sub: "every right answer in a case drill, from any book", unit: "right answers" },
                     { key: "songs", h: "Songs listened to", sub: "different songs played in the Music tab — each song counts once", unit: "songs" },
-                  ].map(function(col){
+                  ]).map(function(col){
                     var rows = boards[col.key] || [];
                     return (
                       <section key={col.key} className="lb-col">
