@@ -215,7 +215,12 @@ export function authorCropStyle(info, width) {
   if (!c) return null;
   const w = c[2] - c[0], h = c[3] - c[1];
   return {
-    backgroundImage: "url(\"" + authorSrc(info, width) + "\")",
+    // Our copy on top, the Commons original underneath: if the copy is
+    // missing, the original shows through instead of an empty tile.
+    backgroundImage: "url(\"" + authorSrc(info, width) + "\")" +
+      (info.file && IMAGE_MAP[info.file]
+        ? ", url(\"https://commons.wikimedia.org/wiki/Special:FilePath/" + encodeURIComponent(info.file) + "?width=960\")"
+        : ""),
     backgroundSize: (100 / w) + "% " + (100 / h) + "%",
     backgroundPosition: (w < 1 ? c[0] / (1 - w) * 100 : 0) + "% " + (h < 1 ? c[1] / (1 - h) * 100 : 0) + "%",
     backgroundRepeat: "no-repeat",
