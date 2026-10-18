@@ -1747,8 +1747,27 @@ function leaderPhoto(file) {
 // A tile's picture that never shows as a broken image: each source is tried
 // in turn (the book's own cover, then its author's portrait), and when none
 // loads the tile shows its title instead.
+// Our copy of a picture → the Commons original it was made from, so a copy
+// that is missing (not deployed yet, say) falls back to Commons rather than
+// to a bare title.
+var IMAGE_SOURCE = (function(){
+  var m = {};
+  Object.keys(IMAGE_MAP || {}).forEach(function(f){ if (!m[IMAGE_MAP[f]]) m[IMAGE_MAP[f]] = f; });
+  return m;
+})();
+function withSourceFallback(list) {
+  var out = [];
+  list.forEach(function(u){
+    if (!u) return;
+    out.push(u);
+    var path = u.replace(/^https?:\/\/[^/]+/, "");
+    var f = IMAGE_SOURCE[path];
+    if (f) out.push("https://commons.wikimedia.org/wiki/Special:FilePath/" + encodeURIComponent(f) + "?width=500");
+  });
+  return out;
+}
 function TileImg(props) {
-  var srcs = (props.srcs || []).filter(Boolean);
+  var srcs = withSourceFallback((props.srcs || []).filter(Boolean));
   var [i, setI] = useState(0);
   var key = srcs.join("|");
   useEffect(function(){ setI(0); }, [key]);
