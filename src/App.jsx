@@ -6429,6 +6429,15 @@ export default function App() {
   // BOTTOM of a full chapter, so a reader had to scroll to the end of the page
   // to find the control that reveals the translation. Hence a floating toggle.
   var [dualPane, setDualPane]   = useState(0);  // 0 = Russian, 1 = English
+  // The language the reader is learning. "en" turns the book round: where a
+  // book has its English beside it, the English is the page that opens and
+  // the Russian is the one a swipe away. Kept on this device.
+  var [targetLang, setTargetLang] = useState(function(){
+    try { return localStorage.getItem("gv_target_lang") === "en" ? "en" : "ru"; } catch (e) { return "ru"; }
+  });
+  useEffect(function(){
+    try { localStorage.setItem("gv_target_lang", targetLang); } catch (e) {}
+  }, [targetLang]);
   var dualRef                   = useRef(null);
   var [cbm,  setCbm]            = useState(0);
   var [lview, setLview]         = useState("read");
@@ -13918,7 +13927,7 @@ export default function App() {
       // swipe / shift-scroll to the right, snap points at each pane edge.
       return (
         <div className="dual-outer">
-          <div className="dual-hint">⇄ English</div>
+          <div className="dual-hint">{targetLang === "en" ? "⇄ Русский" : "⇄ English"}</div>
           {/* The translator's note introduces the translation once, on the
               first section — repeating it above every chapter turns it into
               boilerplate the reader learns to scroll past. */}
@@ -14001,8 +14010,29 @@ export default function App() {
     setDualPane(function(prev){ return prev === pane ? prev : pane; });
   };
 
-  // A new page always opens on the Russian side.
+  // A new page opens on the side of the language being learned: Russian,
+  // or — with English chosen at the top — the English, where the book has it.
   useEffect(function(){ setDualPane(0); }, [cidx, pidx]);
+  useEffect(function(){
+    if (targetLang !== "en") {
+      var el0 = dualRef.current;
+      if (el0 && el0.scrollLeft > 0) { el0.scrollLeft = 0; setDualPane(0); }
+      return;
+    }
+    // The English arrives a moment after the page; try until the pane exists.
+    var tries = 0, t = null;
+    var go = function() {
+      var el = dualRef.current;
+      if (el && el.clientWidth) {
+        el.scrollLeft = el.clientWidth;
+        setDualPane(1);
+        return;
+      }
+      if (++tries < 20) t = setTimeout(go, 150);
+    };
+    t = setTimeout(go, 0);
+    return function(){ if (t) clearTimeout(t); };
+  }, [targetLang, cidx, pidx, proseEn, bibleEn]);
 
   var renderBubble = function(text) {
     // Diagnostic: log the raw AI message so we can verify whether footnotes
@@ -14505,6 +14535,7 @@ export default function App() {
         .level-pill{background:rgba(42,31,20,.1);border:1px solid rgba(42,31,20,.25);color:#000;padding:5px 10px;border-radius:14px;font-size:13px;font-family:'Literata',serif;cursor:pointer;width:auto;outline:none}
         .level-pill:hover{background:rgba(42,31,20,.18)}
         .level-pill option{background:#ede8dd}
+        .tlang-pill{font-family:'IBM Plex Sans',sans-serif;font-size:12px;padding:4px 8px}
         @media(max-width:600px){.level-lbl{display:none}.level-pill{padding:4px 8px;font-size:12px}}
         .tbadge:hover{background:rgba(42,31,20,.18)}
         /* Inline in the header now, so the underline that marked the active
@@ -19573,6 +19604,13 @@ export default function App() {
               </select>
             </div>}
             {started && isLit && <button className="tbadge" onClick={function(){ setShowTopic(true); }}>{bookMeta.title || "Book"}</button>}
+            <select className="level-pill tlang-pill" value={targetLang}
+              title="The language you are learning. English opens a book's English text first, with the Russian a tab away — for books that have an English translation."
+              aria-label="Target language"
+              onChange={function(e){ setTargetLang(e.target.value === "en" ? "en" : "ru"); }}>
+              <option value="ru">Русский</option>
+              <option value="en">English</option>
+            </select>
 
             {isAdmin && <button className="adm-trigger" onClick={function(){ setShowAdmin(true); }} title="Accounts">Users</button>}
             {authReady && (me ? (
