@@ -67,6 +67,11 @@ const keepDirs = new Set();      // directories under dist/books, kept whole
 const slugs = new Set();         // for matching case-drill filenames
 let anyBible = false;
 
+// The library's pictures (tools/localize_images.py): public-domain covers and
+// portraits, no text of any book. Every tile on the shelves points into this
+// folder, so it ships whole — without it every cover on samovar.live is a 404.
+keepDirs.add("img");
+
 for (const e of publicEntries) {
   if (e.filename) {
     keepFiles.add(path.posix.normalize(e.filename));
@@ -86,6 +91,9 @@ for (const e of publicEntries) {
   if (e.assets) keepDirs.add(path.posix.normalize(String(e.assets)));
   if (e.parallelEn) {
     keepDirs.add(path.posix.normalize(e.parallelEn));
+    // The English recording's jump points (tools/en_videos.py) follow the
+    // English they belong to.
+    keepDirs.add("audio-sync-en/" + path.posix.normalize(e.parallelEn));
     slugs.add(String(e.parallelEn).replace(/-en$/, ""));
   }
   // Audio opts in separately — see api/catalogue.js. A public book without
