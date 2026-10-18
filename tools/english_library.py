@@ -414,7 +414,10 @@ def main():
     have_titles = {norm(b.get("enTitle") or "") for b in idx if b.get("enTitle") and b.get("lang") != "en"}
     h_auth = {norm(b.get("enTitle") or ""): (b.get("enAuthor") or "").lower() for b in idx if b.get("enTitle")}
     surname_of = lambda row: author_display(row.get("Authors"))[2].lower()
-    have_gids = {b.get("gutenberg") for b in idx if b.get("gutenberg")}
+    # Books on the site already — but not this library's own books: those are
+    # what it is building, and skipping them would make the clean-up below
+    # take them all back off.
+    have_gids = {b.get("gutenberg") for b in idx if b.get("gutenberg") and b.get("lang") != "en"}
     try:
         res = json.load(io.open("tools/translations/resolved.json", encoding="utf-8"))
         have_gids |= {v.get("gid") for v in res.values() if isinstance(v, dict) and v.get("gid")}

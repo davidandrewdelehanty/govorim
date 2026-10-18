@@ -34,6 +34,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(ROOT)
 sys.path.insert(0, "tools")
 from vtt_tokens import load as load_vtt
+from reader_chapters import reader_chapters
 
 MANIFEST = "private/books/index.json"
 CACHE = "tools/en-hunt.json"
@@ -187,7 +188,7 @@ def place(chs, trs):
     per = {tr.vid: (tr, found_in(tr, chs)) for tr in trs}
     left = {c for c, _ in chs}
     got = {}
-    while left:
+    while left and per:
         vid, cover = max(((v, sum(sc for c, (_, sc) in f.items() if c in left))
                           for v, (_, f) in per.items()), key=lambda x: x[1])
         if cover <= 0:
@@ -228,14 +229,21 @@ def main():
     ap.add_argument("--replace", action="store_true",
                     help="place again from the cached candidates and captions, without searching")
     ap.add_argument("--max-books", type=int, default=0)
+    ap.add_argument("--english-books", action="store_true",
+                    help="the Read in English library's own books (lang en): their recording is the book's "
+                         "main video (`videos`, jump points in audio-sync/), not an English column's")
     a = ap.parse_args()
     idx = json.load(io.open(MANIFEST, encoding="utf-8"))
     cache = json.load(io.open(CACHE, encoding="utf-8")) if os.path.exists(CACHE) else {}
     blocked = set()
     if os.path.exists(BLOCKED):
         blocked = {l.split("#")[0].strip() for l in io.open(BLOCKED, encoding="utf-8")} - {""}
-    books = [b for b in idx if b.get("parallelEn") and b.get("enTitle") and
-             (a.all or b.get("slug") in a.slug) and (a.force or a.replace or not b.get("videosEn"))]
+    if a.english_books:
+        books = [b for b in idx if b.get("lang") == "en" and b.get("filename") and
+                 (a.all or b.get("slug") in a.slug) and (a.force or a.replace or not b.get("videos"))]
+    else:
+        books = [b for b in idx if b.get("parallelEn") and b.get("enTitle") and
+                 (a.all or b.get("slug") in a.slug) and (a.force or a.replace or not b.get("videosEn"))]
     if a.max_books:
         books = books[:a.max_books]
     if not books:
@@ -245,7 +253,15 @@ def main():
     done = 0
     for bi, b in enumerate(books, 1):
         s = b["slug"]
-        chs = en_chapters(b["parallelEn"])
+        if a.english_books:
+            # The book IS the English: its chapters as the reader cuts them,
+            # each paragraph keyed by its index — what the jump buttons read.
+            rc, _ = reader_chapters(os.path.join("public/books", b["filename"]))
+            chs = [(ci, [(str(pi), p) for pi, p in enumerate(c["paras"]) if p.strip()]) for ci, c in enumerate(rc)]
+            chs = [c for c in chs if c[1]]
+            heads = {ci: c["heading"] for ci, c in enumerate(rc)}
+        else:
+            chs = en_chapters(b["parallelEn"])
         total = sum(len(" ".join(p for _, p in ps).split()) for _, ps in chs)
         title = re.sub(r"\s*[,:(].*$", "", b["enTitle"]).strip() or b["enTitle"]
         au = re.sub(r"\s*\(.*\)", "", b.get("enAuthor") or "").split()
@@ -340,7 +356,8 @@ def main():
             r = statistics.median(rates)
             if r < RATE_LO or r > RATE_HI:
                 print("   !! %.2f s/word is not a reading of this text — refused" % r); continue
-        sync_dir = SYNC % b["parallelEn"]
+        sync_dir = ("public/books/audio-sync/%s" % os.path.basename(b["filename"]).rsplit(".", 1)[0]
+                    if a.english_books else SYNC % b["parallelEn"])
         os.makedirs(sync_dir, exist_ok=True)
         synced = 0
         for c, x in v.items():
@@ -354,6 +371,8 @@ def main():
             x = dict(v[c])
             if x["start"] == 0:
                 del x["start"]
+            if a.english_books:
+                x["heading"] = heads.get(c, "")
             out[str(c)] = x
         done += 1
         print("   placed %d/%d chapters in %d video(s); jump points for %d" % (
@@ -363,7 +382,7 @@ def main():
         fresh = json.load(io.open(MANIFEST, encoding="utf-8"))
         for e in fresh:
             if e.get("slug") == s:
-                e["videosEn"] = out
+                e["videos" if a.english_books else "videosEn"] = out
         io.open(MANIFEST, "w", encoding="utf-8").write(json.dumps(fresh, ensure_ascii=False, indent=2) + "\n")
     print("\n%d of %d book(s) given English videos" % (done, len(books)))
 

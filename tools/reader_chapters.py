@@ -100,7 +100,7 @@ def median_words(chs):
 
 def push_chapter(out, heading, paras):
     body = "\n\n".join(paras)
-    if len(re.findall(r"[а-яёА-ЯЁ]", body)) < 5:
+    if len(re.findall(LETTERS, body)) < 5:
         return
     out.append({"heading": heading or ("Глава %d" % (len(out) + 1)), "text": body, "paras": list(paras)})
 
@@ -139,7 +139,7 @@ def walk_section(sec, out, sole, ancestor):
             if cur is None:
                 return
             body = "\n\n".join(cur_paras)
-            if len(re.findall(r"[а-яёА-ЯЁ]", body)) >= 5:
+            if len(re.findall(LETTERS, body)) >= 5:
                 split.append({"heading": (joined + " — " if joined else "") + cur, "text": body, "paras": list(cur_paras)})
 
         for c in list(sec):
@@ -177,8 +177,20 @@ def walk_section(sec, out, sole, ancestor):
     out.extend(sub)
 
 
+# The book's own letters: Cyrillic, or Latin for an English book (<lang>en</lang>,
+# tools/english_library.py) — the reader does the same (parseFb2's LETTERS).
+LETTERS = r"[а-яёА-ЯЁ]"
+WORDS = r"[А-Яа-яЁё][А-Яа-яЁё-]*"
+
+
 def parse_fb2(path):
+    global LETTERS, WORDS
     root = ET.parse(path).getroot()
+    lang = next((text_of(e) for e in root.iter() if ln(e) == "lang"), "").strip().lower()
+    if lang.startswith("en"):
+        LETTERS, WORDS = r"[A-Za-z]", r"[A-Za-z][A-Za-z'\u2019-]*"
+    else:
+        LETTERS, WORDS = r"[а-яёА-ЯЁ]", r"[А-Яа-яЁё][А-Яа-яЁё-]*"
     bodies = [b for b in root if ln(b) == "body"]
     main = next((b for b in bodies if not b.get("name")), bodies[0] if bodies else None)
     sections = [c for c in list(main) if ln(c) == "section"] if main is not None else []
@@ -207,7 +219,7 @@ def split_by_markers(chapters, keep_lead=True):
     bounds = []
     if keep_lead and marks[0] > 0:
         lead = "\n".join(paras[:marks[0]])
-        if len(re.findall(r"[А-Яа-яЁё][А-Яа-яЁё-]*", lead)) >= MIN_MEDIAN_WORDS:
+        if len(re.findall(WORDS, lead)) >= MIN_MEDIAN_WORDS:
             bounds.append((None, 0, marks[0]))
     for j, m in enumerate(marks):
         end = marks[j + 1] if j + 1 < len(marks) else len(paras)
