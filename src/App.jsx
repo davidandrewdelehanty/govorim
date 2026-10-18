@@ -19654,8 +19654,8 @@ export default function App() {
               title="The language you are learning. English opens a book's English text first, with the Russian a tab away — for books that have an English translation."
               aria-label="Target language"
               onChange={function(e){ setTargetLang(e.target.value === "en" ? "en" : "ru"); }}>
-              <option value="ru">Русский</option>
-              <option value="en">English</option>
+              <option value="ru">Read in Russian</option>
+              <option value="en">Read in English</option>
             </select>
 
             {isAdmin && <button className="adm-trigger" onClick={function(){ setShowAdmin(true); }} title="Accounts">Users</button>}
