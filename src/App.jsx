@@ -6483,6 +6483,7 @@ export default function App() {
   // The language the reader is learning. "en" turns the book round: where a
   // book has its English beside it, the English is the page that opens and
   // the Russian is the one a swipe away. Kept on this device.
+  var [tlangOpen, setTlangOpen] = useState(false);
   var [targetLang, setTargetLang] = useState(function(){
     try { return localStorage.getItem("gv_target_lang") === "en" ? "en" : "ru"; } catch (e) { return "ru"; }
   });
@@ -14831,7 +14832,16 @@ export default function App() {
         .level-pill{background:rgba(42,31,20,.1);border:1px solid rgba(42,31,20,.25);color:#000;padding:5px 10px;border-radius:14px;font-size:13px;font-family:'Literata',serif;cursor:pointer;width:auto;outline:none}
         .level-pill:hover{background:rgba(42,31,20,.18)}
         .level-pill option{background:#ede8dd}
-        .tlang-pill{font-family:'IBM Plex Sans',sans-serif;font-size:12px;padding:4px 8px}
+        .tlang-pill{font-family:'IBM Plex Sans',sans-serif;font-size:12px;padding:4px 10px;white-space:nowrap}
+        .tlang-wrap{position:relative;display:inline-block;flex:none}
+        .tlang-scrim{position:fixed;inset:0;z-index:60}
+        .tlang-menu{position:absolute;top:calc(100% + 4px);right:0;z-index:61;display:flex;flex-direction:column;
+          min-width:150px;background:#f8f4ec;border:1px solid rgba(42,31,20,.25);border-radius:10px;
+          box-shadow:0 6px 18px rgba(0,0,0,.12);padding:4px}
+        .tlang-opt{background:none;border:0;text-align:left;padding:8px 10px;border-radius:7px;cursor:pointer;
+          font-family:'IBM Plex Sans',sans-serif;font-size:13px;color:#2a1f14;white-space:nowrap}
+        .tlang-opt:hover{background:rgba(42,31,20,.08)}
+        .tlang-opt.on{font-weight:600}
         @media(max-width:600px){.level-lbl{display:none}.level-pill{padding:4px 8px;font-size:12px}}
         .tbadge:hover{background:rgba(42,31,20,.18)}
         /* Inline in the header now, so the underline that marked the active
@@ -19917,13 +19927,31 @@ export default function App() {
               </select>
             </div>}
             {started && isLit && <button className="tbadge" onClick={function(){ setShowTopic(true); }}>{shownTitle(bookMeta) || "Book"}</button>}
-            <select className="level-pill tlang-pill" value={targetLang}
-              title="The language you are learning. English opens a book's English text first, with the Russian a tab away — for books that have an English translation."
-              aria-label="Target language"
-              onChange={function(e){ setTargetLang(e.target.value === "en" ? "en" : "ru"); }}>
-              <option value="ru">Read in Russian</option>
-              <option value="en">Read in English</option>
-            </select>
+            {/* The language being learned. Closed, it says what you are doing
+                ("Studying Russian"); open, it offers the choices ("Study
+                English"). A native select cannot word the two differently,
+                so this is a small menu of its own. */}
+            <span className="tlang-wrap">
+              <button type="button" className="level-pill tlang-pill" aria-haspopup="listbox" aria-expanded={tlangOpen}
+                title="The language you are learning. English opens a book's English text first, with the Russian a tab away."
+                onClick={function(){ setTlangOpen(function(o){ return !o; }); }}>
+                {targetLang === "en" ? "Studying English" : "Studying Russian"} ▾
+              </button>
+              {tlangOpen && (
+                <>
+                  <span className="tlang-scrim" onClick={function(){ setTlangOpen(false); }} />
+                  <span className="tlang-menu" role="listbox" aria-label="Language to study">
+                    {[["ru", "Study Russian"], ["en", "Study English"]].map(function(o){
+                      return (
+                        <button key={o[0]} type="button" role="option" aria-selected={targetLang === o[0]}
+                          className={"tlang-opt" + (targetLang === o[0] ? " on" : "")}
+                          onClick={function(){ setTargetLang(o[0]); setTlangOpen(false); }}>{o[1]}</button>
+                      );
+                    })}
+                  </span>
+                </>
+              )}
+            </span>
 
             {isAdmin && <button className="adm-trigger" onClick={function(){ setShowAdmin(true); }} title="Accounts">Users</button>}
             {authReady && (me ? (
@@ -19984,7 +20012,7 @@ export default function App() {
           return (
             <div className="main">
               <div className="ss">
-                <h1 className="sti">{enMode ? "Quotes — Read in English" : "Quotes"}</h1>
+                <h1 className="sti">{enMode ? "Quotes — Studying English" : "Quotes"}</h1>
                 <p className="sde">
                   {enMode
                     ? "Lines readers have saved from the English of the library's books — select words on an English page and tap ★ Quote to add one. Click a quote to open the book at its chapter."
@@ -20118,10 +20146,10 @@ export default function App() {
         {tab==="leaders" && (
           <div className="main">
             <div className="ss">
-              <h1 className="sti">{targetLang === "en" ? "Leaderboard — Read in English" : "Leaderboard"}</h1>
+              <h1 className="sti">{targetLang === "en" ? "Leaderboard — Studying English" : "Leaderboard"}</h1>
               <p className="sde">
                 {targetLang === "en"
-                  ? "The readers who have read the most in English. Switch the menu at the top to Read in Russian for the Russian boards."
+                  ? "The readers who have read the most in English. Switch the menu at the top to Study Russian for the Russian boards."
                   : "The readers who have reviewed the most cards, read the most words, answered the most case drills correctly and listened to the most songs."}
               </p>
               {me && !me.username && (
@@ -20138,7 +20166,7 @@ export default function App() {
               ) : (
                 <div className="lb-cols">
                   {(targetLang === "en" ? [
-                    { key: "wordsEn", h: "English words read", sub: "words read in Read in English mode, counted as each paragraph scrolls past", unit: "words" },
+                    { key: "wordsEn", h: "English words read", sub: "words read while studying English, counted as each paragraph scrolls past", unit: "words" },
                   ] : [
                     { key: "reviewed", h: "Cards reviewed", sub: "every answer given in vocabulary review, right or wrong", unit: "cards" },
                     { key: "words", h: "Words read", sub: "Russian words read, counted as you go — a short story counts what it is, and so does a novel", unit: "words" },
