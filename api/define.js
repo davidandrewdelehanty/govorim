@@ -32,6 +32,7 @@ import {
   logMiss, listMisses, removeMiss,
 } from "../lib/dict.js";
 import { ruWiktionaryLookup, resolveLemma, existingTitles, ruWiktText, relatedWords } from "../lib/ruwikt.js";
+import { englishLookup } from "../lib/enruwikt.js";
 
 // Some words have a page on the Russian Викисловарь with no meaning written
 // yet — «неплодный» (barren, in the Synodal Bible) is a stub. The page still
@@ -752,6 +753,29 @@ export default async function handler(req, res) {
       return res.status(200).json({ misses: await listMisses() });
     } catch (e) {
       return res.status(502).json({ error: "Could not read the miss log: " + ((e && e.message) || "unknown") });
+    }
+  }
+
+  // ?en=word — an English word from the English column of a parallel book,
+  // defined in Russian by ru.wiktionary. Its own small path: none of the
+  // Russian tiers below apply to English.
+  if (req.query && req.query.en) {
+    const w = String(req.query.en).trim().slice(0, 40);
+    if (!/^[A-Za-z][A-Za-z'’-]*$/.test(w)) return res.status(400).json({ error: "Not an English word" });
+    const ctrl = new AbortController();
+    const timer = setTimeout(function () { ctrl.abort(); }, 8000);
+    try {
+      const got = await englishLookup(w, ctrl.signal);
+      if (!got) {
+        res.setHeader("Cache-Control", "public, s-maxage=86400");
+        return res.status(404).json({ error: "No entry", word: w });
+      }
+      res.setHeader("Cache-Control", "public, s-maxage=2592000, stale-while-revalidate=86400");
+      return res.status(200).json(got);
+    } catch (e) {
+      return res.status(502).json({ error: (e && e.name === "AbortError") ? "ru.wiktionary did not answer in time" : ((e && e.message) || "lookup failed") });
+    } finally {
+      clearTimeout(timer);
     }
   }
 

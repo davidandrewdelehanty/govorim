@@ -5203,6 +5203,9 @@ export default function App() {
   var [wbLoading, setWbLoading]         = useState(false);
 
   var [popup, setPopup]   = useState(null);
+  // An English word tapped in the English column of a parallel book: its
+  // Russian definition from ru.wiktionary (/api/define?en=).
+  var [enPop, setEnPop]   = useState(null);
   // One example sentence per headword for the 825 commonest words, built from
   // the frequency deck by scripts/build-examples.mjs. Fetched the first time a
   // definition is opened and kept for the session — 86 KB, so it is not worth
@@ -10462,6 +10465,48 @@ export default function App() {
   // under the word.
   // `lineContext` and `songWhere` are for places with no chapter text behind
   // them — a song lyric, where the line IS the sentence.
+  // English column: every word is tappable, and opens the word's entry in
+  // the Russian Wiktionary — English described in Russian. Kept apart from the
+  // Russian popup on purpose: none of its machinery (stress, cases, cards,
+  // phrases) means anything for an English word.
+  var enDefCache = useRef(Object.create(null));
+  var defEnWord = async function(word, e) {
+    e.stopPropagation();
+    if (noAIMode) return;
+    var clean = String(word || "").replace(/[\u2019]/g, "'").replace(/'s$/i, "").replace(/[^A-Za-z'-]/g, "").replace(/^'+|'+$/g, "");
+    if (!clean || clean.length < 2) return;
+    var r = e.currentTarget && e.currentTarget.getBoundingClientRect ? e.currentTarget.getBoundingClientRect() : null;
+    var w = Math.min(280, window.innerWidth - 32);
+    var left = r ? Math.max(16, Math.min(window.innerWidth - w - 16, r.left + r.width / 2 - w / 2)) : 16;
+    var top = r ? (r.bottom + 260 < window.innerHeight ? r.bottom + 8 : Math.max(16, r.top - 268)) : 100;
+    setPopup(null);
+    var key = clean.toLowerCase();
+    var hit = enDefCache.current[key];
+    if (hit) { setEnPop({ word: clean, top: top, left: left, width: w, data: hit, loading: false }); return; }
+    setEnPop({ word: clean, top: top, left: left, width: w, loading: true });
+    try {
+      var resp = await authFetch("/api/define?en=" + encodeURIComponent(clean));
+      if (resp.ok) {
+        var data = await resp.json();
+        enDefCache.current[key] = data;
+        setEnPop(function(p){ return p && p.word === clean ? Object.assign({}, p, { data: data, loading: false }) : p; });
+      } else {
+        var body = await resp.json().catch(function(){ return {}; });
+        setEnPop(function(p){ return p && p.word === clean ? Object.assign({}, p, { loading: false, noEntry: resp.status === 404, error: resp.status === 404 ? null : (body.error || ("HTTP " + resp.status)) }) : p; });
+      }
+    } catch (err) {
+      setEnPop(function(p){ return p && p.word === clean ? Object.assign({}, p, { loading: false, error: (err && err.message) || "network error" }) : p; });
+    }
+  };
+  // A line of English with each word wrapped so it can be tapped.
+  var enWords = function(text) {
+    var parts = String(text || "").split(/([A-Za-z]+(?:['\u2019][A-Za-z]+)*)/);
+    return parts.map(function(part, i) {
+      if (i % 2 === 0) return part;
+      return <span key={i} className="enw" onClick={(function(w){ return function(ev){ defEnWord(w, ev); }; })(part)}>{part}</span>;
+    });
+  };
+
   var defWord = async function(word, e, charPosition, lineContext, songWhere) {
     e.stopPropagation();
     if (noAIMode) return;  // No API calls in read-without-AI mode.
@@ -13600,9 +13645,9 @@ export default function App() {
                      style={{gridColumn: 2, gridRow: 1}}>
                   {flowEnBlocks.map(function(t, i) {
                     if (t && typeof t === "object") {
-                      return <p key={i} className="dual-en"><span className="bible-en-vno">{t.n}</span> {t.t}</p>;
+                      return <p key={i} className="dual-en"><span className="bible-en-vno">{t.n}</span> {enWords(t.t)}</p>;
                     }
-                    return <p key={i} className="dual-en">{t}</p>;
+                    return <p key={i} className="dual-en">{enWords(t)}</p>;
                   })}
                 </div>
               )}
@@ -14403,6 +14448,14 @@ export default function App() {
         .dual-toggle.on{background:#2a1f14;border-color:#2a1f14;color:#fff}
         @media (max-width:640px){.dual-toggle{right:10px;padding:8px 10px;font-size:11px}}
         .dual-en{color:rgba(42,31,20,.72)}
+        .enw{cursor:pointer;border-radius:3px}
+        .enw:hover{background:rgba(42,31,20,.08)}
+        .enpop-ipa{font-size:13px;color:rgba(42,31,20,.55);margin:-2px 0 8px}
+        .enpop-entry{margin-top:6px}
+        .enpop-pos{font-size:11px;font-style:italic;color:rgba(42,31,20,.55);margin-bottom:2px}
+        .enpop-senses{margin:0 0 4px;padding-left:20px;font-size:15px;line-height:1.4}
+        .enpop-senses li{margin:2px 0}
+        .enpop-src{display:inline-block;margin-top:8px;font-size:11px;color:rgba(42,31,20,.5)}
         .bible-en-vno{font-size:0.7em;font-weight:700;color:#2a1f14;vertical-align:super;line-height:1;margin-right:2px;font-family:'IBM Plex Sans',sans-serif;letter-spacing:.02em}
         .dual-en-heading{font-weight:600;color:rgba(42,31,20,.62)}
         /* Words inside the sentence currently being read aloud. Applied at
@@ -23431,6 +23484,36 @@ export default function App() {
           </div>
         )}
 
+        {enPop && (
+          <div className="pover" onClick={function(){ setEnPop(null); }}>
+            <div className="pop enpop" lang="ru" style={{top:enPop.top,left:enPop.left,width:enPop.width}} onClick={function(e){ e.stopPropagation(); }}>
+              <button className="pcl" onClick={function(){ setEnPop(null); }}>×</button>
+              <div className="pwrow">
+                <div className="pw" lang="en">{(enPop.data && enPop.data.lemma) || enPop.word}</div>
+              </div>
+              {enPop.data && enPop.data.ipa && <div className="enpop-ipa" lang="en">[{enPop.data.ipa}]</div>}
+              {enPop.data && enPop.data.lemma && enPop.data.lemma.toLowerCase() !== enPop.word.toLowerCase() && (
+                <div style={{fontSize:11,color:"rgba(0,0,0,.4)",marginBottom:6,marginTop:-2}} lang="en">you clicked: {enPop.word}</div>
+              )}
+              {enPop.loading && <div className="pload">Looking up…</div>}
+              {enPop.data && (enPop.data.entries || []).map(function(en, i) {
+                return (
+                  <div key={i} className="enpop-entry">
+                    {en.pos && <div className="enpop-pos">{en.pos}</div>}
+                    <ol className="enpop-senses">
+                      {en.senses.map(function(sn, j){ return <li key={j}>{sn}</li>; })}
+                    </ol>
+                  </div>
+                );
+              })}
+              {enPop.noEntry && <div className="pload">Нет в Викисловаре.</div>}
+              {enPop.error && <div className="pload">Lookup failed: {enPop.error}</div>}
+              {enPop.data && enPop.data.sourceUrl && (
+                <a className="enpop-src" href={enPop.data.sourceUrl} target="_blank" rel="noopener noreferrer">Викисловарь</a>
+              )}
+            </div>
+          </div>
+        )}
         {popup && (
           <div className="pover" onClick={function(){ setPopup(null); }}>
             <div className="pop" ref={popRef} style={{top:popXY.top,left:popXY.left,width:Math.min(280,window.innerWidth-32)}} onClick={function(e){ e.stopPropagation(); }}>
