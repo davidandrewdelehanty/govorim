@@ -3741,6 +3741,11 @@ async function parseFb2(buffer, options) {
   var ln = (doc.querySelector("title-info > author > last-name")  || {}).textContent || "";
   var nick = (doc.querySelector("title-info > author > nickname") || {}).textContent || "";
   var author = (fn + " " + ln).trim() || nick || "Unknown author";
+  // An English book (the Read in English library, tools/english_library.py)
+  // declares <lang>en</lang>; its sections are judged by Latin letters
+  // wherever a Russian book's are judged by Cyrillic ones.
+  var docLang = ((doc.querySelector("title-info > lang") || {}).textContent || "").trim().toLowerCase();
+  var LETTERS = docLang.indexOf("en") === 0 ? /[A-Za-z]/g : /[а-яёА-ЯЁ]/g;
 
   // Each top-level <section> is a Part. <subtitle> markers within it delimit
   // individual chapters. Books with no subtitle markers (single-story FB2s)
@@ -3957,7 +3962,7 @@ async function parseFb2(buffer, options) {
   };
   var pushChapter = function(out, heading, paras) {
     var body = paras.join("\n\n");
-    if ((body.match(/[а-яёА-ЯЁ]/g) || []).length < 5) return;   // no Russian text
+    if ((body.match(LETTERS) || []).length < 5) return;   // no text in the book's language
     out.push({ heading: heading || ("Глава " + (out.length + 1)), text: body,
                tightIdx: (paras && paras.tightIdx) || [],
                emphIdx: (paras && paras.emphIdx) || [],
@@ -4048,7 +4053,7 @@ async function parseFb2(buffer, options) {
       var flush = function() {
         if (currentSubtitle === null) return;
         var body = currentParas.join("\n\n");
-        var cyrCount = (body.match(/[а-яёА-ЯЁ]/g) || []).length;
+        var cyrCount = (body.match(LETTERS) || []).length;
         if (cyrCount >= 5) {
           split.push({
             heading: (joined ? joined + " — " : "") + currentSubtitle,
@@ -4205,7 +4210,8 @@ async function parseFb2(buffer, options) {
     }
   }
 
-  return { chapters: chapters, title: bookTitle || "Unknown title", author: author };
+  return { chapters: chapters, title: bookTitle || "Unknown title", author: author,
+           lang: docLang.indexOf("en") === 0 ? "en" : "" };
 }
 
 // ── FB2 inside a ZIP — common .fb2.zip distribution ─────────────────────────
@@ -7580,7 +7586,10 @@ export default function App() {
     return function(){ clearTimeout(t); };
   }, [me && me.email, syncedFromServer]);
   // Russian words in a chapter, and up to a character offset within it.
-  var ruCount = function(t) { return (String(t || "").match(/[А-Яа-яЁё][А-Яа-яЁё-]*/g) || []).length; };
+  var ruCount = function(t) {
+    if (bookMeta && bookMeta.lang === "en") return (String(t || "").match(/[A-Za-z][A-Za-z'\u2019-]*/g) || []).length;
+    return (String(t || "").match(/[А-Яа-яЁё][А-Яа-яЁё-]*/g) || []).length;
+  };
   // Short enough to read at a sitting and see whole — a lyric, a fable, a
   // page of Крылов. Measured over the book, not the chapter.
   var tinyWork = useMemo(function() {
@@ -7642,7 +7651,8 @@ export default function App() {
       var from = wordsBefore(mark.cidx, mark.off || 0);
       var gain = to - from;
       if (total) gain = Math.min(gain, Math.max(0, total - paid));
-      if (gain > 0) { bumpToday("read", gain); paid += gain; readPaid.current[wk] = paid; }
+      // An English book's words go to the English figure and board.
+      if (gain > 0) { bumpToday(bookMeta && bookMeta.lang === "en" ? "readEn" : "read", gain); paid += gain; readPaid.current[wk] = paid; }
     }
     if (!mark || to >= wordsBefore(mark.cidx, mark.off || 0)) {
       readMark.current[key] = { cidx: ci, off: off || 0, paid: paid };
@@ -10852,6 +10862,8 @@ export default function App() {
   };
 
   var defWord = async function(word, e, charPosition, lineContext, songWhere) {
+    // An English book: the word is English, looked up in Russian.
+    if (bookMeta && bookMeta.lang === "en" && !/[а-яёА-ЯЁ]/.test(String(word || ""))) return defEnWord(word, e);
     e.stopPropagation();
     if (noAIMode) return;  // No API calls in read-without-AI mode.
     var clean = word.replace(/[^а-яёА-ЯЁ]/g,"");
@@ -11946,6 +11958,8 @@ export default function App() {
         // JSON and audio through /api/media rather than from /books/.
         restricted: !!opts.restricted,
         parallelEn: opts.parallelEn || null,
+        // "en": an English book from the Read in English library.
+        lang: opts.lang === "en" ? "en" : "",
         // English recordings for the English column, keyed by chapter like
         // `videos` (tools/en_videos.py); shown when the English pane is up.
         videosEn: (opts.videosEn && typeof opts.videosEn === "object") ? opts.videosEn : null,
@@ -12154,6 +12168,7 @@ export default function App() {
         // Keeps a poem whose stanza or footnote numbers would otherwise be
         // read as chapter markers on one page (see the marker re-split).
         onePage: !!book.onePage,
+        lang: book.lang === "en" ? "en" : "",
       });
     } catch(err) {
       setFErr(err.message || "Failed to load preset book");
@@ -13478,14 +13493,18 @@ export default function App() {
     // Build tokens with absolute character positions in the original chapter text,
     // so we can match against onboundary events from speechSynthesis.
     var tokens = [];
-    var tre = /[а-яёА-ЯЁ]+|[^а-яёА-ЯЁ]+/g;
+    // An English book's words are its words: same machinery (counting,
+    // bookmarks, highlights, taps), Latin letters instead of Cyrillic. The
+    // flag keeps its old name; it means "a word of the book's language".
+    var enBook = !!(bookMeta && bookMeta.lang === "en");
+    var tre = enBook ? /[A-Za-z]+(?:['\u2019][A-Za-z]+)*|[^A-Za-z]+/g : /[а-яёА-ЯЁ]+|[^а-яёА-ЯЁ]+/g;
     var tm;
     while ((tm = tre.exec(str)) !== null) {
       tokens.push({
         text: tm[0],
         start: tm.index,
         end: tm.index + tm[0].length,
-        isRu: /[а-яёА-ЯЁ]/.test(tm[0][0])
+        isRu: enBook ? /[A-Za-z]/.test(tm[0][0]) : /[а-яёА-ЯЁ]/.test(tm[0][0])
       });
     }
 
@@ -20930,7 +20949,8 @@ export default function App() {
                                 // hidden here too, or the two lists disagree about
                                 // what the library contains.
                                 if (hideFinished && isFinished(book)) return;
-                                if (targetLang === "en" && !(book.parallelEn || isBibleBook(book))) return;
+                                if (targetLang === "en" && !(book.parallelEn || isBibleBook(book) || book.lang === "en")) return;
+                                if (targetLang !== "en" && book.lang === "en") return;
                                 // Fully-equipped filter: a translation to read
                                 // beside the Russian, and something to hear it
                                 // in — a narrated recording or a chapter video,
@@ -21199,8 +21219,10 @@ export default function App() {
                           // consumer of this predicate — the grid, its category
                           // counts, and the uploads row — agrees on what is visible.
                           if (hideFinished && isFinished(book)) return false;
-                          // Learning English: only the works that have their English.
-                          if (targetLang === "en" && !(book.parallelEn || isBibleBook(book))) return false;
+                          // Learning English: only the works that have their English, and
+                          // the English library's own books — which Russian mode leaves out.
+                          if (targetLang === "en" && !(book.parallelEn || isBibleBook(book) || book.lang === "en")) return false;
+                          if (targetLang !== "en" && book.lang === "en") return false;
                           // A book with no count (an upload not yet opened) is not
                           // hidden by a length filter it cannot be judged against.
                           if (libLength && book.words &&
@@ -21257,15 +21279,25 @@ export default function App() {
                         var buckets = {};
                         CATEGORIES.forEach(function(c){ buckets[c] = []; });
                         buckets["Other"] = [];
+                        // In Read in English mode a book written in English is read in its
+                        // original, so it is not a translation: Dickens goes on the
+                        // novels shelf (or its own enCategory), not Translations.
+                        var enOriginal = function(book) {
+                          return targetLang === "en" && !!book.parallelEn &&
+                            !/Neither column is the original/.test(book.translationNote || "");
+                        };
                         presetBooks.forEach(function(book, idx) {
                           if (!matches(book)) return;
                           var cat = normalize((book && book.category) || "");
+                          var orig = enOriginal(book);
+                          if (orig && cat === "Translations") cat = book.enCategory || "Novels";
                           var bucket = CATEGORIES.indexOf(cat) !== -1 ? cat : "Other";
                           buckets[bucket].push({ book: book, idx: idx });
                           // A book can sit on a second shelf too — Hamlet in Russian
                           // is both a play and a translation.
                           (Array.isArray(book.alsoIn) ? book.alsoIn : []).forEach(function(c2){
                             c2 = normalize(c2);
+                            if (orig && c2 === "Translations") return;
                             if (c2 !== bucket && CATEGORIES.indexOf(c2) !== -1) buckets[c2].push({ book: book, idx: idx });
                           });
                         });
