@@ -48,7 +48,25 @@ EN_NAME = {"Dickens": "Charles Dickens", "Twain": "Mark Twain", "Scott": "Walter
            "Burnett": "Frances Hodgson Burnett", "Bellamy": "Edward Bellamy",
            "Bulwer-Lytton": "Edward Bulwer-Lytton", "Stowe": "Harriet Beecher Stowe",
            "Haggard": "H. Rider Haggard", "Stoker": "Bram Stoker", "Wells": "H. G. Wells",
-           "Doyle": "Arthur Conan Doyle", "Wilde": "Oscar Wilde", "Trollope": "Anthony Trollope"}
+           "Doyle": "Arthur Conan Doyle", "Wilde": "Oscar Wilde", "Trollope": "Anthony Trollope",
+           "Cervantes": "Miguel de Cervantes (tr. John Ormsby)", "Dumas": "Alexandre Dumas",
+           "Verne": "Jules Verne", "Dante": "Dante Alighieri (tr. Henry Wadsworth Longfellow)",
+           "Plato": "Plato (tr. Benjamin Jowett)", "Aristotle": "Aristotle (tr. Benjamin Jowett)",
+           "Balzac": "Honoré de Balzac", "Stendhal": "Stendhal", "Goethe": "Johann Wolfgang von Goethe",
+           "Goethe/Taylor": "Johann Wolfgang von Goethe (tr. Bayard Taylor)", "Schiller": "Friedrich Schiller",
+           "Hoffmann": "E. T. A. Hoffmann"}
+# Books whose English column is itself a translation: neither side is the original.
+ORIG_LANG = {"Cervantes": ("Spanish", "John Ormsby's translation (1885)"),
+             "Dumas": ("French", "an anonymous nineteenth-century translation"),
+             "Verne": ("French", "an anonymous Victorian translation"),
+             "Dante": ("Italian", "Henry Wadsworth Longfellow's translation (1867)"),
+             "Plato": ("Greek", "Benjamin Jowett's translation (1871)"),
+             "Aristotle": ("Greek", "Benjamin Jowett's translation (1885)"),
+             "Balzac": ("French", "Katharine Prescott Wormeley's translation (1886)"),
+             "Stendhal": ("French", "Horace B. Samuel's translation (1916)"),
+             "Goethe": ("German", "R. D. Boylan's translation (1854)"),
+             "Goethe/Taylor": ("German", "Bayard Taylor's translation in the original metres (1870)"),
+             "Schiller": ("German", "a nineteenth-century English translation")}
 
 
 # ------------------------------------------------------------ 1. spelling --
@@ -353,6 +371,14 @@ def build_en(slug, ru_chs, en, report_only=False):
 
 # ------------------------------------------------------------ 3. catalogue --
 def note_for(r):
+    if r["en_author"] in ORIG_LANG:
+        lang, en = ORIG_LANG[r["en_author"]]
+        yr = (" (%s)" % r["year"]) if r["year"] else ""
+        who = "an anonymous translator" if r["translator"] in ("", "аноним") else r["translator"]
+        return ("Neither column is the original: the book was written in %s. The English is %s, from Project "
+                "Gutenberg; the Russian is the translation by %s%s, now in the public domain, with its pre-reform "
+                "spelling modernised. Each was made from the %s, so they differ in detail; both run complete. Swipe "
+                "right on the text to read them side by side, or tap the EN button on the right." % (lang, en, who, yr, lang))
     au = EN_NAME.get(r["en_author"], r["en_author"])
     yr = (" (%s)" % r["year"]) if r["year"] else ""
     who = "an anonymous translator" if r["translator"] in ("", "аноним") else r["translator"]

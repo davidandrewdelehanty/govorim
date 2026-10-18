@@ -955,6 +955,97 @@ function bibleNavSegs(h) {
   return [t, book, "Глава " + m[2]];
 }
 
+// Contents tiers for a book whose headings carry none of their own (no
+// " — " parts): the Bible and Anna Karenina get a collapsible tree from their
+// structure, and this gives every other long work one too. In order:
+//  1. Act/part/book markers among the headings («ДЕЙСТВИЕ ПЕРВОЕ», «Часть
+//     вторая», «Книга третья»): the headings after each marker nest under it.
+//  2. Chapter numbers that start again at 1 (Обыкновенная история's two
+//     parts): each run becomes «Часть N».
+//  3. Otherwise a long flat list is cut into runs of ten (twenty past 200),
+//     labelled by the chapters they hold.
+// Returns one segment list per chapter, or null to keep the flat list.
+// Headings themselves are untouched; this only shapes the Contents pane.
+var NAV_MARKER_RE = /^(действие|акт|часть|книга|том|отдел|раздел|песнь|день|ночь)\s+([0-9IVXLC]{1,6}|перв\S*|втор\S*|трет\S*|четв[её]рт\S*|пят\S*|шест\S*|седьм\S*|восьм\S*|девят\S*|десят\S*|одиннадцат\S*|двенадцат\S*)[.:]?(\s|$)/i;
+function autoNavSegs(chs) {
+  var n = chs.length;
+  if (n < 12) return null;
+  var hs = chs.map(function(c){ return String((c && c.heading) || "").replace(/\s+/g, " ").trim(); });
+  var shortH = function(h){ return h.length > 48 ? h.slice(0, 46).replace(/\s+\S*$/, "") + "…" : h; };
+
+  // 1. Structural markers that have chapters between them.
+  var marks = [];
+  for (var i = 0; i < n; i++) if (NAV_MARKER_RE.test(hs[i])) marks.push(i);
+  if (marks.length >= 2) {
+    var gaps = 0;
+    for (var mi = 0; mi < marks.length; mi++) {
+      var nextM = mi + 1 < marks.length ? marks[mi + 1] : n;
+      if (nextM - marks[mi] > 1) gaps++;
+    }
+    if (gaps * 2 >= marks.length) {
+      var out1 = [], cur = null, seen = {};
+      for (var j = 0; j < n; j++) {
+        if (NAV_MARKER_RE.test(hs[j])) {
+          var g = shortH(hs[j]);
+          var k = 2; while (seen[g]) g = shortH(hs[j]) + " (" + (k++) + ")";
+          seen[g] = 1; cur = g;
+        }
+        out1.push(cur ? [cur, hs[j] || ("Глава " + (j + 1))] : [hs[j] || ("Глава " + (j + 1))]);
+      }
+      return out1;
+    }
+  }
+
+  // 2. Numbering that restarts at 1.
+  // Word ordinals count too: «Глава первая», «ЯВЛЕНИЕ ВТОРОЕ».
+  var WORD_NO = ["перв","втор","трет","четв","пят","шест","седьм","восьм","девят","десят"];
+  var isScene = false;
+  var nums = hs.map(function(h){
+    var v = authorChapterNo(h);
+    if (v) return v;
+    var m = h.toLowerCase().match(/^(глава|явление)\s+([а-яё]+)/);
+    if (!m) return null;
+    for (var w = 0; w < WORD_NO.length; w++) if (m[2].indexOf(WORD_NO[w]) === 0 && !/^(одиннадцат|двенадцат|тринадцат|четырнадцат|пятнадцат|шестнадцат|семнадцат|восемнадцат|девятнадцат)/.test(m[2])) {
+      if (m[1] === "явление") isScene = true;
+      return w + 1;
+    }
+    return 11;
+  });
+  var numbered = nums.filter(function(x){ return x; }).length;
+  if (numbered >= n * 0.7) {
+    var parts = [], part = 0, last = 0;
+    for (var q = 0; q < n; q++) {
+      var v = nums[q];
+      if (v === 1 && last >= 3) part++;
+      if (v) last = v;
+      if (!part && v) part = 1;
+      parts.push(part);
+    }
+    if (part >= 2) {
+      var tier = isScene ? "Действие " : "Часть ";
+      return hs.map(function(h, x){ return parts[x] ? [tier + parts[x], h || ("Глава " + (x + 1))] : [h]; });
+    }
+  }
+
+  // 3. Runs of ten for a long flat list.
+  if (n < 30) return null;
+  var size = n > 200 ? 20 : 10;
+  var out3 = [];
+  for (var a = 0; a < n; a += size) {
+    var b = Math.min(n, a + size) - 1;
+    var na = nums[a], nb = nums[b];
+    var label;
+    if (na && nb && nb > na) label = "Главы " + hs[a].split(/[.\s]/)[0].replace(/^(глава|chapter)$/i, String(na)) + "–" + hs[b].split(/[.\s]/)[0].replace(/^(глава|chapter)$/i, String(nb));
+    else {
+      var named = "";
+      for (var t = a; t <= b && !named; t++) if (/[А-Яа-яЁё]{3}/.test(hs[t]) && !authorChapterNo(hs[t]) && !NAV_MARKER_RE.test(hs[t])) named = shortH(hs[t]).replace(/…$/, "");
+      label = (a + 1) + "–" + (b + 1) + (named ? ": " + named + " …" : "");
+    }
+    for (var c = a; c <= b; c++) out3.push([label, hs[c] || ("Глава " + (c + 1))]);
+  }
+  return out3;
+}
+
 // "Бытие 12" -> "01-12"; null when the heading is not a Bible chapter.
 function bibleKeyFromHeading(h) {
   var m = String(h || "").trim().match(/^(.+?)\s+(\d{1,3})$/);
@@ -22620,6 +22711,15 @@ export default function App() {
                         if (segs.length > maxDepth) maxDepth = segs.length;
                         return { idx: i, segs: segs, ch: ch };
                       });
+                      // No tiers in the headings: derive them (see autoNavSegs).
+                      var autoSegs = (maxDepth <= 1 && !isBibleNav) ? autoNavSegs(chapters) : null;
+                      if (autoSegs) {
+                        navItems.forEach(function(it){ it.segs = autoSegs[it.idx]; if (it.segs.length > maxDepth) maxDepth = it.segs.length; });
+                        segsOf = function(heading){
+                          for (var si2 = 0; si2 < chapters.length; si2++) if (chapters[si2] && chapters[si2].heading === heading) return autoSegs[si2];
+                          return [String(heading || "")];
+                        };
+                      }
                       if (maxDepth <= 1) {
                         return chapters.map(function(ch, i){
                           return (
@@ -22643,7 +22743,7 @@ export default function App() {
                         }
                         node.chapters.push({ idx: it.idx, name: it.segs[it.segs.length - 1], ch: it.ch });
                       });
-                      var curSegs = segsOf(chapters[cidx] && chapters[cidx].heading);
+                      var curSegs = autoSegs ? (autoSegs[cidx] || []) : segsOf(chapters[cidx] && chapters[cidx].heading);
                       var curKeys = {}; var ckp = "";
                       for (var cki = 0; cki < curSegs.length - 1; cki++){ ckp = ckp ? ckp + SEP + curSegs[cki] : curSegs[cki]; curKeys[ckp] = true; }
                       var navOpen = function(key){ return (expandedNav && (key in expandedNav)) ? expandedNav[key] : !!curKeys[key]; };
@@ -22675,7 +22775,21 @@ export default function App() {
                           </div>
                         );
                       };
-                      return navRoot.order.map(function(s){ return renderNode(navRoot.children[s], 0); });
+                      // Chapters before the first tier (a preface ahead of Part One) sit at the top.
+                      var rootChs = navRoot.chapters.filter(function(c){ return c.idx < (navItems.find(function(it){ return it.segs.length > 1; }) || {idx: Infinity}).idx; });
+                      var tailChs = navRoot.chapters.filter(function(c){ return rootChs.indexOf(c) < 0; });
+                      var rootCard = function(c){
+                        var i = c.idx;
+                        return (
+                          <div key={"r" + i} className={"lcard"+(i===cidx?" cur":"")} onClick={function(){ setLview("read"); navLit(i); }}>
+                            <div className="lcn">{[chapterOrdinal(chapters, i), i===cbm?"bookmarked":"", i===cidx?"here":""].filter(Boolean).join(" · ")}</div>
+                            <div className="lchead">{c.name}</div>
+                          </div>
+                        );
+                      };
+                      return rootChs.map(rootCard)
+                        .concat(navRoot.order.map(function(s){ return renderNode(navRoot.children[s], 0); }))
+                        .concat(tailChs.map(rootCard));
                     })()}
                   </div>
                 )}
