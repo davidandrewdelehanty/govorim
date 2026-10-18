@@ -6168,8 +6168,30 @@ export default function App() {
       setProgressMap(all);
     } catch (e) {}
   };
-  var resetBookProgress = function(key) {
+  var resetBookProgress = function(key, meta) {
     if (!key) return;
+    // Starting over is a second reading, and a second reading is reading:
+    // it counts again, once. The ledger keys each reading of a work by its
+    // round («work@2»), so the guard against counting the same words twice
+    // still holds within a reading — a bookmark dropped behind you, a jump
+    // back — but no longer turns a deliberate reread into nothing. A reader
+    // restarted «Как читать книги» to read it properly and had seven
+    // chapters count for nothing. The round only ever goes up, which is how
+    // the server already merges this ledger (larger figure wins).
+    try {
+      var m1 = meta || (bookKey(bookMeta) === key ? bookMeta : null);
+      if (!m1) {
+        for (var bi = 0; bi < presetBooks.length; bi++) {
+          if (presetBooks[bi] && bookKey(presetBooks[bi]) === key) { m1 = presetBooks[bi]; break; }
+        }
+      }
+      if (m1) {
+        var wk1 = workKey(m1);
+        var rk = "round:" + wk1;
+        readPaid.current[rk] = (Number(readPaid.current[rk]) || 0) + 1;
+        saveReadMark();
+      }
+    } catch (e) {}
     // "Start over" means start over: the automatic bookmark goes with the
     // place, or the book would reopen at the far end of a read the reader
     // has just said they are redoing.
@@ -7507,7 +7529,11 @@ export default function App() {
     // most any of its entries had already been credited. Marks written
     // before `paid` existed carry none: what they had reached is what they
     // had been credited with.
-    var wk = workKey(bookMeta);
+    var wk0 = workKey(bookMeta);
+    var round = Number(readPaid.current["round:" + wk0]) || 0;
+    // Each reading after "Start over" has its own ledger (see resetBookProgress).
+    var wk = round ? wk0 + "@" + (round + 1) : wk0;
+    if (readPaid.current[wk] == null && round) readPaid.current[wk] = 0;
     if (readPaid.current[wk] == null) {
       var seed = 0;
       var ks = workKeys(bookMeta);
@@ -21567,8 +21593,8 @@ export default function App() {
                                           list entirely. Both stop the click reaching the
                                           row, which would open the book instead. */}
                                       {(rec.cidx > 0 || rec.pidx > 0) && (
-                                        <button type="button" className="lcard-act" title="Back to the first page — for a book you skimmed and now mean to read"
-                                          onClick={function(e){ e.stopPropagation(); resetBookProgress(rec.key); }}>reset</button>
+                                        <button type="button" className="lcard-act" title="Back to the first page to read it again — the words count again as you reread"
+                                          onClick={function(e){ e.stopPropagation(); resetBookProgress(rec.key, match.book); }}>reset</button>
                                       )}
                                       <button type="button" className="lcard-act" title="Take this book off the list"
                                         onClick={function(e){ e.stopPropagation(); forgetBookProgress(rec.key); }}>remove</button>
@@ -22309,7 +22335,7 @@ export default function App() {
                                 and clicking it again takes the mark off. */}
                             <span className="read-acts">
                               {(cidx > 0 || pidx > 0) && (
-                                <button className="mark-read" title="Back to the first page and forget where you were — for a book you skimmed and now mean to read"
+                                <button className="mark-read" title="Back to the first page to read it again — the words count again as you reread"
                                   onClick={function(){ resetBookProgress(bookKey(bookMeta)); setCbm(0); startLit(0, chapters); }}>
                                   Start over
                                 </button>
