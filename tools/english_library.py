@@ -324,8 +324,13 @@ def chapters_of(text, keep_lines):
     return secs
 
 
+CTRL = re.compile(r"[\x00-\x08\x0b\x0c\x0e-\x1f\ufffe\uffff]")
+
+
 def esc(s):
-    return html.escape(s, quote=False)
+    # Control characters (form feeds in some Gutenberg texts) are not
+    # allowed in XML: one of them makes the whole book unreadable.
+    return html.escape(CTRL.sub(" ", s), quote=False)
 
 
 def fb2(title, author, secs, poem):

@@ -256,7 +256,10 @@ def main():
         if a.english_books:
             # The book IS the English: its chapters as the reader cuts them,
             # each paragraph keyed by its index — what the jump buttons read.
-            rc, _ = reader_chapters(os.path.join("public/books", b["filename"]))
+            try:
+                rc, _ = reader_chapters(os.path.join("public/books", b["filename"]))
+            except Exception as e:
+                print("   !! could not read the book: %s" % e); continue
             chs = [(ci, [(str(pi), p) for pi, p in enumerate(c["paras"]) if p.strip()]) for ci, c in enumerate(rc)]
             chs = [c for c in chs if c[1]]
             heads = {ci: c["heading"] for ci, c in enumerate(rc)}
