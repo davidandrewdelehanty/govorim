@@ -27,6 +27,15 @@ COURSES = [
                   "reflexive", "going", "questions", "numbers"],
     },
 ]
+COURSES.append({
+    "id": "motion", "title": "Verbs of Motion", "short": "Motion", "mark": "→",
+    "blurb": "Going, carrying, leading and driving — the unprefixed pairs, then every prefix from при- to с-, "
+             "with drills: a course of its own, also in the Grammar tab.",
+    "credit": "Based on the Defense Language Institute Russian Basic Course, Grammar Reference Book and Student Workbooks (US Government work, public domain)",
+    "creditUrl": "https://www.fsi-language-courses.org/russian/courses/dli-russian-basic-course",
+    "license": "Public domain", "licenseUrl": "",
+    "modules": ["motion_a", "motion_b", "motion_c"], "order": None,
+})
 if os.path.exists(os.path.join(HERE, "dli_a.py")):
     COURSES.append({
         "id": "dli", "title": "DLI Basic Russian Grammar", "short": "DLI", "mark": "D",

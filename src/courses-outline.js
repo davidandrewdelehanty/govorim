@@ -135,6 +135,91 @@ export default [
   ]
  },
  {
+  "id": "motion",
+  "title": "Verbs of Motion",
+  "short": "Motion",
+  "mark": "→",
+  "blurb": "Going, carrying, leading and driving — the unprefixed pairs, then every prefix from при- to с-, with drills: a course of its own, also in the Grammar tab.",
+  "credit": "Based on the Defense Language Institute Russian Basic Course, Grammar Reference Book and Student Workbooks (US Government work, public domain)",
+  "creditUrl": "https://www.fsi-language-courses.org/russian/courses/dli-russian-basic-course",
+  "license": "Public domain",
+  "licenseUrl": "",
+  "sections": [
+   {
+    "id": "m01-two-kinds",
+    "title": "One way, or round and about",
+    "n": 11,
+    "sub": "идти / ходить · ехать / ездить · лететь / летать"
+   },
+   {
+    "id": "m02-setting-out",
+    "title": "Setting out: пойти, поехать",
+    "n": 8,
+    "sub": "the perfective по- · ходил and ездил for был"
+   },
+   {
+    "id": "m03-carry-lead-drive",
+    "title": "Carrying, leading, driving, running, swimming",
+    "n": 9,
+    "sub": "нести / носить · вести / водить · везти / возить · бежать / бегать · плыть / плавать"
+   },
+   {
+    "id": "m04-prefixes",
+    "title": "How prefixes work: при- and у-",
+    "n": 9,
+    "sub": "arriving and leaving · the new aspect pairs"
+   },
+   {
+    "id": "m05-in-out",
+    "title": "Going in and going out: в- and вы-",
+    "n": 8,
+    "sub": "входить / войти · выходить / выйти"
+   },
+   {
+    "id": "m06-toward-away",
+    "title": "Approaching and moving off: под- and от-",
+    "n": 7,
+    "sub": "подходить к · отходить от"
+   },
+   {
+    "id": "m07-reach-cross",
+    "title": "Reaching and crossing: до- and пере-",
+    "n": 8,
+    "sub": "доходить до · переходить через · moving house"
+   },
+   {
+    "id": "m08-through-around",
+    "title": "Through, past and around: про- and об-",
+    "n": 8,
+    "sub": "проходить мимо · обходить вокруг"
+   },
+   {
+    "id": "m09-drop-by-down",
+    "title": "Dropping in, going down: за- and с-",
+    "n": 7,
+    "sub": "заходить за · сходить с · за + instrumental"
+   },
+   {
+    "id": "m10-round-trips",
+    "title": "Quick trips and a while: сходить, походить",
+    "n": 7,
+    "sub": "с- and по- with ходить, ездить, летать"
+   },
+   {
+    "id": "m11-bring-take",
+    "title": "Bringing and taking away",
+    "n": 8,
+    "sub": "принести, привести, привезти · унести, увести, увезти · and the rest"
+   },
+   {
+    "id": "m12-review",
+    "title": "Verbs of motion: putting it together",
+    "n": 12,
+    "sub": "mixed practice in the DLI style"
+   }
+  ]
+ },
+ {
   "id": "dli",
   "title": "DLI Basic Russian Grammar",
   "short": "DLI",

@@ -11587,7 +11587,50 @@ export default function App() {
   };
 
   // A verb from the Grammar tab: its table, its numbers, and sentences.
-  var [gramSec, setGramSec] = useState("freq");   // "freq" | "irr"
+  var [gramSec, setGramSec] = useState("freq");   // "freq" | "irr" | "motion"
+  // Verb practice from the Grammar tab: multiple choice, Russian → English
+  // and English → Russian. Every answer counts as a card reviewed — the same
+  // tally as the Vocab review, so it goes on the leaderboard.
+  var [gvQuiz, setGvQuiz] = useState(null);   // { title, pool, order, i, q, picked, done, right, answered }
+  var gvShuffle = function(a) {
+    var x = a.slice();
+    for (var i = x.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = x[i]; x[i] = x[j]; x[j] = t; }
+    return x;
+  };
+  var gvMakeQ = function(pool, item) {
+    var toEn = Math.random() < 0.6;
+    var others = gvShuffle(pool.filter(function(p){ return p.v !== item.v && p.en !== item.en; })).slice(0, 3);
+    var opts = gvShuffle([item].concat(others));
+    return {
+      toEn: toEn, item: item,
+      prompt: toEn ? item.label : item.en,
+      options: opts.map(function(o){ return toEn ? o.en : o.label; }),
+      answer: opts.indexOf(item),
+    };
+  };
+  var startVerbPractice = function(title, list) {
+    var pool = list.filter(function(p){ return p && p.v && p.en; });
+    if (pool.length < 4) { alert("Not enough verbs with an English meaning here to practise yet."); return; }
+    var order = gvShuffle(pool).slice(0, 20);
+    setGvQuiz({ title: title, pool: pool, order: order, i: 0, q: gvMakeQ(pool, order[0]), picked: [], done: false, right: 0, answered: 0 });
+  };
+  var gvPick = function(k) {
+    setGvQuiz(function(z){
+      if (!z || z.done || z.picked.indexOf(k) >= 0 || z.picked.indexOf(z.q.answer) >= 0) return z;
+      var first = z.picked.length === 0;
+      var ok = k === z.q.answer;
+      if (first) bumpToday("practiced", 1);
+      return Object.assign({}, z, { picked: z.picked.concat([k]), right: z.right + (first && ok ? 1 : 0), answered: z.answered + (first ? 1 : 0) });
+    });
+  };
+  var gvNext = function() {
+    setGvQuiz(function(z){
+      if (!z) return z;
+      var i = z.i + 1;
+      if (i >= z.order.length) return Object.assign({}, z, { done: true });
+      return Object.assign({}, z, { i: i, q: gvMakeQ(z.pool, z.order[i]), picked: [] });
+    });
+  };
   var [gvQuery, setGvQuery] = useState("");
   var openVerb = function(v) {
     loadVerb(v);
@@ -15849,6 +15892,7 @@ export default function App() {
         .cj-f.miss{color:rgba(42,31,20,.4);text-decoration:line-through}
         .tb-cover.crs-tile-cover{display:flex;flex-direction:column;justify-content:flex-end;gap:6px;padding:14px 13px 13px;color:#f6efe2;
           background:radial-gradient(120% 90% at 85% 0%,rgba(255,255,255,.14),transparent 55%),linear-gradient(160deg,#7d2f1f 0%,#4a1a10 100%);overflow:hidden}
+        .tb-cover.crs-tile-cover.crs-tc-motion{background:radial-gradient(120% 90% at 85% 0%,rgba(255,255,255,.13),transparent 55%),linear-gradient(160deg,#2d5e46 0%,#173325 100%)}
         .tb-cover.crs-tile-cover.crs-tc-dli{background:radial-gradient(120% 90% at 85% 0%,rgba(255,255,255,.13),transparent 55%),linear-gradient(160deg,#28466b 0%,#14243b 100%)}
         .crs-tc-kicker{position:absolute;top:12px;left:13px;font-family:'IBM Plex Sans',sans-serif;font-size:10px;letter-spacing:.18em;text-transform:uppercase;opacity:.75}
         .crs-tc-mark{position:absolute;top:2px;right:10px;font-family:'Old Standard TT',serif;font-size:84px;line-height:1;opacity:.18}
@@ -15950,6 +15994,21 @@ export default function App() {
         .gv-a.pf{background:rgba(46,110,80,.13);color:#2e6e50}
         .gv-a.impf{background:rgba(48,90,150,.12);color:#305a96}
         .gv-v2{color:#7a5410}
+        .gv-prac{font-family:'IBM Plex Sans',sans-serif;font-size:12px;font-weight:600;padding:4px 11px;margin-left:8px;border-radius:14px;border:1px solid #2e7d4f;background:#2e7d4f;color:#fff;cursor:pointer;vertical-align:middle}
+        .gv-prac:hover{background:#25683f}
+        .gv-prac-row{display:flex;align-items:center;flex-wrap:wrap;gap:6px 10px;font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;color:rgba(42,31,20,.6)}
+        .gv-prac-row .gv-prac{margin-left:0}
+        .gvq{max-width:520px}
+        .gvq-n{font-family:'IBM Plex Sans',sans-serif;font-size:12px;color:rgba(42,31,20,.55);margin:6px 0 10px}
+        .gvq-ask{font-family:'Literata',serif;font-style:italic;font-size:14px;color:rgba(42,31,20,.65)}
+        .gvq-prompt{font-family:'Literata',serif;font-size:21px;color:#1c1610;margin:4px 0 14px;line-height:1.3}
+        .gvq-prompt.ru{font-family:'Old Standard TT',serif;font-size:28px}
+        .gvq-opts{flex-direction:column;align-items:stretch}
+        .gvq-opts .crs-opt{text-align:left}
+        .gvq-btns{display:flex;justify-content:flex-end;gap:10px;margin-top:14px;flex-wrap:wrap}
+        .gvq-more{font-size:13px}
+        .gvq-end{text-align:center;padding:10px 0}
+        .gvq-score{font-family:'Old Standard TT',serif;font-size:46px;color:#2e7d4f}
         .gv-sl{color:rgba(42,31,20,.35);font-family:'IBM Plex Sans',sans-serif;font-size:.8em}
         .gv-pair{font-family:'Literata',serif;font-size:12.5px;color:rgba(42,31,20,.75)}
         .gv-x{font-family:'Literata',serif;font-size:12.5px;color:#8a3b1e;line-height:1.35}
@@ -24909,6 +24968,10 @@ export default function App() {
                   onClick={function(){ setGramSec("freq"); }}>Frequency Verbs</button>
                 <button type="button" role="tab" aria-selected={gramSec === "irr"} className={"fq-tab" + (gramSec === "irr" ? " on" : "")}
                   onClick={function(){ setGramSec("irr"); }}>Irregular Verbs</button>
+                {COURSE_OUTLINE.some(function(c){ return c.id === "motion"; }) && (
+                  <button type="button" role="tab" aria-selected={gramSec === "motion"} className={"fq-tab" + (gramSec === "motion" ? " on" : "")}
+                    onClick={function(){ setGramSec("motion"); }}>Verbs of Motion</button>
+                )}
               </div>
               {(function(){
                 wantVerbIdx();
@@ -24918,6 +24981,22 @@ export default function App() {
                 var irrEn = {};
                 IRREG_VERBS.groups.forEach(function(g){ g.verbs.forEach(function(v){ irrEn[v[0]] = v[1]; }); });
                 var gloss = function(v){ return irrEn[v] || (idx && idx.en && idx.en[v]) || ""; };
+                // A verb for practice: shown with its aspectual partner when it has one.
+                var practiceItem = function(v) {
+                  var pr = idx && idx.pairs && idx.pairs[v];
+                  var parts = pr ? (pr[1] || []).slice().sort(function(a, b){ return ((verbRank[a] || [0, 1e9])[1]) - ((verbRank[b] || [0, 1e9])[1]); }) : [];
+                  var partner = parts[0] || "";
+                  var label = partner && pr[0] !== "both" ? (pr[0] === "pf" ? partner + " / " + v : v + " / " + partner) : v;
+                  return { v: v, en: String(gloss(v) || "").split(/;\s*/).slice(0, 2).join("; "), label: label };
+                };
+                var practiceBtn = function(title, verbs) {
+                  return (
+                    <button type="button" className="gv-prac" onClick={function(){ startVerbPractice(title, verbs.map(practiceItem)); }}
+                      title="Multiple choice on these verbs — every answer counts toward your reviews on the leaderboard">
+                      ▶ Practice
+                    </button>
+                  );
+                };
                 var btn = function(v, extra, key) {
                   var st = verbStat(v);
                   return (
@@ -24962,6 +25041,35 @@ export default function App() {
                     </button>
                   );
                 };
+                if (gramSec === "motion") {
+                  // The Verbs of Motion course, opened from here: its lessons
+                  // and exercises live in the Courses tab, progress and badges too.
+                  var mc = COURSE_OUTLINE.filter(function(c){ return c.id === "motion"; })[0];
+                  var mst = courseState(mc, courseProg);
+                  return (
+                    <div className="gv-body">
+                      <p className="sde">{mc.blurb} Each lesson ends with exercises — pick an answer or type it in.</p>
+                      <div className="crs-prog"><div className="crs-bar"><div className="crs-bar-in" style={{width: (mst.of ? Math.round(100 * mst.done / mst.of) : 0) + "%"}} /></div><span>{mst.done} of {mst.of} lessons finished</span></div>
+                      <ol className="crs-secs">
+                        {mc.sections.map(function(x, i){
+                          var rec = courseProg[mc.id + "/" + x.id] || {};
+                          var right = Object.keys(rec.right || {}).length;
+                          return (
+                            <li key={x.id}>
+                              <button type="button" className={"crs-sec" + (rec.done ? " done" : rec.read ? " started" : "")}
+                                onClick={function(){ setTab("courses"); openSection(mc.id, x.id); }}>
+                                <span className="crs-sec-n">{rec.done ? "✓" : i + 1}</span>
+                                <span className="crs-sec-t">{x.title}{x.sub ? <span className="crs-sec-s">{x.sub}</span> : null}</span>
+                                <span className="crs-sec-r">{x.n ? Math.min(right, x.n) + " / " + x.n : ""}</span>
+                              </button>
+                            </li>
+                          );
+                        })}
+                      </ol>
+                      <p className="crs-credit">{mc.credit}</p>
+                    </div>
+                  );
+                }
                 if (gramSec === "irr") {
                   return (
                     <div className="gv-body">
@@ -24971,10 +25079,14 @@ export default function App() {
                         it appears in the library's books, in all its forms. Tap a verb for every form and
                         sentences that use it.
                       </p>
+                      <div className="gv-prac-row">
+                        {practiceBtn("All irregular verbs", [].concat.apply([], IRREG_VERBS.groups.map(function(g){ return g.verbs.map(function(v){ return v[0]; }); })))}
+                        <span>20 questions on all {IRREG_VERBS.groups.reduce(function(n, g){ return n + g.verbs.length; }, 0)} irregular verbs · each answer counts toward your reviews</span>
+                      </div>
                       {IRREG_VERBS.groups.map(function(g){
                         return (
                           <section key={g.id} className="gv-sec">
-                            <h2 className="gv-h">{g.title}</h2>
+                            <h2 className="gv-h">{g.title} {practiceBtn(g.title, g.verbs.map(function(v){ return v[0]; }))}</h2>
                             <p className="gv-note">{g.note}</p>
                             <div className="gv-grid">
                               {g.verbs.map(function(v){ return btn(v[0], v[2], g.id + v[0]); })}
@@ -25009,7 +25121,7 @@ export default function App() {
                       if (!rows.length) return null;
                       return (
                         <section key={bd[0]} className="gv-sec">
-                          <h2 className="gv-h">{bd[2]}</h2>
+                          <h2 className="gv-h">{bd[2]} {practiceBtn("Frequency verbs: " + bd[2].toLowerCase(), rows.map(function(t){ return t[0]; }))}</h2>
                           <div className="gv-grid">{rows.map(function(t){ return btn(t[0]); })}</div>
                         </section>
                       );
@@ -25024,6 +25136,49 @@ export default function App() {
               })()}
             </div>
           </div>
+          {gvQuiz && (
+            <div className="cj-over" onClick={function(e){ if (e.target === e.currentTarget) setGvQuiz(null); }}>
+              <div className="cj gvq" role="dialog" aria-label={"Practice: " + gvQuiz.title}>
+                <button type="button" className="pcl" onClick={function(){ setGvQuiz(null); }} aria-label="Close">×</button>
+                <div className="crs-kicker">{gvQuiz.title}</div>
+                {gvQuiz.done ? (
+                  <div className="gvq-end">
+                    <div className="gvq-score">{gvQuiz.right} / {gvQuiz.answered}</div>
+                    <p className="crs-p">right at the first try. {gvQuiz.answered} {gvQuiz.answered === 1 ? "answer" : "answers"} added to your reviews today.</p>
+                    <div className="gvq-btns">
+                      <button type="button" className="btn-p" onClick={function(){ startVerbPractice(gvQuiz.title, gvQuiz.pool); }}>Again</button>
+                      <button type="button" className="btn-g" onClick={function(){ setGvQuiz(null); }}>Done</button>
+                    </div>
+                  </div>
+                ) : (function(){
+                  var z = gvQuiz, q = z.q;
+                  var solved = z.picked.indexOf(q.answer) >= 0;
+                  return (
+                    <>
+                      <div className="gvq-n">{z.i + 1} of {z.order.length} · {z.right} right</div>
+                      <div className="gvq-ask">{q.toEn ? "What does this mean?" : "Which verb means…"}</div>
+                      <div className={"gvq-prompt" + (q.toEn ? " ru" : "")} lang={q.toEn ? "ru" : "en"}>{q.prompt}</div>
+                      <div className="crs-opts gvq-opts">
+                        {q.options.map(function(o, k){
+                          var cls = (solved && k === q.answer) ? " ok" : z.picked.indexOf(k) >= 0 && k !== q.answer ? " bad" : "";
+                          return (
+                            <button key={k} type="button" className={"crs-opt" + cls} lang={q.toEn ? "en" : "ru"} disabled={solved}
+                              onClick={function(){ gvPick(k); }}>{cls === " ok" ? "✓ " : cls === " bad" ? "✗ " : ""}{o}</button>
+                          );
+                        })}
+                      </div>
+                      {solved && (
+                        <div className="gvq-btns">
+                          <button type="button" className="crs-opt gvq-more" onClick={function(){ var v = q.item.v; setGvQuiz(null); openVerb(v); }}>Forms & sentences</button>
+                          <button type="button" className="btn-p" onClick={gvNext} autoFocus>{z.i + 1 >= z.order.length ? "Finish" : "Next →"}</button>
+                        </div>
+                      )}
+                    </>
+                  );
+                })()}
+              </div>
+            </div>
+          )}
           {GRAMMAR_ENABLED && (
           <div className="panel">
             {/* Saved curriculum topics: cards that click to open the reference page.
