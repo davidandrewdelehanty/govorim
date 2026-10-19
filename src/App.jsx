@@ -5554,7 +5554,7 @@ export default function App() {
     var e = verbInfo(word);
     if (!e || !e.n || !e.r) return null;
     return { n: e.n, r: e.r, tier: verbTier(e.r),
-             text: "#" + fmtN(e.r) + " of " + fmtN(verbIdx.verbs) + " verbs · " + fmtN(e.n) + " times in the library" };
+             text: "Verb appears " + fmtN(e.n) + (e.n === 1 ? " time" : " times") + " in the library · #" + fmtN(e.r) + " of " + fmtN(verbIdx.verbs) + " verbs" };
   };
   var VerbStat = function(props) {
     var st = verbStat(props.word);
@@ -24485,7 +24485,7 @@ export default function App() {
                       </span>
                       {gloss(v) && <span className="gv-en">{gloss(v)}</span>}
                       {extra && <span className="gv-x" lang="ru">{extra}</span>}
-                      {st && <span className="gv-n">{fmtN(st.n)} in the library</span>}
+                      {st && <span className="gv-n">Verb appears {fmtN(st.n)} {st.n === 1 ? "time" : "times"} in the library</span>}
                     </button>
                   );
                 };
