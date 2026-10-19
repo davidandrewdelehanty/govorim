@@ -1,3 +1,4 @@
+import { courseBadges } from "./courses.js";
 // Badges: worked out from records a reader already has — the finished
 // shelf, the reading log, vocabulary, drills, songs, Bible chapters. Shared by
 // the app (the reader's own page) and the server (another reader's badges,
@@ -252,6 +253,8 @@ function computeBadges(src) {
       });
     });
   });
+  // Courses: a badge for every section finished and one for every course.
+  if (src.courseOutline) courseBadges(src.courseOutline, src.courseProg || {}).forEach(function(b){ out.push(b); });
   return out;
 }
 

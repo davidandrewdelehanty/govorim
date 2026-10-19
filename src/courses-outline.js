@@ -1,0 +1,408 @@
+// Written by tools/courses/build_courses.py — the courses, their sections and
+// how many exercises each has. The lessons themselves are in public/courses/.
+export default [
+ {
+  "id": "wikibook",
+  "title": "Russian Grammar from the Wikibook",
+  "short": "Wikibook",
+  "mark": "W",
+  "blurb": "Twenty short lessons, from your first «Привет!» to the six cases, verbs of motion and numbers — a guided tour of everyday Russian grammar.",
+  "credit": "Adapted from the Wikibooks Russian textbook and its contributors",
+  "creditUrl": "https://en.wikibooks.org/wiki/Russian",
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "sections": [
+   {
+    "id": "greetings",
+    "title": "Hello, and what's your name?",
+    "n": 8,
+    "sub": "ты and вы · greetings · names"
+   },
+   {
+    "id": "no-the-no-is",
+    "title": "No *the*, no *a*, no *is*",
+    "n": 8,
+    "sub": "это · этот, эта, это, эти"
+   },
+   {
+    "id": "gender",
+    "title": "Gender",
+    "n": 10,
+    "sub": "masculine, feminine, neuter — from the ending"
+   },
+   {
+    "id": "plurals",
+    "title": "Plurals",
+    "n": 10,
+    "sub": "-ы, -и, -а, -я and the spelling rule"
+   },
+   {
+    "id": "pronouns",
+    "title": "I, you, he, she — and whose?",
+    "n": 10,
+    "sub": "personal and possessive pronouns · чей"
+   },
+   {
+    "id": "adjectives",
+    "title": "Adjectives",
+    "n": 10,
+    "sub": "новый, новая, новое, новые"
+   },
+   {
+    "id": "present",
+    "title": "The present tense",
+    "n": 10,
+    "sub": "the two conjugations"
+   },
+   {
+    "id": "past",
+    "title": "The past tense",
+    "n": 10,
+    "sub": "-л, -ла, -ло, -ли"
+   },
+   {
+    "id": "future",
+    "title": "The future tense",
+    "n": 8,
+    "sub": "буду читать · прочитаю"
+   },
+   {
+    "id": "aspect",
+    "title": "Aspect",
+    "n": 9,
+    "sub": "imperfective and perfective"
+   },
+   {
+    "id": "cases",
+    "title": "What a case is",
+    "n": 6,
+    "sub": "six cases, and why Russian needs them"
+   },
+   {
+    "id": "accusative",
+    "title": "The accusative",
+    "n": 10,
+    "sub": "the object · куда?"
+   },
+   {
+    "id": "prepositional",
+    "title": "The prepositional",
+    "n": 10,
+    "sub": "о · в · на · где?"
+   },
+   {
+    "id": "genitive",
+    "title": "The genitive",
+    "n": 10,
+    "sub": "of · у меня есть · нет"
+   },
+   {
+    "id": "dative",
+    "title": "The dative",
+    "n": 10,
+    "sub": "to/for · мне нравится · мне 20 лет"
+   },
+   {
+    "id": "instrumental",
+    "title": "The instrumental",
+    "n": 10,
+    "sub": "with · by means of · as"
+   },
+   {
+    "id": "reflexive",
+    "title": "Reflexive verbs, and three ways to *study*",
+    "n": 8,
+    "sub": "-ся · учить, учиться, изучать, заниматься"
+   },
+   {
+    "id": "going",
+    "title": "Going: идти, ехать, ходить, ездить",
+    "n": 8,
+    "sub": "on foot or by vehicle · now or habitually"
+   },
+   {
+    "id": "questions",
+    "title": "Question words",
+    "n": 8,
+    "sub": "сколько · какой · чей · где · куда · откуда"
+   },
+   {
+    "id": "numbers",
+    "title": "Numbers",
+    "n": 9,
+    "sub": "один, два, пять — and the noun after them"
+   }
+  ]
+ },
+ {
+  "id": "dli",
+  "title": "DLI Basic Russian Grammar",
+  "short": "DLI",
+  "mark": "D",
+  "blurb": "The grammar of the US Defense Language Institute's Basic Russian course — thorough, systematic, with drills — rewritten as lessons and exercises.",
+  "credit": "Based on the Defense Language Institute Russian Basic Course (US Government work, public domain)",
+  "creditUrl": "https://www.fsi-language-courses.org/russian/courses/dli-russian-basic-course",
+  "license": "Public domain",
+  "licenseUrl": "",
+  "sections": [
+   {
+    "id": "d01-gender",
+    "title": "Gender, это and вот",
+    "n": 8,
+    "sub": "Lesson 12 · gender · agreement · это · вот"
+   },
+   {
+    "id": "d02-plurals",
+    "title": "Plurals, его, её, их",
+    "n": 8,
+    "sub": "Lesson 13 · plural · agreement in number · они оба"
+   },
+   {
+    "id": "d03-adjectives",
+    "title": "Adjectives, какой, first and second",
+    "n": 8,
+    "sub": "Lessons 13–14 · hard, soft and mixed adjectives · ordinals"
+   },
+   {
+    "id": "d04-conjugation",
+    "title": "The two conjugations",
+    "n": 8,
+    "sub": "Lesson 14 · infinitive · е-type and и-type · по-русски · весь"
+   },
+   {
+    "id": "d05-location",
+    "title": "Where? The prepositional",
+    "n": 8,
+    "sub": "Lessons 15–16 · cases · в, на + prepositional · быть · стоять, лежать"
+   },
+   {
+    "id": "d06-accusative",
+    "title": "The accusative",
+    "n": 8,
+    "sub": "Lessons 16–18 · the object · pronouns · masculine nouns in -а"
+   },
+   {
+    "id": "d07-going",
+    "title": "Going: идти, ехать, лететь",
+    "n": 9,
+    "sub": "Lessons 19–20 · where to? · on foot, by vehicle, by air · хотеть"
+   },
+   {
+    "id": "d08-round-trips",
+    "title": "ходить, ездить, летать",
+    "n": 8,
+    "sub": "Lessons 20–21 · going habitually, and round trips · каждый · пить"
+   },
+   {
+    "id": "d09-genitive",
+    "title": "The genitive",
+    "n": 9,
+    "sub": "Lessons 21–22 · of · from · near · есть (eat) · должен"
+   },
+   {
+    "id": "d10-have",
+    "title": "To have and not to have",
+    "n": 9,
+    "sub": "Lessons 22–24 · у меня есть · нет + genitive · без, после, до · ждать, мочь"
+   },
+   {
+    "id": "d11-dative",
+    "title": "The dative",
+    "n": 8,
+    "sub": "Lessons 24–25 · to whom · по · к · давать, звонить, отвечать"
+   },
+   {
+    "id": "d12-directions",
+    "title": "Where and where to",
+    "n": 8,
+    "sub": "Lessons 25–26 · prepositions of place and direction · никогда не"
+   },
+   {
+    "id": "d13-instrumental",
+    "title": "The instrumental",
+    "n": 8,
+    "sub": "Lessons 26–27 · with · as · быть and работать · утром, вечером"
+   },
+   {
+    "id": "d14-declension",
+    "title": "Nouns in every case",
+    "n": 9,
+    "sub": "Lessons 27–30 · singular declension · имя, время · кто, что"
+   },
+   {
+    "id": "d15-pronouns",
+    "title": "Pronouns, надо, можно, нельзя",
+    "n": 8,
+    "sub": "Lessons 30–32 · я, ты … они in every case · у меня = my · никто не"
+   },
+   {
+    "id": "d16-past-future",
+    "title": "Past and compound future",
+    "n": 8,
+    "sub": "Lessons 33–35 · -л, -ла, -ло, -ли · буду + infinitive · нужен · такой, так"
+   },
+   {
+    "id": "d17-aspect",
+    "title": "Imperfective and perfective",
+    "n": 8,
+    "sub": "Lessons 35–37 · twin verbs · the five tenses · когда, если + future"
+   },
+   {
+    "id": "d18-genitive-plural",
+    "title": "Counting: the genitive plural",
+    "n": 9,
+    "sub": "Lessons 37–40 · много, мало, сколько · numbers with nouns · который · один из"
+   },
+   {
+    "id": "d19-imperative",
+    "title": "Commands",
+    "n": 8,
+    "sub": "Lessons 40–42 · the imperative · don't! · irregular pasts · брать / взять"
+   },
+   {
+    "id": "d20-plural-cases",
+    "title": "Plural nouns in every case",
+    "n": 8,
+    "sub": "Lessons 42–46 · dative, instrumental, prepositional plural · над, под, между, перед, за"
+   },
+   {
+    "id": "d21-adjective-cases",
+    "title": "Adjectives and possessives in every case",
+    "n": 8,
+    "sub": "Lessons 46–52 · мой, наш, новый … · после чисел · через · за = for · свой"
+   },
+   {
+    "id": "d22-small-words",
+    "title": "Small words that do a lot",
+    "n": 9,
+    "sub": "Lessons 52–56 · ли · же · пора · сам · самый · тот же · весь and целый · давно and долго"
+   },
+   {
+    "id": "d23-dates",
+    "title": "Dates, children, surnames",
+    "n": 8,
+    "sub": "Lessons 53–55 · dates · третий · ребёнок and дети · declining surnames"
+   },
+   {
+    "id": "d24-short-adjectives",
+    "title": "Short adjectives",
+    "n": 8,
+    "sub": "Lessons 55–60 · болен, доволен, согласен, должен, нужен, голоден, сыт"
+   },
+   {
+    "id": "d25-negatives",
+    "title": "Nobody, nothing, nowhere",
+    "n": 8,
+    "sub": "Lessons 60–62 · никто, ничто, никакой, ничей · нигде, никуда, никогда · ни… ни · -нибудь and -то"
+   },
+   {
+    "id": "d26-prefixed-motion",
+    "title": "Going-verbs with prefixes",
+    "n": 8,
+    "sub": "Lessons 57–63 · при-, у-, в-, вы-, под-, от-, пере-, про-, до-, об-"
+   },
+   {
+    "id": "d27-prepositions",
+    "title": "Prepositions and their cases",
+    "n": 8,
+    "sub": "Lessons 62–64 · a review · вместо, из-за, от… до, с… до · за + instrumental"
+   },
+   {
+    "id": "d28-reflexive",
+    "title": "себя and -ся verbs",
+    "n": 8,
+    "sub": "Lessons 64–65 · себя · чувствовать себя · verbs in -ся"
+   },
+   {
+    "id": "d29-ca-verbs",
+    "title": "More -ся verbs: meeting, marrying, each other",
+    "n": 8,
+    "sub": "Lessons 66–68 · встречаться · знакомиться · бояться · жениться, выйти замуж"
+   },
+   {
+    "id": "d30-positions",
+    "title": "Sitting down, lying down, standing up",
+    "n": 8,
+    "sub": "Lessons 68–70 · сидеть / садиться / сесть · лежать / ложиться / лечь · стоять / вставать / встать"
+   },
+   {
+    "id": "d31-numerals",
+    "title": "Numbers in every case",
+    "n": 8,
+    "sub": "Lessons 69–73 · один, два, пять in all cases · двое, трое · полтора · about ten"
+   },
+   {
+    "id": "d32-fractions",
+    "title": "Ordinals, fractions, equal to",
+    "n": 7,
+    "sub": "Lessons 73–75 · ordinals · половина, треть, четверть · часть · равен"
+   },
+   {
+    "id": "d33-time",
+    "title": "Telling the time and when things happen",
+    "n": 8,
+    "sub": "Lessons 74–78 · в, на, до in time expressions · hours and minutes · dates in full"
+   },
+   {
+    "id": "d34-carrying",
+    "title": "Carrying, leading, transporting, running, swimming",
+    "n": 8,
+    "sub": "Lessons 76–82 · нести / носить · вести / водить · везти / возить · бежать / бегать · плыть / плавать"
+   },
+   {
+    "id": "d35-comparison",
+    "title": "Comparing",
+    "n": 8,
+    "sub": "Lessons 82–86 · больше, лучше · чем · самый, -ейший · всех, всего"
+   },
+   {
+    "id": "d36-passive",
+    "title": "The passive: сделан, написан",
+    "n": 7,
+    "sub": "Lessons 86–90 · short past passive participles · быть + participle · при"
+   },
+   {
+    "id": "d37-long-participles",
+    "title": "Participles as adjectives",
+    "n": 6,
+    "sub": "Lessons 90–92 · написанный · participial phrases · многие"
+   },
+   {
+    "id": "d38-conditional",
+    "title": "If only: бы, если бы, чтобы",
+    "n": 8,
+    "sub": "Lessons 92–98 · the conditional · хотелось бы · чтобы · complex conjunctions"
+   },
+   {
+    "id": "d39-active-participles",
+    "title": "Active participles: читающий, читавший",
+    "n": 6,
+    "sub": "Lessons 98–100 · present and past active participles · instead of который"
+   },
+   {
+    "id": "d40-passive-present",
+    "title": "More passives: любимый, -ся",
+    "n": 6,
+    "sub": "Lessons 100–104 · present passive participles · -ся passives · the passive in summary"
+   },
+   {
+    "id": "d41-gerunds",
+    "title": "Gerunds: читая, прочитав",
+    "n": 7,
+    "sub": "Lessons 104–107 · imperfective and perfective деепричастия · будучи"
+   },
+   {
+    "id": "d42-nobody-to",
+    "title": "No one to ask, nowhere to go",
+    "n": 7,
+    "sub": "Lessons 105–107 · некого, нечего · негде, некуда, некогда"
+   },
+   {
+    "id": "d43-small-words-2",
+    "title": "Until, both, then, almost",
+    "n": 8,
+    "sub": "Lessons 106–107 · пока, пока не · оба, и тот и другой · потом, тогда · едва, чуть, почти · некоторый · дважды"
+   }
+  ]
+ }
+];

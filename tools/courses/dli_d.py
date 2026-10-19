@@ -1,0 +1,177 @@
+# DLI Basic Russian Grammar, part D (lessons 52–65).
+from kit import *
+
+SECTIONS = [
+
+SEC("d22-small-words", "Small words that do a lot", sub="Lessons 52–56 · ли · же · пора · сам · самый · тот же · весь and целый · давно and долго", blocks=[
+  T(["Word", "What it does", "Example"], [
+    ["**ли**", "*whether, if* in indirect questions — after the word asked about", "Я не знаю, **придёт ли** он. *I don't know whether he'll come.*"],
+    ["**же**", "stresses the word before it; *the very, after all*", "Где **же** он? *Where on earth is he?* · **тот же** — the same"],
+    ["**пора́**", "it's time (to)", "**Пора́** идти. **Мне пора́.** *It's time for me to go.*"],
+    ["**сам**", "-self, in person (сама́, само́, са́ми)", "Я **сам** это сделал. *I did it myself.*"],
+    ["**са́мый**", "the very; makes superlatives", "**са́мый** большо́й го́род — *the biggest city*"],
+  ]),
+  NOTE("Don't use **если** for *whether*: *Я не знаю, **если** он придёт* is wrong — it must be **придёт ли**."),
+  H("весь and целый · давно and долго"),
+  P("**Весь** — all of it (*весь день* — all day). **Це́лый** — a whole, entire one, often with surprise: *Он ждал **це́лый** час!*"),
+  P("**Давно́** — a long time ago, or for a long time up to now: *Я **давно** живу здесь.* **До́лго** — for a long time, of an action's length: *Он **долго** спал.*"),
+  T(["Soft adjectives", "m.", "f.", "n.", "pl."], [["", "после́дний", "после́дняя", "после́днее", "после́дние"]], row_heads=False),
+  P("Soft adjectives (после́дний, си́ний, вече́рний, у́тренний, ле́тний, зи́мний) keep **я, ю, е, и** in all their endings."),
+], exercises=[
+  FILL("Спросите его, знает ___ он адрес. (whether)", ["ли"], "**знает ли**."),
+  MC("*I don't know if she is at home.*", ["Я не знаю, если она дома.", "Я не знаю, дома ли она."], 1, "*Whether* → **ли** after the word in question."),
+  FILL("Мне ___ домой. (it's time)", ["пора"], "**Мне пора**."),
+  FILL("Она ___ приготовила обед. (herself)", ["сама"], "Feminine → **сама**."),
+  FILL("Это ___ высокое здание в городе. (the most)", ["самое"], "Neuter → **самое**."),
+  MC("*Мы живём в том ___ доме.* (the same house)", ["же", "ли", "самый"], 0, "**тот же** — the same."),
+  MC("*Я ___ не видел его.* (for a long time up to now)", ["давно", "долго"], 0, "Up to now → **давно**."),
+  MC("*Вчера он ___ работал.* (worked a long time)", ["давно", "долго"], 1, "Length of an action → **долго**."),
+  FILL("Это ___ урок. (last: последний)", ["последний"], "Masculine → **последний**."),
+]),
+
+SEC("d23-dates", "Dates, children, surnames", sub="Lessons 53–55 · dates · третий · ребёнок and дети · declining surnames", blocks=[
+  P("A date is an ordinal number, neuter (agreeing with **число́**), plus the month in the **genitive**: **Сего́дня пе́рвое ма́я.** *Today is the first of May.* *On* a date: genitive — **пе́рвого ма́я**, **двадца́того ию́ня**."),
+  T(["Month", "Genitive"], [["янва́рь", "января́"], ["март", "ма́рта"], ["май", "ма́я"], ["сентя́брь", "сентября́"], ["дека́брь", "декабря́"]]),
+  P("Years: *in 1970* — **в ты́сяча девятьсо́т семидеся́том году́** (only the last number is an ordinal, in the prepositional)."),
+  H("тре́тий"),
+  P("*Third* has its own soft endings: **тре́тий, тре́тья, тре́тье, тре́тьи**; genitive **тре́тьего, тре́тьей**."),
+  H("ребёнок — дети"),
+  P("One **ребёнок**, two **ребёнка**, five **дете́й**; *children* — **де́ти**, instrumental **детьми́**."),
+  H("Surnames"),
+  P("Russian surnames in **-ов, -ев, -ин** decline: Петро́в → у Петро́в**а**, с Петро́в**ым**; the wife is **Петро́ва** → у Петро́в**ой**, с Петро́в**ой**; the family are **Петро́вы**."),
+], exercises=[
+  FILL("Сегодня ___ марта. (8th: восьмое)", ["восьмое"], "Neuter ordinal: **восьмое**."),
+  FILL("Я родился ___ мая. (on the 1st)", ["первого"], "*On* a date → genitive **первого**."),
+  FILL("Мы приедем пятого ___ . (январь)", ["января"], "Month in the genitive."),
+  FILL("Это ___ урок. (third)", ["третий"], "**Третий**."),
+  FILL("Это ___ книга. (third)", ["третья"], "Feminine → **третья**."),
+  MC("*пять ___* (ребёнок)", ["ребёнков", "детей", "ребёнка"], 1, "After 5, the plural of **ребёнок** — genitive **детей**."),
+  FILL("Я говорил с Анной ___ . (Петрова — instrumental)", ["Петровой"], "Feminine surname → **-ой**."),
+  FILL("Это дом ___ . (Иванов — genitive)", ["Иванова"], "**-а**."),
+]),
+
+SEC("d24-short-adjectives", "Short adjectives", sub="Lessons 55–60 · болен, доволен, согласен, должен, нужен, голоден, сыт", blocks=[
+  P("Many adjectives have a **short form**, used only after the noun as the predicate — *the house is big*:"),
+  T(["Long", "m.", "f.", "n.", "pl."], [
+    ["но́вый", "нов", "нова́", "но́во", "но́вы"], ["большо́й", "вели́к", "велика́", "велико́", "велики́"],
+    ["больно́й (ill)", "**бо́лен**", "больна́", "больно́", "больны́"], ["свобо́дный (free)", "свобо́ден", "свобо́дна", "свобо́дно", "свобо́дны"],
+  ]),
+  P("Short forms often mean a **temporary state** or **too much**: *Он бо́лен* — *he's ill (now)*; *Пальто мне велико* — *the coat is too big for me*."),
+  T(["Word", "Means", "Takes"], [
+    ["**дово́лен**", "pleased with", "instrumental: *Я доволен работой.*"],
+    ["**согла́сен**", "agrees", "с + instr.: *Я согласен с вами.*"],
+    ["**знако́м**", "acquainted", "с + instr.: *Вы знакомы с ним?*"],
+    ["**прав**", "right (correct)", "*Вы правы.*"],
+    ["**до́лжен**", "must", "infinitive: *Она должна уйти.*"],
+    ["**ну́жен**", "needed", "dative person: *Мне нужен врач.*"],
+    ["**го́лоден / сыт**", "hungry / full", "*Я голоден. Спасибо, я сыт.*"],
+  ]),
+], exercises=[
+  FILL("Она сегодня ___ . (ill)", ["больна"], "Feminine → **больна**."),
+  FILL("Я ___ с вами. (agree — a man speaking)", ["согласен"], "**Согласен**."),
+  FILL("Мы ___ вашей работой. (pleased)", ["довольны"], "Plural → **довольны**."),
+  FILL("Вы ___ . (right)", ["правы"], "**Вы правы** (plural form)."),
+  FILL("Ты ___ ? (hungry — to a man)", ["голоден"], "**Голоден**."),
+  MC("*Эти брюки мне ___.* (too big)", ["большие", "велики"], 1, "Short form for *too big*: **велики**."),
+  MC("*Вы знакомы ___ ним?*", ["с", "к", "о"], 0, "**знаком с** + instrumental."),
+  MC("*Мне ___ ваша помощь.*", ["нужен", "нужна", "нужно"], 1, "**Помощь** is feminine → **нужна**."),
+]),
+
+SEC("d25-negatives", "Nobody, nothing, nowhere", sub="Lessons 60–62 · никто, ничто, никакой, ничей · нигде, никуда, никогда · ни… ни · -нибудь and -то", blocks=[
+  P("Russian piles up negatives: every *no-* word needs **не** with the verb too."),
+  T(["Word", "Means", "Example"], [
+    ["никто́ не", "nobody", "**Никто́ не** пришёл."], ["ничто́ / ничего́ не", "nothing", "Я **ничего́ не** зна́ю."],
+    ["никако́й не", "no … at all", "У меня **нет никаки́х** вопро́сов."], ["ниче́й", "nobody's", "Это **ничья́** собака."],
+    ["нигде́ не", "nowhere (place)", "Я его **нигде́ не** ви́жу."], ["никуда́ не", "nowhere (direction)", "Мы **никуда́ не** пое́дем."],
+    ["никогда́ не", "never", "Он **никогда́ не** опа́здывает."], ["ника́к не", "in no way", "Я **ника́к не** могу́ поня́ть."],
+  ]),
+  P("With a preposition, it splits the word: **ни у кого́**, **ни о чём**, **ни с кем**: *Я **ни с кем не** говорил.*"),
+  P("**Ни … ни … не** — *neither … nor*: *У меня **нет ни** брата, **ни** сестры.*"),
+  H("-нибудь and -то"),
+  P("**-нибудь** — *any-*, someone or other, not known which: *Кто-**нибудь** звонил?* (*Did anyone call?*) **-то** — *some-*, a definite one that the speaker can't name: *Кто-**то** звонил.* (*Someone called.*)"),
+], exercises=[
+  FILL("___ не знает, где он. (nobody)", ["Никто"], "**Никто не**."),
+  FILL("Я ___ не был в Сибири. (never)", ["никогда"], "**никогда не**."),
+  FILL("Мы ___ не ходили вчера. (nowhere — direction)", ["никуда"], "Direction → **никуда**."),
+  FILL("Он ___ не работает. (nowhere — place)", ["нигде"], "Place → **нигде**."),
+  MC("*Я ни ___ не говорил.* (with anybody)", ["с кем", "кем", "с никем"], 0, "The preposition splits it: **ни с кем**."),
+  MC("*Did anyone come?*", ["Кто-то пришёл?", "Кто-нибудь пришёл?"], 1, "Unknown, *any-* in a question → **-нибудь**."),
+  MC("*Someone is knocking.*", ["Кто-то стучит.", "Кто-нибудь стучит."], 0, "A definite but unknown person → **-то**."),
+  FILL("У меня нет ___ брата, ___ сестры. (neither … nor — type the word once)", ["ни"], "**ни … ни**."),
+]),
+
+SEC("d26-prefixed-motion", "Going-verbs with prefixes", sub="Lessons 57–63 · при-, у-, в-, вы-, под-, от-, пере-, про-, до-, об-", blocks=[
+  P("Add a prefix to **идти / ходить** (and **ехать / ездить**, **лететь / летать**) and you get a new verb with a direction. The **идти** form becomes perfective, the **ходить** form imperfective: **прийти́** (pf.) / **приходи́ть** (impf.) — *arrive*."),
+  T(["Prefix", "Meaning", "on foot (pf. / impf.)", "by vehicle (pf. / impf.)"], [
+    ["**при-**", "arrive, come", "прийти́ / приходи́ть", "прие́хать / приезжа́ть"],
+    ["**у-**", "leave", "уйти́ / уходи́ть", "уе́хать / уезжа́ть"],
+    ["**в(о)-**", "go in", "войти́ / входи́ть", "въе́хать / въезжа́ть"],
+    ["**вы-**", "go out", "вы́йти / выходи́ть", "вы́ехать / выезжа́ть"],
+    ["**под(о)-**", "approach", "подойти́ / подходи́ть", "подъе́хать / подъезжа́ть"],
+    ["**от(о)-**", "move away", "отойти́ / отходи́ть", "отъе́хать / отъезжа́ть"],
+    ["**пере-**", "cross", "перейти́ / переходи́ть", "перее́хать / переезжа́ть"],
+    ["**про-**", "go past, through", "пройти́ / проходи́ть", "прое́хать / проезжа́ть"],
+    ["**до-**", "reach", "дойти́ / доходи́ть", "дое́хать / доезжа́ть"],
+    ["**об(о)-**", "go round", "обойти́ / обходи́ть", "объе́хать / объезжа́ть"],
+  ]),
+  P("Note the spelling: **идти** becomes **-йти** (прийти́ — приду́, придёшь; пришёл), and **-ехать** gets **ъ** after a consonant prefix: **въе́хать, подъе́хать, объе́хать**. The vehicle imperfective is **-езжа́ть**."),
+  H("ходил, ездил — a round trip"),
+  P("Unprefixed **ходил / ездил** in the past means *went and came back*: *Вчера я **ходил** в кино* = *I went to the cinema (and I'm back)*."),
+], exercises=[
+  FILL("Когда вы ___ домой? (прийти — when will you get home?)", ["придёте", "придете"], "вы → **придёте**."),
+  FILL("Он ___ из комнаты. (выйти — he went out)", ["вышел"], "Past of выйти → **вышел**."),
+  FILL("Мы ___ в Москву вчера. (приехать — we arrived)", ["приехали"], "мы → **приехали**."),
+  MC("*Не ___ улицу здесь!* (Don't cross the street here!)", ["переходите", "перейдите"], 0, "*Don't* → imperfective **переходите**."),
+  MC("*Машина ___ к дому.* (drove up)", ["подъехала", "подехала", "подьехала"], 0, "Hard sign: **подъехала**."),
+  MC("*Он ___ в комнату и сел.* (came in)", ["входил", "вошёл"], 1, "One completed act → perfective **вошёл**."),
+  MC("*Каждый день я ___ с работы в шесть.* (leave)", ["ухожу", "уйду"], 0, "Habit → imperfective **ухожу**."),
+  MC("*Вчера мы ___ в театр.* (went and came back)", ["шли", "ходили"], 1, "Round trip → **ходили**."),
+]),
+
+SEC("d27-prepositions", "Prepositions and their cases", sub="Lessons 62–64 · a review · вместо, из-за, от… до, с… до · за + instrumental", blocks=[
+  T(["Case", "Prepositions"], [
+    ["**Genitive**", "без, вме́сто (instead of), для (for), до, из, из-за (because of; from behind), из-под, кро́ме (except), ми́мо, о́коло, от, по́сле, про́тив (against; opposite), с (from, off), у"],
+    ["**Dative**", "к (to, towards), по (along, around; by; on)"],
+    ["**Accusative**", "в, на (direction), за (for; in return), че́рез (across; in time), про (about, colloquial), под (direction)"],
+    ["**Instrumental**", "с (with), за (behind; to fetch), над, под (location), пе́ред, ме́жду"],
+    ["**Prepositional**", "в, на (location), о / об / обо (about), при (in the presence of; under)"],
+  ]),
+  H("Ranges"),
+  P("**от … до** + genitive — *from … to* (distance): *от дома до школы*. **с … до** + genitive — *from … till* (time): *с утра до вечера*, *с девяти до пяти*."),
+  H("за + instrumental — to fetch"),
+  P("**Идти́ за** + instrumental means *go to get*: *Я пойду **за хле́бом**.* *I'll go for bread.* **Из-за** gives a reason: *Мы не пошли **из-за дождя**.*"),
+], exercises=[
+  MC("*Я пью чай ___ сахара.*", ["без", "с", "для"], 0, "*Without* → **без** + gen."),
+  MC("*Этот подарок ___ тебя.*", ["для", "за", "к"], 0, "*For (intended for)* → **для** + gen."),
+  MC("*Мы не поехали ___ погоды.*", ["из-за", "из", "за"], 0, "*Because of* → **из-за**."),
+  FILL("Я работаю с девяти до ___ . (пять — genitive: пяти)", ["пяти"], "**с … до** + genitive."),
+  FILL("Сходи за ___ . (молоко — to fetch milk)", ["молоком"], "**за** + instrumental."),
+  FILL("Все пришли, кроме ___ . (Иван)", ["Ивана"], "**кроме** + genitive."),
+  MC("*Кто ___ этого?* (Who is against this?)", ["против", "вместо", "мимо"], 0, "**Против** — against."),
+  MC("*Он пришёл ___ брата.* (instead of)", ["вместо", "кроме", "для"], 0, "**Вместо**."),
+]),
+
+SEC("d28-reflexive", "себя and -ся verbs", sub="Lessons 64–65 · себя · чувствовать себя · verbs in -ся", blocks=[
+  P("**Себя́** means *oneself*, referring back to the subject — and it has no nominative:"),
+  T(["Gen./Acc.", "Dat.", "Instr.", "Prep."], [["себя́", "себе́", "собо́й", "о себе́"]], row_heads=False),
+  EX(("Он говорит только о себе.", "He only talks about himself."), ("Возьмите с собой зонт.", "Take an umbrella with you."), ("Как вы себя чувствуете?", "How do you feel?")),
+  P("**Чу́вствовать себя́** — *to feel (well, ill)*: *Я чу́вствую себя́ хорошо́.* (Stem **чу́вств-у-ю**; the first **в** is silent.)"),
+  H("-ся verbs"),
+  T(["Verb", "Pair", "Meaning"], [
+    ["мы́ться", "помы́ться", "wash (oneself)"], ["возвраща́ться", "верну́ться", "return, come back"], ["гото́виться", "пригото́виться", "prepare (oneself)"],
+    ["занима́ться", "заня́ться", "study; take up"], ["собира́ться", "собра́ться", "get ready; intend"], ["серди́ться", "рассерди́ться", "be angry"],
+    ["учи́ться", "научи́ться", "study; learn how"],
+  ]),
+  P("Some -ся verbs are used mostly in the 3rd person: **нра́виться** (*please*), **находи́ться** (*be located*), **начина́ться**, **конча́ться**: *Мне нравится эта песня.*"),
+], exercises=[
+  FILL("Он купил ___ новую машину. (for himself)", ["себе"], "Dative **себе**."),
+  FILL("Возьми зонт с ___ . (with you)", ["собой"], "Instrumental **собой**."),
+  FILL("Как ты ___ чувствуешь?", ["себя"], "**чувствовать себя**."),
+  FILL("Я хорошо ___ себя. (чувствовать)", ["чувствую"], "**чувствую** — the first в is silent."),
+  FILL("Мы ___ к экзамену. (готовиться)", ["готовимся"], "мы → **готовимся**."),
+  FILL("Когда ты ___ домой? (вернуться — will you come back?)", ["вернёшься", "вернешься"], "Perfective future: **вернёшься**."),
+  MC("*Он ___ на меня.* (is angry)", ["сердится", "сердит"], 0, "**Сердиться на** + acc."),
+  MC("*Мне ___ эти фильмы.*", ["нравится", "нравятся"], 1, "Plural subject → **нравятся**."),
+]),
+
+]

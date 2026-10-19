@@ -1,5 +1,7 @@
 // THEME_VERSION=2
 import IRREG_VERBS from "./verbs-irregular.json";
+import COURSE_OUTLINE from "./courses-outline.js";
+import { mergeCourseProg, sectionDone, courseState } from "./courses.js";
 import { useState, useRef, useEffect, useCallback, useMemo, Fragment } from "react";
 import { createPortal } from "react-dom";
 import { isCommonWord, dropCommonWords } from "./commonWords.js";
@@ -6091,6 +6093,64 @@ export default function App() {
     storage.set("gv_drills_v1", JSON.stringify(drills)).catch(function(){});
   }, [drills]);
 
+  // ── Courses (the Courses tab) ─────────────────────────────────────────────
+  // Progress: { "<course>/<section>": { right, first, read, done } } — see
+  // src/courses.js. Kept on the device and, for an account, on the server.
+  var [courseProg, setCourseProg] = useState({});
+  var courseProgLoaded = useRef(false);
+  useEffect(function() {
+    storage.get("gv_courses_v1").then(function(r){
+      if (r && r.value) { try { var v = JSON.parse(r.value) || {}; setCourseProg(function(m){ return mergeCourseProg(m, v); }); } catch (e) {} }
+      courseProgLoaded.current = true;
+    }).catch(function(){ courseProgLoaded.current = true; });
+  }, []);
+  useEffect(function() {
+    if (!courseProgLoaded.current) return;
+    storage.set("gv_courses_v1", JSON.stringify(courseProg)).catch(function(){});
+  }, [courseProg]);
+  var [crsCourse, setCrsCourse] = useState(null);   // course id open, or null for the list
+  var [crsSec, setCrsSec] = useState(null);         // section id open
+  var [crsData, setCrsData] = useState({});         // "<course>/<section>" → lesson JSON | "error"
+  var [exState, setExState] = useState({});         // exercise id → { picked: [i…], val, status, tries, shown }
+  var loadSection = function(cid, sid) {
+    var k = cid + "/" + sid;
+    if (crsData[k]) return;
+    fetch("/courses/" + cid + "/" + sid + ".json")
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(j){ setCrsData(function(m){ var n = Object.assign({}, m); n[k] = j || "error"; return n; }); })
+      .catch(function(){ setCrsData(function(m){ var n = Object.assign({}, m); n[k] = "error"; return n; }); });
+  };
+  var openSection = function(cid, sid) {
+    setCrsCourse(cid); setCrsSec(sid); setExState({});
+    loadSection(cid, sid);
+    // Opening a lesson counts as reading it; a lesson with no exercises is
+    // then finished.
+    var c = COURSE_OUTLINE.filter(function(x){ return x.id === cid; })[0];
+    var sec = c && c.sections.filter(function(x){ return x.id === sid; })[0];
+    setCourseProg(function(m){
+      var k = cid + "/" + sid, rec = Object.assign({ right: {}, first: {} }, m[k] || {});
+      if (!rec.read) rec.read = Date.now();
+      if (!rec.done && sec && !sec.n) rec.done = Date.now();
+      var n = Object.assign({}, m); n[k] = rec; return n;
+    });
+    try { var el = document.querySelector(".crs-scroll"); if (el) el.scrollTop = 0; } catch (e) {}
+  };
+  // An answer: right ones are kept for good; the first try is remembered for the score.
+  var noteAnswer = function(cid, sid, exId, right, exIds) {
+    setCourseProg(function(m){
+      var k = cid + "/" + sid, rec = Object.assign({ right: {}, first: {} }, m[k] || {});
+      rec.right = Object.assign({}, rec.right); rec.first = Object.assign({}, rec.first);
+      if (rec.first[exId] === undefined) rec.first[exId] = right ? 1 : 0;
+      if (right && !rec.right[exId]) rec.right[exId] = Date.now();
+      if (!rec.done && sectionDone(rec, exIds)) rec.done = Date.now();
+      var n = Object.assign({}, m); n[k] = rec; return n;
+    });
+  };
+  var normAns = function(x) {
+    return String(x || "").replace(/\u0301/g, "").toLowerCase().replace(/ё/g, "е")
+      .replace(/[.,!?;:«»"“”()\[\]—–-]+/g, " ").replace(/\s+/g, " ").trim();
+  };
+
   // A song opened. Two records, for two different questions: the site-wide
   // tally answers "does anyone play this", the reader's own list answers
   // "what do they keep coming back to". The tally is fire-and-forget and
@@ -8690,6 +8750,9 @@ export default function App() {
         if (data.drills && typeof data.drills === "object") {
           setDrills(function(d){ return mergeDrills(d, data.drills); });
         }
+        if (data.courses && typeof data.courses === "object" && Object.keys(data.courses).length) {
+          setCourseProg(function(m){ return mergeCourseProg(m, data.courses); });
+        }
         if (data.readpaid && typeof data.readpaid === "object") mergeReadPaid(data.readpaid);
         if (data.bibleread && typeof data.bibleread === "object") {
           setBibleRead(function(m){ return mergeBibleRead(m, data.bibleread); });
@@ -8810,6 +8873,18 @@ export default function App() {
     }, 3000);
     return function(){ clearTimeout(t); };
   }, [songsRead, me, syncedFromServer]);
+  useEffect(function() {
+    if (!me || !syncedFromServer || !courseProgLoaded.current) return;
+    if (!courseProg || !Object.keys(courseProg).length) return;
+    var t = setTimeout(function() {
+      authFetch("/api/user-data?type=courses", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ courses: courseProg }),
+      }).catch(function(){});
+    }, 2500);
+    return function(){ clearTimeout(t); };
+  }, [courseProg, me, syncedFromServer]);
   useEffect(function() {
     if (!me || !syncedFromServer || !drillsLoaded.current) return;
     if (!drills || !drills.runs) return;
@@ -13218,8 +13293,9 @@ export default function App() {
       drills: (drills && drills.correct) || 0,
       songs: Object.keys(songsRead || {}).filter(function(k){ return ((songsRead[k] || {}).n || 0) > 0; }).length,
       bibleRead: bibleRead,
+      courseOutline: COURSE_OUTLINE, courseProg: courseProg,
     });
-  }, [presetBooks, finishedMap, stats, learned, vocab.length, drills, songsRead, bibleRead]);
+  }, [presetBooks, finishedMap, stats, learned, vocab.length, drills, songsRead, bibleRead, courseProg]);
   // Publish the earned badges, so a tap on this reader's name elsewhere — the
   // boards, a shared quote, a group read — can show them. Sent only when the
   // set changes.
@@ -14469,7 +14545,7 @@ export default function App() {
   }, [targetLang, started, isLit, bookMeta && bookMeta.filename, chapters.length]);
   // English mode has no case drills: leave that tab if it is open.
   useEffect(function(){
-    if (targetLang === "en" && (tab === "drills" || tab === "music" || tab === "grammar")) setTab("chat");
+    if (targetLang === "en" && (tab === "drills" || tab === "music" || tab === "grammar" || tab === "courses")) setTab("chat");
   }, [targetLang, tab]);
 
   var renderBubble = function(text) {
@@ -15771,6 +15847,77 @@ export default function App() {
         .cj-f.has{text-decoration:underline dotted rgba(160,110,20,.7);text-underline-offset:3px}
         .cj-f.on{background:rgba(160,110,20,.2)}
         .cj-f.miss{color:rgba(42,31,20,.4);text-decoration:line-through}
+        .crs-wrap{align-items:stretch !important}
+        .crs-body{width:100%;max-width:820px;margin:0 auto;text-align:left;display:flex;flex-direction:column;gap:10px}
+        .crs-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+        .crs-card{position:relative;display:flex;flex-direction:column;gap:5px;text-align:left;cursor:pointer;padding:16px 16px 14px;border:1px solid rgba(42,31,20,.2);border-radius:12px;background:rgba(255,255,255,.55);transition:transform .08s,box-shadow .12s}
+        .crs-card:hover{box-shadow:4px 4px 0 rgba(157,70,48,.2);transform:translate(-1px,-1px)}
+        .crs-mark{font-family:'Old Standard TT',serif;font-size:26px;color:#9d4630;line-height:1}
+        .crs-card-t{font-family:'Old Standard TT',serif;font-size:21px;color:#000}
+        .crs-card-b{font-family:'Literata',serif;font-size:14px;line-height:1.45;color:rgba(42,31,20,.7)}
+        .crs-card-n,.crs-prog span{font-family:'IBM Plex Sans',sans-serif;font-size:12px;color:rgba(42,31,20,.6)}
+        .crs-bar{height:6px;border-radius:3px;background:rgba(42,31,20,.1);overflow:hidden;width:100%}
+        .crs-bar-in{height:100%;background:linear-gradient(90deg,#2e6e50,#4f9a72);border-radius:3px;transition:width .3s}
+        .crs-prog{display:flex;flex-direction:column;gap:4px;max-width:420px}
+        .crs-back{align-self:flex-start;background:none;border:0;padding:0;cursor:pointer;font-family:'IBM Plex Sans',sans-serif;font-size:13px;color:rgba(42,31,20,.6)}
+        .crs-back:hover{color:#9d4630}
+        .crs-kicker{font-family:'IBM Plex Sans',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(42,31,20,.5)}
+        .crs-secs{list-style:none;margin:6px 0;padding:0;display:flex;flex-direction:column;gap:6px}
+        .crs-sec{display:flex;align-items:center;gap:12px;width:100%;text-align:left;cursor:pointer;padding:10px 12px;border:1px solid rgba(42,31,20,.15);border-radius:9px;background:rgba(255,255,255,.45)}
+        .crs-sec:hover{border-color:rgba(42,31,20,.4)}
+        .crs-sec-n{flex:0 0 28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Sans',sans-serif;font-size:13px;background:rgba(42,31,20,.08);color:rgba(42,31,20,.7)}
+        .crs-sec.started .crs-sec-n{background:rgba(160,110,20,.18);color:#7a5410}
+        .crs-sec.done .crs-sec-n{background:#2e6e50;color:#fff}
+        .crs-sec-t{flex:1;font-family:'Literata',serif;font-size:16px;color:#1c1610;display:flex;flex-direction:column}
+        .crs-sec-s{font-size:12.5px;font-style:italic;color:rgba(42,31,20,.55)}
+        .crs-sec-r{font-family:'IBM Plex Sans',sans-serif;font-size:12px;color:rgba(42,31,20,.5)}
+        .crs-lesson{display:flex;flex-direction:column;gap:10px}
+        .crs-h{font-family:'Old Standard TT',serif;font-size:23px;font-weight:400;color:#000;margin:14px 0 0}
+        .crs-p{font-family:'Literata',serif;font-size:16.5px;line-height:1.65;color:#1c1610;margin:0}
+        .crs-ul{margin:0;padding-left:22px;font-family:'Literata',serif;font-size:16px;line-height:1.6;color:#1c1610}
+        .crs-note{font-family:'Literata',serif;font-size:15px;line-height:1.55;padding:10px 14px;border-left:3px solid #b58a2a;background:rgba(181,138,42,.09);border-radius:4px;color:#2a1f14}
+        .crs-exs{display:flex;flex-direction:column;gap:4px;padding:8px 14px;border-radius:8px;background:rgba(42,31,20,.04)}
+        .crs-exl{display:flex;flex-wrap:wrap;gap:4px 14px;align-items:baseline;font-family:'Literata',serif;font-size:16.5px;color:#1c1610}
+        .crs-exl b{color:#8a3b1e}
+        .crs-exen{font-style:italic;font-size:14.5px;color:rgba(42,31,20,.6)}
+        .crs-tw{overflow-x:auto}
+        .crs-cap{font-family:'IBM Plex Sans',sans-serif;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:rgba(42,31,20,.55);margin-bottom:4px}
+        .crs-t{border-collapse:collapse;font-family:'Literata',serif;font-size:15px;color:#1c1610;min-width:60%}
+        .crs-t th{font-family:'IBM Plex Sans',sans-serif;font-size:12px;font-weight:600;text-align:left;color:rgba(42,31,20,.65);padding:5px 10px;border-bottom:1px solid rgba(42,31,20,.2)}
+        .crs-t tbody th{font-weight:500;border-bottom:1px solid rgba(42,31,20,.08)}
+        .crs-t td{padding:5px 10px;border-bottom:1px solid rgba(42,31,20,.08)}
+        .crs-t b{color:#8a3b1e}
+        .crs-exw{display:flex;flex-direction:column;gap:10px;margin-top:6px;padding-top:6px;border-top:1px solid rgba(42,31,20,.15)}
+        .crs-exi{font-size:14.5px;color:rgba(42,31,20,.65);font-style:italic}
+        .crs-q{display:flex;gap:12px;padding:12px 14px;border:1px solid rgba(42,31,20,.14);border-radius:10px;background:rgba(255,255,255,.5);transition:border-color .2s,background .2s}
+        .crs-q.ok{border-color:rgba(46,110,80,.45);background:rgba(46,110,80,.05)}
+        .crs-qn{flex:0 0 24px;font-family:'IBM Plex Sans',sans-serif;font-size:13px;color:rgba(42,31,20,.45);padding-top:3px}
+        .crs-qb{flex:1;display:flex;flex-direction:column;gap:8px;min-width:0}
+        .crs-qt{font-family:'Literata',serif;font-size:16px;line-height:1.5;color:#1c1610}
+        .crs-qru{font-family:'Literata',serif;font-size:18px;color:#1c1610}
+        .crs-opts{display:flex;flex-wrap:wrap;gap:8px}
+        .crs-opt{font-family:'Literata',serif;font-size:16px;padding:7px 14px;border-radius:8px;border:1.5px solid rgba(42,31,20,.25);background:#fbf8f2;cursor:pointer;color:#1c1610;transition:background .15s,border-color .15s,color .15s}
+        .crs-opt:hover:not(:disabled){border-color:rgba(42,31,20,.55)}
+        .crs-opt.ok{background:#2e7d4f;border-color:#2e7d4f;color:#fff}
+        .crs-opt.bad{background:#b3412e;border-color:#b3412e;color:#fff}
+        .crs-opt:disabled{cursor:default}
+        .crs-opt:disabled:not(.ok){opacity:.55}
+        .crs-fill{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px;font-family:'Literata',serif;font-size:18px;line-height:2;color:#1c1610}
+        .crs-in{font-family:'Literata',serif;font-size:17px;padding:3px 8px;border:2px solid rgba(42,31,20,.3);border-radius:7px;background:#fff;color:#1c1610;outline:none;transition:border-color .15s,background .15s}
+        .crs-in:focus{border-color:rgba(42,31,20,.6)}
+        .crs-in.ok{border-color:#2e7d4f;background:#e3f3e9;color:#1d5a37}
+        .crs-in.bad{border-color:#b3412e;background:#fbe5e0;color:#8a2a1a}
+        .crs-chk{font-family:'IBM Plex Sans',sans-serif;font-size:13px;padding:5px 12px;border-radius:7px;border:1px solid rgba(42,31,20,.3);background:#fbf8f2;cursor:pointer}
+        .crs-tick{color:#2e7d4f;font-size:20px}
+        .crs-hint{font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;color:rgba(42,31,20,.55)}
+        .crs-show{align-self:flex-start;background:none;border:0;padding:0;cursor:pointer;font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;color:#9d4630;text-decoration:underline}
+        .crs-ans{font-family:'Literata',serif;font-size:14.5px;color:rgba(42,31,20,.75)}
+        .crs-why{font-family:'Literata',serif;font-size:14.5px;line-height:1.5;color:rgba(42,31,20,.8);padding:6px 10px;border-radius:6px;background:rgba(42,31,20,.05)}
+        .crs-score{font-family:'IBM Plex Sans',sans-serif;font-size:14px;padding:10px 14px;border-radius:9px;background:rgba(42,31,20,.06);color:rgba(42,31,20,.75)}
+        .crs-score.done{background:#2e7d4f;color:#fff}
+        .crs-nav{display:flex;justify-content:flex-end;margin-top:10px}
+        .crs-credit{font-family:'IBM Plex Sans',sans-serif;font-size:11.5px;color:rgba(42,31,20,.5);margin-top:16px}
+        .crs-credit a{color:inherit}
         .gv-wrap{align-items:stretch !important}
         .gv-wrap .sti,.gv-wrap .fq-tabs,.gv-body{width:100%;max-width:900px;margin-left:auto;margin-right:auto}
         .gv-body{display:flex;flex-direction:column;gap:6px;text-align:left}
@@ -15789,6 +15936,11 @@ export default function App() {
         .gv-v{font-family:'Old Standard TT',serif;font-size:19px;color:#1c1610}
         .gv-r{font-family:'IBM Plex Sans',sans-serif;font-size:10.5px;color:rgba(42,31,20,.45);font-variant-numeric:tabular-nums}
         .gv-en{font-family:'Literata',serif;font-style:italic;font-size:13px;color:rgba(42,31,20,.65);line-height:1.3}
+        .gv-asp{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 6px;margin:1px 0}
+        .gv-a{font-family:'IBM Plex Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:.03em;padding:0 5px;border-radius:7px;background:rgba(42,31,20,.08);color:rgba(42,31,20,.7)}
+        .gv-a.pf{background:rgba(46,110,80,.13);color:#2e6e50}
+        .gv-a.impf{background:rgba(48,90,150,.12);color:#305a96}
+        .gv-pair{font-family:'Literata',serif;font-size:12.5px;color:rgba(42,31,20,.75)}
         .gv-x{font-family:'Literata',serif;font-size:12.5px;color:#8a3b1e;line-height:1.35}
         .gv-n{font-family:'IBM Plex Sans',sans-serif;font-size:10.5px;color:rgba(42,31,20,.45);margin-top:2px}
         .cj-n{font-family:'IBM Plex Sans',sans-serif;font-size:10px;color:rgba(42,31,20,.42);margin-left:5px;font-variant-numeric:tabular-nums}
@@ -15796,6 +15948,10 @@ export default function App() {
         .cj-exl{padding:7px 0;border-top:1px solid rgba(42,31,20,.08)}
         .cj-exl p{margin:0;font-family:'Literata',serif;font-size:15px;line-height:1.5;color:#2a1f14}
         .cj-exl b{color:#8a3b1e}
+        .cj-kind{display:inline-block;font-family:'IBM Plex Sans',sans-serif;font-size:10px;letter-spacing:.04em;text-transform:uppercase;color:rgba(42,31,20,.55);margin-bottom:2px}
+        .cj-kind span{text-transform:none;letter-spacing:0;font-family:'Literata',serif;font-size:11.5px;color:#8a3b1e}
+        .cj-kind.k-ger,.cj-kind.k-part{color:#2e6e50}
+        .cj-kind.k-imp{color:#305a96}
         .cj-exen{font-family:'Literata',serif;font-style:italic;font-size:13.5px;color:rgba(42,31,20,.6);margin-top:2px}
         .cj-src{background:none;border:0;padding:2px 0 0;cursor:pointer;font-family:'IBM Plex Sans',sans-serif;font-size:11.5px;color:rgba(42,31,20,.55);text-align:left}
         .cj-src:hover{color:#8a3b1e;text-decoration:underline}
@@ -18281,12 +18437,13 @@ export default function App() {
               presetBooks.forEach(function(b){ byFile[b.filename] = b; });
               return (
                 <div className="cj-ex">
-                  {lib.length > 0 && <div className="cj-sec">In the library's books</div>}
+                  {lib.length > 0 && <div className="cj-sec">In the library's books · {lib.length} {lib.length === 1 ? "form" : "forms"}</div>}
                   {lib.map(function(x, i){
                     var fn = files[x[2]] || "";
                     var book = byFile[fn];
                     return (
                       <div key={"l" + i} className="cj-exl">
+                        {x[3] && <span className={"cj-kind k-" + x[3]}>{{ inf: "infinitive", pres: "present", fut: "future", past: "past", imp: "imperative", ger: "gerund", part: "participle" }[x[3]] || x[3]} · <span lang="ru">{x[1]}</span></span>}
                         <p lang="ru">{markWord(x[0], x[1]).map(function(part, k){
                           return k === 1 ? <b key={k}>{part}</b> : <span key={k}>{part}</span>;
                         })}</p>
@@ -18605,7 +18762,7 @@ export default function App() {
                           </div>
                         );
                       };
-                      var groups = [["kind", "Kinds of work"], ["author", "Authors"], ["bible", "Books of the Bible"], ["milestone", "Milestones"]];
+                      var groups = [["kind", "Kinds of work"], ["author", "Authors"], ["bible", "Books of the Bible"], ["course", "Courses"], ["milestone", "Milestones"]];
                       return (
                         <div className="acct-sec">
                           <div className="acct-h">Награды · Badges <span className="acct-cnt">{earned.length} of {badges.length}</span></div>
@@ -20128,11 +20285,12 @@ export default function App() {
               short to begin with — they sit beside the name now and the page
               gets the height back. */}
           <div className="tabs">
-            {["chat","ranked","leaders","vocab","drills","quotes","grammar","forum","music"].filter(function(t){
+            {["chat","ranked","leaders","vocab","drills","quotes","grammar","courses","forum","music"].filter(function(t){
               if (t === "forum") return FORUM_ENABLED;
               // Grammar: the verb lists, for Russian. (The older reference
               // pages under it stay behind GRAMMAR_ENABLED.)
               if (t === "grammar") return targetLang !== "en";
+              if (t === "courses") return targetLang !== "en" && COURSE_OUTLINE.length > 0;
               // Case drills are a Russian exercise: not in English mode. Quotes
               // stay, with their own English board.
               if (targetLang === "en" && t === "drills") return false;
@@ -20166,7 +20324,7 @@ export default function App() {
                   if (t === "drills") { stopTTS(); if ((!cdQs.length || cdOver) && !cdBusy) startCaseDrills(); }
                   setTab(t);
                 }}>
-                  {t==="chat"?"Reading":t==="ranked"?"Most popular":t==="leaders"?"Leaderboard":t==="vocab"?"Vocab":t==="grammar"?"Grammar":t==="forum"?"Forum":t==="quotes"?"Quotes":t==="drills"?"Case drills":"Music"}
+                  {t==="chat"?"Reading":t==="ranked"?"Most popular":t==="leaders"?"Leaderboard":t==="vocab"?"Vocab":t==="grammar"?"Grammar":t==="courses"?"Courses":t==="forum"?"Forum":t==="quotes"?"Quotes":t==="drills"?"Case drills":"Music"}
                   {t==="vocab"&&vocabL.length>0&&<span className="bdg">{vocabL.length}</span>}
                   {t==="quotes"&&quotesUnread>0&&<span className="bdg qn">{quotesUnread > 99 ? "99+" : quotesUnread}</span>}
                   {t==="grammar"&&GRAMMAR_ENABLED&&tips.length>0&&<span className="bdg g">{tips.length}</span>}
@@ -24455,6 +24613,242 @@ export default function App() {
         );
         })(vocabL, learnedL)}
 
+        {tab==="courses" && (
+          <div className="main">
+            <div className="ss crs-wrap crs-scroll">
+              {(function(){
+                // Light markup in lesson text: **bold**, *italic*.
+                var rich = function(t) {
+                  return String(t || "").split(/(\*\*[^*]+\*\*|\*[^*]+\*)/).map(function(part, i){
+                    if (/^\*\*[^*]+\*\*$/.test(part)) return <b key={i}>{part.slice(2, -2)}</b>;
+                    if (/^\*[^*]+\*$/.test(part)) return <i key={i}>{part.slice(1, -1)}</i>;
+                    return <Fragment key={i}>{part}</Fragment>;
+                  });
+                };
+                var course = crsCourse && COURSE_OUTLINE.filter(function(c){ return c.id === crsCourse; })[0];
+                var bar = function(done, of) {
+                  return (
+                    <div className="crs-bar" aria-label={done + " of " + of + " done"}>
+                      <div className="crs-bar-in" style={{width: (of ? Math.round(100 * done / of) : 0) + "%"}} />
+                    </div>
+                  );
+                };
+                var credit = function(c) {
+                  return c.credit ? (
+                    <p className="crs-credit">
+                      {c.credit}{c.creditUrl ? <> · <a href={c.creditUrl} target="_blank" rel="noreferrer">source</a></> : null}
+                      {c.license ? <> · {c.licenseUrl ? <a href={c.licenseUrl} target="_blank" rel="noreferrer">{c.license}</a> : c.license}</> : null}
+                    </p>
+                  ) : null;
+                };
+
+                /* ── The list of courses ── */
+                if (!course) {
+                  return (
+                    <div className="crs-body">
+                      <h1 className="sti">Courses</h1>
+                      <p className="sde">
+                        Russian grammar, a lesson at a time. Each section explains one thing and ends with
+                        exercises — pick an answer or type it in. Finish a section for its badge; finish a
+                        course for the big one. Your place is saved{me ? " to your account" : " on this device — sign in to keep it everywhere"}.
+                      </p>
+                      <div className="crs-list">
+                        {COURSE_OUTLINE.map(function(c){
+                          var st = courseState(c, courseProg);
+                          return (
+                            <button key={c.id} type="button" className="crs-card" onClick={function(){ setCrsCourse(c.id); setCrsSec(null); }}>
+                              <span className="crs-mark">{c.mark || "★"}</span>
+                              <span className="crs-card-t">{c.title}</span>
+                              {c.blurb && <span className="crs-card-b">{c.blurb}</span>}
+                              <span className="crs-card-n">{st.done} of {st.of} sections{st.done === st.of && st.of ? " · complete ✓" : ""}</span>
+                              {bar(st.done, st.of)}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  );
+                }
+
+                var sec = crsSec && course.sections.filter(function(x){ return x.id === crsSec; })[0];
+
+                /* ── A course: its sections ── */
+                if (!sec) {
+                  var st = courseState(course, courseProg);
+                  return (
+                    <div className="crs-body">
+                      <button type="button" className="crs-back" onClick={function(){ setCrsCourse(null); }}>← All courses</button>
+                      <h1 className="sti">{course.title}</h1>
+                      {course.blurb && <p className="sde">{course.blurb}</p>}
+                      <div className="crs-prog">{bar(st.done, st.of)}<span>{st.done} of {st.of} sections finished</span></div>
+                      <ol className="crs-secs">
+                        {course.sections.map(function(x, i){
+                          var rec = courseProg[course.id + "/" + x.id] || {};
+                          var right = Object.keys(rec.right || {}).length;
+                          return (
+                            <li key={x.id}>
+                              <button type="button" className={"crs-sec" + (rec.done ? " done" : rec.read ? " started" : "")}
+                                onClick={function(){ openSection(course.id, x.id); }}>
+                                <span className="crs-sec-n">{rec.done ? "✓" : i + 1}</span>
+                                <span className="crs-sec-t">{x.title}{x.sub ? <span className="crs-sec-s">{x.sub}</span> : null}</span>
+                                <span className="crs-sec-r">{x.n ? Math.min(right, x.n) + " / " + x.n : (rec.done ? "read" : "")}</span>
+                              </button>
+                            </li>
+                          );
+                        })}
+                      </ol>
+                      {credit(course)}
+                    </div>
+                  );
+                }
+
+                /* ── A section: the lesson, then the exercises ── */
+                var key = course.id + "/" + sec.id;
+                var data = crsData[key];
+                var rec = courseProg[key] || {};
+                var idxSec = course.sections.indexOf(sec);
+                var nextSec = course.sections[idxSec + 1];
+                if (!data) { loadSection(course.id, sec.id); }
+                var exs = (data && data !== "error" && data.exercises) || [];
+                var exIds = exs.map(function(e){ return e.id; });
+                var firstRight = exs.filter(function(e){ return rec.first && rec.first[e.id] === 1; }).length;
+                var allRight = exs.length > 0 && exs.every(function(e){ return rec.right && rec.right[e.id]; });
+                var setEx = function(id, patch) {
+                  setExState(function(m){ var n = Object.assign({}, m); n[id] = Object.assign({}, m[id] || {}, patch); return n; });
+                };
+                var block = function(b, i) {
+                  if (b.t === "h") return <h2 key={i} className="crs-h">{rich(b.text)}</h2>;
+                  if (b.t === "note") return <div key={i} className="crs-note">{rich(b.text)}</div>;
+                  if (b.t === "list") return <ul key={i} className="crs-ul">{b.items.map(function(x, k){ return <li key={k}>{rich(x)}</li>; })}</ul>;
+                  if (b.t === "ex") return (
+                    <div key={i} className="crs-exs">
+                      {b.items.map(function(x, k){
+                        return <div key={k} className="crs-exl"><span lang="ru">{rich(x[0])}</span>{x[1] ? <span className="crs-exen">{rich(x[1])}</span> : null}</div>;
+                      })}
+                    </div>
+                  );
+                  if (b.t === "table") return (
+                    <div key={i} className="crs-tw">
+                      {b.caption && <div className="crs-cap">{rich(b.caption)}</div>}
+                      <table className="crs-t">
+                        {b.head && <thead><tr>{b.head.map(function(h, k){ return <th key={k}>{rich(h)}</th>; })}</tr></thead>}
+                        <tbody>{b.rows.map(function(r, k){
+                          return <tr key={k}>{r.map(function(c, j){ return j === 0 && b.rowHeads ? <th key={j}>{rich(c)}</th> : <td key={j} lang="ru">{rich(c)}</td>; })}</tr>;
+                        })}</tbody>
+                      </table>
+                    </div>
+                  );
+                  return <p key={i} className="crs-p">{rich(b.text)}</p>;
+                };
+                var exercise = function(e, n) {
+                  var es = exState[e.id] || {};
+                  var why = (es.status === "right" || (es.tries || 0) >= 2 || es.shown) && e.why ? <div className="crs-why">{rich(e.why)}</div> : null;
+                  if (e.type === "mc") {
+                    var picked = es.picked || [];
+                    return (
+                      <div key={e.id} className={"crs-q" + (es.status === "right" ? " ok" : "")}>
+                        <div className="crs-qn">{n + 1}</div>
+                        <div className="crs-qb">
+                          <div className="crs-qt">{rich(e.q)}</div>
+                          {e.ru && <div className="crs-qru" lang="ru">{rich(e.ru)}</div>}
+                          <div className="crs-opts">
+                            {e.options.map(function(o, k){
+                              var right = k === e.answer;
+                              var cls = (es.status === "right" && right) || (right && (es.tries || 0) >= 2) ? " ok"
+                                : picked.indexOf(k) >= 0 && !right ? " bad" : "";
+                              return (
+                                <button key={k} type="button" className={"crs-opt" + cls} lang="ru"
+                                  disabled={es.status === "right"}
+                                  onClick={function(){
+                                    if (es.status === "right") return;
+                                    if (right) { setEx(e.id, { status: "right", picked: picked.concat([k]) }); noteAnswer(course.id, sec.id, e.id, true, exIds); }
+                                    else if (picked.indexOf(k) < 0) { setEx(e.id, { status: "wrong", picked: picked.concat([k]), tries: (es.tries || 0) + 1 }); noteAnswer(course.id, sec.id, e.id, false, exIds); }
+                                  }}>
+                                  {cls === " ok" ? "✓ " : cls === " bad" ? "✗ " : ""}{rich(o)}
+                                </button>
+                              );
+                            })}
+                          </div>
+                          {why}
+                        </div>
+                      </div>
+                    );
+                  }
+                  // Fill in the blank: the field sits where the blank is.
+                  var check = function() {
+                    var v = normAns(es.val);
+                    if (!v) return;
+                    var ok = (e.answers || []).some(function(a){ return normAns(a) === v; });
+                    setEx(e.id, ok ? { status: "right" } : { status: "wrong", tries: (es.tries || 0) + 1 });
+                    noteAnswer(course.id, sec.id, e.id, ok, exIds);
+                  };
+                  var parts = String(e.q || "").split("___");
+                  var field = (
+                    <input key="f" type="text" lang="ru" autoComplete="off" autoCapitalize="off" spellCheck={false}
+                      className={"crs-in" + (es.status === "right" ? " ok" : es.status === "wrong" ? " bad" : "")}
+                      value={es.val || ""} readOnly={es.status === "right"}
+                      size={Math.max(4, Math.min(22, ((e.answers && e.answers[0]) || "").length + 2))}
+                      onChange={function(ev){ setEx(e.id, { val: ev.target.value, status: es.status === "right" ? "right" : "" }); }}
+                      onKeyDown={function(ev){ if (ev.key === "Enter") check(); }} />
+                  );
+                  return (
+                    <div key={e.id} className={"crs-q" + (es.status === "right" ? " ok" : "")}>
+                      <div className="crs-qn">{n + 1}</div>
+                      <div className="crs-qb">
+                        {e.prompt && <div className="crs-qt">{rich(e.prompt)}</div>}
+                        <div className="crs-fill" lang="ru">
+                          {parts.map(function(p, k){ return <Fragment key={k}>{rich(p)}{k < parts.length - 1 ? field : null}</Fragment>; })}
+                          {parts.length < 2 && field}
+                          {es.status !== "right" && <button type="button" className="crs-chk" onClick={check}>Check</button>}
+                          {es.status === "right" && <span className="crs-tick">✓</span>}
+                        </div>
+                        {e.hint && es.status !== "right" && <div className="crs-hint">{rich(e.hint)}</div>}
+                        {es.status === "wrong" && (es.tries || 0) >= 2 && !es.shown && (
+                          <button type="button" className="crs-show" onClick={function(){ setEx(e.id, { shown: true }); }}>Show the answer</button>
+                        )}
+                        {es.shown && es.status !== "right" && <div className="crs-ans">Answer: <b lang="ru">{(e.answers || [])[0]}</b> — type it in to finish this one.</div>}
+                        {why}
+                      </div>
+                    </div>
+                  );
+                };
+                return (
+                  <div className="crs-body">
+                    <button type="button" className="crs-back" onClick={function(){ setCrsSec(null); }}>← {course.title}</button>
+                    <div className="crs-kicker">Section {idxSec + 1} of {course.sections.length}{rec.done ? " · finished ✓" : ""}</div>
+                    <h1 className="sti">{sec.title}</h1>
+                    {data === "error" && <div className="lib-cat-hint">This lesson could not be loaded — try again in a moment.</div>}
+                    {!data && <div className="lib-cat-hint">Loading…</div>}
+                    {data && data !== "error" && (
+                      <>
+                        <div className="crs-lesson">{(data.blocks || []).map(block)}</div>
+                        {exs.length > 0 && (
+                          <div className="crs-exw">
+                            <h2 className="crs-h">Exercises</h2>
+                            <p className="crs-p crs-exi">Pick the answer, or type it and press Enter. Green is right, red is not — try again until it is.</p>
+                            {exs.map(exercise)}
+                            <div className={"crs-score" + (allRight ? " done" : "")}>
+                              {allRight
+                                ? <>Section finished ✓ · {firstRight} of {exs.length} right at the first try</>
+                                : <>{Object.keys(rec.right || {}).filter(function(k){ return exIds.indexOf(k) >= 0; }).length} of {exs.length} answered</>}
+                            </div>
+                          </div>
+                        )}
+                        <div className="crs-nav">
+                          {nextSec
+                            ? <button type="button" className="btn-p" onClick={function(){ openSection(course.id, nextSec.id); }}>Next: {nextSec.title} →</button>
+                            : <button type="button" className="btn-p" onClick={function(){ setCrsSec(null); }}>Back to the course</button>}
+                        </div>
+                        {credit(course)}
+                      </>
+                    )}
+                  </div>
+                );
+              })()}
+            </div>
+          </div>
+        )}
+
         {tab==="grammar" && (
           <>
           <div className="main">
@@ -24483,6 +24877,20 @@ export default function App() {
                         <span className="gv-v" lang="ru">{v}</span>
                         {st && <span className="gv-r">#{fmtN(st.r)}</span>}
                       </span>
+                      {(function(){
+                        // Its aspect and aspectual partner (tools/verb_pairs.py,
+                        // from Wiktionary): «говорить · impf. → pf. сказать».
+                        var pr = idx && idx.pairs && (idx.pairs[v] || idx.pairs[v.replace(/ё/g, "е")]);
+                        if (!pr) return null;
+                        var asp = pr[0] === "impf" ? "impf." : pr[0] === "pf" ? "pf." : pr[0] === "both" ? "impf. & pf." : "";
+                        var other = pr[0] === "impf" ? "pf." : pr[0] === "pf" ? "impf." : "";
+                        return (
+                          <span className="gv-asp">
+                            {asp && <span className={"gv-a " + (pr[0] || "")}>{asp}</span>}
+                            {pr[1] && pr[1].length > 0 && <span className="gv-pair" lang="ru">{other ? other + " " : "pair: "}{pr[1].slice(0, 3).join(", ")}</span>}
+                          </span>
+                        );
+                      })()}
                       {gloss(v) && <span className="gv-en">{gloss(v)}</span>}
                       {extra && <span className="gv-x" lang="ru">{extra}</span>}
                       {st && <span className="gv-n">Verb appears {fmtN(st.n)} {st.n === 1 ? "time" : "times"} in the library</span>}

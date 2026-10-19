@@ -1,0 +1,176 @@
+# The Russian Wikibook course, part 1: first words to adjectives.
+# Written for this site, following the order and examples of the Wikibooks
+# Russian textbook (en.wikibooks.org/wiki/Russian), CC BY-SA 4.0.
+from kit import *
+
+SECTIONS = [
+
+SEC("greetings", "Hello, and what's your name?", sub="ты and вы · greetings · names", blocks=[
+  P("Russian has two words for *you*. **Ты** is for one person you know well — family, friends, children, pets. **Вы** is for anyone you would address formally, and for more than one person. When in doubt, say **вы**: it is never rude."),
+  T(["", "Informal (ты)", "Formal (вы)"], [
+    ["Hello", "**Приве́т!**", "**Здра́вствуйте!**"],
+    ["What's your name?", "Как **тебя́** зову́т?", "Как **вас** зову́т?"],
+    ["How are you?", "Как **дела́**?", "Как **вы** пожива́ете?"],
+    ["Goodbye", "**Пока́!**", "**До свида́ния!**"],
+  ], caption="The two registers"),
+  P("*Как тебя зовут?* means, word for word, *How do they call you?* — so the answer is **Меня зовут …**, *They call me …*. The name stays as it is; the person (**меня**, *me*) changes."),
+  EX(("Как тебя зовут? — Меня зовут Ива́н.", "What's your name? — My name is Ivan."),
+     ("Как вас зовут? — Меня зовут А́нна Петро́вна.", "What is your name? — Anna Petrovna."),
+     ("Как дела? — Хорошо́, спаси́бо. А у тебя?", "How are things? — Good, thanks. And you?")),
+  H("Who is this?"),
+  P("**Кто э́то?** asks *who is this?* — **Что э́то?** asks *what is this?* The answer needs no verb: **Это Ма́ша.** *This is Masha.*"),
+  NOTE("Russians address people they respect by first name and patronymic — **Анна Петровна**, **Ива́н Серге́евич** — and with **вы**."),
+], exercises=[
+  MC("You meet your new boss. How do you say hello?", ["Привет!", "Здравствуйте!", "Пока!"], 1, "**Здравствуйте** is the formal hello — right for a boss, a stranger, or more than one person."),
+  MC("Your little cousin asks your name. Which question did she ask?", ["Как тебя зовут?", "Как вас зовут?", "Кто это?"], 0, "A child speaks to you with **ты**, so she uses **тебя**."),
+  MC("Answer: *Как тебя зовут?*", ["Меня зовут Олег.", "Я зовут Олег.", "Мне зовут Олег."], 0, "The answer copies the question: **Меня** зовут …, *they call me* …"),
+  MC("Which word asks about a person?", ["Что", "Кто", "Как"], 1, "**Кто** — who. **Что** — what. **Как** — how."),
+  FILL("Как ___ зовут? (formal, to a stranger)", ["вас"], "Formal *you*: **вы** → **вас** after *как … зовут*."),
+  FILL("___ это? — Это моя сестра.", ["Кто"], "A person, so **кто**."),
+  FILL("___! — Пока! (saying goodbye to a friend)", ["Пока"], "**Пока** is the informal goodbye; **До свидания** is the polite one."),
+  MC("*До свидания* means…", ["Thank you", "Goodbye", "See you tomorrow"], 1, "**До свидания** — literally *until meeting (again)*: goodbye."),
+]),
+
+SEC("no-the-no-is", "No *the*, no *a*, no *is*", sub="это · этот, эта, это, эти", blocks=[
+  P("Russian has no articles. **Стол** is *a table* or *the table*; context tells you which. Nor does it say *is* or *are* in the present tense: **Это стол** — *This is a table*. **Он студе́нт** — *He is a student*. In writing, a dash stands in for *is* between two nouns: **Москва́ — столи́ца.** *Moscow is the capital.*"),
+  EX(("Это кни́га.", "This is a book."), ("Ма́ма до́ма.", "Mum is at home."), ("Я врач.", "I am a doctor.")),
+  H("This, these: этот, эта, это, эти"),
+  P("When *this* goes **with** a noun (*this book*), it agrees with the noun's gender and number:"),
+  T(["", "this", "example"], [
+    ["Masculine", "**э́тот**", "этот стол — this table"],
+    ["Feminine", "**э́та**", "эта кни́га — this book"],
+    ["Neuter", "**э́то**", "это окно́ — this window"],
+    ["Plural", "**э́ти**", "эти дома́ — these houses"],
+  ]),
+  P("For *that, those*, put **т** in front: **тот, та, то, те**."),
+  NOTE("Two kinds of **это**. *Это стол* — **this is** a table (это points, nothing agrees). *Это окно большое* — **this window** is big (это agrees with neuter окно). The first is a sentence; the second is a noun phrase."),
+], exercises=[
+  MC("*Он учитель.* means…", ["He was a teacher.", "He is a teacher.", "He will be a teacher."], 1, "The present tense of *to be* is left out: **он учитель** — *he is a teacher*."),
+  MC("Choose: ___ книга интересная.", ["Этот", "Эта", "Эти"], 1, "**Книга** is feminine, so **эта**."),
+  MC("Choose: ___ дом старый.", ["Этот", "Эта", "Это"], 0, "**Дом** is masculine: **этот**."),
+  MC("Choose: ___ окна большие.", ["Это", "Эта", "Эти"], 2, "**Окна** is plural: **эти**."),
+  FILL("___ письмо от мамы. (*This letter* is from Mum — письмо is neuter)", ["Это"], "Neuter **письмо** → **это**."),
+  FILL("___ женщина — моя мама. (*That* woman — тот / та / то / те)", ["Та"], "**Женщина** is feminine → **та**."),
+  MC("How do you write *Moscow is a big city* in standard Russian?", ["Москва есть большой город.", "Москва — большой город.", "Москва это есть город большой."], 1, "No *is* in the present: **Москва — большой город.**"),
+  FILL("___ мои друзья. (These are my friends — pointing, nothing agrees)", ["Это"], "Pointing with *this is / these are* is always **это**, whatever follows."),
+]),
+
+SEC("gender", "Gender", sub="masculine, feminine, neuter — from the ending", blocks=[
+  P("Every Russian noun is **masculine**, **feminine** or **neuter**, and you can almost always tell which from the last letter of the dictionary form:"),
+  T(["Gender", "Ends in…", "Examples"], [
+    ["Masculine", "a consonant, or **-й**", "стол, дом, музе́й, брат"],
+    ["Feminine", "**-а**, **-я**", "кни́га, ма́ма, неде́ля, Росси́я"],
+    ["Neuter", "**-о**, **-е**", "окно́, письмо́, мо́ре, со́лнце"],
+    ["Either", "**-ь**", "m. слова́рь, день · f. дверь, ночь"],
+  ]),
+  P("Words ending in **-ь** must be learned one by one, though nouns in **-ость** (ра́дость, *joy*) and **-сть**, **-чь**, **-шь**, **-щь** are feminine."),
+  H("Meaning beats form"),
+  P("Words for men are masculine even when they end in **-а** or **-я**: **па́па**, **дя́дя** (*uncle*), **мужчи́на** (*man*), and the short names **Са́ша**, **Ва́ня**. Adjectives agree with the man: *мой* папа, *хороший* мужчина."),
+  NOTE("Why it matters: adjectives, *my* and *this*, and past-tense verbs all change to match a noun's gender — **мой** брат, **моя** сестра; он чит**ал**, она чит**ала**."),
+], exercises=[
+  MC("What gender is **музей**?", ["masculine", "feminine", "neuter"], 0, "Ends in **-й**: masculine."),
+  MC("What gender is **море**?", ["masculine", "feminine", "neuter"], 2, "Ends in **-е**: neuter."),
+  MC("What gender is **неделя**?", ["masculine", "feminine", "neuter"], 1, "Ends in **-я**: feminine."),
+  MC("What gender is **папа**?", ["masculine", "feminine", "neuter"], 0, "A man, so masculine — though it ends in -а."),
+  MC("What gender is **радость**?", ["masculine", "feminine", "neuter"], 1, "**-ость** nouns are always feminine."),
+  MC("Which is the odd one out?", ["окно", "письмо", "мама", "солнце"], 2, "**Мама** is feminine; the others end in -о/-е and are neuter."),
+  FILL("___ брат (my brother: мой / моя / моё)", ["мой"], "**Брат** is masculine → **мой**."),
+  FILL("___ кошка (my cat: мой / моя / моё)", ["моя"], "**Кошка** ends in -а → feminine → **моя**."),
+  FILL("___ окно (my window: мой / моя / моё)", ["моё", "мое"], "**Окно** is neuter → **моё**."),
+  FILL("___ дядя (my uncle: мой / моя / моё)", ["мой"], "An uncle is a man: **мой**, despite the -я."),
+]),
+
+SEC("plurals", "Plurals", sub="-ы, -и, -а, -я and the spelling rule", blocks=[
+  P("The plural (nominative — the subject form) is made by changing or adding an ending:"),
+  T(["Singular ends in…", "Plural", "Example"], [
+    ["consonant (m.)", "+ **ы**", "стол → стол**ы́**"],
+    ["**-а**", "**-ы**", "ма́ма → ма́м**ы**"],
+    ["**-й**, **-я**, **-ь**", "**-и**", "музе́й → музе́**и** · неде́ля → неде́л**и** · дверь → две́р**и**"],
+    ["**-о**", "**-а**", "окно́ → о́кн**а**"],
+    ["**-е**", "**-я**", "мо́ре → мор**я́**"],
+  ]),
+  H("The spelling rule: г к х ж ш щ ч"),
+  P("After **г, к, х, ж, ш, щ, ч** Russian never writes **ы** — it writes **и** instead. So: кни́га → кни́г**и**, уро́к → уро́к**и**, каранда́ш → карандаш**и́**, врач → врач**и́**."),
+  H("Ones to learn"),
+  T(["Singular", "Plural", ""], [
+    ["дом", "дом**а́**", "*houses* — stressed -а"],
+    ["го́род", "город**а́**", "*cities*"],
+    ["брат", "бра́т**ья**", "*brothers*"],
+    ["друг", "друз**ья́**", "*friends*"],
+    ["сын", "сынов**ья́**", "*sons*"],
+    ["челове́к", "**лю́ди**", "*people*"],
+    ["ребёнок", "**де́ти**", "*children*"],
+  ]),
+  P("Some masculine nouns lose a vowel: пода́рок → пода́рки, оте́ц → отцы́, день → дни. And borrowed words in **-о, -и, -у** never change: одно **такси́**, два **такси́**; **ра́дио**, **кафе́**."),
+], exercises=[
+  FILL("один журнал — два ___ … (plural of журнал)", ["журналы"], "Consonant → **+ы**.", prompt="Make it plural:"),
+  FILL("книга → ___", ["книги"], "After **г**, never **ы**: **книги**.", prompt="Make it plural:"),
+  FILL("окно → ___", ["окна"], "**-о** → **-а**.", prompt="Make it plural:"),
+  FILL("неделя → ___", ["недели"], "**-я** → **-и**.", prompt="Make it plural:"),
+  FILL("врач → ___", ["врачи"], "After **ч**, **и** not ы.", prompt="Make it plural:"),
+  FILL("город → ___", ["города"], "One to learn: **города́**.", prompt="Make it plural:"),
+  MC("The plural of **друг** is…", ["други", "друзья", "друга"], 1, "**Друзья** — one to learn."),
+  MC("The plural of **человек** (in the sense *people*) is…", ["человеки", "люди", "человека"], 1, "**Люди**."),
+  MC("Which plural is right?", ["такси — таксы", "такси — такси", "такси — таксии"], 1, "Borrowed words like **такси** don't change."),
+  MC("The plural of **подарок** is…", ["подароки", "подарки", "подарка"], 1, "The **о** drops out: подар**о**к → **подарки**."),
+]),
+
+SEC("pronouns", "I, you, he, she — and whose?", sub="personal and possessive pronouns · чей", blocks=[
+  T(["", "Singular", "Plural"], [
+    ["1st", "**я** — I", "**мы** — we"],
+    ["2nd", "**ты** — you (informal)", "**вы** — you (formal or plural)"],
+    ["3rd", "**он** — he · **она́** — she · **оно́** — it", "**они́** — they"],
+  ]),
+  P("**Он, она, оно** replace *any* noun of that gender, not only people: *Где стол?* — ***Он*** *там.* (*Where's the table? — It's over there.*) English would say *it*; Russian follows the noun's gender."),
+  H("Whose? — my, your, our"),
+  P("*Whose* is **чей**, and like *my* it agrees with the thing owned:"),
+  T(["", "m.", "f.", "n.", "pl."], [
+    ["whose?", "чей", "чья", "чьё", "чьи"],
+    ["my", "мой", "моя́", "моё", "мои́"],
+    ["your (ты)", "твой", "твоя́", "твоё", "твои́"],
+    ["our", "наш", "на́ша", "на́ше", "на́ши"],
+    ["your (вы)", "ваш", "ва́ша", "ва́ше", "ва́ши"],
+  ]),
+  P("*His, her, their* never change: **его́** (his), **её** (her), **их** (their). *Его* брат, *его* сестра, *его* книги — all the same."),
+  EX(("Чья это ручка? — Это моя ручка.", "Whose pen is this? — It's my pen."), ("Чьи это ключи? — Это её ключи.", "Whose keys are these? — They're her keys.")),
+], exercises=[
+  MC("*Где книга?* — ___ на столе.", ["Он", "Она", "Оно"], 1, "**Книга** is feminine, so *it* is **она**."),
+  MC("*Где окно?* — ___ там.", ["Он", "Она", "Оно"], 2, "Neuter **окно** → **оно**."),
+  MC("___ это машина? (Whose car is this?)", ["Чей", "Чья", "Чьё"], 1, "**Машина** is feminine → **чья**."),
+  MC("___ это дети? (Whose children are these?)", ["Чей", "Чья", "Чьи"], 2, "Plural → **чьи**."),
+  FILL("Это ___ дом. (our house)", ["наш"], "Masculine **дом** → **наш**."),
+  FILL("Это ___ сестра. (your sister — speaking to a friend)", ["твоя"], "Informal *your* + feminine → **твоя**."),
+  FILL("Это ___ письмо. (your letter — formal)", ["ваше"], "Formal *your* + neuter → **ваше**."),
+  MC("*Her books* is…", ["её книги", "ей книги", "она книги"], 0, "**Её** never changes: её книга, её книги."),
+  MC("*Their son* is…", ["их сын", "ихний сын", "они сын"], 0, "**Их** — their — never changes. (*Ихний* is substandard.)"),
+  FILL("Это ___ брат. (his brother)", ["его"], "**Его** — his — never changes."),
+]),
+
+SEC("adjectives", "Adjectives", sub="новый, новая, новое, новые", blocks=[
+  P("An adjective takes the gender and number of its noun. In the dictionary you see the masculine form, in **-ый**, **-ий** or **-ой**:"),
+  T(["", "m.", "f.", "n.", "pl."], [
+    ["new", "но́в**ый**", "но́в**ая**", "но́в**ое**", "но́в**ые**"],
+    ["young", "молод**о́й**", "молод**а́я**", "молод**о́е**", "молод**ы́е**"],
+    ["blue (soft)", "си́н**ий**", "си́н**яя**", "си́н**ее**", "си́н**ие**"],
+    ["Russian", "ру́сск**ий**", "ру́сск**ая**", "ру́сск**ое**", "ру́сск**ие**"],
+    ["good", "хоро́ш**ий**", "хоро́ш**ая**", "хоро́ш**ее**", "хоро́ш**ие**"],
+  ]),
+  P("**-ой** is just **-ый** with the stress on the ending. **Си́ний** (*dark blue*) is one of a small set of *soft* adjectives: си́ний, ле́тний (*summer*), зи́мний (*winter*), после́дний (*last*)."),
+  H("Two spelling rules"),
+  L("After **г, к, х, ж, ш, щ, ч** write **и**, not ы: ру́сск**ий**, ру́сск**ие**.",
+    "After **ж, ш, щ, ч, ц**, an unstressed **о** becomes **е**: хоро́ш**ее** (not хорошое)."),
+  P("*What kind of?* is **како́й** (кака́я, како́е, каки́е): *Какой это дом?* — *Это новый дом.* *Which?* in the sense of *which one* is **кото́рый**."),
+], exercises=[
+  FILL("___ машина (new: новый/новая/новое/новые)", ["новая"], "**Машина** is feminine → **новая**."),
+  FILL("___ окно (big: большой → ?)", ["большое"], "Neuter → **-ое**: **большое**."),
+  FILL("___ книги (interesting: интересный → ?)", ["интересные"], "Plural → **-ые**: **интересные**."),
+  FILL("___ язык (Russian: русский)", ["русский"], "Masculine: the dictionary form."),
+  FILL("___ песня (Russian: русский → ?)", ["русская"], "Feminine → **русская**."),
+  FILL("___ погода (good: хороший → ?)", ["хорошая"], "Feminine → **хорошая**."),
+  FILL("___ утро (good: хороший → ?)", ["хорошее"], "Neuter: after **ш**, unstressed **-ое** becomes **-ее** → **хорошее**."),
+  MC("Pick the right form: ___ вечер (summer evening)", ["летный", "летний", "летной"], 1, "**Летний** is a soft adjective."),
+  MC("___ это город? — Это большой город.", ["Какой", "Какая", "Какое"], 0, "**Город** is masculine → **какой**."),
+  MC("Which is spelled correctly?", ["русскые книги", "русские книги", "русскии книги"], 1, "After **к**, **и** not ы: **русские**."),
+]),
+
+]

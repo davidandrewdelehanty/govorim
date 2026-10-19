@@ -85,6 +85,23 @@ def main():
         OUT = "/tmp/verbs-test"
     m = pymorphy3.MorphAnalyzer()
     cache = {}
+    kind = {}                                         # form → what it is: inf, pres, fut, past, imp, ger, part
+
+    def kind_of(p):
+        t = p.tag
+        if t.POS == "INFN":
+            return "inf"
+        if t.POS == "GRND":
+            return "ger"
+        if t.POS in ("PRTF", "PRTS"):
+            return "part"
+        if "impr" in t:
+            return "imp"
+        if "past" in t:
+            return "past"
+        if "futr" in t:
+            return "fut"
+        return "pres"
 
     # Not verbs, whatever the analyser guesses: the halves of кто-нибудь,
     # что-либо, скажи-ка; and «есть», which in the library means "there is"
@@ -113,6 +130,8 @@ def main():
             elif pos in ("PRTF", "PRTS", "GRND"):
                 inf = p.inflect({"INFN"})
                 lem = inf.word if inf else None
+            if lem:
+                kind[w.replace("ё", "е")] = kind_of(p)
         except Exception:
             lem = None
         cache[w] = lem
@@ -185,29 +204,37 @@ def main():
     except Exception:
         pass
 
+    KINDS = ["inf", "pres", "fut", "past", "imp", "ger", "part"]
+
     def pick_examples(lem, want):
+        """Every kind of form first (infinitive, present, future, past,
+        imperative, gerund, participle — its commonest form of each), then
+        every other form, commonest first, until `want`. One sentence per
+        form, from as many different books as possible."""
         fs = [f for f, _ in forms[lem].most_common()]
-        pools = {f: list(cands.get((lem, f), [])) for f in fs}
-        for f in pools:
-            pools[f].sort(key=lambda it: abs(len(it[0]) - 85))
+        pools = {}
+        for f in fs:
+            pool = list(cands.get((lem, f), []))
+            pool.sort(key=lambda it: abs(len(it[0]) - 85))
+            if pool:
+                pools[f] = pool
+        order = []
+        for k in KINDS:
+            f = next((f for f in fs if f in pools and kind.get(f) == k), None)
+            if f:
+                order.append(f)
+        order += [f for f in fs if f in pools and f not in order]
         out, books_used, sents = [], set(), set()
-        rnd = 0
-        while len(out) < want and rnd < 6:
-            added = False
-            for f in fs:
-                if len(out) >= want:
-                    break
-                pool = pools[f]
-                for it in pool:
-                    if it[0] in sents:
-                        continue
-                    if rnd < 2 and it[2] in books_used:
-                        continue
-                    out.append(it); sents.add(it[0]); books_used.add(it[2]); pool.remove(it); added = True
-                    break
-            rnd += 1
-            if not added and rnd >= 2:
+        for f in order:
+            if len(out) >= want:
                 break
+            pool = pools[f]
+            it = next((x for x in pool if x[0] not in sents and x[2] not in books_used), None) or \
+                 next((x for x in pool if x[0] not in sents), None)
+            if not it:
+                continue
+            out.append([it[0], it[1], it[2], kind.get(f, "")])
+            sents.add(it[0]); books_used.add(it[2])
         return out
 
     shards = {}
@@ -216,7 +243,9 @@ def main():
         r = rank[v]
         if n < 5 and v not in irr:
             continue                                  # ranked, but too rare to carry a shard entry
-        want = 12 if r <= 1500 or v in irr else (4 if n >= 40 else 0)
+        # As many forms as the library shows: up to 40 sentences for the
+        # commonest 500 verbs and every irregular one, 12 to rank 1,500, then 4.
+        want = 40 if (r <= 500 or v in irr) else (12 if r <= 1500 else (4 if n >= 40 else 0))
         e = {"n": n, "r": r, "f": dict(forms[v].most_common(24 if (r <= 3000 or v in irr) else 5))}
         if want:
             x = pick_examples(v, want)

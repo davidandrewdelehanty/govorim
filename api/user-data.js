@@ -21,6 +21,8 @@
 // userIdFor), so a rebuilt account lands back on its own vocabulary.
 // Accounts made under the old Clerk setup have their data under the old
 // Clerk user id; /api/admin/import-userdata copies such a prefix across.
+import COURSE_OUTLINE from "../src/courses-outline.js";
+import { mergeCourseProg } from "../src/courses.js";
 import { siteName, isPublicSite } from "../lib/site.js";
 import fs from "node:fs";
 import crypto from "node:crypto";
@@ -175,8 +177,8 @@ export default async function handler(req, res) {
         // since badges arrived still shows theirs. Only the badges leave —
         // never the books or the log they were worked out from.
         try {
-          const [finished, stats, learned, vocab, drills, songs, bibleread] = await Promise.all(
-            ["finished", "stats", "learned", "vocab", "drills", "songs", "bibleread"].map(function (t) {
+          const [finished, stats, learned, vocab, drills, songs, bibleread, courses] = await Promise.all(
+            ["finished", "stats", "learned", "vocab", "drills", "songs", "bibleread", "courses"].map(function (t) {
               return r2Get(uid, t).catch(function () { return null; });
             }));
           const st = (stats && typeof stats === "object" && !Array.isArray(stats)) ? stats : {};
@@ -190,6 +192,8 @@ export default async function handler(req, res) {
             drills: (drills && drills.correct) || 0,
             songs: Object.keys(songMap).filter(function (k) { return ((songMap[k] || {}).n || 0) > 0; }).length,
             bibleRead: (bibleread && typeof bibleread === "object") ? bibleread : {},
+            courseOutline: COURSE_OUTLINE,
+            courseProg: (courses && typeof courses === "object" && !Array.isArray(courses)) ? courses : {},
           });
           const earned = all.filter(function (b) { return b.earned; }).map(function (b) {
             return { id: b.id, title: b.title, mark: b.mark, group: b.group, tier: b.tier, at: b.at };
@@ -686,6 +690,8 @@ export default async function handler(req, res) {
       // { [workKey]: words }. Kept with the account so a book read on one
       // device cannot be credited again on another.
       const readpaid = await r2Get(userId, "readpaid");
+      // Progress through the Courses tab: { "<course>/<section>": { right, first, read, done } }.
+      const courses = await r2Get(userId, "courses");
 
       return res.status(200).json({
         vocab: Array.isArray(vocab) ? vocab : [],
@@ -699,6 +705,7 @@ export default async function handler(req, res) {
         annots: (annots && typeof annots === "object" && annots.items) ? annots : { items: {} },
         progress: (progress && typeof progress === "object" && !Array.isArray(progress)) ? progress : {},
         readpaid: (readpaid && typeof readpaid === "object" && !Array.isArray(readpaid)) ? readpaid : {},
+        courses: (courses && typeof courses === "object" && !Array.isArray(courses)) ? courses : {},
       });
     }
 
@@ -828,6 +835,20 @@ export default async function handler(req, res) {
         }
         await r2Put(userId, "songs", merged);
         await noteBoard(user, { songs: songsCount(merged) });
+        return res.status(200).json({ ok: true });
+      }
+
+      if (type === "courses") {
+        // Progress through the Courses tab. Merged so nothing is ever lost:
+        // every right answer kept, the earliest time for each.
+        const inc = body.courses;
+        if (!inc || typeof inc !== "object" || Array.isArray(inc)) {
+          return res.status(400).json({ error: "courses must be an object" });
+        }
+        let existing = null;
+        try { existing = await r2Get(userId, "courses"); } catch (e) {}
+        const merged = mergeCourseProg((existing && typeof existing === "object" && !Array.isArray(existing)) ? existing : {}, inc);
+        await r2Put(userId, "courses", merged);
         return res.status(200).json({ ok: true });
       }
 
