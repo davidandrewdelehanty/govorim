@@ -16013,6 +16013,8 @@ export default function App() {
         .gv-pair{font-family:'Literata',serif;font-size:12.5px;color:rgba(42,31,20,.75)}
         .gv-x{font-family:'Literata',serif;font-size:12.5px;color:#8a3b1e;line-height:1.35}
         .gv-n{font-family:'IBM Plex Sans',sans-serif;font-size:10.5px;color:rgba(42,31,20,.45);margin-top:2px}
+        .cj-save{margin:2px 0 12px}
+        .cj-save.done{opacity:.7;cursor:default}
         .cj-n{font-family:'IBM Plex Sans',sans-serif;font-size:10px;color:rgba(42,31,20,.42);margin-left:5px;font-variant-numeric:tabular-nums}
         .cj-ex{margin-top:6px}
         .cj-exl{padding:7px 0;border-top:1px solid rgba(42,31,20,.08)}
@@ -18408,6 +18410,36 @@ export default function App() {
               </div>
             )}
             {(wantVerb(conj.word), <VerbStat word={conj.word} />)}
+            {(function(){
+              // Save the verb to the vocabulary: the infinitive with its aspectual
+              // partner as one card («говорить / сказать», the way verb cards are
+              // kept), its meaning, and a sentence from the library.
+              var w = verbKey((conj.data && conj.data.infinitive) || conj.word);
+              if (!w) return null;
+              var vi = verbInfo(w) || {};
+              var en = vi.en || (verbIdx && verbIdx.en && verbIdx.en[w]) || "";
+              if (!en) IRREG_VERBS.groups.forEach(function(g){ g.verbs.forEach(function(v){ if (v[0] === w) en = v[1]; }); });
+              var pr = verbIdx && verbIdx.pairs && verbIdx.pairs[w];
+              var partners = pr ? (pr[1] || []).slice().sort(function(a, b){ return ((verbRank[a] || [0, 1e9])[1]) - ((verbRank[b] || [0, 1e9])[1]); }) : [];
+              var asp = (conj.data && conj.data.aspect) || (pr ? ({ impf: "imperfective", pf: "perfective", both: "both" })[pr[0]] : "") || "";
+              var head = partners[0] && asp !== "both"
+                ? (asp === "perfective" ? partners[0] + " / " + w : w + " / " + partners[0]) : w;
+              var entry = { ru: head, en: en, pos: "verb", aspect: asp };
+              var ex = (vi.x || [])[0];
+              if (ex) {
+                var bk = null, fn = (verbIdx && verbIdx.files && verbIdx.files[ex[2]]) || "";
+                presetBooks.forEach(function(b){ if (b.filename === fn) bk = b; });
+                entry.sentences = [{ s: ex[0], w: bk ? shownTitle(bk) : "", at: Date.now(), f: ex[1] }];
+              }
+              var have = findVocabMatch(vocab, entry) || findVocabMatch(learned, entry) ||
+                         findVocabMatch(vocab, { ru: w }) || findVocabMatch(learned, { ru: w });
+              return (
+                <button type="button" className={"psave cj-save" + (have ? " done" : "")} disabled={!!have}
+                  onClick={function(){ addV(entry); }}>
+                  {have ? "✓ In your vocabulary" : "+ Save « " + head + " » to vocabulary"}
+                </button>
+              );
+            })()}
             {conj.loading && <div className="pload">Looking up the conjugation…</div>}
             {conj.error && <div className="perr">{conj.error}</div>}
             {conj.data && (function(){
