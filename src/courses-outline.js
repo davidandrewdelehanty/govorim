@@ -220,6 +220,359 @@ export default [
   ]
  },
  {
+  "id": "time",
+  "title": "Time and Dates",
+  "short": "Time",
+  "mark": "◷",
+  "blurb": "Который час? Past and to the hour, the 12- and 24-hour clocks, days, weeks, months, years, full dates, and every preposition of time — in DLI's own words, with its sentences as exercises.",
+  "credit": "Transcribed from the Defense Language Institute Russian Basic Course, Grammar Reference Books I (1970) and II (1965) — a US Government work in the public domain; word lists from the Wikibooks Russian textbook (CC BY-SA 4.0)",
+  "creditUrl": "https://www.fsi-language-courses.org/russian/courses/dli-russian-basic-course",
+  "license": "Public domain · CC BY-SA 4.0",
+  "licenseUrl": "",
+  "sections": [
+   {
+    "id": "t1-clock",
+    "title": "What time is it?",
+    "n": 12,
+    "sub": "DLI Lessons 40, 73, 74 · Который час? · В котором часу?"
+   },
+   {
+    "id": "t2-parts-of-day",
+    "title": "Morning, every day, all day",
+    "n": 12,
+    "sub": "DLI Lessons 22, 35, 37, 74 · утром, вечером · каждый · весь · по утрам"
+   },
+   {
+    "id": "t3-day-week-month-year",
+    "title": "On Monday, this week, last month, next year",
+    "n": 13,
+    "sub": "DLI Lessons 19, 73 · в + Acc. · в + Prep. · на + Prep."
+   },
+   {
+    "id": "t4-how-long",
+    "title": "How long, how long ago, how old",
+    "n": 9,
+    "sub": "DLI Lessons 41, 73 · год — лет · Сколько вам лет? · тому назад · на + Acc."
+   },
+   {
+    "id": "t5-months-dates",
+    "title": "Months and dates",
+    "n": 10,
+    "sub": "DLI Lessons 50, 75, 76 · Какое сегодня число? · Какого числа? · the complete date"
+   },
+   {
+    "id": "t6-from-till-by",
+    "title": "Since, till, by, before, after, in",
+    "n": 11,
+    "sub": "DLI Lessons 75, 77 · с, до, с … до · за · к · перед, до, после · через … после"
+   },
+   {
+    "id": "t7-words",
+    "title": "Days, months and seasons",
+    "n": 8,
+    "sub": "From the Wikibooks Russian textbook · word lists"
+   }
+  ]
+ },
+ {
+  "id": "count",
+  "title": "Counting Things",
+  "short": "Counting",
+  "mark": "№",
+  "blurb": "Numbers and the nouns after them, numbers in every case, thousands and millions, ordinals, fractions, approximate amounts — in DLI's own words, with its sentences as exercises.",
+  "credit": "Transcribed from the Defense Language Institute Russian Basic Course, Grammar Reference Books I (1970) and II (1965) — a US Government work in the public domain",
+  "creditUrl": "https://www.fsi-language-courses.org/russian/courses/dli-russian-basic-course",
+  "license": "Public domain",
+  "licenseUrl": "",
+  "sections": [
+   {
+    "id": "c1-numbers-nouns",
+    "title": "Numbers with nouns",
+    "n": 12,
+    "sub": "DLI Lesson 39 · один, два, три, четыре, пять + noun"
+   },
+   {
+    "id": "c2-genitive-plural",
+    "title": "The genitive plural",
+    "n": 13,
+    "sub": "DLI Lessons 38–41 · the four basic types · deviations · человек, год"
+   },
+   {
+    "id": "c3-how-many",
+    "title": "Much, many, few, how many, several",
+    "n": 9,
+    "sub": "DLI Lesson 38 · много, мало, сколько, несколько · есть and нет"
+   },
+   {
+    "id": "c4-one-two-three-four",
+    "title": "один, два, три, четыре in every case",
+    "n": 10,
+    "sub": "DLI Lesson 70 · declension · with adjectives · special meanings of один"
+   },
+   {
+    "id": "c5-five-and-up",
+    "title": "Five to a hundred in every case",
+    "n": 10,
+    "sub": "DLI Lesson 71 · 5–20 and 30 · 40, 90, 100 · 50–80 · compound numerals · the accusative"
+   },
+   {
+    "id": "c6-hundreds-thousands",
+    "title": "Hundreds, thousands, millions, and «about»",
+    "n": 9,
+    "sub": "DLI Lessons 68, 69, 72 · 200–900 · тысяча, миллион · reverse word order"
+   },
+   {
+    "id": "c7-ordinals-fractions",
+    "title": "Ordinals, fractions, «equal to»",
+    "n": 9,
+    "sub": "DLI Lesson 72 · сто тридцать второй · дроби · равен · сколько, несколько in every case"
+   },
+   {
+    "id": "c8-collective-half",
+    "title": "двое, трое… and полтора",
+    "n": 12,
+    "sub": "DLI Lessons 98–99 · collective numerals · полтора, полторы, полутора · полтораста"
+   }
+  ]
+ },
+ {
+  "id": "cases",
+  "title": "Nouns and Adjectives in Cases",
+  "short": "Cases",
+  "mark": "Пп",
+  "blurb": "All six cases, singular and plural: what each case does, every ending, the exceptions, adjectives, possessives, surnames and which preposition takes which case — in DLI's own words, with its sentences as exercises.",
+  "credit": "Transcribed from the Defense Language Institute Russian Basic Course, Grammar Reference Books I (1970) and II (1965) — a US Government work in the public domain",
+  "creditUrl": "https://www.fsi-language-courses.org/russian/courses/dli-russian-basic-course",
+  "license": "Public domain",
+  "licenseUrl": "",
+  "sections": [
+   {
+    "id": "k1-nom-prep",
+    "title": "Cases, the nominative and the prepositional",
+    "n": 10,
+    "sub": "DLI Lessons 16–17 · six cases · где? · о ком? о чём? · -е and -и"
+   },
+   {
+    "id": "k2-accusative",
+    "title": "The accusative case",
+    "n": 10,
+    "sub": "DLI Lesson 18 · кого? что? · endings · stress · pronouns"
+   },
+   {
+    "id": "k3-genitive",
+    "title": "The genitive case",
+    "n": 16,
+    "sub": "DLI Lessons 23, 24, 27, 33 · чей? · quantity · из, с, от, у, около, без… · negation"
+   },
+   {
+    "id": "k4-dative",
+    "title": "The dative case",
+    "n": 11,
+    "sub": "DLI Lessons 28–29 · кому? · endings · по · к"
+   },
+   {
+    "id": "k5-instrumental",
+    "title": "The instrumental case",
+    "n": 14,
+    "sub": "DLI Lesson 30 · с кем? чем? · endings · быть, работать · командовать"
+   },
+   {
+    "id": "k6-singular-tables",
+    "title": "All six cases, singular",
+    "n": 12,
+    "sub": "DLI Lessons 32–33 · masculine, neuter, feminine · peculiarities · имя, время · кто, что"
+   },
+   {
+    "id": "k7-genitive-plural",
+    "title": "The genitive plural",
+    "n": 17,
+    "sub": "DLI Lessons 38–41 · four basic types · inserted vowels · irregular forms"
+   },
+   {
+    "id": "k8-plural-cases",
+    "title": "All six cases, plural",
+    "n": 13,
+    "sub": "DLI Lessons 42–45 · accusative · -ами/-ями · -ам/-ям · -ах/-ях · review"
+   },
+   {
+    "id": "k9-adjectives-singular",
+    "title": "Adjectives and possessives, singular",
+    "n": 13,
+    "sub": "DLI Lessons 46–47 · hard, soft, guttural, sibilant · мой, наш"
+   },
+   {
+    "id": "k10-adjectives-plural",
+    "title": "Adjectives and possessives, plural; surnames",
+    "n": 13,
+    "sub": "DLI Lessons 48, 50 · after numerals · Громов, Чайковский, Браун"
+   },
+   {
+    "id": "k11-prepositions",
+    "title": "Which case after which preposition",
+    "n": 14,
+    "sub": "DLI Lessons 43, 47, 60–61 · review of prepositions"
+   }
+  ]
+ },
+ {
+  "id": "forms",
+  "title": "Verb Forms and Participles",
+  "short": "Verb forms",
+  "mark": "щ",
+  "blurb": "The imperative, пусть and давайте, the conditional with бы, all four participles, the -ся passive and both деепричастия — how each is formed and used, in DLI's own words, with its sentences as exercises.",
+  "credit": "Transcribed from the Defense Language Institute Russian Basic Course, Grammar Reference Books I (1970) and II (1965) — a US Government work in the public domain",
+  "creditUrl": "https://www.fsi-language-courses.org/russian/courses/dli-russian-basic-course",
+  "license": "Public domain",
+  "licenseUrl": "",
+  "sections": [
+   {
+    "id": "f1-imperative",
+    "title": "The imperative: читай, пусть, давайте",
+    "n": 15,
+    "sub": "DLI Lessons 42, 84 · -й, -и, -ь · -ся · irregular forms · пусть · давайте · infinitive commands"
+   },
+   {
+    "id": "f2-conditional",
+    "title": "If and would: бы",
+    "n": 11,
+    "sub": "DLI Lessons 90–91 · если and если бы · wishes · requests · ли"
+   },
+   {
+    "id": "f3-short-passive",
+    "title": "Short past passive participles: куплен, написан, открыт",
+    "n": 19,
+    "sub": "DLI Lessons 85–87 · -ен/-ён · -н · -т · быть + PPP · English passives"
+   },
+   {
+    "id": "f4-long-passive",
+    "title": "Long past passive participles: купленная книга",
+    "n": 12,
+    "sub": "DLI Lessons 88–89 · -нный, -тый · participial phrases · который"
+   },
+   {
+    "id": "f5-present-active",
+    "title": "Present active participles: читающий",
+    "n": 10,
+    "sub": "DLI Lesson 93 · -щий · -щийся · declension · который"
+   },
+   {
+    "id": "f6-past-active",
+    "title": "Past active participles: прочитавший, принёсший, шедший",
+    "n": 15,
+    "sub": "DLI Lessons 94–95 · -вший · -ший · идти, вести · оба"
+   },
+   {
+    "id": "f7-passive-present",
+    "title": "The -ся passive and present passive participles: читается, издаваемый",
+    "n": 13,
+    "sub": "DLI Lessons 96–97 · imperfective passive · functions of -ся · -емый, -имый"
+   },
+   {
+    "id": "f8-gerund-imperfective",
+    "title": "Imperfective деепричастия: читая, говоря",
+    "n": 13,
+    "sub": "DLI Lessons 100, 102 · -я, -а · -ясь · будучи · when not to use them"
+   },
+   {
+    "id": "f9-gerund-perfective",
+    "title": "Perfective деепричастия: прочитав, придя",
+    "n": 12,
+    "sub": "DLI Lessons 101–103 · -в, -вши · -вшись · -я from -ти verbs · as prepositions"
+   }
+  ]
+ },
+ {
+  "id": "tenses",
+  "title": "English Tenses in Russian",
+  "short": "Tenses",
+  "mark": "⇄",
+  "blurb": "How each English tense comes out in Russian: DLI's rules, and real translated sentence pairs from Tatoeba for the commonest verbs in the library.",
+  "credit": "Transcribed from the Defense Language Institute Russian Basic Course, Grammar Reference Books I (1970) and II (1965) — a US Government work in the public domain; example sentences from Tatoeba (tatoeba.org), CC BY 2.0 FR",
+  "creditUrl": "https://www.fsi-language-courses.org/russian/courses/dli-russian-basic-course",
+  "license": "Public domain · CC BY 2.0 FR",
+  "licenseUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
+  "sections": [
+   {
+    "id": "x01-overview",
+    "title": "English tenses, Russian aspects",
+    "n": 6,
+    "sub": "DLI Lesson 37 · imperfective and perfective · the five tenses of a twin verb"
+   },
+   {
+    "id": "x02-present",
+    "title": "Present simple: I write",
+    "n": 12,
+    "sub": "→ imperfective present"
+   },
+   {
+    "id": "x03-present-prog",
+    "title": "Present progressive: I am writing",
+    "n": 12,
+    "sub": "→ imperfective present"
+   },
+   {
+    "id": "x04-pres-perf-prog",
+    "title": "Present perfect progressive: I have been writing",
+    "n": 10,
+    "sub": "→ imperfective present (often with уже)"
+   },
+   {
+    "id": "x05-pres-perf",
+    "title": "Present perfect: I have written",
+    "n": 12,
+    "sub": "→ past tense, mostly perfective"
+   },
+   {
+    "id": "x06-past",
+    "title": "Past simple: I wrote",
+    "n": 12,
+    "sub": "→ past tense, imperfective or perfective"
+   },
+   {
+    "id": "x07-past-prog",
+    "title": "Past progressive: I was writing",
+    "n": 12,
+    "sub": "→ imperfective past"
+   },
+   {
+    "id": "x08-past-perf",
+    "title": "Past perfect: I had written",
+    "n": 10,
+    "sub": "→ perfective past"
+   },
+   {
+    "id": "x09-used-to",
+    "title": "Used to: I used to write",
+    "n": 12,
+    "sub": "→ imperfective past"
+   },
+   {
+    "id": "x10-future",
+    "title": "Future: I will write, I'm going to write",
+    "n": 12,
+    "sub": "→ perfective future, or буду + imperfective"
+   },
+   {
+    "id": "x11-going-to",
+    "title": "Going to",
+    "n": 12,
+    "sub": "→ the future"
+   },
+   {
+    "id": "x12-would",
+    "title": "Would: the conditional",
+    "n": 10,
+    "sub": "→ past tense + бы; future-in-the-past → future"
+   },
+   {
+    "id": "x13-passive",
+    "title": "The passive: is written, was written, will be written",
+    "n": 8,
+    "sub": "DLI Lessons 86–87"
+   }
+  ]
+ },
+ {
   "id": "dli",
   "title": "DLI Basic Russian Grammar",
   "short": "DLI",

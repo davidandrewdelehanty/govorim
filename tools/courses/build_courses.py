@@ -36,6 +36,46 @@ COURSES.append({
     "license": "Public domain", "licenseUrl": "",
     "modules": ["motion_a", "motion_b", "motion_c"], "order": None,
 })
+DLI_CREDIT = "Transcribed from the Defense Language Institute Russian Basic Course, Grammar Reference Books I (1970) and II (1965) — a US Government work in the public domain"
+DLI_URL = "https://www.fsi-language-courses.org/russian/courses/dli-russian-basic-course"
+COURSES.append({
+    "id": "time", "title": "Time and Dates", "short": "Time", "mark": "◷",
+    "blurb": "Который час? Past and to the hour, the 12- and 24-hour clocks, days, weeks, months, years, full dates, "
+             "and every preposition of time — in DLI's own words, with its sentences as exercises.",
+    "credit": DLI_CREDIT + "; word lists from the Wikibooks Russian textbook (CC BY-SA 4.0)", "creditUrl": DLI_URL,
+    "license": "Public domain · CC BY-SA 4.0", "licenseUrl": "",
+    "modules": ["time_a", "time_b"], "order": None,
+})
+COURSES.append({
+    "id": "count", "title": "Counting Things", "short": "Counting", "mark": "№",
+    "blurb": "Numbers and the nouns after them, numbers in every case, thousands and millions, ordinals, fractions, "
+             "approximate amounts — in DLI's own words, with its sentences as exercises.",
+    "credit": DLI_CREDIT, "creditUrl": DLI_URL, "license": "Public domain", "licenseUrl": "",
+    "modules": sorted(m[:-3] for m in os.listdir(HERE) if m.startswith("count_") and m.endswith(".py")), "order": None,
+})
+COURSES.append({
+    "id": "cases", "title": "Nouns and Adjectives in Cases", "short": "Cases", "mark": "Пп",
+    "blurb": "All six cases, singular and plural: what each case does, every ending, the exceptions, adjectives, "
+             "possessives, surnames and which preposition takes which case — in DLI's own words, with its sentences as exercises.",
+    "credit": DLI_CREDIT, "creditUrl": DLI_URL, "license": "Public domain", "licenseUrl": "",
+    "modules": ["cases_a", "cases_b"], "order": None,
+})
+COURSES.append({
+    "id": "forms", "title": "Verb Forms and Participles", "short": "Verb forms", "mark": "щ",
+    "blurb": "The imperative, пусть and давайте, the conditional with бы, all four participles, the -ся passive and both "
+             "деепричастия — how each is formed and used, in DLI's own words, with its sentences as exercises.",
+    "credit": DLI_CREDIT, "creditUrl": DLI_URL, "license": "Public domain", "licenseUrl": "",
+    "modules": ["forms_a", "forms_b"], "order": None,
+})
+if os.path.exists(os.path.join(HERE, "tense_pairs.json")):
+    COURSES.append({
+        "id": "tenses", "title": "English Tenses in Russian", "short": "Tenses", "mark": "⇄",
+        "blurb": "How each English tense comes out in Russian: DLI's rules, and real translated sentence pairs from Tatoeba "
+                 "for the commonest verbs in the library.",
+        "credit": DLI_CREDIT + "; example sentences from Tatoeba (tatoeba.org), CC BY 2.0 FR", "creditUrl": DLI_URL,
+        "license": "Public domain · CC BY 2.0 FR", "licenseUrl": "https://creativecommons.org/licenses/by/2.0/fr/",
+        "modules": ["tense_course"], "order": None,
+    })
 if os.path.exists(os.path.join(HERE, "dli_a.py")):
     COURSES.append({
         "id": "dli", "title": "DLI Basic Russian Grammar", "short": "DLI", "mark": "D",

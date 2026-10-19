@@ -1,0 +1,131 @@
+# Time and Dates. The lesson text is transcribed from the Defense Language
+# Institute Russian Basic Course, Grammar Reference Book I (May 1970) and
+# Book II (February 1965) — a US Government work in the public domain — with
+# DLI's own wording, tables and example sentences; the lesson references are
+# DLI's. Section t8's word lists are from the Wikibooks Russian textbook
+# (CC BY-SA 4.0). Exercises are DLI's example sentences with the word in
+# question left blank: the answer is always the word DLI printed.
+from kit import *
+
+SRC = "From the DLI Grammar Reference Book"
+
+SECTIONS = [
+
+SEC("t1-clock", "What time is it?", sub="DLI Lessons 40, 73, 74 · Который час? · В котором часу?", blocks=[
+  P("*Memorize the following expressions:*"),
+  EX(("Который час?", "What time is it?"), ("В котором часу?", "At what time?")),
+  NOTE("DLI, Lesson 40."),
+  H("Time expressions in hours and minutes"),
+  T(["", "Который час?", "В котором часу?"], [
+    ["Time on the hour", "Сейчас два часа.", "Я приехал туда в два часа. (в + Acc.)"],
+    ["Time after the hour", "Уже пять минут третьего.", "Я позвоню вам в пять минут третьего. (в + Acc.)"],
+    ["Half past the hour", "Сейчас половина третьего.", "Я пришёл туда в половине третьего. (в + Prep.)"],
+    ["Time before the hour", "Сейчас без десяти (минут) три.", "Я буду там без десяти три. (без + Gen.; the prep. «в» is not used)"],
+  ]),
+  P("In order to grasp the \"mechanics of time expression\" in Russian remember the following:"),
+  P("1. The moment the minute hand moves beyond the full hour, it begins to denote time in terms of some fraction of the following hour. Thus, \"five minutes past two\" is rendered in Russian by «пять минут третьего» (lit. \"five minutes of the third\"). Note that \"the following hour\" is always denoted by an ORDINAL numeral in the Genitive case."),
+  EX(("десять минут первого", "10 min. past twelve"), ("пятнадцать минут десятого — or — четверть десятого", "a quarter past nine")),
+  P("IMPORTANT: This process continues until the half-hour mark only."),
+  P("2. The moment the minute hand crosses the half-hour mark, it begins to denote time in terms of some fraction lacking for the completion of the next full hour. Thus, \"five (minutes) to three\" is rendered in Russian by «без пяти (минут) три» (Lit. without 5 min. 3). Note that the preposition «без» takes the Genitive case. The hour is rendered as a CARDINAL numeral and the word \"minutes\" is often omitted. The preposition «в» is not used when some event occurs at the time mentioned."),
+  EX(("без двадцати (минут) пять", "twenty to five"), ("без пятнадцати двенадцать — or — без четверти двенадцать", "a quarter to twelve")),
+  NOTE("DLI, Lesson 74."),
+  H("Time systems"),
+  P("(a) The 12-hour system"),
+  EX(("семь часов утра", "7:00 AM"), ("два часа дня", "2:00 PM"), ("шесть часов вечера", "6:00 PM"), ("два часа ночи", "2:00 AM")),
+  P("Instead of AM or PM Russians say: \"of the morning\" (from 3:00 or 4:00 AM to 12:00); \"of the day\" (after 12:00 noon to 4:00 PM); \"of the evening\" (from 5:00 PM to 11:00 PM); \"of the night\" (from midnight to 3:00 or 4:00 AM)."),
+  P("(b) The 24-hour system. Transportation, radio and military installations use the 24-hour system. Thus:"),
+  EX(("Самолёт вылетел в 14.00 (четырнадцать ноль ноль).", ""), ("Командир будет здесь в 17.30 (семнадцать тридцать).", "")),
+  NOTE("DLI, Lesson 73."),
+], exercises=[
+  FILL("___ час? — Сейчас два часа.", ["Который"], SRC + ", Lesson 40.", prompt="Fill in the missing word."),
+  FILL("В котором ___ ? — В два часа.", ["часу"], SRC + ", Lesson 40.", prompt="Fill in the missing word."),
+  MC("«five minutes past two»", ["пять минут третьего", "пять минут второго", "без пяти два"], 0, "«пять минут третьего» (lit. \"five minutes of the third\"). " + SRC + ", Lesson 74."),
+  MC("«ten minutes past twelve»", ["десять минут двенадцатого", "десять минут первого", "без десяти двенадцать"], 1, "«десять минут первого». " + SRC + ", Lesson 74."),
+  MC("«five (minutes) to three»", ["без пяти три", "пять минут третьего", "без пяти третьего"], 0, "«без пяти (минут) три». " + SRC + ", Lesson 74."),
+  MC("«a quarter to twelve»", ["четверть двенадцатого", "без четверти двенадцать", "без четверти первого"], 1, "«без пятнадцати двенадцать — or — без четверти двенадцать». " + SRC + ", Lesson 74."),
+  FILL("Я пришёл туда в ___ третьего. (half past two)", ["половине"], "«в половине третьего» (в + Prep.). " + SRC + ", Lesson 74."),
+  FILL("Я буду там без ___ три. (ten to three)", ["десяти"], "«без десяти три» (без + Gen.). " + SRC + ", Lesson 74."),
+  FILL("Я позвоню вам в пять минут ___ . (five past two)", ["третьего"], SRC + ", Lesson 74."),
+  MC("7:00 AM", ["семь часов утра", "семь часов дня", "семь часов ночи"], 0, SRC + ", Lesson 73."),
+  MC("6:00 PM", ["шесть часов дня", "шесть часов вечера", "шесть часов ночи"], 1, "\"of the evening\" — from 5:00 PM to 11:00 PM. " + SRC + ", Lesson 73."),
+  MC("2:00 AM", ["два часа утра", "два часа ночи", "два часа дня"], 1, "\"of the night\" — from midnight to 3:00 or 4:00 AM. " + SRC + ", Lesson 73."),
+]),
+
+SEC("t2-parts-of-day", "Morning, every day, all day", sub="DLI Lessons 22, 35, 37, 74 · утром, вечером · каждый · весь · по утрам", blocks=[
+  H("Adverbs of time with the instrumental case endings"),
+  T(["Nouns", "вечер", "день", "утро", "лето", "весна", "зима", "осень", "ночь"], [["Adverbs", "вечером", "днём", "утром", "летом", "весной", "зимой", "осенью", "ночью"]], row_heads=True),
+  NOTE("DLI, Lesson 35."),
+  H("The word КАЖДЫЙ in time expressions"),
+  P("The word \"every\" in time expressions answering the question \"how often\" is rendered as follows:"),
+  EX(("Каждый день (понедельник, вторник, четверг)", "masc. (acc.)"), ("Каждое утро (воскресенье)", "neut. (acc.)"), ("Каждую среду (пятницу, субботу)", "fem. (acc.)")),
+  NOTE("DLI, Lesson 22."),
+  H("ВЕСЬ, ВСЯ, etc. in time expressions"),
+  P("The word \"all\" in time expressions answering the question \"how long\" is rendered as follows:"),
+  EX(("весь день (год, месяц, вторник)", "masc. (accus.)"), ("всё утро (воскресенье, лето)", "neut. (accus.)"), ("все дни (годы)", "plur. (accus.)"), ("всю неделю (зиму, осень, ночь)", "fem. (accus.)")),
+  NOTE("DLI, Lesson 37."),
+  H("The preposition «по» in time expressions"),
+  P("The preposition по + Dat. Pl. is used to indicate that something occurs periodically, 1. on a certain day of the week:"),
+  EX(("По понедельникам я работаю в штабе.", ""), ("По воскресеньям мы отдыхаем.", "")),
+  P("2. during a certain time of a day:"),
+  EX(("По утрам я читаю газету.", ""), ("По вечерам его никогда нет дома.", ""), ("По ночам мы часто слышали какой-то шум.", "")),
+  P("Note: Never «по дням» except when modifier is used: «по целым дням» — days on end; «по выходным дням» — on off-days."),
+  NOTE("DLI, Lesson 74."),
+], exercises=[
+  MC("«in the evening»", ["вечер", "вечером", "в вечер"], 1, SRC + ", Lesson 35."),
+  MC("«in winter»", ["зимой", "в зиму", "зиме"], 0, SRC + ", Lesson 35."),
+  MC("«in autumn»", ["осенью", "осени", "в осень"], 0, SRC + ", Lesson 35."),
+  MC("«at night»", ["ночью", "ночой", "в ночь"], 0, SRC + ", Lesson 35."),
+  FILL("___ утро (every morning)", ["Каждое"], "neut. (acc.). " + SRC + ", Lesson 22."),
+  FILL("___ среду (every Wednesday)", ["Каждую"], "fem. (acc.). " + SRC + ", Lesson 22."),
+  FILL("___ день (every day)", ["Каждый"], "masc. (acc.). " + SRC + ", Lesson 22."),
+  FILL("___ неделю (all week)", ["всю"], "fem. (accus.). " + SRC + ", Lesson 37."),
+  FILL("___ утро (all morning)", ["всё", "все"], "neut. (accus.). " + SRC + ", Lesson 37."),
+  FILL("По ___ я работаю в штабе. (on Mondays)", ["понедельникам"], "по + Dat. Pl. " + SRC + ", Lesson 74."),
+  FILL("По ___ мы отдыхаем. (on Sundays)", ["воскресеньям"], "по + Dat. Pl. " + SRC + ", Lesson 74."),
+  FILL("По ___ я читаю газету. (in the mornings)", ["утрам"], SRC + ", Lesson 74."),
+]),
+
+SEC("t3-day-week-month-year", "On Monday, this week, last month, next year", sub="DLI Lessons 19, 73 · в + Acc. · в + Prep. · на + Prep.", blocks=[
+  H("Days of the week"),
+  P("To indicate the day of the week when something happened or will happen, the preposition в + Acc. is used:"),
+  EX(("Какой сегодня день? — Сегодня пятница.", ""), ("Когда вы были там? — Я был там в пятницу.", ""), ("В какой день он был там? — Он был там во вторник.", "")),
+  P("The days of the week are not capitalized. «Во» before «вт» for euphony."),
+  NOTE("DLI, Lesson 19."),
+  H("The preposition «в» in time expressions"),
+  P("**В + Accusative** is used: (a) to indicate the time of the day; (b) to indicate the day of the week; (c) to indicate how frequently something occurs."),
+  EX(("Собрание начинается в три часа.", ""), ("Я приехал туда в пять часов.", ""), ("В какой день вы были там? Я был там в пятницу.", ""), ("Я хожу в штаб два раза в день.", ""), ("Он приезжает сюда раз в месяц.", "")),
+  P("Note also the following expressions: В минуту опасности. В годы войны. Во время войны. В первый раз. В следующий раз. В последний раз."),
+  P("**В + Prepositional** is used: (a) to indicate the year or the month (but never the week) in which an event takes place; (b) to indicate the beginning, the middle, the end or any other phase of a period in which an event takes place."),
+  EX(("Я был там в этом месяце.", "this month"), ("Я был там в прошлом месяце.", "last month"), ("Я был там в январе.", "in January"), ("Я поеду туда в этом году.", "this year"), ("Я поеду туда в будущем году.", "next year"), ("Я был там в 1958-ом году.", "in 1958")),
+  EX(("Он был здесь в начале года.", "at the beginning of the year"), ("Он был здесь в конце месяца.", "at the end of the month"), ("Он был здесь в середине недели.", "in the middle of the week")),
+  H("The preposition «на» + prepositional"),
+  P("The preposition НА + Prep. is used to indicate the week during which an event takes place."),
+  EX(("Я поеду туда на этой неделе.", "this week"), ("Я поеду туда на будущей неделе.", "next week"), ("Я был там на прошлой неделе.", "last week")),
+  P("Note also the expression «на (этих) днях». When referred to the past «на днях» means \"a few days ago\", \"the other day\": *Я был там на днях.* When referred to the future, it means \"within a few days\": *Я буду там на днях.*"),
+  H("Когда?"),
+  T(["Unit", "Russian", "English"], [
+    ["YEAR (в + Loc.)", "В этом году я кончаю школу. В прошлом году я кончил школу. В будущем году я кончу школу.", "This year I'm graduating from school. Last year I graduated… Next year I'll graduate…"],
+    ["MONTH (в + Loc.)", "В этом месяце он приезжает сюда. В прошлом месяце он приехал сюда. В следующем месяце он приедет сюда.", "He's coming here this month. He came here last month. He'll come here next month."],
+    ["WEEK (на + Loc.)", "На этой неделе я пишу письма. На прошлой неделе я написал два письма. На следующей неделе я буду писать письма.", "This week I'm writing letters. I wrote two letters last week. I'll be writing letters next week."],
+    ["DAY, NIGHT (в + Acc.)", "В этот день я отдыхал. В эту ночь я буду отдыхать. В субботу (в среду, etc.) я отдыхаю.", "That day I was resting. This night I will rest. Saturday (Wednesday, etc.) I rest."],
+    ["HOUR, MINUTE, SECOND (в + Acc.)", "В этот час я занят. В эту минуту я вошёл в комнату. В эту секунду вошёл сержант.", "That hour I am busy. That very minute I entered the room. That very second the sergeant came in."],
+  ]),
+  P("Note that a week takes \"НА + Loc.\"; units larger than a week (month, year) take \"В + Loc.\"; units smaller than a week (day, hour etc.) take \"В + Acc.\" Exception: НА следующий день — the next day, the following day. Note the meaning of «будущий» and «следующий»: будущий — next (future, coming); следующий — next (following)."),
+  NOTE("DLI, Lesson 73."),
+], exercises=[
+  FILL("Я был там в ___ . (on Friday)", ["пятницу"], "в + Acc. " + SRC + ", Lesson 19."),
+  FILL("Он был там во ___ . (on Tuesday)", ["вторник"], "«Во» before «вт» for euphony. " + SRC + ", Lesson 19."),
+  MC("Собрание начинается ___ три часа.", ["в", "на", "по"], 0, "В + Acc. — the time of the day. " + SRC + ", Lesson 73."),
+  FILL("Я хожу в штаб два раза в ___ . (twice a day)", ["день"], SRC + ", Lesson 73."),
+  FILL("Я был там в ___ . (in January)", ["январе"], "В + Prep. " + SRC + ", Lesson 73."),
+  FILL("Я поеду туда в будущем ___ . (next year)", ["году"], SRC + ", Lesson 73."),
+  FILL("Он был здесь в ___ года. (at the beginning of the year)", ["начале"], SRC + ", Lesson 73."),
+  FILL("Он был здесь в ___ месяца. (at the end of the month)", ["конце"], SRC + ", Lesson 73."),
+  MC("Я поеду туда ___ этой неделе.", ["в", "на"], 1, "A week takes НА + Loc. " + SRC + ", Lesson 73."),
+  MC("Я был там ___ прошлом месяце.", ["в", "на"], 0, "Units larger than a week take В + Loc. " + SRC + ", Lesson 73."),
+  FILL("На ___ неделе я написал два письма. (last week)", ["прошлой"], SRC + ", Lesson 73."),
+  FILL("В эту ___ я вошёл в комнату. (that very minute)", ["минуту"], "Units smaller than a week take В + Acc. " + SRC + ", Lesson 73."),
+  MC("«the next day, the following day»", ["в следующий день", "на следующий день", "на следующем дне"], 1, "Exception: НА следующий день. " + SRC + ", Lesson 73."),
+]),
+
+]
