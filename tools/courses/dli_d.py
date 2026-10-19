@@ -97,7 +97,7 @@ SEC("d25-negatives", "Nobody, nothing, nowhere", sub="Lessons 60–62 · ник�
   MC("*Я ни ___ не говорил.* (with anybody)", ["с кем", "кем", "с никем"], 0, "The preposition splits it: **ни с кем**."),
   MC("*Did anyone come?*", ["Кто-то пришёл?", "Кто-нибудь пришёл?"], 1, "Unknown, *any-* in a question → **-нибудь**."),
   MC("*Someone is knocking.*", ["Кто-то стучит.", "Кто-нибудь стучит."], 0, "A definite but unknown person → **-то**."),
-  FILL("У меня нет ___ брата, ___ сестры. (neither … nor — type the word once)", ["ни"], "**ни … ни**."),
+  FILL("У меня нет ___ брата, ___ сестры. (neither … nor)", ["ни"], "**ни … ни**."),
 ]),
 
 SEC("d26-prefixed-motion", "Going-verbs with prefixes", sub="Lessons 57–63 · при-, у-, в-, вы-, под-, от-, пере-, про-, до-, об-", blocks=[

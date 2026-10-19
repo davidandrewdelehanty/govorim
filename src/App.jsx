@@ -25082,7 +25082,21 @@ export default function App() {
                     );
                   }
                   // Fill in the blank: the field sits where the blank is.
+                  var parts = String(e.q || "").split("___");
+                  var nBlank = Math.max(1, parts.length - 1);
                   var check = function() {
+                    // Several blanks: each has its own box, and the answer is
+                    // their words in order ("решал решил").
+                    if (nBlank > 1) {
+                      var vals = (es.vals || []).map(function(x){ return normAns(x); });
+                      if (vals.length < nBlank || vals.some(function(x){ return !x; })) return;
+                      var joined = vals.join(" ");
+                      var same = vals.every(function(x){ return x === vals[0]; });
+                      var ok2 = (e.answers || []).some(function(a){ return normAns(a) === joined || (same && normAns(a) === vals[0]); });
+                      setEx(e.id, ok2 ? { status: "right" } : { status: "wrong", tries: (es.tries || 0) + 1 });
+                      noteAnswer(course.id, sec.id, e.id, ok2, exIds, ok2 && cleanRun(e));
+                      return;
+                    }
                     var v = normAns(es.val);
                     if (!v) return;
                     // The answer alone is right — and so is the answer typed with
@@ -25105,23 +25119,33 @@ export default function App() {
                     setEx(e.id, ok ? { status: "right" } : { status: "wrong", tries: (es.tries || 0) + 1 });
                     noteAnswer(course.id, sec.id, e.id, ok, exIds, ok && cleanRun(e));
                   };
-                  var parts = String(e.q || "").split("___");
-                  var field = (
-                    <input key="f" type="text" lang="ru" autoComplete="off" autoCapitalize="off" spellCheck={false}
-                      className={"crs-in" + (es.status === "right" ? " ok" : es.status === "wrong" ? " bad" : "")}
-                      value={es.val || ""} readOnly={es.status === "right"}
-                      size={Math.max(4, Math.min(40, Math.max(((e.answers && e.answers[0]) || "").length + 2, String(es.val || "").length + 1)))}
-                      onChange={function(ev){ setEx(e.id, { val: ev.target.value, status: es.status === "right" ? "right" : "" }); }}
-                      onKeyDown={function(ev){ if (ev.key === "Enter") check(); }} />
-                  );
+                  var fieldAt = function(k) {
+                    var many = nBlank > 1;
+                    var val = many ? ((es.vals || [])[k] || "") : (es.val || "");
+                    var want = ((e.answers && e.answers[0]) || "").split(/\s+/);
+                    var w = many ? (want[k] || want[0] || "") : (e.answers && e.answers[0]) || "";
+                    return (
+                      <input key={"f" + k} type="text" lang="ru" autoComplete="off" autoCapitalize="off" spellCheck={false}
+                        className={"crs-in" + (es.status === "right" ? " ok" : es.status === "wrong" ? " bad" : "")}
+                        value={val} readOnly={es.status === "right"}
+                        size={Math.max(4, Math.min(40, Math.max(w.length + 2, String(val).length + 1)))}
+                        onChange={function(ev){
+                          if (many) {
+                            var vs = (es.vals || []).slice(); vs[k] = ev.target.value;
+                            setEx(e.id, { vals: vs, status: es.status === "right" ? "right" : "" });
+                          } else setEx(e.id, { val: ev.target.value, status: es.status === "right" ? "right" : "" });
+                        }}
+                        onKeyDown={function(ev){ if (ev.key === "Enter") check(); }} />
+                    );
+                  };
                   return (
                     <div key={e.id} className={"crs-q" + (es.status === "right" ? " ok" : "")}>
                       <div className="crs-qn">{n + 1}</div>
                       <div className="crs-qb">
                         {e.prompt && <div className="crs-qt">{rich(e.prompt)}</div>}
                         <div className="crs-fill" lang="ru">
-                          {parts.map(function(p, k){ return <Fragment key={k}>{rich(p)}{k < parts.length - 1 ? field : null}</Fragment>; })}
-                          {parts.length < 2 && field}
+                          {parts.map(function(p, k){ return <Fragment key={k}>{rich(p)}{k < parts.length - 1 ? fieldAt(k) : null}</Fragment>; })}
+                          {parts.length < 2 && fieldAt(0)}
                           {es.status !== "right" && <button type="button" className="crs-chk" onClick={check}>Check</button>}
                           {es.status === "right" && <span className="crs-tick">✓</span>}
                         </div>
