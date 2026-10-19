@@ -5862,6 +5862,14 @@ export default function App() {
   // in local storage for everyone and on the server for a signed-in reader.
   var [stats, setStats] = useState({});
   var [learned, setLearned] = useState([]);
+  // English words saved while studying English and Russian words saved while
+  // studying Russian live in the same lists (one sync, one server file) but
+  // are never shown or reviewed together: a headword written in Latin letters
+  // with no Cyrillic is an English card.
+  var isEnVocab = function(v) {
+    var w = String((v && (v.ru || v.lemma)) || "");
+    return /[A-Za-z]/.test(w) && !/[\u0400-\u04FF]/.test(w);
+  };
   // Whether the progress panel is open, and whether the reader wants it at
   // all. Both persist; hiding it leaves a one-line way back.
   // Folded by default. The record is worth having and worth glancing at, but
@@ -6490,6 +6498,9 @@ export default function App() {
   useEffect(function(){
     try { localStorage.setItem("gv_target_lang", targetLang); } catch (e) {}
   }, [targetLang]);
+  // The saved words of the language being studied (see isEnVocab).
+  var vocabL = vocab.filter(function(v){ return isEnVocab(v) === (targetLang === "en"); });
+  var learnedL = learned.filter(function(v){ return isEnVocab(v) === (targetLang === "en"); });
   // In Read in English mode a book is shown under its English name.
   var shownTitle = function(book) {
     if (!book) return "";
@@ -9381,6 +9392,21 @@ export default function App() {
     var now1 = Date.now(); setQuotesSeenAt(now1);
     try { localStorage.setItem("gv_quotes_seen_v1", String(now1)); } catch (e) {}
   }, [tab]);
+  // Which board a quote belongs on. An English quote from a translation is
+  // marked lang "en"; a quote from one of the English library's own books
+  // (lang "en" in the catalogue) is checked against that book's text like any
+  // other and carries no mark, so the book decides.
+  var enLibFiles = useMemo(function(){
+    var m = {};
+    (presetBooks || []).forEach(function(b){ if (b && b.lang === "en" && b.filename) m[b.filename] = 1; });
+    return m;
+  }, [presetBooks]);
+  var quoteIsEn = function(q) {
+    if (!q) return false;
+    if (q.lang === "en") return true;
+    var fn = (q.src && q.src.filename) || String(q.bookKey || "").split("::")[0] || "";
+    return !!enLibFiles[fn];
+  };
   var favQuotes = useMemo(function(){
     return Object.keys(annots || {}).map(function(k){ return annots[k]; })
       .filter(function(it){ return it && it.fav && !it.deleted && it.kind === "hl"; })
@@ -9506,7 +9532,7 @@ export default function App() {
   }, [annots, enQuotesMine]);
   // Each board counts its own new quotes.
   var quotesUnread = (pubQuotes || []).filter(function(q){
-    return q.at > quotesSeenAt && !myQuoteIds[q.id] && ((q.lang === "en") === (targetLang === "en"));
+    return q.at > quotesSeenAt && !myQuoteIds[q.id] && (quoteIsEn(q) === (targetLang === "en"));
   }).length;
 
   var addInk = function(stroke) {
@@ -12169,7 +12195,9 @@ export default function App() {
             localStorage.setItem("gv_rid_v1", rid);
           }
         } catch (e) { rid = ""; }
-        fetch("/api/user-data?anon=open&b=" + encodeURIComponent(book.filename || "") + (rid ? "&r=" + rid : ""),
+        // Studying English counts on its own list.
+        fetch("/api/user-data?anon=open&b=" + encodeURIComponent(book.filename || "") + (rid ? "&r=" + rid : "") +
+              (targetLang === "en" ? "&l=en" : ""),
               { method: "POST", credentials: "same-origin" }).catch(function(){});
       } catch (e) {}
       await loadFile(buf, book.filename, {
@@ -12586,8 +12614,8 @@ export default function App() {
     // Known-words stoplist first: saved words that are among the ~500 most
     // common are never quizzed. They stay in the vocab list (still visible,
     // still usable in chat practice) — they just aren't tested.
-    var quizVocab = dropCommonWords(vocab, function(v){ return v && v.ru; });
-    var commonSkipped = vocab.length - quizVocab.length;
+    var quizVocab = dropCommonWords(vocabL, function(v){ return v && v.ru; });
+    var commonSkipped = vocabL.length - quizVocab.length;
 
     // Group vocab by normalized pos. A word needs `en` (the English meaning to
     // quiz on) and `pos` (so we can find same-category distractors) to qualify.
@@ -12710,7 +12738,7 @@ export default function App() {
   var rvQuestion = function(s, v) {
     var p = (v.pos || "").toLowerCase().trim();
     var keyOf = function(x){ return x._key || x.id || x.ru; };
-    var siblings = (s.groups[p] || []).concat(learned.filter(function(x){ return (x.pos || "").toLowerCase().trim() === p && x.en; }))
+    var siblings = (s.groups[p] || []).concat(learnedL.filter(function(x){ return (x.pos || "").toLowerCase().trim() === p && x.en; }))
       .filter(function(x){ return keyOf(x) !== keyOf(v) && x.en !== v.en; });
     var seenEn = {};
     var uniq = s.shuffle(siblings).filter(function(x){ if (seenEn[x.en]) return false; seenEn[x.en] = 1; return true; });
@@ -13060,8 +13088,8 @@ export default function App() {
     });
   };
   var dueNow = useMemo(function(){
-    return dueWords(dropCommonWords(vocab, function(v){ return v && v.ru; }).filter(function(v){ return v && v.en && v.pos; }), Date.now()).length;
-  }, [vocab]);
+    return dueWords(dropCommonWords(vocabL, function(v){ return v && v.ru; }).filter(function(v){ return v && v.en && v.pos; }), Date.now()).length;
+  }, [vocab, targetLang]);
 
   // Badges — see computeBadges. The toast announces one the moment it is
   // earned. The first time a device works them out, everything already
@@ -14328,7 +14356,7 @@ export default function App() {
   }, [targetLang, started, isLit, bookMeta && bookMeta.filename, chapters.length]);
   // English mode has no case drills: leave that tab if it is open.
   useEffect(function(){
-    if (targetLang === "en" && tab === "drills") setTab("chat");
+    if (targetLang === "en" && (tab === "drills" || tab === "music")) setTab("chat");
   }, [targetLang, tab]);
 
   var renderBubble = function(text) {
@@ -18209,16 +18237,16 @@ export default function App() {
                 }).sort(function(a, b){ return (b.at || 0) - (a.at || 0); });
                 var doneWords = doneList.reduce(function(t, f){ var m = findBook(f); return t + ((m && m.book.words) || 0); }, 0);
                 var reviewedOnce = 0, inLearning = 0;
-                vocab.forEach(function(v){
+                vocabL.forEach(function(v){
                   var q = v && v.srs;
                   if (q && q.S) { reviewedOnce++; if ((q.reps || 0) < 4 || (q.run || 0) < 3) inLearning++; }
                 });
                 var bySrc = {};
-                vocab.concat(learned).forEach(function(v){ var t = v && v.srcTitle; if (t) bySrc[t] = (bySrc[t] || 0) + 1; });
+                vocabL.concat(learnedL).forEach(function(v){ var t = v && v.srcTitle; if (t) bySrc[t] = (bySrc[t] || 0) + 1; });
                 var topSrc = Object.keys(bySrc).map(function(t){ return { t: t, n: bySrc[t] }; })
                   .sort(function(a, b){ return b.n - a.n; }).slice(0, 6);
-                var recentSaved = vocab.slice().sort(function(a, b){ return (b.created || 0) - (a.created || 0); }).slice(0, 14);
-                var recentLearned = learned.slice().sort(function(a, b){ return (b.learnedAt || 0) - (a.learnedAt || 0); }).slice(0, 14);
+                var recentSaved = vocabL.slice().sort(function(a, b){ return (b.created || 0) - (a.created || 0); }).slice(0, 14);
+                var recentLearned = learnedL.slice().sort(function(a, b){ return (b.learnedAt || 0) - (a.learnedAt || 0); }).slice(0, 14);
                 var rankIn = function(key) {
                   if (!boards || !me.username) return null;
                   var rows = boards[key] || [];
@@ -18457,11 +18485,11 @@ export default function App() {
                     <div className="acct-sec">
                       <div className="acct-h">Words</div>
                       <div className="acct-stats">
-                        {tile(vocab.length, "saved to your vocabulary")}
-                        {tile(learned.length, "retired as learned")}
+                        {tile(vocabL.length, "saved to your vocabulary")}
+                        {tile(learnedL.length, "retired as learned")}
                         {tile(tot.practiced, "vocabulary answers")}
                         {tile(dueNow, "due for review now")}
-                        {tile(vocab.length - reviewedOnce, "not reviewed yet")}
+                        {tile(vocabL.length - reviewedOnce, "not reviewed yet")}
                         {tile(inLearning, "still being learned")}
                       </div>
                       {dueNow > 0 && (
@@ -19883,6 +19911,8 @@ export default function App() {
               // Case drills are a Russian exercise: not in English mode. Quotes
               // stay, with their own English board.
               if (targetLang === "en" && t === "drills") return false;
+              // The Music tab is Russian songs: not in English mode either.
+              if (targetLang === "en" && t === "music") return false;
               return true;
             }).map(function(t){
               return (
@@ -19911,7 +19941,7 @@ export default function App() {
                   setTab(t);
                 }}>
                   {t==="chat"?"Reading":t==="ranked"?"Most popular":t==="leaders"?"Leaderboard":t==="vocab"?"Vocab":t==="grammar"?"Grammar":t==="forum"?"Forum":t==="quotes"?"Quotes":t==="drills"?"Case drills":"Music"}
-                  {t==="vocab"&&vocab.length>0&&<span className="bdg">{vocab.length}</span>}
+                  {t==="vocab"&&vocabL.length>0&&<span className="bdg">{vocabL.length}</span>}
                   {t==="quotes"&&quotesUnread>0&&<span className="bdg qn">{quotesUnread > 99 ? "99+" : quotesUnread}</span>}
                   {t==="grammar"&&tips.length>0&&<span className="bdg g">{tips.length}</span>}
                 </button>
@@ -20001,14 +20031,17 @@ export default function App() {
         {tab==="quotes" && (function(){
           var mine = quoteView === "mine";
           var enMode = targetLang === "en";
+          var favMine = favQuotes.map(function(q){ return Object.assign({}, q, { at: q.favAt || q.createdAt }); });
           // Two boards: English quotes in Read in English mode, Russian otherwise.
           var list = mine
-            ? (enMode ? enQuotesMine
-                      : favQuotes.map(function(q){ return Object.assign({}, q, { at: q.favAt || q.createdAt }); }))
-            : (pubQuotes || []).filter(function(q){ return (q.lang === "en") === enMode; }).map(function(q){
+            ? (enMode ? enQuotesMine.concat(favMine.filter(quoteIsEn)).sort(function(a, b){ return (b.at || 0) - (a.at || 0); })
+                      : favMine.filter(function(q){ return !quoteIsEn(q); }))
+            : (pubQuotes || []).filter(function(q){ return quoteIsEn(q) === enMode; }).map(function(q){
                 return Object.assign({ bookKey: (q.src && q.src.filename ? q.src.filename + "::" + (q.src.title || "") : "") }, q);
               });
-          var mineCount = enMode ? enQuotesMine.length : favQuotes.length;
+          var mineCount = mine ? list.length
+            : (enMode ? enQuotesMine.length + favMine.filter(quoteIsEn).length
+                      : favMine.filter(function(q){ return !quoteIsEn(q); }).length);
           return (
             <div className="main">
               <div className="ss">
@@ -20213,10 +20246,11 @@ export default function App() {
         {tab==="ranked" && (
           <div className="main">
             <div className="ss">
-              <h1 className="sti">Most popular</h1>
+              <h1 className="sti">{targetLang === "en" ? "Most popular — Studying English" : "Most popular"}</h1>
               <p className="sde">
-                Every book in the library, ranked by how many times it has been opened.
-                Tap one to start reading it.
+                {targetLang === "en"
+                  ? "The books readers studying English open most. Tap one to start reading it."
+                  : "Every book in the library, ranked by how many times it has been opened. Tap one to start reading it."}
               </p>
               {(function(){
                 if (!libReads) {
@@ -20226,7 +20260,20 @@ export default function App() {
                 // coming back to a book every evening used to outrank twenty
                 // who each opened it once. The figures themselves are not
                 // shown — the order is the answer.
-                var opens = libReads.readers || libReads.opens || {};
+                var opensAll = libReads.readers || libReads.opens || {};
+                // Two lists. Opens made while studying English are counted
+                // under "en:" + the filename; the English library's own books
+                // were only ever opened in English mode, so their older plain
+                // counts belong to the English list too.
+                var enModeR = targetLang === "en";
+                var opens = {};
+                Object.keys(opensAll).forEach(function(k){
+                  if (k.indexOf("en:") === 0) {
+                    if (enModeR) opens[k.slice(3)] = (opens[k.slice(3)] || 0) + (opensAll[k] || 0);
+                    return;
+                  }
+                  if (enModeR === !!enLibFiles[k]) opens[k] = (opens[k] || 0) + (opensAll[k] || 0);
+                });
                 // Only the library's own books. A reader's own file never
                 // reaches this counter — only loadPresetBook reports an open —
                 // and looking each counted name up in the catalogue makes that
@@ -20237,18 +20284,19 @@ export default function App() {
                 var rows = Object.keys(opens).map(function(fn){
                   var b = byName[fn];
                   return { fn: fn, book: b || null,
-                           title: b ? (b.title || fn) : fn,
-                           author: b ? (b.author || "") : "",
+                           title: b ? shownTitle(b) : fn,
+                           author: b ? shownAuthor(b) : "",
                            n: opens[fn] || 0 };
                 }).filter(function(r){
                   return r.n > 0 && r.book;
                 }).sort(function(a, b){
-                  return b.n - a.n || String(a.title).localeCompare(String(b.title), "ru");
+                  return b.n - a.n || String(a.title).localeCompare(String(b.title), enModeR ? "en" : "ru");
                 });
                 var total = rows.reduce(function(n, r){ return n + r.n; }, 0);
                 var songCounts = libReads.songs || {};
                 var songRows = [], songSeen = {};
-                (musicData || []).forEach(function(ar){
+                // The songs are Russian: not on the English list.
+                (enModeR ? [] : (musicData || [])).forEach(function(ar){
                   (ar.songs || []).forEach(function(sg){
                     var id = sg.youtube || "";
                     var n = songCounts[id] || 0;
@@ -20880,7 +20928,7 @@ export default function App() {
                 {me && !progHidden && !grpPicking && (
                   <ProgressPanel
                     stats={stats}
-                    learned={learned.length}
+                    learned={learnedL.length}
                     due={dueNow}
                     finishedMap={finishedMap}
                     open={progOpen}
@@ -23679,7 +23727,9 @@ export default function App() {
           </div>
         )}
 
-        {tab==="vocab" && (
+        {tab==="vocab" && (function(vocab, learned){
+          // This tab shows only the words of the language being studied.
+          return (
           <div className="panel">
             {quizMode ? (
               // ── Review session (Anki-style) ─────────────────────────────
@@ -24174,7 +24224,8 @@ export default function App() {
               </>
             )}
           </div>
-        )}
+        );
+        })(vocabL, learnedL)}
 
         {tab==="grammar" && (
           <div className="panel">

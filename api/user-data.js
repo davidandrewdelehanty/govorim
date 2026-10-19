@@ -548,10 +548,13 @@ export default async function handler(req, res) {
       // control characters and path tricks out of an R2 key, not to insist the
       // alphabet be Latin.
       const raw = String((req.query && req.query.b) || "");
-      const bookKey = raw
+      const bookName = raw
         .replace(/[^\w\u0400-\u04FF.\/\-\u2013\u2014\u00AB\u00BB() ]+/g, "")
         .replace(/\.{2,}/g, ".")
         .slice(0, 160);
+      // Opened while studying English: counted on the English list, under
+      // its own key, so the two "Most popular" lists never mix.
+      const bookKey = bookName && String((req.query && req.query.l) || "") === "en" ? "en:" + bookName : bookName;
       if (bookKey) {
         try {
           const bk = `${PREFIX}/_stats/books.json`;
@@ -565,7 +568,7 @@ export default async function handler(req, res) {
           books = (books && typeof books === "object") ? books : {};
           // A cap on distinct keys, so a bad actor posting junk filenames
           // cannot grow this file without bound. Known books keep counting.
-          if (books[bookKey] !== undefined || Object.keys(books).length < 400) {
+          if (books[bookKey] !== undefined || Object.keys(books).length < 3000) {
             books[bookKey] = (books[bookKey] || 0) + 1;
             await s3.send(new PutObjectCommand({
               Bucket: BUCKET, Key: bk,
