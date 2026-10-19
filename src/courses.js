@@ -15,7 +15,7 @@
 export function mergeCourseProg(a, b) {
   var out = Object.assign({}, a || {});
   var inc = b || {};
-  Object.keys(inc).slice(0, 2000).forEach(function (k) {
+  Object.keys(inc).slice(0, 8000).forEach(function (k) {
     if (!/^[a-z0-9-]{1,40}\/[a-z0-9-]{1,60}$/.test(k)) return;
     var x = out[k] || {}, y = inc[k] || {};
     var right = Object.assign({}, x.right || {});

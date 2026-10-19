@@ -43,6 +43,14 @@ COURSES = {
     "case-acc": [("The Ninth Wave", "Aivazovsky"), ("The Black Sea", "Aivazovsky")],
     "case-ins": [("The Rooks Have Come Back", "Savrasov"), ("Winter Road", "Savrasov")],
     "case-prp": [("Alyonushka", "Vasnetsov"), ("Above Eternal Peace", "Levitan")],
+    "aspect":   [("Leo Tolstoy Ploughing", "Repin"), ("Mowers", "Myasoyedov")],
+    "verbs":    [("Bathing of a Red Horse", "Petrov-Vodkin"), ("Troika", "Perov")],
+    "compare":  [("The Vladimirka Road", "Levitan"), ("Evening Bells", "Levitan")],
+    "pronouns": [("Unknown Woman", "Kramskoi"), ("Portrait of an Unknown Woman", "Kramskoi")],
+    "complex":  [("Ivan Tsarevich Riding the Grey Wolf", "Vasnetsov"), ("The Knight at the Crossroads", "Vasnetsov")],
+    "inter2":   [("The Swan Princess", "Vrubel"), ("Lilacs", "Vrubel")],
+    "adv3":     [("The Demon Seated", "Vrubel"), ("Pan", "Vrubel")],
+    "stories":  [("The Unequal Marriage", "Pukirev"), ("Tea-Drinking in Mytishchi", "Perov")],
 }
 TEXTBOOK_PAINTINGS = {
     "povarnin-iskusstvo-spora": [("Hunters at Rest", "Perov"), ("The School of Athens", "Raphael")],

@@ -70,6 +70,15 @@ COURSES.append({
 import case_courses
 for _meta, _secs in case_courses.COURSE_DEFS:
     COURSES.append(dict(_meta, modules=[], order=None, sections=_secs))
+import adv_courses
+for _meta, _secs in adv_courses.COURSE_DEFS:
+    COURSES.append(dict(_meta, modules=[], order=None, sections=_secs))
+import topic_courses
+for _meta, _secs in topic_courses.COURSE_DEFS:
+    COURSES.append(dict(_meta, modules=[], order=None, sections=_secs))
+import story_course
+for _meta, _secs in story_course.COURSE_DEFS:
+    COURSES.append(dict(_meta, modules=[], order=None, sections=_secs))
 for _c in COURSES:
     if _c["id"] == "time":
         _c["sections"] = case_courses.TIME_MORE

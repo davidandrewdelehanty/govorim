@@ -7,7 +7,7 @@ library's public-domain Russian books (tools/courses/case_drills.py).
 
 A section's first exercises are in the section; the rest follow as practice
 sets of PRACTICE_SIZE (build_courses.py makes them)."""
-import io, json, os
+import io, json, os, re
 from kit import *
 from wiki_blocks import wiki
 import cases_a, cases_b
@@ -16,7 +16,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 _P = os.path.join(HERE, "case_drills.json")
 DRILLS = json.load(io.open(_P, encoding="utf-8")) if os.path.exists(_P) else {}
 IN_SECTION = 20
-MAX_PER_SECTION = 220
+MAX_PER_SECTION = 420
 WB = "From the Wikibooks Russian textbook (CC BY-SA 4.0)."
 DLI = "From the DLI Grammar Reference Book."
 _SECS = {s["id"]: s for s in cases_a.SECTIONS + cases_b.SECTIONS}
@@ -42,9 +42,64 @@ def dli(sid, *heads):
     return out
 
 
+# The explanation shown after each exercise: the source's own sentence for
+# the rule (DLI, public domain; Wikibooks, CC BY-SA), never a line of ours.
+RULE = [
+    (r"^gent:prep:", "«List of prepositions which are followed by the genitive case: без, вдоль, вместо, для, до, из, из-за, из-под, кроме, мимо, около, от, после, против, с, у.» — DLI, Lesson 60."),
+    (r"^datv:prep:", "«The preposition к (to, towards, in the direction of …) always requires the dative case … The preposition по means \"along\" and is used with the dative case.» — DLI, Lessons 28–29."),
+    (r"^accs:prep:", "«Prepositions \"В\", \"НА\", \"ПОД\" and \"ЗА\" are followed by the Accusative case when they indicate the goal of motion.» Also через, про, сквозь + accusative. — DLI, Lesson 61."),
+    (r"^ablt:prep:", "«Prepositions \"ПОД\" and \"ЗА\" are followed by the Instrumental case when they indicate location»; so are НАД, ПЕРЕД, МЕЖДУ and С. — DLI, Lesson 61."),
+    (r"^loct:prep:", "«The prepositional case is always used with a preposition. With the prepositions в and на it denotes a location … With the preposition о, об this case answers the questions о ком? о чём?» — DLI, Lesson 16."),
+    (r"^loct:loc2$", "«Some masculine nouns take the ending -у (always with a stress) in the prepositional-locative case, i.e. after the prepositions В or НА. The same nouns have the regular ending -е after О, ОБ.» — DLI, Lesson 27."),
+    (r"^loct:transport$", "«The prepositions в and на … denote a location»: на поезде, на машине. — DLI, Lessons 16, 25."),
+    (r"^gent:poss$", "«The genitive case is used to denote the possessor or owner … A noun in the genitive case is sometimes used to qualify (modify) another noun.» — DLI, Lesson 23."),
+    (r"^gent:neg$", "«The direct object of a verb with negation (with не) is often in the genitive case instead of the accusative.» «To say 'There isn't …' we use the word нет followed by the genitive case.» — DLI, Lesson 27; Wikibooks."),
+    (r"^gent:count$", "«If the number ends in 2, 3 or 4 use the genitive singular … If the number ends in 5, 6, 7, 8, 9, 0 or -надцать use the genitive plural.» Много, мало, сколько, несколько also take the genitive. — Wikibooks, «Genitive case»."),
+    (r"^gent:verb$", "«The person or thing feared is in the Genitive case: Я боюсь этого человека.» «The object (of ждать) is in the accusative case if animate and in the genitive case if inanimate.» — DLI, Lessons 27, 66."),
+    (r"^datv:io$", "«The dative case is used mostly to denote the person to whom something is given, sent, told, shown, etc.» — DLI, Lesson 28."),
+    (r"^datv:impers$", "«The person who needs something (or someone) is in the dative case … The logical subject, when used with можно or нельзя, is in the dative case … Нравиться is used with the agent in the Dative case.» — DLI, Lessons 35, 36, 66."),
+    (r"^datv:verb$", "«After the verb помогать the person to whom help or assistance is given is in the dative case.» — DLI, Lesson 35."),
+    (r"^accs:obj$", "«The accusative case is used to denote the direct object of the preceding verb and answers the questions кого? — whom? or что? — what?» — DLI, Lesson 18."),
+    (r"^ablt:tool$", "«The Instrumental without С is used when an instrument or agent of the action is denoted.» — DLI, Lesson 30."),
+    (r"^ablt:pred$", "«After the verbs быть (past and future) and работать the noun indicating some person's occupation, rank or position is in the instrumental case.» — DLI, Lesson 30."),
+    (r"^ablt:verb$", "«After the verbs командовать and заведовать the units or persons being commanded … are denoted by the instrumental case.» Заниматься, пользоваться, интересоваться take the instrumental too. — DLI, Lessons 30, 65, 99."),
+    (r"^ablt:time$", "«The adverbs утром, вечером and днём … are nothing but the instrumental case of the nouns утро, вечер and день.» — DLI, Lesson 30."),
+    (r"^nomn:subject$", "«The main functions of the nominative case are: a. The nominative of the subject: Студент читает.» — DLI, Lesson 16."),
+    (r"^nomn:eto$", "«b. The nominative of the predicate: Мой брат — студент.» — DLI, Lesson 16."),
+    (r":adj$", "«All adjectives agree in gender, number and case with the noun they modify.» — DLI, Lesson 46."),
+    (r"^time:в:accs$", "«The preposition В + Acc. is used: (a) to indicate the time of the day … (b) to indicate the day of the week … (c) to indicate how frequently something occurs.» — DLI, Lesson 73."),
+    (r"^time:в:loct$", "«The preposition В + Prepositional is used: (a) to indicate the year or the month (but never the week) … (b) to indicate the beginning, the middle, the end or any other phase of a period.» — DLI, Lesson 73."),
+    (r"^time:на:accs$", "«The preposition НА + Acc. is used to indicate the length of time one expects to stay some place, or the time something is expected to last.» — DLI, Lesson 73."),
+    (r"^time:на:loct$", "«The preposition НА + Prep. is used to indicate the week during which an event takes place.» — DLI, Lesson 73."),
+    (r"^time:по:datv$", "«The preposition по + Dat. Pl. is used to indicate that something occurs periodically.» — DLI, Lesson 74."),
+    (r"^time:с:gent$", "«С + Gen. meaning \"from\" or \"since\".» — DLI, Lesson 76."),
+    (r"^time:до:gent$", "«ДО + Gen. meaning \"till\" (indicating a time limit of an action).» — DLI, Lesson 76."),
+    (r"^time:за:accs$", "«The preposition ЗА + Acc. denotes the time that it takes to accomplish an action.» — DLI, Lesson 77."),
+    (r"^time:к:datv$", "«The preposition К + Dat. denotes the time by which an event takes place.» — DLI, Lesson 77."),
+    (r"^time:(перед|после):", "«\"Перед\" means immediately before, whereas \"до\" can cover a longer space of time before.» После + genitive: after. — DLI, Lessons 27, 43."),
+    (r"^time:every$", "«The word \"every\" in time expressions answering the question \"how often\" … каждый день, каждое утро, каждую среду (acc.)»; «весь день, всё утро, всю неделю (accus.)». — DLI, Lessons 22, 37."),
+    (r"^time:season$", "«The adverbs утром, вечером and днём … are nothing but the instrumental case of the nouns утро, вечер and день.» — DLI, Lesson 30."),
+    (r"^time:date$", "«In denoting the time of an event (in answering the question \"when?\") the date and the month are both in the Genitive case.» — DLI, Lesson 75."),
+    (r"^time:", "«Prepositions in time expressions»: в, на, по, с, до, за, к, через, назад. — DLI, Lessons 73–77."),
+]
+
+
+def rule_for(key):
+    for rx, q in RULE:
+        if re.search(rx, key):
+            return q
+    return None
+
+
+def _src(why):
+    m = re.search(r"(Sentence and translation from Tatoeba[^.]*\\.|From [^.]*«[^»]*»\\.?)\s*$", why or "")
+    return m.group(1) if m else ""
+
+
 def drills(*keys):
     """Exercises from several keys, interleaved so each set mixes them."""
-    pools = [list(DRILLS.get(k) or []) for k in keys]
+    pools = [[dict(e, why=((rule_for(k) or "") + " " + _src(e.get("why"))).strip()) if rule_for(k) else e
+              for e in (DRILLS.get(k) or [])] for k in keys]
     out, seen = [], set()
     while any(pools) and len(out) < MAX_PER_SECTION:
         for p in pools:
