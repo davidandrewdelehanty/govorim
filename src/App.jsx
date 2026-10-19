@@ -15949,6 +15949,8 @@ export default function App() {
         .gv-a{font-family:'IBM Plex Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:.03em;padding:0 5px;border-radius:7px;background:rgba(42,31,20,.08);color:rgba(42,31,20,.7)}
         .gv-a.pf{background:rgba(46,110,80,.13);color:#2e6e50}
         .gv-a.impf{background:rgba(48,90,150,.12);color:#305a96}
+        .gv-v2{color:#7a5410}
+        .gv-sl{color:rgba(42,31,20,.35);font-family:'IBM Plex Sans',sans-serif;font-size:.8em}
         .gv-pair{font-family:'Literata',serif;font-size:12.5px;color:rgba(42,31,20,.75)}
         .gv-x{font-family:'Literata',serif;font-size:12.5px;color:#8a3b1e;line-height:1.35}
         .gv-n{font-family:'IBM Plex Sans',sans-serif;font-size:10.5px;color:rgba(42,31,20,.45);margin-top:2px}
@@ -24921,22 +24923,37 @@ export default function App() {
                   return (
                     <button key={key || v} type="button" className={"gv-b" + (st && st.r <= 100 ? " hot" : st && st.r <= 1000 ? " warm" : "")}
                       onClick={function(){ openVerb(v); }} title={"Every form of «" + v + "», with sentences"}>
-                      <span className="gv-top">
-                        <span className="gv-v" lang="ru">{v}</span>
-                        {st && <span className="gv-r">#{fmtN(st.r)}</span>}
-                      </span>
                       {(function(){
-                        // Its aspect and aspectual partner (tools/verb_pairs.py,
-                        // from Wiktionary): «говорить · impf. → pf. сказать».
+                        // The verb with its aspectual partner, imperfective first:
+                        // «говорить / сказать» (tools/verb_pairs.py, from Wiktionary).
                         var pr = idx && idx.pairs && (idx.pairs[v] || idx.pairs[v.replace(/ё/g, "е")]);
-                        if (!pr) return null;
-                        var asp = pr[0] === "impf" ? "impf." : pr[0] === "pf" ? "pf." : pr[0] === "both" ? "impf. & pf." : "";
-                        var other = pr[0] === "impf" ? "pf." : pr[0] === "pf" ? "impf." : "";
+                        var parts = pr ? [].concat(pr[1] || []).join(",").split(",").map(function(x){
+                          return x.replace(/<[^>]*>/g, "").trim();
+                        }).filter(function(x){ return /^[а-яё-]+$/.test(x); }) : [];
+                        // The commonest partner first: увидеть before завидеть.
+                        parts.sort(function(a, b){ return ((verbRank[a] || [0, 1e9])[1]) - ((verbRank[b] || [0, 1e9])[1]); });
+                        var partner = parts[0] || "";
+                        var asp = pr ? pr[0] : "";
+                        var impf = asp === "pf" ? partner : v, pf = asp === "pf" ? v : partner;
                         return (
-                          <span className="gv-asp">
-                            {asp && <span className={"gv-a " + (pr[0] || "")}>{asp}</span>}
-                            {pr[1] && pr[1].length > 0 && <span className="gv-pair" lang="ru">{other ? other + " " : "pair: "}{pr[1].slice(0, 3).join(", ")}</span>}
-                          </span>
+                          <>
+                            <span className="gv-top">
+                              <span className="gv-v" lang="ru">
+                                {partner && asp !== "both"
+                                  ? <><span className={impf === v ? "" : "gv-v2"}>{impf}</span><span className="gv-sl"> / </span><span className={pf === v ? "" : "gv-v2"}>{pf}</span></>
+                                  : v}
+                              </span>
+                              {st && <span className="gv-r">#{fmtN(st.r)}</span>}
+                            </span>
+                            {asp && (
+                              <span className="gv-asp">
+                                {partner && asp !== "both"
+                                  ? <><span className="gv-a impf">impf.</span><span className="gv-sl">/</span><span className="gv-a pf">pf.</span></>
+                                  : <span className={"gv-a " + asp}>{asp === "impf" ? "imperfective only" : asp === "pf" ? "perfective only" : "both aspects"}</span>}
+                                {parts.length > 1 && <span className="gv-pair" lang="ru">also {parts.slice(1, 3).join(", ")}</span>}
+                              </span>
+                            )}
+                          </>
                         );
                       })()}
                       {gloss(v) && <span className="gv-en">{gloss(v)}</span>}

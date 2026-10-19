@@ -53,9 +53,10 @@ def parse(text):
     partners = []
     for k in sorted(named, key=lambda k: (re.sub(r"\d", "", k), int(re.sub(r"\D", "", k) or 1))):
         if re.match(r"^(pf|impf)\d*$", k):
-            v = named[k].replace("́", "").strip()
-            if v and v not in partners and v != "-":
-                partners.append(v)
+            for v in named[k].split(","):
+                v = re.sub(r"<[^>]*>", "", v).replace("\u0301", "").strip()
+                if v and v != "-" and re.match(r"^[а-яё-]+$", v) and v not in partners:
+                    partners.append(v)
     return (asp, partners) if asp or partners else None
 
 
