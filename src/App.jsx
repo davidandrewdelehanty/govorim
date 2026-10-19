@@ -5992,6 +5992,8 @@ export default function App() {
   // are never shown or reviewed together: a headword written in Latin letters
   // with no Cyrillic is an English card.
   var isEnVocab = function(v) {
+    // Each mode is its own site: a card belongs to the mode it was saved in.
+    if (v && (v.site === "en" || v.site === "ru")) return v.site === "en";
     var w = String((v && (v.ru || v.lemma)) || "");
     return /[A-Za-z]/.test(w) && !/[\u0400-\u04FF]/.test(w);
   };
@@ -9397,7 +9399,7 @@ export default function App() {
       fav: true, favAt: Date.now(),
       src: {
         title: bookMeta.title || "", author: bookMeta.author || "",
-        filename: bookMeta.filename || "", slug: bookMeta.slug || "",
+        filename: bookMeta.filename || "", slug: bookMeta.slug || "", site: targetLang === "en" ? "en" : "ru",
         heading: String(ch.heading || "").trim(),
       },
     }, "me");
@@ -9413,7 +9415,7 @@ export default function App() {
       method: "POST", headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ id: it.id, quote: sb.quote, filename: bookMeta.filename || "",
                              heading: String(ch.heading || "").trim(), cidx: cidx, start: sb.start, end: sb.end,
-                             rid: readerRid() }),
+                             site: targetLang === "en" ? "en" : "ru", rid: readerRid() }),
     }).then(function(r){ return r.json().then(function(j){ return { ok: r.ok, j: j }; }); })
       .then(function(res){
         if (res.ok && res.j && res.j.item) {
@@ -9585,9 +9587,18 @@ export default function App() {
     setCdOver(true);
     setCdSel(null);
   };
-  var [quotesSeenAt, setQuotesSeenAt] = useState(function(){
-    try { return Number(localStorage.getItem("gv_quotes_seen_v1")) || 0; } catch (e) { return 0; }
+  // Each board keeps its own "seen up to" time (gv_quotes_seen_v1 for Russian,
+  // gv_quotes_seen_en_v1 for English).
+  var QSEEN = { ru: "gv_quotes_seen_v1", en: "gv_quotes_seen_en_v1" };
+  var [quotesSeenBy, setQuotesSeenBy] = useState(function(){
+    var g = function(k){ try { return Number(localStorage.getItem(k)) || 0; } catch (e) { return 0; } };
+    return { ru: g(QSEEN.ru), en: g(QSEEN.en) };
   });
+  var quotesSeenAt = quotesSeenBy[targetLang === "en" ? "en" : "ru"];
+  var markQuotesSeen = function(site, t) {
+    setQuotesSeenBy(function(o){ var n = Object.assign({}, o); n[site] = t; return n; });
+    try { localStorage.setItem(QSEEN[site], String(t)); } catch (e) {}
+  };
   var loadPubQuotes = function() {
     fetch("/api/user-data?anon=quotes").then(function(r){ return r.ok ? r.json() : null; })
       .then(function(j){ if (j && Array.isArray(j.items)) setPubQuotes(j.items); }).catch(function(){});
@@ -9599,17 +9610,15 @@ export default function App() {
   }, []);
   useEffect(function(){
     // A first visit starts with nothing unread rather than every quote ever.
-    if (!quotesSeenAt) {
-      var now0 = Date.now(); setQuotesSeenAt(now0);
-      try { localStorage.setItem("gv_quotes_seen_v1", String(now0)); } catch (e) {}
-    }
+    var now0 = Date.now();
+    if (!quotesSeenBy.ru) markQuotesSeen("ru", now0);
+    if (!quotesSeenBy.en) markQuotesSeen("en", now0);
   }, []);
   useEffect(function(){
     if (tab !== "quotes") return;
     loadPubQuotes();
-    var now1 = Date.now(); setQuotesSeenAt(now1);
-    try { localStorage.setItem("gv_quotes_seen_v1", String(now1)); } catch (e) {}
-  }, [tab]);
+    markQuotesSeen(targetLang === "en" ? "en" : "ru", Date.now());
+  }, [tab, targetLang]);
   // Which board a quote belongs on. An English quote from a translation is
   // marked lang "en"; a quote from one of the English library's own books
   // (lang "en" in the catalogue) is checked against that book's text like any
@@ -9621,6 +9630,8 @@ export default function App() {
   }, [presetBooks]);
   var quoteIsEn = function(q) {
     if (!q) return false;
+    var site = q.site || (q.src && q.src.site);
+    if (site === "en" || site === "ru") return site === "en";
     if (q.lang === "en") return true;
     var fn = (q.src && q.src.filename) || String(q.bookKey || "").split("::")[0] || "";
     return !!enLibFiles[fn];
@@ -9712,7 +9723,7 @@ export default function App() {
     if (!sq || !sq.quote || !bookMeta) return;
     var ch = chapters[cidx] || {};
     var id = "en" + Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
-    var mineItem = { id: id, quote: sq.quote, at: Date.now(), lang: "en", cidx: cidx,
+    var mineItem = { id: id, quote: sq.quote, at: Date.now(), lang: "en", site: "en", cidx: cidx,
       src: { title: bookMeta.title || "", author: bookMeta.author || "", filename: bookMeta.filename || "",
              slug: bookMeta.slug || "", heading: String(ch.heading || "").trim(),
              enTitle: bookMeta.enTitle || "", enAuthor: bookMeta.enAuthor || "" } };
@@ -9722,7 +9733,7 @@ export default function App() {
     setQuoteSaved({ at: Date.now(), note: "" });
     authFetch("/api/user-data?anon=quote", {
       method: "POST", headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ id: id, quote: sq.quote, filename: bookMeta.filename || "", lang: "en",
+      body: JSON.stringify({ id: id, quote: sq.quote, filename: bookMeta.filename || "", lang: "en", site: "en",
                              heading: String(ch.heading || "").trim(), cidx: cidx, start: 0, end: 0,
                              rid: readerRid() }),
     }).then(function(r){ return r.json().then(function(j){ return { ok: r.ok, j: j }; }); })
@@ -12885,8 +12896,8 @@ export default function App() {
     // there (up to three, the newest kept) and never makes a second card. The
     // match is on the headword or the lemma, however the entry spells them:
     // «сесть / садиться» and «сесть» are the same card.
-    var hit = findVocabMatch(vocab, entry);
-    var hitLearned = hit ? null : findVocabMatch(learned, entry);
+    var hit = findVocabMatch(vocabL, entry);
+    var hitLearned = hit ? null : findVocabMatch(learnedL, entry);
     if (hit || hitLearned) {
       var addSents = function(card) {
         var cur = Array.isArray(card.sentences) ? card.sentences.slice()
@@ -12922,7 +12933,7 @@ export default function App() {
     }
     setVocab(function(p){
       var key = String(now) + "_" + p.length;
-      return p.concat([Object.assign({}, entry, srcFields, { ru: ru, created: now, _key: key })]);
+      return p.concat([Object.assign({}, entry, srcFields, { ru: ru, created: now, _key: key, site: targetLang === "en" ? "en" : "ru" })]);
     });
   };
   var addT = function(tip) {
@@ -13273,6 +13284,7 @@ export default function App() {
       if (!s) return s;
       var keyOf = function(v){ return v._key || v.id || v.ru; };
       var pool = dropCommonWords(vocabRef.current || [], function(v){ return v && v.ru; }).filter(function(v){
+        if (isEnVocab(v) !== (targetLang === "en")) return false;
         var p = (v.pos || "").toLowerCase().trim();
         return v.en && p && (!s.filterPos || p === s.filterPos) && (s.groups[p] || []).length >= 10;
       });

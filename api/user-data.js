@@ -267,6 +267,8 @@ export default async function handler(req, res) {
           by: { name: name, avatar: avatar, guest: name.indexOf("Гость ") === 0 },
           owner: readerHash(ownerId),
         };
+        // The board it belongs on: the mode it was made in.
+        if (b.site === "en" || b.site === "ru") item.site = b.site;
         if (lang === "en") {
           item.lang = "en";
           item.src.enTitle = book.enTitle || "";
@@ -1141,6 +1143,8 @@ function cleanAnnot(raw) {
         slug: String(src.slug || "").slice(0, 120),
         heading: String(src.heading || "").slice(0, 160),
       };
+      // Which mode it was saved in (Read in Russian / Read in English).
+      if (src.site === "en" || src.site === "ru") out.src.site = src.site;
     }
   } else {
     out.paraStart = Math.floor(num(raw.paraStart, 0, 1e8) || 0);
