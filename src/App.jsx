@@ -1,4 +1,5 @@
 // THEME_VERSION=2
+import IRREG_VERBS from "./verbs-irregular.json";
 import { useState, useRef, useEffect, useCallback, useMemo, Fragment } from "react";
 import { createPortal } from "react-dom";
 import { isCommonWord, dropCommonWords } from "./commonWords.js";
@@ -5462,6 +5463,108 @@ export default function App() {
       if (hit && hit[0]) return { ru: hit[0], en: hit[1] || "", pos: hit[2] || "" };
     }
     return null;
+  };
+
+  // ── How common each verb is in the library (tools/verb_stats.py) ─────────
+  // index.json: totals, the 5,000 commonest verbs in rank order, the
+  // irregular list's counts, glosses. One shard per verb (named like
+  // public/lemmas): count, rank, its commonest forms, and sentences from the
+  // library that use it. Fetched when a verb is looked at, kept for the visit.
+  var [verbIdx, setVerbIdx] = useState(null);
+  var [verbShards, setVerbShards] = useState({});
+  var verbIdxP = useRef(null);
+  var verbTried = useRef({});
+  var getVerbIdx = function() {
+    if (!verbIdxP.current) {
+      verbIdxP.current = fetch("/vocab/verbs/index.json")
+        .then(function(r){ return r.ok ? r.json() : null; })
+        .then(function(j){ if (j) setVerbIdx(j); return j; })
+        .catch(function(){ return null; });
+    }
+    return verbIdxP.current;
+  };
+  var verbRank = useMemo(function(){
+    var m = {};
+    ((verbIdx && verbIdx.top) || []).forEach(function(t, i){ m[t[0]] = [t[1], i + 1]; });
+    return m;
+  }, [verbIdx]);
+  var verbKey = function(w) {
+    return String(w || "").replace(/\u0301/g, "").toLowerCase().split(/\s*[\/,;]\s*/)[0].trim();
+  };
+  var verbShardOf = function(w, idx) {
+    var A = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя", C = "0123456789abcdefghijklmnopqrstuvw";
+    var c = function(ch){ var i = A.indexOf(ch); return i < 0 ? "_" : C[i]; };
+    var k = c(w[0]) + (w.length > 1 ? c(w[1]) : "_");
+    if (idx && idx.split && idx.split.indexOf(k) >= 0) k += (w.length > 2 ? c(w[2]) : "_");
+    return k;
+  };
+  var loadVerb = async function(word) {
+    var w = verbKey(word);
+    if (!w || !/^[а-яё-]+$/.test(w)) return;
+    var idx = await getVerbIdx();
+    if (!idx) return;
+    var k = verbShardOf(w, idx);
+    if (verbTried.current[k]) return;
+    verbTried.current[k] = true;
+    try {
+      var r = await fetch("/vocab/verbs/" + k + ".json");
+      if (!r.ok) return;
+      var d = await r.json();
+      setVerbShards(function(cur){ var next = Object.assign({}, cur); next[k] = d; return next; });
+    } catch (e) { /* a garnish, never a blocker */ }
+  };
+  // Asked for from a render: the fetch starts after it, never inside it.
+  var wantVerb = function(word) { setTimeout(function(){ loadVerb(word); }, 0); };
+  // Only the counts (the index covers the commonest 5,000 verbs): enough
+  // for a list of cards, without a shard per card.
+  var wantVerbIdx = function() { if (!verbIdx) setTimeout(getVerbIdx, 0); };
+  var isVerbPos = function(pos, aspect) {
+    return !!aspect || (/verb|глагол/i.test(pos || "") && !/adverb|наречие/i.test(pos || ""));
+  };
+  // { n: times in the library, r: rank among verbs, f: forms, x: sentences, en }
+  var verbInfo = function(word) {
+    var w = verbKey(word);
+    if (!w || !verbIdx) return null;
+    var tries = [w, w.replace(/ё/g, "е")];
+    for (var i = 0; i < tries.length; i++) {
+      var sh = verbShards[verbShardOf(tries[i], verbIdx)];
+      if (sh && sh[tries[i]]) return sh[tries[i]];
+    }
+    for (var j = 0; j < tries.length; j++) {
+      var rk = verbRank[tries[j]];
+      if (rk) return { n: rk[0], r: rk[1] };
+      var ir = verbIdx.irr && verbIdx.irr[tries[j]];
+      if (ir && ir[0]) return { n: ir[0], r: ir[1] };
+    }
+    return null;
+  };
+  var fmtN = function(n){ return Number(n || 0).toLocaleString("en-US"); };
+  // How much a verb matters, in words: the rank band it falls in.
+  var verbTier = function(r) {
+    if (!r) return "";
+    if (r <= 50) return "a top-50 verb";
+    if (r <= 100) return "a top-100 verb";
+    if (r <= 300) return "a top-300 verb";
+    if (r <= 1000) return "a top-1,000 verb";
+    if (r <= 3000) return "a common verb";
+    return "a rarer verb";
+  };
+  // The line shown wherever a verb is: "#37 of 18,204 verbs · 12,345 times in the library".
+  var verbStat = function(word) {
+    var e = verbInfo(word);
+    if (!e || !e.n || !e.r) return null;
+    return { n: e.n, r: e.r, tier: verbTier(e.r),
+             text: "#" + fmtN(e.r) + " of " + fmtN(verbIdx.verbs) + " verbs · " + fmtN(e.n) + " times in the library" };
+  };
+  var VerbStat = function(props) {
+    var st = verbStat(props.word);
+    if (!st) return null;
+    return (
+      <div className={"vfreq" + (props.small ? " sm" : "") + (st.r <= 100 ? " hot" : st.r <= 1000 ? " warm" : "")}
+           title="How often this verb, in all its forms, appears in the books of the library">
+        <span className="vfreq-t">{st.tier}</span> <span className="vfreq-n">{st.text}</span>
+      </div>
+    );
   };
   var [popXY, setPopXY]   = useState({top:100,left:16});
   var popRef = useRef(null);
@@ -11408,6 +11511,16 @@ export default function App() {
     setConj(function(c){ return c && c.word === w ? { word: w, data: res.data, error: res.error } : c; });
   };
 
+  // A verb from the Grammar tab: its table, its numbers, and sentences.
+  var [gramSec, setGramSec] = useState("freq");   // "freq" | "irr"
+  var [gvQuery, setGvQuery] = useState("");
+  var openVerb = function(v) {
+    loadVerb(v);
+    loadTatoeba(v);
+    loadExamples();
+    openConj(v);
+  };
+
   var defWithYo = async function(word) {
     setPopup(function(p){ return p ? Object.assign({},p,{loading:true,yo:null,error:null,word:word}) : null; });
     try {
@@ -14356,7 +14469,7 @@ export default function App() {
   }, [targetLang, started, isLit, bookMeta && bookMeta.filename, chapters.length]);
   // English mode has no case drills: leave that tab if it is open.
   useEffect(function(){
-    if (targetLang === "en" && (tab === "drills" || tab === "music")) setTab("chat");
+    if (targetLang === "en" && (tab === "drills" || tab === "music" || tab === "grammar")) setTab("chat");
   }, [targetLang, tab]);
 
   var renderBubble = function(text) {
@@ -15658,6 +15771,39 @@ export default function App() {
         .cj-f.has{text-decoration:underline dotted rgba(160,110,20,.7);text-underline-offset:3px}
         .cj-f.on{background:rgba(160,110,20,.2)}
         .cj-f.miss{color:rgba(42,31,20,.4);text-decoration:line-through}
+        .gv-wrap{align-items:stretch !important}
+        .gv-wrap .sti,.gv-wrap .fq-tabs,.gv-body{width:100%;max-width:900px;margin-left:auto;margin-right:auto}
+        .gv-body{display:flex;flex-direction:column;gap:6px;text-align:left}
+        .gv-body .sde{margin:2px 0 6px}
+        .gv-q{font:16px 'Literata',serif;padding:9px 12px;border:1px solid rgba(42,31,20,.25);border-radius:8px;background:rgba(255,255,255,.55);max-width:420px;margin-bottom:6px}
+        .gv-sec{margin:12px 0 4px}
+        .gv-h{font-family:'Old Standard TT',serif;font-size:22px;font-weight:400;color:#000;margin:0 0 3px}
+        .gv-note{font-family:'Literata',serif;font-size:14.5px;line-height:1.5;color:rgba(42,31,20,.7);margin:0 0 9px;max-width:760px}
+        .gv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(172px,1fr));gap:8px}
+        .gv-b{display:flex;flex-direction:column;align-items:flex-start;gap:2px;text-align:left;cursor:pointer;
+          padding:9px 11px 8px;border:1px solid rgba(42,31,20,.18);border-radius:9px;background:rgba(255,255,255,.5);transition:transform .08s,box-shadow .12s,border-color .12s}
+        .gv-b:hover{border-color:rgba(42,31,20,.45);box-shadow:3px 3px 0 rgba(157,70,48,.18);transform:translate(-1px,-1px)}
+        .gv-b.hot{border-left:3px solid #9d4630}
+        .gv-b.warm{border-left:3px solid #b58a2a}
+        .gv-top{display:flex;width:100%;align-items:baseline;justify-content:space-between;gap:6px}
+        .gv-v{font-family:'Old Standard TT',serif;font-size:19px;color:#1c1610}
+        .gv-r{font-family:'IBM Plex Sans',sans-serif;font-size:10.5px;color:rgba(42,31,20,.45);font-variant-numeric:tabular-nums}
+        .gv-en{font-family:'Literata',serif;font-style:italic;font-size:13px;color:rgba(42,31,20,.65);line-height:1.3}
+        .gv-x{font-family:'Literata',serif;font-size:12.5px;color:#8a3b1e;line-height:1.35}
+        .gv-n{font-family:'IBM Plex Sans',sans-serif;font-size:10.5px;color:rgba(42,31,20,.45);margin-top:2px}
+        .cj-n{font-family:'IBM Plex Sans',sans-serif;font-size:10px;color:rgba(42,31,20,.42);margin-left:5px;font-variant-numeric:tabular-nums}
+        .cj-ex{margin-top:6px}
+        .cj-exl{padding:7px 0;border-top:1px solid rgba(42,31,20,.08)}
+        .cj-exl p{margin:0;font-family:'Literata',serif;font-size:15px;line-height:1.5;color:#2a1f14}
+        .cj-exl b{color:#8a3b1e}
+        .cj-exen{font-family:'Literata',serif;font-style:italic;font-size:13.5px;color:rgba(42,31,20,.6);margin-top:2px}
+        .cj-src{background:none;border:0;padding:2px 0 0;cursor:pointer;font-family:'IBM Plex Sans',sans-serif;font-size:11.5px;color:rgba(42,31,20,.55);text-align:left}
+        .cj-src:hover{color:#8a3b1e;text-decoration:underline}
+        .vfreq{font-family:'IBM Plex Sans',sans-serif;font-size:11.5px;color:rgba(42,31,20,.62);margin:0 0 8px;display:flex;flex-wrap:wrap;gap:2px 6px;align-items:baseline}
+        .vfreq-t{font-weight:600;letter-spacing:.02em;padding:1px 7px;border-radius:9px;background:rgba(42,31,20,.07);color:rgba(42,31,20,.75)}
+        .vfreq.hot .vfreq-t{background:rgba(157,70,48,.16);color:#8a3b1e}
+        .vfreq.warm .vfreq-t{background:rgba(160,110,20,.15);color:#7a5410}
+        .vfreq.sm{font-size:10.5px;margin:2px 0 3px}
         .cj-tip{font-family:'IBM Plex Sans',sans-serif;font-size:11px;color:rgba(42,31,20,.5);margin:-2px 0 8px}
         .enpop-say{margin-left:8px;padding:2px 8px;font-size:13px}
         .enpop-say.off{opacity:.55}
@@ -16317,6 +16463,12 @@ export default function App() {
           display:flex;align-items:center;justify-content:center;overflow:hidden;margin-bottom:8px;
           box-shadow:3px 3px 0 var(--paper-2);transition:box-shadow .15s,transform .15s}
         .tb-cover img{width:100%;height:100%;object-fit:cover;object-position:top center;mix-blend-mode:multiply;filter:sepia(.12) contrast(1.05)}
+        /* The English library's picture covers (tools/english_covers.py) —
+           paintings and film stills, shown in their own colours, centred, with
+           a little depth at the foot. */
+        .tb-cover img[src*="/img/cv-"]{mix-blend-mode:normal;filter:saturate(1.06) contrast(1.04);object-position:center 35%}
+        .tb-cover:has(img[src*="/img/cv-"])::after{content:"";position:absolute;inset:0;pointer-events:none;
+          background:linear-gradient(180deg,rgba(0,0,0,0) 62%,rgba(20,12,4,.28) 100%);box-shadow:inset 0 0 0 1px rgba(255,255,255,.06)}
         .tb-cover-t{font-family:var(--display);font-size:16px;line-height:1.3;text-align:center;padding:14px;color:var(--ink-2)}
         .tb-card:hover .tb-cover,.tb-card:focus-visible .tb-cover{box-shadow:5px 5px 0 var(--rubric-soft);transform:translate(-1px,-1px);border-color:var(--ink-3)}
         .tb-card:hover .tb-card-t,.tb-card:focus-visible .tb-card-t{color:var(--rubric)}
@@ -18029,6 +18181,7 @@ export default function App() {
                 {conj.data.partner && conj.data.partner.length ? (conj.data.aspect === "imperfective" ? " · pf. " : " · impf. ") + conj.data.partner.join(", ") : ""}
               </div>
             )}
+            {(wantVerb(conj.word), <VerbStat word={conj.word} />)}
             {conj.loading && <div className="pload">Looking up the conjugation…</div>}
             {conj.error && <div className="perr">{conj.error}</div>}
             {conj.data && (function(){
@@ -18048,6 +18201,18 @@ export default function App() {
                 return v;
               };
               var pt = d.participles || {};
+              // How often each form turns up in the library, beside it.
+              var vi = verbInfo(d.infinitive || conj.word);
+              var vf = (vi && vi.f) || {};
+              var cnt = function(cell) {
+                var n = 0;
+                String(cell || "").replace(/\u0301/g, "").toLowerCase().split(/\s*[,/;]\s*/).forEach(function(f){
+                  f = f.trim();
+                  if (f && !/\s/.test(f)) n += (vf[f.replace(/ё/g, "е")] || 0);
+                });
+                return n ? <span className="cj-n" title="times in the library">{fmtN(n)}</span> : null;
+              };
+              var cjCell2 = function(x) { return <>{cjCell(x)}{cnt(x)}</>; };
               return (
                 <div lang="ru">
                   <table className="cj-t">
@@ -18057,8 +18222,8 @@ export default function App() {
                         return (
                           <tr key={p[0]}>
                             <td className="cj-p">{p[1]}</td>
-                            {tenseRow && <td>{cjCell(tenseRow.r[p[0]])}</td>}
-                            {futRow && <td>{cjCell(fut(p[0]))}</td>}
+                            {tenseRow && <td>{cjCell2(tenseRow.r[p[0]])}</td>}
+                            {futRow && <td>{cjCell2(fut(p[0]))}</td>}
                           </tr>
                         );
                       })}
@@ -18066,17 +18231,17 @@ export default function App() {
                   </table>
                   <div className="cj-sec">Past</div>
                   <table className="cj-t"><tbody>
-                    <tr><td className="cj-p">он</td><td>{cjCell(d.past.m)}</td></tr>
-                    <tr><td className="cj-p">она</td><td>{cjCell(d.past.f)}</td></tr>
-                    <tr><td className="cj-p">оно</td><td>{cjCell(d.past.n)}</td></tr>
-                    <tr><td className="cj-p">они</td><td>{cjCell(d.past.pl)}</td></tr>
+                    <tr><td className="cj-p">он</td><td>{cjCell2(d.past.m)}</td></tr>
+                    <tr><td className="cj-p">она</td><td>{cjCell2(d.past.f)}</td></tr>
+                    <tr><td className="cj-p">оно</td><td>{cjCell2(d.past.n)}</td></tr>
+                    <tr><td className="cj-p">они</td><td>{cjCell2(d.past.pl)}</td></tr>
                   </tbody></table>
                   {(d.imperative.sg || d.imperative.pl) && (
                     <>
                       <div className="cj-sec">Imperative</div>
                       <table className="cj-t"><tbody>
-                        <tr><td className="cj-p">ты</td><td>{cjCell(d.imperative.sg)}</td></tr>
-                        <tr><td className="cj-p">вы</td><td>{cjCell(d.imperative.pl)}</td></tr>
+                        <tr><td className="cj-p">ты</td><td>{cjCell2(d.imperative.sg)}</td></tr>
+                        <tr><td className="cj-p">вы</td><td>{cjCell2(d.imperative.pl)}</td></tr>
                       </tbody></table>
                     </>
                   )}
@@ -18084,19 +18249,77 @@ export default function App() {
                     <>
                       <div className="cj-sec">Participles</div>
                       <table className="cj-t"><tbody>
-                        {pt.activePresent && <tr><td className="cj-p">active present</td><td>{cjCell(pt.activePresent)}</td></tr>}
-                        {pt.activePast && <tr><td className="cj-p">active past</td><td>{cjCell(pt.activePast)}</td></tr>}
-                        {pt.passivePresent && <tr><td className="cj-p">passive present</td><td>{cjCell(pt.passivePresent)}</td></tr>}
-                        {pt.passivePast && <tr><td className="cj-p">passive past</td><td>{cjCell(pt.passivePast)}</td></tr>}
-                        {pt.adverbialPresent && <tr><td className="cj-p">adverbial present</td><td>{cjCell(pt.adverbialPresent)}</td></tr>}
-                        {pt.adverbialPast && <tr><td className="cj-p">adverbial past</td><td>{cjCell(pt.adverbialPast)}</td></tr>}
+                        {pt.activePresent && <tr><td className="cj-p">active present</td><td>{cjCell2(pt.activePresent)}</td></tr>}
+                        {pt.activePast && <tr><td className="cj-p">active past</td><td>{cjCell2(pt.activePast)}</td></tr>}
+                        {pt.passivePresent && <tr><td className="cj-p">passive present</td><td>{cjCell2(pt.passivePresent)}</td></tr>}
+                        {pt.passivePast && <tr><td className="cj-p">passive past</td><td>{cjCell2(pt.passivePast)}</td></tr>}
+                        {pt.adverbialPresent && <tr><td className="cj-p">adverbial present</td><td>{cjCell2(pt.adverbialPresent)}</td></tr>}
+                        {pt.adverbialPast && <tr><td className="cj-p">adverbial past</td><td>{cjCell2(pt.adverbialPast)}</td></tr>}
                       </tbody></table>
                     </>
                   )}
                   <div className="pru-src" style={{marginTop:10}}>
+                    {Object.keys(vf).length ? <>Counts: this site's library{" \u00b7 "}</> : null}
                     <a href={"https://en.wiktionary.org/wiki/" + encodeURIComponent(String(d.infinitive || conj.word).replace(/\u0301/g, "")) + "#Russian"} target="_blank" rel="noreferrer">Wiktionary</a>
                     {" \u00b7 "}<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noreferrer">CC BY-SA 4.0</a>
                   </div>
+                </div>
+              );
+            })()}
+            {(function(){
+              // Sentences: the library's own first (the verb as Russian
+              // writers used it, with a way back into the book), then
+              // Tatoeba's, which come with an English translation.
+              var w = verbKey((conj.data && conj.data.infinitive) || conj.word);
+              var vi = verbInfo(w);
+              var lib = (vi && vi.x) || [];
+              var tat = tatExamples(w, w);
+              var bx = bankExample(w, w);
+              if (!lib.length && !tat.length && !bx) return null;
+              var files = (verbIdx && verbIdx.files) || [];
+              var byFile = {};
+              presetBooks.forEach(function(b){ byFile[b.filename] = b; });
+              return (
+                <div className="cj-ex">
+                  {lib.length > 0 && <div className="cj-sec">In the library's books</div>}
+                  {lib.map(function(x, i){
+                    var fn = files[x[2]] || "";
+                    var book = byFile[fn];
+                    return (
+                      <div key={"l" + i} className="cj-exl">
+                        <p lang="ru">{markWord(x[0], x[1]).map(function(part, k){
+                          return k === 1 ? <b key={k}>{part}</b> : <span key={k}>{part}</span>;
+                        })}</p>
+                        {book && (
+                          <button type="button" className="cj-src" title="Open the book at this sentence"
+                            onClick={function(){ setConj(null); goToSentence({ b: fn, s: x[0] }); }}>
+                            — {shownAuthor(book) ? shownAuthor(book) + ", " : ""}<i>{shownTitle(book)}</i> →
+                          </button>
+                        )}
+                      </div>
+                    );
+                  })}
+                  {(bx || tat.length > 0) && <div className="cj-sec">With a translation</div>}
+                  {bx && (
+                    <div className="cj-exl">
+                      <p lang="ru">{markWord(bx.ru, w).map(function(part, k){ return k === 1 ? <b key={k}>{part}</b> : <span key={k}>{part}</span>; })}</p>
+                      {bx.en && <div className="cj-exen">{bx.en}</div>}
+                    </div>
+                  )}
+                  {tat.slice(0, 12).map(function(row, i){
+                    return (
+                      <div key={"t" + i} className="cj-exl">
+                        <p lang="ru">{markWord(row[0], w).map(function(part, k){ return k === 1 ? <b key={k}>{part}</b> : <span key={k}>{part}</span>; })}</p>
+                        {row[1] && <div className="cj-exen">{row[1]}</div>}
+                      </div>
+                    );
+                  })}
+                  {tat.length > 0 && (
+                    <div className="pru-src" style={{marginTop:6}}>
+                      Translated sentences from <a href="https://tatoeba.org/" target="_blank" rel="noreferrer">Tatoeba</a>
+                      {" \u00b7 "}<a href="https://creativecommons.org/licenses/by/2.0/fr/" target="_blank" rel="noreferrer">CC BY 2.0 FR</a>
+                    </div>
+                  )}
                 </div>
               );
             })()}
@@ -19907,7 +20130,9 @@ export default function App() {
           <div className="tabs">
             {["chat","ranked","leaders","vocab","drills","quotes","grammar","forum","music"].filter(function(t){
               if (t === "forum") return FORUM_ENABLED;
-              if (t === "grammar") return GRAMMAR_ENABLED;
+              // Grammar: the verb lists, for Russian. (The older reference
+              // pages under it stay behind GRAMMAR_ENABLED.)
+              if (t === "grammar") return targetLang !== "en";
               // Case drills are a Russian exercise: not in English mode. Quotes
               // stay, with their own English board.
               if (targetLang === "en" && t === "drills") return false;
@@ -19937,13 +20162,14 @@ export default function App() {
                     stopTTS();
                   }
                   if (t === "leaders") { loadBoards(); stopTTS(); }
+                  if (t === "grammar") { getVerbIdx(); loadExamples(); }
                   if (t === "drills") { stopTTS(); if ((!cdQs.length || cdOver) && !cdBusy) startCaseDrills(); }
                   setTab(t);
                 }}>
                   {t==="chat"?"Reading":t==="ranked"?"Most popular":t==="leaders"?"Leaderboard":t==="vocab"?"Vocab":t==="grammar"?"Grammar":t==="forum"?"Forum":t==="quotes"?"Quotes":t==="drills"?"Case drills":"Music"}
                   {t==="vocab"&&vocabL.length>0&&<span className="bdg">{vocabL.length}</span>}
                   {t==="quotes"&&quotesUnread>0&&<span className="bdg qn">{quotesUnread > 99 ? "99+" : quotesUnread}</span>}
-                  {t==="grammar"&&tips.length>0&&<span className="bdg g">{tips.length}</span>}
+                  {t==="grammar"&&GRAMMAR_ENABLED&&tips.length>0&&<span className="bdg g">{tips.length}</span>}
                 </button>
               );
             })}
@@ -23833,6 +24059,7 @@ export default function App() {
                                 onClick={function(){ setRvConfirm({ key: c.key, word: q.word }); }}>Remove card</button>
                       </div>
                       <div className="rv-pos">{q.pos}{c.from === "learn" ? " · learning" : (q.isNew ? " · new" : "")}</div>
+                      {isVerbPos(q.pos) && (wantVerbIdx(), <VerbStat word={q.lemma || q.word} small />)}
                       {/* Where this word stands, live: it moves the moment an answer is in. */}
                       {(function(){
                         var live = vocab.find(function(v){ return (v._key || v.id || v.ru) === c.key; }) ||
@@ -24140,6 +24367,7 @@ export default function App() {
                             <div className="icont">
                               <span className="ipri">{v.ru}</span>
                               {posLine && <span className="ipos">{posLine}</span>}
+                              {isVerbPos(v.pos, v.aspect) && (wantVerbIdx(), <VerbStat word={v.lemma || v.ru} small />)}
                               {v.en && <span className="isec">{v.en}</span>}
                               {v.grammar && <span className="igr">{v.grammar}</span>}
                               {/* The sentence the word was met in, then the
@@ -24228,6 +24456,102 @@ export default function App() {
         })(vocabL, learnedL)}
 
         {tab==="grammar" && (
+          <>
+          <div className="main">
+            <div className="ss gv-wrap">
+              <h1 className="sti">Grammar</h1>
+              <div className="fq-tabs" role="tablist">
+                <button type="button" role="tab" aria-selected={gramSec === "freq"} className={"fq-tab" + (gramSec === "freq" ? " on" : "")}
+                  onClick={function(){ setGramSec("freq"); }}>Frequency Verbs</button>
+                <button type="button" role="tab" aria-selected={gramSec === "irr"} className={"fq-tab" + (gramSec === "irr" ? " on" : "")}
+                  onClick={function(){ setGramSec("irr"); }}>Irregular Verbs</button>
+              </div>
+              {(function(){
+                wantVerbIdx();
+                var idx = verbIdx;
+                // English for a verb: the irregular list's own, then the
+                // frequency deck's (carried in the index).
+                var irrEn = {};
+                IRREG_VERBS.groups.forEach(function(g){ g.verbs.forEach(function(v){ irrEn[v[0]] = v[1]; }); });
+                var gloss = function(v){ return irrEn[v] || (idx && idx.en && idx.en[v]) || ""; };
+                var btn = function(v, extra, key) {
+                  var st = verbStat(v);
+                  return (
+                    <button key={key || v} type="button" className={"gv-b" + (st && st.r <= 100 ? " hot" : st && st.r <= 1000 ? " warm" : "")}
+                      onClick={function(){ openVerb(v); }} title={"Every form of «" + v + "», with sentences"}>
+                      <span className="gv-top">
+                        <span className="gv-v" lang="ru">{v}</span>
+                        {st && <span className="gv-r">#{fmtN(st.r)}</span>}
+                      </span>
+                      {gloss(v) && <span className="gv-en">{gloss(v)}</span>}
+                      {extra && <span className="gv-x" lang="ru">{extra}</span>}
+                      {st && <span className="gv-n">{fmtN(st.n)} in the library</span>}
+                    </button>
+                  );
+                };
+                if (gramSec === "irr") {
+                  return (
+                    <div className="gv-body">
+                      <p className="sde">
+                        Verbs that do not do what their infinitive promises, grouped by what goes wrong.
+                        The forms under each verb are the ones that give it away. The number is how often
+                        it appears in the library's books, in all its forms. Tap a verb for every form and
+                        sentences that use it.
+                      </p>
+                      {IRREG_VERBS.groups.map(function(g){
+                        return (
+                          <section key={g.id} className="gv-sec">
+                            <h2 className="gv-h">{g.title}</h2>
+                            <p className="gv-note">{g.note}</p>
+                            <div className="gv-grid">
+                              {g.verbs.map(function(v){ return btn(v[0], v[2], g.id + v[0]); })}
+                            </div>
+                          </section>
+                        );
+                      })}
+                    </div>
+                  );
+                }
+                if (!idx) return <div className="lib-cat-hint">Counting the library…</div>;
+                var q = gvQuery.trim().toLowerCase().replace(/ё/g, "е");
+                var top = idx.top || [];
+                var BANDS = [[1, 50, "The top 50"], [51, 100, "51 – 100"], [101, 200, "101 – 200"], [201, 300, "201 – 300"], [301, 500, "301 – 500"]];
+                return (
+                  <div className="gv-body">
+                    <p className="sde">
+                      The verbs used most in the library's {fmtN(idx.books)} books — {fmtN(idx.words)} words
+                      in all — counted in every form they take (говорю, говорил, говоря all count for
+                      говорить). Learn them from the top and most of what you read is covered.
+                      Tap a verb for every form and sentences that use it.
+                    </p>
+                    <input className="gv-q" type="search" lang="ru" placeholder={"Find any of the " + fmtN(top.length) + " commonest verbs…"}
+                      value={gvQuery} onChange={function(e){ setGvQuery(e.target.value); }} />
+                    {q ? (
+                      <div className="gv-grid">
+                        {top.filter(function(t){ return t[0].replace(/ё/g, "е").indexOf(q) >= 0 || (gloss(t[0]) || "").toLowerCase().indexOf(q) >= 0; })
+                          .slice(0, 60).map(function(t){ return btn(t[0]); })}
+                      </div>
+                    ) : BANDS.map(function(bd){
+                      var rows = top.slice(bd[0] - 1, bd[1]);
+                      if (!rows.length) return null;
+                      return (
+                        <section key={bd[0]} className="gv-sec">
+                          <h2 className="gv-h">{bd[2]}</h2>
+                          <div className="gv-grid">{rows.map(function(t){ return btn(t[0]); })}</div>
+                        </section>
+                      );
+                    })}
+                    <p className="lib-reads-note">
+                      Counted with pymorphy3 and the OpenCorpora dictionary over every Russian book on the
+                      site (each text once). A word form the dictionary reads two ways is counted as its
+                      likelier verb; «есть» counts for быть.
+                    </p>
+                  </div>
+                );
+              })()}
+            </div>
+          </div>
+          {GRAMMAR_ENABLED && (
           <div className="panel">
             {/* Saved curriculum topics: cards that click to open the reference page.
                 Empty by default — only appears once the user has bookmarked something. */}
@@ -24267,6 +24591,8 @@ export default function App() {
                 );
               })}</div>}
           </div>
+          )}
+          </>
         )}
 
         {showTopic && (
@@ -24505,6 +24831,7 @@ export default function App() {
                     </div>
                   )}
                   <div className="ppos">{popup.data.partOfSpeech}{popup.data.aspect ? " · " + popup.data.aspect : ""}</div>
+                  {isVerbPos(popup.data.partOfSpeech, popup.data.aspect) && (wantVerb(popup.data.lemma || popup.word), <VerbStat word={popup.data.lemma || popup.word} />)}
                   {(function(){
                     // Russian only: Викисловарь has the word but the English
                     // Wiktionary does not. Said plainly, then the Russian.

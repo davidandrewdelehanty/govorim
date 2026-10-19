@@ -1,4 +1,5 @@
 import IMAGE_MAP from "./image-map.json";
+import AUTHORS_EN_LIB from "./authors-en.json";
 // Authors on the library shelves: the catalogue's author string (surname and
 // initials, as the FB2s spell it) -> a display name, life years and a portrait.
 // Portraits are Wikidata's image (P18) for each writer, hotlinked from Wikimedia
@@ -216,6 +217,10 @@ export var AUTHOR_EN = {
   "Гончаров И.А.": "Ivan Goncharov", "Платон": "Plato", "Аристотель": "Aristotle", "Гомер": "Homer", "Эзоп": "Aesop",
 };
 
+// The English library's authors (tools/english_pictures.py): portraits copied
+// onto our own site, keyed by the name the catalogue gives them.
+Object.keys(AUTHORS_EN_LIB || {}).forEach(function (k) { if (!AUTHORS[k]) AUTHORS[k] = AUTHORS_EN_LIB[k]; });
+
 export function authorInfo(key) {
   return AUTHORS[String(key || "").trim()] || null;
 }
@@ -245,5 +250,7 @@ export function authorCropStyle(info, width) {
 export function authorPhoto(file, width) {
   // Our own copy, made by tools/localize_images.py, when there is one.
   if (IMAGE_MAP[file]) return IMAGE_MAP[file];
+  // Already a path on our own site (the English library's authors).
+  if (typeof file === "string" && file.charAt(0) === "/") return file;
   return "https://commons.wikimedia.org/wiki/Special:FilePath/" + encodeURIComponent(file) + "?width=" + (width || 400);
 }
