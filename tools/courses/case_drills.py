@@ -321,27 +321,12 @@ def scan(ru, en, cite):
 
 
 def exercise(d, n):
-    if d.cite:
-        src = " From %s." % d.cite
-    else:
-        src = " Sentence and translation from Tatoeba (CC BY 2.0 FR)."
-    opts = [o for o in dict.fromkeys(x for x in (d.options or []) if x)]
-    ans = d.answer.lower()
-    if len(opts) >= 3 and ans in opts and (n % 2 == 1 or not d.lemma):
-        h = int(hashlib.md5((d.ru + ans).encode()).hexdigest()[:6], 16)
-        rest = [o for o in opts if o != ans]
-        rest = rest[h % len(rest):] + rest[:h % len(rest)]
-        o = [ans] + rest[:3]
-        k = h % len(o); o[0], o[k] = o[k], o[0]
-        q = d.en if d.en else "Which form fits?"
-        e = {"type": "mc", "q": q, "ru": d.blanked(False), "options": o, "answer": o.index(ans), "why": (d.why + src).strip()}
-        if not d.en:
-            e["q"] = "Which form fits? *" + d.cite + "*"
-        return e
+    """Type the sentence's own word; the hint is its dictionary form. No
+    explanation of ours: the course adds the source's sentence for the rule."""
     if not d.lemma:
         return None
-    return {"type": "fill", "q": d.blanked(True), "prompt": d.en or ("*" + d.cite + "*"), "answers": [d.answer],
-            "why": (d.why + src).strip()}
+    src = ("From %s." % d.cite) if d.cite else "Sentence and translation from Tatoeba (CC BY 2.0 FR)."
+    return {"type": "fill", "q": d.blanked(True), "prompt": d.en or ("*" + d.cite + "*"), "answers": [d.answer], "why": src}
 
 
 def main():

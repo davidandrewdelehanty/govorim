@@ -28,7 +28,7 @@ GROUPS = {
     "coord": (["зато", "а то", "но", "а"], True),
     "disj": (["либо", "или", "то", "не то"], True),
     "particles": (["же", "ведь", "разве", "неужели", "даже"], True),
-    "imptypes": (["давайте", "давай", "пусть", "пускай"], False),
+    "imptypes": (["давайте", "давай", "пусть", "пускай"], True),
     "where": (["где", "куда", "откуда"], False),
     "here": (["здесь", "сюда", "отсюда"], False),
     "there": (["там", "туда", "оттуда"], False),
@@ -59,7 +59,7 @@ def scan_more(ru, en, ws, low, ok, D):
                 if p.tag.animacy and p.tag.case == "accs":
                     gr.add(p.tag.animacy)
                 opts = [x for x in dict.fromkeys(form_of(p, {c} | gr) for c in CASES) if x]
-                D("subst", i, i, ws[i].group(), p.normal_form, opts)
+                D("subst", i, i, ws[i].group(), p.normal_form, [], fill=True)
         # short adjective + complement
         if p.tag.POS == "ADJS" and p.normal_form in SHORT_COMP and ok(i):
             prep, case = SHORT_COMP[p.normal_form]
@@ -71,16 +71,16 @@ def scan_more(ru, en, ws, low, ok, D):
                 if r:
                     q = r[0]
                     opts = [x for x in dict.fromkeys(form_of(q, {c, q.tag.number or "sing"}) for c in CASES) if x]
-                    D("shortcomp", j, j, ws[j].group(), q.normal_form, opts)
+                    D("shortcomp", j, j, ws[j].group(), q.normal_form, [], fill=True)
         # сам
         if p.normal_form == "сам" and p.tag.POS == "ADJF" and ok(i) and not re.search(r"\bSami\b", en or ""):
             gr = {p.tag.number} | ({p.tag.gender} if p.tag.number == "sing" and p.tag.gender else set())
             opts = [x for x in dict.fromkeys(form_of(p, {c} | gr) for c in CASES) if x]
-            D("sam", i, i, ws[i].group(), "", opts)
+            D("sam", i, i, ws[i].group(), "сам", [], fill=True)
         # много / многие, несколько / некоторые
-        if w in ("много", "многие", "многих", "многим", "многими") and ok(i):
+        if w in ("много", "многие", "многих", "многим", "многими") and ok(i) and en:
             D("mnogie", i, i, ws[i].group(), "", [w, "много" if w != "много" else "многие", "несколько", "некоторые"])
-        if p.normal_form == "некоторый" and ok(i):
+        if p.normal_form == "некоторый" and ok(i) and en:
             D("mnogie", i, i, ws[i].group(), "", [w, "несколько", "многие", "много"])
         # prefixed verbs of common roots
         if p.tag.POS == "VERB" and p.score > 0.3 and ok(i):

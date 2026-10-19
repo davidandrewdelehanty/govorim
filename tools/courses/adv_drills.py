@@ -25,40 +25,40 @@ DLI = {
     "asp:neg": "«The negative imperative is, as a rule, in the imperfective aspect … The negative imperative in the perfective aspect … has the meaning of a strict warning.» — DLI, Lesson 84.",
     "asp:imp": "«The imperative may be formed from both the imperfective and the perfective verbs.» — DLI, Lesson 42.",
     "comp": "«The comparative degree of Russian adjectives is formed by adding \"-ее\" (sometimes shortened to \"-ей\") to the stem of the adjective.» — DLI, Lesson 80.",
-    "comp:irr": "«Certain adjectives have irregular comparatives»: выше, ниже, шире, короче, легче, глубже, дороже, дешевле, лучше, хуже, больше, меньше, старше, моложе … — DLI, Lessons 80–82.",
+    "comp:irr": "«Memorize the following irregular comparatives»: рано — раньше, поздно — позже, редко — реже, часто — чаще, близко — ближе, далеко — дальше, много — больше, мало — меньше, хорошо — лучше, плохо — хуже, легко — легче, громко — громче, долго — дольше, высоко — выше, низко — ниже, жарко — жарче, дорого — дороже. — DLI, Lesson 82.",
     "comp:obj": "«An adjective in the comparative degree may be followed by the object of comparison in the Genitive case, or by a phrase consisting of \"чем\" plus the object of comparison in the Nominative case.» — DLI, Lesson 80.",
     "comp:bolee": "«The adjective after \"более\" or \"менее\" must agree in case, gender and number with the noun modified.» — DLI, Lesson 80.",
     "sup:samyi": "«To get the superlative degree in Russian place the word \"самый\" before the adjective … \"Самый\" is declined like regular adjective.» — DLI, Lesson 83.",
     "sup:eish": "«The superlative degree of qualitatives can be formed by changing the ending of an adjective to \"-ейший\" (or \"-айший\" after sibilants).» — DLI, Lesson 83.",
     "short": "«There is a limited number of adjectives that normally take the short form when used predicatively … The short form of an adjective can never be used as a modifier.» — DLI, Lesson 57.",
     "indef": "«In general, the particle \"-нибудь\" implies complete indefiniteness; the particle \"-то\" implies some degree of certainty.» a) In interrogative and imperative sentences use -нибудь. b) In positive statements referring to the past or present use -то. — DLI, Lesson 59.",
-    "negpron": "«НЕКОГО, НЕЧЕГО … are used in impersonal constructions with the infinitive of the verb (without НЕ); никого, ничего … with any negative (НЕ) form of the verb.» — DLI, Lessons 104–105.",
-    "negadv": "«НЕГДЕ, НЕКУДА, НЕОТКУДА, НЕКОГДА: used with the Infinitive of the verb (without НЕ) in impersonal constructions. нигде, никуда, ниоткуда, никогда: used with any negative (НЕ) form of the verb.» — DLI, Lesson 105.",
+    "negpron": "«Negative adverbs НЕГДЕ, НЕКУДА, НЕОТКУДА, НЕКОГДА are formed by the same principle as negative pronouns НЕКОГО, НЕЧЕГО … They are used in impersonal constructions with the infinitive of the verb and the logical subject, if any, in the Dative case.» — DLI, Lesson 105.",
+    "negadv": "«Used with the Infinitive of the verb (without НЕ) in impersonal constructions» (негде, некуда, неоткуда, некогда); «Used with any negative (НЕ) form of the verb both in personal and impersonal constructions» (нигде, никуда, ниоткуда, никогда). — DLI, Lesson 105.",
     "chtoby": "«\"Чтобы\" is used to express an order or a wish, whereas \"что\" would be used to make a statement or convey information.» — DLI, Lesson 92.",
-    "complex": "«When a preposition refers to a whole clause, a complex conjunction is used consisting of: 1) the preposition, 2) the pronoun \"то\" in the case required by the preposition, 3) a linking word»: до того как, перед тем как, о том что, за то что, вместо того чтобы. — DLI, Lesson 92.",
+    "complex": "«When a preposition refers to a whole clause, a complex conjunction is used consisting of: 1) the preposition 2) the pronoun \"то\" in the case required by the preposition 3) a linking word.» — DLI, Lesson 92.",
     "poka": "«Пока is used as an adverb of time and as a conjunction. Пока не (until) is a conjunction … ПОКА НЕ has no negative meaning and the particle НЕ is not translated.» — DLI, Lesson 105.",
     "li": "«The particle ЛИ never begins the clause; it takes the second place in the clause following the word to which the question or doubt refers.» — DLI, Lesson 91.",
     "kotoryi": "«\"Который\" in subordinate clauses agrees in gender and number with the noun it refers to in the main sentence, but its case is determined by its function in the subordinate clause.» — DLI, Lesson 53.",
     "sebya": "«\"Себя\" has no nominative case, since it can never be the subject of a sentence. In oblique cases it is declined like the pronoun \"ты\".» — DLI, Lesson 64.",
-    "sya": "«The verbs in \"-ся\" may be divided into several groups»: reflexive (я моюсь), intransitive (урок продолжается), reciprocal (мы встречаемся), and verbs which never occur without \"-ся\". — DLI, Lesson 67.",
+    "sya": "«We already know that the verbs in \"-ся\" may be divided into several groups … Reflexive verbs. These verbs express an action which is directed back upon the agent or subject … Reciprocal verbs. The suffix \"-ся\" with these verbs indicates action of two or more actors upon one another … Verbs which never occur without the ending \"-ся\".» — DLI, Lesson 67.",
     "kakov": "",
     "subst": "«Больной, раненый and знакомый are often used as adjectival nouns.» — DLI, Lesson 57.",
-    "shortcomp": "«There is a limited number of adjectives that normally take the short form when used predicatively»: доволен, согласен, рад, знаком, занят, готов. — DLI, Lesson 57.",
+    "shortcomp": "«There is, however, a limited number of adjectives that normally take the short form when used predicatively.» — DLI, Lesson 57.",
     "mnogie": "«\"Многие\" (немногие) expresses 2 ideas: some + many (few) … На лекции было много студентов (as a group). Многие студенты были на лекции (as individuals).» — DLI, Lesson 88.",
-    "imptypes": "«Пусть он (она) делает, сделает это» — let him do it. «Давайте + infinitive of the imperfective … давайте + perfective future» — let's. — DLI, Lesson 84.",
+    "imptypes": "«The English expressions \"let (have) him (her, them) do it\" are rendered in Russian by: Пусть он (она) делает, сделает это.» «Constructions of the type \"Let's do it\" are rendered in Russian as follows: Давайте + Infin. of the Imperfective or future Imperf. … Давайте + Perfective Future.» — DLI, Lesson 84.",
     "where": "«The adverbs здесь (here), там (there), дома (at home) indicate location and answer the question где … сюда (here), туда (there), домой (home) indicate direction and answer the question куда.» — DLI, Lesson 19.",
     "here": "«The adverbs здесь (here), там (there), дома (at home) indicate location and answer the question где … сюда (here), туда (there), домой (home) indicate direction and answer the question куда.» — DLI, Lesson 19.",
     "there": "«The adverbs здесь (here), там (there), дома (at home) indicate location and answer the question где … сюда (here), туда (there), домой (home) indicate direction and answer the question куда.» — DLI, Lesson 19.",
     "home": "«The adverbs здесь (here), там (there), дома (at home) indicate location and answer the question где … сюда (here), туда (there), домой (home) indicate direction and answer the question куда.» — DLI, Lesson 19.",
     "iano": "«И (and) indicates addition or similarity … А (and, but) indicates difference, contrast, or denial … Но (but) is used when the second statement somewhat limits the significance of the first one or when it introduces a statement contrary to it.» — DLI, Lesson 19.",
     "condconj": "«First type: \"если\" clauses … being statements of direct fact, they are expressed by the indicative mood. Second type: \"если бы\" clauses … the conditions are either improbable or downright contrary to existing fact.» — DLI, Lesson 90.",
-    "cause:prep": "«из-за — from behind; because of» (+ genitive); «благодаря + Dat. — thanks to». — DLI, Lessons 60, 103.",
-    "timeconj": "«Future tense after \"когда\" and \"как только\" … » and «the complex conjunctions: до того как, после того как, перед тем как». — DLI, Lessons 37, 92.",
+    "cause:prep": "«из-за — from behind; because of»; «благодаря + Dat. — thanks to». — DLI, Lessons 60, 103.",
+    "timeconj": "«In a sentence referring to the future with a subordinate clause introduced by \"when\" or \"as soon as\" the verbs of both clauses are in the future.» — DLI, Lesson 37.",
     "prefix": "«Adding a prefix to the repeated function verbs … usually does not form the perfective aspect but merely changes the meaning of the original verb.» — DLI, Lesson 63.",
-    "conj:pres": "«The following verbs belong to the \"Е\" type of conjugation: думать — я думаю, ты думаешь … они думают … The verb лежать belongs to the \"И\" type of conjugation: я лежу, ты лежишь … они лежат.» — DLI, Lesson 16.",
+    "conj:pres": "«The following verbs belong to the \"Е\" type of conjugation: думать, слушать, спрашивать … The verb лежать belongs to the \"И\" type of conjugation.» — DLI, Lesson 16.",
     "conj:fut": "«The perfective future consists of one word only and resembles in form the present tense. It is formed from the perfective infinitive: напишу, сделаю, получу, выучу.» — DLI, Lesson 37.",
     "conj:past": "«The past tense is formed by dropping -ть from the infinitive and adding -л for the masculine, -ла for the feminine, -ло for the neuter, -ли for the plural … the past does not have special endings for each person, but shows the gender and the number.» — DLI, Lesson 36.",
-    "pos": "«Phrases meaning direction are used to denote the place where something is put (\"на\" + Acc., \"в\" + Acc.)» (ставить, класть). «Садиться / сесть implies movement to a \"seat\" and, therefore, answers the question \"куда?\"»; сидеть, лежать, стоять answer \"где?\". — DLI, Lessons 42, 68.",
+    "pos": "«Phrases meaning direction are used to denote the place where something is put (\"на\" + Acc., \"в\" + Acc., etc.)» «Literally садиться means \"to seat oneself\". It implies movement to a \"seat\" and, therefore, answers the question \"куда?\"» — DLI, Lessons 42, 68.",
     "svoi": "«The possessive \"свой\" indicates that the object belongs to the performer of the action … When the performer of the action is in the 3rd person … the possessives \"его, её, их\" are used if the object does not belong to the performer of the action. If the object belongs to the performer of the action, the possessive \"свой\" must be used.» — DLI, Lesson 49.",
 }
 PAIRS = json.load(io.open(sys.argv[2] if len(sys.argv) > 2 else os.path.join(os.path.dirname(os.path.dirname(HERE)), "public", "vocab", "verbs", "index.json"), encoding="utf-8")).get("pairs", {})
@@ -96,7 +96,8 @@ def scan(ru, en, cite):
             m = INDEF.match(w)
             if m and ok(i):
                 base = w.rsplit("-", 1)[0]
-                D("indef", i, i, ws[i].group(), "", [base + "-то", base + "-нибудь"] + (["кое-" + base] if base in ("кто", "что", "кого", "чего", "кому", "чем", "кем", "где", "куда", "какой", "какая") else []))
+                if en:
+                    D("indef", i, i, ws[i].group(), "", [base + "-то", base + "-нибудь"])
             continue
         ps = parses(w); p0 = ps[0]; T = tags(p0)
         prev = low[i - 1] if i else ""
@@ -117,8 +118,8 @@ def scan(ru, en, cite):
                     f = (q.word if not gr else (form_of(q, gr) if q else None)) if q else None
                     if f and f not in opts:
                         opts.append(f)
-                if len(opts) >= 2:
-                    D(key, i, i, ws[i].group(), "", opts)
+                if len(opts) >= 2 and partners:
+                    D(key, i, i, ws[i].group(), p0.normal_form + " / " + partners[0], [], fill=True)
         # comparison
         if p0.tag.POS == "COMP" and w not in ("более", "менее") and ok(i) and p0.score > 0.3:
             reg = bool(re.search(r"(ее|ей)$", w))
@@ -128,18 +129,18 @@ def scan(ru, en, cite):
                 if r and ok(i + 1):
                     q = r[0]
                     opts = [x for x in dict.fromkeys(form_of(q, {c, q.tag.number}) for c in ("nomn", "gent", "datv", "ablt")) if x]
-                    D("comp:obj", i + 1, i + 1, ws[i + 1].group(), q.normal_form, opts)
+                    D("comp:obj", i + 1, i + 1, ws[i + 1].group(), q.normal_form, [], fill=True)
         if w in ("более", "менее") and i + 1 < len(low):
             r = [q for q in parses(low[i + 1]) if q.tag.POS == "ADJF" and q.score > 0.2 and not (tags(q) & {"Apro", "Anum"})]
             if r and ok(i + 1) and low[i + 1] not in ("того", "одной", "одного", "одну", "половины"):
                 q = r[0]
                 gr = {q.tag.number} | ({q.tag.gender} if q.tag.gender else set())
                 opts = [x for x in dict.fromkeys(form_of(q, {c} | gr) for c in ("nomn", "gent", "datv", "accs", "ablt", "loct")) if x]
-                D("comp:bolee", i + 1, i + 1, ws[i + 1].group(), q.normal_form, opts)
+                D("comp:bolee", i + 1, i + 1, ws[i + 1].group(), q.normal_form, [], fill=True)
         if p0.normal_form == "самый" and p0.tag.POS == "ADJF" and i + 1 < len(low) and any(q.tag.POS == "ADJF" for q in parses(low[i + 1])[:1]) and ok(i):
             gr = {p0.tag.number} | ({p0.tag.gender} if p0.tag.gender else set())
             opts = [x for x in dict.fromkeys(form_of(p0, {c} | gr) for c in ("nomn", "gent", "datv", "accs", "ablt", "loct")) if x]
-            D("sup:samyi", i, i, ws[i].group(), "самый", opts)
+            D("sup:samyi", i, i, ws[i].group(), "самый", [], fill=True)
         if p0.tag.POS == "ADJF" and "Supr" in T and re.search(r"(ейш|айш)", w) and ok(i):
             D("sup:eish", i, i, ws[i].group(), p0.normal_form, [], fill=True)
         if p0.tag.POS == "ADJS" and p0.score > 0.4 and ok(i) and len(w) > 2 and not any(q.tag.POS in ("VERB", "PRTS", "ADVB") for q in ps):
@@ -157,10 +158,11 @@ def scan(ru, en, cite):
         if p0.normal_form == "который" and p0.tag.POS == "ADJF" and ok(i) and prev not in ("в", "во"):
             gr = {p0.tag.number} | ({p0.tag.gender} if p0.tag.gender and p0.tag.number == "sing" else set())
             opts = [x for x in dict.fromkeys(form_of(p0, {c} | gr) for c in ("nomn", "gent", "datv", "accs", "ablt", "loct")) if x]
-            D("kotoryi", i, i, ws[i].group(), "", opts)
+            D("kotoryi", i, i, ws[i].group(), "который", [], fill=True)
         if p0.normal_form == "свой" and p0.tag.POS == "ADJF" and ok(i) and not ({"я", "ты", "мы", "вы"} & set(low)) \
                 and any(("3per" in tags(parses(x)[0]) or "past" in tags(parses(x)[0])) for x in low):
-            D("svoi", i, i, ws[i].group(), "", [w, "его", "её", "их"])
+            if en:
+                D("svoi", i, i, ws[i].group(), "", [w, "его", "её", "их"])
         if w in KAKOV and ok(i):
             D("kakov", i, i, ws[i].group(), "", KAKOV)
         # -ся verbs
@@ -171,7 +173,7 @@ def scan(ru, en, cite):
                 gr = {g for g in (p0.tag.tense, p0.tag.person, p0.tag.number, p0.tag.gender, p0.tag.mood if p0.tag.mood == "impr" else None) if g}
                 f = bq.word if p0.tag.POS == "INFN" else form_of(bq, gr)
                 if f and f != w:
-                    D("sya", i, i, ws[i].group(), "", [w, f])
+                    D("sya", i, i, ws[i].group(), base + " / " + p0.normal_form, [], fill=True)
     # conjugation and position verbs
     for i, w in enumerate(low):
         if "-" in w or not ok(i):
@@ -196,12 +198,12 @@ def scan(ru, en, cite):
                         if f and f not in opts:
                             opts.append(f)
                     if len(opts) >= 2:
-                        D("pos", i, i, ws[i].group(), "", opts[:4])
+                        D("pos", i, i, ws[i].group(), " / ".join(grp), [], fill=True)
                     break
         elif p0.tag.POS == "INFN":
             for grp in POS_GROUPS:
                 if p0.normal_form in grp:
-                    D("pos", i, i, ws[i].group(), "", [w] + [v for v in grp if v != w][:3])
+                    D("pos", i, i, ws[i].group(), " / ".join(grp), [], fill=True)
                     break
     scan_more(ru, en, ws, low, ok, D)
     # чтобы / что (Tatoeba only: the English decides)
@@ -234,18 +236,26 @@ def scan(ru, en, cite):
     return out
 
 
+MC_OK = {"chtoby", "negpron", "negadv", "poka", "indef", "sebya", "svoi", "where", "here", "there", "home", "iano", "imptypes",
+         "mnogie", "condconj", "cause:prep", "causeconj", "concession", "coord", "disj", "particles", "corr", "timeconj", "tozhe",
+         "complex", "kakov"}
+DROP = {"prefix"}
+
+
 def exercise(d, n):
-    src = (" From %s." % d.cite) if d.cite else " Sentence and translation from Tatoeba (CC BY 2.0 FR)."
-    why = (d.why + src).strip()
+    if d.key in DROP:
+        return None
+    src = ("From %s." % d.cite) if d.cite else "Sentence and translation from Tatoeba (CC BY 2.0 FR)."
+    why = (d.why + " " + src).strip() if d.why else src
     ans = d.answer
-    if d.fill or not d.options:
+    if d.key not in MC_OK:
         if not d.lemma:
             return None
         return {"type": "fill", "q": d.blanked(True), "prompt": d.en or ("*" + d.cite + "*"), "answers": [ans], "why": why}
     opts = [o for o in dict.fromkeys(x for x in d.options if x)]
     a = ans.lower()
     if a not in [o.lower() for o in opts]:
-        opts.insert(0, a)
+        return None
     h = int(hashlib.md5((d.ru + a).encode()).hexdigest()[:6], 16)
     o = opts[:4]
     if a not in [x.lower() for x in o]:
@@ -257,8 +267,6 @@ def exercise(d, n):
             "answer": [x.lower() for x in o].index(a), "why": why}
 
 
-POS_GROUPS = [["стоять", "поставить", "встать", "ставить"], ["лежать", "положить", "лечь", "класть"],
-              ["сидеть", "посадить", "сесть", "сажать"], ["висеть", "повесить", "вешать"]]
 FIXED_SET = {"cause:prep", "causeconj", "concession", "condconj", "timeconj", "tozhe", "iano", "coord", "disj", "particles", "imptypes",
              "where", "here", "there", "home", "corr", "sam", "mnogie", "chtoby", "complex", "poka", "sebya", "kakov", "negadv", "negpron", "sup:samyi", "kotoryi", "svoi", "indef", "li"}
 

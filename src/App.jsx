@@ -16,7 +16,25 @@ import { readUiLang, saveUiLang, applyUiLang, trUi } from "./uilang.js";
 import { authorInfo, authorSrc, authorCropStyle, AUTHOR_EN } from "./authors.js";
 import IMAGE_MAP from "./image-map.json";
 import COURSE_PICS from "./course-pictures.json";
-import { CASES as NUM_CASES, CASE_NAME, answers as numAnswers, numInCase, nounForms, rule as numRule, TABLE_NUMS, tableCell, normNum } from "./numerals.js";
+// The numeral tables of the DLI Grammar Reference Book, Lessons 70–72, as printed.
+var DLI_NUM_TABLES = [
+  ["один, одна (Lesson 70)", [["Nom.", "один самолёт", "одна рота"], ["Gen.", "одного самолёта", "одной роты"], ["Dat.", "одному самолёту", "одной роте"],
+    ["Acc. (inanim.)", "один самолёт", "одну роту"], ["Acc. (animate)", "одного пилота", "одну медсестру"], ["Instr.", "одним самолётом", "одной ротой"], ["Prep.", "об одном самолёте", "об одной роте"]]],
+  ["два, две, три, четыре (Lesson 70)", [["Nom.", "два часа", "две минуты", "три урока", "четыре пары"], ["Gen.", "двух часов", "двух минут", "трёх уроков", "четырёх пар"],
+    ["Dat.", "двум часам", "двум минутам", "трём урокам", "четырём парам"], ["Acc. inan. = N.", "два часа", "две минуты", "три урока", "четыре пары"],
+    ["Acc. anim. = G.", "двух студентов", "двух девушек", "трёх студентов", "четырёх студенток"], ["Instr.", "двумя часами", "двумя минутами", "тремя уроками", "четырьмя парами"],
+    ["Prep.", "о двух часах", "о двух минутах", "о трёх уроках", "о четырёх парах"]]],
+  ["5–20 and 30 (Lesson 71)", [["N.", "пять новых танков", "восемь хороших машин"], ["G.", "пяти новых танков", "восьми хороших машин"], ["D.", "пяти новым танкам", "восьми хорошим машинам"],
+    ["A.", "пять новых танков", "восемь хороших машин"], ["I.", "пятью новыми танками", "восемью хорошими машинами"], ["P.", "о пяти новых танках", "о восьми хороших машинах"]]],
+  ["50, 60, 70, 80 (Lesson 71)", [["N.", "пятьдесят самолётов", "шестьдесят пилотов"], ["G.", "пятидесяти самолётов", "шестидесяти пилотов"], ["D.", "пятидесяти самолётам", "шестидесяти пилотам"],
+    ["A.", "пятьдесят самолётов", "шестьдесят пилотов"], ["I.", "пятьюдесятью самолётами", "шестьюдесятью пилотами"], ["P.", "о пятидесяти самолётах", "о шестидесяти пилотах"]]],
+  ["Compound numerals: 21, 145 (Lesson 71)", [["N.", "двадцать один танк", "сто сорок пять танков"], ["G.", "двадцати одного танка", "ста сорока пяти танков"],
+    ["D.", "двадцати одному танку", "ста сорока пяти танкам"], ["A.", "двадцать один танк / двадцать одного студента", "сто сорок пять танков / студентов"],
+    ["I.", "двадцатью одним танком", "ста сорока пятью танками"], ["P.", "о двадцати одном танке", "о ста сорока пяти танках"]]],
+  ["200–900 (Lesson 72)", [["N.", "двести самолётов", "пятьсот самолётов"], ["G.", "двухсот самолётов", "пятисот самолётов"], ["D.", "двумстам самолётам", "пятистам самолётам"],
+    ["A. = N.", "двести самолётов", "пятьсот самолётов"], ["I.", "двумястами самолётами", "пятьюстами самолётами"], ["P.", "о двухстах самолётах", "о пятистах самолётах"]]],
+];
+import { normNum } from "./numerals.js";
 
 // localStorage-backed storage shim, matching the previous window.storage Promise API.
 // Keeps the rest of the app code unchanged (still uses await storage.get/set/delete).
@@ -11612,7 +11630,6 @@ export default function App() {
   var [gramSec, setGramSec] = useState("freq");   // "freq" | "irr" | "motion" | "count" | "numcase"
   // The two counting drills: nouns from the library, real sentences with
   // numbers from the library and Tatoeba (public/vocab/*.json).
-  var [numNouns, setNumNouns] = useState(null);
   var [numSents, setNumSents] = useState(null);
   var [nd, setNd] = useState(null);                 // { mode, item, val, status, tries, shown, counted }
   var [ndStats, setNdStats] = useState({ count: { right: 0, total: 0, streak: 0, best: 0 }, numcase: { right: 0, total: 0, streak: 0, best: 0 } });
@@ -11652,57 +11669,24 @@ export default function App() {
     });
   };
   var wantNumData = function() {
-    if (numNouns === null) {
-      setNumNouns(false);
-      fetch("/vocab/count-nouns.json").then(function(r){ return r.json(); }).then(function(j){ setNumNouns(j.n || []); }).catch(function(){ setNumNouns([]); });
-    }
     if (numSents === null) {
       setNumSents(false);
       fetch("/vocab/numeral-sentences.json").then(function(r){ return r.json(); }).then(function(j){ setNumSents(j || {}); }).catch(function(){ setNumSents({}); });
     }
   };
-  // A preposition or verb to put a number phrase in each case.
-  var NUM_FRAMES = {
-    N: ["Вот ___.", "Здесь ___.", "У меня есть ___."],
-    G: ["без ___", "для ___", "около ___", "у ___", "из ___", "от ___", "после ___", "до ___", "кроме ___", "вместо ___"],
-    D: ["к ___", "по ___", "Я пишу ___.", "Это нужно ___."],
-    A: ["Я вижу ___.", "Я купил ___.", "через ___", "про ___"],
-    I: ["с ___", "над ___", "под ___", "перед ___", "между ___", "Я доволен ___."],
-    P: ["о ___", "в ___", "на ___", "при ___"],
-  };
   var pickOf = function(xs){ return xs[Math.floor(Math.random() * xs.length)]; };
+  // Real sentences only — from the library's public-domain books (cited) and
+  // from Tatoeba (with its English). The answer is what the text has.
   var makeNumItem = function(mode) {
     var real = numSents && numSents[mode === "count" ? "count" : "decl"];
-    var nouns = numNouns || [];
-    if (real && real.length && (Math.random() < 0.6 || !nouns.length)) {
-      var x = pickOf(real);
-      var acc = [x.a];
-      if (mode === "count") {
-        var last = x.a.split(/\s+/).pop();
-        acc.push(last, x.n + " " + last);
-      }
-      return { q: x.q, answers: acc, show: x.a, en: x.en, src: x.src, n: x.n, real: true };
-    }
-    if (!nouns.length) return null;
-    var noun = pickOf(nouns.slice(0, Math.random() < 0.7 ? 800 : nouns.length));
-    var n = Math.random() < 0.5 ? Math.floor(Math.random() * 21) : Math.floor(Math.random() * 101);
+    if (!real || !real.length) return null;
+    var x = pickOf(real);
+    var acc = [x.a];
     if (mode === "count") {
-      var forms = nounForms(noun, n, "N");
-      var words = numInCase(n, "N", noun[1], !!noun[2]);
-      var acc2 = forms.slice();
-      forms.forEach(function(f){ acc2.push(n + " " + f); words.forEach(function(w){ acc2.push(w + " " + f); }); });
-      return { q: "___ (" + n + " " + noun[0] + ")", answers: acc2, show: words[0] + " " + forms[0], n: n, rule: numRule(n, "N") };
+      var last = x.a.split(/\s+/).pop();
+      acc.push(last, x.n + " " + last);
     }
-    if (n === 0) n = 1 + Math.floor(Math.random() * 100);
-    var c = Math.random() < 0.12 ? "N" : pickOf(["G", "D", "A", "I", "P"]);
-    var ans = numAnswers(noun, n, c);
-    var fr = pickOf(NUM_FRAMES[c]);
-    var first = ans[0].charAt(0);
-    if (/^о ___/.test(fr) && /[аоиуэ]/.test(first)) fr = fr.replace(/^о /, "об ");
-    if (/^с ___/.test(fr) && /^ст/.test(ans[0])) fr = fr.replace(/^с /, "со ");
-    if (/^в ___/.test(fr) && /^в[^аоиуэыяеё]/.test(ans[0])) fr = fr.replace(/^в /, "во ");
-    return { q: fr.replace("___", "___ (" + n + " " + noun[0] + ")"), answers: ans, show: ans[0], n: n, c: c,
-             rule: CASE_NAME[c].charAt(0).toUpperCase() + CASE_NAME[c].slice(1) + ". " + numRule(n, c) };
+    return { q: x.q, answers: acc, show: x.a, en: x.en, src: x.src, n: x.n, real: true };
   };
   var nextNum = function(mode) {
     var it = makeNumItem(mode);
@@ -11725,7 +11709,7 @@ export default function App() {
   };
   var renderNumDrill = function(mode) {
     wantNumData();
-    var loading = numNouns === null || numNouns === false || numSents === null || numSents === false;
+    var loading = numSents === null || numSents === false;
     if (!loading && (!nd || nd.mode !== mode)) { setTimeout(function(){ nextNum(mode); }, 0); }
     var it = nd && nd.mode === mode ? nd.item : null;
     var st = ndStats[mode];
@@ -11734,29 +11718,30 @@ export default function App() {
       <div className="nd-wrap">
         {mode === "count" ? (
           <div className="nd-intro">
-            <p className="crs-p">A number from 0 to 100 and a noun: type the noun in the form the number needs. The noun alone is right, and so is the number with it, in figures or in words — «книги», «3 книги», «три книги».</p>
+            <p className="crs-p">Type the missing words.</p>
             <ul className="crs-list">
               <li>If the number is 1 or ends in <b>один</b>, use <i>nominative singular</i>: <i>Есть один кот. Он знает двадцать одно слово.</i></li>
               <li>If the number ends in 2, 3 or 4 use the <i>genitive singular</i>: <i>Два рубля. Двадцать две копейки.</i></li>
               <li>If the number ends in 5, 6, 7, 8, 9, 0 or <b>-надцать</b> use the <i>genitive plural</i>: <i>Пять рублей. Двадцать пять копеек.</i></li>
             </ul>
-            <p className="crs-credit">Rules from the Wikibooks Russian textbook, «Genitive case» (CC BY-SA 4.0). Nouns from the library; real sentences from its public-domain books and from Tatoeba (CC BY 2.0 FR).</p>
+            <p className="crs-credit">Rules: the Wikibooks Russian textbook, «Genitive case» (CC BY-SA 4.0). Sentences: the library's public-domain books and Tatoeba (CC BY 2.0 FR).</p>
           </div>
         ) : (
           <div className="nd-intro">
-            <p className="crs-p">Put the number and the noun into the case the sentence needs, the number written out: «на ___ (2 работа)» → <b>двух работах</b>.</p>
-            <div className="crs-tw"><table className="crs-t nd-t">
-              <thead><tr><th></th>{TABLE_NUMS.map(function(x, k){ return <th key={k}>{x[0]}{x[0] === 1 || x[0] === 2 ? " " + (x[1] === "m" ? "m." : x[1] === "f" ? "f." : "n.") : ""}</th>; })}</tr></thead>
-              <tbody>{NUM_CASES.map(function(c){ return (
-                <tr key={c}><th>{c === "N" ? "Nom." : c === "G" ? "Gen." : c === "D" ? "Dat." : c === "A" ? "Acc." : c === "I" ? "Instr." : "Prep."}</th>
-                  {TABLE_NUMS.map(function(x, k){ return <td key={k} lang="ru">{tableCell(x[0], x[1], c)}</td>; })}</tr>); })}</tbody>
-            </table></div>
+            <p className="crs-p">Type the missing words.</p>
+            {DLI_NUM_TABLES.map(function(t, k){ return (
+              <div key={k} className="crs-tw"><table className="crs-t nd-t">
+                <caption>{t[0]}</caption>
+                <tbody>{t[1].map(function(r, ri){ return <tr key={ri}><th>{r[0]}</th>{r.slice(1).map(function(c, ci){ return <td key={ci} lang="ru">{c}</td>; })}</tr>; })}</tbody>
+              </table></div>); })}
             <ul className="crs-list">
               <li>Note that the rule "2, 3, 4 + Gen. sing." concerns the Nominative (or Accusative inanimate) construction only. In oblique cases the numbers always agree in case with the noun to which they refer (<i>двум студентам; с тремя книгами; на четырёх грузовиках</i>).</li>
-              <li>Numerals ending in soft sign (5–20 and 30) are declined like feminine nouns ending in soft sign. 40, 90 and 100 have only two forms: <i>сорок, девяносто, сто</i> and <i>сорока, девяноста, ста</i>. Each component of a compound numeral is declined separately.</li>
-              <li>In the accusative, «один» follows the noun: <i>вижу один дом, одного студента</i>; 2–4 on their own take the genitive with animate nouns (<i>вижу двух студентов</i>), but at the end of a compound number keep the nominative (<i>двадцать два студента</i>).</li>
+              <li>Numerals ending in soft sign (5–20 and 30) are declined like feminine nouns ending in soft sign (<i>ночь, площадь</i> etc.).</li>
+              <li>Note that there are only two forms: 1) N. &amp; A. <i>сорок, девяносто, сто</i>; 2) In all other cases — <i>сорока, девяноста, ста</i>.</li>
+              <li>Note that each component of a compound numeral is declined separately.</li>
+              <li>The word один follows the rule of animate and inanimate nouns even when it appears at the end of a compound numeral … However, два (две), три, четыре appearing at the end of the compound numerals do not follow the above pattern in the Accusative case. Their Accusative (both animate and inanimate) is usually the same as the Nominative.</li>
             </ul>
-            <p className="crs-credit">From the DLI Grammar Reference Book, Lessons 70–71 (public domain). Nouns from the library; real sentences from its public-domain books and from Tatoeba (CC BY 2.0 FR).</p>
+            <p className="crs-credit">Tables and notes: the DLI Grammar Reference Book, Lessons 70–72 (public domain). Sentences: the library's public-domain books and Tatoeba (CC BY 2.0 FR).</p>
           </div>
         )}
         <div className="nd-stats">{st.right} right of {st.total}{st.total ? " · streak " + st.streak + " · best " + st.best : ""} · each first answer counts toward today's review score</div>
@@ -11780,7 +11765,7 @@ export default function App() {
                 <button type="button" className="crs-show" onClick={function(){ setNd(Object.assign({}, nd, { shown: true })); }}>Show the answer</button>
               )}
               {(nd.shown || nd.status === "right") && (
-                <div className="crs-why"><b lang="ru">{it.show}</b>{it.rule ? " — " + it.rule : it.src ? "" : " — sentence and translation from Tatoeba."}</div>
+                <div className="crs-why"><b lang="ru">{it.show}</b>{it.src ? "" : " — sentence and translation from Tatoeba (CC BY 2.0 FR)."}</div>
               )}
               {(nd.status === "right" || nd.shown) && (
                 <button type="button" className="btn-p nd-next" onClick={function(){ nextNum(mode); }}>Next →</button>
@@ -25335,7 +25320,7 @@ export default function App() {
                         return (
                           <section key={g.id} className="gv-sec">
                             <h2 className="gv-h">{g.title} {practiceBtn(g.title, g.verbs.map(function(v){ return v[0]; }))}</h2>
-                            <p className="gv-note">{g.note}</p>
+                            {g.note ? <p className="gv-note">{g.note}</p> : null}
                             <div className="gv-grid">
                               {g.verbs.map(function(v){ return btn(v[0], v[2], g.id + v[0]); })}
                             </div>

@@ -87,12 +87,9 @@ def _exercise(p, why):
     for f in _forms(p):
         if norm(f) not in seen:
             seen.add(norm(f)); opts.append(f)
-    random.Random(p["ru"]).shuffle(opts)
-    opts = opts[:3] + [form.lower()]
-    if len(opts) < 3:
-        return FILL(blank, [form], why, prompt=p["en"])
-    random.Random(p["en"]).shuffle(opts)
-    return MC(p["en"], opts, opts.index(form.lower()), why, ru=blank)
+    # Type the verb as the sentence has it; the hint is its infinitive.
+    blank = ru[:i] + "___ (" + p["lemma"] + ")" + ru[i + len(form):]
+    return FILL(blank, [form], why, prompt=p["en"])
 
 def _examples(key, limit=12):
     try:
@@ -105,14 +102,13 @@ def _examples(key, limit=12):
     tn = {"pres": "present", "past": "past", "futr": "future", "inf": "infinitive"}
     exs = []
     for r in rows[:limit]:
-        why = "In the translation: «%s» — %s %s of %s. (Tatoeba sentence pair)" % (
-            r["form"], asp.get(r["aspect"], r["aspect"]), "compound future" if r.get("compound") else tn.get(r["tense"], r["tense"]), r["lemma"])
+        why = "Sentence and translation from Tatoeba (CC BY 2.0 FR)."
         e = _exercise(r, why)
         if e:
             exs.append(e)
     return ex, exs
 
-TATOEBA = NOTE("Examples: real sentence pairs from Tatoeba (tatoeba.org), CC BY 2.0 FR, picked by script for verbs on the library's frequency list.")
+TATOEBA = NOTE("Examples: sentence pairs from Tatoeba (tatoeba.org), CC BY 2.0 FR.")
 
 DLI_TENSES = [
   P("As it can be seen from the above explanations English tenses may be rendered in Russian by either the imperfective or the perfective aspect of the corresponding Russian verbs. However, the following hints may be helpful:"),

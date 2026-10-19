@@ -297,19 +297,18 @@ def key(d):
 
 
 def exercise(d, n):
-    src = " Sentence and translation from Tatoeba (CC BY 2.0 FR)."
+    """Type the sentence's own word (the hint is its dictionary form). The one
+    choice kept is a verb of motion and its pair (идти / ходить), the pair the
+    lesson itself teaches. No explanation of ours: only the source."""
+    src = "Sentence and translation from Tatoeba (CC BY 2.0 FR)."
     opts = [o for o in dict.fromkeys(x for x in (d.options or []) if x)]
     ans = d.answer.lower()
-    if len(opts) >= 3 and n % 2 == 1 and ans in opts:
-        opts = [ans] + [o for o in opts if o != ans][:3]
-        h = int(key(d)[:6], 16)
-        k = h % len(opts)
-        opts[0], opts[k] = opts[k], opts[0]
-        return {"type": "mc", "q": d.en, "ru": d.blanked(False), "options": opts, "answer": opts.index(ans), "why": d.why + src}
-    if len(opts) == 2 and not d.lemma:        # motion pairs: always a choice
+    if len(opts) == 2 and not d.lemma and ans in opts:
         o = sorted(opts)
-        return {"type": "mc", "q": d.en, "ru": d.blanked(False), "options": o, "answer": o.index(ans), "why": d.why + src}
-    return {"type": "fill", "q": d.blanked(bool(d.lemma)), "prompt": d.en, "answers": [d.answer] + d.extra, "why": d.why + src}
+        return {"type": "mc", "q": d.en, "ru": d.blanked(False), "options": o, "answer": o.index(ans), "why": src}
+    if not d.lemma:
+        return None
+    return {"type": "fill", "q": d.blanked(True), "prompt": d.en, "answers": [d.answer], "why": src}
 
 
 def main():

@@ -108,15 +108,11 @@ if os.path.exists(os.path.join(HERE, "dli_a.py")):
 # of real sentences after each section they belong to.
 DRILLS_P = os.path.join(HERE, "drills.json")
 DRILLS = json.load(io.open(DRILLS_P, encoding="utf-8")) if os.path.exists(DRILLS_P) else {}
-TATOEBA_NOTE = ("These sentences and their English translations were written by people on Tatoeba "
-                "(tatoeba.org), shared under CC BY 2.0 FR. Each blank is the word the sentence really has; "
-                "the word in brackets is its dictionary form.")
+TATOEBA_NOTE = "Exercises: sentences and translations from Tatoeba (tatoeba.org, CC BY 2.0 FR)."
 
 
 PRACTICE_SIZE = 20
-REAL_NOTE = ("These are real sentences: from Tatoeba (tatoeba.org, CC BY 2.0 FR), with their English translations, and from the "
-             "public-domain Russian books in this library, with author and title. Each blank is the word the sentence really has; "
-             "the word in brackets is its dictionary form.")
+REAL_NOTE = "Exercises: sentences from Tatoeba (tatoeba.org, CC BY 2.0 FR) and from the library's public-domain books."
 
 
 def with_practice(cid, secs):
@@ -134,19 +130,54 @@ def with_practice(cid, secs):
             out.append({"id": s["id"] + "-practice" + ("" if n == 1 else "-%d" % n),
                         "title": "Practice%s: %s" % ("" if len(sets) == 1 else " %d" % n, s["title"]),
                         "sub": "%d real sentences" % len(xs),
-                        "blocks": [{"t": "p", "text": "Real Russian sentences that use what the lesson teaches. "
-                                    "Type the missing word, or pick it, until it turns green."},
-                                   {"t": "note", "text": note}],
+                        "blocks": [{"t": "note", "text": note}],
                         "exercises": xs})
     return out
 
 
+# Courses written by us rather than taken from a source: not built.
+NOT_BUILT = {"wikibook", "dli", "motion"}
+# Courses transcribed from the DLI book: keep the exercises that are its own
+# sentences and forms to type; drop multiple-choice ones (their wrong options
+# were ours) and keep only the source line of each explanation.
+DLI_MODULE_COURSES = {"time", "count", "cases", "forms"}
+
+
+def clean_dli_exercises(exs):
+    out = []
+    for e in exs:
+        if e.get("type") != "fill":
+            continue
+        why = e.get("why") or ""
+        k = why.find("From the DLI")
+        e = dict(e, why=why[k:] if k >= 0 else "")
+        out.append(e)
+    return out
+
+
+def trusted(e):
+    why = e.get("why") or ""
+    if not why or why.startswith("From the DLI"):
+        return False
+    return HINTS is None or HINTS.good(e) is not False
+
+
+try:
+    import hint_check as HINTS
+except ImportError:
+    HINTS = None
+
+
 def main():
     outline = []
-    for c in COURSES:
+    for c in [x for x in COURSES if x["id"] not in NOT_BUILT]:
         secs = []
         for m in c["modules"]:
-            secs += importlib.import_module(m).SECTIONS
+            for x in importlib.import_module(m).SECTIONS:
+                x = dict(x)
+                if c["id"] in DLI_MODULE_COURSES:
+                    x["exercises"] = clean_dli_exercises(x.get("exercises") or [])
+                secs.append(x)
         secs += [dict(x) for x in (c.get("sections") or [])]
         secs = with_practice(c["id"], secs)
         by = {s["id"]: s for s in secs}
@@ -162,19 +193,18 @@ def main():
         for sid in order:
             s = by[sid]
             exs = []
-            for i, e in enumerate(s["exercises"], 1):
-                e = dict(e, id="q%d" % i)
-                if e["type"] == "mc":
-                    assert 0 <= e["answer"] < len(e["options"]), (sid, i)
-                exs.append(e)
+            # Only fill-in exercises: the multiple-choice distractors were ours.
+            # and not the DLI-based items whose blank-and-hint format we made, nor any
+            # item whose bracket hint is not a form of the answer's own word.
+            for e in [x for x in s["exercises"] if x["type"] != "mc" and trusted(x)]:
+                exs.append(dict(e, id="q%d" % (len(exs) + 1)))
             data = {"id": sid, "title": s["title"], "blocks": s["blocks"], "exercises": exs}
             io.open(os.path.join(out_dir, sid + ".json"), "w", encoding="utf-8").write(
                 json.dumps(data, ensure_ascii=False, separators=(",", ":")))
             o = {"id": sid, "title": s["title"], "n": len(exs)}
-            if s.get("sub"):
-                o["sub"] = s["sub"]
             osecs.append(o)
         meta = {k: v for k, v in c.items() if k not in ("modules", "order", "sections")}
+        meta["blurb"] = ""          # descriptions were ours; the credit line says where the course comes from
         meta["sections"] = osecs
         outline.append(meta)
         print("%-10s %2d sections, %3d exercises" % (c["id"], len(osecs), sum(s["n"] for s in osecs)))
