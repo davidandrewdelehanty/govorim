@@ -67,11 +67,19 @@ export function courseState(course, prog) {
   return { done: done, of: (course.sections || []).length, at: done === (course.sections || []).length ? at : 0 };
 }
 
-// Badges: one for every section finished, one for every course finished.
+// A practice set that follows a lesson ("<lesson>-practice", "-practice-2" …).
+export function isPractice(id) { return /-practice(-\d+)?$/.test(String(id || "")); }
+
+// Badges: one for every lesson finished, one for every course finished, and a
+// ★ for a lesson, or a whole course's lessons, answered without a mistake.
+// Practice sets count toward finishing a course but carry no badge of their own.
 export function courseBadges(outline, prog) {
   var out = [];
   (outline || []).forEach(function (c) {
-    (c.sections || []).forEach(function (s, i) {
+    var lessonNo = 0;
+    (c.sections || []).forEach(function (s) {
+      if (isPractice(s.id)) return;
+      var i = lessonNo++;
       var rec = (prog || {})[c.id + "/" + s.id];
       out.push({
         id: "course:" + c.id + ":" + s.id, group: "course", tier: 1, mark: String(i + 1),
@@ -80,7 +88,7 @@ export function courseBadges(outline, prog) {
         course: c.id, section: s.id,
       });
     });
-    var withEx = (c.sections || []).filter(function (s) { return s.n > 0; });
+    var withEx = (c.sections || []).filter(function (s) { return s.n > 0 && !isPractice(s.id); });
     var pDone = 0, pAt = 0;
     withEx.forEach(function (s, i) {
       var rec = (prog || {})[c.id + "/" + s.id];
@@ -94,7 +102,7 @@ export function courseBadges(outline, prog) {
     });
     if (withEx.length) out.push({
       id: "course:" + c.id + ":perfect", group: "course", tier: 5, mark: "★",
-      title: c.title + " · perfect", desc: "Answer every exercise in every section of " + c.title + " without a mistake",
+      title: c.title + " · perfect", desc: "Answer every exercise in every lesson of " + c.title + " without a mistake",
       earned: pDone === withEx.length, n: pDone, of: withEx.length, at: pDone === withEx.length ? pAt : 0, course: c.id, perfect: true,
     });
     var st = courseState(c, prog);

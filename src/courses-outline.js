@@ -155,7 +155,7 @@ export default [
     "id": "m01-two-kinds-practice",
     "title": "Practice: One way, or round and about",
     "n": 14,
-    "sub": "14 real sentences from Tatoeba"
+    "sub": "14 real sentences"
    },
    {
     "id": "m02-setting-out",
@@ -167,7 +167,7 @@ export default [
     "id": "m02-setting-out-practice",
     "title": "Practice: Setting out: пойти, поехать",
     "n": 14,
-    "sub": "14 real sentences from Tatoeba"
+    "sub": "14 real sentences"
    },
    {
     "id": "m03-carry-lead-drive",
@@ -179,7 +179,7 @@ export default [
     "id": "m03-carry-lead-drive-practice",
     "title": "Practice: Carrying, leading, driving, running, swimming",
     "n": 14,
-    "sub": "14 real sentences from Tatoeba"
+    "sub": "14 real sentences"
    },
    {
     "id": "m04-prefixes",
@@ -191,7 +191,7 @@ export default [
     "id": "m04-prefixes-practice",
     "title": "Practice: How prefixes work: при- and у-",
     "n": 14,
-    "sub": "14 real sentences from Tatoeba"
+    "sub": "14 real sentences"
    },
    {
     "id": "m05-in-out",
@@ -203,7 +203,7 @@ export default [
     "id": "m05-in-out-practice",
     "title": "Practice: Going in and going out: в- and вы-",
     "n": 14,
-    "sub": "14 real sentences from Tatoeba"
+    "sub": "14 real sentences"
    },
    {
     "id": "m06-toward-away",
@@ -215,7 +215,7 @@ export default [
     "id": "m06-toward-away-practice",
     "title": "Practice: Approaching and moving off: под- and от-",
     "n": 14,
-    "sub": "14 real sentences from Tatoeba"
+    "sub": "14 real sentences"
    },
    {
     "id": "m07-reach-cross",
@@ -227,7 +227,7 @@ export default [
     "id": "m07-reach-cross-practice",
     "title": "Practice: Reaching and crossing: до- and пере-",
     "n": 14,
-    "sub": "14 real sentences from Tatoeba"
+    "sub": "14 real sentences"
    },
    {
     "id": "m08-through-around",
@@ -239,7 +239,7 @@ export default [
     "id": "m08-through-around-practice",
     "title": "Practice: Through, past and around: про- and об-",
     "n": 14,
-    "sub": "14 real sentences from Tatoeba"
+    "sub": "14 real sentences"
    },
    {
     "id": "m09-drop-by-down",
@@ -251,7 +251,7 @@ export default [
     "id": "m09-drop-by-down-practice",
     "title": "Practice: Dropping in, going down: за- and с-",
     "n": 14,
-    "sub": "14 real sentences from Tatoeba"
+    "sub": "14 real sentences"
    },
    {
     "id": "m10-round-trips",
@@ -294,7 +294,7 @@ export default [
     "id": "t1-clock-practice",
     "title": "Practice: What time is it?",
     "n": 4,
-    "sub": "4 real sentences from Tatoeba"
+    "sub": "4 real sentences"
    },
    {
     "id": "t2-parts-of-day",
@@ -306,7 +306,7 @@ export default [
     "id": "t2-parts-of-day-practice",
     "title": "Practice: Morning, every day, all day",
     "n": 14,
-    "sub": "14 real sentences from Tatoeba"
+    "sub": "14 real sentences"
    },
    {
     "id": "t3-day-week-month-year",
@@ -318,7 +318,7 @@ export default [
     "id": "t3-day-week-month-year-practice",
     "title": "Practice: On Monday, this week, last month, next year",
     "n": 14,
-    "sub": "14 real sentences from Tatoeba"
+    "sub": "14 real sentences"
    },
    {
     "id": "t4-how-long",
@@ -330,7 +330,7 @@ export default [
     "id": "t4-how-long-practice",
     "title": "Practice: How long, how long ago, how old",
     "n": 14,
-    "sub": "14 real sentences from Tatoeba"
+    "sub": "14 real sentences"
    },
    {
     "id": "t5-months-dates",
@@ -342,7 +342,7 @@ export default [
     "id": "t5-months-dates-practice",
     "title": "Practice: Months and dates",
     "n": 14,
-    "sub": "14 real sentences from Tatoeba"
+    "sub": "14 real sentences"
    },
    {
     "id": "t6-from-till-by",
@@ -354,13 +354,349 @@ export default [
     "id": "t6-from-till-by-practice",
     "title": "Practice: Since, till, by, before, after, in",
     "n": 14,
-    "sub": "14 real sentences from Tatoeba"
+    "sub": "14 real sentences"
    },
    {
     "id": "t7-words",
     "title": "Days, months and seasons",
     "n": 8,
     "sub": "From the Wikibooks Russian textbook · word lists"
+   },
+   {
+    "id": "t8-this-next-last",
+    "title": "This week, next month, last year",
+    "n": 20,
+    "sub": "на этой неделе · в прошлом году · этим летом"
+   },
+   {
+    "id": "t8-this-next-last-practice",
+    "title": "Practice 1: This week, next month, last year",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "t8-this-next-last-practice-2",
+    "title": "Practice 2: This week, next month, last year",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "t8-this-next-last-practice-3",
+    "title": "Practice 3: This week, next month, last year",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "t8-this-next-last-practice-4",
+    "title": "Practice 4: This week, next month, last year",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "t8-this-next-last-practice-5",
+    "title": "Practice 5: This week, next month, last year",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "t8-this-next-last-practice-6",
+    "title": "Practice 6: This week, next month, last year",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "t8-this-next-last-practice-7",
+    "title": "Practice 7: This week, next month, last year",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "t8-this-next-last-practice-8",
+    "title": "Practice 8: This week, next month, last year",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "t8-this-next-last-practice-9",
+    "title": "Practice 9: This week, next month, last year",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "t8-this-next-last-practice-10",
+    "title": "Practice 10: This week, next month, last year",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "t9-every-all-on",
+    "title": "Every day, all week, on Saturdays",
+    "n": 20,
+    "sub": "каждый день · всю ночь · по субботам · в пятницу"
+   },
+   {
+    "id": "t9-every-all-on-practice",
+    "title": "Practice 1: Every day, all week, on Saturdays",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "t9-every-all-on-practice-2",
+    "title": "Practice 2: Every day, all week, on Saturdays",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "t9-every-all-on-practice-3",
+    "title": "Practice 3: Every day, all week, on Saturdays",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "t9-every-all-on-practice-4",
+    "title": "Practice 4: Every day, all week, on Saturdays",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "t9-every-all-on-practice-5",
+    "title": "Practice 5: Every day, all week, on Saturdays",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "t9-every-all-on-practice-6",
+    "title": "Practice 6: Every day, all week, on Saturdays",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "t9-every-all-on-practice-7",
+    "title": "Practice 7: Every day, all week, on Saturdays",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "t9-every-all-on-practice-8",
+    "title": "Practice 8: Every day, all week, on Saturdays",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "t9-every-all-on-practice-9",
+    "title": "Practice 9: Every day, all week, on Saturdays",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "t9-every-all-on-practice-10",
+    "title": "Practice 10: Every day, all week, on Saturdays",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "t10-in-ago-for",
+    "title": "In an hour, a week ago, for two days",
+    "n": 20,
+    "sub": "через час · неделю назад · на два дня · за неделю · в течение года"
+   },
+   {
+    "id": "t10-in-ago-for-practice",
+    "title": "Practice 1: In an hour, a week ago, for two days",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "t10-in-ago-for-practice-2",
+    "title": "Practice 2: In an hour, a week ago, for two days",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "t10-in-ago-for-practice-3",
+    "title": "Practice 3: In an hour, a week ago, for two days",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "t10-in-ago-for-practice-4",
+    "title": "Practice 4: In an hour, a week ago, for two days",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "t10-in-ago-for-practice-5",
+    "title": "Practice 5: In an hour, a week ago, for two days",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "t10-in-ago-for-practice-6",
+    "title": "Practice 6: In an hour, a week ago, for two days",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "t10-in-ago-for-practice-7",
+    "title": "Practice 7: In an hour, a week ago, for two days",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "t10-in-ago-for-practice-8",
+    "title": "Practice 8: In an hour, a week ago, for two days",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "t10-in-ago-for-practice-9",
+    "title": "Practice 9: In an hour, a week ago, for two days",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "t10-in-ago-for-practice-10",
+    "title": "Practice 10: In an hour, a week ago, for two days",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "t11-since-till-by",
+    "title": "Since, till, by, before, after",
+    "n": 20,
+    "sub": "с утра · до вечера · к понедельнику · после обеда · перед уроком"
+   },
+   {
+    "id": "t11-since-till-by-practice",
+    "title": "Practice 1: Since, till, by, before, after",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "t11-since-till-by-practice-2",
+    "title": "Practice 2: Since, till, by, before, after",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "t11-since-till-by-practice-3",
+    "title": "Practice 3: Since, till, by, before, after",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "t11-since-till-by-practice-4",
+    "title": "Practice 4: Since, till, by, before, after",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "t11-since-till-by-practice-5",
+    "title": "Practice 5: Since, till, by, before, after",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "t11-since-till-by-practice-6",
+    "title": "Practice 6: Since, till, by, before, after",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "t11-since-till-by-practice-7",
+    "title": "Practice 7: Since, till, by, before, after",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "t11-since-till-by-practice-8",
+    "title": "Practice 8: Since, till, by, before, after",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "t11-since-till-by-practice-9",
+    "title": "Practice 9: Since, till, by, before, after",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "t11-since-till-by-practice-10",
+    "title": "Practice 10: Since, till, by, before, after",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "t12-dates-years",
+    "title": "Dates and years in real sentences",
+    "n": 20,
+    "sub": "первого мая · в 1990 году"
+   },
+   {
+    "id": "t12-dates-years-practice",
+    "title": "Practice 1: Dates and years in real sentences",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "t12-dates-years-practice-2",
+    "title": "Practice 2: Dates and years in real sentences",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "t12-dates-years-practice-3",
+    "title": "Practice 3: Dates and years in real sentences",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "t12-dates-years-practice-4",
+    "title": "Practice 4: Dates and years in real sentences",
+    "n": 12,
+    "sub": "12 real sentences"
+   },
+   {
+    "id": "t13-time-words",
+    "title": "Yesterday, soon, always: words of time",
+    "n": 20,
+    "sub": "вчера · скоро · всегда · иногда · давно"
+   },
+   {
+    "id": "t13-time-words-practice",
+    "title": "Practice 1: Yesterday, soon, always: words of time",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "t13-time-words-practice-2",
+    "title": "Practice 2: Yesterday, soon, always: words of time",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "t13-time-words-practice-3",
+    "title": "Practice 3: Yesterday, soon, always: words of time",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "t13-time-words-practice-4",
+    "title": "Practice 4: Yesterday, soon, always: words of time",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "t13-time-words-practice-5",
+    "title": "Practice 5: Yesterday, soon, always: words of time",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "t13-time-words-practice-6",
+    "title": "Practice 6: Yesterday, soon, always: words of time",
+    "n": 7,
+    "sub": "7 real sentences"
    }
   ]
  },
@@ -385,7 +721,7 @@ export default [
     "id": "c1-numbers-nouns-practice",
     "title": "Practice: Numbers with nouns",
     "n": 14,
-    "sub": "14 real sentences from Tatoeba"
+    "sub": "14 real sentences"
    },
    {
     "id": "c2-genitive-plural",
@@ -397,7 +733,7 @@ export default [
     "id": "c2-genitive-plural-practice",
     "title": "Practice: The genitive plural",
     "n": 14,
-    "sub": "14 real sentences from Tatoeba"
+    "sub": "14 real sentences"
    },
    {
     "id": "c3-how-many",
@@ -409,7 +745,7 @@ export default [
     "id": "c3-how-many-practice",
     "title": "Practice: Much, many, few, how many, several",
     "n": 14,
-    "sub": "14 real sentences from Tatoeba"
+    "sub": "14 real sentences"
    },
    {
     "id": "c4-one-two-three-four",
@@ -421,7 +757,7 @@ export default [
     "id": "c4-one-two-three-four-practice",
     "title": "Practice: один, два, три, четыре in every case",
     "n": 14,
-    "sub": "14 real sentences from Tatoeba"
+    "sub": "14 real sentences"
    },
    {
     "id": "c5-five-and-up",
@@ -433,7 +769,7 @@ export default [
     "id": "c5-five-and-up-practice",
     "title": "Practice: Five to a hundred in every case",
     "n": 14,
-    "sub": "14 real sentences from Tatoeba"
+    "sub": "14 real sentences"
    },
    {
     "id": "c6-hundreds-thousands",
@@ -451,7 +787,7 @@ export default [
     "id": "c7-ordinals-fractions-practice",
     "title": "Practice: Ordinals, fractions, «equal to»",
     "n": 14,
-    "sub": "14 real sentences from Tatoeba"
+    "sub": "14 real sentences"
    },
    {
     "id": "c8-collective-half",
@@ -463,7 +799,7 @@ export default [
     "id": "c8-collective-half-practice",
     "title": "Practice: двое, трое… and полтора",
     "n": 14,
-    "sub": "14 real sentences from Tatoeba"
+    "sub": "14 real sentences"
    }
   ]
  },
@@ -488,7 +824,7 @@ export default [
     "id": "k1-nom-prep-practice",
     "title": "Practice: Cases, the nominative and the prepositional",
     "n": 14,
-    "sub": "14 real sentences from Tatoeba"
+    "sub": "14 real sentences"
    },
    {
     "id": "k2-accusative",
@@ -500,7 +836,7 @@ export default [
     "id": "k2-accusative-practice",
     "title": "Practice: The accusative case",
     "n": 14,
-    "sub": "14 real sentences from Tatoeba"
+    "sub": "14 real sentences"
    },
    {
     "id": "k3-genitive",
@@ -512,7 +848,7 @@ export default [
     "id": "k3-genitive-practice",
     "title": "Practice: The genitive case",
     "n": 14,
-    "sub": "14 real sentences from Tatoeba"
+    "sub": "14 real sentences"
    },
    {
     "id": "k4-dative",
@@ -524,7 +860,7 @@ export default [
     "id": "k4-dative-practice",
     "title": "Practice: The dative case",
     "n": 14,
-    "sub": "14 real sentences from Tatoeba"
+    "sub": "14 real sentences"
    },
    {
     "id": "k5-instrumental",
@@ -536,7 +872,7 @@ export default [
     "id": "k5-instrumental-practice",
     "title": "Practice: The instrumental case",
     "n": 14,
-    "sub": "14 real sentences from Tatoeba"
+    "sub": "14 real sentences"
    },
    {
     "id": "k6-singular-tables",
@@ -548,7 +884,7 @@ export default [
     "id": "k6-singular-tables-practice",
     "title": "Practice: All six cases, singular",
     "n": 14,
-    "sub": "14 real sentences from Tatoeba"
+    "sub": "14 real sentences"
    },
    {
     "id": "k7-genitive-plural",
@@ -560,7 +896,7 @@ export default [
     "id": "k7-genitive-plural-practice",
     "title": "Practice: The genitive plural",
     "n": 14,
-    "sub": "14 real sentences from Tatoeba"
+    "sub": "14 real sentences"
    },
    {
     "id": "k8-plural-cases",
@@ -572,7 +908,7 @@ export default [
     "id": "k8-plural-cases-practice",
     "title": "Practice: All six cases, plural",
     "n": 14,
-    "sub": "14 real sentences from Tatoeba"
+    "sub": "14 real sentences"
    },
    {
     "id": "k9-adjectives-singular",
@@ -584,7 +920,7 @@ export default [
     "id": "k9-adjectives-singular-practice",
     "title": "Practice: Adjectives and possessives, singular",
     "n": 14,
-    "sub": "14 real sentences from Tatoeba"
+    "sub": "14 real sentences"
    },
    {
     "id": "k10-adjectives-plural",
@@ -596,7 +932,7 @@ export default [
     "id": "k10-adjectives-plural-practice",
     "title": "Practice: Adjectives and possessives, plural; surnames",
     "n": 14,
-    "sub": "14 real sentences from Tatoeba"
+    "sub": "14 real sentences"
    },
    {
     "id": "k11-prepositions",
@@ -608,7 +944,7 @@ export default [
     "id": "k11-prepositions-practice",
     "title": "Practice: Which case after which preposition",
     "n": 14,
-    "sub": "14 real sentences from Tatoeba"
+    "sub": "14 real sentences"
    }
   ]
  },
@@ -633,7 +969,7 @@ export default [
     "id": "f1-imperative-practice",
     "title": "Practice: The imperative: читай, пусть, давайте",
     "n": 14,
-    "sub": "14 real sentences from Tatoeba"
+    "sub": "14 real sentences"
    },
    {
     "id": "f2-conditional",
@@ -645,7 +981,7 @@ export default [
     "id": "f2-conditional-practice",
     "title": "Practice: If and would: бы",
     "n": 14,
-    "sub": "14 real sentences from Tatoeba"
+    "sub": "14 real sentences"
    },
    {
     "id": "f3-short-passive",
@@ -657,7 +993,7 @@ export default [
     "id": "f3-short-passive-practice",
     "title": "Practice: Short past passive participles: куплен, написан, открыт",
     "n": 14,
-    "sub": "14 real sentences from Tatoeba"
+    "sub": "14 real sentences"
    },
    {
     "id": "f4-long-passive",
@@ -669,7 +1005,7 @@ export default [
     "id": "f4-long-passive-practice",
     "title": "Practice: Long past passive participles: купленная книга",
     "n": 14,
-    "sub": "14 real sentences from Tatoeba"
+    "sub": "14 real sentences"
    },
    {
     "id": "f5-present-active",
@@ -681,7 +1017,7 @@ export default [
     "id": "f5-present-active-practice",
     "title": "Practice: Present active participles: читающий",
     "n": 14,
-    "sub": "14 real sentences from Tatoeba"
+    "sub": "14 real sentences"
    },
    {
     "id": "f6-past-active",
@@ -693,7 +1029,7 @@ export default [
     "id": "f6-past-active-practice",
     "title": "Practice: Past active participles: прочитавший, принёсший, шедший",
     "n": 14,
-    "sub": "14 real sentences from Tatoeba"
+    "sub": "14 real sentences"
    },
    {
     "id": "f7-passive-present",
@@ -705,7 +1041,7 @@ export default [
     "id": "f7-passive-present-practice",
     "title": "Practice: The -ся passive and present passive participles: читается, издаваемый",
     "n": 14,
-    "sub": "14 real sentences from Tatoeba"
+    "sub": "14 real sentences"
    },
    {
     "id": "f8-gerund-imperfective",
@@ -717,7 +1053,7 @@ export default [
     "id": "f8-gerund-imperfective-practice",
     "title": "Practice: Imperfective деепричастия: читая, говоря",
     "n": 14,
-    "sub": "14 real sentences from Tatoeba"
+    "sub": "14 real sentences"
    },
    {
     "id": "f9-gerund-perfective",
@@ -729,7 +1065,2377 @@ export default [
     "id": "f9-gerund-perfective-practice",
     "title": "Practice: Perfective деепричастия: прочитав, придя",
     "n": 14,
-    "sub": "14 real sentences from Tatoeba"
+    "sub": "14 real sentences"
+   }
+  ]
+ },
+ {
+  "id": "case-nom",
+  "title": "The Nominative Case",
+  "short": "Nominative",
+  "mark": "И",
+  "blurb": "The subject, это…, and the dictionary form — with real sentences to practise.",
+  "credit": "Explanations: the Wikibooks Russian textbook (CC BY-SA 4.0) and the DLI Basic Course (public domain); sentences: Tatoeba (CC BY 2.0 FR) and the library's public-domain books",
+  "creditUrl": "https://en.wikibooks.org/wiki/Russian",
+  "license": "CC BY-SA 4.0 · CC BY 2.0 FR · public domain",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "sections": [
+   {
+    "id": "n1-subject",
+    "title": "The subject",
+    "n": 20,
+    "sub": "who or what does it"
+   },
+   {
+    "id": "n1-subject-practice",
+    "title": "Practice 1: The subject",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "n1-subject-practice-2",
+    "title": "Practice 2: The subject",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "n1-subject-practice-3",
+    "title": "Practice 3: The subject",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "n1-subject-practice-4",
+    "title": "Practice 4: The subject",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "n1-subject-practice-5",
+    "title": "Practice 5: The subject",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "n1-subject-practice-6",
+    "title": "Practice 6: The subject",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "n1-subject-practice-7",
+    "title": "Practice 7: The subject",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "n1-subject-practice-8",
+    "title": "Practice 8: The subject",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "n1-subject-practice-9",
+    "title": "Practice 9: The subject",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "n1-subject-practice-10",
+    "title": "Practice 10: The subject",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "n2-eto",
+    "title": "Это…, вот…: naming things",
+    "n": 20,
+    "sub": "это книга · вот мой дом"
+   },
+   {
+    "id": "n2-eto-practice",
+    "title": "Practice 1: Это…, вот…: naming things",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "n2-eto-practice-2",
+    "title": "Practice 2: Это…, вот…: naming things",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "n2-eto-practice-3",
+    "title": "Practice 3: Это…, вот…: naming things",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "n2-eto-practice-4",
+    "title": "Practice 4: Это…, вот…: naming things",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "n2-eto-practice-5",
+    "title": "Practice 5: Это…, вот…: naming things",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "n2-eto-practice-6",
+    "title": "Practice 6: Это…, вот…: naming things",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "n2-eto-practice-7",
+    "title": "Practice 7: Это…, вот…: naming things",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "n2-eto-practice-8",
+    "title": "Practice 8: Это…, вот…: naming things",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "n2-eto-practice-9",
+    "title": "Practice 9: Это…, вот…: naming things",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "n2-eto-practice-10",
+    "title": "Practice 10: Это…, вот…: naming things",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "n3-adjectives",
+    "title": "Adjectives with the subject",
+    "n": 20,
+    "sub": "новый, новая, новое, новые"
+   },
+   {
+    "id": "n3-adjectives-practice",
+    "title": "Practice 1: Adjectives with the subject",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "n3-adjectives-practice-2",
+    "title": "Practice 2: Adjectives with the subject",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "n3-adjectives-practice-3",
+    "title": "Practice 3: Adjectives with the subject",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "n3-adjectives-practice-4",
+    "title": "Practice 4: Adjectives with the subject",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "n3-adjectives-practice-5",
+    "title": "Practice 5: Adjectives with the subject",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "n3-adjectives-practice-6",
+    "title": "Practice 6: Adjectives with the subject",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "n3-adjectives-practice-7",
+    "title": "Practice 7: Adjectives with the subject",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "n3-adjectives-practice-8",
+    "title": "Practice 8: Adjectives with the subject",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "n3-adjectives-practice-9",
+    "title": "Practice 9: Adjectives with the subject",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "n3-adjectives-practice-10",
+    "title": "Practice 10: Adjectives with the subject",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "n4-pronouns",
+    "title": "Pronouns in the nominative",
+    "n": 0,
+    "sub": "я, ты, мой, этот"
+   }
+  ]
+ },
+ {
+  "id": "case-gen",
+  "title": "The Genitive Case",
+  "short": "Genitive",
+  "mark": "Р",
+  "blurb": "Whose, of what, none, how many, and the twenty prepositions and the verbs that take the genitive — practised on real sentences.",
+  "credit": "Explanations: the Wikibooks Russian textbook (CC BY-SA 4.0) and the DLI Basic Course (public domain); sentences: Tatoeba (CC BY 2.0 FR) and the library's public-domain books",
+  "creditUrl": "https://en.wikibooks.org/wiki/Russian",
+  "license": "CC BY-SA 4.0 · CC BY 2.0 FR · public domain",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "sections": [
+   {
+    "id": "g1-possession",
+    "title": "Whose, and of what",
+    "n": 20,
+    "sub": "книга студента · улицы города"
+   },
+   {
+    "id": "g1-possession-practice",
+    "title": "Practice 1: Whose, and of what",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g1-possession-practice-2",
+    "title": "Practice 2: Whose, and of what",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g1-possession-practice-3",
+    "title": "Practice 3: Whose, and of what",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g1-possession-practice-4",
+    "title": "Practice 4: Whose, and of what",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g1-possession-practice-5",
+    "title": "Practice 5: Whose, and of what",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g1-possession-practice-6",
+    "title": "Practice 6: Whose, and of what",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g1-possession-practice-7",
+    "title": "Practice 7: Whose, and of what",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g1-possession-practice-8",
+    "title": "Practice 8: Whose, and of what",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g1-possession-practice-9",
+    "title": "Practice 9: Whose, and of what",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g1-possession-practice-10",
+    "title": "Practice 10: Whose, and of what",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g2-no",
+    "title": "Нет, не было: having none",
+    "n": 20,
+    "sub": "у меня нет брата · не было времени"
+   },
+   {
+    "id": "g2-no-practice",
+    "title": "Practice 1: Нет, не было: having none",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g2-no-practice-2",
+    "title": "Practice 2: Нет, не было: having none",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g2-no-practice-3",
+    "title": "Practice 3: Нет, не было: having none",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g2-no-practice-4",
+    "title": "Practice 4: Нет, не было: having none",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g2-no-practice-5",
+    "title": "Practice 5: Нет, не было: having none",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g2-no-practice-6",
+    "title": "Practice 6: Нет, не было: having none",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g2-no-practice-7",
+    "title": "Practice 7: Нет, не было: having none",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g2-no-practice-8",
+    "title": "Practice 8: Нет, не было: having none",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g2-no-practice-9",
+    "title": "Practice 9: Нет, не было: having none",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g2-no-practice-10",
+    "title": "Practice 10: Нет, не было: having none",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g3-counting",
+    "title": "Counting and how much",
+    "n": 20,
+    "sub": "два дня · пять лет · много работы"
+   },
+   {
+    "id": "g3-counting-practice",
+    "title": "Practice 1: Counting and how much",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g3-counting-practice-2",
+    "title": "Practice 2: Counting and how much",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g3-counting-practice-3",
+    "title": "Practice 3: Counting and how much",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g3-counting-practice-4",
+    "title": "Practice 4: Counting and how much",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g3-counting-practice-5",
+    "title": "Practice 5: Counting and how much",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g3-counting-practice-6",
+    "title": "Practice 6: Counting and how much",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g3-counting-practice-7",
+    "title": "Practice 7: Counting and how much",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g3-counting-practice-8",
+    "title": "Practice 8: Counting and how much",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g3-counting-practice-9",
+    "title": "Practice 9: Counting and how much",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g3-counting-practice-10",
+    "title": "Practice 10: Counting and how much",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g4-from",
+    "title": "From: из, с, от",
+    "n": 20,
+    "sub": "из школы · с почты · от брата"
+   },
+   {
+    "id": "g4-from-practice",
+    "title": "Practice 1: From: из, с, от",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g4-from-practice-2",
+    "title": "Practice 2: From: из, с, от",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g4-from-practice-3",
+    "title": "Practice 3: From: из, с, от",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g4-from-practice-4",
+    "title": "Practice 4: From: из, с, от",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g4-from-practice-5",
+    "title": "Practice 5: From: из, с, от",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g4-from-practice-6",
+    "title": "Practice 6: From: из, с, от",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g4-from-practice-7",
+    "title": "Practice 7: From: из, с, от",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g4-from-practice-8",
+    "title": "Practice 8: From: из, с, от",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g4-from-practice-9",
+    "title": "Practice 9: From: из, с, от",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g4-from-practice-10",
+    "title": "Practice 10: From: из, с, от",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g5-u-dlya-bez",
+    "title": "у, для, без",
+    "n": 20,
+    "sub": "у окна · для друга · без молока"
+   },
+   {
+    "id": "g5-u-dlya-bez-practice",
+    "title": "Practice 1: у, для, без",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g5-u-dlya-bez-practice-2",
+    "title": "Practice 2: у, для, без",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g5-u-dlya-bez-practice-3",
+    "title": "Practice 3: у, для, без",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g5-u-dlya-bez-practice-4",
+    "title": "Practice 4: у, для, без",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g5-u-dlya-bez-practice-5",
+    "title": "Practice 5: у, для, без",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g5-u-dlya-bez-practice-6",
+    "title": "Practice 6: у, для, без",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g5-u-dlya-bez-practice-7",
+    "title": "Practice 7: у, для, без",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g5-u-dlya-bez-practice-8",
+    "title": "Practice 8: у, для, без",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g5-u-dlya-bez-practice-9",
+    "title": "Practice 9: у, для, без",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g5-u-dlya-bez-practice-10",
+    "title": "Practice 10: у, для, без",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g6-more-prepositions",
+    "title": "до, после, около, мимо, кроме, вместо, против…",
+    "n": 20,
+    "sub": "every other preposition that takes the genitive"
+   },
+   {
+    "id": "g6-more-prepositions-practice",
+    "title": "Practice 1: до, после, около, мимо, кроме, вместо, против…",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g6-more-prepositions-practice-2",
+    "title": "Practice 2: до, после, около, мимо, кроме, вместо, против…",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g6-more-prepositions-practice-3",
+    "title": "Practice 3: до, после, около, мимо, кроме, вместо, против…",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g6-more-prepositions-practice-4",
+    "title": "Practice 4: до, после, около, мимо, кроме, вместо, против…",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g6-more-prepositions-practice-5",
+    "title": "Practice 5: до, после, около, мимо, кроме, вместо, против…",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g6-more-prepositions-practice-6",
+    "title": "Practice 6: до, после, около, мимо, кроме, вместо, против…",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g6-more-prepositions-practice-7",
+    "title": "Practice 7: до, после, около, мимо, кроме, вместо, против…",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g6-more-prepositions-practice-8",
+    "title": "Practice 8: до, после, около, мимо, кроме, вместо, против…",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g6-more-prepositions-practice-9",
+    "title": "Practice 9: до, после, около, мимо, кроме, вместо, против…",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g6-more-prepositions-practice-10",
+    "title": "Practice 10: до, после, около, мимо, кроме, вместо, против…",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g7-verbs",
+    "title": "Verbs that take the genitive",
+    "n": 20,
+    "sub": "бояться, ждать, достигать, требовать…"
+   },
+   {
+    "id": "g7-verbs-practice",
+    "title": "Practice 1: Verbs that take the genitive",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g7-verbs-practice-2",
+    "title": "Practice 2: Verbs that take the genitive",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g7-verbs-practice-3",
+    "title": "Practice 3: Verbs that take the genitive",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g7-verbs-practice-4",
+    "title": "Practice 4: Verbs that take the genitive",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g7-verbs-practice-5",
+    "title": "Practice 5: Verbs that take the genitive",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g7-verbs-practice-6",
+    "title": "Practice 6: Verbs that take the genitive",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g7-verbs-practice-7",
+    "title": "Practice 7: Verbs that take the genitive",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g7-verbs-practice-8",
+    "title": "Practice 8: Verbs that take the genitive",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g7-verbs-practice-9",
+    "title": "Practice 9: Verbs that take the genitive",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g7-verbs-practice-10",
+    "title": "Practice 10: Verbs that take the genitive",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g8-endings",
+    "title": "Genitive endings: nouns, adjectives, pronouns",
+    "n": 20,
+    "sub": "-а, -ы, -ов, -ей · -ого, -ой, -ых"
+   },
+   {
+    "id": "g8-endings-practice",
+    "title": "Practice 1: Genitive endings: nouns, adjectives, pronouns",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g8-endings-practice-2",
+    "title": "Practice 2: Genitive endings: nouns, adjectives, pronouns",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g8-endings-practice-3",
+    "title": "Practice 3: Genitive endings: nouns, adjectives, pronouns",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g8-endings-practice-4",
+    "title": "Practice 4: Genitive endings: nouns, adjectives, pronouns",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g8-endings-practice-5",
+    "title": "Practice 5: Genitive endings: nouns, adjectives, pronouns",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g8-endings-practice-6",
+    "title": "Practice 6: Genitive endings: nouns, adjectives, pronouns",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g8-endings-practice-7",
+    "title": "Practice 7: Genitive endings: nouns, adjectives, pronouns",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g8-endings-practice-8",
+    "title": "Practice 8: Genitive endings: nouns, adjectives, pronouns",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g8-endings-practice-9",
+    "title": "Practice 9: Genitive endings: nouns, adjectives, pronouns",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "g8-endings-practice-10",
+    "title": "Practice 10: Genitive endings: nouns, adjectives, pronouns",
+    "n": 20,
+    "sub": "20 real sentences"
+   }
+  ]
+ },
+ {
+  "id": "case-dat",
+  "title": "The Dative Case",
+  "short": "Dative",
+  "mark": "Д",
+  "blurb": "To whom, мне нравится and мне нужно, к and по, and the verbs that take the dative — practised on real sentences.",
+  "credit": "Explanations: the Wikibooks Russian textbook (CC BY-SA 4.0) and the DLI Basic Course (public domain); sentences: Tatoeba (CC BY 2.0 FR) and the library's public-domain books",
+  "creditUrl": "https://en.wikibooks.org/wiki/Russian",
+  "license": "CC BY-SA 4.0 · CC BY 2.0 FR · public domain",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "sections": [
+   {
+    "id": "d1-to-whom",
+    "title": "To whom: giving, telling, showing",
+    "n": 20,
+    "sub": "дать брату · сказать учителю"
+   },
+   {
+    "id": "d1-to-whom-practice",
+    "title": "Practice 1: To whom: giving, telling, showing",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "d1-to-whom-practice-2",
+    "title": "Practice 2: To whom: giving, telling, showing",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "d1-to-whom-practice-3",
+    "title": "Practice 3: To whom: giving, telling, showing",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "d1-to-whom-practice-4",
+    "title": "Practice 4: To whom: giving, telling, showing",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "d1-to-whom-practice-5",
+    "title": "Practice 5: To whom: giving, telling, showing",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "d1-to-whom-practice-6",
+    "title": "Practice 6: To whom: giving, telling, showing",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "d1-to-whom-practice-7",
+    "title": "Practice 7: To whom: giving, telling, showing",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "d1-to-whom-practice-8",
+    "title": "Practice 8: To whom: giving, telling, showing",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "d1-to-whom-practice-9",
+    "title": "Practice 9: To whom: giving, telling, showing",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "d1-to-whom-practice-10",
+    "title": "Practice 10: To whom: giving, telling, showing",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "d2-mne-nravitsya",
+    "title": "Мне нравится, нужно, надо, можно",
+    "n": 20,
+    "sub": "мне холодно · детям нужно · сколько тебе лет"
+   },
+   {
+    "id": "d2-mne-nravitsya-practice",
+    "title": "Practice 1: Мне нравится, нужно, надо, можно",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "d2-mne-nravitsya-practice-2",
+    "title": "Practice 2: Мне нравится, нужно, надо, можно",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "d2-mne-nravitsya-practice-3",
+    "title": "Practice 3: Мне нравится, нужно, надо, можно",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "d2-mne-nravitsya-practice-4",
+    "title": "Practice 4: Мне нравится, нужно, надо, можно",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "d2-mne-nravitsya-practice-5",
+    "title": "Practice 5: Мне нравится, нужно, надо, можно",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "d2-mne-nravitsya-practice-6",
+    "title": "Practice 6: Мне нравится, нужно, надо, можно",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "d2-mne-nravitsya-practice-7",
+    "title": "Practice 7: Мне нравится, нужно, надо, можно",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "d2-mne-nravitsya-practice-8",
+    "title": "Practice 8: Мне нравится, нужно, надо, можно",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "d2-mne-nravitsya-practice-9",
+    "title": "Practice 9: Мне нравится, нужно, надо, можно",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "d2-mne-nravitsya-practice-10",
+    "title": "Practice 10: Мне нравится, нужно, надо, можно",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "d3-verbs",
+    "title": "Verbs that take the dative",
+    "n": 20,
+    "sub": "помогать, верить, звонить, советовать…"
+   },
+   {
+    "id": "d3-verbs-practice",
+    "title": "Practice 1: Verbs that take the dative",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "d3-verbs-practice-2",
+    "title": "Practice 2: Verbs that take the dative",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "d3-verbs-practice-3",
+    "title": "Practice 3: Verbs that take the dative",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "d3-verbs-practice-4",
+    "title": "Practice 4: Verbs that take the dative",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "d3-verbs-practice-5",
+    "title": "Practice 5: Verbs that take the dative",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "d3-verbs-practice-6",
+    "title": "Practice 6: Verbs that take the dative",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "d3-verbs-practice-7",
+    "title": "Practice 7: Verbs that take the dative",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "d3-verbs-practice-8",
+    "title": "Practice 8: Verbs that take the dative",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "d3-verbs-practice-9",
+    "title": "Practice 9: Verbs that take the dative",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "d3-verbs-practice-10",
+    "title": "Practice 10: Verbs that take the dative",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "d4-k",
+    "title": "к: towards, to someone's",
+    "n": 20,
+    "sub": "к доске · к врачу · к вечеру"
+   },
+   {
+    "id": "d4-k-practice",
+    "title": "Practice 1: к: towards, to someone's",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "d4-k-practice-2",
+    "title": "Practice 2: к: towards, to someone's",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "d4-k-practice-3",
+    "title": "Practice 3: к: towards, to someone's",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "d4-k-practice-4",
+    "title": "Practice 4: к: towards, to someone's",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "d4-k-practice-5",
+    "title": "Practice 5: к: towards, to someone's",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "d4-k-practice-6",
+    "title": "Practice 6: к: towards, to someone's",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "d4-k-practice-7",
+    "title": "Practice 7: к: towards, to someone's",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "d4-k-practice-8",
+    "title": "Practice 8: к: towards, to someone's",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "d4-k-practice-9",
+    "title": "Practice 9: к: towards, to someone's",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "d4-k-practice-10",
+    "title": "Practice 10: к: towards, to someone's",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "d5-po",
+    "title": "по, благодаря, вопреки, согласно",
+    "n": 20,
+    "sub": "по улице · по телефону · благодаря вам"
+   },
+   {
+    "id": "d5-po-practice",
+    "title": "Practice 1: по, благодаря, вопреки, согласно",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "d5-po-practice-2",
+    "title": "Practice 2: по, благодаря, вопреки, согласно",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "d5-po-practice-3",
+    "title": "Practice 3: по, благодаря, вопреки, согласно",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "d5-po-practice-4",
+    "title": "Practice 4: по, благодаря, вопреки, согласно",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "d5-po-practice-5",
+    "title": "Practice 5: по, благодаря, вопреки, согласно",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "d5-po-practice-6",
+    "title": "Practice 6: по, благодаря, вопреки, согласно",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "d5-po-practice-7",
+    "title": "Practice 7: по, благодаря, вопреки, согласно",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "d5-po-practice-8",
+    "title": "Practice 8: по, благодаря, вопреки, согласно",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "d5-po-practice-9",
+    "title": "Practice 9: по, благодаря, вопреки, согласно",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "d5-po-practice-10",
+    "title": "Practice 10: по, благодаря, вопреки, согласно",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "d6-endings",
+    "title": "Dative endings: nouns, adjectives, pronouns",
+    "n": 20,
+    "sub": "-у, -е, -ам · -ому, -ой, -ым"
+   },
+   {
+    "id": "d6-endings-practice",
+    "title": "Practice 1: Dative endings: nouns, adjectives, pronouns",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "d6-endings-practice-2",
+    "title": "Practice 2: Dative endings: nouns, adjectives, pronouns",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "d6-endings-practice-3",
+    "title": "Practice 3: Dative endings: nouns, adjectives, pronouns",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "d6-endings-practice-4",
+    "title": "Practice 4: Dative endings: nouns, adjectives, pronouns",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "d6-endings-practice-5",
+    "title": "Practice 5: Dative endings: nouns, adjectives, pronouns",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "d6-endings-practice-6",
+    "title": "Practice 6: Dative endings: nouns, adjectives, pronouns",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "d6-endings-practice-7",
+    "title": "Practice 7: Dative endings: nouns, adjectives, pronouns",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "d6-endings-practice-8",
+    "title": "Practice 8: Dative endings: nouns, adjectives, pronouns",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "d6-endings-practice-9",
+    "title": "Practice 9: Dative endings: nouns, adjectives, pronouns",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "d6-endings-practice-10",
+    "title": "Practice 10: Dative endings: nouns, adjectives, pronouns",
+    "n": 20,
+    "sub": "20 real sentences"
+   }
+  ]
+ },
+ {
+  "id": "case-acc",
+  "title": "The Accusative Case",
+  "short": "Accusative",
+  "mark": "В",
+  "blurb": "The direct object, where to (в, на, за, под), через and про, and time — practised on real sentences.",
+  "credit": "Explanations: the Wikibooks Russian textbook (CC BY-SA 4.0) and the DLI Basic Course (public domain); sentences: Tatoeba (CC BY 2.0 FR) and the library's public-domain books",
+  "creditUrl": "https://en.wikibooks.org/wiki/Russian",
+  "license": "CC BY-SA 4.0 · CC BY 2.0 FR · public domain",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "sections": [
+   {
+    "id": "a1-object",
+    "title": "The direct object",
+    "n": 20,
+    "sub": "читать книгу · видеть сестру"
+   },
+   {
+    "id": "a1-object-practice",
+    "title": "Practice 1: The direct object",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "a1-object-practice-2",
+    "title": "Practice 2: The direct object",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "a1-object-practice-3",
+    "title": "Practice 3: The direct object",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "a1-object-practice-4",
+    "title": "Practice 4: The direct object",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "a1-object-practice-5",
+    "title": "Practice 5: The direct object",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "a1-object-practice-6",
+    "title": "Practice 6: The direct object",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "a1-object-practice-7",
+    "title": "Practice 7: The direct object",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "a1-object-practice-8",
+    "title": "Practice 8: The direct object",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "a1-object-practice-9",
+    "title": "Practice 9: The direct object",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "a1-object-practice-10",
+    "title": "Practice 10: The direct object",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "a2-v-na",
+    "title": "Where to: в and на",
+    "n": 20,
+    "sub": "в школу · на работу"
+   },
+   {
+    "id": "a2-v-na-practice",
+    "title": "Practice 1: Where to: в and на",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "a2-v-na-practice-2",
+    "title": "Practice 2: Where to: в and на",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "a2-v-na-practice-3",
+    "title": "Practice 3: Where to: в and на",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "a2-v-na-practice-4",
+    "title": "Practice 4: Where to: в and на",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "a2-v-na-practice-5",
+    "title": "Practice 5: Where to: в and на",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "a2-v-na-practice-6",
+    "title": "Practice 6: Where to: в and на",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "a2-v-na-practice-7",
+    "title": "Practice 7: Where to: в and на",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "a2-v-na-practice-8",
+    "title": "Practice 8: Where to: в and на",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "a2-v-na-practice-9",
+    "title": "Practice 9: Where to: в and на",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "a2-v-na-practice-10",
+    "title": "Practice 10: Where to: в and на",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "a3-za-pod",
+    "title": "за and под: going behind, under",
+    "n": 20,
+    "sub": "за дверь · под газету · за книгу (for)"
+   },
+   {
+    "id": "a3-za-pod-practice",
+    "title": "Practice 1: за and под: going behind, under",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "a3-za-pod-practice-2",
+    "title": "Practice 2: за and под: going behind, under",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "a3-za-pod-practice-3",
+    "title": "Practice 3: за and под: going behind, under",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "a3-za-pod-practice-4",
+    "title": "Practice 4: за and под: going behind, under",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "a3-za-pod-practice-5",
+    "title": "Practice 5: за and под: going behind, under",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "a3-za-pod-practice-6",
+    "title": "Practice 6: за and под: going behind, under",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "a3-za-pod-practice-7",
+    "title": "Practice 7: за and под: going behind, under",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "a3-za-pod-practice-8",
+    "title": "Practice 8: за and под: going behind, under",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "a3-za-pod-practice-9",
+    "title": "Practice 9: за and под: going behind, under",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "a3-za-pod-practice-10",
+    "title": "Practice 10: за and под: going behind, under",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "a4-cherez-pro",
+    "title": "через, про, сквозь",
+    "n": 20,
+    "sub": "через реку · про него"
+   },
+   {
+    "id": "a4-cherez-pro-practice",
+    "title": "Practice 1: через, про, сквозь",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "a4-cherez-pro-practice-2",
+    "title": "Practice 2: через, про, сквозь",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "a4-cherez-pro-practice-3",
+    "title": "Practice 3: через, про, сквозь",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "a4-cherez-pro-practice-4",
+    "title": "Practice 4: через, про, сквозь",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "a4-cherez-pro-practice-5",
+    "title": "Practice 5: через, про, сквозь",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "a4-cherez-pro-practice-6",
+    "title": "Practice 6: через, про, сквозь",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "a4-cherez-pro-practice-7",
+    "title": "Practice 7: через, про, сквозь",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "a4-cherez-pro-practice-8",
+    "title": "Practice 8: через, про, сквозь",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "a4-cherez-pro-practice-9",
+    "title": "Practice 9: через, про, сквозь",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "a4-cherez-pro-practice-10",
+    "title": "Practice 10: через, про, сквозь",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "a5-time",
+    "title": "Time in the accusative",
+    "n": 20,
+    "sub": "каждый день · всю неделю · в пятницу · на два дня"
+   },
+   {
+    "id": "a5-time-practice",
+    "title": "Practice 1: Time in the accusative",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "a5-time-practice-2",
+    "title": "Practice 2: Time in the accusative",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "a5-time-practice-3",
+    "title": "Practice 3: Time in the accusative",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "a5-time-practice-4",
+    "title": "Practice 4: Time in the accusative",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "a5-time-practice-5",
+    "title": "Practice 5: Time in the accusative",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "a5-time-practice-6",
+    "title": "Practice 6: Time in the accusative",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "a5-time-practice-7",
+    "title": "Practice 7: Time in the accusative",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "a5-time-practice-8",
+    "title": "Practice 8: Time in the accusative",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "a5-time-practice-9",
+    "title": "Practice 9: Time in the accusative",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "a5-time-practice-10",
+    "title": "Practice 10: Time in the accusative",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "a6-endings",
+    "title": "Accusative endings: nouns, adjectives, pronouns",
+    "n": 20,
+    "sub": "-у, -ю, = nom., = gen. · -ую, -ого"
+   },
+   {
+    "id": "a6-endings-practice",
+    "title": "Practice 1: Accusative endings: nouns, adjectives, pronouns",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "a6-endings-practice-2",
+    "title": "Practice 2: Accusative endings: nouns, adjectives, pronouns",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "a6-endings-practice-3",
+    "title": "Practice 3: Accusative endings: nouns, adjectives, pronouns",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "a6-endings-practice-4",
+    "title": "Practice 4: Accusative endings: nouns, adjectives, pronouns",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "a6-endings-practice-5",
+    "title": "Practice 5: Accusative endings: nouns, adjectives, pronouns",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "a6-endings-practice-6",
+    "title": "Practice 6: Accusative endings: nouns, adjectives, pronouns",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "a6-endings-practice-7",
+    "title": "Practice 7: Accusative endings: nouns, adjectives, pronouns",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "a6-endings-practice-8",
+    "title": "Practice 8: Accusative endings: nouns, adjectives, pronouns",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "a6-endings-practice-9",
+    "title": "Practice 9: Accusative endings: nouns, adjectives, pronouns",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "a6-endings-practice-10",
+    "title": "Practice 10: Accusative endings: nouns, adjectives, pronouns",
+    "n": 20,
+    "sub": "20 real sentences"
+   }
+  ]
+ },
+ {
+  "id": "case-ins",
+  "title": "The Instrumental Case",
+  "short": "Instrumental",
+  "mark": "Т",
+  "blurb": "With, by means of, being and becoming, над, под, за, перед, между, and the verbs that take it — practised on real sentences.",
+  "credit": "Explanations: the Wikibooks Russian textbook (CC BY-SA 4.0) and the DLI Basic Course (public domain); sentences: Tatoeba (CC BY 2.0 FR) and the library's public-domain books",
+  "creditUrl": "https://en.wikibooks.org/wiki/Russian",
+  "license": "CC BY-SA 4.0 · CC BY 2.0 FR · public domain",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "sections": [
+   {
+    "id": "i1-with",
+    "title": "With: с + instrumental",
+    "n": 20,
+    "sub": "с другом · чай с молоком"
+   },
+   {
+    "id": "i1-with-practice",
+    "title": "Practice 1: With: с + instrumental",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "i1-with-practice-2",
+    "title": "Practice 2: With: с + instrumental",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "i1-with-practice-3",
+    "title": "Practice 3: With: с + instrumental",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "i1-with-practice-4",
+    "title": "Practice 4: With: с + instrumental",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "i1-with-practice-5",
+    "title": "Practice 5: With: с + instrumental",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "i1-with-practice-6",
+    "title": "Practice 6: With: с + instrumental",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "i1-with-practice-7",
+    "title": "Practice 7: With: с + instrumental",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "i1-with-practice-8",
+    "title": "Practice 8: With: с + instrumental",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "i1-with-practice-9",
+    "title": "Practice 9: With: с + instrumental",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "i1-with-practice-10",
+    "title": "Practice 10: With: с + instrumental",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "i2-means",
+    "title": "By means of: the instrument",
+    "n": 20,
+    "sub": "писать карандашом · ехать поездом"
+   },
+   {
+    "id": "i2-means-practice",
+    "title": "Practice 1: By means of: the instrument",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "i2-means-practice-2",
+    "title": "Practice 2: By means of: the instrument",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "i2-means-practice-3",
+    "title": "Practice 3: By means of: the instrument",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "i2-means-practice-4",
+    "title": "Practice 4: By means of: the instrument",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "i2-means-practice-5",
+    "title": "Practice 5: By means of: the instrument",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "i2-means-practice-6",
+    "title": "Practice 6: By means of: the instrument",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "i2-means-practice-7",
+    "title": "Practice 7: By means of: the instrument",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "i2-means-practice-8",
+    "title": "Practice 8: By means of: the instrument",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "i2-means-practice-9",
+    "title": "Practice 9: By means of: the instrument",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "i2-means-practice-10",
+    "title": "Practice 10: By means of: the instrument",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "i3-being",
+    "title": "Being, becoming, working as",
+    "n": 20,
+    "sub": "был офицером · стал врачом · работает переводчиком"
+   },
+   {
+    "id": "i3-being-practice",
+    "title": "Practice 1: Being, becoming, working as",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "i3-being-practice-2",
+    "title": "Practice 2: Being, becoming, working as",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "i3-being-practice-3",
+    "title": "Practice 3: Being, becoming, working as",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "i3-being-practice-4",
+    "title": "Practice 4: Being, becoming, working as",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "i3-being-practice-5",
+    "title": "Practice 5: Being, becoming, working as",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "i3-being-practice-6",
+    "title": "Practice 6: Being, becoming, working as",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "i3-being-practice-7",
+    "title": "Practice 7: Being, becoming, working as",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "i3-being-practice-8",
+    "title": "Practice 8: Being, becoming, working as",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "i3-being-practice-9",
+    "title": "Practice 9: Being, becoming, working as",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "i3-being-practice-10",
+    "title": "Practice 10: Being, becoming, working as",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "i4-where",
+    "title": "Where: над, под, за, перед, между",
+    "n": 20,
+    "sub": "над городом · под деревом · за рекой"
+   },
+   {
+    "id": "i4-where-practice",
+    "title": "Practice 1: Where: над, под, за, перед, между",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "i4-where-practice-2",
+    "title": "Practice 2: Where: над, под, за, перед, между",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "i4-where-practice-3",
+    "title": "Practice 3: Where: над, под, за, перед, между",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "i4-where-practice-4",
+    "title": "Practice 4: Where: над, под, за, перед, между",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "i4-where-practice-5",
+    "title": "Practice 5: Where: над, под, за, перед, между",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "i4-where-practice-6",
+    "title": "Practice 6: Where: над, под, за, перед, между",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "i4-where-practice-7",
+    "title": "Practice 7: Where: над, под, за, перед, между",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "i4-where-practice-8",
+    "title": "Practice 8: Where: над, под, за, перед, между",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "i4-where-practice-9",
+    "title": "Practice 9: Where: над, под, за, перед, между",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "i4-where-practice-10",
+    "title": "Practice 10: Where: над, под, за, перед, между",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "i5-verbs",
+    "title": "Verbs that take the instrumental",
+    "n": 20,
+    "sub": "заниматься, пользоваться, интересоваться…"
+   },
+   {
+    "id": "i5-verbs-practice",
+    "title": "Practice 1: Verbs that take the instrumental",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "i5-verbs-practice-2",
+    "title": "Practice 2: Verbs that take the instrumental",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "i5-verbs-practice-3",
+    "title": "Practice 3: Verbs that take the instrumental",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "i5-verbs-practice-4",
+    "title": "Practice 4: Verbs that take the instrumental",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "i5-verbs-practice-5",
+    "title": "Practice 5: Verbs that take the instrumental",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "i5-verbs-practice-6",
+    "title": "Practice 6: Verbs that take the instrumental",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "i5-verbs-practice-7",
+    "title": "Practice 7: Verbs that take the instrumental",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "i5-verbs-practice-8",
+    "title": "Practice 8: Verbs that take the instrumental",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "i5-verbs-practice-9",
+    "title": "Practice 9: Verbs that take the instrumental",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "i5-verbs-practice-10",
+    "title": "Practice 10: Verbs that take the instrumental",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "i6-time",
+    "title": "When: утром, зимой, этим летом",
+    "n": 20,
+    "sub": "утром · весной · прошлой зимой"
+   },
+   {
+    "id": "i6-time-practice",
+    "title": "Practice 1: When: утром, зимой, этим летом",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "i6-time-practice-2",
+    "title": "Practice 2: When: утром, зимой, этим летом",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "i6-time-practice-3",
+    "title": "Practice 3: When: утром, зимой, этим летом",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "i6-time-practice-4",
+    "title": "Practice 4: When: утром, зимой, этим летом",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "i6-time-practice-5",
+    "title": "Practice 5: When: утром, зимой, этим летом",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "i6-time-practice-6",
+    "title": "Practice 6: When: утром, зимой, этим летом",
+    "n": 13,
+    "sub": "13 real sentences"
+   },
+   {
+    "id": "i7-endings",
+    "title": "Instrumental endings: nouns, adjectives, pronouns",
+    "n": 20,
+    "sub": "-ом, -ой, -ью, -ами · -ым, -ой, -ыми"
+   },
+   {
+    "id": "i7-endings-practice",
+    "title": "Practice 1: Instrumental endings: nouns, adjectives, pronouns",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "i7-endings-practice-2",
+    "title": "Practice 2: Instrumental endings: nouns, adjectives, pronouns",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "i7-endings-practice-3",
+    "title": "Practice 3: Instrumental endings: nouns, adjectives, pronouns",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "i7-endings-practice-4",
+    "title": "Practice 4: Instrumental endings: nouns, adjectives, pronouns",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "i7-endings-practice-5",
+    "title": "Practice 5: Instrumental endings: nouns, adjectives, pronouns",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "i7-endings-practice-6",
+    "title": "Practice 6: Instrumental endings: nouns, adjectives, pronouns",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "i7-endings-practice-7",
+    "title": "Practice 7: Instrumental endings: nouns, adjectives, pronouns",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "i7-endings-practice-8",
+    "title": "Practice 8: Instrumental endings: nouns, adjectives, pronouns",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "i7-endings-practice-9",
+    "title": "Practice 9: Instrumental endings: nouns, adjectives, pronouns",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "i7-endings-practice-10",
+    "title": "Practice 10: Instrumental endings: nouns, adjectives, pronouns",
+    "n": 20,
+    "sub": "20 real sentences"
+   }
+  ]
+ },
+ {
+  "id": "case-prp",
+  "title": "The Prepositional Case",
+  "short": "Prepositional",
+  "mark": "П",
+  "blurb": "Where (в, на), about (о), в лесу and на берегу, при, and time — practised on real sentences.",
+  "credit": "Explanations: the Wikibooks Russian textbook (CC BY-SA 4.0) and the DLI Basic Course (public domain); sentences: Tatoeba (CC BY 2.0 FR) and the library's public-domain books",
+  "creditUrl": "https://en.wikibooks.org/wiki/Russian",
+  "license": "CC BY-SA 4.0 · CC BY 2.0 FR · public domain",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "sections": [
+   {
+    "id": "p1-where",
+    "title": "Where: в and на",
+    "n": 20,
+    "sub": "в школе · на работе"
+   },
+   {
+    "id": "p1-where-practice",
+    "title": "Practice 1: Where: в and на",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "p1-where-practice-2",
+    "title": "Practice 2: Where: в and на",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "p1-where-practice-3",
+    "title": "Practice 3: Where: в and на",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "p1-where-practice-4",
+    "title": "Practice 4: Where: в and на",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "p1-where-practice-5",
+    "title": "Practice 5: Where: в and на",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "p1-where-practice-6",
+    "title": "Practice 6: Where: в and на",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "p1-where-practice-7",
+    "title": "Practice 7: Where: в and на",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "p1-where-practice-8",
+    "title": "Practice 8: Where: в and на",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "p1-where-practice-9",
+    "title": "Practice 9: Where: в and на",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "p1-where-practice-10",
+    "title": "Practice 10: Where: в and на",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "p2-about",
+    "title": "About: о, об, обо",
+    "n": 20,
+    "sub": "о погоде · об отце · обо мне"
+   },
+   {
+    "id": "p2-about-practice",
+    "title": "Practice 1: About: о, об, обо",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "p2-about-practice-2",
+    "title": "Practice 2: About: о, об, обо",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "p2-about-practice-3",
+    "title": "Practice 3: About: о, об, обо",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "p2-about-practice-4",
+    "title": "Practice 4: About: о, об, обо",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "p2-about-practice-5",
+    "title": "Practice 5: About: о, об, обо",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "p2-about-practice-6",
+    "title": "Practice 6: About: о, об, обо",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "p2-about-practice-7",
+    "title": "Practice 7: About: о, об, обо",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "p2-about-practice-8",
+    "title": "Practice 8: About: о, об, обо",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "p2-about-practice-9",
+    "title": "Practice 9: About: о, об, обо",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "p2-about-practice-10",
+    "title": "Practice 10: About: о, об, обо",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "p3-v-lesu",
+    "title": "в лесу, на берегу: the stressed -у",
+    "n": 20,
+    "sub": "в саду · в году · на мосту"
+   },
+   {
+    "id": "p3-v-lesu-practice",
+    "title": "Practice 1: в лесу, на берегу: the stressed -у",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "p3-v-lesu-practice-2",
+    "title": "Practice 2: в лесу, на берегу: the stressed -у",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "p3-v-lesu-practice-3",
+    "title": "Practice 3: в лесу, на берегу: the stressed -у",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "p3-v-lesu-practice-4",
+    "title": "Practice 4: в лесу, на берегу: the stressed -у",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "p3-v-lesu-practice-5",
+    "title": "Practice 5: в лесу, на берегу: the stressed -у",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "p3-v-lesu-practice-6",
+    "title": "Practice 6: в лесу, на берегу: the stressed -у",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "p3-v-lesu-practice-7",
+    "title": "Practice 7: в лесу, на берегу: the stressed -у",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "p3-v-lesu-practice-8",
+    "title": "Practice 8: в лесу, на берегу: the stressed -у",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "p3-v-lesu-practice-9",
+    "title": "Practice 9: в лесу, на берегу: the stressed -у",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "p3-v-lesu-practice-10",
+    "title": "Practice 10: в лесу, на берегу: the stressed -у",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "p4-pri-transport",
+    "title": "при, на поезде, в этом году",
+    "n": 20,
+    "sub": "при входе · на машине · в прошлом году"
+   },
+   {
+    "id": "p4-pri-transport-practice",
+    "title": "Practice 1: при, на поезде, в этом году",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "p4-pri-transport-practice-2",
+    "title": "Practice 2: при, на поезде, в этом году",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "p4-pri-transport-practice-3",
+    "title": "Practice 3: при, на поезде, в этом году",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "p4-pri-transport-practice-4",
+    "title": "Practice 4: при, на поезде, в этом году",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "p4-pri-transport-practice-5",
+    "title": "Practice 5: при, на поезде, в этом году",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "p4-pri-transport-practice-6",
+    "title": "Practice 6: при, на поезде, в этом году",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "p4-pri-transport-practice-7",
+    "title": "Practice 7: при, на поезде, в этом году",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "p4-pri-transport-practice-8",
+    "title": "Practice 8: при, на поезде, в этом году",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "p4-pri-transport-practice-9",
+    "title": "Practice 9: при, на поезде, в этом году",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "p4-pri-transport-practice-10",
+    "title": "Practice 10: при, на поезде, в этом году",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "p5-endings",
+    "title": "Prepositional endings: nouns, adjectives, pronouns",
+    "n": 20,
+    "sub": "-е, -и, -ах · -ом, -ой, -ых"
+   },
+   {
+    "id": "p5-endings-practice",
+    "title": "Practice 1: Prepositional endings: nouns, adjectives, pronouns",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "p5-endings-practice-2",
+    "title": "Practice 2: Prepositional endings: nouns, adjectives, pronouns",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "p5-endings-practice-3",
+    "title": "Practice 3: Prepositional endings: nouns, adjectives, pronouns",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "p5-endings-practice-4",
+    "title": "Practice 4: Prepositional endings: nouns, adjectives, pronouns",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "p5-endings-practice-5",
+    "title": "Practice 5: Prepositional endings: nouns, adjectives, pronouns",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "p5-endings-practice-6",
+    "title": "Practice 6: Prepositional endings: nouns, adjectives, pronouns",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "p5-endings-practice-7",
+    "title": "Practice 7: Prepositional endings: nouns, adjectives, pronouns",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "p5-endings-practice-8",
+    "title": "Practice 8: Prepositional endings: nouns, adjectives, pronouns",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "p5-endings-practice-9",
+    "title": "Practice 9: Prepositional endings: nouns, adjectives, pronouns",
+    "n": 20,
+    "sub": "20 real sentences"
+   },
+   {
+    "id": "p5-endings-practice-10",
+    "title": "Practice 10: Prepositional endings: nouns, adjectives, pronouns",
+    "n": 20,
+    "sub": "20 real sentences"
    }
   ]
  },

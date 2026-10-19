@@ -37,6 +37,12 @@ COURSES = {
     "cases":    [("Merchant's Wife at Tea", "Kustodiev"), ("Maslenitsa", "Kustodiev")],
     "forms":    [("Reply of the Zaporozhian Cossacks", "Repin"), ("Religious Procession in Kursk Province", "Repin")],
     "tenses":   [("They Did Not Expect Him", "Repin"), ("Unexpected Visitors", "Repin")],
+    "case-nom": [("Golden Autumn", "Levitan"), ("March", "Levitan")],
+    "case-gen": [("Bogatyrs", "Vasnetsov"), ("Knight at the Crossroads", "Vasnetsov")],
+    "case-dat": [("Moonlit Night on the Dnieper", "Kuindzhi"), ("Birch Grove", "Kuindzhi")],
+    "case-acc": [("The Ninth Wave", "Aivazovsky"), ("The Black Sea", "Aivazovsky")],
+    "case-ins": [("The Rooks Have Come Back", "Savrasov"), ("Winter Road", "Savrasov")],
+    "case-prp": [("Alyonushka", "Vasnetsov"), ("Above Eternal Peace", "Levitan")],
 }
 TEXTBOOK_PAINTINGS = {
     "povarnin-iskusstvo-spora": [("Hunters at Rest", "Perov"), ("The School of Athens", "Raphael")],
@@ -53,7 +59,7 @@ TEXTBOOK_OWN = {
 }
 # English-library picks to do again, and pictures never to use.
 REDO_TITLES = re.compile(r"^(Belgium|Anarchism and Other Essays|2 B R 0 2 B)$")
-BANNED = re.compile(r"history of painting \(1911\)|logo|film fest|\b(19[3-9]\d|20\d\d)\b", re.I)
+BANNED = re.compile(r"history of painting|\blogo\b|film fest|\b(19[3-9]\d|20\d\d)\b", re.I)
 
 
 def painting(title, painter):

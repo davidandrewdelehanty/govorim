@@ -43,16 +43,17 @@ THEMES = [
     (r"econom|finance|money|wall street|business|stock", ["merchant", "counting house", "bank"]),
     (r"garden|plant|botan|vegetable|flower|agricult", ["garden flowers", "botanical", "harvest"]),
     (r"travel|description and travel|voyage|journey|explor", ["traveller landscape", "expedition", "caravan"]),
-    (r"history|historical|kings|queens|court", ["history painting", "royal court", "palace"]),
+    (r"history|historical|kings|queens|court", ["royal court", "palace interior", "battle scene"]),
     (r"humor|humorous|satire|comic", ["genre painting tavern", "humorous", "caricature"]),
     (r"art|drawing|painting|architecture", ["artist studio", "painter at work", "architecture"]),
     (r"science|chemistry|physics|geology|natural history|evolution", ["laboratory", "naturalist", "fossils"]),
 ]
 CATEGORY = {"Novels": ["woman reading", "interior lamp"], "Short Stories": ["village street", "interior"],
-            "Poetry": ["romantic landscape"], "Plays": ["theatre stage"], "History": ["history painting"],
+            "Poetry": ["romantic landscape"], "Plays": ["theatre stage"], "History": ["royal court", "palace interior"],
             "Philosophy": ["philosopher"], "Religious Texts": ["religious"], "Fairytales": ["fairy tale"],
             "Novellas": ["landscape figure"]}
-PLACE = re.compile(r"^(?:[A-Z][\w'.]+(?: [A-Z][\w'.]+)*)(?: \([^)]*\))?$")
+# A place is only trusted in Gutenberg's own form for one: "London (England)".
+PLACE = re.compile(r"^([A-Z][\w'.]+(?: [A-Z][\w'.]+){0,2}) \((?:England|Scotland|Ireland|Wales|France|Italy|Spain|Germany|Russia|N\.Y\.|Mass\.|Calif\.|Ill\.|Pa\.|Va\.|India|Egypt|Greece|Japan|China|Canada|Mexico|[A-Z][a-z]+\.?)\)$")
 
 
 def subjects(gid):
@@ -74,10 +75,11 @@ def queries_for(b):
     for s in subs:
         for part in s.split("--"):
             part = part.strip()
-            if PLACE.match(part) and not re.search(r"fiction|history|biography|english|american|juvenile", part, re.I):
-                place = re.sub(r"\s*\(.*?\)", "", part).strip()
+            mm = PLACE.match(part)
+            if mm and not re.search(r"fiction|history|biography|english|american|juvenile", part, re.I):
+                place = mm.group(1).strip()
                 if 3 < len(place) < 30:
-                    qs.insert(0, place)
+                    qs.insert(0, place + " view")
                 break
     qs += CATEGORY.get(b.get("category") or "", ["landscape"])
     out = []
@@ -87,7 +89,10 @@ def queries_for(b):
     return out[:5], subs
 
 
-def artworks(q, n=30):
+NEVER = re.compile(r"history of painting|\blogo\b|film fest", re.I)
+
+
+def artworks(q, n=15):
     p = urllib.parse.urlencode({"action": "query", "format": "json", "list": "search", "srnamespace": 6,
                                 "srlimit": n, "srsearch": q + " haswbstatement:P6243 filetype:bitmap"})
     j = ec.get(ec.CM + "?" + p)
@@ -97,7 +102,7 @@ def artworks(q, n=30):
 def pick(b, used):
     qs, subs = queries_for(b)
     for q in qs:
-        names = [x for x in artworks(q) if x not in used]
+        names = [x for x in artworks(q) if x not in used and not NEVER.search(x)]
         if not names:
             continue
         inf = ec.infos(names[:30])
@@ -108,11 +113,17 @@ def pick(b, used):
                 continue
             if i["w"] < 500 or i["h"] < 500 or not (0.5 <= i["w"] / float(i["h"]) <= 1.9):
                 continue
-            if ec.BAD.search(nme):
+            if ec.BAD.search(nme) or ec.PORTRAIT.search(nme):
+                continue
+            # About what was asked for: a whole word of the query in its name,
+            # description or categories ("Mass" must not pass for Massachusetts).
+            blob = (nme + " " + i["desc"] + " " + i["cats"]).lower()
+            words = [w for w in re.findall(r"[a-z]{4,}", q.lower()) if w not in ("view", "painting")]
+            if words and not any(re.search(r"\b" + re.escape(w) + r"s?\b", blob) for w in words):
                 continue
             ok.append((nme, i))
         scored = []
-        for nme, i in ok[:8]:
+        for nme, i in ok[:5]:
             data = ec.get(i["thumb"], binary=True)
             v = ec.look(data) if data else None
             if v is not None:

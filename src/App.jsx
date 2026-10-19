@@ -16,6 +16,7 @@ import { readUiLang, saveUiLang, applyUiLang, trUi } from "./uilang.js";
 import { authorInfo, authorSrc, authorCropStyle, AUTHOR_EN } from "./authors.js";
 import IMAGE_MAP from "./image-map.json";
 import COURSE_PICS from "./course-pictures.json";
+import { CASES as NUM_CASES, CASE_NAME, answers as numAnswers, numInCase, nounForms, rule as numRule, TABLE_NUMS, tableCell, normNum } from "./numerals.js";
 
 // localStorage-backed storage shim, matching the previous window.storage Promise API.
 // Keeps the rest of the app code unchanged (still uses await storage.get/set/delete).
@@ -11608,7 +11609,13 @@ export default function App() {
   };
 
   // A verb from the Grammar tab: its table, its numbers, and sentences.
-  var [gramSec, setGramSec] = useState("freq");   // "freq" | "irr" | "motion"
+  var [gramSec, setGramSec] = useState("freq");   // "freq" | "irr" | "motion" | "count" | "numcase"
+  // The two counting drills: nouns from the library, real sentences with
+  // numbers from the library and Tatoeba (public/vocab/*.json).
+  var [numNouns, setNumNouns] = useState(null);
+  var [numSents, setNumSents] = useState(null);
+  var [nd, setNd] = useState(null);                 // { mode, item, val, status, tries, shown, counted }
+  var [ndStats, setNdStats] = useState({ count: { right: 0, total: 0, streak: 0, best: 0 }, numcase: { right: 0, total: 0, streak: 0, best: 0 } });
   // Verb practice from the Grammar tab: multiple choice, Russian → English
   // and English → Russian. Every answer counts as a card reviewed — the same
   // tally as the Vocab review, so it goes on the leaderboard.
@@ -11643,6 +11650,146 @@ export default function App() {
       if (first) bumpToday("practiced", 1);
       return Object.assign({}, z, { picked: z.picked.concat([k]), right: z.right + (first && ok ? 1 : 0), answered: z.answered + (first ? 1 : 0) });
     });
+  };
+  var wantNumData = function() {
+    if (numNouns === null) {
+      setNumNouns(false);
+      fetch("/vocab/count-nouns.json").then(function(r){ return r.json(); }).then(function(j){ setNumNouns(j.n || []); }).catch(function(){ setNumNouns([]); });
+    }
+    if (numSents === null) {
+      setNumSents(false);
+      fetch("/vocab/numeral-sentences.json").then(function(r){ return r.json(); }).then(function(j){ setNumSents(j || {}); }).catch(function(){ setNumSents({}); });
+    }
+  };
+  // A preposition or verb to put a number phrase in each case.
+  var NUM_FRAMES = {
+    N: ["Вот ___.", "Здесь ___.", "У меня есть ___."],
+    G: ["без ___", "для ___", "около ___", "у ___", "из ___", "от ___", "после ___", "до ___", "кроме ___", "вместо ___"],
+    D: ["к ___", "по ___", "Я пишу ___.", "Это нужно ___."],
+    A: ["Я вижу ___.", "Я купил ___.", "через ___", "про ___"],
+    I: ["с ___", "над ___", "под ___", "перед ___", "между ___", "Я доволен ___."],
+    P: ["о ___", "в ___", "на ___", "при ___"],
+  };
+  var pickOf = function(xs){ return xs[Math.floor(Math.random() * xs.length)]; };
+  var makeNumItem = function(mode) {
+    var real = numSents && numSents[mode === "count" ? "count" : "decl"];
+    var nouns = numNouns || [];
+    if (real && real.length && (Math.random() < 0.6 || !nouns.length)) {
+      var x = pickOf(real);
+      var acc = [x.a];
+      if (mode === "count") {
+        var last = x.a.split(/\s+/).pop();
+        acc.push(last, x.n + " " + last);
+      }
+      return { q: x.q, answers: acc, show: x.a, en: x.en, src: x.src, n: x.n, real: true };
+    }
+    if (!nouns.length) return null;
+    var noun = pickOf(nouns.slice(0, Math.random() < 0.7 ? 800 : nouns.length));
+    var n = Math.random() < 0.5 ? Math.floor(Math.random() * 21) : Math.floor(Math.random() * 101);
+    if (mode === "count") {
+      var forms = nounForms(noun, n, "N");
+      var words = numInCase(n, "N", noun[1], !!noun[2]);
+      var acc2 = forms.slice();
+      forms.forEach(function(f){ acc2.push(n + " " + f); words.forEach(function(w){ acc2.push(w + " " + f); }); });
+      return { q: "___ (" + n + " " + noun[0] + ")", answers: acc2, show: words[0] + " " + forms[0], n: n, rule: numRule(n, "N") };
+    }
+    if (n === 0) n = 1 + Math.floor(Math.random() * 100);
+    var c = Math.random() < 0.12 ? "N" : pickOf(["G", "D", "A", "I", "P"]);
+    var ans = numAnswers(noun, n, c);
+    var fr = pickOf(NUM_FRAMES[c]);
+    var first = ans[0].charAt(0);
+    if (/^о ___/.test(fr) && /[аоиуэ]/.test(first)) fr = fr.replace(/^о /, "об ");
+    if (/^с ___/.test(fr) && /^ст/.test(ans[0])) fr = fr.replace(/^с /, "со ");
+    if (/^в ___/.test(fr) && /^в[^аоиуэыяеё]/.test(ans[0])) fr = fr.replace(/^в /, "во ");
+    return { q: fr.replace("___", "___ (" + n + " " + noun[0] + ")"), answers: ans, show: ans[0], n: n, c: c,
+             rule: CASE_NAME[c].charAt(0).toUpperCase() + CASE_NAME[c].slice(1) + ". " + numRule(n, c) };
+  };
+  var nextNum = function(mode) {
+    var it = makeNumItem(mode);
+    setNd(it ? { mode: mode, item: it, val: "", status: "", tries: 0, shown: false, counted: false } : null);
+  };
+  var checkNum = function() {
+    if (!nd || !nd.item || nd.status === "right") return;
+    var v = normNum(nd.val);
+    if (!v) return;
+    var ok = nd.item.answers.some(function(a){ return normNum(a) === v; });
+    var first = !nd.counted;
+    if (first) bumpToday("practiced", 1);
+    setNdStats(function(m){
+      var s0 = m[nd.mode], s1 = Object.assign({}, s0);
+      if (first) { s1.total++; if (ok) s1.right++; }
+      if (ok && first) { s1.streak++; s1.best = Math.max(s1.best, s1.streak); } else if (!ok) s1.streak = 0;
+      var o = Object.assign({}, m); o[nd.mode] = s1; return o;
+    });
+    setNd(Object.assign({}, nd, { status: ok ? "right" : "wrong", tries: nd.tries + (ok ? 0 : 1), counted: true }));
+  };
+  var renderNumDrill = function(mode) {
+    wantNumData();
+    var loading = numNouns === null || numNouns === false || numSents === null || numSents === false;
+    if (!loading && (!nd || nd.mode !== mode)) { setTimeout(function(){ nextNum(mode); }, 0); }
+    var it = nd && nd.mode === mode ? nd.item : null;
+    var st = ndStats[mode];
+    var parts = it ? String(it.q).split("___") : [];
+    return (
+      <div className="nd-wrap">
+        {mode === "count" ? (
+          <div className="nd-intro">
+            <p className="crs-p">A number from 0 to 100 and a noun: type the noun in the form the number needs. The noun alone is right, and so is the number with it, in figures or in words — «книги», «3 книги», «три книги».</p>
+            <ul className="crs-list">
+              <li>If the number is 1 or ends in <b>один</b>, use <i>nominative singular</i>: <i>Есть один кот. Он знает двадцать одно слово.</i></li>
+              <li>If the number ends in 2, 3 or 4 use the <i>genitive singular</i>: <i>Два рубля. Двадцать две копейки.</i></li>
+              <li>If the number ends in 5, 6, 7, 8, 9, 0 or <b>-надцать</b> use the <i>genitive plural</i>: <i>Пять рублей. Двадцать пять копеек.</i></li>
+            </ul>
+            <p className="crs-credit">Rules from the Wikibooks Russian textbook, «Genitive case» (CC BY-SA 4.0). Nouns from the library; real sentences from its public-domain books and from Tatoeba (CC BY 2.0 FR).</p>
+          </div>
+        ) : (
+          <div className="nd-intro">
+            <p className="crs-p">Put the number and the noun into the case the sentence needs, the number written out: «на ___ (2 работа)» → <b>двух работах</b>.</p>
+            <div className="crs-tw"><table className="crs-t nd-t">
+              <thead><tr><th></th>{TABLE_NUMS.map(function(x, k){ return <th key={k}>{x[0]}{x[0] === 1 || x[0] === 2 ? " " + (x[1] === "m" ? "m." : x[1] === "f" ? "f." : "n.") : ""}</th>; })}</tr></thead>
+              <tbody>{NUM_CASES.map(function(c){ return (
+                <tr key={c}><th>{c === "N" ? "Nom." : c === "G" ? "Gen." : c === "D" ? "Dat." : c === "A" ? "Acc." : c === "I" ? "Instr." : "Prep."}</th>
+                  {TABLE_NUMS.map(function(x, k){ return <td key={k} lang="ru">{tableCell(x[0], x[1], c)}</td>; })}</tr>); })}</tbody>
+            </table></div>
+            <ul className="crs-list">
+              <li>Note that the rule "2, 3, 4 + Gen. sing." concerns the Nominative (or Accusative inanimate) construction only. In oblique cases the numbers always agree in case with the noun to which they refer (<i>двум студентам; с тремя книгами; на четырёх грузовиках</i>).</li>
+              <li>Numerals ending in soft sign (5–20 and 30) are declined like feminine nouns ending in soft sign. 40, 90 and 100 have only two forms: <i>сорок, девяносто, сто</i> and <i>сорока, девяноста, ста</i>. Each component of a compound numeral is declined separately.</li>
+              <li>In the accusative, «один» follows the noun: <i>вижу один дом, одного студента</i>; 2–4 on their own take the genitive with animate nouns (<i>вижу двух студентов</i>), but at the end of a compound number keep the nominative (<i>двадцать два студента</i>).</li>
+            </ul>
+            <p className="crs-credit">From the DLI Grammar Reference Book, Lessons 70–71 (public domain). Nouns from the library; real sentences from its public-domain books and from Tatoeba (CC BY 2.0 FR).</p>
+          </div>
+        )}
+        <div className="nd-stats">{st.right} right of {st.total}{st.total ? " · streak " + st.streak + " · best " + st.best : ""} · each first answer counts toward today's review score</div>
+        {loading && <p className="crs-p">Loading…</p>}
+        {it && (
+          <div className={"crs-q nd-q" + (nd.status === "right" ? " ok" : "")}>
+            <div className="crs-qb">
+              {it.en ? <div className="crs-qt">{it.en}</div> : null}
+              <div className="crs-fill" lang="ru">
+                {parts.map(function(pt, k){ return <Fragment key={k}>{pt}{k < parts.length - 1 ? (
+                  <input type="text" lang="ru" autoComplete="off" autoCapitalize="off" spellCheck={false} autoFocus
+                    className={"crs-in" + (nd.status === "right" ? " ok" : nd.status === "wrong" ? " bad" : "")}
+                    value={nd.val} readOnly={nd.status === "right"} size={Math.max(10, Math.min(40, (it.show || "").length + 4))}
+                    onChange={function(ev){ setNd(Object.assign({}, nd, { val: ev.target.value, status: nd.status === "right" ? "right" : "" })); }}
+                    onKeyDown={function(ev){ if (ev.key === "Enter") { if (nd.status === "right" || nd.shown) nextNum(mode); else checkNum(); } }} />) : null}</Fragment>; })}
+                {nd.status !== "right" && <button type="button" className="crs-chk" onClick={checkNum}>Check</button>}
+                {nd.status === "right" && <span className="crs-tick">✓</span>}
+              </div>
+              {it.src ? <div className="crs-hint">— {it.src}</div> : null}
+              {nd.status === "wrong" && nd.tries >= 2 && !nd.shown && (
+                <button type="button" className="crs-show" onClick={function(){ setNd(Object.assign({}, nd, { shown: true })); }}>Show the answer</button>
+              )}
+              {(nd.shown || nd.status === "right") && (
+                <div className="crs-why"><b lang="ru">{it.show}</b>{it.rule ? " — " + it.rule : it.src ? "" : " — sentence and translation from Tatoeba."}</div>
+              )}
+              {(nd.status === "right" || nd.shown) && (
+                <button type="button" className="btn-p nd-next" onClick={function(){ nextNum(mode); }}>Next →</button>
+              )}
+            </div>
+          </div>
+        )}
+      </div>
+    );
   };
   var gvNext = function() {
     setGvQuiz(function(z){
@@ -15914,7 +16061,7 @@ export default function App() {
         .tb-cover.crs-tile-cover{display:flex;flex-direction:column;justify-content:flex-end;gap:6px;padding:14px 13px 13px;color:#f6efe2;
           background:radial-gradient(120% 90% at 85% 0%,rgba(255,255,255,.14),transparent 55%),linear-gradient(160deg,#7d2f1f 0%,#4a1a10 100%);overflow:hidden}
         .tb-cover.crs-tile-cover.crs-tc-motion{background:radial-gradient(120% 90% at 85% 0%,rgba(255,255,255,.13),transparent 55%),linear-gradient(160deg,#2d5e46 0%,#173325 100%)}
-        .crs-retry{margin-left:12px;font:inherit;font-size:13px;padding:4px 10px;border-radius:14px;border:1px solid currentColor;background:transparent;color:inherit;cursor:pointer}.crs-sec-n.pf{color:#c9a227}.tb-cover.crs-tile-cover.crs-tc-dli{background:radial-gradient(120% 90% at 85% 0%,rgba(255,255,255,.13),transparent 55%),linear-gradient(160deg,#28466b 0%,#14243b 100%)}.tb-cover.crs-tile-cover.crs-tc-time{background:radial-gradient(120% 90% at 85% 0%,rgba(255,255,255,.13),transparent 55%),linear-gradient(160deg,#6b4a28 0%,#3b2614 100%)}.tb-cover.crs-tile-cover.crs-tc-count{background:radial-gradient(120% 90% at 85% 0%,rgba(255,255,255,.13),transparent 55%),linear-gradient(160deg,#5a2d5e 0%,#2f1733 100%)}.tb-cover.crs-tile-cover.crs-tc-forms{background:radial-gradient(120% 90% at 85% 0%,rgba(255,255,255,.13),transparent 55%),linear-gradient(160deg,#4a5a28 0%,#253014 100%)}.tb-cover.crs-tile-cover.crs-tc-cases{background:radial-gradient(120% 90% at 85% 0%,rgba(255,255,255,.13),transparent 55%),linear-gradient(160deg,#7a2e2e 0%,#3d1515 100%)}.tb-cover.crs-tile-cover.crs-tc-tenses{background:radial-gradient(120% 90% at 85% 0%,rgba(255,255,255,.13),transparent 55%),linear-gradient(160deg,#2d5a5e 0%,#163033 100%)}.tb-cover.crs-tile-cover .crs-tc-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;mix-blend-mode:normal;filter:none;z-index:0}.tb-cover.crs-tile-cover.has-img::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(15,8,4,.45) 0%,rgba(15,8,4,0) 28%,rgba(15,8,4,.1) 48%,rgba(15,8,4,.82) 100%)}.tb-cover.crs-tile-cover>span{position:relative;z-index:2}.tb-cover.crs-tile-cover>.crs-tc-kicker,.tb-cover.crs-tile-cover>.crs-tc-mark{position:absolute}.tb-cover.crs-tile-cover.has-img .crs-tc-mark{opacity:.28}.tb-cover.crs-tile-cover.has-img .crs-tc-title{text-shadow:0 1px 3px rgba(0,0,0,.6)}.crs-card-img{display:block;height:130px;margin:-16px -16px 8px;border-radius:12px 12px 0 0;background-size:cover;background-position:center 35%}.crs-card.has-img .crs-mark{color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.6);z-index:1}
+        .crs-sec.pr{margin-left:28px;width:calc(100% - 28px);padding-top:7px;padding-bottom:7px;font-size:.93em;background:transparent}.crs-sec.pr .crs-sec-s{display:none}.nd-wrap{max-width:860px}.nd-intro{margin-bottom:14px}.nd-stats{font-size:13px;opacity:.75;margin:6px 0 10px}.nd-q{padding:16px 18px}.nd-next{margin-top:10px}.nd-t td,.nd-t th{font-size:13px;white-space:nowrap;padding:4px 7px}.crs-tw{overflow-x:auto}.crs-retry{margin-left:12px;font:inherit;font-size:13px;padding:4px 10px;border-radius:14px;border:1px solid currentColor;background:transparent;color:inherit;cursor:pointer}.crs-sec-n.pf{color:#c9a227}.tb-cover.crs-tile-cover.crs-tc-dli{background:radial-gradient(120% 90% at 85% 0%,rgba(255,255,255,.13),transparent 55%),linear-gradient(160deg,#28466b 0%,#14243b 100%)}.tb-cover.crs-tile-cover.crs-tc-time{background:radial-gradient(120% 90% at 85% 0%,rgba(255,255,255,.13),transparent 55%),linear-gradient(160deg,#6b4a28 0%,#3b2614 100%)}.tb-cover.crs-tile-cover.crs-tc-count{background:radial-gradient(120% 90% at 85% 0%,rgba(255,255,255,.13),transparent 55%),linear-gradient(160deg,#5a2d5e 0%,#2f1733 100%)}.tb-cover.crs-tile-cover.crs-tc-forms{background:radial-gradient(120% 90% at 85% 0%,rgba(255,255,255,.13),transparent 55%),linear-gradient(160deg,#4a5a28 0%,#253014 100%)}.tb-cover.crs-tile-cover.crs-tc-cases{background:radial-gradient(120% 90% at 85% 0%,rgba(255,255,255,.13),transparent 55%),linear-gradient(160deg,#7a2e2e 0%,#3d1515 100%)}.tb-cover.crs-tile-cover.crs-tc-tenses{background:radial-gradient(120% 90% at 85% 0%,rgba(255,255,255,.13),transparent 55%),linear-gradient(160deg,#2d5a5e 0%,#163033 100%)}.tb-cover.crs-tile-cover .crs-tc-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;mix-blend-mode:normal;filter:none;z-index:0}.tb-cover.crs-tile-cover.has-img::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(15,8,4,.45) 0%,rgba(15,8,4,0) 28%,rgba(15,8,4,.1) 48%,rgba(15,8,4,.82) 100%)}.tb-cover.crs-tile-cover>span{position:relative;z-index:2}.tb-cover.crs-tile-cover>.crs-tc-kicker,.tb-cover.crs-tile-cover>.crs-tc-mark{position:absolute}.tb-cover.crs-tile-cover.has-img .crs-tc-mark{opacity:.28}.tb-cover.crs-tile-cover.has-img .crs-tc-title{text-shadow:0 1px 3px rgba(0,0,0,.6)}.crs-card-img{display:block;height:130px;margin:-16px -16px 8px;border-radius:12px 12px 0 0;background-size:cover;background-position:center 35%}.crs-card.has-img .crs-mark{color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.6);z-index:1}
         .crs-tc-kicker{position:absolute;top:12px;left:13px;font-family:'IBM Plex Sans',sans-serif;font-size:10px;letter-spacing:.18em;text-transform:uppercase;opacity:.75}
         .crs-tc-mark{position:absolute;top:2px;right:10px;font-family:'Old Standard TT',serif;font-size:84px;line-height:1;opacity:.18}
         .crs-tc-title{font-family:'Old Standard TT',serif;font-size:19px;line-height:1.15}
@@ -20408,7 +20555,7 @@ export default function App() {
               short to begin with — they sit beside the name now and the page
               gets the height back. */}
           <div className="tabs">
-            {["chat","ranked","leaders","vocab","drills","quotes","grammar","courses","forum","music"].filter(function(t){
+            {["chat","courses","ranked","leaders","vocab","drills","quotes","grammar","forum","music"].filter(function(t){
               if (t === "forum") return FORUM_ENABLED;
               // Grammar: the verb lists, for Russian. (The older reference
               // pages under it stay behind GRAMMAR_ENABLED.)
@@ -24837,9 +24984,9 @@ export default function App() {
                           var right = Object.keys(rec.right || {}).length;
                           return (
                             <li key={x.id}>
-                              <button type="button" className={"crs-sec" + (rec.done ? " done" : rec.read ? " started" : "")}
+                              <button type="button" className={"crs-sec" + (/-practice(-\d+)?$/.test(x.id) ? " pr" : "") + (rec.done ? " done" : rec.read ? " started" : "")}
                                 onClick={function(){ openSection(course.id, x.id); }}>
-                                <span className={"crs-sec-n" + (rec.perfect ? " pf" : "")}>{rec.perfect ? "★" : rec.done ? "✓" : i + 1}</span>
+                                <span className={"crs-sec-n" + (rec.perfect ? " pf" : "")}>{rec.perfect ? "★" : rec.done ? "✓" : /-practice(-\d+)?$/.test(x.id) ? "✎" : course.sections.slice(0, i + 1).filter(function(y){ return !/-practice(-\d+)?$/.test(y.id); }).length}</span>
                                 <span className="crs-sec-t">{x.title}{x.sub ? <span className="crs-sec-s">{x.sub}</span> : null}</span>
                                 <span className="crs-sec-r">{x.n ? Math.min(right, x.n) + " / " + x.n : (rec.done ? "read" : "")}</span>
                               </button>
@@ -25040,6 +25187,10 @@ export default function App() {
                   onClick={function(){ setGramSec("freq"); }}>Frequency Verbs</button>
                 <button type="button" role="tab" aria-selected={gramSec === "irr"} className={"fq-tab" + (gramSec === "irr" ? " on" : "")}
                   onClick={function(){ setGramSec("irr"); }}>Irregular Verbs</button>
+                <button type="button" role="tab" aria-selected={gramSec === "count"} className={"fq-tab" + (gramSec === "count" ? " on" : "")}
+                  onClick={function(){ setGramSec("count"); }}>Counting Objects</button>
+                <button type="button" role="tab" aria-selected={gramSec === "numcase"} className={"fq-tab" + (gramSec === "numcase" ? " on" : "")}
+                  onClick={function(){ setGramSec("numcase"); }}>Numerals in Cases</button>
                 {COURSE_OUTLINE.some(function(c){ return c.id === "motion"; }) && (
                   <button type="button" role="tab" aria-selected={gramSec === "motion"} className={"fq-tab" + (gramSec === "motion" ? " on" : "")}
                     onClick={function(){ setGramSec("motion"); }}>Verbs of Motion</button>
@@ -25113,6 +25264,7 @@ export default function App() {
                     </button>
                   );
                 };
+                if (gramSec === "count" || gramSec === "numcase") return renderNumDrill(gramSec);
                 if (gramSec === "motion") {
                   // The Verbs of Motion course, opened from here: its lessons
                   // and exercises live in the Courses tab, progress and badges too.
@@ -25128,9 +25280,9 @@ export default function App() {
                           var right = Object.keys(rec.right || {}).length;
                           return (
                             <li key={x.id}>
-                              <button type="button" className={"crs-sec" + (rec.done ? " done" : rec.read ? " started" : "")}
+                              <button type="button" className={"crs-sec" + (/-practice(-\d+)?$/.test(x.id) ? " pr" : "") + (rec.done ? " done" : rec.read ? " started" : "")}
                                 onClick={function(){ setTab("courses"); openSection(mc.id, x.id); }}>
-                                <span className={"crs-sec-n" + (rec.perfect ? " pf" : "")}>{rec.perfect ? "★" : rec.done ? "✓" : i + 1}</span>
+                                <span className={"crs-sec-n" + (rec.perfect ? " pf" : "")}>{rec.perfect ? "★" : rec.done ? "✓" : /-practice(-\d+)?$/.test(x.id) ? "✎" : mc.sections.slice(0, i + 1).filter(function(y){ return !/-practice(-\d+)?$/.test(y.id); }).length}</span>
                                 <span className="crs-sec-t">{x.title}{x.sub ? <span className="crs-sec-s">{x.sub}</span> : null}</span>
                                 <span className="crs-sec-r">{x.n ? Math.min(right, x.n) + " / " + x.n : ""}</span>
                               </button>

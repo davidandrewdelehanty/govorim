@@ -67,6 +67,12 @@ COURSES.append({
     "credit": DLI_CREDIT, "creditUrl": DLI_URL, "license": "Public domain", "licenseUrl": "",
     "modules": ["forms_a", "forms_b"], "order": None,
 })
+import case_courses
+for _meta, _secs in case_courses.COURSE_DEFS:
+    COURSES.append(dict(_meta, modules=[], order=None, sections=_secs))
+for _c in COURSES:
+    if _c["id"] == "time":
+        _c["sections"] = case_courses.TIME_MORE
 if os.path.exists(os.path.join(HERE, "tense_pairs.json")):
     COURSES.append({
         "id": "tenses", "title": "English Tenses in Russian", "short": "Tenses", "mark": "⇄",
@@ -98,18 +104,31 @@ TATOEBA_NOTE = ("These sentences and their English translations were written by 
                 "the word in brackets is its dictionary form.")
 
 
+PRACTICE_SIZE = 20
+REAL_NOTE = ("These are real sentences: from Tatoeba (tatoeba.org, CC BY 2.0 FR), with their English translations, and from the "
+             "public-domain Russian books in this library, with author and title. Each blank is the word the sentence really has; "
+             "the word in brackets is its dictionary form.")
+
+
 def with_practice(cid, secs):
+    """Each section, then its practice sets: the Tatoeba drills (drills.json) and a
+    case-course section's further sentences ("more"), PRACTICE_SIZE at a time."""
     out = []
     for s in secs:
+        more = list(s.pop("more", None) or [])
         out.append(s)
         exs = (DRILLS.get(cid) or {}).get(s["id"]) or []
-        if len(exs) >= 4:
-            out.append({"id": s["id"] + "-practice", "title": "Practice: " + s["title"],
-                        "sub": "%d real sentences from Tatoeba" % len(exs),
-                        "blocks": [{"t": "p", "text": "Real Russian sentences that use what the lesson before this one teaches. "
+        sets = [exs] if len(exs) >= 4 else []
+        sets += [more[k:k + PRACTICE_SIZE] for k in range(0, len(more), PRACTICE_SIZE) if len(more[k:k + PRACTICE_SIZE]) >= 5]
+        for n, xs in enumerate(sets, 1):
+            note = TATOEBA_NOTE if xs is exs else REAL_NOTE
+            out.append({"id": s["id"] + "-practice" + ("" if n == 1 else "-%d" % n),
+                        "title": "Practice%s: %s" % ("" if len(sets) == 1 else " %d" % n, s["title"]),
+                        "sub": "%d real sentences" % len(xs),
+                        "blocks": [{"t": "p", "text": "Real Russian sentences that use what the lesson teaches. "
                                     "Type the missing word, or pick it, until it turns green."},
-                                   {"t": "note", "text": TATOEBA_NOTE}],
-                        "exercises": exs})
+                                   {"t": "note", "text": note}],
+                        "exercises": xs})
     return out
 
 
@@ -119,6 +138,7 @@ def main():
         secs = []
         for m in c["modules"]:
             secs += importlib.import_module(m).SECTIONS
+        secs += [dict(x) for x in (c.get("sections") or [])]
         secs = with_practice(c["id"], secs)
         by = {s["id"]: s for s in secs}
         if len(by) != len(secs):
@@ -145,7 +165,7 @@ def main():
             if s.get("sub"):
                 o["sub"] = s["sub"]
             osecs.append(o)
-        meta = {k: v for k, v in c.items() if k not in ("modules", "order")}
+        meta = {k: v for k, v in c.items() if k not in ("modules", "order", "sections")}
         meta["sections"] = osecs
         outline.append(meta)
         print("%-10s %2d sections, %3d exercises" % (c["id"], len(osecs), sum(s["n"] for s in osecs)))
