@@ -89,12 +89,37 @@ if os.path.exists(os.path.join(HERE, "dli_a.py")):
     })
 
 
+# Practice drills from Tatoeba (tools/courses/tatoeba_drills.py): a section
+# of real sentences after each section they belong to.
+DRILLS_P = os.path.join(HERE, "drills.json")
+DRILLS = json.load(io.open(DRILLS_P, encoding="utf-8")) if os.path.exists(DRILLS_P) else {}
+TATOEBA_NOTE = ("These sentences and their English translations were written by people on Tatoeba "
+                "(tatoeba.org), shared under CC BY 2.0 FR. Each blank is the word the sentence really has; "
+                "the word in brackets is its dictionary form.")
+
+
+def with_practice(cid, secs):
+    out = []
+    for s in secs:
+        out.append(s)
+        exs = (DRILLS.get(cid) or {}).get(s["id"]) or []
+        if len(exs) >= 4:
+            out.append({"id": s["id"] + "-practice", "title": "Practice: " + s["title"],
+                        "sub": "%d real sentences from Tatoeba" % len(exs),
+                        "blocks": [{"t": "p", "text": "Real Russian sentences that use what the lesson before this one teaches. "
+                                    "Type the missing word, or pick it, until it turns green."},
+                                   {"t": "note", "text": TATOEBA_NOTE}],
+                        "exercises": exs})
+    return out
+
+
 def main():
     outline = []
     for c in COURSES:
         secs = []
         for m in c["modules"]:
             secs += importlib.import_module(m).SECTIONS
+        secs = with_practice(c["id"], secs)
         by = {s["id"]: s for s in secs}
         if len(by) != len(secs):
             raise SystemExit("duplicate section id in " + c["id"])

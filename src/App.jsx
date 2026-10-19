@@ -15,6 +15,7 @@ import { AnnotLayer, HL_COLORS, INK_COLORS, annotId } from "./annotations.jsx";
 import { readUiLang, saveUiLang, applyUiLang, trUi } from "./uilang.js";
 import { authorInfo, authorSrc, authorCropStyle, AUTHOR_EN } from "./authors.js";
 import IMAGE_MAP from "./image-map.json";
+import COURSE_PICS from "./course-pictures.json";
 
 // localStorage-backed storage shim, matching the previous window.storage Promise API.
 // Keeps the rest of the app code unchanged (still uses await storage.get/set/delete).
@@ -6136,13 +6137,16 @@ export default function App() {
     try { var el = document.querySelector(".crs-scroll"); if (el) el.scrollTop = 0; } catch (e) {}
   };
   // An answer: right ones are kept for good; the first try is remembered for the score.
-  var noteAnswer = function(cid, sid, exId, right, exIds) {
+  // `clean`: this answer finishes a run in which every exercise of the
+  // section was answered right with no wrong try — a perfect score.
+  var noteAnswer = function(cid, sid, exId, right, exIds, clean) {
     setCourseProg(function(m){
       var k = cid + "/" + sid, rec = Object.assign({ right: {}, first: {} }, m[k] || {});
       rec.right = Object.assign({}, rec.right); rec.first = Object.assign({}, rec.first);
       if (rec.first[exId] === undefined) rec.first[exId] = right ? 1 : 0;
       if (right && !rec.right[exId]) rec.right[exId] = Date.now();
       if (!rec.done && sectionDone(rec, exIds)) rec.done = Date.now();
+      if (right && !rec.perfect && (clean || (exIds.length && exIds.every(function(id){ return rec.first[id] === 1; })))) rec.perfect = Date.now();
       var n = Object.assign({}, m); n[k] = rec; return n;
     });
   };
@@ -6699,6 +6703,23 @@ export default function App() {
       var k = enAuthorName(b);
       if (k && !m[k]) m[k] = info;
     });
+    return m;
+  }, [presetBooks]);
+  // Author key (catalogue spelling, and the English name) → a picture from
+  // one of their books, for authors with no portrait: a painting or film
+  // still first, a printed cover only when there is nothing else.
+  var authorCover = useMemo(function(){
+    var m = {}, plain = {};
+    (presetBooks || []).forEach(function(b){
+      if (!b || !b.cover) return;
+      var src = coverSrc(b), weak = /(^|\/)img\/pg\d+\.jpg$/.test(b.cover);
+      [String(b.author || "").trim(), enAuthorName(b)].forEach(function(k){
+        if (!k) return;
+        if (weak) { if (!plain[k]) plain[k] = src; }
+        else if (!m[k]) m[k] = src;
+      });
+    });
+    Object.keys(plain).forEach(function(k){ if (!m[k]) m[k] = plain[k]; });
     return m;
   }, [presetBooks]);
   var authorInfoFor = function(a) {
@@ -15893,7 +15914,7 @@ export default function App() {
         .tb-cover.crs-tile-cover{display:flex;flex-direction:column;justify-content:flex-end;gap:6px;padding:14px 13px 13px;color:#f6efe2;
           background:radial-gradient(120% 90% at 85% 0%,rgba(255,255,255,.14),transparent 55%),linear-gradient(160deg,#7d2f1f 0%,#4a1a10 100%);overflow:hidden}
         .tb-cover.crs-tile-cover.crs-tc-motion{background:radial-gradient(120% 90% at 85% 0%,rgba(255,255,255,.13),transparent 55%),linear-gradient(160deg,#2d5e46 0%,#173325 100%)}
-        .tb-cover.crs-tile-cover.crs-tc-dli{background:radial-gradient(120% 90% at 85% 0%,rgba(255,255,255,.13),transparent 55%),linear-gradient(160deg,#28466b 0%,#14243b 100%)}.crs-tc-time{background:radial-gradient(120% 90% at 85% 0%,rgba(255,255,255,.13),transparent 55%),linear-gradient(160deg,#6b4a28 0%,#3b2614 100%)}.crs-tc-count{background:radial-gradient(120% 90% at 85% 0%,rgba(255,255,255,.13),transparent 55%),linear-gradient(160deg,#5a2d5e 0%,#2f1733 100%)}.crs-tc-forms{background:radial-gradient(120% 90% at 85% 0%,rgba(255,255,255,.13),transparent 55%),linear-gradient(160deg,#4a5a28 0%,#253014 100%)}.crs-tc-cases{background:radial-gradient(120% 90% at 85% 0%,rgba(255,255,255,.13),transparent 55%),linear-gradient(160deg,#7a2e2e 0%,#3d1515 100%)}.crs-tc-tenses{background:radial-gradient(120% 90% at 85% 0%,rgba(255,255,255,.13),transparent 55%),linear-gradient(160deg,#2d5a5e 0%,#163033 100%)}
+        .crs-retry{margin-left:12px;font:inherit;font-size:13px;padding:4px 10px;border-radius:14px;border:1px solid currentColor;background:transparent;color:inherit;cursor:pointer}.crs-sec-n.pf{color:#c9a227}.tb-cover.crs-tile-cover.crs-tc-dli{background:radial-gradient(120% 90% at 85% 0%,rgba(255,255,255,.13),transparent 55%),linear-gradient(160deg,#28466b 0%,#14243b 100%)}.tb-cover.crs-tile-cover.crs-tc-time{background:radial-gradient(120% 90% at 85% 0%,rgba(255,255,255,.13),transparent 55%),linear-gradient(160deg,#6b4a28 0%,#3b2614 100%)}.tb-cover.crs-tile-cover.crs-tc-count{background:radial-gradient(120% 90% at 85% 0%,rgba(255,255,255,.13),transparent 55%),linear-gradient(160deg,#5a2d5e 0%,#2f1733 100%)}.tb-cover.crs-tile-cover.crs-tc-forms{background:radial-gradient(120% 90% at 85% 0%,rgba(255,255,255,.13),transparent 55%),linear-gradient(160deg,#4a5a28 0%,#253014 100%)}.tb-cover.crs-tile-cover.crs-tc-cases{background:radial-gradient(120% 90% at 85% 0%,rgba(255,255,255,.13),transparent 55%),linear-gradient(160deg,#7a2e2e 0%,#3d1515 100%)}.tb-cover.crs-tile-cover.crs-tc-tenses{background:radial-gradient(120% 90% at 85% 0%,rgba(255,255,255,.13),transparent 55%),linear-gradient(160deg,#2d5a5e 0%,#163033 100%)}.tb-cover.crs-tile-cover .crs-tc-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;mix-blend-mode:normal;filter:none;z-index:0}.tb-cover.crs-tile-cover.has-img::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(15,8,4,.45) 0%,rgba(15,8,4,0) 28%,rgba(15,8,4,.1) 48%,rgba(15,8,4,.82) 100%)}.tb-cover.crs-tile-cover>span{position:relative;z-index:2}.tb-cover.crs-tile-cover>.crs-tc-kicker,.tb-cover.crs-tile-cover>.crs-tc-mark{position:absolute}.tb-cover.crs-tile-cover.has-img .crs-tc-mark{opacity:.28}.tb-cover.crs-tile-cover.has-img .crs-tc-title{text-shadow:0 1px 3px rgba(0,0,0,.6)}.crs-card-img{display:block;height:130px;margin:-16px -16px 8px;border-radius:12px 12px 0 0;background-size:cover;background-position:center 35%}.crs-card.has-img .crs-mark{color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.6);z-index:1}
         .crs-tc-kicker{position:absolute;top:12px;left:13px;font-family:'IBM Plex Sans',sans-serif;font-size:10px;letter-spacing:.18em;text-transform:uppercase;opacity:.75}
         .crs-tc-mark{position:absolute;top:2px;right:10px;font-family:'Old Standard TT',serif;font-size:84px;line-height:1;opacity:.18}
         .crs-tc-title{font-family:'Old Standard TT',serif;font-size:19px;line-height:1.15}
@@ -21942,7 +21963,9 @@ export default function App() {
                                 {info && info.crop
                                   ? <div className="au-crop" style={authorCropStyle(info)} />
                                   : (info && (info.file || info.img))
-                                  ? <TileImg srcs={[authorSrc(info, 400)]} fallback={<span className="au-mono" lang="ru">{mono}</span>} />
+                                  ? <TileImg srcs={[authorSrc(info, 400), authorCover[a] || ""]} fallback={<span className="au-mono" lang="ru">{mono}</span>} />
+                                  : authorCover[a]
+                                  ? <TileImg srcs={[authorCover[a]]} fallback={<span className="au-mono" lang="ru">{mono}</span>} />
                                   : <span className="au-mono" lang="ru">{mono}</span>}
                               </div>
                               <div className="tb-card-t" lang="ru">{nm}</div>
@@ -22391,7 +22414,8 @@ export default function App() {
                                     <div key={"course-" + c.id} className="tb-card crs-tile" role="button" tabIndex={0}
                                       onKeyDown={function(e){ if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go(); } }}
                                       onClick={go}>
-                                      <div className={"tb-cover crs-tile-cover crs-tc-" + c.id}>
+                                      <div className={"tb-cover crs-tile-cover crs-tc-" + c.id + (COURSE_PICS[c.id] ? " has-img" : "")}>
+                                        {COURSE_PICS[c.id] && <img className="crs-tc-img" src={COURSE_PICS[c.id].img} alt="" loading="lazy" decoding="async" />}
                                         <span className="crs-tc-kicker">Course</span>
                                         <span className="crs-tc-mark">{c.mark || "★"}</span>
                                         <span className="crs-tc-title">{c.title}</span>
@@ -24781,7 +24805,8 @@ export default function App() {
                         {COURSE_OUTLINE.map(function(c){
                           var st = courseState(c, courseProg);
                           return (
-                            <button key={c.id} type="button" className="crs-card" onClick={function(){ setCrsCourse(c.id); setCrsSec(null); }}>
+                            <button key={c.id} type="button" className={"crs-card" + (COURSE_PICS[c.id] ? " has-img" : "")} onClick={function(){ setCrsCourse(c.id); setCrsSec(null); }}>
+                              {COURSE_PICS[c.id] && <span className="crs-card-img" style={{backgroundImage: "url(\"" + COURSE_PICS[c.id].img + "\")"}} title={COURSE_PICS[c.id].title + " — " + COURSE_PICS[c.id].by} />}
                               <span className="crs-mark">{c.mark || "★"}</span>
                               <span className="crs-card-t">{c.title}</span>
                               {c.blurb && <span className="crs-card-b">{c.blurb}</span>}
@@ -24814,7 +24839,7 @@ export default function App() {
                             <li key={x.id}>
                               <button type="button" className={"crs-sec" + (rec.done ? " done" : rec.read ? " started" : "")}
                                 onClick={function(){ openSection(course.id, x.id); }}>
-                                <span className="crs-sec-n">{rec.done ? "✓" : i + 1}</span>
+                                <span className={"crs-sec-n" + (rec.perfect ? " pf" : "")}>{rec.perfect ? "★" : rec.done ? "✓" : i + 1}</span>
                                 <span className="crs-sec-t">{x.title}{x.sub ? <span className="crs-sec-s">{x.sub}</span> : null}</span>
                                 <span className="crs-sec-r">{x.n ? Math.min(right, x.n) + " / " + x.n : (rec.done ? "read" : "")}</span>
                               </button>
@@ -24838,6 +24863,16 @@ export default function App() {
                 var exIds = exs.map(function(e){ return e.id; });
                 var firstRight = exs.filter(function(e){ return rec.first && rec.first[e.id] === 1; }).length;
                 var allRight = exs.length > 0 && exs.every(function(e){ return rec.right && rec.right[e.id]; });
+                // Would a right answer to `e` now complete a run with no mistakes?
+                var cleanRun = function(e) {
+                  var me = exState[e.id] || {};
+                  if ((me.tries || 0) || me.shown) return false;
+                  return exIds.every(function(id){
+                    if (id === e.id) return true;
+                    var x = exState[id] || {};
+                    return x.status === "right" && !(x.tries || 0) && !x.shown;
+                  });
+                };
                 var setEx = function(id, patch) {
                   setExState(function(m){ var n = Object.assign({}, m); n[id] = Object.assign({}, m[id] || {}, patch); return n; });
                 };
@@ -24886,7 +24921,7 @@ export default function App() {
                                   disabled={es.status === "right"}
                                   onClick={function(){
                                     if (es.status === "right") return;
-                                    if (right) { setEx(e.id, { status: "right", picked: picked.concat([k]) }); noteAnswer(course.id, sec.id, e.id, true, exIds); }
+                                    if (right) { setEx(e.id, { status: "right", picked: picked.concat([k]) }); noteAnswer(course.id, sec.id, e.id, true, exIds, cleanRun(e)); }
                                     else if (picked.indexOf(k) < 0) { setEx(e.id, { status: "wrong", picked: picked.concat([k]), tries: (es.tries || 0) + 1 }); noteAnswer(course.id, sec.id, e.id, false, exIds); }
                                   }}>
                                   {cls === " ok" ? "✓ " : cls === " bad" ? "✗ " : ""}{rich(o)}
@@ -24921,7 +24956,7 @@ export default function App() {
                       return false;
                     });
                     setEx(e.id, ok ? { status: "right" } : { status: "wrong", tries: (es.tries || 0) + 1 });
-                    noteAnswer(course.id, sec.id, e.id, ok, exIds);
+                    noteAnswer(course.id, sec.id, e.id, ok, exIds, ok && cleanRun(e));
                   };
                   var parts = String(e.q || "").split("___");
                   var field = (
@@ -24956,7 +24991,7 @@ export default function App() {
                 return (
                   <div className="crs-body">
                     <button type="button" className="crs-back" onClick={function(){ setCrsSec(null); }}>← {course.title}</button>
-                    <div className="crs-kicker">Section {idxSec + 1} of {course.sections.length}{rec.done ? " · finished ✓" : ""}</div>
+                    <div className="crs-kicker">Section {idxSec + 1} of {course.sections.length}{rec.perfect ? " · perfect ★" : rec.done ? " · finished ✓" : ""}</div>
                     <h1 className="sti">{sec.title}</h1>
                     {data === "error" && <div className="lib-cat-hint">This lesson could not be loaded — try again in a moment.</div>}
                     {!data && <div className="lib-cat-hint">Loading…</div>}
@@ -24969,8 +25004,13 @@ export default function App() {
                             <p className="crs-p crs-exi">Pick the answer, or type it and press Enter. Green is right, red is not — try again until it is.</p>
                             {exs.map(exercise)}
                             <div className={"crs-score" + (allRight ? " done" : "")}>
-                              {allRight
-                                ? <>Section finished ✓ · {firstRight} of {exs.length} right at the first try</>
+                              {allRight && rec.perfect
+                                ? <>Perfect ★ · every exercise right without a mistake</>
+                                : allRight
+                                ? <>Section finished ✓ · {firstRight} of {exs.length} right at the first try
+                                    <button type="button" className="crs-retry" onClick={function(){ setExState({}); try { var el = document.querySelector(".crs-exw"); if (el) el.scrollIntoView({ block: "start" }); } catch (er) {} }}>
+                                      Try again for a perfect ★
+                                    </button></>
                                 : <>{Object.keys(rec.right || {}).filter(function(k){ return exIds.indexOf(k) >= 0; }).length} of {exs.length} answered</>}
                             </div>
                           </div>
@@ -25090,7 +25130,7 @@ export default function App() {
                             <li key={x.id}>
                               <button type="button" className={"crs-sec" + (rec.done ? " done" : rec.read ? " started" : "")}
                                 onClick={function(){ setTab("courses"); openSection(mc.id, x.id); }}>
-                                <span className="crs-sec-n">{rec.done ? "✓" : i + 1}</span>
+                                <span className={"crs-sec-n" + (rec.perfect ? " pf" : "")}>{rec.perfect ? "★" : rec.done ? "✓" : i + 1}</span>
                                 <span className="crs-sec-t">{x.title}{x.sub ? <span className="crs-sec-s">{x.sub}</span> : null}</span>
                                 <span className="crs-sec-r">{x.n ? Math.min(right, x.n) + " / " + x.n : ""}</span>
                               </button>

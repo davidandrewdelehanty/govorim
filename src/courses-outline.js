@@ -152,10 +152,22 @@ export default [
     "sub": "идти / ходить · ехать / ездить · лететь / летать"
    },
    {
+    "id": "m01-two-kinds-practice",
+    "title": "Practice: One way, or round and about",
+    "n": 14,
+    "sub": "14 real sentences from Tatoeba"
+   },
+   {
     "id": "m02-setting-out",
     "title": "Setting out: пойти, поехать",
     "n": 8,
     "sub": "the perfective по- · ходил and ездил for был"
+   },
+   {
+    "id": "m02-setting-out-practice",
+    "title": "Practice: Setting out: пойти, поехать",
+    "n": 14,
+    "sub": "14 real sentences from Tatoeba"
    },
    {
     "id": "m03-carry-lead-drive",
@@ -164,10 +176,22 @@ export default [
     "sub": "нести / носить · вести / водить · везти / возить · бежать / бегать · плыть / плавать"
    },
    {
+    "id": "m03-carry-lead-drive-practice",
+    "title": "Practice: Carrying, leading, driving, running, swimming",
+    "n": 14,
+    "sub": "14 real sentences from Tatoeba"
+   },
+   {
     "id": "m04-prefixes",
     "title": "How prefixes work: при- and у-",
     "n": 9,
     "sub": "arriving and leaving · the new aspect pairs"
+   },
+   {
+    "id": "m04-prefixes-practice",
+    "title": "Practice: How prefixes work: при- and у-",
+    "n": 14,
+    "sub": "14 real sentences from Tatoeba"
    },
    {
     "id": "m05-in-out",
@@ -176,10 +200,22 @@ export default [
     "sub": "входить / войти · выходить / выйти"
    },
    {
+    "id": "m05-in-out-practice",
+    "title": "Practice: Going in and going out: в- and вы-",
+    "n": 14,
+    "sub": "14 real sentences from Tatoeba"
+   },
+   {
     "id": "m06-toward-away",
     "title": "Approaching and moving off: под- and от-",
     "n": 7,
     "sub": "подходить к · отходить от"
+   },
+   {
+    "id": "m06-toward-away-practice",
+    "title": "Practice: Approaching and moving off: под- and от-",
+    "n": 14,
+    "sub": "14 real sentences from Tatoeba"
    },
    {
     "id": "m07-reach-cross",
@@ -188,16 +224,34 @@ export default [
     "sub": "доходить до · переходить через · moving house"
    },
    {
+    "id": "m07-reach-cross-practice",
+    "title": "Practice: Reaching and crossing: до- and пере-",
+    "n": 14,
+    "sub": "14 real sentences from Tatoeba"
+   },
+   {
     "id": "m08-through-around",
     "title": "Through, past and around: про- and об-",
     "n": 8,
     "sub": "проходить мимо · обходить вокруг"
    },
    {
+    "id": "m08-through-around-practice",
+    "title": "Practice: Through, past and around: про- and об-",
+    "n": 14,
+    "sub": "14 real sentences from Tatoeba"
+   },
+   {
     "id": "m09-drop-by-down",
     "title": "Dropping in, going down: за- and с-",
     "n": 7,
     "sub": "заходить за · сходить с · за + instrumental"
+   },
+   {
+    "id": "m09-drop-by-down-practice",
+    "title": "Practice: Dropping in, going down: за- and с-",
+    "n": 14,
+    "sub": "14 real sentences from Tatoeba"
    },
    {
     "id": "m10-round-trips",
@@ -237,10 +291,22 @@ export default [
     "sub": "DLI Lessons 40, 73, 74 · Который час? · В котором часу?"
    },
    {
+    "id": "t1-clock-practice",
+    "title": "Practice: What time is it?",
+    "n": 4,
+    "sub": "4 real sentences from Tatoeba"
+   },
+   {
     "id": "t2-parts-of-day",
     "title": "Morning, every day, all day",
     "n": 12,
     "sub": "DLI Lessons 22, 35, 37, 74 · утром, вечером · каждый · весь · по утрам"
+   },
+   {
+    "id": "t2-parts-of-day-practice",
+    "title": "Practice: Morning, every day, all day",
+    "n": 14,
+    "sub": "14 real sentences from Tatoeba"
    },
    {
     "id": "t3-day-week-month-year",
@@ -249,10 +315,22 @@ export default [
     "sub": "DLI Lessons 19, 73 · в + Acc. · в + Prep. · на + Prep."
    },
    {
+    "id": "t3-day-week-month-year-practice",
+    "title": "Practice: On Monday, this week, last month, next year",
+    "n": 14,
+    "sub": "14 real sentences from Tatoeba"
+   },
+   {
     "id": "t4-how-long",
     "title": "How long, how long ago, how old",
     "n": 9,
     "sub": "DLI Lessons 41, 73 · год — лет · Сколько вам лет? · тому назад · на + Acc."
+   },
+   {
+    "id": "t4-how-long-practice",
+    "title": "Practice: How long, how long ago, how old",
+    "n": 14,
+    "sub": "14 real sentences from Tatoeba"
    },
    {
     "id": "t5-months-dates",
@@ -261,10 +339,22 @@ export default [
     "sub": "DLI Lessons 50, 75, 76 · Какое сегодня число? · Какого числа? · the complete date"
    },
    {
+    "id": "t5-months-dates-practice",
+    "title": "Practice: Months and dates",
+    "n": 14,
+    "sub": "14 real sentences from Tatoeba"
+   },
+   {
     "id": "t6-from-till-by",
     "title": "Since, till, by, before, after, in",
     "n": 11,
     "sub": "DLI Lessons 75, 77 · с, до, с … до · за · к · перед, до, после · через … после"
+   },
+   {
+    "id": "t6-from-till-by-practice",
+    "title": "Practice: Since, till, by, before, after, in",
+    "n": 14,
+    "sub": "14 real sentences from Tatoeba"
    },
    {
     "id": "t7-words",
@@ -292,10 +382,22 @@ export default [
     "sub": "DLI Lesson 39 · один, два, три, четыре, пять + noun"
    },
    {
+    "id": "c1-numbers-nouns-practice",
+    "title": "Practice: Numbers with nouns",
+    "n": 14,
+    "sub": "14 real sentences from Tatoeba"
+   },
+   {
     "id": "c2-genitive-plural",
     "title": "The genitive plural",
     "n": 13,
     "sub": "DLI Lessons 38–41 · the four basic types · deviations · человек, год"
+   },
+   {
+    "id": "c2-genitive-plural-practice",
+    "title": "Practice: The genitive plural",
+    "n": 14,
+    "sub": "14 real sentences from Tatoeba"
    },
    {
     "id": "c3-how-many",
@@ -304,16 +406,34 @@ export default [
     "sub": "DLI Lesson 38 · много, мало, сколько, несколько · есть and нет"
    },
    {
+    "id": "c3-how-many-practice",
+    "title": "Practice: Much, many, few, how many, several",
+    "n": 14,
+    "sub": "14 real sentences from Tatoeba"
+   },
+   {
     "id": "c4-one-two-three-four",
     "title": "один, два, три, четыре in every case",
     "n": 10,
     "sub": "DLI Lesson 70 · declension · with adjectives · special meanings of один"
    },
    {
+    "id": "c4-one-two-three-four-practice",
+    "title": "Practice: один, два, три, четыре in every case",
+    "n": 14,
+    "sub": "14 real sentences from Tatoeba"
+   },
+   {
     "id": "c5-five-and-up",
     "title": "Five to a hundred in every case",
     "n": 10,
     "sub": "DLI Lesson 71 · 5–20 and 30 · 40, 90, 100 · 50–80 · compound numerals · the accusative"
+   },
+   {
+    "id": "c5-five-and-up-practice",
+    "title": "Practice: Five to a hundred in every case",
+    "n": 14,
+    "sub": "14 real sentences from Tatoeba"
    },
    {
     "id": "c6-hundreds-thousands",
@@ -328,10 +448,22 @@ export default [
     "sub": "DLI Lesson 72 · сто тридцать второй · дроби · равен · сколько, несколько in every case"
    },
    {
+    "id": "c7-ordinals-fractions-practice",
+    "title": "Practice: Ordinals, fractions, «equal to»",
+    "n": 14,
+    "sub": "14 real sentences from Tatoeba"
+   },
+   {
     "id": "c8-collective-half",
     "title": "двое, трое… and полтора",
     "n": 12,
     "sub": "DLI Lessons 98–99 · collective numerals · полтора, полторы, полутора · полтораста"
+   },
+   {
+    "id": "c8-collective-half-practice",
+    "title": "Practice: двое, трое… and полтора",
+    "n": 14,
+    "sub": "14 real sentences from Tatoeba"
    }
   ]
  },
@@ -353,10 +485,22 @@ export default [
     "sub": "DLI Lessons 16–17 · six cases · где? · о ком? о чём? · -е and -и"
    },
    {
+    "id": "k1-nom-prep-practice",
+    "title": "Practice: Cases, the nominative and the prepositional",
+    "n": 14,
+    "sub": "14 real sentences from Tatoeba"
+   },
+   {
     "id": "k2-accusative",
     "title": "The accusative case",
     "n": 10,
     "sub": "DLI Lesson 18 · кого? что? · endings · stress · pronouns"
+   },
+   {
+    "id": "k2-accusative-practice",
+    "title": "Practice: The accusative case",
+    "n": 14,
+    "sub": "14 real sentences from Tatoeba"
    },
    {
     "id": "k3-genitive",
@@ -365,10 +509,22 @@ export default [
     "sub": "DLI Lessons 23, 24, 27, 33 · чей? · quantity · из, с, от, у, около, без… · negation"
    },
    {
+    "id": "k3-genitive-practice",
+    "title": "Practice: The genitive case",
+    "n": 14,
+    "sub": "14 real sentences from Tatoeba"
+   },
+   {
     "id": "k4-dative",
     "title": "The dative case",
     "n": 11,
     "sub": "DLI Lessons 28–29 · кому? · endings · по · к"
+   },
+   {
+    "id": "k4-dative-practice",
+    "title": "Practice: The dative case",
+    "n": 14,
+    "sub": "14 real sentences from Tatoeba"
    },
    {
     "id": "k5-instrumental",
@@ -377,10 +533,22 @@ export default [
     "sub": "DLI Lesson 30 · с кем? чем? · endings · быть, работать · командовать"
    },
    {
+    "id": "k5-instrumental-practice",
+    "title": "Practice: The instrumental case",
+    "n": 14,
+    "sub": "14 real sentences from Tatoeba"
+   },
+   {
     "id": "k6-singular-tables",
     "title": "All six cases, singular",
     "n": 12,
     "sub": "DLI Lessons 32–33 · masculine, neuter, feminine · peculiarities · имя, время · кто, что"
+   },
+   {
+    "id": "k6-singular-tables-practice",
+    "title": "Practice: All six cases, singular",
+    "n": 14,
+    "sub": "14 real sentences from Tatoeba"
    },
    {
     "id": "k7-genitive-plural",
@@ -389,10 +557,22 @@ export default [
     "sub": "DLI Lessons 38–41 · four basic types · inserted vowels · irregular forms"
    },
    {
+    "id": "k7-genitive-plural-practice",
+    "title": "Practice: The genitive plural",
+    "n": 14,
+    "sub": "14 real sentences from Tatoeba"
+   },
+   {
     "id": "k8-plural-cases",
     "title": "All six cases, plural",
     "n": 13,
     "sub": "DLI Lessons 42–45 · accusative · -ами/-ями · -ам/-ям · -ах/-ях · review"
+   },
+   {
+    "id": "k8-plural-cases-practice",
+    "title": "Practice: All six cases, plural",
+    "n": 14,
+    "sub": "14 real sentences from Tatoeba"
    },
    {
     "id": "k9-adjectives-singular",
@@ -401,16 +581,34 @@ export default [
     "sub": "DLI Lessons 46–47 · hard, soft, guttural, sibilant · мой, наш"
    },
    {
+    "id": "k9-adjectives-singular-practice",
+    "title": "Practice: Adjectives and possessives, singular",
+    "n": 14,
+    "sub": "14 real sentences from Tatoeba"
+   },
+   {
     "id": "k10-adjectives-plural",
     "title": "Adjectives and possessives, plural; surnames",
     "n": 13,
     "sub": "DLI Lessons 48, 50 · after numerals · Громов, Чайковский, Браун"
    },
    {
+    "id": "k10-adjectives-plural-practice",
+    "title": "Practice: Adjectives and possessives, plural; surnames",
+    "n": 14,
+    "sub": "14 real sentences from Tatoeba"
+   },
+   {
     "id": "k11-prepositions",
     "title": "Which case after which preposition",
     "n": 14,
     "sub": "DLI Lessons 43, 47, 60–61 · review of prepositions"
+   },
+   {
+    "id": "k11-prepositions-practice",
+    "title": "Practice: Which case after which preposition",
+    "n": 14,
+    "sub": "14 real sentences from Tatoeba"
    }
   ]
  },
@@ -432,10 +630,22 @@ export default [
     "sub": "DLI Lessons 42, 84 · -й, -и, -ь · -ся · irregular forms · пусть · давайте · infinitive commands"
    },
    {
+    "id": "f1-imperative-practice",
+    "title": "Practice: The imperative: читай, пусть, давайте",
+    "n": 14,
+    "sub": "14 real sentences from Tatoeba"
+   },
+   {
     "id": "f2-conditional",
     "title": "If and would: бы",
     "n": 11,
     "sub": "DLI Lessons 90–91 · если and если бы · wishes · requests · ли"
+   },
+   {
+    "id": "f2-conditional-practice",
+    "title": "Practice: If and would: бы",
+    "n": 14,
+    "sub": "14 real sentences from Tatoeba"
    },
    {
     "id": "f3-short-passive",
@@ -444,10 +654,22 @@ export default [
     "sub": "DLI Lessons 85–87 · -ен/-ён · -н · -т · быть + PPP · English passives"
    },
    {
+    "id": "f3-short-passive-practice",
+    "title": "Practice: Short past passive participles: куплен, написан, открыт",
+    "n": 14,
+    "sub": "14 real sentences from Tatoeba"
+   },
+   {
     "id": "f4-long-passive",
     "title": "Long past passive participles: купленная книга",
     "n": 12,
     "sub": "DLI Lessons 88–89 · -нный, -тый · participial phrases · который"
+   },
+   {
+    "id": "f4-long-passive-practice",
+    "title": "Practice: Long past passive participles: купленная книга",
+    "n": 14,
+    "sub": "14 real sentences from Tatoeba"
    },
    {
     "id": "f5-present-active",
@@ -456,10 +678,22 @@ export default [
     "sub": "DLI Lesson 93 · -щий · -щийся · declension · который"
    },
    {
+    "id": "f5-present-active-practice",
+    "title": "Practice: Present active participles: читающий",
+    "n": 14,
+    "sub": "14 real sentences from Tatoeba"
+   },
+   {
     "id": "f6-past-active",
     "title": "Past active participles: прочитавший, принёсший, шедший",
     "n": 15,
     "sub": "DLI Lessons 94–95 · -вший · -ший · идти, вести · оба"
+   },
+   {
+    "id": "f6-past-active-practice",
+    "title": "Practice: Past active participles: прочитавший, принёсший, шедший",
+    "n": 14,
+    "sub": "14 real sentences from Tatoeba"
    },
    {
     "id": "f7-passive-present",
@@ -468,16 +702,34 @@ export default [
     "sub": "DLI Lessons 96–97 · imperfective passive · functions of -ся · -емый, -имый"
    },
    {
+    "id": "f7-passive-present-practice",
+    "title": "Practice: The -ся passive and present passive participles: читается, издаваемый",
+    "n": 14,
+    "sub": "14 real sentences from Tatoeba"
+   },
+   {
     "id": "f8-gerund-imperfective",
     "title": "Imperfective деепричастия: читая, говоря",
     "n": 13,
     "sub": "DLI Lessons 100, 102 · -я, -а · -ясь · будучи · when not to use them"
    },
    {
+    "id": "f8-gerund-imperfective-practice",
+    "title": "Practice: Imperfective деепричастия: читая, говоря",
+    "n": 14,
+    "sub": "14 real sentences from Tatoeba"
+   },
+   {
     "id": "f9-gerund-perfective",
     "title": "Perfective деепричастия: прочитав, придя",
     "n": 12,
     "sub": "DLI Lessons 101–103 · -в, -вши · -вшись · -я from -ти verbs · as prepositions"
+   },
+   {
+    "id": "f9-gerund-perfective-practice",
+    "title": "Practice: Perfective деепричастия: прочитав, придя",
+    "n": 14,
+    "sub": "14 real sentences from Tatoeba"
    }
   ]
  },

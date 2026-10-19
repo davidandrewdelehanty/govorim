@@ -5,8 +5,10 @@
 //   { right: { [exerciseId]: firstRightAt },   exercises answered correctly
 //     first: { [exerciseId]: 1 | 0 },          right at the first try, or not
 //     read: at,                                 the lesson opened and read
-//     done: at }                                every exercise answered (or,
+//     done: at,                                 every exercise answered (or,
 //                                               for a lesson without any, read)
+//     perfect: at }                             every exercise right with no
+//                                               wrong answer, in one go
 // Nothing is ever taken back: merging two devices' records keeps every right
 // answer and the earliest time for each.
 
@@ -25,6 +27,8 @@ export function mergeCourseProg(a, b) {
     var first = Object.assign({}, y.first || {}, x.first || {});     // the earlier record wins
     var early = function (p, q) { p = Number(p) || 0; q = Number(q) || 0; return p && q ? Math.min(p, q) : (p || q); };
     out[k] = { right: right, first: first, read: early(x.read, y.read), done: early(x.done, y.done) };
+    var pf = early(x.perfect, y.perfect);
+    if (pf) out[k].perfect = pf;
   });
   return out;
 }
@@ -35,6 +39,22 @@ export function sectionDone(rec, exerciseIds) {
   if (rec.done) return true;
   if (!exerciseIds || !exerciseIds.length) return !!rec.read;
   return exerciseIds.every(function (id) { return rec.right && rec.right[id]; });
+}
+
+// Was every exercise of this section answered right with no mistakes — in a
+// clean run (rec.perfect), or all right at the very first try?
+export function sectionPerfect(rec, n) {
+  if (!rec || !n) return false;
+  if (rec.perfect) return true;
+  for (var i = 1; i <= n; i++) if (!rec.first || rec.first["q" + i] !== 1) return false;
+  return true;
+}
+function perfectAt(rec, n) {
+  if (!sectionPerfect(rec, n)) return 0;
+  if (rec.perfect) return rec.perfect;
+  var at = 0;
+  for (var i = 1; i <= n; i++) at = Math.max(at, Number(rec.right && rec.right["q" + i]) || 0);
+  return at || rec.done || 1;
 }
 
 // How far along a course is: { done, of, at } — `at` when the last section was finished.
@@ -59,6 +79,23 @@ export function courseBadges(outline, prog) {
         earned: !!(rec && rec.done), n: rec && rec.done ? 1 : 0, of: 1, at: (rec && rec.done) || 0,
         course: c.id, section: s.id,
       });
+    });
+    var withEx = (c.sections || []).filter(function (s) { return s.n > 0; });
+    var pDone = 0, pAt = 0;
+    withEx.forEach(function (s, i) {
+      var rec = (prog || {})[c.id + "/" + s.id];
+      var at = perfectAt(rec, s.n);
+      if (at) { pDone++; pAt = Math.max(pAt, at); }
+      out.push({
+        id: "course:" + c.id + ":" + s.id + ":perfect", group: "course", tier: 2, mark: "★",
+        title: c.short + " · " + s.title + " · perfect", desc: "Answer every exercise in “" + s.title + "” right, without a single mistake",
+        earned: !!at, n: at ? 1 : 0, of: 1, at: at, course: c.id, section: s.id, perfect: true,
+      });
+    });
+    if (withEx.length) out.push({
+      id: "course:" + c.id + ":perfect", group: "course", tier: 5, mark: "★",
+      title: c.title + " · perfect", desc: "Answer every exercise in every section of " + c.title + " without a mistake",
+      earned: pDone === withEx.length, n: pDone, of: withEx.length, at: pDone === withEx.length ? pAt : 0, course: c.id, perfect: true,
     });
     var st = courseState(c, prog);
     out.push({
