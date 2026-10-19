@@ -15847,6 +15847,15 @@ export default function App() {
         .cj-f.has{text-decoration:underline dotted rgba(160,110,20,.7);text-underline-offset:3px}
         .cj-f.on{background:rgba(160,110,20,.2)}
         .cj-f.miss{color:rgba(42,31,20,.4);text-decoration:line-through}
+        .tb-cover.crs-tile-cover{display:flex;flex-direction:column;justify-content:flex-end;gap:6px;padding:14px 13px 13px;color:#f6efe2;
+          background:radial-gradient(120% 90% at 85% 0%,rgba(255,255,255,.14),transparent 55%),linear-gradient(160deg,#7d2f1f 0%,#4a1a10 100%);overflow:hidden}
+        .tb-cover.crs-tile-cover.crs-tc-dli{background:radial-gradient(120% 90% at 85% 0%,rgba(255,255,255,.13),transparent 55%),linear-gradient(160deg,#28466b 0%,#14243b 100%)}
+        .crs-tc-kicker{position:absolute;top:12px;left:13px;font-family:'IBM Plex Sans',sans-serif;font-size:10px;letter-spacing:.18em;text-transform:uppercase;opacity:.75}
+        .crs-tc-mark{position:absolute;top:2px;right:10px;font-family:'Old Standard TT',serif;font-size:84px;line-height:1;opacity:.18}
+        .crs-tc-title{font-family:'Old Standard TT',serif;font-size:19px;line-height:1.15}
+        .crs-tc-n{font-family:'IBM Plex Sans',sans-serif;font-size:11px;opacity:.8}
+        .crs-tc-prog{height:4px;border-radius:2px;background:rgba(255,255,255,.2);overflow:hidden}
+        .crs-tc-prog span{display:block;height:100%;background:#e9c46a}
         .crs-wrap{align-items:stretch !important}
         .crs-body{width:100%;max-width:820px;margin:0 auto;text-align:left;display:flex;flex-direction:column;gap:10px}
         .crs-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
@@ -22280,10 +22289,33 @@ export default function App() {
                                   return ((a.book.year || 9999) - (b.book.year || 9999)) ||
                                     String(a.book.title).localeCompare(String(b.book.title), "ru");
                                 });
+                                // The Courses tab's courses stand at the head of the
+                                // textbook shelf: a tile each, with the reader's progress.
+                                var courseTiles = (cat === "Soviet Textbooks" && targetLang !== "en") ? COURSE_OUTLINE.map(function(c){
+                                  var st = courseState(c, courseProg);
+                                  var go = function(){ setTab("courses"); setCrsCourse(c.id); setCrsSec(null); stopTTS(); };
+                                  return (
+                                    <div key={"course-" + c.id} className="tb-card crs-tile" role="button" tabIndex={0}
+                                      onKeyDown={function(e){ if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go(); } }}
+                                      onClick={go}>
+                                      <div className={"tb-cover crs-tile-cover crs-tc-" + c.id}>
+                                        <span className="crs-tc-kicker">Course</span>
+                                        <span className="crs-tc-mark">{c.mark || "★"}</span>
+                                        <span className="crs-tc-title">{c.title}</span>
+                                        <span className="crs-tc-n">{c.sections.length} lessons · {c.sections.reduce(function(n, s){ return n + (s.n || 0); }, 0)} exercises</span>
+                                        {st.done > 0 && <span className="crs-tc-prog"><span style={{width: Math.round(100 * st.done / st.of) + "%"}} /></span>}
+                                        {st.of > 0 && st.done === st.of && <span className="tb-read">done</span>}
+                                      </div>
+                                      <div className="tb-card-t">{c.title}</div>
+                                      <div className="tb-card-a"><span>{st.done ? st.done + " of " + st.of + " lessons done" : "Interactive grammar course"}</span></div>
+                                      {c.blurb && <div className="tb-card-b">{c.blurb}</div>}
+                                    </div>
+                                  );
+                                }) : [];
                                 return (
                                   <div key={cat} className="lib-section">
                                     <div className="lib-section-hdr">{cat === "Fairytales" ? "Fairytales" : "Soviet textbooks"}</div>
-                                    <div className={"tb-shelf" + (cat === "Fairytales" ? " ft-shelf" : "")}>{tbSorted.map(renderTb)}</div>
+                                    <div className={"tb-shelf" + (cat === "Fairytales" ? " ft-shelf" : "")}>{courseTiles.concat(tbSorted.map(renderTb))}</div>
                                   </div>
                                 );
                               }
@@ -24778,7 +24810,23 @@ export default function App() {
                   var check = function() {
                     var v = normAns(es.val);
                     if (!v) return;
-                    var ok = (e.answers || []).some(function(a){ return normAns(a) === v; });
+                    // The answer alone is right — and so is the answer typed with
+                    // any of the words around the blank («моя» or «моя машина»,
+                    // «книгу» or «читаю книгу» or the whole sentence). Hints in
+                    // brackets are not part of the sentence.
+                    var qs = String(e.q || "").replace(/\([^)]*\)/g, " ").split("___");
+                    var bw = normAns(qs[0] || "").split(" ").filter(Boolean);
+                    var aw = normAns(qs.slice(1).join(" ")).split(" ").filter(Boolean);
+                    var ok = (e.answers || []).some(function(a){
+                      var A = normAns(a);
+                      if (A === v) return true;
+                      for (var i = 0; i <= bw.length; i++) {
+                        for (var j = 0; j <= aw.length; j++) {
+                          if (bw.slice(bw.length - i).concat([A], aw.slice(0, j)).join(" ") === v) return true;
+                        }
+                      }
+                      return false;
+                    });
                     setEx(e.id, ok ? { status: "right" } : { status: "wrong", tries: (es.tries || 0) + 1 });
                     noteAnswer(course.id, sec.id, e.id, ok, exIds);
                   };
@@ -24787,7 +24835,7 @@ export default function App() {
                     <input key="f" type="text" lang="ru" autoComplete="off" autoCapitalize="off" spellCheck={false}
                       className={"crs-in" + (es.status === "right" ? " ok" : es.status === "wrong" ? " bad" : "")}
                       value={es.val || ""} readOnly={es.status === "right"}
-                      size={Math.max(4, Math.min(22, ((e.answers && e.answers[0]) || "").length + 2))}
+                      size={Math.max(4, Math.min(40, Math.max(((e.answers && e.answers[0]) || "").length + 2, String(es.val || "").length + 1)))}
                       onChange={function(ev){ setEx(e.id, { val: ev.target.value, status: es.status === "right" ? "right" : "" }); }}
                       onKeyDown={function(ev){ if (ev.key === "Enter") check(); }} />
                   );
