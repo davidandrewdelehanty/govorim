@@ -16284,6 +16284,9 @@ export default function App() {
         .crs-sec-r{font-family:'IBM Plex Sans',sans-serif;font-size:12px;color:rgba(42,31,20,.5)}
         .crs-lesson{display:flex;flex-direction:column;gap:10px}
         .crs-h{font-family:'Old Standard TT',serif;font-size:23px;font-weight:400;color:#000;margin:14px 0 0}
+        .crs-formula{font-family:'Old Standard TT',serif;font-size:40px;font-weight:700;line-height:1.1;letter-spacing:.01em;color:#8a3b1e;margin:6px 0 2px;padding-bottom:8px;border-bottom:3px solid #8a3b1e}
+        .crs-lead{font-family:'Literata',serif;font-size:22px;font-weight:700;line-height:1.35;color:#1c1610;margin:4px 0 6px}
+        @media (max-width:480px){.crs-formula{font-size:30px}.crs-lead{font-size:19px}}
         .crs-p{font-family:'Literata',serif;font-size:16.5px;line-height:1.65;color:#1c1610;margin:0}
         .crs-ul{margin:0;padding-left:22px;font-family:'Literata',serif;font-size:16px;line-height:1.6;color:#1c1610}
         .crs-note{font-family:'Literata',serif;font-size:15px;line-height:1.55;padding:10px 14px;border-left:3px solid #b58a2a;background:rgba(181,138,42,.09);border-radius:4px;color:#2a1f14}
@@ -25206,9 +25209,9 @@ export default function App() {
                             <li key={x.id}>
                               <button type="button" className={"crs-sec" + (/-practice(-\d+)?$/.test(x.id) ? " pr" : "") + (rec.done ? " done" : rec.read ? " started" : "")}
                                 onClick={function(){ openSection(course.id, x.id); }}>
-                                <span className={"crs-sec-n" + (rec.perfect ? " pf" : "")}>{rec.perfect ? "★" : rec.done ? "✓" : x.stream ? "∞" : /-practice(-\d+)?$/.test(x.id) ? "✎" : course.sections.slice(0, i + 1).filter(function(y){ return !/-practice(-\d+)?$/.test(y.id) && !y.stream; }).length}</span>
+                                <span className={"crs-sec-n" + (rec.perfect ? " pf" : "")}>{rec.perfect ? "★" : rec.done ? "✓" : (x.stream && !x.n) ? "∞" : /-practice(-\d+)?$/.test(x.id) ? "✎" : course.sections.slice(0, i + 1).filter(function(y){ return !/-practice(-\d+)?$/.test(y.id) && !(y.stream && !y.n); }).length}</span>
                                 <span className="crs-sec-t">{x.title}{x.sub ? <span className="crs-sec-s">{x.sub}</span> : null}</span>
-                                <span className="crs-sec-r">{x.n ? Math.min(right, x.n) + " / " + x.n : x.stream ? "endless" : (rec.done ? "read" : "")}</span>
+                                <span className="crs-sec-r">{x.n ? Math.min(right, x.n) + " / " + x.n : (x.stream && !x.n) ? "endless" : (rec.done ? "read" : "")}</span>
                               </button>
                             </li>
                           );
@@ -25245,6 +25248,10 @@ export default function App() {
                 };
                 var block = function(b, i) {
                   if (b.t === "h") return <h2 key={i} className="crs-h">{rich(b.text)}</h2>;
+                  // The explanation that opens a chapter of exercises, set large:
+                  // the construction itself, then the one idea to take away.
+                  if (b.t === "formula") return <div key={i} className="crs-formula" lang="ru">{rich(b.text)}</div>;
+                  if (b.t === "lead") return <p key={i} className="crs-lead">{rich(b.text)}</p>;
                   if (b.t === "note") return <div key={i} className="crs-note">{rich(b.text)}</div>;
                   if (b.t === "list") return <ul key={i} className="crs-ul">{b.items.map(function(x, k){ return <li key={k}>{rich(x)}</li>; })}</ul>;
                   if (b.t === "ex") return (
@@ -25475,7 +25482,12 @@ export default function App() {
                             // clock, write the time, set, write… The after-midnight
                             // times can only be asked as "set the clock" (a twelve-hour
                             // face shows 00:25 as 12:25), so they fill the set slots.
-                            var items = shuf(exs.map(function(_, i){ return { i: i, v: Math.floor(Math.random() * (((exs[i].sets || []).length) || 1)) }; }));
+                            // A finite stream (the time course) deals only what is not
+                            // yet answered right, so a reader who comes back picks up
+                            // where they left off; once nothing is left, it is finished.
+                            var pool = exs.map(function(_, i){ return i; });
+                            if (data.finite) pool = pool.filter(function(i){ return !(rec.right && rec.right[exs[i].id]); });
+                            var items = shuf(pool.map(function(i){ return { i: i, v: Math.floor(Math.random() * (((exs[i].sets || []).length) || 1)) }; }));
                             var setQ = [], sayQ = [], flip = 0;
                             items.forEach(function(it) {
                               if (exs[it.i].noSay) { it.mode = "set"; setQ.push(it); }
@@ -25484,8 +25496,34 @@ export default function App() {
                             setQ = shuf(setQ);
                             var mixed = [];
                             for (var k = 0; k < Math.max(setQ.length, sayQ.length); k++) { if (setQ[k]) mixed.push(setQ[k]); if (sayQ[k]) mixed.push(sayQ[k]); }
-                            setTimeout(function(){ setCrsStream({ key: key, order: mixed, pos: 0, right: 0, seen: 0 }); }, 0);
+                            setTimeout(function(){ setCrsStream({ key: key, order: mixed, pos: 0, right: 0, seen: 0, round: 1 }); }, 0);
                             return <div className="lib-cat-hint">Loading…</div>;
+                          }
+                          if (data.finite && st.pos >= st.order.length) {
+                            // The end of the deal. Whatever was skipped or got wrong
+                            // comes round again; when nothing is left, the chapter is done.
+                            var left = exs.filter(function(x){ return !(rec.right && rec.right[x.id]); });
+                            var again = function() {
+                              var order2 = shuf(left.map(function(x){ return { i: exs.indexOf(x), v: 0, mode: "set" }; }));
+                              setExState({});
+                              setCrsStream({ key: key, order: order2, pos: 0, right: 0, seen: 0, round: (st.round || 1) + 1 });
+                            };
+                            var allAgain = function() {
+                              var order3 = shuf(exs.map(function(x, i){ return { i: i, v: 0, mode: "set" }; }));
+                              setExState({});
+                              setCrsStream({ key: key, order: order3, pos: 0, right: 0, seen: 0, round: 1 });
+                            };
+                            return (
+                              <div className="crs-exw crs-stream">
+                                <div className={"crs-score" + (left.length ? "" : " done")}>
+                                  {left.length
+                                    ? <>{exs.length - left.length} of {exs.length} answered right · {left.length} still to go
+                                        <button type="button" className="crs-retry" onClick={again}>Go through the rest →</button></>
+                                    : <>Chapter finished ✓ · all {exs.length} answered right
+                                        <button type="button" className="crs-retry" onClick={allAgain}>Go through them all again</button></>}
+                                </div>
+                              </div>
+                            );
                           }
                           var it = st.order[st.pos % st.order.length];
                           var x0 = exs[it.i];
@@ -25515,7 +25553,9 @@ export default function App() {
                             <div className="crs-exw crs-stream">
                               <div className="crs-stream-top">
                                 <span className="crs-stream-n">{st.seen + 1}</span>
-                                <span className="crs-stream-tally">{st.right} right first time, of {st.seen}{e.type === "clockset" ? " · set the clock" : e.clock ? " · write the time" : ""}</span>
+                                <span className="crs-stream-tally">{data.finite
+                                  ? (st.seen + 1) + " of " + st.order.length + (st.round > 1 ? " · round " + st.round : "") + " · " + Object.keys(rec.right || {}).filter(function(k){ return exIds.indexOf(k) >= 0; }).length + " of " + exs.length + " right so far"
+                                  : st.right + " right first time, of " + st.seen + (e.type === "clockset" ? " · set the clock" : e.clock ? " · write the time" : "")}</span>
                               </div>
                               {exercise(e, st.seen)}
                               <div className="crs-nav crs-stream-nav">

@@ -63,7 +63,7 @@ export function courseState(course, prog) {
   if (course.repeat) return { done: 0, of: 0, at: 0 };
   var done = 0, at = 0;
   // An endless practice stream (one drill after another, as many as you like) is never finished and is not counted.
-  var secs = (course.sections || []).filter(function (s) { return !s.stream; });
+  var secs = (course.sections || []).filter(function (s) { return !(s.stream && !s.n); });
   secs.forEach(function (s) {
     var rec = (prog || {})[course.id + "/" + s.id];
     if (rec && rec.done) { done++; at = Math.max(at, rec.done); }
@@ -83,7 +83,7 @@ export function courseBadges(outline, prog) {
     if (c.repeat) return;
     var lessonNo = 0;
     (c.sections || []).forEach(function (s) {
-      if (isPractice(s.id) || s.stream) return;
+      if (isPractice(s.id) || (s.stream && !s.n)) return;
       var i = lessonNo++;
       var rec = (prog || {})[c.id + "/" + s.id];
       out.push({

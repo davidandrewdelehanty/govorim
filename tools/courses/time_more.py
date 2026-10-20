@@ -43,7 +43,7 @@ RX_NA = re.compile(r"(?<![\w-])([Нн]а)\s+((?:следующий|другой|
 # N раз(а) в день / неделю / месяц / год
 RX_FREQ = re.compile(r"(?<![\w-])(раза?)\s+([Вв])\s+(день|неделю|месяц|год|час|минуту|сутки)(?![\w-])")
 
-MIN_W, MAX_W = 4, 22
+MIN_W, MAX_W = 4, 30
 
 
 DAY_NOM = {"понедельник": "понедельник", "вторник": "вторник", "среду": "среда", "четверг": "четверг",
@@ -175,7 +175,7 @@ def main():
         print("tatoeba pairs: %d" % len(tat))
     random.Random(11).shuffle(rows)
     # Tatoeba first: a sentence with a translation beats a bare citation.
-    limits = {"day": 400, "na": 120, "unit": 160, "freq": 60}
+    limits = {"day": 1500, "na": 200, "unit": 300, "freq": 100}
     found = drills_from(tat + rows, limits)
     kinds = {k: len(v) for k, v in found.items()}
     print("drills:", kinds)

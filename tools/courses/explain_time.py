@@ -450,7 +450,7 @@ def apply(apply_changes=True, verbose=False):
             if cite:
                 why += "  ·  " + cite
             out.append(dict(e, context=short + " (" + src.replace("DLI Grammar Reference Book", "DLI") + ")",
-                            why=why, _rule=rid))
+                            why=why, k=rid, _rule=rid))
             kept[rid] += 1
         out = [dict(x, id="q%d" % (i + 1)) for i, x in enumerate(out)]
         if apply_changes:

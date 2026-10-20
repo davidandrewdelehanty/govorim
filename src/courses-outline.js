@@ -13,594 +13,207 @@ export default [
   "licenseUrl": "",
   "sections": [
    {
-    "id": "t1-clock",
-    "title": "What time is it?",
-    "n": 0
+    "id": "ts-v-acc-day",
+    "title": "В + accusative: On Tuesday, on Wednesday: the days of the week",
+    "n": 265,
+    "stream": true,
+    "finite": true
    },
    {
-    "id": "t1-clock-practice",
-    "title": "Practice: What time is it?",
-    "n": 2
+    "id": "ts-v-acc",
+    "title": "В + accusative: At five, once a week, that day, the first time",
+    "n": 309,
+    "stream": true,
+    "finite": true
+   },
+   {
+    "id": "ts-instr",
+    "title": "In the morning, at night, in summer",
+    "n": 40,
+    "stream": true,
+    "finite": true
+   },
+   {
+    "id": "ts-kazhdyy",
+    "title": "каждый + accusative: Every day, every Wednesday",
+    "n": 45,
+    "stream": true,
+    "finite": true
+   },
+   {
+    "id": "ts-ves",
+    "title": "весь + accusative: All day, all week",
+    "n": 60,
+    "stream": true,
+    "finite": true
+   },
+   {
+    "id": "ts-po-dat",
+    "title": "ПО + dative plural: On Tuesdays, in the mornings",
+    "n": 26,
+    "stream": true,
+    "finite": true
+   },
+   {
+    "id": "ts-na-prep",
+    "title": "НА + prepositional: This week, last week",
+    "n": 26,
+    "stream": true,
+    "finite": true
+   },
+   {
+    "id": "ts-v-prep",
+    "title": "В + prepositional: In May, last year",
+    "n": 93,
+    "stream": true,
+    "finite": true
+   },
+   {
+    "id": "ts-date",
+    "title": "On the fifth of May",
+    "n": 34,
+    "stream": true,
+    "finite": true
+   },
+   {
+    "id": "ts-how-long",
+    "title": "For two hours, for a week",
+    "n": 7,
+    "stream": true,
+    "finite": true
+   },
+   {
+    "id": "ts-na-acc",
+    "title": "НА + accusative: For a week, the next day",
+    "n": 115,
+    "stream": true,
+    "finite": true
+   },
+   {
+    "id": "ts-za-acc",
+    "title": "ЗА + accusative: In an hour (it took)",
+    "n": 78,
+    "stream": true,
+    "finite": true
+   },
+   {
+    "id": "ts-cherez",
+    "title": "ЧЕРЕЗ + accusative: In an hour (from now)",
+    "n": 34,
+    "stream": true,
+    "finite": true
+   },
+   {
+    "id": "ts-nazad",
+    "title": "accusative + (тому) назад: An hour ago",
+    "n": 29,
+    "stream": true,
+    "finite": true
+   },
+   {
+    "id": "ts-s-gen",
+    "title": "С + genitive: Since morning, from Monday",
+    "n": 101,
+    "stream": true,
+    "finite": true
+   },
+   {
+    "id": "ts-do-gen",
+    "title": "ДО + genitive: Till evening, before lunch",
+    "n": 104,
+    "stream": true,
+    "finite": true
+   },
+   {
+    "id": "ts-posle",
+    "title": "ПОСЛЕ + genitive: After lunch",
+    "n": 35,
+    "stream": true,
+    "finite": true
+   },
+   {
+    "id": "ts-pered",
+    "title": "ПЕРЕД + instrumental: Just before lunch",
+    "n": 24,
+    "stream": true,
+    "finite": true
+   },
+   {
+    "id": "ts-k-dat",
+    "title": "К + dative: By evening, by five",
+    "n": 54,
+    "stream": true,
+    "finite": true
+   },
+   {
+    "id": "t1-clock",
+    "title": "DLI: What time is it?",
+    "n": 0
    },
    {
     "id": "t2-parts-of-day",
-    "title": "Morning, every day, all day",
+    "title": "DLI: Morning, every day, all day",
     "n": 0
-   },
-   {
-    "id": "t2-parts-of-day-practice",
-    "title": "Practice: Morning, every day, all day",
-    "n": 11
    },
    {
     "id": "t3-day-week-month-year",
-    "title": "On Monday, this week, last month, next year",
+    "title": "DLI: On Monday, this week, last month, next year",
     "n": 0
-   },
-   {
-    "id": "t3-day-week-month-year-practice",
-    "title": "Practice: On Monday, this week, last month, next year",
-    "n": 14
    },
    {
     "id": "t4-how-long",
-    "title": "How long, how long ago, how old",
+    "title": "DLI: How long, how long ago, how old",
     "n": 0
-   },
-   {
-    "id": "t4-how-long-practice",
-    "title": "Practice: How long, how long ago, how old",
-    "n": 8
    },
    {
     "id": "t5-months-dates",
-    "title": "Months and dates",
+    "title": "DLI: Months and dates",
     "n": 0
-   },
-   {
-    "id": "t5-months-dates-practice",
-    "title": "Practice: Months and dates",
-    "n": 14
    },
    {
     "id": "t6-from-till-by",
-    "title": "Since, till, by, before, after, in",
+    "title": "DLI: Since, till, by, before, after, in",
     "n": 0
    },
    {
-    "id": "t6-from-till-by-practice",
-    "title": "Practice: Since, till, by, before, after, in",
-    "n": 6
-   },
-   {
     "id": "t7-words",
-    "title": "Days, months and seasons",
+    "title": "DLI: Days, months and seasons",
     "n": 0
    },
    {
     "id": "t8-this-next-last",
-    "title": "This week, next month, last year",
-    "n": 13
-   },
-   {
-    "id": "t8-this-next-last-practice",
-    "title": "Practice 1: This week, next month, last year",
-    "n": 11
-   },
-   {
-    "id": "t8-this-next-last-practice-2",
-    "title": "Practice 2: This week, next month, last year",
-    "n": 14
-   },
-   {
-    "id": "t8-this-next-last-practice-3",
-    "title": "Practice 3: This week, next month, last year",
-    "n": 10
-   },
-   {
-    "id": "t8-this-next-last-practice-4",
-    "title": "Practice 4: This week, next month, last year",
-    "n": 12
-   },
-   {
-    "id": "t8-this-next-last-practice-5",
-    "title": "Practice 5: This week, next month, last year",
-    "n": 9
-   },
-   {
-    "id": "t8-this-next-last-practice-6",
-    "title": "Practice 6: This week, next month, last year",
-    "n": 12
-   },
-   {
-    "id": "t8-this-next-last-practice-7",
-    "title": "Practice 7: This week, next month, last year",
-    "n": 13
-   },
-   {
-    "id": "t8-this-next-last-practice-8",
-    "title": "Practice 8: This week, next month, last year",
-    "n": 10
-   },
-   {
-    "id": "t8-this-next-last-practice-9",
-    "title": "Practice 9: This week, next month, last year",
-    "n": 18
-   },
-   {
-    "id": "t8-this-next-last-practice-10",
-    "title": "Practice 10: This week, next month, last year",
-    "n": 16
-   },
-   {
-    "id": "t8-this-next-last-practice-11",
-    "title": "Practice 11: This week, next month, last year",
-    "n": 12
+    "title": "DLI: This week, next month, last year",
+    "n": 0
    },
    {
     "id": "t9-every-all-on",
-    "title": "Every day, all week, on Saturdays",
-    "n": 14
-   },
-   {
-    "id": "t9-every-all-on-practice",
-    "title": "Practice 1: Every day, all week, on Saturdays",
-    "n": 13
-   },
-   {
-    "id": "t9-every-all-on-practice-2",
-    "title": "Practice 2: Every day, all week, on Saturdays",
-    "n": 12
-   },
-   {
-    "id": "t9-every-all-on-practice-3",
-    "title": "Practice 3: Every day, all week, on Saturdays",
-    "n": 12
-   },
-   {
-    "id": "t9-every-all-on-practice-4",
-    "title": "Practice 4: Every day, all week, on Saturdays",
-    "n": 11
-   },
-   {
-    "id": "t9-every-all-on-practice-5",
-    "title": "Practice 5: Every day, all week, on Saturdays",
-    "n": 14
-   },
-   {
-    "id": "t9-every-all-on-practice-6",
-    "title": "Practice 6: Every day, all week, on Saturdays",
-    "n": 14
-   },
-   {
-    "id": "t9-every-all-on-practice-7",
-    "title": "Practice 7: Every day, all week, on Saturdays",
-    "n": 15
-   },
-   {
-    "id": "t9-every-all-on-practice-8",
-    "title": "Practice 8: Every day, all week, on Saturdays",
-    "n": 16
-   },
-   {
-    "id": "t9-every-all-on-practice-9",
-    "title": "Practice 9: Every day, all week, on Saturdays",
-    "n": 11
-   },
-   {
-    "id": "t9-every-all-on-practice-10",
-    "title": "Practice 10: Every day, all week, on Saturdays",
-    "n": 9
-   },
-   {
-    "id": "t9-every-all-on-practice-11",
-    "title": "Practice 11: Every day, all week, on Saturdays",
-    "n": 14
-   },
-   {
-    "id": "t9-every-all-on-practice-12",
-    "title": "Practice 12: Every day, all week, on Saturdays",
-    "n": 18
-   },
-   {
-    "id": "t9-every-all-on-practice-13",
-    "title": "Practice 13: Every day, all week, on Saturdays",
-    "n": 14
-   },
-   {
-    "id": "t9-every-all-on-practice-14",
-    "title": "Practice 14: Every day, all week, on Saturdays",
-    "n": 16
-   },
-   {
-    "id": "t9-every-all-on-practice-15",
-    "title": "Practice 15: Every day, all week, on Saturdays",
-    "n": 15
+    "title": "DLI: Every day, all week, on Saturdays",
+    "n": 0
    },
    {
     "id": "t10-in-ago-for",
-    "title": "In an hour, a week ago, for two days",
-    "n": 14
-   },
-   {
-    "id": "t10-in-ago-for-practice",
-    "title": "Practice 1: In an hour, a week ago, for two days",
-    "n": 13
-   },
-   {
-    "id": "t10-in-ago-for-practice-2",
-    "title": "Practice 2: In an hour, a week ago, for two days",
-    "n": 12
-   },
-   {
-    "id": "t10-in-ago-for-practice-3",
-    "title": "Practice 3: In an hour, a week ago, for two days",
-    "n": 14
-   },
-   {
-    "id": "t10-in-ago-for-practice-4",
-    "title": "Practice 4: In an hour, a week ago, for two days",
-    "n": 14
-   },
-   {
-    "id": "t10-in-ago-for-practice-5",
-    "title": "Practice 5: In an hour, a week ago, for two days",
-    "n": 11
-   },
-   {
-    "id": "t10-in-ago-for-practice-6",
-    "title": "Practice 6: In an hour, a week ago, for two days",
-    "n": 14
-   },
-   {
-    "id": "t10-in-ago-for-practice-7",
-    "title": "Practice 7: In an hour, a week ago, for two days",
-    "n": 15
-   },
-   {
-    "id": "t10-in-ago-for-practice-8",
-    "title": "Practice 8: In an hour, a week ago, for two days",
-    "n": 14
-   },
-   {
-    "id": "t10-in-ago-for-practice-9",
-    "title": "Practice 9: In an hour, a week ago, for two days",
-    "n": 16
-   },
-   {
-    "id": "t10-in-ago-for-practice-10",
-    "title": "Practice 10: In an hour, a week ago, for two days",
-    "n": 14
-   },
-   {
-    "id": "t10-in-ago-for-practice-11",
-    "title": "Practice 11: In an hour, a week ago, for two days",
-    "n": 11
-   },
-   {
-    "id": "t10-in-ago-for-practice-12",
-    "title": "Practice 12: In an hour, a week ago, for two days",
-    "n": 15
-   },
-   {
-    "id": "t10-in-ago-for-practice-13",
-    "title": "Practice 13: In an hour, a week ago, for two days",
-    "n": 13
-   },
-   {
-    "id": "t10-in-ago-for-practice-14",
-    "title": "Practice 14: In an hour, a week ago, for two days",
-    "n": 17
-   },
-   {
-    "id": "t10-in-ago-for-practice-15",
-    "title": "Practice 15: In an hour, a week ago, for two days",
-    "n": 17
-   },
-   {
-    "id": "t10-in-ago-for-practice-16",
-    "title": "Practice 16: In an hour, a week ago, for two days",
-    "n": 18
-   },
-   {
-    "id": "t10-in-ago-for-practice-17",
-    "title": "Practice 17: In an hour, a week ago, for two days",
-    "n": 6
+    "title": "DLI: In an hour, a week ago, for two days",
+    "n": 0
    },
    {
     "id": "t11-since-till-by",
-    "title": "Since, till, by, before, after",
-    "n": 18
-   },
-   {
-    "id": "t11-since-till-by-practice",
-    "title": "Practice 1: Since, till, by, before, after",
-    "n": 14
-   },
-   {
-    "id": "t11-since-till-by-practice-2",
-    "title": "Practice 2: Since, till, by, before, after",
-    "n": 14
-   },
-   {
-    "id": "t11-since-till-by-practice-3",
-    "title": "Practice 3: Since, till, by, before, after",
-    "n": 12
-   },
-   {
-    "id": "t11-since-till-by-practice-4",
-    "title": "Practice 4: Since, till, by, before, after",
-    "n": 14
-   },
-   {
-    "id": "t11-since-till-by-practice-5",
-    "title": "Practice 5: Since, till, by, before, after",
-    "n": 11
-   },
-   {
-    "id": "t11-since-till-by-practice-6",
-    "title": "Practice 6: Since, till, by, before, after",
-    "n": 14
-   },
-   {
-    "id": "t11-since-till-by-practice-7",
-    "title": "Practice 7: Since, till, by, before, after",
-    "n": 15
-   },
-   {
-    "id": "t11-since-till-by-practice-8",
-    "title": "Practice 8: Since, till, by, before, after",
-    "n": 15
-   },
-   {
-    "id": "t11-since-till-by-practice-9",
-    "title": "Practice 9: Since, till, by, before, after",
-    "n": 14
-   },
-   {
-    "id": "t11-since-till-by-practice-10",
-    "title": "Practice 10: Since, till, by, before, after",
-    "n": 18
-   },
-   {
-    "id": "t11-since-till-by-practice-11",
-    "title": "Practice 11: Since, till, by, before, after",
-    "n": 16
-   },
-   {
-    "id": "t11-since-till-by-practice-12",
-    "title": "Practice 12: Since, till, by, before, after",
-    "n": 15
-   },
-   {
-    "id": "t11-since-till-by-practice-13",
-    "title": "Practice 13: Since, till, by, before, after",
-    "n": 17
-   },
-   {
-    "id": "t11-since-till-by-practice-14",
-    "title": "Practice 14: Since, till, by, before, after",
-    "n": 17
-   },
-   {
-    "id": "t11-since-till-by-practice-15",
-    "title": "Practice 15: Since, till, by, before, after",
-    "n": 19
-   },
-   {
-    "id": "t11-since-till-by-practice-16",
-    "title": "Practice 16: Since, till, by, before, after",
-    "n": 17
-   },
-   {
-    "id": "t11-since-till-by-practice-17",
-    "title": "Practice 17: Since, till, by, before, after",
-    "n": 16
-   },
-   {
-    "id": "t11-since-till-by-practice-18",
-    "title": "Practice 18: Since, till, by, before, after",
-    "n": 18
-   },
-   {
-    "id": "t11-since-till-by-practice-19",
-    "title": "Practice 19: Since, till, by, before, after",
-    "n": 20
-   },
-   {
-    "id": "t11-since-till-by-practice-20",
-    "title": "Practice 20: Since, till, by, before, after",
-    "n": 18
+    "title": "DLI: Since, till, by, before, after",
+    "n": 0
    },
    {
     "id": "t12-dates-years",
-    "title": "Dates and years in real sentences",
-    "n": 20
-   },
-   {
-    "id": "t12-dates-years-practice",
-    "title": "Practice 1: Dates and years in real sentences",
-    "n": 15
-   },
-   {
-    "id": "t12-dates-years-practice-2",
-    "title": "Practice 2: Dates and years in real sentences",
-    "n": 5
+    "title": "DLI: Dates and years in real sentences",
+    "n": 0
    },
    {
     "id": "t13-time-words",
-    "title": "Yesterday, soon, always: words of time",
+    "title": "DLI: Yesterday, soon, always: words of time",
     "n": 0
    },
    {
     "id": "t14-on-wednesday",
-    "title": "On Wednesday, in that minute, the next day: в and на + accusative",
+    "title": "DLI: On Wednesday, in that minute, the next day: в and на + accusative",
     "n": 0
-   },
-   {
-    "id": "t14-on-wednesday-practice",
-    "title": "Practice 1: On Wednesday, in that minute, the next day: в and на + accusative",
-    "n": 20
-   },
-   {
-    "id": "t14-on-wednesday-practice-2",
-    "title": "Practice 2: On Wednesday, in that minute, the next day: в and на + accusative",
-    "n": 20
-   },
-   {
-    "id": "t14-on-wednesday-practice-3",
-    "title": "Practice 3: On Wednesday, in that minute, the next day: в and на + accusative",
-    "n": 20
-   },
-   {
-    "id": "t14-on-wednesday-practice-4",
-    "title": "Practice 4: On Wednesday, in that minute, the next day: в and на + accusative",
-    "n": 20
-   },
-   {
-    "id": "t14-on-wednesday-practice-5",
-    "title": "Practice 5: On Wednesday, in that minute, the next day: в and на + accusative",
-    "n": 20
-   },
-   {
-    "id": "t14-on-wednesday-practice-6",
-    "title": "Practice 6: On Wednesday, in that minute, the next day: в and на + accusative",
-    "n": 20
-   },
-   {
-    "id": "t14-on-wednesday-practice-7",
-    "title": "Practice 7: On Wednesday, in that minute, the next day: в and на + accusative",
-    "n": 20
-   },
-   {
-    "id": "t14-on-wednesday-practice-8",
-    "title": "Practice 8: On Wednesday, in that minute, the next day: в and на + accusative",
-    "n": 20
-   },
-   {
-    "id": "t14-on-wednesday-practice-9",
-    "title": "Practice 9: On Wednesday, in that minute, the next day: в and на + accusative",
-    "n": 20
-   },
-   {
-    "id": "t14-on-wednesday-practice-10",
-    "title": "Practice 10: On Wednesday, in that minute, the next day: в and на + accusative",
-    "n": 20
-   },
-   {
-    "id": "t14-on-wednesday-practice-11",
-    "title": "Practice 11: On Wednesday, in that minute, the next day: в and на + accusative",
-    "n": 20
-   },
-   {
-    "id": "t14-on-wednesday-practice-12",
-    "title": "Practice 12: On Wednesday, in that minute, the next day: в and на + accusative",
-    "n": 20
-   },
-   {
-    "id": "t14-on-wednesday-practice-13",
-    "title": "Practice 13: On Wednesday, in that minute, the next day: в and на + accusative",
-    "n": 20
-   },
-   {
-    "id": "t14-on-wednesday-practice-14",
-    "title": "Practice 14: On Wednesday, in that minute, the next day: в and на + accusative",
-    "n": 20
-   },
-   {
-    "id": "t14-on-wednesday-practice-15",
-    "title": "Practice 15: On Wednesday, in that minute, the next day: в and на + accusative",
-    "n": 20
-   },
-   {
-    "id": "t14-on-wednesday-practice-16",
-    "title": "Practice 16: On Wednesday, in that minute, the next day: в and на + accusative",
-    "n": 20
-   },
-   {
-    "id": "t14-on-wednesday-practice-17",
-    "title": "Practice 17: On Wednesday, in that minute, the next day: в and на + accusative",
-    "n": 20
-   },
-   {
-    "id": "t14-on-wednesday-practice-18",
-    "title": "Practice 18: On Wednesday, in that minute, the next day: в and на + accusative",
-    "n": 20
-   },
-   {
-    "id": "t14-on-wednesday-practice-19",
-    "title": "Practice 19: On Wednesday, in that minute, the next day: в and на + accusative",
-    "n": 20
-   },
-   {
-    "id": "t14-on-wednesday-practice-20",
-    "title": "Practice 20: On Wednesday, in that minute, the next day: в and на + accusative",
-    "n": 20
-   },
-   {
-    "id": "t14-on-wednesday-practice-21",
-    "title": "Practice 21: On Wednesday, in that minute, the next day: в and на + accusative",
-    "n": 20
-   },
-   {
-    "id": "t14-on-wednesday-practice-22",
-    "title": "Practice 22: On Wednesday, in that minute, the next day: в and на + accusative",
-    "n": 20
-   },
-   {
-    "id": "t14-on-wednesday-practice-23",
-    "title": "Practice 23: On Wednesday, in that minute, the next day: в and на + accusative",
-    "n": 20
-   },
-   {
-    "id": "t14-on-wednesday-practice-24",
-    "title": "Practice 24: On Wednesday, in that minute, the next day: в and на + accusative",
-    "n": 17
-   },
-   {
-    "id": "t14-on-wednesday-practice-25",
-    "title": "Practice 25: On Wednesday, in that minute, the next day: в and на + accusative",
-    "n": 19
-   },
-   {
-    "id": "t14-on-wednesday-practice-26",
-    "title": "Practice 26: On Wednesday, in that minute, the next day: в and на + accusative",
-    "n": 18
-   },
-   {
-    "id": "t14-on-wednesday-practice-27",
-    "title": "Practice 27: On Wednesday, in that minute, the next day: в and на + accusative",
-    "n": 16
-   },
-   {
-    "id": "t14-on-wednesday-practice-28",
-    "title": "Practice 28: On Wednesday, in that minute, the next day: в and на + accusative",
-    "n": 16
-   },
-   {
-    "id": "t14-on-wednesday-practice-29",
-    "title": "Practice 29: On Wednesday, in that minute, the next day: в and на + accusative",
-    "n": 18
-   },
-   {
-    "id": "t14-on-wednesday-practice-30",
-    "title": "Practice 30: On Wednesday, in that minute, the next day: в and на + accusative",
-    "n": 18
-   },
-   {
-    "id": "t14-on-wednesday-practice-31",
-    "title": "Practice 31: On Wednesday, in that minute, the next day: в and на + accusative",
-    "n": 20
-   },
-   {
-    "id": "t14-on-wednesday-practice-32",
-    "title": "Practice 32: On Wednesday, in that minute, the next day: в and на + accusative",
-    "n": 20
-   },
-   {
-    "id": "t14-on-wednesday-practice-33",
-    "title": "Practice 33: On Wednesday, in that minute, the next day: в and на + accusative",
-    "n": 10
    }
   ]
  },

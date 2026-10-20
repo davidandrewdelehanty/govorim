@@ -351,6 +351,18 @@ def main():
     else:
         answer_variants.main(["--apply"])
 
+    # The time course is dealt again as one chapter per construction, each a
+    # finite stream, now that every exercise carries its construction (`k`).
+    try:
+        import restream_time
+        from explain_time import R as TIME_RULES
+    except ImportError:
+        print("restream_time skipped (pymorphy3 not installed)")
+    else:
+        for meta in outline:
+            if meta["id"] == "time":
+                meta["sections"] = restream_time.restream(TIME_RULES)
+
     # attach_context and sense_check rewrote the section files, and
     # sense_check removed some exercises, so the counts in the outline are
     # read back off disk rather than trusted from before.
@@ -358,8 +370,13 @@ def main():
         for o in meta["sections"]:
             p = os.path.join(ROOT, "public", "courses", meta["id"], o["id"] + ".json")
             j = json.load(io.open(p, encoding="utf-8"))
-            # A stream has no end to reach: it counts as a lesson, finished when opened.
-            o["n"] = 0 if j.get("stream") else len(j.get("exercises") or [])
+            # An endless stream has no end to reach: it counts as a lesson, finished
+            # when opened. A finite one is finished when every exercise is right.
+            o["n"] = 0 if (j.get("stream") and not j.get("finite")) else len(j.get("exercises") or [])
+            if j.get("stream"):
+                o["stream"] = True
+            if j.get("finite"):
+                o["finite"] = True
 
     js = ("// Written by tools/courses/build_courses.py — the courses, their sections and\n"
           "// how many exercises each has. The lessons themselves are in public/courses/.\n"
