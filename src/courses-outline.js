@@ -7,7 +7,6 @@ export default [
   "short": "Time",
   "mark": "◷",
   "blurb": "",
-  "repeat": true,
   "credit": "Transcribed from the Defense Language Institute Russian Basic Course, Grammar Reference Books I (1970) and II (1965) — a US Government work in the public domain; word lists from the Wikibooks Russian textbook (CC BY-SA 4.0)",
   "creditUrl": "https://www.fsi-language-courses.org/russian/courses/dli-russian-basic-course",
   "license": "Public domain · CC BY-SA 4.0",
@@ -4924,6 +4923,42 @@ export default [
     "n": 0
    },
    {
+    "id": "s1-one",
+    "title": "In sentences: 1 — одного, одной, одним…",
+    "n": 0,
+    "stream": true
+   },
+   {
+    "id": "s2-two-four",
+    "title": "In sentences: 2, 3, 4 — двух, трём, четырьмя…",
+    "n": 0,
+    "stream": true
+   },
+   {
+    "id": "s3-five-thirty",
+    "title": "In sentences: 5 to 20 and 30 — пяти, десятью…",
+    "n": 0,
+    "stream": true
+   },
+   {
+    "id": "s4-forty-hundred",
+    "title": "In sentences: 40 to 100 — сорока, пятидесяти, ста…",
+    "n": 0,
+    "stream": true
+   },
+   {
+    "id": "s5-compound",
+    "title": "In sentences: 21 to 104 — двадцати двух…",
+    "n": 0,
+    "stream": true
+   },
+   {
+    "id": "s6-ordinals",
+    "title": "In sentences: ordinals — третьего, двадцать пятом…",
+    "n": 0,
+    "stream": true
+   },
+   {
     "id": "n1-one",
     "title": "1 — один, одна, одно",
     "n": 10
@@ -5565,6 +5600,7 @@ export default [
   "creditUrl": "https://www.fsi-language-courses.org/russian/courses/dli-russian-basic-course",
   "license": "Public domain · CC BY-SA 4.0",
   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "repeat": true,
   "sections": [
    {
     "id": "ck0-rules",
@@ -5574,7 +5610,8 @@ export default [
    {
     "id": "ck-practice",
     "title": "Clock practice",
-    "n": 0
+    "n": 0,
+    "stream": true
    }
   ]
  }

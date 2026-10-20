@@ -101,6 +101,10 @@ def main(argv=None):
                 continue
             p = os.path.join(d, stem + ".json")
             doc = json.load(io.open(p, encoding="utf-8"))
+            if doc.get("stream"):
+                # A practice stream keeps one explanation per kind of drill
+                # (`whys`, `ctxs`), given by its builder; nothing to add.
+                continue
             changed = False
             for e in doc.get("exercises") or []:
                 exercises += 1

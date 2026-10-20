@@ -138,6 +138,42 @@ A(SEC("n0-chart", "The chart: every numeral, every case", [
     src("Lessons 50 and 69–73, 98–99; the appendix table on p. 35"),
 ]))
 
+# ── Real sentences: the numeral blanked, the figure as the hint ──
+# tools/courses/numeral_decl.py finds them in the library's public-domain
+# books and in Tatoeba (those come with a translation). One endless practice
+# screen per group: a new order every time it is opened, Next after each.
+SENT_P = os.path.join(HERE, "numeral_decl.json")
+SENT = json.load(io.open(SENT_P, encoding="utf-8")) if os.path.exists(SENT_P) else {}
+SENT_NOTE = (u"Real sentences: from the library's public-domain books (author and title above each), and from "
+             u"Tatoeba (tatoeba.org, CC BY 2.0 FR), shown with their translation. The numeral is blanked; type it "
+             u"in the form the sentence needs. ё and е are both accepted.")
+
+
+def sentences(key, rule):
+    out = []
+    for x in SENT.get(key, []):
+        e = dict(FILL(x["q"], [x["a"]], why=Q[rule][1], prompt=(u"*%s*" % x["src"]) if x["src"] else (u"*%s*" % x["en"]) if x["en"] else None),
+                 context=Q[rule][0], k=rule)
+        out.append(e)
+    return out
+
+
+SENT_GROUPS = [
+    ("s1-one", u"In sentences: 1 — одного, одной, одним…", "one", "one", "Lesson 70, p. 24"),
+    ("s2-two-four", u"In sentences: 2, 3, 4 — двух, трём, четырьмя…", "two", "two", "Lessons 70–71, pp. 26 and 35"),
+    ("s3-five-thirty", u"In sentences: 5 to 20 and 30 — пяти, десятью…", "five", "five", "Lesson 71, p. 32"),
+    ("s4-forty-hundred", u"In sentences: 40 to 100 — сорока, пятидесяти, ста…", "forty", "forty", "Lesson 71, p. 33"),
+    ("s5-compound", u"In sentences: 21 to 104 — двадцати двух…", "comp", "comp", "Lesson 71, pp. 32–34"),
+    ("s6-ordinals", u"In sentences: ordinals — третьего, двадцать пятом…", "ord", "ord", "Lesson 72, pp. 37–38"),
+]
+for sid, title, key, rule, where in SENT_GROUPS:
+    xs = sentences(key, rule)
+    if not xs:
+        continue
+    # the builder keeps the one explanation once, under `k`, not on each of the sentences
+    A(dict(SEC(sid, title, [P(Q[rule][1].rsplit(u" — ", 1)[0]), src(where), NOTE(SENT_NOTE)], xs,
+                sub="%d real sentences, as many as you like" % len(xs)), stream=True))
+
 A(SEC("n1-one", u"1 — один, одна, одно", [
     P(Q["one"][1].rsplit(u" — ", 1)[0]), TB("one"), src("Lesson 70, p. 24"),
 ], drills("n1-one", "one")))

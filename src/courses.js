@@ -62,11 +62,13 @@ export function courseState(course, prog) {
   // A course to repeat as often as you like (the clock) is never finished.
   if (course.repeat) return { done: 0, of: 0, at: 0 };
   var done = 0, at = 0;
-  (course.sections || []).forEach(function (s) {
+  // An endless practice stream (one drill after another, as many as you like) is never finished and is not counted.
+  var secs = (course.sections || []).filter(function (s) { return !s.stream; });
+  secs.forEach(function (s) {
     var rec = (prog || {})[course.id + "/" + s.id];
     if (rec && rec.done) { done++; at = Math.max(at, rec.done); }
   });
-  return { done: done, of: (course.sections || []).length, at: done === (course.sections || []).length ? at : 0 };
+  return { done: done, of: secs.length, at: done === secs.length ? at : 0 };
 }
 
 // A practice set that follows a lesson ("<lesson>-practice", "-practice-2" …).
@@ -81,7 +83,7 @@ export function courseBadges(outline, prog) {
     if (c.repeat) return;
     var lessonNo = 0;
     (c.sections || []).forEach(function (s) {
-      if (isPractice(s.id)) return;
+      if (isPractice(s.id) || s.stream) return;
       var i = lessonNo++;
       var rec = (prog || {})[c.id + "/" + s.id];
       out.push({

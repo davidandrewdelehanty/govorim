@@ -6248,7 +6248,7 @@ export default function App() {
     setCourseProg(function(m){
       var k = cid + "/" + sid, rec = Object.assign({ right: {}, first: {} }, m[k] || {});
       if (!rec.read) rec.read = Date.now();
-      if (!rec.done && sec && !sec.n) rec.done = Date.now();
+      if (!rec.done && sec && !sec.n && !sec.stream) rec.done = Date.now();
       var n = Object.assign({}, m); n[k] = rec; return n;
     });
     try { var el = document.querySelector(".crs-scroll"); if (el) el.scrollTop = 0; } catch (e) {}
@@ -25121,9 +25121,9 @@ export default function App() {
                             <li key={x.id}>
                               <button type="button" className={"crs-sec" + (/-practice(-\d+)?$/.test(x.id) ? " pr" : "") + (rec.done ? " done" : rec.read ? " started" : "")}
                                 onClick={function(){ openSection(course.id, x.id); }}>
-                                <span className={"crs-sec-n" + (rec.perfect ? " pf" : "")}>{rec.perfect ? "★" : rec.done ? "✓" : /-practice(-\d+)?$/.test(x.id) ? "✎" : course.sections.slice(0, i + 1).filter(function(y){ return !/-practice(-\d+)?$/.test(y.id); }).length}</span>
+                                <span className={"crs-sec-n" + (rec.perfect ? " pf" : "")}>{rec.perfect ? "★" : rec.done ? "✓" : x.stream ? "∞" : /-practice(-\d+)?$/.test(x.id) ? "✎" : course.sections.slice(0, i + 1).filter(function(y){ return !/-practice(-\d+)?$/.test(y.id) && !y.stream; }).length}</span>
                                 <span className="crs-sec-t">{x.title}{x.sub ? <span className="crs-sec-s">{x.sub}</span> : null}</span>
-                                <span className="crs-sec-r">{x.n ? Math.min(right, x.n) + " / " + x.n : (rec.done ? "read" : "")}</span>
+                                <span className="crs-sec-r">{x.n ? Math.min(right, x.n) + " / " + x.n : x.stream ? "endless" : (rec.done ? "read" : "")}</span>
                               </button>
                             </li>
                           );
@@ -25409,14 +25409,15 @@ export default function App() {
                           // the prompts, the same for all of a kind, are kept once in
                           // the section.
                           var e = x0;
+                          if (x0.type !== "clock" && x0.k) e = Object.assign({}, x0, { why: x0.why || (data.whys || {})[x0.k], context: x0.context || (data.ctxs || {})[x0.k] });
                           if (x0.type === "clock") {
-                            var why0 = (data.whys || {})[x0.k], pr = data.prompts || {};
+                            var why0 = (data.whys || {})[x0.k], ctx0 = x0.context || (data.ctxs || {})[x0.k], pr = data.prompts || {};
                             if (it.mode === "set") {
-                              e = { id: x0.id + "s", type: "clockset", q: (x0.sets || [x0.q])[it.v] || x0.q, hhmm: x0.hhmm, answers: [x0.hhmm], prompt: pr.set, context: x0.context, why: why0 };
+                              e = { id: x0.id + "s", type: "clockset", q: (x0.sets || [x0.q])[it.v] || x0.q, hhmm: x0.hhmm, answers: [x0.hhmm], prompt: pr.set, context: ctx0, why: why0 };
                             } else {
                               var okAns = (x0.answers || []).slice();
                               (x0.answers || []).forEach(function(a){ (x0.pods || []).forEach(function(pd){ okAns.push(a + " " + pd); }); });
-                              e = { id: x0.id + "w", type: "fill", q: "___", clock: x0.clock, pod: x0.pod, answers: okAns.concat(x0.a24 || []), show: x0.show, prompt: pr.say, context: x0.context, why: why0 };
+                              e = { id: x0.id + "w", type: "fill", q: "___", clock: x0.clock, pod: x0.pod, answers: okAns.concat(x0.a24 || []), show: x0.show, prompt: pr.say, context: ctx0, why: why0 };
                             }
                           }
                           var es = exState[e.id] || {};
@@ -25429,7 +25430,7 @@ export default function App() {
                             <div className="crs-exw crs-stream">
                               <div className="crs-stream-top">
                                 <span className="crs-stream-n">{st.seen + 1}</span>
-                                <span className="crs-stream-tally">{st.right} right first time, of {st.seen}{e.type === "clockset" ? " · set the clock" : " · write the time"}</span>
+                                <span className="crs-stream-tally">{st.right} right first time, of {st.seen}{e.type === "clockset" ? " · set the clock" : e.clock ? " · write the time" : ""}</span>
                               </div>
                               {exercise(e, st.seen)}
                               <div className="crs-nav crs-stream-nav">

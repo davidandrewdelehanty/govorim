@@ -275,16 +275,23 @@ def main():
                     data["prompts"] = s["prompts"]
                 # The explanation is the same for every drill of a kind: kept
                 # once, under the kind, instead of on each of 1,440 drills.
-                whys = {}
+                whys, ctxs = {}, {}
                 for x in exs:
                     if x.get("k") and x.get("why"):
                         whys.setdefault(x["k"], x["why"])
                         del x["why"]
+                    if x.get("k") and x.get("context"):
+                        ctxs.setdefault(x["k"], x["context"])
+                        del x["context"]
                 if whys:
                     data["whys"] = whys
+                if ctxs:
+                    data["ctxs"] = ctxs
             io.open(os.path.join(out_dir, sid + ".json"), "w", encoding="utf-8").write(
                 json.dumps(data, ensure_ascii=False, separators=(",", ":")))
             o = {"id": sid, "title": s["title"], "n": len(exs)}
+            if s.get("stream"):
+                o["stream"] = True
             osecs.append(o)
         meta = {k: v for k, v in c.items() if k not in ("modules", "order", "sections")}
         meta["blurb"] = ""          # descriptions were ours; the credit line says where the course comes from
