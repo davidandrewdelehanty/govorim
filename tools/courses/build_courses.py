@@ -174,6 +174,22 @@ COURSES.append({
 })
 
 
+# Grammar in Russian — the terms. Needs tools/courses/gramterms_src.json
+# (python3 tools/courses/gramterms_fetch.py, where Wikipedia is reachable).
+import gramterms_course
+if gramterms_course.SECTIONS:
+    COURSES.append({
+        "id": "gramterms", "title": "Grammar in Russian: the Terms", "short": "Terms", "mark": "\u00a7",
+        "blurb": "",
+        "credit": "Definitions and sentences from the Russian Wikipedia (CC BY-SA 4.0), each article named where it is "
+                  "quoted; dictionary abbreviations from OpenCorpora (CC BY-SA 4.0); further sentences from the library's "
+                  "public-domain books",
+        "creditUrl": "https://ru.wikipedia.org/",
+        "license": "CC BY-SA 4.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "modules": ["gramterms_course"], "order": None,
+    })
+
+
 # Practice drills from Tatoeba (tools/courses/tatoeba_drills.py): a section
 # of real sentences after each section they belong to.
 DRILLS_P = os.path.join(HERE, "drills.json")

@@ -13,6 +13,8 @@ def good(e):
     h=re.findall(r"___ \(([^)]*)\)", e["q"])
     if not h: return None
     a=W(e["answers"][0])
+    # an English hint — «___ (genitive case)» in the grammar-terms course — is not a form of the answer; nothing to check
+    if not re.search(r"[а-яё]", h[0], re.I) and not re.fullmatch(r"\d+(-[а-яё]{1,3})?", h[0].strip()): return None
     # a figure for a hint — «___ (2) часов», «___ (3-й) день» — when the answer is the numeral itself
     if re.fullmatch(r"\d+(-[а-яё]{1,3})?", h[0].strip()): return bool(a) and all(numeral(x) for x in a)
     for opt in re.split(r"\s*/\s*|,\s*", h[0]):
