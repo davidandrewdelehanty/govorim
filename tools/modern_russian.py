@@ -221,7 +221,12 @@ def import_articles(host, site, listfile, author, a):
     titles = read_list(listfile)
     print("\n== %s: %d articles from tools/modern/%s" % (site, len(titles), listfile), flush=True)
     done = 0
+    have = set()
+    if not a.refresh and os.path.exists(a.manifest):
+        have = {b.get("slug") for b in json.load(io.open(a.manifest, encoding="utf-8"))}
     for t in titles:
+        if "modern-" + slugify(host.split(".")[1] + "-" + t) in have:
+            continue                                   # already on the shelf
         try:
             real, html = page_html(host, t)
         except Exception as e:
@@ -363,6 +368,8 @@ def main():
     ap.add_argument("--wikipedia", action="store_true")
     ap.add_argument("--wikivoyage", action="store_true")
     ap.add_argument("--official", action="store_true")
+    ap.add_argument("--authors", action="store_true", help="Wikipedia articles on writers, tools/modern/authors.txt")
+    ap.add_argument("--refresh", action="store_true", help="fetch articles already on the shelf again")
     ap.add_argument("--months", type=int, default=12, help="Wikinews: how many months back")
     ap.add_argument("--per-month", type=int, default=120, help="Wikinews: most articles in one month's book")
     ap.add_argument("--min-words", type=int, default=60, help="Wikinews: skip shorter items")
@@ -371,12 +378,14 @@ def main():
     ap.add_argument("--manifest", default=W.MANIFEST)
     ap.add_argument("--books-dir", default=W.BOOKS_DIR)
     a = ap.parse_args()
-    if not (a.all or a.wikinews or a.wikipedia or a.wikivoyage or a.official):
+    if not (a.all or a.wikinews or a.wikipedia or a.wikivoyage or a.official or a.authors):
         ap.error("say which: --all, or any of --wikinews --wikipedia --wikivoyage --official")
     os.chdir(os.path.dirname(HERE))           # repo root, where the manifest paths start
     n = 0
     if a.all or a.wikipedia:
         n += import_articles("ru.wikipedia.org", "Википедия", "wikipedia.txt", "Википедия", a)
+    if a.all or a.authors:
+        n += import_articles("ru.wikipedia.org", "Википедия", "authors.txt", "Википедия", a)
     if a.all or a.wikivoyage:
         n += import_articles("ru.wikivoyage.org", "Викигид", "wikivoyage.txt", "Викигид", a)
     if a.all or a.wikinews:
