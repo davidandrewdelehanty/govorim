@@ -69,11 +69,11 @@ def lesson_rule(doc):
     return first, full, src
 
 
-def main():
+def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("--apply", action="store_true")
     ap.add_argument("--course", help="limit to one course folder")
-    args = ap.parse_args()
+    args = ap.parse_args(argv)
 
     touched = exercises = skipped = nolesson = 0
     for course in sorted(os.listdir(ROOT)):
@@ -104,6 +104,11 @@ def main():
             changed = False
             for e in doc.get("exercises") or []:
                 exercises += 1
+                if (e.get("context") or "").strip():
+                    # The builder already gave this one its own explanation
+                    # (tools/courses/tables_course.py does). Leave it alone.
+                    skipped += 1
+                    continue
                 cite = (e.get("why") or "").strip()
                 newctx = ctx + (" (%s)" % src.rstrip(".") if src else "")
                 newwhy = full + (" — %s" % src if src else "")

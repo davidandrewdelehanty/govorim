@@ -30,7 +30,7 @@ export default [
    {
     "id": "t2-parts-of-day-practice",
     "title": "Practice: Morning, every day, all day",
-    "n": 14
+    "n": 12
    },
    {
     "id": "t3-day-week-month-year",
@@ -70,7 +70,7 @@ export default [
    {
     "id": "t6-from-till-by-practice",
     "title": "Practice: Since, till, by, before, after, in",
-    "n": 14
+    "n": 11
    },
    {
     "id": "t7-words",
@@ -220,42 +220,42 @@ export default [
    {
     "id": "t10-in-ago-for",
     "title": "In an hour, a week ago, for two days",
-    "n": 20
+    "n": 18
    },
    {
     "id": "t10-in-ago-for-practice",
     "title": "Practice 1: In an hour, a week ago, for two days",
-    "n": 20
+    "n": 19
    },
    {
     "id": "t10-in-ago-for-practice-2",
     "title": "Practice 2: In an hour, a week ago, for two days",
-    "n": 20
+    "n": 18
    },
    {
     "id": "t10-in-ago-for-practice-3",
     "title": "Practice 3: In an hour, a week ago, for two days",
-    "n": 20
+    "n": 19
    },
    {
     "id": "t10-in-ago-for-practice-4",
     "title": "Practice 4: In an hour, a week ago, for two days",
-    "n": 20
+    "n": 19
    },
    {
     "id": "t10-in-ago-for-practice-5",
     "title": "Practice 5: In an hour, a week ago, for two days",
-    "n": 20
+    "n": 19
    },
    {
     "id": "t10-in-ago-for-practice-6",
     "title": "Practice 6: In an hour, a week ago, for two days",
-    "n": 20
+    "n": 19
    },
    {
     "id": "t10-in-ago-for-practice-7",
     "title": "Practice 7: In an hour, a week ago, for two days",
-    "n": 20
+    "n": 19
    },
    {
     "id": "t10-in-ago-for-practice-8",
@@ -4625,6 +4625,114 @@ export default [
     "id": "x13-passive",
     "title": "The passive: is written, was written, will be written",
     "n": 0
+   }
+  ]
+ },
+ {
+  "id": "tables",
+  "title": "Grammar Tables",
+  "short": "Tables",
+  "mark": "☰",
+  "blurb": "",
+  "credit": "Rules quoted from the Defense Language Institute Russian Basic Course, Grammar Reference Book (a US Government work in the public domain); every Russian form generated from the OpenCorpora dictionary (CC BY-SA 4.0) by tools/courses/gen_tables.py; the sixteen conjugation classes follow the scheme in Wiktionary's Appendix:Russian verbs (CC BY-SA 4.0), after Zaliznyak",
+  "creditUrl": "https://www.fsi-language-courses.org/russian/courses/dli-russian-basic-course",
+  "license": "Public domain · CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "sections": [
+   {
+    "id": "g1-spelling",
+    "title": "The spelling rules",
+    "n": 21
+   },
+   {
+    "id": "g2-nouns-sg",
+    "title": "Nouns: the singular",
+    "n": 59
+   },
+   {
+    "id": "g3-nouns-pl",
+    "title": "Nouns: the plural",
+    "n": 63
+   },
+   {
+    "id": "g4-noun-irregular",
+    "title": "Irregular nouns",
+    "n": 133
+   },
+   {
+    "id": "g5-noun-awkward",
+    "title": "Fleeting vowels, bare genitives, nouns that never change",
+    "n": 111
+   },
+   {
+    "id": "g6-adjectives",
+    "title": "Adjectives: the five stem types",
+    "n": 35
+   },
+   {
+    "id": "g7-adj-short-comp",
+    "title": "Short forms, comparatives, superlatives",
+    "n": 0
+   },
+   {
+    "id": "g8-possessive",
+    "title": "Possessive adjectives and третий",
+    "n": 0
+   },
+   {
+    "id": "g9-pronouns",
+    "title": "Personal pronouns, кто, что, себя",
+    "n": 32
+   },
+   {
+    "id": "g10-determiners",
+    "title": "этот, тот, весь, сам, and the possessives",
+    "n": 63
+   },
+   {
+    "id": "g11-numerals",
+    "title": "Numerals in every case",
+    "n": 34
+   },
+   {
+    "id": "g12-conjugation",
+    "title": "The two conjugations",
+    "n": 36
+   },
+   {
+    "id": "g13-mutation",
+    "title": "The consonant that changes in the present",
+    "n": 90
+   },
+   {
+    "id": "g14-classes",
+    "title": "The sixteen conjugation patterns",
+    "n": 288
+   },
+   {
+    "id": "g15-irregular-verbs",
+    "title": "The irregular verbs",
+    "n": 81
+   },
+   {
+    "id": "g16-past",
+    "title": "The past tense",
+    "n": 60
+   },
+   {
+    "id": "g17-imperative",
+    "title": "The imperative",
+    "n": 28
+   },
+   {
+    "id": "g18-participles",
+    "title": "The four participles",
+    "n": 34
+   },
+   {
+    "id": "g19-gerunds",
+    "title": "The gerunds (деепричастия)",
+    "n": 12
    }
   ]
  }

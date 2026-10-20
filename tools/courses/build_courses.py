@@ -104,6 +104,20 @@ if os.path.exists(os.path.join(HERE, "dli_a.py")):
     })
 
 
+import tables_course
+COURSES.append({
+    "id": "tables", "title": "Grammar Tables", "short": "Tables", "mark": "\u2630",
+    "blurb": "",
+    "credit": "Rules quoted from the Defense Language Institute Russian Basic Course, Grammar Reference Book "
+              "(a US Government work in the public domain); every Russian form generated from the OpenCorpora "
+              "dictionary (CC BY-SA 4.0) by tools/courses/gen_tables.py; the sixteen conjugation classes follow "
+              "the scheme in Wiktionary's Appendix:Russian verbs (CC BY-SA 4.0), after Zaliznyak",
+    "creditUrl": DLI_URL,
+    "license": "Public domain \u00b7 CC BY-SA 4.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "modules": ["tables_course"], "order": None,
+})
+
+
 # Practice drills from Tatoeba (tools/courses/tatoeba_drills.py): a section
 # of real sentences after each section they belong to.
 DRILLS_P = os.path.join(HERE, "drills.json")
@@ -208,6 +222,32 @@ def main():
         meta["sections"] = osecs
         outline.append(meta)
         print("%-10s %2d sections, %3d exercises" % (c["id"], len(osecs), sum(s["n"] for s in osecs)))
+    # Writing the section JSONs drops the `context` field that
+    # attach_context.py puts on every exercise, so it is re-applied here:
+    # building and explaining are one step, and a rebuild can never ship
+    # exercises with nothing but a citation for an explanation.
+    import attach_context
+    attach_context.main(["--apply"])
+
+    # And drop any practice sentence that does not actually exercise the
+    # section it was mined into: «я забочусь об окружающей среде» matched среда,
+    # Wednesday, but is about the environment. Needs pymorphy3; without it the
+    # build still works and the check is simply skipped.
+    try:
+        import sense_check
+    except ImportError:
+        print("sense_check skipped (pymorphy3 not installed)")
+    else:
+        sense_check.main(["--drop"])
+
+    # attach_context and sense_check rewrote the section files, and
+    # sense_check removed some exercises, so the counts in the outline are
+    # read back off disk rather than trusted from before.
+    for meta in outline:
+        for o in meta["sections"]:
+            p = os.path.join(ROOT, "public", "courses", meta["id"], o["id"] + ".json")
+            o["n"] = len(json.load(io.open(p, encoding="utf-8")).get("exercises") or [])
+
     js = ("// Written by tools/courses/build_courses.py — the courses, their sections and\n"
           "// how many exercises each has. The lessons themselves are in public/courses/.\n"
           "export default " + json.dumps(outline, ensure_ascii=False, indent=1) + ";\n")
