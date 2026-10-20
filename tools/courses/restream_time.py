@@ -99,8 +99,8 @@ ORDER = [
      u"By evening, by five"),
 ]
 # How many exercises may share one answer in a chapter.
-CAP = {"v-acc-day": 40, "v-acc": 12}
-CAP_DEFAULT = 4
+CAP = {}
+CAP_DEFAULT = 2
 # A chapter needs this many exercises to be worth opening.
 MIN_CHAPTER = 5
 WEEKDAY = re.compile(u"(понедельник|вторник|сред[ау]|четверг|пятниц[ау]|суббот[ау]|воскресень[ея])")

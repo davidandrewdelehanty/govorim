@@ -15,63 +15,63 @@ export default [
    {
     "id": "ts-v-acc-day",
     "title": "В + accusative: On Tuesday, on Wednesday: the days of the week",
-    "n": 265,
+    "n": 37,
     "stream": true,
     "finite": true
    },
    {
     "id": "ts-v-acc",
     "title": "В + accusative: At five, once a week, that day, the first time",
-    "n": 309,
+    "n": 146,
     "stream": true,
     "finite": true
    },
    {
     "id": "ts-instr",
     "title": "In the morning, at night, in summer",
-    "n": 40,
+    "n": 32,
     "stream": true,
     "finite": true
    },
    {
     "id": "ts-kazhdyy",
     "title": "каждый + accusative: Every day, every Wednesday",
-    "n": 45,
+    "n": 37,
     "stream": true,
     "finite": true
    },
    {
     "id": "ts-ves",
     "title": "весь + accusative: All day, all week",
-    "n": 60,
+    "n": 50,
     "stream": true,
     "finite": true
    },
    {
     "id": "ts-po-dat",
     "title": "ПО + dative plural: On Tuesdays, in the mornings",
-    "n": 26,
+    "n": 18,
     "stream": true,
     "finite": true
    },
    {
     "id": "ts-na-prep",
     "title": "НА + prepositional: This week, last week",
-    "n": 26,
+    "n": 18,
     "stream": true,
     "finite": true
    },
    {
     "id": "ts-v-prep",
     "title": "В + prepositional: In May, last year",
-    "n": 93,
+    "n": 70,
     "stream": true,
     "finite": true
    },
    {
     "id": "ts-date",
     "title": "On the fifth of May",
-    "n": 34,
+    "n": 21,
     "stream": true,
     "finite": true
    },
@@ -85,63 +85,63 @@ export default [
    {
     "id": "ts-na-acc",
     "title": "НА + accusative: For a week, the next day",
-    "n": 115,
+    "n": 97,
     "stream": true,
     "finite": true
    },
    {
     "id": "ts-za-acc",
     "title": "ЗА + accusative: In an hour (it took)",
-    "n": 78,
+    "n": 59,
     "stream": true,
     "finite": true
    },
    {
     "id": "ts-cherez",
     "title": "ЧЕРЕЗ + accusative: In an hour (from now)",
-    "n": 34,
+    "n": 21,
     "stream": true,
     "finite": true
    },
    {
     "id": "ts-nazad",
     "title": "accusative + (тому) назад: An hour ago",
-    "n": 29,
+    "n": 22,
     "stream": true,
     "finite": true
    },
    {
     "id": "ts-s-gen",
     "title": "С + genitive: Since morning, from Monday",
-    "n": 101,
+    "n": 83,
     "stream": true,
     "finite": true
    },
    {
     "id": "ts-do-gen",
     "title": "ДО + genitive: Till evening, before lunch",
-    "n": 104,
+    "n": 90,
     "stream": true,
     "finite": true
    },
    {
     "id": "ts-posle",
     "title": "ПОСЛЕ + genitive: After lunch",
-    "n": 35,
+    "n": 29,
     "stream": true,
     "finite": true
    },
    {
     "id": "ts-pered",
     "title": "ПЕРЕД + instrumental: Just before lunch",
-    "n": 24,
+    "n": 17,
     "stream": true,
     "finite": true
    },
    {
     "id": "ts-k-dat",
     "title": "К + dative: By evening, by five",
-    "n": 54,
+    "n": 36,
     "stream": true,
     "finite": true
    },
