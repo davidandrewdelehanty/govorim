@@ -16,6 +16,10 @@
 //     localStorage beside the link (gv_own_video_v1). The server has no copy.
 //
 //   POST /api/sync
+//     { youtube: "<id>", captions: true }                           fetch only:
+//        → { ok, cues: [[seconds, "words"], …], seconds, auto, lang }
+//       The browser does the placing itself now (src/ownsync.js), for every
+//       paragraph of the book, so the book text need not come here at all.
 //     { youtube: "<id>", chapters: [["para", "para", …], …] }      fetch + place
 //     { transcript: "<vtt | srt | json3 | pasted>", chapters: … }  place only
 //
@@ -336,6 +340,18 @@ export default async function handler(req, res) {
   let body = req.body;
   if (typeof body === "string") { try { body = JSON.parse(body); } catch { body = {}; } }
   body = body || {};
+
+  if (body.captions) {
+    // The subtitles themselves, as timed cues, and nothing else: the browser
+    // matches the book against them on the reader's own device.
+    const id = String(body.youtube || "").trim();
+    if (!/^[\w-]{11}$/.test(id)) return res.status(400).json({ error: "No recording to read." });
+    const got = await fetchTranscript(id);
+    if (got.error) return res.status(200).json({ ok: false, why: got.error, needTranscript: true });
+    const cs = parseCues(got.text).map(c => [Math.round(c[0] * 100) / 100, c[1]]);
+    if (!cs.length) return res.status(200).json({ ok: false, why: "No subtitles could be read out of that.", needTranscript: true });
+    return res.status(200).json({ ok: true, cues: cs, seconds: got.seconds, auto: got.auto, lang: got.lang });
+  }
 
   const chapters = Array.isArray(body.chapters) ? body.chapters : null;
   if (!chapters || !chapters.length) return res.status(400).json({ error: "No chapters." });

@@ -16,6 +16,7 @@ import { readUiLang, saveUiLang, applyUiLang, trUi } from "./uilang.js";
 import { authorInfo, authorSrc, authorCropStyle, AUTHOR_EN } from "./authors.js";
 import IMAGE_MAP from "./image-map.json";
 import COURSE_PICS from "./course-pictures.json";
+import { alignBook, parseCues } from "./ownsync.js";
 // The numeral tables of the DLI Grammar Reference Book, Lessons 70–72, as printed.
 var DLI_NUM_TABLES = [
   ["один, одна (Lesson 70)", [["Nom.", "один самолёт", "одна рота"], ["Gen.", "одного самолёта", "одной роты"], ["Dat.", "одному самолёту", "одной роте"],
@@ -616,6 +617,10 @@ var LOOKED_KEY = "gv_looked_v1";
 // The recording a reader pasted beside their own book, per book. Tiny — one
 // YouTube id each — so it stays in localStorage with the other small keys.
 var OWN_VIDEO_KEY = "gv_own_video_v1";
+// Where every paragraph of the reader's own book falls in that recording —
+// worked out in the browser from the recording's subtitles (src/ownsync.js)
+// and kept here, per book, beside the link. The server never has it.
+var OWN_SYNC_KEY = "gv_own_sync_v1";
 
 // A YouTube id out of whatever the reader pasted: the watch URL, the share
 // link, the embed URL, a link with a timestamp or a playlist on the end, or
@@ -2647,7 +2652,7 @@ function normOwnVideo(v) {
     var x = raw[k] || {};
     var st = Math.max(0, Math.round(+x.start || 0));
     var en = Math.max(0, Math.round(+x.end || 0));
-    if (st || en) b[k] = { start: st, end: en };
+    if (st || en) b[k] = x.manual ? { start: st, end: en, manual: true } : { start: st, end: en };
   });
   return {
     mode: v.mode === "chapter" ? "chapter" : "book",
@@ -2667,10 +2672,10 @@ function audioLinkOk(u) {
 
 // mm:ss, h:mm:ss, or plain seconds — whichever a reader types.
 function parseClock(t) {
-  var x = String(t == null ? "" : t).trim();
+  var x = String(t == null ? "" : t).trim().replace(/\s+/g, "");
   if (!x) return 0;
   if (/^\d+$/.test(x)) return +x;
-  var m = x.match(/^(?:(\d+):)?(\d{1,2}):(\d{1,2})(?:[.,](\d+))?$/);
+  var m = x.match(/^(?:(\d+)[:.])?(\d{1,2})[:.](\d{1,2})(?:[.,](\d+))?$/);
   if (!m) return NaN;
   return (+(m[1] || 0)) * 3600 + (+m[2]) * 60 + (+m[3]);
 }
@@ -5926,7 +5931,11 @@ export default function App() {
       var st = parseClock(d.start), en = parseClock(d.end);
       if (isNaN(st) || isNaN(en)) { setBoundsErr("Chapter " + (i + 1) + ": write the time as 12:34, or 1:02:03, or a number of seconds."); return; }
       if (st && en && en <= st) { setBoundsErr("Chapter " + (i + 1) + " ends before it starts."); return; }
-      if (st || en) b[String(i)] = { start: Math.round(st), end: Math.round(en) };
+      if (st || en) {
+        var auto = ownSync && ownSync.bounds && ownSync.bounds[String(i)];
+        var same = auto && Math.round(st) === auto.start && Math.round(en) === auto.end;
+        b[String(i)] = { start: Math.round(st), end: Math.round(en), manual: !same };
+      }
     }
     next.bounds = b;
     setOwnRec(next);
@@ -5966,51 +5975,113 @@ export default function App() {
   var [syncNote, setSyncNote] = useState(null);
   var [syncPaste, setSyncPaste] = useState("");
   var [syncPasteOpen, setSyncPasteOpen] = useState(false);
-  var findBounds = async function(pasted) {
-    var r = normOwnVideo(ownRec);
-    if (!pasted && !r.id) { setSyncNote({ bad: true, text: "Paste the recording's subtitles below — a plain audio file has none to read." }); setSyncPasteOpen(true); return; }
-    var openings = chapters.map(function(ch) {
-      var paras = String((ch && ch.text) || "").split(/\n+/).map(function(x){ return x.trim(); }).filter(Boolean);
-      return paras.slice(0, 8).map(function(x){ return x.slice(0, 600); });
-    });
-    var words = chapters.map(function(ch) {
-      return (String((ch && ch.text) || "").match(/[А-Яа-яЁё][А-Яа-яЁё-]*/g) || []).length;
-    });
-    setSyncBusy(true); setSyncNote(null); setBoundsErr("");
+  // The jump points of the book that is open: { video, bounds, sync: { "<chapter>": { "<paragraph>": sec } }, … }
+  var [ownSync, setOwnSync] = useState(null);
+  // While they are being worked out: { done, of }.
+  var [ownSyncProg, setOwnSyncProg] = useState(null);
+  var ownSyncRunRef = useRef("");       // the book+recording a run is under way or finished for
+  var readOwnSyncs = function() {
+    try { return JSON.parse(localStorage.getItem(OWN_SYNC_KEY) || "{}") || {}; } catch (e) { return {}; }
+  };
+  var rememberOwnSync = function(meta, rec) {
+    var k = bookKey(meta);
+    if (!k) return;
+    var m = readOwnSyncs();
+    if (rec) m[k] = rec; else delete m[k];
+    // Trimmed to the last dozen books, oldest first, so it cannot grow without end.
+    var ks = Object.keys(m).sort(function(a, b){ return (m[a].at || 0) - (m[b].at || 0); });
+    while (ks.length > 12) delete m[ks.shift()];
+    try { localStorage.setItem(OWN_SYNC_KEY, JSON.stringify(m)); } catch (e) {}
+  };
+  // Work out where every paragraph of this book is in its recording, from the
+  // recording's subtitles. For a YouTube recording the site fetches the
+  // subtitles (a browser cannot) and hands them straight back; the book text
+  // never leaves this device, the matching happens here, and the result is
+  // kept in localStorage beside the link. `pasted`: a transcript the reader
+  // pasted, used instead of asking the site. Returns the result, or null.
+  var runOwnSync = async function(rec, pasted, opts) {
+    opts = opts || {};
+    var r = normOwnVideo(rec);
+    var meta = bookMeta;
+    if (!(meta && meta.own) || r.mode === "chapter" || !chapters.length) return null;
+    if (!pasted && !r.id) { setSyncNote({ bad: true, text: "Paste the recording's subtitles below — a plain audio file has none to read." }); setSyncPasteOpen(true); return null; }
+    var runKey = bookKey(meta) + "::" + (r.id || "pasted") + (pasted ? "::" + pasted.length : "");
+    ownSyncRunRef.current = runKey;
+    setSyncBusy(true); setSyncNote(null); setBoundsErr(""); setOwnSyncProg({ done: 0, of: chapters.length });
     try {
-      var body = pasted ? { transcript: pasted, chapters: openings, words: words } : { youtube: r.id, chapters: openings, words: words };
-      var resp = await authFetch("/api/sync", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
-      var d = await resp.json();
-      if (!resp.ok) { setSyncNote({ bad: true, text: d.error || "That did not work." }); return; }
-      if (d.needTranscript) {
-        setSyncNote({ bad: true, text: d.why + " Open the video on YouTube, choose “Show transcript” under the description, copy it all and paste it below." });
-        setSyncPasteOpen(true);
-        return;
+      var cues, seconds = 0, auto = false;
+      if (pasted) {
+        cues = parseCues(pasted);
+      } else {
+        var resp = await authFetch("/api/sync", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ youtube: r.id, captions: true }) });
+        var d = await resp.json();
+        if (!resp.ok) { setSyncNote({ bad: true, text: d.error || "That did not work." }); return null; }
+        if (d.needTranscript || !d.cues) {
+          setSyncNote({ bad: true, text: (d.why || "YouTube would not hand over the subtitles.") + " Open the video on YouTube, choose “Show transcript” under the description, copy it all and paste it in under “Set where each chapter starts”." });
+          setSyncPasteOpen(true);
+          return null;
+        }
+        cues = d.cues; seconds = d.seconds || 0; auto = !!d.auto;
       }
-      var starts = d.starts || [];
-      setBoundsDraft(function(cur) {
-        var n = {};
-        chapters.forEach(function(_, i) {
-          var st = starts[i] ? starts[i].start : 0;
-          var en = 0;
-          for (var j = i + 1; j < starts.length; j++) if (starts[j]) { en = starts[j].start; break; }
-          if (!en && i === chapters.length - 1 && d.end) en = d.end;
-          var old = cur[i] || { start: "", end: "" };
-          n[i] = { start: st ? fmtClock(st) : old.start, end: (st && en) ? fmtClock(en) : old.end };
-        });
-        return n;
-      });
-      var t = "Found " + d.found + " of " + d.chapters + " chapters" +
-              (d.auto ? " in YouTube's automatic subtitles" : "") +
-              (d.median ? " (match " + d.median + ")" : "") + ".";
-      if (!d.ok && d.why) t += " " + d.why;
-      t += d.found ? " Look them over, then save." : "";
-      setSyncNote({ bad: !d.ok, text: t });
+      if (!cues || !cues.length) { setSyncNote({ bad: true, text: "No subtitles could be read out of that." }); setSyncPasteOpen(true); return null; }
+      if (ownSyncRunRef.current !== runKey) return null;
+      var res = await alignBook(chapters, cues, seconds, function(done, of){ setOwnSyncProg({ done: done, of: of }); });
+      if (ownSyncRunRef.current !== runKey) return null;
+      var rec2 = { video: r.id || "", at: Date.now(), bounds: res.bounds, sync: res.sync, chapters: res.chapters, chaptersFound: res.chaptersFound,
+                   paras: res.paras, parasFound: res.parasFound, ok: res.ok, auto: auto };
+      setOwnSync(rec2);
+      rememberOwnSync(meta, rec2);
+      // The chapter times go onto the recording as if the reader had typed
+      // them: a chapter's own time wins when they set one by hand.
+      var next = normOwnVideo(ownRec);
+      next.id = r.id; next.url = r.url;
+      var b = Object.assign({}, res.bounds);
+      if (opts.keepManual !== false) Object.keys(next.bounds).forEach(function(k){ if (next.bounds[k].manual) b[k] = next.bounds[k]; });
+      next.bounds = b;
+      setOwnRec(next);
+      rememberOwnVideo(meta, next);
+      setChapters(function(chs){ return attachVideos(stripVideos(chs), { videos: ownVideoMap(chs, next) }); });
+      if (inGrpBook && grp && grp.own && grpOwner) putGroupAudio(next);
+      var t = res.ok
+        ? "Found " + res.chaptersFound + " of " + res.chapters + " chapters and " + res.parasFound + " of " + res.paras + " paragraphs" + (auto ? " in YouTube's automatic subtitles" : "") + ". The ▶ beside a paragraph plays the recording from there."
+        : (res.why || "The subtitles do not match this book.");
+      if (res.ok && res.why) t += " " + res.why;
+      setSyncNote({ bad: !res.ok, text: t });
+      return res;
     } catch (e) {
       setSyncNote({ bad: true, text: "Could not reach the site just now." });
+      return null;
     } finally {
-      setSyncBusy(false);
+      if (ownSyncRunRef.current === runKey) { setSyncBusy(false); setOwnSyncProg(null); }
     }
+  };
+  // Done by itself: when the book opens with a YouTube recording beside it,
+  // the jump points come out of storage, or are worked out now if they
+  // never were (or were for a different recording).
+  useEffect(function() {
+    if (!(bookMeta && bookMeta.own) || !chapters.length) { setOwnSync(null); return; }
+    var r = normOwnVideo(ownRec);
+    if (!r.id || r.mode === "chapter") { setOwnSync(null); return; }
+    var k = bookKey(bookMeta);
+    var have = readOwnSyncs()[k];
+    if (have && have.video === r.id && have.sync) { setOwnSync(have); return; }
+    setOwnSync(null);
+    var runKey = k + "::" + r.id;
+    if (ownSyncRunRef.current === runKey) return;
+    runOwnSync(r);
+  }, [bookMeta && bookMeta.own && bookKey(bookMeta), chapters.length, normOwnVideo(ownRec).id, normOwnVideo(ownRec).mode]);
+  var findBounds = async function(pasted) {
+    var res = await runOwnSync(ownRec, pasted);
+    if (!res) return;
+    setBoundsDraft(function(cur) {
+      var n = {};
+      chapters.forEach(function(_, i) {
+        var bb = res.bounds[String(i)];
+        var old = cur[i] || { start: "", end: "" };
+        n[i] = bb ? { start: fmtClock(bb.start), end: bb.end ? fmtClock(bb.end) : old.end } : old;
+      });
+      return n;
+    });
   };
   var ownVideosRef = useRef(null);
   var readOwnVideos = function() {
@@ -6051,6 +6122,10 @@ export default function App() {
       setChapters(function(chs) {
         return attachVideos(stripVideos(chs), { videos: ownVideoMap(chs, next) });
       });
+      // A recording for the whole book: its jump points are worked out at
+      // once (the effect above runs when the id changes); a removed one
+      // takes its jump points with it.
+      if (!id) { setOwnSync(null); rememberOwnSync(bookMeta, null); ownSyncRunRef.current = ""; }
     }
     return next;
   };
@@ -8291,6 +8366,12 @@ export default function App() {
   // Fetch this chapter's paragraph->seconds map, when the book ships one.
   useEffect(function() {
     setParaSync(null);
+    if (bookMeta && bookMeta.own) {
+      // The reader's own book: the map worked out here from the recording's subtitles.
+      var own = ownSync && ownSync.sync && ownSync.sync[String(cidx)];
+      if (own && curChapter && curChapter.youtubeId && Object.keys(own).length) setParaSync(own);
+      return;
+    }
     if (!(curChapter && curChapter.youtubeId && bookMeta && bookMeta.filename)) return;
     var base = String(bookMeta.filename).split("/").pop().replace(/\.[^.]+$/, "");
     var nn = String(cidx); if (nn.length < 2) nn = "0" + nn;
@@ -8300,7 +8381,7 @@ export default function App() {
       .then(function(m){ if (!cancelled && m && typeof m === "object") setParaSync(m); })
       .catch(function(){});
     return function(){ cancelled = true; };
-  }, [bookMeta && bookMeta.filename, cidx, curChapter && curChapter.youtubeId]);
+  }, [bookMeta && bookMeta.filename, bookMeta && bookMeta.own, ownSync, cidx, curChapter && curChapter.youtubeId]);
 
   // Dual-language Bible: load the English (WEB) verses for the current chapter,
   // keyed by the same book-chapter as the audio so they line up 1:1 with the
@@ -18377,7 +18458,7 @@ export default function App() {
               </p>
               <div className="bnd-sync">
                 <button type="button" className="grp-act link" disabled={syncBusy} onClick={function(){ findBounds(""); }}>
-                  {syncBusy ? "Reading the subtitles…" : "Find them from the subtitles"}
+                  {syncBusy ? (ownSyncProg && ownSyncProg.of ? "Placing chapter " + ownSyncProg.done + " of " + ownSyncProg.of + "…" : "Reading the subtitles…") : "Find them from the subtitles again"}
                 </button>
                 <button type="button" className="bnd-paste-tog" onClick={function(){ setSyncPasteOpen(!syncPasteOpen); }}>
                   {syncPasteOpen ? "Hide" : "Paste subtitles instead"}
@@ -23549,7 +23630,11 @@ export default function App() {
                                 <button className="own-act" onClick={openBounds}>Set where each chapter starts</button>
                                 <span className="own-rec-n">
                                   {(function(){
+                                    if (syncBusy && ownSyncProg) return "Finding each paragraph in the recording… chapter " + ownSyncProg.done + " of " + ownSyncProg.of + ".";
+                                    if (syncBusy) return "Reading the recording's subtitles…";
                                     var n = Object.keys(normOwnVideo(ownRec).bounds).length;
+                                    if (ownSync && ownSync.sync) return n + (n === 1 ? " chapter is" : " chapters are") + " timed, with jump points at " + (ownSync.parasFound || 0) + " paragraphs — the ▶ beside a paragraph plays from there.";
+                                    if (syncNote && syncNote.bad) return syncNote.text;
                                     return n ? n + (n === 1 ? " chapter is" : " chapters are") + " timed."
                                              : "One recording, no chapter times: it plays straight on, and your place in it is kept.";
                                   })()}
