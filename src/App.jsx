@@ -14470,7 +14470,15 @@ export default function App() {
             onClick={function(e){
               e.stopPropagation();
               var r = e.currentTarget.getBoundingClientRect();
-              setBmMenu({ x: r.left, y: r.bottom + 6, off: paraOff,
+              // Beside the flag, not under it: the paragraph below carries its
+              // own ▶ in the same column, and a menu hung beneath the flag sat
+              // on top of that ▶ and took the click meant for it.
+              var mx = r.right + 12, my = Math.max(8, r.top - 8);
+              try {
+                if (mx + 210 > window.innerWidth) mx = Math.max(8, window.innerWidth - 218);
+                if (my + 150 > window.innerHeight) my = Math.max(8, window.innerHeight - 160);
+              } catch (x) {}
+              setBmMenu({ x: mx, y: my, off: paraOff,
                           here: bmHere, bm: bmEntry || null });
             }}>⚑</button>
         ) : null;
@@ -17240,6 +17248,14 @@ export default function App() {
         .pjump:hover{opacity:1}
         .pbm.on{background:none;border:0;opacity:1;color:var(--rubric)}
         @media(max-width:900px){.pjump,.pbm{margin-left:-2px}}
+        /* The flag used to sit exactly over the ▶ on a wide screen (each is
+           pulled left by its own width, so the second lands on the first) and,
+           being later, took the click meant for the ▶ — opening its menu
+           instead of playing. The flag now stands one slot further out, and
+           the ▶ has a larger target and the top of the stack. */
+        @media(min-width:901px){.pjump+.pbm{margin-left:-52px}}
+        .pjump{position:relative;z-index:2}
+        .pjump::after{content:"";position:absolute;inset:-7px -3px}
         /* Two marks, one slot. The play-from-here arrow and the bookmark flag
            were both floated the same distance into the left margin, and since
            that pull is exactly their own width, the second landed precisely on
