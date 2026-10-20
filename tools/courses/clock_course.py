@@ -51,7 +51,14 @@ def drill(d):
         return {"type": "clockset", "q": d["say"], "hhmm": d["hhmm"], "answers": [d["hhmm"]],
                 "prompt": "Set the clock to this time.",
                 "context": CTX[k], "why": WHY[k]}
-    return {"type": "fill", "q": "___", "clock": d["hhmm"], "answers": d["accept"],
+    # The clock to be put into words shows the time as it is said: twelve
+    # hours, and the part of the day beside it. A 24-hour display would ask
+    # for «двадцать тридцать пять» while the answer waited for «без двадцати
+    # пяти девять»; setting the 24-hour clock from the words is the other
+    # drill, where that mapping is the point.
+    h, m = int(d["hhmm"][:2]), int(d["hhmm"][3:])
+    return {"type": "fill", "q": "___", "clock": "%d:%02d" % (h % 12 or 12, m), "pod": d["say"].split()[-1],
+            "answers": d["accept"],
             "prompt": "Write this time in words — the way it is said (пять минут третьего), with or without утра / дня / вечера / ночи; or the 24-hour way (четырнадцать ноль пять).",
             "context": CTX[k], "why": WHY[k] + " " + H24}
 

@@ -148,12 +148,15 @@ def say(h, m):
                 acc.append(x)
     # the 24-hour system
     h24 = card(h) if h else form("ноль", "NOUN", "nomn", "sing")
+    hw24 = hour_word(h) if h else "часов"
     if m == 0:
-        acc += ["%s ноль ноль" % h24, "%s %s" % (h24, hour_word(h) if h else "часов")]
+        acc += ["%s ноль ноль" % h24, "%s %s" % (h24, hw24), "%s %s ровно" % (h24, hw24), "ровно %s %s" % (h24, hw24)]
     else:
         mm = card(m, "nomn", "femn")
-        acc += ["%s %s" % (h24, mm), "%s ноль %s" % (h24, mm) if m < 10 else "%s %s" % (h24, mm),
-                "%s %s %s %s" % (h24, hour_word(h) if h else "часов", mm, minutes_word(m))]
+        mw = minutes_word(m)
+        for mid in (["%s" % mm, "ноль %s" % mm] if m < 10 else ["%s" % mm]):
+            acc += ["%s %s" % (h24, mid), "%s %s %s" % (h24, hw24, mid),
+                    "%s %s %s %s" % (h24, hw24, mid, mw), "%s %s %s" % (h24, mid, mw)]
     out = []
     for a in acc:
         if a not in out:

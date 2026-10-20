@@ -1147,12 +1147,29 @@ function whenYTApi(cb) {
 // colon, drawn large in a dark panel so it reads as a clock and not a number.
 function ClockFace(props) {
   var t = String(props.hhmm || "--:--");
+  var k = t.indexOf(":");
+  var hh = k < 0 ? t : t.slice(0, k), mm = k < 0 ? "" : t.slice(k + 1);
+  var cls = "clk" + (props.state ? " " + props.state : "") + (props.onChange ? " edit" : "");
+  if (props.onChange) {
+    // The clock the reader sets: the display is the input. Click into it and
+    // type 2035, or 20:35 — any digits, a colon or a dot between them is fine.
+    return (
+      <div className={cls}>
+        <input className="clk-in" type="text" inputMode="numeric" autoComplete="off" spellCheck={false}
+          placeholder="--:--" maxLength={5} value={props.value || ""} readOnly={!!props.readOnly}
+          aria-label="the time, hours and minutes"
+          onChange={function(ev){ props.onChange(ev.target.value); }}
+          onKeyDown={function(ev){ if (ev.key === "Enter" && props.onEnter) props.onEnter(); }} />
+        {props.label && <span className="clk-pod" lang="ru">{props.label}</span>}
+      </div>
+    );
+  }
   return (
-    <div className={"clk" + (props.state ? " " + props.state : "")} role="img" aria-label={"clock showing " + t}>
-      <span className="clk-d">{t.slice(0, 2)}</span>
+    <div className={cls} role="img" aria-label={"clock showing " + t + (props.label ? " " + props.label : "")}>
+      <span className="clk-d">{hh}</span>
       <span className="clk-c">:</span>
-      <span className="clk-d">{t.slice(3, 5)}</span>
-      {props.children}
+      <span className="clk-d">{mm}</span>
+      {props.label && <span className="clk-pod" lang="ru">{props.label}</span>}
     </div>
   );
 }
@@ -16215,7 +16232,7 @@ export default function App() {
         .crs-hint{font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;color:rgba(42,31,20,.55)}
         .crs-show{align-self:flex-start;background:none;border:0;padding:0;cursor:pointer;font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;color:#9d4630;text-decoration:underline}
         .crs-ans{font-family:'Literata',serif;font-size:14.5px;color:rgba(42,31,20,.75)}
-        .crs-why{font-family:'Literata',serif;font-size:14.5px;line-height:1.5;color:rgba(42,31,20,.8);padding:6px 10px;border-radius:6px;background:rgba(42,31,20,.05)}.clk{display:inline-flex;align-items:baseline;gap:2px;margin:6px 0 10px;padding:10px 18px;border-radius:10px;background:#1c1a17;color:#ffb347;font-family:"DejaVu Sans Mono","Menlo","Consolas",monospace;font-size:44px;font-weight:700;letter-spacing:.06em;line-height:1;box-shadow:inset 0 0 0 2px rgba(255,255,255,.06),0 2px 6px rgba(0,0,0,.25);text-shadow:0 0 10px rgba(255,179,71,.45)}.clk.ok{color:#7ee787;text-shadow:0 0 10px rgba(126,231,135,.45)}.clk.bad{color:#ff7b72;text-shadow:0 0 10px rgba(255,123,114,.4)}.clk-c{animation:clkblink 1.2s steps(1) infinite}@keyframes clkblink{50%{opacity:.25}}.crs-say{font-family:'Literata',serif;font-size:20px;line-height:1.4;color:#1c1610;margin:2px 0 6px}.clk-ctl{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;margin:2px 0 8px}.clk-grp{display:inline-flex;align-items:center;gap:6px}.clk-lab{font-family:'Inter',system-ui,sans-serif;font-size:12px;color:rgba(42,31,20,.6);margin-right:2px}.clk-b{font:inherit;font-size:15px;min-width:42px;padding:6px 8px;border-radius:8px;border:1px solid rgba(42,31,20,.25);background:#fff;color:#1c1610;cursor:pointer}.clk-b:active{background:rgba(42,31,20,.08)}@media (max-width:480px){.clk{font-size:36px;padding:8px 14px}.clk-b{min-width:38px}}
+        .crs-why{font-family:'Literata',serif;font-size:14.5px;line-height:1.5;color:rgba(42,31,20,.8);padding:6px 10px;border-radius:6px;background:rgba(42,31,20,.05)}.clk{display:inline-flex;align-items:baseline;gap:2px;margin:6px 0 10px;padding:10px 18px;border-radius:10px;background:#1c1a17;color:#ffb347;font-family:"DejaVu Sans Mono","Menlo","Consolas",monospace;font-size:44px;font-weight:700;letter-spacing:.06em;line-height:1;box-shadow:inset 0 0 0 2px rgba(255,255,255,.06),0 2px 6px rgba(0,0,0,.25);text-shadow:0 0 10px rgba(255,179,71,.45)}.clk.ok{color:#7ee787;text-shadow:0 0 10px rgba(126,231,135,.45)}.clk.bad{color:#ff7b72;text-shadow:0 0 10px rgba(255,123,114,.4)}.clk-c{animation:clkblink 1.2s steps(1) infinite}@keyframes clkblink{50%{opacity:.25}}.clk-in{font:inherit;color:inherit;background:transparent;border:0;outline:0;width:5.2ch;padding:0;text-align:center;letter-spacing:inherit;caret-color:#ffb347}.clk-in::placeholder{color:inherit;opacity:.55}.clk.edit{cursor:text}.clk.edit:focus-within{box-shadow:inset 0 0 0 2px rgba(255,179,71,.55),0 2px 6px rgba(0,0,0,.25)}.clk-pod{font-family:'Literata',serif;font-size:16px;font-weight:400;letter-spacing:0;color:rgba(255,255,255,.75);text-shadow:none;margin-left:12px;align-self:center}.crs-say{font-family:'Literata',serif;font-size:20px;line-height:1.4;color:#1c1610;margin:2px 0 6px}.clk-ctl{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;margin:2px 0 8px}.clk-grp{display:inline-flex;align-items:center;gap:6px}.clk-lab{font-family:'Inter',system-ui,sans-serif;font-size:12px;color:rgba(42,31,20,.6);margin-right:2px}.clk-b{font:inherit;font-size:15px;min-width:42px;padding:6px 8px;border-radius:8px;border:1px solid rgba(42,31,20,.25);background:#fff;color:#1c1610;cursor:pointer}.clk-b:active{background:rgba(42,31,20,.08)}@media (max-width:480px){.clk{font-size:36px;padding:8px 14px}.clk-b{min-width:38px}}
         .crs-ctx{font-family:'Inter',system-ui,sans-serif;font-size:12.5px;line-height:1.5;color:rgba(42,31,20,.62);border-left:2px solid rgba(196,149,90,.5);padding:2px 0 2px 9px;margin-bottom:2px}
         .crs-score{font-family:'IBM Plex Sans',sans-serif;font-size:14px;padding:10px 14px;border-radius:9px;background:rgba(42,31,20,.06);color:rgba(42,31,20,.75)}
         .crs-score.done{background:#2e7d4f;color:#fff}
@@ -25160,25 +25177,34 @@ export default function App() {
                   var ctx = e.context ? <div className="crs-ctx">{rich(e.context)}</div> : null;
                   if (e.type === "clockset") {
                     // The time in words is the question; the reader sets it on
-                    // the clock. Hours and minutes move with their own buttons,
-                    // minutes by fives and by ones, and the clock starts blank
-                    // so a right answer is never the one it opened with.
-                    var hh = typeof es.h === "number" ? es.h : null;
-                    var mm = typeof es.m === "number" ? es.m : null;
-                    var shown = hh === null ? "--:--" : (hh < 10 ? "0" : "") + hh + ":" + (mm < 10 ? "0" : "") + mm;
+                    // the clock — typed straight into the display (2035, 20:35,
+                    // 20.35), or moved with the buttons: hours by one, minutes
+                    // by five and by one. It starts blank, so a right answer is
+                    // never the one it opened with.
+                    var parseClk = function(txt) {
+                      var d = String(txt || "").replace(/\D/g, "");
+                      if (d.length < 3 || d.length > 4) return null;
+                      var h = +d.slice(0, d.length - 2), m = +d.slice(-2);
+                      if (h > 23 || m > 59) return null;
+                      return { h: h, m: m };
+                    };
+                    var fmtClk = function(h, m) { return (h < 10 ? "0" : "") + h + ":" + (m < 10 ? "0" : "") + m; };
+                    var typed = es.txt || "";
+                    var cur = parseClk(typed);
                     var bump = function(dh, dm) {
                       if (es.status === "right") return;
-                      var h = hh === null ? 0 : hh, m = mm === null ? 0 : mm;
+                      var h = cur ? cur.h : 0, m = cur ? cur.m : 0;
+                      if (!cur && !dh && !dm) return;
                       m += dm; h += dh;
                       while (m < 0) { m += 60; h -= 1; }
                       while (m >= 60) { m -= 60; h += 1; }
                       h = ((h % 24) + 24) % 24;
-                      setEx(e.id, { h: h, m: m, status: "" });
+                      setEx(e.id, { txt: fmtClk(h, m), status: "" });
                     };
                     var checkClock = function() {
-                      if (hh === null) return;
-                      var ok = shown === e.hhmm;
-                      setEx(e.id, ok ? { status: "right" } : { status: "wrong", tries: (es.tries || 0) + 1 });
+                      if (!cur) { setEx(e.id, { status: "wrong", tries: (es.tries || 0) + 1 }); return; }
+                      var ok = fmtClk(cur.h, cur.m) === e.hhmm;
+                      setEx(e.id, ok ? { status: "right", txt: e.hhmm } : { status: "wrong", tries: (es.tries || 0) + 1 });
                       noteAnswer(course.id, sec.id, e.id, ok, exIds, ok && cleanRun(e));
                     };
                     return (
@@ -25188,7 +25214,10 @@ export default function App() {
                           {ctx}
                           {e.prompt && <div className="crs-qt">{rich(e.prompt)}</div>}
                           <div className="crs-say" lang="ru">{e.q}</div>
-                          <ClockFace hhmm={shown} state={es.status === "right" ? "ok" : es.status === "wrong" ? "bad" : ""} />
+                          <ClockFace value={typed} readOnly={es.status === "right"}
+                            state={es.status === "right" ? "ok" : es.status === "wrong" ? "bad" : ""}
+                            onChange={function(v){ setEx(e.id, { txt: v, status: es.status === "right" ? "right" : "" }); }}
+                            onEnter={checkClock} />
                           {es.status !== "right" && (
                             <div className="clk-ctl">
                               <div className="clk-grp"><span className="clk-lab">hours</span>
@@ -25201,10 +25230,11 @@ export default function App() {
                                 <button type="button" className="clk-b" onClick={function(){ bump(0, 1); }}>+1</button>
                                 <button type="button" className="clk-b" onClick={function(){ bump(0, 5); }}>+5</button>
                               </div>
-                              <button type="button" className="crs-chk" disabled={hh === null} onClick={checkClock}>Check</button>
+                              <button type="button" className="crs-chk" onClick={checkClock}>Check</button>
                             </div>
                           )}
                           {es.status === "right" && <span className="crs-tick">✓</span>}
+                          {es.status === "wrong" && !cur && typed && <div className="crs-hint">Type the hours and minutes as four digits, 24-hour: 2035 for twenty-five to nine in the evening.</div>}
                           {es.status === "wrong" && (es.tries || 0) >= 2 && !es.shown && (
                             <button type="button" className="crs-show" onClick={function(){ setEx(e.id, { shown: true }); }}>Show the answer</button>
                           )}
@@ -25309,7 +25339,7 @@ export default function App() {
                       <div className="crs-qb">
                         {ctx}
                         {e.prompt && <div className="crs-qt">{rich(e.prompt)}</div>}
-                        {e.clock && <ClockFace hhmm={e.clock} />}
+                        {e.clock && <ClockFace hhmm={e.clock} label={e.pod} />}
                         <div className="crs-fill" lang="ru">
                           {parts.map(function(p, k){ return <Fragment key={k}>{rich(p)}{k < parts.length - 1 ? fieldAt(k) : null}</Fragment>; })}
                           {parts.length < 2 && fieldAt(0)}
