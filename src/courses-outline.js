@@ -20,7 +20,7 @@ export default [
    {
     "id": "t1-clock-practice",
     "title": "Practice: What time is it?",
-    "n": 4
+    "n": 2
    },
    {
     "id": "t2-parts-of-day",
@@ -30,7 +30,7 @@ export default [
    {
     "id": "t2-parts-of-day-practice",
     "title": "Practice: Morning, every day, all day",
-    "n": 12
+    "n": 11
    },
    {
     "id": "t3-day-week-month-year",
@@ -50,7 +50,7 @@ export default [
    {
     "id": "t4-how-long-practice",
     "title": "Practice: How long, how long ago, how old",
-    "n": 14
+    "n": 8
    },
    {
     "id": "t5-months-dates",
@@ -70,7 +70,7 @@ export default [
    {
     "id": "t6-from-till-by-practice",
     "title": "Practice: Since, till, by, before, after, in",
-    "n": 11
+    "n": 6
    },
    {
     "id": "t7-words",
@@ -80,57 +80,57 @@ export default [
    {
     "id": "t8-this-next-last",
     "title": "This week, next month, last year",
-    "n": 20
+    "n": 13
    },
    {
     "id": "t8-this-next-last-practice",
     "title": "Practice 1: This week, next month, last year",
-    "n": 20
+    "n": 11
    },
    {
     "id": "t8-this-next-last-practice-2",
     "title": "Practice 2: This week, next month, last year",
-    "n": 20
+    "n": 14
    },
    {
     "id": "t8-this-next-last-practice-3",
     "title": "Practice 3: This week, next month, last year",
-    "n": 20
+    "n": 10
    },
    {
     "id": "t8-this-next-last-practice-4",
     "title": "Practice 4: This week, next month, last year",
-    "n": 20
+    "n": 12
    },
    {
     "id": "t8-this-next-last-practice-5",
     "title": "Practice 5: This week, next month, last year",
-    "n": 20
+    "n": 9
    },
    {
     "id": "t8-this-next-last-practice-6",
     "title": "Practice 6: This week, next month, last year",
-    "n": 20
+    "n": 12
    },
    {
     "id": "t8-this-next-last-practice-7",
     "title": "Practice 7: This week, next month, last year",
-    "n": 20
+    "n": 13
    },
    {
     "id": "t8-this-next-last-practice-8",
     "title": "Practice 8: This week, next month, last year",
-    "n": 20
+    "n": 10
    },
    {
     "id": "t8-this-next-last-practice-9",
     "title": "Practice 9: This week, next month, last year",
-    "n": 20
+    "n": 18
    },
    {
     "id": "t8-this-next-last-practice-10",
     "title": "Practice 10: This week, next month, last year",
-    "n": 20
+    "n": 16
    },
    {
     "id": "t8-this-next-last-practice-11",
@@ -140,267 +140,267 @@ export default [
    {
     "id": "t9-every-all-on",
     "title": "Every day, all week, on Saturdays",
-    "n": 20
+    "n": 14
    },
    {
     "id": "t9-every-all-on-practice",
     "title": "Practice 1: Every day, all week, on Saturdays",
-    "n": 20
+    "n": 13
    },
    {
     "id": "t9-every-all-on-practice-2",
     "title": "Practice 2: Every day, all week, on Saturdays",
-    "n": 20
+    "n": 12
    },
    {
     "id": "t9-every-all-on-practice-3",
     "title": "Practice 3: Every day, all week, on Saturdays",
-    "n": 20
+    "n": 12
    },
    {
     "id": "t9-every-all-on-practice-4",
     "title": "Practice 4: Every day, all week, on Saturdays",
-    "n": 20
+    "n": 11
    },
    {
     "id": "t9-every-all-on-practice-5",
     "title": "Practice 5: Every day, all week, on Saturdays",
-    "n": 20
+    "n": 14
    },
    {
     "id": "t9-every-all-on-practice-6",
     "title": "Practice 6: Every day, all week, on Saturdays",
-    "n": 20
+    "n": 14
    },
    {
     "id": "t9-every-all-on-practice-7",
     "title": "Practice 7: Every day, all week, on Saturdays",
-    "n": 20
+    "n": 15
    },
    {
     "id": "t9-every-all-on-practice-8",
     "title": "Practice 8: Every day, all week, on Saturdays",
-    "n": 20
+    "n": 16
    },
    {
     "id": "t9-every-all-on-practice-9",
     "title": "Practice 9: Every day, all week, on Saturdays",
-    "n": 20
+    "n": 11
    },
    {
     "id": "t9-every-all-on-practice-10",
     "title": "Practice 10: Every day, all week, on Saturdays",
-    "n": 20
+    "n": 9
    },
    {
     "id": "t9-every-all-on-practice-11",
     "title": "Practice 11: Every day, all week, on Saturdays",
-    "n": 20
+    "n": 14
    },
    {
     "id": "t9-every-all-on-practice-12",
     "title": "Practice 12: Every day, all week, on Saturdays",
-    "n": 20
+    "n": 18
    },
    {
     "id": "t9-every-all-on-practice-13",
     "title": "Practice 13: Every day, all week, on Saturdays",
-    "n": 20
+    "n": 14
    },
    {
     "id": "t9-every-all-on-practice-14",
     "title": "Practice 14: Every day, all week, on Saturdays",
-    "n": 20
+    "n": 16
    },
    {
     "id": "t9-every-all-on-practice-15",
     "title": "Practice 15: Every day, all week, on Saturdays",
-    "n": 18
+    "n": 15
    },
    {
     "id": "t10-in-ago-for",
     "title": "In an hour, a week ago, for two days",
-    "n": 18
+    "n": 14
    },
    {
     "id": "t10-in-ago-for-practice",
     "title": "Practice 1: In an hour, a week ago, for two days",
-    "n": 19
+    "n": 13
    },
    {
     "id": "t10-in-ago-for-practice-2",
     "title": "Practice 2: In an hour, a week ago, for two days",
-    "n": 18
+    "n": 12
    },
    {
     "id": "t10-in-ago-for-practice-3",
     "title": "Practice 3: In an hour, a week ago, for two days",
-    "n": 19
+    "n": 14
    },
    {
     "id": "t10-in-ago-for-practice-4",
     "title": "Practice 4: In an hour, a week ago, for two days",
-    "n": 19
+    "n": 14
    },
    {
     "id": "t10-in-ago-for-practice-5",
     "title": "Practice 5: In an hour, a week ago, for two days",
-    "n": 19
+    "n": 11
    },
    {
     "id": "t10-in-ago-for-practice-6",
     "title": "Practice 6: In an hour, a week ago, for two days",
-    "n": 19
+    "n": 14
    },
    {
     "id": "t10-in-ago-for-practice-7",
     "title": "Practice 7: In an hour, a week ago, for two days",
-    "n": 19
+    "n": 15
    },
    {
     "id": "t10-in-ago-for-practice-8",
     "title": "Practice 8: In an hour, a week ago, for two days",
-    "n": 20
+    "n": 14
    },
    {
     "id": "t10-in-ago-for-practice-9",
     "title": "Practice 9: In an hour, a week ago, for two days",
-    "n": 20
+    "n": 16
    },
    {
     "id": "t10-in-ago-for-practice-10",
     "title": "Practice 10: In an hour, a week ago, for two days",
-    "n": 20
+    "n": 14
    },
    {
     "id": "t10-in-ago-for-practice-11",
     "title": "Practice 11: In an hour, a week ago, for two days",
-    "n": 20
+    "n": 11
    },
    {
     "id": "t10-in-ago-for-practice-12",
     "title": "Practice 12: In an hour, a week ago, for two days",
-    "n": 20
+    "n": 15
    },
    {
     "id": "t10-in-ago-for-practice-13",
     "title": "Practice 13: In an hour, a week ago, for two days",
-    "n": 20
+    "n": 13
    },
    {
     "id": "t10-in-ago-for-practice-14",
     "title": "Practice 14: In an hour, a week ago, for two days",
-    "n": 20
+    "n": 17
    },
    {
     "id": "t10-in-ago-for-practice-15",
     "title": "Practice 15: In an hour, a week ago, for two days",
-    "n": 20
+    "n": 17
    },
    {
     "id": "t10-in-ago-for-practice-16",
     "title": "Practice 16: In an hour, a week ago, for two days",
-    "n": 20
+    "n": 18
    },
    {
     "id": "t10-in-ago-for-practice-17",
     "title": "Practice 17: In an hour, a week ago, for two days",
-    "n": 7
+    "n": 6
    },
    {
     "id": "t11-since-till-by",
     "title": "Since, till, by, before, after",
-    "n": 20
+    "n": 18
    },
    {
     "id": "t11-since-till-by-practice",
     "title": "Practice 1: Since, till, by, before, after",
-    "n": 20
+    "n": 14
    },
    {
     "id": "t11-since-till-by-practice-2",
     "title": "Practice 2: Since, till, by, before, after",
-    "n": 20
+    "n": 14
    },
    {
     "id": "t11-since-till-by-practice-3",
     "title": "Practice 3: Since, till, by, before, after",
-    "n": 20
+    "n": 12
    },
    {
     "id": "t11-since-till-by-practice-4",
     "title": "Practice 4: Since, till, by, before, after",
-    "n": 20
+    "n": 14
    },
    {
     "id": "t11-since-till-by-practice-5",
     "title": "Practice 5: Since, till, by, before, after",
-    "n": 20
+    "n": 11
    },
    {
     "id": "t11-since-till-by-practice-6",
     "title": "Practice 6: Since, till, by, before, after",
-    "n": 20
+    "n": 14
    },
    {
     "id": "t11-since-till-by-practice-7",
     "title": "Practice 7: Since, till, by, before, after",
-    "n": 20
+    "n": 15
    },
    {
     "id": "t11-since-till-by-practice-8",
     "title": "Practice 8: Since, till, by, before, after",
-    "n": 20
+    "n": 15
    },
    {
     "id": "t11-since-till-by-practice-9",
     "title": "Practice 9: Since, till, by, before, after",
-    "n": 20
+    "n": 14
    },
    {
     "id": "t11-since-till-by-practice-10",
     "title": "Practice 10: Since, till, by, before, after",
-    "n": 20
+    "n": 18
    },
    {
     "id": "t11-since-till-by-practice-11",
     "title": "Practice 11: Since, till, by, before, after",
-    "n": 20
+    "n": 16
    },
    {
     "id": "t11-since-till-by-practice-12",
     "title": "Practice 12: Since, till, by, before, after",
-    "n": 20
+    "n": 15
    },
    {
     "id": "t11-since-till-by-practice-13",
     "title": "Practice 13: Since, till, by, before, after",
-    "n": 20
+    "n": 17
    },
    {
     "id": "t11-since-till-by-practice-14",
     "title": "Practice 14: Since, till, by, before, after",
-    "n": 20
+    "n": 17
    },
    {
     "id": "t11-since-till-by-practice-15",
     "title": "Practice 15: Since, till, by, before, after",
-    "n": 20
+    "n": 19
    },
    {
     "id": "t11-since-till-by-practice-16",
     "title": "Practice 16: Since, till, by, before, after",
-    "n": 20
+    "n": 17
    },
    {
     "id": "t11-since-till-by-practice-17",
     "title": "Practice 17: Since, till, by, before, after",
-    "n": 20
+    "n": 16
    },
    {
     "id": "t11-since-till-by-practice-18",
     "title": "Practice 18: Since, till, by, before, after",
-    "n": 20
+    "n": 18
    },
    {
     "id": "t11-since-till-by-practice-19",
@@ -410,7 +410,7 @@ export default [
    {
     "id": "t11-since-till-by-practice-20",
     "title": "Practice 20: Since, till, by, before, after",
-    "n": 20
+    "n": 18
    },
    {
     "id": "t12-dates-years",
@@ -420,12 +420,12 @@ export default [
    {
     "id": "t12-dates-years-practice",
     "title": "Practice 1: Dates and years in real sentences",
-    "n": 20
+    "n": 15
    },
    {
     "id": "t12-dates-years-practice-2",
     "title": "Practice 2: Dates and years in real sentences",
-    "n": 6
+    "n": 5
    },
    {
     "id": "t13-time-words",

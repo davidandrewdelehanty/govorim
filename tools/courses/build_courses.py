@@ -239,6 +239,17 @@ def main():
     # attach_context.py puts on every exercise, so it is re-applied here:
     # building and explaining are one step, and a rebuild can never ship
     # exercises with nothing but a citation for an explanation.
+    # The time course: each exercise gets the DLI rule for the construction
+    # its own sentence uses, and a sentence using none the course teaches is
+    # taken out (tools/courses/_dropped/time-unexplained.json). Runs before
+    # attach_context, which leaves an exercise with a context alone.
+    try:
+        import explain_time
+    except ImportError:
+        print("explain_time skipped (pymorphy3 not installed)")
+    else:
+        explain_time.main(["--apply"])
+
     import attach_context
     attach_context.main(["--apply"])
 
@@ -252,6 +263,14 @@ def main():
         print("sense_check skipped (pymorphy3 not installed)")
     else:
         sense_check.main(["--drop"])
+
+    # «весною» in a sentence from the library: «весной» is right too.
+    try:
+        import answer_variants
+    except ImportError:
+        print("answer_variants skipped (pymorphy3 not installed)")
+    else:
+        answer_variants.main(["--apply"])
 
     # attach_context and sense_check rewrote the section files, and
     # sense_check removed some exercises, so the counts in the outline are
