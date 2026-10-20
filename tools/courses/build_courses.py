@@ -131,6 +131,19 @@ COURSES.append({
 })
 
 
+import clock_course
+COURSES.append({
+    "id": "clock", "title": "Telling the Time", "short": "Clock", "mark": "\u25f7",
+    "blurb": "",
+    "credit": "Rules from the Defense Language Institute Russian Basic Course, Grammar Reference Book, Lessons 40, 73 "
+              "and 74 (a US Government work in the public domain); every time in words is dictionary forms (OpenCorpora, "
+              "CC BY-SA 4.0) put together by those rules in tools/courses/gen_clock.py",
+    "creditUrl": DLI_URL,
+    "license": "Public domain \u00b7 CC BY-SA 4.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "modules": ["clock_course"], "order": None,
+})
+
+
 # Practice drills from Tatoeba (tools/courses/tatoeba_drills.py): a section
 # of real sentences after each section they belong to.
 DRILLS_P = os.path.join(HERE, "drills.json")

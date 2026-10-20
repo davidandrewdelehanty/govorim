@@ -5383,5 +5383,123 @@ export default [
     "n": 12
    }
   ]
+ },
+ {
+  "id": "clock",
+  "title": "Telling the Time",
+  "short": "Clock",
+  "mark": "◷",
+  "blurb": "",
+  "credit": "Rules from the Defense Language Institute Russian Basic Course, Grammar Reference Book, Lessons 40, 73 and 74 (a US Government work in the public domain); every time in words is dictionary forms (OpenCorpora, CC BY-SA 4.0) put together by those rules in tools/courses/gen_clock.py",
+  "creditUrl": "https://www.fsi-language-courses.org/russian/courses/dli-russian-basic-course",
+  "license": "Public domain · CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "sections": [
+   {
+    "id": "ck0-rules",
+    "title": "How the time is told",
+    "n": 0
+   },
+   {
+    "id": "ck1",
+    "title": "Clock practice 1",
+    "n": 20
+   },
+   {
+    "id": "ck2",
+    "title": "Clock practice 2",
+    "n": 20
+   },
+   {
+    "id": "ck3",
+    "title": "Clock practice 3",
+    "n": 20
+   },
+   {
+    "id": "ck4",
+    "title": "Clock practice 4",
+    "n": 20
+   },
+   {
+    "id": "ck5",
+    "title": "Clock practice 5",
+    "n": 20
+   },
+   {
+    "id": "ck6",
+    "title": "Clock practice 6",
+    "n": 20
+   },
+   {
+    "id": "ck7",
+    "title": "Clock practice 7",
+    "n": 20
+   },
+   {
+    "id": "ck8",
+    "title": "Clock practice 8",
+    "n": 20
+   },
+   {
+    "id": "ck9",
+    "title": "Clock practice 9",
+    "n": 20
+   },
+   {
+    "id": "ck10",
+    "title": "Clock practice 10",
+    "n": 20
+   },
+   {
+    "id": "ck11",
+    "title": "Clock practice 11",
+    "n": 20
+   },
+   {
+    "id": "ck12",
+    "title": "Clock practice 12",
+    "n": 20
+   },
+   {
+    "id": "ck13",
+    "title": "Clock practice 13",
+    "n": 20
+   },
+   {
+    "id": "ck14",
+    "title": "Clock practice 14",
+    "n": 20
+   },
+   {
+    "id": "ck15",
+    "title": "Clock practice 15",
+    "n": 20
+   },
+   {
+    "id": "ck16",
+    "title": "Clock practice 16",
+    "n": 20
+   },
+   {
+    "id": "ck17",
+    "title": "Clock practice 17",
+    "n": 20
+   },
+   {
+    "id": "ck18",
+    "title": "Clock practice 18",
+    "n": 20
+   },
+   {
+    "id": "ck19",
+    "title": "Clock practice 19",
+    "n": 20
+   },
+   {
+    "id": "ck20",
+    "title": "Clock practice 20",
+    "n": 20
+   }
+  ]
  }
 ];

@@ -1142,6 +1142,21 @@ function whenYTApi(cb) {
   setTimeout(function(){ if (ytApiState === 1) { ytApiState = 3; flush(false); } }, 8000);
 }
 
+// A digital clock, 24-hour, for the Telling the Time course: the time to be
+// written in words, or the one the reader is setting. Four digits and a
+// colon, drawn large in a dark panel so it reads as a clock and not a number.
+function ClockFace(props) {
+  var t = String(props.hhmm || "--:--");
+  return (
+    <div className={"clk" + (props.state ? " " + props.state : "")} role="img" aria-label={"clock showing " + t}>
+      <span className="clk-d">{t.slice(0, 2)}</span>
+      <span className="clk-c">:</span>
+      <span className="clk-d">{t.slice(3, 5)}</span>
+      {props.children}
+    </div>
+  );
+}
+
 function fmtClock(sec) {
   sec = Math.max(0, Math.round(sec || 0));
   var h = Math.floor(sec / 3600), m = Math.floor((sec % 3600) / 60), s2 = sec % 60;
@@ -16200,7 +16215,7 @@ export default function App() {
         .crs-hint{font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;color:rgba(42,31,20,.55)}
         .crs-show{align-self:flex-start;background:none;border:0;padding:0;cursor:pointer;font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;color:#9d4630;text-decoration:underline}
         .crs-ans{font-family:'Literata',serif;font-size:14.5px;color:rgba(42,31,20,.75)}
-        .crs-why{font-family:'Literata',serif;font-size:14.5px;line-height:1.5;color:rgba(42,31,20,.8);padding:6px 10px;border-radius:6px;background:rgba(42,31,20,.05)}
+        .crs-why{font-family:'Literata',serif;font-size:14.5px;line-height:1.5;color:rgba(42,31,20,.8);padding:6px 10px;border-radius:6px;background:rgba(42,31,20,.05)}.clk{display:inline-flex;align-items:baseline;gap:2px;margin:6px 0 10px;padding:10px 18px;border-radius:10px;background:#1c1a17;color:#ffb347;font-family:"DejaVu Sans Mono","Menlo","Consolas",monospace;font-size:44px;font-weight:700;letter-spacing:.06em;line-height:1;box-shadow:inset 0 0 0 2px rgba(255,255,255,.06),0 2px 6px rgba(0,0,0,.25);text-shadow:0 0 10px rgba(255,179,71,.45)}.clk.ok{color:#7ee787;text-shadow:0 0 10px rgba(126,231,135,.45)}.clk.bad{color:#ff7b72;text-shadow:0 0 10px rgba(255,123,114,.4)}.clk-c{animation:clkblink 1.2s steps(1) infinite}@keyframes clkblink{50%{opacity:.25}}.crs-say{font-family:'Literata',serif;font-size:20px;line-height:1.4;color:#1c1610;margin:2px 0 6px}.clk-ctl{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;margin:2px 0 8px}.clk-grp{display:inline-flex;align-items:center;gap:6px}.clk-lab{font-family:'Inter',system-ui,sans-serif;font-size:12px;color:rgba(42,31,20,.6);margin-right:2px}.clk-b{font:inherit;font-size:15px;min-width:42px;padding:6px 8px;border-radius:8px;border:1px solid rgba(42,31,20,.25);background:#fff;color:#1c1610;cursor:pointer}.clk-b:active{background:rgba(42,31,20,.08)}@media (max-width:480px){.clk{font-size:36px;padding:8px 14px}.clk-b{min-width:38px}}
         .crs-ctx{font-family:'Inter',system-ui,sans-serif;font-size:12.5px;line-height:1.5;color:rgba(42,31,20,.62);border-left:2px solid rgba(196,149,90,.5);padding:2px 0 2px 9px;margin-bottom:2px}
         .crs-score{font-family:'IBM Plex Sans',sans-serif;font-size:14px;padding:10px 14px;border-radius:9px;background:rgba(42,31,20,.06);color:rgba(42,31,20,.75)}
         .crs-score.done{background:#2e7d4f;color:#fff}
@@ -25143,6 +25158,62 @@ export default function App() {
                   var why = (es.status === "right" || (es.tries || 0) >= 2 || es.shown) && e.why ? <div className="crs-why">{rich(e.why)}</div> : null;
                   // What the lesson teaches, shown above the question. Taken verbatim from the lesson's own sourced prose by tools/courses/attach_context.py.
                   var ctx = e.context ? <div className="crs-ctx">{rich(e.context)}</div> : null;
+                  if (e.type === "clockset") {
+                    // The time in words is the question; the reader sets it on
+                    // the clock. Hours and minutes move with their own buttons,
+                    // minutes by fives and by ones, and the clock starts blank
+                    // so a right answer is never the one it opened with.
+                    var hh = typeof es.h === "number" ? es.h : null;
+                    var mm = typeof es.m === "number" ? es.m : null;
+                    var shown = hh === null ? "--:--" : (hh < 10 ? "0" : "") + hh + ":" + (mm < 10 ? "0" : "") + mm;
+                    var bump = function(dh, dm) {
+                      if (es.status === "right") return;
+                      var h = hh === null ? 0 : hh, m = mm === null ? 0 : mm;
+                      m += dm; h += dh;
+                      while (m < 0) { m += 60; h -= 1; }
+                      while (m >= 60) { m -= 60; h += 1; }
+                      h = ((h % 24) + 24) % 24;
+                      setEx(e.id, { h: h, m: m, status: "" });
+                    };
+                    var checkClock = function() {
+                      if (hh === null) return;
+                      var ok = shown === e.hhmm;
+                      setEx(e.id, ok ? { status: "right" } : { status: "wrong", tries: (es.tries || 0) + 1 });
+                      noteAnswer(course.id, sec.id, e.id, ok, exIds, ok && cleanRun(e));
+                    };
+                    return (
+                      <div key={e.id} className={"crs-q" + (es.status === "right" ? " ok" : "")}>
+                        <div className="crs-qn">{n + 1}</div>
+                        <div className="crs-qb">
+                          {ctx}
+                          {e.prompt && <div className="crs-qt">{rich(e.prompt)}</div>}
+                          <div className="crs-say" lang="ru">{e.q}</div>
+                          <ClockFace hhmm={shown} state={es.status === "right" ? "ok" : es.status === "wrong" ? "bad" : ""} />
+                          {es.status !== "right" && (
+                            <div className="clk-ctl">
+                              <div className="clk-grp"><span className="clk-lab">hours</span>
+                                <button type="button" className="clk-b" onClick={function(){ bump(-1, 0); }}>−1</button>
+                                <button type="button" className="clk-b" onClick={function(){ bump(1, 0); }}>+1</button>
+                              </div>
+                              <div className="clk-grp"><span className="clk-lab">minutes</span>
+                                <button type="button" className="clk-b" onClick={function(){ bump(0, -5); }}>−5</button>
+                                <button type="button" className="clk-b" onClick={function(){ bump(0, -1); }}>−1</button>
+                                <button type="button" className="clk-b" onClick={function(){ bump(0, 1); }}>+1</button>
+                                <button type="button" className="clk-b" onClick={function(){ bump(0, 5); }}>+5</button>
+                              </div>
+                              <button type="button" className="crs-chk" disabled={hh === null} onClick={checkClock}>Check</button>
+                            </div>
+                          )}
+                          {es.status === "right" && <span className="crs-tick">✓</span>}
+                          {es.status === "wrong" && (es.tries || 0) >= 2 && !es.shown && (
+                            <button type="button" className="crs-show" onClick={function(){ setEx(e.id, { shown: true }); }}>Show the answer</button>
+                          )}
+                          {es.shown && es.status !== "right" && <div className="crs-ans">Answer: <b>{e.hhmm}</b> — set the clock to it to finish this one.</div>}
+                          {why}
+                        </div>
+                      </div>
+                    );
+                  }
                   if (e.type === "mc") {
                     var picked = es.picked || [];
                     return (
@@ -25238,6 +25309,7 @@ export default function App() {
                       <div className="crs-qb">
                         {ctx}
                         {e.prompt && <div className="crs-qt">{rich(e.prompt)}</div>}
+                        {e.clock && <ClockFace hhmm={e.clock} />}
                         <div className="crs-fill" lang="ru">
                           {parts.map(function(p, k){ return <Fragment key={k}>{rich(p)}{k < parts.length - 1 ? fieldAt(k) : null}</Fragment>; })}
                           {parts.length < 2 && fieldAt(0)}
