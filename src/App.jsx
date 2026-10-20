@@ -16131,6 +16131,7 @@ export default function App() {
         .crs-show{align-self:flex-start;background:none;border:0;padding:0;cursor:pointer;font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;color:#9d4630;text-decoration:underline}
         .crs-ans{font-family:'Literata',serif;font-size:14.5px;color:rgba(42,31,20,.75)}
         .crs-why{font-family:'Literata',serif;font-size:14.5px;line-height:1.5;color:rgba(42,31,20,.8);padding:6px 10px;border-radius:6px;background:rgba(42,31,20,.05)}
+        .crs-ctx{font-family:'Inter',system-ui,sans-serif;font-size:12.5px;line-height:1.5;color:rgba(42,31,20,.62);border-left:2px solid rgba(196,149,90,.5);padding:2px 0 2px 9px;margin-bottom:2px}
         .crs-score{font-family:'IBM Plex Sans',sans-serif;font-size:14px;padding:10px 14px;border-radius:9px;background:rgba(42,31,20,.06);color:rgba(42,31,20,.75)}
         .crs-score.done{background:#2e7d4f;color:#fff}
         .crs-nav{display:flex;justify-content:flex-end;margin-top:10px}
@@ -25047,12 +25048,15 @@ export default function App() {
                 var exercise = function(e, n) {
                   var es = exState[e.id] || {};
                   var why = (es.status === "right" || (es.tries || 0) >= 2 || es.shown) && e.why ? <div className="crs-why">{rich(e.why)}</div> : null;
+                  // What the lesson teaches, shown above the question. Taken verbatim from the lesson's own sourced prose by tools/courses/attach_context.py.
+                  var ctx = e.context ? <div className="crs-ctx">{rich(e.context)}</div> : null;
                   if (e.type === "mc") {
                     var picked = es.picked || [];
                     return (
                       <div key={e.id} className={"crs-q" + (es.status === "right" ? " ok" : "")}>
                         <div className="crs-qn">{n + 1}</div>
                         <div className="crs-qb">
+                          {ctx}
                           <div className="crs-qt">{rich(e.q)}</div>
                           {e.ru && <div className="crs-qru" lang="ru">{rich(e.ru)}</div>}
                           <div className="crs-opts">
@@ -25139,6 +25143,7 @@ export default function App() {
                     <div key={e.id} className={"crs-q" + (es.status === "right" ? " ok" : "")}>
                       <div className="crs-qn">{n + 1}</div>
                       <div className="crs-qb">
+                        {ctx}
                         {e.prompt && <div className="crs-qt">{rich(e.prompt)}</div>}
                         <div className="crs-fill" lang="ru">
                           {parts.map(function(p, k){ return <Fragment key={k}>{rich(p)}{k < parts.length - 1 ? fieldAt(k) : null}</Fragment>; })}
