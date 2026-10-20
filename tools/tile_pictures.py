@@ -16,6 +16,9 @@ tools/fallback_pictures.py has finished — both write the catalogue.
     cd /mnt/c/Users/david/projects/govorim-app
     python3 tools/tile_pictures.py
 Then open private/cover_review/tiles.html to look them over.
+
+Only some courses (leaves the textbook and English-library covers as they are):
+    python3 tools/tile_pictures.py --only verbs pronouns complex tables numerals clock
 """
 import hashlib, io, json, os, re, sys, urllib.parse
 
@@ -44,10 +47,22 @@ COURSES = {
     "case-ins": [("The Rooks Have Come Back", "Savrasov"), ("Winter Road", "Savrasov")],
     "case-prp": [("Alyonushka", "Vasnetsov"), ("Above Eternal Peace", "Levitan")],
     "aspect":   [("Leo Tolstoy Ploughing", "Repin"), ("Mowers", "Myasoyedov")],
-    "verbs":    [("Bathing of a Red Horse", "Petrov-Vodkin"), ("Troika", "Perov")],
+    # Historical paintings for the courses that had none (Surikov, Repin, Ge —
+    # all died before 1930 or are long public domain). Each course lists a few
+    # in order of preference; the first one found on Wikidata and free wins.
+    "verbs":    [("Boyarynya Morozova", "Surikov"), ("Morning of the Streltsy Execution", "Surikov"),
+                 ("Yermak's Conquest of Siberia", "Surikov")],
     "compare":  [("The Vladimirka Road", "Levitan"), ("Evening Bells", "Levitan")],
-    "pronouns": [("Unknown Woman", "Kramskoi"), ("Portrait of an Unknown Woman", "Kramskoi")],
-    "complex":  [("Ivan Tsarevich Riding the Grey Wolf", "Vasnetsov"), ("The Knight at the Crossroads", "Vasnetsov")],
+    "pronouns": [("Ivan the Terrible and His Son Ivan on 16 November 1581", "Repin"),
+                 ("Ivan the Terrible and His Son Ivan", "Repin"), ("Menshikov in Berezovo", "Surikov")],
+    "complex":  [("Suvorov Crossing the Alps", "Surikov"), ("Crossing the Alps", "Surikov"),
+                 ("Yermak's Conquest of Siberia", "Surikov")],
+    "tables":   [("Peter the Great Interrogating Tsarevich Alexei Petrovich at Peterhof", "Ge"),
+                 ("Peter I Interrogating the Tsarevich Alexei", "Ge"), ("The Last Supper", "Ge")],
+    "numerals": [("Morning of the Streltsy Execution", "Surikov"), ("The Morning of the Streltsy Execution", "Surikov"),
+                 ("Menshikov in Berezovo", "Surikov")],
+    "clock":    [("Yermak's Conquest of Siberia", "Surikov"), ("Menshikov in Berezovo", "Surikov"),
+                 ("Boyarynya Morozova", "Surikov")],
     "inter2":   [("The Swan Princess", "Vrubel"), ("Lilacs", "Vrubel")],
     "adv3":     [("The Demon Seated", "Vrubel"), ("Pan", "Vrubel")],
     "stories":  [("The Unequal Marriage", "Pukirev"), ("Tea-Drinking in Mytishchi", "Perov")],
@@ -119,14 +134,25 @@ def main():
     # 1. Courses
     out_p = "src/course-pictures.json"
     cp = json.load(io.open(out_p, encoding="utf-8")) if os.path.exists(out_p) else {}
+    only = sys.argv[sys.argv.index("--only") + 1:] if "--only" in sys.argv else None
     for cid, cands in COURSES.items():
-        if cid in cp:
+        if cid in cp or (only and cid not in only):
             continue
         r = fetch(cands, "crs")
         print("course %-9s %s" % (cid, ("✓ " + r["file"]) if r else "— nothing"), flush=True)
         if r:
             cp[cid] = r; review.append(("Course: " + cid, r["img"], r["file"]))
     io.open(out_p, "w", encoding="utf-8").write(json.dumps(cp, ensure_ascii=False, indent=1) + "\n")
+    if only:
+        # Courses only: leave the textbook and English-library covers alone.
+        os.makedirs("private/cover_review", exist_ok=True)
+        html = ["<!doctype html><meta charset=utf-8><title>Course pictures</title><style>body{font:14px sans-serif;display:flex;flex-wrap:wrap;gap:16px;padding:16px}"
+                "figure{width:260px;margin:0}img{width:260px;height:200px;object-fit:cover;border:1px solid #ccc}</style>"]
+        for t, src, f in review:
+            html.append("<figure><img src='../../public%s'><figcaption><b>%s</b><br>%s</figcaption></figure>" % (src, t, f))
+        io.open("private/cover_review/tiles.html", "w", encoding="utf-8").write("\n".join(html))
+        print("\nDone: %d new course picture(s). Review: private/cover_review/tiles.html" % len(review))
+        return
 
     # 2. Textbooks, and 3. English redos — both write the catalogue.
     idx = json.load(io.open(ec.MANIFEST, encoding="utf-8"))
