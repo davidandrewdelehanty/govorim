@@ -5883,7 +5883,7 @@ export default function App() {
       var b = r.bounds[String(i)] || {};
       d[i] = { start: b.start ? fmtClock(b.start) : "", end: b.end ? fmtClock(b.end) : "" };
     });
-    setBoundsDraft(d); setBoundsErr(""); setBoundsOpen(true);
+    setBoundsDraft(d); setBoundsErr(""); setSyncNote(null); setSyncPasteOpen(false); setBoundsOpen(true);
   };
   var saveBounds = function() {
     var next = normOwnVideo(ownRec);
@@ -5922,6 +5922,62 @@ export default function App() {
       }
       return n;
     });
+  };
+  // The chapter times, read off the recording's own subtitles rather than
+  // typed: the browser sends the opening paragraphs of each chapter — never
+  // the whole book — to /api/sync, which fetches the subtitles, finds each
+  // opening in them, and answers; it keeps nothing. The answer lands in the
+  // draft below for the reader to look over, and Save puts it in localStorage
+  // with the link, which is the only place it is ever kept.
+  var [syncBusy, setSyncBusy] = useState(false);
+  var [syncNote, setSyncNote] = useState(null);
+  var [syncPaste, setSyncPaste] = useState("");
+  var [syncPasteOpen, setSyncPasteOpen] = useState(false);
+  var findBounds = async function(pasted) {
+    var r = normOwnVideo(ownRec);
+    if (!pasted && !r.id) { setSyncNote({ bad: true, text: "Paste the recording's subtitles below — a plain audio file has none to read." }); setSyncPasteOpen(true); return; }
+    var openings = chapters.map(function(ch) {
+      var paras = String((ch && ch.text) || "").split(/\n+/).map(function(x){ return x.trim(); }).filter(Boolean);
+      return paras.slice(0, 8).map(function(x){ return x.slice(0, 600); });
+    });
+    var words = chapters.map(function(ch) {
+      return (String((ch && ch.text) || "").match(/[А-Яа-яЁё][А-Яа-яЁё-]*/g) || []).length;
+    });
+    setSyncBusy(true); setSyncNote(null); setBoundsErr("");
+    try {
+      var body = pasted ? { transcript: pasted, chapters: openings, words: words } : { youtube: r.id, chapters: openings, words: words };
+      var resp = await authFetch("/api/sync", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+      var d = await resp.json();
+      if (!resp.ok) { setSyncNote({ bad: true, text: d.error || "That did not work." }); return; }
+      if (d.needTranscript) {
+        setSyncNote({ bad: true, text: d.why + " Open the video on YouTube, choose “Show transcript” under the description, copy it all and paste it below." });
+        setSyncPasteOpen(true);
+        return;
+      }
+      var starts = d.starts || [];
+      setBoundsDraft(function(cur) {
+        var n = {};
+        chapters.forEach(function(_, i) {
+          var st = starts[i] ? starts[i].start : 0;
+          var en = 0;
+          for (var j = i + 1; j < starts.length; j++) if (starts[j]) { en = starts[j].start; break; }
+          if (!en && i === chapters.length - 1 && d.end) en = d.end;
+          var old = cur[i] || { start: "", end: "" };
+          n[i] = { start: st ? fmtClock(st) : old.start, end: (st && en) ? fmtClock(en) : old.end };
+        });
+        return n;
+      });
+      var t = "Found " + d.found + " of " + d.chapters + " chapters" +
+              (d.auto ? " in YouTube's automatic subtitles" : "") +
+              (d.median ? " (match " + d.median + ")" : "") + ".";
+      if (!d.ok && d.why) t += " " + d.why;
+      t += d.found ? " Look them over, then save." : "";
+      setSyncNote({ bad: !d.ok, text: t });
+    } catch (e) {
+      setSyncNote({ bad: true, text: "Could not reach the site just now." });
+    } finally {
+      setSyncBusy(false);
+    }
   };
   var ownVideosRef = useRef(null);
   var readOwnVideos = function() {
@@ -17181,7 +17237,7 @@ export default function App() {
           line-height:1.45;color:var(--ink-2);cursor:pointer;margin-top:2px}
         .grp-import input{margin-top:3px;flex:none}
         .grp-pick-m{font-family:var(--sans);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--rubric)}
-        .bnd-list{display:flex;flex-direction:column;max-height:46vh;overflow-y:auto;margin-top:4px}
+        .bnd-list{display:flex;flex-direction:column;max-height:46vh;overflow-y:auto;margin-top:4px}.bnd-sync{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:2px 0 8px}.bnd-sync-note{flex-basis:100%;margin-top:0}.bnd-paste-tog{font:inherit;font-size:13px;background:none;border:0;padding:0;color:inherit;opacity:.7;text-decoration:underline;cursor:pointer}.bnd-paste{display:flex;flex-direction:column;gap:8px;margin:0 0 10px}.bnd-paste textarea{width:100%;font-size:13px;line-height:1.4;resize:vertical}.acct-msg.ok{color:inherit;opacity:.85}
         .bnd-row{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
           padding:8px 2px;border-bottom:1px solid var(--rule-soft)}
         .bnd-row.cur{background:var(--paper-2)}
@@ -18263,6 +18319,28 @@ export default function App() {
                 take the moment it is at — that also ends the chapter before. Leave a chapter
                 blank and the recording simply runs on through it.
               </p>
+              <div className="bnd-sync">
+                <button type="button" className="grp-act link" disabled={syncBusy} onClick={function(){ findBounds(""); }}>
+                  {syncBusy ? "Reading the subtitles…" : "Find them from the subtitles"}
+                </button>
+                <button type="button" className="bnd-paste-tog" onClick={function(){ setSyncPasteOpen(!syncPasteOpen); }}>
+                  {syncPasteOpen ? "Hide" : "Paste subtitles instead"}
+                </button>
+                <span className="acct-note bnd-sync-note">
+                  Only the first lines of each chapter are sent to find them; the subtitles and
+                  the times are kept on this device alone.
+                </span>
+              </div>
+              {syncPasteOpen && (
+                <div className="bnd-paste">
+                  <textarea className="auth-in" rows={5} value={syncPaste} spellCheck={false}
+                    placeholder="A .vtt or .srt file, or YouTube's own transcript: open the video, “Show transcript” under the description, select all, copy, paste here."
+                    onChange={function(e){ setSyncPaste(e.target.value); }} />
+                  <button type="button" className="grp-act link" disabled={syncBusy || !syncPaste.trim()}
+                    onClick={function(){ findBounds(syncPaste); }}>Find them in this</button>
+                </div>
+              )}
+              {syncNote && <div className={"acct-msg" + (syncNote.bad ? " bad" : " ok")}>{syncNote.text}</div>}
               <div className="bnd-list">
                 {chapters.map(function(ch, i){
                   var d = boundsDraft[i] || { start: "", end: "" };
