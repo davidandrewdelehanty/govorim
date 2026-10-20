@@ -82,6 +82,35 @@ for _meta, _secs in story_course.COURSE_DEFS:
 for _c in COURSES:
     if _c["id"] == "time":
         _c["sections"] = case_courses.TIME_MORE
+        # More «в / на + accusative» practice — real sentences found by
+        # tools/courses/time_more.py (the library's books, and Tatoeba when it
+        # was given the pair file). One lesson, DLI's words, then the sets.
+        _tm = os.path.join(HERE, "time_more.json")
+        if os.path.exists(_tm):
+            _d = json.load(io.open(_tm, encoding="utf-8"))
+            from kit import SEC, P, H, NOTE, EX
+            _more = _d.get("day", []) + _d.get("na", []) + _d.get("unit", []) + _d.get("freq", [])
+            _c["sections"].append(SEC("t14-on-wednesday", "On Wednesday, in that minute, the next day: в and на + accusative", [
+                H("Days of the week"),
+                P("To indicate the day of the week when something happened or will happen, the preposition в + Acc. is used:"),
+                EX(["Какой сегодня день? — Сегодня пятница.", ""], ["Когда вы были там? — Я был там в пятницу.", ""],
+                   ["В какой день он был там? — Он был там во вторник.", ""]),
+                P("The days of the week are not capitalized. «Во» before «вт» for euphony."),
+                NOTE("DLI, Lesson 19."),
+                H("The preposition «в» + accusative"),
+                P("**В + Accusative** is used: (a) to indicate the time of the day; (b) to indicate the day of the week; "
+                  "(c) to indicate how frequently something occurs."),
+                EX(["Собрание начинается в три часа.", ""], ["Я приехал туда в пять часов.", ""],
+                   ["В какой день вы были там? Я был там в пятницу.", ""], ["Я хожу в штаб два раза в день.", ""],
+                   ["Он приезжает сюда раз в месяц.", ""]),
+                P("Note also the following expressions: В минуту опасности. В годы войны. Во время войны. В первый раз. "
+                  "В следующий раз. В последний раз."),
+                P("Note that a week takes \"НА + Loc.\"; units larger than a week (month, year) take \"В + Loc.\"; units "
+                  "smaller than a week (day, hour etc.) take \"В + Acc.\" Exception: НА следующий день — the next day, "
+                  "the following day."),
+                NOTE("DLI, Lesson 73. Exercises: sentences from the library's public-domain books, and from Tatoeba "
+                     "(tatoeba.org, CC BY 2.0 FR) where a translation is given."),
+            ], more=_more))
 if os.path.exists(os.path.join(HERE, "tense_pairs.json")):
     COURSES.append({
         "id": "tenses", "title": "English Tenses in Russian", "short": "Tenses", "mark": "⇄",
@@ -141,6 +170,7 @@ COURSES.append({
     "creditUrl": DLI_URL,
     "license": "Public domain \u00b7 CC BY-SA 4.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
     "modules": ["clock_course"], "order": None,
+    "repeat": True,     # practice to repeat as often as you like: no sections "finished", no ticks
 })
 
 
@@ -241,6 +271,17 @@ def main():
             data = {"id": sid, "title": s["title"], "blocks": s["blocks"], "exercises": exs}
             if s.get("stream"):
                 data["stream"] = True      # one drill at a time, with a Next button
+                if s.get("prompts"):
+                    data["prompts"] = s["prompts"]
+                # The explanation is the same for every drill of a kind: kept
+                # once, under the kind, instead of on each of 1,440 drills.
+                whys = {}
+                for x in exs:
+                    if x.get("k") and x.get("why"):
+                        whys.setdefault(x["k"], x["why"])
+                        del x["why"]
+                if whys:
+                    data["whys"] = whys
             io.open(os.path.join(out_dir, sid + ".json"), "w", encoding="utf-8").write(
                 json.dumps(data, ensure_ascii=False, separators=(",", ":")))
             o = {"id": sid, "title": s["title"], "n": len(exs)}

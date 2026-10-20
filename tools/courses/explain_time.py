@@ -286,6 +286,8 @@ def classify(e):
     if not an:
         return None, "answer not the hint's word"
     lem = an[0][0]
+    if lem == "воскресение" and Y(head).startswith("воскресень"):
+        lem = "воскресенье"             # the day, not the resurrection
     cases = {a[1] for a in an if a[1]}
     nums = {a[2] for a in an if a[2]}
 
@@ -319,15 +321,17 @@ def classify(e):
     has = lambda c: c in cases
     timeish = lem in TIME
     if lem in EVENTISH:
-        if mods and not all(time_mod(m) for m in mods):
+        if mods and not all(time_mod(m) or m == "же" for m in mods):
             return None, "%s here is an event or a meal, not a time" % lem
         if lem in MEALS and gov not in ("до", "после", "перед", "передо"):
             return None, "%s here is a meal, not a time" % lem
-        if lem == "вечер" and gov in ("в", "во", "за", "после", "через"):
+        if lem == "вечер" and gov in ("в", "во") and mods and all(time_mod(m) or m == "же" for m in mods):
+            pass                                  # «в тот вечер», «в этот же вечер»: that evening
+        elif lem == "вечер" and gov in ("в", "во", "за", "после", "через"):
             return None, "вечер here is a party, not a time"
         if lem == "вечер" and gov == "на" and not mods:
             return None, "вечер here is a party, not a time"
-    only_time_mods = all(time_mod(m) for m in mods)
+    only_time_mods = all(time_mod(m) or m == "же" for m in mods)
 
     if Y(ans) == "лет":
         return "god-let", numeral
@@ -341,7 +345,7 @@ def classify(e):
         return "ves", False
     phase_ok = lem in PHASE and after and any(lemmas(w) & (TIME | MONTHS) for w in after[:2])
     if gov in ("в", "во"):
-        if has("accs") and lem in {"неделя", "месяц", "год"} and "sing" in nums and \
+        if has("accs") and (lem in {"неделя", "месяц", "год", "сутки"} or lem in SMALL) and \
                 any(b in ("раз", "раза") for b in before[-3:]):
             return "v-acc", False
         if has("accs") and (lem in DAYS or lem in SMALL or lem == "время" or (lem == "год" and "plur" in nums)):

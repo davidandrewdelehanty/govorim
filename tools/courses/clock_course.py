@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-"""Telling the Time — one page of DLI's rules, then 400 clock drills that
-alternate: the time in Russian words, set it on a 24-hour digital clock; the
+"""Telling the Time — one page of DLI's rules, then a drill for every minute of the
+day, asked in random order, alternating: the time in Russian words, set it on a 24-hour digital clock; the
 clock, write the time in words.
 
 The words are dictionary forms put together by the rules quoted below
@@ -40,27 +40,26 @@ CTX = {"on": u"On the hour: «два часа»; and утра / дня / веч�
 WHY = {"on": ON, "past": PAST, "half": HALF, "to": TO}
 
 
-def kind(hhmm):
-    m = int(hhmm[3:])
-    return "on" if m == 0 else "past" if m < 30 else "half" if m == 30 else "to"
+PROMPT_SET = "Set the clock to this time."
+PROMPT_SAY = ("Write this time in words, the way it is said (пять минут третьего). You may leave off утра / дня / "
+              "вечера / ночи. The 24-hour way (четырнадцать ноль пять) counts too.")
 
 
 def drill(d):
-    k = kind(d["hhmm"])
-    if d["type"] == "clockset":
-        return {"type": "clockset", "q": d["say"], "hhmm": d["hhmm"], "answers": [d["hhmm"]],
-                "prompt": "Set the clock to this time.",
-                "context": CTX[k], "why": WHY[k]}
-    # The clock to be put into words shows the time as it is said: twelve
-    # hours, and the part of the day beside it. A 24-hour display would ask
-    # for «двадцать тридцать пять» while the answer waited for «без двадцати
-    # пяти девять»; setting the 24-hour clock from the words is the other
-    # drill, where that mapping is the point.
-    h, m = int(d["hhmm"][:2]), int(d["hhmm"][3:])
-    return {"type": "fill", "q": "___", "clock": "%d:%02d" % (h % 12 or 12, m), "pod": d["say"].split()[-1],
-            "answers": d["accept"],
-            "prompt": "Write this time in words, the way it is said (пять минут третьего). You may leave off утра / дня / вечера / ночи. The 24-hour way (четырнадцать ноль пять) counts too.",
-            "context": CTX[k], "why": WHY[k] + " " + H24}
+    """One time of the day. The page makes a question of it, at random: the
+    words to be set on the clock (one of the wordings in `sets`), or the clock
+    to be put into words. `a` are the accepted twelve-hour wordings (the part
+    of the day in `pods` may follow, or be left off); `a24` the 24-hour ones.
+    All of it is built by gen_clock.py from dictionary forms."""
+    k = d["k"]
+    pod = d["pod"]
+    show = d["a"][0] + " (" + pod + ")"
+    e = {"type": "clock", "k": k, "q": d["q"], "hhmm": d["hhmm"], "answers": d["a"], "pods": d["pods"],
+         "a24": d["a24"], "sets": d["sets"], "clock": d["clock"], "pod": pod, "show": show,
+         "context": CTX[k], "why": WHY[k] + " " + H24}
+    if d.get("noSay"):
+        e["noSay"] = 1
+    return e
 
 
 SECTIONS = [SEC("ck0-rules", "How the time is told", [
@@ -89,16 +88,15 @@ SECTIONS = [SEC("ck0-rules", "How the time is told", [
     NOTE(u"DLI Grammar Reference Book, Lessons 40, 73 and 74. The table and every drill after this page: dictionary forms (OpenCorpora, CC BY-SA 4.0) put together by these rules, tools/courses/gen_clock.py."),
 ])]
 
-# One practice screen: every drill in one section, shown one at a time with a
-# Next button (the app renders a section marked `stream` that way).
+# One practice screen: every time of the day in one section, shown one at a
+# time with a Next button (the app renders a section marked `stream` that way).
+# The page shuffles them anew each time the section is opened and alternates
+# the two kinds of question; the prompts are the same for all of them, so they
+# are kept once, in the section (`prompts`).
 drills = [drill(d) for d in D["drills"]]
-for x in drills:
-    if x["type"] == "fill":
-        # the answer as shown after two misses: the part of the day in
-        # brackets, since it may be left off
-        pod = x["pod"]
-        x["show"] = x["answers"][0][:-len(pod) - 1] + " (" + pod + ")" if x["answers"][0].endswith(" " + pod) else x["answers"][0]
 SECTIONS.append(dict(SEC("ck-practice", "Clock practice",
                          [NOTE(u"One time at a time: set the clock, then say the next one, as long as you like. "
+                               u"There is a question for every minute of the day, in a new order each time you open this page. "
                                u"Every time here is made from dictionary forms by the rules on the first page.")],
-                         drills, sub="as many as you like"), stream=True))
+                         drills, sub="as many as you like"), stream=True,
+                    prompts={"set": PROMPT_SET, "say": PROMPT_SAY}))

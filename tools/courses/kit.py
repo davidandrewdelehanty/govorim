@@ -36,8 +36,10 @@ def FILL(q, answers, why="", hint=None, prompt=None):
     return e
 
 
-def SEC(id, title, blocks, exercises=(), sub=None):
+def SEC(id, title, blocks, exercises=(), sub=None, more=None):
     s = {"id": id, "title": title, "blocks": blocks, "exercises": list(exercises)}
     if sub:
         s["sub"] = sub
+    if more:
+        s["more"] = list(more)      # further sentences, cut into practice sets by the builder
     return s

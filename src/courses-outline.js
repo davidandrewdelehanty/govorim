@@ -7,6 +7,7 @@ export default [
   "short": "Time",
   "mark": "◷",
   "blurb": "",
+  "repeat": true,
   "credit": "Transcribed from the Defense Language Institute Russian Basic Course, Grammar Reference Books I (1970) and II (1965) — a US Government work in the public domain; word lists from the Wikibooks Russian textbook (CC BY-SA 4.0)",
   "creditUrl": "https://www.fsi-language-courses.org/russian/courses/dli-russian-basic-course",
   "license": "Public domain · CC BY-SA 4.0",
@@ -431,6 +432,176 @@ export default [
     "id": "t13-time-words",
     "title": "Yesterday, soon, always: words of time",
     "n": 0
+   },
+   {
+    "id": "t14-on-wednesday",
+    "title": "On Wednesday, in that minute, the next day: в and на + accusative",
+    "n": 0
+   },
+   {
+    "id": "t14-on-wednesday-practice",
+    "title": "Practice 1: On Wednesday, in that minute, the next day: в and на + accusative",
+    "n": 20
+   },
+   {
+    "id": "t14-on-wednesday-practice-2",
+    "title": "Practice 2: On Wednesday, in that minute, the next day: в and на + accusative",
+    "n": 20
+   },
+   {
+    "id": "t14-on-wednesday-practice-3",
+    "title": "Practice 3: On Wednesday, in that minute, the next day: в and на + accusative",
+    "n": 20
+   },
+   {
+    "id": "t14-on-wednesday-practice-4",
+    "title": "Practice 4: On Wednesday, in that minute, the next day: в and на + accusative",
+    "n": 20
+   },
+   {
+    "id": "t14-on-wednesday-practice-5",
+    "title": "Practice 5: On Wednesday, in that minute, the next day: в and на + accusative",
+    "n": 20
+   },
+   {
+    "id": "t14-on-wednesday-practice-6",
+    "title": "Practice 6: On Wednesday, in that minute, the next day: в and на + accusative",
+    "n": 20
+   },
+   {
+    "id": "t14-on-wednesday-practice-7",
+    "title": "Practice 7: On Wednesday, in that minute, the next day: в and на + accusative",
+    "n": 20
+   },
+   {
+    "id": "t14-on-wednesday-practice-8",
+    "title": "Practice 8: On Wednesday, in that minute, the next day: в and на + accusative",
+    "n": 20
+   },
+   {
+    "id": "t14-on-wednesday-practice-9",
+    "title": "Practice 9: On Wednesday, in that minute, the next day: в and на + accusative",
+    "n": 20
+   },
+   {
+    "id": "t14-on-wednesday-practice-10",
+    "title": "Practice 10: On Wednesday, in that minute, the next day: в and на + accusative",
+    "n": 20
+   },
+   {
+    "id": "t14-on-wednesday-practice-11",
+    "title": "Practice 11: On Wednesday, in that minute, the next day: в and на + accusative",
+    "n": 20
+   },
+   {
+    "id": "t14-on-wednesday-practice-12",
+    "title": "Practice 12: On Wednesday, in that minute, the next day: в and на + accusative",
+    "n": 20
+   },
+   {
+    "id": "t14-on-wednesday-practice-13",
+    "title": "Practice 13: On Wednesday, in that minute, the next day: в and на + accusative",
+    "n": 20
+   },
+   {
+    "id": "t14-on-wednesday-practice-14",
+    "title": "Practice 14: On Wednesday, in that minute, the next day: в and на + accusative",
+    "n": 20
+   },
+   {
+    "id": "t14-on-wednesday-practice-15",
+    "title": "Practice 15: On Wednesday, in that minute, the next day: в and на + accusative",
+    "n": 20
+   },
+   {
+    "id": "t14-on-wednesday-practice-16",
+    "title": "Practice 16: On Wednesday, in that minute, the next day: в and на + accusative",
+    "n": 20
+   },
+   {
+    "id": "t14-on-wednesday-practice-17",
+    "title": "Practice 17: On Wednesday, in that minute, the next day: в and на + accusative",
+    "n": 20
+   },
+   {
+    "id": "t14-on-wednesday-practice-18",
+    "title": "Practice 18: On Wednesday, in that minute, the next day: в and на + accusative",
+    "n": 20
+   },
+   {
+    "id": "t14-on-wednesday-practice-19",
+    "title": "Practice 19: On Wednesday, in that minute, the next day: в and на + accusative",
+    "n": 20
+   },
+   {
+    "id": "t14-on-wednesday-practice-20",
+    "title": "Practice 20: On Wednesday, in that minute, the next day: в and на + accusative",
+    "n": 20
+   },
+   {
+    "id": "t14-on-wednesday-practice-21",
+    "title": "Practice 21: On Wednesday, in that minute, the next day: в and на + accusative",
+    "n": 20
+   },
+   {
+    "id": "t14-on-wednesday-practice-22",
+    "title": "Practice 22: On Wednesday, in that minute, the next day: в and на + accusative",
+    "n": 20
+   },
+   {
+    "id": "t14-on-wednesday-practice-23",
+    "title": "Practice 23: On Wednesday, in that minute, the next day: в and на + accusative",
+    "n": 20
+   },
+   {
+    "id": "t14-on-wednesday-practice-24",
+    "title": "Practice 24: On Wednesday, in that minute, the next day: в and на + accusative",
+    "n": 17
+   },
+   {
+    "id": "t14-on-wednesday-practice-25",
+    "title": "Practice 25: On Wednesday, in that minute, the next day: в and на + accusative",
+    "n": 19
+   },
+   {
+    "id": "t14-on-wednesday-practice-26",
+    "title": "Practice 26: On Wednesday, in that minute, the next day: в and на + accusative",
+    "n": 18
+   },
+   {
+    "id": "t14-on-wednesday-practice-27",
+    "title": "Practice 27: On Wednesday, in that minute, the next day: в and на + accusative",
+    "n": 16
+   },
+   {
+    "id": "t14-on-wednesday-practice-28",
+    "title": "Practice 28: On Wednesday, in that minute, the next day: в and на + accusative",
+    "n": 16
+   },
+   {
+    "id": "t14-on-wednesday-practice-29",
+    "title": "Practice 29: On Wednesday, in that minute, the next day: в and на + accusative",
+    "n": 18
+   },
+   {
+    "id": "t14-on-wednesday-practice-30",
+    "title": "Practice 30: On Wednesday, in that minute, the next day: в and на + accusative",
+    "n": 18
+   },
+   {
+    "id": "t14-on-wednesday-practice-31",
+    "title": "Practice 31: On Wednesday, in that minute, the next day: в and на + accusative",
+    "n": 20
+   },
+   {
+    "id": "t14-on-wednesday-practice-32",
+    "title": "Practice 32: On Wednesday, in that minute, the next day: в and на + accusative",
+    "n": 20
+   },
+   {
+    "id": "t14-on-wednesday-practice-33",
+    "title": "Practice 33: On Wednesday, in that minute, the next day: в and на + accusative",
+    "n": 10
    }
   ]
  },

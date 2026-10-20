@@ -59,6 +59,8 @@ function perfectAt(rec, n) {
 
 // How far along a course is: { done, of, at } — `at` when the last section was finished.
 export function courseState(course, prog) {
+  // A course to repeat as often as you like (the clock) is never finished.
+  if (course.repeat) return { done: 0, of: 0, at: 0 };
   var done = 0, at = 0;
   (course.sections || []).forEach(function (s) {
     var rec = (prog || {})[course.id + "/" + s.id];
@@ -76,6 +78,7 @@ export function isPractice(id) { return /-practice(-\d+)?$/.test(String(id || ""
 export function courseBadges(outline, prog) {
   var out = [];
   (outline || []).forEach(function (c) {
+    if (c.repeat) return;
     var lessonNo = 0;
     (c.sections || []).forEach(function (s) {
       if (isPractice(s.id)) return;
