@@ -4735,5 +4735,653 @@ export default [
     "n": 12
    }
   ]
+ },
+ {
+  "id": "numerals",
+  "title": "Declined Numerals",
+  "short": "Numerals",
+  "mark": "123",
+  "blurb": "",
+  "credit": "Rules quoted from the Defense Language Institute Russian Basic Course, Grammar Reference Books I and II (a US Government work in the public domain); every Russian form from the OpenCorpora dictionary (CC BY-SA 4.0), put together by those rules in tools/courses/gen_numerals.py",
+  "creditUrl": "https://www.fsi-language-courses.org/russian/courses/dli-russian-basic-course",
+  "license": "Public domain · CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "sections": [
+   {
+    "id": "n0-chart",
+    "title": "The chart: every numeral, every case",
+    "n": 0
+   },
+   {
+    "id": "n1-one",
+    "title": "1 — один, одна, одно",
+    "n": 10
+   },
+   {
+    "id": "n2-two-four",
+    "title": "2, 3, 4 and оба",
+    "n": 18
+   },
+   {
+    "id": "n3-five-thirty",
+    "title": "5 to 20, and 30",
+    "n": 34
+   },
+   {
+    "id": "n4-forty-hundred",
+    "title": "40 to 100",
+    "n": 11
+   },
+   {
+    "id": "n5-hundreds",
+    "title": "200 to 900",
+    "n": 32
+   },
+   {
+    "id": "n6-compound",
+    "title": "21 to 99",
+    "n": 0
+   },
+   {
+    "id": "n6-compound-practice",
+    "title": "Practice 1: 21 to 99",
+    "n": 50
+   },
+   {
+    "id": "n6-compound-practice-2",
+    "title": "Practice 2: 21 to 99",
+    "n": 50
+   },
+   {
+    "id": "n6-compound-practice-3",
+    "title": "Practice 3: 21 to 99",
+    "n": 50
+   },
+   {
+    "id": "n6-compound-practice-4",
+    "title": "Practice 4: 21 to 99",
+    "n": 42
+   },
+   {
+    "id": "n7-three-digit",
+    "title": "101 to 999",
+    "n": 0
+   },
+   {
+    "id": "n7-three-digit-practice",
+    "title": "Practice 1: 101 to 999",
+    "n": 50
+   },
+   {
+    "id": "n7-three-digit-practice-2",
+    "title": "Practice 2: 101 to 999",
+    "n": 50
+   },
+   {
+    "id": "n7-three-digit-practice-3",
+    "title": "Practice 3: 101 to 999",
+    "n": 50
+   },
+   {
+    "id": "n7-three-digit-practice-4",
+    "title": "Practice 4: 101 to 999",
+    "n": 50
+   },
+   {
+    "id": "n7-three-digit-practice-5",
+    "title": "Practice 5: 101 to 999",
+    "n": 50
+   },
+   {
+    "id": "n7-three-digit-practice-6",
+    "title": "Practice 6: 101 to 999",
+    "n": 50
+   },
+   {
+    "id": "n7-three-digit-practice-7",
+    "title": "Practice 7: 101 to 999",
+    "n": 50
+   },
+   {
+    "id": "n7-three-digit-practice-8",
+    "title": "Practice 8: 101 to 999",
+    "n": 50
+   },
+   {
+    "id": "n7-three-digit-practice-9",
+    "title": "Practice 9: 101 to 999",
+    "n": 50
+   },
+   {
+    "id": "n7-three-digit-practice-10",
+    "title": "Practice 10: 101 to 999",
+    "n": 50
+   },
+   {
+    "id": "n7-three-digit-practice-11",
+    "title": "Practice 11: 101 to 999",
+    "n": 50
+   },
+   {
+    "id": "n7-three-digit-practice-12",
+    "title": "Practice 12: 101 to 999",
+    "n": 50
+   },
+   {
+    "id": "n7-three-digit-practice-13",
+    "title": "Practice 13: 101 to 999",
+    "n": 50
+   },
+   {
+    "id": "n7-three-digit-practice-14",
+    "title": "Practice 14: 101 to 999",
+    "n": 50
+   },
+   {
+    "id": "n7-three-digit-practice-15",
+    "title": "Practice 15: 101 to 999",
+    "n": 50
+   },
+   {
+    "id": "n7-three-digit-practice-16",
+    "title": "Practice 16: 101 to 999",
+    "n": 50
+   },
+   {
+    "id": "n7-three-digit-practice-17",
+    "title": "Practice 17: 101 to 999",
+    "n": 50
+   },
+   {
+    "id": "n7-three-digit-practice-18",
+    "title": "Practice 18: 101 to 999",
+    "n": 50
+   },
+   {
+    "id": "n7-three-digit-practice-19",
+    "title": "Practice 19: 101 to 999",
+    "n": 50
+   },
+   {
+    "id": "n7-three-digit-practice-20",
+    "title": "Practice 20: 101 to 999",
+    "n": 50
+   },
+   {
+    "id": "n7-three-digit-practice-21",
+    "title": "Practice 21: 101 to 999",
+    "n": 50
+   },
+   {
+    "id": "n7-three-digit-practice-22",
+    "title": "Practice 22: 101 to 999",
+    "n": 50
+   },
+   {
+    "id": "n7-three-digit-practice-23",
+    "title": "Practice 23: 101 to 999",
+    "n": 50
+   },
+   {
+    "id": "n7-three-digit-practice-24",
+    "title": "Practice 24: 101 to 999",
+    "n": 50
+   },
+   {
+    "id": "n7-three-digit-practice-25",
+    "title": "Practice 25: 101 to 999",
+    "n": 50
+   },
+   {
+    "id": "n7-three-digit-practice-26",
+    "title": "Practice 26: 101 to 999",
+    "n": 50
+   },
+   {
+    "id": "n7-three-digit-practice-27",
+    "title": "Practice 27: 101 to 999",
+    "n": 50
+   },
+   {
+    "id": "n7-three-digit-practice-28",
+    "title": "Practice 28: 101 to 999",
+    "n": 50
+   },
+   {
+    "id": "n7-three-digit-practice-29",
+    "title": "Practice 29: 101 to 999",
+    "n": 50
+   },
+   {
+    "id": "n7-three-digit-practice-30",
+    "title": "Practice 30: 101 to 999",
+    "n": 50
+   },
+   {
+    "id": "n7-three-digit-practice-31",
+    "title": "Practice 31: 101 to 999",
+    "n": 50
+   },
+   {
+    "id": "n7-three-digit-practice-32",
+    "title": "Practice 32: 101 to 999",
+    "n": 50
+   },
+   {
+    "id": "n7-three-digit-practice-33",
+    "title": "Practice 33: 101 to 999",
+    "n": 50
+   },
+   {
+    "id": "n7-three-digit-practice-34",
+    "title": "Practice 34: 101 to 999",
+    "n": 50
+   },
+   {
+    "id": "n7-three-digit-practice-35",
+    "title": "Practice 35: 101 to 999",
+    "n": 50
+   },
+   {
+    "id": "n7-three-digit-practice-36",
+    "title": "Practice 36: 101 to 999",
+    "n": 50
+   },
+   {
+    "id": "n7-three-digit-practice-37",
+    "title": "Practice 37: 101 to 999",
+    "n": 50
+   },
+   {
+    "id": "n7-three-digit-practice-38",
+    "title": "Practice 38: 101 to 999",
+    "n": 50
+   },
+   {
+    "id": "n7-three-digit-practice-39",
+    "title": "Practice 39: 101 to 999",
+    "n": 50
+   },
+   {
+    "id": "n7-three-digit-practice-40",
+    "title": "Practice 40: 101 to 999",
+    "n": 50
+   },
+   {
+    "id": "n7-three-digit-practice-41",
+    "title": "Practice 41: 101 to 999",
+    "n": 50
+   },
+   {
+    "id": "n7-three-digit-practice-42",
+    "title": "Practice 42: 101 to 999",
+    "n": 50
+   },
+   {
+    "id": "n7-three-digit-practice-43",
+    "title": "Practice 43: 101 to 999",
+    "n": 50
+   },
+   {
+    "id": "n7-three-digit-practice-44",
+    "title": "Practice 44: 101 to 999",
+    "n": 50
+   },
+   {
+    "id": "n7-three-digit-practice-45",
+    "title": "Practice 45: 101 to 999",
+    "n": 50
+   },
+   {
+    "id": "n7-three-digit-practice-46",
+    "title": "Practice 46: 101 to 999",
+    "n": 50
+   },
+   {
+    "id": "n7-three-digit-practice-47",
+    "title": "Practice 47: 101 to 999",
+    "n": 50
+   },
+   {
+    "id": "n7-three-digit-practice-48",
+    "title": "Practice 48: 101 to 999",
+    "n": 50
+   },
+   {
+    "id": "n7-three-digit-practice-49",
+    "title": "Practice 49: 101 to 999",
+    "n": 50
+   },
+   {
+    "id": "n7-three-digit-practice-50",
+    "title": "Practice 50: 101 to 999",
+    "n": 50
+   },
+   {
+    "id": "n7-three-digit-practice-51",
+    "title": "Practice 51: 101 to 999",
+    "n": 50
+   },
+   {
+    "id": "n7-three-digit-practice-52",
+    "title": "Practice 52: 101 to 999",
+    "n": 50
+   },
+   {
+    "id": "n7-three-digit-practice-53",
+    "title": "Practice 53: 101 to 999",
+    "n": 50
+   },
+   {
+    "id": "n7-three-digit-practice-54",
+    "title": "Practice 54: 101 to 999",
+    "n": 50
+   },
+   {
+    "id": "n7-three-digit-practice-55",
+    "title": "Practice 55: 101 to 999",
+    "n": 50
+   },
+   {
+    "id": "n7-three-digit-practice-56",
+    "title": "Practice 56: 101 to 999",
+    "n": 50
+   },
+   {
+    "id": "n7-three-digit-practice-57",
+    "title": "Practice 57: 101 to 999",
+    "n": 50
+   },
+   {
+    "id": "n7-three-digit-practice-58",
+    "title": "Practice 58: 101 to 999",
+    "n": 50
+   },
+   {
+    "id": "n7-three-digit-practice-59",
+    "title": "Practice 59: 101 to 999",
+    "n": 50
+   },
+   {
+    "id": "n7-three-digit-practice-60",
+    "title": "Practice 60: 101 to 999",
+    "n": 50
+   },
+   {
+    "id": "n7-three-digit-practice-61",
+    "title": "Practice 61: 101 to 999",
+    "n": 50
+   },
+   {
+    "id": "n7-three-digit-practice-62",
+    "title": "Practice 62: 101 to 999",
+    "n": 50
+   },
+   {
+    "id": "n7-three-digit-practice-63",
+    "title": "Practice 63: 101 to 999",
+    "n": 50
+   },
+   {
+    "id": "n7-three-digit-practice-64",
+    "title": "Practice 64: 101 to 999",
+    "n": 50
+   },
+   {
+    "id": "n7-three-digit-practice-65",
+    "title": "Practice 65: 101 to 999",
+    "n": 50
+   },
+   {
+    "id": "n7-three-digit-practice-66",
+    "title": "Practice 66: 101 to 999",
+    "n": 50
+   },
+   {
+    "id": "n7-three-digit-practice-67",
+    "title": "Practice 67: 101 to 999",
+    "n": 50
+   },
+   {
+    "id": "n7-three-digit-practice-68",
+    "title": "Practice 68: 101 to 999",
+    "n": 50
+   },
+   {
+    "id": "n7-three-digit-practice-69",
+    "title": "Practice 69: 101 to 999",
+    "n": 50
+   },
+   {
+    "id": "n7-three-digit-practice-70",
+    "title": "Practice 70: 101 to 999",
+    "n": 40
+   },
+   {
+    "id": "n8-thousands",
+    "title": "Thousands and millions",
+    "n": 0
+   },
+   {
+    "id": "n8-thousands-practice",
+    "title": "Practice 1: thousands and millions",
+    "n": 50
+   },
+   {
+    "id": "n8-thousands-practice-2",
+    "title": "Practice 2: thousands and millions",
+    "n": 50
+   },
+   {
+    "id": "n8-thousands-practice-3",
+    "title": "Practice 3: thousands and millions",
+    "n": 50
+   },
+   {
+    "id": "n8-thousands-practice-4",
+    "title": "Practice 4: thousands and millions",
+    "n": 50
+   },
+   {
+    "id": "n8-thousands-practice-5",
+    "title": "Practice 5: thousands and millions",
+    "n": 50
+   },
+   {
+    "id": "n8-thousands-practice-6",
+    "title": "Practice 6: thousands and millions",
+    "n": 50
+   },
+   {
+    "id": "n8-thousands-practice-7",
+    "title": "Practice 7: thousands and millions",
+    "n": 50
+   },
+   {
+    "id": "n8-thousands-practice-8",
+    "title": "Practice 8: thousands and millions",
+    "n": 50
+   },
+   {
+    "id": "n8-thousands-practice-9",
+    "title": "Practice 9: thousands and millions",
+    "n": 40
+   },
+   {
+    "id": "n9-collective",
+    "title": "двое, трое … and полтора",
+    "n": 21
+   },
+   {
+    "id": "n10-ordinals",
+    "title": "Ordinals: первый to двухтысячный",
+    "n": 0
+   },
+   {
+    "id": "n10-ordinals-practice",
+    "title": "Practice 1: ordinals",
+    "n": 50
+   },
+   {
+    "id": "n10-ordinals-practice-2",
+    "title": "Practice 2: ordinals",
+    "n": 50
+   },
+   {
+    "id": "n10-ordinals-practice-3",
+    "title": "Practice 3: ordinals",
+    "n": 50
+   },
+   {
+    "id": "n10-ordinals-practice-4",
+    "title": "Practice 4: ordinals",
+    "n": 50
+   },
+   {
+    "id": "n10-ordinals-practice-5",
+    "title": "Practice 5: ordinals",
+    "n": 50
+   },
+   {
+    "id": "n10-ordinals-practice-6",
+    "title": "Practice 6: ordinals",
+    "n": 50
+   },
+   {
+    "id": "n10-ordinals-practice-7",
+    "title": "Practice 7: ordinals",
+    "n": 50
+   },
+   {
+    "id": "n10-ordinals-practice-8",
+    "title": "Practice 8: ordinals",
+    "n": 50
+   },
+   {
+    "id": "n10-ordinals-practice-9",
+    "title": "Practice 9: ordinals",
+    "n": 50
+   },
+   {
+    "id": "n10-ordinals-practice-10",
+    "title": "Practice 10: ordinals",
+    "n": 50
+   },
+   {
+    "id": "n10-ordinals-practice-11",
+    "title": "Practice 11: ordinals",
+    "n": 50
+   },
+   {
+    "id": "n10-ordinals-practice-12",
+    "title": "Practice 12: ordinals",
+    "n": 50
+   },
+   {
+    "id": "n10-ordinals-practice-13",
+    "title": "Practice 13: ordinals",
+    "n": 50
+   },
+   {
+    "id": "n10-ordinals-practice-14",
+    "title": "Practice 14: ordinals",
+    "n": 50
+   },
+   {
+    "id": "n10-ordinals-practice-15",
+    "title": "Practice 15: ordinals",
+    "n": 20
+   },
+   {
+    "id": "n11-dates",
+    "title": "Dates: двадцать пятое, двадцать пятого",
+    "n": 0
+   },
+   {
+    "id": "n11-dates-practice",
+    "title": "Practice 1: dates",
+    "n": 50
+   },
+   {
+    "id": "n11-dates-practice-2",
+    "title": "Practice 2: dates",
+    "n": 43
+   },
+   {
+    "id": "n12-years",
+    "title": "Years: в тысяча девятьсот сорок пятом году",
+    "n": 0
+   },
+   {
+    "id": "n12-years-practice",
+    "title": "Practice 1: years, 1700 to 2030",
+    "n": 50
+   },
+   {
+    "id": "n12-years-practice-2",
+    "title": "Practice 2: years, 1700 to 2030",
+    "n": 50
+   },
+   {
+    "id": "n12-years-practice-3",
+    "title": "Practice 3: years, 1700 to 2030",
+    "n": 50
+   },
+   {
+    "id": "n12-years-practice-4",
+    "title": "Practice 4: years, 1700 to 2030",
+    "n": 50
+   },
+   {
+    "id": "n12-years-practice-5",
+    "title": "Practice 5: years, 1700 to 2030",
+    "n": 50
+   },
+   {
+    "id": "n12-years-practice-6",
+    "title": "Practice 6: years, 1700 to 2030",
+    "n": 50
+   },
+   {
+    "id": "n12-years-practice-7",
+    "title": "Practice 7: years, 1700 to 2030",
+    "n": 50
+   },
+   {
+    "id": "n12-years-practice-8",
+    "title": "Practice 8: years, 1700 to 2030",
+    "n": 50
+   },
+   {
+    "id": "n12-years-practice-9",
+    "title": "Practice 9: years, 1700 to 2030",
+    "n": 50
+   },
+   {
+    "id": "n12-years-practice-10",
+    "title": "Practice 10: years, 1700 to 2030",
+    "n": 50
+   },
+   {
+    "id": "n12-years-practice-11",
+    "title": "Practice 11: years, 1700 to 2030",
+    "n": 50
+   },
+   {
+    "id": "n12-years-practice-12",
+    "title": "Practice 12: years, 1700 to 2030",
+    "n": 50
+   },
+   {
+    "id": "n12-years-practice-13",
+    "title": "Practice 13: years, 1700 to 2030",
+    "n": 50
+   },
+   {
+    "id": "n12-years-practice-14",
+    "title": "Practice 14: years, 1700 to 2030",
+    "n": 12
+   }
+  ]
  }
 ];

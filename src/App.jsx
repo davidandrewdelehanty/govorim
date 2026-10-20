@@ -6213,6 +6213,20 @@ export default function App() {
     });
     try { var el = document.querySelector(".crs-scroll"); if (el) el.scrollTop = 0; } catch (e) {}
   };
+  // Every way into a course page starts it at the top: the course list, a
+  // course tile on the home page, a section, "← All courses", "Back to the
+  // course". Only opening a section used to reset the scroll, so a course
+  // opened from halfway down the list opened halfway down itself. Done after
+  // the paint (requestAnimationFrame), when the new page is the one on screen,
+  // and for both scrollers — the courses pane, and the page itself on phones.
+  useEffect(function() {
+    if (tab !== "courses") return;
+    var raf = requestAnimationFrame(function() {
+      try { var el = document.querySelector(".crs-scroll"); if (el) el.scrollTop = 0; } catch (e) {}
+      try { window.scrollTo(0, 0); } catch (e) {}
+    });
+    return function() { cancelAnimationFrame(raf); };
+  }, [tab, crsCourse, crsSec]);
   // An answer: right ones are kept for good; the first try is remembered for the score.
   // `clean`: this answer finishes a run in which every exercise of the
   // section was answered right with no wrong try — a perfect score.
@@ -20430,6 +20444,7 @@ export default function App() {
                       <option value="Soviet Textbooks">Soviet Textbooks</option>
                       <option value="Fairytales">Fairytales</option>
                       <option value="History">History</option>
+                      <option value="Modern Russian">Modern Russian</option>
                       <option value="Translations">Translations</option>
                     </select>
                   </div>
@@ -22121,10 +22136,10 @@ export default function App() {
                         // "Works" is kept only as a legacy fallback so a book that still carries
                         // the old category (an older upload, a hand-edited entry) keeps rendering
                         // instead of vanishing into "Other".
-                        var CATEGORIES = ["Novels", "Novellas", "Short Stories", "Plays", "Translations", "Philosophy", "Fairytales", "Poetry", "Song Lyrics", "Religious Texts", "Theatrical Performances", "Speeches", "Speeches by Soviet Leaders", "Works", "History", "Soviet Textbooks", "Texts Without English"];
+                        var CATEGORIES = ["Novels", "Novellas", "Short Stories", "Plays", "Translations", "Philosophy", "Fairytales", "Poetry", "Song Lyrics", "Religious Texts", "Theatrical Performances", "Speeches", "Speeches by Soviet Leaders", "Works", "History", "Modern Russian", "Soviet Textbooks", "Texts Without English"];
                         // Render order: "Texts Without English" sits at the very bottom,
                         // after the catch-all "Other" bucket.
-                        var ORDER = ["Novels", "Novellas", "Short Stories", "Plays", "Translations", "Philosophy", "Fairytales", "Poetry", "Song Lyrics", "Religious Texts", "Theatrical Performances", "Speeches", "Speeches by Soviet Leaders", "Works", "History", "Soviet Textbooks", "Other", "Texts Without English"];
+                        var ORDER = ["Novels", "Novellas", "Short Stories", "Plays", "Translations", "Philosophy", "Fairytales", "Poetry", "Song Lyrics", "Religious Texts", "Theatrical Performances", "Speeches", "Speeches by Soviet Leaders", "Works", "History", "Modern Russian", "Soviet Textbooks", "Other", "Texts Without English"];
                         var normalize = function(cat) {
                           // Singular legacy spellings written by older uploads.
                           if (cat === "Novel") return "Novels";

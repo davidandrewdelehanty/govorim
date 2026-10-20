@@ -118,6 +118,19 @@ COURSES.append({
 })
 
 
+import numerals_course
+COURSES.append({
+    "id": "numerals", "title": "Declined Numerals", "short": "Numerals", "mark": "123",
+    "blurb": "",
+    "credit": "Rules quoted from the Defense Language Institute Russian Basic Course, Grammar Reference Books I and II "
+              "(a US Government work in the public domain); every Russian form from the OpenCorpora dictionary "
+              "(CC BY-SA 4.0), put together by those rules in tools/courses/gen_numerals.py",
+    "creditUrl": DLI_URL,
+    "license": "Public domain \u00b7 CC BY-SA 4.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "modules": ["numerals_course"], "order": None,
+})
+
+
 # Practice drills from Tatoeba (tools/courses/tatoeba_drills.py): a section
 # of real sentences after each section they belong to.
 DRILLS_P = os.path.join(HERE, "drills.json")

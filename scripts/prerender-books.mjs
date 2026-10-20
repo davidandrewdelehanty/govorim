@@ -96,6 +96,7 @@ const CATEGORY_EN = {
   "Speeches by Soviet Leaders": "speech", "Spectacle": "radio play",
   "Soviet Textbooks": "textbook",
   "History": "history",
+  "Modern Russian": "text",
   "Translations": "translation",
 };
 
