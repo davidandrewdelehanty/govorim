@@ -63,6 +63,13 @@ COURSES = {
                  ("Menshikov in Berezovo", "Surikov")],
     "clock":    [("Yermak's Conquest of Siberia", "Surikov"), ("Menshikov in Berezovo", "Surikov"),
                  ("Boyarynya Morozova", "Surikov")],
+    # Wikidata's English label is not always the museum's; a Russian title is
+    # looked up in Russian, and the painter may be given in both spellings.
+    "gramterms": [("У дверей школы", "Bogdanov-Belsky|Богданов-Бельский"), ("At the School Door", "Bogdanov-Belsky"),
+                  ("At the Doors of a School", "Bogdanov-Belsky"),
+                  ("Воскресное чтение в сельской школе", "Bogdanov-Belsky|Богданов-Бельский"),
+                  ("Сочинение", "Bogdanov-Belsky|Богданов-Бельский"), ("Новые хозяева", "Bogdanov-Belsky|Богданов-Бельский"),
+                  ("Лев Толстой в кабинете", "Repin|Репин"), ("Leo Tolstoy in His Study", "Repin")],
     "inter2":   [("The Swan Princess", "Vrubel"), ("Lilacs", "Vrubel")],
     "adv3":     [("The Demon Seated", "Vrubel"), ("Pan", "Vrubel")],
     "stories":  [("The Unequal Marriage", "Pukirev"), ("Tea-Drinking in Mytishchi", "Perov")],
@@ -86,28 +93,33 @@ BANNED = re.compile(r"history of painting|\blogo\b|film fest|\b(19[3-9]\d|20\d\d
 
 
 def painting(title, painter):
-    """The Commons file of a painting on Wikidata, by its English title and painter."""
-    q = urllib.parse.urlencode({"action": "wbsearchentities", "format": "json", "language": "en",
+    """The Commons file of a painting on Wikidata, by its title and painter.
+    A Russian title is searched in Russian; `painter` may give several
+    spellings separated by |, and its first word is what the description or
+    the file name must contain."""
+    lang = "ru" if re.search(r"[А-Яа-яЁё]", title) else "en"
+    names = [p.split("-")[0].split()[0].lower() for p in painter.split("|")]
+    q = urllib.parse.urlencode({"action": "wbsearchentities", "format": "json", "language": lang,
                                 "type": "item", "limit": 10, "search": title})
     hits = [h["id"] for h in ((ec.get(WD + "?" + q) or {}).get("search") or [])]
-    if not hits:
-        return None
-    q = urllib.parse.urlencode({"action": "wbgetentities", "format": "json", "ids": "|".join(hits),
-                                "props": "claims|labels|descriptions", "languages": "en"})
-    ents = (ec.get(WD + "?" + q) or {}).get("entities") or {}
-    for i in hits:
-        e = ents.get(i) or {}
-        desc = ((e.get("descriptions") or {}).get("en") or {}).get("value", "")
-        if painter.split("-")[0].lower() not in desc.lower():
-            continue
-        imgs = [((c.get("mainsnak") or {}).get("datavalue") or {}).get("value") for c in (e.get("claims") or {}).get("P18", [])]
-        imgs = [x for x in imgs if x]
-        if imgs:
-            return imgs[0]
+    if hits:
+        q = urllib.parse.urlencode({"action": "wbgetentities", "format": "json", "ids": "|".join(hits),
+                                    "props": "claims|labels|descriptions", "languages": "en|ru"})
+        ents = (ec.get(WD + "?" + q) or {}).get("entities") or {}
+        for i in hits:
+            e = ents.get(i) or {}
+            descs = " ".join(((e.get("descriptions") or {}).get(l) or {}).get("value", "") for l in ("en", "ru")).lower()
+            if not any(n in descs for n in names):
+                continue
+            imgs = [((c.get("mainsnak") or {}).get("datavalue") or {}).get("value") for c in (e.get("claims") or {}).get("P18", [])]
+            imgs = [x for x in imgs if x]
+            if imgs:
+                return imgs[0]
     # Not on Wikidata under that title: an artwork search on Commons.
-    for n in fp.artworks(painter + " " + title, 10):
-        if painter.split("-")[0].lower() in n.lower():
-            return n
+    for p in painter.split("|"):
+        for n in fp.artworks(p + " " + title, 10):
+            if any(x in n.lower() for x in names):
+                return n
     return None
 
 
@@ -125,7 +137,7 @@ def fetch(cands, prefix):
         if path:
             name = "%s-%s.jpg" % (prefix, hashlib.sha1(f.encode("utf-8")).hexdigest()[:12])
             os.replace(os.path.join(ec.IMG, os.path.basename(path)), os.path.join(ec.IMG, name))
-            return {"img": "/books/img/" + name, "file": f, "title": title, "by": painter, "lic": inf["lic"]}
+            return {"img": "/books/img/" + name, "file": f, "title": title, "by": painter.split("|")[0], "lic": inf["lic"]}
     return None
 
 
