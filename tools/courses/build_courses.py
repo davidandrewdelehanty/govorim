@@ -239,6 +239,8 @@ def main():
             for e in [x for x in s["exercises"] if x["type"] != "mc" and trusted(x)]:
                 exs.append(dict(e, id="q%d" % (len(exs) + 1)))
             data = {"id": sid, "title": s["title"], "blocks": s["blocks"], "exercises": exs}
+            if s.get("stream"):
+                data["stream"] = True      # one drill at a time, with a Next button
             io.open(os.path.join(out_dir, sid + ".json"), "w", encoding="utf-8").write(
                 json.dumps(data, ensure_ascii=False, separators=(",", ":")))
             o = {"id": sid, "title": s["title"], "n": len(exs)}
@@ -291,7 +293,9 @@ def main():
     for meta in outline:
         for o in meta["sections"]:
             p = os.path.join(ROOT, "public", "courses", meta["id"], o["id"] + ".json")
-            o["n"] = len(json.load(io.open(p, encoding="utf-8")).get("exercises") or [])
+            j = json.load(io.open(p, encoding="utf-8"))
+            # A stream has no end to reach: it counts as a lesson, finished when opened.
+            o["n"] = 0 if j.get("stream") else len(j.get("exercises") or [])
 
     js = ("// Written by tools/courses/build_courses.py — the courses, their sections and\n"
           "// how many exercises each has. The lessons themselves are in public/courses/.\n"

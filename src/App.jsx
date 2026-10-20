@@ -6222,6 +6222,9 @@ export default function App() {
   var [crsSec, setCrsSec] = useState(null);         // section id open
   var [crsData, setCrsData] = useState({});         // "<course>/<section>" → lesson JSON | "error"
   var [exState, setExState] = useState({});         // exercise id → { picked: [i…], val, status, tries, shown }
+  // A practice stream (a section marked `stream`): the drills in a shuffled
+  // order, one on screen at a time. Reshuffled every time the section opens.
+  var [crsStream, setCrsStream] = useState({ key: "", order: [], pos: 0, right: 0, seen: 0 });
   var loadSection = function(cid, sid) {
     var k = cid + "/" + sid;
     if (crsData[k]) return;
@@ -16232,7 +16235,7 @@ export default function App() {
         .crs-hint{font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;color:rgba(42,31,20,.55)}
         .crs-show{align-self:flex-start;background:none;border:0;padding:0;cursor:pointer;font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;color:#9d4630;text-decoration:underline}
         .crs-ans{font-family:'Literata',serif;font-size:14.5px;color:rgba(42,31,20,.75)}
-        .crs-why{font-family:'Literata',serif;font-size:14.5px;line-height:1.5;color:rgba(42,31,20,.8);padding:6px 10px;border-radius:6px;background:rgba(42,31,20,.05)}.clk{display:inline-flex;align-items:baseline;gap:2px;margin:6px 0 10px;padding:10px 18px;border-radius:10px;background:#1c1a17;color:#ffb347;font-family:"DejaVu Sans Mono","Menlo","Consolas",monospace;font-size:44px;font-weight:700;letter-spacing:.06em;line-height:1;box-shadow:inset 0 0 0 2px rgba(255,255,255,.06),0 2px 6px rgba(0,0,0,.25);text-shadow:0 0 10px rgba(255,179,71,.45)}.clk.ok{color:#7ee787;text-shadow:0 0 10px rgba(126,231,135,.45)}.clk.bad{color:#ff7b72;text-shadow:0 0 10px rgba(255,123,114,.4)}.clk-c{animation:clkblink 1.2s steps(1) infinite}@keyframes clkblink{50%{opacity:.25}}.clk-in{font:inherit;color:inherit;background:transparent;border:0;outline:0;width:5.2ch;padding:0;text-align:center;letter-spacing:inherit;caret-color:#ffb347}.clk-in::placeholder{color:inherit;opacity:.55}.clk.edit{cursor:text}.clk.edit:focus-within{box-shadow:inset 0 0 0 2px rgba(255,179,71,.55),0 2px 6px rgba(0,0,0,.25)}.clk-pod{font-family:'Literata',serif;font-size:16px;font-weight:400;letter-spacing:0;color:rgba(255,255,255,.75);text-shadow:none;margin-left:12px;align-self:center}.crs-say{font-family:'Literata',serif;font-size:20px;line-height:1.4;color:#1c1610;margin:2px 0 6px}.clk-ctl{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;margin:2px 0 8px}.clk-grp{display:inline-flex;align-items:center;gap:6px}.clk-lab{font-family:'Inter',system-ui,sans-serif;font-size:12px;color:rgba(42,31,20,.6);margin-right:2px}.clk-b{font:inherit;font-size:15px;min-width:42px;padding:6px 8px;border-radius:8px;border:1px solid rgba(42,31,20,.25);background:#fff;color:#1c1610;cursor:pointer}.clk-b:active{background:rgba(42,31,20,.08)}@media (max-width:480px){.clk{font-size:36px;padding:8px 14px}.clk-b{min-width:38px}}
+        .crs-why{font-family:'Literata',serif;font-size:14.5px;line-height:1.5;color:rgba(42,31,20,.8);padding:6px 10px;border-radius:6px;background:rgba(42,31,20,.05)}.clk{display:inline-flex;align-items:baseline;gap:2px;margin:6px 0 10px;padding:10px 18px;border-radius:10px;background:#1c1a17;color:#ffb347;font-family:"DejaVu Sans Mono","Menlo","Consolas",monospace;font-size:44px;font-weight:700;letter-spacing:.06em;line-height:1;box-shadow:inset 0 0 0 2px rgba(255,255,255,.06),0 2px 6px rgba(0,0,0,.25);text-shadow:0 0 10px rgba(255,179,71,.45)}.clk.ok{color:#7ee787;text-shadow:0 0 10px rgba(126,231,135,.45)}.clk.bad{color:#ff7b72;text-shadow:0 0 10px rgba(255,123,114,.4)}.clk-c{animation:clkblink 1.2s steps(1) infinite}@keyframes clkblink{50%{opacity:.25}}.clk-in{font:inherit;color:inherit;background:transparent;border:0;outline:0;width:5.2ch;padding:0;text-align:center;letter-spacing:inherit;caret-color:#ffb347}.clk-in::placeholder{color:inherit;opacity:.55}.clk.edit{cursor:text}.clk.edit:focus-within{box-shadow:inset 0 0 0 2px rgba(255,179,71,.55),0 2px 6px rgba(0,0,0,.25)}.clk-pod{font-family:'Literata',serif;font-size:16px;font-weight:400;letter-spacing:0;color:rgba(255,255,255,.75);text-shadow:none;margin-left:12px;align-self:center}.crs-stream-top{display:flex;align-items:baseline;gap:12px;margin:8px 0 2px}.crs-stream-n{display:none}.crs-stream-tally{font-family:'Inter',system-ui,sans-serif;font-size:13px;color:rgba(42,31,20,.6)}.crs-stream .crs-qn{display:none}.crs-stream-nav{margin-top:10px}.crs-say{font-family:'Literata',serif;font-size:20px;line-height:1.4;color:#1c1610;margin:2px 0 6px}.clk-ctl{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;margin:2px 0 8px}.clk-grp{display:inline-flex;align-items:center;gap:6px}.clk-lab{font-family:'Inter',system-ui,sans-serif;font-size:12px;color:rgba(42,31,20,.6);margin-right:2px}.clk-b{font:inherit;font-size:15px;min-width:42px;padding:6px 8px;border-radius:8px;border:1px solid rgba(42,31,20,.25);background:#fff;color:#1c1610;cursor:pointer}.clk-b:active{background:rgba(42,31,20,.08)}@media (max-width:480px){.clk{font-size:36px;padding:8px 14px}.clk-b{min-width:38px}}
         .crs-ctx{font-family:'Inter',system-ui,sans-serif;font-size:12.5px;line-height:1.5;color:rgba(42,31,20,.62);border-left:2px solid rgba(196,149,90,.5);padding:2px 0 2px 9px;margin-bottom:2px}
         .crs-score{font-family:'IBM Plex Sans',sans-serif;font-size:14px;padding:10px 14px;border-radius:9px;background:rgba(42,31,20,.06);color:rgba(42,31,20,.75)}
         .crs-score.done{background:#2e7d4f;color:#fff}
@@ -25350,7 +25353,7 @@ export default function App() {
                         {es.status === "wrong" && (es.tries || 0) >= 2 && !es.shown && (
                           <button type="button" className="crs-show" onClick={function(){ setEx(e.id, { shown: true }); }}>Show the answer</button>
                         )}
-                        {es.shown && es.status !== "right" && <div className="crs-ans">Answer: <b lang="ru">{(e.answers || [])[0]}</b> — type it in to finish this one.</div>}
+                        {es.shown && es.status !== "right" && <div className="crs-ans">Answer: <b lang="ru">{e.show || (e.answers || [])[0]}</b> — type it in to finish this one.</div>}
                         {why}
                       </div>
                     </div>
@@ -25366,7 +25369,42 @@ export default function App() {
                     {data && data !== "error" && (
                       <>
                         <div className="crs-lesson">{(data.blocks || []).map(block)}</div>
-                        {exs.length > 0 && (
+                        {data.stream && exs.length > 0 && (function(){
+                          var key = course.id + "/" + sec.id;
+                          var st = crsStream.key === key ? crsStream : null;
+                          if (!st) {
+                            // first paint of this section: shuffle, start
+                            var order = exs.map(function(_, i){ return i; });
+                            for (var i = order.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var tmp = order[i]; order[i] = order[j]; order[j] = tmp; }
+                            // keep the two kinds alternating: set, say, set, say
+                            var a = order.filter(function(i){ return exs[i].type === "clockset"; });
+                            var b = order.filter(function(i){ return exs[i].type !== "clockset"; });
+                            var mixed = [];
+                            for (var k = 0; k < Math.max(a.length, b.length); k++) { if (a[k] !== undefined) mixed.push(a[k]); if (b[k] !== undefined) mixed.push(b[k]); }
+                            setTimeout(function(){ setCrsStream({ key: key, order: mixed, pos: 0, right: 0, seen: 0 }); }, 0);
+                            return <div className="lib-cat-hint">Loading…</div>;
+                          }
+                          var e = exs[st.order[st.pos % st.order.length]];
+                          var es = exState[e.id] || {};
+                          var answered = es.status === "right";
+                          var next = function() {
+                            var r = st.right + (answered && !st.counted ? 1 : 0);
+                            setCrsStream(Object.assign({}, st, { pos: st.pos + 1, right: r, seen: st.seen + 1, counted: false }));
+                          };
+                          return (
+                            <div className="crs-exw crs-stream">
+                              <div className="crs-stream-top">
+                                <span className="crs-stream-n">{st.seen + 1}</span>
+                                <span className="crs-stream-tally">{st.right} right of {st.seen}{e.type === "clockset" ? " · set the clock" : " · write the time"}</span>
+                              </div>
+                              {exercise(e, st.seen)}
+                              <div className="crs-nav crs-stream-nav">
+                                <button type="button" className="btn-p" onClick={next}>{answered ? "Next →" : "Skip →"}</button>
+                              </div>
+                            </div>
+                          );
+                        })()}
+                        {!data.stream && exs.length > 0 && (
                           <div className="crs-exw">
                             <h2 className="crs-h">Exercises</h2>
                             <p className="crs-p crs-exi">Pick the answer, or type it and press Enter. Green is right, red is not — try again until it is.</p>

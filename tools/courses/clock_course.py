@@ -59,7 +59,7 @@ def drill(d):
     h, m = int(d["hhmm"][:2]), int(d["hhmm"][3:])
     return {"type": "fill", "q": "___", "clock": "%d:%02d" % (h % 12 or 12, m), "pod": d["say"].split()[-1],
             "answers": d["accept"],
-            "prompt": "Write this time in words — the way it is said (пять минут третьего), with or without утра / дня / вечера / ночи; or the 24-hour way (четырнадцать ноль пять).",
+            "prompt": "Write this time in words, the way it is said (пять минут третьего). You may leave off утра / дня / вечера / ночи. The 24-hour way (четырнадцать ноль пять) counts too.",
             "context": CTX[k], "why": WHY[k] + " " + H24}
 
 
@@ -89,10 +89,16 @@ SECTIONS = [SEC("ck0-rules", "How the time is told", [
     NOTE(u"DLI Grammar Reference Book, Lessons 40, 73 and 74. The table and every drill after this page: dictionary forms (OpenCorpora, CC BY-SA 4.0) put together by these rules, tools/courses/gen_clock.py."),
 ])]
 
-SIZE = 20
-drills = D["drills"]
-for n, i in enumerate(range(0, len(drills), SIZE), 1):
-    part = [drill(d) for d in drills[i:i + SIZE]]
-    SECTIONS.append(SEC("ck%d" % n, "Clock practice %d" % n,
-                        [NOTE(u"Set the clock, then say the next one. Every time here is made from dictionary forms by the rules on the first page.")],
-                        part, sub="%d times" % len(part)))
+# One practice screen: every drill in one section, shown one at a time with a
+# Next button (the app renders a section marked `stream` that way).
+drills = [drill(d) for d in D["drills"]]
+for x in drills:
+    if x["type"] == "fill":
+        # the answer as shown after two misses: the part of the day in
+        # brackets, since it may be left off
+        pod = x["pod"]
+        x["show"] = x["answers"][0][:-len(pod) - 1] + " (" + pod + ")" if x["answers"][0].endswith(" " + pod) else x["answers"][0]
+SECTIONS.append(dict(SEC("ck-practice", "Clock practice",
+                         [NOTE(u"One time at a time: set the clock, then say the next one, as long as you like. "
+                               u"Every time here is made from dictionary forms by the rules on the first page.")],
+                         drills, sub="as many as you like"), stream=True))
