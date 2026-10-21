@@ -6303,6 +6303,17 @@ export default function App() {
   // A practice stream (a section marked `stream`): the drills in a shuffled
   // order, one on screen at a time. Reshuffled every time the section opens.
   var [crsStream, setCrsStream] = useState({ key: "", order: [], pos: 0, right: 0, seen: 0 });
+  // A course reads like a book: "read" is the open section, "nav" its contents.
+  var [crsView, setCrsView] = useState("read");
+  var [crsNavOpen, setCrsNavOpen] = useState({});     // contents: lesson group → open?
+  // Where to open a course: the section last open in it, else the first not finished.
+  var courseStart = function(c) {
+    var last = null;
+    try { last = JSON.parse(localStorage.getItem("crsLast") || "{}")[c.id]; } catch (x) {}
+    if (last && c.sections.some(function(s){ return s.id === last; })) return last;
+    var open = c.sections.filter(function(s){ var r = courseProg[c.id + "/" + s.id]; return !(r && r.done); })[0];
+    return (open || c.sections[0] || {}).id;
+  };
   var loadSection = function(cid, sid) {
     var k = cid + "/" + sid;
     if (crsData[k]) return;
@@ -6312,7 +6323,9 @@ export default function App() {
       .catch(function(){ setCrsData(function(m){ var n = Object.assign({}, m); n[k] = "error"; return n; }); });
   };
   var openSection = function(cid, sid) {
-    setCrsCourse(cid); setCrsSec(sid); setExState({});
+    setCrsCourse(cid); setCrsSec(sid); setExState({}); setCrsView("read");
+    try { var lm = JSON.parse(localStorage.getItem("crsLast") || "{}"); lm[cid] = sid; localStorage.setItem("crsLast", JSON.stringify(lm)); } catch (x) {}
+    try { var sc = document.querySelector(".crs-scroll"); if (sc) sc.scrollTop = 0; window.scrollTo(0, 0); } catch (x) {}
     // A practice stream is dealt anew every time it is opened.
     setCrsStream({ key: "", order: [], pos: 0, right: 0, seen: 0 });
     loadSection(cid, sid);
@@ -6350,6 +6363,8 @@ export default function App() {
   var noteAnswer = function(cid, sid, exId, right, exIds, clean) {
     var rc = COURSE_OUTLINE.filter(function(x){ return x.id === cid; })[0];
     if (rc && rc.repeat) return;
+    // An exam is marked as a whole, by its grade (finishExam), not answer by answer.
+    if (rc && rc.sections.some(function(s){ return s.id === sid && s.exam; })) return;
     setCourseProg(function(m){
       var k = cid + "/" + sid, rec = Object.assign({ right: {}, first: {} }, m[k] || {});
       rec.right = Object.assign({}, rec.right); rec.first = Object.assign({}, rec.first);
@@ -6357,6 +6372,17 @@ export default function App() {
       if (right && !rec.right[exId]) rec.right[exId] = Date.now();
       if (!rec.done && sectionDone(rec, exIds)) rec.done = Date.now();
       if (right && !rec.perfect && (clean || (exIds.length && exIds.every(function(id){ return rec.first[id] === 1; })))) rec.perfect = Date.now();
+      var n = Object.assign({}, m); n[k] = rec; return n;
+    });
+  };
+  // The exam is over: its grade, and — at the pass mark or above — the section
+  // done, which is what earns the course's badge. The best grade is kept.
+  var finishExam = function(cid, sid, grade, pass) {
+    setCourseProg(function(m){
+      var k = cid + "/" + sid, rec = Object.assign({ right: {}, first: {} }, m[k] || {});
+      rec.grade = Math.max(Number(rec.grade) || 0, grade);
+      if (grade >= pass && !rec.done) rec.done = Date.now();
+      if (grade === 100 && !rec.perfect) rec.perfect = Date.now();
       var n = Object.assign({}, m); n[k] = rec; return n;
     });
   };
@@ -17840,6 +17866,48 @@ export default function App() {
         .crs-rule-ex{display:flex;flex-wrap:wrap;gap:6px 0;margin-top:6px;font-family:var(--serif);font-size:18px;line-height:1.5;color:var(--ink)}
         .crs-rule-ex span{padding:0 14px 0 0;margin-right:14px;border-right:1px solid var(--rule)}
         .crs-rule-ex span:last-child{border-right:0;margin-right:0;padding-right:0}
+        /* A course read like a book: the top bar with Lesson / Contents, Previous
+           and Next, and the course's progress; the Contents pane in the books'
+           own cards, a lesson's practice sets folded under it. */
+        .crs-top{display:flex;flex-direction:column;gap:4px;margin-bottom:4px}
+        .crs-top-row{display:flex;flex-wrap:wrap;align-items:center;gap:6px 18px;padding:8px 0 10px;border-bottom:1px solid var(--rule-soft)}
+        .crs-top-name{font-family:var(--display);font-size:19px;color:var(--ink);margin-right:4px}
+        .crs-tabs{display:flex;gap:16px}
+        .crs-topnav{display:flex;gap:14px;margin-left:auto}
+        .crs-lprog{display:flex;align-items:center;gap:10px}
+        .crs-navpanel{padding:6px 0 0;gap:0;overflow:visible}
+        .crs-nav-blurb{font-family:var(--serif);font-size:16px;line-height:1.6;color:var(--ink-2);margin:6px 0 14px}
+        .crs-lc{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"when when" "head r";gap:2px 16px;padding:11px 0}
+        .crs-lc .lchead{font-size:17px}
+        .crs-lc.done .lchead{color:var(--ink-2)}
+        .crs-lc.cur .lchead{color:var(--rubric)}
+        .crs-lc-r{grid-area:r;font-family:var(--sans);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-variant-numeric:tabular-nums;white-space:nowrap}
+        .crs-lc.nested{margin-left:26px;padding:8px 0}
+        .crs-lc.nested .lchead{font-size:15.5px;font-family:var(--serif)}
+        .crs-navgrp{border-bottom:1px solid var(--rule-soft)}
+        .crs-navgrp .lcard{border-bottom:0}
+        .crs-navgrp.open .lcard.grp{border-bottom:1px dotted var(--rule-soft)}
+        .crs-nav-arrow{display:inline-block;width:1.1em;color:var(--ink-3);font-size:13px}
+        .crs-navpanel .crs-credit{margin-top:22px}
+        @media (max-width:560px){.crs-topnav{margin-left:0}.crs-top-name{font-size:17px}.crs-lc.nested{margin-left:14px}}
+        /* The exam: the questions in one list, a chapter name over each, the
+           mark at the end. */
+        .crs-exam{margin-top:22px}
+        .crs-exam-note{font-family:var(--serif);font-style:italic;font-size:15px;color:var(--ink-3);margin-bottom:10px}
+        .crs-exam-top{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 16px;padding-bottom:10px;border-bottom:1px solid var(--rule)}
+        .crs-exam-q{padding-top:14px}
+        .crs-exam-topic{font-family:var(--sans);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin:0 0 -8px 46px}
+        .crs-exam .crs-q{border-top:0;padding:10px 0 16px;border-bottom:1px solid var(--rule-soft)}
+        .crs-exam .crs-q:first-of-type{border-top:0}
+        .crs-exam-result{margin-top:26px;padding:26px 28px;border:1px solid var(--ink);background:var(--paper-3);display:flex;flex-direction:column;align-items:flex-start;gap:10px}
+        .crs-exam-result.pass{border-color:#2e6e50}
+        .crs-exam-result.fail{border-color:var(--rubric)}
+        .crs-exam-grade{font-family:var(--display);font-size:64px;line-height:1;color:var(--ink)}
+        .crs-exam-result.pass .crs-exam-grade{color:#2e6e50}
+        .crs-exam-result.fail .crs-exam-grade{color:var(--rubric)}
+        .crs-exam-verdict{font-family:var(--serif);font-size:17px;line-height:1.5;color:var(--ink)}
+        .crs-exam-result .crs-retry{margin:6px 0 0}
+        @media (max-width:560px){.crs-exam-topic{margin-left:0}.crs-exam-grade{font-size:48px}.crs-exam-result{padding:18px 16px}}
         /* The practice card: one sentence at a time, framed on paper. */
         .crs-stream{margin-top:28px;padding:22px 26px 18px;border:1px solid var(--rule);background:var(--paper-3)}
         .crs-stream .crs-stream-top{margin:0;padding-bottom:12px;border-bottom:1px solid var(--rule-soft)}
@@ -23068,7 +23136,7 @@ export default function App() {
                                 // textbook shelf: a tile each, with the reader's progress.
                                 var courseTiles = (cat === "Soviet Textbooks" && targetLang !== "en") ? COURSE_OUTLINE.map(function(c){
                                   var st = courseState(c, courseProg);
-                                  var go = function(){ setTab("courses"); setCrsCourse(c.id); setCrsSec(null); stopTTS(); };
+                                  var go = function(){ setTab("courses"); openSection(c.id, courseStart(c)); stopTTS(); };
                                   return (
                                     <div key={"course-" + c.id} className="tb-card crs-tile" role="button" tabIndex={0}
                                       onKeyDown={function(e){ if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go(); } }}
@@ -25532,14 +25600,14 @@ export default function App() {
                       <h1 className="sti">Courses</h1>
                       <p className="sde">
                         Russian grammar, a lesson at a time. Each section explains one thing and ends with
-                        exercises — pick an answer or type it in. Finish a section for its badge; finish a
-                        course for the big one. Your place is saved{me ? " to your account" : " on this device — sign in to keep it everywhere"}.
+                        exercises — pick an answer or type it in. Finish a section for its badge; pass the
+                        exam at the end of a course for the big one. Your place is saved{me ? " to your account" : " on this device — sign in to keep it everywhere"}.
                       </p>
                       <div className="crs-list">
                         {COURSE_OUTLINE.map(function(c){
                           var st = courseState(c, courseProg);
                           return (
-                            <button key={c.id} type="button" className={"crs-card" + (COURSE_PICS[c.id] ? " has-img" : "")} onClick={function(){ setCrsCourse(c.id); setCrsSec(null); }}>
+                            <button key={c.id} type="button" className={"crs-card" + (COURSE_PICS[c.id] ? " has-img" : "")} onClick={function(){ openSection(c.id, courseStart(c)); }}>
                               {COURSE_PICS[c.id] && <span className="crs-card-img" style={{backgroundImage: "url(\"" + COURSE_PICS[c.id].img + "\")"}} title={COURSE_PICS[c.id].title + " — " + COURSE_PICS[c.id].by} />}
                               <span className="crs-mark">{c.mark || "★"}</span>
                               <span className="crs-card-t">{c.title}</span>
@@ -25558,32 +25626,95 @@ export default function App() {
 
                 var sec = crsSec && course.sections.filter(function(x){ return x.id === crsSec; })[0];
 
-                /* ── A course: its sections ── */
-                if (!sec) {
+                /* ── The contents of a course: lessons with their practice sets
+                      under them, the exam last — the Contents pane of a book. ── */
+                var secStateOf = function(x) {
+                  var r = course.repeat ? {} : (courseProg[course.id + "/" + x.id] || {});
+                  var right = Object.keys(r.right || {}).length;
+                  var mark = r.perfect ? "★" : r.done ? "✓" : "";
+                  var when = x.exam ? (r.done ? "passed · " + r.grade + "%" : r.grade ? "best " + r.grade + "%" : x.n + " questions")
+                    : (x.stream && !x.n) ? "endless" : x.n ? Math.min(right, x.n) + " / " + x.n : (r.done ? "read" : "");
+                  return { rec: r, mark: mark, when: when, done: !!r.done, started: !!(r.read || right) };
+                };
+                var contents = function() {
+                  var groups = [];
+                  course.sections.forEach(function(x){
+                    var key = x.exam ? "exam" : x.id.replace(/-practice(-\d+)?$/, "");
+                    var g = groups.filter(function(y){ return y.key === key; })[0];
+                    if (!g) { g = { key: key, title: x.title, items: [] }; groups.push(g); }
+                    if (!/-practice(-\d+)?$/.test(x.id)) g.title = x.title;
+                    g.items.push(x);
+                  });
+                  var lessonNo = 0;
+                  var card = function(x, label, nested) {
+                    var st = secStateOf(x);
+                    return (
+                      <div key={x.id} className={"lcard crs-lc" + (x.id === crsSec ? " cur" : "") + (st.done ? " done" : "") + (nested ? " nested" : "")}
+                        onClick={function(){ openSection(course.id, x.id); }}>
+                        <div className="lcn">{[label, st.mark ? (st.rec.perfect ? "perfect ★" : "finished ✓") : (st.started ? "started" : ""), x.id === crsSec ? "here" : ""].filter(Boolean).join(" · ")}</div>
+                        <div className="lchead">{x.title}</div>
+                        <div className="crs-lc-r">{st.when}</div>
+                      </div>
+                    );
+                  };
+                  return (
+                    <div className="navpanel crs-navpanel">
+                      {course.blurb && <p className="crs-nav-blurb">{course.blurb}</p>}
+                      {groups.map(function(g){
+                        if (g.key === "exam") return card(g.items[0], "Exam · pass mark 85% · earns the course's badge");
+                        var isStream = g.items[0].stream && !g.items[0].n;
+                        var label = isStream ? "Practice" : "Section " + (++lessonNo);
+                        if (g.items.length === 1) return card(g.items[0], label);
+                        var done = g.items.filter(function(x){ return secStateOf(x).done; }).length;
+                        var hasCur = g.items.some(function(x){ return x.id === crsSec; });
+                        var open = (g.key in crsNavOpen) ? crsNavOpen[g.key] : hasCur;
+                        return (
+                          <div key={g.key} className={"crs-navgrp" + (open ? " open" : "")}>
+                            <div className={"lcard crs-lc grp" + (hasCur ? " cur" : "") + (done === g.items.length ? " done" : "")}
+                              onClick={function(){ var m = Object.assign({}, crsNavOpen); m[g.key] = !open; setCrsNavOpen(m); }}>
+                              <div className="lcn">{label} · {g.items.length - 1} practice set{g.items.length === 2 ? "" : "s"}{done === g.items.length ? " · finished ✓" : done ? " · " + done + " of " + g.items.length + " finished" : ""}</div>
+                              <div className="lchead"><span className="crs-nav-arrow">{open ? "▾" : "▸"}</span>{g.title}</div>
+                            </div>
+                            {open && g.items.map(function(x, i){ return card(x, i === 0 ? "Lesson" : "Practice " + i, true); })}
+                          </div>
+                        );
+                      })}
+                      {credit(course)}
+                    </div>
+                  );
+                };
+                var topBar = function(idx) {
                   var st = courseState(course, courseProg);
+                  var prevSec = idx > 0 ? course.sections[idx - 1] : null;
+                  var nextS = idx >= 0 && idx + 1 < course.sections.length ? course.sections[idx + 1] : null;
+                  return (
+                    <div className="crs-top">
+                      <button type="button" className="crs-back" onClick={function(){ setCrsCourse(null); setCrsSec(null); }}>← All courses</button>
+                      <div className="crs-top-row">
+                        <div className="crs-top-name">{course.title}</div>
+                        <div className="crs-tabs">
+                          <button type="button" className={"ltab" + (crsView === "read" ? " on" : "")} onClick={function(){ setCrsView("read"); }}>Lesson</button>
+                          <button type="button" className={"ltab" + (crsView === "nav" ? " on" : "")} onClick={function(){ setCrsView("nav"); }}>Contents</button>
+                        </div>
+                        <div className="crs-topnav">
+                          <button type="button" className="lnb-inline" disabled={!prevSec} onClick={function(){ if (prevSec) openSection(course.id, prevSec.id); }}>← Previous</button>
+                          <button type="button" className="lnb-inline p" disabled={!nextS} onClick={function(){ if (nextS) openSection(course.id, nextS.id); }}>Next →</button>
+                        </div>
+                        {!course.repeat && (
+                          <div className="lprog crs-lprog" title={st.done + " of " + st.of + " sections finished"}>
+                            <span className="lpct">{st.done} / {st.of}</span>
+                            <div className="lpbar"><div className="lpfill" style={{width: (st.of ? Math.round(100 * st.done / st.of) : 0) + "%"}} /></div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  );
+                };
+                if (!sec || crsView === "nav") {
                   return (
                     <div className="crs-body">
-                      <button type="button" className="crs-back" onClick={function(){ setCrsCourse(null); }}>← All courses</button>
-                      <h1 className="sti">{course.title}</h1>
-                      {course.blurb && <p className="sde">{course.blurb}</p>}
-                      {!course.repeat && <div className="crs-prog">{bar(st.done, st.of)}<span>{st.done} of {st.of} sections finished</span></div>}
-                      <ol className="crs-secs">
-                        {course.sections.map(function(x, i){
-                          var rec = course.repeat ? {} : (courseProg[course.id + "/" + x.id] || {});
-                          var right = Object.keys(rec.right || {}).length;
-                          return (
-                            <li key={x.id}>
-                              <button type="button" className={"crs-sec" + (/-practice(-\d+)?$/.test(x.id) ? " pr" : "") + (rec.done ? " done" : rec.read ? " started" : "")}
-                                onClick={function(){ openSection(course.id, x.id); }}>
-                                <span className={"crs-sec-n" + (rec.perfect ? " pf" : "")}>{rec.perfect ? "★" : rec.done ? "✓" : (x.stream && !x.n) ? "∞" : /-practice(-\d+)?$/.test(x.id) ? "✎" : course.sections.slice(0, i + 1).filter(function(y){ return !/-practice(-\d+)?$/.test(y.id) && !(y.stream && !y.n); }).length}</span>
-                                <span className="crs-sec-t">{x.title}{x.sub ? <span className="crs-sec-s">{x.sub}</span> : null}</span>
-                                <span className="crs-sec-r">{x.n ? Math.min(right, x.n) + " / " + x.n : (x.stream && !x.n) ? "endless" : (rec.done ? "read" : "")}</span>
-                              </button>
-                            </li>
-                          );
-                        })}
-                      </ol>
-                      {credit(course)}
+                      {topBar(sec ? course.sections.indexOf(sec) : -1)}
+                      {contents()}
                     </div>
                   );
                 }
@@ -25595,7 +25726,9 @@ export default function App() {
                 var idxSec = course.sections.indexOf(sec);
                 var nextSec = course.sections[idxSec + 1];
                 if (!data) { loadSection(course.id, sec.id); }
-                var exs = (data && data !== "error" && data.exercises) || [];
+                var examKey = course.id + "/" + sec.id;
+                var examDeal = (data && data !== "error" && data.exam && crsStream.key === examKey) ? (crsStream.order || []) : null;
+                var exs = examDeal || (data && data !== "error" && data.exercises) || [];
                 var exIds = exs.map(function(e){ return e.id; });
                 var firstRight = exs.filter(function(e){ return rec.first && rec.first[e.id] === 1; }).length;
                 var allRight = exs.length > 0 && exs.every(function(e){ return rec.right && rec.right[e.id]; });
@@ -25838,7 +25971,7 @@ export default function App() {
                 };
                 return (
                   <div className="crs-body">
-                    <button type="button" className="crs-back" onClick={function(){ setCrsSec(null); }}>← {course.title}</button>
+                    {topBar(idxSec)}
                     {/* A chapter that opens with its construction set large gets
                         it as the title itself, with the chapter's own name under
                         it — not the construction twice over, once in the title
@@ -25862,6 +25995,60 @@ export default function App() {
                     {data && data !== "error" && (
                       <>
                         <div className="crs-lesson">{(data.blocks || []).slice(data.blocks && data.blocks[0] && data.blocks[0].t === "formula" ? 1 : 0).map(block)}</div>
+                        {data.exam && (function(){
+                          var per = data.per || 5, pass = data.pass || 85;
+                          var shuf = function(a) { for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; };
+                          if (!examDeal) {
+                            // Dealt when the exam is opened: `per` of each chapter's questions, in one shuffled list.
+                            var dealt = [];
+                            (data.topics || []).forEach(function(t, ti){
+                              shuf(t.exercises.slice()).slice(0, per).forEach(function(e){
+                                dealt.push(Object.assign({}, e, { id: "x" + ti + "-" + e.id, topic: t.title }));
+                              });
+                            });
+                            shuf(dealt);
+                            setTimeout(function(){ setExState({}); setCrsStream({ key: examKey, order: dealt, pos: 0, right: 0, seen: 0, round: 1 }); }, 0);
+                            return <div className="lib-cat-hint">Dealing the questions…</div>;
+                          }
+                          var total = exs.length;
+                          var answered = exs.filter(function(e){ return (exState[e.id] || {}).status === "right"; }).length;
+                          var firstTry = exs.filter(function(e){ var x = exState[e.id] || {}; return x.status === "right" && !(x.tries || 0) && !x.shown; }).length;
+                          var over = total > 0 && answered === total;
+                          var grade = total ? Math.round(100 * firstTry / total) : 0;
+                          if (over && !crsStream.graded) {
+                            setTimeout(function(){ finishExam(course.id, sec.id, grade, pass); setCrsStream(Object.assign({}, crsStream, { graded: true })); }, 0);
+                          }
+                          var again = function(){ setExState({}); setCrsStream({ key: "", order: [], pos: 0, right: 0, seen: 0 }); try { window.scrollTo(0, 0); var el = document.querySelector(".crs-scroll"); if (el) el.scrollTop = 0; } catch (x) {} };
+                          return (
+                            <div className="crs-exw crs-exam">
+                              {rec.done && !over && <div className="crs-exam-note">Passed before, with {rec.grade}%. This is a fresh deal; a better mark replaces it.</div>}
+                              <div className="crs-exam-top">
+                                <span className="crs-stream-tally"><b>{answered}</b> of {total} answered</span>
+                                <span className="crs-stream-right">{firstTry} right at the first try</span>
+                                <div className="crs-stream-bar"><span style={{width: Math.round(100 * answered / Math.max(1, total)) + "%"}} /></div>
+                              </div>
+                              {exs.map(function(e, n){
+                                return (
+                                  <div key={e.id} className="crs-exam-q">
+                                    <div className="crs-exam-topic">{e.topic}</div>
+                                    {exercise(e, n)}
+                                  </div>
+                                );
+                              })}
+                              {over && (
+                                <div className={"crs-exam-result" + (grade >= pass ? " pass" : " fail")}>
+                                  <div className="crs-exam-grade">{grade}%</div>
+                                  <div className="crs-exam-verdict">
+                                    {grade >= pass
+                                      ? <>Passed{grade === 100 ? " — every answer right at the first try ★" : ""}. The badge for {course.title} is yours.</>
+                                      : <>Not passed — the mark to beat is {pass}%. {firstTry} of {total} right at the first try.</>}
+                                  </div>
+                                  <button type="button" className="crs-retry" onClick={again}>{grade >= pass ? "Take it again" : "Try again with a new deal"}</button>
+                                </div>
+                              )}
+                            </div>
+                          );
+                        })()}
                         {data.stream && exs.length > 0 && (function(){
                           var key = course.id + "/" + sec.id;
                           var st = crsStream.key === key ? crsStream : null;
@@ -25961,7 +26148,7 @@ export default function App() {
                             </div>
                           );
                         })()}
-                        {!data.stream && exs.length > 0 && (
+                        {!data.stream && !data.exam && exs.length > 0 && (
                           <div className="crs-exw">
                             <h2 className="crs-h">Exercises</h2>
                             <p className="crs-p crs-exi">Pick the answer, or type it and press Enter. Green is right, red is not — try again until it is.</p>
@@ -25983,8 +26170,8 @@ export default function App() {
                             ? <button type="button" className="crs-next" onClick={function(){ openSection(course.id, nextSec.id); }}>
                                 <span className="k">Next chapter →</span><span className="t">{nextSec.title}</span>
                               </button>
-                            : <button type="button" className="crs-next" onClick={function(){ setCrsSec(null); }}>
-                                <span className="k">Back to the course →</span><span className="t">{course.title}</span>
+                            : <button type="button" className="crs-next" onClick={function(){ setCrsView("nav"); }}>
+                                <span className="k">Contents →</span><span className="t">{course.title}</span>
                               </button>}
                         </div>
                         {credit(course)}

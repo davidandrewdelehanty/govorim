@@ -378,6 +378,10 @@ def main():
             if j.get("finite"):
                 o["finite"] = True
 
+    # The exam at the end of each course, from the chapters' own exercises.
+    import make_exams
+    make_exams.add_exams(outline)
+
     js = ("// Written by tools/courses/build_courses.py — the courses, their sections and\n"
           "// how many exercises each has. The lessons themselves are in public/courses/.\n"
           "export default " + json.dumps(outline, ensure_ascii=False, indent=1) + ";\n")

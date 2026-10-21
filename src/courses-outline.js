@@ -214,6 +214,12 @@ export default [
     "id": "t14-on-wednesday",
     "title": "DLI: On Wednesday, in that minute, the next day: в and на + accusative",
     "n": 0
+   },
+   {
+    "id": "exam",
+    "title": "Exam",
+    "n": 95,
+    "exam": true
    }
   ]
  },
@@ -302,6 +308,12 @@ export default [
     "id": "c8-collective-half-practice",
     "title": "Practice: двое, трое… and полтора",
     "n": 14
+   },
+   {
+    "id": "exam",
+    "title": "Exam",
+    "n": 35,
+    "exam": true
    }
   ]
  },
@@ -425,6 +437,12 @@ export default [
     "id": "k11-prepositions-practice",
     "title": "Practice: Which case after which preposition",
     "n": 14
+   },
+   {
+    "id": "exam",
+    "title": "Exam",
+    "n": 55,
+    "exam": true
    }
   ]
  },
@@ -528,6 +546,12 @@ export default [
     "id": "f9-gerund-perfective-practice",
     "title": "Practice: Perfective деепричастия: прочитав, придя",
     "n": 14
+   },
+   {
+    "id": "exam",
+    "title": "Exam",
+    "n": 45,
+    "exam": true
    }
   ]
  },
@@ -636,6 +660,12 @@ export default [
     "id": "n4-pronouns",
     "title": "Pronouns in the nominative",
     "n": 0
+   },
+   {
+    "id": "exam",
+    "title": "Exam",
+    "n": 21,
+    "exam": true
    }
   ]
  },
@@ -1104,6 +1134,12 @@ export default [
     "id": "g8-endings-practice-5",
     "title": "Practice 5: Genitive endings: nouns, adjectives, pronouns",
     "n": 20
+   },
+   {
+    "id": "exam",
+    "title": "Exam",
+    "n": 40,
+    "exam": true
    }
   ]
  },
@@ -1327,6 +1363,12 @@ export default [
     "id": "d6-endings-practice-5",
     "title": "Practice 5: Dative endings: nouns, adjectives, pronouns",
     "n": 20
+   },
+   {
+    "id": "exam",
+    "title": "Exam",
+    "n": 30,
+    "exam": true
    }
   ]
  },
@@ -1725,6 +1767,12 @@ export default [
     "id": "a6-endings-practice-5",
     "title": "Practice 5: Accusative endings: nouns, adjectives, pronouns",
     "n": 20
+   },
+   {
+    "id": "exam",
+    "title": "Exam",
+    "n": 30,
+    "exam": true
    }
   ]
  },
@@ -2003,6 +2051,12 @@ export default [
     "id": "i7-endings-practice-5",
     "title": "Practice 5: Instrumental endings: nouns, adjectives, pronouns",
     "n": 20
+   },
+   {
+    "id": "exam",
+    "title": "Exam",
+    "n": 35,
+    "exam": true
    }
   ]
  },
@@ -2271,6 +2325,12 @@ export default [
     "id": "p5-endings-practice-5",
     "title": "Practice 5: Prepositional endings: nouns, adjectives, pronouns",
     "n": 20
+   },
+   {
+    "id": "exam",
+    "title": "Exam",
+    "n": 25,
+    "exam": true
    }
   ]
  },
@@ -2409,6 +2469,12 @@ export default [
     "id": "a5-po-s",
     "title": "по- and с- with ходить, ездить, летать",
     "n": 0
+   },
+   {
+    "id": "exam",
+    "title": "Exam",
+    "n": 20,
+    "exam": true
    }
   ]
  },
@@ -2642,6 +2708,12 @@ export default [
     "id": "v4-sya",
     "title": "Verbs in -ся",
     "n": 0
+   },
+   {
+    "id": "exam",
+    "title": "Exam",
+    "n": 20,
+    "exam": true
    }
   ]
  },
@@ -3090,6 +3162,12 @@ export default [
     "id": "c7-short-practice-20",
     "title": "Practice 20: Short adjectives: занят, готов, рад",
     "n": 20
+   },
+   {
+    "id": "exam",
+    "title": "Exam",
+    "n": 20,
+    "exam": true
    }
   ]
  },
@@ -3206,6 +3284,12 @@ export default [
     "id": "x4-li-practice-7",
     "title": "Practice 7: ли: whether",
     "n": 10
+   },
+   {
+    "id": "exam",
+    "title": "Exam",
+    "n": 20,
+    "exam": true
    }
   ]
  },
@@ -3749,6 +3833,12 @@ export default [
     "id": "i26-imperative-types",
     "title": "Kinds of imperative: давай, пусть",
     "n": 0
+   },
+   {
+    "id": "exam",
+    "title": "Exam",
+    "n": 60,
+    "exam": true
    }
   ]
  },
@@ -3922,6 +4012,12 @@ export default [
     "id": "v13-prefixes",
     "title": "Verbs with prefixes",
     "n": 0
+   },
+   {
+    "id": "exam",
+    "title": "Exam",
+    "n": 21,
+    "exam": true
    }
   ]
  },
@@ -4330,6 +4426,12 @@ export default [
     "id": "s14-zhemchuzhnoe-ozherelie-practice-5",
     "title": "Practice 5: Николай Лесков · Жемчужное ожерелье",
     "n": 6
+   },
+   {
+    "id": "exam",
+    "title": "Exam",
+    "n": 70,
+    "exam": true
    }
   ]
  },
@@ -4408,6 +4510,12 @@ export default [
     "id": "x13-passive",
     "title": "The passive: is written, was written, will be written",
     "n": 0
+   },
+   {
+    "id": "exam",
+    "title": "Exam",
+    "n": 55,
+    "exam": true
    }
   ]
  },
@@ -4516,6 +4624,12 @@ export default [
     "id": "g19-gerunds",
     "title": "The gerunds (деепричастия)",
     "n": 12
+   },
+   {
+    "id": "exam",
+    "title": "Exam",
+    "n": 85,
+    "exam": true
    }
   ]
  },
@@ -5200,6 +5314,12 @@ export default [
     "id": "n12-years-practice-14",
     "title": "Practice 14: years, 1700 to 2030",
     "n": 12
+   },
+   {
+    "id": "exam",
+    "title": "Exam",
+    "n": 60,
+    "exam": true
    }
   ]
  },
@@ -5663,6 +5783,12 @@ export default [
     "id": "gt8-letters-practice-7",
     "title": "Practice 7: Sounds and letters",
     "n": 19
+   },
+   {
+    "id": "exam",
+    "title": "Exam",
+    "n": 40,
+    "exam": true
    }
   ]
  }

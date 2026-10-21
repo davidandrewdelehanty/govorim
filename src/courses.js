@@ -7,8 +7,10 @@
 //     read: at,                                 the lesson opened and read
 //     done: at,                                 every exercise answered (or,
 //                                               for a lesson without any, read)
-//     perfect: at }                             every exercise right with no
+//     perfect: at,                              every exercise right with no
 //                                               wrong answer, in one go
+//     grade: 92 }                               the exam: the best mark so far,
+//                                               per cent (done = passed)
 // Nothing is ever taken back: merging two devices' records keeps every right
 // answer and the earliest time for each.
 
@@ -29,6 +31,8 @@ export function mergeCourseProg(a, b) {
     out[k] = { right: right, first: first, read: early(x.read, y.read), done: early(x.done, y.done) };
     var pf = early(x.perfect, y.perfect);
     if (pf) out[k].perfect = pf;
+    var g = Math.max(Number(x.grade) || 0, Number(y.grade) || 0);
+    if (g) out[k].grade = g;
   });
   return out;
 }
@@ -74,9 +78,11 @@ export function courseState(course, prog) {
 // A practice set that follows a lesson ("<lesson>-practice", "-practice-2" …).
 export function isPractice(id) { return /-practice(-\d+)?$/.test(String(id || "")); }
 
-// Badges: one for every lesson finished, one for every course finished, and a
-// ★ for a lesson, or a whole course's lessons, answered without a mistake.
-// Practice sets count toward finishing a course but carry no badge of their own.
+// Badges: one for every lesson finished, one for every course — earned by
+// passing its exam (85% or better) where it has one, by finishing every
+// section where it has not — and a ★ for a lesson, or a whole course's
+// lessons, answered without a mistake. Practice sets count toward finishing a
+// course but carry no badge of their own.
 export function courseBadges(outline, prog) {
   var out = [];
   (outline || []).forEach(function (c) {
@@ -111,7 +117,14 @@ export function courseBadges(outline, prog) {
       earned: pDone === withEx.length, n: pDone, of: withEx.length, at: pDone === withEx.length ? pAt : 0, course: c.id, perfect: true,
     });
     var st = courseState(c, prog);
-    out.push({
+    var exam = (c.sections || []).filter(function (s) { return s.exam; })[0];
+    var xr = exam ? (prog || {})[c.id + "/" + exam.id] : null;
+    out.push(exam ? {
+      id: "course:" + c.id, group: "course", tier: 4, mark: c.mark || "★",
+      title: c.title, desc: "Pass the exam of " + c.title + " — 85% or better",
+      earned: !!(xr && xr.done), n: xr && xr.done ? 1 : 0, of: 1, at: (xr && xr.done) || 0, course: c.id,
+      grade: (xr && xr.grade) || 0,
+    } : {
       id: "course:" + c.id, group: "course", tier: 4, mark: c.mark || "★",
       title: c.title, desc: "Finish every section of " + c.title,
       earned: st.of > 0 && st.done === st.of, n: st.done, of: st.of, at: st.at, course: c.id,
