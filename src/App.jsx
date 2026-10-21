@@ -6328,6 +6328,27 @@ export default function App() {
       return { k: r.k, label: r.label, one: r.one, tab: r.tab, goal: goal, have: have, left: Math.max(0, goal - have), met: have >= goal };
     });
   };
+  // A goal reached: said the moment it happens, as a badge is — once per goal
+  // per day, remembered on the device so a reload does not say it again.
+  var [goalToast, setGoalToast] = useState(null);     // { list: [{label, goal, one}], all: bool, at } | null
+  useEffect(function(){
+    if (!goalsLoaded.current) return;
+    var rows = goalsToday();
+    if (!rows.length) return;
+    var key = "gv_goal_met_" + dayKey(Date.now());
+    var said = [];
+    try { said = JSON.parse(localStorage.getItem(key) || "[]") || []; } catch (e) { said = []; }
+    var fresh = rows.filter(function(r){ return r.met && said.indexOf(r.k) < 0; });
+    if (!fresh.length) return;
+    try { localStorage.setItem(key, JSON.stringify(said.concat(fresh.map(function(r){ return r.k; })))); } catch (e) {}
+    var all = rows.every(function(r){ return r.met; });
+    setGoalToast({ list: fresh, all: all, at: Date.now() });
+  }, [stats, goals]);
+  useEffect(function(){
+    if (!goalToast) return;
+    var t = setTimeout(function(){ setGoalToast(null); }, 9000);
+    return function(){ clearTimeout(t); };
+  }, [goalToast && goalToast.at]);
   // Past the reminder time with something still short: overdue. Checked
   // every minute while the site is open; the browser is told once a day.
   var [goalsOverdue, setGoalsOverdue] = useState([]);
@@ -18171,6 +18192,8 @@ export default function App() {
         .crs-chk.big{font-size:12px;letter-spacing:.18em;padding:12px 34px 11px;border-width:1.5px}
         .crs-stream .crs-chk-row{margin-top:16px}
         @media (max-width:560px){.crs-q.ok,.crs-q.bad{padding-left:10px;padding-right:10px;margin-left:-6px;margin-right:-6px}.crs-stream .crs-q.ok,.crs-stream .crs-q.bad{padding:14px 10px 8px;margin:0 -10px}.crs-chk.big{width:100%}}
+        .goal-medal{background:radial-gradient(circle at 35% 30%,#eaf6e6,#7fae74);color:#1f4a17;font-size:18px}
+        .goal-medal.all{background:radial-gradient(circle at 35% 30%,#f3d6cf,#b24a3a);color:#fff7f2}
         /* The inbox on the account page. */
         .acct-inbox{margin-bottom:8px}
         .acct-inbox-new{color:var(--rubric);text-transform:none;letter-spacing:0}
@@ -19691,8 +19714,20 @@ export default function App() {
           <button type="button" className="bdg-toast-x" aria-label="Close" onClick={function(){ setBadgeToast(null); }}>×</button>
         </div>
       )}
+      {goalToast && (
+        <div className={"bdg-toast goal-toast" + (badgeToast && badgeToast.list.length > 0 ? " stacked" : "")} role="status">
+          <div className={"bdg-medal goal-medal" + (goalToast.all ? " all" : "")} aria-hidden="true">{goalToast.all ? "★" : "✓"}</div>
+          <div className="bdg-toast-t">
+            <div className="bdg-toast-k">{goalToast.all ? "Все цели на сегодня" : "Цель достигнута"}</div>
+            <div className="bdg-toast-n">{goalToast.list[0].label} · {fmtInt(goalToast.list[0].goal)}{goalToast.list.length > 1 ? " · +" + (goalToast.list.length - 1) : ""}</div>
+            <div className="rt-sub">{goalToast.all ? "Every goal met — the day is yours." : "Today's goal, done. The rest is in My " + SITE_NAME_LATIN + "."}</div>
+          </div>
+          <button type="button" className="bdg-toast-b" onClick={function(){ setGoalToast(null); setTab("my"); }}>See</button>
+          <button type="button" className="bdg-toast-x" aria-label="Close" onClick={function(){ setGoalToast(null); }}>×</button>
+        </div>
+      )}
       {retireToast && (
-        <div className={"bdg-toast rt-toast" + (badgeToast && badgeToast.list.length > 0 ? " stacked" : "")} role="status">
+        <div className={"bdg-toast rt-toast" + ((badgeToast && badgeToast.list.length > 0) || goalToast ? " stacked" : "")} role="status">
           <div className="bdg-medal rt-medal" aria-hidden="true">✓</div>
           <div className="bdg-toast-t">
             <div className="bdg-toast-k">Слово выучено</div>
