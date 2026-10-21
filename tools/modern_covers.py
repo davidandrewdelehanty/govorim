@@ -165,7 +165,10 @@ def judge(names, used, bonus_first=True, loose=False):
     scored = []
     for k, n in enumerate(names):
         i = inf.get(n)
-        if not i or n in used:
+        # An article's own picture may serve two books — Цой's portrait is
+        # Кино's lead picture as well as his — so `used` only holds for the
+        # fallback paintings, which should not repeat.
+        if not i or (n in used and not loose):
             continue
         ok = i["free"] or (loose and OK_LIC.search(i["lic"] or "") and not UNFREE.search(i["lic"] or ""))
         if not ok:
@@ -287,10 +290,14 @@ def main():
             n_own += 1
         path = ec.save_cover(name, info) if name else None
         if path:
-            used.add(name)
+            if how != "article image":
+                used.add(name)
             changes[slug] = path
             artist = artist_of(name) if how == "article image" else ""
-            credits[slug] = (artist + (", " if artist else "") + (info["lic"] or "")).strip(", ") if how == "article image" else ""
+            # the licence once: infos() joins Commons' short name and its code ("CC BY-SA 4.0 cc-by-sa-4.0")
+            lic = " ".join(t for t in (info["lic"] or "").split() if not re.match(r"^(cc-|pd-|gfdl-|cc0)", t, re.I) or t.upper() == t).strip()
+            lic = re.sub(r"\s+(cc-by[\w.-]*|pd[\w-]*|gfdl[\w.-]*|cc0[\w.-]*)$", "", lic, flags=re.I)
+            credits[slug] = (artist + (", " if artist else "") + lic).strip(", ") if how == "article image" else ""
             state["books"][slug] = {"file": name, "path": path, "lic": info["lic"], "how": how, "kind": kind, "credit": credits[slug]}
             print("[%d/%d] %-44s ✓ %-8s %s  [%s]" % (k, len(todo), (b.get("title") or "")[:44], kind, name[:40], how), flush=True)
         else:
