@@ -18,7 +18,7 @@ GROUPS below) is the course's only editorial content.
 """
 import io, json, os, random, re
 
-from kit import SEC, P, H, NOTE, T, FILL
+from kit import SEC, P, H, NOTE, T, FILL, MC
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 
@@ -360,9 +360,40 @@ if SRC and M:
                 used.add((s, t))
                 pool.append(drill(s, span, t, x["src"]))
         random.Random(len(pool)).shuffle(pool)
-        A(SEC(g["id"], g["title"], blocks + [NOTE(u"Exercises: first the terms themselves, then sentences from the "
+        # Comprehension: which term does this definition describe (the term
+        # itself blanked out of Wikipedia's sentence, the group's terms to
+        # choose from), and the terms matched to their English, a handful at
+        # a time, by dragging or tapping.
+        rng = random.Random(g["id"])
+        mcs = []
+        for t in g["terms"]:
+            d, cite = definition(t)
+            if not d or len(g["terms"]) < 4:
+                continue
+            span = find_term(d, t)
+            masked = (d[:span[0]] + u"…" + d[span[1]:]) if span else d
+            others = [x for x in g["terms"] if x != t]
+            rng.shuffle(others)
+            opts = [t] + others[:3]
+            rng.shuffle(opts)
+            mcs.append(dict(MC(u"Which term does the Russian Wikipedia define like this?", opts, opts.index(t),
+                               why=u"%s — %s" % (d, cite), ru=masked), k=t, keep=True))
+        terms = list(g["terms"])
+        rng.shuffle(terms)
+        matches = []
+        for i in range(0, len(terms), 5):
+            chunk = terms[i:i + 5]
+            if len(chunk) < 3:
+                chunk = terms[max(0, i - (5 - len(chunk))):i + 5][-5:]
+            if len(chunk) >= 3:
+                matches.append({"type": "match", "q": u"Match each term to its English. Drag a term onto its meaning, or tap one and then the other.",
+                                "pairs": [[t, TERMS[t]["en"]] for t in chunk], "keep": True})
+                if len(terms) - (i + 5) < 3:
+                    break
+        A(SEC(g["id"], g["title"], blocks + [NOTE(u"Exercises: first the terms themselves, then which term a definition "
+                                                   u"describes, then the terms matched to their English; after that, sentences from the "
                                                    u"Wikipedia articles named above and from the library's books.")],
-              vocab, sub="%d terms" % len(vocab)))
+              vocab + mcs + matches, sub="%d terms" % len(vocab)))
         size = 20
         cut = [pool[i:i + size] for i in range(0, len(pool), size)]
         for n, part in enumerate(cut, 1):

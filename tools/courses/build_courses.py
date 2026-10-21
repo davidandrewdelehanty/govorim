@@ -295,7 +295,9 @@ def main():
             # Only fill-in exercises: the multiple-choice distractors were ours.
             # and not the DLI-based items whose blank-and-hint format we made, nor any
             # item whose bracket hint is not a form of the answer's own word.
-            for e in [x for x in s["exercises"] if x["type"] != "mc" and trusted(x)]:
+            # An exercise marked `keep` is the course's own material whatever its
+            # kind: the grammar terms matched to their English, the definition quiz.
+            for e in [x for x in s["exercises"] if x.get("keep") or (x["type"] != "mc" and trusted(x))]:
                 exs.append(dict(e, id="q%d" % (len(exs) + 1)))
             data = {"id": sid, "title": s["title"], "blocks": s["blocks"], "exercises": exs}
             if s.get("stream"):

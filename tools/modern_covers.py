@@ -1,15 +1,18 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Pictures for the Modern Russian shelf — public domain or CC0 only.
+"""Pictures for the Modern Russian shelf: the subject itself, where its
+picture is free to use — the band, the writer, the city.
 
 For each book on the shelf that has no cover yet:
 
   1. Wikipedia / Wikivoyage articles: the article's own pictures — its lead
      image, the Wikidata image of the subject, then the other files used on
-     the page — kept only when Commons says the file is public domain or CC0
-     (so a portrait of Dostoevsky, a 19th-century town view, an old
-     photograph; not a 1990s concert photo under CC BY-SA). The best-looking
-     one wins.
+     the page — kept when Commons says the file is free to republish: public
+     domain, CC0, CC BY or CC BY-SA (a concert photograph of the band under
+     CC BY-SA is what the shelf wants; a fair-use album cover is not). The
+     article's own lead picture wins when it passes; the photographer and
+     licence are written into the catalogue entry (coverCredit), as CC BY
+     and BY-SA require, and the tile shows them.
   2. Anything left (a rock band with only CC BY-SA photographs, the monthly
      Wikinews books, the official documents) gets a public-domain painting
      of the right kind — gusli-players and singers for the rock articles, a
@@ -39,6 +42,9 @@ import fallback_pictures as fp       # artworks
 
 STATE = "tools/modern_covers_state.json"
 WD = "https://www.wikidata.org/w/api.php"
+# Free to republish with credit — wider than english_covers' public-domain-only test.
+OK_LIC = re.compile(r"public domain|\bpd\b|pd-|cc0|cc zero|cc[- ]by(?:[- ]sa)?(?:[- ]\d)?|attribution(?!.*non)|gfdl|gnu free doc|free art|no restrictions|общественн", re.I)
+UNFREE = re.compile(r"fair.?use|non-?free|несвободн|non-?commercial|\bnc\b|no derivative|\bnd\b|all rights", re.I)
 SHUN = re.compile(r"\.svg$|\.gif$|\.tiff?$|\.webm$|\.ogg$|\.ogv$|\.pdf$|flag|icon|logo|symbol|commons-|wiki|"
                   r"coat[_ ]of[_ ]arms|герб|флаг|\bmap\b|карта|signature|подпись|ambox|edit-|question|"
                   r"disambig|stub|crystal|nuvola|folder|speaker|play|audio|noimage|no[_ ]image|"
@@ -134,15 +140,35 @@ def article_files(host, title):
     return [n for n in out if not SHUN.search(n)][:24]
 
 
-def judge(names, used, bonus_first=True):
-    """The best free file of `names`: (name, info) or (None, None)."""
+def artist_of(name):
+    """The file's author, as Commons records it, for the credit line."""
+    q = urllib.parse.urlencode({"action": "query", "format": "json", "prop": "imageinfo", "iiprop": "extmetadata",
+                                "iiextmetadatafilter": "Artist|Credit", "titles": "File:" + name})
+    j = ec.get(ec.CM + "?" + q)
+    try:
+        em = list(j["query"]["pages"].values())[0]["imageinfo"][0]["extmetadata"]
+        a = (em.get("Artist") or {}).get("value") or (em.get("Credit") or {}).get("value") or ""
+    except Exception:
+        return ""
+    a = re.sub(r"<[^>]+>", " ", a)
+    a = re.sub(r"\s+", " ", a).strip()
+    a = re.sub(r"^(User|Участник):", "", a)
+    return a[:60]
+
+
+def judge(names, used, bonus_first=True, loose=False):
+    """The best free file of `names`: (name, info) or (None, None). `loose`:
+    CC BY and BY-SA pass too (with credit), not only public domain and CC0."""
     if not names:
         return None, None
     inf = ec.infos(names)
     scored = []
     for k, n in enumerate(names):
         i = inf.get(n)
-        if not i or not i["free"] or n in used:
+        if not i or n in used:
+            continue
+        ok = i["free"] or (loose and OK_LIC.search(i["lic"] or "") and not UNFREE.search(i["lic"] or ""))
+        if not ok:
             continue
         if not re.match(r"image/(jpeg|png)", i["mime"]):
             continue
@@ -155,8 +181,8 @@ def judge(names, used, bonus_first=True):
         v = ec.look(data) if data else None
         if v is None:
             continue
-        # a lead image is the article's own choice of what it is about
-        scored.append((v + (1.5 if (k == 0 and bonus_first) else 0) + min(1.5, i["w"] * i["h"] / 3e6)
+        # a lead image is the article's own choice of what it is about — the band, the writer, the city
+        scored.append((v + (4.0 if (k == 0 and bonus_first) else 1.0 if (k == 1 and bonus_first) else 0) + min(1.5, i["w"] * i["h"] / 3e6)
                        + (0.8 if 0.6 <= ar <= 1.5 else 0), n, i))
         if len(scored) >= 6:
             break
@@ -244,14 +270,14 @@ def main():
             pass
     todo = [b for b in shelf if (a.redo or not b.get("cover")) and (not a.slug or b["slug"] == a.slug)]
     print("%d book(s) on the shelf, %d to picture" % (len(shelf), len(todo)), flush=True)
-    changes, n_own, n_fb = {}, 0, 0
+    changes, credits, n_own, n_fb = {}, {}, 0, 0
     for k, b in enumerate(todo, 1):
         slug = b["slug"]
         kind = kind_of(b, authors)
         host, title = wiki_title(b)
         name = info = how = None
         if host and title:
-            name, info = judge(article_files(host, title), used)
+            name, info = judge(article_files(host, title), used, True, True)
             if name:
                 how = "article image"
         if not name:
@@ -263,7 +289,9 @@ def main():
         if path:
             used.add(name)
             changes[slug] = path
-            state["books"][slug] = {"file": name, "path": path, "lic": info["lic"], "how": how, "kind": kind}
+            artist = artist_of(name) if how == "article image" else ""
+            credits[slug] = (artist + (", " if artist else "") + (info["lic"] or "")).strip(", ") if how == "article image" else ""
+            state["books"][slug] = {"file": name, "path": path, "lic": info["lic"], "how": how, "kind": kind, "credit": credits[slug]}
             print("[%d/%d] %-44s ✓ %-8s %s  [%s]" % (k, len(todo), (b.get("title") or "")[:44], kind, name[:40], how), flush=True)
         else:
             print("[%d/%d] %-44s — nothing suitable (%s)" % (k, len(todo), (b.get("title") or "")[:44], kind), flush=True)
@@ -271,6 +299,16 @@ def main():
             ec.set_covers(changes); changes = {}
             io.open(STATE, "w", encoding="utf-8").write(json.dumps(state, ensure_ascii=False, indent=1))
     ec.set_covers(changes)
+    # the credit each licence asks for, on the entry beside the cover
+    man = json.load(io.open(ec.MANIFEST, encoding="utf-8"))
+    for b in man:
+        st = state["books"].get(b.get("slug"))
+        if st and st.get("credit") is not None and b.get("category") == "Modern Russian":
+            if st["credit"]:
+                b["coverCredit"] = st["credit"]
+            elif "coverCredit" in b:
+                del b["coverCredit"]
+    io.open(ec.MANIFEST, "w", encoding="utf-8").write(json.dumps(man, ensure_ascii=False, indent=2) + "\n")
     io.open(STATE, "w", encoding="utf-8").write(json.dumps(state, ensure_ascii=False, indent=1))
     idx = json.load(io.open(ec.MANIFEST, encoding="utf-8"))
     review(state, [b for b in idx if b.get("category") == "Modern Russian"])

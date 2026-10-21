@@ -32,7 +32,8 @@ STORIES = [  # in the order an intermediate reading course takes them; txt: ones
     ("smotritel", "novel/pushkin-povesti-belkina.fb2", "Александр Пушкин", "Станционный смотритель", "Станционный смотритель"),
     ("yolka", "novel/yolka-i-svadba.fb2", "Фёдор Достоевский", "Ёлка и свадьба", None),
     ("moya-ona", "novel/moya-ona.fb2", "Антон Чехов", "Моя «она»", None),
-    ("pismo-bratu", "txt:pismo-bratu-nikolayu", "Антон Чехов", "Письмо брату Николаю (1886)", None),
+    # the file is the volume of letters, 1875–1886; the one letter is cut out of it
+    ("pismo-bratu", "txt:pismo-bratu-nikolayu", "Антон Чехов", "Письмо брату Николаю (1886)", "Мне передавали, что ты оскорблен", "30 лет скоро! Пора!"),
     ("zhemchuzhnoe-ozherelie", "txt:zhemchuzhnoe-ozherelie", "Николай Лесков", "Жемчужное ожерелье", None),
 ]
 THEMES = ["time:", "condconj", "cause", "concession", "chtoby", "complex", "loct:prep", "where", "home", "ablt:tool", "negpron", "negadv",
@@ -42,10 +43,20 @@ TAG = re.compile(r"<[^>]+>")
 SENT = re.compile(r"(?<=[.!?…])\s+(?=[—–-]?\s*[А-ЯЁ«])")
 
 
-def story_text(path, start):
+def story_text(path, start, end=None):
     if path.startswith("txt:"):
         p = os.path.join(ROOT, "private", "stories", path[4:] + ".txt")
-        return io.open(p, encoding="utf-8").read().split("\n")[1:] if os.path.exists(p) else []
+        paras = io.open(p, encoding="utf-8").read().split("\n")[1:] if os.path.exists(p) else []
+        paras = [x.replace("\xa0", " ").replace("\u202f", " ").strip() for x in paras if x.strip()]
+        if start:
+            i = next((k for k, x in enumerate(paras) if x.startswith(start)), None)
+            if i is not None:
+                paras = paras[i:]
+        if end:
+            j = next((k for k, x in enumerate(paras) if end in x), None)
+            if j is not None:
+                paras = paras[:j + 1]
+        return paras
     raw = io.open(os.path.join(ROOT, "public", "books", path), encoding="utf-8", errors="replace").read()
     body = raw.split("<body", 1)[-1]
     if start:
@@ -56,24 +67,39 @@ def story_text(path, start):
         # to the next section of the book
         m = re.search(r"<section", body[2500:])
         body = body[:2500 + m.start()] if m else body
-        if not start.startswith("Станционный"):
-            body = body[body.find(start) - 300:]
     paras = []
     for para in P.findall(body):
         t = html.unescape(TAG.sub("", para)).replace("\xa0", " ").strip()
         if t:
             paras.append(t)
-    if start and not start.startswith("Станционный"):
+    if start:
         paras = paras[next((i for i, x in enumerate(paras) if x.startswith(start[:20])), 0):]
     return paras
 
 
 def main():
     out = {}
-    for slug, path, author, title, start in STORIES:
-        paras = story_text(path, start)
+    for row in STORIES:
+        slug, path, author, title, start = row[:5]
+        paras = story_text(path, start, row[5] if len(row) > 5 else None)
         if not paras:
             continue
+        # The book's title page comes through as paragraphs — «Куприн А.И.»,
+        # «Куст сирени» — before the story starts; they are not the story.
+        surname = author.split()[-1].lower()
+        short_title = title.split(" («")[0].lower()
+        paras = [re.sub(r"\[\d+\]", "", x).strip() for x in paras]       # footnote marks
+        def furniture(x):
+            low = x.lower().strip()
+            if re.match(r"^[а-яё-]+\s+[а-яё]\.\s*[а-яё]\.$", low):                       # «Куприн А.И.»
+                return True
+            if len(low) <= 70 and (low == short_title or low.rstrip(".") == short_title):   # the title, once or thrice
+                return True
+            if "если произведение является переводом" in low or "собрание сочинений" in low or "полное собрание" in low:
+                return True                                                                   # Wikisource's licence line, the edition
+            return len(low) <= 40 and surname in low and not re.search(r"[.!?…]\s+\S", low)
+        while paras and furniture(paras[0]):
+            paras = paras[1:]
         cite = "%s, «%s»" % (author, title.split(" («")[0])
         found = defaultdict(list)
         n_s = 0
@@ -106,7 +132,7 @@ def main():
                     if sk not in seen:
                         seen.add(sk); exs.append(e)
             rnd += 1
-        out[slug] = {"author": author, "title": title, "intro": paras[:3], "exercises": exs}
+        out[slug] = {"author": author, "title": title, "intro": paras[:3], "story": paras, "exercises": exs}
         print("%-16s %4d sentences, %3d exercises" % (slug, n_s, len(exs)), flush=True)
     io.open(os.path.join(HERE, "story_drills.json"), "w", encoding="utf-8").write(json.dumps(out, ensure_ascii=False))
 

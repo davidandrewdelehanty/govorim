@@ -11,7 +11,11 @@ IN_SECTION = 20
 SECS = []
 for n, (slug, x) in enumerate(DATA.items(), 1):
     exs = x["exercises"]
-    blocks = [P(t) for t in x["intro"]] + [NOTE("%s, «%s» (public domain). Explanations: the DLI Grammar Reference Book." % (x["author"], x["title"]))]
+    # The whole story, to read before the exercises on its sentences; the
+    # older drills file holds only the opening, which is used until it is rebuilt.
+    story = x.get("story") or x["intro"]
+    blocks = [{"t": "story", "author": x["author"], "title": x["title"], "paras": story},
+              NOTE("%s, «%s» (public domain). Explanations: the DLI Grammar Reference Book." % (x["author"], x["title"]))]
     s = SEC("s%02d-%s" % (n, slug), x["author"] + " · " + x["title"], blocks, exercises=exs[:IN_SECTION], sub=None)
     s["more"] = exs[IN_SECTION:]
     SECS.append(s)

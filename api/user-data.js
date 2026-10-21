@@ -31,7 +31,7 @@ import {
   S3Client, GetObjectCommand, PutObjectCommand
 } from "@aws-sdk/client-s3";
 import { listAccounts, userIdFor, r2GetJson as authGetJson, userDataKey as authDataKey, isAdminEmail } from "../lib/auth.js";
-import { requireUser, currentUser, bumpDaily, touchSeen, findAccount,
+import { requireUser, currentUser, bumpDaily, bumpDailyBook, touchSeen, findAccount,
   updateBoardRow, readBoards, learnedCount, finishedCount, wordsRead, wordsReadEn, cardsReviewed,
   songsCount, drillsDone, uidForUsername, isHiddenUid } from "../lib/auth.js";
 import { sendEmail } from "../lib/admin/helpers.js";
@@ -561,6 +561,7 @@ export default async function handler(req, res) {
       // Opened while studying English: counted on the English list, under
       // its own key, so the two "Most popular" lists never mix.
       const bookKey = bookName && String((req.query && req.query.l) || "") === "en" ? "en:" + bookName : bookName;
+      if (bookKey) await bumpDailyBook(bookKey);
       if (bookKey) {
         try {
           const bk = `${PREFIX}/_stats/books.json`;

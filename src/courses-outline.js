@@ -29,21 +29,21 @@ export default [
    {
     "id": "ts-instr",
     "title": "In the morning, at night, in summer",
-    "n": 10,
+    "n": 11,
     "stream": true,
     "finite": true
    },
    {
     "id": "ts-kazhdyy",
     "title": "каждый + accusative: Every day, every Wednesday",
-    "n": 14,
+    "n": 15,
     "stream": true,
     "finite": true
    },
    {
     "id": "ts-ves",
     "title": "весь + accusative: All day, all week",
-    "n": 12,
+    "n": 13,
     "stream": true,
     "finite": true
    },
@@ -64,14 +64,14 @@ export default [
    {
     "id": "ts-v-prep",
     "title": "В + prepositional: In May, last year",
-    "n": 30,
+    "n": 33,
     "stream": true,
     "finite": true
    },
    {
     "id": "ts-date",
     "title": "On the fifth of May",
-    "n": 21,
+    "n": 10,
     "stream": true,
     "finite": true
    },
@@ -113,7 +113,7 @@ export default [
    {
     "id": "ts-s-gen",
     "title": "С + genitive: Since morning, from Monday",
-    "n": 12,
+    "n": 10,
     "stream": true,
     "finite": true
    },
@@ -4052,7 +4052,7 @@ export default [
    {
     "id": "s01-kust-sireni",
     "title": "Александр Куприн · Куст сирени",
-    "n": 20
+    "n": 14
    },
    {
     "id": "s01-kust-sireni-practice",
@@ -4062,22 +4062,52 @@ export default [
    {
     "id": "s01-kust-sireni-practice-2",
     "title": "Practice 2: Александр Куприн · Куст сирени",
-    "n": 20
+    "n": 14
    },
    {
     "id": "s01-kust-sireni-practice-3",
     "title": "Practice 3: Александр Куприн · Куст сирени",
-    "n": 20
+    "n": 19
    },
    {
     "id": "s01-kust-sireni-practice-4",
     "title": "Practice 4: Александр Куприн · Куст сирени",
+    "n": 16
+   },
+   {
+    "id": "s01-kust-sireni-practice-5",
+    "title": "Practice 5: Александр Куприн · Куст сирени",
     "n": 19
+   },
+   {
+    "id": "s01-kust-sireni-practice-6",
+    "title": "Practice 6: Александр Куприн · Куст сирени",
+    "n": 20
+   },
+   {
+    "id": "s01-kust-sireni-practice-7",
+    "title": "Practice 7: Александр Куприн · Куст сирени",
+    "n": 20
+   },
+   {
+    "id": "s01-kust-sireni-practice-8",
+    "title": "Practice 8: Александр Куприн · Куст сирени",
+    "n": 20
+   },
+   {
+    "id": "s01-kust-sireni-practice-9",
+    "title": "Practice 9: Александр Куприн · Куст сирени",
+    "n": 20
+   },
+   {
+    "id": "s01-kust-sireni-practice-10",
+    "title": "Practice 10: Александр Куприн · Куст сирени",
+    "n": 20
    },
    {
     "id": "s02-sostyazanie",
     "title": "Викентий Вересаев · Состязание",
-    "n": 20
+    "n": 17
    },
    {
     "id": "s02-sostyazanie-practice",
@@ -4087,37 +4117,62 @@ export default [
    {
     "id": "s02-sostyazanie-practice-2",
     "title": "Practice 2: Викентий Вересаев · Состязание",
-    "n": 20
+    "n": 17
    },
    {
     "id": "s02-sostyazanie-practice-3",
     "title": "Practice 3: Викентий Вересаев · Состязание",
-    "n": 20
+    "n": 19
    },
    {
     "id": "s02-sostyazanie-practice-4",
     "title": "Practice 4: Викентий Вересаев · Состязание",
-    "n": 20
+    "n": 17
    },
    {
     "id": "s02-sostyazanie-practice-5",
     "title": "Practice 5: Викентий Вересаев · Состязание",
-    "n": 7
+    "n": 19
+   },
+   {
+    "id": "s02-sostyazanie-practice-6",
+    "title": "Practice 6: Викентий Вересаев · Состязание",
+    "n": 20
+   },
+   {
+    "id": "s02-sostyazanie-practice-7",
+    "title": "Practice 7: Викентий Вересаев · Состязание",
+    "n": 20
+   },
+   {
+    "id": "s02-sostyazanie-practice-8",
+    "title": "Practice 8: Викентий Вересаев · Состязание",
+    "n": 20
+   },
+   {
+    "id": "s02-sostyazanie-practice-9",
+    "title": "Practice 9: Викентий Вересаев · Состязание",
+    "n": 20
+   },
+   {
+    "id": "s02-sostyazanie-practice-10",
+    "title": "Practice 10: Викентий Вересаев · Состязание",
+    "n": 20
    },
    {
     "id": "s03-nuncha",
     "title": "Максим Горький · Нунча («Сказки об Италии», XXII)",
-    "n": 20
+    "n": 17
    },
    {
     "id": "s03-nuncha-practice",
     "title": "Practice 1: Максим Горький · Нунча («Сказки об Италии», XXII)",
-    "n": 20
+    "n": 17
    },
    {
     "id": "s03-nuncha-practice-2",
     "title": "Practice 2: Максим Горький · Нунча («Сказки об Италии», XXII)",
-    "n": 20
+    "n": 18
    },
    {
     "id": "s03-nuncha-practice-3",
@@ -4132,27 +4187,47 @@ export default [
    {
     "id": "s03-nuncha-practice-5",
     "title": "Practice 5: Максим Горький · Нунча («Сказки об Италии», XXII)",
-    "n": 17
+    "n": 20
+   },
+   {
+    "id": "s03-nuncha-practice-6",
+    "title": "Practice 6: Максим Горький · Нунча («Сказки об Италии», XXII)",
+    "n": 20
+   },
+   {
+    "id": "s03-nuncha-practice-7",
+    "title": "Practice 7: Максим Горький · Нунча («Сказки об Италии», XXII)",
+    "n": 20
+   },
+   {
+    "id": "s03-nuncha-practice-8",
+    "title": "Practice 8: Максим Горький · Нунча («Сказки об Италии», XXII)",
+    "n": 20
+   },
+   {
+    "id": "s03-nuncha-practice-9",
+    "title": "Practice 9: Максим Горький · Нунча («Сказки об Италии», XXII)",
+    "n": 20
    },
    {
     "id": "s04-glupyy-frantsuz",
     "title": "Антон Чехов · Глупый француз",
-    "n": 20
+    "n": 17
    },
    {
     "id": "s04-glupyy-frantsuz-practice",
     "title": "Practice 1: Антон Чехов · Глупый француз",
-    "n": 20
+    "n": 19
    },
    {
     "id": "s04-glupyy-frantsuz-practice-2",
     "title": "Practice 2: Антон Чехов · Глупый француз",
-    "n": 20
+    "n": 17
    },
    {
     "id": "s04-glupyy-frantsuz-practice-3",
     "title": "Practice 3: Антон Чехов · Глупый француз",
-    "n": 20
+    "n": 19
    },
    {
     "id": "s04-glupyy-frantsuz-practice-4",
@@ -4162,32 +4237,57 @@ export default [
    {
     "id": "s04-glupyy-frantsuz-practice-5",
     "title": "Practice 5: Антон Чехов · Глупый француз",
-    "n": 10
+    "n": 20
+   },
+   {
+    "id": "s04-glupyy-frantsuz-practice-6",
+    "title": "Practice 6: Антон Чехов · Глупый француз",
+    "n": 20
+   },
+   {
+    "id": "s04-glupyy-frantsuz-practice-7",
+    "title": "Practice 7: Антон Чехов · Глупый француз",
+    "n": 20
+   },
+   {
+    "id": "s04-glupyy-frantsuz-practice-8",
+    "title": "Practice 8: Антон Чехов · Глупый француз",
+    "n": 20
+   },
+   {
+    "id": "s04-glupyy-frantsuz-practice-9",
+    "title": "Practice 9: Антон Чехов · Глупый француз",
+    "n": 20
+   },
+   {
+    "id": "s04-glupyy-frantsuz-practice-10",
+    "title": "Practice 10: Антон Чехов · Глупый француз",
+    "n": 20
    },
    {
     "id": "s05-na-dache",
     "title": "Антон Чехов · На даче",
-    "n": 20
+    "n": 18
    },
    {
     "id": "s05-na-dache-practice",
     "title": "Practice 1: Антон Чехов · На даче",
-    "n": 20
+    "n": 19
    },
    {
     "id": "s05-na-dache-practice-2",
     "title": "Practice 2: Антон Чехов · На даче",
-    "n": 20
+    "n": 18
    },
    {
     "id": "s05-na-dache-practice-3",
     "title": "Practice 3: Антон Чехов · На даче",
-    "n": 20
+    "n": 19
    },
    {
     "id": "s05-na-dache-practice-4",
     "title": "Practice 4: Антон Чехов · На даче",
-    "n": 20
+    "n": 19
    },
    {
     "id": "s05-na-dache-practice-5",
@@ -4197,12 +4297,32 @@ export default [
    {
     "id": "s05-na-dache-practice-6",
     "title": "Practice 6: Антон Чехов · На даче",
-    "n": 8
+    "n": 20
+   },
+   {
+    "id": "s05-na-dache-practice-7",
+    "title": "Practice 7: Антон Чехов · На даче",
+    "n": 20
+   },
+   {
+    "id": "s05-na-dache-practice-8",
+    "title": "Practice 8: Антон Чехов · На даче",
+    "n": 20
+   },
+   {
+    "id": "s05-na-dache-practice-9",
+    "title": "Practice 9: Антон Чехов · На даче",
+    "n": 20
+   },
+   {
+    "id": "s05-na-dache-practice-10",
+    "title": "Practice 10: Антон Чехов · На даче",
+    "n": 20
    },
    {
     "id": "s06-torgovoe",
     "title": "Антон Чехов · История одного торгового предприятия",
-    "n": 20
+    "n": 18
    },
    {
     "id": "s06-torgovoe-practice",
@@ -4217,12 +4337,27 @@ export default [
    {
     "id": "s06-torgovoe-practice-3",
     "title": "Practice 3: Антон Чехов · История одного торгового предприятия",
-    "n": 16
+    "n": 20
+   },
+   {
+    "id": "s06-torgovoe-practice-4",
+    "title": "Practice 4: Антон Чехов · История одного торгового предприятия",
+    "n": 20
+   },
+   {
+    "id": "s06-torgovoe-practice-5",
+    "title": "Practice 5: Антон Чехов · История одного торгового предприятия",
+    "n": 20
+   },
+   {
+    "id": "s06-torgovoe-practice-6",
+    "title": "Practice 6: Антон Чехов · История одного торгового предприятия",
+    "n": 15
    },
    {
     "id": "s07-attalea",
     "title": "Всеволод Гаршин · Attalea princeps",
-    "n": 20
+    "n": 16
    },
    {
     "id": "s07-attalea-practice",
@@ -4232,7 +4367,7 @@ export default [
    {
     "id": "s07-attalea-practice-2",
     "title": "Practice 2: Всеволод Гаршин · Attalea princeps",
-    "n": 20
+    "n": 14
    },
    {
     "id": "s07-attalea-practice-3",
@@ -4242,52 +4377,102 @@ export default [
    {
     "id": "s07-attalea-practice-4",
     "title": "Practice 4: Всеволод Гаршин · Attalea princeps",
-    "n": 20
+    "n": 15
    },
    {
     "id": "s07-attalea-practice-5",
     "title": "Practice 5: Всеволод Гаршин · Attalea princeps",
-    "n": 15
+    "n": 20
+   },
+   {
+    "id": "s07-attalea-practice-6",
+    "title": "Practice 6: Всеволод Гаршин · Attalea princeps",
+    "n": 20
+   },
+   {
+    "id": "s07-attalea-practice-7",
+    "title": "Practice 7: Всеволод Гаршин · Attalea princeps",
+    "n": 20
+   },
+   {
+    "id": "s07-attalea-practice-8",
+    "title": "Practice 8: Всеволод Гаршин · Attalea princeps",
+    "n": 20
+   },
+   {
+    "id": "s07-attalea-practice-9",
+    "title": "Practice 9: Всеволод Гаршин · Attalea princeps",
+    "n": 20
+   },
+   {
+    "id": "s07-attalea-practice-10",
+    "title": "Practice 10: Всеволод Гаршин · Attalea princeps",
+    "n": 20
    },
    {
     "id": "s08-zelyonaya-lampa",
     "title": "Александр Грин · Зелёная лампа",
-    "n": 20
+    "n": 16
    },
    {
     "id": "s08-zelyonaya-lampa-practice",
     "title": "Practice 1: Александр Грин · Зелёная лампа",
-    "n": 20
+    "n": 19
    },
    {
     "id": "s08-zelyonaya-lampa-practice-2",
     "title": "Practice 2: Александр Грин · Зелёная лампа",
-    "n": 20
+    "n": 18
    },
    {
     "id": "s08-zelyonaya-lampa-practice-3",
     "title": "Practice 3: Александр Грин · Зелёная лампа",
-    "n": 20
+    "n": 19
    },
    {
     "id": "s08-zelyonaya-lampa-practice-4",
     "title": "Practice 4: Александр Грин · Зелёная лампа",
-    "n": 20
+    "n": 18
    },
    {
     "id": "s08-zelyonaya-lampa-practice-5",
     "title": "Practice 5: Александр Грин · Зелёная лампа",
-    "n": 6
+    "n": 20
+   },
+   {
+    "id": "s08-zelyonaya-lampa-practice-6",
+    "title": "Practice 6: Александр Грин · Зелёная лампа",
+    "n": 20
+   },
+   {
+    "id": "s08-zelyonaya-lampa-practice-7",
+    "title": "Practice 7: Александр Грин · Зелёная лампа",
+    "n": 20
+   },
+   {
+    "id": "s08-zelyonaya-lampa-practice-8",
+    "title": "Practice 8: Александр Грин · Зелёная лампа",
+    "n": 20
+   },
+   {
+    "id": "s08-zelyonaya-lampa-practice-9",
+    "title": "Practice 9: Александр Грин · Зелёная лампа",
+    "n": 20
+   },
+   {
+    "id": "s08-zelyonaya-lampa-practice-10",
+    "title": "Practice 10: Александр Грин · Зелёная лампа",
+    "n": 20
    },
    {
     "id": "s09-anna-na-shee",
     "title": "Антон Чехов · Анна на шее",
-    "n": 20
+    "n": 16
    },
    {
     "id": "s09-anna-na-shee-practice",
     "title": "Practice 1: Антон Чехов · Анна на шее",
-    "n": 20
+    "n": 19
    },
    {
     "id": "s09-anna-na-shee-practice-2",
@@ -4297,22 +4482,47 @@ export default [
    {
     "id": "s09-anna-na-shee-practice-3",
     "title": "Practice 3: Антон Чехов · Анна на шее",
-    "n": 20
+    "n": 19
    },
    {
     "id": "s09-anna-na-shee-practice-4",
     "title": "Practice 4: Антон Чехов · Анна на шее",
-    "n": 20
+    "n": 19
    },
    {
     "id": "s09-anna-na-shee-practice-5",
     "title": "Practice 5: Антон Чехов · Анна на шее",
-    "n": 8
+    "n": 20
+   },
+   {
+    "id": "s09-anna-na-shee-practice-6",
+    "title": "Practice 6: Антон Чехов · Анна на шее",
+    "n": 20
+   },
+   {
+    "id": "s09-anna-na-shee-practice-7",
+    "title": "Practice 7: Антон Чехов · Анна на шее",
+    "n": 20
+   },
+   {
+    "id": "s09-anna-na-shee-practice-8",
+    "title": "Practice 8: Антон Чехов · Анна на шее",
+    "n": 20
+   },
+   {
+    "id": "s09-anna-na-shee-practice-9",
+    "title": "Practice 9: Антон Чехов · Анна на шее",
+    "n": 20
+   },
+   {
+    "id": "s09-anna-na-shee-practice-10",
+    "title": "Practice 10: Антон Чехов · Анна на шее",
+    "n": 20
    },
    {
     "id": "s10-smotritel",
     "title": "Александр Пушкин · Станционный смотритель",
-    "n": 20
+    "n": 17
    },
    {
     "id": "s10-smotritel-practice",
@@ -4322,7 +4532,7 @@ export default [
    {
     "id": "s10-smotritel-practice-2",
     "title": "Practice 2: Александр Пушкин · Станционный смотритель",
-    "n": 20
+    "n": 16
    },
    {
     "id": "s10-smotritel-practice-3",
@@ -4332,17 +4542,42 @@ export default [
    {
     "id": "s10-smotritel-practice-4",
     "title": "Practice 4: Александр Пушкин · Станционный смотритель",
-    "n": 20
+    "n": 18
    },
    {
     "id": "s10-smotritel-practice-5",
     "title": "Practice 5: Александр Пушкин · Станционный смотритель",
-    "n": 5
+    "n": 19
+   },
+   {
+    "id": "s10-smotritel-practice-6",
+    "title": "Practice 6: Александр Пушкин · Станционный смотритель",
+    "n": 19
+   },
+   {
+    "id": "s10-smotritel-practice-7",
+    "title": "Practice 7: Александр Пушкин · Станционный смотритель",
+    "n": 20
+   },
+   {
+    "id": "s10-smotritel-practice-8",
+    "title": "Practice 8: Александр Пушкин · Станционный смотритель",
+    "n": 20
+   },
+   {
+    "id": "s10-smotritel-practice-9",
+    "title": "Practice 9: Александр Пушкин · Станционный смотритель",
+    "n": 20
+   },
+   {
+    "id": "s10-smotritel-practice-10",
+    "title": "Practice 10: Александр Пушкин · Станционный смотритель",
+    "n": 20
    },
    {
     "id": "s11-yolka",
     "title": "Фёдор Достоевский · Ёлка и свадьба",
-    "n": 20
+    "n": 19
    },
    {
     "id": "s11-yolka-practice",
@@ -4352,12 +4587,12 @@ export default [
    {
     "id": "s11-yolka-practice-2",
     "title": "Practice 2: Фёдор Достоевский · Ёлка и свадьба",
-    "n": 20
+    "n": 18
    },
    {
     "id": "s11-yolka-practice-3",
     "title": "Practice 3: Фёдор Достоевский · Ёлка и свадьба",
-    "n": 20
+    "n": 19
    },
    {
     "id": "s11-yolka-practice-4",
@@ -4367,27 +4602,57 @@ export default [
    {
     "id": "s11-yolka-practice-5",
     "title": "Practice 5: Фёдор Достоевский · Ёлка и свадьба",
-    "n": 11
+    "n": 18
+   },
+   {
+    "id": "s11-yolka-practice-6",
+    "title": "Practice 6: Фёдор Достоевский · Ёлка и свадьба",
+    "n": 20
+   },
+   {
+    "id": "s11-yolka-practice-7",
+    "title": "Practice 7: Фёдор Достоевский · Ёлка и свадьба",
+    "n": 20
+   },
+   {
+    "id": "s11-yolka-practice-8",
+    "title": "Practice 8: Фёдор Достоевский · Ёлка и свадьба",
+    "n": 20
+   },
+   {
+    "id": "s11-yolka-practice-9",
+    "title": "Practice 9: Фёдор Достоевский · Ёлка и свадьба",
+    "n": 20
+   },
+   {
+    "id": "s11-yolka-practice-10",
+    "title": "Practice 10: Фёдор Достоевский · Ёлка и свадьба",
+    "n": 20
    },
    {
     "id": "s12-moya-ona",
     "title": "Антон Чехов · Моя «она»",
-    "n": 20
+    "n": 19
+   },
+   {
+    "id": "s12-moya-ona-practice",
+    "title": "Practice: Антон Чехов · Моя «она»",
+    "n": 14
    },
    {
     "id": "s13-pismo-bratu",
     "title": "Антон Чехов · Письмо брату Николаю (1886)",
-    "n": 20
+    "n": 19
    },
    {
     "id": "s13-pismo-bratu-practice",
     "title": "Practice 1: Антон Чехов · Письмо брату Николаю (1886)",
-    "n": 20
+    "n": 19
    },
    {
     "id": "s13-pismo-bratu-practice-2",
     "title": "Practice 2: Антон Чехов · Письмо брату Николаю (1886)",
-    "n": 20
+    "n": 19
    },
    {
     "id": "s13-pismo-bratu-practice-3",
@@ -4407,17 +4672,12 @@ export default [
    {
     "id": "s13-pismo-bratu-practice-6",
     "title": "Practice 6: Антон Чехов · Письмо брату Николаю (1886)",
-    "n": 20
-   },
-   {
-    "id": "s13-pismo-bratu-practice-7",
-    "title": "Practice 7: Антон Чехов · Письмо брату Николаю (1886)",
-    "n": 20
+    "n": 11
    },
    {
     "id": "s14-zhemchuzhnoe-ozherelie",
     "title": "Николай Лесков · Жемчужное ожерелье",
-    "n": 20
+    "n": 16
    },
    {
     "id": "s14-zhemchuzhnoe-ozherelie-practice",
@@ -4427,22 +4687,47 @@ export default [
    {
     "id": "s14-zhemchuzhnoe-ozherelie-practice-2",
     "title": "Practice 2: Николай Лесков · Жемчужное ожерелье",
-    "n": 20
+    "n": 14
    },
    {
     "id": "s14-zhemchuzhnoe-ozherelie-practice-3",
     "title": "Practice 3: Николай Лесков · Жемчужное ожерелье",
-    "n": 20
+    "n": 19
    },
    {
     "id": "s14-zhemchuzhnoe-ozherelie-practice-4",
     "title": "Practice 4: Николай Лесков · Жемчужное ожерелье",
-    "n": 20
+    "n": 18
    },
    {
     "id": "s14-zhemchuzhnoe-ozherelie-practice-5",
     "title": "Practice 5: Николай Лесков · Жемчужное ожерелье",
-    "n": 6
+    "n": 18
+   },
+   {
+    "id": "s14-zhemchuzhnoe-ozherelie-practice-6",
+    "title": "Practice 6: Николай Лесков · Жемчужное ожерелье",
+    "n": 18
+   },
+   {
+    "id": "s14-zhemchuzhnoe-ozherelie-practice-7",
+    "title": "Practice 7: Николай Лесков · Жемчужное ожерелье",
+    "n": 20
+   },
+   {
+    "id": "s14-zhemchuzhnoe-ozherelie-practice-8",
+    "title": "Practice 8: Николай Лесков · Жемчужное ожерелье",
+    "n": 20
+   },
+   {
+    "id": "s14-zhemchuzhnoe-ozherelie-practice-9",
+    "title": "Practice 9: Николай Лесков · Жемчужное ожерелье",
+    "n": 20
+   },
+   {
+    "id": "s14-zhemchuzhnoe-ozherelie-practice-10",
+    "title": "Practice 10: Николай Лесков · Жемчужное ожерелье",
+    "n": 20
    },
    {
     "id": "exam",
@@ -5389,7 +5674,7 @@ export default [
    {
     "id": "gt1-field",
     "title": "Grammar, morphology, syntax",
-    "n": 7
+    "n": 15
    },
    {
     "id": "gt1-field-practice",
@@ -5454,7 +5739,7 @@ export default [
    {
     "id": "gt2-parts",
     "title": "The parts of speech",
-    "n": 13
+    "n": 29
    },
    {
     "id": "gt2-parts-practice",
@@ -5554,7 +5839,7 @@ export default [
    {
     "id": "gt3-cases",
     "title": "The cases",
-    "n": 8
+    "n": 18
    },
    {
     "id": "gt3-cases-practice",
@@ -5609,7 +5894,7 @@ export default [
    {
     "id": "gt4-noun",
     "title": "Gender, number, animacy; the parts of a word",
-    "n": 13
+    "n": 29
    },
    {
     "id": "gt4-noun-practice",
@@ -5659,7 +5944,7 @@ export default [
    {
     "id": "gt5-verb",
     "title": "The verb: aspect, tense, person, mood, voice",
-    "n": 19
+    "n": 42
    },
    {
     "id": "gt5-verb-practice",
@@ -5714,7 +5999,7 @@ export default [
    {
     "id": "gt6-adj",
     "title": "The adjective: degrees of comparison, the short form",
-    "n": 4
+    "n": 9
    },
    {
     "id": "gt6-adj-practice",
@@ -5729,7 +6014,7 @@ export default [
    {
     "id": "gt7-sentence",
     "title": "The sentence and its parts",
-    "n": 7
+    "n": 15
    },
    {
     "id": "gt7-sentence-practice",
@@ -5769,7 +6054,7 @@ export default [
    {
     "id": "gt8-letters",
     "title": "Sounds and letters",
-    "n": 5
+    "n": 13
    },
    {
     "id": "gt8-letters-practice",

@@ -5031,6 +5031,7 @@ export default function App() {
   // Which sheet the reads window is showing — the library or the music.
   var [adminBookTab, setAdminBookTab]       = useState("books");
   var [adminTotals, setAdminTotals]         = useState(null);
+  var [admTotList, setAdmTotList]           = useState("");      // "opened" | "finished" | "" — a list opened under the totals
   var [adminTotalsLoad, setAdminTotalsLoad] = useState(false);
   var [adminLegacyId, setAdminLegacyId]     = useState("");
   var [adminLegacyMsg, setAdminLegacyMsg]   = useState("");
@@ -5228,6 +5229,50 @@ export default function App() {
   // against nouns, etc.).
   var [quizMode, setQuizMode]         = useState(false);
   var [quizMenu, setQuizMenu]         = useState(false);  // shows the 2-choice "Quiz vs Chat" menu
+  // The match game: four words, four meanings, drag each meaning onto its
+  // word; a round counts only when all four sit right at once.
+  var [matchGame, setMatchGame]       = useState(null);   // { pool, round, order, map, status, wrongIdx, rounds, won } | null
+  var startMatch = function() {
+    var words = dropCommonWords(vocabL, function(v){ return v && v.ru; }).filter(function(v){ return v && v.en; });
+    if (words.length < 4) { alert("The match game needs at least four saved words with an English meaning."); return; }
+    var now = Date.now();
+    // What is due first, then the rest, least secure first; a fixed shuffle within.
+    var due = dueWords(words, now), dueKeys = {};
+    due.forEach(function(v){ dueKeys[v._key || v.id || v.ru] = true; });
+    var rest = words.filter(function(v){ return !dueKeys[v._key || v.id || v.ru]; });
+    var shuf = function(a){ a = a.slice(); for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; };
+    var pool = shuf(due).concat(shuf(rest));
+    setQuizMenu(false);
+    setMatchGame(dealMatch(pool, 0, 0));
+  };
+  var dealMatch = function(pool, rounds, won) {
+    if (pool.length < 4) return { pool: pool, round: [], order: [], map: {}, status: "done", rounds: rounds, won: won };
+    var round = pool.slice(0, 4);
+    var order = [0, 1, 2, 3];
+    for (var i = 3; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = order[i]; order[i] = order[j]; order[j] = t; }
+    return { pool: pool.slice(4), round: round, order: order, map: {}, status: "", wrongIdx: [], rounds: rounds, won: won, sel: null };
+  };
+  // A meaning dropped on a word. When all four are placed the round is
+  // checked: all right, and every word is recorded as answered right; any
+  // wrong, and the wrong ones come loose, the words recorded as missed.
+  var placeMatch = function(mi, wi) {
+    var g = matchGame;
+    if (!g || g.status === "right") return;
+    var map = Object.assign({}, g.map);
+    Object.keys(map).forEach(function(k){ if (map[k] === mi) delete map[k]; });
+    map[wi] = mi;
+    if (Object.keys(map).length < 4) { setMatchGame(Object.assign({}, g, { map: map, sel: null, status: "" })); return; }
+    var wrong = Object.keys(map).filter(function(k){ return map[k] !== +k; }).map(Number);
+    if (!wrong.length) {
+      // Recorded once each, as answered right — only a round with no miss counts.
+      if (!g.tries) g.round.forEach(function(v){ recordAnswer(v._key || v.id || v.ru, true); });
+      setMatchGame(Object.assign({}, g, { map: map, sel: null, status: "right", won: g.won + (g.tries ? 0 : 1), rounds: g.rounds + 1 }));
+      return;
+    }
+    wrong.forEach(function(k){ delete map[k]; });
+    if (!g.tries) wrong.forEach(function(k){ recordAnswer(g.round[k]._key || g.round[k].id || g.round[k].ru, false); });
+    setMatchGame(Object.assign({}, g, { map: map, sel: null, status: "wrong", wrongIdx: wrong, tries: (g.tries || 0) + 1 }));
+  };
   var [quizQuestions, setQuizQuestions] = useState([]);
   var [quizIdx, setQuizIdx]           = useState(0);
   var [quizSelected, setQuizSelected] = useState(null);
@@ -17924,6 +17969,16 @@ export default function App() {
         .crs-exrun:first-child{margin-top:0}
         .crs-rule-pts .crs-exrun{font-size:17px;margin:6px 0 2px;padding-left:12px}
         .crs-p>span{display:inline}
+        /* A story on the page, before its exercises. */
+        .crs-story{margin-top:6px}
+        .crs-story-k{font-family:var(--sans);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--rule)}
+        .crs-story-p{font-family:var(--serif);font-size:18px;line-height:1.72;color:var(--ink);margin:0 0 .85em;text-indent:1.4em}
+        .crs-story-p:first-of-type,.crs-story-h+.crs-story-p{text-indent:0}
+        .crs-story-h{font-family:var(--display);font-size:20px;font-weight:400;text-align:center;margin:1.4em 0 .8em;color:var(--ink)}
+        .crs-story .rw{border-bottom-color:transparent}
+        .crs-story .rw:hover{border-bottom-color:var(--rubric)}
+        .crs-link{color:var(--rubric);text-decoration:none;border-bottom:1px solid var(--rubric-soft)}
+        .crs-link:hover{border-bottom-color:var(--rubric)}
         /* The rule as DLI states it, in parts. */
         .crs-rule{display:flex;flex-direction:column;gap:14px;padding:4px 0 2px}
         .crs-rule-h{font-family:var(--serif);font-size:16.5px;line-height:1.6;color:var(--ink);margin:0}
@@ -17975,6 +18030,48 @@ export default function App() {
         .crs-chk.big{font-size:12px;letter-spacing:.18em;padding:12px 34px 11px;border-width:1.5px}
         .crs-stream .crs-chk-row{margin-top:16px}
         @media (max-width:560px){.crs-q.ok,.crs-q.bad{padding-left:10px;padding-right:10px;margin-left:-6px;margin-right:-6px}.crs-stream .crs-q.ok,.crs-stream .crs-q.bad{padding:14px 10px 8px;margin:0 -10px}.crs-chk.big{width:100%}}
+        /* The vocabulary match game. */
+        .vm-wrap{max-width:720px;margin:0 auto;padding:18px 16px 30px}
+        .vm-board{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px 22px;padding:18px;border:1px solid var(--rule);background:var(--paper-3);transition:background .25s,border-color .25s}
+        .vm-board.ok{border-color:#2e6e50;background:rgba(46,110,80,.08)}
+        .vm-board.bad{border-color:var(--rubric);background:var(--rubric-soft)}
+        .vm-col{display:flex;flex-direction:column;gap:10px}
+        .vm-word{min-height:56px;padding:10px 12px;border:1px dashed var(--rule);display:flex;flex-direction:column;gap:3px;justify-content:center;cursor:pointer;transition:border-color .12s,background .12s;background:var(--paper)}
+        .vm-word.open{border-color:var(--ink)}
+        .vm-word.filled{border-style:solid;border-color:var(--ink)}
+        .vm-board.ok .vm-word{border-color:#2e6e50}
+        .vm-word.shook{border-color:var(--rubric);animation:crs-shake .35s}
+        .vm-ru{font-family:var(--serif);font-size:19px;color:var(--ink)}
+        .vm-en-in{font-family:var(--sans);font-size:12.5px;color:var(--ink-2)}
+        .vm-def{min-height:56px;padding:10px 12px;border:1px solid var(--rule);background:var(--paper);font-family:var(--serif);font-size:15.5px;line-height:1.4;color:var(--ink);cursor:grab;user-select:none;display:flex;align-items:center;transition:opacity .12s,border-color .12s}
+        .vm-def:hover{border-color:var(--ink)}
+        .vm-def.sel{border-color:var(--rubric);box-shadow:inset 0 0 0 1px var(--rubric)}
+        .vm-def.placed{opacity:.22;cursor:default;border-style:dashed}
+        .vm-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;margin-top:14px}
+        .vm-msg{font-family:var(--serif);font-style:italic;font-size:14.5px;color:var(--ink-3)}
+        .vm-msg.ok{color:#2e6e50;font-style:normal}.vm-msg.bad{color:var(--rubric);font-style:normal}
+        .vm-next.btn-p{width:auto;padding:10px 18px}
+        .vm-done{max-width:520px;margin:30px auto;text-align:center;display:flex;flex-direction:column;align-items:center;gap:10px;padding:26px;border:1px solid var(--rule);background:var(--paper-3)}
+        .vm-done-n{font-family:var(--display);font-size:54px;line-height:1;color:var(--ink)}
+        .vm-done-t{font-family:var(--serif);font-size:16px;color:var(--ink-2)}
+        @media (max-width:560px){.vm-board{grid-template-columns:1fr;padding:12px}.vm-wrap{padding:12px 8px 24px}}
+        /* Match: terms on the left, meanings on the right; a term dragged or
+           tapped onto its meaning sits inside it. */
+        .crs-match{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:8px 18px;margin-top:6px}
+        .crs-match-col{display:flex;flex-direction:column;gap:8px}
+        .crs-term{font-family:var(--serif);font-size:17px;padding:8px 12px;border:1px solid var(--rule);background:var(--paper-3);color:var(--ink);cursor:grab;user-select:none;transition:border-color .12s,opacity .12s}
+        .crs-term:hover{border-color:var(--ink)}
+        .crs-term.sel{border-color:var(--rubric);box-shadow:inset 0 0 0 1px var(--rubric)}
+        .crs-term.placed{opacity:.28;cursor:default;border-style:dashed}
+        .crs-term.shook{border-color:var(--rubric);animation:crs-shake .35s}
+        @keyframes crs-shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+        .crs-meaning{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;min-height:40px;padding:8px 12px;border:1px dashed var(--rule);font-family:var(--serif);font-size:15.5px;color:var(--ink-2);cursor:pointer;transition:border-color .12s,background .12s}
+        .crs-meaning.open{border-color:var(--ink);background:var(--paper-3)}
+        .crs-meaning.filled{border-style:solid;background:var(--paper-3)}
+        .crs-meaning.ok{border-color:#2e6e50;background:rgba(46,110,80,.08)}
+        .crs-meaning-term{font-size:17px;color:var(--ink);font-weight:600}
+        .crs-meaning-term::after{content:"—";margin-left:10px;color:var(--ink-3);font-weight:400}
+        @media (max-width:560px){.crs-match{grid-template-columns:1fr;gap:10px}.crs-term{font-size:16px}}
         /* The exam: the questions in one list, a chapter name over each, the
            mark at the end. */
         .crs-exam{margin-top:22px}
@@ -18045,6 +18142,8 @@ export default function App() {
           .crs-q{gap:10px}.crs-qn{flex-basis:22px;font-size:16px}.crs-sec{gap:10px}.crs-sec-n{flex-basis:24px}
           .crs-list{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:18px 14px}.crs-card-img{height:110px}.crs-card-t{font-size:19px}
         }
+        .admd-stat.on{border-color:var(--ink);background:var(--paper-2)}
+        .admd-rows{margin:8px 0 4px;max-height:50vh;overflow-y:auto;border-top:1px solid var(--rule)}
         .admu-courses{border:1px solid var(--rule);background:var(--paper);margin:0 0 14px;padding:0}
         .admu-courses>summary{cursor:pointer;padding:9px 12px;font-family:var(--sans);font-size:12px;letter-spacing:.08em;
           text-transform:uppercase;color:var(--ink)}
@@ -20420,10 +20519,11 @@ export default function App() {
                       )}
                       <div className="admd-sechdr">Today · {T.today && T.today.date}</div>
                       <div className="admd-stats">
-                        <div className="admd-stat still">
+                        <button className={"admd-stat" + (admTotList === "opened" ? " on" : "")} disabled={!(T.today && T.today.books && T.today.books.length)}
+                          onClick={function(){ setAdmTotList(admTotList === "opened" ? "" : "opened"); }} title="Which books">
                           <span className="n">{T.today ? T.today.opens : 0}</span>
-                          <span className="l">books opened</span>
-                        </div>
+                          <span className="l">books opened{T.today && T.today.books && T.today.books.length ? " ▾" : ""}</span>
+                        </button>
                         <div className="admd-stat still">
                           <span className="n">{T.today ? T.today.logins : 0}</span>
                           <span className="l">logins</span>
@@ -20433,6 +20533,20 @@ export default function App() {
                           <span className="l">of those, signed out</span>
                         </div>
                       </div>
+                      {admTotList === "opened" && T.today && T.today.books && (
+                        <div className="admd-rows">
+                          {T.today.books.map(function(b){
+                            return (
+                              <div key={b.key} className="admd-row">
+                                <div>
+                                  <div className="admd-t">{b.title}{b.author ? " — " + b.author : ""}{b.en ? " · in English" : ""}</div>
+                                  <div className="admd-s">opened {b.n} time{b.n === 1 ? "" : "s"} today</div>
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      )}
                       <div className="admd-sechdr">All time · books opened</div>
                       <div className="admd-stats">
                         <div className="admd-stat still">
@@ -20454,10 +20568,11 @@ export default function App() {
                           <span className="n">{T.vocab}</span>
                           <span className="l">vocab words</span>
                         </div>
-                        <div className="admd-stat still">
+                        <button className={"admd-stat" + (admTotList === "finished" ? " on" : "")} disabled={!(T.finishedBooks && T.finishedBooks.length)}
+                          onClick={function(){ setAdmTotList(admTotList === "finished" ? "" : "finished"); }} title="Which books">
                           <span className="n">{T.finished}</span>
-                          <span className="l">marked read</span>
-                        </div>
+                          <span className="l">marked read{T.finishedBooks && T.finishedBooks.length ? " ▾" : ""}</span>
+                        </button>
                         <div className="admd-stat still">
                           <span className="n">{T.tips}</span>
                           <span className="l">grammar tips</span>
@@ -20466,6 +20581,22 @@ export default function App() {
                           <span className="n">{T.learned || 0}</span>
                           <span className="l">words retired</span>
                         </div>
+                      </div>
+                      {admTotList === "finished" && T.finishedBooks && (
+                        <div className="admd-rows">
+                          {T.finishedBooks.map(function(b){
+                            return (
+                              <div key={b.key} className="admd-row">
+                                <div>
+                                  <div className="admd-t">{b.title}{b.author ? " — " + b.author : ""}</div>
+                                  <div className="admd-s">marked read by {b.readers} reader{b.readers === 1 ? "" : "s"}{b.last ? " · last " + new Date(b.last).toLocaleDateString() : ""}</div>
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      )}
+                      <div className="admd-stats" style={{display:"none"}}>
                       </div>
                       {/* What the site's readers have actually done, as against
                           what they have saved. Words read is the honest measure
@@ -23110,6 +23241,7 @@ export default function App() {
                                             {book.blurb && book.blurbSrc && <a className="lib-blurb-src" href={book.blurbSrc} target="_blank" rel="noopener noreferrer"
                                               onClick={function(e){ e.stopPropagation(); }}>Wikipedia</a>}
                                           </div>
+                                          {book.coverCredit && <div className="ld-credit" title="The picture's author and licence, from Wikimedia Commons">{book.coverCredit}</div>}
                                           {isLoading && (
                                             <div className="lib-card-loader">
                                               <div className="typing"><div className="dot"/><div className="dot"/><div className="dot"/></div>
@@ -25312,6 +25444,63 @@ export default function App() {
                   </div>
                 )}
               </>
+            ) : matchGame ? (
+              // ── The match game ──
+              <>
+                <div className="phdr">
+                  <span className="pti">Match · {matchGame.won} of {matchGame.rounds} rounds right</span>
+                  <button className="ab" onClick={function(){ setMatchGame(null); }}>← Back to list</button>
+                </div>
+                {matchGame.status === "done" ? (
+                  <div className="vm-done">
+                    <div className="vm-done-n">{matchGame.won} / {matchGame.rounds}</div>
+                    <div className="vm-done-t">rounds right at the first try. {matchGame.pool.length ? "" : "That was every word with a meaning."}</div>
+                    <button className="crs-retry" onClick={startMatch}>Play again</button>
+                  </div>
+                ) : (
+                  <div className="vm-wrap">
+                    <div className={"vm-board" + (matchGame.status === "right" ? " ok" : matchGame.status === "wrong" ? " bad" : "")}>
+                      <div className="vm-col">
+                        {matchGame.round.map(function(v, wi){
+                          var mi = matchGame.map[wi];
+                          var filled = mi !== undefined;
+                          var wrong = (matchGame.wrongIdx || []).indexOf(wi) >= 0 && !filled;
+                          return (
+                            <div key={wi} className={"vm-word" + (filled ? " filled" : "") + (wrong ? " shook" : "") + (matchGame.sel !== null && matchGame.sel !== undefined && !filled ? " open" : "")}
+                              onDragOver={function(ev){ ev.preventDefault(); }}
+                              onDrop={function(ev){ ev.preventDefault(); var m = parseInt((ev.dataTransfer && ev.dataTransfer.getData("text/plain")) || matchGame.sel, 10); if (!isNaN(m)) placeMatch(m, wi); }}
+                              onClick={function(){ if (matchGame.sel !== null && matchGame.sel !== undefined) placeMatch(matchGame.sel, wi); else if (filled && matchGame.status !== "right") { setMatchGame(function(g){ var map = Object.assign({}, g.map); delete map[wi]; return Object.assign({}, g, { map: map, status: "" }); }); } }}>
+                              <span className="vm-ru" lang="ru">{v.ru}</span>
+                              {filled && <span className="vm-en-in">{matchGame.round[mi].en}</span>}
+                            </div>
+                          );
+                        })}
+                      </div>
+                      <div className="vm-col">
+                        {matchGame.order.map(function(mi){
+                          var placed = Object.keys(matchGame.map).some(function(k){ return matchGame.map[k] === mi; });
+                          var selected = matchGame.sel === mi;
+                          return (
+                            <div key={mi} draggable={!placed && matchGame.status !== "right"}
+                              className={"vm-def" + (placed ? " placed" : "") + (selected ? " sel" : "")}
+                              onDragStart={function(ev){ try { ev.dataTransfer.setData("text/plain", String(mi)); ev.dataTransfer.effectAllowed = "move"; } catch (x) {} setMatchGame(function(g){ return Object.assign({}, g, { sel: mi }); }); }}
+                              onClick={function(){ if (placed || matchGame.status === "right") return; setMatchGame(function(g){ return Object.assign({}, g, { sel: selected ? null : mi }); }); }}>
+                              {matchGame.round[mi].en}
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                    <div className="vm-foot">
+                      {matchGame.status === "wrong" && <span className="vm-msg bad">{(matchGame.wrongIdx || []).length} in the wrong place — those meanings are loose again.</span>}
+                      {matchGame.status === "right" && <span className="vm-msg ok">All four right ✓</span>}
+                      {matchGame.status !== "right" && <span className="vm-msg">Drag a meaning onto its word, or tap one and then the other.</span>}
+                      {matchGame.status === "right" && <button className="btn-p vm-next" onClick={function(){ setMatchGame(function(g){ return dealMatch(g.pool, g.rounds, g.won); }); }}>Next four →</button>}
+                      {matchGame.status !== "right" && <button className="crs-retry" onClick={function(){ setMatchGame(function(g){ return dealMatch(g.pool, g.rounds + 1, g.won); }); }}>Skip these →</button>}
+                    </div>
+                  </div>
+                )}
+              </>
             ) : quizMenu ? (
               // ── Review choice menu (Multiple Choice vs Chat Practice) ──
               <>
@@ -25336,9 +25525,15 @@ export default function App() {
                     </div>
                     <p style={{fontSize:13,color:"rgba(0,0,0,.55)",margin:0,lineHeight:1.5}}>Quick recall test. Each question shows a Russian word with 4 English meaning options (from same-pos vocabulary).</p>
                   </button>
-                  {/* Chat Practice (live AI conversation) removed — it called
-                      Gemini/Anthropic and cost money. Multiple Choice Quiz above
-                      is the free, static replacement. */}
+                  <button onClick={startMatch}
+                    style={{background:"rgba(200,162,118,.08)",border:"1px solid rgba(200,162,118,.3)",color:"#000",padding:"18px 20px",borderRadius:12,cursor:"pointer",textAlign:"left",fontFamily:"'Literata',serif",transition:"all .15s"}}
+                    onMouseOver={function(e){ e.currentTarget.style.background = "rgba(200,162,118,.14)"; }}
+                    onMouseOut={function(e){ e.currentTarget.style.background = "rgba(200,162,118,.08)"; }}>
+                    <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:6}}>
+                      <span style={{fontSize:18,fontWeight:600,color:"#000",fontFamily:"'Old Standard TT',serif"}}>Match</span>
+                    </div>
+                    <p style={{fontSize:13,color:"rgba(0,0,0,.55)",margin:0,lineHeight:1.5}}>Four words on the left, their meanings on the right. Drag each meaning onto its word — the round counts when all four are right at once.</p>
+                  </button>
                 </div>
               </>
             ) : (
@@ -25455,7 +25650,7 @@ export default function App() {
                 <div className="phdr">
                   <span className="pti">My Vocabulary</span>
                   <div style={{display:"flex",gap:8}}>
-                    {vocab.length > 0 && <button className="ab" onClick={function(){ setQuizMenu(true); }} title="Quiz yourself or practice these words in chat">📝 Review vocab</button>}
+                    {vocab.length > 0 && <button className="ab" onClick={function(){ setQuizMenu(true); }} title="Review your words: multiple choice, or match words to meanings">📝 Review vocab</button>}
                     {(vocab.length > 0 || learned.length > 0) && (
                       <button className="ab" onClick={function(){ setExpDone(""); setExpOpen(true); }}
                         title="Download your words for Anki, Quizlet or a spreadsheet">⤓ Export</button>
@@ -25612,10 +25807,40 @@ export default function App() {
                 // the words inert — on an answer button a tap must choose, not define.
                 var rich = function(t, plain) {
                   var w = plain ? function(x, k){ return x; } : tappable;
+                  // An address in the text becomes a link: a Wikipedia page reads
+                  // as «Википедия», any other as its host.
+                  var linked = function(x, k) {
+                    // A citation that names its site and address — «Википедия,
+                    // «Грамматика» (https://…, CC BY-SA 4.0)» — collapses to the
+                    // site's name, linked; the licence travels in the link's title.
+                    var cite = /((?:Википедия|Викигид|Викитека|Викисловарь|Викиновости|Wikipedia|Tatoeba)[^()\n]{0,160}?)\((https?:\/\/[^\s)]+)([^)]*)\)/g;
+                    var pieces = [], last = 0, m;
+                    while ((m = cite.exec(String(x)))) {
+                      pieces.push(String(x).slice(last, m.index));
+                      pieces.push({ u: m[2].replace(/[,;.]+$/, ""), name: m[1].split(",")[0].trim(), lic: (m[3] || "").replace(/^[,\s]+/, "") });
+                      last = m.index + m[0].length;
+                    }
+                    pieces.push(String(x).slice(last));
+                    var out = [];
+                    pieces.forEach(function(pc, pi){
+                      if (typeof pc !== "string") { out.push(<a key={k + "c" + pi} className="crs-link" href={pc.u} target="_blank" rel="noreferrer" title={pc.lic || undefined}>{pc.name}</a>); return; }
+                      out.push.apply(out, bare(pc, k + "." + pi));
+                    });
+                    return out;
+                  };
+                  var bare = function(x, k) {
+                    return String(x).split(/(https?:\/\/[^\s«»()]+)/).map(function(u, j){
+                      if (!/^https?:\/\//.test(u)) return <Fragment key={k + "u" + j}>{w(u, k + "." + j)}</Fragment>;
+                      var m = u.match(/^https?:\/\/([^/]+)/), host = m ? m[1] : u;
+                      var label = /wikipedia\.org$/.test(host) ? "Википедия" : /wikivoyage\.org$/.test(host) ? "Викигид"
+                        : /wikisource\.org$/.test(host) ? "Викитека" : /wiktionary\.org$/.test(host) ? "Викисловарь" : /tatoeba\.org$/.test(host) ? "Tatoeba" : host.replace(/^www\./, "");
+                      return <a key={k + "u" + j} className="crs-link" href={u.replace(/[.,;:]+$/, "")} target="_blank" rel="noreferrer">{label}</a>;
+                    });
+                  };
                   return String(t || "").split(/(\*\*[^*]+\*\*|\*[^*]+\*)/).map(function(part, i){
-                    if (/^\*\*[^*]+\*\*$/.test(part)) return <b key={i}>{w(part.slice(2, -2), i)}</b>;
-                    if (/^\*[^*]+\*$/.test(part)) return <i key={i}>{w(part.slice(1, -1), i)}</i>;
-                    return <Fragment key={i}>{w(part, i)}</Fragment>;
+                    if (/^\*\*[^*]+\*\*$/.test(part)) return <b key={i}>{linked(part.slice(2, -2), i)}</b>;
+                    if (/^\*[^*]+\*$/.test(part)) return <i key={i}>{linked(part.slice(1, -1), i)}</i>;
+                    return <Fragment key={i}>{linked(part, i)}</Fragment>;
                   });
                 };
                 // A construction, or one of a lesson's example phrases, saved
@@ -25905,6 +26130,17 @@ export default function App() {
                   if (b.t === "note") return <div key={i} className="crs-note">{withExamples(b.text, "n" + i)}</div>;
                   // DLI's rule taken apart: its (a) (b) (c) as a lettered list,
                   // its "note also" expressions as a row, each in its own place.
+                  // A whole story, to read before its exercises: set as a page of
+                  // the book it comes from, every word tappable.
+                  if (b.t === "story") return (
+                    <div key={i} className="crs-story" lang="ru">
+                      <div className="crs-story-k">The story · {b.paras.length} paragraphs</div>
+                      {(b.paras || []).map(function(x, k){
+                        var head = x.length <= 40 && !/[.!?…,;:]/.test(x) && (/^[IVXLC]+$/.test(x) || /^[А-ЯЁ]/.test(x));
+                        return head ? <h3 key={k} className="crs-story-h">{rich(x)}</h3> : <p key={k} className="crs-story-p">{rich(x)}</p>;
+                      })}
+                    </div>
+                  );
                   if (b.t === "rule") return <div key={i} className="crs-rule">{(b.items || []).map(function(it, k){ return ruleItem(it, "r" + i + "." + k); })}</div>;
                   if (b.t === "list") return <ul key={i} className="crs-ul">{b.items.map(function(x, k){ return <li key={k}>{withExamples(x, "l" + i + "." + k)}</li>; })}</ul>;
                   if (b.t === "ex") return (
@@ -26001,6 +26237,76 @@ export default function App() {
                             <button type="button" className="crs-show" onClick={function(){ setEx(e.id, { shown: true }); }}>Show the answer</button>
                           )}
                           {es.shown && es.status !== "right" && <div className="crs-ans">Answer: <b>{e.hhmm}</b> — set the clock to it to finish this one.</div>}
+                          {why}
+                        </div>
+                      </div>
+                    );
+                  }
+                  if (e.type === "match") {
+                    // Terms on the left, meanings on the right in a shuffled order.
+                    // Drag a term onto a meaning, or tap one and then the other.
+                    // When every term is placed the set is checked: all right, and
+                    // it is done; otherwise the wrong ones come loose for another go.
+                    var pairs = e.pairs || [];
+                    var order = es.order || (function(){ var o = pairs.map(function(_, i){ return i; }); for (var i = o.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = o[i]; o[i] = o[j]; o[j] = t; } return o; })();
+                    if (!es.order) setTimeout(function(){ setEx(e.id, { order: order, map: {} }); }, 0);
+                    var map = es.map || {};              // term index → meaning index
+                    var placedBy = {};                   // meaning index → term index
+                    Object.keys(map).forEach(function(t){ placedBy[map[t]] = +t; });
+                    var place = function(ti, mi) {
+                      if (es.status === "right") return;
+                      var nm = Object.assign({}, map);
+                      Object.keys(nm).forEach(function(t){ if (nm[t] === mi) delete nm[t]; });
+                      nm[ti] = mi;
+                      var done = Object.keys(nm).length === pairs.length;
+                      if (!done) { setEx(e.id, { map: nm, sel: null, status: "" }); return; }
+                      var wrong = Object.keys(nm).filter(function(t){ return nm[t] !== +t; });
+                      if (!wrong.length) { setEx(e.id, { map: nm, sel: null, status: "right" }); noteAnswer(course.id, sec.id, e.id, true, exIds, cleanRun(e)); }
+                      else {
+                        wrong.forEach(function(t){ delete nm[t]; });
+                        setEx(e.id, { map: nm, sel: null, status: "wrong", tries: (es.tries || 0) + 1, shook: wrong.map(Number) });
+                        noteAnswer(course.id, sec.id, e.id, false, exIds);
+                      }
+                    };
+                    return (
+                      <div key={e.id} data-exid={e.id} className={"crs-q" + (es.status === "right" ? " ok" : es.status === "wrong" ? " bad" : "")}>
+                        <div className="crs-qn">{n + 1}</div>
+                        <div className="crs-qb">
+                          {ctx}
+                          <div className="crs-qt">{rich(e.q, true)}</div>
+                          <div className="crs-match">
+                            <div className="crs-match-col">
+                              {pairs.map(function(pr, ti){
+                                var placed = map[ti] !== undefined;
+                                var selected = es.sel === ti;
+                                return (
+                                  <div key={ti} lang="ru" draggable={es.status !== "right"}
+                                    className={"crs-term" + (placed ? " placed" : "") + (selected ? " sel" : "") + ((es.shook || []).indexOf(ti) >= 0 && !placed ? " shook" : "")}
+                                    onDragStart={function(ev){ try { ev.dataTransfer.setData("text/plain", String(ti)); ev.dataTransfer.effectAllowed = "move"; } catch (x) {} setEx(e.id, { sel: ti }); }}
+                                    onClick={function(){ if (es.status === "right") return; setEx(e.id, { sel: selected ? null : ti }); }}>
+                                    {pr[0]}
+                                  </div>
+                                );
+                              })}
+                            </div>
+                            <div className="crs-match-col">
+                              {order.map(function(mi){
+                                var ti = placedBy[mi];
+                                var rightHere = es.status === "right";
+                                return (
+                                  <div key={mi} className={"crs-meaning" + (ti !== undefined ? " filled" : "") + (rightHere ? " ok" : "") + (es.sel !== null && es.sel !== undefined && ti === undefined ? " open" : "")}
+                                    onDragOver={function(ev){ ev.preventDefault(); }}
+                                    onDrop={function(ev){ ev.preventDefault(); var t = parseInt((ev.dataTransfer && ev.dataTransfer.getData("text/plain")) || es.sel, 10); if (!isNaN(t)) place(t, mi); }}
+                                    onClick={function(){ if (es.sel !== null && es.sel !== undefined) place(es.sel, mi); else if (ti !== undefined && es.status !== "right") { var nm = Object.assign({}, map); delete nm[ti]; setEx(e.id, { map: nm, status: "" }); } }}>
+                                    {ti !== undefined && <span className="crs-meaning-term" lang="ru">{pairs[ti][0]}</span>}
+                                    <span className="crs-meaning-en">{pairs[mi][1]}</span>
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          </div>
+                          {es.status === "wrong" && <div className="crs-hint">{(es.shook || []).length} of them {(es.shook || []).length === 1 ? "was" : "were"} in the wrong place — they are loose again; try once more.</div>}
+                          {es.status === "right" && <div className="crs-hint" style={{color:"#2e6e50"}}>All matched ✓</div>}
                           {why}
                         </div>
                       </div>

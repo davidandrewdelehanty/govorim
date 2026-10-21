@@ -39,6 +39,7 @@ get() {  # get <subdir> <url>
   echo "   ! failed ($code): $u"
 }
 
+if [ -n "${PD_LOCKED:-}" ]; then
 echo "== DLI Russian Basic Course: text"
 for p in 01; do get dli-basic/phase1 "$B1/Courses/Phase%201/Mod%20$p.pdf"; done
 for p in 02 03 04 05 06 07 08 09 10 11 12 13 14; do get dli-basic/phase2 "$B1/Courses/Phase%202/Mod%20$p.pdf"; done
@@ -71,6 +72,34 @@ for t in "HW%2001%20Mod%2001%20L001" "HW%2001%20Mod%2001%20Less" "HW%2001%20Mod%
   get dli-basic/audio-phase3 "$A1/Courses/Phase%203/Audio/Phase%20III%20$t.mp3"
 done
 
+fi   # PD_LOCKED — the first host's DLI files, a private bucket; set PD_LOCKED=1 to try them anyway
+
+echo "== DLI Russian Basic Course, the open copy at Live Lingua"
+# The first host keeps the DLI files in a private bucket (403). Live Lingua
+# serves the same course's tapes, the taped-exercise books (the text of what
+# is on the tapes, unit by unit), the grammar books, the exercise/glossary
+# volumes and the readers in the open — the lesson modules themselves it does
+# not have.
+LL="https://www.livelingua.com/dli/Russian/Russian%20Basic"
+for v in "01%20Units%2001-04" "02%20Units%2005-08" "03%20Units%2009-12" "04%20Units%2013-16" "05%20Units%2017-20" "06%20Units%2021-25"; do
+  get dli-basic/taped "$LL/Taped%20Exercises%20Vol%20$v.pdf"
+  get dli-basic/taped-instructor "$LL/Instructor%20Edition%20Taped%20Exercises%20Vol%20$v.pdf"
+done
+get dli-basic/grammar "$LL/Grammar%20Refrence%20Book%20Vol%2001.pdf"
+get dli-basic/grammar "$LL/Grammar%20Refrence%20Book%20Vol%2002.pdf"
+get dli-basic/exercises "$LL/Exercises%20and%20Glossary%20Vol%2001.pdf"
+get dli-basic/exercises "$LL/Exercises%20and%20Glossary%20Vol%2002.pdf"
+get dli-basic/reader "$LL/Reader%20%20Two%20Captains.pdf"
+get dli-basic/reader "$LL/Reader%20Vol%2002.pdf"
+for t in "01%20Tape%2002%20Less%2003-04" "01%20Tape%2003%20Less%2005-06" "01%20Tape%2004%20Less%2007-08" "01%20Tape%2005%20Less%2009-10" \
+         "02%20Tape%2006%20Less%2011-12" "02%20Tape%2008%20Less%2015-16" "03%20Tape%2009%20Less%2017-18" "03%20Tape%2010%20Less%2019-20" \
+         "03%20Tape%2011%20Less%2021-22" "04%20Tape%2012%20Less%2023-24" "04%20Tape%2013%20Less%2025-26" "05%20Tape%2014%20Less%2027-28" \
+         "05%20Tape%2015%20Less%2029-30" "05%20Tape%2016%20Less%2031-32" "06%20Tape%2017%20Less%2033-34" "06%20Tape%2018%20Less%2035-36" \
+         "06%20Tape%2019%20Less%2037-38" "07%20Tape%2020%20Less%2039-40" "07%20Tape%2021%20Less%2041-42" "07%20Tape%2022%20Less%2043-44" \
+         "08%20Tape%2023%20Less%2045-46"; do
+  get dli-basic/audio "$LL/audios/Mod%20$t.mp3"
+done
+
 echo "== FSI Russian FAST: text and tapes"
 get fsi-fast "$B2/FAST/FsiRussianFast-Lessons1-5.pdf"
 get fsi-fast "$B2/FAST/FsiRussianFast-Lessons6-8.pdf"
@@ -85,11 +114,13 @@ echo "== Peace Corps Russian"
 get peace-corps "$B3/ED402767.pdf"
 get peace-corps "$B3/Peace%2520Corps%2520Russian%2520Language%2520Competencies%2520Workbook.pdf"
 
-echo "== DLI Russian intermediate–advanced"
+if [ -n "${PD_LOCKED:-}" ]; then
+echo "== DLI Russian intermediate–advanced (the locked host)"
 get dli-adv "$B4/Vol%2001%20Less%2001-20.pdf"
 get dli-adv "$B4/Vol%2002%20Less%2021-35.pdf"
 get dli-adv "$B4/Government%20Structure.pdf"
 get dli-adv "$B4/Through%20the%20eyes%20of%20a%20Soviet%20Citizen.pdf"
+fi
 
 echo
 echo "Done → $OUT"

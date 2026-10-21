@@ -25,7 +25,7 @@ MIN_Q = 20       # a course with few chapters asks more of each, so the exam is 
 POOL = 30        # of each chapter's exercises kept in the file (more when more are asked)
 PASS = 85        # per cent
 PRACTICE = re.compile(r"-practice(-\d+)?$")
-KEEP = ("type", "q", "answers", "options", "answer", "ru", "prompt", "hint", "show", "k")
+KEEP = ("type", "q", "answers", "options", "answer", "ru", "prompt", "hint", "show", "k", "pairs")
 
 
 def add_exams(outline):
@@ -41,7 +41,7 @@ def add_exams(outline):
                 continue
             key = PRACTICE.sub("", s["id"])
             j = json.load(io.open(os.path.join(cdir, s["id"] + ".json"), encoding="utf-8"))
-            exs = [e for e in (j.get("exercises") or []) if e.get("type") in (None, "fill", "mc") and e.get("q")]
+            exs = [e for e in (j.get("exercises") or []) if e.get("type") in (None, "fill", "mc", "match") and e.get("q")]
             if not exs:
                 continue
             if key not in topics:
