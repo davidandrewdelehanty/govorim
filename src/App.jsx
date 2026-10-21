@@ -5013,6 +5013,8 @@ export default function App() {
   }, [acctName, showAcct, me && me.username]);
 
   var [adminUsers, setAdminUsers] = useState([]);
+  // Per-course totals across every reader, from the same call as the list.
+  var [adminCourses, setAdminCourses] = useState([]);
   // One reader in full — the object /api/admin/users?email= returns — plus
   // which of its drill-down windows is open (reading / vocab / finished).
   var [adminDetail, setAdminDetail]         = useState(null);
@@ -10666,6 +10668,7 @@ export default function App() {
       var d = await r.json();
       if (!r.ok) throw new Error(d.error || "Failed to load users");
       setAdminUsers(d.users || []);
+      setAdminCourses(d.courses || []);
     } catch(e) {
       setAdminErr(e.message || "Failed to load users");
     } finally { setAdminLoad(false); }
@@ -17697,6 +17700,147 @@ export default function App() {
         .admu-when{font-family:var(--sans);font-size:12.5px;color:var(--ink);display:flex;flex-direction:column;gap:2px}
         .admu-when .k{color:var(--ink-3);text-transform:uppercase;font-size:10px;letter-spacing:.1em}
         .admu-when .d{color:var(--ink-3)}
+        /* ── The courses, set like the rest of the site: paper, hairlines,
+           Old Standard for the heads and Literata for the text, the rubric
+           red for what matters. The old rounded white cards, tinted boxes
+           and soft shadows are gone — a grammar is a printed thing. ── */
+        .crs-body{max-width:760px;gap:0}
+        .crs-body>.sti{margin:10px 0 6px}
+        .crs-body>.sde{margin:0 0 18px;max-width:none;font-family:var(--serif);font-size:16.5px;line-height:1.6;color:var(--ink-2)}
+        .crs-back{font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin:6px 0 2px}
+        .crs-back:hover{color:var(--rubric)}
+        .crs-kicker{font-family:var(--sans);font-size:11px;letter-spacing:.16em;color:var(--ink-3);margin-top:14px}
+        /* The shelf of courses. */
+        .crs-list{grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:22px 18px;margin-top:8px}
+        .crs-card{padding:0 0 14px;border:0;border-bottom:1px solid var(--rule);border-radius:0;background:transparent;gap:6px;transition:none}
+        .crs-card:hover{box-shadow:none;transform:none;border-bottom-color:var(--ink)}
+        .crs-card:hover .crs-card-t{color:var(--rubric)}
+        .crs-card-img{height:150px;margin:0 0 8px;border-radius:0;border:1px solid var(--rule-soft);filter:saturate(.92) contrast(1.03)}
+        .crs-card.has-img .crs-mark{position:absolute;top:0;left:0;margin:8px 10px;font-size:28px}
+        .crs-card:not(.has-img){padding-top:14px;border-top:1px solid var(--rule)}
+        .crs-mark{font-family:var(--display);font-size:24px;color:var(--rubric);line-height:1}
+        .crs-card-t{font-family:var(--display);font-size:22px;line-height:1.15;color:var(--ink);transition:color .12s}
+        .crs-card-b{font-family:var(--serif);font-size:14px;line-height:1.5;color:var(--ink-2)}
+        .crs-card-n,.crs-prog span{font-family:var(--sans);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+        .crs-bar{height:2px;border-radius:0;background:var(--rule-soft)}
+        .crs-bar-in{background:var(--rubric);border-radius:0}
+        .crs-prog{gap:6px;max-width:none;margin:2px 0 10px}
+        /* The contents of a course: a numbered table of contents. */
+        .crs-secs{gap:0;margin:4px 0 0;border-top:1px solid var(--rule)}
+        .crs-sec{gap:16px;padding:12px 4px;border:0;border-bottom:1px solid var(--rule-soft);border-radius:0;background:transparent;align-items:baseline}
+        .crs-sec:hover{border-color:var(--rule-soft);background:var(--paper-3)}
+        .crs-sec:hover .crs-sec-t{color:var(--rubric)}
+        .crs-sec-n{flex:0 0 30px;height:auto;border-radius:0;background:transparent!important;font-family:var(--display);font-size:17px;color:var(--ink-3)!important;justify-content:flex-start;font-variant-numeric:tabular-nums}
+        .crs-sec.started .crs-sec-n{color:var(--ink)!important}
+        .crs-sec.done .crs-sec-n{color:var(--rubric)!important}
+        .crs-sec-n.pf{color:var(--rubric)!important}
+        .crs-sec-t{font-family:var(--serif);font-size:17px;color:var(--ink);gap:2px;transition:color .12s}
+        .crs-sec-s{font-size:13px;color:var(--ink-3)}
+        .crs-sec-r{font-family:var(--sans);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-variant-numeric:tabular-nums}
+        .crs-sec.pr{margin-left:30px;width:calc(100% - 30px);font-size:1em;padding:9px 4px}
+        .crs-sec.pr .crs-sec-t{font-size:15.5px;color:var(--ink-2)}
+        /* The lesson. */
+        .crs-lesson{gap:0;margin-top:10px}
+        .crs-lesson>*+*{margin-top:14px}
+        .crs-lesson>.crs-h{margin-top:34px}
+        .crs-lesson>.crs-h:first-child{margin-top:12px}
+        .crs-h{font-family:var(--display);font-size:25px;font-weight:400;line-height:1.2;color:var(--ink);margin:0;padding-top:12px;position:relative}
+        .crs-h::before{content:"";position:absolute;top:0;left:0;width:34px;border-top:2px solid var(--rubric)}
+        .crs-formula{font-family:var(--display);font-size:42px;font-weight:400;line-height:1.08;letter-spacing:0;color:var(--rubric);margin:12px 0 0;padding:0 0 12px;border-bottom:1px solid var(--ink)}
+        .crs-formula .rw{border-bottom:0}
+        .crs-lead{font-family:var(--serif);font-size:21px;font-weight:600;line-height:1.4;color:var(--ink);margin:0}
+        .crs-lesson>.crs-formula+.crs-lead{margin-top:16px}
+        .crs-p{font-family:var(--serif);font-size:17px;line-height:1.7;color:var(--ink);margin:0}
+        .crs-p b,.crs-lead b,.crs-ul b{font-weight:600;color:var(--ink)}
+        .crs-ul{padding-left:1.3em;font-family:var(--serif);font-size:16.5px;line-height:1.65;color:var(--ink)}
+        .crs-ul li+li{margin-top:5px}
+        .crs-ul li::marker{color:var(--rubric)}
+        .crs-note{font-family:var(--serif);font-size:15.5px;line-height:1.6;color:var(--ink-2);padding:12px 0 12px 18px;border:0;border-left:1px solid var(--rubric);border-radius:0;background:transparent;font-style:italic}
+        .crs-note::before{content:"Note";display:block;font-family:var(--sans);font-style:normal;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--rubric);margin-bottom:4px}
+        .crs-note b,.crs-note i{font-style:normal}
+        .crs-exs{gap:7px;padding:4px 0 4px 18px;border-left:1px solid var(--rule);border-radius:0;background:transparent}
+        .crs-exl{gap:2px 14px;font-family:var(--serif);font-size:17.5px;color:var(--ink);line-height:1.5}
+        .crs-exl b{font-weight:600;color:var(--rubric)}
+        .crs-exen{font-family:var(--serif);font-style:italic;font-size:14.5px;color:var(--ink-3)}
+        .crs-cap{font-family:var(--sans);font-size:10.5px;letter-spacing:.14em;color:var(--ink-3);margin-bottom:8px}
+        .crs-t{width:100%;min-width:0;font-family:var(--serif);font-size:16px;color:var(--ink);border-top:1px solid var(--ink)}
+        .crs-t th{font-family:var(--sans);font-size:10.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);padding:8px 10px 7px;border-bottom:1px solid var(--rule)}
+        .crs-t tbody th{font-family:var(--sans);font-size:11px;letter-spacing:.08em;color:var(--ink-2);border-bottom:1px solid var(--rule-soft);vertical-align:top;padding-top:9px}
+        .crs-t td{padding:7px 10px;border-bottom:1px solid var(--rule-soft);line-height:1.5}
+        .crs-t tr:last-child td,.crs-t tr:last-child th{border-bottom:1px solid var(--ink)}
+        .crs-t b{color:var(--rubric);font-weight:600}
+        .crs-t td:first-child:not(th){white-space:nowrap}
+        /* Tappable words: the book's faint dotted line, quieter still here
+           where almost every word is Russian, and the rubric on hover. */
+        .crs-body .rw{border-bottom:1px dotted var(--ink-4);cursor:pointer}
+        .crs-body .rw:hover{color:var(--rubric);border-bottom-color:var(--rubric)}
+        .crs-t .rw,.crs-exl .rw,.crs-fill .rw,.crs-say .rw{border-bottom-color:transparent}
+        .crs-t .rw:hover,.crs-exl .rw:hover,.crs-fill .rw:hover,.crs-say .rw:hover{border-bottom-color:var(--rubric)}
+        @media(hover:none){.crs-t .rw,.crs-exl .rw,.crs-fill .rw,.crs-say .rw{border-bottom-color:var(--ink-4)}}
+        /* The exercises. */
+        .crs-exw{gap:0;margin-top:34px;padding-top:0;border-top:0}
+        .crs-exw>.crs-h{margin:0}
+        .crs-exi{font-family:var(--serif);font-size:15px;color:var(--ink-3);margin:8px 0 10px}
+        .crs-q{gap:16px;padding:18px 0 20px;border:0;border-top:1px solid var(--rule-soft);border-radius:0;background:transparent;transition:none}
+        .crs-q:first-of-type{border-top:1px solid var(--rule)}
+        .crs-q.ok{background:transparent;border-color:var(--rule-soft)}
+        .crs-qn{flex:0 0 30px;font-family:var(--display);font-size:18px;color:var(--ink-3);padding-top:4px;font-variant-numeric:tabular-nums}
+        .crs-q.ok .crs-qn{color:var(--rubric)}
+        .crs-qb{gap:10px}
+        .crs-ctx{font-family:var(--serif);font-style:italic;font-size:14.5px;line-height:1.55;color:var(--ink-2);border-left:1px solid var(--rule);padding:1px 0 1px 12px;margin-bottom:0}
+        .crs-qt{font-family:var(--serif);font-size:16.5px;line-height:1.55;color:var(--ink)}
+        .crs-qru{font-family:var(--serif);font-size:19px;line-height:1.5;color:var(--ink)}
+        .crs-say{font-family:var(--serif);font-size:22px;line-height:1.4;color:var(--ink);margin:0}
+        .crs-fill{gap:4px 8px;font-family:var(--serif);font-size:19px;line-height:1.9;color:var(--ink)}
+        .crs-in{font-family:var(--serif);font-size:18px;padding:0 6px 1px;border:0;border-bottom:1.5px solid var(--ink);border-radius:0;background:transparent;color:var(--ink);min-width:3.5ch}
+        .crs-in:focus{border-bottom-color:var(--rubric);background:var(--paper-3)}
+        .crs-in.ok{border-bottom-color:#2e6e50;background:transparent;color:#1d5a37}
+        .crs-in.bad,.crs-stream .crs-in.bad{border-bottom:1.5px solid var(--rubric);background:var(--rubric-soft);color:var(--rubric);box-shadow:none}
+        .crs-chk,.crs-retry{font-family:var(--sans);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;padding:7px 12px 6px;border:1px solid var(--ink);border-radius:0;background:transparent;color:var(--ink);cursor:pointer;line-height:1;transition:background .12s,color .12s}
+        .crs-chk:hover,.crs-retry:hover{background:var(--ink);color:var(--paper)}
+        .crs-retry{margin-left:14px}
+        .crs-tick{color:#2e6e50;font-size:19px}
+        .crs-x{color:var(--rubric);font-size:22px;margin-left:4px}
+        .crs-hint{font-family:var(--serif);font-style:italic;font-size:14px;color:var(--ink-3)}
+        .crs-show{font-family:var(--sans);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--rubric);text-decoration:none;border-bottom:1px solid var(--rubric)}
+        .crs-ans{font-family:var(--serif);font-size:15px;color:var(--ink-2)}
+        .crs-ans b{color:var(--rubric);font-weight:600}
+        .crs-why{font-family:var(--serif);font-size:15px;line-height:1.55;color:var(--ink-2);padding:2px 0 2px 12px;border-left:1px solid var(--rubric);border-radius:0;background:transparent}
+        .crs-opts{gap:8px 8px;margin-top:2px}
+        .crs-opt{font-family:var(--serif);font-size:16.5px;padding:7px 14px;border:1px solid var(--rule);border-radius:0;background:var(--paper-3);color:var(--ink);transition:border-color .12s,background .12s}
+        .crs-opt:hover:not(:disabled){border-color:var(--ink)}
+        .crs-opt.ok{background:#2e6e50;border-color:#2e6e50;color:#f6efe2}
+        .crs-opt.bad{background:transparent;border-color:var(--rubric);color:var(--rubric);text-decoration:line-through;text-decoration-color:var(--rubric)}
+        .crs-opt:disabled:not(.ok){opacity:.5}
+        .crs-score{font-family:var(--sans);font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:14px 0;border-top:1px solid var(--ink);border-bottom:1px solid var(--rule-soft);border-radius:0;background:transparent;color:var(--ink-2);margin-top:4px;display:flex;flex-wrap:wrap;align-items:center;gap:8px 0}
+        .crs-score.done{background:transparent;color:var(--rubric);border-top-color:var(--rubric)}
+        .crs-stream-top{margin:14px 0 0;padding-bottom:8px;border-bottom:1px solid var(--rule)}
+        .crs-stream-tally{font-family:var(--sans);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+        .crs-stream .crs-q{border-top:0;padding-top:16px}
+        .crs-nav{margin-top:22px;padding-top:16px;border-top:1px solid var(--rule-soft)}
+        .crs-nav .btn-p{width:auto;padding:12px 22px}
+        .crs-credit{font-family:var(--sans);font-size:10.5px;letter-spacing:.06em;line-height:1.6;color:var(--ink-3);margin-top:28px;padding-top:10px;border-top:1px solid var(--rule-soft)}
+        .crs-credit a{color:var(--ink-2)}
+        .clk-b{border-radius:0;border-color:var(--rule);background:var(--paper-3);font-family:var(--sans)}
+        .clk-lab{font-family:var(--sans);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+        .crs-body .lib-cat-hint{font-family:var(--serif);font-style:italic;color:var(--ink-3)}
+        @media (max-width:560px){
+          .crs-formula{font-size:31px}.crs-lead{font-size:18.5px}.crs-h{font-size:22px}.crs-p{font-size:16.5px}
+          .crs-q{gap:10px}.crs-qn{flex-basis:22px;font-size:16px}.crs-sec{gap:10px}.crs-sec-n{flex-basis:24px}
+          .crs-list{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:18px 14px}.crs-card-img{height:110px}.crs-card-t{font-size:19px}
+        }
+        .admu-courses{border:1px solid var(--rule);background:var(--paper);margin:0 0 14px;padding:0}
+        .admu-courses>summary{cursor:pointer;padding:9px 12px;font-family:var(--sans);font-size:12px;letter-spacing:.08em;
+          text-transform:uppercase;color:var(--ink)}
+        .admu-courses>summary .d{text-transform:none;letter-spacing:0;color:var(--ink-3)}
+        .admu-ct{padding:0 12px 10px;font-family:var(--sans);font-size:12.5px;color:var(--ink-2)}
+        .admu-ctr{display:grid;grid-template-columns:minmax(0,2.4fr) repeat(5,minmax(0,.8fr));gap:6px;padding:5px 0;
+          border-top:1px solid var(--rule);font-variant-numeric:tabular-nums;align-items:baseline}
+        .admu-ctr span:not(.t):not(:first-child){text-align:right}
+        .admu-ctr.h{font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-3);border-top:0}
+        .admu-ctr.none{opacity:.45}
+        .admu-ctr .t{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--ink)}
+        .admu-ctr .t i{color:var(--ink-3);font-style:normal}
         .admu-stats{display:flex;flex-wrap:wrap;gap:4px 14px;font-family:var(--sans);font-size:12px;color:var(--ink-2)}
         .admu-st b{color:var(--ink);font-weight:600}
         .admu-badges{display:flex;flex-wrap:wrap;gap:4px;align-items:center}
@@ -19615,6 +19759,7 @@ export default function App() {
                   joined: function(u){ return u.createdAt || 0; }, logins: function(u){ return u.loginCount || 0; },
                   words: function(u){ return st(u, "words"); }, books: function(u){ return st(u, "read"); },
                   learned: function(u){ return st(u, "learned"); }, reviewed: function(u){ return st(u, "reviewed"); },
+                  courses: function(u){ return (u.courses && u.courses.right) || 0; },
                   badges: function(u){ return (u.badges && u.badges.n) || 0; },
                 };
                 var kf = keyOf[admSort] || keyOf.seen;
@@ -19622,12 +19767,18 @@ export default function App() {
                 // Site pulse over the whole list, before the filter.
                 var act = function(days){ return adminUsers.filter(function(u){ return seenOf(u) > now - days * DAY; }).length; };
                 var sum = function(k){ return adminUsers.reduce(function(n, u){ return n + st(u, k); }, 0); };
+                var csum = function(k){ return adminCourses.reduce(function(n, c){ return n + (c[k] || 0); }, 0); };
+                var courseTable = adminCourses.slice().sort(function(a, b){ return (b.readers - a.readers) || (b.right - a.right); });
                 var joined7 = adminUsers.filter(function(u){ return (u.createdAt || 0) > now - 7 * DAY; }).length;
                 var pulse = [
                   [act(1), "active today"], [act(7), "active this week"], [act(30), "active this month"],
                   [joined7, "joined this week"], [fmtInt(sum("words")), "words read, all readers"],
                   [fmtInt(sum("read")), "books finished"], [fmtInt(sum("learned")), "words learned"],
                   [fmtInt(sum("reviewed")), "cards reviewed"],
+                  [adminUsers.filter(function(u){ return u.courses && u.courses.started > 0; }).length, "readers in a course"],
+                  [fmtInt(csum("lessons")), "course lessons finished"],
+                  [fmtInt(csum("right")), "course answers right"],
+                  [csum("finished"), "courses finished"],
                 ];
                 return (
                   <>
@@ -19636,6 +19787,26 @@ export default function App() {
                         return <div key={i} className="admu-pulse-c"><span className="n">{p[0]}</span><span className="l">{p[1]}</span></div>;
                       })}
                     </div>
+                    {courseTable.length > 0 && (
+                      <details className="admu-courses" open>
+                        <summary>Courses <span className="d">· who is taking each, and how far they get</span></summary>
+                        <div className="admu-ct">
+                          <div className="admu-ctr h"><span>Course</span><span>Readers</span><span>Finished</span><span>Lessons</span><span>Right</span><span>First try</span></div>
+                          {courseTable.map(function(c){
+                            return (
+                              <div key={c.id} className={"admu-ctr" + (c.readers ? "" : " none")}>
+                                <span className="t" title={c.title}>{c.title}{c.repeat ? <i> · repeatable</i> : null}</span>
+                                <span>{c.readers}</span>
+                                <span>{c.repeat ? "—" : c.finished}</span>
+                                <span>{c.lessons}</span>
+                                <span>{fmtInt(c.right)}</span>
+                                <span>{c.firstOf ? Math.round(c.first / c.firstOf * 100) + "%" : "—"}</span>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </details>
+                    )}
                     <div className="admu-tools">
                       <input className="admu-q" type="search" placeholder="Search email or username"
                         value={admQ} onChange={function(e){ setAdmQ(e.target.value); }} />
@@ -19648,6 +19819,7 @@ export default function App() {
                         <option value="books">Books finished</option>
                         <option value="learned">Words learned</option>
                         <option value="reviewed">Cards reviewed</option>
+                        <option value="courses">Course answers</option>
                         <option value="badges">Badges</option>
                       </select>
                       <select className="admu-sel" value={admFilter} onChange={function(e){ setAdmFilter(e.target.value); }} aria-label="Show">
@@ -19697,6 +19869,9 @@ export default function App() {
                             {stat(fmtInt(st(u, "reviewed")), "cards")}
                             {stat(st(u, "drills"), "drills right")}
                             {stat(st(u, "songs"), "songs")}
+                            {u.courses && u.courses.started > 0 && stat(u.courses.started, u.courses.started === 1 ? "course" : "courses")}
+                            {u.courses && u.courses.right > 0 && stat(fmtInt(u.courses.right), "course answers")}
+                            {u.courses && u.courses.finished > 0 && stat(u.courses.finished, "finished")}
                           </div>
                           {u.badges && u.badges.n > 0 && (
                             <div className="admu-badges" title={u.badges.top.map(function(b){ return b.title; }).join(", ")}>
@@ -20216,6 +20391,38 @@ export default function App() {
                     </>
                   );
                 }
+                if (adminDetailView === "courses") {
+                  var cl = d.courses || [];
+                  return (
+                    <>
+                      <div style={{display:"flex",alignItems:"center",gap:10}}>
+                        <button className="adm-btn" onClick={function(){ setAdminDetailView(""); }}>← Back</button>
+                        <span className="admd-s">
+                          {d.counts.coursesStarted || 0} course{(d.counts.coursesStarted || 0) === 1 ? "" : "s"} started ·
+                          {" "}{d.counts.courseLessons || 0} lessons finished · {d.counts.courseRight || 0} answers right
+                        </span>
+                      </div>
+                      {!cl.length && <div className="adm-empty">No course started.</div>}
+                      {cl.map(function(c){
+                        return (
+                          <div key={c.id} className="admd-row">
+                            <div>
+                              <div className="admd-t">{c.title}</div>
+                              <div className="admd-s">
+                                {c.repeat ? c.started + " of " + c.sections + " sections opened"
+                                          : c.done + " of " + c.of + " lessons finished"}
+                                {" · "}{c.right} answers right
+                                {c.firstOf ? " · " + Math.round(c.first / c.firstOf * 100) + "% at the first try" : ""}
+                                {c.perfect ? " · " + c.perfect + " without a mistake" : ""}
+                                {" · last "}{when(c.last)}
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </>
+                  );
+                }
                 if (adminDetailView === "drills") {
                   var dl = d.drillBooks || [];
                   return (
@@ -20366,6 +20573,15 @@ export default function App() {
                           {(d.recorded && !d.recorded.songs) ? <span className="unrec">—</span> : (d.counts.songPlays || 0)}
                         </span>
                         <span className="l">times played</span>
+                      </div>
+                      <button className="admd-stat" disabled={!(d.courses || []).length}
+                        onClick={function(){ setAdminDetailView("courses"); }}>
+                        <span className="n">{d.counts.coursesStarted || 0}</span>
+                        <span className="l">courses started</span>
+                      </button>
+                      <div className="admd-stat still">
+                        <span className="n">{d.counts.courseRight || 0}</span>
+                        <span className="l">course answers right</span>
                       </div>
                       <button className="admd-stat" disabled={!(d.drillBooks || []).length}
                         onClick={function(){ setAdminDetailView("drills"); }}
@@ -25150,12 +25366,26 @@ export default function App() {
           <div className="main">
             <div className="ss crs-wrap crs-scroll">
               {(function(){
-                // Light markup in lesson text: **bold**, *italic*.
-                var rich = function(t) {
+                // Every Russian word in a lesson is a word the reader may not
+                // know, so each is tappable for its definition, as in a book.
+                // The stress mark (U+0301) travels with its word; a hyphenated
+                // word is two taps, since the dictionary holds its halves.
+                var tappable = function(t, key) {
+                  return String(t).split(/([\u0430-\u044f\u0410-\u042f\u0451\u0401\u0301]+)/).map(function(p, i){
+                    if (!p) return null;
+                    if (/^[\u0430-\u044f\u0410-\u042f\u0451\u0401]/.test(p.replace(/\u0301/g, "")) && p.replace(/\u0301/g, "").length > 1)
+                      return <span key={key + "." + i} className="rw" onClick={function(e){ defWord(p, e); }}>{p}</span>;
+                    return <Fragment key={key + "." + i}>{p}</Fragment>;
+                  });
+                };
+                // Light markup in lesson text: **bold**, *italic*. `plain` keeps
+                // the words inert — on an answer button a tap must choose, not define.
+                var rich = function(t, plain) {
+                  var w = plain ? function(x, k){ return x; } : tappable;
                   return String(t || "").split(/(\*\*[^*]+\*\*|\*[^*]+\*)/).map(function(part, i){
-                    if (/^\*\*[^*]+\*\*$/.test(part)) return <b key={i}>{part.slice(2, -2)}</b>;
-                    if (/^\*[^*]+\*$/.test(part)) return <i key={i}>{part.slice(1, -1)}</i>;
-                    return <Fragment key={i}>{part}</Fragment>;
+                    if (/^\*\*[^*]+\*\*$/.test(part)) return <b key={i}>{w(part.slice(2, -2), i)}</b>;
+                    if (/^\*[^*]+\*$/.test(part)) return <i key={i}>{w(part.slice(1, -1), i)}</i>;
+                    return <Fragment key={i}>{w(part, i)}</Fragment>;
                   });
                 };
                 var course = crsCourse && COURSE_OUTLINE.filter(function(c){ return c.id === crsCourse; })[0];
@@ -25333,7 +25563,7 @@ export default function App() {
                         <div className="crs-qb">
                           {ctx}
                           {e.prompt && <div className="crs-qt">{rich(e.prompt)}</div>}
-                          <div className="crs-say" lang="ru">{e.q}</div>
+                          <div className="crs-say" lang="ru">{rich(e.q)}</div>
                           <ClockFace value={typed} readOnly={es.status === "right"}
                             state={es.status === "right" ? "ok" : es.status === "wrong" ? "bad" : ""}
                             onChange={function(v){ setEx(e.id, { txt: v, status: es.status === "right" ? "right" : "" }); }}
@@ -25386,7 +25616,7 @@ export default function App() {
                                     if (right) { setEx(e.id, { status: "right", picked: picked.concat([k]) }); noteAnswer(course.id, sec.id, e.id, true, exIds, cleanRun(e)); }
                                     else if (picked.indexOf(k) < 0) { setEx(e.id, { status: "wrong", picked: picked.concat([k]), tries: (es.tries || 0) + 1 }); noteAnswer(course.id, sec.id, e.id, false, exIds); }
                                   }}>
-                                  {cls === " ok" ? "✓ " : cls === " bad" ? "✗ " : ""}{rich(o)}
+                                  {cls === " ok" ? "✓ " : cls === " bad" ? "✗ " : ""}{rich(o, es.status !== "right")}
                                 </button>
                               );
                             })}
@@ -25471,7 +25701,7 @@ export default function App() {
                         {es.status === "wrong" && (es.tries || 0) >= 2 && !es.shown && (
                           <button type="button" className="crs-show" onClick={function(){ setEx(e.id, { shown: true }); }}>Show the answer</button>
                         )}
-                        {es.shown && es.status !== "right" && <div className="crs-ans">Answer: <b lang="ru">{e.show || (e.answers || [])[0]}</b> — type it in to finish this one.</div>}
+                        {es.shown && es.status !== "right" && <div className="crs-ans">Answer: <b lang="ru">{rich(e.show || (e.answers || [])[0])}</b> — type it in to finish this one.</div>}
                         {why}
                       </div>
                     </div>
