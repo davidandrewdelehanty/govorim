@@ -221,7 +221,7 @@ export default async function handler(req, res) {
         if (!mine) res.setHeader("Cache-Control", "public, max-age=30, s-maxage=30");
         else res.setHeader("Cache-Control", "private, max-age=0");
         return res.status(200).json({ items: (j && Array.isArray(j.items)) ? j.items.map(function (q) {
-          const o = Object.assign({}, q); delete o.owner;
+          const o = Object.assign({}, q); delete o.owner; delete o.ownerUid;
           const list = Array.isArray(q.likedBy) ? q.likedBy : [];
           o.likes = list.length; o.liked = !!(mine && list.indexOf(mine) >= 0); delete o.likedBy;
           return o;
@@ -273,6 +273,9 @@ export default async function handler(req, res) {
           end: Math.max(0, Math.floor(Number(b.end) || 0)),
           by: { name: name, avatar: avatar, guest: name.indexOf("Гость ") === 0 },
           owner: readerHash(ownerId),
+          // The account the quote belongs to, kept to deliver a like to its
+          // inbox; stripped before anything is served.
+          ownerUid: who ? who.id : "",
         };
         // The board it belongs on: the mode it was made in.
         if (b.site === "en" || b.site === "ru") item.site = b.site;
@@ -287,7 +290,7 @@ export default async function handler(req, res) {
           if (cur.items.length > QUOTES_CAP) cur.items.length = QUOTES_CAP;
           return cur;
         });
-        const out = Object.assign({}, item); delete out.owner;
+        const out = Object.assign({}, item); delete out.owner; delete out.ownerUid;
         return res.status(200).json({ ok: true, item: out });
       } catch (e) {
         return res.status(500).json({ error: "Could not share the quote." });
@@ -305,7 +308,7 @@ export default async function handler(req, res) {
         const key = who ? readerHash("u:" + who.id) : (/^[A-Za-z0-9_-]{8,64}$/.test(rid) ? readerHash("d:" + rid) : "");
         if (!key) return res.status(400).json({ error: "No reader id." });
         const id = String(b.id || "");
-        let likes = 0, liked = false;
+        let likes = 0, liked = false, ownerUid = "", quoteText = "";
         await quotesUpdate(function (cur) {
           const q = cur.items.filter(function (x) { return x.id === id; })[0];
           if (!q) return null;
@@ -314,8 +317,23 @@ export default async function handler(req, res) {
           if (at >= 0) list.splice(at, 1); else if (list.length < 5000) list.push(key);
           q.likedBy = list; q.likes = list.length;
           likes = list.length; liked = list.indexOf(key) >= 0;
+          ownerUid = q.ownerUid || ""; quoteText = q.quote || "";
           return cur;
         });
+        // A new like on an account holder's quote goes to their inbox — not
+        // their own like, and not a like taken back.
+        if (liked && ownerUid && !(who && who.id === ownerUid)) {
+          try {
+            let byName = "", byAvatar = "";
+            if (who) {
+              const acc = await findAccount(who.email).catch(function () { return null; });
+              byName = (acc && acc.username) || ""; byAvatar = (acc && acc.avatar) || "";
+            }
+            if (!byName) byName = guestName(who ? ("u:" + who.id) : ("d:" + rid));
+            await addNotice(ownerUid, { kind: "like", by: { name: byName, avatar: byAvatar }, quoteId: id,
+                                       quote: String(quoteText).slice(0, 140), from: key });
+          } catch (e) { /* the like stands even if the note does not */ }
+        }
         return res.status(200).json({ ok: true, likes: likes, liked: liked });
       } catch (e) {
         return res.status(500).json({ error: "Could not record the like." });
@@ -697,6 +715,11 @@ export default async function handler(req, res) {
   }
 
   try {
+    // /api/user-data?type=notices — the inbox alone, for a poll.
+    if (req.method === "GET" && req.query.type === "notices") {
+      const n = await r2Get(userId, "notices").catch(function () { return null; });
+      return res.status(200).json({ notices: (n && Array.isArray(n.items)) ? n.items : [], seenAt: (n && n.seenAt) || 0 });
+    }
     if (req.method === "GET") {
       // Read vocab + tips from R2
       const vocab = await r2Get(userId, "vocab");
@@ -732,6 +755,8 @@ export default async function handler(req, res) {
       const courses = await r2Get(userId, "courses");
       // The reader's daily goals (My Samovar): { words, cards, drills, course, sections, remind, notify, updatedAt }.
       const goals = await r2Get(userId, "goals");
+      // What happened to the reader while they were away: likes on their quotes.
+      const notices = await r2Get(userId, "notices").catch(function () { return null; });
 
       return res.status(200).json({
         vocab: Array.isArray(vocab) ? vocab : [],
@@ -747,6 +772,8 @@ export default async function handler(req, res) {
         readpaid: (readpaid && typeof readpaid === "object" && !Array.isArray(readpaid)) ? readpaid : {},
         courses: (courses && typeof courses === "object" && !Array.isArray(courses)) ? courses : {},
         goals: (goals && typeof goals === "object" && !Array.isArray(goals)) ? goals : null,
+        notices: (notices && Array.isArray(notices.items)) ? notices.items : [],
+        noticesSeenAt: (notices && notices.seenAt) || 0,
       });
     }
 
@@ -986,6 +1013,14 @@ export default async function handler(req, res) {
         return res.status(200).json({ ok: true });
       }
 
+      if (type === "notices") {
+        // The inbox looked at: everything up to now counts as seen.
+        let cur = null;
+        try { cur = await r2Get(userId, "notices"); } catch (e) {}
+        const next = { items: (cur && Array.isArray(cur.items)) ? cur.items : [], seenAt: Math.max((cur && cur.seenAt) || 0, Number(body.seenAt) || Date.now()) };
+        await r2Put(userId, "notices", next);
+        return res.status(200).json({ ok: true, seenAt: next.seenAt });
+      }
       if (type === "goals") {
         // The daily goals. Numbers only, within sense; the newer copy wins.
         const g = body.goals || {};
@@ -1239,6 +1274,18 @@ const QUOTES_KEY = `${PREFIX}/_stats/quotes.json`;
 const QUOTES_CAP = 5000;
 const GUEST_NOUNS = ["Сова", "Лиса", "Ворон", "Ёж", "Заяц", "Журавль", "Соловей", "Барсук", "Рысь", "Сокол",
   "Олень", "Бобр", "Филин", "Чайка", "Скворец", "Выдра", "Лось", "Синица", "Цапля", "Куница"];
+// A note into a reader's inbox: { id, kind, by, quoteId, quote, at }. The
+// same reader liking the same quote twice (off and on again) makes one note.
+// The newest hundred are kept.
+async function addNotice(uid, n) {
+  let cur = null;
+  try { cur = await r2Get(uid, "notices"); } catch (e) {}
+  const items = (cur && Array.isArray(cur.items)) ? cur.items : [];
+  const dup = items.some(function (x) { return x.kind === n.kind && x.quoteId === n.quoteId && x.from === n.from; });
+  if (dup) return;
+  items.unshift(Object.assign({ id: crypto.randomBytes(6).toString("hex"), at: Date.now() }, n));
+  await r2Put(uid, "notices", { items: items.slice(0, 100), seenAt: (cur && cur.seenAt) || 0 });
+}
 function guestName(key) {
   const h = crypto.createHash("sha256").update("samovar-guest|" + key).digest();
   return "Гость " + GUEST_NOUNS[h[0] % GUEST_NOUNS.length] + " " + (10 + (h[1] % 90));

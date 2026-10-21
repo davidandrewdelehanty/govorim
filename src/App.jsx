@@ -9179,6 +9179,7 @@ export default function App() {
         if (data.goals && typeof data.goals === "object") {
           setGoalsRaw(function(g){ return mergeGoals(g, data.goals); });
         }
+        if (Array.isArray(data.notices)) { setNotices(data.notices); setNoticesSeenAt(function(s){ return Math.max(s, data.noticesSeenAt || 0); }); }
         if (data.readpaid && typeof data.readpaid === "object") mergeReadPaid(data.readpaid);
         if (data.bibleread && typeof data.bibleread === "object") {
           setBibleRead(function(m){ return mergeBibleRead(m, data.bibleread); });
@@ -13949,6 +13950,31 @@ export default function App() {
     try { localStorage.setItem("gv_badges_unread_v1", JSON.stringify(badgeUnread)); } catch (e) {}
   }, [badgeUnread]);
   var [badgeAll, setBadgeAll] = useState(false);
+  // The inbox: likes on the reader's quotes, from the server, polled while
+  // the site is open; unread until the account page is opened.
+  var [notices, setNotices] = useState([]);
+  var [noticesSeenAt, setNoticesSeenAt] = useState(0);
+  var noticesUnread = notices.filter(function(n){ return (n.at || 0) > noticesSeenAt; });
+  useEffect(function(){
+    if (!me) { setNotices([]); setNoticesSeenAt(0); return; }
+    var poll = function(){
+      authFetch("/api/user-data?type=notices").then(function(r){ return r.ok ? r.json() : null; }).then(function(d){
+        if (!d) return;
+        setNotices(Array.isArray(d.notices) ? d.notices : []);
+        setNoticesSeenAt(function(s){ return Math.max(s, d.seenAt || 0); });
+      }).catch(function(){});
+    };
+    var t = setInterval(poll, 5 * 60000);
+    var onFocus = function(){ poll(); };
+    window.addEventListener("focus", onFocus);
+    return function(){ clearInterval(t); window.removeEventListener("focus", onFocus); };
+  }, [me && me.id]);
+  useEffect(function(){
+    if (!showAcct || !me || !noticesUnread.length) return;
+    var now = Date.now();
+    setNoticesSeenAt(now);
+    authFetch("/api/user-data?type=notices", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ seenAt: now }) }).catch(function(){});
+  }, [showAcct]);
   // Another reader's badges, opened by tapping their name: { name, avatar,
   // badges|null while loading, total }.
   var [peek, setPeek] = useState(null);
@@ -18145,6 +18171,14 @@ export default function App() {
         .crs-chk.big{font-size:12px;letter-spacing:.18em;padding:12px 34px 11px;border-width:1.5px}
         .crs-stream .crs-chk-row{margin-top:16px}
         @media (max-width:560px){.crs-q.ok,.crs-q.bad{padding-left:10px;padding-right:10px;margin-left:-6px;margin-right:-6px}.crs-stream .crs-q.ok,.crs-stream .crs-q.bad{padding:14px 10px 8px;margin:0 -10px}.crs-chk.big{width:100%}}
+        /* The inbox on the account page. */
+        .acct-inbox{margin-bottom:8px}
+        .acct-inbox-new{color:var(--rubric);text-transform:none;letter-spacing:0}
+        .acct-notice{display:flex;gap:10px;align-items:flex-start;padding:9px 6px;border-bottom:1px solid var(--rule-soft);cursor:pointer}
+        .acct-notice.fresh{background:var(--rubric-soft)}
+        .acct-notice-t{font-family:var(--serif);font-size:15px;color:var(--ink)}
+        .acct-notice-q{font-family:var(--serif);font-style:italic;font-size:14px;color:var(--ink-2);margin-top:2px}
+        .acct-notice-w{font-family:var(--sans);font-size:10.5px;letter-spacing:.08em;color:var(--ink-3);margin-top:3px}
         /* A like on a shared quote. */
         .fq{position:relative}
         .fq-like{position:absolute;right:12px;bottom:10px;display:inline-flex;align-items:center;gap:5px;background:none;border:0;padding:4px 6px;cursor:pointer;
@@ -19677,6 +19711,31 @@ export default function App() {
             </div>
             <div className="adm-body acct-body">
               {acctNeed && <div className="acct-need">{acctNeed}</div>}
+              {notices.length > 0 && (function(){
+                // The inbox: the newest at the top, the unread ones marked.
+                var seenCut = noticesSeenAt;
+                var list = notices.slice(0, 30);
+                return (
+                  <div className="acct-list acct-inbox">
+                    <div className="acct-sub">Likes on your quotes{noticesUnread.length ? <span className="acct-inbox-new"> · {noticesUnread.length} new</span> : null}</div>
+                    {list.map(function(n){
+                      var fresh = (n.at || 0) > seenCut;
+                      return (
+                        <div key={n.id} className={"acct-notice" + (fresh ? " fresh" : "")}
+                          role="button" tabIndex={0} title="Open the Quotes tab"
+                          onClick={function(){ setShowAcct(false); setTab("quotes"); }}>
+                          <Avatar id={(n.by && n.by.avatar) || ""} name={(n.by && n.by.name) || ""} size={22} />
+                          <div className="acct-notice-b">
+                            <div className="acct-notice-t"><b>{(n.by && n.by.name) || "Someone"}</b> liked your quote!</div>
+                            {n.quote && <div className="acct-notice-q" lang="ru">«{n.quote}»</div>}
+                            <div className="acct-notice-w">{n.at ? new Date(n.at).toLocaleString(undefined, { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" }) : ""}</div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                );
+              })()}
               {(function(){
                 // Everything below comes from the records already on this
                 // page — the same ones the reading-record panel draws and the
@@ -21617,10 +21676,11 @@ export default function App() {
                   }}>
                   <span className="acct-av-wrap">
                     <Avatar id={me.avatar} name={me.username || me.email} size={26} />
-                    {badgeUnread.length > 0 && (
-                      <span className="acct-dot" title={badgeUnread.length + " new " + (badgeUnread.length === 1 ? "badge" : "badges")}
-                            aria-label={badgeUnread.length + " new badges"}>{badgeUnread.length > 9 ? "9+" : badgeUnread.length}</span>
-                    )}
+                    {(badgeUnread.length + noticesUnread.length) > 0 && (function(){
+                      var n = badgeUnread.length + noticesUnread.length;
+                      var what = [noticesUnread.length ? noticesUnread.length + (noticesUnread.length === 1 ? " like" : " likes") : "", badgeUnread.length ? badgeUnread.length + (badgeUnread.length === 1 ? " new badge" : " new badges") : ""].filter(Boolean).join(", ");
+                      return <span className="acct-dot" title={what} aria-label={what}>{n > 9 ? "9+" : n}</span>;
+                    })()}
                   </span>
                   <span className="acct-email">{me.username || me.email}</span>
                 </button>
