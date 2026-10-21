@@ -6364,6 +6364,10 @@ export default function App() {
   // is reopened — the record is in courseProg; this notes which section has
   // been seeded from it, so it is done once per opening.
   var [crsSeeded, setCrsSeeded] = useState("");
+  // The ones you missed, asked again before the next page: { key, ids, n }
+  // — the section, the exercises in this round, the round's number — and
+  // done once a round goes through with no miss.
+  var [crsMissed, setCrsMissed] = useState(null);
   // The Courses tab's groups — Beginner, Intermediate, Advanced, Dates and
   // Times — and which of them stand open.
   var [crsGroupOpen, setCrsGroupOpen] = useState(function(){
@@ -6404,7 +6408,7 @@ export default function App() {
       .catch(function(){ setCrsData(function(m){ var n = Object.assign({}, m); n[k] = "error"; return n; }); });
   };
   var openSection = function(cid, sid) {
-    setCrsCourse(cid); setCrsSec(sid); setExState({}); setCrsView("read"); setCrsSeeded("");
+    setCrsCourse(cid); setCrsSec(sid); setExState({}); setCrsView("read"); setCrsSeeded(""); setCrsMissed(null);
     try { var lm = JSON.parse(localStorage.getItem("crsLast") || "{}"); lm[cid] = sid; localStorage.setItem("crsLast", JSON.stringify(lm)); } catch (x) {}
     try { var sc = document.querySelector(".crs-scroll"); if (sc) sc.scrollTop = 0; window.scrollTo(0, 0); } catch (x) {}
     // A practice stream is dealt anew every time it is opened.
@@ -18082,6 +18086,12 @@ export default function App() {
         .crs-meaning-term{font-size:17px;color:var(--ink);font-weight:600}
         .crs-meaning-term::after{content:"—";margin-left:10px;color:var(--ink-3);font-weight:400}
         @media (max-width:560px){.crs-match{grid-template-columns:1fr;gap:10px}.crs-term{font-size:16px}}
+        /* The missed round, and the wait before the next page. */
+        .crs-missed{margin-top:26px;padding:18px 20px 10px;border:1px solid var(--rubric);background:var(--paper-3)}
+        .crs-missed>.crs-h{margin:0}
+        .crs-missed>.crs-h::before{border-top-color:var(--rubric)}
+        .crs-missed-done{font-family:var(--sans);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#2e6e50;padding:12px 0 4px}
+        .crs-next-wait{font-family:var(--serif);font-style:italic;font-size:15px;color:var(--ink-3);text-align:right;max-width:420px}
         /* The exam: the questions in one list, a chapter name over each, the
            mark at the end. */
         .crs-exam{margin-top:22px}
@@ -26212,6 +26222,9 @@ export default function App() {
                   );
                   return <Fragment key={i}>{paragraph(b.text, "p" + i)}</Fragment>;
                 };
+                // An exercise asked again in the missed round is a copy (`review`)
+                // and keeps no record: the record is the first time through.
+                var noteEx = function(e, ok, ids, clean) { if (e.review) return; noteAnswer(course.id, sec.id, e.id, ok, ids, clean); };
                 var exercise = function(e, n) {
                   var es = exState[e.id] || {};
                   var why = (es.status === "right" || (es.tries || 0) >= 2 || es.shown) && e.why ? <div className="crs-why">{rich(e.why)}</div> : null;
@@ -26247,7 +26260,7 @@ export default function App() {
                       if (!cur) { setEx(e.id, { status: "wrong", tries: (es.tries || 0) + 1 }); return; }
                       var ok = fmtClk(cur.h, cur.m) === e.hhmm;
                       setEx(e.id, ok ? { status: "right", txt: e.hhmm } : { status: "wrong", tries: (es.tries || 0) + 1 });
-                      noteAnswer(course.id, sec.id, e.id, ok, exIds, ok && cleanRun(e));
+                      noteEx(e, ok, exIds, ok && cleanRun(e));
                     };
                     return (
                       <div key={e.id} className={"crs-q" + (es.status === "right" ? " ok" : es.status === "wrong" ? " bad" : "")}>
@@ -26305,11 +26318,11 @@ export default function App() {
                       var done = Object.keys(nm).length === pairs.length;
                       if (!done) { setEx(e.id, { map: nm, sel: null, status: "" }); return; }
                       var wrong = Object.keys(nm).filter(function(t){ return nm[t] !== +t; });
-                      if (!wrong.length) { setEx(e.id, { map: nm, sel: null, status: "right" }); noteAnswer(course.id, sec.id, e.id, true, exIds, cleanRun(e)); }
+                      if (!wrong.length) { setEx(e.id, { map: nm, sel: null, status: "right" }); noteEx(e, true, exIds, cleanRun(e)); }
                       else {
                         wrong.forEach(function(t){ delete nm[t]; });
                         setEx(e.id, { map: nm, sel: null, status: "wrong", tries: (es.tries || 0) + 1, shook: wrong.map(Number) });
-                        noteAnswer(course.id, sec.id, e.id, false, exIds);
+                        noteEx(e, false, exIds);
                       }
                     };
                     return (
@@ -26375,8 +26388,8 @@ export default function App() {
                                   disabled={es.status === "right"}
                                   onClick={function(){
                                     if (es.status === "right") return;
-                                    if (right) { setEx(e.id, { status: "right", picked: picked.concat([k]) }); noteAnswer(course.id, sec.id, e.id, true, exIds, cleanRun(e)); }
-                                    else if (picked.indexOf(k) < 0) { setEx(e.id, { status: "wrong", picked: picked.concat([k]), tries: (es.tries || 0) + 1 }); noteAnswer(course.id, sec.id, e.id, false, exIds); }
+                                    if (right) { setEx(e.id, { status: "right", picked: picked.concat([k]) }); noteEx(e, true, exIds, cleanRun(e)); }
+                                    else if (picked.indexOf(k) < 0) { setEx(e.id, { status: "wrong", picked: picked.concat([k]), tries: (es.tries || 0) + 1 }); noteEx(e, false, exIds); }
                                   }}>
                                   {cls === " ok" ? "✓ " : cls === " bad" ? "✗ " : ""}{rich(o, es.status !== "right")}
                                 </button>
@@ -26401,7 +26414,7 @@ export default function App() {
                       var same = vals.every(function(x){ return x === vals[0]; });
                       var ok2 = (e.answers || []).some(function(a){ return normAns(a) === joined || (same && normAns(a) === vals[0]); });
                       setEx(e.id, ok2 ? { status: "right" } : { status: "wrong", tries: (es.tries || 0) + 1 });
-                      noteAnswer(course.id, sec.id, e.id, ok2, exIds, ok2 && cleanRun(e));
+                      noteEx(e, ok2, exIds, ok2 && cleanRun(e));
                       return;
                     }
                     var v = normAns(es.val);
@@ -26424,7 +26437,7 @@ export default function App() {
                       return false;
                     });
                     setEx(e.id, ok ? { status: "right" } : { status: "wrong", tries: (es.tries || 0) + 1 });
-                    noteAnswer(course.id, sec.id, e.id, ok, exIds, ok && cleanRun(e));
+                    noteEx(e, ok, exIds, ok && cleanRun(e));
                   };
                   var fieldAt = function(k) {
                     var many = nBlank > 1;
@@ -26699,12 +26712,39 @@ export default function App() {
                             <h2 className="crs-h">Exercises</h2>
                             <p className="crs-p crs-exi">Pick the answer, or type it and press Enter. Green is right, red is not — try again until it is.</p>
                             {exs.map(exercise)}
+                            {(function(){
+                              // Every exercise answered: the ones missed on the way come back,
+                              // round after round, until a round goes through clean.
+                              if (!allRight) return null;
+                              var missedNow = function(list){ return list.filter(function(e){ var x = exState[e.id] || {}; return (x.tries || 0) > 0 || x.shown; }); };
+                              var mr = crsMissed && crsMissed.key === key ? crsMissed : null;
+                              if (!mr) {
+                                var first = missedNow(exs);
+                                if (!first.length) return null;
+                                setTimeout(function(){ setCrsMissed({ key: key, ids: first.map(function(e){ return e.id; }), n: 1, done: false }); }, 0);
+                                return null;
+                              }
+                              if (mr.done) return <div className="crs-missed-done">Every one you missed is now right ✓</div>;
+                              var roundExs = mr.ids.map(function(id){ var e = exs.filter(function(x){ return x.id === id; })[0]; return e ? Object.assign({}, e, { id: id + "~r" + mr.n, review: true, base: id }) : null; }).filter(Boolean);
+                              var roundDone = roundExs.every(function(e){ return (exState[e.id] || {}).status === "right"; });
+                              if (roundDone) {
+                                var again = missedNow(roundExs).map(function(e){ return e.base; });
+                                setTimeout(function(){ setCrsMissed(again.length ? { key: key, ids: again, n: mr.n + 1, done: false } : Object.assign({}, mr, { done: true })); }, 0);
+                              }
+                              return (
+                                <div className="crs-missed">
+                                  <h2 className="crs-h">Once more: the {roundExs.length === 1 ? "one" : roundExs.length} you missed{mr.n > 1 ? " · round " + mr.n : ""}</h2>
+                                  <p className="crs-p crs-exi">The next page waits until these go through without a mistake.</p>
+                                  {roundExs.map(exercise)}
+                                </div>
+                              );
+                            })()}
                             <div className={"crs-score" + (allRight ? " done" : "")}>
                               {allRight && rec.perfect
                                 ? <>Perfect ★ · every exercise right without a mistake</>
                                 : allRight
                                 ? <>Section finished ✓ · {firstRight} of {exs.length} right at the first try
-                                    <button type="button" className="crs-retry" onClick={function(){ setExState({}); try { var el = document.querySelector(".crs-exw"); if (el) el.scrollIntoView({ block: "start" }); } catch (er) {} }}>
+                                    <button type="button" className="crs-retry" onClick={function(){ setExState({}); setCrsMissed(null); try { var el = document.querySelector(".crs-exw"); if (el) el.scrollIntoView({ block: "start" }); } catch (er) {} }}>
                                       Try again for a perfect ★
                                     </button></>
                                 : <>{Object.keys(rec.right || {}).filter(function(k){ return exIds.indexOf(k) >= 0; }).length} of {exs.length} answered</>}
@@ -26712,13 +26752,18 @@ export default function App() {
                           </div>
                         )}
                         <div className="crs-nav">
-                          {nextSec
+                          {(function(){
+                            var mr = crsMissed && crsMissed.key === key ? crsMissed : null;
+                            if (mr && !mr.done && nextSec) return <span className="crs-next-wait">Finish the ones you missed, above, to go on to {nextSec.title}.</span>;
+                            return null;
+                          })()}
+                          {nextSec && !(crsMissed && crsMissed.key === key && !crsMissed.done)
                             ? <button type="button" className="crs-next" onClick={function(){ openSection(course.id, nextSec.id); }}>
                                 <span className="k">Next chapter →</span><span className="t">{nextSec.title}</span>
                               </button>
-                            : <button type="button" className="crs-next" onClick={function(){ setCrsView("nav"); }}>
+                            : (nextSec ? null : <button type="button" className="crs-next" onClick={function(){ setCrsView("nav"); }}>
                                 <span className="k">Contents →</span><span className="t">{course.title}</span>
-                              </button>}
+                              </button>)}
                         </div>
                         {credit(course)}
                       </>
