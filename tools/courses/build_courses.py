@@ -254,6 +254,19 @@ except ImportError:
     HINTS = None
 
 
+# The Courses tab opens on these groups. A course not named here is Intermediate.
+LEVELS = {
+    "cases": "Beginner", "case-nom": "Beginner", "case-gen": "Beginner", "case-dat": "Beginner",
+    "case-acc": "Beginner", "case-ins": "Beginner", "case-prp": "Beginner",
+    "verbs": "Beginner", "count": "Beginner", "tables": "Beginner",
+    "aspect": "Intermediate", "forms": "Intermediate", "compare": "Intermediate", "pronouns": "Intermediate",
+    "complex": "Intermediate", "inter2": "Intermediate", "numerals": "Intermediate", "tenses": "Intermediate",
+    "adv3": "Advanced", "stories": "Advanced", "gramterms": "Advanced",
+    "time": "Dates and Times", "clock": "Dates and Times",
+}
+LEVEL_ORDER = ["Beginner", "Intermediate", "Advanced", "Dates and Times"]
+
+
 def main():
     outline = []
     for c in [x for x in COURSES if x["id"] not in NOT_BUILT]:
@@ -312,6 +325,7 @@ def main():
         meta = {k: v for k, v in c.items() if k not in ("modules", "order", "sections")}
         meta["blurb"] = ""          # descriptions were ours; the credit line says where the course comes from
         meta["sections"] = osecs
+        meta["level"] = LEVELS.get(meta["id"], "Intermediate")
         outline.append(meta)
         print("%-10s %2d sections, %3d exercises" % (c["id"], len(osecs), sum(s["n"] for s in osecs)))
     # Writing the section JSONs drops the `context` field that
@@ -377,6 +391,16 @@ def main():
                 o["stream"] = True
             if j.get("finite"):
                 o["finite"] = True
+
+    # Translated sentences first; the untranslated go where there are enough.
+    import prefer_translated
+    prefer_translated.run()
+    for meta in outline:
+        for o in meta["sections"]:
+            p = os.path.join(ROOT, "public", "courses", meta["id"], o["id"] + ".json")
+            j = json.load(io.open(p, encoding="utf-8"))
+            if not (j.get("stream") and not j.get("finite")):
+                o["n"] = len(j.get("exercises") or [])
 
     # The exam at the end of each course, from the chapters' own exercises.
     import make_exams

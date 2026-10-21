@@ -6310,6 +6310,16 @@ export default function App() {
   // is reopened — the record is in courseProg; this notes which section has
   // been seeded from it, so it is done once per opening.
   var [crsSeeded, setCrsSeeded] = useState("");
+  // The Courses tab's groups — Beginner, Intermediate, Advanced, Dates and
+  // Times — and which of them stand open.
+  var [crsGroupOpen, setCrsGroupOpen] = useState(function(){
+    try { return JSON.parse(localStorage.getItem("crsGroups") || "null") || { "Beginner": true }; } catch (x) { return { "Beginner": true }; }
+  });
+  var toggleCrsGroup = function(g) {
+    var m = Object.assign({}, crsGroupOpen); m[g] = !m[g];
+    setCrsGroupOpen(m);
+    try { localStorage.setItem("crsGroups", JSON.stringify(m)); } catch (x) {}
+  };
   // An exam left half-way is kept, deal and answers, so it can be picked up.
   useEffect(function() {
     if (!crsCourse || !crsSec) return;
@@ -17772,6 +17782,18 @@ export default function App() {
         .crs-back{font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin:6px 0 2px}
         .crs-back:hover{color:var(--rubric)}
         .crs-kicker{font-family:var(--sans);font-size:11px;letter-spacing:.16em;color:var(--ink-3);margin-top:14px}
+        /* The shelf of courses, in four groups that open and close. */
+        .crs-group{border-top:1px solid var(--rule);padding:4px 0 10px}
+        .crs-group:last-of-type{border-bottom:1px solid var(--rule)}
+        .crs-group-h{display:grid;grid-template-columns:auto minmax(0,1fr) auto;grid-template-areas:"arrow title n" ". blurb blurb";gap:2px 12px;align-items:baseline;
+          width:100%;text-align:left;background:none;border:0;padding:14px 0 10px;cursor:pointer;color:var(--ink)}
+        .crs-group-arrow{grid-area:arrow;font-size:13px;color:var(--ink-3);width:1em}
+        .crs-group-t{grid-area:title;font-family:var(--display);font-size:24px;line-height:1.1;color:var(--ink);transition:color .12s}
+        .crs-group-h:hover .crs-group-t{color:var(--rubric)}
+        .crs-group-n{grid-area:n;font-family:var(--sans);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);white-space:nowrap}
+        .crs-group-b{grid-area:blurb;font-family:var(--serif);font-size:15px;line-height:1.5;color:var(--ink-2)}
+        .crs-group .crs-list{margin:6px 0 10px}
+        @media (max-width:560px){.crs-group-t{font-size:21px}.crs-group-h{grid-template-areas:"arrow title title" ". n n" ". blurb blurb"}.crs-group-n{white-space:normal}}
         /* The shelf of courses. */
         .crs-list{grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:22px 18px;margin-top:8px}
         .crs-card{padding:0 0 14px;border:0;border-bottom:1px solid var(--rule);border-radius:0;background:transparent;gap:6px;transition:none}
@@ -17866,6 +17888,17 @@ export default function App() {
         input[type="text"].crs-in:focus,.crs-in:focus{border-bottom-color:var(--rubric);background:var(--paper-3);outline:none}
         input[type="text"].crs-in.ok,.crs-in.ok{border-bottom-color:#2e6e50;background:transparent;color:#1d5a37}
         input[type="text"].crs-in.bad,.crs-in.bad,.crs-stream .crs-in.bad{border-bottom:1.5px solid var(--rubric);background:var(--rubric-soft);color:var(--rubric);box-shadow:none}
+        /* Save to vocabulary: a small mark beside a construction or a phrase. */
+        .crs-save{font-family:var(--sans);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);background:none;
+          border:1px solid var(--rule);border-radius:0;padding:4px 8px 3px;cursor:pointer;line-height:1;white-space:nowrap;transition:color .12s,border-color .12s;align-self:center}
+        .crs-save:hover:not(:disabled){color:var(--rubric);border-color:var(--rubric)}
+        .crs-save.on,.crs-save:disabled{color:#2e6e50;border-color:transparent;cursor:default;opacity:.9}
+        .crs-formula-row{display:flex;align-items:flex-end;gap:18px;flex-wrap:wrap;border-bottom:1px solid var(--ink);padding-bottom:14px;margin:8px 0 0}
+        .crs-head .crs-formula-row .crs-formula,.crs-formula-row .crs-formula{border-bottom:0;padding-bottom:0;margin:0;flex:1 1 auto}
+        .crs-formula-row .crs-save{margin-bottom:6px}
+        .crs-exl .crs-save{margin-left:auto;opacity:0;transition:opacity .12s}
+        .crs-exl:hover .crs-save,.crs-exl .crs-save.on{opacity:1}
+        @media(hover:none){.crs-exl .crs-save{opacity:.7}}
         /* The chapter head: the construction is the title, the chapter's
            name sits under it as a line of description. */
         .crs-head{display:flex;flex-direction:column;gap:6px;margin-bottom:6px}
@@ -25585,6 +25618,30 @@ export default function App() {
                     return <Fragment key={i}>{w(part, i)}</Fragment>;
                   });
                 };
+                // A construction, or one of a lesson's example phrases, saved
+                // as a vocabulary card: «В + accusative» with its rule, or
+                // «во вторник» with its English. They file under their own
+                // group on the Vocab tab (pos "construction" / "phrase") and
+                // are quizzed there like any other card, once there are ten.
+                var savedRu = function(ru) {
+                  var k = String(ru || "").toLowerCase().replace(/\u0301/g, "").replace(/ё/g, "е").trim();
+                  return vocab.some(function(v){ return String((v && v.ru) || "").toLowerCase().replace(/ё/g, "е").trim() === k; });
+                };
+                var saveConstruction = function(ru, en, pos, extra) {
+                  if (!ru || savedRu(ru)) return;
+                  addV(Object.assign({ ru: String(ru).trim(), en: String(en || "").trim(), pos: pos || "construction",
+                                       grammar: pos === "phrase" ? "phrase from a course" : "grammatical construction" }, extra || {}));
+                };
+                var saveBtn = function(ru, en, pos, extra, label) {
+                  var on = savedRu(ru);
+                  return (
+                    <button type="button" className={"crs-save" + (on ? " on" : "")} disabled={on}
+                      title={on ? "In your vocabulary" : "Save to your vocabulary, to practise with your other cards"}
+                      onClick={function(e){ e.stopPropagation(); saveConstruction(ru, en, pos, extra); }}>
+                      {on ? "✓ saved" : (label || "+ save")}
+                    </button>
+                  );
+                };
                 // A paragraph taken apart for reading. The lessons are quoted
                 // from their sources as they stand, and a grammar book packs a
                 // paragraph: three rules in «quotes» run together, "a) … b) …
@@ -25669,9 +25726,20 @@ export default function App() {
                         exercises — pick an answer or type it in. Finish a section for its badge; pass the
                         exam at the end of a course for the big one. Your place is saved{me ? " to your account" : " on this device — sign in to keep it everywhere"}.
                       </p>
-                      <div className="crs-list">
-                        {COURSE_OUTLINE.map(function(c){
+                      {(function(){
+                        var LEVELS = ["Beginner", "Intermediate", "Advanced", "Dates and Times"];
+                        var BLURB = {
+                          "Beginner": "The cases, one at a time, the verb and its endings, counting, and the tables to look things up in.",
+                          "Intermediate": "Aspect, participles and gerunds, comparison, pronouns, the complex sentence, numerals in their cases, the tenses.",
+                          "Advanced": "Grammar in the texts themselves — the classic stories, the advanced topics, and the grammar as Russian names it.",
+                          "Dates and Times": "The clock, the calendar and every construction for when: at five, on Tuesday, in May, a week ago.",
+                        };
+                        var byLevel = {};
+                        COURSE_OUTLINE.forEach(function(c){ var l = LEVELS.indexOf(c.level) >= 0 ? c.level : "Intermediate"; (byLevel[l] = byLevel[l] || []).push(c); });
+                        var card = function(c) {
                           var st = courseState(c, courseProg);
+                          var exam = (c.sections || []).filter(function(s){ return s.exam; })[0];
+                          var xr = exam ? (courseProg[c.id + "/" + exam.id] || {}) : null;
                           return (
                             <button key={c.id} type="button" className={"crs-card" + (COURSE_PICS[c.id] ? " has-img" : "")} onClick={function(){ openSection(c.id, courseStart(c)); }}>
                               {COURSE_PICS[c.id] && <span className="crs-card-img" style={{backgroundImage: "url(\"" + COURSE_PICS[c.id].img + "\")"}} title={COURSE_PICS[c.id].title + " — " + COURSE_PICS[c.id].by} />}
@@ -25680,12 +25748,29 @@ export default function App() {
                               {c.blurb && <span className="crs-card-b">{c.blurb}</span>}
                               {c.repeat
                                 ? <span className="crs-card-n">Practice as often as you like</span>
-                                : <><span className="crs-card-n">{st.done} of {st.of} sections{st.done === st.of && st.of ? " · complete ✓" : ""}</span>
+                                : <><span className="crs-card-n">{st.done} of {st.of} sections{xr && xr.done ? " · exam passed " + xr.grade + "%" : st.done === st.of && st.of ? " · complete ✓" : ""}</span>
                                   {bar(st.done, st.of)}</>}
                             </button>
                           );
-                        })}
-                      </div>
+                        };
+                        return LEVELS.filter(function(l){ return byLevel[l]; }).map(function(l){
+                          var cs = byLevel[l];
+                          var open = !!crsGroupOpen[l];
+                          var done = cs.filter(function(c){ var st = courseState(c, courseProg); return st.of && st.done === st.of; }).length;
+                          var passed = cs.filter(function(c){ var ex = (c.sections || []).filter(function(s){ return s.exam; })[0]; var r = ex && courseProg[c.id + "/" + ex.id]; return !!(r && r.done); }).length;
+                          return (
+                            <div key={l} className={"crs-group" + (open ? " open" : "")}>
+                              <button type="button" className="crs-group-h" onClick={function(){ toggleCrsGroup(l); }} aria-expanded={open}>
+                                <span className="crs-group-arrow">{open ? "▾" : "▸"}</span>
+                                <span className="crs-group-t">{l}</span>
+                                <span className="crs-group-n">{cs.length} course{cs.length === 1 ? "" : "s"}{passed ? " · " + passed + " exam" + (passed === 1 ? "" : "s") + " passed" : done ? " · " + done + " finished" : ""}</span>
+                                {!open && <span className="crs-group-b">{BLURB[l]}</span>}
+                              </button>
+                              {open && <div className="crs-list">{cs.map(card)}</div>}
+                            </div>
+                          );
+                        });
+                      })()}
                     </div>
                   );
                 }
@@ -25825,7 +25910,12 @@ export default function App() {
                   if (b.t === "ex") return (
                     <div key={i} className="crs-exs">
                       {b.items.map(function(x, k){
-                        return <div key={k} className="crs-exl"><span lang="ru">{rich(x[0])}</span>{x[1] ? <span className="crs-exen">{rich(x[1])}</span> : null}</div>;
+                        return (
+                          <div key={k} className="crs-exl">
+                            <span lang="ru">{rich(x[0])}</span>{x[1] ? <span className="crs-exen">{rich(x[1])}</span> : null}
+                            {saveBtn(x[0], x[1] || "", "phrase", { srcCourse: course.title, srcSection: sec.title, srcCourseId: course.id, srcSectionId: sec.id }, "+")}
+                          </div>
+                        );
                       })}
                     </div>
                   );
@@ -26052,10 +26142,18 @@ export default function App() {
                       var title = String(sec.title || "");
                       if (formula && title.indexOf(formula.text + ": ") === 0) title = title.slice(formula.text.length + 2);
                       var state = rec.perfect ? "perfect ★" : rec.done ? "finished ✓" : "";
+                      var lead = blocks.filter(function(b){ return b.t === "lead"; })[0];
+                      var ex0 = blocks.filter(function(b){ return b.t === "ex"; })[0];
+                      var card = formula ? {
+                        ru: formula.text, en: (lead && lead.text) || title,
+                        extra: { example: ex0 && ex0.items[0] ? ex0.items[0][0] : "", exampleTranslation: ex0 && ex0.items[0] ? (ex0.items[0][1] || "") : "",
+                                 srcCourse: course.title, srcSection: sec.title, srcCourseId: course.id, srcSectionId: sec.id },
+                      } : null;
                       return (
                         <div className={"crs-head" + (formula ? " has-formula" : "")}>
                           <div className="crs-kicker">Section {idxSec + 1} of {course.sections.length}{state ? <span className="crs-kicker-st"> · {state}</span> : null}</div>
-                          {formula && <div className="crs-formula" lang="ru">{rich(formula.text)}</div>}
+                          {formula && <div className="crs-formula-row"><div className="crs-formula" lang="ru">{rich(formula.text)}</div>
+                            {card && saveBtn(card.ru, card.en, "construction", card.extra, "+ save the construction")}</div>}
                           <h1 className={"sti" + (formula ? " crs-sub" : "")}>{title}</h1>
                         </div>
                       );

@@ -21,7 +21,8 @@ get() {  # get <subdir> <url>
   local d="$OUT/$1" u="$2" f
   f="$(printf '%s' "${u##*/}" | sed 's/%20/ /g; s/%2C/,/g; s/%2520/ /g')"
   mkdir -p "$d"
-  [ -e "$d/$f" ] && [ ! -s "$d/$f" ] && rm -f "$d/$f"      # an empty file from an earlier run
+  # an empty file, or the host's "AccessDenied" page saved as one, from an earlier run
+  if [ -e "$d/$f" ] && { [ ! -s "$d/$f" ] || [ "$(stat -c %s "$d/$f")" -lt 2000 ]; }; then rm -f "$d/$f"; fi
   if [ -s "$d/$f" ]; then echo "   have  $1/$f"; return; fi
   echo "   fetch $1/$f"
   # The DLI files came back empty with a bare curl: a browser's User-Agent,
@@ -30,6 +31,7 @@ get() {  # get <subdir> <url>
   local code
   for try in "$u" "${u/.cdn.digitaloceanspaces/.digitaloceanspaces}" "${u/nyc3.digitaloceanspaces/nyc3.cdn.digitaloceanspaces}"; do
     code=$(curl -sS -f -L -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Gecko/20100101 Firefox/128.0" \
+             -e "https://www.fsi-language-courses.org/russian/courses/dli-russian-basic-course" \
              --retry 4 --retry-delay 5 -o "$d/$f.part" -w "%{http_code}" "$try" 2>/dev/null)
     if [ "$code" = "200" ] && [ -s "$d/$f.part" ]; then mv "$d/$f.part" "$d/$f"; return; fi
     rm -f "$d/$f.part"

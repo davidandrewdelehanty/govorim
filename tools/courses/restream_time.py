@@ -101,8 +101,10 @@ ORDER = [
 # How many exercises may share one answer in a chapter.
 CAP = {}
 CAP_DEFAULT = 2
-# A chapter needs this many exercises to be worth opening.
+# A chapter needs this many exercises to be worth opening, and takes no more
+# than this many — fifty is an evening's work; the translated sentences come first.
 MIN_CHAPTER = 5
+MAX_CHAPTER = 50
 WEEKDAY = re.compile(u"(понедельник|вторник|сред[ау]|четверг|пятниц[ау]|суббот[ау]|воскресень[ея])")
 
 
@@ -173,6 +175,9 @@ def restream(rules):
             keep.append(e)
         if len(keep) < MIN_CHAPTER:
             continue
+        from prefer_translated import translated
+        keep.sort(key=lambda e: not translated(e))      # a stable sort: the translated first, the shuffle kept within each
+        keep = keep[:MAX_CHAPTER]
         keep = [dict(e, id="q%d" % (i + 1)) for i, e in enumerate(keep)]
         short, full, src = rules.get(k.replace("-day", ""), ("", "", ""))
         # The explanation first, set large: the formula, the one idea to

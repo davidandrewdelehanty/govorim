@@ -22,28 +22,28 @@ export default [
    {
     "id": "ts-v-acc",
     "title": "В + accusative: At five, once a week, that day, the first time",
-    "n": 146,
+    "n": 50,
     "stream": true,
     "finite": true
    },
    {
     "id": "ts-instr",
     "title": "In the morning, at night, in summer",
-    "n": 32,
+    "n": 10,
     "stream": true,
     "finite": true
    },
    {
     "id": "ts-kazhdyy",
     "title": "каждый + accusative: Every day, every Wednesday",
-    "n": 37,
+    "n": 14,
     "stream": true,
     "finite": true
    },
    {
     "id": "ts-ves",
     "title": "весь + accusative: All day, all week",
-    "n": 50,
+    "n": 12,
     "stream": true,
     "finite": true
    },
@@ -64,7 +64,7 @@ export default [
    {
     "id": "ts-v-prep",
     "title": "В + prepositional: In May, last year",
-    "n": 70,
+    "n": 30,
     "stream": true,
     "finite": true
    },
@@ -85,14 +85,14 @@ export default [
    {
     "id": "ts-na-acc",
     "title": "НА + accusative: For a week, the next day",
-    "n": 97,
+    "n": 13,
     "stream": true,
     "finite": true
    },
    {
     "id": "ts-za-acc",
     "title": "ЗА + accusative: In an hour (it took)",
-    "n": 59,
+    "n": 50,
     "stream": true,
     "finite": true
    },
@@ -113,14 +113,14 @@ export default [
    {
     "id": "ts-s-gen",
     "title": "С + genitive: Since morning, from Monday",
-    "n": 83,
+    "n": 12,
     "stream": true,
     "finite": true
    },
    {
     "id": "ts-do-gen",
     "title": "ДО + genitive: Till evening, before lunch",
-    "n": 90,
+    "n": 50,
     "stream": true,
     "finite": true
    },
@@ -221,7 +221,8 @@ export default [
     "n": 95,
     "exam": true
    }
-  ]
+  ],
+  "level": "Dates and Times"
  },
  {
   "id": "count",
@@ -315,7 +316,8 @@ export default [
     "n": 35,
     "exam": true
    }
-  ]
+  ],
+  "level": "Beginner"
  },
  {
   "id": "cases",
@@ -444,7 +446,8 @@ export default [
     "n": 55,
     "exam": true
    }
-  ]
+  ],
+  "level": "Beginner"
  },
  {
   "id": "forms",
@@ -553,7 +556,8 @@ export default [
     "n": 45,
     "exam": true
    }
-  ]
+  ],
+  "level": "Intermediate"
  },
  {
   "id": "case-nom",
@@ -667,7 +671,8 @@ export default [
     "n": 21,
     "exam": true
    }
-  ]
+  ],
+  "level": "Beginner"
  },
  {
   "id": "case-gen",
@@ -863,7 +868,7 @@ export default [
    {
     "id": "g4-from-practice-17",
     "title": "Practice 17: From: из, с, от",
-    "n": 20
+    "n": 15
    },
    {
     "id": "g4-from-practice-18",
@@ -923,42 +928,42 @@ export default [
    {
     "id": "g5-u-dlya-bez-practice-10",
     "title": "Practice 10: у, для, без",
-    "n": 20
+    "n": 19
    },
    {
     "id": "g5-u-dlya-bez-practice-11",
     "title": "Practice 11: у, для, без",
-    "n": 20
+    "n": 13
    },
    {
     "id": "g5-u-dlya-bez-practice-12",
     "title": "Practice 12: у, для, без",
-    "n": 20
+    "n": 14
    },
    {
     "id": "g5-u-dlya-bez-practice-13",
     "title": "Practice 13: у, для, без",
-    "n": 20
+    "n": 13
    },
    {
     "id": "g5-u-dlya-bez-practice-14",
     "title": "Practice 14: у, для, без",
-    "n": 20
+    "n": 13
    },
    {
     "id": "g5-u-dlya-bez-practice-15",
     "title": "Practice 15: у, для, без",
-    "n": 20
+    "n": 14
    },
    {
     "id": "g5-u-dlya-bez-practice-16",
     "title": "Practice 16: у, для, без",
-    "n": 20
+    "n": 13
    },
    {
     "id": "g5-u-dlya-bez-practice-17",
     "title": "Practice 17: у, для, без",
-    "n": 20
+    "n": 13
    },
    {
     "id": "g5-u-dlya-bez-practice-18",
@@ -978,12 +983,12 @@ export default [
    {
     "id": "g6-more-prepositions-practice-2",
     "title": "Practice 2: до, после, около, мимо, кроме, вместо, против…",
-    "n": 20
+    "n": 16
    },
    {
     "id": "g6-more-prepositions-practice-3",
     "title": "Practice 3: до, после, около, мимо, кроме, вместо, против…",
-    "n": 20
+    "n": 11
    },
    {
     "id": "g6-more-prepositions-practice-4",
@@ -1093,7 +1098,7 @@ export default [
    {
     "id": "g7-verbs-practice-3",
     "title": "Practice 3: Verbs that take the genitive",
-    "n": 20
+    "n": 14
    },
    {
     "id": "g7-verbs-practice-4",
@@ -1141,7 +1146,8 @@ export default [
     "n": 40,
     "exam": true
    }
-  ]
+  ],
+  "level": "Beginner"
  },
  {
   "id": "case-dat",
@@ -1157,7 +1163,7 @@ export default [
    {
     "id": "d1-to-whom",
     "title": "To whom: giving, telling, showing",
-    "n": 20
+    "n": 15
    },
    {
     "id": "d1-to-whom-practice",
@@ -1222,7 +1228,7 @@ export default [
    {
     "id": "d3-verbs-practice",
     "title": "Practice 1: Verbs that take the dative",
-    "n": 20
+    "n": 15
    },
    {
     "id": "d3-verbs-practice-2",
@@ -1277,7 +1283,7 @@ export default [
    {
     "id": "d5-po",
     "title": "по, благодаря, вопреки, согласно",
-    "n": 20
+    "n": 15
    },
    {
     "id": "d5-po-practice",
@@ -1312,7 +1318,7 @@ export default [
    {
     "id": "d5-po-practice-7",
     "title": "Practice 7: по, благодаря, вопреки, согласно",
-    "n": 20
+    "n": 10
    },
    {
     "id": "d5-po-practice-8",
@@ -1352,7 +1358,7 @@ export default [
    {
     "id": "d6-endings-practice-3",
     "title": "Practice 3: Dative endings: nouns, adjectives, pronouns",
-    "n": 20
+    "n": 18
    },
    {
     "id": "d6-endings-practice-4",
@@ -1370,7 +1376,8 @@ export default [
     "n": 30,
     "exam": true
    }
-  ]
+  ],
+  "level": "Beginner"
  },
  {
   "id": "case-acc",
@@ -1486,52 +1493,52 @@ export default [
    {
     "id": "a3-za-pod-practice-2",
     "title": "Practice 2: за and под: going behind, under",
-    "n": 20
+    "n": 15
    },
    {
     "id": "a3-za-pod-practice-3",
     "title": "Practice 3: за and под: going behind, under",
-    "n": 20
+    "n": 10
    },
    {
     "id": "a3-za-pod-practice-4",
     "title": "Practice 4: за and под: going behind, under",
-    "n": 20
+    "n": 10
    },
    {
     "id": "a3-za-pod-practice-5",
     "title": "Practice 5: за and под: going behind, under",
-    "n": 20
+    "n": 10
    },
    {
     "id": "a3-za-pod-practice-6",
     "title": "Practice 6: за and под: going behind, under",
-    "n": 20
+    "n": 10
    },
    {
     "id": "a3-za-pod-practice-7",
     "title": "Practice 7: за and под: going behind, under",
-    "n": 20
+    "n": 10
    },
    {
     "id": "a3-za-pod-practice-8",
     "title": "Practice 8: за and под: going behind, under",
-    "n": 20
+    "n": 10
    },
    {
     "id": "a3-za-pod-practice-9",
     "title": "Practice 9: за and под: going behind, under",
-    "n": 20
+    "n": 10
    },
    {
     "id": "a3-za-pod-practice-10",
     "title": "Practice 10: за and под: going behind, under",
-    "n": 20
+    "n": 10
    },
    {
     "id": "a3-za-pod-practice-11",
     "title": "Practice 11: за and под: going behind, under",
-    "n": 20
+    "n": 10
    },
    {
     "id": "a3-za-pod-practice-12",
@@ -1546,7 +1553,7 @@ export default [
    {
     "id": "a4-cherez-pro-practice",
     "title": "Practice 1: через, про, сквозь",
-    "n": 20
+    "n": 14
    },
    {
     "id": "a4-cherez-pro-practice-2",
@@ -1641,17 +1648,17 @@ export default [
    {
     "id": "a5-time-practice",
     "title": "Practice 1: Time in the accusative",
-    "n": 20
+    "n": 15
    },
    {
     "id": "a5-time-practice-2",
     "title": "Practice 2: Time in the accusative",
-    "n": 20
+    "n": 10
    },
    {
     "id": "a5-time-practice-3",
     "title": "Practice 3: Time in the accusative",
-    "n": 20
+    "n": 13
    },
    {
     "id": "a5-time-practice-4",
@@ -1774,7 +1781,8 @@ export default [
     "n": 30,
     "exam": true
    }
-  ]
+  ],
+  "level": "Beginner"
  },
  {
   "id": "case-ins",
@@ -1905,22 +1913,22 @@ export default [
    {
     "id": "i4-where-practice-5",
     "title": "Practice 5: Where: над, под, за, перед, между",
-    "n": 20
+    "n": 19
    },
    {
     "id": "i4-where-practice-6",
     "title": "Practice 6: Where: над, под, за, перед, между",
-    "n": 20
+    "n": 12
    },
    {
     "id": "i4-where-practice-7",
     "title": "Practice 7: Where: над, под, за, перед, между",
-    "n": 20
+    "n": 12
    },
    {
     "id": "i4-where-practice-8",
     "title": "Practice 8: Where: над, под, за, перед, между",
-    "n": 20
+    "n": 10
    },
    {
     "id": "i4-where-practice-9",
@@ -2058,7 +2066,8 @@ export default [
     "n": 35,
     "exam": true
    }
-  ]
+  ],
+  "level": "Beginner"
  },
  {
   "id": "case-prp",
@@ -2159,7 +2168,7 @@ export default [
    {
     "id": "p2-about-practice-5",
     "title": "Practice 5: About: о, об, обо",
-    "n": 20
+    "n": 17
    },
    {
     "id": "p3-v-lesu",
@@ -2179,7 +2188,7 @@ export default [
    {
     "id": "p3-v-lesu-practice-3",
     "title": "Practice 3: в лесу, на берегу: the stressed -у",
-    "n": 20
+    "n": 18
    },
    {
     "id": "p3-v-lesu-practice-4",
@@ -2204,12 +2213,12 @@ export default [
    {
     "id": "p4-pri-transport-practice",
     "title": "Practice 1: при, на поезде, в этом году",
-    "n": 20
+    "n": 17
    },
    {
     "id": "p4-pri-transport-practice-2",
     "title": "Practice 2: при, на поезде, в этом году",
-    "n": 20
+    "n": 10
    },
    {
     "id": "p4-pri-transport-practice-3",
@@ -2332,7 +2341,8 @@ export default [
     "n": 25,
     "exam": true
    }
-  ]
+  ],
+  "level": "Beginner"
  },
  {
   "id": "aspect",
@@ -2476,7 +2486,8 @@ export default [
     "n": 20,
     "exam": true
    }
-  ]
+  ],
+  "level": "Intermediate"
  },
  {
   "id": "verbs",
@@ -2715,7 +2726,8 @@ export default [
     "n": 20,
     "exam": true
    }
-  ]
+  ],
+  "level": "Beginner"
  },
  {
   "id": "compare",
@@ -2751,7 +2763,7 @@ export default [
    {
     "id": "c1-comparative-practice-4",
     "title": "Practice 4: The comparative: новее, интереснее",
-    "n": 20
+    "n": 10
    },
    {
     "id": "c1-comparative-practice-5",
@@ -2841,7 +2853,7 @@ export default [
    {
     "id": "c2-irregular-practice",
     "title": "Practice 1: Irregular comparatives: лучше, больше, старше",
-    "n": 20
+    "n": 16
    },
    {
     "id": "c2-irregular-practice-2",
@@ -2856,12 +2868,12 @@ export default [
    {
     "id": "c2-irregular-practice-4",
     "title": "Practice 4: Irregular comparatives: лучше, больше, старше",
-    "n": 20
+    "n": 15
    },
    {
     "id": "c2-irregular-practice-5",
     "title": "Practice 5: Irregular comparatives: лучше, больше, старше",
-    "n": 20
+    "n": 12
    },
    {
     "id": "c2-irregular-practice-6",
@@ -2881,7 +2893,7 @@ export default [
    {
     "id": "c2-irregular-practice-9",
     "title": "Practice 9: Irregular comparatives: лучше, больше, старше",
-    "n": 20
+    "n": 12
    },
    {
     "id": "c2-irregular-practice-10",
@@ -2901,7 +2913,7 @@ export default [
    {
     "id": "c2-irregular-practice-13",
     "title": "Practice 13: Irregular comparatives: лучше, больше, старше",
-    "n": 20
+    "n": 11
    },
    {
     "id": "c2-irregular-practice-14",
@@ -2916,7 +2928,7 @@ export default [
    {
     "id": "c2-irregular-practice-16",
     "title": "Practice 16: Irregular comparatives: лучше, больше, старше",
-    "n": 20
+    "n": 13
    },
    {
     "id": "c2-irregular-practice-17",
@@ -2961,7 +2973,7 @@ export default [
    {
     "id": "c6-eishiy-practice",
     "title": "Practice 1: -ейший, and лучше всех",
-    "n": 20
+    "n": 19
    },
    {
     "id": "c6-eishiy-practice-2",
@@ -3169,7 +3181,8 @@ export default [
     "n": 20,
     "exam": true
    }
-  ]
+  ],
+  "level": "Intermediate"
  },
  {
   "id": "pronouns",
@@ -3217,7 +3230,8 @@ export default [
     "title": "каков, какова, каково, каковы",
     "n": 0
    }
-  ]
+  ],
+  "level": "Intermediate"
  },
  {
   "id": "complex",
@@ -3291,7 +3305,8 @@ export default [
     "n": 20,
     "exam": true
    }
-  ]
+  ],
+  "level": "Intermediate"
  },
  {
   "id": "inter2",
@@ -3362,37 +3377,37 @@ export default [
    {
     "id": "i01-acc-or-gen-practice-11",
     "title": "Practice 11: Accusative or genitive?",
-    "n": 20
+    "n": 14
    },
    {
     "id": "i01-acc-or-gen-practice-12",
     "title": "Practice 12: Accusative or genitive?",
-    "n": 20
+    "n": 13
    },
    {
     "id": "i01-acc-or-gen-practice-13",
     "title": "Practice 13: Accusative or genitive?",
-    "n": 20
+    "n": 14
    },
    {
     "id": "i01-acc-or-gen-practice-14",
     "title": "Practice 14: Accusative or genitive?",
-    "n": 20
+    "n": 13
    },
    {
     "id": "i01-acc-or-gen-practice-15",
     "title": "Practice 15: Accusative or genitive?",
-    "n": 20
+    "n": 13
    },
    {
     "id": "i01-acc-or-gen-practice-16",
     "title": "Practice 16: Accusative or genitive?",
-    "n": 20
+    "n": 14
    },
    {
     "id": "i01-acc-or-gen-practice-17",
     "title": "Practice 17: Accusative or genitive?",
-    "n": 20
+    "n": 13
    },
    {
     "id": "i01-acc-or-gen-practice-18",
@@ -3557,7 +3572,7 @@ export default [
    {
     "id": "i16-time-practice",
     "title": "Practice 1: Expressing time",
-    "n": 20
+    "n": 15
    },
    {
     "id": "i16-time-practice-2",
@@ -3687,37 +3702,37 @@ export default [
    {
     "id": "i20-comparison-practice-3",
     "title": "Practice 3: Expressing comparison",
-    "n": 20
+    "n": 16
    },
    {
     "id": "i20-comparison-practice-4",
     "title": "Practice 4: Expressing comparison",
-    "n": 20
+    "n": 10
    },
    {
     "id": "i20-comparison-practice-5",
     "title": "Practice 5: Expressing comparison",
-    "n": 20
+    "n": 10
    },
    {
     "id": "i20-comparison-practice-6",
     "title": "Practice 6: Expressing comparison",
-    "n": 20
+    "n": 10
    },
    {
     "id": "i20-comparison-practice-7",
     "title": "Practice 7: Expressing comparison",
-    "n": 20
+    "n": 10
    },
    {
     "id": "i20-comparison-practice-8",
     "title": "Practice 8: Expressing comparison",
-    "n": 20
+    "n": 15
    },
    {
     "id": "i20-comparison-practice-9",
     "title": "Practice 9: Expressing comparison",
-    "n": 20
+    "n": 10
    },
    {
     "id": "i20-comparison-practice-10",
@@ -3752,17 +3767,17 @@ export default [
    {
     "id": "i20-comparison-practice-16",
     "title": "Practice 16: Expressing comparison",
-    "n": 20
+    "n": 10
    },
    {
     "id": "i20-comparison-practice-17",
     "title": "Practice 17: Expressing comparison",
-    "n": 20
+    "n": 10
    },
    {
     "id": "i20-comparison-practice-18",
     "title": "Practice 18: Expressing comparison",
-    "n": 20
+    "n": 10
    },
    {
     "id": "i20-comparison-practice-19",
@@ -3840,7 +3855,8 @@ export default [
     "n": 60,
     "exam": true
    }
-  ]
+  ],
+  "level": "Intermediate"
  },
  {
   "id": "adv3",
@@ -4019,7 +4035,8 @@ export default [
     "n": 21,
     "exam": true
    }
-  ]
+  ],
+  "level": "Advanced"
  },
  {
   "id": "stories",
@@ -4433,7 +4450,8 @@ export default [
     "n": 70,
     "exam": true
    }
-  ]
+  ],
+  "level": "Advanced"
  },
  {
   "id": "tenses",
@@ -4517,7 +4535,8 @@ export default [
     "n": 55,
     "exam": true
    }
-  ]
+  ],
+  "level": "Intermediate"
  },
  {
   "id": "tables",
@@ -4588,27 +4607,27 @@ export default [
    {
     "id": "g12-conjugation",
     "title": "The two conjugations",
-    "n": 36
+    "n": 30
    },
    {
     "id": "g13-mutation",
     "title": "The consonant that changes in the present",
-    "n": 90
+    "n": 75
    },
    {
     "id": "g14-classes",
     "title": "The sixteen conjugation patterns",
-    "n": 288
+    "n": 240
    },
    {
     "id": "g15-irregular-verbs",
     "title": "The irregular verbs",
-    "n": 81
+    "n": 51
    },
    {
     "id": "g16-past",
     "title": "The past tense",
-    "n": 60
+    "n": 15
    },
    {
     "id": "g17-imperative",
@@ -4631,7 +4650,8 @@ export default [
     "n": 85,
     "exam": true
    }
-  ]
+  ],
+  "level": "Beginner"
  },
  {
   "id": "numerals",
@@ -5233,12 +5253,12 @@ export default [
    {
     "id": "n11-dates-practice",
     "title": "Practice 1: dates",
-    "n": 50
+    "n": 12
    },
    {
     "id": "n11-dates-practice-2",
     "title": "Practice 2: dates",
-    "n": 43
+    "n": 19
    },
    {
     "id": "n12-years",
@@ -5321,7 +5341,8 @@ export default [
     "n": 60,
     "exam": true
    }
-  ]
+  ],
+  "level": "Intermediate"
  },
  {
   "id": "clock",
@@ -5346,7 +5367,8 @@ export default [
     "n": 0,
     "stream": true
    }
-  ]
+  ],
+  "level": "Dates and Times"
  },
  {
   "id": "gramterms",
@@ -5790,6 +5812,7 @@ export default [
     "n": 40,
     "exam": true
    }
-  ]
+  ],
+  "level": "Advanced"
  }
 ];
