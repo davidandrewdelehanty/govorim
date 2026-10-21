@@ -6,7 +6,7 @@ which the app and the server's badge code both read.
     cd /mnt/c/Users/david/projects/govorim-app
     python3 tools/courses/build_courses.py
 """
-import importlib, io, json, os, sys
+import importlib, io, json, os, re, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(os.path.dirname(HERE))
@@ -407,6 +407,26 @@ def main():
             j = json.load(io.open(p, encoding="utf-8"))
             if not (j.get("stream") and not j.get("finite")):
                 o["n"] = len(j.get("exercises") or [])
+
+    # Every exercise explained by the rule for its own construction — the
+    # lesson's sentence about that preposition, tense or degree — and an
+    # exercise testing something its section does not teach taken out
+    # (tools/courses/_dropped/pertinence.json). Needs pymorphy3.
+    import pertinence
+    pertinence.main(["--apply"])
+    for meta in outline:
+        kept = []
+        for o in meta["sections"]:
+            p = os.path.join(ROOT, "public", "courses", meta["id"], o["id"] + ".json")
+            j = json.load(io.open(p, encoding="utf-8"))
+            if not (j.get("stream") and not j.get("finite")):
+                o["n"] = len(j.get("exercises") or [])
+            # a practice set left with nothing to practise is no section
+            if o["n"] == 0 and re.search(r"-practice(?:-\d+)?$", o["id"]):
+                os.remove(p)
+                continue
+            kept.append(o)
+        meta["sections"] = kept
 
     # The exam at the end of each course, from the chapters' own exercises.
     import make_exams

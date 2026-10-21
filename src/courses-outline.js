@@ -29,21 +29,21 @@ export default [
    {
     "id": "ts-instr",
     "title": "In the morning, at night, in summer",
-    "n": 11,
+    "n": 10,
     "stream": true,
     "finite": true
    },
    {
     "id": "ts-kazhdyy",
     "title": "каждый + accusative: Every day, every Wednesday",
-    "n": 15,
+    "n": 14,
     "stream": true,
     "finite": true
    },
    {
     "id": "ts-ves",
     "title": "весь + accusative: All day, all week",
-    "n": 13,
+    "n": 12,
     "stream": true,
     "finite": true
    },
@@ -64,7 +64,7 @@ export default [
    {
     "id": "ts-v-prep",
     "title": "В + prepositional: In May, last year",
-    "n": 35,
+    "n": 30,
     "stream": true,
     "finite": true
    },
@@ -113,7 +113,7 @@ export default [
    {
     "id": "ts-s-gen",
     "title": "С + genitive: Since morning, from Monday",
-    "n": 10,
+    "n": 12,
     "stream": true,
     "finite": true
    },
@@ -253,7 +253,7 @@ export default [
    {
     "id": "c2-genitive-plural-practice",
     "title": "Practice: The genitive plural",
-    "n": 14
+    "n": 13
    },
    {
     "id": "c3-how-many",
@@ -728,12 +728,12 @@ export default [
    {
     "id": "g2-no-practice-2",
     "title": "Practice 2: Нет, не было: having none",
-    "n": 20
+    "n": 19
    },
    {
     "id": "g2-no-practice-3",
     "title": "Practice 3: Нет, не было: having none",
-    "n": 20
+    "n": 19
    },
    {
     "id": "g2-no-practice-4",
@@ -743,7 +743,7 @@ export default [
    {
     "id": "g2-no-practice-5",
     "title": "Practice 5: Нет, не было: having none",
-    "n": 20
+    "n": 19
    },
    {
     "id": "g2-no-practice-6",
@@ -758,7 +758,7 @@ export default [
    {
     "id": "g3-counting-practice",
     "title": "Practice 1: Counting and how much",
-    "n": 20
+    "n": 19
    },
    {
     "id": "g3-counting-practice-2",
@@ -773,7 +773,7 @@ export default [
    {
     "id": "g3-counting-practice-4",
     "title": "Practice 4: Counting and how much",
-    "n": 20
+    "n": 18
    },
    {
     "id": "g3-counting-practice-5",
@@ -788,7 +788,7 @@ export default [
    {
     "id": "g4-from-practice",
     "title": "Practice 1: From: из, с, от",
-    "n": 20
+    "n": 19
    },
    {
     "id": "g4-from-practice-2",
@@ -818,17 +818,17 @@ export default [
    {
     "id": "g4-from-practice-7",
     "title": "Practice 7: From: из, с, от",
-    "n": 20
+    "n": 19
    },
    {
     "id": "g4-from-practice-8",
     "title": "Practice 8: From: из, с, от",
-    "n": 20
+    "n": 19
    },
    {
     "id": "g4-from-practice-9",
     "title": "Practice 9: From: из, с, от",
-    "n": 20
+    "n": 19
    },
    {
     "id": "g4-from-practice-10",
@@ -843,7 +843,7 @@ export default [
    {
     "id": "g4-from-practice-12",
     "title": "Practice 12: From: из, с, от",
-    "n": 20
+    "n": 19
    },
    {
     "id": "g4-from-practice-13",
@@ -913,7 +913,7 @@ export default [
    {
     "id": "g5-u-dlya-bez-practice-7",
     "title": "Practice 7: у, для, без",
-    "n": 20
+    "n": 19
    },
    {
     "id": "g5-u-dlya-bez-practice-8",
@@ -923,7 +923,7 @@ export default [
    {
     "id": "g5-u-dlya-bez-practice-9",
     "title": "Practice 9: у, для, без",
-    "n": 20
+    "n": 18
    },
    {
     "id": "g5-u-dlya-bez-practice-10",
@@ -933,7 +933,7 @@ export default [
    {
     "id": "g5-u-dlya-bez-practice-11",
     "title": "Practice 11: у, для, без",
-    "n": 13
+    "n": 11
    },
    {
     "id": "g5-u-dlya-bez-practice-12",
@@ -943,7 +943,7 @@ export default [
    {
     "id": "g5-u-dlya-bez-practice-13",
     "title": "Practice 13: у, для, без",
-    "n": 13
+    "n": 12
    },
    {
     "id": "g5-u-dlya-bez-practice-14",
@@ -983,7 +983,7 @@ export default [
    {
     "id": "g6-more-prepositions-practice-2",
     "title": "Practice 2: до, после, около, мимо, кроме, вместо, против…",
-    "n": 16
+    "n": 15
    },
    {
     "id": "g6-more-prepositions-practice-3",
@@ -1003,12 +1003,12 @@ export default [
    {
     "id": "g6-more-prepositions-practice-6",
     "title": "Practice 6: до, после, около, мимо, кроме, вместо, против…",
-    "n": 20
+    "n": 19
    },
    {
     "id": "g6-more-prepositions-practice-7",
     "title": "Practice 7: до, после, около, мимо, кроме, вместо, против…",
-    "n": 20
+    "n": 19
    },
    {
     "id": "g6-more-prepositions-practice-8",
@@ -1033,7 +1033,7 @@ export default [
    {
     "id": "g6-more-prepositions-practice-12",
     "title": "Practice 12: до, после, около, мимо, кроме, вместо, против…",
-    "n": 20
+    "n": 19
    },
    {
     "id": "g6-more-prepositions-practice-13",
@@ -1048,17 +1048,17 @@ export default [
    {
     "id": "g6-more-prepositions-practice-15",
     "title": "Practice 15: до, после, около, мимо, кроме, вместо, против…",
-    "n": 20
+    "n": 19
    },
    {
     "id": "g6-more-prepositions-practice-16",
     "title": "Practice 16: до, после, около, мимо, кроме, вместо, против…",
-    "n": 20
+    "n": 19
    },
    {
     "id": "g6-more-prepositions-practice-17",
     "title": "Practice 17: до, после, около, мимо, кроме, вместо, против…",
-    "n": 20
+    "n": 19
    },
    {
     "id": "g6-more-prepositions-practice-18",
@@ -1068,7 +1068,7 @@ export default [
    {
     "id": "g6-more-prepositions-practice-19",
     "title": "Practice 19: до, после, около, мимо, кроме, вместо, против…",
-    "n": 20
+    "n": 19
    },
    {
     "id": "g6-more-prepositions-practice-20",
@@ -1098,7 +1098,7 @@ export default [
    {
     "id": "g7-verbs-practice-3",
     "title": "Practice 3: Verbs that take the genitive",
-    "n": 14
+    "n": 13
    },
    {
     "id": "g7-verbs-practice-4",
@@ -1193,17 +1193,17 @@ export default [
    {
     "id": "d2-mne-nravitsya",
     "title": "Мне нравится, нужно, надо, можно",
-    "n": 20
+    "n": 19
    },
    {
     "id": "d2-mne-nravitsya-practice",
     "title": "Practice 1: Мне нравится, нужно, надо, можно",
-    "n": 20
+    "n": 19
    },
    {
     "id": "d2-mne-nravitsya-practice-2",
     "title": "Practice 2: Мне нравится, нужно, надо, можно",
-    "n": 20
+    "n": 18
    },
    {
     "id": "d2-mne-nravitsya-practice-3",
@@ -1253,7 +1253,7 @@ export default [
    {
     "id": "d4-k",
     "title": "к: towards, to someone's",
-    "n": 20
+    "n": 19
    },
    {
     "id": "d4-k-practice",
@@ -1283,7 +1283,7 @@ export default [
    {
     "id": "d5-po",
     "title": "по, благодаря, вопреки, согласно",
-    "n": 15
+    "n": 14
    },
    {
     "id": "d5-po-practice",
@@ -1318,7 +1318,7 @@ export default [
    {
     "id": "d5-po-practice-7",
     "title": "Practice 7: по, благодаря, вопреки, согласно",
-    "n": 10
+    "n": 9
    },
    {
     "id": "d5-po-practice-8",
@@ -1328,7 +1328,7 @@ export default [
    {
     "id": "d5-po-practice-9",
     "title": "Practice 9: по, благодаря, вопреки, согласно",
-    "n": 20
+    "n": 19
    },
    {
     "id": "d5-po-practice-10",
@@ -1338,7 +1338,7 @@ export default [
    {
     "id": "d5-po-practice-11",
     "title": "Practice 11: по, благодаря, вопреки, согласно",
-    "n": 17
+    "n": 16
    },
    {
     "id": "d6-endings",
@@ -1578,7 +1578,7 @@ export default [
    {
     "id": "a4-cherez-pro-practice-6",
     "title": "Practice 6: через, про, сквозь",
-    "n": 20
+    "n": 19
    },
    {
     "id": "a4-cherez-pro-practice-7",
@@ -1598,7 +1598,7 @@ export default [
    {
     "id": "a4-cherez-pro-practice-10",
     "title": "Practice 10: через, про, сквозь",
-    "n": 20
+    "n": 19
    },
    {
     "id": "a4-cherez-pro-practice-11",
@@ -1858,7 +1858,7 @@ export default [
    {
     "id": "i3-being",
     "title": "Being, becoming, working as",
-    "n": 20
+    "n": 19
    },
    {
     "id": "i3-being-practice",
@@ -1878,7 +1878,7 @@ export default [
    {
     "id": "i3-being-practice-4",
     "title": "Practice 4: Being, becoming, working as",
-    "n": 20
+    "n": 19
    },
    {
     "id": "i3-being-practice-5",
@@ -1988,7 +1988,7 @@ export default [
    {
     "id": "i4-where-practice-20",
     "title": "Practice 20: Where: над, под, за, перед, между",
-    "n": 20
+    "n": 19
    },
    {
     "id": "i5-verbs",
@@ -2003,12 +2003,12 @@ export default [
    {
     "id": "i5-verbs-practice-2",
     "title": "Practice 2: Verbs that take the instrumental",
-    "n": 20
+    "n": 19
    },
    {
     "id": "i5-verbs-practice-3",
     "title": "Practice 3: Verbs that take the instrumental",
-    "n": 20
+    "n": 19
    },
    {
     "id": "i5-verbs-practice-4",
@@ -2148,17 +2148,17 @@ export default [
    {
     "id": "p2-about-practice",
     "title": "Practice 1: About: о, об, обо",
-    "n": 20
+    "n": 19
    },
    {
     "id": "p2-about-practice-2",
     "title": "Practice 2: About: о, об, обо",
-    "n": 20
+    "n": 19
    },
    {
     "id": "p2-about-practice-3",
     "title": "Practice 3: About: о, об, обо",
-    "n": 20
+    "n": 19
    },
    {
     "id": "p2-about-practice-4",
@@ -2168,7 +2168,7 @@ export default [
    {
     "id": "p2-about-practice-5",
     "title": "Practice 5: About: о, об, обо",
-    "n": 17
+    "n": 16
    },
    {
     "id": "p3-v-lesu",
@@ -3352,7 +3352,7 @@ export default [
    {
     "id": "i01-acc-or-gen-practice-6",
     "title": "Practice 6: Accusative or genitive?",
-    "n": 20
+    "n": 19
    },
    {
     "id": "i01-acc-or-gen-practice-7",
@@ -3372,7 +3372,7 @@ export default [
    {
     "id": "i01-acc-or-gen-practice-10",
     "title": "Practice 10: Accusative or genitive?",
-    "n": 20
+    "n": 18
    },
    {
     "id": "i01-acc-or-gen-practice-11",
@@ -3402,7 +3402,7 @@ export default [
    {
     "id": "i01-acc-or-gen-practice-16",
     "title": "Practice 16: Accusative or genitive?",
-    "n": 14
+    "n": 13
    },
    {
     "id": "i01-acc-or-gen-practice-17",
@@ -3467,7 +3467,7 @@ export default [
    {
     "id": "i05-compound-numerals",
     "title": "Compound numerals in every case",
-    "n": 20
+    "n": 19
    },
    {
     "id": "i05-compound-numerals-practice",
@@ -3807,12 +3807,12 @@ export default [
    {
     "id": "i22-negation-practice-2",
     "title": "Practice 2: Expressing negation",
-    "n": 20
+    "n": 19
    },
    {
     "id": "i22-negation-practice-3",
     "title": "Practice 3: Expressing negation",
-    "n": 20
+    "n": 19
    },
    {
     "id": "i22-negation-practice-4",
@@ -3822,7 +3822,7 @@ export default [
    {
     "id": "i22-negation-practice-5",
     "title": "Practice 5: Expressing negation",
-    "n": 20
+    "n": 19
    },
    {
     "id": "i22-negation-practice-6",
@@ -3897,17 +3897,17 @@ export default [
    {
     "id": "v06-no-subject",
     "title": "Sentences without a subject",
-    "n": 20
+    "n": 19
    },
    {
     "id": "v06-no-subject-practice",
     "title": "Practice 1: Sentences without a subject",
-    "n": 20
+    "n": 19
    },
    {
     "id": "v06-no-subject-practice-2",
     "title": "Practice 2: Sentences without a subject",
-    "n": 20
+    "n": 18
    },
    {
     "id": "v06-no-subject-practice-3",
@@ -3987,42 +3987,7 @@ export default [
    {
     "id": "v12-particles",
     "title": "Particles: же, ведь, разве, неужели, даже",
-    "n": 20
-   },
-   {
-    "id": "v12-particles-practice",
-    "title": "Practice 1: Particles: же, ведь, разве, неужели, даже",
-    "n": 20
-   },
-   {
-    "id": "v12-particles-practice-2",
-    "title": "Practice 2: Particles: же, ведь, разве, неужели, даже",
-    "n": 20
-   },
-   {
-    "id": "v12-particles-practice-3",
-    "title": "Practice 3: Particles: же, ведь, разве, неужели, даже",
-    "n": 20
-   },
-   {
-    "id": "v12-particles-practice-4",
-    "title": "Practice 4: Particles: же, ведь, разве, неужели, даже",
-    "n": 20
-   },
-   {
-    "id": "v12-particles-practice-5",
-    "title": "Practice 5: Particles: же, ведь, разве, неужели, даже",
-    "n": 20
-   },
-   {
-    "id": "v12-particles-practice-6",
-    "title": "Practice 6: Particles: же, ведь, разве, неужели, даже",
-    "n": 20
-   },
-   {
-    "id": "v12-particles-practice-7",
-    "title": "Practice 7: Particles: же, ведь, разве, неужели, даже",
-    "n": 10
+    "n": 0
    },
    {
     "id": "v13-prefixes",
@@ -4032,7 +3997,7 @@ export default [
    {
     "id": "exam",
     "title": "Exam",
-    "n": 21,
+    "n": 20,
     "exam": true
    }
   ],
@@ -5780,12 +5745,6 @@ export default [
     "id": "ck0-rules",
     "title": "How the time is told",
     "n": 0
-   },
-   {
-    "id": "ck-practice",
-    "title": "Clock practice",
-    "n": 0,
-    "stream": true
    }
   ],
   "level": "Dates and Times"
