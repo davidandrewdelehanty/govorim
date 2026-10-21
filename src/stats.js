@@ -38,6 +38,20 @@ export function dayMet(rec, goals) {
   return !!rec && (((rec.read || 0) >= words) || ((rec.practiced || 0) >= cards));
 }
 
+// Words read in one book today: the day's `books` map, by filename, so the
+// log can say what was read and not only how much. Returns a new stats object.
+export function bumpBook(stats, key, n, ts) {
+  var k = dayKey(ts);
+  var next = Object.assign({}, stats || {});
+  var rec = Object.assign({}, next[k] || {});
+  var books = Object.assign({}, rec.books || {});
+  if (books[key] === undefined && Object.keys(books).length >= 60) return stats;
+  books[key] = (books[key] || 0) + n;
+  rec.books = books;
+  next[k] = rec;
+  return next;
+}
+
 // Add to today's record. Returns a new stats object.
 export function bump(stats, field, n, ts) {
   var key = dayKey(ts);
@@ -62,6 +76,12 @@ export function mergeStats(a, b) {
       var o = Object.assign({}, cur);
       Object.keys(rec).forEach(function (f) {
         if (typeof rec[f] === "number") o[f] = Math.max(cur[f] || 0, rec[f] || 0);
+        // the day's books, each the larger figure
+        else if (f === "books" && rec[f] && typeof rec[f] === "object") {
+          var ob = Object.assign({}, o.books || {});
+          Object.keys(rec[f]).forEach(function (b) { ob[b] = Math.max(ob[b] || 0, rec[f][b] || 0); });
+          o.books = ob;
+        }
       });
       out[k] = o;
     });

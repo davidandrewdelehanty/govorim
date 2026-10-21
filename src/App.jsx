@@ -9,7 +9,7 @@ import { review as srsReview, isLearned, dueWords, weakestWords, recallNow,
   LEARN_STEPS_MIN, RELEARN_STEPS_MIN, NEW_PER_DAY, REVIEWS_PER_DAY, LEARN_AHEAD_MIN, studyDay,
   LEARNED_STABILITY_DAYS } from "./srs.js";
 import { BADGE_KINDS, BADGE_STEP_TIERS, BADGE_GREAT_TIERS, BADGE_MILESTONES, BADGE_AUTHOR_TIERS, BADGE_SKIP_AUTHORS, badgeShort, badgeSurname, badgeGen, BIBLE_BOOKS, BIBLE_NT_FROM, bibleMark, computeBadges } from "./badges.js";
-import { dayKey, dayMet, bump as bumpStats, streaks, mergeStats,
+import { dayKey, dayMet, bump as bumpStats, bumpBook as bumpStatsBook, streaks, mergeStats,
          totals as statsTotals, keyToDate, GOAL_WORDS, GOAL_CARDS } from "./stats.js";
 import { AnnotLayer, HL_COLORS, INK_COLORS, annotId } from "./annotations.jsx";
 import { readUiLang, saveUiLang, applyUiLang, trUi } from "./uilang.js";
@@ -5032,6 +5032,12 @@ export default function App() {
   var [adminBookTab, setAdminBookTab]       = useState("books");
   var [adminTotals, setAdminTotals]         = useState(null);
   var [admTotList, setAdmTotList]           = useState("");      // "opened" | "finished" | "" — a list opened under the totals
+  // The site day by day — /api/admin/users?days= — and which day stands open.
+  var [adminDays, setAdminDays]             = useState(null);
+  var [adminDaysLoad, setAdminDaysLoad]     = useState(false);
+  var [admDayOpen, setAdmDayOpen]           = useState("");
+  // Which of the site tables above the reader list is open: courses, badges, reading.
+  var [admTable, setAdmTable]               = useState("courses");
   // The Modern Russian shelf's groups, open or closed; remembered on the device.
   var [modernOpen, setModernOpen] = useState(function(){
     try { return JSON.parse(localStorage.getItem("modernGroups") || "null") || {}; } catch (x) { return {}; }
@@ -6663,6 +6669,11 @@ export default function App() {
   var bumpToday = function(field, n) {
     if (!n) return;
     setStats(function(s){ return bumpStats(s, field, n); });
+  };
+  // The same words, filed under the book they were read in.
+  var bumpTodayBook = function(key, n) {
+    if (!n || !key) return;
+    setStats(function(s){ return bumpStatsBook(s, String(key).slice(0, 160), n); });
   };
   // Two devices' song lists, one list: per song the larger play count and the
   // later visit, since neither device saw the other's afternoon.
@@ -8331,7 +8342,11 @@ export default function App() {
       var gain = to - from;
       if (total) gain = Math.min(gain, Math.max(0, total - paid));
       // An English book's words go to the English figure and board.
-      if (gain > 0) { bumpToday(bookMeta && bookMeta.lang === "en" ? "readEn" : "read", gain); paid += gain; readPaid.current[wk] = paid; }
+      if (gain > 0) {
+        bumpToday(bookMeta && bookMeta.lang === "en" ? "readEn" : "read", gain);
+        bumpTodayBook((bookMeta && bookMeta.lang === "en" ? "en:" : "") + ((bookMeta && bookMeta.filename) || key), gain);
+        paid += gain; readPaid.current[wk] = paid;
+      }
     }
     if (!mark || to >= wordsBefore(mark.cidx, mark.off || 0)) {
       readMark.current[key] = { cidx: ci, off: off || 0, paid: paid };
@@ -11011,6 +11026,20 @@ export default function App() {
     } catch(e) {
       setAdminErr(e.message || "Failed to total");
     } finally { setAdminTotalsLoad(false); }
+  };
+
+  // The last month, a day at a time: what was opened, read, finished and earned.
+  var loadAdminDays = async function() {
+    setAdminDaysLoad(true); setAdminErr("");
+    try {
+      var r = await authFetch("/api/admin/users?days=45");
+      var d = await r.json();
+      if (!r.ok) throw new Error(d.error || "Failed to read the days");
+      setAdminDays(d);
+      if (d.days && d.days.length && !admDayOpen) setAdmDayOpen(d.days[0].date);
+    } catch(e) {
+      setAdminErr(e.message || "Failed to read the days");
+    } finally { setAdminDaysLoad(false); }
   };
 
   // Everything the site holds on one reader, for the detail window.
@@ -18469,6 +18498,41 @@ export default function App() {
         .admu-stats{display:flex;flex-wrap:wrap;gap:4px 14px;font-family:var(--sans);font-size:12px;color:var(--ink-2)}
         .admu-st b{color:var(--ink);font-weight:600}
         .admu-badges{display:flex;flex-wrap:wrap;gap:4px;align-items:center}
+        .admu-bdg{display:inline-flex;align-items:center;gap:4px;font-family:var(--sans);font-size:11.5px;color:var(--ink-2);padding:2px 6px 2px 2px;border:1px solid var(--rule-soft);border-radius:999px;background:var(--paper)}
+        .admu-bdg .bt{max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+        .admu-line{display:flex;flex-wrap:wrap;gap:4px;align-items:center;font-family:var(--sans);font-size:12px;color:var(--ink-2)}
+        .admu-line .k{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-right:4px}
+        .admu-line .dim,.admy-row .dim,.admy-sum .dim,.admy-k .dim{color:var(--ink-3)}
+        .admy-chip{display:inline-flex;align-items:baseline;gap:3px;font-family:var(--sans);font-size:12px;line-height:1.3;color:var(--ink);padding:2px 8px;border:1px solid var(--rule-soft);border-radius:999px;background:var(--paper);max-width:100%}
+        .admy-chip b{font-weight:600;color:var(--rubric)}
+        .admy-chip.done{border-color:#2e6e50;color:#1d5a37}
+        .admy-chip.done b{color:#2e6e50}
+        .admu-tables{border:1px solid var(--rule);background:var(--paper);margin:0 0 14px}
+        .admu-tabs{display:flex;gap:0;border-bottom:1px solid var(--rule)}
+        .admu-tab{font-family:var(--sans);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);background:none;border:0;border-bottom:2px solid transparent;padding:10px 14px 8px;cursor:pointer}
+        .admu-tab.on{color:var(--ink);border-bottom-color:var(--rubric)}
+        .admu-tab .n{margin-left:6px;color:var(--rubric);letter-spacing:0}
+        .admu-br{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;padding:8px 0;border-bottom:1px solid var(--rule-soft)}
+        .admu-br .t{font-family:var(--serif);font-size:15px;color:var(--ink);flex:0 0 auto;max-width:100%}
+        .admu-br .t .a,.admu-ctr .t .holders{color:var(--ink-3)}
+        .admu-br .holders,.admu-ctr .holders{display:flex;flex-wrap:wrap;gap:4px;flex:1 1 auto}
+        .admu-ctr .holders{margin-top:4px;width:100%}
+        .admu-tables .admu-ct{padding-top:8px}
+        /* The site day by day. */
+        .admy-days{display:flex;flex-direction:column;border-top:1px solid var(--rule)}
+        .admy-day{border-bottom:1px solid var(--rule-soft)}
+        .admy-head{display:flex;align-items:baseline;gap:10px;width:100%;text-align:left;background:none;border:0;padding:10px 4px;cursor:pointer;font-family:var(--sans);color:var(--ink)}
+        .admy-day.open .admy-head{background:var(--paper-3)}
+        .admy-date{font-family:var(--serif);font-size:15px;color:var(--ink);flex:0 0 190px}
+        .admy-sum{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:12px;color:var(--ink-2);flex:1 1 auto}
+        .admy-sum b{color:var(--ink);font-weight:600}
+        .admy-arrow{color:var(--ink-3);font-size:12px}
+        .admy-body{padding:4px 4px 12px 14px;display:flex;flex-direction:column;gap:10px}
+        .admy-k{font-family:var(--sans);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--rubric);margin-bottom:4px}
+        .admy-row{font-family:var(--serif);font-size:14.5px;line-height:1.5;color:var(--ink);padding:2px 0}
+        .admy-who{font-family:var(--sans);font-size:12.5px;font-weight:600;color:var(--ink);margin-right:4px}
+        .admy-chips{display:flex;flex-wrap:wrap;gap:4px}
+        @media (max-width:560px){.admy-date{flex-basis:100%}}
         .admu-badges .k{font-family:var(--sans);font-size:11px;color:var(--ink-3);margin-right:4px}
         .admu-acts{display:flex;gap:8px;flex-wrap:wrap}
         .admu-dbadges{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:6px 12px}
@@ -20354,6 +20418,20 @@ export default function App() {
                   </div>
                 </div>
               )}
+              {!adminLoad && (
+                <div className="adm-row adm-today"
+                  onClick={function(){ if (!adminDays) loadAdminDays(); setAdminDetail({ __days: true }); }}>
+                  <div className="adm-info">
+                    <div className="adm-name">Day by day</div>
+                    <div className="adm-email">
+                      {adminDays
+                        ? adminDays.days.length + " days · what was opened, read, finished and earned, and by whom"
+                        : "what was opened, read, finished and earned each day, and by whom"}
+                    </div>
+                  </div>
+                  <div className="adm-today-n">{adminDaysLoad ? "…" : "▸"}</div>
+                </div>
+              )}
               {/* All readers, before the individual rows: the site's own totals,
                   which is the question you ask before you ask about anyone. */}
               {!adminLoad && (
@@ -20448,15 +20526,101 @@ export default function App() {
                         return <div key={i} className="admu-pulse-c"><span className="n">{p[0]}</span><span className="l">{p[1]}</span></div>;
                       })}
                     </div>
-                    {courseTable.length > 0 && (
-                      <details className="admu-courses" open>
-                        <summary>Courses <span className="d">· who is taking each, and how far they get</span></summary>
+                    {/* Three tables of the whole site, one open at a time:
+                        the courses and who is in them, the badges and who
+                        holds them, the books and who is reading them. */}
+                    {(function(){
+                      var nameOf = function(u){ return u.username || u.email; };
+                      // badge title → the readers who hold it, with the tier they hold it at
+                      var byBadge = {};
+                      adminUsers.forEach(function(u){
+                        ((u.badges && u.badges.all) || []).forEach(function(b){
+                          var k = b.title || b.id;
+                          if (!byBadge[k]) byBadge[k] = { title: k, mark: b.mark, tier: b.tier || 0, holders: [] };
+                          byBadge[k].tier = Math.max(byBadge[k].tier, b.tier || 0);
+                          byBadge[k].holders.push({ name: nameOf(u), tier: b.tier || 0, at: b.at || 0 });
+                        });
+                      });
+                      var badgeRows = Object.keys(byBadge).map(function(k){ return byBadge[k]; })
+                        .sort(function(a, b){ return b.holders.length - a.holders.length || String(a.title).localeCompare(String(b.title)); });
+                      // book → the readers with a place in it
+                      var byBook = {};
+                      adminUsers.forEach(function(u){
+                        (u.reading || []).forEach(function(r){
+                          var k = r.filename || r.key;
+                          if (!byBook[k]) byBook[k] = { key: k, title: r.title, author: r.author, readers: [], last: 0 };
+                          byBook[k].readers.push({ name: nameOf(u), cidx: r.cidx, totalChapters: r.totalChapters, lastRead: r.lastRead });
+                          byBook[k].last = Math.max(byBook[k].last, r.lastRead || 0);
+                        });
+                      });
+                      var bookRows = Object.keys(byBook).map(function(k){ return byBook[k]; })
+                        .sort(function(a, b){ return b.readers.length - a.readers.length || b.last - a.last; });
+                      var tab = function(id, label, n){
+                        return <button type="button" className={"admu-tab" + (admTable === id ? " on" : "")} onClick={function(){ setAdmTable(admTable === id ? "" : id); }}>{label}{n != null ? <span className="n">{n}</span> : null}</button>;
+                      };
+                      return (
+                        <div className="admu-tables">
+                          <div className="admu-tabs">
+                            {tab("courses", "Courses", courseTable.filter(function(c){ return c.readers; }).length)}
+                            {tab("badges", "Badges", badgeRows.length)}
+                            {tab("reading", "Now reading", bookRows.length)}
+                          </div>
+                          {admTable === "badges" && (
+                            <div className="admu-ct">
+                              {!badgeRows.length && <div className="admd-s">No badges earned yet.</div>}
+                              {badgeRows.map(function(b){
+                                return (
+                                  <div key={b.title} className="admu-br">
+                                    <span className={"bdg-medal sm t" + Math.min(b.tier || 0, 4)}>{b.mark}</span>
+                                    <span className="t">{b.title}</span>
+                                    <span className="holders">
+                                      {b.holders.sort(function(x, y){ return y.tier - x.tier || y.at - x.at; }).map(function(h, i){
+                                        return <span key={i} className="admy-chip" title={h.at ? new Date(h.at).toLocaleDateString() : ""}>{h.name}{h.tier > 1 ? <b> ·{h.tier}</b> : null}</span>;
+                                      })}
+                                    </span>
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          )}
+                          {admTable === "reading" && (
+                            <div className="admu-ct">
+                              {!bookRows.length && <div className="admd-s">Nobody has a place saved in a book.</div>}
+                              {bookRows.map(function(b){
+                                return (
+                                  <div key={b.key} className="admu-br">
+                                    <span className="t" lang="ru">{b.title}{b.author ? <span className="a"> — {b.author}</span> : null}</span>
+                                    <span className="holders">
+                                      {b.readers.sort(function(x, y){ return y.lastRead - x.lastRead; }).map(function(h, i){
+                                        var pct = h.totalChapters > 1 ? Math.round(100 * (h.cidx + 1) / h.totalChapters) : null;
+                                        return <span key={i} className="admy-chip" title={h.lastRead ? "last read " + new Date(h.lastRead).toLocaleDateString() : ""}>{h.name}{pct != null ? <b> {pct}%</b> : null}</span>;
+                                      })}
+                                    </span>
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          )}
+                          {admTable === "courses" && courseTable.length > 0 && (
                         <div className="admu-ct">
                           <div className="admu-ctr h"><span>Course</span><span>Readers</span><span>Finished</span><span>Lessons</span><span>Right</span><span>First try</span></div>
                           {courseTable.map(function(c){
+                            // who is in it, with how far they are
+                            var inIt = adminUsers.map(function(u){
+                              var r = (u.courseList || []).filter(function(x){ return x.id === c.id; })[0];
+                              return r ? { name: nameOf(u), r: r } : null;
+                            }).filter(Boolean).sort(function(x, y){ return (y.r.last || 0) - (x.r.last || 0); });
                             return (
                               <div key={c.id} className={"admu-ctr" + (c.readers ? "" : " none")}>
-                                <span className="t" title={c.title}>{c.title}{c.repeat ? <i> · repeatable</i> : null}</span>
+                                <span className="t" title={c.title}>{c.title}{c.repeat ? <i> · repeatable</i> : null}
+                                  {inIt.length > 0 && (
+                                    <span className="holders">
+                                      {inIt.map(function(x, i){
+                                        return <span key={i} className={"admy-chip" + (x.r.finished ? " done" : "")}>{x.name}<b> {x.r.repeat ? x.r.right + " right" : x.r.done + "/" + x.r.of}</b></span>;
+                                      })}
+                                    </span>
+                                  )}
+                                </span>
                                 <span>{c.readers}</span>
                                 <span>{c.repeat ? "—" : c.finished}</span>
                                 <span>{c.lessons}</span>
@@ -20466,8 +20630,10 @@ export default function App() {
                             );
                           })}
                         </div>
-                      </details>
-                    )}
+                          )}
+                        </div>
+                      );
+                    })()}
                     <div className="admu-tools">
                       <input className="admu-q" type="search" placeholder="Search email or username"
                         value={admQ} onChange={function(e){ setAdmQ(e.target.value); }} />
@@ -20535,10 +20701,28 @@ export default function App() {
                             {u.courses && u.courses.finished > 0 && stat(u.courses.finished, "finished")}
                           </div>
                           {u.badges && u.badges.n > 0 && (
-                            <div className="admu-badges" title={u.badges.top.map(function(b){ return b.title; }).join(", ")}>
+                            <div className="admu-badges">
                               <span className="k">{u.badges.n}{u.badges.total ? "/" + u.badges.total : ""} badges</span>
-                              {u.badges.top.map(function(b, i){
-                                return <span key={i} className={"bdg-medal sm t" + Math.min(b.tier || 0, 4)} title={b.title}>{b.mark}</span>;
+                              {(u.badges.all || u.badges.top).slice().sort(function(a, b){ return (b.tier || 0) - (a.tier || 0) || (b.at || 0) - (a.at || 0); }).map(function(b, i){
+                                return <span key={i} className="admu-bdg" title={b.title + (b.at ? " · " + new Date(b.at).toLocaleDateString() : "")}><span className={"bdg-medal sm t" + Math.min(b.tier || 0, 4)}>{b.mark}</span><span className="bt">{b.title}</span></span>;
+                              })}
+                            </div>
+                          )}
+                          {(u.reading || []).length > 0 && (
+                            <div className="admu-line">
+                              <span className="k">Reading</span>
+                              {u.reading.slice(0, 5).map(function(r, i){
+                                var pct = r.totalChapters > 1 ? Math.round(100 * (r.cidx + 1) / r.totalChapters) : null;
+                                return <span key={i} className="admy-chip" title={(r.author ? r.author + " · " : "") + (r.lastRead ? "last read " + new Date(r.lastRead).toLocaleDateString() : "")}><span lang="ru">{r.title}</span>{pct != null ? <b> {pct}%</b> : null}</span>;
+                              })}
+                              {u.reading.length > 5 ? <span className="dim">+{u.reading.length - 5} more</span> : null}
+                            </div>
+                          )}
+                          {(u.courseList || []).length > 0 && (
+                            <div className="admu-line">
+                              <span className="k">Courses</span>
+                              {u.courseList.map(function(c, i){
+                                return <span key={i} className={"admy-chip" + (c.finished ? " done" : "")} title={c.title + " · " + c.right + " answers right" + (c.last ? " · last " + new Date(c.last).toLocaleDateString() : "")}>{c.short || c.title}<b> {c.repeat ? c.right + " right" : c.finished ? "✓" : c.done + "/" + c.of}</b></span>;
                               })}
                             </div>
                           )}
@@ -20576,6 +20760,7 @@ export default function App() {
             <div className="adm-head">
               <div className="adm-title" style={{fontSize:20,overflow:"hidden",textOverflow:"ellipsis"}}>
                 {adminDetail.__totals ? "All readers"
+                  : adminDetail.__days ? "Day by day"
                   : adminDetail.__books
                     ? (adminBookTab === "songs" ? "Songs opened" : "Reads by book")
                   : adminDetail.email}
@@ -20794,6 +20979,122 @@ export default function App() {
                         accounts hold a saved position in that book right now, which answers a
                         different question and is usually much smaller. A zero in Opened means
                         nobody has opened it since counting started, not that nobody ever has.
+                      </div>
+                    </>
+                  );
+                }
+                if (d.__days) {
+                  var DD = adminDays;
+                  if (!DD) return <div className="adm-empty">{adminDaysLoad ? "Reading the days…" : "Nothing yet."}</div>;
+                  var dayName = function(k){
+                    var dt = new Date(k + "T12:00:00Z");
+                    return dt.toLocaleDateString(undefined, { weekday: "long", day: "numeric", month: "long", timeZone: "UTC" });
+                  };
+                  var who = function(name){ return <b className="admy-who">{name}</b>; };
+                  return (
+                    <>
+                      <div className="admd-s" style={{lineHeight:1.5}}>
+                        Days are UTC. <b>Opened</b> is every reader, signed in or not; the rest is what account
+                        holders' own files record — a reader's words by book have been kept since October 2026,
+                        so earlier days show totals without titles.
+                        <button className="adm-btn" style={{marginLeft:10}} disabled={adminDaysLoad} onClick={loadAdminDays}>Refresh</button>
+                      </div>
+                      <div className="admy-days">
+                        {DD.days.map(function(dd){
+                          var open = admDayOpen === dd.date;
+                          var n = function(x){ return x ? x.length : 0; };
+                          var words = dd.active.reduce(function(t, a){ return t + a.read + a.readEn; }, 0);
+                          return (
+                            <div key={dd.date} className={"admy-day" + (open ? " open" : "")}>
+                              <button type="button" className="admy-head" onClick={function(){ setAdmDayOpen(open ? "" : dd.date); }}>
+                                <span className="admy-date">{dayName(dd.date)}</span>
+                                <span className="admy-sum">
+                                  {dd.visits ? <span><b>{dd.visits}</b> visits</span> : null}
+                                  {dd.logins ? <span><b>{dd.logins}</b> logins</span> : null}
+                                  {dd.opens ? <span><b>{dd.opens}</b> opens</span> : null}
+                                  {n(dd.active) ? <span><b>{n(dd.active)}</b> reading</span> : null}
+                                  {words ? <span><b>{words.toLocaleString()}</b> words</span> : null}
+                                  {n(dd.finished) ? <span><b>{n(dd.finished)}</b> marked read</span> : null}
+                                  {n(dd.lessons) ? <span><b>{n(dd.lessons)}</b> lessons</span> : null}
+                                  {n(dd.courses) ? <span><b>{n(dd.courses)}</b> courses done</span> : null}
+                                  {n(dd.badges) ? <span><b>{n(dd.badges)}</b> badges</span> : null}
+                                  {!dd.visits && !dd.opens && !n(dd.active) && !n(dd.finished) && !n(dd.lessons) && !n(dd.badges) ? <span className="dim">quiet</span> : null}
+                                </span>
+                                <span className="admy-arrow">{open ? "▾" : "▸"}</span>
+                              </button>
+                              {open && (
+                                <div className="admy-body">
+                                  {n(dd.active) > 0 && (
+                                    <div className="admy-sec">
+                                      <div className="admy-k">Who was reading</div>
+                                      {dd.active.map(function(a, i){
+                                        var bits = [];
+                                        if (a.read) bits.push(a.read.toLocaleString() + " words");
+                                        if (a.readEn) bits.push(a.readEn.toLocaleString() + " English words");
+                                        if (a.practiced) bits.push(a.practiced + " cards");
+                                        if (a.drills) bits.push(a.drills + " drill answers");
+                                        if (a.course) bits.push(a.course + " course answers");
+                                        if (a.sections) bits.push(a.sections + " lesson" + (a.sections === 1 ? "" : "s"));
+                                        return <div key={i} className="admy-row">{who(a.name)} <span className="dim">{bits.join(" · ")}</span></div>;
+                                      })}
+                                    </div>
+                                  )}
+                                  {n(dd.read) > 0 && (
+                                    <div className="admy-sec">
+                                      <div className="admy-k">Books read</div>
+                                      {dd.read.map(function(r, i){
+                                        return <div key={i} className="admy-row">{who(r.name)} <span lang="ru">{r.title}</span>{r.author ? <span className="dim"> — {r.author}</span> : null} <span className="dim">· {r.words.toLocaleString()} words</span></div>;
+                                      })}
+                                    </div>
+                                  )}
+                                  {n(dd.opened) > 0 && (
+                                    <div className="admy-sec">
+                                      <div className="admy-k">Books opened{dd.anonOpens ? <span className="dim"> · {dd.anonOpens} of {dd.opens} signed out</span> : null}</div>
+                                      <div className="admy-chips">
+                                        {dd.opened.map(function(b){
+                                          return <span key={b.key} className="admy-chip" title={b.author}><span lang="ru">{b.title}</span>{b.en ? " (EN)" : ""}{b.n > 1 ? <b> ×{b.n}</b> : null}</span>;
+                                        })}
+                                      </div>
+                                    </div>
+                                  )}
+                                  {n(dd.finished) > 0 && (
+                                    <div className="admy-sec">
+                                      <div className="admy-k">Marked read</div>
+                                      {dd.finished.map(function(f, i){
+                                        return <div key={i} className="admy-row">{who(f.name)} <span lang="ru">{f.title}</span>{f.author ? <span className="dim"> — {f.author}</span> : null}</div>;
+                                      })}
+                                    </div>
+                                  )}
+                                  {n(dd.courses) > 0 && (
+                                    <div className="admy-sec">
+                                      <div className="admy-k">Courses finished</div>
+                                      {dd.courses.map(function(c, i){
+                                        return <div key={i} className="admy-row">{who(c.name)} {c.title}{c.grade != null ? <span className="dim"> · exam {c.grade}%</span> : null}</div>;
+                                      })}
+                                    </div>
+                                  )}
+                                  {n(dd.lessons) > 0 && (
+                                    <div className="admy-sec">
+                                      <div className="admy-k">Lessons finished</div>
+                                      {dd.lessons.map(function(l, i){
+                                        return <div key={i} className="admy-row">{who(l.name)} <span className="dim">{l.course} ·</span> {l.section}</div>;
+                                      })}
+                                    </div>
+                                  )}
+                                  {n(dd.badges) > 0 && (
+                                    <div className="admy-sec">
+                                      <div className="admy-k">Badges earned</div>
+                                      {dd.badges.map(function(b, i){
+                                        return <div key={i} className="admy-row">{who(b.name)} <span className={"bdg-medal sm t" + Math.min(b.tier || 0, 4)}>{b.mark}</span> {b.title}</div>;
+                                      })}
+                                    </div>
+                                  )}
+                                </div>
+                              )}
+                            </div>
+                          );
+                        })}
+                        {!DD.days.length && <div className="adm-empty">Nothing recorded in the last 45 days.</div>}
                       </div>
                     </>
                   );

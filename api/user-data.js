@@ -834,6 +834,21 @@ export default async function handler(req, res) {
           const o = Object.assign({}, a);
           for (const f of Object.keys(b)) {
             if (!/^[a-zA-Z]{1,24}$/.test(f)) continue;
+            if (f === "books") {
+              // which books the words were read in, by filename: per book the
+              // larger figure, as for the day's totals; capped, as it is a
+              // key in a file and arrives from the open internet
+              const ab = (a.books && typeof a.books === "object") ? a.books : {};
+              const bb = (b.books && typeof b.books === "object") ? b.books : {};
+              const ob = Object.assign({}, ab);
+              for (const key of Object.keys(bb)) {
+                const kk = String(key).slice(0, 160);
+                if (ob[kk] === undefined && Object.keys(ob).length >= 60) continue;
+                ob[kk] = Math.max(Number(ab[kk]) || 0, Number(bb[key]) || 0);
+              }
+              o.books = ob;
+              continue;
+            }
             o[f] = Math.max(Number(a[f]) || 0, Number(b[f]) || 0);
           }
           merged[k] = o;
