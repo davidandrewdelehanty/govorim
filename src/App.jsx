@@ -18073,8 +18073,16 @@ export default function App() {
         .crs-formula .rw{border-bottom:0}
         .crs-lead{font-family:var(--serif);font-size:21px;font-weight:600;line-height:1.4;color:var(--ink);margin:0}
         .crs-lesson>.crs-formula+.crs-lead{margin-top:16px}
-        .crs-p{font-family:var(--serif);font-size:17px;line-height:1.7;color:var(--ink);margin:0}
-        .crs-p b,.crs-lead b,.crs-ul b{font-weight:600;color:var(--ink)}
+        .crs-p{font-family:var(--serif);font-size:17px;line-height:1.72;color:var(--ink);margin:0;max-width:70ch}
+        /* The constructions in the prose — the Russian words, endings,
+           prepositions — are set bold in the rubric, so a paragraph can be
+           read for its forms at a glance; the English around them stays quiet. */
+        .crs-p b,.crs-lead b,.crs-ul b,.crs-rule-h b,.crs-rule-p b,.crs-rule-pts b,.crs-note b{font-weight:600;color:var(--rubric);letter-spacing:.005em}
+        .crs-p b .rw,.crs-rule-pts b .rw,.crs-rule-h b .rw{border-bottom-color:transparent}
+        .crs-p b .rw:hover,.crs-rule-pts b .rw:hover,.crs-rule-h b .rw:hover{border-bottom-color:var(--rubric)}
+        .crs-p i,.crs-rule-pts i,.crs-rule-h i{font-style:italic;color:var(--ink)}
+        .crs-lesson>.crs-p+.crs-p{margin-top:16px}
+        .crs-lesson>.crs-rule{margin-top:18px}
         .crs-ul{padding-left:1.3em;font-family:var(--serif);font-size:16.5px;line-height:1.65;color:var(--ink)}
         .crs-ul li+li{margin-top:5px}
         .crs-ul li::marker{color:var(--rubric)}
@@ -18219,6 +18227,9 @@ export default function App() {
         .crs-rule-pts li{counter-increment:pt;position:relative;padding:4px 0 4px 34px;border-top:1px solid var(--rule-soft)}
         .crs-rule-pts li:last-child{border-bottom:1px solid var(--rule-soft)}
         .crs-rule-pts li::before{content:counter(pt,lower-alpha);position:absolute;left:4px;top:5px;font-family:var(--display);font-size:16px;color:var(--rubric)}
+        .crs-rule-pts.num li::before{content:counter(pt)}
+        .crs-rule-h{max-width:70ch}
+        .crs-rule-pts li{line-height:1.65;padding:7px 0 7px 34px}
         .crs-rule-ex{display:flex;flex-wrap:wrap;gap:6px 0;margin-top:6px;font-family:var(--serif);font-size:18px;line-height:1.5;color:var(--ink)}
         .crs-rule-ex span{padding:0 14px 0 0;margin-right:14px;border-right:1px solid var(--rule)}
         .crs-rule-ex span:last-child{border-right:0;margin-right:0;padding-right:0}
@@ -26380,7 +26391,7 @@ export default function App() {
                   if (it.points) return (
                     <div key={key} className="crs-rule-i">
                       {it.head ? <p className="crs-rule-h">{withExamples(it.head, key + "h")}</p> : null}
-                      <ol className="crs-rule-pts">{it.points.map(function(x, j){ return <li key={j}>{withExamples(x, key + "p" + j)}</li>; })}</ol>
+                      <ol className={"crs-rule-pts" + (it.num ? " num" : "")}>{it.points.map(function(x, j){ return <li key={j}>{withExamples(x, key + "p" + j)}</li>; })}</ol>
                     </div>
                   );
                   if (it.examples) return (

@@ -417,6 +417,10 @@ def main():
     # coverage.py --mine) are added to the lesson first.
     import coverage
     coverage.main(["--apply"])
+    # The prose set for reading: lists out of "a. … b. …", paragraphs of two
+    # sentences, the constructions in bold (tools/courses/prose.py).
+    import prose
+    prose.main(["--apply"])
     import pertinence
     pertinence.main(["--apply"])
     for meta in outline:

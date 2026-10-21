@@ -29,7 +29,7 @@ export default [
    {
     "id": "ts-instr",
     "title": "In the morning, at night, in summer",
-    "n": 12,
+    "n": 11,
     "stream": true,
     "finite": true
    },
@@ -43,7 +43,7 @@ export default [
    {
     "id": "ts-ves",
     "title": "весь + accusative: All day, all week",
-    "n": 13,
+    "n": 14,
     "stream": true,
     "finite": true
    },
@@ -64,14 +64,14 @@ export default [
    {
     "id": "ts-v-prep",
     "title": "В + prepositional: In May, last year",
-    "n": 33,
+    "n": 30,
     "stream": true,
     "finite": true
    },
    {
     "id": "ts-date",
     "title": "On the fifth of May",
-    "n": 11,
+    "n": 21,
     "stream": true,
     "finite": true
    },
