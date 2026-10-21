@@ -716,7 +716,9 @@ def build_fb2(title, author, chapters, source_url):
     out = []
     a = out.append
     a('<?xml version="1.0" encoding="utf-8"?>')
-    a('<FictionBook xmlns="http://www.gribuser.ru/xml/fictionbook/2.1">')
+    # xlink declared, for the <image l:href> of the Modern Russian shelf's pictures —
+    # without it the browser's XML parser refuses the whole book.
+    a('<FictionBook xmlns="http://www.gribuser.ru/xml/fictionbook/2.1" xmlns:l="http://www.w3.org/1999/xlink">')
     a("<description><title-info>")
     a("<book-title>%s</book-title>" % _esc(title))
     a("<author><nickname>%s</nickname></author>" % _esc(author))

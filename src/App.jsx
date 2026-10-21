@@ -5032,6 +5032,15 @@ export default function App() {
   var [adminBookTab, setAdminBookTab]       = useState("books");
   var [adminTotals, setAdminTotals]         = useState(null);
   var [admTotList, setAdmTotList]           = useState("");      // "opened" | "finished" | "" — a list opened under the totals
+  // The Modern Russian shelf's groups, open or closed; remembered on the device.
+  var [modernOpen, setModernOpen] = useState(function(){
+    try { return JSON.parse(localStorage.getItem("modernGroups") || "null") || {}; } catch (x) { return {}; }
+  });
+  var toggleModern = function(g) {
+    var m = Object.assign({}, modernOpen); m[g] = !m[g];
+    setModernOpen(m);
+    try { localStorage.setItem("modernGroups", JSON.stringify(m)); } catch (x) {}
+  };
   var [adminTotalsLoad, setAdminTotalsLoad] = useState(false);
   var [adminLegacyId, setAdminLegacyId]     = useState("");
   var [adminLegacyMsg, setAdminLegacyMsg]   = useState("");
@@ -17827,6 +17836,7 @@ export default function App() {
         .crs-back{font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin:6px 0 2px}
         .crs-back:hover{color:var(--rubric)}
         .crs-kicker{font-family:var(--sans);font-size:11px;letter-spacing:.16em;color:var(--ink-3);margin-top:14px}
+        .mr-group .lib-grid{margin:4px 0 14px}
         /* The shelf of courses, in four groups that open and close. */
         .crs-group{border-top:1px solid var(--rule);padding:4px 0 10px}
         .crs-group:last-of-type{border-bottom:1px solid var(--rule)}
@@ -23405,6 +23415,40 @@ export default function App() {
                                   return a.localeCompare(b, "ru");
                                 });
                                 var openA = shelfAuthor.indexOf(cat + "|") === 0 ? shelfAuthor.slice(cat.length + 1) : "";
+                                if (isModern) {
+                                  // The groups one under another, each opening to its articles.
+                                  var MODERN_BLURB = {
+                                    "Russian rock: the scene": "The movement itself: the rock clubs, magnitizdat, the bard song it grew from.",
+                                    "Bands": "The groups, from Кино and Аквариум to Би-2 and Звери.",
+                                    "Musicians": "The singers and writers of the songs.",
+                                    "Writers": "Pushkin to Pelevin, the Silver Age and the Soviet century between.",
+                                    "Russian literature": "The literature as a whole, and its ages.",
+                                    "Cities": "Wikivoyage's guides: getting there, getting around, eating, sleeping.",
+                                    "News": "Wikinews, a month to a book.",
+                                    "The state": "The Constitution, the codes, the addresses — official documents, outside copyright.",
+                                  };
+                                  return (
+                                    <div key={cat} className="lib-section">
+                                      <div className="lib-section-hdr">{shelfName(cat)}</div>
+                                      {aKeys.map(function(g){
+                                        var list = byAuth[g].slice().sort(function(x, y){ return String(x.book.title).localeCompare(String(y.book.title), "ru"); });
+                                        var open = !!modernOpen[g];
+                                        var done = list.filter(function(e){ return isFinished(e.book); }).length;
+                                        return (
+                                          <div key={g} className={"crs-group mr-group" + (open ? " open" : "")}>
+                                            <button type="button" className="crs-group-h" onClick={function(){ toggleModern(g); }} aria-expanded={open}>
+                                              <span className="crs-group-arrow">{open ? "▾" : "▸"}</span>
+                                              <span className="crs-group-t">{g}</span>
+                                              <span className="crs-group-n">{list.length} article{list.length === 1 ? "" : "s"}{done ? " · " + done + " read" : ""}</span>
+                                              {!open && <span className="crs-group-b">{MODERN_BLURB[g] || ""}</span>}
+                                            </button>
+                                            {open && <div className="lib-grid mr-grid">{list.map(renderCard)}</div>}
+                                          </div>
+                                        );
+                                      })}
+                                    </div>
+                                  );
+                                }
                                 if (openA && byAuth[openA]) {
                                   entries = byAuth[openA];
                                   if (isModern) entries = entries.slice().sort(function(x, y){ return String(x.book.title).localeCompare(String(y.book.title), "ru"); });
