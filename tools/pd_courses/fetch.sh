@@ -21,9 +21,20 @@ get() {  # get <subdir> <url>
   local d="$OUT/$1" u="$2" f
   f="$(printf '%s' "${u##*/}" | sed 's/%20/ /g; s/%2C/,/g; s/%2520/ /g')"
   mkdir -p "$d"
+  [ -e "$d/$f" ] && [ ! -s "$d/$f" ] && rm -f "$d/$f"      # an empty file from an earlier run
   if [ -s "$d/$f" ]; then echo "   have  $1/$f"; return; fi
   echo "   fetch $1/$f"
-  curl -sS -L --retry 4 --retry-delay 5 -o "$d/$f.part" "$u" && mv "$d/$f.part" "$d/$f" || { echo "   ! failed: $u"; rm -f "$d/$f.part"; }
+  # The DLI files came back empty with a bare curl: a browser's User-Agent,
+  # a fail on any error status, and the other of the host's two names
+  # (with and without "cdn") are tried in turn.
+  local code
+  for try in "$u" "${u/.cdn.digitaloceanspaces/.digitaloceanspaces}" "${u/nyc3.digitaloceanspaces/nyc3.cdn.digitaloceanspaces}"; do
+    code=$(curl -sS -f -L -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Gecko/20100101 Firefox/128.0" \
+             --retry 4 --retry-delay 5 -o "$d/$f.part" -w "%{http_code}" "$try" 2>/dev/null)
+    if [ "$code" = "200" ] && [ -s "$d/$f.part" ]; then mv "$d/$f.part" "$d/$f"; return; fi
+    rm -f "$d/$f.part"
+  done
+  echo "   ! failed ($code): $u"
 }
 
 echo "== DLI Russian Basic Course: text"

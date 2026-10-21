@@ -14361,6 +14361,9 @@ export default function App() {
     });
     ((curChapter && curChapter.subIdx) || []).forEach(function(x) { subAt[x] = true; });
     var isTextbook = !!(bookMeta && bookMeta.category === "Soviet Textbooks");
+    // A Wikipedia article's pictures sit in the text, the text running round
+    // them, as they do on the page they came from — not as plates.
+    var isModernBook = !!(bookMeta && bookMeta.category === "Modern Russian");
     // A textbook's chapter argument (the italic summary under a chapter title)
     // and its notes to the teacher come through as wholly-emphasised paragraphs.
     var argAt = Object.create(null);
@@ -14373,7 +14376,7 @@ export default function App() {
       return list.map(function(f, fi) {
         var wide = f.w && f.h && f.w / f.h > 1.25;
         return (
-          <figure key={key + "-" + fi} className={"tb-fig" + (wide ? " wide" : "")} data-noxl="">
+          <figure key={key + "-" + fi} className={"tb-fig" + (wide ? " wide" : "") + (isModernBook ? " inset" + (fi % 2 ? " left" : "") : "")} data-noxl="">
             <img src={figSrc(f.src)} alt={f.cap || "Illustration"} loading="lazy" decoding="async"
                  width={f.w || undefined} height={f.h || undefined}
                  onClick={function(e){ e.stopPropagation(); setFigZoom({ src: figSrc(f.src), cap: f.cap || "" }); }} />
@@ -17229,6 +17232,22 @@ export default function App() {
         .tb-fig figcaption{margin:9px auto 0;max-width:34em;font-family:var(--serif);font-style:italic;
           font-size:14px;line-height:1.45;color:var(--ink-2)}
         .tb-fig figcaption::before{content:"";display:block;width:28px;margin:0 auto 7px;border-top:1px solid var(--rubric)}
+        /* The Modern Russian shelf's pictures: set into the text, which runs
+           round them. Right by default, the odd ones left, so a long article
+           does not hang everything on one margin; a wide one goes across the
+           column; on a phone they all do. */
+        .tb-fig.inset{float:right;clear:right;width:min(40%,320px);margin:6px 0 14px 28px;text-align:left;background:transparent;isolation:auto}
+        .tb-fig.inset.left{float:left;clear:left;margin:6px 28px 14px 0}
+        .tb-fig.inset.wide{float:none;clear:both;width:min(100%,560px);margin:22px auto 20px;text-align:center}
+        .tb-fig.inset img{display:block;width:100%;max-width:100%;height:auto;max-height:none;mix-blend-mode:normal;filter:none;
+          border:1px solid var(--rule-soft)}
+        .tb-fig.inset figcaption{margin:7px 0 0;max-width:none;font-family:var(--sans);font-style:normal;font-size:11.5px;line-height:1.45;
+          letter-spacing:.01em;color:var(--ink-3)}
+        .tb-fig.inset figcaption::before{display:none}
+        .tb-fig.inset.wide figcaption{margin:8px auto 0;max-width:34em}
+        /* A heading or the chapter's end starts clear of a picture. */
+        .ltxt p.tb-sub,.sec-div,.lit-nav-bot,.lit-next{clear:both}
+        @media (max-width:700px){.tb-fig.inset,.tb-fig.inset.left{float:none;clear:both;width:100%;margin:16px 0 14px}.tb-fig.inset img{max-height:60vh;width:auto;margin:0 auto}}
         p.tb-sub{font-family:var(--display);font-size:1.12em;font-weight:700;line-height:1.3;color:var(--ink);
           margin:1.7em 0 .55em;letter-spacing:.01em}
         p.tb-sub .rw{font-weight:700}
