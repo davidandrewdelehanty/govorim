@@ -100,9 +100,15 @@ def kind_of(b, authors):
 def wiki_title(b):
     """(host, title) of the article a Wikipedia/Wikivoyage book came from."""
     for s in (b.get("blurbSrc") or "", b.get("_note") or ""):
-        m = re.search(r"https?://(ru\.wiki(?:pedia|voyage)\.org)/wiki/([^\s,;]+)", s)
+        # The comma is part of a person's title — «Цой,_Виктор_Робертович» — so
+        # only whitespace ends the address; a stop or comma at the very end is
+        # the sentence's, not the title's.
+        m = re.search(r"https?://(ru\.wiki(?:pedia|voyage)\.org)/wiki/(\S+)", s)
         if m:
-            return m.group(1), urllib.parse.unquote(m.group(2)).replace("_", " ")
+            t = urllib.parse.unquote(m.group(2)).rstrip(".,;")
+            if t.endswith(")") and t.count("(") < t.count(")"):      # the sentence's bracket, not «(группа)»'s
+                t = t[:-1]
+            return m.group(1), t.replace("_", " ")
     return None, None
 
 
@@ -246,7 +252,19 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--redo", action="store_true")
     ap.add_argument("--slug")
+    ap.add_argument("--why", help="print the article's candidate files and their licences for this slug, and stop")
     a = ap.parse_args()
+    if a.why:
+        idx0 = json.load(io.open(ec.MANIFEST, encoding="utf-8"))
+        b0 = [b for b in idx0 if b.get("slug") == a.why][0]
+        h0, t0 = wiki_title(b0)
+        names = article_files(h0, t0)
+        print(h0, t0, "→", len(names), "files")
+        inf = ec.infos(names)
+        for n in names:
+            i = inf.get(n) or {}
+            print("   %-60s %4sx%-4s %-12s %s" % (n[:60], i.get("w", "?"), i.get("h", "?"), (i.get("mime") or "")[:12], (i.get("lic") or "(no licence data)")[:50]))
+        return
     state = json.load(io.open(STATE, encoding="utf-8")) if os.path.exists(STATE) else {"books": {}}
     used = {v["file"] for v in state["books"].values() if v and v.get("file")}
     for other in ("tools/fallback_pictures_state.json", "tools/english_covers_state.json"):
