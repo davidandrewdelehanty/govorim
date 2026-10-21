@@ -94,6 +94,7 @@ def feats(e, prefer=()):
     words = WORD.findall(ans)
     first = NORM_PREP.get(words[0].lower(), words[0].lower()) if words else ""
     quantity = prev in QUANT or re.match(r"^\d", prev) or (M and any(p.tag.POS == "NUMR" for p in M.parse(prev)[:2]))
+    tags_extra = {"afternum"} if quantity else set()
     if quantity:
         prep = ""                          # «на две части»: the number takes the case, the noun follows the number
     elif prev in PREP_CASES:
@@ -108,7 +109,7 @@ def feats(e, prefer=()):
     prefer = set(prefer) & set(CASES)
     if allowed:
         prefer = prefer & allowed          # never a case the preposition cannot take
-    tags = set()
+    tags = set(tags_extra)
     head = None
     parsed = []
     if M:
@@ -139,7 +140,7 @@ def feats(e, prefer=()):
             head = next((p for p in reversed(parsed) if p and p.tag.POS in POS_MAIN), None)
     if head is not None:
         t = head.tag
-        for a in (t.POS, t.case, t.number, t.gender, t.tense, t.aspect, t.mood, t.voice, t.animacy):
+        for a in (t.POS, t.case, t.number, t.gender, t.tense, t.aspect, t.mood, t.voice, t.animacy, t.person):
             if a:
                 tags.add(str(a))
         if "Supr" in t:
@@ -162,6 +163,9 @@ def feats(e, prefer=()):
         tags.add("futr"); tags.add("impf")
     for x in extra:
         tags.add("+" + x)
+    if hint and not re.search(r"[А-Яа-яЁё]", hint):
+        tags.add("gloss")                  # a conjunction or particle blanked itself, hinted in English
+        tags.add("gloss:" + ans.lower().replace("ё", "е"))
     if " / " in hint:
         tags.add("aspectchoice")           # «делать / сделать»: which aspect
     if prev in ("не", "нет", "ни") or prev2 in ("не", "нет") and prev not in PREP_CASES:
@@ -190,6 +194,8 @@ def ok(want, f):
                 hit = bool(re.search(alt[6:].replace("/", "|"), f["lemma"]))
             elif alt.startswith("hint:"):
                 hit = bool(re.search(alt[5:].replace("/", "|"), f["hint"].lower()))
+            elif alt.startswith("prev:"):
+                hit = alt[5:] in (f["prev"], f["prev2"])
             else:
                 hit = alt in f["tags"] or (alt in CASES + ("sing", "plur") and "Fixd" in f["tags"])
             if hit:
@@ -270,12 +276,33 @@ def score(sentence, f):
             px = "об?о?" if p == "о" else re.escape(p)
             if re.search(r"(?<![а-яё\-])" + px + r"(?![а-яё\-])", low):
                 s += 4
+        elif tag.startswith("gloss:"):
+            w = tag[6:]
+            if re.search(r"(?<![а-яё\-])" + re.escape(w) + r"(?![а-яё\-])", low):
+                s += 4
+            elif len(w) > 5 and re.search(r"(?<![а-яё\-])" + re.escape(w[:-2]), low):
+                s += 3                     # «которых» explained by a sentence about «который»
     for tag, rx, w in LEX:
         if tag in f["tags"] and re.search(rx, low):
-            s += w
+            s += w + 0.1                   # the more of the construction's features named, the better
+    # the sentence has the answer itself: «рано — раньше», «хороший — лучше»
+    a = f["ans"].lower().replace("ё", "е")
+    if len(a) >= 4 and re.search(r"(?<![а-яё])" + re.escape(a) + r"(?![а-яё])", low):
+        s += 4
+    # a present-tense verb: the sentence about its conjugation type
+    if "pres" in f["tags"] and "VERB" in f["tags"]:
+        if re.search(r"(ешь|ет|ем|ете|ут|ют|ю|у)(ся|сь)?$", a) and re.search(r"[\"“«]Е[\"”»]|first conjugation|Е type", sentence):
+            s += 2
+        if re.search(r"(ишь|ит|им|ите|ат|ят)(ся|сь)?$", a) and re.search(r"[\"“«]И[\"”»]|second conjugation|И type", sentence):
+            s += 2
+    # the sentence names the exercise's own word: «садиться — сесть: to sit down»
+    for w in f.get("lemma", "").split():
+        if len(w) >= 4 and re.search(r"(?<![а-яё])" + re.escape(w[:5 if len(w) > 5 else len(w)]), low):
+            s += 3
+            break
     if s:
         # a sentence that states a rule over one that introduces the topic
-        if re.search(r"\b(is formed|are formed|is used|are used|takes|take the|requires|require|is followed|are followed|denotes|denote|expresses|express|agrees|agree|is in the|are in the|answers the question)\b", low):
+        if re.search(r"\b(is formed|are formed|is used|are used|takes|take the|requires|require|is followed|are followed|denotes|denote|expresses|express|agrees|agree|is in the|are in the|answers the question|belong to|belongs to|is rendered|are rendered|consists of|consist of)\b", low):
             s += 1
         # the sentence quotes the very ending the answer has: "-ее", -ами
         a = f["ans"].lower().replace("ё", "е")
@@ -289,7 +316,9 @@ def score(sentence, f):
 
 
 def text_of(b):
-    return re.sub(r"\s+", " ", (b.get("text") or "")).strip()
+    t = (b.get("text") or "").replace("\x27\x27\x27", "").replace("\x27\x27", "")
+    t = re.sub(r"\[\[([^\]|]*\|)?([^\]]*)\]\]", r"\2", t)      # wiki links, as their text
+    return re.sub(r"\s+", " ", t).strip()
 
 
 SPLIT = re.compile(r"(?<=[.!?])\s+(?=[A-ZА-Я«\"“*(])")
@@ -307,6 +336,12 @@ def sentences(doc):
         texts = []
         if t in ("p", "lead", "formula"):
             texts.append(text_of(b))
+        elif t == "table":
+            # a table's rows, each as a line: «рано — раньше», «хороший — лучше — лучший»
+            for r in b.get("rows") or []:
+                cells = [text_of({"text": str(c)}) for c in r if str(c).strip()]
+                if len(cells) >= 2:
+                    texts.append(" — ".join(cells) + ".")
         elif t == "h":
             continue
         elif t == "rule":
@@ -320,6 +355,7 @@ def sentences(doc):
         elif t == "ex":
             texts.append("*" + " ".join(x[0] for x in b.get("items") or []) + "*")
         for x in texts:
+            x = text_of({"text": x})
             for s in SPLIT.split(x):
                 s = s.strip()
                 if len(s) >= 8:
@@ -463,7 +499,7 @@ def main(argv=None):
                 fe = feats(e, re.findall(r"[a-z0-9]+", want or ""))
                 # a word that does not change («спасибо», «евро») shows no case
                 same = fe["lemma"] and fe["lemma"] == fe["ans"].lower().replace("ё", "е") and "Fixd" in fe["tags"]
-                if want and (not ok(want, fe) or (same and any(c in want for c in CASES))):
+                if want and "gloss" not in fe["tags"] and (not ok(want, fe) or (same and any(c in want for c in CASES))):
                     dropped[course + "/" + stem].append({"q": e.get("q"), "answers": e.get("answers"), "tags": sorted(fe["tags"]), "want": want})
                     stats["dropped"] += 1
                     changed = True

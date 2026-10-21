@@ -29,21 +29,21 @@ export default [
    {
     "id": "ts-instr",
     "title": "In the morning, at night, in summer",
-    "n": 10,
+    "n": 12,
     "stream": true,
     "finite": true
    },
    {
     "id": "ts-kazhdyy",
     "title": "каждый + accusative: Every day, every Wednesday",
-    "n": 14,
+    "n": 15,
     "stream": true,
     "finite": true
    },
    {
     "id": "ts-ves",
     "title": "весь + accusative: All day, all week",
-    "n": 12,
+    "n": 13,
     "stream": true,
     "finite": true
    },
@@ -64,14 +64,14 @@ export default [
    {
     "id": "ts-v-prep",
     "title": "В + prepositional: In May, last year",
-    "n": 30,
+    "n": 33,
     "stream": true,
     "finite": true
    },
    {
     "id": "ts-date",
     "title": "On the fifth of May",
-    "n": 21,
+    "n": 11,
     "stream": true,
     "finite": true
    },
@@ -85,7 +85,7 @@ export default [
    {
     "id": "ts-na-acc",
     "title": "НА + accusative: For a week, the next day",
-    "n": 13,
+    "n": 14,
     "stream": true,
     "finite": true
    },
@@ -113,7 +113,7 @@ export default [
    {
     "id": "ts-s-gen",
     "title": "С + genitive: Since morning, from Monday",
-    "n": 12,
+    "n": 11,
     "stream": true,
     "finite": true
    },
@@ -238,7 +238,7 @@ export default [
    {
     "id": "c1-numbers-nouns",
     "title": "Numbers with nouns",
-    "n": 0
+    "n": 6
    },
    {
     "id": "c1-numbers-nouns-practice",
@@ -248,7 +248,7 @@ export default [
    {
     "id": "c2-genitive-plural",
     "title": "The genitive plural",
-    "n": 0
+    "n": 9
    },
    {
     "id": "c2-genitive-plural-practice",
@@ -268,7 +268,7 @@ export default [
    {
     "id": "c4-one-two-three-four",
     "title": "один, два, три, четыре in every case",
-    "n": 0
+    "n": 12
    },
    {
     "id": "c4-one-two-three-four-practice",
@@ -278,7 +278,7 @@ export default [
    {
     "id": "c5-five-and-up",
     "title": "Five to a hundred in every case",
-    "n": 0
+    "n": 9
    },
    {
     "id": "c5-five-and-up-practice",
@@ -288,12 +288,12 @@ export default [
    {
     "id": "c6-hundreds-thousands",
     "title": "Hundreds, thousands, millions, and «about»",
-    "n": 0
+    "n": 15
    },
    {
     "id": "c7-ordinals-fractions",
     "title": "Ordinals, fractions, «equal to»",
-    "n": 0
+    "n": 3
    },
    {
     "id": "c7-ordinals-fractions-practice",
@@ -313,7 +313,7 @@ export default [
    {
     "id": "exam",
     "title": "Exam",
-    "n": 35,
+    "n": 40,
     "exam": true
    }
   ],
@@ -343,7 +343,7 @@ export default [
    {
     "id": "k2-accusative",
     "title": "The accusative case",
-    "n": 0
+    "n": 3
    },
    {
     "id": "k2-accusative-practice",
@@ -353,7 +353,7 @@ export default [
    {
     "id": "k3-genitive",
     "title": "The genitive case",
-    "n": 0
+    "n": 6
    },
    {
     "id": "k3-genitive-practice",
@@ -363,7 +363,7 @@ export default [
    {
     "id": "k4-dative",
     "title": "The dative case",
-    "n": 0
+    "n": 3
    },
    {
     "id": "k4-dative-practice",
@@ -373,7 +373,7 @@ export default [
    {
     "id": "k5-instrumental",
     "title": "The instrumental case",
-    "n": 0
+    "n": 3
    },
    {
     "id": "k5-instrumental-practice",
@@ -403,7 +403,7 @@ export default [
    {
     "id": "k8-plural-cases",
     "title": "All six cases, plural",
-    "n": 0
+    "n": 9
    },
    {
     "id": "k8-plural-cases-practice",
@@ -413,7 +413,7 @@ export default [
    {
     "id": "k9-adjectives-singular",
     "title": "Adjectives and possessives, singular",
-    "n": 0
+    "n": 3
    },
    {
     "id": "k9-adjectives-singular-practice",
@@ -463,7 +463,7 @@ export default [
    {
     "id": "f1-imperative",
     "title": "The imperative: читай, пусть, давайте",
-    "n": 0
+    "n": 9
    },
    {
     "id": "f1-imperative-practice",
@@ -473,7 +473,7 @@ export default [
    {
     "id": "f2-conditional",
     "title": "If and would: бы",
-    "n": 0
+    "n": 3
    },
    {
     "id": "f2-conditional-practice",
@@ -483,7 +483,7 @@ export default [
    {
     "id": "f3-short-passive",
     "title": "Short past passive participles: куплен, написан, открыт",
-    "n": 0
+    "n": 6
    },
    {
     "id": "f3-short-passive-practice",
@@ -513,7 +513,7 @@ export default [
    {
     "id": "f6-past-active",
     "title": "Past active participles: прочитавший, принёсший, шедший",
-    "n": 0
+    "n": 3
    },
    {
     "id": "f6-past-active-practice",
@@ -523,7 +523,7 @@ export default [
    {
     "id": "f7-passive-present",
     "title": "The -ся passive and present passive participles: читается, издаваемый",
-    "n": 0
+    "n": 6
    },
    {
     "id": "f7-passive-present-practice",
@@ -533,7 +533,7 @@ export default [
    {
     "id": "f8-gerund-imperfective",
     "title": "Imperfective деепричастия: читая, говоря",
-    "n": 0
+    "n": 3
    },
    {
     "id": "f8-gerund-imperfective-practice",
@@ -543,7 +543,7 @@ export default [
    {
     "id": "f9-gerund-perfective",
     "title": "Perfective деепричастия: прочитав, придя",
-    "n": 0
+    "n": 3
    },
    {
     "id": "f9-gerund-perfective-practice",
@@ -573,7 +573,7 @@ export default [
    {
     "id": "n1-subject",
     "title": "The subject",
-    "n": 20
+    "n": 23
    },
    {
     "id": "n1-subject-practice",
@@ -603,7 +603,7 @@ export default [
    {
     "id": "n2-eto",
     "title": "Это…, вот…: naming things",
-    "n": 20
+    "n": 23
    },
    {
     "id": "n2-eto-practice",
@@ -633,7 +633,7 @@ export default [
    {
     "id": "n3-adjectives",
     "title": "Adjectives with the subject",
-    "n": 20
+    "n": 23
    },
    {
     "id": "n3-adjectives-practice",
@@ -688,7 +688,7 @@ export default [
    {
     "id": "g1-possession",
     "title": "Whose, and of what",
-    "n": 20
+    "n": 23
    },
    {
     "id": "g1-possession-practice",
@@ -1163,7 +1163,7 @@ export default [
    {
     "id": "d1-to-whom",
     "title": "To whom: giving, telling, showing",
-    "n": 15
+    "n": 24
    },
    {
     "id": "d1-to-whom-practice",
@@ -1223,7 +1223,7 @@ export default [
    {
     "id": "d3-verbs",
     "title": "Verbs that take the dative",
-    "n": 20
+    "n": 29
    },
    {
     "id": "d3-verbs-practice",
@@ -1253,7 +1253,7 @@ export default [
    {
     "id": "d4-k",
     "title": "к: towards, to someone's",
-    "n": 19
+    "n": 22
    },
    {
     "id": "d4-k-practice",
@@ -1393,7 +1393,7 @@ export default [
    {
     "id": "a1-object",
     "title": "The direct object",
-    "n": 20
+    "n": 35
    },
    {
     "id": "a1-object-practice",
@@ -1748,7 +1748,7 @@ export default [
    {
     "id": "a6-endings",
     "title": "Accusative endings: nouns, adjectives, pronouns",
-    "n": 20
+    "n": 23
    },
    {
     "id": "a6-endings-practice",
@@ -1798,7 +1798,7 @@ export default [
    {
     "id": "i1-with",
     "title": "With: с + instrumental",
-    "n": 20
+    "n": 23
    },
    {
     "id": "i1-with-practice",
@@ -1993,7 +1993,7 @@ export default [
    {
     "id": "i5-verbs",
     "title": "Verbs that take the instrumental",
-    "n": 20
+    "n": 23
    },
    {
     "id": "i5-verbs-practice",
@@ -2023,7 +2023,7 @@ export default [
    {
     "id": "i6-time",
     "title": "When: утром, зимой, этим летом",
-    "n": 20
+    "n": 26
    },
    {
     "id": "i6-time-practice",
@@ -2143,7 +2143,7 @@ export default [
    {
     "id": "p2-about",
     "title": "About: о, об, обо",
-    "n": 20
+    "n": 23
    },
    {
     "id": "p2-about-practice",
@@ -2358,17 +2358,17 @@ export default [
    {
     "id": "a1-process-result",
     "title": "Two aspects: the process and the result",
-    "n": 0
+    "n": 20
    },
    {
     "id": "a2-context",
     "title": "Words that call for the imperfective",
-    "n": 0
+    "n": 10
    },
    {
     "id": "a3-commands",
     "title": "Aspect in commands",
-    "n": 0
+    "n": 15
    },
    {
     "id": "a4-future",
@@ -2478,12 +2478,12 @@ export default [
    {
     "id": "a5-po-s",
     "title": "по- and с- with ходить, ездить, летать",
-    "n": 0
+    "n": 10
    },
    {
     "id": "exam",
     "title": "Exam",
-    "n": 20,
+    "n": 25,
     "exam": true
    }
   ],
@@ -2713,12 +2713,12 @@ export default [
    {
     "id": "v3-position",
     "title": "Standing, lying, sitting — and putting",
-    "n": 0
+    "n": 25
    },
    {
     "id": "v4-sya",
     "title": "Verbs in -ся",
-    "n": 0
+    "n": 15
    },
    {
     "id": "exam",
@@ -2743,7 +2743,7 @@ export default [
    {
     "id": "c1-comparative",
     "title": "The comparative: новее, интереснее",
-    "n": 20
+    "n": 23
    },
    {
     "id": "c1-comparative-practice",
@@ -2953,22 +2953,22 @@ export default [
    {
     "id": "c3-than",
     "title": "Than: чем, or the genitive",
-    "n": 0
+    "n": 10
    },
    {
     "id": "c4-bolee",
     "title": "более and менее",
-    "n": 0
+    "n": 10
    },
    {
     "id": "c5-samyi",
     "title": "The superlative: самый",
-    "n": 0
+    "n": 20
    },
    {
     "id": "c6-eishiy",
     "title": "-ейший, and лучше всех",
-    "n": 20
+    "n": 23
    },
    {
     "id": "c6-eishiy-practice",
@@ -3178,7 +3178,7 @@ export default [
    {
     "id": "exam",
     "title": "Exam",
-    "n": 20,
+    "n": 35,
     "exam": true
    }
   ],
@@ -3247,17 +3247,17 @@ export default [
    {
     "id": "x1-chtoby",
     "title": "чтобы — and что",
-    "n": 0
+    "n": 10
    },
    {
     "id": "x2-do-togo-kak",
     "title": "до того как, после того как, о том что…",
-    "n": 0
+    "n": 15
    },
    {
     "id": "x3-poka",
     "title": "пока and пока не",
-    "n": 0
+    "n": 10
    },
    {
     "id": "x4-li",
@@ -3492,17 +3492,17 @@ export default [
    {
     "id": "i08-aspect-past",
     "title": "Aspect in the past tense",
-    "n": 0
+    "n": 10
    },
    {
     "id": "i09-aspect-infinitive",
     "title": "Aspect in the infinitive",
-    "n": 0
+    "n": 10
    },
    {
     "id": "i10-aspect-imperative",
     "title": "Aspect in the imperative",
-    "n": 0
+    "n": 15
    },
    {
     "id": "i11-prefixed-motion",
@@ -3557,7 +3557,7 @@ export default [
    {
     "id": "i15-passive",
     "title": "The passive voice",
-    "n": 20
+    "n": 23
    },
    {
     "id": "i15-passive-practice",
@@ -3687,7 +3687,7 @@ export default [
    {
     "id": "i20-comparison",
     "title": "Expressing comparison",
-    "n": 20
+    "n": 26
    },
    {
     "id": "i20-comparison-practice",
@@ -3847,12 +3847,12 @@ export default [
    {
     "id": "i26-imperative-types",
     "title": "Kinds of imperative: давай, пусть",
-    "n": 0
+    "n": 15
    },
    {
     "id": "exam",
     "title": "Exam",
-    "n": 60,
+    "n": 80,
     "exam": true
    }
   ],
@@ -3872,27 +3872,27 @@ export default [
    {
     "id": "v01-time-clauses",
     "title": "Time in a complex sentence",
-    "n": 0
+    "n": 20
    },
    {
     "id": "v02-condition",
     "title": "Condition in a complex sentence",
-    "n": 0
+    "n": 10
    },
    {
     "id": "v03-cause",
     "title": "Cause in a complex sentence",
-    "n": 0
+    "n": 15
    },
    {
     "id": "v04-concession",
     "title": "Concession in a complex sentence",
-    "n": 0
+    "n": 10
    },
    {
     "id": "v05-nechego-delat",
     "title": "«Нечего делать», «некуда поехать»",
-    "n": 0
+    "n": 10
    },
    {
     "id": "v06-no-subject",
@@ -3927,12 +3927,12 @@ export default [
    {
     "id": "v07-coord",
     "title": "да, зато, а то",
-    "n": 0
+    "n": 10
    },
    {
     "id": "v08-disj",
     "title": "либо, или … или, то … то, не то … не то",
-    "n": 0
+    "n": 10
    },
    {
     "id": "v09-object-clauses",
@@ -3977,27 +3977,27 @@ export default [
    {
     "id": "v10-attributive",
     "title": "Attributive clauses: который",
-    "n": 0
+    "n": 20
    },
    {
     "id": "v11-correlatives",
     "title": "там … где, такой … какой, так … что",
-    "n": 0
+    "n": 10
    },
    {
     "id": "v12-particles",
     "title": "Particles: же, ведь, разве, неужели, даже",
-    "n": 0
+    "n": 25
    },
    {
     "id": "v13-prefixes",
     "title": "Verbs with prefixes",
-    "n": 0
+    "n": 80
    },
    {
     "id": "exam",
     "title": "Exam",
-    "n": 20,
+    "n": 65,
     "exam": true
    }
   ],
@@ -4897,7 +4897,7 @@ export default [
    {
     "id": "x10-future",
     "title": "Future: I will write, I'm going to write",
-    "n": 12
+    "n": 15
    },
    {
     "id": "x11-going-to",

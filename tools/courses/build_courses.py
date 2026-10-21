@@ -412,6 +412,11 @@ def main():
     # lesson's sentence about that preposition, tense or degree — and an
     # exercise testing something its section does not teach taken out
     # (tools/courses/_dropped/pertinence.json). Needs pymorphy3.
+    # Every pattern a lesson shows, practised: sentences found for the
+    # patterns its exercises lacked (tools/courses/coverage_fill.json, from
+    # coverage.py --mine) are added to the lesson first.
+    import coverage
+    coverage.main(["--apply"])
     import pertinence
     pertinence.main(["--apply"])
     for meta in outline:
