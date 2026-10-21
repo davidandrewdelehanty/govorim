@@ -215,9 +215,16 @@ export default async function handler(req, res) {
       try {
         const r = await s3.send(new GetObjectCommand({ Bucket: BUCKET, Key: QUOTES_KEY }));
         const j = JSON.parse(await r.Body.transformToString());
-        res.setHeader("Cache-Control", "public, max-age=30, s-maxage=30");
+        const who = currentUser(req);
+        const rid = String((req.query && req.query.rid) || "");
+        const mine = who ? readerHash("u:" + who.id) : (/^[A-Za-z0-9_-]{8,64}$/.test(rid) ? readerHash("d:" + rid) : "");
+        if (!mine) res.setHeader("Cache-Control", "public, max-age=30, s-maxage=30");
+        else res.setHeader("Cache-Control", "private, max-age=0");
         return res.status(200).json({ items: (j && Array.isArray(j.items)) ? j.items.map(function (q) {
-          const o = Object.assign({}, q); delete o.owner; return o;
+          const o = Object.assign({}, q); delete o.owner;
+          const list = Array.isArray(q.likedBy) ? q.likedBy : [];
+          o.likes = list.length; o.liked = !!(mine && list.indexOf(mine) >= 0); delete o.likedBy;
+          return o;
         }) : [] });
       } catch (e) {
         return res.status(200).json({ items: [] });
@@ -284,6 +291,34 @@ export default async function handler(req, res) {
         return res.status(200).json({ ok: true, item: out });
       } catch (e) {
         return res.status(500).json({ error: "Could not share the quote." });
+      }
+    }
+    // A like on a shared quote: one per reader, on or off. The reader is the
+    // account, or the device's own id when signed out, hashed as the quote's
+    // owner is; the list of hashes is kept on the item, the count served
+    // with it, and whether this reader is among them.
+    if (req.query.anon === "quotelike" && req.method === "POST") {
+      try {
+        const b = req.body || {};
+        const who = currentUser(req);
+        const rid = String(b.rid || "");
+        const key = who ? readerHash("u:" + who.id) : (/^[A-Za-z0-9_-]{8,64}$/.test(rid) ? readerHash("d:" + rid) : "");
+        if (!key) return res.status(400).json({ error: "No reader id." });
+        const id = String(b.id || "");
+        let likes = 0, liked = false;
+        await quotesUpdate(function (cur) {
+          const q = cur.items.filter(function (x) { return x.id === id; })[0];
+          if (!q) return null;
+          const list = Array.isArray(q.likedBy) ? q.likedBy.slice() : [];
+          const at = list.indexOf(key);
+          if (at >= 0) list.splice(at, 1); else if (list.length < 5000) list.push(key);
+          q.likedBy = list; q.likes = list.length;
+          likes = list.length; liked = list.indexOf(key) >= 0;
+          return cur;
+        });
+        return res.status(200).json({ ok: true, likes: likes, liked: liked });
+      } catch (e) {
+        return res.status(500).json({ error: "Could not record the like." });
       }
     }
     if (req.query.anon === "unquote" && req.method === "POST") {
@@ -695,6 +730,8 @@ export default async function handler(req, res) {
       const readpaid = await r2Get(userId, "readpaid");
       // Progress through the Courses tab: { "<course>/<section>": { right, first, read, done } }.
       const courses = await r2Get(userId, "courses");
+      // The reader's daily goals (My Samovar): { words, cards, drills, course, sections, remind, notify, updatedAt }.
+      const goals = await r2Get(userId, "goals");
 
       return res.status(200).json({
         vocab: Array.isArray(vocab) ? vocab : [],
@@ -709,6 +746,7 @@ export default async function handler(req, res) {
         progress: (progress && typeof progress === "object" && !Array.isArray(progress)) ? progress : {},
         readpaid: (readpaid && typeof readpaid === "object" && !Array.isArray(readpaid)) ? readpaid : {},
         courses: (courses && typeof courses === "object" && !Array.isArray(courses)) ? courses : {},
+        goals: (goals && typeof goals === "object" && !Array.isArray(goals)) ? goals : null,
       });
     }
 
@@ -764,11 +802,14 @@ export default async function handler(req, res) {
         for (const k of Object.keys(inc)) {
           if (!/^\d{4}-\d{2}-\d{2}$/.test(k)) continue;
           const a = merged[k] || {}, b = inc[k] || {};
-          merged[k] = {
-            read: Math.max(Number(a.read) || 0, Number(b.read) || 0),
-            practiced: Math.max(Number(a.practiced) || 0, Number(b.practiced) || 0),
-            readEn: Math.max(Number(a.readEn) || 0, Number(b.readEn) || 0),
-          };
+          // Every numeric counter the day carries, the larger figure each
+          // (read, practiced, readEn, and the goals' drills, course, sections).
+          const o = Object.assign({}, a);
+          for (const f of Object.keys(b)) {
+            if (!/^[a-zA-Z]{1,24}$/.test(f)) continue;
+            o[f] = Math.max(Number(a[f]) || 0, Number(b[f]) || 0);
+          }
+          merged[k] = o;
         }
         await r2Put(userId, "stats", merged);
         await noteBoard(user, { words: wordsRead(merged), reviewed: cardsReviewed(merged),
@@ -945,6 +986,24 @@ export default async function handler(req, res) {
         return res.status(200).json({ ok: true });
       }
 
+      if (type === "goals") {
+        // The daily goals. Numbers only, within sense; the newer copy wins.
+        const g = body.goals || {};
+        const num = function (v, max) { v = Math.round(Number(v)); return isFinite(v) && v >= 0 ? Math.min(v, max) : 0; };
+        const clean = {
+          words: num(g.words, 100000), cards: num(g.cards, 1000), drills: num(g.drills, 1000),
+          course: num(g.course, 1000), sections: num(g.sections, 100),
+          remind: /^\d{2}:\d{2}$/.test(String(g.remind || "")) ? String(g.remind) : "",
+          notify: !!g.notify, updatedAt: Number(g.updatedAt) || Date.now(),
+        };
+        let cur = null;
+        try { cur = await r2Get(userId, "goals"); } catch (e) {}
+        if (cur && typeof cur === "object" && (Number(cur.updatedAt) || 0) > clean.updatedAt) {
+          return res.status(200).json({ ok: true, goals: cur });
+        }
+        await r2Put(userId, "goals", clean);
+        return res.status(200).json({ ok: true, goals: clean });
+      }
       if (type === "settings") {
         const settings = body.settings || {};
         await r2Put(userId, "settings", settings);

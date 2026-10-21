@@ -547,7 +547,7 @@ def main():
         n += import_articles("ru.wikipedia.org", "Википедия", "authors.txt", "Википедия", a)
     if a.all or a.wikivoyage:
         n += import_articles("ru.wikivoyage.org", "Викигид", "wikivoyage.txt", "Викигид", a)
-    if a.all or a.wikinews:
+    if a.wikinews:                       # not part of --all: the news was taken off the shelf
         n += import_wikinews(a)
     if a.all or a.official:
         n += import_official(a)

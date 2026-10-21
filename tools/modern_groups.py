@@ -39,7 +39,7 @@ ALIASES = {
     "nautilus pompilius": "Bands",
     "сурганова, светлана яковлевна": "Musicians",
 }
-ORDER = ["Russian rock: the scene", "Bands", "Musicians", "Writers", "Russian literature", "Cities", "News", "The state"]
+ORDER = ["Russian rock: the scene", "Bands", "Musicians", "Writers", "Russian literature", "Cities", "The state"]
 
 
 def groups_from_lists():

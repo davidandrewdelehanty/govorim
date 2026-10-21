@@ -57,12 +57,13 @@ export function mergeStats(a, b) {
     Object.keys(src || {}).forEach(function (k) {
       var rec = src[k] || {};
       var cur = out[k] || {};
-      out[k] = {
-        read: Math.max(cur.read || 0, rec.read || 0),
-        practiced: Math.max(cur.practiced || 0, rec.practiced || 0),
-        // English words read in "Read in English" mode — its own board.
-        readEn: Math.max(cur.readEn || 0, rec.readEn || 0),
-      };
+      // Every counter the day carries — read, practiced, readEn, and the
+      // goals' drills, course, sections — the larger figure each.
+      var o = Object.assign({}, cur);
+      Object.keys(rec).forEach(function (f) {
+        if (typeof rec[f] === "number") o[f] = Math.max(cur[f] || 0, rec[f] || 0);
+      });
+      out[k] = o;
     });
   });
   return out;

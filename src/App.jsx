@@ -10,7 +10,7 @@ import { review as srsReview, isLearned, dueWords, weakestWords, recallNow,
   LEARNED_STABILITY_DAYS } from "./srs.js";
 import { BADGE_KINDS, BADGE_STEP_TIERS, BADGE_GREAT_TIERS, BADGE_MILESTONES, BADGE_AUTHOR_TIERS, BADGE_SKIP_AUTHORS, badgeShort, badgeSurname, badgeGen, BIBLE_BOOKS, BIBLE_NT_FROM, bibleMark, computeBadges } from "./badges.js";
 import { dayKey, dayMet, bump as bumpStats, streaks, mergeStats,
-         totals as statsTotals, GOAL_WORDS, GOAL_CARDS } from "./stats.js";
+         totals as statsTotals, keyToDate, GOAL_WORDS, GOAL_CARDS } from "./stats.js";
 import { AnnotLayer, HL_COLORS, INK_COLORS, annotId } from "./annotations.jsx";
 import { readUiLang, saveUiLang, applyUiLang, trUi } from "./uilang.js";
 import { authorInfo, authorSrc, authorCropStyle, AUTHOR_EN } from "./authors.js";
@@ -2233,7 +2233,7 @@ function ruPlural(n, one, few, many) {
 
 function ProgressPanel(props) {
   var stats = props.stats || {};
-  var goals = { words: GOAL_WORDS, cards: GOAL_CARDS };
+  var goals = { words: (props.goals && props.goals.words) || GOAL_WORDS, cards: (props.goals && props.goals.cards) || GOAL_CARDS };
   var st = streaks(stats, goals);
   var tot = statsTotals(stats);
   var today = new Date();
@@ -6283,6 +6283,80 @@ export default function App() {
   var [songsRead, setSongsRead] = useState({});
   var songsReadLoaded = useRef(false);
   var [drills, setDrills] = useState({ runs: 0, questions: 0, correct: 0, last: 0, byBook: {} });
+  // My Samovar: the reader's daily goals, and whether to be reminded.
+  //   words     Russian words read in the reader      → stats[day].read
+  //   cards     vocabulary reviews answered           → stats[day].practiced
+  //   drills    case-drill questions answered         → stats[day].drills
+  //   course    course exercises answered right       → stats[day].course
+  //   sections  course sections finished              → stats[day].sections
+  // A goal of 0 is "not a goal". `remind` is a local time of day; from then
+  // on, whatever is still short is overdue, and with `notify` on the browser
+  // says so once a day.
+  var GOALS_DEFAULT = { words: GOAL_WORDS, cards: GOAL_CARDS, drills: 10, course: 10, sections: 1, remind: "19:00", notify: false, updatedAt: 0 };
+  var [goals, setGoalsRaw] = useState(GOALS_DEFAULT);
+  var goalsLoaded = useRef(false);
+  var setGoals = function(patch) {
+    setGoalsRaw(function(g){ return Object.assign({}, g, patch, { updatedAt: Date.now() }); });
+  };
+  var mergeGoals = function(a, b) {
+    if (!b || typeof b !== "object") return a;
+    if (!a || (Number(b.updatedAt) || 0) > (Number(a.updatedAt) || 0)) return Object.assign({}, GOALS_DEFAULT, b);
+    return a;
+  };
+  useEffect(function() {
+    storage.get("gv_goals_v1").then(function(r){
+      if (r && r.value) { try { var v = JSON.parse(r.value) || {}; setGoalsRaw(function(g){ return mergeGoals(g, v); }); } catch (e) {} }
+      goalsLoaded.current = true;
+    }).catch(function(){ goalsLoaded.current = true; });
+  }, []);
+  useEffect(function() {
+    if (!goalsLoaded.current) return;
+    storage.set("gv_goals_v1", JSON.stringify(goals)).catch(function(){});
+  }, [goals]);
+  var GOAL_ROWS = [
+    { k: "words", f: "read", label: "Words read", one: "word", tab: "chat" },
+    { k: "cards", f: "practiced", label: "Vocabulary reviewed", one: "card", tab: "vocab" },
+    { k: "drills", f: "drills", label: "Case-drill questions", one: "question", tab: "drills" },
+    { k: "course", f: "course", label: "Course exercises right", one: "exercise", tab: "courses" },
+    { k: "sections", f: "sections", label: "Course sections finished", one: "section", tab: "courses" },
+  ];
+  // Today against the goals: [{ k, label, goal, have, left, met }] for the goals that are set.
+  var goalsToday = function(ts) {
+    var rec = (stats || {})[dayKey(ts == null ? Date.now() : ts)] || {};
+    return GOAL_ROWS.filter(function(r){ return (goals[r.k] || 0) > 0; }).map(function(r){
+      var have = rec[r.f] || 0, goal = goals[r.k] || 0;
+      return { k: r.k, label: r.label, one: r.one, tab: r.tab, goal: goal, have: have, left: Math.max(0, goal - have), met: have >= goal };
+    });
+  };
+  // Past the reminder time with something still short: overdue. Checked
+  // every minute while the site is open; the browser is told once a day.
+  var [goalsOverdue, setGoalsOverdue] = useState([]);
+  useEffect(function() {
+    var check = function() {
+      var rows = goalsToday();
+      var short = rows.filter(function(r){ return !r.met; });
+      var m = /^(\d{2}):(\d{2})$/.exec(goals.remind || "");
+      var now = new Date();
+      var past = !!m && (now.getHours() > +m[1] || (now.getHours() === +m[1] && now.getMinutes() >= +m[2]));
+      var due = past ? short : [];
+      setGoalsOverdue(function(cur){ return cur.length === due.length && cur.every(function(x, i){ return x.k === due[i].k; }) ? cur : due; });
+      if (due.length && goals.notify && typeof Notification !== "undefined" && Notification.permission === "granted") {
+        var key = dayKey(Date.now());
+        try {
+          if (localStorage.getItem("gv_goal_notified") !== key) {
+            localStorage.setItem("gv_goal_notified", key);
+            new Notification("My " + SITE_NAME_LATIN + " — still to do today", {
+              body: due.map(function(r){ return r.left + " " + (r.left === 1 ? r.one : r.one + "s") + " · " + r.label.toLowerCase(); }).join("\n"),
+              tag: "gv-goals", silent: false,
+            });
+          }
+        } catch (e) {}
+      }
+    };
+    check();
+    var t = setInterval(check, 60000);
+    return function(){ clearInterval(t); };
+  }, [goals, stats]);
   var drillsLoaded = useRef(false);
   // Bible chapters read to the end: { "Бытие 1": firstReadAt }. The Bible is
   // read out of order, so "furthest reached" says nothing about which books
@@ -6454,8 +6528,8 @@ export default function App() {
       var k = cid + "/" + sid, rec = Object.assign({ right: {}, first: {} }, m[k] || {});
       rec.right = Object.assign({}, rec.right); rec.first = Object.assign({}, rec.first);
       if (rec.first[exId] === undefined) rec.first[exId] = right ? 1 : 0;
-      if (right && !rec.right[exId]) rec.right[exId] = Date.now();
-      if (!rec.done && sectionDone(rec, exIds)) rec.done = Date.now();
+      if (right && !rec.right[exId]) { rec.right[exId] = Date.now(); setTimeout(function(){ bumpToday("course", 1); }, 0); }
+      if (!rec.done && sectionDone(rec, exIds)) { rec.done = Date.now(); setTimeout(function(){ bumpToday("sections", 1); }, 0); }
       if (right && !rec.perfect && (clean || (exIds.length && exIds.every(function(id){ return rec.first[id] === 1; })))) rec.perfect = Date.now();
       var n = Object.assign({}, m); n[k] = rec; return n;
     });
@@ -6466,7 +6540,7 @@ export default function App() {
     setCourseProg(function(m){
       var k = cid + "/" + sid, rec = Object.assign({ right: {}, first: {} }, m[k] || {});
       rec.grade = Math.max(Number(rec.grade) || 0, grade);
-      if (grade >= pass && !rec.done) rec.done = Date.now();
+      if (grade >= pass && !rec.done) { rec.done = Date.now(); setTimeout(function(){ bumpToday("sections", 1); }, 0); }
       if (grade === 100 && !rec.perfect) rec.perfect = Date.now();
       var n = Object.assign({}, m); n[k] = rec; return n;
     });
@@ -6530,6 +6604,7 @@ export default function App() {
         byBook: byBook,
       };
     });
+    if (nQuestions) bumpToday("drills", nQuestions);
   };
 
   var bumpToday = function(field, n) {
@@ -9101,6 +9176,9 @@ export default function App() {
         if (data.courses && typeof data.courses === "object" && Object.keys(data.courses).length) {
           setCourseProg(function(m){ return mergeCourseProg(m, data.courses); });
         }
+        if (data.goals && typeof data.goals === "object") {
+          setGoalsRaw(function(g){ return mergeGoals(g, data.goals); });
+        }
         if (data.readpaid && typeof data.readpaid === "object") mergeReadPaid(data.readpaid);
         if (data.bibleread && typeof data.bibleread === "object") {
           setBibleRead(function(m){ return mergeBibleRead(m, data.bibleread); });
@@ -9233,6 +9311,17 @@ export default function App() {
     }, 2500);
     return function(){ clearTimeout(t); };
   }, [courseProg, me, syncedFromServer]);
+  useEffect(function() {
+    if (!me || !syncedFromServer || !goalsLoaded.current || !goals.updatedAt) return;
+    var t = setTimeout(function() {
+      authFetch("/api/user-data?type=goals", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ goals: goals }),
+      }).then(function(r){ return r.json(); }).then(function(d){ if (d && d.goals) setGoalsRaw(function(g){ return mergeGoals(g, d.goals); }); }).catch(function(){});
+    }, 1500);
+    return function(){ clearTimeout(t); };
+  }, [goals, me, syncedFromServer]);
   useEffect(function() {
     if (!me || !syncedFromServer || !drillsLoaded.current) return;
     if (!drills || !drills.runs) return;
@@ -9906,7 +9995,7 @@ export default function App() {
     try { localStorage.setItem(QSEEN[site], String(t)); } catch (e) {}
   };
   var loadPubQuotes = function() {
-    fetch("/api/user-data?anon=quotes").then(function(r){ return r.ok ? r.json() : null; })
+    fetch("/api/user-data?anon=quotes&rid=" + encodeURIComponent(readerRid()), { credentials: "same-origin" }).then(function(r){ return r.ok ? r.json() : null; })
       .then(function(j){ if (j && Array.isArray(j.items)) setPubQuotes(j.items); }).catch(function(){});
   };
   useEffect(function(){
@@ -9986,6 +10075,18 @@ export default function App() {
       requestSrcJump(q.start, up);
       openUploadedBook(up);
     }
+  };
+  // A like, shown at once and sent after; the server's count replaces the guess.
+  var likeQuote = function(q) {
+    var was = !!q.liked;
+    setPubQuotes(function(list){ return (list || []).map(function(x){ return x.id === q.id ? Object.assign({}, x, { liked: !was, likes: Math.max(0, (x.likes || 0) + (was ? -1 : 1)) }) : x; }); });
+    authFetch("/api/user-data?anon=quotelike", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id: q.id, rid: readerRid() }),
+    }).then(function(r){ return r.json(); }).then(function(d){
+      if (!d || !d.ok) return;
+      setPubQuotes(function(list){ return (list || []).map(function(x){ return x.id === q.id ? Object.assign({}, x, { liked: !!d.liked, likes: d.likes || 0 }) : x; }); });
+    }).catch(function(){});
   };
   var unfavQuote = function(q) {
     if (annots[q.id]) updateAnnot(q.id, "me", { fav: false });
@@ -13799,7 +13900,7 @@ export default function App() {
   // earned is recorded silently: a reader with forty books behind them is not
   // greeted by forty announcements.
   var badges = useMemo(function(){
-    var stB = streaks(stats, { words: GOAL_WORDS, cards: GOAL_CARDS });
+    var stB = streaks(stats, { words: goals.words || GOAL_WORDS, cards: goals.cards || GOAL_CARDS });
     var totB = statsTotals(stats);
     return computeBadges({
       books: presetBooks, finished: finishedMap,
@@ -18044,6 +18145,57 @@ export default function App() {
         .crs-chk.big{font-size:12px;letter-spacing:.18em;padding:12px 34px 11px;border-width:1.5px}
         .crs-stream .crs-chk-row{margin-top:16px}
         @media (max-width:560px){.crs-q.ok,.crs-q.bad{padding-left:10px;padding-right:10px;margin-left:-6px;margin-right:-6px}.crs-stream .crs-q.ok,.crs-stream .crs-q.bad{padding:14px 10px 8px;margin:0 -10px}.crs-chk.big{width:100%}}
+        /* A like on a shared quote. */
+        .fq{position:relative}
+        .fq-like{position:absolute;right:12px;bottom:10px;display:inline-flex;align-items:center;gap:5px;background:none;border:0;padding:4px 6px;cursor:pointer;
+          font-family:var(--sans);font-size:12px;color:var(--ink-3);transition:color .12s}
+        .fq-like:hover{color:var(--rubric)}
+        .fq-like.on{color:var(--rubric)}
+        .fq-heart{font-size:16px;line-height:1}
+        .fq-likes{font-variant-numeric:tabular-nums}
+        .fq .fq-x{right:12px;top:10px}
+        /* My Samovar: the goals and the day. */
+        .my-wrap{align-items:stretch!important}
+        .my-body{width:100%;max-width:680px;margin:0 auto;text-align:left}
+        .my-body>.sti{margin:6px 0 4px}
+        .my-body>.sde{margin:0 0 22px;max-width:none;font-family:var(--serif);font-size:16px;color:var(--ink-2)}
+        .my-sechdr{font-family:var(--sans);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);margin:26px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--rule)}
+        .my-ok{color:#2e6e50;text-transform:none;letter-spacing:0}
+        .my-due{color:var(--rubric);text-transform:none;letter-spacing:0}
+        .my-empty{font-family:var(--serif);font-style:italic;color:var(--ink-3)}
+        .my-rows{display:flex;flex-direction:column;gap:14px}
+        .my-row{padding:10px 0 4px}
+        .my-row-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+        .my-row-l{font-family:var(--serif);font-size:17px;color:var(--ink)}
+        .my-row-n{font-family:var(--sans);font-size:12px;letter-spacing:.06em;color:var(--ink-3);font-variant-numeric:tabular-nums}
+        .my-row-n b{font-family:var(--display);font-size:20px;font-weight:400;color:var(--ink);letter-spacing:0}
+        .my-row.met .my-row-n b{color:#2e6e50}
+        .my-row.due .my-row-n b{color:var(--rubric)}
+        .my-bar{height:3px;background:var(--rule-soft);margin:8px 0 6px}
+        .my-bar span{display:block;height:100%;background:var(--ink);transition:width .3s}
+        .my-row.met .my-bar span{background:#2e6e50}
+        .my-row.due .my-bar span{background:var(--rubric)}
+        .my-row-foot{display:flex;justify-content:space-between;align-items:baseline;font-family:var(--serif);font-size:14px;color:var(--ink-2)}
+        .my-go{font-family:var(--sans);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--rubric);background:none;border:0;border-bottom:1px solid var(--rubric-soft);padding:0 0 1px;cursor:pointer}
+        .my-go:hover{border-bottom-color:var(--rubric)}
+        .my-days{display:flex;gap:6px;justify-content:space-between;max-width:420px}
+        .my-day{display:flex;flex-direction:column;align-items:center;gap:5px}
+        .my-day-dot{width:14px;height:14px;border-radius:50%;border:1px solid var(--rule);background:transparent}
+        .my-day.some .my-day-dot{background:linear-gradient(90deg,var(--ink) 50%,transparent 50%);border-color:var(--ink)}
+        .my-day.full .my-day-dot{background:var(--rubric);border-color:var(--rubric)}
+        .my-day.today .my-day-dot{box-shadow:0 0 0 2px var(--paper),0 0 0 3px var(--ink)}
+        .my-day-l{font-family:var(--sans);font-size:10px;letter-spacing:.08em;color:var(--ink-3)}
+        .my-stats{display:flex;flex-wrap:wrap;gap:10px 28px;margin-top:16px}
+        .my-stat{display:flex;flex-direction:column;gap:2px}
+        .my-stat .n{font-family:var(--display);font-size:28px;line-height:1;color:var(--ink)}
+        .my-stat .l{font-family:var(--sans);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+        .my-form{display:flex;flex-direction:column;gap:0}
+        .my-field{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:10px 0;border-bottom:1px solid var(--rule-soft);font-family:var(--serif);font-size:16px;color:var(--ink)}
+        .my-num,input[type="number"].my-num,.my-time,input[type="time"].my-time{width:110px;padding:6px 8px;border:0;border-bottom:1.5px solid var(--ink);border-radius:0;background:transparent;font-family:var(--serif);font-size:17px;color:var(--ink);text-align:right;outline:none}
+        .my-num:focus,.my-time:focus{border-bottom-color:var(--rubric)}
+        .my-check input{width:18px;height:18px;accent-color:var(--rubric)}
+        .my-note{font-family:var(--serif);font-style:italic;font-size:14px;color:var(--ink-3);margin:10px 0 0}
+        @media (max-width:560px){.my-field{flex-direction:column;align-items:flex-start;gap:6px}.my-num,input[type="number"].my-num{text-align:left}}
         /* The vocabulary match game. */
         .vm-wrap{max-width:720px;margin:0 auto;padding:18px 16px 30px}
         .vm-board{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px 22px;padding:18px;border:1px solid var(--rule);background:var(--paper-3);transition:background .25s,border-color .25s}
@@ -19529,8 +19681,7 @@ export default function App() {
                 // Everything below comes from the records already on this
                 // page — the same ones the reading-record panel draws and the
                 // admin sheet reads — so the three cannot disagree.
-                var goals = { words: GOAL_WORDS, cards: GOAL_CARDS };
-                var st = streaks(stats, goals);
+                var st = streaks(stats, { words: goals.words || GOAL_WORDS, cards: goals.cards || GOAL_CARDS });
                 var tot = statsTotals(stats);
                 var opened = Object.keys(progressMap || {}).filter(function(k){
                   return liveProgress(progressMap[k]);
@@ -21371,7 +21522,7 @@ export default function App() {
               short to begin with — they sit beside the name now and the page
               gets the height back. */}
           <div className="tabs">
-            {["chat","courses","ranked","leaders","vocab","drills","quotes","grammar","forum","music"].filter(function(t){
+            {["my","chat","courses","ranked","leaders","vocab","drills","quotes","grammar","forum","music"].filter(function(t){
               if (t === "forum") return FORUM_ENABLED;
               // Grammar: the verb lists, for Russian. (The older reference
               // pages under it stay behind GRAMMAR_ENABLED.)
@@ -21410,7 +21561,8 @@ export default function App() {
                   if (t === "drills") { stopTTS(); if ((!cdQs.length || cdOver) && !cdBusy) startCaseDrills(); }
                   setTab(t);
                 }}>
-                  {t==="chat"?"Reading":t==="ranked"?"Most popular":t==="leaders"?"Leaderboard":t==="vocab"?"Vocab":t==="grammar"?"Grammar":t==="courses"?"Courses":t==="forum"?"Forum":t==="quotes"?"Quotes":t==="drills"?"Case drills":"Music"}
+                  {t==="my"?"My " + SITE_NAME_LATIN:t==="chat"?"Reading":t==="ranked"?"Most popular":t==="leaders"?"Leaderboard":t==="vocab"?"Vocab":t==="grammar"?"Grammar":t==="courses"?"Courses":t==="forum"?"Forum":t==="quotes"?"Quotes":t==="drills"?"Case drills":"Music"}
+                  {t==="my"&&goalsOverdue.length>0&&<span className="bdg qn" title="Goals still short today">{goalsOverdue.length}</span>}
                   {t==="vocab"&&vocabL.length>0&&<span className="bdg">{vocabL.length}</span>}
                   {t==="quotes"&&quotesUnread>0&&<span className="bdg qn">{quotesUnread > 99 ? "99+" : quotesUnread}</span>}
                   {t==="grammar"&&GRAMMAR_ENABLED&&tips.length>0&&<span className="bdg g">{tips.length}</span>}
@@ -21560,6 +21712,14 @@ export default function App() {
                             <button type="button" className="who-link" onClick={function(e){ e.stopPropagation(); openPeek(q.by.name, q.by.avatar); }}>{q.by.name}</button>
                             {q.at ? <span className="fq-when"> · {new Date(q.at).toLocaleDateString()}</span> : null}
                           </div>
+                        )}
+                        {!mine && (
+                          <button type="button" className={"fq-like" + (q.liked ? " on" : "")}
+                            title={q.liked ? "You like this quote — tap to take it back" : "Like this quote"}
+                            aria-pressed={!!q.liked}
+                            onClick={function(e){ e.stopPropagation(); likeQuote(q); }}>
+                            <span className="fq-heart">{q.liked ? "♥" : "♡"}</span>{q.likes ? <span className="fq-likes">{q.likes}</span> : null}
+                          </button>
                         )}
                         {canRemove && (
                           <button type="button" className="fq-x"
@@ -22397,6 +22557,7 @@ export default function App() {
                     that persists between devices, so they get the library. */}
                 {me && !progHidden && !grpPicking && (
                   <ProgressPanel
+                    goals={goals}
                     stats={stats}
                     learned={learnedL.length}
                     due={dueNow}
@@ -25840,6 +26001,103 @@ export default function App() {
           </div>
         );
         })(vocabL, learnedL)}
+
+        {tab==="my" && (
+          <div className="main">
+            <div className="ss my-wrap">
+              {(function(){
+                var rows = goalsToday();
+                var now = new Date();
+                var todayK = dayKey(now.getTime());
+                var st = streaks(stats, { words: goals.words || GOAL_WORDS, cards: goals.cards || GOAL_CARDS });
+                var allMetOn = function(k){ var rec = (stats || {})[k] || {}; var set = GOAL_ROWS.filter(function(r){ return (goals[r.k] || 0) > 0; }); return set.length > 0 && set.every(function(r){ return (rec[r.f] || 0) >= goals[r.k]; }); };
+                var someOn = function(k){ var rec = (stats || {})[k] || {}; return GOAL_ROWS.some(function(r){ return (goals[r.k] || 0) > 0 && (rec[r.f] || 0) > 0; }); };
+                var days = [];
+                for (var i = 13; i >= 0; i--) { var d = new Date(now.getFullYear(), now.getMonth(), now.getDate() - i); days.push(dayKey(d.getTime())); }
+                var fullDays = 0; for (var j = 0; j < 30; j++) { var dd = new Date(now.getFullYear(), now.getMonth(), now.getDate() - j); if (allMetOn(dayKey(dd.getTime()))) fullDays++; }
+                var metToday = rows.length > 0 && rows.every(function(r){ return r.met; });
+                var overdueK = {}; goalsOverdue.forEach(function(r){ overdueK[r.k] = true; });
+                var goTo = function(t){ setTab(t); if (t === "vocab" && vocab.length) setQuizMenu(true); if (t === "drills" && (!cdQs.length || cdOver) && !cdBusy) startCaseDrills(); };
+                var num = function(k, max) {
+                  return <input type="number" min="0" max={max} value={goals[k] || 0} className="my-num"
+                    onChange={function(e){ var v = Math.max(0, Math.min(max, Math.round(Number(e.target.value) || 0))); setGoals(function(){ var o = {}; o[k] = v; return o; }()); }} />;
+                };
+                return (
+                  <div className="my-body">
+                    <div className="crs-kicker">{now.toLocaleDateString(undefined, { weekday: "long", day: "numeric", month: "long" })}</div>
+                    <h1 className="sti">My {SITE_NAME_LATIN}</h1>
+                    <p className="sde">What you set out to do each day, and how today stands. {me ? "Your goals follow your account." : "Sign in to keep your goals everywhere."}</p>
+
+                    <div className="my-sechdr">Today{metToday ? <span className="my-ok"> · every goal met ✓</span> : goalsOverdue.length ? <span className="my-due"> · {goalsOverdue.length} overdue</span> : null}</div>
+                    {!rows.length && <p className="my-empty">No goals set yet. Set them below.</p>}
+                    <div className="my-rows">
+                      {rows.map(function(r){
+                        var pct = Math.min(100, Math.round(100 * r.have / r.goal));
+                        return (
+                          <div key={r.k} className={"my-row" + (r.met ? " met" : overdueK[r.k] ? " due" : "")}>
+                            <div className="my-row-top">
+                              <span className="my-row-l">{r.label}</span>
+                              <span className="my-row-n"><b>{fmtInt(r.have)}</b> / {fmtInt(r.goal)}</span>
+                            </div>
+                            <div className="my-bar"><span style={{width: pct + "%"}} /></div>
+                            <div className="my-row-foot">
+                              {r.met ? <span className="my-ok">Done ✓</span>
+                                : <span className={overdueK[r.k] ? "my-due" : ""}>{fmtInt(r.left)} {r.left === 1 ? r.one : r.one + "s"} to go{overdueK[r.k] ? " · overdue" : ""}</span>}
+                              {!r.met && <button type="button" className="my-go" onClick={function(){ goTo(r.tab); }}>{r.tab === "chat" ? "Read →" : r.tab === "vocab" ? "Review →" : r.tab === "drills" ? "Drill →" : "Courses →"}</button>}
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+
+                    <div className="my-sechdr">The last two weeks</div>
+                    <div className="my-days">
+                      {days.map(function(k){
+                        var full = allMetOn(k), some = !full && someOn(k);
+                        var d = keyToDate(k);
+                        return <div key={k} className={"my-day" + (full ? " full" : some ? " some" : "") + (k === todayK ? " today" : "")} title={k + (full ? " — every goal met" : some ? " — some done" : "")}>
+                          <span className="my-day-dot" /><span className="my-day-l">{["S","M","T","W","T","F","S"][d.getDay()]}</span>
+                        </div>;
+                      })}
+                    </div>
+                    <div className="my-stats">
+                      <div className="my-stat"><span className="n">{st.current}</span><span className="l">day streak</span></div>
+                      <div className="my-stat"><span className="n">{st.longest}</span><span className="l">longest streak</span></div>
+                      <div className="my-stat"><span className="n">{fullDays}</span><span className="l">of the last 30 days, every goal met</span></div>
+                    </div>
+
+                    <div className="my-sechdr">Goals, each day</div>
+                    <div className="my-form">
+                      <label className="my-field"><span>Words to read</span>{num("words", 100000)}</label>
+                      <label className="my-field"><span>Vocabulary cards to review</span>{num("cards", 1000)}</label>
+                      <label className="my-field"><span>Case-drill questions</span>{num("drills", 1000)}</label>
+                      <label className="my-field"><span>Course exercises right</span>{num("course", 1000)}</label>
+                      <label className="my-field"><span>Course sections to finish</span>{num("sections", 100)}</label>
+                    </div>
+                    <p className="my-note">A goal of 0 is no goal. The streak counts a day when the words or the cards are met, as before; the dots above want every goal.</p>
+
+                    <div className="my-sechdr">Reminder</div>
+                    <div className="my-form">
+                      <label className="my-field"><span>From this time, what is still short counts as overdue</span>
+                        <input type="time" className="my-time" value={goals.remind || ""} onChange={function(e){ setGoals({ remind: e.target.value }); }} /></label>
+                      <label className="my-field my-check"><span>Tell me in the browser, once a day, while the site is open</span>
+                        <input type="checkbox" checked={!!goals.notify} onChange={function(e){
+                          var on = e.target.checked;
+                          if (on && typeof Notification !== "undefined" && Notification.permission !== "granted") {
+                            Notification.requestPermission().then(function(p){ setGoals({ notify: p === "granted" }); });
+                            return;
+                          }
+                          setGoals({ notify: on });
+                        }} /></label>
+                      {typeof Notification === "undefined" && <p className="my-note">This browser has no notifications; the overdue count shows on the tab instead.</p>}
+                      {typeof Notification !== "undefined" && Notification.permission === "denied" && <p className="my-note">Notifications are blocked for this site in the browser's settings; the overdue count still shows on the tab.</p>}
+                    </div>
+                  </div>
+                );
+              })()}
+            </div>
+          </div>
+        )}
 
         {tab==="courses" && (
           <div className="main">
