@@ -6306,6 +6306,23 @@ export default function App() {
   // A course reads like a book: "read" is the open section, "nav" its contents.
   var [crsView, setCrsView] = useState("read");
   var [crsNavOpen, setCrsNavOpen] = useState({});     // contents: lesson group → open?
+  // A section's exercises already answered right come back answered when it
+  // is reopened — the record is in courseProg; this notes which section has
+  // been seeded from it, so it is done once per opening.
+  var [crsSeeded, setCrsSeeded] = useState("");
+  // An exam left half-way is kept, deal and answers, so it can be picked up.
+  useEffect(function() {
+    if (!crsCourse || !crsSec) return;
+    var c = COURSE_OUTLINE.filter(function(x){ return x.id === crsCourse; })[0];
+    var sec = c && c.sections.filter(function(x){ return x.id === crsSec; })[0];
+    if (!sec || !sec.exam) return;
+    var key = crsCourse + "/" + crsSec;
+    if (crsStream.key !== key || !crsStream.order || !crsStream.order.length) return;
+    try {
+      if (crsStream.graded) localStorage.removeItem("crsExam:" + key);
+      else localStorage.setItem("crsExam:" + key, JSON.stringify({ order: crsStream.order, ex: exState, at: Date.now() }));
+    } catch (x) {}
+  }, [exState, crsStream, crsCourse, crsSec]);
   // Where to open a course: the section last open in it, else the first not finished.
   var courseStart = function(c) {
     var last = null;
@@ -6323,7 +6340,7 @@ export default function App() {
       .catch(function(){ setCrsData(function(m){ var n = Object.assign({}, m); n[k] = "error"; return n; }); });
   };
   var openSection = function(cid, sid) {
-    setCrsCourse(cid); setCrsSec(sid); setExState({}); setCrsView("read");
+    setCrsCourse(cid); setCrsSec(sid); setExState({}); setCrsView("read"); setCrsSeeded("");
     try { var lm = JSON.parse(localStorage.getItem("crsLast") || "{}"); lm[cid] = sid; localStorage.setItem("crsLast", JSON.stringify(lm)); } catch (x) {}
     try { var sc = document.querySelector(".crs-scroll"); if (sc) sc.scrollTop = 0; window.scrollTo(0, 0); } catch (x) {}
     // A practice stream is dealt anew every time it is opened.
@@ -17890,6 +17907,22 @@ export default function App() {
         .crs-nav-arrow{display:inline-block;width:1.1em;color:var(--ink-3);font-size:13px}
         .crs-navpanel .crs-credit{margin-top:22px}
         @media (max-width:560px){.crs-topnav{margin-left:0}.crs-top-name{font-size:17px}.crs-lc.nested{margin-left:14px}}
+        /* Right and wrong, seen at once: the box tints green or red, the field
+           and the mark with it; the Check button stands centred under the
+           sentence. The next question comes clean. */
+        .crs-q{transition:background .25s,border-color .25s}
+        .crs-q.ok,.crs-q.bad{padding-left:16px;padding-right:16px;margin-left:-16px;margin-right:-16px}
+        .crs-q.ok{background:rgba(46,110,80,.11);border-top-color:transparent}
+        .crs-q.bad{background:rgba(155,45,31,.08);border-top-color:transparent}
+        .crs-stream .crs-q.ok,.crs-stream .crs-q.bad{padding:18px 18px 10px;margin:0 -18px}
+        input[type="text"].crs-in.ok,.crs-in.ok{border-bottom:2px solid #2e6e50;color:#1d5a37;font-weight:600;background:rgba(46,110,80,.08)}
+        .crs-tick{color:#2e6e50;font-size:24px;font-weight:700}
+        .crs-q.ok .crs-qn{color:#2e6e50}
+        .crs-q.bad .crs-qn{color:var(--rubric)}
+        .crs-chk-row{display:flex;justify-content:center;margin-top:12px}
+        .crs-chk.big{font-size:12px;letter-spacing:.18em;padding:12px 34px 11px;border-width:1.5px}
+        .crs-stream .crs-chk-row{margin-top:16px}
+        @media (max-width:560px){.crs-q.ok,.crs-q.bad{padding-left:10px;padding-right:10px;margin-left:-6px;margin-right:-6px}.crs-stream .crs-q.ok,.crs-stream .crs-q.bad{padding:14px 10px 8px;margin:0 -10px}.crs-chk.big{width:100%}}
         /* The exam: the questions in one list, a chapter name over each, the
            mark at the end. */
         .crs-exam{margin-top:22px}
@@ -22678,9 +22711,10 @@ export default function App() {
                         // One author as a tile: the portrait (or a monogram where
                         // Commons has none), the name, how much of them is here and
                         // their years. Shared by every shelf and the Authors chip.
-                        var authorTile = function(a, n, open) {
-                          var info = authorInfoFor(a);
+                        var authorTile = function(a, n, open, cover, noun) {
+                          var info = cover ? null : authorInfoFor(a);
                           var nm = targetLang === "en" ? a : ((info && info.name) || a);
+                          var nn = noun || "work";
                           var mono = nm.split(/\s+/).filter(Boolean).map(function(w){ return w.charAt(0); }).join("").slice(0, 2);
                           return (
                             <div key={a} className="tb-card ld-card au-card" role="button" tabIndex={0}
@@ -22691,26 +22725,27 @@ export default function App() {
                                   ? <div className="au-crop" style={authorCropStyle(info)} />
                                   : (info && (info.file || info.img))
                                   ? <TileImg srcs={[authorSrc(info, 400), authorCover[a] || ""]} fallback={<span className="au-mono" lang="ru">{mono}</span>} />
-                                  : authorCover[a]
-                                  ? <TileImg srcs={[authorCover[a]]} fallback={<span className="au-mono" lang="ru">{mono}</span>} />
+                                  : (cover || authorCover[a])
+                                  ? <TileImg srcs={[cover || authorCover[a]]} fallback={<span className="au-mono" lang="ru">{mono}</span>} />
                                   : <span className="au-mono" lang="ru">{mono}</span>}
                               </div>
-                              <div className="tb-card-t" lang="ru">{nm}</div>
-                              <div className="tb-card-a"><span>{n} {n === 1 ? "work" : "works"}</span>{info && info.years ? <span className="y">{info.years}</span> : null}</div>
+                              <div className="tb-card-t" lang={cover ? "en" : "ru"}>{nm}</div>
+                              <div className="tb-card-a"><span>{n} {nn}{n === 1 ? "" : "s"}</span>{info && info.years ? <span className="y">{info.years}</span> : null}</div>
                               {info && info.credit && <div className="ld-credit">{info.credit}</div>}
                             </div>
                           );
                         };
-                        var authorHead = function(a, n, back, backLabel) {
-                          var info = authorInfoFor(a);
+                        var authorHead = function(a, n, back, backLabel, plain, noun) {
+                          var info = plain ? null : authorInfoFor(a);
+                          var nn = noun || "work";
                           return (
                             <div className="ld-head">
                               <button type="button" className="ld-back" onClick={back}>{backLabel}</button>
                               {info && info.crop ? <div className="ld-head-img au-head-img au-crop" style={authorCropStyle(info)} />
                                 : (info && (info.file || info.img)) ? <img className="ld-head-img au-head-img" src={authorSrc(info, 200)} alt="" /> : null}
                               <div>
-                                <div className="ld-head-n" lang={targetLang === "en" ? "en" : "ru"}>{targetLang === "en" ? a : ((info && info.name) || a)}</div>
-                                <div className="ld-head-y">{info && info.years ? info.years + " · " : ""}{n} {n === 1 ? "work" : "works"}</div>
+                                <div className="ld-head-n" lang={targetLang === "en" || plain ? "en" : "ru"}>{targetLang === "en" || plain ? a : ((info && info.name) || a)}</div>
+                                <div className="ld-head-y">{info && info.years ? info.years + " · " : ""}{n} {nn}{n === 1 ? "" : "s"}</div>
                               </div>
                             </div>
                           );
@@ -23170,25 +23205,37 @@ export default function App() {
                               // it goes straight to the books.
                               var aHead = null;
                               if (!searching && !authorView && cat !== "Religious Texts") {
+                                // The Modern Russian shelf opens on its groups — the
+                                // rock scene, bands, musicians, writers, cities, the news,
+                                // the state — rather than on its four "authors", which
+                                // are the sites the articles came from.
+                                var isModern = cat === "Modern Russian";
+                                var MODERN_ORDER = ["Russian rock: the scene", "Bands", "Musicians", "Writers", "Russian literature", "Cities", "News", "The state"];
                                 var byAuth = {};
                                 entries.forEach(function(e){
-                                  var a = authorKeyOf(e.book) || "—";
+                                  var a = isModern ? (e.book.group || "Other") : (authorKeyOf(e.book) || "—");
                                   (byAuth[a] = byAuth[a] || []).push(e);
                                 });
-                                var aKeys = Object.keys(byAuth).sort(function(a, b){ return a.localeCompare(b, "ru"); });
+                                var aKeys = Object.keys(byAuth).sort(function(a, b){
+                                  if (isModern) { var ia = MODERN_ORDER.indexOf(a), ib = MODERN_ORDER.indexOf(b); return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib) || a.localeCompare(b); }
+                                  return a.localeCompare(b, "ru");
+                                });
                                 var openA = shelfAuthor.indexOf(cat + "|") === 0 ? shelfAuthor.slice(cat.length + 1) : "";
                                 if (openA && byAuth[openA]) {
                                   entries = byAuth[openA];
+                                  if (isModern) entries = entries.slice().sort(function(x, y){ return String(x.book.title).localeCompare(String(y.book.title), "ru"); });
                                   withAudio = entries.filter(function(e){ return hasRec(e.book); });
                                   textOnly  = entries.filter(function(e){ return !hasRec(e.book); });
-                                  aHead = authorHead(openA, entries.length, function(){ setShelfAuthor(""); }, "← All authors");
+                                  aHead = authorHead(openA, entries.length, function(){ setShelfAuthor(""); }, isModern ? "← All groups" : "← All authors", isModern, isModern ? "article" : "work");
                                 } else if (aKeys.length > 1) {
                                   return (
                                     <div key={cat} className="lib-section">
                                       <div className="lib-section-hdr">{shelfName(cat)}</div>
                                       <div className="tb-shelf au-shelf">
                                         {aKeys.map(function(a){
-                                          return authorTile(a, byAuth[a].length, function(){ setShelfAuthor(cat + "|" + a); });
+                                          var cover = "";
+                                          if (isModern) { var withCv = byAuth[a].filter(function(e){ return e.book.cover; })[0]; cover = withCv ? coverSrc(withCv.book) : ""; }
+                                          return authorTile(a, byAuth[a].length, function(){ setShelfAuthor(cat + "|" + a); }, cover, isModern ? "article" : "work");
                                         })}
                                       </div>
                                     </div>
@@ -25814,7 +25861,7 @@ export default function App() {
                       noteAnswer(course.id, sec.id, e.id, ok, exIds, ok && cleanRun(e));
                     };
                     return (
-                      <div key={e.id} className={"crs-q" + (es.status === "right" ? " ok" : "")}>
+                      <div key={e.id} className={"crs-q" + (es.status === "right" ? " ok" : es.status === "wrong" ? " bad" : "")}>
                         <div className="crs-qn">{n + 1}</div>
                         <div className="crs-qb">
                           {ctx}
@@ -25853,7 +25900,7 @@ export default function App() {
                   if (e.type === "mc") {
                     var picked = es.picked || [];
                     return (
-                      <div key={e.id} className={"crs-q" + (es.status === "right" ? " ok" : "")}>
+                      <div key={e.id} data-exid={e.id} className={"crs-q" + (es.status === "right" ? " ok" : es.status === "wrong" ? " bad" : "")}>
                         <div className="crs-qn">{n + 1}</div>
                         <div className="crs-qb">
                           {ctx}
@@ -25940,7 +25987,7 @@ export default function App() {
                     );
                   };
                   return (
-                    <div key={e.id} className={"crs-q" + (es.status === "right" ? " ok" : "")}>
+                    <div key={e.id} data-exid={e.id} className={"crs-q" + (es.status === "right" ? " ok" : es.status === "wrong" ? " bad" : "")}>
                       <div className="crs-qn">{n + 1}</div>
                       <div className="crs-qb">
                         {ctx}
@@ -25955,10 +26002,14 @@ export default function App() {
                             return <Fragment key={k}>{bits}{k < parts.length - 1 ? fieldAt(k) : null}</Fragment>;
                           })}
                           {parts.length < 2 && fieldAt(0)}
-                          {es.status !== "right" && <button type="button" className="crs-chk" onClick={check}>Check</button>}
                           {es.status === "right" && <span className="crs-tick">✓</span>}
-                          {data.stream && es.status === "wrong" && <span className="crs-x" role="img" aria-label="wrong">✗</span>}
+                          {es.status === "wrong" && <span className="crs-x" role="img" aria-label="wrong">✗</span>}
                         </div>
+                        {es.status !== "right" && (
+                          <div className="crs-chk-row">
+                            <button type="button" className="crs-chk big" onClick={check}>{es.status === "wrong" ? "Check again" : "Check"}</button>
+                          </div>
+                        )}
                         {e.hint && es.status !== "right" && <div className="crs-hint">{rich(e.hint)}</div>}
                         {es.status === "wrong" && (es.tries || 0) >= 2 && !es.shown && (
                           <button type="button" className="crs-show" onClick={function(){ setEx(e.id, { shown: true }); }}>Show the answer</button>
@@ -25999,7 +26050,14 @@ export default function App() {
                           var per = data.per || 5, pass = data.pass || 85;
                           var shuf = function(a) { for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; };
                           if (!examDeal) {
-                            // Dealt when the exam is opened: `per` of each chapter's questions, in one shuffled list.
+                            // An exam left half-way is picked up where it was; otherwise it is
+                            // dealt afresh: `per` of each chapter's questions, in one shuffled list.
+                            var saved = null;
+                            try { saved = JSON.parse(localStorage.getItem("crsExam:" + examKey) || "null"); } catch (x) {}
+                            if (saved && saved.order && saved.order.length) {
+                              setTimeout(function(){ setExState(saved.ex || {}); setCrsStream({ key: examKey, order: saved.order, pos: 0, right: 0, seen: 0, round: 1 }); }, 0);
+                              return <div className="lib-cat-hint">Picking up where you left off…</div>;
+                            }
                             var dealt = [];
                             (data.topics || []).forEach(function(t, ti){
                               shuf(t.exercises.slice()).slice(0, per).forEach(function(e){
@@ -26018,7 +26076,7 @@ export default function App() {
                           if (over && !crsStream.graded) {
                             setTimeout(function(){ finishExam(course.id, sec.id, grade, pass); setCrsStream(Object.assign({}, crsStream, { graded: true })); }, 0);
                           }
-                          var again = function(){ setExState({}); setCrsStream({ key: "", order: [], pos: 0, right: 0, seen: 0 }); try { window.scrollTo(0, 0); var el = document.querySelector(".crs-scroll"); if (el) el.scrollTop = 0; } catch (x) {} };
+                          var again = function(){ try { localStorage.removeItem("crsExam:" + examKey); } catch (x) {} setExState({}); setCrsStream({ key: "", order: [], pos: 0, right: 0, seen: 0 }); try { window.scrollTo(0, 0); var el = document.querySelector(".crs-scroll"); if (el) el.scrollTop = 0; } catch (x) {} };
                           return (
                             <div className="crs-exw crs-exam">
                               {rec.done && !over && <div className="crs-exam-note">Passed before, with {rec.grade}%. This is a fresh deal; a better mark replaces it.</div>}
@@ -26147,6 +26205,27 @@ export default function App() {
                               </div>
                             </div>
                           );
+                        })()}
+                        {!data.stream && !data.exam && exs.length > 0 && crsSeeded !== key && (function(){
+                          // Seed the answered ones from the record, once per opening, and
+                          // bring the first still-open exercise into view.
+                          var seed = {}, firstOpen = null;
+                          exs.forEach(function(e){
+                            if (rec.right && rec.right[e.id]) {
+                              seed[e.id] = e.type === "mc" ? { status: "right", picked: [e.answer] }
+                                : { status: "right", val: (e.answers || [])[0] || "", vals: ((e.answers || [])[0] || "").split(/\s+/) };
+                            } else if (!firstOpen) firstOpen = e.id;
+                          });
+                          setTimeout(function(){
+                            setCrsSeeded(key);
+                            if (Object.keys(seed).length) {
+                              setExState(function(m){ return Object.assign({}, seed, m); });
+                              if (firstOpen) setTimeout(function(){
+                                try { var el = document.querySelector('[data-exid="' + firstOpen + '"]'); if (el) el.scrollIntoView({ block: "start", behavior: "smooth" }); } catch (x) {}
+                              }, 60);
+                            }
+                          }, 0);
+                          return null;
                         })()}
                         {!data.stream && !data.exam && exs.length > 0 && (
                           <div className="crs-exw">

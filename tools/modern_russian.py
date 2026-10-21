@@ -552,6 +552,9 @@ def main():
     if a.all or a.official:
         n += import_official(a)
     print("\n%d books on the Modern Russian shelf%s." % (n, " (dry run — nothing written)" if a.dry_run else ""))
+    if not a.dry_run:
+        import modern_groups
+        modern_groups.main()
 
 
 if __name__ == "__main__":
