@@ -79,6 +79,10 @@ for _meta, _secs in topic_courses.COURSE_DEFS:
 import story_course
 for _meta, _secs in story_course.COURSE_DEFS:
     COURSES.append(dict(_meta, modules=[], order=None, sections=_secs))
+# The FSI Russian FAST Course, with its tapes (tools/courses/fast_course.py).
+import fast_course
+for _meta, _secs in fast_course.COURSE_DEFS:
+    COURSES.append(dict(_meta, modules=[], order=None, sections=_secs))
 for _c in COURSES:
     if _c["id"] == "time":
         _c["sections"] = case_courses.TIME_MORE
@@ -212,7 +216,7 @@ def with_practice(cid, secs):
         sets = [exs] if len(exs) >= 4 else []
         sets += [more[k:k + PRACTICE_SIZE] for k in range(0, len(more), PRACTICE_SIZE) if len(more[k:k + PRACTICE_SIZE]) >= 5]
         for n, xs in enumerate(sets, 1):
-            note = TATOEBA_NOTE if xs is exs else REAL_NOTE
+            note = TATOEBA_NOTE if xs is exs else (s.get("moreNote") or REAL_NOTE)
             out.append({"id": s["id"] + "-practice" + ("" if n == 1 else "-%d" % n),
                         "title": "Practice%s: %s" % ("" if len(sets) == 1 else " %d" % n, s["title"]),
                         "sub": "%d real sentences" % len(xs),
@@ -258,7 +262,7 @@ except ImportError:
 LEVELS = {
     "cases": "Beginner", "case-nom": "Beginner", "case-gen": "Beginner", "case-dat": "Beginner",
     "case-acc": "Beginner", "case-ins": "Beginner", "case-prp": "Beginner",
-    "verbs": "Beginner", "count": "Beginner", "tables": "Beginner",
+    "verbs": "Beginner", "count": "Beginner", "tables": "Beginner", "fast": "Beginner",
     "aspect": "Intermediate", "forms": "Intermediate", "compare": "Intermediate", "pronouns": "Intermediate",
     "complex": "Intermediate", "inter2": "Intermediate", "numerals": "Intermediate", "tenses": "Intermediate",
     "adv3": "Advanced", "stories": "Advanced", "gramterms": "Advanced",

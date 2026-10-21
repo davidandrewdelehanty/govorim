@@ -64,14 +64,14 @@ export default [
    {
     "id": "ts-v-prep",
     "title": "В + prepositional: In May, last year",
-    "n": 33,
+    "n": 35,
     "stream": true,
     "finite": true
    },
    {
     "id": "ts-date",
     "title": "On the fifth of May",
-    "n": 10,
+    "n": 21,
     "stream": true,
     "finite": true
    },
@@ -4737,6 +4737,141 @@ export default [
    }
   ],
   "level": "Advanced"
+ },
+ {
+  "id": "fast",
+  "title": "FSI Russian FAST Course",
+  "short": "FAST",
+  "mark": "F",
+  "blurb": "",
+  "credit": "The Foreign Service Institute's Russian FAST Course (1994), a US Government work in the public domain: its dialogues, useful words and cultural notes, with the recordings from the course's own tapes",
+  "creditUrl": "https://www.fsi-language-courses.org/russian/courses/fsi-russian-fast-course",
+  "license": "Public domain",
+  "licenseUrl": "",
+  "sections": [
+   {
+    "id": "f02-geography",
+    "title": "Урок 2 · География",
+    "n": 4
+   },
+   {
+    "id": "f03-meeting-people",
+    "title": "Урок 3 · Знакомство",
+    "n": 18
+   },
+   {
+    "id": "f04-family",
+    "title": "Урок 4 · Семья",
+    "n": 27
+   },
+   {
+    "id": "f05-where-do-you-work",
+    "title": "Урок 5 · Где вы работаете?",
+    "n": 23
+   },
+   {
+    "id": "f06-where-do-you-live",
+    "title": "Урок 6 · Где вы живёте?",
+    "n": 33
+   },
+   {
+    "id": "f07-shopping",
+    "title": "Урок 7 · Покупки",
+    "n": 46
+   },
+   {
+    "id": "f07-shopping-practice",
+    "title": "Practice 1: Урок 7 · Покупки",
+    "n": 20
+   },
+   {
+    "id": "f07-shopping-practice-2",
+    "title": "Practice 2: Урок 7 · Покупки",
+    "n": 20
+   },
+   {
+    "id": "f08-restaurant",
+    "title": "Урок 8 · В ресторане",
+    "n": 40
+   },
+   {
+    "id": "f09-transportation",
+    "title": "Урок 9 · Транспорт",
+    "n": 46
+   },
+   {
+    "id": "f09-transportation-practice",
+    "title": "Practice 1: Урок 9 · Транспорт",
+    "n": 20
+   },
+   {
+    "id": "f09-transportation-practice-2",
+    "title": "Practice 2: Урок 9 · Транспорт",
+    "n": 20
+   },
+   {
+    "id": "f09-transportation-practice-3",
+    "title": "Practice 3: Урок 9 · Транспорт",
+    "n": 10
+   },
+   {
+    "id": "f10-hotel",
+    "title": "Урок 10 · В гостинице",
+    "n": 46
+   },
+   {
+    "id": "f10-hotel-practice",
+    "title": "Practice 1: Урок 10 · В гостинице",
+    "n": 20
+   },
+   {
+    "id": "f10-hotel-practice-2",
+    "title": "Practice 2: Урок 10 · В гостинице",
+    "n": 20
+   },
+   {
+    "id": "f10-hotel-practice-3",
+    "title": "Practice 3: Урок 10 · В гостинице",
+    "n": 20
+   },
+   {
+    "id": "f10-hotel-practice-4",
+    "title": "Practice 4: Урок 10 · В гостинице",
+    "n": 6
+   },
+   {
+    "id": "f11-telephone",
+    "title": "Урок 11 · Телефон",
+    "n": 46
+   },
+   {
+    "id": "f11-telephone-practice",
+    "title": "Practice 1: Урок 11 · Телефон",
+    "n": 20
+   },
+   {
+    "id": "f11-telephone-practice-2",
+    "title": "Practice 2: Урок 11 · Телефон",
+    "n": 20
+   },
+   {
+    "id": "f11-telephone-practice-3",
+    "title": "Practice 3: Урок 11 · Телефон",
+    "n": 20
+   },
+   {
+    "id": "f11-telephone-practice-4",
+    "title": "Practice 4: Урок 11 · Телефон",
+    "n": 20
+   },
+   {
+    "id": "exam",
+    "title": "Exam",
+    "n": 49,
+    "exam": true
+   }
+  ],
+  "level": "Beginner"
  },
  {
   "id": "tenses",

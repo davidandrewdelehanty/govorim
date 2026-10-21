@@ -6463,6 +6463,38 @@ export default function App() {
   // — the section, the exercises in this round, the round's number — and
   // done once a round goes through with no miss.
   var [crsMissed, setCrsMissed] = useState(null);
+  // A course's recordings (the FSI tapes, one clip per spoken line): one
+  // player for the tab, the clip now playing, and the clips still to come
+  // when a whole dialogue is played through. Pressing the playing line's
+  // button stops it; another line's button plays that one instead.
+  var crsAudioRef = useRef(null);
+  var crsQueueRef = useRef([]);
+  var [crsClip, setCrsClip] = useState("");
+  var playClip = function(url, queue) {
+    var a = crsAudioRef.current;
+    if (!a) {
+      a = new Audio();
+      a.preload = "auto";
+      a.addEventListener("ended", function(){
+        var q = crsQueueRef.current;
+        if (q.length) { var nxt = q.shift(); a.src = nxt; setCrsClip(nxt); a.play().catch(function(){ setCrsClip(""); }); }
+        else setCrsClip("");
+      });
+      a.addEventListener("error", function(){ crsQueueRef.current = []; setCrsClip(""); });
+      crsAudioRef.current = a;
+    }
+    if (!url || (url === crsClip && !queue)) {
+      crsQueueRef.current = [];
+      try { a.pause(); } catch (x) {}
+      setCrsClip("");
+      return;
+    }
+    crsQueueRef.current = (queue || []).slice();
+    a.src = url;
+    setCrsClip(url);
+    a.play().catch(function(){ crsQueueRef.current = []; setCrsClip(""); });
+  };
+  useEffect(function(){ playClip(""); }, [crsSec, crsCourse, tab]);     // leaving the page stops it
   // The Courses tab's groups — Beginner, Intermediate, Advanced, Dates and
   // Times — and which of them stand open.
   var [crsGroupOpen, setCrsGroupOpen] = useState(function(){
@@ -18141,6 +18173,44 @@ export default function App() {
         .crs-story .rw:hover{border-bottom-color:var(--rubric)}
         .crs-link{color:var(--rubric);text-decoration:none;border-bottom:1px solid var(--rubric-soft)}
         .crs-link:hover{border-bottom-color:var(--rubric)}
+        /* A recorded dialogue: the speakers down the margin, the line and its
+           English, the tape's clip behind ▶ on each line and on the dialogue. */
+        .crs-play{flex:0 0 auto;width:30px;height:30px;border-radius:50%;border:1px solid var(--rule);background:var(--paper,transparent);color:var(--rubric);font-size:12px;line-height:28px;text-align:center;padding:0;cursor:pointer;align-self:center;transition:background .15s,color .15s}
+        .crs-play:hover{background:var(--rubric);color:#fff;border-color:var(--rubric)}
+        .crs-play.on{background:var(--rubric);color:#fff;border-color:var(--rubric)}
+        .crs-play.none{visibility:hidden}
+        .crs-play.all,.crs-play.ex{width:auto;height:auto;border-radius:999px;padding:4px 12px;line-height:1.3;font-family:var(--sans);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase}
+        .crs-play.all{margin-left:auto}
+        .crs-play.ex{display:inline-block;margin:0 0 8px}
+        .crs-dlg{margin:22px 0 18px;padding:14px 0 6px;border-top:1px solid var(--rule)}
+        .crs-dlg.var{border-top-style:dashed}
+        .crs-dlg-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;margin-bottom:8px}
+        .crs-dlg-k{font-family:var(--sans);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--rubric)}
+        .crs-dlg-t{font-family:var(--display);font-size:21px;font-weight:400;color:var(--ink)}
+        .crs-dlg-ten{font-family:var(--serif);font-style:italic;font-size:15.5px;color:var(--ink-3)}
+        .crs-dlg-set{font-family:var(--serif);font-style:italic;font-size:15.5px;line-height:1.55;color:var(--ink-2);margin:0 0 10px}
+        .crs-dlg-l{display:flex;align-items:flex-start;gap:10px;padding:7px 6px 7px 0;border-radius:8px;transition:background .15s}
+        .crs-dlg-l.on{background:var(--rubric-soft,rgba(138,59,30,.08))}
+        .crs-dlg-who{flex:0 0 26px;font-family:var(--display);font-size:16px;color:var(--ink-3);text-align:center;padding-top:3px}
+        .crs-dlg-l.us .crs-dlg-who{color:var(--rubric)}
+        .crs-dlg-b{flex:1 1 auto;min-width:0}
+        .crs-dlg-ru{font-family:var(--serif);font-size:18.5px;line-height:1.5;color:var(--ink)}
+        .crs-dlg-l.us .crs-dlg-ru{font-weight:500}
+        .crs-dlg-en{font-family:var(--serif);font-size:15px;line-height:1.45;color:var(--ink-3);margin-top:2px}
+        .crs-dlg-l .crs-save{align-self:center}
+        .crs-dlg-stage{font-family:var(--serif);font-style:italic;font-size:15px;color:var(--ink-3);text-align:center;padding:8px 0}
+        .crs-dlg-sub{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;margin:12px 0 4px 36px;font-family:var(--sans);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+        .crs-dlg-sub>span:first-child{font-family:var(--serif);font-size:16px;letter-spacing:0;text-transform:none;color:var(--ink)}
+        /* Useful words and expressions, each with its recording. */
+        .crs-phr{margin:22px 0 14px;padding-top:14px;border-top:1px solid var(--rule)}
+        .crs-phr-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;margin-bottom:8px;font-family:var(--display);font-size:20px;color:var(--ink)}
+        .crs-phr-ten{font-family:var(--serif);font-style:italic;font-size:15px;color:var(--ink-3)}
+        .crs-phr-l{display:flex;align-items:center;gap:10px;padding:5px 6px 5px 0;border-top:1px solid var(--rule-soft);border-radius:6px}
+        .crs-phr-l:first-of-type{border-top:0}
+        .crs-phr-l.on{background:var(--rubric-soft,rgba(138,59,30,.08))}
+        .crs-phr-ru{flex:1 1 46%;font-family:var(--serif);font-size:17.5px;line-height:1.45;color:var(--ink)}
+        .crs-phr-tr{flex:1 1 40%;font-family:var(--serif);font-size:15px;line-height:1.45;color:var(--ink-3)}
+        @media (max-width:560px){.crs-phr-l{flex-wrap:wrap}.crs-phr-ru{flex-basis:calc(100% - 80px)}.crs-phr-tr{flex-basis:100%;padding-left:40px}}
         /* The rule as DLI states it, in parts. */
         .crs-rule{display:flex;flex-direction:column;gap:14px;padding:4px 0 2px}
         .crs-rule-h{font-family:var(--serif);font-size:16.5px;line-height:1.6;color:var(--ink);margin:0}
@@ -26548,6 +26618,73 @@ export default function App() {
                       })}
                     </div>
                   );
+                  // A dialogue from a recorded course: who speaks, the line,
+                  // its English, and the tape's recording of it behind ▶ —
+                  // or the whole dialogue through, line after line.
+                  if (b.t === "dialogue") {
+                    var spoken = (b.lines || []).filter(function(l){ return l.clip; }).map(function(l){ return l.clip; });
+                    var allOn = spoken.length > 0 && spoken.indexOf(crsClip) >= 0 && crsQueueRef.current.length > 0;
+                    var from = { srcCourse: course.title, srcSection: sec.title, srcCourseId: course.id, srcSectionId: sec.id };
+                    return (
+                      <div key={i} className={"crs-dlg" + (b.kind === "variant" ? " var" : "")}>
+                        <div className="crs-dlg-head">
+                          <span className="crs-dlg-k">{b.label}</span>
+                          {b.title ? <span className="crs-dlg-t" lang="ru">{rich(b.title)}</span> : null}
+                          {b.en ? <span className="crs-dlg-ten">{b.en}</span> : null}
+                          {spoken.length > 0 && (
+                            <button type="button" className={"crs-play all" + (allOn ? " on" : "")}
+                              onClick={function(){ if (allOn) playClip(""); else playClip(spoken[0], spoken.slice(1)); }}>
+                              {allOn ? "■ Stop" : "▶ Play the whole dialogue"}
+                            </button>
+                          )}
+                        </div>
+                        {b.setting ? <p className="crs-dlg-set">{rich(b.setting)}</p> : null}
+                        {(b.lines || []).map(function(l, k){
+                          if (l.stage) return <div key={k} className="crs-dlg-stage">{l.stage}</div>;
+                          if (l.head) return <div key={k} className="crs-dlg-sub"><span lang="ru">{rich(l.head)}</span>{l.en ? <span className="crs-dlg-suben">{l.en}</span> : null}</div>;
+                          var on = !!l.clip && crsClip === l.clip;
+                          return (
+                            <div key={k} className={"crs-dlg-l" + (l.who === "А" ? " us" : "") + (on ? " on" : "")}>
+                              <span className="crs-dlg-who" title={l.who === "А" ? "The American" : l.who === "Р" ? "The Russian" : l.who === "К" ? "Katya" : ""}>{l.who || "—"}</span>
+                              <div className="crs-dlg-b">
+                                <div className="crs-dlg-ru" lang="ru">{rich(l.ru)}</div>
+                                {l.en ? <div className="crs-dlg-en">{l.en}</div> : null}
+                              </div>
+                              {l.clip ? (
+                                <button type="button" className={"crs-play" + (on ? " on" : "")} title={on ? "Stop" : "Listen"} aria-label={on ? "Stop" : "Listen"}
+                                  onClick={function(){ playClip(l.clip); }}>{on ? "■" : "▶"}</button>
+                              ) : null}
+                              {saveBtn(l.ru, l.en || "", "phrase", from, "+")}
+                            </div>
+                          );
+                        })}
+                      </div>
+                    );
+                  }
+                  // A list of words or phrases with their English — a course's
+                  // useful expressions — each with its recording.
+                  if (b.t === "phrases") {
+                    var from2 = { srcCourse: course.title, srcSection: sec.title, srcCourseId: course.id, srcSectionId: sec.id };
+                    return (
+                      <div key={i} className="crs-phr">
+                        <div className="crs-phr-head"><span lang="ru">{rich(b.title)}</span>{b.en ? <span className="crs-phr-ten">{b.en}</span> : null}</div>
+                        {(b.lines || []).map(function(l, k){
+                          var on = !!l.clip && crsClip === l.clip;
+                          return (
+                            <div key={k} className={"crs-phr-l" + (on ? " on" : "")}>
+                              {l.clip ? (
+                                <button type="button" className={"crs-play" + (on ? " on" : "")} title={on ? "Stop" : "Listen"} aria-label={on ? "Stop" : "Listen"}
+                                  onClick={function(){ playClip(l.clip); }}>{on ? "■" : "▶"}</button>
+                              ) : <span className="crs-play none" />}
+                              <span className="crs-phr-ru" lang="ru">{rich(l.ru)}</span>
+                              <span className="crs-phr-tr">{l.en}</span>
+                              {saveBtn(l.ru, l.en || "", "phrase", from2, "+")}
+                            </div>
+                          );
+                        })}
+                      </div>
+                    );
+                  }
                   if (b.t === "rule") return <div key={i} className="crs-rule">{(b.items || []).map(function(it, k){ return ruleItem(it, "r" + i + "." + k); })}</div>;
                   if (b.t === "list") return <ul key={i} className="crs-ul">{b.items.map(function(x, k){ return <li key={k}>{withExamples(x, "l" + i + "." + k)}</li>; })}</ul>;
                   if (b.t === "ex") return (
@@ -26730,6 +26867,7 @@ export default function App() {
                         <div className="crs-qb">
                           {ctx}
                           <div className="crs-qt">{rich(e.q)}</div>
+                          {e.clip ? <button type="button" className={"crs-play ex" + (crsClip === e.clip ? " on" : "")} onClick={function(){ playClip(e.clip); }}>{crsClip === e.clip ? "■ Stop" : "▶ Listen"}</button> : null}
                           {e.ru && <div className="crs-qru" lang="ru">{rich(e.ru)}</div>}
                           <div className="crs-opts">
                             {e.options.map(function(o, k){
@@ -26817,6 +26955,7 @@ export default function App() {
                       <div className="crs-qb">
                         {ctx}
                         {e.prompt && <div className="crs-qt">{rich(e.prompt)}</div>}
+                        {e.clip ? <button type="button" className={"crs-play ex" + (crsClip === e.clip ? " on" : "")} onClick={function(){ playClip(e.clip); }}>{crsClip === e.clip ? "■ Stop" : "▶ Listen"}</button> : null}
                         {e.clock && <ClockFace hhmm={e.clock} label={e.pod} />}
                         <div className="crs-fill" lang="ru">
                           {parts.map(function(p, k){

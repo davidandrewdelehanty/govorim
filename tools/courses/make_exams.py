@@ -25,7 +25,7 @@ MIN_Q = 20       # a course with few chapters asks more of each, so the exam is 
 POOL = 30        # of each chapter's exercises kept in the file (more when more are asked)
 PASS = 85        # per cent
 PRACTICE = re.compile(r"-practice(-\d+)?$")
-KEEP = ("type", "q", "answers", "options", "answer", "ru", "prompt", "hint", "show", "k", "pairs")
+KEEP = ("type", "q", "answers", "options", "answer", "ru", "prompt", "hint", "show", "k", "pairs", "clip")
 
 
 def add_exams(outline):
