@@ -733,6 +733,14 @@ def build_fb2(title, author, chapters, source_url):
         if head:
             a("<title><p>%s</p></title>" % _esc(head))
         for kind, text in ch["blocks"]:
+            if kind == "img":
+                # A picture beside the text (the Modern Russian shelf's
+                # Wikipedia articles): a file next to the book, as the
+                # scanned textbooks carry theirs, with its caption and credit.
+                a('<image l:href="%s"%s width="%d" height="%d"/>' % (
+                    _esc(text["src"]), (' title="%s"' % _esc(text["cap"]).replace('"', "&quot;")) if text.get("cap") else "",
+                    int(text.get("w") or 0), int(text.get("h") or 0)))
+                continue
             if kind in ("h", "n"):
                 # A heading inside the chapter body — a scene number, or a
                 # part name the navigation did not carry. Kept as a plain
@@ -752,7 +760,8 @@ def count_words(chapters):
     n = 0
     for ch in chapters:
         for _k, t in ch["blocks"]:
-            n += len(RU_WORD.findall(t))
+            if isinstance(t, str):
+                n += len(RU_WORD.findall(t))
     return n
 
 

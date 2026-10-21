@@ -17758,6 +17758,7 @@ export default function App() {
         .crs-note{font-family:var(--serif);font-size:15.5px;line-height:1.6;color:var(--ink-2);padding:12px 0 12px 18px;border:0;border-left:1px solid var(--rubric);border-radius:0;background:transparent;font-style:italic}
         .crs-note::before{content:"Note";display:block;font-family:var(--sans);font-style:normal;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--rubric);margin-bottom:4px}
         .crs-note b,.crs-note i{font-style:normal}
+        .crs-note .crs-exrun{font-style:normal;font-size:16px;border-left-color:var(--rule-soft)}
         .crs-exs{gap:7px;padding:4px 0 4px 18px;border-left:1px solid var(--rule);border-radius:0;background:transparent}
         .crs-exl{gap:2px 14px;font-family:var(--serif);font-size:17.5px;color:var(--ink);line-height:1.5}
         .crs-exl b{font-weight:600;color:var(--rubric)}
@@ -17791,11 +17792,75 @@ export default function App() {
         .crs-qt{font-family:var(--serif);font-size:16.5px;line-height:1.55;color:var(--ink)}
         .crs-qru{font-family:var(--serif);font-size:19px;line-height:1.5;color:var(--ink)}
         .crs-say{font-family:var(--serif);font-size:22px;line-height:1.4;color:var(--ink);margin:0}
-        .crs-fill{gap:4px 8px;font-family:var(--serif);font-size:19px;line-height:1.9;color:var(--ink)}
-        .crs-in{font-family:var(--serif);font-size:18px;padding:0 6px 1px;border:0;border-bottom:1.5px solid var(--ink);border-radius:0;background:transparent;color:var(--ink);min-width:3.5ch}
-        .crs-in:focus{border-bottom-color:var(--rubric);background:var(--paper-3)}
-        .crs-in.ok{border-bottom-color:#2e6e50;background:transparent;color:#1d5a37}
-        .crs-in.bad,.crs-stream .crs-in.bad{border-bottom:1.5px solid var(--rubric);background:var(--rubric-soft);color:var(--rubric);box-shadow:none}
+        /* The sentence with its blank runs as a line of text, the field in
+           the line where the word goes. It was a flex row, which put a gap
+           between every word once each word became its own tappable span. */
+        .crs-fill{display:block;font-family:var(--serif);font-size:20px;line-height:2;color:var(--ink)}
+        .crs-stream .crs-fill{font-size:22px}
+        .crs-fill .crs-chk{vertical-align:middle;margin-left:10px}
+        .crs-fill .crs-tick,.crs-fill .crs-x{vertical-align:middle;margin-left:6px}
+        input[type="text"].crs-in,.crs-in{display:inline-block;width:auto;font-family:var(--serif);font-size:inherit;line-height:1.3;padding:0 5px 1px;margin:0 2px;
+          border:0;border-bottom:1.5px solid var(--ink);border-radius:0;background:transparent;color:var(--ink);min-width:3.5ch;outline:none;vertical-align:baseline;box-shadow:none}
+        input[type="text"].crs-in:focus,.crs-in:focus{border-bottom-color:var(--rubric);background:var(--paper-3);outline:none}
+        input[type="text"].crs-in.ok,.crs-in.ok{border-bottom-color:#2e6e50;background:transparent;color:#1d5a37}
+        input[type="text"].crs-in.bad,.crs-in.bad,.crs-stream .crs-in.bad{border-bottom:1.5px solid var(--rubric);background:var(--rubric-soft);color:var(--rubric);box-shadow:none}
+        /* The chapter head: the construction is the title, the chapter's
+           name sits under it as a line of description. */
+        .crs-head{display:flex;flex-direction:column;gap:6px;margin-bottom:6px}
+        .crs-head .crs-kicker{margin-top:16px}
+        .crs-kicker-st{color:var(--rubric)}
+        .crs-head .crs-formula{margin:8px 0 0;padding-bottom:14px;font-size:46px}
+        .crs-head .sti.crs-sub{font-family:var(--serif);font-size:19px;font-weight:400;font-style:italic;line-height:1.45;color:var(--ink-2);margin:4px 0 0}
+        .crs-head.has-formula+.crs-lesson>.crs-lead{margin-top:10px}
+        /* The stream's head: where you are, and how much of the chapter is done. */
+        .crs-stream-top{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 16px;margin:16px 0 0;padding-bottom:10px;border-bottom:0}
+        .crs-stream-tally b{font-family:var(--display);font-size:18px;font-weight:400;letter-spacing:0;color:var(--ink);text-transform:none}
+        .crs-stream-right{margin-left:auto;font-family:var(--sans);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+        .crs-stream-bar{flex:0 0 100%;height:2px;background:var(--rule-soft);margin-top:4px}
+        .crs-stream-bar span{display:block;height:100%;background:var(--rubric);transition:width .3s}
+        .crs-stream .crs-q{border-top:0;padding:14px 0 10px;gap:0}
+        .crs-stream .crs-qt{font-size:18.5px;color:var(--ink-2)}
+        .crs-stream .crs-ctx{margin-bottom:4px}
+        .crs-stream-nav{justify-content:flex-end;margin-top:6px;padding-top:0;border-top:0}
+        /* Russian examples stepped out of an English sentence onto lines of their own. */
+        .crs-exrun{font-family:var(--serif);font-size:18px;line-height:1.6;color:var(--ink);margin:8px 0 8px;padding:2px 0 2px 16px;border-left:1px solid var(--rule)}
+        .crs-exrun>div+div{margin-top:3px}
+        .crs-exrun:last-child{margin-bottom:0}
+        .crs-exrun:first-child{margin-top:0}
+        .crs-rule-pts .crs-exrun{font-size:17px;margin:6px 0 2px;padding-left:12px}
+        .crs-p>span{display:inline}
+        /* The rule as DLI states it, in parts. */
+        .crs-rule{display:flex;flex-direction:column;gap:14px;padding:4px 0 2px}
+        .crs-rule-h{font-family:var(--serif);font-size:16.5px;line-height:1.6;color:var(--ink);margin:0}
+        .crs-rule-p{font-family:var(--serif);font-size:16.5px;line-height:1.65;color:var(--ink);margin:0}
+        .crs-rule-pts{margin:6px 0 0;padding-left:0;list-style:none;counter-reset:pt;font-family:var(--serif);font-size:16.5px;line-height:1.55;color:var(--ink)}
+        .crs-rule-pts li{counter-increment:pt;position:relative;padding:4px 0 4px 34px;border-top:1px solid var(--rule-soft)}
+        .crs-rule-pts li:last-child{border-bottom:1px solid var(--rule-soft)}
+        .crs-rule-pts li::before{content:counter(pt,lower-alpha);position:absolute;left:4px;top:5px;font-family:var(--display);font-size:16px;color:var(--rubric)}
+        .crs-rule-ex{display:flex;flex-wrap:wrap;gap:6px 0;margin-top:6px;font-family:var(--serif);font-size:18px;line-height:1.5;color:var(--ink)}
+        .crs-rule-ex span{padding:0 14px 0 0;margin-right:14px;border-right:1px solid var(--rule)}
+        .crs-rule-ex span:last-child{border-right:0;margin-right:0;padding-right:0}
+        /* The practice card: one sentence at a time, framed on paper. */
+        .crs-stream{margin-top:28px;padding:22px 26px 18px;border:1px solid var(--rule);background:var(--paper-3)}
+        .crs-stream .crs-stream-top{margin:0;padding-bottom:12px;border-bottom:1px solid var(--rule-soft)}
+        .crs-finite .crs-ctx{display:none}
+        .crs-stream .crs-q{padding:18px 0 6px}
+        .crs-stream .crs-qt{font-size:17px;color:var(--ink-3);font-style:italic}
+        .crs-stream .crs-fill{font-size:23px;margin-top:4px}
+        .crs-paren{color:var(--ink-3);font-size:.82em}
+        .crs-stream-nav{margin-top:14px;padding-top:12px;border-top:1px solid var(--rule-soft)}
+        .crs-stream-nav .btn-p{padding:10px 18px;font-size:11px;width:auto}
+        .crs-stream .crs-score{border-top:0;border-bottom:0;padding:6px 0}
+        @media (min-width:561px){
+          .crs-exs{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:4px 28px;padding-left:0;border-left:0}
+          .crs-exl{border-bottom:1px solid var(--rule-soft);padding:6px 0}
+        }
+        /* On to the next chapter: a line of type, not a slab. */
+        .crs-next{display:flex;flex-direction:column;align-items:flex-end;gap:3px;background:none;border:0;padding:4px 0;cursor:pointer;text-align:right;max-width:100%}
+        .crs-next .k{font-family:var(--sans);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--rubric)}
+        .crs-next .t{font-family:var(--serif);font-size:17px;color:var(--ink);transition:color .12s}
+        .crs-next:hover .t{color:var(--rubric)}
+        @media (max-width:560px){.crs-stream{padding:16px 14px 14px;margin-left:-4px;margin-right:-4px}.crs-stream .crs-fill{font-size:20px}}
         .crs-chk,.crs-retry{font-family:var(--sans);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;padding:7px 12px 6px;border:1px solid var(--ink);border-radius:0;background:transparent;color:var(--ink);cursor:pointer;line-height:1;transition:background .12s,color .12s}
         .crs-chk:hover,.crs-retry:hover{background:var(--ink);color:var(--paper)}
         .crs-retry{margin-left:14px}
@@ -17814,9 +17879,7 @@ export default function App() {
         .crs-opt:disabled:not(.ok){opacity:.5}
         .crs-score{font-family:var(--sans);font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:14px 0;border-top:1px solid var(--ink);border-bottom:1px solid var(--rule-soft);border-radius:0;background:transparent;color:var(--ink-2);margin-top:4px;display:flex;flex-wrap:wrap;align-items:center;gap:8px 0}
         .crs-score.done{background:transparent;color:var(--rubric);border-top-color:var(--rubric)}
-        .crs-stream-top{margin:14px 0 0;padding-bottom:8px;border-bottom:1px solid var(--rule)}
         .crs-stream-tally{font-family:var(--sans);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
-        .crs-stream .crs-q{border-top:0;padding-top:16px}
         .crs-nav{margin-top:22px;padding-top:16px;border-top:1px solid var(--rule-soft)}
         .crs-nav .btn-p{width:auto;padding:12px 22px}
         .crs-credit{font-family:var(--sans);font-size:10.5px;letter-spacing:.06em;line-height:1.6;color:var(--ink-3);margin-top:28px;padding-top:10px;border-top:1px solid var(--rule-soft)}
@@ -25388,6 +25451,63 @@ export default function App() {
                     return <Fragment key={i}>{w(part, i)}</Fragment>;
                   });
                 };
+                // A paragraph taken apart for reading. The lessons are quoted
+                // from their sources as they stand, and a grammar book packs a
+                // paragraph: three rules in «quotes» run together, "a) … b) …
+                // c) …" in one line, the Russian examples in italics inside the
+                // English sentence. The words stay the source's; here the
+                // quotes become paragraphs, the letters a list, and the
+                // examples step out onto lines of their own.
+                var CYR = /[\u0400-\u04ff]/;
+                var splitSentences = function(str) {
+                  var out = [], last = 0, re = /[.!?…]["»“]?\s+(?=[А-ЯЁ«„"])/g, m;
+                  while ((m = re.exec(str))) { out.push(str.slice(last, m.index + m[0].length).trim()); last = m.index + m[0].length; }
+                  out.push(str.slice(last).trim());
+                  return out.filter(Boolean);
+                };
+                var withExamples = function(t, key) {
+                  var parts = String(t || "").split(/(\*[^*]+\*)/), nodes = [], buf = "";
+                  var flush = function(k){ if (buf.trim()) nodes.push(<span key={k}>{rich(buf)}</span>); buf = ""; };
+                  parts.forEach(function(p, i){
+                    if (/^\*[^*]+\*$/.test(p) && CYR.test(p) && p.length > 10) {
+                      flush(key + "t" + i);
+                      nodes.push(<div key={key + "e" + i} className="crs-exrun" lang="ru">{splitSentences(p.slice(1, -1)).map(function(x, j){ return <div key={j}>{rich(x)}</div>; })}</div>);
+                    } else buf += p;
+                  });
+                  flush(key + "end");
+                  return nodes;
+                };
+                var enumerated = function(t) {
+                  if (!/(^|[\s(])a\)\s/.test(t) || !/[\s(]b\)\s/.test(t)) return null;
+                  var i = t.search(/(^|[\s(])a\)\s/);
+                  return { head: t.slice(0, i).trim(),
+                           points: t.slice(i).split(/\s*\(?[a-h]\)\s+/).map(function(x){ return x.trim(); }).filter(Boolean) };
+                };
+                var ruleItem = function(it, key) {
+                  if (it.points) return (
+                    <div key={key} className="crs-rule-i">
+                      {it.head ? <p className="crs-rule-h">{withExamples(it.head, key + "h")}</p> : null}
+                      <ol className="crs-rule-pts">{it.points.map(function(x, j){ return <li key={j}>{withExamples(x, key + "p" + j)}</li>; })}</ol>
+                    </div>
+                  );
+                  if (it.examples) return (
+                    <div key={key} className="crs-rule-i">
+                      <p className="crs-rule-h">{rich(it.head)}</p>
+                      <div className="crs-rule-ex">{it.examples.map(function(x, j){ return <span key={j} lang="ru">{rich(x)}</span>; })}</div>
+                    </div>
+                  );
+                  return <div key={key} className="crs-p">{withExamples(it.text, key)}</div>;
+                };
+                var paragraph = function(t, key) {
+                  t = String(t || "");
+                  var m = t.match(/«[^»]*»/g), quotes;
+                  if (m && m.length >= 2 && /^\s*«/.test(t) && m.join("").length >= t.length * 0.85) quotes = m.map(function(q){ return q.slice(1, -1).trim(); });
+                  else quotes = [t];
+                  return quotes.map(function(q, qi){
+                    var en = enumerated(q);
+                    return ruleItem(en ? en : { text: q }, key + "." + qi);
+                  });
+                };
                 var course = crsCourse && COURSE_OUTLINE.filter(function(c){ return c.id === crsCourse; })[0];
                 var bar = function(done, of) {
                   return (
@@ -25498,8 +25618,11 @@ export default function App() {
                   // the construction itself, then the one idea to take away.
                   if (b.t === "formula") return <div key={i} className="crs-formula" lang="ru">{rich(b.text)}</div>;
                   if (b.t === "lead") return <p key={i} className="crs-lead">{rich(b.text)}</p>;
-                  if (b.t === "note") return <div key={i} className="crs-note">{rich(b.text)}</div>;
-                  if (b.t === "list") return <ul key={i} className="crs-ul">{b.items.map(function(x, k){ return <li key={k}>{rich(x)}</li>; })}</ul>;
+                  if (b.t === "note") return <div key={i} className="crs-note">{withExamples(b.text, "n" + i)}</div>;
+                  // DLI's rule taken apart: its (a) (b) (c) as a lettered list,
+                  // its "note also" expressions as a row, each in its own place.
+                  if (b.t === "rule") return <div key={i} className="crs-rule">{(b.items || []).map(function(it, k){ return ruleItem(it, "r" + i + "." + k); })}</div>;
+                  if (b.t === "list") return <ul key={i} className="crs-ul">{b.items.map(function(x, k){ return <li key={k}>{withExamples(x, "l" + i + "." + k)}</li>; })}</ul>;
                   if (b.t === "ex") return (
                     <div key={i} className="crs-exs">
                       {b.items.map(function(x, k){
@@ -25518,7 +25641,7 @@ export default function App() {
                       </table>
                     </div>
                   );
-                  return <p key={i} className="crs-p">{rich(b.text)}</p>;
+                  return <Fragment key={i}>{paragraph(b.text, "p" + i)}</Fragment>;
                 };
                 var exercise = function(e, n) {
                   var es = exState[e.id] || {};
@@ -25691,7 +25814,13 @@ export default function App() {
                         {e.prompt && <div className="crs-qt">{rich(e.prompt)}</div>}
                         {e.clock && <ClockFace hhmm={e.clock} label={e.pod} />}
                         <div className="crs-fill" lang="ru">
-                          {parts.map(function(p, k){ return <Fragment key={k}>{rich(p)}{k < parts.length - 1 ? fieldAt(k) : null}</Fragment>; })}
+                          {parts.map(function(p, k){
+                            // A hint in brackets after the blank — «(понедельник)», «(3)» — is set lighter than the sentence.
+                            var bits = String(p).split(/(\([^)]*\))/).map(function(b, j){
+                              return /^\(.*\)$/.test(b) ? <span key={j} className="crs-paren">{rich(b)}</span> : <Fragment key={j}>{rich(b)}</Fragment>;
+                            });
+                            return <Fragment key={k}>{bits}{k < parts.length - 1 ? fieldAt(k) : null}</Fragment>;
+                          })}
                           {parts.length < 2 && fieldAt(0)}
                           {es.status !== "right" && <button type="button" className="crs-chk" onClick={check}>Check</button>}
                           {es.status === "right" && <span className="crs-tick">✓</span>}
@@ -25710,13 +25839,29 @@ export default function App() {
                 return (
                   <div className="crs-body">
                     <button type="button" className="crs-back" onClick={function(){ setCrsSec(null); }}>← {course.title}</button>
-                    <div className="crs-kicker">Section {idxSec + 1} of {course.sections.length}{rec.perfect ? " · perfect ★" : rec.done ? " · finished ✓" : ""}</div>
-                    <h1 className="sti">{sec.title}</h1>
+                    {/* A chapter that opens with its construction set large gets
+                        it as the title itself, with the chapter's own name under
+                        it — not the construction twice over, once in the title
+                        and once below. */}
+                    {(function(){
+                      var blocks = (data && data !== "error" && data.blocks) || [];
+                      var formula = blocks[0] && blocks[0].t === "formula" ? blocks[0] : null;
+                      var title = String(sec.title || "");
+                      if (formula && title.indexOf(formula.text + ": ") === 0) title = title.slice(formula.text.length + 2);
+                      var state = rec.perfect ? "perfect ★" : rec.done ? "finished ✓" : "";
+                      return (
+                        <div className={"crs-head" + (formula ? " has-formula" : "")}>
+                          <div className="crs-kicker">Section {idxSec + 1} of {course.sections.length}{state ? <span className="crs-kicker-st"> · {state}</span> : null}</div>
+                          {formula && <div className="crs-formula" lang="ru">{rich(formula.text)}</div>}
+                          <h1 className={"sti" + (formula ? " crs-sub" : "")}>{title}</h1>
+                        </div>
+                      );
+                    })()}
                     {data === "error" && <div className="lib-cat-hint">This lesson could not be loaded — try again in a moment.</div>}
                     {!data && <div className="lib-cat-hint">Loading…</div>}
                     {data && data !== "error" && (
                       <>
-                        <div className="crs-lesson">{(data.blocks || []).map(block)}</div>
+                        <div className="crs-lesson">{(data.blocks || []).slice(data.blocks && data.blocks[0] && data.blocks[0].t === "formula" ? 1 : 0).map(block)}</div>
                         {data.stream && exs.length > 0 && (function(){
                           var key = course.id + "/" + sec.id;
                           var st = crsStream.key === key ? crsStream : null;
@@ -25796,13 +25941,19 @@ export default function App() {
                             setCrsStream(Object.assign({}, st, { pos: st.pos + 1, right: r, seen: st.seen + 1 }));
                           };
                           return (
-                            <div className="crs-exw crs-stream">
-                              <div className="crs-stream-top">
-                                <span className="crs-stream-n">{st.seen + 1}</span>
-                                <span className="crs-stream-tally">{data.finite
-                                  ? (st.seen + 1) + " of " + st.order.length + (st.round > 1 ? " · round " + st.round : "") + " · " + Object.keys(rec.right || {}).filter(function(k){ return exIds.indexOf(k) >= 0; }).length + " of " + exs.length + " right so far"
-                                  : st.right + " right first time, of " + st.seen + (e.type === "clockset" ? " · set the clock" : e.clock ? " · write the time" : "")}</span>
-                              </div>
+                            <div className={"crs-exw crs-stream" + (data.finite ? " crs-finite" : "")}>
+                              {(function(){
+                                var nRight = Object.keys(rec.right || {}).filter(function(k){ return exIds.indexOf(k) >= 0; }).length;
+                                return (
+                                  <div className="crs-stream-top">
+                                    <span className="crs-stream-tally">{data.finite
+                                      ? <><b>{st.seen + 1}</b> of {st.order.length}{st.round > 1 ? " · round " + st.round : ""}</>
+                                      : <><b>{st.right}</b> right first time, of {st.seen}{e.type === "clockset" ? " · set the clock" : e.clock ? " · write the time" : ""}</>}</span>
+                                    {data.finite && <span className="crs-stream-right">{nRight} of {exs.length} right</span>}
+                                    {data.finite && <div className="crs-stream-bar"><span style={{width: Math.round(100 * nRight / Math.max(1, exs.length)) + "%"}} /></div>}
+                                  </div>
+                                );
+                              })()}
                               {exercise(e, st.seen)}
                               <div className="crs-nav crs-stream-nav">
                                 <button type="button" className="btn-p" onClick={next}>{answered ? "Next →" : "Skip →"}</button>
@@ -25829,8 +25980,12 @@ export default function App() {
                         )}
                         <div className="crs-nav">
                           {nextSec
-                            ? <button type="button" className="btn-p" onClick={function(){ openSection(course.id, nextSec.id); }}>Next: {nextSec.title} →</button>
-                            : <button type="button" className="btn-p" onClick={function(){ setCrsSec(null); }}>Back to the course</button>}
+                            ? <button type="button" className="crs-next" onClick={function(){ openSection(course.id, nextSec.id); }}>
+                                <span className="k">Next chapter →</span><span className="t">{nextSec.title}</span>
+                              </button>
+                            : <button type="button" className="crs-next" onClick={function(){ setCrsSec(null); }}>
+                                <span className="k">Back to the course →</span><span className="t">{course.title}</span>
+                              </button>}
                         </div>
                         {credit(course)}
                       </>

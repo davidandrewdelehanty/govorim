@@ -110,6 +110,29 @@ def norm(a):
     return re.sub(r"[^а-яё ]+", " ", str(a or "").lower().replace("ё", "е")).strip()
 
 
+def rule_block(full):
+    """DLI's rule, as it is quoted — «…» «…» «…» run together — taken apart
+    into what it is: a numbered list where it enumerates (a), (b), (c), a row
+    of expressions where it lists them, a sentence otherwise. The words are
+    DLI's; only the layout is new."""
+    quotes = [q.strip() for q in re.findall(u"«([^»]+)»", full)] or [full.strip()]
+    items = []
+    for q in quotes:
+        m = re.match(r"^(.*?:)\s*\(a\)", q)
+        if m and "(b)" in q:
+            head = m.group(1)
+            parts = [p.strip().rstrip(";.").strip() for p in re.split(r"\s*\([a-z]\)\s*", q[len(head):]) if p.strip()]
+            items.append({"head": head, "points": parts})
+            continue
+        m = re.match(r"^((?:Note|Compare|Remember|Observe)[^:]{0,80}:)\s*(.+)$", q)
+        if m and len(re.findall(r"[.!?](?:\s|$)", m.group(2))) >= 2:
+            exs = [x.strip() for x in re.split(r"(?<=[.!?])\s+", m.group(2)) if x.strip()]
+            items.append({"head": m.group(1), "examples": [x.rstrip(".") for x in exs]})
+            continue
+        items.append({"text": q})
+    return {"t": "rule", "items": items}
+
+
 def restream(rules):
     """`rules`: explain_time.R — key → (short, full, source)."""
     secs = {}
@@ -158,7 +181,7 @@ def restream(rules):
                   {"t": "lead", "text": short},
                   {"t": "ex", "items": [list(x) for x in examples]}]
         if full:
-            blocks.append({"t": "p", "text": full})
+            blocks.append(rule_block(full))
         blocks.append({"t": "note", "text": (src + ". " if src else "") +
                        u"One sentence at a time, in a new order each time you open this chapter; it is finished "
                        u"when every one has been answered right. The sentences are real: the source of each is shown with it."})

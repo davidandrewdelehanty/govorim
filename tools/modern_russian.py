@@ -20,6 +20,13 @@ Four sources, each free for a stated legal reason:
               These go through tools/add_wikisource.py, which already turns
               Wikisource pages into the library's FB2s.
 
+The pictures of a Wikipedia or Wikivoyage article come with it, in their
+places in the text, when the file's own licence on Commons allows it: public
+domain, CC0, CC BY, CC BY-SA, GFDL. Fair-use files (album covers, most band
+photographs) are left out. Each picture is saved beside the book in
+public/books/modern/<slug>/ and its caption carries the photographer and
+licence that the licence asks for. --no-pictures skips all of this.
+
 Nothing here writes Russian text. Every word on the shelf is the source's own;
 the only lines added are the attribution each licence requires, made from the
 page's own title, address and the licence the site itself reports.
@@ -73,6 +80,150 @@ STOP = re.compile(
     r"Состав группы|Бывшие участники|Награды|Награды и номинации|Хронология|"
     r"Связь|Внешние ссылки|Дополнительная литература|Публикации|"
     r"Альбомы|Синглы|Концертные альбомы|Сборники|Видео)\b", re.I)
+
+
+# ---------------------------------------------------------------- pictures --
+FILE_HREF = re.compile(r'href="/wiki/(?:%D0%A4%D0%B0%D0%B9%D0%BB|Файл|File|Image):([^"#?]+)"')
+FIG_MARK = u"\u2063FIG %d\u2063"           # a placeholder paragraph the HTML walker keeps
+FREE_LIC = re.compile(r"public domain|\bpd\b|pd-|cc0|cc zero|cc[- ]by|creative commons attribution|gfdl|"
+                      r"gnu free documentation|free art|attribution|no restrictions|общественн", re.I)
+UNFREE = re.compile(r"fair.?use|non-?free|несвободн|copyright|all rights|non-?commercial|\bnc\b|no derivative|\bnd\b", re.I)
+
+
+def _untag(h):
+    h = re.sub(r"<style[\s\S]*?</style>|<sup[\s\S]*?</sup>", " ", h)
+    h = re.sub(r"<[^>]+>", " ", h)
+    h = re.sub(r"&nbsp;|&#160;", " ", h)
+    import html as _html
+    return re.sub(r"\s+", " ", _html.unescape(h)).strip()
+
+
+def pull_figures(html):
+    """Replace each picture in the page's HTML by a placeholder paragraph and
+    return (html, [(file name, caption)]) in reading order: the infobox
+    picture first, then every thumbnail and gallery item where it stands."""
+    figs = []
+
+    def mark(fn, cap):
+        fn = urllib.parse.unquote(fn).replace("_", " ")
+        figs.append((fn, cap))
+        return "<p>%s</p>" % (FIG_MARK % (len(figs) - 1))
+
+    def fig(m):
+        f = FILE_HREF.search(m.group(0))
+        if not f:
+            return ""
+        c = re.search(r"<figcaption[^>]*>([\s\S]*?)</figcaption>", m.group(0))
+        return mark(f.group(1), _untag(c.group(1)) if c else "")
+    html = re.sub(r"<figure\b[\s\S]*?</figure>", fig, html)
+
+    def thumb(m):
+        f = FILE_HREF.search(m.group(0))
+        if not f:
+            return ""
+        c = re.search(r'<div class="thumbcaption"[^>]*>([\s\S]*?)</div>', m.group(0))
+        return mark(f.group(1), _untag(c.group(1)) if c else "")
+    html = re.sub(r'<div class="thumb\b[^"]*"[\s\S]*?<div class="thumbcaption"[\s\S]*?</div>\s*</div>\s*</div>', thumb, html)
+
+    def gallery(m):
+        # The whole gallery goes, and its items come back as a row of
+        # placeholders outside it — inside, the walker drops them with it.
+        out = []
+        for it in re.findall(r'<li class="gallerybox"[\s\S]*?</li>', m.group(0)):
+            f = FILE_HREF.search(it)
+            if not f:
+                continue
+            c = re.search(r'<div class="gallerytext"[^>]*>([\s\S]*?)</div>', it)
+            out.append(mark(f.group(1), _untag(c.group(1)) if c else ""))
+        return "".join(out)
+    html = re.sub(r'<ul class="gallery\b[^"]*"[\s\S]*?</ul>', gallery, html)
+
+    def box(m):
+        f = FILE_HREF.search(m.group(0))
+        if not f or re.search(r"\.(svg|gif|ogg|ogv|webm|mid)$", f.group(1), re.I):
+            return m.group(0)
+        return mark(f.group(1), "") + m.group(0)
+    html = re.sub(r'<table class="[^"]*\binfobox\b[\s\S]*?</table>', box, html, count=1)
+    return html, figs
+
+
+def file_info(host, names):
+    """What the wiki says of each file: {name: {url, w, h, lic, artist, free}}."""
+    out = {}
+    names = list(dict.fromkeys(names))
+    for i in range(0, len(names), 20):
+        j = api(host, action="query", prop="imageinfo", iiprop="url|size|mime|extmetadata", iiurlwidth="1100",
+                iiextmetadatafilter="LicenseShortName|License|Artist|Credit|UsageTerms|NonFree",
+                titles="|".join("File:" + n for n in names[i:i + 20]))
+        for p in ((j.get("query") or {}).get("pages") or []):
+            ii = (p.get("imageinfo") or [None])[0]
+            if not ii:
+                continue
+            em = ii.get("extmetadata") or {}
+            v = lambda k: ((em.get(k) or {}).get("value") or "")
+            lic = (v("LicenseShortName") or v("License") or v("UsageTerms")).strip()
+            nonfree = bool(v("NonFree")) or bool(UNFREE.search(lic + " " + v("UsageTerms")))
+            out[p["title"].split(":", 1)[-1].replace("_", " ")] = {
+                "url": ii.get("thumburl") or ii.get("url"), "w": ii.get("thumbwidth") or ii.get("width") or 0,
+                "h": ii.get("thumbheight") or ii.get("height") or 0, "mime": ii.get("mime") or "",
+                "lic": lic[:60], "artist": _untag(v("Artist"))[:80],
+                "free": (not nonfree) and bool(FREE_LIC.search(lic)) and re.match(r"image/(jpeg|png|webp)", ii.get("mime") or "") is not None}
+    return out
+
+
+def save_picture(info, path, width=900):
+    """The file, as a JPEG no wider than `width`, written to `path`;
+    (w, h) or None."""
+    from PIL import Image
+    req = urllib.request.Request(info["url"], headers={"User-Agent": UA})
+    try:
+        with urllib.request.urlopen(req, timeout=120) as r:
+            data = r.read()
+    except Exception:
+        return None
+    try:
+        import io as _io
+        im = Image.open(_io.BytesIO(data)).convert("RGB")
+    except Exception:
+        return None
+    if im.width > width:
+        im = im.resize((width, max(1, round(im.height * width / im.width))), Image.LANCZOS)
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    im.save(path, "JPEG", quality=82, optimize=True, progressive=True)
+    return im.width, im.height
+
+
+def place_pictures(blocks, figs, host, slug, a):
+    """Turn the placeholder paragraphs into ("img", {...}) blocks, fetching
+    the free files; the rest of the placeholders are dropped."""
+    if not figs or a.no_pictures:
+        return [b for b in blocks if not (b[0] == "p" and b[1].startswith(u"\u2063FIG"))]
+    infos = file_info(host, [f for f, _ in figs])
+    out, n, seen = [], 0, set()
+    for k, t in blocks:
+        m = re.match(u"\u2063FIG (\d+)\u2063$", t) if k == "p" else None
+        if not m:
+            out.append((k, t))
+            continue
+        fn, cap = figs[int(m.group(1))]
+        inf = infos.get(fn)
+        if not inf or not inf["free"] or fn in seen or n >= a.max_pictures:
+            continue
+        seen.add(fn)
+        if a.dry_run:
+            out.append(("img", {"src": "", "w": inf["w"], "h": inf["h"], "cap": cap}))
+            n += 1
+            continue
+        rel = "modern/%s/f%02d.jpg" % (slug, n + 1)
+        wh = save_picture(inf, os.path.normpath(os.path.join(a.books_dir, "..", rel)))
+        if not wh:
+            continue
+        n += 1
+        credit = ", ".join(x for x in (inf["artist"], inf["lic"]) if x)
+        out.append(("img", {"src": rel, "w": wh[0], "h": wh[1],
+                            "cap": (cap + (" — " if cap and credit else "") + credit) if (cap or credit) else ""}))
+        time.sleep(0.3)
+    return out
 
 
 # ----------------------------------------------------------------- network --
@@ -183,7 +334,7 @@ def slugify(s):
 
 
 # ----------------------------------------------------------------- output --
-def write_book(slug, title, author, chapters, source_url, blurb, blurb_src, note, a):
+def write_book(slug, title, author, chapters, source_url, blurb, blurb_src, note, a, npic=0):
     words = W.count_words(chapters)
     if words < 120:
         print("   skipped %s — only %d words of prose" % (title, words))
@@ -191,16 +342,19 @@ def write_book(slug, title, author, chapters, source_url, blurb, blurb_src, note
     fn = "novel/modern-%s.fb2" % slug
     entry = {"filename": fn, "title": title, "author": author, "category": CATEGORY,
              "slug": "modern-" + slug, "words": words, "public": True, "_note": note}
+    if npic:
+        entry["assets"] = "modern/" + slug          # the pictures' folder, kept by the public build's prune
+        entry["pictures"] = npic
     if blurb:
         entry.update({"blurb": blurb, "blurbSrc": blurb_src, "blurbLang": "ru"})
     if a.dry_run:
-        print("   [dry run] %-50s %3d ch %6d words" % (title[:50], len(chapters), words))
+        print("   [dry run] %-50s %3d ch %6d words %3d pictures" % (title[:50], len(chapters), words, npic))
         return True
     path = os.path.join(a.books_dir, os.path.basename(fn))
     io.open(path, "w", encoding="utf-8", newline="\n").write(
         W.build_fb2(title, author, chapters, source_url))
     W.upsert(a.manifest, entry, keep_existing=True)
-    print("   %-50s %3d ch %6d words" % (title[:50], len(chapters), words), flush=True)
+    print("   %-50s %3d ch %6d words%s" % (title[:50], len(chapters), words, (" %3d pictures" % npic) if npic else ""), flush=True)
     return True
 
 
@@ -235,15 +389,18 @@ def import_articles(host, site, listfile, author, a):
         if not html:
             print("   ! %s — no such page" % t)
             continue
+        html, figs = pull_figures(html)
         bl = blocks_of(html)
         url = page_url(host, real)
+        slug = slugify(host.split(".")[1] + "-" + real)
+        bl = place_pictures(bl, figs, host, slug, a)
         chapters = W.split_at_headings(real, bl) if bl else []
         if not chapters:
             continue
         chapters[-1]["blocks"].append(attribution(site, real, url, host))
         note = "%s, %s — %s" % (site, rights(host)[0], url)
-        if write_book(slugify(host.split(".")[1] + "-" + real), real, author, chapters, url,
-                      lead(bl), url, note, a):
+        npic = sum(1 for ch in chapters for k, _ in ch["blocks"] if k == "img")
+        if write_book(slug, real, author, chapters, url, lead(bl), url, note, a, npic):
             done += 1
         time.sleep(a.pause)
     return done
@@ -370,6 +527,8 @@ def main():
     ap.add_argument("--official", action="store_true")
     ap.add_argument("--authors", action="store_true", help="Wikipedia articles on writers, tools/modern/authors.txt")
     ap.add_argument("--refresh", action="store_true", help="fetch articles already on the shelf again")
+    ap.add_argument("--no-pictures", action="store_true", help="text only; no files from Commons")
+    ap.add_argument("--max-pictures", type=int, default=20, help="at most this many pictures in one book")
     ap.add_argument("--months", type=int, default=12, help="Wikinews: how many months back")
     ap.add_argument("--per-month", type=int, default=120, help="Wikinews: most articles in one month's book")
     ap.add_argument("--min-words", type=int, default=60, help="Wikinews: skip shorter items")
