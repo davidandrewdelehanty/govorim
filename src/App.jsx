@@ -17066,6 +17066,9 @@ quizMode ? (
         .rv-drill-score{margin-top:10px;font-size:15px}.rv-drill-score b{font-size:18px}.rv-drill-score.ok{color:#1e7a3c}
         .lcard.crs-lc.locked{opacity:.55;cursor:not-allowed}
         .crs-score-pct{color:#8a4b1f}.crs-score-pct.ok{color:#1e7a3c}
+        .crs-sources{margin:18px 0 4px;padding:10px 14px;border-top:1px solid rgba(42,31,20,.15);font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.6;color:rgba(42,31,20,.62)}
+        .crs-sources-k{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(42,31,20,.5);margin-bottom:2px}
+        .crs-sources-g{display:block}.crs-sources-site{color:rgba(42,31,20,.8)}.crs-sources a.crs-link{color:inherit}
         .crs-h{font-family:'Old Standard TT',serif;font-size:23px;font-weight:400;color:#000;margin:14px 0 0}
         .crs-formula{font-family:'Old Standard TT',serif;font-size:40px;font-weight:700;line-height:1.1;letter-spacing:.01em;color:#8a3b1e;margin:6px 0 2px;padding-bottom:8px;border-bottom:3px solid #8a3b1e}
         .crs-lead{font-family:'Literata',serif;font-size:22px;font-weight:700;line-height:1.35;color:#1c1610;margin:4px 0 6px}
@@ -18547,7 +18550,6 @@ quizMode ? (
         .crs-lesson>.crs-h{margin-top:34px}
         .crs-lesson>.crs-h:first-child{margin-top:12px}
         .crs-h{font-family:var(--display);font-size:25px;font-weight:400;line-height:1.2;color:var(--ink);margin:0;padding-top:12px;position:relative}
-        .crs-h::before{content:"";position:absolute;top:0;left:0;width:34px;border-top:2px solid var(--rubric)}
         .crs-formula{font-family:var(--display);font-size:42px;font-weight:400;line-height:1.08;letter-spacing:0;color:var(--rubric);margin:12px 0 0;padding:0 0 12px;border-bottom:1px solid var(--ink)}
         .crs-formula .rw{border-bottom:0}
         .crs-lead{font-family:var(--serif);font-size:21px;font-weight:600;line-height:1.4;color:var(--ink);margin:0}
@@ -26734,6 +26736,18 @@ quizMode ? (
                 };
                 // Light markup in lesson text: **bold**, *italic*. `plain` keeps
                 // the words inert — on an answer button a tap must choose, not define.
+                // A note or a prompt that is nothing but a citation — «Wiktionary,
+                // «noun» (https://…, CC BY-SA 4.0)», «*Чехов, «Степь»*» — is not
+                // set where it stands: every source is named once, at the foot of
+                // the module (see `sources` below).
+                var citeOf = function(t) {
+                  var x = String(t || "").trim().replace(/^\*+|\*+$/g, "").trim();
+                  var m = /^((?:Википедия|Викигид|Викитека|Викисловарь|Викиновости|Wikipedia|Wiktionary|Wikisource|Tatoeba))\s*,?\s*(?:«([^»]*)»)?\s*(?:\((https?:\/\/[^\s)]+)([^)]*)\))?\s*\.?$/.exec(x);
+                  if (m) return { site: m[1], title: m[2] || "", url: (m[3] || "").replace(/[,;.]+$/, ""), lic: (m[4] || "").replace(/^[,\s]+/, "") };
+                  var b = /^([^«»*()]{2,80}),\s*«([^»]{1,120})»\s*\.?$/.exec(x);
+                  if (b) return { site: "From the library", title: b[1].trim() + ", \u00ab" + b[2].trim() + "\u00bb", url: "", lic: "" };
+                  return null;
+                };
                 var rich = function(t, plain) {
                   var w = plain ? function(x, k){ return x; } : tappable;
                   // An address in the text becomes a link: a Wikipedia page reads
@@ -27241,7 +27255,7 @@ quizMode ? (
                         <div className="crs-qn">{n + 1}</div>
                         <div className="crs-qb">
                           {ctx}
-                          {e.prompt && <div className="crs-qt">{rich(e.prompt)}</div>}
+                          {e.prompt && !citeOf(e.prompt) && <div className="crs-qt">{rich(e.prompt)}</div>}
                           <div className="crs-say" lang="ru">{rich(e.q)}</div>
                           <ClockFace value={typed} readOnly={es.status === "right"}
                             state={es.status === "right" ? "ok" : es.status === "wrong" ? "bad" : ""}
@@ -27438,7 +27452,7 @@ quizMode ? (
                       <div className="crs-qn">{n + 1}</div>
                       <div className="crs-qb">
                         {ctx}
-                        {e.prompt && <div className="crs-qt">{rich(e.prompt)}</div>}
+                        {e.prompt && !citeOf(e.prompt) && <div className="crs-qt">{rich(e.prompt)}</div>}
                         {e.clip ? <button type="button" className={"crs-play ex" + (crsClip === e.clip ? " on" : "")} onClick={function(){ playClip(e.clip); }}>{crsClip === e.clip ? "■ Stop" : "▶ Listen"}</button> : null}
                         {e.clock && <ClockFace hhmm={e.clock} label={e.pod} />}
                         <div className="crs-fill" lang="ru">
@@ -27482,6 +27496,40 @@ quizMode ? (
                   return cards;
                 };
                 var drillsTerms = course.id === "gramterms" && !!(data && data !== "error" && data.terms);
+                // Every source the module draws on, once: the citation notes of the
+                // lesson and the citation prompts of the exercises, by site.
+                var sources = (function(){
+                  var list = [], seen = {};
+                  var add = function(c){ if (!c) return; var k = c.site + "|" + c.title; if (seen[k]) return; seen[k] = 1; list.push(c); };
+                  var dd = (data && data !== "error") ? data : null;
+                  ((dd && dd.blocks) || []).forEach(function(b){ if (b.t === "note") add(citeOf(b.text)); });
+                  ((dd && dd.exercises) || []).forEach(function(e){ add(citeOf(e.prompt)); });
+                  (dd && dd.topics ? dd.topics : []).forEach(function(t){ (t.exercises || []).forEach(function(e){ add(citeOf(e.prompt)); }); });
+                  var sites = [];
+                  list.forEach(function(c){
+                    var g = sites.filter(function(x){ return x.site === c.site; })[0];
+                    if (!g) { g = { site: c.site, lic: c.lic, items: [] }; sites.push(g); }
+                    if (!g.lic && c.lic) g.lic = c.lic;
+                    g.items.push(c);
+                  });
+                  return sites;
+                })();
+                var sourcesBox = sources.length ? (
+                  <div className="crs-sources">
+                    <span className="crs-sources-k">Sources</span>
+                    {sources.map(function(g, gi){
+                      return (
+                        <span key={gi} className="crs-sources-g">
+                          <span className="crs-sources-site">{g.site}{g.lic ? " (" + g.lic + ")" : ""}{g.items.some(function(c){ return c.title; }) ? ": " : ""}</span>
+                          {g.items.filter(function(c){ return c.title; }).map(function(c, ci){
+                            var label = g.site === "From the library" ? c.title : "\u00ab" + c.title + "\u00bb";
+                            return <span key={ci}>{ci ? ", " : ""}{c.url ? <a className="crs-link" href={c.url} target="_blank" rel="noreferrer">{label}</a> : label}</span>;
+                          })}
+                        </span>
+                      );
+                    })}
+                  </div>
+                ) : null;
                 if (termDrill && termDrill.key === key && (quizMode || matchGame || quizMenu)) {
                   return (
                     <div className="crs-body">
@@ -27530,6 +27578,7 @@ quizMode ? (
                           var blocks = (data.blocks || []).slice(data.blocks && data.blocks[0] && data.blocks[0].t === "formula" ? 1 : 0);
                           if (blocks.some(function(b){ return b.t === "story"; })) return blocks.map(block);
                           var groups = [], cur = { items: [] };
+                          blocks = blocks.filter(function(b){ return !(b.t === "note" && citeOf(b.text)); });
                           blocks.forEach(function(b){
                             if (b.t === "h") { cur = { h: b, items: [] }; groups.push(cur); }
                             else { if (!groups.length && cur.items.length === 0 && !cur.h) groups.push(cur); cur.items.push(b); }
@@ -27773,6 +27822,7 @@ quizMode ? (
                             </div>
                           </div>
                         )}
+                        {sourcesBox}
                         <div className="crs-nav">
                           {(function(){
                             var mr = crsMissed && crsMissed.key === key ? crsMissed : null;
