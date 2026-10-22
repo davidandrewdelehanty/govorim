@@ -15988,7 +15988,7 @@ quizMode ? (
                       <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:6}}>
                         <span style={{fontSize:18,fontWeight:600,color:"#000",fontFamily:"'Old Standard TT',serif"}}>Grammar terms</span>
                       </div>
-                      <p style={{fontSize:13,color:"rgba(0,0,0,.55)",margin:0,lineHeight:1.5}}>The words a Russian grammar, dictionary or teacher uses \u2014 падеж, глагол, совершенный вид \u2014 against their definitions, as a quiz or the match game. Nothing is scheduled or saved.</p>
+                      <p style={{fontSize:13,color:"rgba(0,0,0,.55)",margin:0,lineHeight:1.5}}>The words a Russian grammar, dictionary or teacher uses — падеж, глагол, совершенный вид — against their definitions, as a quiz or the match game. Nothing is scheduled or saved.</p>
                     </button>
                   )}
                 </div>
@@ -28541,7 +28541,7 @@ quizMode ? (
                   })()}
                   {popup.data.definitionSource === "yandex" && <div style={{fontSize:"0.72em",opacity:0.55,marginTop:6}}><a href="https://yandex.com/dev/dictionary/" target="_blank" rel="noreferrer" style={{color:"inherit"}}>Powered by Yandex.Dictionary</a></div>}
                   {popup.data.definitionSource === "wiktionary" && <div style={{fontSize:"0.72em",opacity:0.55,marginTop:6}}><a href={popup.data.sourceUrl || "https://en.wiktionary.org/"} target="_blank" rel="noreferrer" style={{color:"inherit"}}>Wiktionary</a>{" \u00b7 "}<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noreferrer" style={{color:"inherit"}}>CC BY-SA 4.0</a></div>}
-                  {popup.data.definitionSource === "ruwiktionary" && <div style={{fontSize:"0.72em",opacity:0.55,marginTop:6}}><a href={popup.data.sourceUrl || "https://ru.wiktionary.org/"} target="_blank" rel="noreferrer" style={{color:"inherit"}}>\u0412\u0438\u043a\u0438\u0441\u043b\u043e\u0432\u0430\u0440\u044c</a>{" \u00b7 "}<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noreferrer" style={{color:"inherit"}}>CC BY-SA 4.0</a></div>}
+                  {popup.data.definitionSource === "ruwiktionary" && <div style={{fontSize:"0.72em",opacity:0.55,marginTop:6}}><a href={popup.data.sourceUrl || "https://ru.wiktionary.org/"} target="_blank" rel="noreferrer" style={{color:"inherit"}}>Викисловарь</a>{" \u00b7 "}<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noreferrer" style={{color:"inherit"}}>CC BY-SA 4.0</a></div>}
                   {popup.data.definitionSource === "mt" && <div style={{fontSize:"0.72em",opacity:0.55,marginTop:6}}>{popup.data.mtProvider || "Machine translation"}</div>}
                   {popup.data.definitionSource === "bible" && <div style={{fontSize:"0.72em",opacity:0.55,marginTop:6}}><a href={popup.data.sourceUrl || "https://ru.wikisource.org/wiki/%D0%91%D0%AD%D0%90%D0%9D"} target="_blank" rel="noreferrer" style={{color:"inherit"}}>{popup.data.sourceNote || "\u0411\u0438\u0431\u043b\u0435\u0439\u0441\u043a\u0430\u044f \u044d\u043d\u0446\u0438\u043a\u043b\u043e\u043f\u0435\u0434\u0438\u044f \u0430\u0440\u0445\u0438\u043c\u0430\u043d\u0434\u0440\u0438\u0442\u0430 \u041d\u0438\u043a\u0438\u0444\u043e\u0440\u0430 (1891)"}</a>{" \u00b7 "}public domain, on Wikisource</div>}
                   {popup.data.definitionSource === "glossary" && <div style={{fontSize:"0.72em",opacity:0.55,marginTop:6}}>{popup.data.sourceUrl
