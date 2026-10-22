@@ -5620,7 +5620,7 @@ export default [
   "short": "Terms",
   "mark": "§",
   "blurb": "",
-  "credit": "Definitions and sentences from the Russian Wikipedia (CC BY-SA 4.0), each article named where it is quoted; dictionary abbreviations from OpenCorpora (CC BY-SA 4.0); further sentences from the library's public-domain books",
+  "credit": "Definitions from the Russian Wikipedia (CC BY-SA 4.0), each article named where it is quoted; dictionary abbreviations from OpenCorpora (CC BY-SA 4.0)",
   "creditUrl": "https://ru.wikipedia.org/",
   "license": "CC BY-SA 4.0",
   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5636,164 +5636,9 @@ export default [
     "n": 15
    },
    {
-    "id": "gt1-field-practice",
-    "title": "Practice 1: Grammar, morphology, syntax",
-    "n": 20
-   },
-   {
-    "id": "gt1-field-practice-2",
-    "title": "Practice 2: Grammar, morphology, syntax",
-    "n": 20
-   },
-   {
-    "id": "gt1-field-practice-3",
-    "title": "Practice 3: Grammar, morphology, syntax",
-    "n": 20
-   },
-   {
-    "id": "gt1-field-practice-4",
-    "title": "Practice 4: Grammar, morphology, syntax",
-    "n": 20
-   },
-   {
-    "id": "gt1-field-practice-5",
-    "title": "Practice 5: Grammar, morphology, syntax",
-    "n": 20
-   },
-   {
-    "id": "gt1-field-practice-6",
-    "title": "Practice 6: Grammar, morphology, syntax",
-    "n": 20
-   },
-   {
-    "id": "gt1-field-practice-7",
-    "title": "Practice 7: Grammar, morphology, syntax",
-    "n": 20
-   },
-   {
-    "id": "gt1-field-practice-8",
-    "title": "Practice 8: Grammar, morphology, syntax",
-    "n": 20
-   },
-   {
-    "id": "gt1-field-practice-9",
-    "title": "Practice 9: Grammar, morphology, syntax",
-    "n": 20
-   },
-   {
-    "id": "gt1-field-practice-10",
-    "title": "Practice 10: Grammar, morphology, syntax",
-    "n": 20
-   },
-   {
-    "id": "gt1-field-practice-11",
-    "title": "Practice 11: Grammar, morphology, syntax",
-    "n": 20
-   },
-   {
-    "id": "gt1-field-practice-12",
-    "title": "Practice 12: Grammar, morphology, syntax",
-    "n": 14
-   },
-   {
     "id": "gt2-parts",
     "title": "The parts of speech",
     "n": 29
-   },
-   {
-    "id": "gt2-parts-practice",
-    "title": "Practice 1: The parts of speech",
-    "n": 20
-   },
-   {
-    "id": "gt2-parts-practice-2",
-    "title": "Practice 2: The parts of speech",
-    "n": 20
-   },
-   {
-    "id": "gt2-parts-practice-3",
-    "title": "Practice 3: The parts of speech",
-    "n": 20
-   },
-   {
-    "id": "gt2-parts-practice-4",
-    "title": "Practice 4: The parts of speech",
-    "n": 20
-   },
-   {
-    "id": "gt2-parts-practice-5",
-    "title": "Practice 5: The parts of speech",
-    "n": 20
-   },
-   {
-    "id": "gt2-parts-practice-6",
-    "title": "Practice 6: The parts of speech",
-    "n": 20
-   },
-   {
-    "id": "gt2-parts-practice-7",
-    "title": "Practice 7: The parts of speech",
-    "n": 20
-   },
-   {
-    "id": "gt2-parts-practice-8",
-    "title": "Practice 8: The parts of speech",
-    "n": 20
-   },
-   {
-    "id": "gt2-parts-practice-9",
-    "title": "Practice 9: The parts of speech",
-    "n": 20
-   },
-   {
-    "id": "gt2-parts-practice-10",
-    "title": "Practice 10: The parts of speech",
-    "n": 20
-   },
-   {
-    "id": "gt2-parts-practice-11",
-    "title": "Practice 11: The parts of speech",
-    "n": 20
-   },
-   {
-    "id": "gt2-parts-practice-12",
-    "title": "Practice 12: The parts of speech",
-    "n": 20
-   },
-   {
-    "id": "gt2-parts-practice-13",
-    "title": "Practice 13: The parts of speech",
-    "n": 20
-   },
-   {
-    "id": "gt2-parts-practice-14",
-    "title": "Practice 14: The parts of speech",
-    "n": 20
-   },
-   {
-    "id": "gt2-parts-practice-15",
-    "title": "Practice 15: The parts of speech",
-    "n": 20
-   },
-   {
-    "id": "gt2-parts-practice-16",
-    "title": "Practice 16: The parts of speech",
-    "n": 20
-   },
-   {
-    "id": "gt2-parts-practice-17",
-    "title": "Practice 17: The parts of speech",
-    "n": 20
-   },
-   {
-    "id": "gt2-parts-practice-18",
-    "title": "Practice 18: The parts of speech",
-    "n": 20
-   },
-   {
-    "id": "gt2-parts-practice-19",
-    "title": "Practice 19: The parts of speech",
-    "n": 20
    },
    {
     "id": "gt3-cases",
@@ -5801,104 +5646,9 @@ export default [
     "n": 18
    },
    {
-    "id": "gt3-cases-practice",
-    "title": "Practice 1: The cases",
-    "n": 20
-   },
-   {
-    "id": "gt3-cases-practice-2",
-    "title": "Practice 2: The cases",
-    "n": 20
-   },
-   {
-    "id": "gt3-cases-practice-3",
-    "title": "Practice 3: The cases",
-    "n": 20
-   },
-   {
-    "id": "gt3-cases-practice-4",
-    "title": "Practice 4: The cases",
-    "n": 20
-   },
-   {
-    "id": "gt3-cases-practice-5",
-    "title": "Practice 5: The cases",
-    "n": 20
-   },
-   {
-    "id": "gt3-cases-practice-6",
-    "title": "Practice 6: The cases",
-    "n": 20
-   },
-   {
-    "id": "gt3-cases-practice-7",
-    "title": "Practice 7: The cases",
-    "n": 20
-   },
-   {
-    "id": "gt3-cases-practice-8",
-    "title": "Practice 8: The cases",
-    "n": 20
-   },
-   {
-    "id": "gt3-cases-practice-9",
-    "title": "Practice 9: The cases",
-    "n": 20
-   },
-   {
-    "id": "gt3-cases-practice-10",
-    "title": "Practice 10: The cases",
-    "n": 17
-   },
-   {
     "id": "gt4-noun",
     "title": "Gender, number, animacy; the parts of a word",
     "n": 29
-   },
-   {
-    "id": "gt4-noun-practice",
-    "title": "Practice 1: Gender, number, animacy; the parts of a word",
-    "n": 20
-   },
-   {
-    "id": "gt4-noun-practice-2",
-    "title": "Practice 2: Gender, number, animacy; the parts of a word",
-    "n": 20
-   },
-   {
-    "id": "gt4-noun-practice-3",
-    "title": "Practice 3: Gender, number, animacy; the parts of a word",
-    "n": 20
-   },
-   {
-    "id": "gt4-noun-practice-4",
-    "title": "Practice 4: Gender, number, animacy; the parts of a word",
-    "n": 20
-   },
-   {
-    "id": "gt4-noun-practice-5",
-    "title": "Practice 5: Gender, number, animacy; the parts of a word",
-    "n": 20
-   },
-   {
-    "id": "gt4-noun-practice-6",
-    "title": "Practice 6: Gender, number, animacy; the parts of a word",
-    "n": 20
-   },
-   {
-    "id": "gt4-noun-practice-7",
-    "title": "Practice 7: Gender, number, animacy; the parts of a word",
-    "n": 20
-   },
-   {
-    "id": "gt4-noun-practice-8",
-    "title": "Practice 8: Gender, number, animacy; the parts of a word",
-    "n": 20
-   },
-   {
-    "id": "gt4-noun-practice-9",
-    "title": "Practice 9: Gender, number, animacy; the parts of a word",
-    "n": 11
    },
    {
     "id": "gt5-verb",
@@ -5906,69 +5656,9 @@ export default [
     "n": 42
    },
    {
-    "id": "gt5-verb-practice",
-    "title": "Practice 1: The verb: aspect, tense, person, mood, voice",
-    "n": 20
-   },
-   {
-    "id": "gt5-verb-practice-2",
-    "title": "Practice 2: The verb: aspect, tense, person, mood, voice",
-    "n": 20
-   },
-   {
-    "id": "gt5-verb-practice-3",
-    "title": "Practice 3: The verb: aspect, tense, person, mood, voice",
-    "n": 20
-   },
-   {
-    "id": "gt5-verb-practice-4",
-    "title": "Practice 4: The verb: aspect, tense, person, mood, voice",
-    "n": 20
-   },
-   {
-    "id": "gt5-verb-practice-5",
-    "title": "Practice 5: The verb: aspect, tense, person, mood, voice",
-    "n": 20
-   },
-   {
-    "id": "gt5-verb-practice-6",
-    "title": "Practice 6: The verb: aspect, tense, person, mood, voice",
-    "n": 20
-   },
-   {
-    "id": "gt5-verb-practice-7",
-    "title": "Practice 7: The verb: aspect, tense, person, mood, voice",
-    "n": 20
-   },
-   {
-    "id": "gt5-verb-practice-8",
-    "title": "Practice 8: The verb: aspect, tense, person, mood, voice",
-    "n": 20
-   },
-   {
-    "id": "gt5-verb-practice-9",
-    "title": "Practice 9: The verb: aspect, tense, person, mood, voice",
-    "n": 20
-   },
-   {
-    "id": "gt5-verb-practice-10",
-    "title": "Practice 10: The verb: aspect, tense, person, mood, voice",
-    "n": 9
-   },
-   {
     "id": "gt6-adj",
     "title": "The adjective: degrees of comparison, the short form",
     "n": 9
-   },
-   {
-    "id": "gt6-adj-practice",
-    "title": "Practice 1: The adjective: degrees of comparison, the short form",
-    "n": 20
-   },
-   {
-    "id": "gt6-adj-practice-2",
-    "title": "Practice 2: The adjective: degrees of comparison, the short form",
-    "n": 5
    },
    {
     "id": "gt7-sentence",
@@ -5976,79 +5666,9 @@ export default [
     "n": 15
    },
    {
-    "id": "gt7-sentence-practice",
-    "title": "Practice 1: The sentence and its parts",
-    "n": 20
-   },
-   {
-    "id": "gt7-sentence-practice-2",
-    "title": "Practice 2: The sentence and its parts",
-    "n": 20
-   },
-   {
-    "id": "gt7-sentence-practice-3",
-    "title": "Practice 3: The sentence and its parts",
-    "n": 20
-   },
-   {
-    "id": "gt7-sentence-practice-4",
-    "title": "Practice 4: The sentence and its parts",
-    "n": 20
-   },
-   {
-    "id": "gt7-sentence-practice-5",
-    "title": "Practice 5: The sentence and its parts",
-    "n": 20
-   },
-   {
-    "id": "gt7-sentence-practice-6",
-    "title": "Practice 6: The sentence and its parts",
-    "n": 20
-   },
-   {
-    "id": "gt7-sentence-practice-7",
-    "title": "Practice 7: The sentence and its parts",
-    "n": 7
-   },
-   {
     "id": "gt8-letters",
     "title": "Sounds and letters",
-    "n": 13
-   },
-   {
-    "id": "gt8-letters-practice",
-    "title": "Practice 1: Sounds and letters",
-    "n": 18
-   },
-   {
-    "id": "gt8-letters-practice-2",
-    "title": "Practice 2: Sounds and letters",
-    "n": 20
-   },
-   {
-    "id": "gt8-letters-practice-3",
-    "title": "Practice 3: Sounds and letters",
-    "n": 16
-   },
-   {
-    "id": "gt8-letters-practice-4",
-    "title": "Practice 4: Sounds and letters",
-    "n": 20
-   },
-   {
-    "id": "gt8-letters-practice-5",
-    "title": "Practice 5: Sounds and letters",
-    "n": 18
-   },
-   {
-    "id": "gt8-letters-practice-6",
-    "title": "Practice 6: Sounds and letters",
-    "n": 18
-   },
-   {
-    "id": "gt8-letters-practice-7",
-    "title": "Practice 7: Sounds and letters",
-    "n": 19
+    "n": 15
    },
    {
     "id": "exam",

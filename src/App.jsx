@@ -27338,19 +27338,20 @@ quizMode ? (
                     </div>
                   );
                 };
-                // The grammar-terms course drills its own cards: every term and
-                // every dictionary abbreviation on the first page's table.
+                // The grammar-terms course drills its own cards: the section's
+                // terms (`terms` in its JSON — the whole list on the first page,
+                // the lesson's own on each lesson), with their English, and the
+                // dictionary's abbreviation where there is one.
                 var termCards = function(d) {
-                  var t = ((d && d.blocks) || []).filter(function(b){ return b.t === "table" && b.rows && b.head && b.head.length === 3; })[0];
                   var cards = [];
-                  ((t && t.rows) || []).forEach(function(r){
-                    var ru = String(r[0] || "").trim(), en = String(r[1] || "").trim(), ab = String(r[2] || "").trim();
+                  ((d && d.terms) || []).forEach(function(r){
+                    var ru = String(r.ru || "").trim(), en = String(r.en || "").trim(), ab = String(r.abbr || "").trim();
                     if (ru && en) cards.push({ _key: "gt:" + ru, ru: ru, en: en, pos: "grammar term" });
                     if (ab && ru) cards.push({ _key: "ga:" + ab, ru: ab, en: ru + " \u2014 " + en, pos: "abbreviation" });
                   });
                   return cards;
                 };
-                var drillsTerms = course.id === "gramterms" && sec.id === "gt0-all";
+                var drillsTerms = course.id === "gramterms" && !!(data && data !== "error" && data.terms);
                 if (termDrill && termDrill.key === key && (quizMode || matchGame || quizMenu)) {
                   return (
                     <div className="crs-body">
@@ -27396,7 +27397,9 @@ quizMode ? (
                           <div className="crs-review-bar">
                             <button type="button" className="btn-p crs-review-btn"
                               onClick={function(){ setRv(null); setMatchGame(null); setQuizMode(false); setTermDrill({ key: key, cards: termCards(data) }); setQuizMenu(true); }}>Review Terms</button>
-                            <span className="crs-review-hint">A multiple-choice quiz or the match game over every term and abbreviation in the table below.</span>
+                            <span className="crs-review-hint">{sec.id === "gt0-all"
+                              ? "A multiple-choice quiz or the match game over every term and abbreviation in the table below."
+                              : "A multiple-choice quiz or the match game over this lesson\u2019s terms, and the dictionary\u2019s abbreviations for them."}</span>
                           </div>
                         )}
                         <div className="crs-lesson">{(data.blocks || []).slice(data.blocks && data.blocks[0] && data.blocks[0].t === "formula" ? 1 : 0).map(block)}</div>

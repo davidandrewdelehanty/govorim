@@ -1,16 +1,19 @@
 # -*- coding: utf-8 -*-
 """Grammar in Russian — the terms: падеж, существительное, совершенный вид…
 
-A student who knows what a genitive is still cannot read a Russian dictionary
-or a Russian grammar until the words for these things are familiar. This
-course teaches the terms through real Russian text that uses them.
+A student who knows what a genitive is still cannot read a Russian dictionary,
+follow a Russian grammar, or ask a teacher a question until the Russian words
+for these things are familiar. This course is a vocabulary: the fields of
+linguistics, the parts of speech, the cases and the categories of the noun,
+the verb and the adjective, the parts of the sentence, sounds and letters —
+each term with its English and a one-sentence definition — and the drills
+that make the words stick. No sentences from books, no Tatoeba: the terms,
+their meanings, and the review.
 
 Sources — and only these:
   * the Russian Wikipedia's article on each term (CC BY-SA 4.0), fetched by
     tools/courses/gramterms_fetch.py into gramterms_src.json: every lesson
-    quotes the article's own opening sentence as the term's definition, and
-    every sentence exercise is a sentence of an article with the term blanked;
-  * sentences from the library's public-domain books that use a term;
+    quotes the article's opening statement as the term's definition;
   * the OpenCorpora dictionary's own abbreviations for the categories (the
     ones pymorphy3 prints), for the table of how a dictionary writes them.
 The list of terms, their English and the article each comes from (TERMS,
@@ -342,17 +345,6 @@ def definition(term):
     return first, cite
 
 
-def drill(s, span, term, cite):
-    a, b = span
-    ans = s[a:b].replace("́", "")
-    q = s[:a].replace("́", "") + "___ (%s)" % TERMS[term]["en"] + s[b:].replace("́", "")
-    d, dcite = definition(term)
-    why = (u"%s — %s" % (d, dcite)) if d else dcite
-    return dict(FILL(q, [ans], why=why or "", prompt=u"*%s*" % cite),
-                context=u"The term in English is in the brackets. Type it in Russian, in the form the sentence needs.",
-                k=term)
-
-
 SECTIONS = []
 if SRC and M:
     A = SECTIONS.append
@@ -363,27 +355,27 @@ if SRC and M:
             cyr[term] = M.lat2cyr(lat)
         except Exception:
             pass
+    # The cards the review drill deals: every term with its English, and the
+    # dictionary's abbreviation where there is one (lib/kit: `terms` on a
+    # section is passed through to the section's JSON).
+    card = lambda t: {"ru": t, "en": TERMS[t]["en"], "abbr": cyr.get(t, "")}
     for g in GROUPS:
         for t in g["terms"]:
             rows.append([t, TERMS[t]["en"], cyr.get(t, "")])
-    A(SEC("gt0-all", "Every term at a glance", [
-        P(u"The words a Russian grammar, dictionary or teacher uses for the things this site teaches. Each lesson "
-          u"after this page takes a group of them: the definition the Russian Wikipedia gives, then real sentences "
-          u"that use the term, with the term left out for you to type."),
+    A(dict(SEC("gt0-all", "Every term at a glance", [
+        P(u"The words a Russian grammar, a dictionary or a teacher uses for the things this site teaches — the "
+          u"vocabulary you need to ask a question about Russian in Russian. Each lesson after this page takes a "
+          u"group of them: the term, its English, and the one-sentence definition the Russian Wikipedia gives; then "
+          u"the terms to write from their English, the definitions to match to their terms, and the terms to match "
+          u"to their English. Review Terms, above, drills the whole list."),
         T([u"Term", u"English", u"As the OpenCorpora dictionary abbreviates it"], rows),
-        NOTE(u"Definitions and sentences: the Russian Wikipedia (CC BY-SA 4.0), article and revision named with each. "
-             u"Abbreviations: the OpenCorpora dictionary (CC BY-SA 4.0), as pymorphy3 prints them. Further sentences from "
-             u"the library's public-domain books, with author and title."),
-    ]))
+        NOTE(u"Definitions: the Russian Wikipedia (CC BY-SA 4.0), the article named with each. "
+             u"Abbreviations: the OpenCorpora dictionary (CC BY-SA 4.0), as pymorphy3 prints them."),
+    ]), terms=[card(t) for g in GROUPS for t in g["terms"]]))
 
-    used = set()
-    lib = {}
-    for x in (SRC.get("library") or []):
-        lib.setdefault(x["term"], []).append(x)
     for g in GROUPS:
         blocks = []
         vocab = []
-        sent = []
         for t in g["terms"]:
             d, cite = definition(t)
             blocks.append(H(u"%s — %s" % (t, TERMS[t]["en"])))
@@ -392,32 +384,7 @@ if SRC and M:
                 blocks.append(NOTE(cite))
             vocab.append(dict(FILL(u"___ (%s)" % TERMS[t]["en"], [t] + list(TERMS[t].get("also") or []),
                                    why=(u"%s — %s" % (d, cite)) if d else u"", prompt=u"Write the Russian term."),
-                              context=u"The term in English is in the brackets. Type it in Russian.", k=t))
-        # sentences: from the term's own article always; from every article, and from the
-        # library, when the term can mean nothing else
-        pool = []
-        for t in g["terms"]:
-            own = TERMS[t]["articles"][0]
-            arts = SRC["articles"].items() if (t in SAFE_IN_WIKI) else [(own, SRC["articles"][own])] if own in SRC["articles"] else []
-            for key, a in arts:
-                for s in sentences(a["text"]):
-                    if not clean(s) or (s, t) in used:
-                        continue
-                    span = find_term(s, t, strict=(key != own))
-                    if not span:
-                        continue
-                    used.add((s, t))
-                    pool.append(drill(s, span, t, u"Википедия, «%s»" % a["title"]))
-            for x in (lib.get(t, []) if t in SAFE_IN_PROSE else []):
-                s = x["ru"]
-                if (s, t) in used:
-                    continue
-                span = find_term(s, t, strict=True)
-                if not span:
-                    continue
-                used.add((s, t))
-                pool.append(drill(s, span, t, x["src"]))
-        random.Random(len(pool)).shuffle(pool)
+                              context=u"The term in English is in the brackets. Type it in Russian.", k=t, keep=True))
         # Comprehension: which term does this definition describe (the term
         # itself blanked out of Wikipedia's sentence, the group's terms to
         # choose from), and the terms matched to their English, a handful at
@@ -429,13 +396,14 @@ if SRC and M:
             if not d or len(g["terms"]) < 4:
                 continue
             span = find_term(d, t)
-            masked = (d[:span[0]] + u"…" + d[span[1]:]) if span else d
+            masked = (d[:span[0]] + u"\u2026" + d[span[1]:]) if span else d
             others = [x for x in g["terms"] if x != t]
             rng.shuffle(others)
             opts = [t] + others[:3]
             rng.shuffle(opts)
             mcs.append(dict(MC(u"Which term does the Russian Wikipedia define like this?", opts, opts.index(t),
-                               why=u"%s — %s" % (d, cite), ru=masked), k=t, keep=True))
+                               why=u"%s \u2014 %s" % (d, cite), ru=masked), k=t, keep=True,
+                            context=u"The definition is the Russian Wikipedia's, with the term itself left out."))
         terms = list(g["terms"])
         rng.shuffle(terms)
         matches = []
@@ -445,20 +413,12 @@ if SRC and M:
                 chunk = terms[max(0, i - (5 - len(chunk))):i + 5][-5:]
             if len(chunk) >= 3:
                 matches.append({"type": "match", "q": u"Match each term to its English. Drag a term onto its meaning, or tap one and then the other.",
-                                "pairs": [[t, TERMS[t]["en"]] for t in chunk], "keep": True})
+                                "pairs": [[t, TERMS[t]["en"]] for t in chunk], "keep": True,
+                                "context": u"The terms of this lesson and their English."})
                 if len(terms) - (i + 5) < 3:
                     break
-        A(SEC(g["id"], g["title"], blocks + [NOTE(u"Exercises: first the terms themselves, then which term a definition "
-                                                   u"describes, then the terms matched to their English; after that, sentences from the "
-                                                   u"Wikipedia articles named above and from the library's books.")],
-              vocab + mcs + matches, sub="%d terms" % len(vocab)))
-        size = 20
-        cut = [pool[i:i + size] for i in range(0, len(pool), size)]
-        for n, part in enumerate(cut, 1):
-            if len(part) < 5:
-                continue
-            A(SEC(g["id"] + "-practice" + ("" if n == 1 else "-%d" % n),
-                  "Practice%s: %s" % ("" if len(cut) == 1 else " %d" % n, g["title"]),
-                  [NOTE(u"Real sentences that use these terms; the source of each is above it. The term is given in "
-                        u"English — type it in Russian, in the form the sentence needs.")],
-                  part, sub="%d real sentences" % len(part)))
+        A(dict(SEC(g["id"], g["title"], blocks + [NOTE(u"Exercises: the terms themselves, written from their English; "
+                                                        u"then which term a definition describes; then the terms matched "
+                                                        u"to their English. Review Terms, above, drills this lesson's terms.")],
+                   vocab + mcs + matches, sub="%d terms" % len(vocab)),
+               terms=[card(t) for t in g["terms"]]))

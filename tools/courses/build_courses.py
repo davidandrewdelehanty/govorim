@@ -181,9 +181,8 @@ if gramterms_course.SECTIONS:
     COURSES.append({
         "id": "gramterms", "title": "Grammar in Russian: the Terms", "short": "Terms", "mark": "\u00a7",
         "blurb": "",
-        "credit": "Definitions and sentences from the Russian Wikipedia (CC BY-SA 4.0), each article named where it is "
-                  "quoted; dictionary abbreviations from OpenCorpora (CC BY-SA 4.0); further sentences from the library's "
-                  "public-domain books",
+        "credit": "Definitions from the Russian Wikipedia (CC BY-SA 4.0), each article named where it is quoted; "
+                  "dictionary abbreviations from OpenCorpora (CC BY-SA 4.0)",
         "creditUrl": "https://ru.wikipedia.org/",
         "license": "CC BY-SA 4.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
         "modules": ["gramterms_course"], "order": None,
@@ -300,6 +299,8 @@ def main():
             for e in [x for x in s["exercises"] if x.get("keep") or (x["type"] != "mc" and trusted(x))]:
                 exs.append(dict(e, id="q%d" % (len(exs) + 1)))
             data = {"id": sid, "title": s["title"], "blocks": s["blocks"], "exercises": exs}
+            if s.get("terms"):
+                data["terms"] = s["terms"]       # the cards a section's review drill deals (the grammar terms)
             if s.get("stream"):
                 data["stream"] = True      # one drill at a time, with a Next button
                 if s.get("prompts"):
