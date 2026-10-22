@@ -64,14 +64,14 @@ export default [
    {
     "id": "ts-v-prep",
     "title": "В + prepositional: In May, last year",
-    "n": 28,
+    "n": 30,
     "stream": true,
     "finite": true
    },
    {
     "id": "ts-date",
     "title": "On the fifth of May",
-    "n": 10,
+    "n": 21,
     "stream": true,
     "finite": true
    },
@@ -85,7 +85,7 @@ export default [
    {
     "id": "ts-na-acc",
     "title": "НА + accusative: For a week, the next day",
-    "n": 13,
+    "n": 14,
     "stream": true,
     "finite": true
    },
@@ -113,7 +113,7 @@ export default [
    {
     "id": "ts-s-gen",
     "title": "С + genitive: Since morning, from Monday",
-    "n": 11,
+    "n": 13,
     "stream": true,
     "finite": true
    },

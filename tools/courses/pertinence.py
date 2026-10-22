@@ -264,9 +264,31 @@ LEX = [
 ]
 
 
+PREP_WORD = re.compile(r"(?<![а-яё\-])(" + "|".join(sorted((re.escape(p) for p in PREP_CASES), key=len, reverse=True)) + r")(?![а-яё\-])")
+
+
+def preps_named(sentence):
+    """The prepositions a sentence talks about — named in its prose, not
+    merely used inside its italic examples."""
+    prose = re.sub(r"\*[^*]+\*", " ", sentence.replace("**", "")).lower().replace("ё", "е")
+    return set(PREP_WORD.findall(prose))
+
+
 def score(sentence, f):
     low = sentence.lower()
     s = 0.0
+    # a sentence about other prepositions is not about this one: «под …
+    # calls the accusative» explains nothing about «через»
+    mine = [t[5:] for t in f["tags"] if t.startswith("prep:")]
+    if mine:
+        named = preps_named(sentence)
+        if named and not (named & set(mine)):
+            return 0
+        # the sentence that introduces the preposition — «**Через**, 'through'…»,
+        # «The preposition через + acc. denotes…» — over one that mentions it
+        for p in mine:
+            if re.match(r"^\W*(?:the\s+)?(?:prepositions?\s+)?(?:\*\*)?" + re.escape(p) + r"(?![а-яё])", low):
+                s += 2
     for tag in f["tags"]:
         if tag in CASE_WORDS:
             if re.search(CASE_WORDS[tag], low):
@@ -291,9 +313,10 @@ def score(sentence, f):
         s += 4
     # a present-tense verb: the sentence about its conjugation type
     if "pres" in f["tags"] and "VERB" in f["tags"]:
-        if re.search(r"(ешь|ет|ем|ете|ут|ют|ю|у)(ся|сь)?$", a) and re.search(r"[\"“«]Е[\"”»]|first conjugation|Е type", sentence):
+        plain = sentence.replace("**", "")
+        if re.search(r"(ешь|ет|ем|ете|ут|ют|ю|у)(ся|сь)?$", a) and re.search(r"[\"“«]Е[\"”»]|first conjugation|Е type", plain):
             s += 2
-        if re.search(r"(ишь|ит|им|ите|ат|ят)(ся|сь)?$", a) and re.search(r"[\"“«]И[\"”»]|second conjugation|И type", sentence):
+        if re.search(r"(ишь|ит|им|ите|ат|ят)(ся|сь)?$", a) and re.search(r"[\"“«]И[\"”»]|second conjugation|И type", plain):
             s += 2
     # the sentence names the exercise's own word: «садиться — сесть: to sit down»
     for w in f.get("lemma", "").split():
@@ -363,8 +386,17 @@ def sentences(doc):
     return out, src
 
 
+def unstar(s):
+    """A wiki page's footnote mark — «обстановку**)» — is not bold markup;
+    an unpaired ** is taken out."""
+    if s.count("**") % 2 == 1:
+        k = s.rfind("**")
+        s = s[:k] + s[k + 2:]
+    return s
+
+
 def trim(s, n=260):
-    s = re.sub(r"^\*+|\*+$", "", s).strip()
+    s = unstar(re.sub(r"^\*+|\*+$", "", s).strip())
     if len(s) <= n:
         return s
     cut = s[:n]
@@ -393,7 +425,7 @@ def explain(sents, f):
             j += 1
         else:
             break
-    why = why.strip()
+    why = unstar(why.strip())
     if why.count("*") % 2 == 1:
         why += "*"
     return ctx, why, best
@@ -443,7 +475,35 @@ BANK = [
 _bank_cache = {}
 
 
+CASE_COURSE = {"gent": "case-gen", "gen2": "case-gen", "datv": "case-dat", "accs": "case-acc", "ablt": "case-ins",
+               "loct": "case-prp", "loc2": "case-prp", "nomn": "case-nom"}
+_course_cache = {}
+
+
+def course_sentences(course):
+    """Every lesson's sentences of a course, as (sentences, source note) pairs."""
+    if course not in _course_cache:
+        out = []
+        d = os.path.join(COURSES, course)
+        for fn in sorted(os.listdir(d)) if os.path.isdir(d) else []:
+            if fn.endswith(".json") and fn != "exam.json" and not re.search(r"-practice(?:-\d+)?\.json$", fn):
+                out.append(sentences(json.load(io.open(os.path.join(d, fn), encoding="utf-8"))))
+        _course_cache[course] = out
+    return _course_cache[course]
+
+
 def from_bank(f):
+    # a preposition: the lesson of its case course that names it
+    mine = [t[5:] for t in f["tags"] if t.startswith("prep:")]
+    case = next((c for c in CASE_COURSE if c in f["tags"]), None)
+    if mine and case:
+        best = (None, None, "", 0)
+        for sents, src in course_sentences(CASE_COURSE[case]):
+            ctx, why, sc = explain(sents, f)
+            if ctx and sc > best[3] and set(mine) & preps_named(why):
+                best = (ctx, why, src, sc)
+        if best[0]:
+            return best[0], best[1], best[2]
     for want, course, sec, rx in BANK:
         if not ok(want, f):
             continue

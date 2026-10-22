@@ -5244,21 +5244,28 @@ export default function App() {
   // against nouns, etc.).
   var [quizMode, setQuizMode]         = useState(false);
   var [quizMenu, setQuizMenu]         = useState(false);  // shows the 2-choice "Quiz vs Chat" menu
+  // A course drilling its own cards through the same menu, session and game:
+  // { key: course/section, cards: [{ _key, ru, en, pos }] }. Nothing about
+  // these cards is scheduled or saved — they are not the vocabulary.
+  var [termDrill, setTermDrill]       = useState(null);
+  var reviewExit = function() { setQuizMode(false); setQuizMenu(false); setRv(null); setMatchGame(null); setTermDrill(null); };
   // The match game: four words, four meanings, drag each meaning onto its
   // word; a round counts only when all four sit right at once.
   var [matchGame, setMatchGame]       = useState(null);   // { pool, round, order, map, status, wrongIdx, rounds, won } | null
-  var startMatch = function() {
-    var words = dropCommonWords(vocabL, function(v){ return v && v.ru; }).filter(function(v){ return v && v.en; });
-    if (words.length < 4) { alert("The match game needs at least four saved words with an English meaning."); return; }
+  var startMatch = function(pool) {
+    var own = Array.isArray(pool) ? pool : null;      // a course's own cards, not the vocabulary
+    var words = own ? own.filter(function(v){ return v && v.ru && v.en; })
+      : dropCommonWords(vocabL, function(v){ return v && v.ru; }).filter(function(v){ return v && v.en; });
+    if (words.length < 4) { alert(own ? "The match game needs at least four cards." : "The match game needs at least four saved words with an English meaning."); return; }
     var now = Date.now();
     // What is due first, then the rest, least secure first; a fixed shuffle within.
-    var due = dueWords(words, now), dueKeys = {};
+    var due = own ? [] : dueWords(words, now), dueKeys = {};
     due.forEach(function(v){ dueKeys[v._key || v.id || v.ru] = true; });
     var rest = words.filter(function(v){ return !dueKeys[v._key || v.id || v.ru]; });
     var shuf = function(a){ a = a.slice(); for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; };
-    var pool = shuf(due).concat(shuf(rest));
+    var deck = shuf(due).concat(shuf(rest));
     setQuizMenu(false);
-    setMatchGame(dealMatch(pool, 0, 0));
+    setMatchGame(Object.assign(dealMatch(deck, 0, 0), { src: own }));
   };
   var dealMatch = function(pool, rounds, won) {
     if (pool.length < 4) return { pool: pool, round: [], order: [], map: {}, status: "done", rounds: rounds, won: won };
@@ -5280,12 +5287,12 @@ export default function App() {
     var wrong = Object.keys(map).filter(function(k){ return map[k] !== +k; }).map(Number);
     if (!wrong.length) {
       // Recorded once each, as answered right — only a round with no miss counts.
-      if (!g.tries) g.round.forEach(function(v){ recordAnswer(v._key || v.id || v.ru, true); });
+      if (!g.tries && !g.src) g.round.forEach(function(v){ recordAnswer(v._key || v.id || v.ru, true); });
       setMatchGame(Object.assign({}, g, { map: map, sel: null, status: "right", won: g.won + (g.tries ? 0 : 1), rounds: g.rounds + 1 }));
       return;
     }
     wrong.forEach(function(k){ delete map[k]; });
-    if (!g.tries) wrong.forEach(function(k){ recordAnswer(g.round[k]._key || g.round[k].id || g.round[k].ru, false); });
+    if (!g.tries && !g.src) wrong.forEach(function(k){ recordAnswer(g.round[k]._key || g.round[k].id || g.round[k].ru, false); });
     setMatchGame(Object.assign({}, g, { map: map, sel: null, status: "wrong", wrongIdx: wrong, tries: (g.tries || 0) + 1 }));
   };
   var [quizQuestions, setQuizQuestions] = useState([]);
@@ -11502,6 +11509,9 @@ export default function App() {
   // ё spelling) inherit it. Songs are the only place the блатной жаргон
   // glossary answers, and even there only after every dictionary.
   var defSongRef = useRef(false);
+  // Set while the tapped word is in the Synodal Bible: the server may then
+  // answer, last of all, from the 1891 Bible Encyclopedia (lib/bible.js).
+  var defBibleRef = useRef(false);
   var DEF_TTL_DICT = 30 * 86400000, DEF_TTL_MT = 86400000;
   var readDefCache = function(key) {
     try {
@@ -11550,7 +11560,8 @@ export default function App() {
     if (!clean) throw new Error("Empty word");
 
     var song = !!defSongRef.current;
-    var cacheKey = (song ? "song:" : "") + clean.toLowerCase();
+    var bible = !!defBibleRef.current;
+    var cacheKey = (song ? "song:" : "") + (bible ? "bible:" : "") + clean.toLowerCase();
     var cached = readDefCache(cacheKey);
     if (cached) return cached;
 
@@ -11558,7 +11569,7 @@ export default function App() {
     var yandexDown = null;
     var defTrace = null;
     try {
-      var r = await authFetch("/api/define?word=" + encodeURIComponent(clean) + (song ? "&song=1" : ""));
+      var r = await authFetch("/api/define?word=" + encodeURIComponent(clean) + (song ? "&song=1" : "") + (bible ? "&bible=1" : ""));
       if (r.ok) {
         var data = await r.json();
         if (data && data.translation) {
@@ -11656,6 +11667,8 @@ export default function App() {
     if (!clean || clean.length < 2) return;
     // A lyric line comes with the tap; a book never passes one.
     defSongRef.current = lineContext != null || !!(bookMeta && bookMeta.category === "Song Lyrics");
+    defBibleRef.current = lineContext == null && !!bookMeta &&
+      (/\u0441\u0438\u043d\u043e\u0434\u0430\u043b\u044c\u043d/i.test(bookMeta.title || "") || /bible-synodal/.test(bookMeta.filename || ""));
 
     // Stop any in-flight audio and park the player at the sentence that
     // contains this word. User must press ▶ to resume from this point —
@@ -13495,13 +13508,14 @@ export default function App() {
     loadPresetBook(book);
   };
 
-  var startQuiz = function(posFilter) {
-    loadExamples();
+  var startQuiz = function(posFilter, pool) {
+    var own = Array.isArray(pool) ? pool : null;      // a course's own cards, not the vocabulary
+    if (!own) loadExamples();
     // Known-words stoplist first: saved words that are among the ~500 most
     // common are never quizzed. They stay in the vocab list (still visible,
     // still usable in chat practice) — they just aren't tested.
-    var quizVocab = dropCommonWords(vocabL, function(v){ return v && v.ru; });
-    var commonSkipped = vocabL.length - quizVocab.length;
+    var quizVocab = own || dropCommonWords(vocabL, function(v){ return v && v.ru; });
+    var commonSkipped = own ? 0 : vocabL.length - quizVocab.length;
 
     // Group vocab by normalized pos. A word needs `en` (the English meaning to
     // quiz on) and `pos` (so we can find same-category distractors) to qualify.
@@ -13516,12 +13530,13 @@ export default function App() {
 
     // GATE: a quiz needs at least 10 words sharing one part of speech. If no
     // type reaches 10, tell the user clearly instead of starting an empty quiz.
-    var QUIZ_MIN = 10;
+    var QUIZ_MIN = own ? 4 : 10;      // four cards make a question of three distractors
     var biggest = 0, biggestType = "";
     Object.keys(groups).forEach(function(k){
       if (groups[k].length > biggest) { biggest = groups[k].length; biggestType = k; }
     });
     if (biggest < QUIZ_MIN) {
+      if (own) { alert("Not enough cards to make a quiz."); return; }
       var near = biggest > 0 ? (" Your largest group is " + biggestType + " with " + biggest + ".") : "";
       var common = commonSkipped > 0 ? (" (" + commonSkipped + " saved word(s) were skipped because they're on your known-words list.)") : "";
       alert("A quiz needs at least 10 saved words of the same part of speech (for example, 10 nouns or 10 verbs), each with an English meaning." + near + common + " Keep adding words!");
@@ -13556,16 +13571,18 @@ export default function App() {
     var now = Date.now();
     var keyOf = function(v){ return v._key || v.id || v.ru; };
     var day = rvDayCounts(now);
-    var due = dueWords(askable, now);
-    var dueNew = due.filter(function(v){ return !(v.srs && v.srs.S); });
-    var dueRev = due.filter(function(v){ return v.srs && v.srs.S; });
-    var learnSaved = rvLoadLearn().filter(function(l){
+    // A course's cards: every one, shuffled, with no daily limit and no
+    // learning steps carried over from another day.
+    var due = own ? shuffle(askable) : dueWords(askable, now);
+    var dueNew = own ? due : due.filter(function(v){ return !(v.srs && v.srs.S); });
+    var dueRev = own ? [] : due.filter(function(v){ return v.srs && v.srs.S; });
+    var learnSaved = (own ? [] : rvLoadLearn()).filter(function(l){
       return askable.some(function(v){ return keyOf(v) === l.key; });
     });
     var inLearn = {};
     learnSaved.forEach(function(l){ inLearn[l.key] = 1; });
     var newQ = dueNew.filter(function(v){ return !inLearn[keyOf(v)]; })
-      .slice(0, Math.max(0, NEW_PER_DAY - day.newSeen)).map(keyOf);
+      .slice(0, own ? dueNew.length : Math.max(0, NEW_PER_DAY - day.newSeen)).map(keyOf);
     var revQ = dueRev.filter(function(v){ return !inLearn[keyOf(v)]; })
       .slice(0, Math.max(0, REVIEWS_PER_DAY - day.revSeen)).map(keyOf);
 
@@ -13575,7 +13592,7 @@ export default function App() {
     setQuizSelected(null);
     setQuizMenu(false);
     var first = rvDraw({
-      started: now, filterPos: filterPos, groups: groups, shuffle: shuffle,
+      started: now, filterPos: filterPos, groups: groups, shuffle: shuffle, pool: own,
       newQ: newQ, revQ: revQ, learn: learnSaved, extraQ: null,
       newTotal: newQ.length, revTotal: revQ.length, newShown: 0, revShown: 0,
       cur: null, answered: [], done: false, finished: false,
@@ -13624,13 +13641,13 @@ export default function App() {
   var rvQuestion = function(s, v) {
     var p = (v.pos || "").toLowerCase().trim();
     var keyOf = function(x){ return x._key || x.id || x.ru; };
-    var siblings = (s.groups[p] || []).concat(learnedL.filter(function(x){ return (x.pos || "").toLowerCase().trim() === p && x.en; }))
+    var siblings = (s.groups[p] || []).concat(s.pool ? [] : learnedL.filter(function(x){ return (x.pos || "").toLowerCase().trim() === p && x.en; }))
       .filter(function(x){ return keyOf(x) !== keyOf(v) && x.en !== v.en; });
     var seenEn = {};
     var uniq = s.shuffle(siblings).filter(function(x){ if (seenEn[x.en]) return false; seenEn[x.en] = 1; return true; });
     if (uniq.length < 3) return null;
     var distractors = uniq.slice(0, 3).map(function(x){ return x.en; });
-    var bx = bankExample(v.ru, v.lemma);
+    var bx = s.pool ? null : bankExample(v.ru, v.lemma);
     var met = Array.isArray(v.sentences) ? v.sentences
             : (v.srcSentence ? [{ s: v.srcSentence, w: v.srcWhere || "" }] : []);
     var pick = met.length ? Math.floor(Math.random() * met.length) : 0;
@@ -13677,7 +13694,7 @@ export default function App() {
   var rvDraw = function(s0, now) {
     var s = Object.assign({}, s0, { newQ: s0.newQ.slice(), revQ: s0.revQ.slice(),
       learn: s0.learn.slice(), extraQ: s0.extraQ ? s0.extraQ.slice() : null });
-    var byKey = function(k){ return (vocabRef.current || []).find(function(v){ return (v._key || v.id || v.ru) === k; }); };
+    var byKey = function(k){ return (s.pool || vocabRef.current || []).find(function(v){ return (v._key || v.id || v.ru) === k; }); };
     // The card just answered never comes straight back while anything else
     // can be shown. Learning ahead used to pick it at once: with the new and
     // review queues empty (or in Study more), the card you had just answered
@@ -13716,7 +13733,7 @@ export default function App() {
       if (held) s.learn.push(held);
       if (!take) {
         s.cur = null; s.done = true;
-        rvSaveLearn(s.learn);
+        if (!s.pool) rvSaveLearn(s.learn);
         return s;
       }
       var v = byKey(take.key);
@@ -13724,7 +13741,7 @@ export default function App() {
       if (!q) continue;                       // removed, retired, or too few siblings
       s.cur = Object.assign({ shownAt: now }, take, { q: q });
       s.done = false;
-      rvSaveLearn(s.learn);
+      if (!s.pool) rvSaveLearn(s.learn);
       return s;
     }
     s.cur = null; s.done = true;
@@ -13739,9 +13756,11 @@ export default function App() {
     var c = rv.cur;
     var correct = opt === c.q.correct;
     setQuizSelected(opt);
-    recordAnswer(c.key, correct);
-    if (c.from === "new") rvBumpDay("newSeen");
-    if (c.from === "review") rvBumpDay("revSeen");
+    if (!rv.pool) {                       // a course's cards are not scheduled or counted
+      recordAnswer(c.key, correct);
+      if (c.from === "new") rvBumpDay("newSeen");
+      if (c.from === "review") rvBumpDay("revSeen");
+    }
     setRv(function(s){
       if (!s || !s.cur || s.cur.key !== c.key) return s;
       var learn = s.learn.slice();
@@ -13754,7 +13773,7 @@ export default function App() {
         var nextStep = c.from === "learn" ? step + 1 : 1;
         if (nextStep < steps.length) learn.push({ key: c.key, kind: kind, step: nextStep, dueAt: now + steps[nextStep] * 60000 });
       }
-      rvSaveLearn(learn);
+      if (!s.pool) rvSaveLearn(learn);
       return Object.assign({}, s, {
         learn: learn,
         answered: s.answered.concat([{ key: c.key, word: c.q.word, correct: correct,
@@ -13774,6 +13793,11 @@ export default function App() {
     setRv(function(s){
       if (!s) return s;
       var keyOf = function(v){ return v._key || v.id || v.ru; };
+      if (s.pool) {                       // round again, in a new order
+        var again = {};
+        s.learn.forEach(function(l){ again[l.key] = 1; });
+        return rvDraw(Object.assign({}, s, { extraQ: s.shuffle(s.pool).map(keyOf).filter(function(k){ return !again[k]; }), finished: false }), Date.now());
+      }
       var pool = dropCommonWords(vocabRef.current || [], function(v){ return v && v.ru; }).filter(function(v){
         if (isEnVocab(v) !== (targetLang === "en")) return false;
         var p = (v.pos || "").toLowerCase().trim();
@@ -15526,6 +15550,329 @@ export default function App() {
     </div>
   );
 
+  // The review drill — the menu, the Anki-style session and the match
+  // game — drawn once: for the Vocabulary tab, and for a course that
+  // drills cards of its own (the grammar terms and their abbreviations).
+  var reviewPanel = function(vocab, learned) {
+    return (
+quizMode ? (
+              // ── Review session (Anki-style) ─────────────────────────────
+              <>
+                <div className="phdr">
+                  <span className="pti">{termDrill ? "Review the terms" : "Review"}</span>
+                  {rv && !rv.finished
+                    ? <button className="ab" onClick={rvFinish}>Finish</button>
+                    : <button className="ab" onClick={function(){ setQuizMode(false); setQuizMenu(true); setRv(null); }}>← Back</button>}
+                </div>
+                {(function(){
+                  if (!rv) return null;
+                  var ans = rv.answered;
+                  // What the session did — Anki's end-of-session numbers, plus
+                  // the words that tripped you up.
+                  var stats = function(title, lead) {
+                    var n = ans.length;
+                    var right = ans.filter(function(a){ return a.correct; }).length;
+                    var secs = ans.reduce(function(t, a){ return t + (a.ms || 0); }, 0) / 1000;
+                    var mins = Math.max(0, (Date.now() - rv.started) / 60000);
+                    var words = {};
+                    ans.forEach(function(a){ words[a.key] = 1; });
+                    var nw = Object.keys(words).length;
+                    var kinds = { new: 0, learn: 0, review: 0, relearn: 0, extra: 0 };
+                    ans.forEach(function(a){ kinds[a.kind] = (kinds[a.kind] || 0) + 1; });
+                    var missed = [];
+                    var seenMiss = {};
+                    ans.forEach(function(a){ if (!a.correct && !seenMiss[a.key]) { seenMiss[a.key] = 1; missed.push(a.word); } });
+                    return (
+                      <div className="rv-done">
+                        <h2 className="rv-done-h">{title}</h2>
+                        {lead && <p className="rv-done-lead">{lead}</p>}
+                        {n === 0 ? (
+                          <p className="rv-done-lead">No cards answered in this session.</p>
+                        ) : (
+                          <>
+                            <p className="rv-done-big">
+                              Studied <b>{n}</b> card{n === 1 ? "" : "s"} ({nw} word{nw === 1 ? "" : "s"}) in <b>{mins < 1 ? "under a minute" : (Math.round(mins * 10) / 10) + " min"}</b>
+                              <span className="rv-done-sub"> · {(Math.round(secs / n * 10) / 10)}s per card</span>
+                            </p>
+                            <div className="rv-stat-row">
+                              <div className="rv-stat"><span className="rv-stat-n rv-good">{right}</span><span className="rv-stat-l">Good</span></div>
+                              <div className="rv-stat"><span className="rv-stat-n rv-again">{n - right}</span><span className="rv-stat-l">Again</span></div>
+                              <div className="rv-stat"><span className="rv-stat-n">{Math.round(right / n * 100)}%</span><span className="rv-stat-l">Correct</span></div>
+                            </div>
+                            <div className="rv-stat-row rv-stat-kinds">
+                              <div className="rv-stat"><span className="rv-stat-n rv-new">{kinds.new}</span><span className="rv-stat-l">New</span></div>
+                              <div className="rv-stat"><span className="rv-stat-n rv-learn">{kinds.learn + kinds.relearn}</span><span className="rv-stat-l">Learning</span></div>
+                              <div className="rv-stat"><span className="rv-stat-n rv-rev">{kinds.review}</span><span className="rv-stat-l">Review</span></div>
+                              {kinds.extra > 0 && <div className="rv-stat"><span className="rv-stat-n">{kinds.extra}</span><span className="rv-stat-l">Extra</span></div>}
+                            </div>
+                            {missed.length > 0 && (
+                              <p className="rv-done-miss">Missed this session: <span lang="ru">{missed.join(", ")}</span></p>
+                            )}
+                          </>
+                        )}
+                        {quizLearnedNow.length > 0 && (
+                          <p className="rv-done-learned">
+                            Learned and retired from your list: <strong lang="ru">{quizLearnedNow.join(", ")}</strong>. They stay under Learned words on the Vocabulary tab if you ever want them back.
+                          </p>
+                        )}
+                        {rv.removed && rv.removed.length > 0 && (
+                          <p className="rv-done-miss">Removed from your vocabulary: <span lang="ru">{rv.removed.join(", ")}</span></p>
+                        )}
+                        {rv.learn.length > 0 && !rv.pool && (
+                          <p className="rv-done-note">{rv.learn.length} word{rv.learn.length === 1 ? " is" : "s are"} still in learning steps and will come back in your next session.</p>
+                        )}
+                        {quizSkipNote && <p className="rv-done-note">{quizSkipNote}</p>}
+                        <div className="rv-done-btns">
+                          {!rv.finished && <button className="btn-p" style={{maxWidth:220}} onClick={rvStudyMore}>Study more</button>}
+                          {rv.finished && !rv.done && <button className="btn-p" style={{maxWidth:220}} onClick={function(){ setRv(function(s){ return s ? Object.assign({}, s, { finished: false }) : s; }); }}>Keep reviewing</button>}
+                          <button className="btn-g" style={{maxWidth:220}} onClick={reviewExit}>{termDrill ? "Back to the lesson" : "Back to vocab list"}</button>
+                        </div>
+                      </div>
+                    );
+                  };
+                  if (rv.finished) return stats("Session finished", null);
+                  if (rv.done || !rv.cur) {
+                    return stats("Congratulations! You have finished for now.",
+                      rv.pool ? "You have been through every term. Study more to go round again." :
+                      rv.extraQ
+                        ? "You have been through every word that can be asked."
+                        : ("Every word that is due has been reviewed" +
+                           (rv.limitedNew ? ", and today's " + NEW_PER_DAY + " new words have been introduced" : "") +
+                           ". Study more to keep going with your least-secure words."));
+                  }
+                  var c = rv.cur, q = c.q;
+                  var countNew = rv.newQ.length + (c.from === "new" ? 1 : 0);
+                  var countLearn = rv.learn.length + (c.from === "learn" ? 1 : 0);
+                  var countRev = rv.revQ.length + (c.from === "review" ? 1 : 0);
+                  var answered = quizSelected !== null;
+                  return (
+                    <div className="rv-card">
+                      <div className="rv-top">
+                        <div className="rv-counts" title="New · Learning · Review still to go in this session">
+                          <span className={"rv-new" + (c.from === "new" ? " rv-cur" : "")}>{countNew}</span>
+                          <span className={"rv-learn" + (c.from === "learn" ? " rv-cur" : "")}>{countLearn}</span>
+                          <span className={"rv-rev" + (c.from === "review" ? " rv-cur" : "")}>{countRev}</span>
+                          {rv.extraQ && <span className="rv-extra">+{rv.extraQ.length + (c.from === "extra" ? 1 : 0)} more</span>}
+                        </div>
+                        {!rv.pool && <button className="rv-rm" title="Remove this word from your vocabulary"
+                                onClick={function(){ setRvConfirm({ key: c.key, word: q.word }); }}>Remove card</button>}
+                      </div>
+                      <div className="rv-pos">{q.pos}{c.from === "learn" ? " · learning" : (q.isNew ? " · new" : "")}</div>
+                      {isVerbPos(q.pos) && (wantVerbIdx(), <VerbStat word={q.lemma || q.word} small />)}
+                      {/* Where this word stands, live: it moves the moment an answer is in. */}
+                      {(function(){
+                        var live = vocab.find(function(v){ return (v._key || v.id || v.ru) === c.key; }) ||
+                                   learned.find(function(v){ return (v._key || v.id || v.ru) === c.key; });
+                        return live ? <div className="rv-prog">{srsProgress(live, true)}</div> : null;
+                      })()}
+                      <div className="rv-word-row">
+                        <div className="rv-word" lang="ru">{(function(){
+                          var hs = rvHeads(q.word);
+                          if (hs.length < 2) return q.word;
+                          var playing = rvAudio && rvAudio.key === c.key && rvAudio.playing ? rvAudio.idx : -1;
+                          return hs.map(function(h, i){
+                            return <Fragment key={i}>{i > 0 ? " / " : ""}<span className={"rv-w" + (playing === i ? " on" : "")}>{h}</span></Fragment>;
+                          });
+                        })()}</div>
+                        {rvAudio && rvAudio.key === c.key && (
+                          <button className={"psay" + (rvAudio.playing ? " on" : "")} title="Listen" aria-label={"Pronounce " + q.word}
+                                  onClick={rvPlay}>Listen</button>
+                        )}
+                      </div>
+                      {rvConjOk && rvConjOk.key === c.key && (function(){
+                        var hs = rvHeads(q.word).map(function(w){ return w.replace(/\u0301/g, ""); });
+                        if (hs.length < 2 && q.lemma) hs = [String(q.lemma).replace(/\u0301/g, "")];
+                        var ok = hs.filter(function(h){ return rvConjOk.words[h]; });
+                        if (!ok.length) return null;
+                        return (
+                          <div className="rv-conj">
+                            {ok.map(function(h){
+                              return (
+                                <button key={h} type="button" className="psay" title="Every form of the verb, from Wiktionary"
+                                        onClick={function(){ openConj(h); }}>
+                                  Conjugation{hs.length > 1 ? <> · <span lang="ru">{h}</span></> : null}
+                                </button>
+                              );
+                            })}
+                          </div>
+                        );
+                      })()}
+                      {/* Where you met it, on the card from the start — the context is
+                          part of the question, as on a sentence card in Anki. Only an
+                          English translation of it waits for the answer, since that
+                          would give the meaning away. */}
+                      {q.sentence && (
+                        <div className={"qex" + (q.sentenceLoc ? " qex-link" : "")}
+                             role={q.sentenceLoc ? "button" : undefined}
+                             tabIndex={q.sentenceLoc ? 0 : undefined}
+                             title={q.sentenceLoc ? "See it in the book" : undefined}
+                             onClick={q.sentenceLoc ? function(){ setSentJump(q.sentenceLoc); } : undefined}>
+                          <p className="qex-s" lang="ru">{markWord(q.sentence, q.sentenceMark || q.word, q.sentenceAt).map(function(part, i){
+                            return i === 1 ? <b key={i}>{part}</b> : <span key={i}>{part}</span>;
+                          })}</p>
+                          {answered && q.sentenceEn && <div className="qex-en">{q.sentenceEn}</div>}
+                          {q.sentenceWhere && (
+                            <div className="qex-src">{q.sentenceWhere}
+                              {q.sentenceOf > 1 ? " · one of " + q.sentenceOf + " places you met it" : ""}
+                            </div>
+                          )}
+                        </div>
+                      )}
+                      <div className="rv-opts">
+                        {q.options.map(function(opt, i) {
+                          var isCorrect = opt === q.correct;
+                          var isPicked  = opt === quizSelected;
+                          var cls = "rv-opt";
+                          if (answered) cls += isCorrect ? " ok" : (isPicked ? " bad" : " dim");
+                          return (
+                            <button key={i} className={cls} disabled={answered} onClick={function(){ rvAnswer(opt); }}>
+                              <span className="rv-opt-k">{i + 1}</span>{opt}
+                            </button>
+                          );
+                        })}
+                      </div>
+                      {answered && (
+                        <div style={{marginTop:24,textAlign:"center"}}>
+                          <button className="btn-p" style={{maxWidth:280}} onClick={rvNext}>Next →</button>
+                          <div className="rv-keys">keys 1–4 to answer · Enter or Space for next</div>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })()}
+                {sentJump && (
+                  <div className="rv-cfm-over" onClick={function(e){ if (e.target === e.currentTarget) setSentJump(null); }}>
+                    <div className="rv-cfm" role="dialog" aria-label="See this sentence in the book?">
+                      <div className="rv-cfm-h">See it in the book?</div>
+                      <p className="rv-cfm-p">
+                        <span lang="ru">{sentJump.s}</span>
+                        {sentJump.where && <><br/><span className="rv-cfm-where">{sentJump.where}</span></>}
+                      </p>
+                      <p className="rv-cfm-p rv-cfm-small">
+                        Opens the book at this sentence. Your review stays where it is — come back to the Vocabulary tab to carry on.
+                      </p>
+                      <div className="rv-cfm-btns">
+                        <button className="btn-g" onClick={function(){ setSentJump(null); }}>Cancel</button>
+                        <button className="rv-cfm-go" onClick={function(){ goToSentence(sentJump); }}>Open the book</button>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                {rvConfirm && (
+                  <div className="rv-cfm-over" onClick={function(e){ if (e.target === e.currentTarget) setRvConfirm(null); }}>
+                    <div className="rv-cfm" role="alertdialog" aria-label="Remove this card?">
+                      <div className="rv-cfm-h">Remove this card?</div>
+                      <p className="rv-cfm-p">
+                        <b lang="ru">{rvConfirm.word}</b> will be deleted from your vocabulary, with its review
+                        history. This can't be undone — you would have to save the word again from a book.
+                      </p>
+                      <div className="rv-cfm-btns">
+                        <button className="btn-g" onClick={function(){ setRvConfirm(null); }}>Cancel</button>
+                        <button className="rv-cfm-del" onClick={function(){ rvRemove(rvConfirm.key); }}>Remove</button>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </>
+            ) : matchGame ? (
+              // ── The match game ──
+              <>
+                <div className="phdr">
+                  <span className="pti">Match · {matchGame.won} of {matchGame.rounds} rounds right</span>
+                  <button className="ab" onClick={function(){ setMatchGame(null); if (termDrill) setQuizMenu(true); }}>{termDrill ? "← Back" : "← Back to list"}</button>
+                </div>
+                {matchGame.status === "done" ? (
+                  <div className="vm-done">
+                    <div className="vm-done-n">{matchGame.won} / {matchGame.rounds}</div>
+                    <div className="vm-done-t">rounds right at the first try. {matchGame.pool.length ? "" : (matchGame.src ? "That was every card." : "That was every word with a meaning.")}</div>
+                    <button className="crs-retry" onClick={function(){ startMatch(matchGame.src); }}>Play again</button>
+                  </div>
+                ) : (
+                  <div className="vm-wrap">
+                    <div className={"vm-board" + (matchGame.status === "right" ? " ok" : matchGame.status === "wrong" ? " bad" : "")}>
+                      <div className="vm-col">
+                        {matchGame.round.map(function(v, wi){
+                          var mi = matchGame.map[wi];
+                          var filled = mi !== undefined;
+                          var wrong = (matchGame.wrongIdx || []).indexOf(wi) >= 0 && !filled;
+                          return (
+                            <div key={wi} className={"vm-word" + (filled ? " filled" : "") + (wrong ? " shook" : "") + (matchGame.sel !== null && matchGame.sel !== undefined && !filled ? " open" : "")}
+                              onDragOver={function(ev){ ev.preventDefault(); }}
+                              onDrop={function(ev){ ev.preventDefault(); var m = parseInt((ev.dataTransfer && ev.dataTransfer.getData("text/plain")) || matchGame.sel, 10); if (!isNaN(m)) placeMatch(m, wi); }}
+                              onClick={function(){ if (matchGame.sel !== null && matchGame.sel !== undefined) placeMatch(matchGame.sel, wi); else if (filled && matchGame.status !== "right") { setMatchGame(function(g){ var map = Object.assign({}, g.map); delete map[wi]; return Object.assign({}, g, { map: map, status: "" }); }); } }}>
+                              <span className="vm-ru" lang="ru">{v.ru}</span>
+                              {filled && <span className="vm-en-in">{matchGame.round[mi].en}</span>}
+                            </div>
+                          );
+                        })}
+                      </div>
+                      <div className="vm-col">
+                        {matchGame.order.map(function(mi){
+                          var placed = Object.keys(matchGame.map).some(function(k){ return matchGame.map[k] === mi; });
+                          var selected = matchGame.sel === mi;
+                          return (
+                            <div key={mi} draggable={!placed && matchGame.status !== "right"}
+                              className={"vm-def" + (placed ? " placed" : "") + (selected ? " sel" : "")}
+                              onDragStart={function(ev){ try { ev.dataTransfer.setData("text/plain", String(mi)); ev.dataTransfer.effectAllowed = "move"; } catch (x) {} setMatchGame(function(g){ return Object.assign({}, g, { sel: mi }); }); }}
+                              onClick={function(){ if (placed || matchGame.status === "right") return; setMatchGame(function(g){ return Object.assign({}, g, { sel: selected ? null : mi }); }); }}>
+                              {matchGame.round[mi].en}
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                    <div className="vm-foot">
+                      {matchGame.status === "wrong" && <span className="vm-msg bad">{(matchGame.wrongIdx || []).length} in the wrong place — those meanings are loose again.</span>}
+                      {matchGame.status === "right" && <span className="vm-msg ok">All four right ✓</span>}
+                      {matchGame.status !== "right" && <span className="vm-msg">Drag a meaning onto its word, or tap one and then the other.</span>}
+                      {matchGame.status === "right" && <button className="btn-p vm-next" onClick={function(){ setMatchGame(function(g){ return Object.assign(dealMatch(g.pool, g.rounds, g.won), { src: g.src }); }); }}>Next four →</button>}
+                      {matchGame.status !== "right" && <button className="crs-retry" onClick={function(){ setMatchGame(function(g){ return Object.assign(dealMatch(g.pool, g.rounds + 1, g.won), { src: g.src }); }); }}>Skip these →</button>}
+                    </div>
+                  </div>
+                )}
+              </>
+            ) : quizMenu ? (
+              // ── Review choice menu (Multiple Choice vs Chat Practice) ──
+              <>
+                <div className="phdr">
+                  <span className="pti">{termDrill ? "Review the terms" : "Review vocabulary"}</span>
+                  <button className="ab" onClick={function(){ setQuizMenu(false); setTermDrill(null); }}>{termDrill ? "← Back to the lesson" : "← Back to list"}</button>
+                </div>
+                <div style={{padding:"24px 16px",display:"flex",flexDirection:"column",gap:14,maxWidth:560,margin:"0 auto"}}>
+                  <p style={{color:"rgba(0,0,0,.65)",fontSize:14,textAlign:"center",margin:"0 0 8px"}}>
+                    {termDrill
+                      ? (function(){ var t = termDrill.cards.filter(function(c){ return c.pos === "abbreviation"; }).length;
+                                     return (termDrill.cards.length - t) + " grammar terms and " + t + " dictionary abbreviations, each asked for its meaning. Nothing here is scheduled or saved \u2014 it is practice, as often as you like."; })()
+                      : dueNow > 0
+                      ? (dueNow + " of your " + vocab.length + " saved words " + (dueNow === 1 ? "is" : "are") + " due for review.")
+                      : ("Nothing is due right now \u2014 a session will drill your " + Math.min(8, vocab.length) + " least-secure words.")}
+                  </p>
+                  {/* Multiple Choice Quiz option */}
+                  <button onClick={function(){ startQuiz(null, termDrill ? termDrill.cards : null); }}
+                    style={{background:"rgba(200,162,118,.08)",border:"1px solid rgba(200,162,118,.3)",color:"#000",padding:"18px 20px",borderRadius:12,cursor:"pointer",textAlign:"left",fontFamily:"'Literata',serif",transition:"all .15s"}}
+                    onMouseOver={function(e){ e.currentTarget.style.background = "rgba(200,162,118,.14)"; }}
+                    onMouseOut={function(e){ e.currentTarget.style.background = "rgba(200,162,118,.08)"; }}>
+                    <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:6}}>
+                      
+                      <span style={{fontSize:18,fontWeight:600,color:"#000",fontFamily:"'Old Standard TT',serif"}}>Multiple Choice Quiz</span>
+                    </div>
+                    <p style={{fontSize:13,color:"rgba(0,0,0,.55)",margin:0,lineHeight:1.5}}>{termDrill ? "Quick recall test. Each question shows a term, or an abbreviation, with four meanings to choose from; a miss comes back a minute later." : "Quick recall test. Each question shows a Russian word with 4 English meaning options (from same-pos vocabulary)."}</p>
+                  </button>
+                  <button onClick={function(){ startMatch(termDrill ? termDrill.cards : null); }}
+                    style={{background:"rgba(200,162,118,.08)",border:"1px solid rgba(200,162,118,.3)",color:"#000",padding:"18px 20px",borderRadius:12,cursor:"pointer",textAlign:"left",fontFamily:"'Literata',serif",transition:"all .15s"}}
+                    onMouseOver={function(e){ e.currentTarget.style.background = "rgba(200,162,118,.14)"; }}
+                    onMouseOut={function(e){ e.currentTarget.style.background = "rgba(200,162,118,.08)"; }}>
+                    <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:6}}>
+                      <span style={{fontSize:18,fontWeight:600,color:"#000",fontFamily:"'Old Standard TT',serif"}}>Match</span>
+                    </div>
+                    <p style={{fontSize:13,color:"rgba(0,0,0,.55)",margin:0,lineHeight:1.5}}>{termDrill ? "Four terms on the left, their meanings on the right. Drag each meaning onto its term — the round counts when all four are right at once." : "Four words on the left, their meanings on the right. Drag each meaning onto its word — the round counts when all four are right at once."}</p>
+                  </button>
+                </div>
+              </>
+            ) : null
+    );
+  };
+
   return (
     <>
       <style>{`
@@ -16617,6 +16964,10 @@ export default function App() {
         .crs-sec-s{font-size:12.5px;font-style:italic;color:rgba(42,31,20,.55)}
         .crs-sec-r{font-family:'IBM Plex Sans',sans-serif;font-size:12px;color:rgba(42,31,20,.5)}
         .crs-lesson{display:flex;flex-direction:column;gap:10px}
+        .crs-review-bar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:14px 0 6px;padding:14px 16px;border:1px solid rgba(200,162,118,.35);border-radius:12px;background:rgba(200,162,118,.08)}
+        .crs-review-btn.btn-p{width:auto;padding:10px 22px;font-size:16px;box-shadow:none}
+        .crs-review-hint{font-size:13px;line-height:1.45;opacity:.75;flex:1;min-width:200px}
+        .crs-review.panel{padding:12px 0 24px;overflow:visible}
         .crs-h{font-family:'Old Standard TT',serif;font-size:23px;font-weight:400;color:#000;margin:14px 0 0}
         .crs-formula{font-family:'Old Standard TT',serif;font-size:40px;font-weight:700;line-height:1.1;letter-spacing:.01em;color:#8a3b1e;margin:6px 0 2px;padding-bottom:8px;border-bottom:3px solid #8a3b1e}
         .crs-lead{font-family:'Literata',serif;font-size:22px;font-weight:700;line-height:1.35;color:#1c1610;margin:4px 0 6px}
@@ -20245,7 +20596,7 @@ export default function App() {
                       </div>
                       {dueNow > 0 && (
                         <button type="button" className="adm-btn" style={{marginTop:12}}
-                          onClick={function(){ setShowAcct(false); setTab("vocab"); setQuizMode(false); setQuizMenu(true); }}>
+                          onClick={function(){ setShowAcct(false); setTab("vocab"); setTermDrill(null); setMatchGame(null); setQuizMode(false); setQuizMenu(true); }}>
                           Review the {dueNow} due {dueNow === 1 ? "word" : "words"} →
                         </button>
                       )}
@@ -23042,7 +23393,7 @@ export default function App() {
                     open={progOpen}
                     onToggle={function(){ setProgOpen(!progOpen); }}
                     onHide={function(){ setProgHidden(true); }}
-                    onReview={function(){ setTab("vocab"); setQuizMode(false); setQuizMenu(true); }} />
+                    onReview={function(){ setTab("vocab"); setTermDrill(null); setMatchGame(null); setQuizMode(false); setQuizMenu(true); }} />
                 )}
                 {me && progHidden && !grpPicking && (
                   <button className="prog-restore" onClick={function(){ setProgHidden(false); setProgOpen(true); }}>
@@ -25359,7 +25710,7 @@ export default function App() {
                                 <span className="fin-sep">·</span>
                                 <button type="button" className="fin-link" onClick={function(){
                                   stopTTS(); setStarted(false); setTab("vocab");
-                                  setQuizMode(false); setQuizMenu(true);
+                                  setTermDrill(null); setMatchGame(null); setQuizMode(false); setQuizMenu(true);
                                   try { window.scrollTo(0, 0); } catch (e) {}
                                 }}>Practise your vocabulary</button>
                               </div>
@@ -25918,317 +26269,7 @@ export default function App() {
           // This tab shows only the words of the language being studied.
           return (
           <div className="panel">
-            {quizMode ? (
-              // ── Review session (Anki-style) ─────────────────────────────
-              <>
-                <div className="phdr">
-                  <span className="pti">Review</span>
-                  {rv && !rv.finished
-                    ? <button className="ab" onClick={rvFinish}>Finish</button>
-                    : <button className="ab" onClick={function(){ setQuizMode(false); setQuizMenu(true); setRv(null); }}>← Back</button>}
-                </div>
-                {(function(){
-                  if (!rv) return null;
-                  var ans = rv.answered;
-                  // What the session did — Anki's end-of-session numbers, plus
-                  // the words that tripped you up.
-                  var stats = function(title, lead) {
-                    var n = ans.length;
-                    var right = ans.filter(function(a){ return a.correct; }).length;
-                    var secs = ans.reduce(function(t, a){ return t + (a.ms || 0); }, 0) / 1000;
-                    var mins = Math.max(0, (Date.now() - rv.started) / 60000);
-                    var words = {};
-                    ans.forEach(function(a){ words[a.key] = 1; });
-                    var nw = Object.keys(words).length;
-                    var kinds = { new: 0, learn: 0, review: 0, relearn: 0, extra: 0 };
-                    ans.forEach(function(a){ kinds[a.kind] = (kinds[a.kind] || 0) + 1; });
-                    var missed = [];
-                    var seenMiss = {};
-                    ans.forEach(function(a){ if (!a.correct && !seenMiss[a.key]) { seenMiss[a.key] = 1; missed.push(a.word); } });
-                    return (
-                      <div className="rv-done">
-                        <h2 className="rv-done-h">{title}</h2>
-                        {lead && <p className="rv-done-lead">{lead}</p>}
-                        {n === 0 ? (
-                          <p className="rv-done-lead">No cards answered in this session.</p>
-                        ) : (
-                          <>
-                            <p className="rv-done-big">
-                              Studied <b>{n}</b> card{n === 1 ? "" : "s"} ({nw} word{nw === 1 ? "" : "s"}) in <b>{mins < 1 ? "under a minute" : (Math.round(mins * 10) / 10) + " min"}</b>
-                              <span className="rv-done-sub"> · {(Math.round(secs / n * 10) / 10)}s per card</span>
-                            </p>
-                            <div className="rv-stat-row">
-                              <div className="rv-stat"><span className="rv-stat-n rv-good">{right}</span><span className="rv-stat-l">Good</span></div>
-                              <div className="rv-stat"><span className="rv-stat-n rv-again">{n - right}</span><span className="rv-stat-l">Again</span></div>
-                              <div className="rv-stat"><span className="rv-stat-n">{Math.round(right / n * 100)}%</span><span className="rv-stat-l">Correct</span></div>
-                            </div>
-                            <div className="rv-stat-row rv-stat-kinds">
-                              <div className="rv-stat"><span className="rv-stat-n rv-new">{kinds.new}</span><span className="rv-stat-l">New</span></div>
-                              <div className="rv-stat"><span className="rv-stat-n rv-learn">{kinds.learn + kinds.relearn}</span><span className="rv-stat-l">Learning</span></div>
-                              <div className="rv-stat"><span className="rv-stat-n rv-rev">{kinds.review}</span><span className="rv-stat-l">Review</span></div>
-                              {kinds.extra > 0 && <div className="rv-stat"><span className="rv-stat-n">{kinds.extra}</span><span className="rv-stat-l">Extra</span></div>}
-                            </div>
-                            {missed.length > 0 && (
-                              <p className="rv-done-miss">Missed this session: <span lang="ru">{missed.join(", ")}</span></p>
-                            )}
-                          </>
-                        )}
-                        {quizLearnedNow.length > 0 && (
-                          <p className="rv-done-learned">
-                            Learned and retired from your list: <strong lang="ru">{quizLearnedNow.join(", ")}</strong>. They stay under Learned words on the Vocabulary tab if you ever want them back.
-                          </p>
-                        )}
-                        {rv.removed && rv.removed.length > 0 && (
-                          <p className="rv-done-miss">Removed from your vocabulary: <span lang="ru">{rv.removed.join(", ")}</span></p>
-                        )}
-                        {rv.learn.length > 0 && (
-                          <p className="rv-done-note">{rv.learn.length} word{rv.learn.length === 1 ? " is" : "s are"} still in learning steps and will come back in your next session.</p>
-                        )}
-                        {quizSkipNote && <p className="rv-done-note">{quizSkipNote}</p>}
-                        <div className="rv-done-btns">
-                          {!rv.finished && <button className="btn-p" style={{maxWidth:220}} onClick={rvStudyMore}>Study more</button>}
-                          {rv.finished && !rv.done && <button className="btn-p" style={{maxWidth:220}} onClick={function(){ setRv(function(s){ return s ? Object.assign({}, s, { finished: false }) : s; }); }}>Keep reviewing</button>}
-                          <button className="btn-g" style={{maxWidth:220}} onClick={function(){ setQuizMode(false); setQuizMenu(false); setRv(null); }}>Back to vocab list</button>
-                        </div>
-                      </div>
-                    );
-                  };
-                  if (rv.finished) return stats("Session finished", null);
-                  if (rv.done || !rv.cur) {
-                    return stats("Congratulations! You have finished for now.",
-                      rv.extraQ
-                        ? "You have been through every word that can be asked."
-                        : ("Every word that is due has been reviewed" +
-                           (rv.limitedNew ? ", and today's " + NEW_PER_DAY + " new words have been introduced" : "") +
-                           ". Study more to keep going with your least-secure words."));
-                  }
-                  var c = rv.cur, q = c.q;
-                  var countNew = rv.newQ.length + (c.from === "new" ? 1 : 0);
-                  var countLearn = rv.learn.length + (c.from === "learn" ? 1 : 0);
-                  var countRev = rv.revQ.length + (c.from === "review" ? 1 : 0);
-                  var answered = quizSelected !== null;
-                  return (
-                    <div className="rv-card">
-                      <div className="rv-top">
-                        <div className="rv-counts" title="New · Learning · Review still to go in this session">
-                          <span className={"rv-new" + (c.from === "new" ? " rv-cur" : "")}>{countNew}</span>
-                          <span className={"rv-learn" + (c.from === "learn" ? " rv-cur" : "")}>{countLearn}</span>
-                          <span className={"rv-rev" + (c.from === "review" ? " rv-cur" : "")}>{countRev}</span>
-                          {rv.extraQ && <span className="rv-extra">+{rv.extraQ.length + (c.from === "extra" ? 1 : 0)} more</span>}
-                        </div>
-                        <button className="rv-rm" title="Remove this word from your vocabulary"
-                                onClick={function(){ setRvConfirm({ key: c.key, word: q.word }); }}>Remove card</button>
-                      </div>
-                      <div className="rv-pos">{q.pos}{c.from === "learn" ? " · learning" : (q.isNew ? " · new" : "")}</div>
-                      {isVerbPos(q.pos) && (wantVerbIdx(), <VerbStat word={q.lemma || q.word} small />)}
-                      {/* Where this word stands, live: it moves the moment an answer is in. */}
-                      {(function(){
-                        var live = vocab.find(function(v){ return (v._key || v.id || v.ru) === c.key; }) ||
-                                   learned.find(function(v){ return (v._key || v.id || v.ru) === c.key; });
-                        return live ? <div className="rv-prog">{srsProgress(live, true)}</div> : null;
-                      })()}
-                      <div className="rv-word-row">
-                        <div className="rv-word" lang="ru">{(function(){
-                          var hs = rvHeads(q.word);
-                          if (hs.length < 2) return q.word;
-                          var playing = rvAudio && rvAudio.key === c.key && rvAudio.playing ? rvAudio.idx : -1;
-                          return hs.map(function(h, i){
-                            return <Fragment key={i}>{i > 0 ? " / " : ""}<span className={"rv-w" + (playing === i ? " on" : "")}>{h}</span></Fragment>;
-                          });
-                        })()}</div>
-                        {rvAudio && rvAudio.key === c.key && (
-                          <button className={"psay" + (rvAudio.playing ? " on" : "")} title="Listen" aria-label={"Pronounce " + q.word}
-                                  onClick={rvPlay}>Listen</button>
-                        )}
-                      </div>
-                      {rvConjOk && rvConjOk.key === c.key && (function(){
-                        var hs = rvHeads(q.word).map(function(w){ return w.replace(/\u0301/g, ""); });
-                        if (hs.length < 2 && q.lemma) hs = [String(q.lemma).replace(/\u0301/g, "")];
-                        var ok = hs.filter(function(h){ return rvConjOk.words[h]; });
-                        if (!ok.length) return null;
-                        return (
-                          <div className="rv-conj">
-                            {ok.map(function(h){
-                              return (
-                                <button key={h} type="button" className="psay" title="Every form of the verb, from Wiktionary"
-                                        onClick={function(){ openConj(h); }}>
-                                  Conjugation{hs.length > 1 ? <> · <span lang="ru">{h}</span></> : null}
-                                </button>
-                              );
-                            })}
-                          </div>
-                        );
-                      })()}
-                      {/* Where you met it, on the card from the start — the context is
-                          part of the question, as on a sentence card in Anki. Only an
-                          English translation of it waits for the answer, since that
-                          would give the meaning away. */}
-                      {q.sentence && (
-                        <div className={"qex" + (q.sentenceLoc ? " qex-link" : "")}
-                             role={q.sentenceLoc ? "button" : undefined}
-                             tabIndex={q.sentenceLoc ? 0 : undefined}
-                             title={q.sentenceLoc ? "See it in the book" : undefined}
-                             onClick={q.sentenceLoc ? function(){ setSentJump(q.sentenceLoc); } : undefined}>
-                          <p className="qex-s" lang="ru">{markWord(q.sentence, q.sentenceMark || q.word, q.sentenceAt).map(function(part, i){
-                            return i === 1 ? <b key={i}>{part}</b> : <span key={i}>{part}</span>;
-                          })}</p>
-                          {answered && q.sentenceEn && <div className="qex-en">{q.sentenceEn}</div>}
-                          {q.sentenceWhere && (
-                            <div className="qex-src">{q.sentenceWhere}
-                              {q.sentenceOf > 1 ? " · one of " + q.sentenceOf + " places you met it" : ""}
-                            </div>
-                          )}
-                        </div>
-                      )}
-                      <div className="rv-opts">
-                        {q.options.map(function(opt, i) {
-                          var isCorrect = opt === q.correct;
-                          var isPicked  = opt === quizSelected;
-                          var cls = "rv-opt";
-                          if (answered) cls += isCorrect ? " ok" : (isPicked ? " bad" : " dim");
-                          return (
-                            <button key={i} className={cls} disabled={answered} onClick={function(){ rvAnswer(opt); }}>
-                              <span className="rv-opt-k">{i + 1}</span>{opt}
-                            </button>
-                          );
-                        })}
-                      </div>
-                      {answered && (
-                        <div style={{marginTop:24,textAlign:"center"}}>
-                          <button className="btn-p" style={{maxWidth:280}} onClick={rvNext}>Next →</button>
-                          <div className="rv-keys">keys 1–4 to answer · Enter or Space for next</div>
-                        </div>
-                      )}
-                    </div>
-                  );
-                })()}
-                {sentJump && (
-                  <div className="rv-cfm-over" onClick={function(e){ if (e.target === e.currentTarget) setSentJump(null); }}>
-                    <div className="rv-cfm" role="dialog" aria-label="See this sentence in the book?">
-                      <div className="rv-cfm-h">See it in the book?</div>
-                      <p className="rv-cfm-p">
-                        <span lang="ru">{sentJump.s}</span>
-                        {sentJump.where && <><br/><span className="rv-cfm-where">{sentJump.where}</span></>}
-                      </p>
-                      <p className="rv-cfm-p rv-cfm-small">
-                        Opens the book at this sentence. Your review stays where it is — come back to the Vocabulary tab to carry on.
-                      </p>
-                      <div className="rv-cfm-btns">
-                        <button className="btn-g" onClick={function(){ setSentJump(null); }}>Cancel</button>
-                        <button className="rv-cfm-go" onClick={function(){ goToSentence(sentJump); }}>Open the book</button>
-                      </div>
-                    </div>
-                  </div>
-                )}
-                {rvConfirm && (
-                  <div className="rv-cfm-over" onClick={function(e){ if (e.target === e.currentTarget) setRvConfirm(null); }}>
-                    <div className="rv-cfm" role="alertdialog" aria-label="Remove this card?">
-                      <div className="rv-cfm-h">Remove this card?</div>
-                      <p className="rv-cfm-p">
-                        <b lang="ru">{rvConfirm.word}</b> will be deleted from your vocabulary, with its review
-                        history. This can't be undone — you would have to save the word again from a book.
-                      </p>
-                      <div className="rv-cfm-btns">
-                        <button className="btn-g" onClick={function(){ setRvConfirm(null); }}>Cancel</button>
-                        <button className="rv-cfm-del" onClick={function(){ rvRemove(rvConfirm.key); }}>Remove</button>
-                      </div>
-                    </div>
-                  </div>
-                )}
-              </>
-            ) : matchGame ? (
-              // ── The match game ──
-              <>
-                <div className="phdr">
-                  <span className="pti">Match · {matchGame.won} of {matchGame.rounds} rounds right</span>
-                  <button className="ab" onClick={function(){ setMatchGame(null); }}>← Back to list</button>
-                </div>
-                {matchGame.status === "done" ? (
-                  <div className="vm-done">
-                    <div className="vm-done-n">{matchGame.won} / {matchGame.rounds}</div>
-                    <div className="vm-done-t">rounds right at the first try. {matchGame.pool.length ? "" : "That was every word with a meaning."}</div>
-                    <button className="crs-retry" onClick={startMatch}>Play again</button>
-                  </div>
-                ) : (
-                  <div className="vm-wrap">
-                    <div className={"vm-board" + (matchGame.status === "right" ? " ok" : matchGame.status === "wrong" ? " bad" : "")}>
-                      <div className="vm-col">
-                        {matchGame.round.map(function(v, wi){
-                          var mi = matchGame.map[wi];
-                          var filled = mi !== undefined;
-                          var wrong = (matchGame.wrongIdx || []).indexOf(wi) >= 0 && !filled;
-                          return (
-                            <div key={wi} className={"vm-word" + (filled ? " filled" : "") + (wrong ? " shook" : "") + (matchGame.sel !== null && matchGame.sel !== undefined && !filled ? " open" : "")}
-                              onDragOver={function(ev){ ev.preventDefault(); }}
-                              onDrop={function(ev){ ev.preventDefault(); var m = parseInt((ev.dataTransfer && ev.dataTransfer.getData("text/plain")) || matchGame.sel, 10); if (!isNaN(m)) placeMatch(m, wi); }}
-                              onClick={function(){ if (matchGame.sel !== null && matchGame.sel !== undefined) placeMatch(matchGame.sel, wi); else if (filled && matchGame.status !== "right") { setMatchGame(function(g){ var map = Object.assign({}, g.map); delete map[wi]; return Object.assign({}, g, { map: map, status: "" }); }); } }}>
-                              <span className="vm-ru" lang="ru">{v.ru}</span>
-                              {filled && <span className="vm-en-in">{matchGame.round[mi].en}</span>}
-                            </div>
-                          );
-                        })}
-                      </div>
-                      <div className="vm-col">
-                        {matchGame.order.map(function(mi){
-                          var placed = Object.keys(matchGame.map).some(function(k){ return matchGame.map[k] === mi; });
-                          var selected = matchGame.sel === mi;
-                          return (
-                            <div key={mi} draggable={!placed && matchGame.status !== "right"}
-                              className={"vm-def" + (placed ? " placed" : "") + (selected ? " sel" : "")}
-                              onDragStart={function(ev){ try { ev.dataTransfer.setData("text/plain", String(mi)); ev.dataTransfer.effectAllowed = "move"; } catch (x) {} setMatchGame(function(g){ return Object.assign({}, g, { sel: mi }); }); }}
-                              onClick={function(){ if (placed || matchGame.status === "right") return; setMatchGame(function(g){ return Object.assign({}, g, { sel: selected ? null : mi }); }); }}>
-                              {matchGame.round[mi].en}
-                            </div>
-                          );
-                        })}
-                      </div>
-                    </div>
-                    <div className="vm-foot">
-                      {matchGame.status === "wrong" && <span className="vm-msg bad">{(matchGame.wrongIdx || []).length} in the wrong place — those meanings are loose again.</span>}
-                      {matchGame.status === "right" && <span className="vm-msg ok">All four right ✓</span>}
-                      {matchGame.status !== "right" && <span className="vm-msg">Drag a meaning onto its word, or tap one and then the other.</span>}
-                      {matchGame.status === "right" && <button className="btn-p vm-next" onClick={function(){ setMatchGame(function(g){ return dealMatch(g.pool, g.rounds, g.won); }); }}>Next four →</button>}
-                      {matchGame.status !== "right" && <button className="crs-retry" onClick={function(){ setMatchGame(function(g){ return dealMatch(g.pool, g.rounds + 1, g.won); }); }}>Skip these →</button>}
-                    </div>
-                  </div>
-                )}
-              </>
-            ) : quizMenu ? (
-              // ── Review choice menu (Multiple Choice vs Chat Practice) ──
-              <>
-                <div className="phdr">
-                  <span className="pti">Review vocabulary</span>
-                  <button className="ab" onClick={function(){ setQuizMenu(false); }}>← Back to list</button>
-                </div>
-                <div style={{padding:"24px 16px",display:"flex",flexDirection:"column",gap:14,maxWidth:560,margin:"0 auto"}}>
-                  <p style={{color:"rgba(0,0,0,.65)",fontSize:14,textAlign:"center",margin:"0 0 8px"}}>
-                    {dueNow > 0
-                      ? (dueNow + " of your " + vocab.length + " saved words " + (dueNow === 1 ? "is" : "are") + " due for review.")
-                      : ("Nothing is due right now \u2014 a session will drill your " + Math.min(8, vocab.length) + " least-secure words.")}
-                  </p>
-                  {/* Multiple Choice Quiz option */}
-                  <button onClick={startQuiz}
-                    style={{background:"rgba(200,162,118,.08)",border:"1px solid rgba(200,162,118,.3)",color:"#000",padding:"18px 20px",borderRadius:12,cursor:"pointer",textAlign:"left",fontFamily:"'Literata',serif",transition:"all .15s"}}
-                    onMouseOver={function(e){ e.currentTarget.style.background = "rgba(200,162,118,.14)"; }}
-                    onMouseOut={function(e){ e.currentTarget.style.background = "rgba(200,162,118,.08)"; }}>
-                    <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:6}}>
-                      
-                      <span style={{fontSize:18,fontWeight:600,color:"#000",fontFamily:"'Old Standard TT',serif"}}>Multiple Choice Quiz</span>
-                    </div>
-                    <p style={{fontSize:13,color:"rgba(0,0,0,.55)",margin:0,lineHeight:1.5}}>Quick recall test. Each question shows a Russian word with 4 English meaning options (from same-pos vocabulary).</p>
-                  </button>
-                  <button onClick={startMatch}
-                    style={{background:"rgba(200,162,118,.08)",border:"1px solid rgba(200,162,118,.3)",color:"#000",padding:"18px 20px",borderRadius:12,cursor:"pointer",textAlign:"left",fontFamily:"'Literata',serif",transition:"all .15s"}}
-                    onMouseOver={function(e){ e.currentTarget.style.background = "rgba(200,162,118,.14)"; }}
-                    onMouseOut={function(e){ e.currentTarget.style.background = "rgba(200,162,118,.08)"; }}>
-                    <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:6}}>
-                      <span style={{fontSize:18,fontWeight:600,color:"#000",fontFamily:"'Old Standard TT',serif"}}>Match</span>
-                    </div>
-                    <p style={{fontSize:13,color:"rgba(0,0,0,.55)",margin:0,lineHeight:1.5}}>Four words on the left, their meanings on the right. Drag each meaning onto its word — the round counts when all four are right at once.</p>
-                  </button>
-                </div>
-              </>
-            ) : (
+            {(quizMode || matchGame || quizMenu) && !termDrill ? reviewPanel(vocab, learned) : (
               // ── Normal vocab list view ─────────────────────────────────
               <>
                 {expOpen && (function(){
@@ -27297,6 +27338,27 @@ export default function App() {
                     </div>
                   );
                 };
+                // The grammar-terms course drills its own cards: every term and
+                // every dictionary abbreviation on the first page's table.
+                var termCards = function(d) {
+                  var t = ((d && d.blocks) || []).filter(function(b){ return b.t === "table" && b.rows && b.head && b.head.length === 3; })[0];
+                  var cards = [];
+                  ((t && t.rows) || []).forEach(function(r){
+                    var ru = String(r[0] || "").trim(), en = String(r[1] || "").trim(), ab = String(r[2] || "").trim();
+                    if (ru && en) cards.push({ _key: "gt:" + ru, ru: ru, en: en, pos: "grammar term" });
+                    if (ab && ru) cards.push({ _key: "ga:" + ab, ru: ab, en: ru + " \u2014 " + en, pos: "abbreviation" });
+                  });
+                  return cards;
+                };
+                var drillsTerms = course.id === "gramterms" && sec.id === "gt0-all";
+                if (termDrill && termDrill.key === key && (quizMode || matchGame || quizMenu)) {
+                  return (
+                    <div className="crs-body">
+                      {topBar(idxSec)}
+                      <div className="panel crs-review">{reviewPanel(vocabL, learnedL)}</div>
+                    </div>
+                  );
+                }
                 return (
                   <div className="crs-body">
                     {topBar(idxSec)}
@@ -27330,6 +27392,13 @@ export default function App() {
                     {!data && <div className="lib-cat-hint">Loading…</div>}
                     {data && data !== "error" && (
                       <>
+                        {drillsTerms && termCards(data).length >= 4 && (
+                          <div className="crs-review-bar">
+                            <button type="button" className="btn-p crs-review-btn"
+                              onClick={function(){ setRv(null); setMatchGame(null); setQuizMode(false); setTermDrill({ key: key, cards: termCards(data) }); setQuizMenu(true); }}>Review Terms</button>
+                            <span className="crs-review-hint">A multiple-choice quiz or the match game over every term and abbreviation in the table below.</span>
+                          </div>
+                        )}
                         <div className="crs-lesson">{(data.blocks || []).slice(data.blocks && data.blocks[0] && data.blocks[0].t === "formula" ? 1 : 0).map(block)}</div>
                         {data.exam && (function(){
                           var per = data.per || 5, pass = data.pass || 85;
@@ -28101,7 +28170,7 @@ export default function App() {
                       var senses = (Array.isArray(d.ruSenses) && d.ruSenses.length) ? d.ruSenses.slice(0, 5) : [d.translation];
                       return (
                         <>
-                          <div className="pnoen">No English Wiktionary Definition</div>
+                          <div className="pnoen">{d.definitionSource === "bible" ? "Not in the dictionaries \u00b7 a word of the Bible" : "No English Wiktionary Definition"}</div>
                           {senses.length > 1
                             ? <ol className="pru-list ptr-ru" lang="ru">{senses.map(function(sn, i){ return <li key={i}>{sn}</li>; })}</ol>
                             : <div className="ptr ptr-ru" lang="ru">{senses[0]}</div>}
@@ -28233,6 +28302,7 @@ export default function App() {
                   {popup.data.definitionSource === "wiktionary" && <div style={{fontSize:"0.72em",opacity:0.55,marginTop:6}}><a href={popup.data.sourceUrl || "https://en.wiktionary.org/"} target="_blank" rel="noreferrer" style={{color:"inherit"}}>Wiktionary</a>{" \u00b7 "}<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noreferrer" style={{color:"inherit"}}>CC BY-SA 4.0</a></div>}
                   {popup.data.definitionSource === "ruwiktionary" && <div style={{fontSize:"0.72em",opacity:0.55,marginTop:6}}><a href={popup.data.sourceUrl || "https://ru.wiktionary.org/"} target="_blank" rel="noreferrer" style={{color:"inherit"}}>\u0412\u0438\u043a\u0438\u0441\u043b\u043e\u0432\u0430\u0440\u044c</a>{" \u00b7 "}<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noreferrer" style={{color:"inherit"}}>CC BY-SA 4.0</a></div>}
                   {popup.data.definitionSource === "mt" && <div style={{fontSize:"0.72em",opacity:0.55,marginTop:6}}>{popup.data.mtProvider || "Machine translation"}</div>}
+                  {popup.data.definitionSource === "bible" && <div style={{fontSize:"0.72em",opacity:0.55,marginTop:6}}><a href={popup.data.sourceUrl || "https://ru.wikisource.org/wiki/%D0%91%D0%AD%D0%90%D0%9D"} target="_blank" rel="noreferrer" style={{color:"inherit"}}>{popup.data.sourceNote || "\u0411\u0438\u0431\u043b\u0435\u0439\u0441\u043a\u0430\u044f \u044d\u043d\u0446\u0438\u043a\u043b\u043e\u043f\u0435\u0434\u0438\u044f \u0430\u0440\u0445\u0438\u043c\u0430\u043d\u0434\u0440\u0438\u0442\u0430 \u041d\u0438\u043a\u0438\u0444\u043e\u0440\u0430 (1891)"}</a>{" \u00b7 "}public domain, on Wikisource</div>}
                   {popup.data.definitionSource === "glossary" && <div style={{fontSize:"0.72em",opacity:0.55,marginTop:6}}>{popup.data.sourceUrl
                     ? <a href={popup.data.sourceUrl} target="_blank" rel="noreferrer" style={{color:"inherit"}}>{popup.data.sourceNote || (SITE_NAME_LATIN + " glossary")}</a>
                     : (popup.data.sourceNote || (SITE_NAME_LATIN + " glossary"))}{isAdmin && <span style={{opacity:0.7}}>{" \u00b7 curated"}</span>}</div>}

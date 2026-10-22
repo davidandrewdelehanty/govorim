@@ -63,6 +63,7 @@ async function sameAsCandidates(words, signal, timeLeft) {
 import { lemmaCandidates } from "../lib/morph.js";
 import { pymorphyLemmas } from "../lib/lemmatable.js";
 import { mtLookup } from "../lib/mt.js";
+import { bibleLookup } from "../lib/bible.js";
 
 const YANDEX_URL = "https://dictionary.yandex.net/api/v1/dicservice.json/lookup";
 const FLAG_MORPHO = 0x0004;
@@ -1017,6 +1018,9 @@ export default async function handler(req, res) {
     // The glossary is loaded now and consulted only after the dictionaries —
     // and outside songs, hardly at all. See isSlangEntry.
     const song = !!(req.query && req.query.song === "1");
+    // The reader is in the Synodal Bible: its own encyclopedia may answer,
+    // last of all. The client sends this for that one book and no other.
+    const bible = !!(req.query && req.query.bible === "1") && process.env.BIBLE_FALLBACK !== "0";
     let glossary = null;
     try {
       glossary = await loadGlossary(false);
@@ -1120,6 +1124,22 @@ export default async function handler(req, res) {
         if (lemmas.length >= 2) for (const lm of lemmas) addReading(readings, lm, "", "");
       }
       lemma = lemma || lemmas[0] || "";
+      // -- The Bible's own dictionary: asked now, read last -------------------
+      // Nikifor's Bible Encyclopedia (1891, public domain, on Wikisource) is
+      // the answer of last resort for a word of the Synodal Bible that no
+      // dictionary has — ефод, мытарь, виссон, the names. Its two requests
+      // start here, alongside the dictionaries, so that by the time every
+      // tier has declined the word the answer is already in hand; it is not
+      // looked at before then, so a Bible sense never shadows an ordinary one.
+      let biblePending = null;
+      if (bible) {
+        const bCands = [lower, deyo].concat(lemmas).concat(pmGuess.slice(0, 3))
+          .filter(function (w, i, a) { return w && a.indexOf(w) === i; }).slice(0, 5);
+        biblePending = bibleLookup(bCands, word, ctrl.signal).catch(function (e) {
+          trace.push("bible:error " + ((e && e.message) || e));
+          return null;
+        });
+      }
       const candsWith = function (extra) {
         return [lower, deyo].concat(lemmas)
           .concat(extra ? [String(extra).toLowerCase()] : [])
@@ -1327,6 +1347,16 @@ export default async function handler(req, res) {
           if (e && e.name === "AbortError") throw e;
           trace.push("sameas:error " + ((e && e.message) || e));
         }
+      }
+
+      if (biblePending) {
+        const bib = await biblePending;
+        if (bib) {
+          trace.push("bible:hit " + bib.lemma);
+          res.setHeader("Cache-Control", "public, s-maxage=604800, stale-while-revalidate=86400");
+          return res.status(200).json(withReadings(bib, readings));
+        }
+        trace.push("bible:miss");
       }
 
       if (weakWikt) {
