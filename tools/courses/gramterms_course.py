@@ -11,9 +11,11 @@ that make the words stick. No sentences from books, no Tatoeba: the terms,
 their meanings, and the review.
 
 Sources — and only these:
-  * the Russian Wikipedia's article on each term (CC BY-SA 4.0), fetched by
-    tools/courses/gramterms_fetch.py into gramterms_src.json: every lesson
-    quotes the article's opening statement as the term's definition;
+  * the English Wiktionary's sense for each term's English name (CC BY-SA
+    4.0) — a dictionary's one-line gloss — and, for a few terms, the opening
+    sentence of the English Wikipedia's article (CC BY-SA 4.0): fetched by
+    tools/courses/gramterms_en.py into gramterms_en.json, which says which
+    page and sense each definition is and where a long one was cut;
   * the OpenCorpora dictionary's own abbreviations for the categories (the
     ones pymorphy3 prints), for the table of how a dictionary writes them.
 The list of terms, their English and the article each comes from (TERMS,
@@ -203,6 +205,9 @@ ABBR = [("NOUN", "имя существительное"), ("ADJF", "имя пр
 
 SRC_P = os.path.join(HERE, "gramterms_src.json")
 SRC = json.load(io.open(SRC_P, encoding="utf-8")) if os.path.exists(SRC_P) else None
+# The English definitions (tools/courses/gramterms_en.py): term → {def, source, page, url}
+EN_P = os.path.join(HERE, "gramterms_en.json")
+EN = json.load(io.open(EN_P, encoding="utf-8")) if os.path.exists(EN_P) else {}
 
 try:
     import pymorphy3
@@ -330,7 +335,30 @@ def concise(text):
 
 
 def definition(term):
-    """The term's definition — the opening of its article, made concise — and the citation."""
+    """The term's definition in English — the Wiktionary's sense for its
+    English name, or an English Wikipedia opening sentence — and the citation."""
+    e = EN.get(term)
+    if not e:
+        return None, None
+    if e["source"] == "wiktionary":
+        cite = u"Wiktionary, \u00ab%s\u00bb (%s, CC BY-SA 4.0)" % (e["page"], e["url"])
+    else:
+        cite = u"Wikipedia, \u00ab%s\u00bb (%s, CC BY-SA 4.0)" % (e["page"], e["url"].replace("(", "%28").replace(")", "%29"))
+    return e["def"], cite
+
+
+def masked(term, d):
+    """The definition with the term's own English name blanked, for the
+    which-term quiz: «The … gender» for мужской род."""
+    words = [w for w in re.split(r"[ ,:;]+", TERMS[term]["en"].lower()) if len(w) > 3 and w not in ("case", "tense", "mood", "voice", "gender", "form", "verb", "word")]
+    out = d
+    for w in words:
+        out = re.sub(r"(?i)\b" + re.escape(w) + r"\w*", u"\u2026", out)
+    return out
+
+
+def ru_definition(term):
+    """The Russian Wikipedia's opening statement — kept for reference, unused by the course."""
     key = TERMS[term]["articles"][0]
     a = SRC["articles"].get(key) if SRC else None
     if not a:
@@ -358,19 +386,19 @@ if SRC and M:
     # The cards the review drill deals: every term with its English, and the
     # dictionary's abbreviation where there is one (lib/kit: `terms` on a
     # section is passed through to the section's JSON).
-    card = lambda t: {"ru": t, "en": TERMS[t]["en"], "abbr": cyr.get(t, "")}
+    card = lambda t: {"ru": t, "en": TERMS[t]["en"], "abbr": cyr.get(t, ""), "def": (definition(t)[0] or "")}
     for g in GROUPS:
         for t in g["terms"]:
             rows.append([t, TERMS[t]["en"], cyr.get(t, "")])
     A(dict(SEC("gt0-all", "Every term at a glance", [
         P(u"The words a Russian grammar, a dictionary or a teacher uses for the things this site teaches — the "
           u"vocabulary you need to ask a question about Russian in Russian. Each lesson after this page takes a "
-          u"group of them: the term, its English, and the one-sentence definition the Russian Wikipedia gives; then "
+          u"group of them: the term, its English, and a one-line English definition from the dictionary; then "
           u"the terms to write from their English, the definitions to match to their terms, and the terms to match "
           u"to their English. Review Terms, above, drills the whole list."),
         T([u"Term", u"English", u"As the OpenCorpora dictionary abbreviates it"], rows),
-        NOTE(u"Definitions: the Russian Wikipedia (CC BY-SA 4.0), the article named with each. "
-             u"Abbreviations: the OpenCorpora dictionary (CC BY-SA 4.0), as pymorphy3 prints them."),
+        NOTE(u"Definitions: the English Wiktionary, and for a few terms the English Wikipedia (both CC BY-SA 4.0), "
+             u"the page named with each. Abbreviations: the OpenCorpora dictionary (CC BY-SA 4.0), as pymorphy3 prints them."),
     ]), terms=[card(t) for g in GROUPS for t in g["terms"]]))
 
     for g in GROUPS:
@@ -395,15 +423,14 @@ if SRC and M:
             d, cite = definition(t)
             if not d or len(g["terms"]) < 4:
                 continue
-            span = find_term(d, t)
-            masked = (d[:span[0]] + u"\u2026" + d[span[1]:]) if span else d
+            mask = masked(t, d)
             others = [x for x in g["terms"] if x != t]
             rng.shuffle(others)
             opts = [t] + others[:3]
             rng.shuffle(opts)
-            mcs.append(dict(MC(u"Which term does the Russian Wikipedia define like this?", opts, opts.index(t),
-                               why=u"%s \u2014 %s" % (d, cite), ru=masked), k=t, keep=True,
-                            context=u"The definition is the Russian Wikipedia's, with the term itself left out."))
+            mcs.append(dict(MC(u"Which term is this the definition of?", opts, opts.index(t),
+                               why=u"%s \u2014 %s" % (d, cite), ru=mask), k=t, keep=True,
+                            context=u"The definition is the dictionary's, in English, with the term's own name left out."))
         terms = list(g["terms"])
         rng.shuffle(terms)
         matches = []

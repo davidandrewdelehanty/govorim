@@ -5258,12 +5258,28 @@ export default function App() {
       : dropCommonWords(vocabL, function(v){ return v && v.ru; }).filter(function(v){ return v && v.en; });
     if (words.length < 4) { alert(own ? "The match game needs at least four cards." : "The match game needs at least four saved words with an English meaning."); return; }
     var now = Date.now();
-    // What is due first, then the rest, least secure first; a fixed shuffle within.
+    var shuf = function(a){ a = a.slice(); for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; };
+    // A round is four words of one kind: nouns with nouns, verbs with verbs —
+    // and in the grammar course the terms with their definitions, then the
+    // abbreviations with their terms, never mixed. Each kind is dealt in
+    // fours; the odd one, two or three left at the end of a kind sit this
+    // game out rather than share a round with another kind. Within a kind,
+    // what is due comes first; the kinds with something due come first.
     var due = own ? [] : dueWords(words, now), dueKeys = {};
     due.forEach(function(v){ dueKeys[v._key || v.id || v.ru] = true; });
-    var rest = words.filter(function(v){ return !dueKeys[v._key || v.id || v.ru]; });
-    var shuf = function(a){ a = a.slice(); for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; };
-    var deck = shuf(due).concat(shuf(rest));
+    var kinds = {}, order = [];
+    words.forEach(function(v){
+      var k = String(v.pos || "").toLowerCase().trim() || "\u2014";
+      if (!kinds[k]) { kinds[k] = { due: [], rest: [] }; order.push(k); }
+      (dueKeys[v._key || v.id || v.ru] ? kinds[k].due : kinds[k].rest).push(v);
+    });
+    order = shuf(order).sort(function(a, b){ return (kinds[b].due.length > 0) - (kinds[a].due.length > 0); });
+    var deck = [];
+    order.forEach(function(k){
+      var list = shuf(kinds[k].due).concat(shuf(kinds[k].rest));
+      deck = deck.concat(list.slice(0, Math.floor(list.length / 4) * 4));
+    });
+    if (deck.length < 4) { alert(own ? "The match game needs four cards of one kind." : "The match game needs at least four saved words of one part of speech (four nouns, say), each with an English meaning."); return; }
     setQuizMenu(false);
     setMatchGame(Object.assign(dealMatch(deck, 0, 0), { src: own }));
   };
@@ -14174,18 +14190,24 @@ export default function App() {
   var srsProgress = function(v, compact) {
     var srs = v && v.srs;
     if (v && v.learnedAt) return <div className="srsp srsp-done">Learned · retired from your deck</div>;
-    if (!srs || !srs.S) return <div className="srsp srsp-new">Not reviewed yet · retires once you would remember it for {LEARNED_STABILITY_DAYS} days — usually about four right answers, spread over two months</div>;
+    if (!srs || !srs.S) return <div className="srsp srsp-new"><b>0%</b> of the way to retiring · not reviewed yet; it retires once you would remember it for {LEARNED_STABILITY_DAYS} days — usually about four right answers, spread over two months</div>;
     var S = srs.S;
-    var pct = Math.max(2, Math.min(100, S / LEARNED_STABILITY_DAYS * 100));
     var run = Math.min(srs.run || 0, 3), reps = srs.reps || 0;
+    // One number for how far along it is: the three conditions of isLearned
+    // averaged, each as the share of its target reached. 100% is retirement.
+    var share = (Math.min(1, S / LEARNED_STABILITY_DAYS) + Math.min(1, reps / 4) + Math.min(1, run / 3)) / 3;
+    var pct = Math.max(2, Math.min(100, Math.round(share * 100)));
     var dueIn = srs.due ? Math.round((srs.due - Date.now()) / 86400000) : null;
     var next = dueIn === null ? "" : dueIn <= 0 ? "due now" : dueIn === 1 ? "next review tomorrow" : "next review in " + dueIn + " days";
     return (
       <div className={"srsp" + (compact ? " srsp-c" : "")}
-           title={"Retires when memory reaches " + LEARNED_STABILITY_DAYS + " days. Each right answer on its review day multiplies it — roughly 2, 11, 46, then past 90 days — and a wrong one cuts it back. Answers on the same day barely move it, and the last three answers must be right."}>
-        <span className="srsp-item">
-          <span className="srsp-k">Memory</span> <b>{S < 1 ? Math.round(S * 10) / 10 : Math.round(S)}</b> of {LEARNED_STABILITY_DAYS} days to retire
+           title={"The percentage averages the three things that retire a word: memory of " + LEARNED_STABILITY_DAYS + " days, four reviews, and the last three answers right. Each right answer on its review day multiplies the memory — roughly 2, 11, 46, then past 90 days — and a wrong one cuts it back. Answers on the same day barely move it."}>
+        <span className="srsp-item srsp-pct">
+          <b>{pct}%</b> of the way to retiring
           <span className="srsp-bar"><span style={{width: pct + "%"}}></span></span>
+        </span>
+        <span className="srsp-item">
+          <span className="srsp-k">Memory</span> <b>{S < 1 ? Math.round(S * 10) / 10 : Math.round(S)}</b> of {LEARNED_STABILITY_DAYS} days
         </span>
         {run < 3 && <span className="srsp-item"><span className="srsp-k">Last answers right</span> <b>{run}</b> of 3</span>}
         {reps < 4 && <span className="srsp-item"><span className="srsp-k">Reviews</span> <b>{reps}</b> of 4</span>}
@@ -15778,7 +15800,7 @@ quizMode ? (
               // ── The match game ──
               <>
                 <div className="phdr">
-                  <span className="pti">Match · {matchGame.won} of {matchGame.rounds} rounds right</span>
+                  <span className="pti">Match{(function(){ var k = matchGame.round && matchGame.round[0] ? String(matchGame.round[0].pos || "").toLowerCase().trim() : ""; return k && k !== "\u2014" ? " \u00b7 " + k + (/s$/.test(k) ? "" : "s") : ""; })()} · {matchGame.won} of {matchGame.rounds} rounds right</span>
                   <button className="ab" onClick={function(){ setMatchGame(null); if (termDrill) setQuizMenu(true); }}>{termDrill ? "← Back" : "← Back to list"}</button>
                 </div>
                 {matchGame.status === "done" ? (
@@ -17133,6 +17155,7 @@ quizMode ? (
         .srsp-bar{display:inline-block;width:54px;height:4px;border-radius:2px;background:rgba(42,31,20,.12);margin-left:4px;overflow:hidden}
         .srsp-bar span{display:block;height:100%;background:#2f6a3a;border-radius:2px}
         .srsp-next{color:rgba(0,0,0,.4);font-style:italic}
+        .srsp-pct b{font-size:13px}.srsp-pct .srsp-bar{width:72px}.srsp-c .srsp-pct b{font-size:15px}.srsp-new b{font-style:normal}
         .srsp-new,.srsp-done{font-style:italic;color:rgba(0,0,0,.42)}
         .srsp-done{color:#1e7a3c}
         .rv-prog{display:flex;justify-content:center;margin:-2px 0 18px}
@@ -26644,7 +26667,7 @@ quizMode ? (
                     // «Грамматика» (https://…, CC BY-SA 4.0)» — collapses to the
                     // site's name, linked; the licence travels in the link's title.
                     // The title may carry brackets of its own — «Морфология (лингвистика)» — so one level of them is allowed before the address.
-                    var cite = /((?:Википедия|Викигид|Викитека|Викисловарь|Викиновости|Wikipedia|Tatoeba)(?:[^()\n]|\([^()\n]*\)){0,160}?)\((https?:\/\/[^\s)]+)([^)]*)\)/g;
+                    var cite = /((?:Википедия|Викигид|Викитека|Викисловарь|Викиновости|Wikipedia|Wiktionary|Tatoeba)(?:[^()\n]|\([^()\n]*\)){0,160}?)\((https?:\/\/[^\s)]+)([^)]*)\)/g;
                     var pieces = [], last = 0, m;
                     while ((m = cite.exec(String(x)))) {
                       pieces.push(String(x).slice(last, m.index));
@@ -27345,8 +27368,8 @@ quizMode ? (
                 var termCards = function(d) {
                   var cards = [];
                   ((d && d.terms) || []).forEach(function(r){
-                    var ru = String(r.ru || "").trim(), en = String(r.en || "").trim(), ab = String(r.abbr || "").trim();
-                    if (ru && en) cards.push({ _key: "gt:" + ru, ru: ru, en: en, pos: "grammar term" });
+                    var ru = String(r.ru || "").trim(), en = String(r.en || "").trim(), ab = String(r.abbr || "").trim(), df = String(r.def || "").trim();
+                    if (ru && en) cards.push({ _key: "gt:" + ru, ru: ru, en: df ? en + " \u2014 " + df : en, pos: "grammar term" });
                     if (ab && ru) cards.push({ _key: "ga:" + ab, ru: ab, en: ru + " \u2014 " + en, pos: "abbreviation" });
                   });
                   return cards;
@@ -27398,8 +27421,8 @@ quizMode ? (
                             <button type="button" className="btn-p crs-review-btn"
                               onClick={function(){ setRv(null); setMatchGame(null); setQuizMode(false); setTermDrill({ key: key, cards: termCards(data) }); setQuizMenu(true); }}>Review Terms</button>
                             <span className="crs-review-hint">{sec.id === "gt0-all"
-                              ? "A multiple-choice quiz or the match game over every term and abbreviation in the table below."
-                              : "A multiple-choice quiz or the match game over this lesson\u2019s terms, and the dictionary\u2019s abbreviations for them."}</span>
+                              ? "A multiple-choice quiz or the match game: every term against its definition, then every abbreviation against its term."
+                              : "A multiple-choice quiz or the match game: this lesson\u2019s terms against their definitions, then the dictionary\u2019s abbreviations against the terms."}</span>
                           </div>
                         )}
                         <div className="crs-lesson">{(data.blocks || []).slice(data.blocks && data.blocks[0] && data.blocks[0].t === "formula" ? 1 : 0).map(block)}</div>

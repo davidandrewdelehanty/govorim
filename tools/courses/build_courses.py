@@ -175,15 +175,16 @@ COURSES.append({
 
 
 # Grammar in Russian — the terms. Needs tools/courses/gramterms_src.json
-# (python3 tools/courses/gramterms_fetch.py, where Wikipedia is reachable).
+# (python3 tools/courses/gramterms_fetch.py) and gramterms_en.json
+# (python3 tools/courses/gramterms_en.py), made where the wikis are reachable.
 import gramterms_course
 if gramterms_course.SECTIONS:
     COURSES.append({
         "id": "gramterms", "title": "Grammar in Russian: the Terms", "short": "Terms", "mark": "\u00a7",
         "blurb": "",
-        "credit": "Definitions from the Russian Wikipedia (CC BY-SA 4.0), each article named where it is quoted; "
-                  "dictionary abbreviations from OpenCorpora (CC BY-SA 4.0)",
-        "creditUrl": "https://ru.wikipedia.org/",
+        "credit": "Definitions from the English Wiktionary and, for a few terms, the English Wikipedia (CC BY-SA 4.0), "
+                  "the page named where it is quoted; dictionary abbreviations from OpenCorpora (CC BY-SA 4.0)",
+        "creditUrl": "https://en.wiktionary.org/",
         "license": "CC BY-SA 4.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
         "modules": ["gramterms_course"], "order": None,
     })
