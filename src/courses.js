@@ -33,6 +33,10 @@ export function mergeCourseProg(a, b) {
     if (pf) out[k].perfect = pf;
     var g = Math.max(Number(x.grade) || 0, Number(y.grade) || 0);
     if (g) out[k].grade = g;
+    // The best score in the section's own review drill (the grammar terms):
+    // 90 or more opens the next section.
+    var d = Math.max(Number(x.drill) || 0, Number(y.drill) || 0);
+    if (d) out[k].drill = d;
   });
   return out;
 }

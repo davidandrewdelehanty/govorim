@@ -6618,6 +6618,27 @@ export default function App() {
   };
   // The exam is over: its grade, and — at the pass mark or above — the section
   // done, which is what earns the course's badge. The best grade is kept.
+  // A section's review drill (the grammar terms) scored: the best score is
+  // kept, and 90 or more opens the next section.
+  var DRILL_PASS = 90;
+  var noteDrill = function(key, pct) {
+    if (!key || !(pct >= 0)) return;
+    setCourseProg(function(m){
+      var rec = Object.assign({ right: {}, first: {} }, m[key] || {});
+      if ((Number(rec.drill) || 0) >= pct) return m;
+      rec.drill = Math.round(pct);
+      var n = Object.assign({}, m); n[key] = rec; return n;
+    });
+  };
+  useEffect(function() {
+    if (!termDrill || !rv || !rv.pool || !rv.done || !rv.answered.length) return;
+    var right = rv.answered.filter(function(a){ return a.correct; }).length;
+    noteDrill(termDrill.key, 100 * right / rv.answered.length);
+  }, [termDrill, rv && rv.done, rv && rv.answered && rv.answered.length]);
+  useEffect(function() {
+    if (!termDrill || !matchGame || !matchGame.src || matchGame.status !== "done" || !matchGame.rounds) return;
+    noteDrill(termDrill.key, 100 * matchGame.won / matchGame.rounds);
+  }, [termDrill, matchGame && matchGame.status, matchGame && matchGame.rounds]);
   var finishExam = function(cid, sid, grade, pass) {
     setCourseProg(function(m){
       var k = cid + "/" + sid, rec = Object.assign({ right: {}, first: {} }, m[k] || {});
@@ -15643,6 +15664,12 @@ quizMode ? (
                         {rv.learn.length > 0 && !rv.pool && (
                           <p className="rv-done-note">{rv.learn.length} word{rv.learn.length === 1 ? " is" : "s are"} still in learning steps and will come back in your next session.</p>
                         )}
+                        {rv.pool && termDrill && n > 0 && (function(){
+                          var pct = Math.round(100 * right / n);
+                          return <p className={"rv-done-lead rv-drill-score" + (pct >= DRILL_PASS ? " ok" : "")}>
+                            <b>{pct}%</b> right{rv.done ? "" : " so far"}{rv.done ? (pct >= DRILL_PASS ? " \u2014 passed: the next module is open." : " \u2014 " + DRILL_PASS + "% or more is needed to go on. Back to the lesson and try again.") : " \u2014 every card has to be asked for the score to count."}
+                          </p>;
+                        })()}
                         {quizSkipNote && <p className="rv-done-note">{quizSkipNote}</p>}
                         <div className="rv-done-btns">
                           {!rv.finished && <button className="btn-p" style={{maxWidth:220}} onClick={rvStudyMore}>Study more</button>}
@@ -15807,6 +15834,10 @@ quizMode ? (
                   <div className="vm-done">
                     <div className="vm-done-n">{matchGame.won} / {matchGame.rounds}</div>
                     <div className="vm-done-t">rounds right at the first try. {matchGame.pool.length ? "" : (matchGame.src ? "That was every card." : "That was every word with a meaning.")}</div>
+                    {matchGame.src && termDrill && matchGame.rounds > 0 && (function(){
+                      var pct = Math.round(100 * matchGame.won / matchGame.rounds);
+                      return <div className={"rv-drill-score" + (pct >= DRILL_PASS ? " ok" : "")}><b>{pct}%</b>{pct >= DRILL_PASS ? " \u2014 passed: the next module is open." : " \u2014 " + DRILL_PASS + "% or more is needed to go on; play again."}</div>;
+                    })()}
                     <button className="crs-retry" onClick={function(){ startMatch(matchGame.src); }}>Play again</button>
                   </div>
                 ) : (
@@ -16990,6 +17021,9 @@ quizMode ? (
         .crs-review-btn.btn-p{width:auto;padding:10px 22px;font-size:16px;box-shadow:none}
         .crs-review-hint{font-size:13px;line-height:1.45;opacity:.75;flex:1;min-width:200px}
         .crs-review.panel{padding:12px 0 24px;overflow:visible}
+        .crs-review-best{margin-left:6px;color:#000}.crs-review-best.ok{color:#1e7a3c}
+        .rv-drill-score{margin-top:10px;font-size:15px}.rv-drill-score b{font-size:18px}.rv-drill-score.ok{color:#1e7a3c}
+        .lcard.crs-lc.locked{opacity:.55;cursor:not-allowed}
         .crs-h{font-family:'Old Standard TT',serif;font-size:23px;font-weight:400;color:#000;margin:14px 0 0}
         .crs-formula{font-family:'Old Standard TT',serif;font-size:40px;font-weight:700;line-height:1.1;letter-spacing:.01em;color:#8a3b1e;margin:6px 0 2px;padding-bottom:8px;border-bottom:3px solid #8a3b1e}
         .crs-lead{font-family:'Literata',serif;font-size:22px;font-weight:700;line-height:1.35;color:#1c1610;margin:4px 0 6px}
@@ -26878,10 +26912,13 @@ quizMode ? (
                   var lessonNo = 0;
                   var card = function(x, label, nested) {
                     var st = secStateOf(x);
+                    var xi = course.sections.indexOf(x);
+                    var locked = lockedAt(xi);
                     return (
-                      <div key={x.id} className={"lcard crs-lc" + (x.id === crsSec ? " cur" : "") + (st.done ? " done" : "") + (nested ? " nested" : "")}
-                        onClick={function(){ openSection(course.id, x.id); }}>
-                        <div className="lcn">{[label, st.mark ? (st.rec.perfect ? "perfect ★" : "finished ✓") : (st.started ? "started" : ""), x.id === crsSec ? "here" : ""].filter(Boolean).join(" · ")}</div>
+                      <div key={x.id} className={"lcard crs-lc" + (x.id === crsSec ? " cur" : "") + (st.done ? " done" : "") + (nested ? " nested" : "") + (locked ? " locked" : "")}
+                        title={locked ? lockNote(xi) : undefined}
+                        onClick={function(){ if (!locked) openSection(course.id, x.id); }}>
+                        <div className="lcn">{[label, st.mark ? (st.rec.perfect ? "perfect ★" : "finished ✓") : (st.started ? "started" : ""), x.id === crsSec ? "here" : "", locked ? "\ud83d\udd12 locked" : ""].filter(Boolean).join(" · ")}</div>
                         <div className="lchead">{x.title}</div>
                         <div className="crs-lc-r">{st.when}</div>
                       </div>
@@ -26928,7 +26965,7 @@ quizMode ? (
                         </div>
                         <div className="crs-topnav">
                           <button type="button" className="lnb-inline" disabled={!prevSec} onClick={function(){ if (prevSec) openSection(course.id, prevSec.id); }}>← Previous</button>
-                          <button type="button" className="lnb-inline p" disabled={!nextS} onClick={function(){ if (nextS) openSection(course.id, nextS.id); }}>Next →</button>
+                          <button type="button" className="lnb-inline p" disabled={!nextS || lockedAt(idx + 1)} title={nextS && lockedAt(idx + 1) ? lockNote(idx + 1) : undefined} onClick={function(){ if (nextS && !lockedAt(idx + 1)) openSection(course.id, nextS.id); }}>{nextS && lockedAt(idx + 1) ? "Next \ud83d\udd12" : "Next \u2192"}</button>
                         </div>
                         {!course.repeat && (
                           <div className="lprog crs-lprog" title={st.done + " of " + st.of + " sections finished"}>
@@ -27375,6 +27412,19 @@ quizMode ? (
                   return cards;
                 };
                 var drillsTerms = course.id === "gramterms" && !!(data && data !== "error" && data.terms);
+                // The grammar terms are learned module by module: the next
+                // module opens once this one's review drill has been scored
+                // at 90% or more. The overview page (the first) gates nothing.
+                var drillOf = function(sid){ return Number((courseProg[course.id + "/" + sid] || {}).drill) || 0; };
+                var lockedAt = function(i){
+                  if (course.id !== "gramterms" || i < 2 || i >= course.sections.length) return false;
+                  return drillOf(course.sections[i - 1].id) < DRILL_PASS;
+                };
+                var lockNote = function(i){
+                  var prev = course.sections[i - 1];
+                  var best = drillOf(prev.id);
+                  return "Score " + DRILL_PASS + "% or more in Review Terms on \u201c" + prev.title + "\u201d to open this" + (best ? " \u2014 best so far " + best + "%" : "") + ".";
+                };
                 if (termDrill && termDrill.key === key && (quizMode || matchGame || quizMenu)) {
                   return (
                     <div className="crs-body">
@@ -27416,15 +27466,6 @@ quizMode ? (
                     {!data && <div className="lib-cat-hint">Loading…</div>}
                     {data && data !== "error" && (
                       <>
-                        {drillsTerms && termCards(data).length >= 4 && (
-                          <div className="crs-review-bar">
-                            <button type="button" className="btn-p crs-review-btn"
-                              onClick={function(){ setRv(null); setMatchGame(null); setQuizMode(false); setTermDrill({ key: key, cards: termCards(data) }); setQuizMenu(true); }}>Review Terms</button>
-                            <span className="crs-review-hint">{sec.id === "gt0-all"
-                              ? "A multiple-choice quiz or the match game: every term against its definition, then every abbreviation against its term."
-                              : "A multiple-choice quiz or the match game: this lesson\u2019s terms against their definitions, then the dictionary\u2019s abbreviations against the terms."}</span>
-                          </div>
-                        )}
                         <div className="crs-lesson">{(data.blocks || []).slice(data.blocks && data.blocks[0] && data.blocks[0].t === "formula" ? 1 : 0).map(block)}</div>
                         {data.exam && (function(){
                           var per = data.per || 5, pass = data.pass || 85;
@@ -27657,7 +27698,8 @@ quizMode ? (
                             if (mr && !mr.done && nextSec) return <span className="crs-next-wait">Finish the ones you missed, above, to go on to {nextSec.title}.</span>;
                             return null;
                           })()}
-                          {nextSec && !(crsMissed && crsMissed.key === key && !crsMissed.done)
+                          {nextSec && lockedAt(idxSec + 1) && <span className="crs-next-wait">{lockNote(idxSec + 1)}</span>}
+                          {nextSec && !(crsMissed && crsMissed.key === key && !crsMissed.done) && !lockedAt(idxSec + 1)
                             ? <button type="button" className="crs-next" onClick={function(){ openSection(course.id, nextSec.id); }}>
                                 <span className="k">Next chapter →</span><span className="t">{nextSec.title}</span>
                               </button>
@@ -27665,6 +27707,23 @@ quizMode ? (
                                 <span className="k">Contents →</span><span className="t">{course.title}</span>
                               </button>)}
                         </div>
+                        {drillsTerms && termCards(data).length >= 4 && (function(){
+                          var best = drillOf(sec.id);
+                          var gates = idxSec >= 1 && idxSec + 1 < course.sections.length;
+                          return (
+                            <div className="crs-review-bar">
+                              <button type="button" className="btn-p crs-review-btn"
+                                onClick={function(){ setRv(null); setMatchGame(null); setQuizMode(false); setTermDrill({ key: key, cards: termCards(data) }); setQuizMenu(true); }}>Review Terms</button>
+                              <span className="crs-review-hint">
+                                {sec.id === "gt0-all"
+                                  ? "A multiple-choice quiz or the match game over every term: terms against their definitions, then abbreviations against their terms."
+                                  : "A multiple-choice quiz or the match game over this module\u2019s terms: terms against their definitions, then abbreviations against their terms."}
+                                {gates ? " " + DRILL_PASS + "% or more opens the next module." : ""}
+                                {best ? <b className={"crs-review-best" + (best >= DRILL_PASS ? " ok" : "")}> Best: {best}%{best >= DRILL_PASS && gates ? " \u2713" : ""}</b> : null}
+                              </span>
+                            </div>
+                          );
+                        })()}
                         {credit(course)}
                       </>
                     )}
