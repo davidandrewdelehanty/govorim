@@ -6639,6 +6639,45 @@ export default function App() {
     if (!termDrill || !matchGame || !matchGame.src || matchGame.status !== "done" || !matchGame.rounds) return;
     noteDrill(termDrill.key, 100 * matchGame.won / matchGame.rounds);
   }, [termDrill, matchGame && matchGame.status, matchGame && matchGame.rounds]);
+  // A module's score — its exercises right at the first try, as a share of
+  // all of them — kept at its best; 90 or more opens the next module. An
+  // answer seeded from an earlier sitting counts as the first try recorded
+  // then. A finite stream scores each round of its deal.
+  var noteScore = function(key, pct) {
+    if (!key || !(pct >= 0)) return;
+    setCourseProg(function(m){
+      var rec = Object.assign({ right: {}, first: {} }, m[key] || {});
+      if ((Number(rec.score) || 0) >= Math.round(pct)) return m;
+      rec.score = Math.round(pct);
+      var n = Object.assign({}, m); n[key] = rec; return n;
+    });
+  };
+  useEffect(function() {
+    if (!crsCourse || !crsSec) return;
+    var key = crsCourse + "/" + crsSec, d = crsData[key];
+    if (!d || d === "error" || d.stream || d.exam) return;
+    var c = COURSE_OUTLINE.filter(function(x){ return x.id === crsCourse; })[0];
+    if (!c || c.repeat) return;
+    var exs = d.exercises || [];
+    if (!exs.length) return;
+    var rec = courseProg[key] || {};
+    var ok = 0;
+    for (var i = 0; i < exs.length; i++) {
+      var x = exState[exs[i].id];
+      if (!x || x.status !== "right") return;
+      if (x.seeded ? (rec.first && rec.first[exs[i].id] === 1) : (!(x.tries || 0) && !x.shown)) ok++;
+    }
+    noteScore(key, 100 * ok / exs.length);
+  }, [exState, crsCourse, crsSec, crsData]);
+  useEffect(function() {
+    var st = crsStream;
+    if (!st || !st.key || !st.order || !st.order.length || st.pos < st.order.length) return;
+    var d = crsData[st.key];
+    if (!d || d === "error" || !d.finite) return;
+    var c = COURSE_OUTLINE.filter(function(x){ return x.id === st.key.split("/")[0]; })[0];
+    if (!c || c.repeat) return;
+    noteScore(st.key, 100 * st.right / Math.max(1, st.seen));
+  }, [crsStream && crsStream.pos, crsStream && crsStream.key]);
   var finishExam = function(cid, sid, grade, pass) {
     setCourseProg(function(m){
       var k = cid + "/" + sid, rec = Object.assign({ right: {}, first: {} }, m[k] || {});
@@ -17017,6 +17056,8 @@ quizMode ? (
         .crs-sec-s{font-size:12.5px;font-style:italic;color:rgba(42,31,20,.55)}
         .crs-sec-r{font-family:'IBM Plex Sans',sans-serif;font-size:12px;color:rgba(42,31,20,.5)}
         .crs-lesson{display:flex;flex-direction:column;gap:10px}
+        .crs-idea{margin:14px 0 0;padding:14px 18px 16px;border:1px solid rgba(200,162,118,.35);border-radius:12px;background:rgba(200,162,118,.08)}
+        .crs-idea>.crs-h{margin-top:0;padding-top:0}.crs-idea>.crs-h+*{margin-top:8px}.crs-idea>:first-child{margin-top:0}.crs-idea>:last-child{margin-bottom:0}
         .crs-review-bar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:14px 0 6px;padding:14px 16px;border:1px solid rgba(200,162,118,.35);border-radius:12px;background:rgba(200,162,118,.08)}
         .crs-review-btn.btn-p{width:auto;padding:10px 22px;font-size:16px;box-shadow:none}
         .crs-review-hint{font-size:13px;line-height:1.45;opacity:.75;flex:1;min-width:200px}
@@ -17024,6 +17065,7 @@ quizMode ? (
         .crs-review-best{margin-left:6px;color:#000}.crs-review-best.ok{color:#1e7a3c}
         .rv-drill-score{margin-top:10px;font-size:15px}.rv-drill-score b{font-size:18px}.rv-drill-score.ok{color:#1e7a3c}
         .lcard.crs-lc.locked{opacity:.55;cursor:not-allowed}
+        .crs-score-pct{color:#8a4b1f}.crs-score-pct.ok{color:#1e7a3c}
         .crs-h{font-family:'Old Standard TT',serif;font-size:23px;font-weight:400;color:#000;margin:14px 0 0}
         .crs-formula{font-family:'Old Standard TT',serif;font-size:40px;font-weight:700;line-height:1.1;letter-spacing:.01em;color:#8a3b1e;margin:6px 0 2px;padding-bottom:8px;border-bottom:3px solid #8a3b1e}
         .crs-lead{font-family:'Literata',serif;font-size:22px;font-weight:700;line-height:1.35;color:#1c1610;margin:4px 0 6px}
@@ -26950,6 +26992,34 @@ quizMode ? (
                     </div>
                   );
                 };
+                // A course is taken module by module: the next module opens once
+                // this one has been passed at 90% or more — its exercises right at
+                // the first try (a finite stream: a round of it), or, in the
+                // grammar-terms course, its Review Terms drill. Courses to repeat
+                // as often as you like, endless practice streams, the exam and
+                // the terms course's overview page gate nothing.
+                var drillOf = function(sid){ return Number((courseProg[course.id + "/" + sid] || {}).drill) || 0; };
+                var scoreOf = function(sid){
+                  var r = courseProg[course.id + "/" + sid] || {};
+                  return course.id === "gramterms" ? (Number(r.drill) || 0) : (Number(r.score) || 0);
+                };
+                var gatesNext = function(x){
+                  if (!x || course.repeat || x.exam) return false;
+                  if (course.id === "gramterms") return x.id !== "gt0-all";
+                  if (x.stream && !x.finite) return false;
+                  return (x.n > 0) || !!x.finite;
+                };
+                var lockedAt = function(i){
+                  if (i < 1 || i >= course.sections.length) return false;
+                  var prev = course.sections[i - 1];
+                  return gatesNext(prev) && scoreOf(prev.id) < DRILL_PASS;
+                };
+                var lockNote = function(i){
+                  var prev = course.sections[i - 1];
+                  var best = scoreOf(prev.id);
+                  return "Score " + DRILL_PASS + "% or more " + (course.id === "gramterms" ? "in Review Terms on" : "\u2014 right at the first try \u2014 on") +
+                    " \u201c" + prev.title + "\u201d to open this" + (best ? " \u2014 best so far " + best + "%" : "") + ".";
+                };
                 var topBar = function(idx) {
                   var st = courseState(course, courseProg);
                   var prevSec = idx > 0 ? course.sections[idx - 1] : null;
@@ -27412,19 +27482,6 @@ quizMode ? (
                   return cards;
                 };
                 var drillsTerms = course.id === "gramterms" && !!(data && data !== "error" && data.terms);
-                // The grammar terms are learned module by module: the next
-                // module opens once this one's review drill has been scored
-                // at 90% or more. The overview page (the first) gates nothing.
-                var drillOf = function(sid){ return Number((courseProg[course.id + "/" + sid] || {}).drill) || 0; };
-                var lockedAt = function(i){
-                  if (course.id !== "gramterms" || i < 2 || i >= course.sections.length) return false;
-                  return drillOf(course.sections[i - 1].id) < DRILL_PASS;
-                };
-                var lockNote = function(i){
-                  var prev = course.sections[i - 1];
-                  var best = drillOf(prev.id);
-                  return "Score " + DRILL_PASS + "% or more in Review Terms on \u201c" + prev.title + "\u201d to open this" + (best ? " \u2014 best so far " + best + "%" : "") + ".";
-                };
                 if (termDrill && termDrill.key === key && (quizMode || matchGame || quizMenu)) {
                   return (
                     <div className="crs-body">
@@ -27466,7 +27523,26 @@ quizMode ? (
                     {!data && <div className="lib-cat-hint">Loading…</div>}
                     {data && data !== "error" && (
                       <>
-                        <div className="crs-lesson">{(data.blocks || []).slice(data.blocks && data.blocks[0] && data.blocks[0].t === "formula" ? 1 : 0).map(block)}</div>
+                        <div className="crs-lesson">{(function(){
+                          // Each idea in its own box: a heading and what follows it
+                          // up to the next heading; the opening, before any heading,
+                          // a box of its own. A story is set as a page, not boxed.
+                          var blocks = (data.blocks || []).slice(data.blocks && data.blocks[0] && data.blocks[0].t === "formula" ? 1 : 0);
+                          if (blocks.some(function(b){ return b.t === "story"; })) return blocks.map(block);
+                          var groups = [], cur = { items: [] };
+                          blocks.forEach(function(b){
+                            if (b.t === "h") { cur = { h: b, items: [] }; groups.push(cur); }
+                            else { if (!groups.length && cur.items.length === 0 && !cur.h) groups.push(cur); cur.items.push(b); }
+                          });
+                          return groups.filter(function(g){ return g.h || g.items.length; }).map(function(g, gi){
+                            return (
+                              <div key={"idea" + gi} className={"crs-idea" + (g.h ? "" : " crs-idea-open")}>
+                                {g.h ? block(g.h, "h" + gi) : null}
+                                {g.items.map(function(b, k){ return block(b, "i" + gi + "." + k); })}
+                              </div>
+                            );
+                          });
+                        })()}</div>
                         {data.exam && (function(){
                           var per = data.per || 5, pass = data.pass || 85;
                           var shuf = function(a) { for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; };
@@ -27633,8 +27709,8 @@ quizMode ? (
                           var seed = {}, firstOpen = null;
                           exs.forEach(function(e){
                             if (rec.right && rec.right[e.id]) {
-                              seed[e.id] = e.type === "mc" ? { status: "right", picked: [e.answer] }
-                                : { status: "right", val: (e.answers || [])[0] || "", vals: ((e.answers || [])[0] || "").split(/\s+/) };
+                              seed[e.id] = e.type === "mc" ? { status: "right", picked: [e.answer], seeded: true }
+                                : { status: "right", val: (e.answers || [])[0] || "", vals: ((e.answers || [])[0] || "").split(/\s+/), seeded: true };
                             } else if (!firstOpen) firstOpen = e.id;
                           });
                           setTimeout(function(){
@@ -27685,8 +27761,13 @@ quizMode ? (
                                 ? <>Perfect ★ · every exercise right without a mistake</>
                                 : allRight
                                 ? <>Section finished ✓ · {firstRight} of {exs.length} right at the first try
+                                    {(function(){
+                                      var best = Number(rec.score) || 0;
+                                      if (!nextSec || course.repeat || course.id === "gramterms") return null;
+                                      return <span className={"crs-score-pct" + (best >= DRILL_PASS ? " ok" : "")}> · best score {best}%{best >= DRILL_PASS ? " \u2713" : " \u2014 " + DRILL_PASS + "% opens the next chapter"}</span>;
+                                    })()}
                                     <button type="button" className="crs-retry" onClick={function(){ setExState({}); setCrsMissed(null); try { var el = document.querySelector(".crs-exw"); if (el) el.scrollIntoView({ block: "start" }); } catch (er) {} }}>
-                                      Try again for a perfect ★
+                                      {(Number(rec.score) || 0) < DRILL_PASS && nextSec && !course.repeat && course.id !== "gramterms" ? "Try again for 90%" : "Try again for a perfect ★"}
                                     </button></>
                                 : <>{Object.keys(rec.right || {}).filter(function(k){ return exIds.indexOf(k) >= 0; }).length} of {exs.length} answered</>}
                             </div>

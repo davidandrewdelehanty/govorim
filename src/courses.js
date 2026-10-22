@@ -37,6 +37,10 @@ export function mergeCourseProg(a, b) {
     // 90 or more opens the next section.
     var d = Math.max(Number(x.drill) || 0, Number(y.drill) || 0);
     if (d) out[k].drill = d;
+    // The best score on the section's exercises, right at the first try;
+    // 90 or more opens the next section.
+    var sc = Math.max(Number(x.score) || 0, Number(y.score) || 0);
+    if (sc) out[k].score = sc;
   });
   return out;
 }
