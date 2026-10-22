@@ -79,10 +79,6 @@ for _meta, _secs in topic_courses.COURSE_DEFS:
 import story_course
 for _meta, _secs in story_course.COURSE_DEFS:
     COURSES.append(dict(_meta, modules=[], order=None, sections=_secs))
-# The FSI Russian FAST Course, with its tapes (tools/courses/fast_course.py).
-import fast_course
-for _meta, _secs in fast_course.COURSE_DEFS:
-    COURSES.append(dict(_meta, modules=[], order=None, sections=_secs))
 for _c in COURSES:
     if _c["id"] == "time":
         _c["sections"] = case_courses.TIME_MORE
@@ -262,7 +258,7 @@ except ImportError:
 LEVELS = {
     "cases": "Beginner", "case-nom": "Beginner", "case-gen": "Beginner", "case-dat": "Beginner",
     "case-acc": "Beginner", "case-ins": "Beginner", "case-prp": "Beginner",
-    "verbs": "Beginner", "count": "Beginner", "tables": "Beginner", "fast": "Beginner",
+    "verbs": "Beginner", "count": "Beginner", "tables": "Beginner",
     "aspect": "Intermediate", "forms": "Intermediate", "compare": "Intermediate", "pronouns": "Intermediate",
     "complex": "Intermediate", "inter2": "Intermediate", "numerals": "Intermediate", "tenses": "Intermediate",
     "adv3": "Advanced", "stories": "Advanced", "gramterms": "Advanced",
