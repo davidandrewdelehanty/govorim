@@ -30,7 +30,7 @@ import path from "node:path";
 import {
   S3Client, GetObjectCommand, PutObjectCommand
 } from "@aws-sdk/client-s3";
-import { listAccounts, userIdFor, r2GetJson as authGetJson, userDataKey as authDataKey, isAdminEmail } from "../lib/auth.js";
+import { listAccounts, userIdFor, r2GetJson as authGetJson, userDataKey as authDataKey, isAdminEmail, coursesCompleted } from "../lib/auth.js";
 import { requireUser, currentUser, bumpDaily, bumpDailyBook, touchSeen, findAccount,
   updateBoardRow, readBoards, learnedCount, finishedCount, wordsRead, wordsReadEn, cardsReviewed,
   songsCount, drillsDone, uidForUsername, isHiddenUid } from "../lib/auth.js";
@@ -935,6 +935,7 @@ export default async function handler(req, res) {
         try { existing = await r2Get(userId, "courses"); } catch (e) {}
         const merged = mergeCourseProg((existing && typeof existing === "object" && !Array.isArray(existing)) ? existing : {}, inc);
         await r2Put(userId, "courses", merged);
+        await noteBoard(user, { courses: coursesCompleted(merged) });
         return res.status(200).json({ ok: true });
       }
 

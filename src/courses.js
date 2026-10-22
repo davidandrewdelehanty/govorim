@@ -83,6 +83,25 @@ export function courseState(course, prog) {
   return { done: done, of: secs.length, at: done === secs.length ? at : 0 };
 }
 
+// How many courses a reader has completed — by the rule the course badge
+// uses: the exam passed where the course has one, every section finished
+// where it has not. Courses to repeat as often as you like do not count.
+export function coursesDone(outline, prog) {
+  var n = 0;
+  (outline || []).forEach(function (c) {
+    if (c.repeat) return;
+    var exam = (c.sections || []).filter(function (s) { return s.exam; })[0];
+    if (exam) {
+      var xr = (prog || {})[c.id + "/" + exam.id];
+      if (xr && xr.done) n++;
+    } else {
+      var st = courseState(c, prog);
+      if (st.of > 0 && st.done === st.of) n++;
+    }
+  });
+  return n;
+}
+
 // A practice set that follows a lesson ("<lesson>-practice", "-practice-2" …).
 export function isPractice(id) { return /-practice(-\d+)?$/.test(String(id || "")); }
 

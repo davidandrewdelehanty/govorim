@@ -5249,6 +5249,28 @@ export default function App() {
   // these cards is scheduled or saved — they are not the vocabulary.
   var [termDrill, setTermDrill]       = useState(null);
   var reviewExit = function() { setQuizMode(false); setQuizMenu(false); setRv(null); setMatchGame(null); setTermDrill(null); };
+  // The grammar terms as cards: the term, against its English and its
+  // definition. Dealt by a course module (its own terms) and by the
+  // Vocabulary tab's "Grammar terms" (the whole list, from the course's
+  // first page).
+  var termCardsOf = function(terms) {
+    var cards = [];
+    (terms || []).forEach(function(r){
+      var ru = String(r.ru || "").trim(), en = String(r.en || "").trim(), df = String(r.def || "").trim();
+      if (ru && en) cards.push({ _key: "gt:" + ru, ru: ru, en: df ? en + " \u2014 " + df : en, pos: "grammar term" });
+    });
+    return cards;
+  };
+  var [termsAll, setTermsAll] = useState(null);     // the course's full list, once fetched
+  var startTermsFromVocab = function() {
+    var go = function(terms){ setRv(null); setMatchGame(null); setQuizMode(false); setTermDrill({ key: "", where: "vocab", cards: termCardsOf(terms) }); setQuizMenu(true); };
+    if (termsAll) { go(termsAll); return; }
+    fetch("/courses/gramterms/gt0-all.json").then(function(r){ return r.ok ? r.json() : null; }).then(function(j){
+      var t = (j && j.terms) || [];
+      if (!t.length) { alert("The grammar terms could not be loaded just now."); return; }
+      setTermsAll(t); go(t);
+    }).catch(function(){ alert("The grammar terms could not be loaded just now."); });
+  };
   // The match game: four words, four meanings, drag each meaning onto its
   // word; a round counts only when all four sit right at once.
   var [matchGame, setMatchGame]       = useState(null);   // { pool, round, order, map, status, wrongIdx, rounds, won } | null
@@ -6622,7 +6644,7 @@ export default function App() {
   // kept, and 90 or more opens the next section.
   var DRILL_PASS = 90;
   var noteDrill = function(key, pct) {
-    if (!key || !(pct >= 0)) return;
+    if (!key || key.indexOf("/") < 0 || !(pct >= 0)) return;
     setCourseProg(function(m){
       var rec = Object.assign({ right: {}, first: {} }, m[key] || {});
       if ((Number(rec.drill) || 0) >= pct) return m;
@@ -15713,7 +15735,7 @@ quizMode ? (
                         <div className="rv-done-btns">
                           {!rv.finished && <button className="btn-p" style={{maxWidth:220}} onClick={rvStudyMore}>Study more</button>}
                           {rv.finished && !rv.done && <button className="btn-p" style={{maxWidth:220}} onClick={function(){ setRv(function(s){ return s ? Object.assign({}, s, { finished: false }) : s; }); }}>Keep reviewing</button>}
-                          <button className="btn-g" style={{maxWidth:220}} onClick={reviewExit}>{termDrill ? "Back to the lesson" : "Back to vocab list"}</button>
+                          <button className="btn-g" style={{maxWidth:220}} onClick={reviewExit}>{termDrill && termDrill.where !== "vocab" ? "Back to the lesson" : "Back to vocab list"}</button>
                         </div>
                       </div>
                     );
@@ -15927,14 +15949,13 @@ quizMode ? (
               // ── Review choice menu (Multiple Choice vs Chat Practice) ──
               <>
                 <div className="phdr">
-                  <span className="pti">{termDrill ? "Review the terms" : "Review vocabulary"}</span>
-                  <button className="ab" onClick={function(){ setQuizMenu(false); setTermDrill(null); }}>{termDrill ? "← Back to the lesson" : "← Back to list"}</button>
+                  <span className="pti">{termDrill ? "Grammar terms" : "Review vocabulary"}</span>
+                  <button className="ab" onClick={function(){ if (termDrill && termDrill.where === "vocab") { setTermDrill(null); return; } setQuizMenu(false); setTermDrill(null); }}>{termDrill ? (termDrill.where === "vocab" ? "← Back" : "← Back to the lesson") : "← Back to list"}</button>
                 </div>
                 <div style={{padding:"24px 16px",display:"flex",flexDirection:"column",gap:14,maxWidth:560,margin:"0 auto"}}>
                   <p style={{color:"rgba(0,0,0,.65)",fontSize:14,textAlign:"center",margin:"0 0 8px"}}>
                     {termDrill
-                      ? (function(){ var t = termDrill.cards.filter(function(c){ return c.pos === "abbreviation"; }).length;
-                                     return (termDrill.cards.length - t) + " grammar terms and " + t + " dictionary abbreviations, each asked for its meaning. Nothing here is scheduled or saved \u2014 it is practice, as often as you like."; })()
+                      ? (termDrill.cards.length + " grammar terms \u2014 the words a Russian grammar, dictionary or teacher uses \u2014 each against its English and its definition. Nothing here is scheduled or saved \u2014 it is practice, as often as you like.")
                       : dueNow > 0
                       ? (dueNow + " of your " + vocab.length + " saved words " + (dueNow === 1 ? "is" : "are") + " due for review.")
                       : ("Nothing is due right now \u2014 a session will drill your " + Math.min(8, vocab.length) + " least-secure words.")}
@@ -15948,7 +15969,7 @@ quizMode ? (
                       
                       <span style={{fontSize:18,fontWeight:600,color:"#000",fontFamily:"'Old Standard TT',serif"}}>Multiple Choice Quiz</span>
                     </div>
-                    <p style={{fontSize:13,color:"rgba(0,0,0,.55)",margin:0,lineHeight:1.5}}>{termDrill ? "Quick recall test. Each question shows a term, or an abbreviation, with four meanings to choose from; a miss comes back a minute later." : "Quick recall test. Each question shows a Russian word with 4 English meaning options (from same-pos vocabulary)."}</p>
+                    <p style={{fontSize:13,color:"rgba(0,0,0,.55)",margin:0,lineHeight:1.5}}>{termDrill ? "Quick recall test. Each question shows a term with four definitions to choose from; a miss comes back a minute later." : "Quick recall test. Each question shows a Russian word with 4 English meaning options (from same-pos vocabulary)."}</p>
                   </button>
                   <button onClick={function(){ startMatch(termDrill ? termDrill.cards : null); }}
                     style={{background:"rgba(200,162,118,.08)",border:"1px solid rgba(200,162,118,.3)",color:"#000",padding:"18px 20px",borderRadius:12,cursor:"pointer",textAlign:"left",fontFamily:"'Literata',serif",transition:"all .15s"}}
@@ -15957,8 +15978,19 @@ quizMode ? (
                     <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:6}}>
                       <span style={{fontSize:18,fontWeight:600,color:"#000",fontFamily:"'Old Standard TT',serif"}}>Match</span>
                     </div>
-                    <p style={{fontSize:13,color:"rgba(0,0,0,.55)",margin:0,lineHeight:1.5}}>{termDrill ? "Four terms on the left, their meanings on the right. Drag each meaning onto its term — the round counts when all four are right at once." : "Four words on the left, their meanings on the right. Drag each meaning onto its word — the round counts when all four are right at once."}</p>
+                    <p style={{fontSize:13,color:"rgba(0,0,0,.55)",margin:0,lineHeight:1.5}}>{termDrill ? "Four terms on the left, their definitions on the right. Drag each definition onto its term — the round counts when all four are right at once." : "Four words on the left, their meanings on the right. Drag each meaning onto its word — the round counts when all four are right at once."}</p>
                   </button>
+                  {!termDrill && (
+                    <button onClick={startTermsFromVocab}
+                      style={{background:"rgba(200,162,118,.08)",border:"1px solid rgba(200,162,118,.3)",color:"#000",padding:"18px 20px",borderRadius:12,cursor:"pointer",textAlign:"left",fontFamily:"'Literata',serif",transition:"all .15s"}}
+                      onMouseOver={function(e){ e.currentTarget.style.background = "rgba(200,162,118,.14)"; }}
+                      onMouseOut={function(e){ e.currentTarget.style.background = "rgba(200,162,118,.08)"; }}>
+                      <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:6}}>
+                        <span style={{fontSize:18,fontWeight:600,color:"#000",fontFamily:"'Old Standard TT',serif"}}>Grammar terms</span>
+                      </div>
+                      <p style={{fontSize:13,color:"rgba(0,0,0,.55)",margin:0,lineHeight:1.5}}>The words a Russian grammar, dictionary or teacher uses \u2014 падеж, глагол, совершенный вид \u2014 against their definitions, as a quiz or the match game. Nothing is scheduled or saved.</p>
+                    </button>
+                  )}
                 </div>
               </>
             ) : null
@@ -22742,7 +22774,7 @@ quizMode ? (
               <p className="sde">
                 {targetLang === "en"
                   ? "The readers who have read the most in English. Switch the menu at the top to Study Russian for the Russian boards."
-                  : "The readers who have reviewed the most cards, read the most words, answered the most case drills correctly and listened to the most songs."}
+                  : "The readers who have reviewed the most cards, read the most words, answered the most case drills correctly, listened to the most songs and completed the most courses."}
               </p>
               {me && !me.username && (
                 <div className="lb-join">
@@ -22764,6 +22796,7 @@ quizMode ? (
                     { key: "words", h: "Words read", sub: "Russian words read, counted as you go — a short story counts what it is, and so does a novel", unit: "words" },
                     { key: "drills", h: "Case drills right", sub: "every right answer in a case drill, from any book", unit: "right answers" },
                     { key: "songs", h: "Songs listened to", sub: "different songs played in the Music tab — each song counts once", unit: "songs" },
+                    { key: "courses", h: "Courses completed", sub: "courses finished in the Courses tab — the exam passed, or every section done where there is no exam", unit: "courses" },
                   ]).map(function(col){
                     var rows = boards[col.key] || [];
                     return (
@@ -26370,7 +26403,7 @@ quizMode ? (
           // This tab shows only the words of the language being studied.
           return (
           <div className="panel">
-            {(quizMode || matchGame || quizMenu) && !termDrill ? reviewPanel(vocab, learned) : (
+            {(quizMode || matchGame || quizMenu) && (!termDrill || termDrill.where === "vocab") ? reviewPanel(vocab, learned) : (
               // ── Normal vocab list view ─────────────────────────────────
               <>
                 {expOpen && (function(){
@@ -27486,15 +27519,7 @@ quizMode ? (
                 // terms (`terms` in its JSON — the whole list on the first page,
                 // the lesson's own on each lesson), with their English, and the
                 // dictionary's abbreviation where there is one.
-                var termCards = function(d) {
-                  var cards = [];
-                  ((d && d.terms) || []).forEach(function(r){
-                    var ru = String(r.ru || "").trim(), en = String(r.en || "").trim(), ab = String(r.abbr || "").trim(), df = String(r.def || "").trim();
-                    if (ru && en) cards.push({ _key: "gt:" + ru, ru: ru, en: df ? en + " \u2014 " + df : en, pos: "grammar term" });
-                    if (ab && ru) cards.push({ _key: "ga:" + ab, ru: ab, en: ru + " \u2014 " + en, pos: "abbreviation" });
-                  });
-                  return cards;
-                };
+                var termCards = function(d) { return termCardsOf((d && d.terms) || []); };
                 var drillsTerms = course.id === "gramterms" && !!(data && data !== "error" && data.terms);
                 // Every source the module draws on, once: the citation notes of the
                 // lesson and the citation prompts of the exercises, by site.
@@ -27847,8 +27872,8 @@ quizMode ? (
                                 onClick={function(){ setRv(null); setMatchGame(null); setQuizMode(false); setTermDrill({ key: key, cards: termCards(data) }); setQuizMenu(true); }}>Review Terms</button>
                               <span className="crs-review-hint">
                                 {sec.id === "gt0-all"
-                                  ? "A multiple-choice quiz or the match game over every term: terms against their definitions, then abbreviations against their terms."
-                                  : "A multiple-choice quiz or the match game over this module\u2019s terms: terms against their definitions, then abbreviations against their terms."}
+                                  ? "A multiple-choice quiz or the match game over every term, against its definition."
+                                  : "A multiple-choice quiz or the match game over this module\u2019s terms, against their definitions."}
                                 {gates ? " " + DRILL_PASS + "% or more opens the next module." : ""}
                                 {best ? <b className={"crs-review-best" + (best >= DRILL_PASS ? " ok" : "")}> Best: {best}%{best >= DRILL_PASS && gates ? " \u2713" : ""}</b> : null}
                               </span>

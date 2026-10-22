@@ -394,8 +394,7 @@ if SRC and M:
         P(u"The words a Russian grammar, a dictionary or a teacher uses for the things this site teaches — the "
           u"vocabulary you need to ask a question about Russian in Russian. Each lesson after this page takes a "
           u"group of them: the term, its English, and a one-line English definition from the dictionary; then "
-          u"the terms to write from their English, the definitions to match to their terms, and the terms to match "
-          u"to their English. Review Terms, above, drills the whole list."),
+          u"which term each definition is of. Review Terms drills the whole list \u2014 here, and from the Vocabulary tab."),
         T([u"Term", u"English", u"As the OpenCorpora dictionary abbreviates it"], rows),
         NOTE(u"Definitions: the English Wiktionary, and for a few terms the English Wikipedia (both CC BY-SA 4.0), "
              u"the page named with each. Abbreviations: the OpenCorpora dictionary (CC BY-SA 4.0), as pymorphy3 prints them."),
@@ -410,13 +409,10 @@ if SRC and M:
             if d:
                 blocks.append(P(d))
                 blocks.append(NOTE(cite))
-            vocab.append(dict(FILL(u"___ (%s)" % TERMS[t]["en"], [t] + list(TERMS[t].get("also") or []),
-                                   why=(u"%s — %s" % (d, cite)) if d else u"", prompt=u"Write the Russian term."),
-                              context=u"The term in English is in the brackets. Type it in Russian.", k=t, keep=True))
-        # Comprehension: which term does this definition describe (the term
-        # itself blanked out of Wikipedia's sentence, the group's terms to
-        # choose from), and the terms matched to their English, a handful at
-        # a time, by dragging or tapping.
+            vocab.append(t)
+        # The exercises: which term does this definition describe — the
+        # definition with the term's own name blanked, the group's terms to
+        # choose from.
         rng = random.Random(g["id"])
         mcs = []
         for t in g["terms"]:
@@ -431,21 +427,7 @@ if SRC and M:
             mcs.append(dict(MC(u"Which term is this the definition of?", opts, opts.index(t),
                                why=u"%s \u2014 %s" % (d, cite), ru=mask), k=t, keep=True,
                             context=u"The definition is the dictionary's, in English, with the term's own name left out."))
-        terms = list(g["terms"])
-        rng.shuffle(terms)
-        matches = []
-        for i in range(0, len(terms), 5):
-            chunk = terms[i:i + 5]
-            if len(chunk) < 3:
-                chunk = terms[max(0, i - (5 - len(chunk))):i + 5][-5:]
-            if len(chunk) >= 3:
-                matches.append({"type": "match", "q": u"Match each term to its English. Drag a term onto its meaning, or tap one and then the other.",
-                                "pairs": [[t, TERMS[t]["en"]] for t in chunk], "keep": True,
-                                "context": u"The terms of this lesson and their English."})
-                if len(terms) - (i + 5) < 3:
-                    break
-        A(dict(SEC(g["id"], g["title"], blocks + [NOTE(u"Exercises: the terms themselves, written from their English; "
-                                                        u"then which term a definition describes; then the terms matched "
-                                                        u"to their English. Review Terms, above, drills this lesson's terms.")],
-                   vocab + mcs + matches, sub="%d terms" % len(vocab)),
+        A(dict(SEC(g["id"], g["title"], blocks + [NOTE(u"Exercises: which term each definition is of. Review Terms, at the "
+                                                        u"foot of the page, drills this module's terms.")],
+                   mcs, sub="%d terms" % len(vocab)),
                terms=[card(t) for t in g["terms"]]))

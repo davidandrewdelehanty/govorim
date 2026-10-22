@@ -5633,47 +5633,47 @@ export default [
    {
     "id": "gt1-field",
     "title": "Grammar, morphology, syntax",
-    "n": 15
+    "n": 7
    },
    {
     "id": "gt2-parts",
     "title": "The parts of speech",
-    "n": 29
+    "n": 13
    },
    {
     "id": "gt3-cases",
     "title": "The cases",
-    "n": 18
+    "n": 8
    },
    {
     "id": "gt4-noun",
     "title": "Gender, number, animacy; the parts of a word",
-    "n": 29
+    "n": 13
    },
    {
     "id": "gt5-verb",
     "title": "The verb: aspect, tense, person, mood, voice",
-    "n": 42
+    "n": 19
    },
    {
     "id": "gt6-adj",
     "title": "The adjective: degrees of comparison, the short form",
-    "n": 9
+    "n": 4
    },
    {
     "id": "gt7-sentence",
     "title": "The sentence and its parts",
-    "n": 15
+    "n": 7
    },
    {
     "id": "gt8-letters",
     "title": "Sounds and letters",
-    "n": 15
+    "n": 7
    },
    {
     "id": "exam",
     "title": "Exam",
-    "n": 40,
+    "n": 39,
     "exam": true
    }
   ],
