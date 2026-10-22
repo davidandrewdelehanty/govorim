@@ -26602,7 +26602,8 @@ export default function App() {
                     // A citation that names its site and address — «Википедия,
                     // «Грамматика» (https://…, CC BY-SA 4.0)» — collapses to the
                     // site's name, linked; the licence travels in the link's title.
-                    var cite = /((?:Википедия|Викигид|Викитека|Викисловарь|Викиновости|Wikipedia|Tatoeba)[^()\n]{0,160}?)\((https?:\/\/[^\s)]+)([^)]*)\)/g;
+                    // The title may carry brackets of its own — «Морфология (лингвистика)» — so one level of them is allowed before the address.
+                    var cite = /((?:Википедия|Викигид|Викитека|Викисловарь|Викиновости|Wikipedia|Tatoeba)(?:[^()\n]|\([^()\n]*\)){0,160}?)\((https?:\/\/[^\s)]+)([^)]*)\)/g;
                     var pieces = [], last = 0, m;
                     while ((m = cite.exec(String(x)))) {
                       pieces.push(String(x).slice(last, m.index));

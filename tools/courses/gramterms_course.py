@@ -273,14 +273,72 @@ def find_term(s, term, strict=False):
     return None
 
 
+# A parenthesis that gives the word's origin or pronunciation — Greek,
+# Latin, an IPA transcription — rather than its meaning.
+ETYM = re.compile(r"\s*\((?:[^()]*\([^()]*\))*[^()]*\)")
+
+
+def is_etym(par):
+    inner = par.strip()[1:-1]
+    return bool(re.search(u"греч|лат[.]|латин|фр[.]|нем[.]|англ[.]|ср[.]-век|[\\[]|[A-Za-z\u0370-\u03ff\u1f00-\u1fff]", inner)) \
+        or inner.startswith(u"от ")
+
+
+def concise(text):
+    """The article's first statement as a short definition: the opening
+    paragraph (with the list it introduces, when it ends in a colon), its
+    etymology in brackets taken out, the first sentence only."""
+    lines = [l.strip() for l in text.split("\n")]
+    lines = [l for l in lines if l and not l.startswith(("=", "*", "•"))]
+    if not lines:
+        return None
+    # the article's title line, when the dump starts with it
+    if len(lines) > 1 and len(lines[0]) < 40 and not lines[0].endswith((".", ":")):
+        lines = lines[1:]
+    first = lines[0]
+    if len(first) >= 2 and first.endswith(":"):
+        items = []
+        for l in lines[1:6]:
+            items.append(l.rstrip(";.").strip())
+            if l.endswith("."):
+                break
+        first = first + " " + u"; ".join(items) + "."
+    # etymologies, inside and outside the subject
+    prev = None
+    while prev != first:
+        prev = first
+        first = ETYM.sub(lambda m: "" if is_etym(m.group(0)) else m.group(0), first)
+    first = re.sub(r"\s+", " ", first).replace(" ,", ",").strip()
+    # the first sentence — a full stop or question mark inside «…» does not end it
+    for m in re.finditer(r"(?<=[.!?»])\s+(?=[А-ЯЁ«])", first):
+        head = first[:m.start()]
+        if head.count(u"«") == head.count(u"»") and head.count("(") == head.count(")"):
+            first = head
+            break
+    # a long one cut at a clause, so it reads as a definition and not an article
+    if len(first) > 230:
+        k = max(first.rfind(u"; ", 0, 230), first.rfind(u", ", 0, 230))
+        if k > 90:
+            cut = first[:k].rstrip(",;")
+            if cut.count("(") > cut.count(")"):
+                cut = cut[:cut.rfind("(")].rstrip(" ,;")
+            first = cut + u"…"
+    return first or None
+
+
 def definition(term):
-    """The opening sentence of the term's article, and the citation."""
+    """The term's definition — the opening of its article, made concise — and the citation."""
     key = TERMS[term]["articles"][0]
     a = SRC["articles"].get(key) if SRC else None
     if not a:
         return None, None
-    first = next((s for s in sentences(a["text"]) if len(s) > 30), None)
-    cite = u"Википедия, «%s» (%s, CC BY-SA 4.0)" % (a["title"], a["url"])
+    first = concise(a["text"])
+    if not first or len(first) < 30:
+        first = next((s for s in sentences(a["text"]) if len(s) > 30), None)
+    # the address with its brackets encoded, so the app's citation link can
+    # take it apart: «Морфология (лингвистика)» has them in its title too
+    url = a["url"].replace("(", "%28").replace(")", "%29")
+    cite = u"Википедия, «%s» (%s, CC BY-SA 4.0)" % (a["title"], url)
     return first, cite
 
 

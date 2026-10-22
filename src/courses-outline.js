@@ -29,21 +29,21 @@ export default [
    {
     "id": "ts-instr",
     "title": "In the morning, at night, in summer",
-    "n": 12,
+    "n": 11,
     "stream": true,
     "finite": true
    },
    {
     "id": "ts-kazhdyy",
     "title": "каждый + accusative: Every day, every Wednesday",
-    "n": 15,
+    "n": 14,
     "stream": true,
     "finite": true
    },
    {
     "id": "ts-ves",
     "title": "весь + accusative: All day, all week",
-    "n": 12,
+    "n": 13,
     "stream": true,
     "finite": true
    },
@@ -71,7 +71,7 @@ export default [
    {
     "id": "ts-date",
     "title": "On the fifth of May",
-    "n": 21,
+    "n": 10,
     "stream": true,
     "finite": true
    },
