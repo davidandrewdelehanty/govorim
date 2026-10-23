@@ -5424,7 +5424,7 @@ export default function App() {
   // admin panel's music sheet, which has to name the ids it is counting.
   var [musicWanted, setMusicWanted] = useState(false);
   useEffect(function() {
-    if ((tab !== "music" && !musicWanted) || musicData) return;
+    if (!musicWanted || musicData) return;
     var cancelled = false;
     fetch(MUSIC_URL)
       .then(function(r){ return r.ok ? r.json() : null; })
@@ -5443,7 +5443,14 @@ export default function App() {
       })
       .catch(function(){});
     return function(){ cancelled = true; };
-  }, [tab, musicData, musicWanted]);
+  }, [musicData, musicWanted]);
+  // The library's Music shelf, from anywhere.
+  var openMusicShelf = function() {
+    setMusicWanted(true);
+    setMode("read"); setStarted(false); setLview("read"); stopTTS();
+    setLibAuthor(""); setLibCat("__music__");
+    setTab("chat");
+  };
   // Lyrics rendering: every Russian word clickable for a definition, line
   // breaks preserved, stanzas separated by wider gaps.
   var renderLyrics = function(text, lyricWhere) {
@@ -12265,6 +12272,9 @@ export default function App() {
   // and number in a tense (or a gender in the past). The answer is checked
   // against every form Wiktionary lists for that cell, stress marks and ё
   // aside. The Case drills from the books sit under the same menu.
+  // Which page of "Vocab and Exercises" is open: the words, or the Grammar
+  // reference and its verb practice (it was a tab of its own).
+  var [vocabSec, setVocabSec] = useState("words");    // "words" | "grammar"
   var [vocabDrill, setVocabDrill] = useState(null);   // "decl" | "conj" | "cases" | null
   var [fd, setFd] = useState(null);                   // { kind, q, input, checked, right, n, nRight, busy, err }
   var fdSeq = useRef(0);
@@ -15605,6 +15615,8 @@ export default function App() {
   // English mode has no case drills: leave that tab if it is open.
   useEffect(function(){
     if (targetLang === "en" && (tab === "drills" || tab === "music" || tab === "grammar" || tab === "courses")) setTab("chat");
+    if (targetLang === "en" && vocabSec !== "words") setVocabSec("words");
+    if (targetLang === "en" && libCat === "__music__") setLibCat("");
   }, [targetLang, tab]);
 
   var renderBubble = function(text) {
@@ -15924,6 +15936,107 @@ export default function App() {
               </div>
             </>
           );
+  };
+
+  // The Music shelf of the library (it was a tab of its own): the artists,
+  // one artist's songs, or a song — its video and its lyrics, every word
+  // definable.
+  var musicPanel = function() {
+              var artist = (musicData && musicArtist != null) ? musicData[musicArtist] : null;
+              var song = (artist && musicSong != null) ? artist.songs[musicSong] : null;
+
+              /* ── Song view: title, definable lyrics, video pinned below ── */
+              if (song) {
+                return (
+                  <div className="music-shelf">
+                    <div style={{padding:"12px 0"}}>
+                      <div style={{maxWidth:640,margin:"0 auto"}}>
+                        <button className="btn-g" style={{padding:"5px 12px",fontSize:13,marginBottom:14}}
+                          onClick={function(){ setMusicSong(null); setPopup(null); }}>← {artist.artist}</button>
+                        <div style={{maxWidth:560,margin:"0 0 20px"}}>
+                          <div style={{position:"relative",width:"100%",paddingBottom:"56.25%",height:0}}>
+                            <iframe
+                              src={"https://www.youtube.com/embed/" + song.youtube}
+                              title={song.title}
+                              style={{position:"absolute",inset:0,width:"100%",height:"100%",border:"none",borderRadius:10}}
+                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                              allowFullScreen />
+                          </div>
+                        </div>
+                        <div style={{fontFamily:"'Literata',serif",fontSize:15,color:"rgba(42,31,20,.55)",letterSpacing:.5}}>{artist.artist}</div>
+                        <h1 style={{fontFamily:"'Old Standard TT',serif",fontSize:34,color:"#000",fontWeight:700,margin:"2px 0 18px",lineHeight:1.15}}>{song.title}</h1>
+                        {song.performer && (
+                          <div style={{fontFamily:"'IBM Plex Sans',sans-serif",fontSize:13,color:"rgba(0,0,0,.5)",margin:"-12px 0 16px"}}>
+                            Performed in this video by {song.performer}
+                          </div>
+                        )}
+                        <div style={{fontFamily:"'Literata',serif",fontSize:19,color:"#1c1610"}}>
+                          {renderLyrics(song.lyrics, artist.artist + " · " + song.title)}
+                        </div>
+                        <div style={{height:16}}/>
+                      </div>
+                    </div>
+                  </div>
+                );
+              }
+
+              /* ── Song list for an artist ── */
+              if (artist) {
+                return (
+                  <div className="music-shelf">
+                    <h1 className="sti">{artist.artist}</h1>
+                    <div style={{width:"100%",maxWidth:520,display:"flex",flexDirection:"column",gap:10}}>
+                      {artist.songs.map(function(sg, i2){
+                        return (
+                          <button key={i2} className="btn-p" style={{textAlign:"left",padding:"14px 18px"}}
+                            onClick={function(){ setMusicSong(i2); recordSongOpen(artist.artist, sg); }}>
+                            <div style={{fontSize:17}}>{sg.title}</div>
+                          </button>
+                        );
+                      })}
+                      <button className="btn-g" onClick={function(){ setMusicArtist(null); }}>← Артисты</button>
+                    </div>
+                  </div>
+                );
+              }
+
+              /* ── Artist list ── */
+              return (
+                <div className="music-shelf">
+                  <p className="sde">Учите русский через песни — каждое слово можно нажать.</p>
+                  <div style={{width:"100%",maxWidth:520,display:"flex",flexDirection:"column",gap:10}}>
+                    {musicData === null && <p className="sde">Loading…</p>}
+                    {(musicData || []).map(function(ar, i2){
+                      return (
+                        <button key={i2} className="btn-p" style={{textAlign:"left",padding:"16px 20px"}}
+                          onClick={function(){ setMusicArtist(i2); setMusicSong(null); }}>
+                          <div style={{fontSize:19}}>{ar.artist}</div>
+                          <div style={{fontSize:12,opacity:.8,fontFamily:"'Literata',serif",fontStyle:"italic"}}>{ar.songs.length} {ar.songs.length===1?"песня":"песни"}</div>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              );
+  };
+
+  // A review, a game or a drill is open on the Vocab tab.
+  var vocabReviewing = !!((quizMode || matchGame || quizMenu || vocabDrill) && (!termDrill || termDrill.where === "vocab"));
+  // The two pages of "Vocab and Exercises": the words, and Grammar.
+  var vocabSecTabs = function() {
+    if (targetLang === "en") return null;
+    var one = function(key, label) {
+      return (
+        <button type="button" role="tab" aria-selected={vocabSec === key} className={"fq-tab" + (vocabSec === key ? " on" : "")}
+          onClick={function(){ setVocabSec(key); if (key === "grammar") { getVerbIdx(); loadExamples(); } }}>{label}</button>
+      );
+    };
+    return (
+      <div className="fq-tabs vs-tabs" role="tablist">
+        {one("words", "My words")}
+        {one("grammar", "Grammar")}
+      </div>
+    );
   };
 
   // The review drill — the menu, the Anki-style session and the match
@@ -18105,6 +18218,9 @@ quizMode ? (
         .cd-open:hover{border-bottom-color:var(--rubric)}
         .cd-next{display:block;margin:22px auto 0;max-width:260px}
         .cd-done{text-align:center;padding:24px 0}
+        .vs-tabs{margin:0 0 14px}
+        .music-shelf{width:100%;display:flex;flex-direction:column;align-items:center;gap:14px;padding:6px 0 40px}
+        .music-shelf>div{width:100%}
         .fd-wrap{max-width:680px;margin:0 auto;padding:18px 16px 32px}
         .fd-lead{font-family:var(--serif);font-size:14px;color:var(--ink-2);line-height:1.55;text-align:center;margin:0 0 6px}
         .fd-word{font-weight:600}
@@ -22846,16 +22962,13 @@ quizMode ? (
               short to begin with — they sit beside the name now and the page
               gets the height back. */}
           <div className="tabs">
-            {["my","chat","courses","ranked","leaders","vocab","quotes","grammar","forum","music"].filter(function(t){
+            {["my","chat","courses","ranked","leaders","vocab","quotes","forum"].filter(function(t){
               if (t === "forum") return FORUM_ENABLED;
-              // Grammar: the verb lists, for Russian. (The older reference
-              // pages under it stay behind GRAMMAR_ENABLED.)
-              if (t === "grammar") return targetLang !== "en";
+              // (Grammar is a page of the Vocab tab now; Music a shelf of the
+              // library.)
               if (t === "courses") return targetLang !== "en" && COURSE_OUTLINE.length > 0;
               // (The Case drills live under the Vocab tab's review menu, with
               // the declension and conjugation practice.)
-              // The Music tab is Russian songs: not in English mode either.
-              if (targetLang === "en" && t === "music") return false;
               return true;
             }).map(function(t){
               return (
@@ -22880,14 +22993,13 @@ quizMode ? (
                     stopTTS();
                   }
                   if (t === "leaders") { loadBoards(); stopTTS(); }
-                  if (t === "grammar") { getVerbIdx(); loadExamples(); }
+                  if (t === "vocab" && vocabSec === "grammar") { getVerbIdx(); loadExamples(); }
                   setTab(t);
                 }}>
-                  {t==="my"?"My " + SITE_NAME_LATIN:t==="chat"?"Reading":t==="ranked"?"Most popular":t==="leaders"?"Leaderboard":t==="vocab"?"Vocab":t==="grammar"?"Grammar":t==="courses"?"Courses":t==="forum"?"Forum":t==="quotes"?"Quotes":t==="drills"?"Case drills":"Music"}
+                  {t==="my"?"My " + SITE_NAME_LATIN:t==="chat"?"Reading":t==="ranked"?"Most popular":t==="leaders"?"Leaderboard":t==="vocab"?"Vocab and Exercises":t==="grammar"?"Grammar":t==="courses"?"Courses":t==="forum"?"Forum":t==="quotes"?"Quotes":t==="drills"?"Case drills":"Music"}
                   {t==="my"&&goalsOverdue.length>0&&<span className="bdg qn" title="Goals still short today">{goalsOverdue.length}</span>}
                   {t==="vocab"&&vocabL.length>0&&<span className="bdg">{vocabL.length}</span>}
                   {t==="quotes"&&quotesUnread>0&&<span className="bdg qn">{quotesUnread > 99 ? "99+" : quotesUnread}</span>}
-                  {t==="grammar"&&GRAMMAR_ENABLED&&tips.length>0&&<span className="bdg g">{tips.length}</span>}
                 </button>
               );
             })}
@@ -23230,7 +23342,7 @@ quizMode ? (
                     {songRows.length > 0 && (
                       <>
                         <div className="lib-reads-h" style={{marginTop:26}}>
-                          <span>And in the Music tab</span>
+                          <span>And on the Music shelf</span>
                           <span className="lib-reads-sub">most played</span>
                         </div>
                         <ol className="lib-reads-list">
@@ -23238,7 +23350,7 @@ quizMode ? (
                             return (
                               <li key={r.id}>
                                 <button type="button" className="lib-read-row"
-                                  onClick={function(){ setTab("music"); }}>
+                                  onClick={openMusicShelf}>
                                   <span className="rk">{i + 1}</span>
                                   <span className="tt">{r.title}<span className="au">{r.artist}</span></span>
                                 </button>
@@ -23260,89 +23372,6 @@ quizMode ? (
           </div>
         )}
 
-        {tab==="music" && (
-          <div className="main">
-            {(function(){
-              var artist = (musicData && musicArtist != null) ? musicData[musicArtist] : null;
-              var song = (artist && musicSong != null) ? artist.songs[musicSong] : null;
-
-              /* ── Song view: title, definable lyrics, video pinned below ── */
-              if (song) {
-                return (
-                  <div style={{flex:1,display:"flex",flexDirection:"column",minHeight:0}}>
-                    <div style={{flex:1,overflowY:"auto",padding:"22px 20px 12px"}}>
-                      <div style={{maxWidth:640,margin:"0 auto"}}>
-                        <button className="btn-g" style={{padding:"5px 12px",fontSize:13,marginBottom:14}}
-                          onClick={function(){ setMusicSong(null); setPopup(null); }}>← {artist.artist}</button>
-                        <div style={{maxWidth:560,margin:"0 0 20px"}}>
-                          <div style={{position:"relative",width:"100%",paddingBottom:"56.25%",height:0}}>
-                            <iframe
-                              src={"https://www.youtube.com/embed/" + song.youtube}
-                              title={song.title}
-                              style={{position:"absolute",inset:0,width:"100%",height:"100%",border:"none",borderRadius:10}}
-                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                              allowFullScreen />
-                          </div>
-                        </div>
-                        <div style={{fontFamily:"'Literata',serif",fontSize:15,color:"rgba(42,31,20,.55)",letterSpacing:.5}}>{artist.artist}</div>
-                        <h1 style={{fontFamily:"'Old Standard TT',serif",fontSize:34,color:"#000",fontWeight:700,margin:"2px 0 18px",lineHeight:1.15}}>{song.title}</h1>
-                        {song.performer && (
-                          <div style={{fontFamily:"'IBM Plex Sans',sans-serif",fontSize:13,color:"rgba(0,0,0,.5)",margin:"-12px 0 16px"}}>
-                            Performed in this video by {song.performer}
-                          </div>
-                        )}
-                        <div style={{fontFamily:"'Literata',serif",fontSize:19,color:"#1c1610"}}>
-                          {renderLyrics(song.lyrics, artist.artist + " · " + song.title)}
-                        </div>
-                        <div style={{height:16}}/>
-                      </div>
-                    </div>
-                  </div>
-                );
-              }
-
-              /* ── Song list for an artist ── */
-              if (artist) {
-                return (
-                  <div className="ss">
-                    <h1 className="sti">{artist.artist}</h1>
-                    <div style={{width:"100%",maxWidth:520,display:"flex",flexDirection:"column",gap:10}}>
-                      {artist.songs.map(function(sg, i2){
-                        return (
-                          <button key={i2} className="btn-p" style={{textAlign:"left",padding:"14px 18px"}}
-                            onClick={function(){ setMusicSong(i2); recordSongOpen(artist.artist, sg); }}>
-                            <div style={{fontSize:17}}>{sg.title}</div>
-                          </button>
-                        );
-                      })}
-                      <button className="btn-g" onClick={function(){ setMusicArtist(null); }}>← Артисты</button>
-                    </div>
-                  </div>
-                );
-              }
-
-              /* ── Artist list ── */
-              return (
-                <div className="ss">
-                  <h1 className="sti">Music</h1>
-                  <p className="sde">Учите русский через песни — каждое слово можно нажать.</p>
-                  <div style={{width:"100%",maxWidth:520,display:"flex",flexDirection:"column",gap:10}}>
-                    {musicData === null && <p className="sde">Loading…</p>}
-                    {(musicData || []).map(function(ar, i2){
-                      return (
-                        <button key={i2} className="btn-p" style={{textAlign:"left",padding:"16px 20px"}}
-                          onClick={function(){ setMusicArtist(i2); setMusicSong(null); }}>
-                          <div style={{fontSize:19}}>{ar.artist}</div>
-                          <div style={{fontSize:12,opacity:.8,fontFamily:"'Literata',serif",fontStyle:"italic"}}>{ar.songs.length} {ar.songs.length===1?"песня":"песни"}</div>
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
-              );
-            })()}
-          </div>
-        )}
 
         {FORUM_ENABLED && tab==="forum" && (
           <div className="main">
@@ -24400,6 +24429,9 @@ quizMode ? (
                         // they touch; the third shows one.
                         var authorView = !searching && !!libAuthor;
                         var inAuthors  = !searching && !libAuthor && libCat === "__authors__";
+                        // The Music shelf: the songs, which are not books.
+                        var inMusic    = !searching && !libAuthor && libCat === "__music__" && targetLang !== "en";
+                        var songCount  = (musicData || []).reduce(function(n, ar){ return n + ((ar.songs || []).length); }, 0);
                         // A search opens every shelf, because the answer could be on
                         // any of them. Picking a length is the same kind of question —
                         // "what have you got that is short?" — and answering it with a
@@ -24411,7 +24443,7 @@ quizMode ? (
                         var openCat = (searching || authorView) ? "__all__"
                                     : ((libLength || libEn) && !libCat) ? "__all__"
                                     : libCat;
-                        var shelvesToRender = inAuthors ? []
+                        var shelvesToRender = (inAuthors || inMusic) ? []
                           : (openCat === "__all__") ? shelves
                           : (openCat && buckets[openCat] && buckets[openCat].length) ? [openCat] : [];
                         return (
@@ -24441,6 +24473,15 @@ quizMode ? (
                                   onClick={function(){ setLibCat(libCat === "__authors__" ? "" : "__authors__"); }}>
                                   <span>Authors</span>
                                   <span className="n">{authorList.length}</span>
+                                </button>
+                              )}
+                              {!authorView && targetLang !== "en" && (
+                                <button type="button"
+                                  className={"lib-cat-chip" + (inMusic ? " on" : "")}
+                                  aria-pressed={inMusic}
+                                  onClick={function(){ setMusicWanted(true); setLibCat(libCat === "__music__" ? "" : "__music__"); }}>
+                                  <span>Music</span>
+                                  {songCount > 0 && <span className="n">{songCount}</span>}
                                 </button>
                               )}
                               {!authorView && shelves.map(function(c){
@@ -24516,8 +24557,10 @@ quizMode ? (
                                 </div>
                               </div>
                             )}
+                            {/* The Music shelf: artists, songs, a song. */}
+                            {inMusic && musicPanel()}
                             {/* Nothing chosen yet: the chips above are the page. */}
-                            {!searching && !inAuthors && !shelvesToRender.length && (
+                            {!searching && !inAuthors && !inMusic && !shelvesToRender.length && (
                               <div className="lib-cat-hint">Pick a shelf above, or open the entire library.</div>
                             )}
                             {/* Preset library, grouped by category, then by audiobook availability */}
@@ -26692,11 +26735,11 @@ quizMode ? (
           </div>
         )}
 
-        {tab==="vocab" && (function(vocab, learned){
+        {tab==="vocab" && (vocabSec !== "grammar" || vocabReviewing) && (function(vocab, learned){
           // This tab shows only the words of the language being studied.
           return (
           <div className="panel">
-            {(quizMode || matchGame || quizMenu || vocabDrill) && (!termDrill || termDrill.where === "vocab") ? reviewPanel(vocab, learned) : (
+            {vocabReviewing ? reviewPanel(vocab, learned) : (
               // ── Normal vocab list view ─────────────────────────────────
               <>
                 {expOpen && (function(){
@@ -26807,6 +26850,7 @@ quizMode ? (
                     </div>
                   );
                 })()}
+                {vocabSecTabs()}
                 <div className="phdr">
                   <span className="pti">My Vocabulary</span>
                   <div style={{display:"flex",gap:8}}>
@@ -28186,10 +28230,11 @@ quizMode ? (
           </div>
         )}
 
-        {tab==="grammar" && (
+        {tab==="vocab" && vocabSec === "grammar" && !vocabReviewing && (
           <>
           <div className="main">
             <div className="ss gv-wrap">
+              {vocabSecTabs()}
               <h1 className="sti">Grammar</h1>
               <div className="fq-tabs" role="tablist">
                 <button type="button" role="tab" aria-selected={gramSec === "freq"} className={"fq-tab" + (gramSec === "freq" ? " on" : "")}
