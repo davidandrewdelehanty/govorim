@@ -1053,6 +1053,9 @@ export default async function handler(req, res) {
           decl: num(g.decl, 1000), conj: num(g.conj, 1000), verbs: num(g.verbs, 1000), numbers: num(g.numbers, 1000),
           // the evening reminder (from when what is short is overdue) and the morning one
           remind: hhmm(g.remind), remindAm: hhmm(g.remindAm),
+          // reminders by email too, and the device's time zone for them
+          emailRemind: !!g.emailRemind,
+          tz: (function (v) { v = String(v || "").slice(0, 64); try { new Intl.DateTimeFormat("en-US", { timeZone: v }); return v; } catch (e) { return ""; } })(g.tz),
           notify: !!g.notify, updatedAt: Number(g.updatedAt) || Date.now(),
         };
         let cur = null;

@@ -6363,7 +6363,7 @@ export default function App() {
   // `remindAm` the morning one. Both go to the reader's devices as push
   // messages when they have turned them on (see the push code below).
   var GOALS_DEFAULT = { words: GOAL_WORDS, cards: GOAL_CARDS, quiz: 0, match: 0, terms: 0, decl: 0, conj: 0, drills: 10, verbs: 0, numbers: 0,
-                        course: 10, sections: 1, remind: "17:00", remindAm: "08:00", notify: false, updatedAt: 0 };
+                        course: 10, sections: 1, remind: "17:00", remindAm: "08:00", notify: false, emailRemind: false, tz: "", updatedAt: 0 };
   var [goals, setGoalsRaw] = useState(GOALS_DEFAULT);
   var goalsLoaded = useRef(false);
   var setGoals = function(patch) {
@@ -6509,6 +6509,13 @@ export default function App() {
       setPushNote("Could not turn reminders on here" + (isIOS && !standalone ? " — on an iPhone the site has to be on the Home Screen first (Share → Add to Home Screen)." : ". Try again in a moment."));
     }
   };
+  // The clock the e-mailed reminder goes by: this device's time zone, in the
+  // goals, refreshed whenever the reminders are on and it has changed.
+  useEffect(function(){
+    if (!goalsLoaded.current || !goals.notify) return;
+    var tz = pushTz();
+    if (tz && goals.tz !== tz) setGoals({ tz: tz });
+  }, [goals.notify, goals.tz]);
   var pushOff = async function() {
     if (!pushReg.current) return;
     setPushState("busy"); setPushNote("");
@@ -27225,6 +27232,12 @@ quizMode ? (
                       </div>
                       {pushNote && <p className="my-note">{pushNote}</p>}
                       {pushState === "on" && <p className="my-note">This device gets a message at the two times above, in its own time zone, when something is set and still to do. Turn the switch on on each device you want them on.</p>}
+                      <label className="my-field my-check"><span>Email them to me too{me && me.email ? " (" + me.email + ")" : ""}</span>
+                        <input type="checkbox" checked={!!goals.emailRemind} disabled={!me} onChange={function(e){
+                          var on = e.target.checked;
+                          setGoals(on ? { emailRemind: true, notify: true, tz: pushTz() } : { emailRemind: false });
+                        }} /></label>
+                      {!me && <p className="my-note">Sign in to have the reminders e-mailed.</p>}
                       <label className="my-field my-check"><span>Tell me in the browser, once a day, while the site is open</span>
                         <input type="checkbox" checked={!!goals.notify} onChange={function(e){
                           var on = e.target.checked;

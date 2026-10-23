@@ -4,9 +4,16 @@
 // Web Push) can have their goals brought to them twice a day, at times they
 // set on the My page — eight in the morning and five in the afternoon unless
 // they change them — even with the site closed. The browser's subscription is
-// kept with the account, one per device, with the device's time zone; a cron
-// (vercel.json) calls ?action=remind every ten minutes, and each reader whose
-// local clock has just passed one of their times gets one message for it.
+// kept with the account, one per device, with the device's time zone; a
+// scheduler calls ?action=remind every ten minutes — an outside one
+// (cron-job.org) with the secret in an Authorization header, since Vercel's
+// own cron runs once a day on the Hobby plan — and each reader whose local
+// clock has just passed one of their times gets one message for it.
+//
+// The same reminder goes by email too, to readers who tick that on the My
+// page — to their own address, nobody else's. VAPID_SUBJECT is only the
+// contact address the push services (Apple, Google, Mozilla) may write to
+// about the sender; it never receives or sends a reminder.
 //
 //   POST /api/push?action=sub      { sub: PushSubscription.toJSON(), tz }   signed in
 //   POST /api/push?action=unsub    { endpoint }                              signed in
@@ -23,8 +30,24 @@
 import crypto from "node:crypto";
 import webpush from "web-push";
 import { requireUser, listAccounts, r2GetJson, r2PutJson, userDataKey } from "../lib/auth.js";
-import { siteName } from "../lib/site.js";
+import { siteName, isPublicSite } from "../lib/site.js";
+import { sendEmail } from "../lib/admin/helpers.js";
 import { goalsShortfall } from "../src/stats.js";
+
+// The reminder can also go by email, to the reader's own address, when they
+// have asked for that on the My page (goals.emailRemind). The time zone for a
+// reader with no push device comes from their goals (goals.tz, set by the
+// page from the device's clock).
+const SITE_URL = isPublicSite() ? "https://samovar.live" : "https://govorim.dev";
+
+function esc(t) { return String(t).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;" }[c]; }); }
+function emailHtml(title, short, site) {
+  return "<div style=\"font-family:Georgia,serif;font-size:16px;color:#1c1610;line-height:1.5\">" +
+    "<p style=\"font-size:19px;margin:0 0 10px\"><b>" + esc(title) + "</b></p>" +
+    "<ul style=\"margin:0 0 16px;padding-left:20px\">" + short.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul>" +
+    "<p><a href=\"" + SITE_URL + "\" style=\"color:#7a2e2e\">Open " + esc(site) + "</a></p>" +
+    "<p style=\"font-size:12px;color:#777\">You asked for these reminders on your My " + esc(site) + " page; turn them off there any time.</p></div>";
+}
 
 const WINDOW_MIN = 30;     // a time counts as "just passed" for this long — two missed cron runs
 const DEFAULT_AM = "08:00";
@@ -77,19 +100,21 @@ async function readPush(uid) {
 
 // One reader: which of their times has just passed on any of their devices,
 // what to say, and the sending. Returns how many messages went out.
-async function remindOne(account, now, site) {
+async function remindOne(account, now, site, canPushNow) {
   const push = await readPush(account.id);
   const ids = Object.keys(push.subs);
-  if (!ids.length) return 0;
   const goals = (await r2GetJson(userDataKey(account.id, "goals")).catch(function () { return null; })) || {};
   if (!goals.notify) return 0;
+  const byEmail = !!goals.emailRemind && /@/.test(String(account.email || ""));
+  if (!ids.length && !byEmail) return 0;
   const times = { am: minutesOf(goals.remindAm || DEFAULT_AM), pm: minutesOf(goals.remind || DEFAULT_PM) };
   // The slots due now, by local day, over every device's clock: a reader with
   // a phone in one zone and a laptop in another is told once per slot per day.
   const due = {};
-  for (const id of ids) {
-    const s = push.subs[id];
-    const loc = localNow((s && s.tz) || "UTC", now);
+  const clocks = ids.map(function (id) { return (push.subs[id] && push.subs[id].tz) || "UTC"; });
+  if (byEmail) clocks.push(cleanTz(goals.tz) || clocks[0] || "UTC");
+  for (const tz of clocks) {
+    const loc = localNow(tz, now);
     if (!loc) continue;
     for (const slot of ["am", "pm"]) {
       const t = times[slot];
@@ -110,7 +135,7 @@ async function remindOne(account, now, site) {
     const payload = d.slot === "am"
       ? { title: "Good morning — today's " + site + " goals", body: short.join(" · "), tag: "goals-am", url: "/" }
       : { title: "Still to do today on " + site, body: short.join(" · "), tag: "goals-pm", url: "/" };
-    for (const id of ids) {
+    for (const id of (canPushNow ? ids : [])) {
       const s = push.subs[id];
       try {
         await webpush.sendNotification({ endpoint: s.endpoint, keys: s.keys }, JSON.stringify(payload), { TTL: 3 * 3600 });
@@ -119,6 +144,10 @@ async function remindOne(account, now, site) {
         const code = (e && e.statusCode) || 0;
         if (code === 404 || code === 410) { delete push.subs[id]; changed = true; }   // the device unsubscribed
       }
+    }
+    if (byEmail) {
+      const r = await sendEmail({ to: account.email, subject: payload.title, html: emailHtml(payload.title, short, site) }).catch(function () { return null; });
+      if (r && r.sent) n++;
     }
   }
   // the record of what was sent, kept for two days
@@ -138,12 +167,15 @@ export default async function handler(req, res) {
   }
 
   if (action === "remind") {
-    // Vercel's cron sends the secret as a bearer token; anything else is refused.
+    // The scheduler sends the secret as a bearer token (or ?secret=, for a
+    // scheduler that cannot set a header); anything else is refused.
     const auth = String(req.headers.authorization || "");
-    if (!process.env.CRON_SECRET || auth !== "Bearer " + process.env.CRON_SECRET) {
+    const given = auth.replace(/^Bearer\s+/i, "") || String((req.query && req.query.secret) || "");
+    if (!process.env.CRON_SECRET || given !== process.env.CRON_SECRET) {
       return res.status(401).json({ error: "Not allowed" });
     }
-    if (!vapidReady()) return res.status(503).json({ error: "VAPID keys are not set." });
+    // Without VAPID keys the push side is skipped; email still goes.
+    const canPush = vapidReady();
     const started = Date.now();
     const now = new Date();
     const site = siteName();
@@ -154,7 +186,7 @@ export default async function handler(req, res) {
     for (let i = 0; i < accounts.length; i += 6) {
       if (Date.now() - started > 50000) break;
       const batch = accounts.slice(i, i + 6).filter(function (a) { return a && a.approved; });
-      const out = await Promise.all(batch.map(function (a) { return remindOne(a, now, site).catch(function () { return 0; }); }));
+      const out = await Promise.all(batch.map(function (a) { return remindOne(a, now, site, canPush).catch(function () { return 0; }); }));
       out.forEach(function (k) { sent += k; readers++; });
     }
     return res.status(200).json({ ok: true, readers: readers, sent: sent });
