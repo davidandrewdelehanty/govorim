@@ -5421,6 +5421,18 @@ export default function App() {
   var [musicData, setMusicData]     = useState(null);
   var [musicArtist, setMusicArtist] = useState(null);   // index into musicData
   var [musicSong, setMusicSong]     = useState(null);   // index into artist.songs
+  // The shelf is drawn far down the library page; when the artist or the
+  // song changes, bring its top into view instead of leaving it below the fold.
+  var musicMounted = useRef(false);
+  useEffect(function(){
+    if (!musicMounted.current) { musicMounted.current = true; return; }
+    var t = setTimeout(function(){
+      var el = document.getElementById("music-shelf-top");
+      if (!el) return;
+      try { el.scrollIntoView({ behavior: "smooth", block: "start" }); } catch (e) { el.scrollIntoView(); }
+    }, 60);
+    return function(){ clearTimeout(t); };
+  }, [musicArtist, musicSong]);
   // Set when something other than the Music tab wants the song titles — the
   // admin panel's music sheet, which has to name the ids it is counting.
   var [musicWanted, setMusicWanted] = useState(false);
@@ -16177,7 +16189,7 @@ export default function App() {
               /* ── Song view: title, definable lyrics, video pinned below ── */
               if (song) {
                 return (
-                  <div className="music-shelf">
+                  <div className="music-shelf" id="music-shelf-top" style={{scrollMarginTop:12}}>
                     <div style={{padding:"12px 0"}}>
                       <div style={{maxWidth:640,margin:"0 auto"}}>
                         <button className="btn-g" style={{padding:"5px 12px",fontSize:13,marginBottom:14}}
@@ -16212,7 +16224,7 @@ export default function App() {
               /* ── Song list for an artist ── */
               if (artist) {
                 return (
-                  <div className="music-shelf">
+                  <div className="music-shelf" id="music-shelf-top" style={{scrollMarginTop:12}}>
                     <h1 className="sti">{artist.artist}</h1>
                     <div style={{width:"100%",maxWidth:520,display:"flex",flexDirection:"column",gap:10}}>
                       {artist.songs.map(function(sg, i2){
@@ -16231,7 +16243,7 @@ export default function App() {
 
               /* ── Artist list ── */
               return (
-                <div className="music-shelf">
+                <div className="music-shelf" id="music-shelf-top" style={{scrollMarginTop:12}}>
                   <p className="sde">Учите русский через песни — каждое слово можно нажать.</p>
                   <div style={{width:"100%",maxWidth:520,display:"flex",flexDirection:"column",gap:10}}>
                     {musicData === null && <p className="sde">Loading…</p>}
@@ -18548,6 +18560,12 @@ quizMode ? (
         .lib-section-hdr{font-family:var(--display);font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);
           font-weight:400;padding:0 0 6px;margin:16px 0 0;border-bottom:1px solid var(--ink)}
         .lib-grid{display:block}
+        /* "My Uploads" and "Continue reading" fold shut so they do not hog the screen. */
+        .lib-fold>summary{cursor:pointer;list-style:none;display:flex;align-items:baseline;gap:8px;user-select:none}
+        .lib-fold>summary::-webkit-details-marker{display:none}
+        .lib-fold>summary::before{content:"▸";font-size:11px;transition:transform .15s}
+        .lib-fold[open]>summary::before{transform:rotate(90deg)}
+        .lib-fold-n{font-size:11px;letter-spacing:.08em;color:var(--ink-3,rgba(42,31,20,.5))}
         .lib-card{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"title marks" "blurb marks";
           gap:2px 20px;padding:13px 0 12px;border:0;border-bottom:1px solid var(--rule-soft);background:none;transition:none}
         .lib-card:hover{background:none;transform:none;border-color:var(--rule-soft)}
@@ -24748,8 +24766,7 @@ quizMode ? (
                             )}
                             {/* My Uploads section — only when there are uploaded books matching the filter */}
                             {filteredUploads.length > 0 && (
-                              <div className="lib-section">
-                                <div className="lib-section-hdr">My Uploads</div>
+                              <details className="lib-section lib-fold"><summary className="lib-section-hdr">My Uploads <span className="lib-fold-n">{filteredUploads.length}</span></summary>
                                 <div className="lib-grid">
                                   {filteredUploads.map(function(book) {
                                     var isLoading = bookLoading === book.id;
@@ -24780,7 +24797,7 @@ quizMode ? (
                                     );
                                   })}
                                 </div>
-                              </div>
+                              </details>
                             )}
                             {/* The Music shelf: artists, songs, a song. */}
                             {inMusic && musicPanel()}
@@ -25246,8 +25263,8 @@ quizMode ? (
                           return null;
                         };
                         return (
-                          <div className="lib-section" style={{marginBottom:18}}>
-                            <div className="lib-section-hdr">Continue reading</div>
+                          <details className="lib-section lib-fold" style={{marginBottom:18}}>
+                            <summary className="lib-section-hdr">Continue reading <span className="lib-fold-n">{recent.length}</span></summary>
                             <div className="lib-grid">
                               {recent.map(function(rec, i) {
                                 var match = findEntry(rec);
@@ -25300,7 +25317,7 @@ quizMode ? (
                                 );
                               })}
                             </div>
-                          </div>
+                          </details>
                         );
                       })()}
 
