@@ -131,6 +131,14 @@ def _compare_cases(number, gender):
     return out
 
 
+def _nom_class(w):
+    w = nrm(w)
+    for suf in ("ия", "ие", "мя"):
+        if w.endswith(suf):
+            return suf
+    return w[-1:] if w[-1:] in "аяоеьй" else "c"
+
+
 def match_noun(M, tpar, tnom, gender, anim, number, case):
     """{'level': 'full'|'form'|None, 'model': word, 'form': model's form in this case/number, 'same_anim': bool}."""
     if gender not in ("masc", "femn", "neut"):
@@ -155,18 +163,23 @@ def match_noun(M, tpar, tnom, gender, anim, number, case):
             mnom = mpar.get(("nomn", "sing"))
             if not mpar.get(("nomn", number)):
                 continue
+            if _nom_class(mnom) != _nom_class(tnom):
+                continue                                  # a noun in -й is modelled on a noun in -й, not on one in -ь
             ok_all = True
             for c, (te, _k) in tsigs.items():
                 mf = mpar.get((c, number))
                 if not mf:
                     continue
                 ms = sig(mnom, mf)
+                if not (_k == ms[1] or {_k, ms[1]} <= {"plain", "fleet"}):
+                    ok_all = False                       # an inserted vowel (окон) is not «no change» (мест); a soft stem is not a hard one
+                    break
                 if not ends_match(te, tlast, ms[0], soft):
                     ok_all = False
                     break
             mfc = mpar.get((case, number))
             if ok_all and mfc:
-                return {"level": "full", "model": shown, "form": mfc, "same_anim": same}
+                return {"level": "full", "model": shown, "form": mfc, "same_anim": same, "par": mpar}
     return {"level": None}
 
 

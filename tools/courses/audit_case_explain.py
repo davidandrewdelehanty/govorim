@@ -49,6 +49,60 @@ def rules_in(why):
     return [k for k, v in C.R.items() if v in why]
 
 
+
+def lcp_len(a, b):
+    k = 0
+    while k < min(len(a), len(b)) and a[k] == b[k]:
+        k += 1
+    return k
+
+
+def ending_variants(e, last):
+    """The model's new ending as it may be spelled after this stem-final letter."""
+    out = {e}
+    if last in "гкхжчшщ":
+        out |= {e.replace("ы", "и", 1) if e.startswith("ы") else e}
+    if last in "жчшщц":
+        for a_, b_ in (("ом", "ем"), ("ов", "ев"), ("ой", "ей"), ("ом", "ом")):
+            if e.startswith(a_):
+                out.add(b_ + e[len(a_):])
+            if e.startswith(b_):
+                out.add(a_ + e[len(b_):])
+    if last in "жчшщ" or last in "гкх":
+        for a_, b_ in (("я", "а"), ("ю", "у"), ("ям", "ам"), ("ями", "ами"), ("ях", "ах")):
+            if e.startswith(a_):
+                out.add(b_ + e[len(a_):])
+            if e.startswith(b_):
+                out.add(a_ + e[len(b_):])
+    return out
+
+
+def step(nom, form):
+    """(kind, new ending, stem-final letter): how `form` is reached from `nom` — written independently of case_models."""
+    nom, form = n(nom), n(form)
+    base = re.sub(r"[аяоеьй]$", "", nom)
+    if form.startswith(base):
+        return "plain", form[len(base):], base[-1:]
+    if len(base) >= 3 and base[-2] in "ое" and form.startswith(base[:-2] + base[-1]):
+        return "plain", form[len(base) - 1:], base[-1:]                  # отец → отца: the fleeting vowel is no ending
+    for v in "ое":
+        if len(base) >= 2 and form == base[:-1] + v + base[-1]:
+            return "ins", "", base[-1:]                                   # окно → окон
+    if base.endswith("ь") and form.startswith(base[:-1]):
+        return "soft", form[len(base) - 1:], base[-1:]                    # семья → семей
+    return "stem", None, base[-1:]
+
+
+def model_step_ok(nom, form, mnom, mform):
+    tk, te, tl = step(nom, form)
+    mk, me, ml = step(mnom, mform)
+    if tk == "stem" or mk == "stem":
+        return False
+    if not (tk == mk):
+        return False
+    return te in ending_variants(me, tl)
+
+
 def audit():
     bad = collections.defaultdict(list)
     tot = collections.Counter()
@@ -64,38 +118,30 @@ def audit():
                 why, q, ans = e["why"], e["q"], e["answers"][0]
                 where = (cid, os.path.basename(fn), q)
                 # 1. a model claim: the model word's own endings must be the word's endings
-                m = re.search(r"\*\*([^*]+) → ([^*]+)\*\* \((\w+)\. (sg|pl)\.\)\. [^.]*?Declines like DLI's (\w+) — every (singular|plural) form has the same endings \((\w)\. (sg|pl)\. (\w+)", why)
+                m = re.search(r"\*\*([^*]+) → ([^*]+)\*\* \((\w+)\. (sg|pl)\.\)\. (?:[A-Z][a-z]+(?:, [a-z]+)?\. )?Declines like (\w+) \((\w)\. (sg|pl)\. (\w+)\)", why)
                 if m:
                     tot["noun model claims"] += 1
-                    nom, form, case, num, model, _, row, _, mform = m.groups()
+                    nom, form, case, num, model, row, _, mform = m.groups()
                     rowcase = {"N": "nomn", "G": "gent", "D": "datv", "A": "accs", "I": "ablt", "P": "loct"}[row]
                     number = "sing" if num == "sg" else "plur"
                     mp = model_forms(model if model != "Андрей" else "андрей")
                     if mp.get((rowcase, number)) != mform:
                         bad["model form is not the dictionary's"].append(where + (model, mform, mp.get((rowcase, number))))
-                    # same ending after the same stem, by plain longest-common-prefix (fleeting vowels aside)
-                    te, _ = lcp_ending(nom, form)
-                    me, _ = lcp_ending(model, mform)
-                    tn_, mn_ = n(te), n(me)
-                    ok = tn_ == mn_
-                    if not ok:                                   # the allowed spelling rules, and nothing else
-                        if re.search(r"[гкхжчшщ]$", n(nom)[:len(n(nom)) - len(tn_)] if tn_ else n(nom)) and tn_.replace("и", "ы", 1) == mn_:
-                            ok = True
-                        elif re.search(r"[жчшщц]$", n(nom)[:len(n(nom)) - len(tn_)] if tn_ else n(nom)) and (tn_.replace("ем", "ом", 1) == mn_ or tn_.replace("ей", "ой", 1) == mn_ or tn_.replace("ев", "ов", 1) == mn_):
-                            ok = True
-                        elif "ь" in n(nom)[-1:] or "ь" in n(model)[-1:]:
-                            ok = True                            # -ь stems: the soft sign is part of the stem in this comparison
-                        elif len(n(nom)) > 3 and (len(n(form)) != len(n(nom)) or n(form)[:2] != n(nom)[:2]):
-                            ok = True                            # a vowel dropped or inserted in the stem: checked by case_models.sig
-                    if not ok:
-                        bad["model ending differs"].append(where + (nom, form, model, mform, tn_, mn_))
-                    if tn_ == "" and not mn_ == "" and False:
+                    # the word must reach its form the way the model reaches its own: same new ending after the stem
+                    # (a fleeting or inserted vowel in the stem, and the spelling rules, allowed — and nothing else)
+                    mnom = model_forms(model if model != "Андрей" else "андрей").get(("nomn", "sing"), model)
+                    if not model_step_ok(nom, form, mnom, mform):
+                        bad["model ending differs"].append(where + (nom, form, model, mform))
+                    if False:
                         pass
                 # a masculine plural in a hard consonant must not be modelled on a neuter or a feminine
-                if "Declines like DLI's" in why:
-                    mm = re.search(r"Declines like DLI's (\w+) —", why)
+                first = re.split(r"  \*\*", why)[0]                       # the noun's own part, before any adjective
+                if "Declines like " in first:
+                    mm = re.search(r"Declines like (\w+) \(", first)
+                    if not mm:
+                        mm = re.search(r"Declines like (\w+)", why)
                     mod = mm.group(1)
-                    g = re.search(r"\*\* \([^)]*\)\. (Masculine|Feminine|Neuter)", why)
+                    g = re.search(r"\*\* \([^)]*\)\. (Masculine|Feminine|Neuter)", first)
                     mg = {"слово": "Neuter", "окно": "Neuter", "поле": "Neuter", "море": "Neuter", "здание": "Neuter", "имя": "Neuter",
                           "сестра": "Feminine", "газета": "Feminine", "книга": "Feminine", "тётя": "Feminine", "неделя": "Feminine", "армия": "Feminine",
                           "лекция": "Feminine", "семья": "Feminine", "батарея": "Feminine", "часть": "Feminine", "тетрадь": "Feminine"}.get(mod, "Masculine")

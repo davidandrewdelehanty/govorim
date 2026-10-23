@@ -47,6 +47,7 @@ GUTT, SIB = "гкх", "жчшщ"
 WORD = re.compile(r"[А-Яа-яЁё]+(?:-[А-Яа-яЁё]+)?")
 
 DICT = "forms from the OpenCorpora dictionary (CC BY-SA 4.0)"
+TAIL = "— DLI Grammar Reference Book; OpenCorpora dictionary (CC BY-SA 4.0)."
 
 # The DLI model words (Grammar Reference Book, Lessons 32–33 for the singular,
 # 42–45 for the plural, 46–48 for adjectives), with their full declension.
@@ -103,7 +104,11 @@ R = {
  "gen-u": "«Several masculine nouns may take the ending -у, -ю (instead of -а, -я) in the genitive case when a quantity is expressed: Дайте, пожалуйста, супу, сахару, чаю. Хотите стакан чаю?» — DLI, Lesson 33.",
  "dat-sg": "Dative: 1. Masculine and neuter (except masculine in -а, -я): студенту, учителю, озеру, полю. 2. All feminine, and masculine in -а, -я: сестре, дяде, Марии, двери. — DLI, Lesson 28.",
  "genpl": "Genitive plural, the four basic types: I — nom. sing. in a consonant (стол, нож): -ов, столов; II — in -ь or a sibilant (словарь, тетрадь): -ей, словарей, тетрадей, ножей; III — in -а, -о (газета, слово): no ending, газет, слов; IV — in -(и)я, -(и)е (лекция, здание): -й, лекций, зданий. — DLI, Lessons 38–41.",
- "genpl-none": "This genitive plural does not follow one of the four basic types in DLI's table above; learn the form from the declension given here.",
+ "num-sg": "«If the number ends in 2, 3 or 4 use the genitive singular: Два рубля, Двадцать две копейки.» — Wikibooks Russian, «Counting and how much» (CC BY-SA 4.0).",
+ "num-pl": "«If the number ends in 5, 6, 7, 8, 9, 0 or '-надцать' use the genitive plural: Пять рублей, Двадцать пять копеек.» — Wikibooks Russian, «Counting and how much» (CC BY-SA 4.0).",
+ "num-q": "«There are also other quantity words that take the genitive, either singular or plural according to meaning: много, несколько, мало, сколько.» — Wikibooks Russian, «Counting and how much» (CC BY-SA 4.0).",
+ "genpl-types": "Genitive plural types (DLI, Lessons 38–41): I — a consonant: -ов (стол — столов); II — -ь or a sibilant: -ей (словарь — словарей); III — -а, -о: no ending (газета — газет); IV — -(и)я, -(и)е: -й (лекция — лекций).",
+ "genpl-none": "This genitive plural does not follow one of DLI's four basic types (a consonant: -ов; -ь or a sibilant: -ей; -а, -о: no ending; -(и)я, -(и)е: -й), so learn the form.",
  "genpl-I": "«Type I. a) After ц the stressed ending is -ов, the unstressed is -ев: отцов, продавцов, but: американцев, немцев, месяцев. b) Masculine nouns in -й have -ев in the genitive plural: трамвай — трамваев.» — DLI, Lessons 38–41.",
  "genpl-II": "«Type II. a) The nouns мать and дочь keep -ер- throughout the plural: матерей, дочерей. b) The noun соседи, also the nouns люди, дети, and родители belong to type II: соседей, людей, родителей, детей.» — DLI, Lessons 38–41.",
  "genpl-III": "«Type III. a) The genitive plural of feminine and neuter nouns of this type often has an inserted -е- or -о- between any two consonants at the end of the word. 1. They always take -е- between a sibilant and к: чашка — чашек, девочка — девочек. 2. They take -о- between any other consonant and к: ошибка — ошибок, машинка — машинок. 3. Memorize: число — чисел, письмо — писем, окно — окон; also деньги — денег. Remember: сестра — сёстры — сестёр; but: место — мест, лампа — ламп, буква — букв, карта — карт. b) неделя — недель, деревня — деревень, туфля — туфель.» — DLI, Lessons 38–41.",
@@ -134,7 +139,7 @@ def norm(w):
     return w.lower().replace("ё", "е")
 
 
-def paradigm(p):
+def paradigm(p, pick=None):
     """{(case, number): form} for a noun or adjective parse, the dictionary's first form of each."""
     out = {}
     RARE = {"Litr", "Arch", "Slng", "Erro", "Dist", "Infr", "Abbr"}
@@ -149,7 +154,10 @@ def paradigm(p):
             key = (c, n, f.tag.gender, f.tag.animacy if c == "accs" else None)
         else:
             key = (c, n)
-        out.setdefault(key, f.word)
+        if pick and key == (pick[0], pick[1]) and norm(f.word) == norm(pick[2]):
+            out[key] = f.word          # the dictionary lists variants (листов / листьев, чудам / чудесам): show the one asked for
+        else:
+            out.setdefault(key, f.word)
     return out
 
 
@@ -233,7 +241,7 @@ def ending_change(nom, form, stem=None):
     return None, None, "irregular"
 
 
-IRR_TXT = "The form changes by more than its ending, so no single ending is given — see the declension below."
+IRR_TXT = "The stem changes too, so no single ending is given."
 
 
 def ending_txt(ea, eb, kind, case=None):
@@ -242,7 +250,9 @@ def ending_txt(ea, eb, kind, case=None):
     if kind == "plain" and ea == eb:
         if case == "nomn":
             return "Nominative: the ending is %s." % eb
-        return "No change of ending: here the accusative is the same as the nominative."
+        if case == "accs":
+            return "No change of ending: here the accusative is the same as the nominative."
+        return "No ending is added."
     return "Ending %s → %s." % (ea, eb)
 
 
@@ -260,7 +270,7 @@ def decl_line(par, number):
 
 def explain_noun(p, form, case, number, prep_before):
     nom_sg = p.normal_form if p.tag.number != "plur" or ("Pltm" not in tags(p)) else None
-    par = paradigm(p)
+    par = paradigm(p, (case, number, form))
     nom = par.get(("nomn", "sing")) or p.normal_form
     nom_pl = par.get(("nomn", "plur")) or ""
     gender, anim = p.tag.gender, p.tag.animacy
@@ -278,26 +288,37 @@ def explain_noun(p, form, case, number, prep_before):
     gen_en = {"masc": "masculine", "femn": "feminine", "neut": "neuter"}.get(gender, "plural-only")
     an_en = (", animate" if anim == "anim" else ", inanimate") if (gender == "masc" or number == "plur") and anim else ""
     import case_models as CM
-    mm = {} if (pl_only or adjn) else CM.match_noun(M, par, nom, gender, anim, number, case)
+    default_form = paradigm(p).get((case, number), "")
+    variant = bool(default_form) and norm(default_form) != norm(form)      # the dictionary lists several forms; the table's first one is another
+    mm = {} if (pl_only or adjn or variant) else CM.match_noun(M, par, nom, gender, anim, number, case)
     claim = ""
     if adjn:
-        claim = " A noun that declines like an adjective (an adjective used as a noun): it takes adjective endings, not noun endings."
+        claim = "A noun that declines like an adjective."
         rules.append(R["adj-noun"])
-    if mm.get("level") == "full":
-        claim = " Declines like DLI's %s — every %s form has the same endings (%s %s %s)." % (
-            mm["model"], "singular" if number == "sing" else "plural", CASE_ROW[case], n_en, mm["form"])
-        if not mm.get("same_anim"):
-            claim = claim[:-1] + ", except the accusative, which follows the animacy rule."
+    modeled = mm.get("level") == "full" and kind != "irregular"      # a form that changes its stem (год → лет) follows no model
+    if modeled:
+        crow, cform = CASE_ROW[case], mm["form"]
+        anim_matters = number == "plur" or gender == "masc"
+        if not mm.get("same_anim") and case == "accs" and anim_matters and mm.get("par"):
+            # an animate noun on an inanimate model (or the reverse): the accusative is the genitive / the nominative
+            src = "gent" if anim == "anim" else "nomn"
+            crow, cform = CASE_ROW[src], mm["par"].get((src, number), cform)
+        claim = "Declines like %s (%s %s %s)." % (mm["model"], crow, n_en, cform)
+        if not mm.get("same_anim") and case == "accs" and anim_matters:
+            claim += " The accusative follows the animacy rule."
     et = ending_txt(ea, eb, kind, case)
     if pl_only:
-        bits.append("A plural-only noun (it has no singular); nominative plural %s.%s" % (nom, " " + et if kind != "irregular" else " " + et))
+        bits.append("A plural-only noun. %s" % et)
+    elif modeled or adjn:
+        gl = ("%s%s. " % (gen_en.capitalize(), an_en)) if case == "accs" else ""
+        bits.append("%s%s %s" % (gl, claim, et))
     elif number == "sing":
-        bits.append("%s%s, nominative singular in %s.%s %s" % (gen_en.capitalize(), an_en, nom_end_label(nom), claim, et))
+        bits.append("%s%s, nominative singular in %s. %s" % (gen_en.capitalize(), an_en, nom_end_label(nom), et))
     else:
-        bits.append("%s%s; nominative plural %s.%s %s" % (gen_en.capitalize(), an_en, nom_pl or "—", claim, et))
+        bits.append("%s%s; nominative plural %s. %s" % (gen_en.capitalize(), an_en, nom_pl or "—", et))
     if adjn:
         rules.append(R["adj"])
-        return head, bits, rules, "Declension: sg. %s; pl. %s." % (decl_line(par, "sing"), decl_line(par, "plur"))
+        return head, bits, rules, ""
     f = norm(form)
     k = len(stem_nom) if kind == "plain" else 0
     # the rules that apply
@@ -360,7 +381,7 @@ def explain_noun(p, form, case, number, prep_before):
                     rules.append(R["genpl-" + t])
             elif t == "irr":
                 rules.append(R["genpl-irr"])
-            else:
+            elif not variant:
                 rules.append(R["genpl-none"])
         elif case == "accs":
             rules.append(R["acc-pl"])
@@ -370,7 +391,11 @@ def explain_noun(p, form, case, number, prep_before):
             rules.append(R["pl-dip"])
             if f.endswith("ьми") or norm(nom_pl).endswith("ья"):
                 rules.append(R["pl-mi"])
-    if pl_only:
+    if variant:
+        decl = ""                                       # the table would show the other form
+    elif modeled:
+        decl = ""                                       # a model is named: the table would only repeat it
+    elif pl_only:
         decl = "Declension (plural only): %s." % decl_line(par, "plur")
     else:
         decl = "Declension: sg. %s; pl. %s." % (decl_line(par, "sing"), decl_line(par, "plur"))
@@ -410,7 +435,7 @@ def explain_adj(p, form, case, number, gender, anim, noun_word):
         stem = norm(lemma)[:-1] if norm(lemma).endswith("й") else norm(lemma)
         ea, eb, kind = ending_change(nomf, form, stem)
         pw = CM.poss_match(M, par, lemma)
-        return head, ["A possessive%s. %s" % (" — declines like DLI's %s" % pw if pw else "", ending_txt(ea, eb, kind, case))], [R["poss"]]
+        return head, ["%s %s" % ("Declines like %s." % pw if pw else "A possessive.", ending_txt(ea, eb, kind, case))], [R["poss"]]
     bits, rules = [], []
     same = [v for k, v in par.items() if k[0] == case and k[1] == number and (number == "plur" or k[2] == gender)]
     if same and norm(form) not in [norm(v) for v in same]:
@@ -425,7 +450,7 @@ def explain_adj(p, form, case, number, gender, anim, noun_word):
     regular_adj = bool(re.search(r"(ый|ий|ой)$", norm(lemma)))
     if not regular_adj:
         kind = "irregular"
-        bits.append("«%s» is a pronoun-type word with its own declension, not the regular adjective pattern, so no ending rule is claimed. Its forms (%s): %s." % (
+        bits.append("«%s» has its own declension (not the regular adjective pattern). Its forms (%s): %s." % (
             lemma, ("%s sg." % {"masc": "m.", "femn": "f.", "neut": "n."}.get(gender, "")) if number == "sing" else "pl.", adj_forms(par, number, gender)))
         return head, bits, [R["adj"]]
     am = CM.match_adj(M, par, lemma) if regular_adj else None
@@ -434,14 +459,13 @@ def explain_adj(p, form, case, number, gender, anim, noun_word):
         mf = CM.model_form(mpar, case, number, gender)
         exc = ""
         if norm(lemma)[-2:] != norm(model)[-2:]:
-            exc = " apart from the masculine nominative singular (and the inanimate accusative equal to it), which ends in -%s here, not -%s" % (norm(lemma)[-2:], norm(model)[-2:])
-        bits.append("Adjective type %s — declines like DLI's %s (every form has the same endings,%s): %s %s. %s" % (ADJ_TYPE_EN[cls], model, exc or "", CASE_ROW[case], mf.rstrip("."), ending_txt(ea, eb, kind, case)) if exc else
-                    "Adjective type %s — declines like DLI's %s (every form has the same endings): %s %s. %s" % (ADJ_TYPE_EN[cls], model, CASE_ROW[case], mf.rstrip("."), ending_txt(ea, eb, kind, case)))
+            exc = "; the masculine nominative ends in -%s, not -%s" % (norm(lemma)[-2:], norm(model)[-2:])
+        bits.append("Declines like %s (%s %s%s). %s" % (model, CASE_ROW[case], mf.rstrip("."), exc, ending_txt(ea, eb, kind, case)))
     else:
         bits.append(ending_txt(ea, eb, kind, case))
     rules.append(R["adj"])
-    if norm(lemma).endswith("ой"):
-        rules.append(R["adj-oy"])
+    if norm(lemma).endswith("ой") and number == "sing" and gender == "masc" and case in ("nomn", "accs"):
+        rules.append(R["adj-oy"])                 # the note is about the masculine nominative -ой
     if number == "sing" and gender == "femn" and case not in ("nomn", "accs"):
         rules.append(R["adj-f"])
     if number == "plur":
@@ -508,6 +532,41 @@ def governing_cases(before):
             return None                                   # a numeral governs the genitive: the preposition no longer fixes the case
         if not any(x.tag.POS in MODIFIER_POS for x in M.parse(t)):
             return None                                   # a verb or noun: not part of the preposition's phrase
+        gaps += 1
+    return None
+
+
+QUANT_SG = {"два", "две", "три", "четыре", "оба", "обе", "полтора", "полторы"}
+QUANT_PL = {"пять", "шесть", "семь", "восемь", "девять", "десять", "одиннадцать", "двенадцать", "тринадцать", "четырнадцать", "пятнадцать", "шестнадцать",
+            "семнадцать", "восемнадцать", "девятнадцать", "двадцать", "тридцать", "сорок", "пятьдесят", "шестьдесят", "семьдесят", "восемьдесят", "девяносто",
+            "сто", "двести", "триста", "четыреста", "пятьсот", "шестьсот", "семьсот", "восемьсот", "девятьсот"}
+QUANT_Q = {"много", "несколько", "мало", "сколько", "немного", "немало", "столько"}
+
+
+def governed(before):
+    """(case, number, rule) when a counting word or numeral right before the blank (an adjective or two between) fixes the noun's case."""
+    m = re.search(r"(\d+)\s*$", before)
+    if m:
+        d = int(m.group(1))
+        if d % 10 == 1 and d % 100 != 11:
+            return None
+        if d % 10 in (2, 3, 4) and d % 100 not in (12, 13, 14):
+            return ("gent", "sing", "num-sg")
+        return ("gent", "plur", "num-pl")
+    toks = [t for t in TOKEN.findall(before)]
+    gaps = 0
+    for i in range(len(toks) - 1, max(len(toks) - 4, -1), -1):
+        t = toks[i].lower()
+        if not WORD.fullmatch(toks[i]):
+            return None
+        if t in QUANT_SG:
+            return ("gent", "sing", "num-sg")
+        if t in QUANT_PL:
+            return ("gent", "plur", "num-pl")
+        if t in QUANT_Q:
+            return ("gent", "plur", "num-q")
+        if gaps >= 2 or not any(x.tag.POS in ("ADJF", "PRTF") or (x.tag.POS == "NPRO" and not x.tag.person) for x in M.parse(t)):
+            return None
         gaps += 1
     return None
 
@@ -581,6 +640,20 @@ def best_parse(word, want_lemma, pos_set, want_cases=(), num=None):
 
 
 CONFLICTS = []
+GENERIC = ("gen-sg", "dat-sg", "ins-f", "prep-e", "acc-anim", "acc-f", "acc-pl", "pl-dip", "pl-nom", "adj", "adj-f", "adj-pl", "adj-acc", "poss")
+
+
+def compose(text, decl, rules):
+    """The explanation: what changed and which model it follows; the table and the rule quotes only when they say
+    something about this very word (general rules that every word of the case follows are left out)."""
+    gen = {R[k] for k in GENERIC}
+    rules = [r for r in rules if r not in gen and r != R["genpl"]]
+    out = text.strip()
+    if decl:
+        out += "  " + decl
+    if rules:
+        out += "  " + "  ".join(rules)
+    return out + "  " + TAIL
 NOT_MOD = object()
 
 
@@ -638,14 +711,14 @@ def modifier_path(e, q, m, aw, hw, want, num, pair):
         for r in rl:
             if r not in rules:
                 rules.append(r)
-        if not _DERIVED and not bits[0].startswith("«") and "pronoun-type" not in bits[0]:
+        if not _DERIVED and not bits[0].startswith("«") and "has its own declension" not in bits[0]:
             par = paradigm(p)
             pl_line = adj_forms(par, "plur", None)
             if number == "plur" or not gender:
                 decls.append("Declension of %s (plural): %s." % (p.normal_form, pl_line))
             else:
                 decls.append("Declension of %s (%s): %s; plural: %s." % (p.normal_form, {"masc": "m.", "femn": "f.", "neut": "n."}[gender], adj_forms(par, "sing", gender), pl_line))
-    why = "  ".join(parts) + "  " + "  ".join(decls) + "  " + "  ".join(rules) + "  — Model words and rules from the DLI Grammar Reference Book; " + DICT + "."
+    why = compose("  ".join(parts), "", rules)
     _check(e, pair, case, number)
     return newq, why
 
@@ -679,13 +752,22 @@ def rewrite(e, want_cases=(), mixed=False):
     prep = (re.findall(r"([А-Яа-яЁё-]+)\s*$", before) or [""])[0].lower()
     want = set(want_cases)
     num = None
+    if norm(aw[-1]) == "лет" and norm(hw[-1]) in ("лет", "лёт", "лет"):
+        hw = hw[:-1] + ["год"]                                  # лет is the genitive plural of год (DLI), not of лёт
     pair = resolve_pair(q, m, aw, hw)
+    gov = governed(q[:m.start()])
+    if gov and (gov[0], gov[1]) in pairs_of(aw[-1], hw[-1]):
+        pair = (gov[0], gov[1])
+        e["_gov"] = gov[2]
+        if not mixed:
+            want = {gov[0]}
+            num = gov[1]
     if pair == "invariant":
         newq = q[:m.start()] + "___ (" + hint + ")" + q[m.end():]
         why = ("**%s** (and «его», «их») is the same in every case and number: it does not agree with the noun it belongs to, unlike «мой», «наш». "
                "Only the noun changes with its case." % aw[-1].lower())
         return newq, why
-    if mixed:
+    if mixed or e.get("_gov"):
         # the course does not fix the case: it must come from the sentence, or no case is claimed at all
         if pair is None:
             mod = modifier_path(e, q, m, aw, hw, want, None, None)
@@ -752,14 +834,14 @@ def rewrite(e, want_cases=(), mixed=False):
         head, bits, rules = explain_adj(pa, aw[0], case, number, gender, pnoun.tag.animacy if pnoun else None, pnoun.word if pnoun else "its noun")
         par = paradigm(pa)
         if _DERIVED:
-            return newq, head + " " + " ".join(bits) + "  " + "  ".join(rules) + "  — Rules from the DLI Grammar Reference Book; " + DICT + "."
+            return newq, compose(head + " " + " ".join(bits), "", rules)
         pl_line = adj_forms(par, "plur", None)
         if number == "plur" or not gender:
             decl = "Declension (plural): %s." % pl_line
         else:
             decl = "Declension (%s): %s; plural: %s." % ({"masc": "m.", "femn": "f.", "neut": "n."}[gender],
                    adj_forms(par, "sing", gender), pl_line)
-        why = head + " " + " ".join(bits) + "  " + decl + "  " + "  ".join(rules) + "  — Model words and rules from the DLI Grammar Reference Book; " + DICT + "."
+        why = compose(head + " " + " ".join(bits), "", rules)
         _check(e, pair, case, number)
         return newq, why
     if not nouns:
@@ -819,7 +901,7 @@ def rewrite(e, want_cases=(), mixed=False):
             parts.append("**%s → %s** — %s" % (p.normal_form, aw[i].lower(), label))
             if R["poss"] not in rules:
                 rules.append(R["poss"])
-    why = "  ".join(parts) + "  " + decl + "  " + "  ".join(rules) + "  — Model words and rules from the DLI Grammar Reference Book; " + DICT + "."
+    why = compose("  ".join(parts), decl, rules)
     if hw[ni][:1].isupper():
         nf = parses[ni].normal_form
         why = why.replace("**" + nf + " →", "**" + nf[:1].upper() + nf[1:] + " →")
@@ -882,6 +964,9 @@ def main(argv=None):
                         st["unlabelled"] += 1
                     continue
                 newq, why = r
+                gk = e.pop("_gov", None)
+                if gk and "  " + TAIL in why:
+                    why = why.replace("  " + TAIL, "  " + R[gk] + "  " + TAIL)
                 if e.pop("_conflict", False) and not mixed:
                     # the sentence puts the word in another case than the course: «Что за вздор…» is nominative, not accusative
                     dropped.append(e)
