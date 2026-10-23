@@ -6362,11 +6362,19 @@ export default function App() {
   // `remindAm` the morning one. Both go to the reader's devices as push
   // messages when they have turned them on (see the push code below).
   var GOALS_DEFAULT = { words: GOAL_WORDS, cards: GOAL_CARDS, quiz: 0, match: 0, terms: 0, decl: 0, conj: 0, drills: 10, numbers: 0,
-                        course: 10, sections: 1, remind: "17:00", remindAm: "08:00", notify: false, emailRemind: false, tz: "", updatedAt: 0 };
+                        course: 10, sections: 1, remind: "17:00", remindAm: "08:00", notify: false, emailRemind: false, alertEmail: "", tz: "", updatedAt: 0 };
   var [goals, setGoalsRaw] = useState(GOALS_DEFAULT);
   var goalsLoaded = useRef(false);
+  var [alertEmailErr, setAlertEmailErr] = useState("");
   var setGoals = function(patch) {
     setGoalsRaw(function(g){ return Object.assign({}, g, patch, { updatedAt: Date.now() }); });
+  };
+  // The address the reminder e-mails go to, when it is not the account's own.
+  var commitAlertEmail = function(v) {
+    v = String(v || "").trim().toLowerCase();
+    if (v && !/^[^\s@,;<>]+@[^\s@,;<>]+\.[^\s@,;<>]{2,}$/.test(v)) { setAlertEmailErr("That does not look like an e-mail address."); return; }
+    setAlertEmailErr("");
+    if (v !== String(goals.alertEmail || "")) setGoals({ alertEmail: v.slice(0, 120) });
   };
   var mergeGoals = function(a, b) {
     if (!b || typeof b !== "object") return a;
@@ -27279,6 +27287,15 @@ quizMode ? (
                           var on = e.target.checked;
                           setGoals(on ? { emailRemind: true, notify: true, tz: pushTz() } : { emailRemind: false });
                         }} /></label>
+                      {!!goals.emailRemind && (
+                        <label className="my-field"><span>Send them to this address{me && me.email ? " (blank: " + me.email + ")" : ""}</span>
+                          <input type="email" className="my-time" style={{width:"min(100%, 280px)"}} autoComplete="email" inputMode="email" placeholder={me && me.email ? me.email : "name@example.com"}
+                            key={"ae-" + (goals.alertEmail || "")} defaultValue={goals.alertEmail || ""}
+                            onBlur={function(e){ commitAlertEmail(e.target.value); }}
+                            onKeyDown={function(e){ if (e.key === "Enter") { e.preventDefault(); commitAlertEmail(e.target.value); e.target.blur(); } }} /></label>
+                      )}
+                      {!!goals.emailRemind && alertEmailErr && <p className="my-note" style={{color:"var(--rubric)"}}>{alertEmailErr}</p>}
+                      {!!goals.emailRemind && !alertEmailErr && !!goals.alertEmail && <p className="my-note">Reminders go to {goals.alertEmail}. Clear the box to use your account address again.</p>}
                       {!me && <p className="my-note">Sign in to have the reminders e-mailed.</p>}
                       <label className="my-field my-check"><span>Tell me in the browser, once a day, while the site is open</span>
                         <input type="checkbox" checked={!!goals.notify} onChange={function(e){

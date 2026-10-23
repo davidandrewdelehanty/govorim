@@ -565,7 +565,7 @@ export default [
   "short": "Nominative",
   "mark": "И",
   "blurb": "",
-  "credit": "Explanations: the Wikibooks Russian textbook (CC BY-SA 4.0) and the DLI Basic Course (public domain); sentences: Tatoeba (CC BY 2.0 FR) and the library's public-domain books",
+  "credit": "Explanations: the Wikibooks Russian textbook (CC BY-SA 4.0) and the DLI Basic Course (public domain); sentences: Tatoeba (CC BY 2.0 FR)",
   "creditUrl": "https://en.wikibooks.org/wiki/Russian",
   "license": "CC BY-SA 4.0 · CC BY 2.0 FR · public domain",
   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -573,92 +573,17 @@ export default [
    {
     "id": "n1-subject",
     "title": "The subject",
-    "n": 23
-   },
-   {
-    "id": "n1-subject-practice",
-    "title": "Practice 1: The subject",
-    "n": 20
-   },
-   {
-    "id": "n1-subject-practice-2",
-    "title": "Practice 2: The subject",
-    "n": 20
-   },
-   {
-    "id": "n1-subject-practice-3",
-    "title": "Practice 3: The subject",
-    "n": 20
-   },
-   {
-    "id": "n1-subject-practice-4",
-    "title": "Practice 4: The subject",
-    "n": 20
-   },
-   {
-    "id": "n1-subject-practice-5",
-    "title": "Practice 5: The subject",
-    "n": 20
+    "n": 8
    },
    {
     "id": "n2-eto",
     "title": "Это…, вот…: naming things",
-    "n": 23
-   },
-   {
-    "id": "n2-eto-practice",
-    "title": "Practice 1: Это…, вот…: naming things",
-    "n": 20
-   },
-   {
-    "id": "n2-eto-practice-2",
-    "title": "Practice 2: Это…, вот…: naming things",
-    "n": 20
-   },
-   {
-    "id": "n2-eto-practice-3",
-    "title": "Practice 3: Это…, вот…: naming things",
-    "n": 20
-   },
-   {
-    "id": "n2-eto-practice-4",
-    "title": "Practice 4: Это…, вот…: naming things",
-    "n": 20
-   },
-   {
-    "id": "n2-eto-practice-5",
-    "title": "Practice 5: Это…, вот…: naming things",
-    "n": 20
+    "n": 6
    },
    {
     "id": "n3-adjectives",
     "title": "Adjectives with the subject",
-    "n": 23
-   },
-   {
-    "id": "n3-adjectives-practice",
-    "title": "Practice 1: Adjectives with the subject",
-    "n": 20
-   },
-   {
-    "id": "n3-adjectives-practice-2",
-    "title": "Practice 2: Adjectives with the subject",
-    "n": 20
-   },
-   {
-    "id": "n3-adjectives-practice-3",
-    "title": "Practice 3: Adjectives with the subject",
-    "n": 20
-   },
-   {
-    "id": "n3-adjectives-practice-4",
-    "title": "Practice 4: Adjectives with the subject",
-    "n": 20
-   },
-   {
-    "id": "n3-adjectives-practice-5",
-    "title": "Practice 5: Adjectives with the subject",
-    "n": 20
+    "n": 6
    },
    {
     "id": "n4-pronouns",
@@ -668,7 +593,7 @@ export default [
    {
     "id": "exam",
     "title": "Exam",
-    "n": 21,
+    "n": 15,
     "exam": true
    }
   ],

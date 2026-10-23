@@ -1055,6 +1055,8 @@ export default async function handler(req, res) {
           remind: hhmm(g.remind), remindAm: hhmm(g.remindAm),
           // reminders by email too, and the device's time zone for them
           emailRemind: !!g.emailRemind,
+          // where the reminder e-mails go, when the reader wants them somewhere other than the account address
+          alertEmail: (function (v) { v = String(v || "").trim().toLowerCase().slice(0, 120); return /^[^\s@,;<>]+@[^\s@,;<>]+\.[^\s@,;<>]{2,}$/.test(v) ? v : ""; })(g.alertEmail),
           tz: (function (v) { v = String(v || "").slice(0, 64); try { new Intl.DateTimeFormat("en-US", { timeZone: v }); return v; } catch (e) { return ""; } })(g.tz),
           notify: !!g.notify, updatedAt: Number(g.updatedAt) || Date.now(),
         };

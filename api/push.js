@@ -103,6 +103,61 @@ function emailHtml(kind, rows, site, dayLabel) {
     "</table></td></tr></table></body></html>";
 }
 
+// The e-mail for a day on which every goal that is set has been met — sent at
+// the reminder time instead of the list of what is left. Mail clients run no
+// script, so the balloons are emoji and the confetti is coloured shapes, set
+// in rows above and below the words.
+function congratsHtml(rows, site, dayLabel) {
+  const PAPER = "#f4efe5", INK = "#1b1613", INK2 = "#6b625b", INK3 = "#8f867f", RULE = "#cfc6b8", RUBRIC = "#9b2d1f", GREEN = "#2f5a2a";
+  const GOLD = "#c9962b", BLUE = "#2d5f8a", PLUM = "#7a3b6e";
+  const serif = "Georgia,'Times New Roman',Times,serif";
+  const colours = [RUBRIC, GOLD, GREEN, BLUE, PLUM, INK];
+  const shapes = ["&#9632;", "&#9679;", "&#9650;", "&#9670;", "&#9733;", "&#9644;"];
+  const confetti = function (seed, n) {
+    let out = "";
+    for (let i = 0; i < n; i++) {
+      const k = (i * 7 + seed * 3) % 11;
+      const col = colours[(i + seed) % colours.length], sh = shapes[(i * 5 + seed) % shapes.length];
+      const size = 10 + (k % 4) * 3;
+      const dy = (k % 3) * 5;
+      out += "<span style=\"color:" + col + ";font-size:" + size + "px;position:relative;top:" + dy + "px;padding:0 " + (4 + (k % 3) * 3) + "px\">" + sh + "</span>";
+    }
+    return "<div style=\"text-align:center;line-height:26px;letter-spacing:2px;overflow:hidden\">" + out + "</div>";
+  };
+  const balloons = "<div style=\"text-align:center;font-size:44px;line-height:52px;padding:6px 0 0\">&#127880; &#127881; &#127880; &#127882; &#127880; &#127881; &#127880;</div>";
+  const row = function (r) {
+    return "<tr><td style=\"padding:10px 0;border-bottom:1px solid " + RULE + "\">" +
+      "<table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"border-collapse:collapse\"><tr>" +
+      "<td style=\"font-family:" + serif + ";font-size:16px;color:" + INK + "\"><span style=\"color:" + GREEN + "\">&#10003;</span>&nbsp; " + esc(r.label) + "</td>" +
+      "<td align=\"right\" style=\"font-family:" + serif + ";font-size:15px;color:" + INK + ";white-space:nowrap\"><b>" + fmt(r.have) + "</b> <span style=\"color:" + INK3 + "\">/ " + fmt(r.goal) + "</span></td>" +
+      "</tr></table></td></tr>";
+  };
+  return "<!doctype html><html><body style=\"margin:0;padding:0;background:" + PAPER + "\">" +
+    "<table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"border-collapse:collapse;background:" + PAPER + "\"><tr><td align=\"center\" style=\"padding:28px 14px\">" +
+    "<table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"border-collapse:collapse;max-width:560px\">" +
+    "<tr><td style=\"padding:0 0 14px;border-bottom:1px solid " + INK + "\">" +
+    "<span style=\"font-family:" + serif + ";font-size:24px;font-weight:bold;color:" + INK + "\">" + esc(site) + "</span>" +
+    "<span style=\"font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:" + INK3 + ";padding-left:10px\">My " + esc(site) + "</span>" +
+    "</td></tr>" +
+    "<tr><td style=\"padding:18px 0 0\">" + confetti(1, 22) + balloons + confetti(4, 22) + "</td></tr>" +
+    "<tr><td align=\"center\" style=\"padding:10px 0 0\">" +
+    "<div style=\"font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:" + RUBRIC + "\">" + esc(dayLabel) + "</div>" +
+    "<div style=\"font-family:" + serif + ";font-size:34px;line-height:1.15;color:" + INK + ";margin:8px 0 10px\">Congratulations!</div>" +
+    "<div style=\"font-family:" + serif + ";font-size:18px;line-height:1.5;color:" + INK2 + "\">All " + rows.length + (rows.length === 1 ? " goal was" : " goals were") + " met today. Well done &mdash; &#1073;&#1088;&#1072;&#1074;&#1086;!</div>" +
+    "</td></tr>" +
+    "<tr><td style=\"padding:18px 0 0\"><table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"border-collapse:collapse;border-top:1px solid " + RULE + "\">" +
+    rows.map(row).join("") +
+    "</table></td></tr>" +
+    "<tr><td style=\"padding:18px 0 0\">" + confetti(7, 22) + "</td></tr>" +
+    "<tr><td align=\"center\" style=\"padding:14px 0 0\">" +
+    "<a href=\"" + SITE_URL + "\" style=\"display:inline-block;font-family:" + serif + ";font-size:16px;color:" + PAPER + ";background:" + INK + ";text-decoration:none;padding:12px 26px;border-radius:999px\">Open " + esc(site) + " &rarr;</a>" +
+    "</td></tr>" +
+    "<tr><td style=\"padding:30px 0 0;font-family:" + serif + ";font-size:12px;line-height:1.6;color:" + INK3 + ";border-top:1px solid " + RULE + "\">" +
+    "You asked for these e-mails on your My " + esc(site) + " page, where the goals, the times and this address are yours to change and the e-mail can be turned off. If this reached you by mistake, someone typed your address there; you can ignore it." +
+    "</td></tr>" +
+    "</table></td></tr></table></body></html>";
+}
+
 const WINDOW_MIN = 30;     // a time counts as "just passed" for this long — two missed cron runs
 const DEFAULT_AM = "08:00";
 const DEFAULT_PM = "17:00";
@@ -164,7 +219,9 @@ async function remindOne(account, now, site, canPushNow) {
   const ids = Object.keys(push.subs);
   const goals = (await r2GetJson(userDataKey(account.id, "goals")).catch(function () { return null; })) || {};
   if (!goals.notify) return 0;
-  const byEmail = !!goals.emailRemind && /@/.test(String(account.email || ""));
+  // the address on the account, or the one the reader typed on the My page
+  const mailTo = /^[^\s@,;<>]+@[^\s@,;<>]+\.[^\s@,;<>]{2,}$/.test(String(goals.alertEmail || "")) ? String(goals.alertEmail) : String(account.email || "");
+  const byEmail = !!goals.emailRemind && /@/.test(mailTo);
   if (!ids.length && !byEmail) return 0;
   const times = { am: minutesOf(goals.remindAm || DEFAULT_AM), pm: minutesOf(goals.remind || DEFAULT_PM) };
   // The slots due now, by local day, over every device's clock: a reader with
@@ -192,10 +249,19 @@ async function remindOne(account, now, site, canPushNow) {
     const rows = goalsStatus(goals, rec);
     push.sent[k] = now.getTime();
     changed = true;
-    if (!short.length) continue;                   // nothing set, or every goal met: nothing to say
+    if (!rows.length) continue;                    // no goal is set: nothing to say
     // the day, as the My page writes it: "Thursday, 23 October"
     let dayLabel = "";
     try { dayLabel = new Date(d.day + "T12:00:00Z").toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long", timeZone: "UTC" }); } catch (e) {}
+    if (!short.length) {
+      // Every goal met at the reminder time: the congratulations go by e-mail
+      // in place of the list of what is left.
+      if (byEmail) {
+        const r = await sendEmail({ to: mailTo, subject: "Congratulations \u2014 every " + site + " goal met today", html: congratsHtml(rows, site, dayLabel) }).catch(function () { return null; });
+        if (r && r.sent) n++;
+      }
+      continue;
+    }
     const payload = d.slot === "am"
       ? { title: "Good morning — today's " + site + " goals", body: short.join(" · "), tag: "goals-am", url: "/" }
       : { title: "Still to do today on " + site, body: short.join(" · "), tag: "goals-pm", url: "/" };
@@ -210,7 +276,7 @@ async function remindOne(account, now, site, canPushNow) {
       }
     }
     if (byEmail) {
-      const r = await sendEmail({ to: account.email, subject: payload.title, html: emailHtml(d.slot, rows, site, dayLabel) }).catch(function () { return null; });
+      const r = await sendEmail({ to: mailTo, subject: payload.title, html: emailHtml(d.slot, rows, site, dayLabel) }).catch(function () { return null; });
       if (r && r.sent) n++;
     }
   }
