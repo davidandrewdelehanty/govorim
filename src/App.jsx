@@ -6359,8 +6359,11 @@ export default function App() {
   // A goal of 0 is "not a goal". `remind` is a local time of day; from then
   // on, whatever is still short is overdue, and with `notify` on the browser
   // says so once a day.
+  // `remind` is the evening reminder (and from when what is short is overdue);
+  // `remindAm` the morning one. Both go to the reader's devices as push
+  // messages when they have turned them on (see the push code below).
   var GOALS_DEFAULT = { words: GOAL_WORDS, cards: GOAL_CARDS, quiz: 0, match: 0, terms: 0, decl: 0, conj: 0, drills: 10, verbs: 0, numbers: 0,
-                        course: 10, sections: 1, remind: "19:00", notify: false, updatedAt: 0 };
+                        course: 10, sections: 1, remind: "17:00", remindAm: "08:00", notify: false, updatedAt: 0 };
   var [goals, setGoalsRaw] = useState(GOALS_DEFAULT);
   var goalsLoaded = useRef(false);
   var setGoals = function(patch) {
@@ -6454,6 +6457,71 @@ export default function App() {
     var t = setInterval(check, 60000);
     return function(){ clearInterval(t); };
   }, [goals, stats]);
+
+  // ── Push reminders ─────────────────────────────────────────────────────
+  // The goals brought to the device at the two reminder times with the site
+  // closed: a service worker (public/sw.js) shows what api/push.js sends.
+  // The browser's subscription is kept with the account, with this device's
+  // time zone, so the cron can tell when it is eight in the morning here.
+  // On an iPhone this only works once the site is on the Home Screen.
+  var pushSupported = typeof window !== "undefined" && "serviceWorker" in navigator && "PushManager" in window && "Notification" in window;
+  var isIOS = typeof navigator !== "undefined" && /iPhone|iPad|iPod/.test(navigator.userAgent || "");
+  var standalone = typeof window !== "undefined" && (window.navigator.standalone === true || (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches));
+  var [pushState, setPushState] = useState("unknown");   // "unknown" | "off" | "on" | "busy" | "denied" | "error"
+  var [pushNote, setPushNote] = useState("");
+  var pushReg = useRef(null);
+  var pushTz = function() { try { return Intl.DateTimeFormat().resolvedOptions().timeZone || ""; } catch (e) { return ""; } };
+  useEffect(function(){
+    if (!pushSupported) return;
+    navigator.serviceWorker.register("/sw.js").then(function(reg){
+      pushReg.current = reg;
+      return reg.pushManager.getSubscription();
+    }).then(function(sub){
+      setPushState(sub ? "on" : (typeof Notification !== "undefined" && Notification.permission === "denied" ? "denied" : "off"));
+    }).catch(function(){ setPushState("error"); });
+  }, []);
+  var pushKeyBytes = function(b64) {
+    var pad = "=".repeat((4 - b64.length % 4) % 4);
+    var raw = atob((b64 + pad).replace(/-/g, "+").replace(/_/g, "/"));
+    var out = new Uint8Array(raw.length);
+    for (var i = 0; i < raw.length; i++) out[i] = raw.charCodeAt(i);
+    return out;
+  };
+  var pushOn = async function() {
+    if (!pushSupported || !pushReg.current) { setPushNote("This browser cannot receive push messages."); return; }
+    if (!me) { setPushNote("Sign in first — the reminder is kept with your account."); return; }
+    setPushState("busy"); setPushNote("");
+    try {
+      var perm = await Notification.requestPermission();
+      if (perm !== "granted") { setPushState(perm === "denied" ? "denied" : "off"); return; }
+      var r = await fetch("/api/push?action=key");
+      var j = await r.json().catch(function(){ return null; });
+      if (!r.ok || !j || !j.key) { setPushState("off"); setPushNote((j && j.error) || "Push is not set up on this site yet."); return; }
+      var reg = await navigator.serviceWorker.ready;
+      var sub = await reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: pushKeyBytes(j.key) });
+      var r2 = await authFetch("/api/push?action=sub", { method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ sub: sub.toJSON(), tz: pushTz() }) });
+      if (!r2.ok) throw new Error("save");
+      setGoals({ notify: true });
+      setPushState("on");
+    } catch (e) {
+      setPushState("off");
+      setPushNote("Could not turn reminders on here" + (isIOS && !standalone ? " — on an iPhone the site has to be on the Home Screen first (Share → Add to Home Screen)." : ". Try again in a moment."));
+    }
+  };
+  var pushOff = async function() {
+    if (!pushReg.current) return;
+    setPushState("busy"); setPushNote("");
+    try {
+      var sub = await pushReg.current.pushManager.getSubscription();
+      if (sub) {
+        var endpoint = sub.endpoint;
+        await sub.unsubscribe();
+        if (me) authFetch("/api/push?action=unsub", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ endpoint: endpoint }) }).catch(function(){});
+      }
+    } catch (e) {}
+    setPushState("off");
+  };
   var drillsLoaded = useRef(false);
   // Bible chapters read to the end: { "Бытие 1": firstReadAt }. The Bible is
   // read out of order, so "furthest reached" says nothing about which books
@@ -9578,6 +9646,19 @@ export default function App() {
     }, 3000);
     return function(){ clearTimeout(t); };
   }, [drills, me, syncedFromServer]);
+  // Push: the account's copy of this device's subscription, kept current: the time
+  // zone travels with the reader, and a subscription made before signing in
+  // is attached once they do.
+  useEffect(function(){
+    if (!pushSupported || !me || !syncedFromServer || pushState !== "on") return;
+    var reg = pushReg.current;
+    if (!reg) return;
+    reg.pushManager.getSubscription().then(function(sub){
+      if (!sub) return;
+      return authFetch("/api/push?action=sub", { method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ sub: sub.toJSON(), tz: pushTz() }) });
+    }).catch(function(){});
+  }, [me && me.email, syncedFromServer, pushState]);
   useEffect(function() {
     if (!me || !syncedFromServer || !bibleReadLoaded.current) return;
     if (!bibleRead || !Object.keys(bibleRead).length) return;
@@ -27124,10 +27205,26 @@ quizMode ? (
                     </div>
                     <p className="my-note">A goal of 0 is no goal — set a number for each kind of exercise you want to do every day. The streak counts a day when the words or the cards are met, as before; the dots above want every goal.</p>
 
-                    <div className="my-sechdr">Reminder</div>
+                    <div className="my-sechdr">Reminders</div>
                     <div className="my-form">
-                      <label className="my-field"><span>From this time, what is still short counts as overdue</span>
+                      <label className="my-field"><span>Morning reminder — today's goals</span>
+                        <input type="time" className="my-time" value={goals.remindAm || ""} onChange={function(e){ setGoals({ remindAm: e.target.value }); }} /></label>
+                      <label className="my-field"><span>Evening reminder — what is still short (and counts as overdue from then)</span>
                         <input type="time" className="my-time" value={goals.remind || ""} onChange={function(e){ setGoals({ remind: e.target.value }); }} /></label>
+                      <div className="my-field my-check">
+                        <span>Send them to this device, even with {SITE_NAME_LATIN} closed{standalone ? "" : (isIOS ? " — on an iPhone, add the site to the Home Screen first (Share → Add to Home Screen) and turn this on from there" : "")}</span>
+                        {!pushSupported
+                          ? <span className="my-note" style={{margin:0}}>{isIOS && !standalone ? "Needs the Home Screen app" : "Not available in this browser"}</span>
+                          : pushState === "on"
+                          ? <button type="button" className="ab" onClick={pushOff}>On — turn off</button>
+                          : pushState === "busy"
+                          ? <span className="my-note" style={{margin:0}}>…</span>
+                          : pushState === "denied"
+                          ? <span className="my-note" style={{margin:0}}>Blocked in the browser's settings</span>
+                          : <button type="button" className="ab" onClick={pushOn}>Turn on</button>}
+                      </div>
+                      {pushNote && <p className="my-note">{pushNote}</p>}
+                      {pushState === "on" && <p className="my-note">This device gets a message at the two times above, in its own time zone, when something is set and still to do. Turn the switch on on each device you want them on.</p>}
                       <label className="my-field my-check"><span>Tell me in the browser, once a day, while the site is open</span>
                         <input type="checkbox" checked={!!goals.notify} onChange={function(e){
                           var on = e.target.checked;

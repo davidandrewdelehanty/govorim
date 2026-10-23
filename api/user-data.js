@@ -1044,10 +1044,15 @@ export default async function handler(req, res) {
         // The daily goals. Numbers only, within sense; the newer copy wins.
         const g = body.goals || {};
         const num = function (v, max) { v = Math.round(Number(v)); return isFinite(v) && v >= 0 ? Math.min(v, max) : 0; };
+        const hhmm = function (v) { return /^\d{2}:\d{2}$/.test(String(v || "")) ? String(v) : ""; };
         const clean = {
           words: num(g.words, 100000), cards: num(g.cards, 1000), drills: num(g.drills, 1000),
           course: num(g.course, 1000), sections: num(g.sections, 100),
-          remind: /^\d{2}:\d{2}$/.test(String(g.remind || "")) ? String(g.remind) : "",
+          // one goal per kind of exercise (Oct 2026)
+          quiz: num(g.quiz, 1000), match: num(g.match, 1000), terms: num(g.terms, 1000),
+          decl: num(g.decl, 1000), conj: num(g.conj, 1000), verbs: num(g.verbs, 1000), numbers: num(g.numbers, 1000),
+          // the evening reminder (from when what is short is overdue) and the morning one
+          remind: hhmm(g.remind), remindAm: hhmm(g.remindAm),
           notify: !!g.notify, updatedAt: Number(g.updatedAt) || Date.now(),
         };
         let cur = null;

@@ -148,3 +148,37 @@ export function totals(stats) {
   });
   return { read: read, practiced: practiced, days: days };
 }
+
+// The daily goals, as the reminder (api/push.js) names them: the goal's key,
+// the counter it reads in the day's record, and the unit. The page (App.jsx)
+// carries the same list with its buttons; this is the part a push message
+// needs, kept where the server can import it.
+export var GOAL_KINDS = [
+  { k: "words", f: "read", one: "word", what: "to read" },
+  { k: "cards", f: "practiced", one: "card", what: "to review" },
+  { k: "quiz", f: "quiz", one: "quiz answer", what: "" },
+  { k: "match", f: "match", one: "match round", what: "" },
+  { k: "terms", f: "terms", one: "grammar term", what: "" },
+  { k: "decl", f: "decl", one: "declension", what: "" },
+  { k: "conj", f: "conj", one: "conjugation", what: "" },
+  { k: "drills", f: "cases", one: "case drill", what: "" },
+  { k: "verbs", f: "verbs", one: "verb answer", what: "" },
+  { k: "numbers", f: "numbers", one: "number answer", what: "" },
+  { k: "course", f: "course", one: "course exercise", what: "" },
+  { k: "sections", f: "sections", one: "course section", what: "" },
+];
+
+// What is still short today, in words: "320 words to read · 6 cards to review".
+// Empty when nothing is set or everything is met.
+export function goalsShortfall(goals, rec) {
+  var out = [];
+  GOAL_KINDS.forEach(function (g) {
+    var goal = Number((goals || {})[g.k]) || 0;
+    if (goal <= 0) return;
+    var have = Number((rec || {})[g.f]) || 0;
+    var left = goal - have;
+    if (left <= 0) return;
+    out.push(left + " " + g.one + (left === 1 ? "" : "s") + (g.what ? " " + g.what : ""));
+  });
+  return out;
+}

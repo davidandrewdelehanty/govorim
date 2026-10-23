@@ -20,6 +20,9 @@
     },
     "api/sync.js": {
       "maxDuration": 30
+    },
+    "api/push.js": {
+      "maxDuration": 60
     }
   },
   "rewrites": [
@@ -58,6 +61,12 @@
           "value": "public, max-age=0, must-revalidate"
         }
       ]
+    }
+  ],
+  "crons": [
+    {
+      "path": "/api/push?action=remind",
+      "schedule": "*/10 * * * *"
     }
   ]
 }
