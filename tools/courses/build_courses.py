@@ -433,6 +433,9 @@ def main(argv=None):
     prose.main(["--apply"])
     import pertinence
     pertinence.main(["--apply"])
+    # The Verbs of Motion course: each exercise explained by the rule for its own verb or prefix.
+    import motion_explain
+    motion_explain.main(["--apply"])
     for meta in outline:
         kept = []
         for o in meta["sections"]:
@@ -480,6 +483,9 @@ def build_only(only, outline):
         sense_check.main(["--drop", "--course", only])
     import pertinence
     pertinence.main(["--apply", "--course", only])
+    if only == "motion":
+        import motion_explain
+        motion_explain.main(["--apply"])
     for meta in outline:
         kept = []
         for o in meta["sections"]:
