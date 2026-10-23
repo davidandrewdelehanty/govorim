@@ -447,6 +447,17 @@ def main(argv=None):
             kept.append(o)
         meta["sections"] = kept
 
+    # The case courses: the exercise stands alone (no repeated lesson line above
+    # it), its hint names the dictionary form and the form wanted, and the
+    # explanation after the answer is the word's own declension and DLI's rule
+    # for its ending (tools/courses/case_explain.py).
+    try:
+        import case_explain
+    except ImportError:
+        print("case_explain skipped (pymorphy3 not installed)")
+    else:
+        case_explain.main(["--apply"])
+
     # The exam at the end of each course, from the chapters' own exercises.
     import make_exams
     make_exams.add_exams(outline)
@@ -481,6 +492,12 @@ def build_only(only, outline):
                 continue
             kept.append(o)
         meta["sections"] = kept
+    if only in ("cases", "case-nom", "case-gen", "case-dat", "case-acc", "case-ins", "case-prp"):
+        try:
+            import case_explain
+            case_explain.main(["--apply", "--course", only])
+        except ImportError:
+            print("case_explain skipped (pymorphy3 not installed)")
     import make_exams
     make_exams.add_exams(outline)
     op = os.path.join(ROOT, "src", "courses-outline.js")
