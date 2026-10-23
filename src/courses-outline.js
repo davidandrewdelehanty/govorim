@@ -578,12 +578,12 @@ export default [
    {
     "id": "n2-eto",
     "title": "Это…, вот…: naming things",
-    "n": 6
+    "n": 7
    },
    {
     "id": "n3-adjectives",
     "title": "Adjectives with the subject",
-    "n": 6
+    "n": 7
    },
    {
     "id": "n4-pronouns",
