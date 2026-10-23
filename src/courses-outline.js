@@ -238,7 +238,7 @@ export default [
    {
     "id": "c1-numbers-nouns",
     "title": "Numbers with nouns",
-    "n": 6
+    "n": 5
    },
    {
     "id": "c1-numbers-nouns-practice",

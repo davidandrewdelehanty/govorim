@@ -144,6 +144,9 @@ def paradigm(p, pick=None):
     out = {}
     RARE = {"Litr", "Arch", "Slng", "Erro", "Dist", "Infr", "Abbr"}
     forms = [f for f in p.lexeme if not (tags(f) & RARE)] + [f for f in p.lexeme if tags(f) & RARE]   # archaic variants only as a last resort
+    if p.tag.POS == "PRTF":
+        # a participle's lexeme holds the verb's active AND passive participles: keep the ones of this word's own voice and tense
+        forms = [f for f in forms if f.tag.POS == "PRTF" and f.tag.voice == p.tag.voice and f.tag.tense == p.tag.tense]
     for f in forms:
         t = tags(f)
         c = f.tag.case
@@ -421,10 +424,19 @@ def adj_forms(par, number, gender):
     return " · ".join(out)
 
 
+def adj_lemma(p):
+    """The adjective as a dictionary shows it: a participle's own lemma is its verb (запутать), but the word in the sentence is запутанный."""
+    if p.tag.POS in ("PRTF", "PRTS"):
+        x = paradigm(p).get(("nomn", "sing", "masc", None)) if p.tag.POS == "PRTF" else None
+        if x:
+            return x
+    return p.normal_form
+
+
 def explain_adj(p, form, case, number, gender, anim, noun_word):
     global _DERIVED
     _DERIVED = False
-    lemma = p.normal_form
+    lemma = adj_lemma(p)
     par = paradigm(p)
     c_en, n_en = CASE_EN[case], ("sg." if number == "sing" else "pl.")
     import case_models as CM
@@ -441,7 +453,7 @@ def explain_adj(p, form, case, number, gender, anim, noun_word):
     if same and norm(form) not in [norm(v) for v in same]:
         # the answer is not a form of the plain adjective (a superlative or comparative: малый → малейшую)
         _DERIVED = True
-        ft = [x for x in M.parse(form) if norm(x.normal_form) == norm(lemma)]
+        ft = [x for x in M.parse(form) if norm(x.normal_form) in (norm(lemma), norm(p.normal_form))]
         tg = tags(ft[0]) if ft else set()
         kind_en = "a degree form (comparative / superlative)" if (tg & {"Supr", "COMP", "Cmp2"}) else "a derived form"
         return head, ["«%s» is %s of %s, not its plain form, so no ending is compared with the plain declension." % (form.lower(), kind_en, lemma)], [R["adj"]]
@@ -703,7 +715,7 @@ def modifier_path(e, q, m, aw, hw, want, num, pair):
     gender = x.tag.gender if number == "sing" else None
     g_en = (" " + {"masc": "m.", "femn": "f.", "neut": "n."}.get(gender, "")) if gender else ""
     label = "%s %s%s" % (CASE_EN[case], "sg." if number == "sing" else "pl.", g_en)
-    hintw = [(p.normal_form[:1].upper() + p.normal_form[1:]) if h[:1].isupper() else p.normal_form for p, h in zip(reads, hw)]
+    hintw = [(adj_lemma(p)[:1].upper() + adj_lemma(p)[1:]) if h[:1].isupper() else adj_lemma(p) for p, h in zip(reads, hw)]
     newq = q[:m.start()] + "___ (" + " ".join(hintw) + ", " + label + ")" + q[m.end():]
     parts, rules, decls = [], [], []
     for p, a in zip(reads, aw):
@@ -839,7 +851,7 @@ def rewrite(e, want_cases=(), mixed=False):
             return None
         g_en = (" " + {"masc": "m.", "femn": "f.", "neut": "n."}.get(gender, "")) if number == "sing" and gender else ""
         label = "%s %s%s" % (CASE_EN[case], "sg." if number == "sing" else "pl.", g_en)
-        newq = q[:m.start()] + "___ (" + pa.normal_form + ", " + label + ")" + q[m.end():]
+        newq = q[:m.start()] + "___ (" + adj_lemma(pa) + ", " + label + ")" + q[m.end():]
         head, bits, rules = explain_adj(pa, aw[0], case, number, gender, pnoun.tag.animacy if pnoun else None, pnoun.word if pnoun else "its noun")
         par = paradigm(pa)
         if _DERIVED:
@@ -891,7 +903,7 @@ def rewrite(e, want_cases=(), mixed=False):
     if pa is not None and pa.tag.case == case:
         head, bits, rules = explain_adj(pa, aw[ni], case, number, pn.tag.gender or pa.tag.gender, pn.tag.animacy, "the noun it stands for")
         head = head.replace(", agreeing with the noun it stands for", "; an adjective used as a noun")
-        head = head.replace("**" + pa.normal_form + " →", "**" + dict_forms[ni] + " →", 1)   # the word as the hint shows it (мороженое, not мороженый)
+        head = head.replace("**" + adj_lemma(pa) + " →", "**" + dict_forms[ni] + " →", 1)   # the word as the hint shows it (мороженое, not мороженый)
         rules = [R["adj-noun"]] + rules
         decl = "Declension: sg. %s; pl. %s." % (decl_line(par_n, "sing"), decl_line(par_n, "plur"))
     else:

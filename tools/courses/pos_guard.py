@@ -46,6 +46,21 @@ def other_pos(M, e):
     return hits or None
 
 
+FORMATION_COURSES = {"inter2", "tables", "adv3", "forms", "aspect", "motion", "verbs", "tenses", "numerals", "gramterms"}     # verb courses: a verb hint with a participle answer is the exercise
+
+
+def verb_hint_for_adjective(M, e):
+    """A blank hinted with an infinitive whose answer is a participle/adjective/noun, in a course that does not teach forming them
+    («Одно слово, ___ (прожечь)!» → прожжённый in a numbers lesson): the student is shown a verb for a word that is not one."""
+    m = HINT.search(e.get("q") or "")
+    if not m or re.search(r"\d|[A-Za-z+/·]", m.group(1)):
+        return False
+    hw, aw = WORD.findall(m.group(1)), WORD.findall((e.get("answers") or [""])[0])
+    if len(hw) != len(aw):
+        return False
+    return any(M.parse(h)[0].tag.POS == "INFN" and M.parse(a)[0].tag.POS in ("PRTF", "PRTS", "ADJF", "NOUN") for h, a in zip(hw, aw))
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("--apply", action="store_true")
@@ -66,6 +81,8 @@ def main(argv=None):
             keep = []
             for e in doc.get("exercises") or []:
                 h = other_pos(M, e) if e.get("type") == "fill" else None
+                if not h and e.get("type") == "fill" and cid not in FORMATION_COURSES and verb_hint_for_adjective(M, e):
+                    h = {(e.get("answers") or [""])[0]: ["verb hint"]}
                 st[cid + ":checked"] += 1 if e.get("type") == "fill" else 0
                 if h:
                     st[cid + ":drop"] += 1
