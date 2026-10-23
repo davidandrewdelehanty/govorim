@@ -2748,7 +2748,7 @@ export default [
    {
     "id": "c1-comparative-practice-2",
     "title": "Practice 2: The comparative: новее, интереснее",
-    "n": 20
+    "n": 19
    },
    {
     "id": "c1-comparative-practice-3",
@@ -2778,12 +2778,12 @@ export default [
    {
     "id": "c1-comparative-practice-8",
     "title": "Practice 8: The comparative: новее, интереснее",
-    "n": 20
+    "n": 19
    },
    {
     "id": "c1-comparative-practice-9",
     "title": "Practice 9: The comparative: новее, интереснее",
-    "n": 20
+    "n": 19
    },
    {
     "id": "c1-comparative-practice-10",
@@ -2798,7 +2798,7 @@ export default [
    {
     "id": "c1-comparative-practice-12",
     "title": "Practice 12: The comparative: новее, интереснее",
-    "n": 20
+    "n": 17
    },
    {
     "id": "c1-comparative-practice-13",
@@ -2818,7 +2818,7 @@ export default [
    {
     "id": "c1-comparative-practice-16",
     "title": "Practice 16: The comparative: новее, интереснее",
-    "n": 20
+    "n": 19
    },
    {
     "id": "c1-comparative-practice-17",
@@ -2828,7 +2828,7 @@ export default [
    {
     "id": "c1-comparative-practice-18",
     "title": "Practice 18: The comparative: новее, интереснее",
-    "n": 20
+    "n": 18
    },
    {
     "id": "c1-comparative-practice-19",
@@ -2853,12 +2853,12 @@ export default [
    {
     "id": "c2-irregular-practice-2",
     "title": "Practice 2: Irregular comparatives: лучше, больше, старше",
-    "n": 20
+    "n": 17
    },
    {
     "id": "c2-irregular-practice-3",
     "title": "Practice 3: Irregular comparatives: лучше, больше, старше",
-    "n": 20
+    "n": 12
    },
    {
     "id": "c2-irregular-practice-4",
@@ -2873,17 +2873,17 @@ export default [
    {
     "id": "c2-irregular-practice-6",
     "title": "Practice 6: Irregular comparatives: лучше, больше, старше",
-    "n": 20
+    "n": 18
    },
    {
     "id": "c2-irregular-practice-7",
     "title": "Practice 7: Irregular comparatives: лучше, больше, старше",
-    "n": 20
+    "n": 16
    },
    {
     "id": "c2-irregular-practice-8",
     "title": "Practice 8: Irregular comparatives: лучше, больше, старше",
-    "n": 20
+    "n": 18
    },
    {
     "id": "c2-irregular-practice-9",
@@ -2893,17 +2893,17 @@ export default [
    {
     "id": "c2-irregular-practice-10",
     "title": "Practice 10: Irregular comparatives: лучше, больше, старше",
-    "n": 20
+    "n": 19
    },
    {
     "id": "c2-irregular-practice-11",
     "title": "Practice 11: Irregular comparatives: лучше, больше, старше",
-    "n": 20
+    "n": 17
    },
    {
     "id": "c2-irregular-practice-12",
     "title": "Practice 12: Irregular comparatives: лучше, больше, старше",
-    "n": 20
+    "n": 19
    },
    {
     "id": "c2-irregular-practice-13",
@@ -2938,12 +2938,12 @@ export default [
    {
     "id": "c2-irregular-practice-19",
     "title": "Practice 19: Irregular comparatives: лучше, больше, старше",
-    "n": 20
+    "n": 18
    },
    {
     "id": "c2-irregular-practice-20",
     "title": "Practice 20: Irregular comparatives: лучше, больше, старше",
-    "n": 19
+    "n": 15
    },
    {
     "id": "c3-than",
@@ -2963,37 +2963,37 @@ export default [
    {
     "id": "c6-eishiy",
     "title": "-ейший, and лучше всех",
-    "n": 23
+    "n": 18
    },
    {
     "id": "c6-eishiy-practice",
     "title": "Practice 1: -ейший, and лучше всех",
-    "n": 19
+    "n": 16
    },
    {
     "id": "c6-eishiy-practice-2",
     "title": "Practice 2: -ейший, and лучше всех",
-    "n": 20
+    "n": 18
    },
    {
     "id": "c6-eishiy-practice-3",
     "title": "Practice 3: -ейший, and лучше всех",
-    "n": 20
+    "n": 19
    },
    {
     "id": "c6-eishiy-practice-4",
     "title": "Practice 4: -ейший, and лучше всех",
-    "n": 20
+    "n": 19
    },
    {
     "id": "c6-eishiy-practice-5",
     "title": "Practice 5: -ейший, and лучше всех",
-    "n": 20
+    "n": 19
    },
    {
     "id": "c6-eishiy-practice-6",
     "title": "Practice 6: -ейший, and лучше всех",
-    "n": 20
+    "n": 19
    },
    {
     "id": "c6-eishiy-practice-7",
@@ -3003,47 +3003,47 @@ export default [
    {
     "id": "c6-eishiy-practice-8",
     "title": "Practice 8: -ейший, and лучше всех",
-    "n": 20
+    "n": 19
    },
    {
     "id": "c6-eishiy-practice-9",
     "title": "Practice 9: -ейший, and лучше всех",
-    "n": 20
+    "n": 19
    },
    {
     "id": "c6-eishiy-practice-10",
     "title": "Practice 10: -ейший, and лучше всех",
-    "n": 20
+    "n": 19
    },
    {
     "id": "c6-eishiy-practice-11",
     "title": "Practice 11: -ейший, and лучше всех",
-    "n": 20
+    "n": 18
    },
    {
     "id": "c6-eishiy-practice-12",
     "title": "Practice 12: -ейший, and лучше всех",
-    "n": 20
+    "n": 18
    },
    {
     "id": "c6-eishiy-practice-13",
     "title": "Practice 13: -ейший, and лучше всех",
-    "n": 20
+    "n": 19
    },
    {
     "id": "c6-eishiy-practice-14",
     "title": "Practice 14: -ейший, and лучше всех",
-    "n": 20
+    "n": 17
    },
    {
     "id": "c6-eishiy-practice-15",
     "title": "Practice 15: -ейший, and лучше всех",
-    "n": 20
+    "n": 19
    },
    {
     "id": "c6-eishiy-practice-16",
     "title": "Practice 16: -ейший, and лучше всех",
-    "n": 20
+    "n": 18
    },
    {
     "id": "c6-eishiy-practice-17",
@@ -3073,12 +3073,12 @@ export default [
    {
     "id": "c7-short-practice",
     "title": "Practice 1: Short adjectives: занят, готов, рад",
-    "n": 20
+    "n": 19
    },
    {
     "id": "c7-short-practice-2",
     "title": "Practice 2: Short adjectives: занят, готов, рад",
-    "n": 20
+    "n": 19
    },
    {
     "id": "c7-short-practice-3",
@@ -3093,7 +3093,7 @@ export default [
    {
     "id": "c7-short-practice-5",
     "title": "Practice 5: Short adjectives: занят, готов, рад",
-    "n": 20
+    "n": 19
    },
    {
     "id": "c7-short-practice-6",
@@ -3108,7 +3108,7 @@ export default [
    {
     "id": "c7-short-practice-8",
     "title": "Practice 8: Short adjectives: занят, готов, рад",
-    "n": 20
+    "n": 19
    },
    {
     "id": "c7-short-practice-9",
@@ -3123,7 +3123,7 @@ export default [
    {
     "id": "c7-short-practice-11",
     "title": "Practice 11: Short adjectives: занят, готов, рад",
-    "n": 20
+    "n": 19
    },
    {
     "id": "c7-short-practice-12",
@@ -3133,7 +3133,7 @@ export default [
    {
     "id": "c7-short-practice-13",
     "title": "Practice 13: Short adjectives: занят, готов, рад",
-    "n": 20
+    "n": 19
    },
    {
     "id": "c7-short-practice-14",
@@ -3143,7 +3143,7 @@ export default [
    {
     "id": "c7-short-practice-15",
     "title": "Practice 15: Short adjectives: занят, готов, рад",
-    "n": 20
+    "n": 19
    },
    {
     "id": "c7-short-practice-16",
@@ -3158,17 +3158,17 @@ export default [
    {
     "id": "c7-short-practice-18",
     "title": "Practice 18: Short adjectives: занят, готов, рад",
-    "n": 20
+    "n": 19
    },
    {
     "id": "c7-short-practice-19",
     "title": "Practice 19: Short adjectives: занят, готов, рад",
-    "n": 20
+    "n": 19
    },
    {
     "id": "c7-short-practice-20",
     "title": "Practice 20: Short adjectives: занят, готов, рад",
-    "n": 20
+    "n": 19
    },
    {
     "id": "exam",
@@ -3257,7 +3257,7 @@ export default [
    {
     "id": "x4-li",
     "title": "ли: whether",
-    "n": 20
+    "n": 19
    },
    {
     "id": "x4-li-practice",
@@ -3702,7 +3702,7 @@ export default [
    {
     "id": "i20-comparison-practice-4",
     "title": "Practice 4: Expressing comparison",
-    "n": 10
+    "n": 9
    },
    {
     "id": "i20-comparison-practice-5",
@@ -3742,7 +3742,7 @@ export default [
    {
     "id": "i20-comparison-practice-12",
     "title": "Practice 12: Expressing comparison",
-    "n": 20
+    "n": 17
    },
    {
     "id": "i20-comparison-practice-13",
@@ -3752,22 +3752,22 @@ export default [
    {
     "id": "i20-comparison-practice-14",
     "title": "Practice 14: Expressing comparison",
-    "n": 20
+    "n": 17
    },
    {
     "id": "i20-comparison-practice-15",
     "title": "Practice 15: Expressing comparison",
-    "n": 20
+    "n": 19
    },
    {
     "id": "i20-comparison-practice-16",
     "title": "Practice 16: Expressing comparison",
-    "n": 10
+    "n": 9
    },
    {
     "id": "i20-comparison-practice-17",
     "title": "Practice 17: Expressing comparison",
-    "n": 10
+    "n": 9
    },
    {
     "id": "i20-comparison-practice-18",
@@ -3932,7 +3932,7 @@ export default [
    {
     "id": "v09-object-clauses",
     "title": "Object clauses: что, чтобы, ли",
-    "n": 20
+    "n": 19
    },
    {
     "id": "v09-object-clauses-practice",
@@ -4837,12 +4837,12 @@ export default [
    {
     "id": "g9-pronouns",
     "title": "Personal pronouns, кто, что, себя",
-    "n": 32
+    "n": 31
    },
    {
     "id": "g10-determiners",
     "title": "этот, тот, весь, сам, and the possessives",
-    "n": 63
+    "n": 62
    },
    {
     "id": "g11-numerals",
@@ -5698,7 +5698,7 @@ export default [
    {
     "id": "m01-pairs-practice-2",
     "title": "Practice 2: Two verbs for every way of going",
-    "n": 20
+    "n": 18
    },
    {
     "id": "m01-pairs-practice-3",
@@ -5763,7 +5763,7 @@ export default [
    {
     "id": "m02-direction-practice-7",
     "title": "Practice 7: One direction, or round and about",
-    "n": 20
+    "n": 18
    },
    {
     "id": "m03-now-and-lets-go",
@@ -5793,7 +5793,7 @@ export default [
    {
     "id": "m03-now-and-lets-go-practice-5",
     "title": "Practice 5: The present for the future, and «let's go»",
-    "n": 20
+    "n": 19
    },
    {
     "id": "m03-now-and-lets-go-practice-6",
@@ -5838,7 +5838,7 @@ export default [
    {
     "id": "m04-carrying-practice-7",
     "title": "Practice 7: Carrying, leading, driving",
-    "n": 20
+    "n": 19
    },
    {
     "id": "m04-carrying-practice-8",
@@ -5873,12 +5873,12 @@ export default [
    {
     "id": "m05-other-pairs-practice-3",
     "title": "Practice 3: Running, swimming, climbing, crawling, dragging",
-    "n": 20
+    "n": 18
    },
    {
     "id": "m05-other-pairs-practice-4",
     "title": "Practice 4: Running, swimming, climbing, crawling, dragging",
-    "n": 20
+    "n": 19
    },
    {
     "id": "m05-other-pairs-practice-5",
@@ -5893,7 +5893,7 @@ export default [
    {
     "id": "m05-other-pairs-practice-7",
     "title": "Practice 7: Running, swimming, climbing, crawling, dragging",
-    "n": 20
+    "n": 19
    },
    {
     "id": "m05-other-pairs-practice-8",
@@ -5923,7 +5923,7 @@ export default [
    {
     "id": "m06-po-practice-2",
     "title": "Practice 2: Setting out: пойти, поехать — and сходить, съездить",
-    "n": 20
+    "n": 19
    },
    {
     "id": "m06-po-practice-3",
@@ -5948,7 +5948,7 @@ export default [
    {
     "id": "m06-po-practice-7",
     "title": "Practice 7: Setting out: пойти, поехать — and сходить, съездить",
-    "n": 20
+    "n": 19
    },
    {
     "id": "m06-po-practice-8",
@@ -6033,7 +6033,7 @@ export default [
    {
     "id": "m08-how-prefixes-work-practice-7",
     "title": "Practice 7: How a prefix changes a verb of motion",
-    "n": 20
+    "n": 19
    },
    {
     "id": "m08-how-prefixes-work-practice-8",
@@ -6128,12 +6128,12 @@ export default [
    {
     "id": "m10-pri-u-practice-5",
     "title": "Practice 5: при- and у-: arriving, and leaving",
-    "n": 20
+    "n": 18
    },
    {
     "id": "m10-pri-u-practice-6",
     "title": "Practice 6: при- and у-: arriving, and leaving",
-    "n": 20
+    "n": 19
    },
    {
     "id": "m10-pri-u-practice-7",
@@ -6153,7 +6153,7 @@ export default [
    {
     "id": "m10-pri-u-practice-10",
     "title": "Practice 10: при- and у-: arriving, and leaving",
-    "n": 20
+    "n": 19
    },
    {
     "id": "m11-pod-ot",
@@ -6163,12 +6163,12 @@ export default [
    {
     "id": "m11-pod-ot-practice",
     "title": "Practice 1: под- and от-: up to, and away from",
-    "n": 20
+    "n": 18
    },
    {
     "id": "m11-pod-ot-practice-2",
     "title": "Practice 2: под- and от-: up to, and away from",
-    "n": 20
+    "n": 17
    },
    {
     "id": "m11-pod-ot-practice-3",
@@ -6448,7 +6448,7 @@ export default [
    {
     "id": "m16-s-raz-practice-3",
     "title": "Practice 3: с-: down, and together — раз-: apart",
-    "n": 20
+    "n": 19
    },
    {
     "id": "m16-s-raz-practice-4",
@@ -6483,7 +6483,7 @@ export default [
    {
     "id": "m16-s-raz-practice-10",
     "title": "Practice 10: с-: down, and together — раз-: apart",
-    "n": 20
+    "n": 18
    },
    {
     "id": "m17-ob-iz",
@@ -6518,7 +6518,7 @@ export default [
    {
     "id": "m18-vz-na-practice",
     "title": "Practice 1: вз- (вс-): up — на-: onto, and a quantity covered",
-    "n": 20
+    "n": 19
    },
    {
     "id": "m18-vz-na-practice-2",
@@ -6533,7 +6533,7 @@ export default [
    {
     "id": "m18-vz-na-practice-4",
     "title": "Practice 4: вз- (вс-): up — на-: onto, and a quantity covered",
-    "n": 20
+    "n": 19
    },
    {
     "id": "m18-vz-na-practice-5",
@@ -6553,7 +6553,7 @@ export default [
    {
     "id": "m18-vz-na-practice-8",
     "title": "Practice 8: вз- (вс-): up — на-: onto, and a quantity covered",
-    "n": 20
+    "n": 19
    },
    {
     "id": "m18-vz-na-practice-9",
@@ -6598,7 +6598,7 @@ export default [
    {
     "id": "m19-aspect-practice-6",
     "title": "Practice 6: Perfective or imperfective? The prefixed verbs in use",
-    "n": 20
+    "n": 19
    },
    {
     "id": "m19-aspect-practice-7",
@@ -6613,12 +6613,12 @@ export default [
    {
     "id": "m19-aspect-practice-9",
     "title": "Practice 9: Perfective or imperfective? The prefixed verbs in use",
-    "n": 20
+    "n": 19
    },
    {
     "id": "m19-aspect-practice-10",
     "title": "Practice 10: Perfective or imperfective? The prefixed verbs in use",
-    "n": 20
+    "n": 18
    },
    {
     "id": "m20-prefixed-idioms",

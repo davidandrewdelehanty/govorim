@@ -465,6 +465,12 @@ def main(argv=None):
         print("case_explain skipped (pymorphy3 not installed)")
     else:
         case_explain.main(["--apply"])
+    try:
+        import fix_errors
+        fix_errors.main(["--apply"])       # markup, spacing, duplicates, typos, back-formed hints (audit_deep.py found them)
+    except ImportError:
+        print("fix_errors skipped (pymorphy3 not installed)")
+    if True:
         # it drops exercises (verb/adverb readings, case conflicts): recount the sections
         for meta in outline:
             for o in meta["sections"]:
@@ -509,6 +515,11 @@ def build_only(only, outline):
             case_explain.main(["--apply", "--course", only])
         except ImportError:
             print("case_explain skipped (pymorphy3 not installed)")
+    try:
+        import fix_errors
+        fix_errors.main(["--apply", "--course", only])       # markup, spacing, duplicates, typos, back-formed hints (audit_deep.py found them)
+    except ImportError:
+        print("fix_errors skipped (pymorphy3 not installed)")
     for meta in outline:
         kept = []
         for o in meta["sections"]:
