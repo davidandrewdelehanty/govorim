@@ -12440,7 +12440,7 @@ export default function App() {
   // aside. The Case drills from the books sit under the same menu.
   // Which page of "Vocab and Exercises" is open: the words, or the Grammar
   // reference and its verb practice (it was a tab of its own).
-  var [vocabSec, setVocabSec] = useState("words");    // "words" | "grammar"
+  var [vocabSec, setVocabSec] = useState("exercises");    // "exercises" | "words" | "grammar"
   var [vocabDrill, setVocabDrill] = useState(null);   // "decl" | "conj" | "cases" | null
   var [fd, setFd] = useState(null);                   // { kind, q, input, checked, right, n, nRight, busy, err }
   var fdSeq = useRef(0);
@@ -15844,7 +15844,7 @@ export default function App() {
   // English mode has no case drills: leave that tab if it is open.
   useEffect(function(){
     if (targetLang === "en" && (tab === "drills" || tab === "music" || tab === "grammar" || tab === "courses")) setTab("chat");
-    if (targetLang === "en" && vocabSec !== "words") setVocabSec("words");
+    if (targetLang === "en" && vocabSec === "grammar") setVocabSec("exercises");
     if (targetLang === "en" && libCat === "__music__") setLibCat("");
   }, [targetLang, tab]);
 
@@ -16250,10 +16250,11 @@ export default function App() {
   };
 
   // A review, a game or a drill is open on the Vocab tab.
-  var vocabReviewing = !!((quizMode || matchGame || quizMenu || vocabDrill) && (!termDrill || termDrill.where === "vocab"));
-  // The two pages of "Vocab and Exercises": the words, and Grammar.
+  // (The plain menu of exercises is no longer a screen of its own: it is the
+  // first tab. Only the grammar-terms menu of a termDrill still is.)
+  var vocabReviewing = !!((quizMode || matchGame || (quizMenu && termDrill) || vocabDrill) && (!termDrill || termDrill.where === "vocab"));
+  // The pages of "Vocab and Exercises": the exercises, the words, and Grammar.
   var vocabSecTabs = function() {
-    if (targetLang === "en") return null;
     var one = function(key, label) {
       return (
         <button type="button" role="tab" aria-selected={vocabSec === key} className={"fq-tab" + (vocabSec === key ? " on" : "")}
@@ -16262,9 +16263,51 @@ export default function App() {
     };
     return (
       <div className="fq-tabs vs-tabs" role="tablist">
+        {one("exercises", "Exercises")}
         {one("words", "My words")}
-        {one("grammar", "Grammar")}
+        {targetLang !== "en" && one("grammar", "Grammar")}
       </div>
+    );
+  };
+
+  // The list of exercises: drawn on the Exercises tab, and (for a course's
+  // own grammar terms) inside the review menu.
+  var menuCards = function(vocab) {
+    var card = function(title, desc, onClick, off) {
+      return (
+        <button key={title} onClick={off ? undefined : onClick} disabled={!!off}
+          style={{background:"rgba(200,162,118,.08)",border:"1px solid rgba(200,162,118,.3)",color:"#000",padding:"18px 20px",borderRadius:12,cursor:off ? "default" : "pointer",opacity:off ? .5 : 1,textAlign:"left",fontFamily:"'Literata',serif",transition:"all .15s"}}
+          onMouseOver={function(e){ if (!off) e.currentTarget.style.background = "rgba(200,162,118,.14)"; }}
+          onMouseOut={function(e){ e.currentTarget.style.background = "rgba(200,162,118,.08)"; }}>
+          <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:6}}>
+            <span style={{fontSize:18,fontWeight:600,color:"#000",fontFamily:"'Old Standard TT',serif"}}>{title}</span>
+          </div>
+          <p style={{fontSize:13,color:"rgba(0,0,0,.55)",margin:0,lineHeight:1.5}}>{desc}</p>
+        </button>
+      );
+    };
+    var none = !termDrill && vocab.length === 0;
+    return (
+      <>
+        {card("Multiple Choice Quiz",
+          termDrill ? "Quick recall test. Each question shows a term with four definitions to choose from; a miss comes back a minute later." : (none ? "Quick recall test on your saved words \u2014 save some words while you read and it opens here." : "Quick recall test. Each question shows a Russian word with 4 English meaning options (from same-pos vocabulary)."),
+          function(){ startQuiz(null, termDrill ? termDrill.cards : null); }, none)}
+        {card("Match",
+          termDrill ? "Four terms on the left, their definitions on the right. Drag each definition onto its term \u2014 the round counts when all four are right at once." : (none ? "Four words on the left, their meanings on the right \u2014 it opens once you have saved some words." : "Four words on the left, their meanings on the right. Drag each meaning onto its word \u2014 the round counts when all four are right at once."),
+          function(){ startMatch(termDrill ? termDrill.cards : null); }, none)}
+        {!termDrill && card("Grammar terms",
+          "The words a Russian grammar, dictionary or teacher uses \u2014 \u043f\u0430\u0434\u0435\u0436, \u0433\u043b\u0430\u0433\u043e\u043b, \u0441\u043e\u0432\u0435\u0440\u0448\u0435\u043d\u043d\u044b\u0439 \u0432\u0438\u0434 \u2014 against their definitions, as a quiz or the match game. Nothing is scheduled or saved.",
+          startTermsFromVocab)}
+        {!termDrill && card("Declension practice",
+          "A noun from your saved words, or one of the commonest, and a case to put it in \u2014 type the form. Right answers count on the leaderboard.",
+          function(){ fdStart("decl"); })}
+        {!termDrill && card("Conjugation practice",
+          "A verb with a conjugation table on Wiktionary, and a person and number in a tense \u2014 or a gender in the past. Type the form. Right answers count on the leaderboard.",
+          function(){ fdStart("conj"); })}
+        {!termDrill && card("Case drills",
+          "Sentences from every book in the library with one word missing: pick its right case from four. Right answers count on the leaderboard.",
+          openCaseDrills)}
+      </>
     );
   };
 
@@ -16280,7 +16323,7 @@ quizMode ? (
                   <span className="pti">{termDrill ? "Review the terms" : "Review"}</span>
                   {rv && !rv.finished
                     ? <button className="ab" onClick={rvFinish}>Finish</button>
-                    : <button className="ab" onClick={function(){ setQuizMode(false); setQuizMenu(true); setRv(null); }}>← Back</button>}
+                    : <button className="ab" onClick={function(){ setQuizMode(false); setQuizMenu(!!termDrill); setRv(null); }}>← Back</button>}
                 </div>
                 {(function(){
                   if (!rv) return null;
@@ -16503,7 +16546,7 @@ quizMode ? (
               <>
                 <div className="phdr">
                   <span className="pti">Match{(function(){ var k = matchGame.round && matchGame.round[0] ? String(matchGame.round[0].pos || "").toLowerCase().trim() : ""; return k && k !== "\u2014" ? " \u00b7 " + k + (/s$/.test(k) ? "" : "s") : ""; })()} · {matchGame.won} of {matchGame.rounds} rounds right</span>
-                  <button className="ab" onClick={function(){ setMatchGame(null); if (termDrill) setQuizMenu(true); }}>{termDrill ? "← Back" : "← Back to list"}</button>
+                  <button className="ab" onClick={function(){ setMatchGame(null); if (termDrill) setQuizMenu(true); }}>{termDrill ? "← Back" : "← Back to exercises"}</button>
                 </div>
                 {matchGame.status === "done" ? (
                   <div className="vm-done">
@@ -16626,7 +16669,7 @@ quizMode ? (
               <>
                 <div className="phdr">
                   <span className="pti">{termDrill ? "Grammar terms" : "Review vocabulary"}</span>
-                  <button className="ab" onClick={function(){ if (termDrill && termDrill.where === "vocab") { setTermDrill(null); return; } setQuizMenu(false); setTermDrill(null); }}>{termDrill ? (termDrill.where === "vocab" ? "← Back" : "← Back to the lesson") : "← Back to list"}</button>
+                  <button className="ab" onClick={function(){ if (termDrill && termDrill.where === "vocab") { setQuizMenu(false); setTermDrill(null); return; } setQuizMenu(false); setTermDrill(null); }}>{termDrill ? (termDrill.where === "vocab" ? "← Back to exercises" : "← Back to the lesson") : "← Back to exercises"}</button>
                 </div>
                 <div style={{padding:"24px 16px",display:"flex",flexDirection:"column",gap:14,maxWidth:560,margin:"0 auto"}}>
                   <p style={{color:"rgba(0,0,0,.65)",fontSize:14,textAlign:"center",margin:"0 0 8px"}}>
@@ -16636,70 +16679,7 @@ quizMode ? (
                       ? (dueNow + " of your " + vocab.length + " saved words " + (dueNow === 1 ? "is" : "are") + " due for review.")
                       : ("Nothing is due right now \u2014 a session will drill your " + Math.min(8, vocab.length) + " least-secure words.")}
                   </p>
-                  {/* Multiple Choice Quiz option */}
-                  <button onClick={function(){ startQuiz(null, termDrill ? termDrill.cards : null); }}
-                    style={{background:"rgba(200,162,118,.08)",border:"1px solid rgba(200,162,118,.3)",color:"#000",padding:"18px 20px",borderRadius:12,cursor:"pointer",textAlign:"left",fontFamily:"'Literata',serif",transition:"all .15s"}}
-                    onMouseOver={function(e){ e.currentTarget.style.background = "rgba(200,162,118,.14)"; }}
-                    onMouseOut={function(e){ e.currentTarget.style.background = "rgba(200,162,118,.08)"; }}>
-                    <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:6}}>
-                      
-                      <span style={{fontSize:18,fontWeight:600,color:"#000",fontFamily:"'Old Standard TT',serif"}}>Multiple Choice Quiz</span>
-                    </div>
-                    <p style={{fontSize:13,color:"rgba(0,0,0,.55)",margin:0,lineHeight:1.5}}>{termDrill ? "Quick recall test. Each question shows a term with four definitions to choose from; a miss comes back a minute later." : "Quick recall test. Each question shows a Russian word with 4 English meaning options (from same-pos vocabulary)."}</p>
-                  </button>
-                  <button onClick={function(){ startMatch(termDrill ? termDrill.cards : null); }}
-                    style={{background:"rgba(200,162,118,.08)",border:"1px solid rgba(200,162,118,.3)",color:"#000",padding:"18px 20px",borderRadius:12,cursor:"pointer",textAlign:"left",fontFamily:"'Literata',serif",transition:"all .15s"}}
-                    onMouseOver={function(e){ e.currentTarget.style.background = "rgba(200,162,118,.14)"; }}
-                    onMouseOut={function(e){ e.currentTarget.style.background = "rgba(200,162,118,.08)"; }}>
-                    <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:6}}>
-                      <span style={{fontSize:18,fontWeight:600,color:"#000",fontFamily:"'Old Standard TT',serif"}}>Match</span>
-                    </div>
-                    <p style={{fontSize:13,color:"rgba(0,0,0,.55)",margin:0,lineHeight:1.5}}>{termDrill ? "Four terms on the left, their definitions on the right. Drag each definition onto its term — the round counts when all four are right at once." : "Four words on the left, their meanings on the right. Drag each meaning onto its word — the round counts when all four are right at once."}</p>
-                  </button>
-                  {!termDrill && (
-                    <button onClick={startTermsFromVocab}
-                      style={{background:"rgba(200,162,118,.08)",border:"1px solid rgba(200,162,118,.3)",color:"#000",padding:"18px 20px",borderRadius:12,cursor:"pointer",textAlign:"left",fontFamily:"'Literata',serif",transition:"all .15s"}}
-                      onMouseOver={function(e){ e.currentTarget.style.background = "rgba(200,162,118,.14)"; }}
-                      onMouseOut={function(e){ e.currentTarget.style.background = "rgba(200,162,118,.08)"; }}>
-                      <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:6}}>
-                        <span style={{fontSize:18,fontWeight:600,color:"#000",fontFamily:"'Old Standard TT',serif"}}>Grammar terms</span>
-                      </div>
-                      <p style={{fontSize:13,color:"rgba(0,0,0,.55)",margin:0,lineHeight:1.5}}>The words a Russian grammar, dictionary or teacher uses — падеж, глагол, совершенный вид — against their definitions, as a quiz or the match game. Nothing is scheduled or saved.</p>
-                    </button>
-                  )}
-                  {!termDrill && (
-                    <button onClick={function(){ fdStart("decl"); }}
-                      style={{background:"rgba(200,162,118,.08)",border:"1px solid rgba(200,162,118,.3)",color:"#000",padding:"18px 20px",borderRadius:12,cursor:"pointer",textAlign:"left",fontFamily:"'Literata',serif",transition:"all .15s"}}
-                      onMouseOver={function(e){ e.currentTarget.style.background = "rgba(200,162,118,.14)"; }}
-                      onMouseOut={function(e){ e.currentTarget.style.background = "rgba(200,162,118,.08)"; }}>
-                      <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:6}}>
-                        <span style={{fontSize:18,fontWeight:600,color:"#000",fontFamily:"'Old Standard TT',serif"}}>Declension practice</span>
-                      </div>
-                      <p style={{fontSize:13,color:"rgba(0,0,0,.55)",margin:0,lineHeight:1.5}}>A noun from your saved words, or one of the commonest, and a case to put it in — type the form. Right answers count on the leaderboard.</p>
-                    </button>
-                  )}
-                  {!termDrill && (
-                    <button onClick={function(){ fdStart("conj"); }}
-                      style={{background:"rgba(200,162,118,.08)",border:"1px solid rgba(200,162,118,.3)",color:"#000",padding:"18px 20px",borderRadius:12,cursor:"pointer",textAlign:"left",fontFamily:"'Literata',serif",transition:"all .15s"}}
-                      onMouseOver={function(e){ e.currentTarget.style.background = "rgba(200,162,118,.14)"; }}
-                      onMouseOut={function(e){ e.currentTarget.style.background = "rgba(200,162,118,.08)"; }}>
-                      <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:6}}>
-                        <span style={{fontSize:18,fontWeight:600,color:"#000",fontFamily:"'Old Standard TT',serif"}}>Conjugation practice</span>
-                      </div>
-                      <p style={{fontSize:13,color:"rgba(0,0,0,.55)",margin:0,lineHeight:1.5}}>A verb with a conjugation table on Wiktionary, and a person and number in a tense — or a gender in the past. Type the form. Right answers count on the leaderboard.</p>
-                    </button>
-                  )}
-                  {!termDrill && (
-                    <button onClick={openCaseDrills}
-                      style={{background:"rgba(200,162,118,.08)",border:"1px solid rgba(200,162,118,.3)",color:"#000",padding:"18px 20px",borderRadius:12,cursor:"pointer",textAlign:"left",fontFamily:"'Literata',serif",transition:"all .15s"}}
-                      onMouseOver={function(e){ e.currentTarget.style.background = "rgba(200,162,118,.14)"; }}
-                      onMouseOut={function(e){ e.currentTarget.style.background = "rgba(200,162,118,.08)"; }}>
-                      <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:6}}>
-                        <span style={{fontSize:18,fontWeight:600,color:"#000",fontFamily:"'Old Standard TT',serif"}}>Case drills</span>
-                      </div>
-                      <p style={{fontSize:13,color:"rgba(0,0,0,.55)",margin:0,lineHeight:1.5}}>Sentences from every book in the library with one word missing: pick its right case from four. Right answers count on the leaderboard.</p>
-                    </button>
-                  )}
+                  {menuCards(vocab)}
                 </div>
               </>
             ) : null
@@ -21454,7 +21434,7 @@ quizMode ? (
                       </div>
                       {dueNow > 0 && (
                         <button type="button" className="adm-btn" style={{marginTop:12}}
-                          onClick={function(){ setShowAcct(false); setTab("vocab"); setTermDrill(null); setMatchGame(null); setQuizMode(false); setQuizMenu(true); }}>
+                          onClick={function(){ setShowAcct(false); setTab("vocab"); setTermDrill(null); setMatchGame(null); setQuizMode(false); setQuizMenu(false); setVocabSec("exercises"); }}>
                           Review the {dueNow} due {dueNow === 1 ? "word" : "words"} →
                         </button>
                       )}
@@ -24094,7 +24074,7 @@ quizMode ? (
                     open={progOpen}
                     onToggle={function(){ setProgOpen(!progOpen); }}
                     onHide={function(){ setProgHidden(true); }}
-                    onReview={function(){ setTab("vocab"); setTermDrill(null); setMatchGame(null); setQuizMode(false); setQuizMenu(true); }} />
+                    onReview={function(){ setTab("vocab"); setTermDrill(null); setMatchGame(null); setQuizMode(false); setQuizMenu(false); setVocabSec("exercises"); }} />
                 )}
                 {me && progHidden && !grpPicking && (
                   <button className="prog-restore" onClick={function(){ setProgHidden(false); setProgOpen(true); }}>
@@ -26425,7 +26405,7 @@ quizMode ? (
                                 <span className="fin-sep">·</span>
                                 <button type="button" className="fin-link" onClick={function(){
                                   stopTTS(); setStarted(false); setTab("vocab");
-                                  setTermDrill(null); setMatchGame(null); setQuizMode(false); setQuizMenu(true);
+                                  setTermDrill(null); setMatchGame(null); setQuizMode(false); setQuizMenu(false); setVocabSec("exercises");
                                   try { window.scrollTo(0, 0); } catch (e) {}
                                 }}>Practise your vocabulary</button>
                               </div>
@@ -26984,7 +26964,25 @@ quizMode ? (
           // This tab shows only the words of the language being studied.
           return (
           <div className="panel">
-            {vocabReviewing ? reviewPanel(vocab, learned) : (
+            {vocabReviewing ? reviewPanel(vocab, learned) : vocabSec === "exercises" ? (
+              // ── The exercises: the first thing on the page ──────────────
+              <>
+                {vocabSecTabs()}
+                <div className="phdr">
+                  <span className="pti">Exercises</span>
+                </div>
+                <div style={{padding:"24px 16px",display:"flex",flexDirection:"column",gap:14,maxWidth:560,margin:"0 auto"}}>
+                  <p style={{color:"rgba(0,0,0,.65)",fontSize:14,textAlign:"center",margin:"0 0 8px"}}>
+                    {vocab.length === 0
+                      ? "Save words as you read and the quiz and the match game will drill them here. The other exercises work without any saved words."
+                      : dueNow > 0
+                      ? (dueNow + " of your " + vocab.length + " saved words " + (dueNow === 1 ? "is" : "are") + " due for review.")
+                      : ("Nothing is due right now \u2014 a session will drill your " + Math.min(8, vocab.length) + " least-secure words.")}
+                  </p>
+                  {menuCards(vocab)}
+                </div>
+              </>
+            ) : (
               // ── Normal vocab list view ─────────────────────────────────
               <>
                 {expOpen && (function(){
@@ -27099,7 +27097,6 @@ quizMode ? (
                 <div className="phdr">
                   <span className="pti">My Vocabulary</span>
                   <div style={{display:"flex",gap:8}}>
-                    {vocab.length > 0 && <button className="ab" onClick={function(){ setQuizMenu(true); }} title="Review your words: multiple choice, or match words to meanings">📝 Review vocab</button>}
                     {(vocab.length > 0 || learned.length > 0) && (
                       <button className="ab" onClick={function(){ setExpDone(""); setExpOpen(true); }}
                         title="Download your words for Anki, Quizlet or a spreadsheet">⤓ Export</button>
@@ -27259,9 +27256,9 @@ quizMode ? (
                     setVocabSec("grammar"); setGramSec("count"); getVerbIdx(); loadExamples();
                     return;
                   }
-                  setVocabSec("words");
+                  setVocabSec("exercises");
                   clearVocabView();
-                  setQuizMenu(true);
+                  setQuizMenu(false);
                   if (go === "cases") openCaseDrills();
                   else if (go === "decl" || go === "conj") fdStart(go);
                   else if (go === "terms") startTermsFromVocab();
