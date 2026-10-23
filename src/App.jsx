@@ -12445,6 +12445,10 @@ export default function App() {
   var [fd, setFd] = useState(null);                   // { kind, q, input, checked, right, n, nRight, busy, err }
   var fdSeq = useRef(0);
   var fdNext = useRef(null);                          // the next question, fetched while this one is answered
+  // Conjugation questions answered wrongly come back — the same verb, person
+  // and tense — three or five questions later: [{ q, due }], due being the
+  // count of answered questions from which it may be asked again.
+  var fdRepeat = useRef([]);
   var fdBankRef = useRef(null);
   var fdNorm = function(x) {
     return String(x || "").toLowerCase().replace(/́/g, "").replace(/ё/g, "е").replace(/\s+/g, " ").trim();
@@ -12595,17 +12599,26 @@ export default function App() {
   };
   var fdLoad = function(kind) {
     var seq = ++fdSeq.current;
-    var pre = fdNext.current;
-    fdNext.current = null;
+    var answered = fd ? fd.n : 0;
+    var rep = null;
+    if (kind === "conj") {
+      var due = fdRepeat.current;
+      for (var ri = 0; ri < due.length; ri++) {
+        if (due[ri].due <= answered) { rep = due[ri].q; due.splice(ri, 1); break; }
+      }
+    }
+    var pre = rep ? null : fdNext.current;
+    if (!rep) fdNext.current = null;
     setFd(function(st){ return st ? Object.assign({}, st, { busy: true, err: "" }) : st; });
-    var p = (pre && pre.kind === kind) ? Promise.resolve(pre) : fdMake(kind);
+    var p = rep ? Promise.resolve(Object.assign({}, rep, { again: true }))
+                : ((pre && pre.kind === kind) ? Promise.resolve(pre) : fdMake(kind));
     p.catch(function(){ return { err: "Something went wrong — try again." }; }).then(function(q){
       if (seq !== fdSeq.current) return;
       setFd(function(st){
         if (!st || st.kind !== kind) return st;
-        return Object.assign({}, st, { q: q.err ? null : q, err: q.err || "", busy: false, input: "", checked: false, right: false });
+        return Object.assign({}, st, { q: q.err ? null : q, err: q.err || "", busy: false, input: "", checked: false, right: false, fix: false, fixInput: "" });
       });
-      if (!q.err) fdPrefetch(kind);
+      if (!q.err && !rep && !fdNext.current) fdPrefetch(kind);
     });
   };
   // Whatever was left open on the Vocab tab — a quiz, the match game, a drill
@@ -12621,6 +12634,7 @@ export default function App() {
   var fdStart = function(kind) {
     clearVocabView();
     fdNext.current = null;
+    fdRepeat.current = [];
     setVocabDrill(kind);
     setFd({ kind: kind, q: null, input: "", checked: false, right: false, n: 0, nRight: 0, busy: true, err: "" });
     fdLoad(kind);
@@ -12628,6 +12642,7 @@ export default function App() {
   var fdStop = function() {
     fdSeq.current++;
     fdNext.current = null;
+    fdRepeat.current = [];
     setVocabDrill(null);
     setFd(null);
   };
@@ -12636,7 +12651,13 @@ export default function App() {
     var given = fdNorm(fd.input);
     if (!given) return;
     var right = fd.q.answers.indexOf(given) >= 0;
-    setFd(Object.assign({}, fd, { checked: true, right: right, n: fd.n + 1, nRight: fd.nRight + (right ? 1 : 0) }));
+    var fix = !right && fd.kind === "conj";
+    if (fix) {
+      // the same verb, person and tense again after three or five more questions
+      var gap = Math.random() < 0.5 ? 3 : 5;
+      fdRepeat.current.push({ q: fd.q, due: fd.n + 1 + gap });
+    }
+    setFd(Object.assign({}, fd, { checked: true, right: right, fix: fix, fixInput: "", n: fd.n + 1, nRight: fd.nRight + (right ? 1 : 0) }));
     recordFormDrill(fd.kind, right);
   };
   // The Case drills, opened from the same menu.
@@ -16565,7 +16586,7 @@ quizMode ? (
                           {fd.q.en ? <span className="fd-en"> — {fd.q.en}</span> : null}
                         </div>
                         <div className="cd-lemma">Write the <strong>{fd.q.ask}</strong>{fd.q.prefix ? <span className="fd-hint"> — the future of an imperfective verb is <span lang="ru">быть</span> and the infinitive: the <span lang="ru">{fd.q.prefix}</span> is given</span> : null}</div>
-                        <form className="fd-form" onSubmit={function(e){ e.preventDefault(); if (fd.checked) fdLoad(fd.kind); else fdCheck(); }}>
+                        <form className="fd-form" onSubmit={function(e){ e.preventDefault(); if (!fd.checked) { fdCheck(); return; } if (fd.fix && fd.q.answers.indexOf(fdNorm(fd.fixInput)) < 0) return; fdLoad(fd.kind); }}>
                           {fd.q.pronoun ? <span className="fd-pre" lang="ru">{fd.q.pronoun}{fd.q.prefix ? " " + fd.q.prefix : ""}</span> : null}
                           <input type="text" lang="ru" className={"crs-in fd-in" + (fd.checked ? (fd.right ? " ok" : " bad") : "")} value={fd.input}
                             autoFocus autoComplete="off" autoCapitalize="off" spellCheck={false} readOnly={fd.checked || fd.busy}
@@ -16573,14 +16594,27 @@ quizMode ? (
                             onChange={function(e){ var v = e.target.value; setFd(function(st){ return st ? Object.assign({}, st, { input: v }) : st; }); }} />
                           {!fd.checked
                             ? <button type="submit" className="btn-p fd-btn" disabled={!fdNorm(fd.input)}>Check</button>
-                            : <button type="submit" className="btn-p fd-btn" disabled={fd.busy}>Next →</button>}
+                            : <button type="submit" className="btn-p fd-btn" disabled={fd.busy || (fd.fix && fd.q.answers.indexOf(fdNorm(fd.fixInput)) < 0)}>Next →</button>}
                         </form>
                         {fd.checked && (
                           <div className="cd-fb">
                             <div className={"cd-fb-h" + (fd.right ? " ok" : " bad")}>{fd.right ? "Correct" : "Not quite"}</div>
                             <div className="cd-fb-x">The {fd.q.ask} of <b lang="ru">{fd.q.word}</b> is <b lang="ru">{fd.q.pronoun ? fd.q.pronoun + " " : ""}{fd.q.shown}</b>.</div>
+                            {fd.fix && (
+                              <div className="fd-fix">
+                                <div className="cd-fb-x">Type it correctly to go on — it will come back in a few questions.</div>
+                                <form className="fd-form" onSubmit={function(e){ e.preventDefault(); if (fd.q.answers.indexOf(fdNorm(fd.fixInput)) >= 0) fdLoad(fd.kind); }}>
+                                  {fd.q.pronoun ? <span className="fd-pre" lang="ru">{fd.q.pronoun}{fd.q.prefix ? " " + fd.q.prefix : ""}</span> : null}
+                                  <input type="text" lang="ru" className={"crs-in fd-in" + (fd.q.answers.indexOf(fdNorm(fd.fixInput)) >= 0 ? " ok" : "")} value={fd.fixInput || ""}
+                                    autoFocus autoComplete="off" autoCapitalize="off" spellCheck={false}
+                                    placeholder={fd.q.prefix ? "the infinitive" : "Type the correct form"}
+                                    onChange={function(e){ var v = e.target.value; setFd(function(st){ return st ? Object.assign({}, st, { fixInput: v }) : st; }); }} />
+                                </form>
+                              </div>
+                            )}
                           </div>
                         )}
+                        {fd.q.again && !fd.checked && <p className="fd-note" style={{margin:"6px 0 0"}}>You missed this one a few questions ago — here it is again.</p>}
                       </>
                     )}
                     <p className="fd-note">Right answers count on the leaderboard. Stress marks and ё/е are not held against you. Source: <a href={"https://en.wiktionary.org/wiki/" + encodeURIComponent((fd.q && fd.q.word) || "")} target="_blank" rel="noopener">Wiktionary</a>.</p>
