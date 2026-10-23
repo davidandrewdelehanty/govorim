@@ -162,7 +162,6 @@ export var GOAL_KINDS = [
   { k: "decl", f: "decl", one: "declension", what: "", label: "Declension practice (typing the form)" },
   { k: "conj", f: "conj", one: "conjugation", what: "", label: "Conjugation practice (typing the form)" },
   { k: "drills", f: "cases", one: "case drill", what: "", label: "Case drills" },
-  { k: "verbs", f: "verbs", one: "verb answer", what: "", label: "Verb meaning quiz (multiple choice)" },
   { k: "numbers", f: "numbers", one: "number answer", what: "", label: "Counting and numeral drills" },
   { k: "course", f: "course", one: "course exercise", what: "", label: "Course exercises right" },
   { k: "sections", f: "sections", one: "course section", what: "", label: "Course sections finished" },

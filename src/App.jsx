@@ -6351,7 +6351,6 @@ export default function App() {
   //   decl      declension-practice answers           → stats[day].decl
   //   conj      conjugation-practice answers          → stats[day].conj
   //   drills    case-drill questions answered         → stats[day].cases
-  //   verbs     verb-practice answers (Grammar page)  → stats[day].verbs
   //   numbers   counting and numeral answers          → stats[day].numbers
   //   course    course exercises answered right       → stats[day].course
   //   sections  course sections finished              → stats[day].sections
@@ -6362,7 +6361,7 @@ export default function App() {
   // `remind` is the evening reminder (and from when what is short is overdue);
   // `remindAm` the morning one. Both go to the reader's devices as push
   // messages when they have turned them on (see the push code below).
-  var GOALS_DEFAULT = { words: GOAL_WORDS, cards: GOAL_CARDS, quiz: 0, match: 0, terms: 0, decl: 0, conj: 0, drills: 10, verbs: 0, numbers: 0,
+  var GOALS_DEFAULT = { words: GOAL_WORDS, cards: GOAL_CARDS, quiz: 0, match: 0, terms: 0, decl: 0, conj: 0, drills: 10, numbers: 0,
                         course: 10, sections: 1, remind: "17:00", remindAm: "08:00", notify: false, emailRemind: false, tz: "", updatedAt: 0 };
   var [goals, setGoalsRaw] = useState(GOALS_DEFAULT);
   var goalsLoaded = useRef(false);
@@ -6394,7 +6393,6 @@ export default function App() {
     { k: "decl", f: "decl", label: "Declension practice (typing the form)", one: "answer", tab: "vocab", go: "decl", btn: "Practise →", set: "Declension practice — forms typed", max: 1000 },
     { k: "conj", f: "conj", label: "Conjugation practice (typing the form)", one: "answer", tab: "vocab", go: "conj", btn: "Practise →", set: "Conjugation practice — forms typed", max: 1000 },
     { k: "drills", f: "cases", label: "Case-drill questions", one: "question", tab: "drills", go: "cases", btn: "Drill →", set: "Case-drill questions", max: 1000 },
-    { k: "verbs", f: "verbs", label: "Verb meaning quiz (multiple choice)", one: "answer", tab: "vocab", go: "verbs", btn: "Quiz →", set: "Verb meaning quiz — multiple choice on the Grammar page's verb lists", max: 1000 },
     { k: "numbers", f: "numbers", label: "Counting and numeral drills", one: "answer", tab: "vocab", go: "numbers", btn: "Practise →", set: "Counting and numeral drills (Grammar page)", max: 1000 },
     { k: "course", f: "course", label: "Course exercises right", one: "exercise", tab: "courses", go: "courses", btn: "Courses →", set: "Course exercises right", max: 1000 },
     { k: "sections", f: "sections", label: "Course sections finished", one: "section", tab: "courses", go: "courses", btn: "Courses →", set: "Course sections to finish", max: 100 },
@@ -12657,7 +12655,7 @@ export default function App() {
       if (!z || z.done || z.picked.indexOf(k) >= 0 || z.picked.indexOf(z.q.answer) >= 0) return z;
       var first = z.picked.length === 0;
       var ok = k === z.q.answer;
-      if (first) { bumpToday("practiced", 1); bumpToday("verbs", 1); }
+      if (first) bumpToday("practiced", 1);
       return Object.assign({}, z, { picked: z.picked.concat([k]), right: z.right + (first && ok ? 1 : 0), answered: z.answered + (first ? 1 : 0) });
     });
   };
@@ -27189,8 +27187,8 @@ quizMode ? (
                   if (go === "read") { setTab("chat"); return; }
                   if (go === "courses") { setTab("courses"); return; }
                   setTab("vocab");
-                  if (go === "verbs" || go === "numbers") {
-                    setVocabSec("grammar"); setGramSec(go === "verbs" ? "freq" : "count"); getVerbIdx(); loadExamples();
+                  if (go === "numbers") {
+                    setVocabSec("grammar"); setGramSec("count"); getVerbIdx(); loadExamples();
                     return;
                   }
                   setVocabSec("words");
