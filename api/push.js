@@ -53,10 +53,15 @@ const WINDOW_MIN = 30;     // a time counts as "just passed" for this long — t
 const DEFAULT_AM = "08:00";
 const DEFAULT_PM = "17:00";
 
+// Environment values, trimmed: a key pasted into Vercel with the line break
+// after it is not the key — the browser refused the public one, and the cron
+// secret never matched.
+function env(name) { return String(process.env[name] || "").trim(); }
+
 function vapidReady() {
-  const pub = process.env.VAPID_PUBLIC_KEY, priv = process.env.VAPID_PRIVATE_KEY;
+  const pub = env("VAPID_PUBLIC_KEY"), priv = env("VAPID_PRIVATE_KEY");
   if (!pub || !priv) return false;
-  webpush.setVapidDetails(process.env.VAPID_SUBJECT || "mailto:hello@samovar.live", pub, priv);
+  webpush.setVapidDetails(env("VAPID_SUBJECT") || "mailto:hello@samovar.live", pub, priv);
   return true;
 }
 
@@ -162,16 +167,16 @@ export default async function handler(req, res) {
   const action = String((req.query && req.query.action) || "");
 
   if (action === "key") {
-    if (!process.env.VAPID_PUBLIC_KEY) return res.status(503).json({ error: "Push is not set up on this site yet." });
-    return res.status(200).json({ key: process.env.VAPID_PUBLIC_KEY });
+    if (!env("VAPID_PUBLIC_KEY")) return res.status(503).json({ error: "Push is not set up on this site yet." });
+    return res.status(200).json({ key: env("VAPID_PUBLIC_KEY") });
   }
 
   if (action === "remind") {
     // The scheduler sends the secret as a bearer token (or ?secret=, for a
     // scheduler that cannot set a header); anything else is refused.
     const auth = String(req.headers.authorization || "");
-    const given = auth.replace(/^Bearer\s+/i, "") || String((req.query && req.query.secret) || "");
-    if (!process.env.CRON_SECRET || given !== process.env.CRON_SECRET) {
+    const given = (auth.replace(/^Bearer\s+/i, "") || String((req.query && req.query.secret) || "")).trim();
+    if (!env("CRON_SECRET") || given !== env("CRON_SECRET")) {
       return res.status(401).json({ error: "Not allowed" });
     }
     // Without VAPID keys the push side is skipped; email still goes.
