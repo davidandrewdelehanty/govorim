@@ -5326,6 +5326,7 @@ export default function App() {
     if (!wrong.length) {
       // Recorded once each, as answered right — only a round with no miss counts.
       if (!g.tries && !g.src) g.round.forEach(function(v){ recordAnswer(v._key || v.id || v.ru, true); });
+      if (!g.tries) bumpToday(g.src ? "terms" : "match", g.src ? g.round.length : 1);   // the day's goals
       setMatchGame(Object.assign({}, g, { map: map, sel: null, status: "right", won: g.won + (g.tries ? 0 : 1), rounds: g.rounds + 1 }));
       return;
     }
@@ -6344,13 +6345,22 @@ export default function App() {
   // My Samovar: the reader's daily goals, and whether to be reminded.
   //   words     Russian words read in the reader      → stats[day].read
   //   cards     vocabulary reviews answered           → stats[day].practiced
-  //   drills    case-drill questions answered         → stats[day].drills
+  //   quiz      multiple-choice quiz answers          → stats[day].quiz
+  //   match     match rounds won                      → stats[day].match
+  //   terms     grammar terms answered                → stats[day].terms
+  //   decl      declension-practice answers           → stats[day].decl
+  //   conj      conjugation-practice answers          → stats[day].conj
+  //   drills    case-drill questions answered         → stats[day].cases
+  //   verbs     verb-practice answers (Grammar page)  → stats[day].verbs
+  //   numbers   counting and numeral answers          → stats[day].numbers
   //   course    course exercises answered right       → stats[day].course
   //   sections  course sections finished              → stats[day].sections
+  // (stats[day].drills still totals every grammar drill: cases, decl, conj.)
   // A goal of 0 is "not a goal". `remind` is a local time of day; from then
   // on, whatever is still short is overdue, and with `notify` on the browser
   // says so once a day.
-  var GOALS_DEFAULT = { words: GOAL_WORDS, cards: GOAL_CARDS, drills: 10, course: 10, sections: 1, remind: "19:00", notify: false, updatedAt: 0 };
+  var GOALS_DEFAULT = { words: GOAL_WORDS, cards: GOAL_CARDS, quiz: 0, match: 0, terms: 0, decl: 0, conj: 0, drills: 10, verbs: 0, numbers: 0,
+                        course: 10, sections: 1, remind: "19:00", notify: false, updatedAt: 0 };
   var [goals, setGoalsRaw] = useState(GOALS_DEFAULT);
   var goalsLoaded = useRef(false);
   var setGoals = function(patch) {
@@ -6371,19 +6381,27 @@ export default function App() {
     if (!goalsLoaded.current) return;
     storage.set("gv_goals_v1", JSON.stringify(goals)).catch(function(){});
   }, [goals]);
+  // `go` is where the row's button takes the reader; `btn` what it says.
   var GOAL_ROWS = [
-    { k: "words", f: "read", label: "Words read", one: "word", tab: "chat" },
-    { k: "cards", f: "practiced", label: "Vocabulary reviewed", one: "card", tab: "vocab" },
-    { k: "drills", f: "drills", label: "Grammar-drill questions", one: "question", tab: "drills" },
-    { k: "course", f: "course", label: "Course exercises right", one: "exercise", tab: "courses" },
-    { k: "sections", f: "sections", label: "Course sections finished", one: "section", tab: "courses" },
+    { k: "words", f: "read", label: "Words read", one: "word", tab: "chat", go: "read", btn: "Read →", set: "Words to read", max: 100000 },
+    { k: "cards", f: "practiced", label: "Vocabulary reviewed", one: "card", tab: "vocab", go: "review", btn: "Review →", set: "Vocabulary cards to review (any exercise)", max: 1000 },
+    { k: "quiz", f: "quiz", label: "Multiple-choice quiz answers", one: "answer", tab: "vocab", go: "review", btn: "Quiz →", set: "Multiple-choice quiz answers", max: 1000 },
+    { k: "match", f: "match", label: "Match rounds won", one: "round", tab: "vocab", go: "review", btn: "Match →", set: "Match rounds to win", max: 1000 },
+    { k: "terms", f: "terms", label: "Grammar terms answered", one: "term", tab: "vocab", go: "terms", btn: "Practise →", set: "Grammar terms to answer", max: 1000 },
+    { k: "decl", f: "decl", label: "Declension answers", one: "answer", tab: "vocab", go: "decl", btn: "Practise →", set: "Declension-practice answers", max: 1000 },
+    { k: "conj", f: "conj", label: "Conjugation answers", one: "answer", tab: "vocab", go: "conj", btn: "Practise →", set: "Conjugation-practice answers", max: 1000 },
+    { k: "drills", f: "cases", label: "Case-drill questions", one: "question", tab: "drills", go: "cases", btn: "Drill →", set: "Case-drill questions", max: 1000 },
+    { k: "verbs", f: "verbs", label: "Verb practice answers", one: "answer", tab: "vocab", go: "verbs", btn: "Practise →", set: "Verb-practice answers (Grammar page)", max: 1000 },
+    { k: "numbers", f: "numbers", label: "Counting and numeral answers", one: "answer", tab: "vocab", go: "numbers", btn: "Practise →", set: "Counting and numeral answers (Grammar page)", max: 1000 },
+    { k: "course", f: "course", label: "Course exercises right", one: "exercise", tab: "courses", go: "courses", btn: "Courses →", set: "Course exercises right", max: 1000 },
+    { k: "sections", f: "sections", label: "Course sections finished", one: "section", tab: "courses", go: "courses", btn: "Courses →", set: "Course sections to finish", max: 100 },
   ];
   // Today against the goals: [{ k, label, goal, have, left, met }] for the goals that are set.
   var goalsToday = function(ts) {
     var rec = (stats || {})[dayKey(ts == null ? Date.now() : ts)] || {};
     return GOAL_ROWS.filter(function(r){ return (goals[r.k] || 0) > 0; }).map(function(r){
       var have = rec[r.f] || 0, goal = goals[r.k] || 0;
-      return { k: r.k, label: r.label, one: r.one, tab: r.tab, goal: goal, have: have, left: Math.max(0, goal - have), met: have >= goal };
+      return { k: r.k, label: r.label, one: r.one, tab: r.tab, go: r.go, btn: r.btn, goal: goal, have: have, left: Math.max(0, goal - have), met: have >= goal };
     });
   };
   // A goal reached: said the moment it happens, as a badge is — once per goal
@@ -6796,6 +6814,7 @@ export default function App() {
       return o;
     });
     bumpToday("drills", 1);
+    bumpToday(kind, 1);
   };
   // The same words, filed under the book they were read in.
   var bumpTodayBook = function(key, n) {
@@ -10170,6 +10189,7 @@ export default function App() {
     // Counted as it is answered, so leaving the tab without pressing Finish
     // loses nothing. Only right answers count on the leaderboard.
     recordDrill(1, right ? 1 : 0, { title: (q.src && q.src.t) || "", filename: (q.src && q.src.f) || "" }, 0);
+    bumpToday("cases", 1);
   };
   var cdNextQ = function() {
     setCdSel(null);
@@ -12483,7 +12503,7 @@ export default function App() {
       if (!z || z.done || z.picked.indexOf(k) >= 0 || z.picked.indexOf(z.q.answer) >= 0) return z;
       var first = z.picked.length === 0;
       var ok = k === z.q.answer;
-      if (first) bumpToday("practiced", 1);
+      if (first) { bumpToday("practiced", 1); bumpToday("verbs", 1); }
       return Object.assign({}, z, { picked: z.picked.concat([k]), right: z.right + (first && ok ? 1 : 0), answered: z.answered + (first ? 1 : 0) });
     });
   };
@@ -12517,7 +12537,7 @@ export default function App() {
     if (!v) return;
     var ok = nd.item.answers.some(function(a){ return normNum(a) === v; });
     var first = !nd.counted;
-    if (first) bumpToday("practiced", 1);
+    if (first) { bumpToday("practiced", 1); bumpToday("numbers", 1); }
     setNdStats(function(m){
       var s0 = m[nd.mode], s1 = Object.assign({}, s0);
       if (first) { s1.total++; if (ok) s1.right++; }
@@ -14060,6 +14080,7 @@ export default function App() {
     var c = rv.cur;
     var correct = opt === c.q.correct;
     setQuizSelected(opt);
+    bumpToday(rv.pool ? "terms" : "quiz", 1);     // the day's goals
     if (!rv.pool) {                       // a course's cards are not scheduled or counted
       recordAnswer(c.key, correct);
       if (c.from === "new") rvBumpDay("newSeen");
@@ -27006,9 +27027,19 @@ quizMode ? (
                 var fullDays = 0; for (var j = 0; j < 30; j++) { var dd = new Date(now.getFullYear(), now.getMonth(), now.getDate() - j); if (allMetOn(dayKey(dd.getTime()))) fullDays++; }
                 var metToday = rows.length > 0 && rows.every(function(r){ return r.met; });
                 var overdueK = {}; goalsOverdue.forEach(function(r){ overdueK[r.k] = true; });
-                var goTo = function(t){
-                  if (t === "drills") { setTab("vocab"); setQuizMenu(true); openCaseDrills(); return; }
-                  setTab(t); if (t === "vocab" && vocab.length) setQuizMenu(true);
+                var goTo = function(go){
+                  if (go === "read") { setTab("chat"); return; }
+                  if (go === "courses") { setTab("courses"); return; }
+                  setTab("vocab");
+                  if (go === "verbs" || go === "numbers") {
+                    setVocabSec("grammar"); setGramSec(go === "verbs" ? "freq" : "count"); getVerbIdx(); loadExamples();
+                    return;
+                  }
+                  setVocabSec("words");
+                  setQuizMenu(true);
+                  if (go === "cases") openCaseDrills();
+                  else if (go === "decl" || go === "conj") fdStart(go);
+                  else if (go === "terms") startTermsFromVocab();
                 };
                 var num = function(k, max) {
                   return <input type="number" min="0" max={max} value={goals[k] || 0} className="my-num"
@@ -27035,7 +27066,7 @@ quizMode ? (
                             <div className="my-row-foot">
                               {r.met ? <span className="my-ok">Done ✓</span>
                                 : <span className={overdueK[r.k] ? "my-due" : ""}>{fmtInt(r.left)} {r.left === 1 ? r.one : r.one + "s"} to go{overdueK[r.k] ? " · overdue" : ""}</span>}
-                              {!r.met && <button type="button" className="my-go" onClick={function(){ goTo(r.tab); }}>{r.tab === "chat" ? "Read →" : r.tab === "vocab" ? "Review →" : r.tab === "drills" ? "Drill →" : "Courses →"}</button>}
+                              {!r.met && <button type="button" className="my-go" onClick={function(){ goTo(r.go); }}>{r.btn}</button>}
                             </div>
                           </div>
                         );
@@ -27060,13 +27091,11 @@ quizMode ? (
 
                     <div className="my-sechdr">Goals, each day</div>
                     <div className="my-form">
-                      <label className="my-field"><span>Words to read</span>{num("words", 100000)}</label>
-                      <label className="my-field"><span>Vocabulary cards to review</span>{num("cards", 1000)}</label>
-                      <label className="my-field"><span>Grammar-drill questions</span>{num("drills", 1000)}</label>
-                      <label className="my-field"><span>Course exercises right</span>{num("course", 1000)}</label>
-                      <label className="my-field"><span>Course sections to finish</span>{num("sections", 100)}</label>
+                      {GOAL_ROWS.map(function(r){
+                        return <label key={r.k} className="my-field"><span>{r.set}</span>{num(r.k, r.max)}</label>;
+                      })}
                     </div>
-                    <p className="my-note">A goal of 0 is no goal. The streak counts a day when the words or the cards are met, as before; the dots above want every goal.</p>
+                    <p className="my-note">A goal of 0 is no goal — set a number for each kind of exercise you want to do every day. The streak counts a day when the words or the cards are met, as before; the dots above want every goal.</p>
 
                     <div className="my-sechdr">Reminder</div>
                     <div className="my-form">
