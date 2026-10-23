@@ -18104,8 +18104,8 @@ quizMode ? (
         .rv-forms{font-family:'Literata',serif;font-size:16px;line-height:1.5;color:#5a4636;text-align:center;margin:-18px 0 10px}
         .rv-forms-inf{font-weight:600;color:#000}
         /* The stress mark, drawn over the vowel rather than left to the font. */
-        .st{position:relative;display:inline-block}
-        .st::after{content:"\u02CA";position:absolute;left:50%;top:-.32em;transform:translateX(-50%);font-size:.7em;line-height:1;font-weight:700;pointer-events:none}
+        .st{position:relative;display:inline;white-space:nowrap}
+        .st::after{content:"\u00B4";position:absolute;left:50%;top:-.5em;transform:translateX(-55%);font-size:.9em;line-height:1;font-weight:400;font-style:normal;pointer-events:none}
         .rv-word{font-size:42px;font-family:'Old Standard TT',serif;color:#000;font-weight:600;text-align:center}
         .rv-card .qex{margin:-14px auto 22px}
         .rv-opts{display:flex;flex-direction:column;gap:10px;max-width:560px;margin:12px auto 0}
