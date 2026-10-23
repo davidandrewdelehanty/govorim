@@ -8128,6 +8128,8 @@ export default function App() {
         endDone.current[bk] = 1;
         toggleFinished(bookMeta);
       }
+      // The end of a Bible chapter: that chapter is read.
+      if (nearBottom && pidx >= pageCountRef.current - 1 && !isNaN(lastStart) && deepest >= lastStart) creditBibleChapter(cidx);
 
       if (lastSeenCh.current !== cidx) { lastSeen.current = 0; lastSeenCh.current = cidx; }
       if (deepest <= lastSeen.current) return;      // scrolling back changes nothing
@@ -8455,6 +8457,28 @@ export default function App() {
   // forward would be counted a second time. A reader finished Записки из
   // подполья, 35,000 words, and was credited 48,400. A book can only ever
   // give up the words it holds, so that is now the limit.
+  // The Bible is not read front to back. The mark never goes backwards, so a
+  // reader who had been in the Gospels and opened Genesis was credited
+  // nothing for it — two chapters read and the day's words unmoved. Its
+  // chapters are credited one at a time instead, each once, when the reader
+  // finishes it (turns to the next chapter, or scrolls to its end), under
+  // "bch:<work>:<chapter>" in the same ledger.
+  // (The catalogue's flag, not isBibleBook's title guess: a novel called
+  // «Книга …» is read front to back like any other.)
+  var byChapter = function(meta) { return !!(meta && meta.isBible === true); };
+  var creditBibleChapter = function(ci) {
+    if (!bookMeta || !byChapter(bookMeta) || ci < 0 || ci >= chapters.length) return;
+    if (me && !syncedFromServer) return;
+    var key = "bch:" + workKey(bookMeta) + ":" + ci;
+    if (readPaid.current[key]) return;
+    var n = ruCount(chapters[ci] && chapters[ci].text);
+    if (!n) return;
+    readPaid.current[key] = n;
+    var en = bookMeta.lang === "en";
+    bumpToday(en ? "readEn" : "read", n);
+    bumpTodayBook((en ? "en:" : "") + (bookMeta.filename || bookKey(bookMeta)), n);
+    saveReadMark();
+  };
   var advanceReadMark = function(ci, off, credit) {
     var key = bookKey(bookMeta);
     if (!key || !chapters.length || ci < 0 || ci >= chapters.length) return;
@@ -8486,6 +8510,8 @@ export default function App() {
     // device cannot know what another one already counted, so nothing is
     // credited yet (the mark still moves).
     if (me && !syncedFromServer) credit = false;
+    // The Bible's words are counted by chapter (creditBibleChapter), not here.
+    if (byChapter(bookMeta)) credit = false;
     if (mark && credit) {
       var from = wordsBefore(mark.cidx, mark.off || 0);
       var gain = to - from;
@@ -12849,6 +12875,7 @@ export default function App() {
     if (idx < 0 || idx >= chapters.length) return;
     dropStaleJump();
     if (idx === cidx + 1 && bookMeta && bookMeta.isBible) markBibleChapter(chapters[cidx] && chapters[cidx].heading);
+    if (idx === cidx + 1) creditBibleChapter(cidx);
     // Turning the page forward credits the chapter just left; anything else
     // only moves the mark.
     advanceReadMark(idx, 0, idx === cidx + 1);
