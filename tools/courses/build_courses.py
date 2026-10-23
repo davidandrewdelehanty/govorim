@@ -460,6 +460,12 @@ def main(argv=None):
         print("case_explain skipped (pymorphy3 not installed)")
     else:
         case_explain.main(["--apply"])
+        # it drops exercises (verb/adverb readings, case conflicts): recount the sections
+        for meta in outline:
+            for o in meta["sections"]:
+                j = json.load(io.open(os.path.join(ROOT, "public", "courses", meta["id"], o["id"] + ".json"), encoding="utf-8"))
+                if not (j.get("stream") and not j.get("finite")):
+                    o["n"] = len(j.get("exercises") or [])
 
     # The exam at the end of each course, from the chapters' own exercises.
     import make_exams
@@ -486,6 +492,13 @@ def build_only(only, outline):
     if only == "motion":
         import motion_explain
         motion_explain.main(["--apply"])
+    # explanations drop exercises, so they run before the section counts below
+    if only in ("cases", "case-nom", "case-gen", "case-dat", "case-acc", "case-ins", "case-prp"):
+        try:
+            import case_explain
+            case_explain.main(["--apply", "--course", only])
+        except ImportError:
+            print("case_explain skipped (pymorphy3 not installed)")
     for meta in outline:
         kept = []
         for o in meta["sections"]:
@@ -498,12 +511,6 @@ def build_only(only, outline):
                 continue
             kept.append(o)
         meta["sections"] = kept
-    if only in ("cases", "case-nom", "case-gen", "case-dat", "case-acc", "case-ins", "case-prp"):
-        try:
-            import case_explain
-            case_explain.main(["--apply", "--course", only])
-        except ImportError:
-            print("case_explain skipped (pymorphy3 not installed)")
     import make_exams
     make_exams.add_exams(outline)
     op = os.path.join(ROOT, "src", "courses-outline.js")

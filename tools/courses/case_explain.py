@@ -749,6 +749,10 @@ def rewrite(e, want_cases=(), mixed=False):
     aw = WORD.findall(ans)
     if not aw or len(hw) != len(aw) or len(aw) > 3:
         return None
+    for h_, a_ in zip(hw, aw):
+        # Dave: a noun answer that the dictionary ALSO reads as another part of speech (verb, adverb, short adjective, …) is dropped
+        if any(p_.tag.POS == "NOUN" and norm(p_.normal_form) in ({norm(h_)} | {norm(x_.normal_form) for x_ in M.parse(h_)}) for p_ in M.parse(a_)) and any(p_.tag.POS not in (None, "NOUN") for p_ in M.parse(a_)):
+            return DROP
     before = q[:m.start()]
     prep = (re.findall(r"([А-Яа-яЁё-]+)\s*$", before) or [""])[0].lower()
     want = set(want_cases)

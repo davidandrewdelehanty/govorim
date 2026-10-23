@@ -368,7 +368,7 @@ export default [
    {
     "id": "k4-dative-practice",
     "title": "Practice: The dative case",
-    "n": 14
+    "n": 13
    },
    {
     "id": "k5-instrumental",
@@ -388,7 +388,7 @@ export default [
    {
     "id": "k6-singular-tables-practice",
     "title": "Practice: All six cases, singular",
-    "n": 14
+    "n": 13
    },
    {
     "id": "k7-genitive-plural",
@@ -428,7 +428,7 @@ export default [
    {
     "id": "k10-adjectives-plural-practice",
     "title": "Practice: Adjectives and possessives, plural; surnames",
-    "n": 14
+    "n": 13
    },
    {
     "id": "k11-prepositions",
@@ -578,12 +578,12 @@ export default [
    {
     "id": "n1-subject-practice",
     "title": "Practice 1: The subject",
-    "n": 20
+    "n": 18
    },
    {
     "id": "n1-subject-practice-2",
     "title": "Practice 2: The subject",
-    "n": 20
+    "n": 19
    },
    {
     "id": "n1-subject-practice-3",
@@ -593,22 +593,22 @@ export default [
    {
     "id": "n1-subject-practice-4",
     "title": "Practice 4: The subject",
-    "n": 20
+    "n": 17
    },
    {
     "id": "n1-subject-practice-5",
     "title": "Practice 5: The subject",
-    "n": 20
+    "n": 19
    },
    {
     "id": "n2-eto",
     "title": "Это…, вот…: naming things",
-    "n": 20
+    "n": 19
    },
    {
     "id": "n2-eto-practice",
     "title": "Practice 1: Это…, вот…: naming things",
-    "n": 20
+    "n": 19
    },
    {
     "id": "n2-eto-practice-2",
@@ -618,7 +618,7 @@ export default [
    {
     "id": "n2-eto-practice-3",
     "title": "Practice 3: Это…, вот…: naming things",
-    "n": 20
+    "n": 19
    },
    {
     "id": "n2-eto-practice-4",
@@ -633,7 +633,7 @@ export default [
    {
     "id": "n3-adjectives",
     "title": "Adjectives with the subject",
-    "n": 20
+    "n": 19
    },
    {
     "id": "n3-adjectives-practice",
@@ -653,12 +653,12 @@ export default [
    {
     "id": "n3-adjectives-practice-4",
     "title": "Practice 4: Adjectives with the subject",
-    "n": 20
+    "n": 19
    },
    {
     "id": "n3-adjectives-practice-5",
     "title": "Practice 5: Adjectives with the subject",
-    "n": 20
+    "n": 19
    },
    {
     "id": "n4-pronouns",
@@ -688,32 +688,32 @@ export default [
    {
     "id": "g1-possession",
     "title": "Whose, and of what",
-    "n": 20
+    "n": 17
    },
    {
     "id": "g1-possession-practice",
     "title": "Practice 1: Whose, and of what",
-    "n": 20
+    "n": 19
    },
    {
     "id": "g1-possession-practice-2",
     "title": "Practice 2: Whose, and of what",
-    "n": 20
+    "n": 19
    },
    {
     "id": "g1-possession-practice-3",
     "title": "Practice 3: Whose, and of what",
-    "n": 20
+    "n": 19
    },
    {
     "id": "g1-possession-practice-4",
     "title": "Practice 4: Whose, and of what",
-    "n": 20
+    "n": 16
    },
    {
     "id": "g1-possession-practice-5",
     "title": "Practice 5: Whose, and of what",
-    "n": 20
+    "n": 18
    },
    {
     "id": "g2-no",
@@ -723,32 +723,32 @@ export default [
    {
     "id": "g2-no-practice",
     "title": "Practice 1: Нет, не было: having none",
-    "n": 20
+    "n": 18
    },
    {
     "id": "g2-no-practice-2",
     "title": "Practice 2: Нет, не было: having none",
-    "n": 19
+    "n": 16
    },
    {
     "id": "g2-no-practice-3",
     "title": "Practice 3: Нет, не было: having none",
-    "n": 19
+    "n": 18
    },
    {
     "id": "g2-no-practice-4",
     "title": "Practice 4: Нет, не было: having none",
-    "n": 20
+    "n": 16
    },
    {
     "id": "g2-no-practice-5",
     "title": "Practice 5: Нет, не было: having none",
-    "n": 19
+    "n": 16
    },
    {
     "id": "g2-no-practice-6",
     "title": "Practice 6: Нет, не было: having none",
-    "n": 5
+    "n": 4
    },
    {
     "id": "g3-counting",
@@ -758,37 +758,37 @@ export default [
    {
     "id": "g3-counting-practice",
     "title": "Practice 1: Counting and how much",
-    "n": 19
+    "n": 17
    },
    {
     "id": "g3-counting-practice-2",
     "title": "Practice 2: Counting and how much",
-    "n": 20
+    "n": 19
    },
    {
     "id": "g3-counting-practice-3",
     "title": "Practice 3: Counting and how much",
-    "n": 20
+    "n": 19
    },
    {
     "id": "g3-counting-practice-4",
     "title": "Practice 4: Counting and how much",
-    "n": 18
+    "n": 17
    },
    {
     "id": "g3-counting-practice-5",
     "title": "Practice 5: Counting and how much",
-    "n": 20
+    "n": 16
    },
    {
     "id": "g4-from",
     "title": "From: из, с, от",
-    "n": 20
+    "n": 19
    },
    {
     "id": "g4-from-practice",
     "title": "Practice 1: From: из, с, от",
-    "n": 19
+    "n": 17
    },
    {
     "id": "g4-from-practice-2",
@@ -798,12 +798,12 @@ export default [
    {
     "id": "g4-from-practice-3",
     "title": "Practice 3: From: из, с, от",
-    "n": 20
+    "n": 18
    },
    {
     "id": "g4-from-practice-4",
     "title": "Practice 4: From: из, с, от",
-    "n": 20
+    "n": 19
    },
    {
     "id": "g4-from-practice-5",
@@ -813,17 +813,17 @@ export default [
    {
     "id": "g4-from-practice-6",
     "title": "Practice 6: From: из, с, от",
-    "n": 20
+    "n": 18
    },
    {
     "id": "g4-from-practice-7",
     "title": "Practice 7: From: из, с, от",
-    "n": 19
+    "n": 18
    },
    {
     "id": "g4-from-practice-8",
     "title": "Practice 8: From: из, с, от",
-    "n": 19
+    "n": 16
    },
    {
     "id": "g4-from-practice-9",
@@ -838,12 +838,12 @@ export default [
    {
     "id": "g4-from-practice-11",
     "title": "Practice 11: From: из, с, от",
-    "n": 20
+    "n": 17
    },
    {
     "id": "g4-from-practice-12",
     "title": "Practice 12: From: из, с, от",
-    "n": 19
+    "n": 18
    },
    {
     "id": "g4-from-practice-13",
@@ -853,22 +853,22 @@ export default [
    {
     "id": "g4-from-practice-14",
     "title": "Practice 14: From: из, с, от",
-    "n": 20
+    "n": 17
    },
    {
     "id": "g4-from-practice-15",
     "title": "Practice 15: From: из, с, от",
-    "n": 20
+    "n": 19
    },
    {
     "id": "g4-from-practice-16",
     "title": "Practice 16: From: из, с, от",
-    "n": 20
+    "n": 19
    },
    {
     "id": "g4-from-practice-17",
     "title": "Practice 17: From: из, с, от",
-    "n": 20
+    "n": 18
    },
    {
     "id": "g4-from-practice-18",
@@ -878,7 +878,7 @@ export default [
    {
     "id": "g5-u-dlya-bez",
     "title": "у, для, без",
-    "n": 20
+    "n": 16
    },
    {
     "id": "g5-u-dlya-bez-practice",
@@ -893,32 +893,32 @@ export default [
    {
     "id": "g5-u-dlya-bez-practice-3",
     "title": "Practice 3: у, для, без",
-    "n": 20
+    "n": 19
    },
    {
     "id": "g5-u-dlya-bez-practice-4",
     "title": "Practice 4: у, для, без",
-    "n": 20
+    "n": 18
    },
    {
     "id": "g5-u-dlya-bez-practice-5",
     "title": "Practice 5: у, для, без",
-    "n": 20
+    "n": 19
    },
    {
     "id": "g5-u-dlya-bez-practice-6",
     "title": "Practice 6: у, для, без",
-    "n": 20
+    "n": 18
    },
    {
     "id": "g5-u-dlya-bez-practice-7",
     "title": "Practice 7: у, для, без",
-    "n": 19
+    "n": 15
    },
    {
     "id": "g5-u-dlya-bez-practice-8",
     "title": "Practice 8: у, для, без",
-    "n": 20
+    "n": 16
    },
    {
     "id": "g5-u-dlya-bez-practice-9",
@@ -928,17 +928,17 @@ export default [
    {
     "id": "g5-u-dlya-bez-practice-10",
     "title": "Practice 10: у, для, без",
-    "n": 20
+    "n": 19
    },
    {
     "id": "g5-u-dlya-bez-practice-11",
     "title": "Practice 11: у, для, без",
-    "n": 18
+    "n": 17
    },
    {
     "id": "g5-u-dlya-bez-practice-12",
     "title": "Practice 12: у, для, без",
-    "n": 20
+    "n": 19
    },
    {
     "id": "g5-u-dlya-bez-practice-13",
@@ -948,12 +948,12 @@ export default [
    {
     "id": "g5-u-dlya-bez-practice-14",
     "title": "Practice 14: у, для, без",
-    "n": 20
+    "n": 18
    },
    {
     "id": "g5-u-dlya-bez-practice-15",
     "title": "Practice 15: у, для, без",
-    "n": 20
+    "n": 19
    },
    {
     "id": "g5-u-dlya-bez-practice-16",
@@ -963,7 +963,7 @@ export default [
    {
     "id": "g5-u-dlya-bez-practice-17",
     "title": "Practice 17: у, для, без",
-    "n": 20
+    "n": 19
    },
    {
     "id": "g5-u-dlya-bez-practice-18",
@@ -973,42 +973,42 @@ export default [
    {
     "id": "g6-more-prepositions",
     "title": "до, после, около, мимо, кроме, вместо, против…",
-    "n": 20
+    "n": 17
    },
    {
     "id": "g6-more-prepositions-practice",
     "title": "Practice 1: до, после, около, мимо, кроме, вместо, против…",
-    "n": 20
+    "n": 18
    },
    {
     "id": "g6-more-prepositions-practice-2",
     "title": "Practice 2: до, после, около, мимо, кроме, вместо, против…",
-    "n": 19
+    "n": 17
    },
    {
     "id": "g6-more-prepositions-practice-3",
     "title": "Practice 3: до, после, около, мимо, кроме, вместо, против…",
-    "n": 20
+    "n": 18
    },
    {
     "id": "g6-more-prepositions-practice-4",
     "title": "Practice 4: до, после, около, мимо, кроме, вместо, против…",
-    "n": 20
+    "n": 16
    },
    {
     "id": "g6-more-prepositions-practice-5",
     "title": "Practice 5: до, после, около, мимо, кроме, вместо, против…",
-    "n": 20
+    "n": 19
    },
    {
     "id": "g6-more-prepositions-practice-6",
     "title": "Practice 6: до, после, около, мимо, кроме, вместо, против…",
-    "n": 19
+    "n": 18
    },
    {
     "id": "g6-more-prepositions-practice-7",
     "title": "Practice 7: до, после, около, мимо, кроме, вместо, против…",
-    "n": 19
+    "n": 16
    },
    {
     "id": "g6-more-prepositions-practice-8",
@@ -1018,52 +1018,52 @@ export default [
    {
     "id": "g6-more-prepositions-practice-9",
     "title": "Practice 9: до, после, около, мимо, кроме, вместо, против…",
-    "n": 20
+    "n": 17
    },
    {
     "id": "g6-more-prepositions-practice-10",
     "title": "Practice 10: до, после, около, мимо, кроме, вместо, против…",
-    "n": 20
+    "n": 19
    },
    {
     "id": "g6-more-prepositions-practice-11",
     "title": "Practice 11: до, после, около, мимо, кроме, вместо, против…",
-    "n": 20
+    "n": 19
    },
    {
     "id": "g6-more-prepositions-practice-12",
     "title": "Practice 12: до, после, около, мимо, кроме, вместо, против…",
-    "n": 19
+    "n": 18
    },
    {
     "id": "g6-more-prepositions-practice-13",
     "title": "Practice 13: до, после, около, мимо, кроме, вместо, против…",
-    "n": 20
+    "n": 19
    },
    {
     "id": "g6-more-prepositions-practice-14",
     "title": "Practice 14: до, после, около, мимо, кроме, вместо, против…",
-    "n": 20
+    "n": 18
    },
    {
     "id": "g6-more-prepositions-practice-15",
     "title": "Practice 15: до, после, около, мимо, кроме, вместо, против…",
-    "n": 19
+    "n": 15
    },
    {
     "id": "g6-more-prepositions-practice-16",
     "title": "Practice 16: до, после, около, мимо, кроме, вместо, против…",
-    "n": 19
+    "n": 18
    },
    {
     "id": "g6-more-prepositions-practice-17",
     "title": "Practice 17: до, после, около, мимо, кроме, вместо, против…",
-    "n": 19
+    "n": 18
    },
    {
     "id": "g6-more-prepositions-practice-18",
     "title": "Practice 18: до, после, около, мимо, кроме, вместо, против…",
-    "n": 20
+    "n": 17
    },
    {
     "id": "g6-more-prepositions-practice-19",
@@ -1073,47 +1073,47 @@ export default [
    {
     "id": "g6-more-prepositions-practice-20",
     "title": "Practice 20: до, после, около, мимо, кроме, вместо, против…",
-    "n": 20
+    "n": 16
    },
    {
     "id": "g6-more-prepositions-practice-21",
     "title": "Practice 21: до, после, около, мимо, кроме, вместо, против…",
-    "n": 11
+    "n": 10
    },
    {
     "id": "g7-verbs",
     "title": "Verbs that take the genitive",
-    "n": 20
+    "n": 19
    },
    {
     "id": "g7-verbs-practice",
     "title": "Practice 1: Verbs that take the genitive",
-    "n": 20
+    "n": 16
    },
    {
     "id": "g7-verbs-practice-2",
     "title": "Practice 2: Verbs that take the genitive",
-    "n": 20
+    "n": 19
    },
    {
     "id": "g7-verbs-practice-3",
     "title": "Practice 3: Verbs that take the genitive",
-    "n": 19
+    "n": 18
    },
    {
     "id": "g7-verbs-practice-4",
     "title": "Practice 4: Verbs that take the genitive",
-    "n": 20
+    "n": 17
    },
    {
     "id": "g7-verbs-practice-5",
     "title": "Practice 5: Verbs that take the genitive",
-    "n": 20
+    "n": 19
    },
    {
     "id": "g8-endings",
     "title": "Genitive endings: nouns, adjectives, pronouns",
-    "n": 20
+    "n": 19
    },
    {
     "id": "g8-endings-practice",
@@ -1163,22 +1163,22 @@ export default [
    {
     "id": "d1-to-whom",
     "title": "To whom: giving, telling, showing",
-    "n": 20
+    "n": 19
    },
    {
     "id": "d1-to-whom-practice",
     "title": "Practice 1: To whom: giving, telling, showing",
-    "n": 20
+    "n": 18
    },
    {
     "id": "d1-to-whom-practice-2",
     "title": "Practice 2: To whom: giving, telling, showing",
-    "n": 20
+    "n": 19
    },
    {
     "id": "d1-to-whom-practice-3",
     "title": "Practice 3: To whom: giving, telling, showing",
-    "n": 20
+    "n": 19
    },
    {
     "id": "d1-to-whom-practice-4",
@@ -1188,7 +1188,7 @@ export default [
    {
     "id": "d1-to-whom-practice-5",
     "title": "Practice 5: To whom: giving, telling, showing",
-    "n": 20
+    "n": 19
    },
    {
     "id": "d2-mne-nravitsya",
@@ -1198,17 +1198,17 @@ export default [
    {
     "id": "d2-mne-nravitsya-practice",
     "title": "Practice 1: Мне нравится, нужно, надо, можно",
-    "n": 19
+    "n": 14
    },
    {
     "id": "d2-mne-nravitsya-practice-2",
     "title": "Practice 2: Мне нравится, нужно, надо, можно",
-    "n": 18
+    "n": 16
    },
    {
     "id": "d2-mne-nravitsya-practice-3",
     "title": "Practice 3: Мне нравится, нужно, надо, можно",
-    "n": 20
+    "n": 19
    },
    {
     "id": "d2-mne-nravitsya-practice-4",
@@ -1218,7 +1218,7 @@ export default [
    {
     "id": "d2-mne-nravitsya-practice-5",
     "title": "Practice 5: Мне нравится, нужно, надо, можно",
-    "n": 20
+    "n": 18
    },
    {
     "id": "d3-verbs",
@@ -1243,37 +1243,37 @@ export default [
    {
     "id": "d3-verbs-practice-4",
     "title": "Practice 4: Verbs that take the dative",
-    "n": 20
+    "n": 19
    },
    {
     "id": "d3-verbs-practice-5",
     "title": "Practice 5: Verbs that take the dative",
-    "n": 20
+    "n": 18
    },
    {
     "id": "d4-k",
     "title": "к: towards, to someone's",
-    "n": 19
+    "n": 18
    },
    {
     "id": "d4-k-practice",
     "title": "Practice 1: к: towards, to someone's",
-    "n": 20
+    "n": 19
    },
    {
     "id": "d4-k-practice-2",
     "title": "Practice 2: к: towards, to someone's",
-    "n": 20
+    "n": 18
    },
    {
     "id": "d4-k-practice-3",
     "title": "Practice 3: к: towards, to someone's",
-    "n": 20
+    "n": 18
    },
    {
     "id": "d4-k-practice-4",
     "title": "Practice 4: к: towards, to someone's",
-    "n": 20
+    "n": 19
    },
    {
     "id": "d4-k-practice-5",
@@ -1283,7 +1283,7 @@ export default [
    {
     "id": "d5-po",
     "title": "по, благодаря, вопреки, согласно",
-    "n": 19
+    "n": 18
    },
    {
     "id": "d5-po-practice",
@@ -1293,7 +1293,7 @@ export default [
    {
     "id": "d5-po-practice-2",
     "title": "Practice 2: по, благодаря, вопреки, согласно",
-    "n": 20
+    "n": 19
    },
    {
     "id": "d5-po-practice-3",
@@ -1303,17 +1303,17 @@ export default [
    {
     "id": "d5-po-practice-4",
     "title": "Practice 4: по, благодаря, вопреки, согласно",
-    "n": 20
+    "n": 18
    },
    {
     "id": "d5-po-practice-5",
     "title": "Practice 5: по, благодаря, вопреки, согласно",
-    "n": 20
+    "n": 19
    },
    {
     "id": "d5-po-practice-6",
     "title": "Practice 6: по, благодаря, вопреки, согласно",
-    "n": 20
+    "n": 17
    },
    {
     "id": "d5-po-practice-7",
@@ -1323,7 +1323,7 @@ export default [
    {
     "id": "d5-po-practice-8",
     "title": "Practice 8: по, благодаря, вопреки, согласно",
-    "n": 20
+    "n": 19
    },
    {
     "id": "d5-po-practice-9",
@@ -1333,12 +1333,12 @@ export default [
    {
     "id": "d5-po-practice-10",
     "title": "Practice 10: по, благодаря, вопреки, согласно",
-    "n": 20
+    "n": 19
    },
    {
     "id": "d5-po-practice-11",
     "title": "Practice 11: по, благодаря, вопреки, согласно",
-    "n": 16
+    "n": 15
    },
    {
     "id": "d6-endings",
@@ -1348,7 +1348,7 @@ export default [
    {
     "id": "d6-endings-practice",
     "title": "Practice 1: Dative endings: nouns, adjectives, pronouns",
-    "n": 20
+    "n": 19
    },
    {
     "id": "d6-endings-practice-2",
@@ -1363,7 +1363,7 @@ export default [
    {
     "id": "d6-endings-practice-4",
     "title": "Practice 4: Dative endings: nouns, adjectives, pronouns",
-    "n": 20
+    "n": 18
    },
    {
     "id": "d6-endings-practice-5",
@@ -1398,7 +1398,7 @@ export default [
    {
     "id": "a1-object-practice",
     "title": "Practice 1: The direct object",
-    "n": 20
+    "n": 19
    },
    {
     "id": "a1-object-practice-2",
@@ -1408,7 +1408,7 @@ export default [
    {
     "id": "a1-object-practice-3",
     "title": "Practice 3: The direct object",
-    "n": 20
+    "n": 19
    },
    {
     "id": "a1-object-practice-4",
@@ -1418,12 +1418,12 @@ export default [
    {
     "id": "a1-object-practice-5",
     "title": "Practice 5: The direct object",
-    "n": 20
+    "n": 19
    },
    {
     "id": "a2-v-na",
     "title": "Where to: в and на",
-    "n": 20
+    "n": 19
    },
    {
     "id": "a2-v-na-practice",
@@ -1433,97 +1433,97 @@ export default [
    {
     "id": "a2-v-na-practice-2",
     "title": "Practice 2: Where to: в and на",
-    "n": 20
+    "n": 18
    },
    {
     "id": "a2-v-na-practice-3",
     "title": "Practice 3: Where to: в and на",
-    "n": 20
+    "n": 19
    },
    {
     "id": "a2-v-na-practice-4",
     "title": "Practice 4: Where to: в and на",
-    "n": 20
+    "n": 19
    },
    {
     "id": "a2-v-na-practice-5",
     "title": "Practice 5: Where to: в and на",
-    "n": 20
+    "n": 19
    },
    {
     "id": "a2-v-na-practice-6",
     "title": "Practice 6: Where to: в and на",
-    "n": 20
+    "n": 18
    },
    {
     "id": "a2-v-na-practice-7",
     "title": "Practice 7: Where to: в and на",
-    "n": 20
+    "n": 19
    },
    {
     "id": "a2-v-na-practice-8",
     "title": "Practice 8: Where to: в and на",
-    "n": 20
+    "n": 19
    },
    {
     "id": "a2-v-na-practice-9",
     "title": "Practice 9: Where to: в and на",
-    "n": 20
+    "n": 19
    },
    {
     "id": "a2-v-na-practice-10",
     "title": "Practice 10: Where to: в and на",
-    "n": 20
+    "n": 18
    },
    {
     "id": "a2-v-na-practice-11",
     "title": "Practice 11: Where to: в and на",
-    "n": 20
+    "n": 19
    },
    {
     "id": "a3-za-pod",
     "title": "за and под: going behind, under",
-    "n": 20
+    "n": 19
    },
    {
     "id": "a3-za-pod-practice",
     "title": "Practice 1: за and под: going behind, under",
-    "n": 20
+    "n": 19
    },
    {
     "id": "a3-za-pod-practice-2",
     "title": "Practice 2: за and под: going behind, under",
-    "n": 20
+    "n": 18
    },
    {
     "id": "a3-za-pod-practice-3",
     "title": "Practice 3: за and под: going behind, under",
-    "n": 20
+    "n": 18
    },
    {
     "id": "a3-za-pod-practice-4",
     "title": "Practice 4: за and под: going behind, under",
-    "n": 20
+    "n": 16
    },
    {
     "id": "a3-za-pod-practice-5",
     "title": "Practice 5: за and под: going behind, under",
-    "n": 20
+    "n": 18
    },
    {
     "id": "a3-za-pod-practice-6",
     "title": "Practice 6: за and под: going behind, under",
-    "n": 20
+    "n": 18
    },
    {
     "id": "a3-za-pod-practice-7",
     "title": "Practice 7: за and под: going behind, under",
-    "n": 20
+    "n": 18
    },
    {
     "id": "a3-za-pod-practice-8",
     "title": "Practice 8: за and под: going behind, under",
-    "n": 20
+    "n": 19
    },
    {
     "id": "a3-za-pod-practice-9",
@@ -1533,12 +1533,12 @@ export default [
    {
     "id": "a3-za-pod-practice-10",
     "title": "Practice 10: за and под: going behind, under",
-    "n": 20
+    "n": 18
    },
    {
     "id": "a3-za-pod-practice-11",
     "title": "Practice 11: за and под: going behind, under",
-    "n": 20
+    "n": 17
    },
    {
     "id": "a3-za-pod-practice-12",
@@ -1553,47 +1553,47 @@ export default [
    {
     "id": "a4-cherez-pro-practice",
     "title": "Practice 1: через, про, сквозь",
-    "n": 20
+    "n": 18
    },
    {
     "id": "a4-cherez-pro-practice-2",
     "title": "Practice 2: через, про, сквозь",
-    "n": 20
+    "n": 18
    },
    {
     "id": "a4-cherez-pro-practice-3",
     "title": "Practice 3: через, про, сквозь",
-    "n": 20
+    "n": 19
    },
    {
     "id": "a4-cherez-pro-practice-4",
     "title": "Practice 4: через, про, сквозь",
-    "n": 20
+    "n": 17
    },
    {
     "id": "a4-cherez-pro-practice-5",
     "title": "Practice 5: через, про, сквозь",
-    "n": 20
+    "n": 16
    },
    {
     "id": "a4-cherez-pro-practice-6",
     "title": "Practice 6: через, про, сквозь",
-    "n": 19
+    "n": 17
    },
    {
     "id": "a4-cherez-pro-practice-7",
     "title": "Practice 7: через, про, сквозь",
-    "n": 20
+    "n": 19
    },
    {
     "id": "a4-cherez-pro-practice-8",
     "title": "Practice 8: через, про, сквозь",
-    "n": 20
+    "n": 17
    },
    {
     "id": "a4-cherez-pro-practice-9",
     "title": "Practice 9: через, про, сквозь",
-    "n": 20
+    "n": 17
    },
    {
     "id": "a4-cherez-pro-practice-10",
@@ -1603,152 +1603,152 @@ export default [
    {
     "id": "a4-cherez-pro-practice-11",
     "title": "Practice 11: через, про, сквозь",
-    "n": 20
+    "n": 17
    },
    {
     "id": "a4-cherez-pro-practice-12",
     "title": "Practice 12: через, про, сквозь",
-    "n": 20
+    "n": 19
    },
    {
     "id": "a4-cherez-pro-practice-13",
     "title": "Practice 13: через, про, сквозь",
-    "n": 20
+    "n": 19
    },
    {
     "id": "a4-cherez-pro-practice-14",
     "title": "Practice 14: через, про, сквозь",
-    "n": 20
+    "n": 18
    },
    {
     "id": "a4-cherez-pro-practice-15",
     "title": "Practice 15: через, про, сквозь",
-    "n": 20
+    "n": 17
    },
    {
     "id": "a4-cherez-pro-practice-16",
     "title": "Practice 16: через, про, сквозь",
-    "n": 20
+    "n": 18
    },
    {
     "id": "a4-cherez-pro-practice-17",
     "title": "Practice 17: через, про, сквозь",
-    "n": 20
+    "n": 17
    },
    {
     "id": "a4-cherez-pro-practice-18",
     "title": "Practice 18: через, про, сквозь",
-    "n": 19
+    "n": 16
    },
    {
     "id": "a5-time",
     "title": "Time in the accusative",
-    "n": 20
+    "n": 16
    },
    {
     "id": "a5-time-practice",
     "title": "Practice 1: Time in the accusative",
-    "n": 20
+    "n": 19
    },
    {
     "id": "a5-time-practice-2",
     "title": "Practice 2: Time in the accusative",
-    "n": 20
+    "n": 17
    },
    {
     "id": "a5-time-practice-3",
     "title": "Practice 3: Time in the accusative",
-    "n": 20
+    "n": 18
    },
    {
     "id": "a5-time-practice-4",
     "title": "Practice 4: Time in the accusative",
-    "n": 20
+    "n": 18
    },
    {
     "id": "a5-time-practice-5",
     "title": "Practice 5: Time in the accusative",
-    "n": 20
+    "n": 17
    },
    {
     "id": "a5-time-practice-6",
     "title": "Practice 6: Time in the accusative",
-    "n": 20
+    "n": 18
    },
    {
     "id": "a5-time-practice-7",
     "title": "Practice 7: Time in the accusative",
-    "n": 20
+    "n": 15
    },
    {
     "id": "a5-time-practice-8",
     "title": "Practice 8: Time in the accusative",
-    "n": 20
+    "n": 17
    },
    {
     "id": "a5-time-practice-9",
     "title": "Practice 9: Time in the accusative",
-    "n": 20
+    "n": 15
    },
    {
     "id": "a5-time-practice-10",
     "title": "Practice 10: Time in the accusative",
-    "n": 20
+    "n": 16
    },
    {
     "id": "a5-time-practice-11",
     "title": "Practice 11: Time in the accusative",
-    "n": 20
+    "n": 17
    },
    {
     "id": "a5-time-practice-12",
     "title": "Practice 12: Time in the accusative",
-    "n": 20
+    "n": 16
    },
    {
     "id": "a5-time-practice-13",
     "title": "Practice 13: Time in the accusative",
-    "n": 20
+    "n": 17
    },
    {
     "id": "a5-time-practice-14",
     "title": "Practice 14: Time in the accusative",
-    "n": 20
+    "n": 14
    },
    {
     "id": "a5-time-practice-15",
     "title": "Practice 15: Time in the accusative",
-    "n": 20
+    "n": 18
    },
    {
     "id": "a5-time-practice-16",
     "title": "Practice 16: Time in the accusative",
-    "n": 20
+    "n": 15
    },
    {
     "id": "a5-time-practice-17",
     "title": "Practice 17: Time in the accusative",
-    "n": 20
+    "n": 18
    },
    {
     "id": "a5-time-practice-18",
     "title": "Practice 18: Time in the accusative",
-    "n": 20
+    "n": 19
    },
    {
     "id": "a5-time-practice-19",
     "title": "Practice 19: Time in the accusative",
-    "n": 20
+    "n": 15
    },
    {
     "id": "a5-time-practice-20",
     "title": "Practice 20: Time in the accusative",
-    "n": 20
+    "n": 15
    },
    {
     "id": "a6-endings",
     "title": "Accusative endings: nouns, adjectives, pronouns",
-    "n": 20
+    "n": 18
    },
    {
     "id": "a6-endings-practice",
@@ -1773,7 +1773,7 @@ export default [
    {
     "id": "a6-endings-practice-5",
     "title": "Practice 5: Accusative endings: nouns, adjectives, pronouns",
-    "n": 20
+    "n": 19
    },
    {
     "id": "exam",
@@ -1798,12 +1798,12 @@ export default [
    {
     "id": "i1-with",
     "title": "With: с + instrumental",
-    "n": 20
+    "n": 18
    },
    {
     "id": "i1-with-practice",
     "title": "Practice 1: With: с + instrumental",
-    "n": 20
+    "n": 16
    },
    {
     "id": "i1-with-practice-2",
@@ -1818,27 +1818,27 @@ export default [
    {
     "id": "i1-with-practice-4",
     "title": "Practice 4: With: с + instrumental",
-    "n": 20
+    "n": 19
    },
    {
     "id": "i1-with-practice-5",
     "title": "Practice 5: With: с + instrumental",
-    "n": 20
+    "n": 17
    },
    {
     "id": "i2-means",
     "title": "By means of: the instrument",
-    "n": 20
+    "n": 16
    },
    {
     "id": "i2-means-practice",
     "title": "Practice 1: By means of: the instrument",
-    "n": 20
+    "n": 19
    },
    {
     "id": "i2-means-practice-2",
     "title": "Practice 2: By means of: the instrument",
-    "n": 20
+    "n": 18
    },
    {
     "id": "i2-means-practice-3",
@@ -1848,27 +1848,27 @@ export default [
    {
     "id": "i2-means-practice-4",
     "title": "Practice 4: By means of: the instrument",
-    "n": 20
+    "n": 19
    },
    {
     "id": "i2-means-practice-5",
     "title": "Practice 5: By means of: the instrument",
-    "n": 20
+    "n": 18
    },
    {
     "id": "i3-being",
     "title": "Being, becoming, working as",
-    "n": 19
+    "n": 16
    },
    {
     "id": "i3-being-practice",
     "title": "Practice 1: Being, becoming, working as",
-    "n": 20
+    "n": 17
    },
    {
     "id": "i3-being-practice-2",
     "title": "Practice 2: Being, becoming, working as",
-    "n": 20
+    "n": 19
    },
    {
     "id": "i3-being-practice-3",
@@ -1883,77 +1883,77 @@ export default [
    {
     "id": "i3-being-practice-5",
     "title": "Practice 5: Being, becoming, working as",
-    "n": 20
+    "n": 17
    },
    {
     "id": "i4-where",
     "title": "Where: над, под, за, перед, между",
-    "n": 20
+    "n": 18
    },
    {
     "id": "i4-where-practice",
     "title": "Practice 1: Where: над, под, за, перед, между",
-    "n": 20
+    "n": 19
    },
    {
     "id": "i4-where-practice-2",
     "title": "Practice 2: Where: над, под, за, перед, между",
-    "n": 20
+    "n": 18
    },
    {
     "id": "i4-where-practice-3",
     "title": "Practice 3: Where: над, под, за, перед, между",
-    "n": 20
+    "n": 19
    },
    {
     "id": "i4-where-practice-4",
     "title": "Practice 4: Where: над, под, за, перед, между",
-    "n": 20
+    "n": 18
    },
    {
     "id": "i4-where-practice-5",
     "title": "Practice 5: Where: над, под, за, перед, между",
-    "n": 20
+    "n": 19
    },
    {
     "id": "i4-where-practice-6",
     "title": "Practice 6: Where: над, под, за, перед, между",
-    "n": 20
+    "n": 18
    },
    {
     "id": "i4-where-practice-7",
     "title": "Practice 7: Where: над, под, за, перед, между",
-    "n": 20
+    "n": 17
    },
    {
     "id": "i4-where-practice-8",
     "title": "Practice 8: Where: над, под, за, перед, между",
-    "n": 20
+    "n": 17
    },
    {
     "id": "i4-where-practice-9",
     "title": "Practice 9: Where: над, под, за, перед, между",
-    "n": 20
+    "n": 18
    },
    {
     "id": "i4-where-practice-10",
     "title": "Practice 10: Where: над, под, за, перед, между",
-    "n": 20
+    "n": 18
    },
    {
     "id": "i4-where-practice-11",
     "title": "Practice 11: Where: над, под, за, перед, между",
-    "n": 20
+    "n": 16
    },
    {
     "id": "i4-where-practice-12",
     "title": "Practice 12: Where: над, под, за, перед, между",
-    "n": 20
+    "n": 18
    },
    {
     "id": "i4-where-practice-13",
     "title": "Practice 13: Where: над, под, за, перед, между",
-    "n": 20
+    "n": 17
    },
    {
     "id": "i4-where-practice-14",
@@ -1963,7 +1963,7 @@ export default [
    {
     "id": "i4-where-practice-15",
     "title": "Practice 15: Where: над, под, за, перед, между",
-    "n": 20
+    "n": 19
    },
    {
     "id": "i4-where-practice-16",
@@ -1973,42 +1973,42 @@ export default [
    {
     "id": "i4-where-practice-17",
     "title": "Practice 17: Where: над, под, за, перед, между",
-    "n": 20
+    "n": 18
    },
    {
     "id": "i4-where-practice-18",
     "title": "Practice 18: Where: над, под, за, перед, между",
-    "n": 20
+    "n": 19
    },
    {
     "id": "i4-where-practice-19",
     "title": "Practice 19: Where: над, под, за, перед, между",
-    "n": 20
+    "n": 19
    },
    {
     "id": "i4-where-practice-20",
     "title": "Practice 20: Where: над, под, за, перед, между",
-    "n": 19
+    "n": 18
    },
    {
     "id": "i5-verbs",
     "title": "Verbs that take the instrumental",
-    "n": 20
+    "n": 19
    },
    {
     "id": "i5-verbs-practice",
     "title": "Practice 1: Verbs that take the instrumental",
-    "n": 20
+    "n": 18
    },
    {
     "id": "i5-verbs-practice-2",
     "title": "Practice 2: Verbs that take the instrumental",
-    "n": 19
+    "n": 18
    },
    {
     "id": "i5-verbs-practice-3",
     "title": "Practice 3: Verbs that take the instrumental",
-    "n": 19
+    "n": 18
    },
    {
     "id": "i5-verbs-practice-4",
@@ -2018,22 +2018,17 @@ export default [
    {
     "id": "i5-verbs-practice-5",
     "title": "Practice 5: Verbs that take the instrumental",
-    "n": 20
+    "n": 19
    },
    {
     "id": "i6-time",
     "title": "When: утром, зимой, этим летом",
-    "n": 20
-   },
-   {
-    "id": "i6-time-practice",
-    "title": "Practice: When: утром, зимой, этим летом",
-    "n": 16
+    "n": 0
    },
    {
     "id": "i7-endings",
     "title": "Instrumental endings: nouns, adjectives, pronouns",
-    "n": 20
+    "n": 19
    },
    {
     "id": "i7-endings-practice",
@@ -2063,7 +2058,7 @@ export default [
    {
     "id": "exam",
     "title": "Exam",
-    "n": 35,
+    "n": 30,
     "exam": true
    }
   ],
@@ -2088,12 +2083,12 @@ export default [
    {
     "id": "p1-where-practice",
     "title": "Practice 1: Where: в and на",
-    "n": 20
+    "n": 18
    },
    {
     "id": "p1-where-practice-2",
     "title": "Practice 2: Where: в and на",
-    "n": 20
+    "n": 19
    },
    {
     "id": "p1-where-practice-3",
@@ -2103,7 +2098,7 @@ export default [
    {
     "id": "p1-where-practice-4",
     "title": "Practice 4: Where: в and на",
-    "n": 20
+    "n": 19
    },
    {
     "id": "p1-where-practice-5",
@@ -2128,7 +2123,7 @@ export default [
    {
     "id": "p1-where-practice-9",
     "title": "Practice 9: Where: в and на",
-    "n": 20
+    "n": 19
    },
    {
     "id": "p1-where-practice-10",
@@ -2148,12 +2143,12 @@ export default [
    {
     "id": "p2-about-practice",
     "title": "Practice 1: About: о, об, обо",
-    "n": 19
+    "n": 17
    },
    {
     "id": "p2-about-practice-2",
     "title": "Practice 2: About: о, об, обо",
-    "n": 19
+    "n": 18
    },
    {
     "id": "p2-about-practice-3",
@@ -2163,7 +2158,7 @@ export default [
    {
     "id": "p2-about-practice-4",
     "title": "Practice 4: About: о, об, обо",
-    "n": 20
+    "n": 19
    },
    {
     "id": "p2-about-practice-5",
@@ -2173,32 +2168,32 @@ export default [
    {
     "id": "p3-v-lesu",
     "title": "в лесу, на берегу: the stressed -у",
-    "n": 20
+    "n": 18
    },
    {
     "id": "p3-v-lesu-practice",
     "title": "Practice 1: в лесу, на берегу: the stressed -у",
-    "n": 20
+    "n": 19
    },
    {
     "id": "p3-v-lesu-practice-2",
     "title": "Practice 2: в лесу, на берегу: the stressed -у",
-    "n": 20
+    "n": 19
    },
    {
     "id": "p3-v-lesu-practice-3",
     "title": "Practice 3: в лесу, на берегу: the stressed -у",
-    "n": 20
+    "n": 19
    },
    {
     "id": "p3-v-lesu-practice-4",
     "title": "Practice 4: в лесу, на берегу: the stressed -у",
-    "n": 20
+    "n": 18
    },
    {
     "id": "p3-v-lesu-practice-5",
     "title": "Practice 5: в лесу, на берегу: the stressed -у",
-    "n": 20
+    "n": 19
    },
    {
     "id": "p3-v-lesu-practice-6",
@@ -2208,7 +2203,7 @@ export default [
    {
     "id": "p4-pri-transport",
     "title": "при, на поезде, в этом году",
-    "n": 20
+    "n": 19
    },
    {
     "id": "p4-pri-transport-practice",
@@ -2238,7 +2233,7 @@ export default [
    {
     "id": "p4-pri-transport-practice-6",
     "title": "Practice 6: при, на поезде, в этом году",
-    "n": 20
+    "n": 18
    },
    {
     "id": "p4-pri-transport-practice-7",
@@ -2293,7 +2288,7 @@ export default [
    {
     "id": "p4-pri-transport-practice-17",
     "title": "Practice 17: при, на поезде, в этом году",
-    "n": 20
+    "n": 19
    },
    {
     "id": "p4-pri-transport-practice-18",
@@ -2303,7 +2298,7 @@ export default [
    {
     "id": "p4-pri-transport-practice-19",
     "title": "Practice 19: при, на поезде, в этом году",
-    "n": 20
+    "n": 19
    },
    {
     "id": "p5-endings",
@@ -2323,7 +2318,7 @@ export default [
    {
     "id": "p5-endings-practice-3",
     "title": "Practice 3: Prepositional endings: nouns, adjectives, pronouns",
-    "n": 20
+    "n": 19
    },
    {
     "id": "p5-endings-practice-4",
