@@ -427,7 +427,7 @@ function exportRows(vocab, learned, withLearned) {
       en: String(v.en || "").trim(),
       pos: String(v.pos || "").trim(),
       aspect: String(v.aspect || "").trim(),
-      grammar: String(v.grammar || "").trim(),
+      grammar: [String(v.grammar || "").trim(), String(v.conjLine || "").trim()].filter(Boolean).join(" · "),
       sentences: sents,
       exRu: exRu, exEn: exEn,
       book: String(v.srcTitle || "").trim(),
@@ -2572,27 +2572,29 @@ function vocabHeads(v) {
 // A verb's conjugation, from the Wiktionary table the conjugation window shows,
 // as the one line a vocabulary card carries («present: я иду́, ты идёшь … · past: шёл,
 // шла, шло, шли · imperative: иди́, иди́те») and as the table itself.
-function conjSummary(d) {
-  if (!d) return "";
+function conjRows(d) {
+  if (!d) return [];
   var P = [["1s", "я"], ["2s", "ты"], ["3s", "он"], ["1p", "мы"], ["2p", "вы"], ["3p", "они"]];
-  var parts = [];
+  var rows = [];
   var row = function(label, r) {
     if (!r) return;
     var cells = P.map(function(p){ return r[p[0]] ? p[1] + " " + r[p[0]] : ""; }).filter(Boolean);
-    if (cells.length) parts.push(label + ": " + cells.join(", "));
+    if (cells.length) rows.push([label, cells.join(", ")]);
   };
   row("present", d.present);
   if (d.aspect === "perfective") row("future", d.future);
-  else if (d.future && d.future["1s"]) parts.push("future: буду, будешь… + infinitive");
   if (d.past) {
     var pc = [["m", "он"], ["f", "она"], ["n", "оно"], ["pl", "они"]].map(function(g){ return d.past[g[0]] ? g[1] + " " + d.past[g[0]] : ""; }).filter(Boolean);
-    if (pc.length) parts.push("past: " + pc.join(", "));
+    if (pc.length) rows.push(["past", pc.join(", ")]);
   }
   if (d.imperative) {
     var im = [d.imperative.sg, d.imperative.pl].filter(Boolean);
-    if (im.length) parts.push("imperative: " + im.join(", "));
+    if (im.length) rows.push(["imperative", im.join(", ")]);
   }
-  return parts.join(" · ");
+  return rows;
+}
+function conjSummary(d) {
+  return conjRows(d).map(function(r){ return r[0] + ": " + r[1]; }).join(" · ");
 }
 function conjTable(d) {
   if (!d) return null;
@@ -12361,7 +12363,9 @@ export default function App() {
       ? (asp === "perfective" ? partners[0] + " / " + w : w + " / " + partners[0]) : w;
     var entry = { ru: head, en: en, pos: "verb", aspect: asp };
     var sum = conjSummary(data);
-    if (sum) { entry.grammar = sum; entry.conj = conjTable(data); }
+    // The conjugation belongs to the word entry (under the headword), not to the
+    // definition: the table for the card, one line for the exports.
+    if (sum) { entry.conj = conjTable(data); entry.conjLine = sum; }
     var ex = (vi.x || [])[0];
     if (ex) {
       var bk = null, fn = (verbIdx && verbIdx.files && verbIdx.files[ex[2]]) || "";
@@ -12382,7 +12386,7 @@ export default function App() {
     try { res = await loadConj(w); } catch (e) {}
     var data = res && res.data;
     var entry = verbEntry(w, data, enHint);
-    if (!data && extra) entry.grammar = "irregular forms: " + extra;
+    if (!data && extra) entry.conjLine = "irregular forms: " + extra;
     addV(entry);
     setVerbSaving(function(st){ var o = Object.assign({}, st); delete o[w]; return o; });
     if (!data) {
@@ -18122,6 +18126,8 @@ quizMode ? (
         .ipri{font-size:17px;color:#000;font-family:'Old Standard TT',serif}
         .ipos{font-size:11px;color:rgba(42,31,20,.7);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:1px}
         .isec{font-size:14px;color:rgba(42,31,20,.75)}
+        .icj{font-family:'Literata',serif;font-size:13px;line-height:1.5;color:#8a3b1e;margin:2px 0 4px}
+        .icj-l{font-family:'IBM Plex Sans',sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(42,31,20,.5);margin-right:4px}
         .igr{font-size:12px;color:#33507a;background:rgba(135,168,196,.06);border-radius:6px;padding:3px 8px;align-self:flex-start;margin-top:3px}
         .iex{font-size:13px;color:rgba(42,31,20,.5);font-style:italic;margin-top:6px;padding-top:6px;border-top:1px solid rgba(42,31,20,.06);line-height:1.5}
         .iext{font-style:normal;font-size:12px;color:rgba(42,31,20,.35);margin-top:2px}
@@ -27231,6 +27237,15 @@ quizMode ? (
                             <div className="icont">
                               <span className="ipri">{v.ru}</span>
                               {posLine && <span className="ipos">{posLine}</span>}
+                              {(v.conj || v.conjLine) && (
+                                <div className="icj" lang="ru">
+                                  {v.conj
+                                    ? conjRows(Object.assign({ aspect: v.aspect }, v.conj)).map(function(r){
+                                        return <div key={r[0]}><span className="icj-l">{r[0]}</span> {r[1]}</div>;
+                                      })
+                                    : <div>{v.conjLine}</div>}
+                                </div>
+                              )}
                               {isVerbPos(v.pos, v.aspect) && (wantVerbIdx(), <VerbStat word={v.lemma || v.ru} small />)}
                               {v.en && <span className="isec">{v.en}</span>}
                               {v.grammar && <span className="igr">{v.grammar}</span>}
