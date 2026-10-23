@@ -14529,7 +14529,7 @@ export default function App() {
         if (dead || !res || !res.data) return;
         setRvConjOk(function(x){
           var base = (x && x.key === q.key) ? x : { key: q.key, words: {} };
-          var words = Object.assign({}, base.words); words[h] = true;
+          var words = Object.assign({}, base.words); words[h] = res.data;
           return { key: q.key, words: words };
         });
       });
@@ -16542,8 +16542,22 @@ quizMode ? (
                         if (hs.length < 2 && q.lemma) hs = [String(q.lemma).replace(/\u0301/g, "")];
                         var ok = hs.filter(function(h){ return rvConjOk.words[h]; });
                         if (!ok.length) return null;
+                        // Under the headword, each verb's infinitive with its я and ты
+                        // forms (the present, or the future of a perfective verb).
+                        var firstTwo = function(d) {
+                          var r = (d.present && d.present["1s"]) ? d.present : (d.future && d.future["1s"]) ? d.future : null;
+                          if (!r) return null;
+                          return [r["1s"], r["2s"]].filter(Boolean);
+                        };
                         return (
                           <div className="rv-conj">
+                            <div className="rv-forms" lang="ru">
+                              {ok.map(function(h){
+                                var d = rvConjOk.words[h], ft = firstTwo(d);
+                                if (!ft) return null;
+                                return <div key={h}><span className="rv-forms-inf">{d.infinitive || h}</span> — я {ft[0]}{ft[1] ? ", ты " + ft[1] : ""}</div>;
+                              })}
+                            </div>
                             {ok.map(function(h){
                               return (
                                 <button key={h} type="button" className="psay" title="Every form of the verb, from Wiktionary"
@@ -18041,6 +18055,7 @@ quizMode ? (
         .rv-w{border-radius:3px;padding:0 2px;transition:background .15s,color .15s}
         .rv-w.on{background:rgba(160,110,20,.18);color:#2a1f14}
         .rv-conj{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:2px auto 28px;max-width:560px}
+        .rv-conj .rv-forms{flex-basis:100%;margin:-18px 0 4px}
         .pnoen,.pnodef{font-family:var(--sans,'IBM Plex Sans',sans-serif);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#9d4630;margin:6px 0 6px}
         .pnodef{margin-top:8px}
         .ptr-ru{font-size:15px}
@@ -18069,6 +18084,8 @@ quizMode ? (
         .rv-rm:hover{color:#9d4630;border-color:rgba(157,70,48,.5);background:rgba(157,70,48,.06)}
         .rv-pos{text-align:center;font-size:12px;color:rgba(0,0,0,.45);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px}
         .rv-word-row{display:flex;justify-content:center;align-items:center;gap:12px;margin-bottom:30px;flex-wrap:wrap}
+        .rv-forms{font-family:'Literata',serif;font-size:16px;line-height:1.5;color:#5a4636;text-align:center;margin:-18px 0 10px}
+        .rv-forms-inf{font-weight:600;color:#000}
         .rv-word{font-size:42px;font-family:'Old Standard TT',serif;color:#000;font-weight:600;text-align:center}
         .rv-card .qex{margin:-14px auto 22px}
         .rv-opts{display:flex;flex-direction:column;gap:10px;max-width:560px;margin:12px auto 0}
