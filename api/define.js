@@ -628,6 +628,47 @@ function conjugationOf(entry) {
   };
 }
 
+// A noun entry's forms → its declension table, or null when it has none.
+// Each cell is the forms Wiktionary lists for it, joined with ", " (челове́к's
+// genitive plural is «люде́й, челове́к, челове́ков»). A headword-line form
+// such as «кни́ги genitive», with no number, is not a cell and is left out,
+// as are the pre-1918 spellings and the romanizations.
+function declensionOf(entry) {
+  const forms = (Array.isArray(entry.forms) ? entry.forms : []).filter(function (f) {
+    return f && f.word && Array.isArray(f.tags) && f.tags.indexOf("dated") < 0 &&
+      f.tags.indexOf("romanization") < 0 && /[\u0400-\u04ff]/.test(f.word);
+  });
+  const clean = function (w) { return String(w).replace(/\^\*|\*/g, "").trim(); };
+  const pick = function (tags) {
+    const out = [];
+    for (const f of forms) {
+      if (!tags.every(function (t) { return f.tags.indexOf(t) >= 0; })) continue;
+      const w = clean(f.word);
+      if (w && out.indexOf(w) < 0) out.push(w);
+    }
+    return out.join(", ");
+  };
+  const CASES = ["nominative", "genitive", "dative", "accusative", "instrumental", "prepositional"];
+  const table = { sg: {}, pl: {} };
+  let any = false;
+  for (const c of CASES) {
+    table.sg[c] = pick([c, "singular"]);
+    table.pl[c] = pick([c, "plural"]);
+    if (table.sg[c] || table.pl[c]) any = true;
+  }
+  if (!any) return null;
+  const canon = forms.filter(function (f) { return f.tags.indexOf("canonical") >= 0; })[0];
+  const tags = (canon && canon.tags) || [];
+  const gender = ["masculine", "feminine", "neuter"].filter(function (g) { return tags.indexOf(g) >= 0; }).join("/");
+  const animate = tags.indexOf("animate") >= 0 ? true : (tags.indexOf("inanimate") >= 0 ? false : null);
+  // «пальто»: every cell the same word — nothing to drill
+  const indeclinable = (Array.isArray(entry.forms) ? entry.forms : []).some(function (f) {
+    return f && Array.isArray(f.tags) && f.tags.indexOf("class") >= 0 && /indecl/.test(String(f.word));
+  });
+  return { lemma: clean((canon && canon.word) || ""), gender: gender, animate: animate,
+           indeclinable: indeclinable, sg: table.sg, pl: table.pl };
+}
+
 // "genitive singular of фраер" / "inflection of фраер" → фраер.
 function lemmaFromNote(note) {
   const m = String(note || "").match(/\bof\s+([\u0400-\u04ff\u0300-\u036f-]{2,})/i);
@@ -924,6 +965,40 @@ export default async function handler(req, res) {
       return res.status(502).json({ error: "Wiktionary could not be reached just now." });
     } finally {
       clearTimeout(tC);
+    }
+  }
+
+  // —— Declension ——————————————————————————————————————————————————
+  // The noun's own table from Wiktionary, for the declension drill: six cases
+  // by two numbers, each cell the forms the table lists. The client sends the
+  // nominative singular.
+  if (req.query && req.query.decl === "1") {
+    const ctrlD = new AbortController();
+    const tD = setTimeout(function () { ctrlD.abort(); }, 7000);
+    try {
+      const lowD = word.toLowerCase().replace(/\u0301/g, "");
+      let table = null;
+      for (const cand of [lowD, lowD.replace(/ё/g, "е")].filter(function (w, i, a) { return a.indexOf(w) === i; })) {
+        let pack = null;
+        try { pack = await wiktFetch(cand, ctrlD.signal); } catch (e) { if (e && e.name === "AbortError") throw e; }
+        if (!pack) continue;
+        for (const e of pack.entries) {
+          if (String(e.partOfSpeech || "").toLowerCase() !== "noun") continue;
+          const t = declensionOf(e);
+          if (t) { table = t; break; }
+        }
+        if (table) break;
+      }
+      if (!table) {
+        res.setHeader("Cache-Control", "public, s-maxage=86400");
+        return res.status(404).json({ error: "Wiktionary has no declension table for this noun.", noEntry: true });
+      }
+      res.setHeader("Cache-Control", "public, s-maxage=2592000, stale-while-revalidate=86400");
+      return res.status(200).json(table);
+    } catch (e) {
+      return res.status(502).json({ error: "Wiktionary could not be reached just now." });
+    } finally {
+      clearTimeout(tD);
     }
   }
 

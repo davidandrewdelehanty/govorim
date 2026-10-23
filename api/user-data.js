@@ -33,7 +33,7 @@ import {
 import { listAccounts, userIdFor, r2GetJson as authGetJson, userDataKey as authDataKey, isAdminEmail, coursesCompleted } from "../lib/auth.js";
 import { requireUser, currentUser, bumpDaily, bumpDailyBook, touchSeen, findAccount,
   updateBoardRow, readBoards, learnedCount, finishedCount, wordsRead, wordsReadEn, cardsReviewed,
-  songsCount, drillsDone, uidForUsername, isHiddenUid } from "../lib/auth.js";
+  songsCount, drillsDone, declRight, conjRight, uidForUsername, isHiddenUid } from "../lib/auth.js";
 import { sendEmail } from "../lib/admin/helpers.js";
 import { r2Endpoint } from "../lib/r2-endpoint.js";
 import { computeBadges } from "../src/badges.js";
@@ -957,6 +957,9 @@ export default async function handler(req, res) {
           questions: big(cur.questions, inc.questions),
           correct: big(cur.correct, inc.correct),
           last: big(cur.last, inc.last),
+          // the declension and conjugation drills (Oct 2026): questions and right answers
+          declQ: big(cur.declQ, inc.declQ), declRight: big(cur.declRight, inc.declRight),
+          conjQ: big(cur.conjQ, inc.conjQ), conjRight: big(cur.conjRight, inc.conjRight),
           byBook: Object.assign({}, cur.byBook || {}),
         };
         const inBooks = (inc.byBook && typeof inc.byBook === "object") ? inc.byBook : {};
@@ -970,7 +973,7 @@ export default async function handler(req, res) {
           };
         }
         await r2Put(userId, "drills", merged);
-        await noteBoard(user, { drills: drillsDone(merged) });
+        await noteBoard(user, { drills: drillsDone(merged), decl: declRight(merged), conj: conjRight(merged) });
         return res.status(200).json({ ok: true, drills: merged });
       }
 

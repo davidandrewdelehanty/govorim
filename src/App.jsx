@@ -6367,7 +6367,7 @@ export default function App() {
   var GOAL_ROWS = [
     { k: "words", f: "read", label: "Words read", one: "word", tab: "chat" },
     { k: "cards", f: "practiced", label: "Vocabulary reviewed", one: "card", tab: "vocab" },
-    { k: "drills", f: "drills", label: "Case-drill questions", one: "question", tab: "drills" },
+    { k: "drills", f: "drills", label: "Grammar-drill questions", one: "question", tab: "drills" },
     { k: "course", f: "course", label: "Course exercises right", one: "exercise", tab: "courses" },
     { k: "sections", f: "sections", label: "Course sections finished", one: "section", tab: "courses" },
   ];
@@ -6775,6 +6775,21 @@ export default function App() {
     if (!n) return;
     setStats(function(s){ return bumpStats(s, field, n); });
   };
+  // One answer in the declension ("decl") or conjugation ("conj") drill of
+  // the vocabulary review: a question, and a right answer when it was one.
+  // Right answers go on the leaderboard; the question counts toward the
+  // day's grammar-drill goal like a case drill does.
+  var recordFormDrill = function(kind, right) {
+    var q = kind + "Q", r = kind + "Right";
+    setDrills(function(d){
+      var o = Object.assign({}, d || {});
+      o[q] = (Number(o[q]) || 0) + 1;
+      o[r] = (Number(o[r]) || 0) + (right ? 1 : 0);
+      o.last = Date.now();
+      return o;
+    });
+    bumpToday("drills", 1);
+  };
   // The same words, filed under the book they were read in.
   var bumpTodayBook = function(key, n) {
     if (!n || !key) return;
@@ -6819,6 +6834,9 @@ export default function App() {
       questions: big(a.questions, b.questions),
       correct: big(a.correct, b.correct),
       last: big(a.last, b.last),
+      // the declension and conjugation drills: questions and right answers
+      declQ: big(a.declQ, b.declQ), declRight: big(a.declRight, b.declRight),
+      conjQ: big(a.conjQ, b.conjQ), conjRight: big(a.conjRight, b.conjRight),
       byBook: byBook,
     };
   };
@@ -9498,7 +9516,7 @@ export default function App() {
   }, [goals, me, syncedFromServer]);
   useEffect(function() {
     if (!me || !syncedFromServer || !drillsLoaded.current) return;
-    if (!drills || !drills.runs) return;
+    if (!drills || !(drills.runs || drills.declQ || drills.conjQ)) return;
     var t = setTimeout(function() {
       authFetch("/api/user-data?type=drills", {
         method: "POST",
@@ -12237,6 +12255,184 @@ export default function App() {
     setConj({ word: w, loading: true });
     var res = await loadConj(w);
     setConj(function(c){ return c && c.word === w ? { word: w, data: res.data, error: res.error } : c; });
+  };
+
+  // ── Declension and conjugation practice (vocabulary review) ──────────
+  // Two typed drills in the review menu, beside the quiz and the match game.
+  // Declension: a noun — one the reader saved from the library when there
+  // are any, else one of the commonest nouns — and a case and number to put
+  // it in. Conjugation: a verb that has a table on Wiktionary, and a person
+  // and number in a tense (or a gender in the past). The answer is checked
+  // against every form Wiktionary lists for that cell, stress marks and ё
+  // aside. The Case drills from the books sit under the same menu.
+  var [vocabDrill, setVocabDrill] = useState(null);   // "decl" | "conj" | "cases" | null
+  var [fd, setFd] = useState(null);                   // { kind, q, input, checked, right, n, nRight, busy, err }
+  var fdSeq = useRef(0);
+  var fdNext = useRef(null);                          // the next question, fetched while this one is answered
+  var fdBankRef = useRef(null);
+  var fdNorm = function(x) {
+    return String(x || "").toLowerCase().replace(/́/g, "").replace(/ё/g, "е").replace(/\s+/g, " ").trim();
+  };
+  // The frequency bank (public/vocab/examples.json: word → [sentence, en, pos]).
+  var fdBank = function() {
+    if (fdBankRef.current) return Promise.resolve(fdBankRef.current);
+    if (exBank) { fdBankRef.current = exBank; return Promise.resolve(exBank); }
+    return fetch("/vocab/examples.json").then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(j){ if (j) { fdBankRef.current = j; setExBank(function(b){ return b || j; }); } return j || {}; })
+      .catch(function(){ return {}; });
+  };
+  var fdIsNoun = function(pos) {
+    var p = String(pos || "").toLowerCase();
+    return /noun|существ/.test(p) && !/pronoun|proper|местоим|собств/.test(p);
+  };
+  var fdWords = function(kind, bank) {
+    var seen = {}, own = [], common = [];
+    var add = function(list, w, en) {
+      w = fdNorm(w);
+      if (!/^[а-я-]{2,}$/.test(w) || seen[w]) return;
+      seen[w] = 1;
+      list.push({ ru: w, en: String(en || "").split(/;|,/)[0].trim() });
+    };
+    vocabL.forEach(function(v){
+      if (!v || !v.ru) return;
+      var ok = kind === "decl" ? fdIsNoun(v.pos) : isVerbPos(v.pos, v.aspect);
+      if (ok) String(v.ru).split(/\s*\/\s*/).forEach(function(w){ add(own, w, v.en); });
+    });
+    Object.keys(bank || {}).forEach(function(k){
+      var e = bank[k];
+      if (!e || e[2] !== (kind === "decl" ? "noun" : "verb")) return;
+      String(k).split(/\s*\/\s*/).forEach(function(w){ add(common, w, ""); });
+    });
+    return { own: own, common: common };
+  };
+  var fdPickWord = function(lists) {
+    var from = lists.own.length && (Math.random() < 0.7 || !lists.common.length) ? lists.own : lists.common;
+    return from.length ? from[Math.floor(Math.random() * from.length)] : null;
+  };
+  var FD_CASE = { nominative: "nominative", genitive: "genitive", dative: "dative", accusative: "accusative",
+                  instrumental: "instrumental", prepositional: "prepositional" };
+  var fdAnswers = function(shown) {
+    return String(shown || "").split(/,\s*/).map(fdNorm).filter(Boolean);
+  };
+  var fdMakeDecl = function() {
+    return fdBank().then(async function(bank){
+      var lists = fdWords("decl", bank);
+      if (!lists.own.length && !lists.common.length) return { err: "No nouns to practise with yet." };
+      var reached = false;
+      for (var tries = 0; tries < 6; tries++) {
+        var w = fdPickWord(lists);
+        if (!w) break;
+        var r = null, j = null;
+        try { r = await authFetch("/api/define?decl=1&word=" + encodeURIComponent(w.ru)); j = await r.json(); } catch (e) { r = null; }
+        if (!r) continue;
+        reached = reached || r.ok || r.status === 404;
+        if (!r.ok || !j || j.indeclinable || !j.sg) continue;
+        var cells = [];
+        ["sg", "pl"].forEach(function(num){
+          Object.keys(j[num] || {}).forEach(function(c){
+            if (!FD_CASE[c] || !j[num][c] || (c === "nominative" && num === "sg")) return;
+            var answers = fdAnswers(j[num][c]);
+            // a cell that is only the dictionary form again (пальто) teaches nothing
+            if (!answers.length || (answers.length === 1 && answers[0] === fdNorm(j.lemma || w.ru))) return;
+            cells.push({ c: c, num: num, answers: answers, shown: j[num][c] });
+          });
+        });
+        if (!cells.length) continue;
+        var cell = cells[Math.floor(Math.random() * cells.length)];
+        return { kind: "decl", word: fdNorm(j.lemma || w.ru), en: w.en, lemma: j.lemma || w.ru,
+                 ask: FD_CASE[cell.c] + " " + (cell.num === "sg" ? "singular" : "plural"),
+                 answers: cell.answers, shown: cell.shown, note: [j.gender, j.animate === true ? "animate" : (j.animate === false ? "inanimate" : "")].filter(Boolean).join(", ") };
+      }
+      return { err: reached ? "No noun with a table could be found just now — try again." : "Wiktionary could not be reached just now — try again in a moment." };
+    });
+  };
+  var FD_PERSON = { "1s": "1st person singular", "2s": "2nd person singular", "3s": "3rd person singular",
+                    "1p": "1st person plural", "2p": "2nd person plural", "3p": "3rd person plural" };
+  var fdMakeConj = function() {
+    return fdBank().then(async function(bank){
+      var lists = fdWords("conj", bank);
+      if (!lists.own.length && !lists.common.length) return { err: "No verbs to practise with yet." };
+      var reached = false;
+      for (var tries = 0; tries < 6; tries++) {
+        var w = fdPickWord(lists);
+        if (!w) break;
+        var res = await loadConj(w.ru);
+        if (res.error && !/no conjugation/.test(res.error)) continue;
+        reached = true;
+        var t = res.data;
+        if (!t) continue;
+        var asp = t.aspect ? ", " + t.aspect : "";
+        var cells = [];
+        var row = function(tense, r) {
+          if (!r) return;
+          Object.keys(FD_PERSON).forEach(function(k){
+            if (r[k]) cells.push({ ask: FD_PERSON[k] + ", " + tense + " tense" + asp, shown: r[k] });
+          });
+        };
+        row("present", t.present);
+        row("future", t.future);
+        if (t.past) {
+          [["m", "masculine singular"], ["f", "feminine singular"], ["n", "neuter singular"], ["pl", "plural"]].forEach(function(g){
+            if (t.past[g[0]]) cells.push({ ask: g[1] + ", past tense" + asp, shown: t.past[g[0]] });
+          });
+        }
+        if (!cells.length) continue;
+        var cell = cells[Math.floor(Math.random() * cells.length)];
+        return { kind: "conj", word: fdNorm(t.infinitive || w.ru), en: w.en, lemma: t.infinitive || w.ru,
+                 ask: cell.ask, answers: fdAnswers(cell.shown), shown: cell.shown,
+                 note: t.partner && t.partner.length ? "pair: " + t.partner.join(", ") : "" };
+      }
+      return { err: reached ? "No verb with a table could be found just now — try again." : "Wiktionary could not be reached just now — try again in a moment." };
+    });
+  };
+  var fdMake = function(kind) { return kind === "decl" ? fdMakeDecl() : fdMakeConj(); };
+  var fdPrefetch = function(kind) {
+    fdMake(kind).then(function(q){ if (q && !q.err) fdNext.current = q; }).catch(function(){});
+  };
+  var fdLoad = function(kind) {
+    var seq = ++fdSeq.current;
+    var pre = fdNext.current;
+    fdNext.current = null;
+    setFd(function(st){ return st ? Object.assign({}, st, { busy: true, err: "" }) : st; });
+    var p = (pre && pre.kind === kind) ? Promise.resolve(pre) : fdMake(kind);
+    p.catch(function(){ return { err: "Something went wrong — try again." }; }).then(function(q){
+      if (seq !== fdSeq.current) return;
+      setFd(function(st){
+        if (!st || st.kind !== kind) return st;
+        return Object.assign({}, st, { q: q.err ? null : q, err: q.err || "", busy: false, input: "", checked: false, right: false });
+      });
+      if (!q.err) fdPrefetch(kind);
+    });
+  };
+  var fdStart = function(kind) {
+    fdNext.current = null;
+    setVocabDrill(kind);
+    setFd({ kind: kind, q: null, input: "", checked: false, right: false, n: 0, nRight: 0, busy: true, err: "" });
+    fdLoad(kind);
+  };
+  var fdStop = function() {
+    fdSeq.current++;
+    fdNext.current = null;
+    setVocabDrill(null);
+    setFd(null);
+  };
+  var fdCheck = function() {
+    if (!fd || !fd.q || fd.checked) return;
+    var given = fdNorm(fd.input);
+    if (!given) return;
+    var right = fd.q.answers.indexOf(given) >= 0;
+    setFd(Object.assign({}, fd, { checked: true, right: right, n: fd.n + 1, nRight: fd.nRight + (right ? 1 : 0) }));
+    recordFormDrill(fd.kind, right);
+  };
+  // The Case drills, opened from the same menu.
+  var openCaseDrills = function() {
+    setVocabDrill("cases");
+    stopTTS();
+    if ((!cdQs.length || cdOver) && !cdBusy) startCaseDrills();
+  };
+  var closeCaseDrills = function() {
+    if (cdAns > 0 && !cdOver) recordDrill(0, 0, null, 1);
+    setVocabDrill(null);
   };
 
   // A verb from the Grammar tab: its table, its numbers, and sentences.
@@ -15654,6 +15850,82 @@ export default function App() {
     </div>
   );
 
+  // The Case drills, under the review menu: sentences from the books, the
+  // word to put in the right case picked from four.
+  var caseDrillPanel = function() {
+          var q = cdQs[cdIdx];
+          return (
+            <>
+              <div className="phdr">
+                <span className="pti">Case drills</span>
+                <button className="ab" onClick={closeCaseDrills}>← Back</button>
+              </div>
+              <div className="fd-wrap">
+                <p className="fd-lead">
+                  Sentences from every book in the library, one after another for as long as you like. Put the word in the right case.
+                </p>
+                {cdErr && <p className="cd-msg">{cdErr}</p>}
+                {cdBusy && <p className="cd-msg">Picking sentences…</p>}
+                {!cdBusy && cdOver && (
+                  <div className="cd-done">
+                    <div className="cd-big">{cdRight} / {cdAns}</div>
+                    <p className="cd-msg">{cdAns ? Math.round(cdRight / cdAns * 100) + "%" : ""}</p>
+                    <p className="cd-msg">Right answers count on the leaderboard.</p>
+                    <button className="btn-p cd-next" onClick={startCaseDrills}>Keep going</button>
+                  </div>
+                )}
+                {!cdBusy && !cdOver && !q && cdQs.length > 0 && <p className="cd-msg">Picking sentences…</p>}
+                {!cdBusy && !cdOver && q && (function(){
+                  var answered = cdSel !== null;
+                  var wasRight = answered && cdSel === q.correct;
+                  var parts = String(q.sentence || "").split("___");
+                  var src = q.src || {};
+                  var where = src.where;
+                  return (
+                    <div className="cd">
+                      <div className="cd-top">
+                        <span>Right: {cdRight} / {cdAns}</span>
+                        <button className="cd-fin" onClick={cdFinish}>Finish</button>
+                      </div>
+                      <div className="cd-from">
+                        {src.a ? <span className="cd-from-a">{src.a}</span> : null}
+                        <span className="cd-from-t" lang="ru">«{src.t}»</span>
+                        {where && where.ru ? <span className="cd-from-c" lang="ru">{where.ru}</span> : null}
+                        {where && where.ch ? <span className="cd-from-c">Chapter {where.ch}</span> : null}
+                        <button className="cd-open" onClick={function(){ goToSource({ srcBook: src.f, srcChapter: src.c }); }}>Open the chapter →</button>
+                      </div>
+                      <div className="cd-s" lang="ru">
+                        {parts[0]}
+                        <span className={"cd-blank" + (answered ? " ok" : "")}>{answered ? q.correct : "   "}</span>
+                        {parts[1] || ""}
+                      </div>
+                      <div className="cd-lemma">Put <strong lang="ru">{q.lemma}</strong> in the correct case</div>
+                      <div className="cd-opts" data-noxl="1" lang="ru">
+                        {q.options.map(function(opt, i){
+                          var cls = "cd-opt";
+                          if (answered) cls += opt === q.correct ? " ok" : (opt === cdSel ? " bad" : " dim");
+                          return (
+                            <button key={i} className={cls} disabled={answered} onClick={function(){ cdAnswer(q, opt); }}>
+                              <span className="cd-k">{String.fromCharCode(65 + i)}.</span>{opt}
+                            </button>
+                          );
+                        })}
+                      </div>
+                      {answered && (
+                        <div className="cd-fb">
+                          <div className={"cd-fb-h" + (wasRight ? " ok" : " bad")}>{wasRight ? "Correct" : "Not quite"}{q.case ? " — " + q.case : ""}</div>
+                          {q.explain && <div className="cd-fb-x">{q.explain}</div>}
+                        </div>
+                      )}
+                      {answered && <button className="btn-p cd-next" onClick={cdNextQ}>Next →</button>}
+                    </div>
+                  );
+                })()}
+              </div>
+            </>
+          );
+  };
+
   // The review drill — the menu, the Anki-style session and the match
   // game — drawn once: for the Vocabulary tab, and for a course that
   // drills cards of its own (the grammar terms and their abbreviations).
@@ -15945,6 +16217,54 @@ quizMode ? (
                   </div>
                 )}
               </>
+            ) : vocabDrill === "cases" ? caseDrillPanel() : (vocabDrill && fd) ? (
+              // ── Declension / conjugation practice ───────────────────────
+              <>
+                <div className="phdr">
+                  <span className="pti">{fd.kind === "decl" ? "Declension practice" : "Conjugation practice"}</span>
+                  <button className="ab" onClick={fdStop}>← Back</button>
+                </div>
+                <div className="fd-wrap">
+                  <p className="fd-lead">
+                    {fd.kind === "decl"
+                      ? "A noun — from the words you saved in the library when there are any, else one of the commonest — and a case to put it in. Type the form; Wiktionary's table is the answer key."
+                      : "A verb with a conjugation table on Wiktionary, and a person and number in a tense — or a gender in the past. Type the form."}
+                  </p>
+                  <div className="cd">
+                    <div className="cd-top">
+                      <span>Right: {fd.nRight} / {fd.n}</span>
+                      {fd.q && <span lang="ru">{fd.q.note}</span>}
+                    </div>
+                    {fd.err && <p className="cd-msg">{fd.err} <button type="button" className="crs-retry" onClick={function(){ fdLoad(fd.kind); }}>Try again</button></p>}
+                    {fd.busy && !fd.q && !fd.err && <p className="cd-msg">{fd.kind === "decl" ? "Picking a noun…" : "Picking a verb…"}</p>}
+                    {fd.q && (
+                      <>
+                        <div className="cd-s">
+                          <span lang="ru" className="fd-word">{fd.q.word}</span>
+                          {fd.q.en ? <span className="fd-en"> — {fd.q.en}</span> : null}
+                        </div>
+                        <div className="cd-lemma">Write the <strong>{fd.q.ask}</strong></div>
+                        <form className="fd-form" onSubmit={function(e){ e.preventDefault(); if (fd.checked) fdLoad(fd.kind); else fdCheck(); }}>
+                          <input type="text" lang="ru" className={"crs-in fd-in" + (fd.checked ? (fd.right ? " ok" : " bad") : "")} value={fd.input}
+                            autoFocus autoComplete="off" autoCapitalize="off" spellCheck={false} readOnly={fd.checked || fd.busy}
+                            placeholder="Type the form"
+                            onChange={function(e){ var v = e.target.value; setFd(function(st){ return st ? Object.assign({}, st, { input: v }) : st; }); }} />
+                          {!fd.checked
+                            ? <button type="submit" className="btn-p fd-btn" disabled={!fdNorm(fd.input)}>Check</button>
+                            : <button type="submit" className="btn-p fd-btn" disabled={fd.busy}>Next →</button>}
+                        </form>
+                        {fd.checked && (
+                          <div className="cd-fb">
+                            <div className={"cd-fb-h" + (fd.right ? " ok" : " bad")}>{fd.right ? "Correct" : "Not quite"}</div>
+                            <div className="cd-fb-x">The {fd.q.ask} of <b lang="ru">{fd.q.word}</b> is <b lang="ru">{fd.q.shown}</b>.</div>
+                          </div>
+                        )}
+                      </>
+                    )}
+                    <p className="fd-note">Right answers count on the leaderboard. Stress marks and ё/е are not held against you. Source: <a href={"https://en.wiktionary.org/wiki/" + encodeURIComponent((fd.q && fd.q.word) || "")} target="_blank" rel="noopener">Wiktionary</a>.</p>
+                  </div>
+                </div>
+              </>
             ) : quizMenu ? (
               // ── Review choice menu (Multiple Choice vs Chat Practice) ──
               <>
@@ -15989,6 +16309,39 @@ quizMode ? (
                         <span style={{fontSize:18,fontWeight:600,color:"#000",fontFamily:"'Old Standard TT',serif"}}>Grammar terms</span>
                       </div>
                       <p style={{fontSize:13,color:"rgba(0,0,0,.55)",margin:0,lineHeight:1.5}}>The words a Russian grammar, dictionary or teacher uses — падеж, глагол, совершенный вид — against their definitions, as a quiz or the match game. Nothing is scheduled or saved.</p>
+                    </button>
+                  )}
+                  {!termDrill && (
+                    <button onClick={function(){ fdStart("decl"); }}
+                      style={{background:"rgba(200,162,118,.08)",border:"1px solid rgba(200,162,118,.3)",color:"#000",padding:"18px 20px",borderRadius:12,cursor:"pointer",textAlign:"left",fontFamily:"'Literata',serif",transition:"all .15s"}}
+                      onMouseOver={function(e){ e.currentTarget.style.background = "rgba(200,162,118,.14)"; }}
+                      onMouseOut={function(e){ e.currentTarget.style.background = "rgba(200,162,118,.08)"; }}>
+                      <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:6}}>
+                        <span style={{fontSize:18,fontWeight:600,color:"#000",fontFamily:"'Old Standard TT',serif"}}>Declension practice</span>
+                      </div>
+                      <p style={{fontSize:13,color:"rgba(0,0,0,.55)",margin:0,lineHeight:1.5}}>A noun from your saved words, or one of the commonest, and a case to put it in — type the form. Right answers count on the leaderboard.</p>
+                    </button>
+                  )}
+                  {!termDrill && (
+                    <button onClick={function(){ fdStart("conj"); }}
+                      style={{background:"rgba(200,162,118,.08)",border:"1px solid rgba(200,162,118,.3)",color:"#000",padding:"18px 20px",borderRadius:12,cursor:"pointer",textAlign:"left",fontFamily:"'Literata',serif",transition:"all .15s"}}
+                      onMouseOver={function(e){ e.currentTarget.style.background = "rgba(200,162,118,.14)"; }}
+                      onMouseOut={function(e){ e.currentTarget.style.background = "rgba(200,162,118,.08)"; }}>
+                      <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:6}}>
+                        <span style={{fontSize:18,fontWeight:600,color:"#000",fontFamily:"'Old Standard TT',serif"}}>Conjugation practice</span>
+                      </div>
+                      <p style={{fontSize:13,color:"rgba(0,0,0,.55)",margin:0,lineHeight:1.5}}>A verb with a conjugation table on Wiktionary, and a person and number in a tense — or a gender in the past. Type the form. Right answers count on the leaderboard.</p>
+                    </button>
+                  )}
+                  {!termDrill && (
+                    <button onClick={openCaseDrills}
+                      style={{background:"rgba(200,162,118,.08)",border:"1px solid rgba(200,162,118,.3)",color:"#000",padding:"18px 20px",borderRadius:12,cursor:"pointer",textAlign:"left",fontFamily:"'Literata',serif",transition:"all .15s"}}
+                      onMouseOver={function(e){ e.currentTarget.style.background = "rgba(200,162,118,.14)"; }}
+                      onMouseOut={function(e){ e.currentTarget.style.background = "rgba(200,162,118,.08)"; }}>
+                      <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:6}}>
+                        <span style={{fontSize:18,fontWeight:600,color:"#000",fontFamily:"'Old Standard TT',serif"}}>Case drills</span>
+                      </div>
+                      <p style={{fontSize:13,color:"rgba(0,0,0,.55)",margin:0,lineHeight:1.5}}>Sentences from every book in the library with one word missing: pick its right case from four. Right answers count on the leaderboard.</p>
                     </button>
                   )}
                 </div>
@@ -17752,6 +18105,17 @@ quizMode ? (
         .cd-open:hover{border-bottom-color:var(--rubric)}
         .cd-next{display:block;margin:22px auto 0;max-width:260px}
         .cd-done{text-align:center;padding:24px 0}
+        .fd-wrap{max-width:680px;margin:0 auto;padding:18px 16px 32px}
+        .fd-lead{font-family:var(--serif);font-size:14px;color:var(--ink-2);line-height:1.55;text-align:center;margin:0 0 6px}
+        .fd-word{font-weight:600}
+        .fd-en{font-size:16px;color:var(--ink-2)}
+        .fd-form{display:flex;gap:10px;justify-content:center;align-items:stretch;flex-wrap:wrap}
+        .fd-in{width:min(100%,320px);font-size:20px;padding:8px 12px;text-align:center}
+        .fd-in.ok{border-color:#2f5a2a;background:rgba(47,90,42,.08)}
+        .fd-in.bad{border-color:#9d4630;background:rgba(157,70,48,.08)}
+        .fd-btn{padding:8px 22px}
+        .fd-note{font-family:var(--sans);font-size:12px;color:var(--ink-3);text-align:center;margin-top:22px;line-height:1.5}
+        .fd-note a{color:inherit}
         .cd-big{font-family:var(--display);font-size:44px;color:var(--ink)}
         .cd-msg{font-family:var(--serif);font-style:italic;color:var(--ink-2)}
         .langpick button.on{color:var(--ink);border-bottom-color:var(--ink);font-weight:600}
@@ -22482,15 +22846,14 @@ quizMode ? (
               short to begin with — they sit beside the name now and the page
               gets the height back. */}
           <div className="tabs">
-            {["my","chat","courses","ranked","leaders","vocab","drills","quotes","grammar","forum","music"].filter(function(t){
+            {["my","chat","courses","ranked","leaders","vocab","quotes","grammar","forum","music"].filter(function(t){
               if (t === "forum") return FORUM_ENABLED;
               // Grammar: the verb lists, for Russian. (The older reference
               // pages under it stay behind GRAMMAR_ENABLED.)
               if (t === "grammar") return targetLang !== "en";
               if (t === "courses") return targetLang !== "en" && COURSE_OUTLINE.length > 0;
-              // Case drills are a Russian exercise: not in English mode. Quotes
-              // stay, with their own English board.
-              if (targetLang === "en" && t === "drills") return false;
+              // (The Case drills live under the Vocab tab's review menu, with
+              // the declension and conjugation practice.)
               // The Music tab is Russian songs: not in English mode either.
               if (targetLang === "en" && t === "music") return false;
               return true;
@@ -22518,7 +22881,6 @@ quizMode ? (
                   }
                   if (t === "leaders") { loadBoards(); stopTTS(); }
                   if (t === "grammar") { getVerbIdx(); loadExamples(); }
-                  if (t === "drills") { stopTTS(); if ((!cdQs.length || cdOver) && !cdBusy) startCaseDrills(); }
                   setTab(t);
                 }}>
                   {t==="my"?"My " + SITE_NAME_LATIN:t==="chat"?"Reading":t==="ranked"?"Most popular":t==="leaders"?"Leaderboard":t==="vocab"?"Vocab":t==="grammar"?"Grammar":t==="courses"?"Courses":t==="forum"?"Forum":t==="quotes"?"Quotes":t==="drills"?"Case drills":"Music"}
@@ -22696,77 +23058,6 @@ quizMode ? (
           );
         })()}
 
-        {tab==="drills" && (function(){
-          var q = cdQs[cdIdx];
-          return (
-            <div className="main">
-              <div className="ss">
-                <h1 className="sti">Case drills</h1>
-                <p className="sde">
-                  Sentences from every book in the library, one after another for as long as you like. Put the word in the right case.
-                </p>
-                {cdErr && <p className="cd-msg">{cdErr}</p>}
-                {cdBusy && <p className="cd-msg">Picking sentences…</p>}
-                {!cdBusy && cdOver && (
-                  <div className="cd-done">
-                    <div className="cd-big">{cdRight} / {cdAns}</div>
-                    <p className="cd-msg">{cdAns ? Math.round(cdRight / cdAns * 100) + "%" : ""}</p>
-                    <p className="cd-msg">Right answers count on the leaderboard.</p>
-                    <button className="btn-p cd-next" onClick={startCaseDrills}>Keep going</button>
-                  </div>
-                )}
-                {!cdBusy && !cdOver && !q && cdQs.length > 0 && <p className="cd-msg">Picking sentences…</p>}
-                {!cdBusy && !cdOver && q && (function(){
-                  var answered = cdSel !== null;
-                  var wasRight = answered && cdSel === q.correct;
-                  var parts = String(q.sentence || "").split("___");
-                  var src = q.src || {};
-                  var where = src.where;
-                  return (
-                    <div className="cd">
-                      <div className="cd-top">
-                        <span>Right: {cdRight} / {cdAns}</span>
-                        <button className="cd-fin" onClick={cdFinish}>Finish</button>
-                      </div>
-                      <div className="cd-from">
-                        {src.a ? <span className="cd-from-a">{src.a}</span> : null}
-                        <span className="cd-from-t" lang="ru">«{src.t}»</span>
-                        {where && where.ru ? <span className="cd-from-c" lang="ru">{where.ru}</span> : null}
-                        {where && where.ch ? <span className="cd-from-c">Chapter {where.ch}</span> : null}
-                        <button className="cd-open" onClick={function(){ goToSource({ srcBook: src.f, srcChapter: src.c }); }}>Open the chapter →</button>
-                      </div>
-                      <div className="cd-s" lang="ru">
-                        {parts[0]}
-                        <span className={"cd-blank" + (answered ? " ok" : "")}>{answered ? q.correct : "   "}</span>
-                        {parts[1] || ""}
-                      </div>
-                      <div className="cd-lemma">Put <strong lang="ru">{q.lemma}</strong> in the correct case</div>
-                      <div className="cd-opts" data-noxl="1" lang="ru">
-                        {q.options.map(function(opt, i){
-                          var cls = "cd-opt";
-                          if (answered) cls += opt === q.correct ? " ok" : (opt === cdSel ? " bad" : " dim");
-                          return (
-                            <button key={i} className={cls} disabled={answered} onClick={function(){ cdAnswer(q, opt); }}>
-                              <span className="cd-k">{String.fromCharCode(65 + i)}.</span>{opt}
-                            </button>
-                          );
-                        })}
-                      </div>
-                      {answered && (
-                        <div className="cd-fb">
-                          <div className={"cd-fb-h" + (wasRight ? " ok" : " bad")}>{wasRight ? "Correct" : "Not quite"}{q.case ? " — " + q.case : ""}</div>
-                          {q.explain && <div className="cd-fb-x">{q.explain}</div>}
-                        </div>
-                      )}
-                      {answered && <button className="btn-p cd-next" onClick={cdNextQ}>Next →</button>}
-                    </div>
-                  );
-                })()}
-              </div>
-            </div>
-          );
-        })()}
-
         {tab==="leaders" && (
           <div className="main">
             <div className="ss">
@@ -22774,7 +23065,7 @@ quizMode ? (
               <p className="sde">
                 {targetLang === "en"
                   ? "The readers who have read the most in English. Switch the menu at the top to Study Russian for the Russian boards."
-                  : "The readers who have reviewed the most cards, read the most words, answered the most case drills correctly, listened to the most songs and completed the most courses."}
+                  : "The readers who have reviewed the most cards, read the most words, answered the most case, declension and conjugation drills correctly, listened to the most songs and completed the most courses."}
               </p>
               {me && !me.username && (
                 <div className="lb-join">
@@ -22795,6 +23086,8 @@ quizMode ? (
                     { key: "reviewed", h: "Cards reviewed", sub: "every answer given in vocabulary review, right or wrong", unit: "cards" },
                     { key: "words", h: "Words read", sub: "Russian words read, counted as you go — a short story counts what it is, and so does a novel", unit: "words" },
                     { key: "drills", h: "Case drills right", sub: "every right answer in a case drill, from any book", unit: "right answers" },
+                    { key: "decl", h: "Declensions right", sub: "every noun put in the right case and number in declension practice", unit: "right answers" },
+                    { key: "conj", h: "Conjugations right", sub: "every verb form typed right in conjugation practice", unit: "right answers" },
                     { key: "songs", h: "Songs listened to", sub: "different songs played in the Music tab — each song counts once", unit: "songs" },
                     { key: "courses", h: "Courses completed", sub: "courses finished in the Courses tab — the exam passed, or every section done where there is no exam", unit: "courses" },
                   ]).map(function(col){
@@ -26403,7 +26696,7 @@ quizMode ? (
           // This tab shows only the words of the language being studied.
           return (
           <div className="panel">
-            {(quizMode || matchGame || quizMenu) && (!termDrill || termDrill.where === "vocab") ? reviewPanel(vocab, learned) : (
+            {(quizMode || matchGame || quizMenu || vocabDrill) && (!termDrill || termDrill.where === "vocab") ? reviewPanel(vocab, learned) : (
               // ── Normal vocab list view ─────────────────────────────────
               <>
                 {expOpen && (function(){
@@ -26669,7 +26962,10 @@ quizMode ? (
                 var fullDays = 0; for (var j = 0; j < 30; j++) { var dd = new Date(now.getFullYear(), now.getMonth(), now.getDate() - j); if (allMetOn(dayKey(dd.getTime()))) fullDays++; }
                 var metToday = rows.length > 0 && rows.every(function(r){ return r.met; });
                 var overdueK = {}; goalsOverdue.forEach(function(r){ overdueK[r.k] = true; });
-                var goTo = function(t){ setTab(t); if (t === "vocab" && vocab.length) setQuizMenu(true); if (t === "drills" && (!cdQs.length || cdOver) && !cdBusy) startCaseDrills(); };
+                var goTo = function(t){
+                  if (t === "drills") { setTab("vocab"); setQuizMenu(true); openCaseDrills(); return; }
+                  setTab(t); if (t === "vocab" && vocab.length) setQuizMenu(true);
+                };
                 var num = function(k, max) {
                   return <input type="number" min="0" max={max} value={goals[k] || 0} className="my-num"
                     onChange={function(e){ var v = Math.max(0, Math.min(max, Math.round(Number(e.target.value) || 0))); setGoals(function(){ var o = {}; o[k] = v; return o; }()); }} />;
@@ -26722,7 +27018,7 @@ quizMode ? (
                     <div className="my-form">
                       <label className="my-field"><span>Words to read</span>{num("words", 100000)}</label>
                       <label className="my-field"><span>Vocabulary cards to review</span>{num("cards", 1000)}</label>
-                      <label className="my-field"><span>Case-drill questions</span>{num("drills", 1000)}</label>
+                      <label className="my-field"><span>Grammar-drill questions</span>{num("drills", 1000)}</label>
                       <label className="my-field"><span>Course exercises right</span>{num("course", 1000)}</label>
                       <label className="my-field"><span>Course sections to finish</span>{num("sections", 100)}</label>
                     </div>
