@@ -2569,6 +2569,37 @@ function vocabHeads(v) {
   if (v) { add(v.ru); add(v.lemma); }
   return out;
 }
+// A verb's conjugation, from the Wiktionary table the conjugation window shows,
+// as the one line a vocabulary card carries («present: я иду́, ты идёшь … · past: шёл,
+// шла, шло, шли · imperative: иди́, иди́те») and as the table itself.
+function conjSummary(d) {
+  if (!d) return "";
+  var P = [["1s", "я"], ["2s", "ты"], ["3s", "он"], ["1p", "мы"], ["2p", "вы"], ["3p", "они"]];
+  var parts = [];
+  var row = function(label, r) {
+    if (!r) return;
+    var cells = P.map(function(p){ return r[p[0]] ? p[1] + " " + r[p[0]] : ""; }).filter(Boolean);
+    if (cells.length) parts.push(label + ": " + cells.join(", "));
+  };
+  row("present", d.present);
+  if (d.aspect === "perfective") row("future", d.future);
+  else if (d.future && d.future["1s"]) parts.push("future: буду, будешь… + infinitive");
+  if (d.past) {
+    var pc = [["m", "он"], ["f", "она"], ["n", "оно"], ["pl", "они"]].map(function(g){ return d.past[g[0]] ? g[1] + " " + d.past[g[0]] : ""; }).filter(Boolean);
+    if (pc.length) parts.push("past: " + pc.join(", "));
+  }
+  if (d.imperative) {
+    var im = [d.imperative.sg, d.imperative.pl].filter(Boolean);
+    if (im.length) parts.push("imperative: " + im.join(", "));
+  }
+  return parts.join(" · ");
+}
+function conjTable(d) {
+  if (!d) return null;
+  var o = {};
+  ["present", "future", "past", "imperative"].forEach(function(k){ if (d[k]) o[k] = d[k]; });
+  return Object.keys(o).length ? o : null;
+}
 function findVocabMatch(list, entry) {
   var want = vocabHeads(entry);
   if (!want.length) return null;
@@ -12316,6 +12347,50 @@ export default function App() {
     if (data || /no conjugation/.test(error)) conjMemo.current[w.toLowerCase()] = res;
     return res;
   };
+  // A verb as a vocabulary card: the infinitive with its aspectual partner as one
+  // headword («говорить / сказать»), its meaning, the conjugation from Wiktionary
+  // (when its table is to hand) and a sentence from the library.
+  var verbEntry = function(w, data, enHint) {
+    var vi = verbInfo(w) || {};
+    var en = enHint || vi.en || (verbIdx && verbIdx.en && verbIdx.en[w]) || "";
+    if (!en) IRREG_VERBS.groups.forEach(function(g){ g.verbs.forEach(function(v){ if (v[0] === w) en = v[1]; }); });
+    var pr = verbIdx && verbIdx.pairs && verbIdx.pairs[w];
+    var partners = pr ? (pr[1] || []).slice().sort(function(a, b){ return ((verbRank[a] || [0, 1e9])[1]) - ((verbRank[b] || [0, 1e9])[1]); }) : [];
+    var asp = (data && data.aspect) || (pr ? ({ impf: "imperfective", pf: "perfective", both: "both" })[pr[0]] : "") || "";
+    var head = partners[0] && asp !== "both"
+      ? (asp === "perfective" ? partners[0] + " / " + w : w + " / " + partners[0]) : w;
+    var entry = { ru: head, en: en, pos: "verb", aspect: asp };
+    var sum = conjSummary(data);
+    if (sum) { entry.grammar = sum; entry.conj = conjTable(data); }
+    var ex = (vi.x || [])[0];
+    if (ex) {
+      var bk = null, fn = (verbIdx && verbIdx.files && verbIdx.files[ex[2]]) || "";
+      presetBooks.forEach(function(b){ if (b.filename === fn) bk = b; });
+      entry.sentences = [{ s: ex[0], w: bk ? shownTitle(bk) : "", at: Date.now(), f: ex[1] }];
+    }
+    return entry;
+  };
+  // The small "+ vocab" button on the Frequency and Irregular verb lists: fetch
+  // the verb's table from Wiktionary, then save the card with it.
+  var [verbSaving, setVerbSaving] = useState({});
+  var [verbToast, setVerbToast] = useState("");
+  var verbToastT = useRef(null);
+  var saveVerbFromList = async function(w, enHint, extra) {
+    if (verbSaving[w]) return;
+    setVerbSaving(function(st){ var o = Object.assign({}, st); o[w] = 1; return o; });
+    var res = null;
+    try { res = await loadConj(w); } catch (e) {}
+    var data = res && res.data;
+    var entry = verbEntry(w, data, enHint);
+    if (!data && extra) entry.grammar = "irregular forms: " + extra;
+    addV(entry);
+    setVerbSaving(function(st){ var o = Object.assign({}, st); delete o[w]; return o; });
+    if (!data) {
+      setVerbToast("Saved «" + w + "» — Wiktionary's conjugation table could not be reached just now" + (extra ? ", so it carries the irregular forms only." : "."));
+      clearTimeout(verbToastT.current);
+      verbToastT.current = setTimeout(function(){ setVerbToast(""); }, 5000);
+    }
+  };
   // Recordings for the forms in the conjugation window. Real voices only
   // (robot narration is off — see TTS_ENABLED): Wiktionary's Ru-<form>.ogg on
   // Commons, found for the whole table in one request so the forms that have
@@ -17864,6 +17939,13 @@ quizMode ? (
         .gv-b{display:flex;flex-direction:column;align-items:flex-start;gap:2px;text-align:left;cursor:pointer;
           padding:9px 11px 8px;border:1px solid rgba(42,31,20,.18);border-radius:9px;background:rgba(255,255,255,.5);transition:transform .08s,box-shadow .12s,border-color .12s}
         .gv-b:hover{border-color:rgba(42,31,20,.45);box-shadow:3px 3px 0 rgba(157,70,48,.18);transform:translate(-1px,-1px)}
+        .gv-c{position:relative;display:flex}
+        .gv-c>.gv-b{flex:1;min-width:0;padding-bottom:26px}
+        .gv-add{position:absolute;right:7px;bottom:6px;font-family:'IBM Plex Sans',sans-serif;font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+          padding:3px 7px 2px;border:1px solid rgba(42,31,20,.25);border-radius:6px;background:rgba(255,255,255,.7);color:rgba(42,31,20,.7);cursor:pointer;line-height:1.2}
+        .gv-add:hover:not(:disabled){color:#9d4630;border-color:#9d4630}
+        .gv-add:disabled{cursor:default}
+        .gv-add.on{color:#2e6e50;border-color:transparent;background:none}
         .gv-b.hot{border-left:3px solid #9d4630}
         .gv-b.warm{border-left:3px solid #b58a2a}
         .gv-top{display:flex;width:100%;align-items:baseline;justify-content:space-between;gap:6px}
@@ -20856,21 +20938,8 @@ quizMode ? (
               // kept), its meaning, and a sentence from the library.
               var w = verbKey((conj.data && conj.data.infinitive) || conj.word);
               if (!w) return null;
-              var vi = verbInfo(w) || {};
-              var en = vi.en || (verbIdx && verbIdx.en && verbIdx.en[w]) || "";
-              if (!en) IRREG_VERBS.groups.forEach(function(g){ g.verbs.forEach(function(v){ if (v[0] === w) en = v[1]; }); });
-              var pr = verbIdx && verbIdx.pairs && verbIdx.pairs[w];
-              var partners = pr ? (pr[1] || []).slice().sort(function(a, b){ return ((verbRank[a] || [0, 1e9])[1]) - ((verbRank[b] || [0, 1e9])[1]); }) : [];
-              var asp = (conj.data && conj.data.aspect) || (pr ? ({ impf: "imperfective", pf: "perfective", both: "both" })[pr[0]] : "") || "";
-              var head = partners[0] && asp !== "both"
-                ? (asp === "perfective" ? partners[0] + " / " + w : w + " / " + partners[0]) : w;
-              var entry = { ru: head, en: en, pos: "verb", aspect: asp };
-              var ex = (vi.x || [])[0];
-              if (ex) {
-                var bk = null, fn = (verbIdx && verbIdx.files && verbIdx.files[ex[2]]) || "";
-                presetBooks.forEach(function(b){ if (b.filename === fn) bk = b; });
-                entry.sentences = [{ s: ex[0], w: bk ? shownTitle(bk) : "", at: Date.now(), f: ex[1] }];
-              }
+              var entry = verbEntry(w, conj.data, "");
+              var head = entry.ru;
               var have = findVocabMatch(vocab, entry) || findVocabMatch(learned, entry) ||
                          findVocabMatch(vocab, { ru: w }) || findVocabMatch(learned, { ru: w });
               return (
@@ -28575,8 +28644,11 @@ quizMode ? (
                 };
                 var btn = function(v, extra, key) {
                   var st = verbStat(v);
+                  var have = !!(findVocabMatch(vocab, { ru: v }) || findVocabMatch(learned, { ru: v }));
+                  var busy = !!verbSaving[v];
                   return (
-                    <button key={key || v} type="button" className={"gv-b" + (st && st.r <= 100 ? " hot" : st && st.r <= 1000 ? " warm" : "")}
+                    <div key={key || v} className="gv-c">
+                    <button type="button" className={"gv-b" + (st && st.r <= 100 ? " hot" : st && st.r <= 1000 ? " warm" : "")}
                       onClick={function(){ openVerb(v); }} title={"Every form of «" + v + "», with sentences"}>
                       {(function(){
                         // The verb with its aspectual partner, imperfective first:
@@ -28615,6 +28687,12 @@ quizMode ? (
                       {extra && <span className="gv-x" lang="ru">{extra}</span>}
                       {st && <span className="gv-n">Verb appears {fmtN(st.n)} {st.n === 1 ? "time" : "times"} in the library</span>}
                     </button>
+                    <button type="button" className={"gv-add" + (have ? " on" : "")} disabled={have || busy}
+                      title={have ? "In your vocabulary" : "Add «" + v + "» to your vocabulary, with its conjugation from Wiktionary"}
+                      onClick={function(e){ e.stopPropagation(); saveVerbFromList(v, gloss(v), extra); }}>
+                      {have ? "✓ in vocab" : busy ? "…" : "+ vocab"}
+                    </button>
+                    </div>
                   );
                 };
                 if (gramSec === "count" || gramSec === "numcase") return renderNumDrill(gramSec);
@@ -28706,13 +28784,16 @@ quizMode ? (
                     <p className="lib-reads-note">
                       Counted with pymorphy3 and the OpenCorpora dictionary over every Russian book on the
                       site (each text once). A word form the dictionary reads two ways is counted as its
-                      likelier verb; «есть» counts for быть.
+                      likelier verb; «есть» counts for быть. English meanings come from the frequency deck, and from
+                      English Wiktionary (CC BY-SA) for the verbs it lacked. «+ vocab» saves a verb with its conjugation
+                      table from Wiktionary.
                     </p>
                   </div>
                 );
               })()}
             </div>
           </div>
+          {verbToast && <div className="fq-toast" role="status">{verbToast}</div>}
           {gvQuiz && (
             <div className="cj-over" onClick={function(e){ if (e.target === e.currentTarget) setGvQuiz(null); }}>
               <div className="cj gvq" role="dialog" aria-label={"Practice: " + gvQuiz.title}>
