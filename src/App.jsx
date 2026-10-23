@@ -6391,11 +6391,11 @@ export default function App() {
     { k: "quiz", f: "quiz", label: "Multiple-choice quiz answers", one: "answer", tab: "vocab", go: "review", btn: "Quiz →", set: "Multiple-choice quiz answers", max: 1000 },
     { k: "match", f: "match", label: "Match rounds won", one: "round", tab: "vocab", go: "review", btn: "Match →", set: "Match rounds to win", max: 1000 },
     { k: "terms", f: "terms", label: "Grammar terms answered", one: "term", tab: "vocab", go: "terms", btn: "Practise →", set: "Grammar terms to answer", max: 1000 },
-    { k: "decl", f: "decl", label: "Declension answers", one: "answer", tab: "vocab", go: "decl", btn: "Practise →", set: "Declension-practice answers", max: 1000 },
-    { k: "conj", f: "conj", label: "Conjugation answers", one: "answer", tab: "vocab", go: "conj", btn: "Practise →", set: "Conjugation-practice answers", max: 1000 },
+    { k: "decl", f: "decl", label: "Declension practice (typing the form)", one: "answer", tab: "vocab", go: "decl", btn: "Practise →", set: "Declension practice — forms typed", max: 1000 },
+    { k: "conj", f: "conj", label: "Conjugation practice (typing the form)", one: "answer", tab: "vocab", go: "conj", btn: "Practise →", set: "Conjugation practice — forms typed", max: 1000 },
     { k: "drills", f: "cases", label: "Case-drill questions", one: "question", tab: "drills", go: "cases", btn: "Drill →", set: "Case-drill questions", max: 1000 },
-    { k: "verbs", f: "verbs", label: "Verb practice answers", one: "answer", tab: "vocab", go: "verbs", btn: "Practise →", set: "Verb-practice answers (Grammar page)", max: 1000 },
-    { k: "numbers", f: "numbers", label: "Counting and numeral answers", one: "answer", tab: "vocab", go: "numbers", btn: "Practise →", set: "Counting and numeral answers (Grammar page)", max: 1000 },
+    { k: "verbs", f: "verbs", label: "Verb meaning quiz (multiple choice)", one: "answer", tab: "vocab", go: "verbs", btn: "Quiz →", set: "Verb meaning quiz — multiple choice on the Grammar page's verb lists", max: 1000 },
+    { k: "numbers", f: "numbers", label: "Counting and numeral drills", one: "answer", tab: "vocab", go: "numbers", btn: "Practise →", set: "Counting and numeral drills (Grammar page)", max: 1000 },
     { k: "course", f: "course", label: "Course exercises right", one: "exercise", tab: "courses", go: "courses", btn: "Courses →", set: "Course exercises right", max: 1000 },
     { k: "sections", f: "sections", label: "Course sections finished", one: "section", tab: "courses", go: "courses", btn: "Courses →", set: "Course sections to finish", max: 100 },
   ];
@@ -12492,6 +12492,26 @@ export default function App() {
   };
   var FD_PERSON = { "1s": "1st person singular", "2s": "2nd person singular", "3s": "3rd person singular",
                     "1p": "1st person plural", "2p": "2nd person plural", "3p": "3rd person plural" };
+  // The pronoun that goes before the form, as it would in a sentence.
+  var FD_PRON = { "1s": "я", "2s": "ты", "3s": "он / она", "1p": "мы", "2p": "вы", "3p": "они" };
+  var FD_PRON_PAST = { m: "он", f: "она", n: "оно", pl: "они" };
+  // An imperfective future is быть and the infinitive («я буду читать»):
+  // «буду» is given, with the pronoun, and the infinitive is what is typed.
+  // Wiktionary lists the cell as the two words; split here. Null when the
+  // cell is a single word (every perfective future, every present).
+  var FD_BYT = /^(буду|будешь|будет|будем|будете|будут)$/;
+  var fdSplitFuture = function(shown) {
+    var variants = String(shown || "").split(/,\s*/).filter(Boolean);
+    if (!variants.length) return null;
+    var pre = "", rest = [];
+    for (var i = 0; i < variants.length; i++) {
+      var m = /^(\S+)\s+(\S+)$/.exec(variants[i].trim());
+      if (!m || !FD_BYT.test(fdNorm(m[1]))) return null;
+      if (pre && fdNorm(pre) !== fdNorm(m[1])) return null;
+      pre = m[1]; rest.push(m[2]);
+    }
+    return { pre: pre, rest: rest };
+  };
   var fdMakeConj = function() {
     return fdBank().then(async function(bank){
       var lists = fdWords("conj", bank);
@@ -12510,20 +12530,28 @@ export default function App() {
         var row = function(tense, r) {
           if (!r) return;
           Object.keys(FD_PERSON).forEach(function(k){
-            if (r[k]) cells.push({ ask: FD_PERSON[k] + ", " + tense + " tense" + asp, shown: r[k] });
+            if (!r[k]) return;
+            var cell = { ask: FD_PERSON[k] + ", " + tense + " tense" + asp, shown: r[k], pronoun: FD_PRON[k] };
+            var fut = tense === "future" ? fdSplitFuture(r[k]) : null;
+            if (fut) { cell.prefix = fut.pre; cell.answers = fut.rest.map(fdNorm); cell.compound = true; }
+            cells.push(cell);
           });
         };
         row("present", t.present);
         row("future", t.future);
         if (t.past) {
           [["m", "masculine singular"], ["f", "feminine singular"], ["n", "neuter singular"], ["pl", "plural"]].forEach(function(g){
-            if (t.past[g[0]]) cells.push({ ask: g[1] + ", past tense" + asp, shown: t.past[g[0]] });
+            if (t.past[g[0]]) cells.push({ ask: g[1] + ", past tense" + asp, shown: t.past[g[0]], pronoun: FD_PRON_PAST[g[0]] });
           });
         }
         if (!cells.length) continue;
         var cell = cells[Math.floor(Math.random() * cells.length)];
+        // the full phrase typed out («буду читать») is right too
+        var answers = cell.answers || fdAnswers(cell.shown);
+        if (cell.compound) answers = answers.concat(fdAnswers(cell.shown));
         return { kind: "conj", word: fdNorm(t.infinitive || w.ru), en: w.en, lemma: t.infinitive || w.ru,
-                 ask: cell.ask, answers: fdAnswers(cell.shown), shown: cell.shown,
+                 ask: cell.ask, answers: answers, shown: cell.shown,
+                 pronoun: cell.pronoun || "", prefix: cell.prefix || "",
                  note: t.partner && t.partner.length ? "pair: " + t.partner.join(", ") : "" };
       }
       return { err: reached ? "No verb with a table could be found just now — try again." : "Wiktionary could not be reached just now — try again in a moment." };
@@ -16504,11 +16532,12 @@ quizMode ? (
                           <span lang="ru" className="fd-word">{fd.q.word}</span>
                           {fd.q.en ? <span className="fd-en"> — {fd.q.en}</span> : null}
                         </div>
-                        <div className="cd-lemma">Write the <strong>{fd.q.ask}</strong></div>
+                        <div className="cd-lemma">Write the <strong>{fd.q.ask}</strong>{fd.q.prefix ? <span className="fd-hint"> — the future of an imperfective verb is <span lang="ru">быть</span> and the infinitive: the <span lang="ru">{fd.q.prefix}</span> is given</span> : null}</div>
                         <form className="fd-form" onSubmit={function(e){ e.preventDefault(); if (fd.checked) fdLoad(fd.kind); else fdCheck(); }}>
+                          {fd.q.pronoun ? <span className="fd-pre" lang="ru">{fd.q.pronoun}{fd.q.prefix ? " " + fd.q.prefix : ""}</span> : null}
                           <input type="text" lang="ru" className={"crs-in fd-in" + (fd.checked ? (fd.right ? " ok" : " bad") : "")} value={fd.input}
                             autoFocus autoComplete="off" autoCapitalize="off" spellCheck={false} readOnly={fd.checked || fd.busy}
-                            placeholder="Type the form"
+                            placeholder={fd.q.prefix ? "the infinitive" : "Type the form"}
                             onChange={function(e){ var v = e.target.value; setFd(function(st){ return st ? Object.assign({}, st, { input: v }) : st; }); }} />
                           {!fd.checked
                             ? <button type="submit" className="btn-p fd-btn" disabled={!fdNorm(fd.input)}>Check</button>
@@ -16517,7 +16546,7 @@ quizMode ? (
                         {fd.checked && (
                           <div className="cd-fb">
                             <div className={"cd-fb-h" + (fd.right ? " ok" : " bad")}>{fd.right ? "Correct" : "Not quite"}</div>
-                            <div className="cd-fb-x">The {fd.q.ask} of <b lang="ru">{fd.q.word}</b> is <b lang="ru">{fd.q.shown}</b>.</div>
+                            <div className="cd-fb-x">The {fd.q.ask} of <b lang="ru">{fd.q.word}</b> is <b lang="ru">{fd.q.pronoun ? fd.q.pronoun + " " : ""}{fd.q.shown}</b>.</div>
                           </div>
                         )}
                       </>
@@ -18378,6 +18407,8 @@ quizMode ? (
         .fd-in.ok{border-color:#2f5a2a;background:rgba(47,90,42,.08)}
         .fd-in.bad{border-color:#9d4630;background:rgba(157,70,48,.08)}
         .fd-btn{padding:8px 22px}
+        .fd-pre{font-family:var(--serif);font-size:22px;color:var(--ink);display:inline-flex;align-items:center;white-space:nowrap}
+        .fd-hint{display:block;font-size:12.5px;color:var(--ink-3);margin-top:4px}
         .fd-note{font-family:var(--sans);font-size:12px;color:var(--ink-3);text-align:center;margin-top:22px;line-height:1.5}
         .fd-note a{color:inherit}
         .cd-big{font-family:var(--display);font-size:44px;color:var(--ink)}
