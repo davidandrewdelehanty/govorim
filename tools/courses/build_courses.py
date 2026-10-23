@@ -28,13 +28,15 @@ COURSES = [
     },
 ]
 COURSES.append({
-    "id": "motion", "title": "Verbs of Motion", "short": "Motion", "mark": "→",
-    "blurb": "Going, carrying, leading and driving — the unprefixed pairs, then every prefix from при- to с-, "
-             "with drills: a course of its own, also in the Grammar tab.",
-    "credit": "Based on the Defense Language Institute Russian Basic Course, Grammar Reference Book and Student Workbooks (US Government work, public domain)",
-    "creditUrl": "https://www.fsi-language-courses.org/russian/courses/dli-russian-basic-course",
-    "license": "Public domain", "licenseUrl": "",
-    "modules": ["motion_a", "motion_b", "motion_c"], "order": None,
+    "id": "motion", "title": "Verbs of Motion", "short": "Motion", "mark": "\u2192",
+    "blurb": "",
+    "credit": "Lesson text quoted from the Defense Language Institute Russian Basic Course, Grammar Reference Books I and II "
+              "(a US Government work in the public domain), the English Wikipedia's article \u00abRussian grammar\u00bb, section "
+              "\u00abVerbs of motion\u00bb (CC BY-SA 4.0), and the English Wiktionary's entries for each verb (CC BY-SA 4.0); "
+              "exercises: sentences and translations from Tatoeba (CC BY 2.0 FR) and sentences from the library's public-domain books",
+    "creditUrl": "https://en.wikipedia.org/wiki/Russian_grammar#Verbs_of_motion",
+    "license": "Public domain \u00b7 CC BY-SA 4.0 \u00b7 CC BY 2.0 FR", "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "modules": ["motion_a", "motion_b"], "order": None,
 })
 DLI_CREDIT = "Transcribed from the Defense Language Institute Russian Basic Course, Grammar Reference Books I (1970) and II (1965) — a US Government work in the public domain"
 DLI_URL = "https://www.fsi-language-courses.org/russian/courses/dli-russian-basic-course"
@@ -222,7 +224,7 @@ def with_practice(cid, secs):
 
 
 # Courses written by us rather than taken from a source: not built.
-NOT_BUILT = {"wikibook", "dli", "motion"}
+NOT_BUILT = {"wikibook", "dli"}
 # Courses transcribed from the DLI book: keep the exercises that are its own
 # sentences and forms to type; drop multiple-choice ones (their wrong options
 # were ours) and keep only the source line of each explanation.
@@ -261,15 +263,23 @@ LEVELS = {
     "verbs": "Beginner", "count": "Beginner", "tables": "Beginner",
     "aspect": "Intermediate", "forms": "Intermediate", "compare": "Intermediate", "pronouns": "Intermediate",
     "complex": "Intermediate", "inter2": "Intermediate", "numerals": "Intermediate", "tenses": "Intermediate",
-    "adv3": "Advanced", "stories": "Advanced", "gramterms": "Advanced",
+    "adv3": "Advanced", "stories": "Advanced", "gramterms": "Advanced", "motion": "Intermediate",
     "time": "Dates and Times", "clock": "Dates and Times",
 }
 LEVEL_ORDER = ["Beginner", "Intermediate", "Advanced", "Dates and Times"]
 
 
-def main():
+def main(argv=None):
+    # --only <course>: build that one course and slot it into the outline the
+    # others already have, leaving their section files untouched (the hand
+    # edits made to them since their last build stay).
+    only = None
+    if argv is None:
+        argv = sys.argv[1:]
+    if "--only" in argv:
+        only = argv[argv.index("--only") + 1]
     outline = []
-    for c in [x for x in COURSES if x["id"] not in NOT_BUILT]:
+    for c in [x for x in COURSES if x["id"] not in NOT_BUILT and (only is None or x["id"] == only)]:
         secs = []
         for m in c["modules"]:
             for x in importlib.import_module(m).SECTIONS:
@@ -340,6 +350,8 @@ def main():
     # its own sentence uses, and a sentence using none the course teaches is
     # taken out (tools/courses/_dropped/time-unexplained.json). Runs before
     # attach_context, which leaves an exercise with a context alone.
+    if only:
+        return build_only(only, outline)
     try:
         import explain_time
     except ImportError:
@@ -443,6 +455,53 @@ def main():
           "// how many exercises each has. The lessons themselves are in public/courses/.\n"
           "export default " + json.dumps(outline, ensure_ascii=False, indent=1) + ";\n")
     io.open(os.path.join(ROOT, "src", "courses-outline.js"), "w", encoding="utf-8").write(js)
+
+
+def build_only(only, outline):
+    """The passes that take a course filter, for one course; then its entry in src/courses-outline.js."""
+    import attach_context
+    attach_context.main(["--apply", "--course", only])
+    try:
+        import sense_check
+    except ImportError:
+        print("sense_check skipped (pymorphy3 not installed)")
+    else:
+        sense_check.main(["--drop", "--course", only])
+    import pertinence
+    pertinence.main(["--apply", "--course", only])
+    for meta in outline:
+        kept = []
+        for o in meta["sections"]:
+            p = os.path.join(ROOT, "public", "courses", meta["id"], o["id"] + ".json")
+            j = json.load(io.open(p, encoding="utf-8"))
+            if not (j.get("stream") and not j.get("finite")):
+                o["n"] = len(j.get("exercises") or [])
+            if o["n"] == 0 and re.search(r"-practice(?:-\d+)?$", o["id"]):
+                os.remove(p)
+                continue
+            kept.append(o)
+        meta["sections"] = kept
+    import make_exams
+    make_exams.add_exams(outline)
+    op = os.path.join(ROOT, "src", "courses-outline.js")
+    txt = io.open(op, encoding="utf-8").read()
+    k = txt.index("export default ")
+    cur = json.loads(txt[k + len("export default "):].rstrip().rstrip(";"))
+    new = {m["id"]: m for m in outline}
+    merged, seen = [], set()
+    for m in cur:
+        if m["id"] in new:
+            merged.append(new[m["id"]]); seen.add(m["id"])
+        else:
+            merged.append(m)
+    for m in outline:
+        if m["id"] not in seen:
+            merged.append(m)
+    js = ("// Written by tools/courses/build_courses.py — the courses, their sections and\n"
+          "// how many exercises each has. The lessons themselves are in public/courses/.\n"
+          "export default " + json.dumps(merged, ensure_ascii=False, indent=1) + ";\n")
+    io.open(op, "w", encoding="utf-8").write(js)
+    print("outline: %s updated (%d courses)" % (only, len(merged)))
 
 
 if __name__ == "__main__":

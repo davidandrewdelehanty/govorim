@@ -5603,5 +5603,1070 @@ export default [
    }
   ],
   "level": "Advanced"
+ },
+ {
+  "id": "motion",
+  "title": "Verbs of Motion",
+  "short": "Motion",
+  "mark": "→",
+  "blurb": "",
+  "credit": "Lesson text quoted from the Defense Language Institute Russian Basic Course, Grammar Reference Books I and II (a US Government work in the public domain), the English Wikipedia's article «Russian grammar», section «Verbs of motion» (CC BY-SA 4.0), and the English Wiktionary's entries for each verb (CC BY-SA 4.0); exercises: sentences and translations from Tatoeba (CC BY 2.0 FR) and sentences from the library's public-domain books",
+  "creditUrl": "https://en.wikipedia.org/wiki/Russian_grammar#Verbs_of_motion",
+  "license": "Public domain · CC BY-SA 4.0 · CC BY 2.0 FR",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "sections": [
+   {
+    "id": "m01-pairs",
+    "title": "Two verbs for every way of going",
+    "n": 8
+   },
+   {
+    "id": "m01-pairs-practice",
+    "title": "Practice 1: Two verbs for every way of going",
+    "n": 20
+   },
+   {
+    "id": "m01-pairs-practice-2",
+    "title": "Practice 2: Two verbs for every way of going",
+    "n": 20
+   },
+   {
+    "id": "m01-pairs-practice-3",
+    "title": "Practice 3: Two verbs for every way of going",
+    "n": 20
+   },
+   {
+    "id": "m01-pairs-practice-4",
+    "title": "Practice 4: Two verbs for every way of going",
+    "n": 20
+   },
+   {
+    "id": "m01-pairs-practice-5",
+    "title": "Practice 5: Two verbs for every way of going",
+    "n": 20
+   },
+   {
+    "id": "m01-pairs-practice-6",
+    "title": "Practice 6: Two verbs for every way of going",
+    "n": 20
+   },
+   {
+    "id": "m01-pairs-practice-7",
+    "title": "Practice 7: Two verbs for every way of going",
+    "n": 14
+   },
+   {
+    "id": "m02-direction",
+    "title": "One direction, or round and about",
+    "n": 14
+   },
+   {
+    "id": "m02-direction-practice",
+    "title": "Practice 1: One direction, or round and about",
+    "n": 20
+   },
+   {
+    "id": "m02-direction-practice-2",
+    "title": "Practice 2: One direction, or round and about",
+    "n": 20
+   },
+   {
+    "id": "m02-direction-practice-3",
+    "title": "Practice 3: One direction, or round and about",
+    "n": 20
+   },
+   {
+    "id": "m02-direction-practice-4",
+    "title": "Practice 4: One direction, or round and about",
+    "n": 20
+   },
+   {
+    "id": "m02-direction-practice-5",
+    "title": "Practice 5: One direction, or round and about",
+    "n": 20
+   },
+   {
+    "id": "m02-direction-practice-6",
+    "title": "Practice 6: One direction, or round and about",
+    "n": 20
+   },
+   {
+    "id": "m02-direction-practice-7",
+    "title": "Practice 7: One direction, or round and about",
+    "n": 20
+   },
+   {
+    "id": "m03-now-and-lets-go",
+    "title": "The present for the future, and «let's go»",
+    "n": 8
+   },
+   {
+    "id": "m03-now-and-lets-go-practice",
+    "title": "Practice 1: The present for the future, and «let's go»",
+    "n": 20
+   },
+   {
+    "id": "m03-now-and-lets-go-practice-2",
+    "title": "Practice 2: The present for the future, and «let's go»",
+    "n": 20
+   },
+   {
+    "id": "m03-now-and-lets-go-practice-3",
+    "title": "Practice 3: The present for the future, and «let's go»",
+    "n": 20
+   },
+   {
+    "id": "m03-now-and-lets-go-practice-4",
+    "title": "Practice 4: The present for the future, and «let's go»",
+    "n": 20
+   },
+   {
+    "id": "m03-now-and-lets-go-practice-5",
+    "title": "Practice 5: The present for the future, and «let's go»",
+    "n": 20
+   },
+   {
+    "id": "m03-now-and-lets-go-practice-6",
+    "title": "Practice 6: The present for the future, and «let's go»",
+    "n": 7
+   },
+   {
+    "id": "m04-carrying",
+    "title": "Carrying, leading, driving",
+    "n": 14
+   },
+   {
+    "id": "m04-carrying-practice",
+    "title": "Practice 1: Carrying, leading, driving",
+    "n": 20
+   },
+   {
+    "id": "m04-carrying-practice-2",
+    "title": "Practice 2: Carrying, leading, driving",
+    "n": 20
+   },
+   {
+    "id": "m04-carrying-practice-3",
+    "title": "Practice 3: Carrying, leading, driving",
+    "n": 20
+   },
+   {
+    "id": "m04-carrying-practice-4",
+    "title": "Practice 4: Carrying, leading, driving",
+    "n": 20
+   },
+   {
+    "id": "m04-carrying-practice-5",
+    "title": "Practice 5: Carrying, leading, driving",
+    "n": 20
+   },
+   {
+    "id": "m04-carrying-practice-6",
+    "title": "Practice 6: Carrying, leading, driving",
+    "n": 20
+   },
+   {
+    "id": "m04-carrying-practice-7",
+    "title": "Practice 7: Carrying, leading, driving",
+    "n": 20
+   },
+   {
+    "id": "m04-carrying-practice-8",
+    "title": "Practice 8: Carrying, leading, driving",
+    "n": 20
+   },
+   {
+    "id": "m04-carrying-practice-9",
+    "title": "Practice 9: Carrying, leading, driving",
+    "n": 20
+   },
+   {
+    "id": "m04-carrying-practice-10",
+    "title": "Practice 10: Carrying, leading, driving",
+    "n": 20
+   },
+   {
+    "id": "m05-other-pairs",
+    "title": "Running, swimming, climbing, crawling, dragging",
+    "n": 14
+   },
+   {
+    "id": "m05-other-pairs-practice",
+    "title": "Practice 1: Running, swimming, climbing, crawling, dragging",
+    "n": 20
+   },
+   {
+    "id": "m05-other-pairs-practice-2",
+    "title": "Practice 2: Running, swimming, climbing, crawling, dragging",
+    "n": 20
+   },
+   {
+    "id": "m05-other-pairs-practice-3",
+    "title": "Practice 3: Running, swimming, climbing, crawling, dragging",
+    "n": 20
+   },
+   {
+    "id": "m05-other-pairs-practice-4",
+    "title": "Practice 4: Running, swimming, climbing, crawling, dragging",
+    "n": 20
+   },
+   {
+    "id": "m05-other-pairs-practice-5",
+    "title": "Practice 5: Running, swimming, climbing, crawling, dragging",
+    "n": 20
+   },
+   {
+    "id": "m05-other-pairs-practice-6",
+    "title": "Practice 6: Running, swimming, climbing, crawling, dragging",
+    "n": 20
+   },
+   {
+    "id": "m05-other-pairs-practice-7",
+    "title": "Practice 7: Running, swimming, climbing, crawling, dragging",
+    "n": 20
+   },
+   {
+    "id": "m05-other-pairs-practice-8",
+    "title": "Practice 8: Running, swimming, climbing, crawling, dragging",
+    "n": 20
+   },
+   {
+    "id": "m05-other-pairs-practice-9",
+    "title": "Practice 9: Running, swimming, climbing, crawling, dragging",
+    "n": 20
+   },
+   {
+    "id": "m05-other-pairs-practice-10",
+    "title": "Practice 10: Running, swimming, climbing, crawling, dragging",
+    "n": 20
+   },
+   {
+    "id": "m06-po",
+    "title": "Setting out: пойти, поехать — and сходить, съездить",
+    "n": 14
+   },
+   {
+    "id": "m06-po-practice",
+    "title": "Practice 1: Setting out: пойти, поехать — and сходить, съездить",
+    "n": 20
+   },
+   {
+    "id": "m06-po-practice-2",
+    "title": "Practice 2: Setting out: пойти, поехать — and сходить, съездить",
+    "n": 20
+   },
+   {
+    "id": "m06-po-practice-3",
+    "title": "Practice 3: Setting out: пойти, поехать — and сходить, съездить",
+    "n": 20
+   },
+   {
+    "id": "m06-po-practice-4",
+    "title": "Practice 4: Setting out: пойти, поехать — and сходить, съездить",
+    "n": 20
+   },
+   {
+    "id": "m06-po-practice-5",
+    "title": "Practice 5: Setting out: пойти, поехать — and сходить, съездить",
+    "n": 20
+   },
+   {
+    "id": "m06-po-practice-6",
+    "title": "Practice 6: Setting out: пойти, поехать — and сходить, съездить",
+    "n": 20
+   },
+   {
+    "id": "m06-po-practice-7",
+    "title": "Practice 7: Setting out: пойти, поехать — and сходить, съездить",
+    "n": 20
+   },
+   {
+    "id": "m06-po-practice-8",
+    "title": "Practice 8: Setting out: пойти, поехать — and сходить, съездить",
+    "n": 20
+   },
+   {
+    "id": "m06-po-practice-9",
+    "title": "Practice 9: Setting out: пойти, поехать — and сходить, съездить",
+    "n": 20
+   },
+   {
+    "id": "m06-po-practice-10",
+    "title": "Practice 10: Setting out: пойти, поехать — and сходить, съездить",
+    "n": 20
+   },
+   {
+    "id": "m07-idioms",
+    "title": "Rain falls, time flies, luck comes: the idioms",
+    "n": 8
+   },
+   {
+    "id": "m07-idioms-practice",
+    "title": "Practice 1: Rain falls, time flies, luck comes: the idioms",
+    "n": 20
+   },
+   {
+    "id": "m07-idioms-practice-2",
+    "title": "Practice 2: Rain falls, time flies, luck comes: the idioms",
+    "n": 20
+   },
+   {
+    "id": "m07-idioms-practice-3",
+    "title": "Practice 3: Rain falls, time flies, luck comes: the idioms",
+    "n": 20
+   },
+   {
+    "id": "m07-idioms-practice-4",
+    "title": "Practice 4: Rain falls, time flies, luck comes: the idioms",
+    "n": 20
+   },
+   {
+    "id": "m07-idioms-practice-5",
+    "title": "Practice 5: Rain falls, time flies, luck comes: the idioms",
+    "n": 20
+   },
+   {
+    "id": "m08-how-prefixes-work",
+    "title": "How a prefix changes a verb of motion",
+    "n": 8
+   },
+   {
+    "id": "m08-how-prefixes-work-practice",
+    "title": "Practice 1: How a prefix changes a verb of motion",
+    "n": 20
+   },
+   {
+    "id": "m08-how-prefixes-work-practice-2",
+    "title": "Practice 2: How a prefix changes a verb of motion",
+    "n": 20
+   },
+   {
+    "id": "m08-how-prefixes-work-practice-3",
+    "title": "Practice 3: How a prefix changes a verb of motion",
+    "n": 20
+   },
+   {
+    "id": "m08-how-prefixes-work-practice-4",
+    "title": "Practice 4: How a prefix changes a verb of motion",
+    "n": 20
+   },
+   {
+    "id": "m08-how-prefixes-work-practice-5",
+    "title": "Practice 5: How a prefix changes a verb of motion",
+    "n": 20
+   },
+   {
+    "id": "m08-how-prefixes-work-practice-6",
+    "title": "Practice 6: How a prefix changes a verb of motion",
+    "n": 20
+   },
+   {
+    "id": "m08-how-prefixes-work-practice-7",
+    "title": "Practice 7: How a prefix changes a verb of motion",
+    "n": 20
+   },
+   {
+    "id": "m08-how-prefixes-work-practice-8",
+    "title": "Practice 8: How a prefix changes a verb of motion",
+    "n": 20
+   },
+   {
+    "id": "m08-how-prefixes-work-practice-9",
+    "title": "Practice 9: How a prefix changes a verb of motion",
+    "n": 7
+   },
+   {
+    "id": "m09-v-vy",
+    "title": "в- and вы-: in, and out",
+    "n": 14
+   },
+   {
+    "id": "m09-v-vy-practice",
+    "title": "Practice 1: в- and вы-: in, and out",
+    "n": 20
+   },
+   {
+    "id": "m09-v-vy-practice-2",
+    "title": "Practice 2: в- and вы-: in, and out",
+    "n": 20
+   },
+   {
+    "id": "m09-v-vy-practice-3",
+    "title": "Practice 3: в- and вы-: in, and out",
+    "n": 20
+   },
+   {
+    "id": "m09-v-vy-practice-4",
+    "title": "Practice 4: в- and вы-: in, and out",
+    "n": 20
+   },
+   {
+    "id": "m09-v-vy-practice-5",
+    "title": "Practice 5: в- and вы-: in, and out",
+    "n": 20
+   },
+   {
+    "id": "m09-v-vy-practice-6",
+    "title": "Practice 6: в- and вы-: in, and out",
+    "n": 20
+   },
+   {
+    "id": "m09-v-vy-practice-7",
+    "title": "Practice 7: в- and вы-: in, and out",
+    "n": 20
+   },
+   {
+    "id": "m09-v-vy-practice-8",
+    "title": "Practice 8: в- and вы-: in, and out",
+    "n": 20
+   },
+   {
+    "id": "m09-v-vy-practice-9",
+    "title": "Practice 9: в- and вы-: in, and out",
+    "n": 20
+   },
+   {
+    "id": "m09-v-vy-practice-10",
+    "title": "Practice 10: в- and вы-: in, and out",
+    "n": 20
+   },
+   {
+    "id": "m10-pri-u",
+    "title": "при- and у-: arriving, and leaving",
+    "n": 14
+   },
+   {
+    "id": "m10-pri-u-practice",
+    "title": "Practice 1: при- and у-: arriving, and leaving",
+    "n": 20
+   },
+   {
+    "id": "m10-pri-u-practice-2",
+    "title": "Practice 2: при- and у-: arriving, and leaving",
+    "n": 20
+   },
+   {
+    "id": "m10-pri-u-practice-3",
+    "title": "Practice 3: при- and у-: arriving, and leaving",
+    "n": 20
+   },
+   {
+    "id": "m10-pri-u-practice-4",
+    "title": "Practice 4: при- and у-: arriving, and leaving",
+    "n": 20
+   },
+   {
+    "id": "m10-pri-u-practice-5",
+    "title": "Practice 5: при- and у-: arriving, and leaving",
+    "n": 20
+   },
+   {
+    "id": "m10-pri-u-practice-6",
+    "title": "Practice 6: при- and у-: arriving, and leaving",
+    "n": 20
+   },
+   {
+    "id": "m10-pri-u-practice-7",
+    "title": "Practice 7: при- and у-: arriving, and leaving",
+    "n": 20
+   },
+   {
+    "id": "m10-pri-u-practice-8",
+    "title": "Practice 8: при- and у-: arriving, and leaving",
+    "n": 20
+   },
+   {
+    "id": "m10-pri-u-practice-9",
+    "title": "Practice 9: при- and у-: arriving, and leaving",
+    "n": 20
+   },
+   {
+    "id": "m10-pri-u-practice-10",
+    "title": "Practice 10: при- and у-: arriving, and leaving",
+    "n": 20
+   },
+   {
+    "id": "m11-pod-ot",
+    "title": "под- and от-: up to, and away from",
+    "n": 14
+   },
+   {
+    "id": "m11-pod-ot-practice",
+    "title": "Practice 1: под- and от-: up to, and away from",
+    "n": 20
+   },
+   {
+    "id": "m11-pod-ot-practice-2",
+    "title": "Practice 2: под- and от-: up to, and away from",
+    "n": 20
+   },
+   {
+    "id": "m11-pod-ot-practice-3",
+    "title": "Practice 3: под- and от-: up to, and away from",
+    "n": 20
+   },
+   {
+    "id": "m11-pod-ot-practice-4",
+    "title": "Practice 4: под- and от-: up to, and away from",
+    "n": 20
+   },
+   {
+    "id": "m11-pod-ot-practice-5",
+    "title": "Practice 5: под- and от-: up to, and away from",
+    "n": 20
+   },
+   {
+    "id": "m11-pod-ot-practice-6",
+    "title": "Practice 6: под- and от-: up to, and away from",
+    "n": 20
+   },
+   {
+    "id": "m11-pod-ot-practice-7",
+    "title": "Practice 7: под- and от-: up to, and away from",
+    "n": 20
+   },
+   {
+    "id": "m11-pod-ot-practice-8",
+    "title": "Practice 8: под- and от-: up to, and away from",
+    "n": 20
+   },
+   {
+    "id": "m11-pod-ot-practice-9",
+    "title": "Practice 9: под- and от-: up to, and away from",
+    "n": 20
+   },
+   {
+    "id": "m11-pod-ot-practice-10",
+    "title": "Practice 10: под- and от-: up to, and away from",
+    "n": 20
+   },
+   {
+    "id": "m12-do",
+    "title": "до-: as far as, reaching",
+    "n": 8
+   },
+   {
+    "id": "m12-do-practice",
+    "title": "Practice 1: до-: as far as, reaching",
+    "n": 20
+   },
+   {
+    "id": "m12-do-practice-2",
+    "title": "Practice 2: до-: as far as, reaching",
+    "n": 20
+   },
+   {
+    "id": "m12-do-practice-3",
+    "title": "Practice 3: до-: as far as, reaching",
+    "n": 20
+   },
+   {
+    "id": "m12-do-practice-4",
+    "title": "Practice 4: до-: as far as, reaching",
+    "n": 20
+   },
+   {
+    "id": "m12-do-practice-5",
+    "title": "Practice 5: до-: as far as, reaching",
+    "n": 20
+   },
+   {
+    "id": "m12-do-practice-6",
+    "title": "Practice 6: до-: as far as, reaching",
+    "n": 20
+   },
+   {
+    "id": "m12-do-practice-7",
+    "title": "Practice 7: до-: as far as, reaching",
+    "n": 20
+   },
+   {
+    "id": "m12-do-practice-8",
+    "title": "Practice 8: до-: as far as, reaching",
+    "n": 20
+   },
+   {
+    "id": "m12-do-practice-9",
+    "title": "Practice 9: до-: as far as, reaching",
+    "n": 20
+   },
+   {
+    "id": "m12-do-practice-10",
+    "title": "Practice 10: до-: as far as, reaching",
+    "n": 20
+   },
+   {
+    "id": "m13-pere",
+    "title": "пере-: across, and over to another place",
+    "n": 8
+   },
+   {
+    "id": "m13-pere-practice",
+    "title": "Practice 1: пере-: across, and over to another place",
+    "n": 20
+   },
+   {
+    "id": "m13-pere-practice-2",
+    "title": "Practice 2: пере-: across, and over to another place",
+    "n": 20
+   },
+   {
+    "id": "m13-pere-practice-3",
+    "title": "Practice 3: пере-: across, and over to another place",
+    "n": 20
+   },
+   {
+    "id": "m13-pere-practice-4",
+    "title": "Practice 4: пере-: across, and over to another place",
+    "n": 20
+   },
+   {
+    "id": "m13-pere-practice-5",
+    "title": "Practice 5: пере-: across, and over to another place",
+    "n": 20
+   },
+   {
+    "id": "m13-pere-practice-6",
+    "title": "Practice 6: пере-: across, and over to another place",
+    "n": 20
+   },
+   {
+    "id": "m13-pere-practice-7",
+    "title": "Practice 7: пере-: across, and over to another place",
+    "n": 20
+   },
+   {
+    "id": "m13-pere-practice-8",
+    "title": "Practice 8: пере-: across, and over to another place",
+    "n": 20
+   },
+   {
+    "id": "m13-pere-practice-9",
+    "title": "Practice 9: пере-: across, and over to another place",
+    "n": 20
+   },
+   {
+    "id": "m13-pere-practice-10",
+    "title": "Practice 10: пере-: across, and over to another place",
+    "n": 20
+   },
+   {
+    "id": "m14-pro",
+    "title": "про-: through, past, and a distance covered",
+    "n": 8
+   },
+   {
+    "id": "m14-pro-practice",
+    "title": "Practice 1: про-: through, past, and a distance covered",
+    "n": 20
+   },
+   {
+    "id": "m14-pro-practice-2",
+    "title": "Practice 2: про-: through, past, and a distance covered",
+    "n": 20
+   },
+   {
+    "id": "m14-pro-practice-3",
+    "title": "Practice 3: про-: through, past, and a distance covered",
+    "n": 20
+   },
+   {
+    "id": "m14-pro-practice-4",
+    "title": "Practice 4: про-: through, past, and a distance covered",
+    "n": 19
+   },
+   {
+    "id": "m14-pro-practice-5",
+    "title": "Practice 5: про-: through, past, and a distance covered",
+    "n": 20
+   },
+   {
+    "id": "m14-pro-practice-6",
+    "title": "Practice 6: про-: through, past, and a distance covered",
+    "n": 20
+   },
+   {
+    "id": "m14-pro-practice-7",
+    "title": "Practice 7: про-: through, past, and a distance covered",
+    "n": 20
+   },
+   {
+    "id": "m14-pro-practice-8",
+    "title": "Practice 8: про-: through, past, and a distance covered",
+    "n": 20
+   },
+   {
+    "id": "m14-pro-practice-9",
+    "title": "Practice 9: про-: through, past, and a distance covered",
+    "n": 20
+   },
+   {
+    "id": "m14-pro-practice-10",
+    "title": "Practice 10: про-: through, past, and a distance covered",
+    "n": 20
+   },
+   {
+    "id": "m15-za",
+    "title": "за-: behind, and dropping in",
+    "n": 8
+   },
+   {
+    "id": "m15-za-practice",
+    "title": "Practice 1: за-: behind, and dropping in",
+    "n": 20
+   },
+   {
+    "id": "m15-za-practice-2",
+    "title": "Practice 2: за-: behind, and dropping in",
+    "n": 20
+   },
+   {
+    "id": "m15-za-practice-3",
+    "title": "Practice 3: за-: behind, and dropping in",
+    "n": 20
+   },
+   {
+    "id": "m15-za-practice-4",
+    "title": "Practice 4: за-: behind, and dropping in",
+    "n": 20
+   },
+   {
+    "id": "m15-za-practice-5",
+    "title": "Practice 5: за-: behind, and dropping in",
+    "n": 20
+   },
+   {
+    "id": "m15-za-practice-6",
+    "title": "Practice 6: за-: behind, and dropping in",
+    "n": 20
+   },
+   {
+    "id": "m15-za-practice-7",
+    "title": "Practice 7: за-: behind, and dropping in",
+    "n": 20
+   },
+   {
+    "id": "m15-za-practice-8",
+    "title": "Practice 8: за-: behind, and dropping in",
+    "n": 20
+   },
+   {
+    "id": "m15-za-practice-9",
+    "title": "Practice 9: за-: behind, and dropping in",
+    "n": 20
+   },
+   {
+    "id": "m15-za-practice-10",
+    "title": "Practice 10: за-: behind, and dropping in",
+    "n": 20
+   },
+   {
+    "id": "m16-s-raz",
+    "title": "с-: down, and together — раз-: apart",
+    "n": 14
+   },
+   {
+    "id": "m16-s-raz-practice",
+    "title": "Practice 1: с-: down, and together — раз-: apart",
+    "n": 20
+   },
+   {
+    "id": "m16-s-raz-practice-2",
+    "title": "Practice 2: с-: down, and together — раз-: apart",
+    "n": 20
+   },
+   {
+    "id": "m16-s-raz-practice-3",
+    "title": "Practice 3: с-: down, and together — раз-: apart",
+    "n": 20
+   },
+   {
+    "id": "m16-s-raz-practice-4",
+    "title": "Practice 4: с-: down, and together — раз-: apart",
+    "n": 20
+   },
+   {
+    "id": "m16-s-raz-practice-5",
+    "title": "Practice 5: с-: down, and together — раз-: apart",
+    "n": 20
+   },
+   {
+    "id": "m16-s-raz-practice-6",
+    "title": "Practice 6: с-: down, and together — раз-: apart",
+    "n": 20
+   },
+   {
+    "id": "m16-s-raz-practice-7",
+    "title": "Practice 7: с-: down, and together — раз-: apart",
+    "n": 20
+   },
+   {
+    "id": "m16-s-raz-practice-8",
+    "title": "Practice 8: с-: down, and together — раз-: apart",
+    "n": 20
+   },
+   {
+    "id": "m16-s-raz-practice-9",
+    "title": "Practice 9: с-: down, and together — раз-: apart",
+    "n": 20
+   },
+   {
+    "id": "m16-s-raz-practice-10",
+    "title": "Practice 10: с-: down, and together — раз-: apart",
+    "n": 20
+   },
+   {
+    "id": "m17-ob-iz",
+    "title": "об-: around — из-: all over",
+    "n": 8
+   },
+   {
+    "id": "m17-ob-iz-practice",
+    "title": "Practice 1: об-: around — из-: all over",
+    "n": 20
+   },
+   {
+    "id": "m17-ob-iz-practice-2",
+    "title": "Practice 2: об-: around — из-: all over",
+    "n": 20
+   },
+   {
+    "id": "m17-ob-iz-practice-3",
+    "title": "Practice 3: об-: around — из-: all over",
+    "n": 20
+   },
+   {
+    "id": "m17-ob-iz-practice-4",
+    "title": "Practice 4: об-: around — из-: all over",
+    "n": 20
+   },
+   {
+    "id": "m18-vz-na",
+    "title": "вз- (вс-): up — на-: onto, and a quantity covered",
+    "n": 14
+   },
+   {
+    "id": "m18-vz-na-practice",
+    "title": "Practice 1: вз- (вс-): up — на-: onto, and a quantity covered",
+    "n": 20
+   },
+   {
+    "id": "m18-vz-na-practice-2",
+    "title": "Practice 2: вз- (вс-): up — на-: onto, and a quantity covered",
+    "n": 20
+   },
+   {
+    "id": "m18-vz-na-practice-3",
+    "title": "Practice 3: вз- (вс-): up — на-: onto, and a quantity covered",
+    "n": 20
+   },
+   {
+    "id": "m18-vz-na-practice-4",
+    "title": "Practice 4: вз- (вс-): up — на-: onto, and a quantity covered",
+    "n": 20
+   },
+   {
+    "id": "m18-vz-na-practice-5",
+    "title": "Practice 5: вз- (вс-): up — на-: onto, and a quantity covered",
+    "n": 20
+   },
+   {
+    "id": "m18-vz-na-practice-6",
+    "title": "Practice 6: вз- (вс-): up — на-: onto, and a quantity covered",
+    "n": 20
+   },
+   {
+    "id": "m18-vz-na-practice-7",
+    "title": "Practice 7: вз- (вс-): up — на-: onto, and a quantity covered",
+    "n": 20
+   },
+   {
+    "id": "m18-vz-na-practice-8",
+    "title": "Practice 8: вз- (вс-): up — на-: onto, and a quantity covered",
+    "n": 20
+   },
+   {
+    "id": "m18-vz-na-practice-9",
+    "title": "Practice 9: вз- (вс-): up — на-: onto, and a quantity covered",
+    "n": 20
+   },
+   {
+    "id": "m18-vz-na-practice-10",
+    "title": "Practice 10: вз- (вс-): up — на-: onto, and a quantity covered",
+    "n": 20
+   },
+   {
+    "id": "m19-aspect",
+    "title": "Perfective or imperfective? The prefixed verbs in use",
+    "n": 6
+   },
+   {
+    "id": "m19-aspect-practice",
+    "title": "Practice 1: Perfective or imperfective? The prefixed verbs in use",
+    "n": 20
+   },
+   {
+    "id": "m19-aspect-practice-2",
+    "title": "Practice 2: Perfective or imperfective? The prefixed verbs in use",
+    "n": 20
+   },
+   {
+    "id": "m19-aspect-practice-3",
+    "title": "Practice 3: Perfective or imperfective? The prefixed verbs in use",
+    "n": 20
+   },
+   {
+    "id": "m19-aspect-practice-4",
+    "title": "Practice 4: Perfective or imperfective? The prefixed verbs in use",
+    "n": 20
+   },
+   {
+    "id": "m19-aspect-practice-5",
+    "title": "Practice 5: Perfective or imperfective? The prefixed verbs in use",
+    "n": 20
+   },
+   {
+    "id": "m19-aspect-practice-6",
+    "title": "Practice 6: Perfective or imperfective? The prefixed verbs in use",
+    "n": 20
+   },
+   {
+    "id": "m19-aspect-practice-7",
+    "title": "Practice 7: Perfective or imperfective? The prefixed verbs in use",
+    "n": 20
+   },
+   {
+    "id": "m19-aspect-practice-8",
+    "title": "Practice 8: Perfective or imperfective? The prefixed verbs in use",
+    "n": 20
+   },
+   {
+    "id": "m19-aspect-practice-9",
+    "title": "Practice 9: Perfective or imperfective? The prefixed verbs in use",
+    "n": 20
+   },
+   {
+    "id": "m19-aspect-practice-10",
+    "title": "Practice 10: Perfective or imperfective? The prefixed verbs in use",
+    "n": 20
+   },
+   {
+    "id": "m20-prefixed-idioms",
+    "title": "Prefixed verbs beyond motion",
+    "n": 8
+   },
+   {
+    "id": "m20-prefixed-idioms-practice",
+    "title": "Practice 1: Prefixed verbs beyond motion",
+    "n": 20
+   },
+   {
+    "id": "m20-prefixed-idioms-practice-2",
+    "title": "Practice 2: Prefixed verbs beyond motion",
+    "n": 20
+   },
+   {
+    "id": "m20-prefixed-idioms-practice-3",
+    "title": "Practice 3: Prefixed verbs beyond motion",
+    "n": 20
+   },
+   {
+    "id": "m20-prefixed-idioms-practice-4",
+    "title": "Practice 4: Prefixed verbs beyond motion",
+    "n": 20
+   },
+   {
+    "id": "m20-prefixed-idioms-practice-5",
+    "title": "Practice 5: Prefixed verbs beyond motion",
+    "n": 20
+   },
+   {
+    "id": "m20-prefixed-idioms-practice-6",
+    "title": "Practice 6: Prefixed verbs beyond motion",
+    "n": 20
+   },
+   {
+    "id": "m20-prefixed-idioms-practice-7",
+    "title": "Practice 7: Prefixed verbs beyond motion",
+    "n": 20
+   },
+   {
+    "id": "m20-prefixed-idioms-practice-8",
+    "title": "Practice 8: Prefixed verbs beyond motion",
+    "n": 20
+   },
+   {
+    "id": "m20-prefixed-idioms-practice-9",
+    "title": "Practice 9: Prefixed verbs beyond motion",
+    "n": 20
+   },
+   {
+    "id": "m20-prefixed-idioms-practice-10",
+    "title": "Practice 10: Prefixed verbs beyond motion",
+    "n": 20
+   },
+   {
+    "id": "m21-which-prefix",
+    "title": "Which prefix? — the whole table, as practice",
+    "n": 6
+   },
+   {
+    "id": "m21-which-prefix-practice",
+    "title": "Practice 1: Which prefix? — the whole table, as practice",
+    "n": 20
+   },
+   {
+    "id": "m21-which-prefix-practice-2",
+    "title": "Practice 2: Which prefix? — the whole table, as practice",
+    "n": 20
+   },
+   {
+    "id": "m21-which-prefix-practice-3",
+    "title": "Practice 3: Which prefix? — the whole table, as practice",
+    "n": 20
+   },
+   {
+    "id": "m21-which-prefix-practice-4",
+    "title": "Practice 4: Which prefix? — the whole table, as practice",
+    "n": 20
+   },
+   {
+    "id": "m21-which-prefix-practice-5",
+    "title": "Practice 5: Which prefix? — the whole table, as practice",
+    "n": 20
+   },
+   {
+    "id": "m21-which-prefix-practice-6",
+    "title": "Practice 6: Which prefix? — the whole table, as practice",
+    "n": 20
+   },
+   {
+    "id": "m21-which-prefix-practice-7",
+    "title": "Practice 7: Which prefix? — the whole table, as practice",
+    "n": 20
+   },
+   {
+    "id": "m21-which-prefix-practice-8",
+    "title": "Practice 8: Which prefix? — the whole table, as practice",
+    "n": 20
+   },
+   {
+    "id": "m21-which-prefix-practice-9",
+    "title": "Practice 9: Which prefix? — the whole table, as practice",
+    "n": 20
+   },
+   {
+    "id": "m21-which-prefix-practice-10",
+    "title": "Practice 10: Which prefix? — the whole table, as practice",
+    "n": 20
+   },
+   {
+    "id": "exam",
+    "title": "Exam",
+    "n": 105,
+    "exam": true
+   }
+  ],
+  "level": "Intermediate"
  }
 ];

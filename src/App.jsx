@@ -27523,8 +27523,8 @@ quizMode ? (
                   return String(t).split(/([\u0430-\u044f\u0410-\u042f\u0451\u0401\u0301]+)/).map(function(p, i){
                     if (!p) return null;
                     if (/^[\u0430-\u044f\u0410-\u042f\u0451\u0401]/.test(p.replace(/\u0301/g, "")) && p.replace(/\u0301/g, "").length > 1)
-                      return <span key={key + "." + i} className="rw" onClick={function(e){ defWord(p, e); }}>{p}</span>;
-                    return <Fragment key={key + "." + i}>{p}</Fragment>;
+                      return <span key={key + "." + i} className="rw" onClick={function(e){ defWord(p, e); }}>{stressed(p)}</span>;
+                    return <Fragment key={key + "." + i}>{stressed(p)}</Fragment>;
                   });
                 };
                 // Light markup in lesson text: **bold**, *italic*. `plain` keeps
@@ -27542,7 +27542,7 @@ quizMode ? (
                   return null;
                 };
                 var rich = function(t, plain) {
-                  var w = plain ? function(x, k){ return x; } : tappable;
+                  var w = plain ? function(x, k){ return stressed(x); } : tappable;
                   // An address in the text becomes a link: a Wikipedia page reads
                   // as «Википедия», any other as its host.
                   var linked = function(x, k) {

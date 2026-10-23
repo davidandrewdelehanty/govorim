@@ -347,10 +347,21 @@ def text_of(b):
 SPLIT = re.compile(r"(?<=[.!?])\s+(?=[A-ZА-Я«\"“*(])")
 
 
+SRC_OF = {}      # a lesson sentence → the note that follows its block (the source it was quoted from)
+
+
 def sentences(doc):
     """The lesson's sentences in order, and its source note."""
     out, src = [], ""
-    for b in doc.get("blocks") or []:
+    blocks = doc.get("blocks") or []
+    # the note after each block: a lesson quoting several sources cites each after the text it covers
+    after = [""] * len(blocks)
+    nxt = ""
+    for i in range(len(blocks) - 1, -1, -1):
+        if blocks[i].get("t") == "note":
+            nxt = text_of(blocks[i])
+        after[i] = nxt
+    for bi, b in enumerate(blocks):
         t = b.get("t")
         if t == "note":
             if not src:
@@ -383,6 +394,8 @@ def sentences(doc):
                 s = s.strip()
                 if len(s) >= 8:
                     out.append(s)
+                    if after[bi]:
+                        SRC_OF[s[:60]] = after[bi]
     return out, src
 
 
@@ -586,7 +599,8 @@ def main(argv=None):
                             stats["unexplained"] += 1
                             continue
                 else:
-                    why = why + (" — " + src if src else "")
+                    own = next((v for k, v in SRC_OF.items() if ctx.startswith(k[:40]) or k.startswith(ctx[:40])), "")
+                    why = why + (" — " + (own or src) if (own or src) else "")
                     stats["from lesson"] += 1
                 if tail and tail not in why:
                     why = why + "  ·  " + tail

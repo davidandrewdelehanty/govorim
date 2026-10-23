@@ -35,13 +35,23 @@ def lesson_rule(doc):
     """(one-line context, fuller rule, source note) taken verbatim from the lesson."""
     src = ""
     paras, heads = [], []
-    for b in doc.get("blocks") or []:
+    blocks = doc.get("blocks") or []
+    # the note after each block: a lesson quoting several sources cites each after the text it covers
+    after, nxt = [""] * len(blocks), ""
+    for i in range(len(blocks) - 1, -1, -1):
+        if blocks[i].get("t") == "note":
+            nxt = text_of(blocks[i])
+        after[i] = nxt
+    first_src = ""
+    for bi, b in enumerate(blocks):
         t = b.get("t")
         if t == "note" and not src:
             src = text_of(b)
             continue
         if t not in PROSE:
             continue
+        if t == "p" and not paras and after[bi]:
+            first_src = after[bi]
         s = text_of(b)
         s = re.sub(r"^\*+|\*+$", "", s).strip()              # drop *emphasis* wrappers
         s = re.sub(r"^\(?\d+[.)]\s*|^[a-zа-я][.)]\s*", "", s)  # drop "1." / "a)" enumeration
@@ -60,6 +70,8 @@ def lesson_rule(doc):
         # Say what it covers rather than inventing an explanation for it.
         label = (heads[0] if heads else re.sub(r"\s+", " ", doc.get("title") or "").strip())
         return label, label, src
+    if first_src:
+        src = first_src
     full = " ".join(paras[:3])
     if len(full) > 700:
         full = full[:700].rsplit(" ", 1)[0] + "\u2026"
