@@ -398,7 +398,7 @@ export default [
    {
     "id": "k7-genitive-plural-practice",
     "title": "Practice: The genitive plural",
-    "n": 14
+    "n": 13
    },
    {
     "id": "k8-plural-cases",
@@ -573,17 +573,17 @@ export default [
    {
     "id": "n1-subject",
     "title": "The subject",
-    "n": 8
+    "n": 6
    },
    {
     "id": "n2-eto",
     "title": "Это…, вот…: naming things",
-    "n": 7
+    "n": 6
    },
    {
     "id": "n3-adjectives",
     "title": "Adjectives with the subject",
-    "n": 7
+    "n": 6
    },
    {
     "id": "n4-pronouns",
@@ -1013,12 +1013,12 @@ export default [
    {
     "id": "g7-verbs-practice",
     "title": "Practice 1: Verbs that take the genitive",
-    "n": 20
+    "n": 19
    },
    {
     "id": "g7-verbs-practice-2",
     "title": "Practice 2: Verbs that take the genitive",
-    "n": 20
+    "n": 19
    },
    {
     "id": "g7-verbs-practice-3",
@@ -1318,7 +1318,7 @@ export default [
    {
     "id": "a1-object",
     "title": "The direct object",
-    "n": 35
+    "n": 27
    },
    {
     "id": "a1-object-practice",
@@ -1583,7 +1583,7 @@ export default [
    {
     "id": "a5-time-practice-3",
     "title": "Practice 3: Time in the accusative",
-    "n": 13
+    "n": 12
    },
    {
     "id": "a5-time-practice-4",
@@ -1593,32 +1593,32 @@ export default [
    {
     "id": "a5-time-practice-5",
     "title": "Practice 5: Time in the accusative",
-    "n": 20
+    "n": 17
    },
    {
     "id": "a5-time-practice-6",
     "title": "Practice 6: Time in the accusative",
-    "n": 20
+    "n": 19
    },
    {
     "id": "a5-time-practice-7",
     "title": "Practice 7: Time in the accusative",
-    "n": 20
+    "n": 19
    },
    {
     "id": "a5-time-practice-8",
     "title": "Practice 8: Time in the accusative",
-    "n": 20
+    "n": 19
    },
    {
     "id": "a5-time-practice-9",
     "title": "Practice 9: Time in the accusative",
-    "n": 20
+    "n": 18
    },
    {
     "id": "a5-time-practice-10",
     "title": "Practice 10: Time in the accusative",
-    "n": 20
+    "n": 19
    },
    {
     "id": "a5-time-practice-11",
@@ -1628,37 +1628,37 @@ export default [
    {
     "id": "a5-time-practice-12",
     "title": "Practice 12: Time in the accusative",
-    "n": 20
+    "n": 18
    },
    {
     "id": "a5-time-practice-13",
     "title": "Practice 13: Time in the accusative",
-    "n": 20
+    "n": 19
    },
    {
     "id": "a5-time-practice-14",
     "title": "Practice 14: Time in the accusative",
-    "n": 20
+    "n": 17
    },
    {
     "id": "a5-time-practice-15",
     "title": "Practice 15: Time in the accusative",
-    "n": 20
+    "n": 18
    },
    {
     "id": "a5-time-practice-16",
     "title": "Practice 16: Time in the accusative",
-    "n": 20
+    "n": 19
    },
    {
     "id": "a5-time-practice-17",
     "title": "Practice 17: Time in the accusative",
-    "n": 20
+    "n": 19
    },
    {
     "id": "a5-time-practice-18",
     "title": "Practice 18: Time in the accusative",
-    "n": 20
+    "n": 19
    },
    {
     "id": "a5-time-practice-19",
@@ -1668,7 +1668,7 @@ export default [
    {
     "id": "a5-time-practice-20",
     "title": "Practice 20: Time in the accusative",
-    "n": 20
+    "n": 19
    },
    {
     "id": "a6-endings",
@@ -3267,7 +3267,7 @@ export default [
    {
     "id": "i01-acc-or-gen-practice-4",
     "title": "Practice 4: Accusative or genitive?",
-    "n": 20
+    "n": 19
    },
    {
     "id": "i01-acc-or-gen-practice-5",
@@ -3277,7 +3277,7 @@ export default [
    {
     "id": "i01-acc-or-gen-practice-6",
     "title": "Practice 6: Accusative or genitive?",
-    "n": 19
+    "n": 18
    },
    {
     "id": "i01-acc-or-gen-practice-7",
@@ -3337,7 +3337,7 @@ export default [
    {
     "id": "i01-acc-or-gen-practice-18",
     "title": "Practice 18: Accusative or genitive?",
-    "n": 10
+    "n": 9
    },
    {
     "id": "i02-adjectival-nouns",
@@ -3522,7 +3522,7 @@ export default [
    {
     "id": "i16-time-practice-6",
     "title": "Practice 6: Expressing time",
-    "n": 20
+    "n": 19
    },
    {
     "id": "i16-time-practice-7",
@@ -3572,12 +3572,12 @@ export default [
    {
     "id": "i16-time-practice-16",
     "title": "Practice 16: Expressing time",
-    "n": 20
+    "n": 19
    },
    {
     "id": "i16-time-practice-17",
     "title": "Practice 17: Expressing time",
-    "n": 20
+    "n": 19
    },
    {
     "id": "i16-time-practice-18",

@@ -9021,7 +9021,19 @@ export default function App() {
         .then(function(r) { return r.ok ? r.json() : null; })
         .then(function(j) {
           if (cancelled) return;
-          if (j) setExData(j); else tryLoad(i + 1);
+          if (!j) { tryLoad(i + 1); return; }
+          // leave out the drills whose case the grammar cannot confirm (see cdLoadBad)
+          cdLoadBad().then(function(bm) {
+            if (cancelled) return;
+            var bad = (bm && bm[keys[i]]) || [];
+            if (bad.length && j.cases) {
+              j = Object.assign({}, j, { cases: j.cases.filter(function(c) {
+                var m = /^c(\d+)$/.exec(String(c.id || ""));
+                return !(m && bad.indexOf(+m[1]) >= 0);
+              }) });
+            }
+            setExData(j);
+          });
         })
         .catch(function() { if (!cancelled) tryLoad(i + 1); });
     };
@@ -10202,6 +10214,16 @@ export default function App() {
   var [cdBusy, setCdBusy]   = useState(false);
   var [cdErr, setCdErr]     = useState("");
   var cdFetching = useRef(false);
+  // Drills whose case cannot be told from the sentence's grammar (an inanimate
+  // nominative that is the accusative's twin, an animate accusative that is
+  // the genitive's) are listed in /books/exercises/_bad.json by file and
+  // number, and left out. Loaded once.
+  var cdBadRef = useRef(null);
+  var cdLoadBad = function() {
+    if (cdBadRef.current) return Promise.resolve(cdBadRef.current);
+    return fetch("/books/exercises/_bad.json").then(function(r){ return r.ok ? r.json() : {}; }).catch(function(){ return {}; })
+      .then(function(j){ cdBadRef.current = j || {}; return cdBadRef.current; });
+  };
   var cdSlug = function(fn) {
     return String(fn || "").split("/").pop().replace(/\.[^.]+$/, "").replace(/[^A-Za-z0-9_-]/g, "_");
   };
@@ -10257,18 +10279,22 @@ export default function App() {
       used[key] = 1;
       picks.push({ key: key, book: book, c: row[1], chapters: rows.length });
     }
-    return Promise.all(picks.map(function(pk){
+    return cdLoadBad().then(function(badMap){ return Promise.all(picks.map(function(pk){
+      var bad = badMap[pk.key] || [];
       return fetch("/books/exercises/" + pk.key + ".json")
         .then(function(r){ return r.ok ? r.json() : null; })
         .then(function(j){
-          var cs = ((j && j.cases) || []).filter(cdUsable);
+          var cs = ((j && j.cases) || []).filter(cdUsable).filter(function(c){
+            var m = /^c(\d+)$/.exec(String(c.id || ""));
+            return !(m && bad.indexOf(+m[1]) >= 0);
+          });
           if (!cs.length) return null;
           var c = cs[Math.floor(Math.random() * cs.length)];
           return Object.assign({}, c, { src: { f: pk.book.f, t: pk.book.t, a: pk.book.a, c: pk.c,
             where: cdWhere(pk.key, pk.c, pk.chapters) } });
         })
         .catch(function(){ return null; });
-    })).then(function(qs){ return qs.filter(Boolean); });
+    })); }).then(function(qs){ return qs.filter(Boolean); });
   };
   var cdTopUp = function(ix) {
     if (cdFetching.current || !ix) return;
