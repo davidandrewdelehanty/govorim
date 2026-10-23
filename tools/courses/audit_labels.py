@@ -22,7 +22,7 @@ for cid in ["cases", "case-nom", "case-gen", "case-dat", "case-acc", "case-ins",
         for e in json.load(io.open(os.path.join(d, fn), encoding="utf-8")).get("exercises", []):
             if e.get("type") != "fill":
                 continue
-            m = re.search(r"___ \(([^)]*?),\s*(nom|gen|dat|acc|instr|prep)\.\s*(sg|pl)\.(?:\s*[mfn]\.)?\)", e.get("q", ""))
+            m = re.search(r"___ \(([^)]*?),\s*(nom|gen|dat|acc|instr|prep)\.\s*(sg|pl)\.(?:\s*[mfn]\.)?(?:\s*— word has no singular)?\)", e.get("q", ""))
             if not m:
                 continue
             n += 1

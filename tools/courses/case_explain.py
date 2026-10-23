@@ -308,7 +308,7 @@ def explain_noun(p, form, case, number, prep_before):
             claim += " The accusative follows the animacy rule."
     et = ending_txt(ea, eb, kind, case)
     if pl_only:
-        bits.append("A plural-only noun. %s" % et)
+        bits.append("A plural-only noun: it has no singular in this meaning. %s" % et)
     elif modeled or adjn:
         gl = ("%s%s. " % (gen_en.capitalize(), an_en)) if case == "accs" else ""
         bits.append("%s%s %s" % (gl, claim, et))
@@ -655,6 +655,7 @@ def compose(text, decl, rules):
         out += "  " + "  ".join(rules)
     return out + "  " + TAIL
 NOT_MOD = object()
+DROP = object()
 
 
 def lemma_ok(p, h):
@@ -731,7 +732,7 @@ def _check(e, pair, case, number):
 
 
 def strip_label(q):
-    return re.sub(r"(___ \([^)]*?),\s*(?:nom|gen|dat|acc|instr|prep)\.\s*(?:sg|pl)\.(?:\s*[mfn]\.)?\)", r"\1)", q)
+    return re.sub(r"(___ \([^)]*?),\s*(?:nom|gen|dat|acc|instr|prep)\.\s*(?:sg|pl)\.(?:\s*[mfn]\.)?(?:\s*— word has no singular)?\)", r"\1)", q)
 
 
 def rewrite(e, want_cases=(), mixed=False):
@@ -740,7 +741,7 @@ def rewrite(e, want_cases=(), mixed=False):
     m = re.search(r"___ \(([^)]*)\)", q)
     if not m:
         return None
-    hint = re.sub(r",\s*(nom|gen|dat|acc|instr|prep)\.\s*(sg|pl)\.(\s*[mfn]\.)?\s*$", "", m.group(1).strip())   # a label given earlier
+    hint = re.sub(r",\s*(nom|gen|dat|acc|instr|prep)\.\s*(sg|pl)\.(\s*[mfn]\.)?(\s*— word has no singular)?\s*$", "", m.group(1).strip())   # a label given earlier
     if re.search(r"\d|[A-Za-z]", hint):
         return None
     ans = (e.get("answers") or [""])[0]
@@ -756,6 +757,10 @@ def rewrite(e, want_cases=(), mixed=False):
         hw = hw[:-1] + ["год"]                                  # лет is the genitive plural of год (DLI), not of лёт
     pair = resolve_pair(q, m, aw, hw)
     gov = governed(q[:m.start()])
+    top = M.parse(aw[-1])[0]
+    if not gov and governing_cases(q[:m.start()]) is None and (
+            (top.tag.POS in ("VERB", "INFN", "GRND") and top.score >= 0.5) or (top.tag.POS == "ADVB" and top.score >= 0.95)):
+        return DROP        # «Белка надела шапочку»: the word is a verb (or «потом», an adverb) here, not the noun the course wants
     if gov and (gov[0], gov[1]) in pairs_of(aw[-1], hw[-1]):
         pair = (gov[0], gov[1])
         e["_gov"] = gov[2]
@@ -874,7 +879,7 @@ def rewrite(e, want_cases=(), mixed=False):
         else:
             dict_forms.append(p.normal_form)
     dict_forms = [(d[:1].upper() + d[1:]) if h[:1].isupper() else d for d, h in zip(dict_forms, hw)]
-    newq = q[:m.start()] + "___ (" + " ".join(dict_forms) + ", " + label + ")" + q[m.end():]
+    newq = q[:m.start()] + "___ (" + " ".join(dict_forms) + ", " + label + (" — word has no singular" if pl_only else "") + ")" + q[m.end():]
     adjectival = norm(par_n.get(("gent", "sing"), "")).endswith(("ого", "его")) or (number == "plur" and norm(par_n.get(("gent", "plur"), "")).endswith(("ых", "их")))
     pa = None
     if adjectival:
@@ -948,6 +953,10 @@ def main(argv=None):
                         want = {{"nominative": "nomn", "genitive": "gent", "dative": "datv", "accusative": "accs", "instrumental": "ablt", "prepositional": "loct"}[mm.group(1).lower()]}
                 mixed = cid == "cases" and re.match(r"k(1|6|8|9|10|11)-", fn) is not None
                 r = rewrite(e, set() if mixed else want, mixed)
+                if r is DROP:
+                    dropped.append(e)
+                    st["dropped_not_the_noun"] += 1
+                    continue
                 if not r:
                     st["left"] += 1
                     if not mixed:
