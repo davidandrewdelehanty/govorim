@@ -433,6 +433,11 @@ def main(argv=None):
     prose.main(["--apply"])
     import pertinence
     pertinence.main(["--apply"])
+    try:
+        import pos_guard
+        pos_guard.main(["--apply"])      # a noun blank the dictionary also reads as a verb/adverb/... is dropped
+    except ImportError:
+        print("pos_guard skipped (pymorphy3 not installed)")
     # The Verbs of Motion course: each exercise explained by the rule for its own verb or prefix.
     import motion_explain
     motion_explain.main(["--apply"])
@@ -489,6 +494,11 @@ def build_only(only, outline):
         sense_check.main(["--drop", "--course", only])
     import pertinence
     pertinence.main(["--apply", "--course", only])
+    try:
+        import pos_guard
+        pos_guard.main(["--apply", "--course", only])      # a noun blank the dictionary also reads as a verb/adverb/... is dropped
+    except ImportError:
+        print("pos_guard skipped (pymorphy3 not installed)")
     if only == "motion":
         import motion_explain
         motion_explain.main(["--apply"])

@@ -22,28 +22,28 @@ export default [
    {
     "id": "ts-v-acc",
     "title": "В + accusative: At five, once a week, that day, the first time",
-    "n": 50,
+    "n": 33,
     "stream": true,
     "finite": true
    },
    {
     "id": "ts-instr",
     "title": "In the morning, at night, in summer",
-    "n": 11,
+    "n": 0,
     "stream": true,
     "finite": true
    },
    {
     "id": "ts-kazhdyy",
     "title": "каждый + accusative: Every day, every Wednesday",
-    "n": 14,
+    "n": 12,
     "stream": true,
     "finite": true
    },
    {
     "id": "ts-ves",
     "title": "весь + accusative: All day, all week",
-    "n": 13,
+    "n": 10,
     "stream": true,
     "finite": true
    },
@@ -78,35 +78,35 @@ export default [
    {
     "id": "ts-how-long",
     "title": "For two hours, for a week",
-    "n": 7,
+    "n": 6,
     "stream": true,
     "finite": true
    },
    {
     "id": "ts-na-acc",
     "title": "НА + accusative: For a week, the next day",
-    "n": 14,
+    "n": 10,
     "stream": true,
     "finite": true
    },
    {
     "id": "ts-za-acc",
     "title": "ЗА + accusative: In an hour (it took)",
-    "n": 50,
+    "n": 42,
     "stream": true,
     "finite": true
    },
    {
     "id": "ts-cherez",
     "title": "ЧЕРЕЗ + accusative: In an hour (from now)",
-    "n": 21,
+    "n": 19,
     "stream": true,
     "finite": true
    },
    {
     "id": "ts-nazad",
     "title": "accusative + (тому) назад: An hour ago",
-    "n": 22,
+    "n": 21,
     "stream": true,
     "finite": true
    },
@@ -120,28 +120,28 @@ export default [
    {
     "id": "ts-do-gen",
     "title": "ДО + genitive: Till evening, before lunch",
-    "n": 50,
+    "n": 49,
     "stream": true,
     "finite": true
    },
    {
     "id": "ts-posle",
     "title": "ПОСЛЕ + genitive: After lunch",
-    "n": 29,
+    "n": 28,
     "stream": true,
     "finite": true
    },
    {
     "id": "ts-pered",
     "title": "ПЕРЕД + instrumental: Just before lunch",
-    "n": 17,
+    "n": 8,
     "stream": true,
     "finite": true
    },
    {
     "id": "ts-k-dat",
     "title": "К + dative: By evening, by five",
-    "n": 36,
+    "n": 31,
     "stream": true,
     "finite": true
    },
@@ -218,7 +218,7 @@ export default [
    {
     "id": "exam",
     "title": "Exam",
-    "n": 95,
+    "n": 90,
     "exam": true
    }
   ],
@@ -248,12 +248,12 @@ export default [
    {
     "id": "c2-genitive-plural",
     "title": "The genitive plural",
-    "n": 9
+    "n": 8
    },
    {
     "id": "c2-genitive-plural-practice",
     "title": "Practice: The genitive plural",
-    "n": 13
+    "n": 12
    },
    {
     "id": "c3-how-many",
@@ -263,7 +263,7 @@ export default [
    {
     "id": "c3-how-many-practice",
     "title": "Practice: Much, many, few, how many, several",
-    "n": 14
+    "n": 12
    },
    {
     "id": "c4-one-two-three-four",
@@ -288,7 +288,7 @@ export default [
    {
     "id": "c6-hundreds-thousands",
     "title": "Hundreds, thousands, millions, and «about»",
-    "n": 15
+    "n": 13
    },
    {
     "id": "c7-ordinals-fractions",
@@ -308,7 +308,7 @@ export default [
    {
     "id": "c8-collective-half-practice",
     "title": "Practice: двое, трое… and полтора",
-    "n": 14
+    "n": 13
    },
    {
     "id": "exam",
@@ -3322,7 +3322,7 @@ export default [
    {
     "id": "i01-acc-or-gen-practice",
     "title": "Practice 1: Accusative or genitive?",
-    "n": 20
+    "n": 19
    },
    {
     "id": "i01-acc-or-gen-practice-2",
@@ -3332,7 +3332,7 @@ export default [
    {
     "id": "i01-acc-or-gen-practice-3",
     "title": "Practice 3: Accusative or genitive?",
-    "n": 20
+    "n": 19
    },
    {
     "id": "i01-acc-or-gen-practice-4",
@@ -3342,12 +3342,12 @@ export default [
    {
     "id": "i01-acc-or-gen-practice-5",
     "title": "Practice 5: Accusative or genitive?",
-    "n": 20
+    "n": 18
    },
    {
     "id": "i01-acc-or-gen-practice-6",
     "title": "Practice 6: Accusative or genitive?",
-    "n": 18
+    "n": 17
    },
    {
     "id": "i01-acc-or-gen-practice-7",
@@ -3357,7 +3357,7 @@ export default [
    {
     "id": "i01-acc-or-gen-practice-8",
     "title": "Practice 8: Accusative or genitive?",
-    "n": 20
+    "n": 17
    },
    {
     "id": "i01-acc-or-gen-practice-9",
@@ -3372,37 +3372,37 @@ export default [
    {
     "id": "i01-acc-or-gen-practice-11",
     "title": "Practice 11: Accusative or genitive?",
-    "n": 14
+    "n": 12
    },
    {
     "id": "i01-acc-or-gen-practice-12",
     "title": "Practice 12: Accusative or genitive?",
-    "n": 13
+    "n": 12
    },
    {
     "id": "i01-acc-or-gen-practice-13",
     "title": "Practice 13: Accusative or genitive?",
-    "n": 14
+    "n": 13
    },
    {
     "id": "i01-acc-or-gen-practice-14",
     "title": "Practice 14: Accusative or genitive?",
-    "n": 13
+    "n": 12
    },
    {
     "id": "i01-acc-or-gen-practice-15",
     "title": "Practice 15: Accusative or genitive?",
-    "n": 13
+    "n": 11
    },
    {
     "id": "i01-acc-or-gen-practice-16",
     "title": "Practice 16: Accusative or genitive?",
-    "n": 13
+    "n": 12
    },
    {
     "id": "i01-acc-or-gen-practice-17",
     "title": "Practice 17: Accusative or genitive?",
-    "n": 13
+    "n": 12
    },
    {
     "id": "i01-acc-or-gen-practice-18",
@@ -3432,7 +3432,7 @@ export default [
    {
     "id": "i04-numerals-adjectives-practice-2",
     "title": "Practice 2: Numerals, nouns and adjectives together",
-    "n": 20
+    "n": 18
    },
    {
     "id": "i04-numerals-adjectives-practice-3",
@@ -3452,17 +3452,17 @@ export default [
    {
     "id": "i04-numerals-adjectives-practice-6",
     "title": "Practice 6: Numerals, nouns and adjectives together",
-    "n": 20
+    "n": 16
    },
    {
     "id": "i04-numerals-adjectives-practice-7",
     "title": "Practice 7: Numerals, nouns and adjectives together",
-    "n": 10
+    "n": 9
    },
    {
     "id": "i05-compound-numerals",
     "title": "Compound numerals in every case",
-    "n": 19
+    "n": 18
    },
    {
     "id": "i05-compound-numerals-practice",
@@ -3472,7 +3472,7 @@ export default [
    {
     "id": "i06-fractions-collective",
     "title": "Fractions, двое, трое, оба",
-    "n": 20
+    "n": 19
    },
    {
     "id": "i06-fractions-collective-practice",
@@ -3562,7 +3562,7 @@ export default [
    {
     "id": "i16-time",
     "title": "Expressing time",
-    "n": 20
+    "n": 18
    },
    {
     "id": "i16-time-practice",
@@ -3572,17 +3572,17 @@ export default [
    {
     "id": "i16-time-practice-2",
     "title": "Practice 2: Expressing time",
-    "n": 20
+    "n": 19
    },
    {
     "id": "i16-time-practice-3",
     "title": "Practice 3: Expressing time",
-    "n": 20
+    "n": 19
    },
    {
     "id": "i16-time-practice-4",
     "title": "Practice 4: Expressing time",
-    "n": 20
+    "n": 19
    },
    {
     "id": "i16-time-practice-5",
@@ -3592,7 +3592,7 @@ export default [
    {
     "id": "i16-time-practice-6",
     "title": "Practice 6: Expressing time",
-    "n": 19
+    "n": 17
    },
    {
     "id": "i16-time-practice-7",
@@ -3607,27 +3607,27 @@ export default [
    {
     "id": "i16-time-practice-9",
     "title": "Practice 9: Expressing time",
-    "n": 20
+    "n": 19
    },
    {
     "id": "i16-time-practice-10",
     "title": "Practice 10: Expressing time",
-    "n": 20
+    "n": 19
    },
    {
     "id": "i16-time-practice-11",
     "title": "Practice 11: Expressing time",
-    "n": 20
+    "n": 18
    },
    {
     "id": "i16-time-practice-12",
     "title": "Practice 12: Expressing time",
-    "n": 20
+    "n": 19
    },
    {
     "id": "i16-time-practice-13",
     "title": "Practice 13: Expressing time",
-    "n": 20
+    "n": 18
    },
    {
     "id": "i16-time-practice-14",
@@ -3637,7 +3637,7 @@ export default [
    {
     "id": "i16-time-practice-15",
     "title": "Practice 15: Expressing time",
-    "n": 20
+    "n": 18
    },
    {
     "id": "i16-time-practice-16",
@@ -3647,7 +3647,7 @@ export default [
    {
     "id": "i16-time-practice-17",
     "title": "Practice 17: Expressing time",
-    "n": 19
+    "n": 17
    },
    {
     "id": "i16-time-practice-18",
@@ -3657,12 +3657,12 @@ export default [
    {
     "id": "i16-time-practice-19",
     "title": "Practice 19: Expressing time",
-    "n": 20
+    "n": 18
    },
    {
     "id": "i16-time-practice-20",
     "title": "Practice 20: Expressing time",
-    "n": 20
+    "n": 17
    },
    {
     "id": "i17-cause",
@@ -3797,27 +3797,27 @@ export default [
    {
     "id": "i22-negation-practice",
     "title": "Practice 1: Expressing negation",
-    "n": 20
+    "n": 19
    },
    {
     "id": "i22-negation-practice-2",
     "title": "Practice 2: Expressing negation",
-    "n": 19
+    "n": 16
    },
    {
     "id": "i22-negation-practice-3",
     "title": "Practice 3: Expressing negation",
-    "n": 19
+    "n": 18
    },
    {
     "id": "i22-negation-practice-4",
     "title": "Practice 4: Expressing negation",
-    "n": 20
+    "n": 17
    },
    {
     "id": "i22-negation-practice-5",
     "title": "Practice 5: Expressing negation",
-    "n": 19
+    "n": 16
    },
    {
     "id": "i22-negation-practice-6",
@@ -3877,7 +3877,7 @@ export default [
    {
     "id": "v03-cause",
     "title": "Cause in a complex sentence",
-    "n": 15
+    "n": 14
    },
    {
     "id": "v04-concession",
@@ -3897,17 +3897,17 @@ export default [
    {
     "id": "v06-no-subject-practice",
     "title": "Practice 1: Sentences without a subject",
-    "n": 19
+    "n": 17
    },
    {
     "id": "v06-no-subject-practice-2",
     "title": "Practice 2: Sentences without a subject",
-    "n": 18
+    "n": 17
    },
    {
     "id": "v06-no-subject-practice-3",
     "title": "Practice 3: Sentences without a subject",
-    "n": 20
+    "n": 19
    },
    {
     "id": "v06-no-subject-practice-4",
@@ -3917,7 +3917,7 @@ export default [
    {
     "id": "v06-no-subject-practice-5",
     "title": "Practice 5: Sentences without a subject",
-    "n": 20
+    "n": 18
    },
    {
     "id": "v07-coord",
@@ -3987,7 +3987,7 @@ export default [
    {
     "id": "v13-prefixes",
     "title": "Verbs with prefixes",
-    "n": 80
+    "n": 77
    },
    {
     "id": "exam",
@@ -4012,7 +4012,7 @@ export default [
    {
     "id": "s01-kust-sireni",
     "title": "Александр Куприн · Куст сирени",
-    "n": 14
+    "n": 13
    },
    {
     "id": "s01-kust-sireni-practice",
@@ -4022,12 +4022,12 @@ export default [
    {
     "id": "s01-kust-sireni-practice-2",
     "title": "Practice 2: Александр Куприн · Куст сирени",
-    "n": 14
+    "n": 13
    },
    {
     "id": "s01-kust-sireni-practice-3",
     "title": "Practice 3: Александр Куприн · Куст сирени",
-    "n": 19
+    "n": 18
    },
    {
     "id": "s01-kust-sireni-practice-4",
@@ -4067,12 +4067,12 @@ export default [
    {
     "id": "s02-sostyazanie",
     "title": "Викентий Вересаев · Состязание",
-    "n": 17
+    "n": 15
    },
    {
     "id": "s02-sostyazanie-practice",
     "title": "Practice 1: Викентий Вересаев · Состязание",
-    "n": 20
+    "n": 18
    },
    {
     "id": "s02-sostyazanie-practice-2",
@@ -4082,12 +4082,12 @@ export default [
    {
     "id": "s02-sostyazanie-practice-3",
     "title": "Practice 3: Викентий Вересаев · Состязание",
-    "n": 19
+    "n": 18
    },
    {
     "id": "s02-sostyazanie-practice-4",
     "title": "Practice 4: Викентий Вересаев · Состязание",
-    "n": 17
+    "n": 16
    },
    {
     "id": "s02-sostyazanie-practice-5",
@@ -4122,12 +4122,12 @@ export default [
    {
     "id": "s03-nuncha",
     "title": "Максим Горький · Нунча («Сказки об Италии», XXII)",
-    "n": 17
+    "n": 16
    },
    {
     "id": "s03-nuncha-practice",
     "title": "Practice 1: Максим Горький · Нунча («Сказки об Италии», XXII)",
-    "n": 17
+    "n": 16
    },
    {
     "id": "s03-nuncha-practice-2",
@@ -4172,17 +4172,17 @@ export default [
    {
     "id": "s04-glupyy-frantsuz",
     "title": "Антон Чехов · Глупый француз",
-    "n": 17
+    "n": 16
    },
    {
     "id": "s04-glupyy-frantsuz-practice",
     "title": "Practice 1: Антон Чехов · Глупый француз",
-    "n": 19
+    "n": 18
    },
    {
     "id": "s04-glupyy-frantsuz-practice-2",
     "title": "Practice 2: Антон Чехов · Глупый француз",
-    "n": 17
+    "n": 16
    },
    {
     "id": "s04-glupyy-frantsuz-practice-3",
@@ -4317,12 +4317,12 @@ export default [
    {
     "id": "s07-attalea",
     "title": "Всеволод Гаршин · Attalea princeps",
-    "n": 16
+    "n": 15
    },
    {
     "id": "s07-attalea-practice",
     "title": "Practice 1: Всеволод Гаршин · Attalea princeps",
-    "n": 20
+    "n": 18
    },
    {
     "id": "s07-attalea-practice-2",
@@ -4372,12 +4372,12 @@ export default [
    {
     "id": "s08-zelyonaya-lampa",
     "title": "Александр Грин · Зелёная лампа",
-    "n": 16
+    "n": 13
    },
    {
     "id": "s08-zelyonaya-lampa-practice",
     "title": "Practice 1: Александр Грин · Зелёная лампа",
-    "n": 19
+    "n": 17
    },
    {
     "id": "s08-zelyonaya-lampa-practice-2",
@@ -4392,7 +4392,7 @@ export default [
    {
     "id": "s08-zelyonaya-lampa-practice-4",
     "title": "Practice 4: Александр Грин · Зелёная лампа",
-    "n": 18
+    "n": 17
    },
    {
     "id": "s08-zelyonaya-lampa-practice-5",
@@ -4427,7 +4427,7 @@ export default [
    {
     "id": "s09-anna-na-shee",
     "title": "Антон Чехов · Анна на шее",
-    "n": 16
+    "n": 15
    },
    {
     "id": "s09-anna-na-shee-practice",
@@ -4452,7 +4452,7 @@ export default [
    {
     "id": "s09-anna-na-shee-practice-5",
     "title": "Practice 5: Антон Чехов · Анна на шее",
-    "n": 20
+    "n": 19
    },
    {
     "id": "s09-anna-na-shee-practice-6",
@@ -4482,12 +4482,12 @@ export default [
    {
     "id": "s10-smotritel",
     "title": "Александр Пушкин · Станционный смотритель",
-    "n": 17
+    "n": 15
    },
    {
     "id": "s10-smotritel-practice",
     "title": "Practice 1: Александр Пушкин · Станционный смотритель",
-    "n": 20
+    "n": 18
    },
    {
     "id": "s10-smotritel-practice-2",
@@ -4497,27 +4497,27 @@ export default [
    {
     "id": "s10-smotritel-practice-3",
     "title": "Practice 3: Александр Пушкин · Станционный смотритель",
-    "n": 20
+    "n": 18
    },
    {
     "id": "s10-smotritel-practice-4",
     "title": "Practice 4: Александр Пушкин · Станционный смотритель",
-    "n": 18
+    "n": 16
    },
    {
     "id": "s10-smotritel-practice-5",
     "title": "Practice 5: Александр Пушкин · Станционный смотритель",
-    "n": 19
+    "n": 18
    },
    {
     "id": "s10-smotritel-practice-6",
     "title": "Practice 6: Александр Пушкин · Станционный смотритель",
-    "n": 19
+    "n": 18
    },
    {
     "id": "s10-smotritel-practice-7",
     "title": "Practice 7: Александр Пушкин · Станционный смотритель",
-    "n": 20
+    "n": 17
    },
    {
     "id": "s10-smotritel-practice-8",
@@ -4532,12 +4532,12 @@ export default [
    {
     "id": "s10-smotritel-practice-10",
     "title": "Practice 10: Александр Пушкин · Станционный смотритель",
-    "n": 20
+    "n": 19
    },
    {
     "id": "s11-yolka",
     "title": "Фёдор Достоевский · Ёлка и свадьба",
-    "n": 19
+    "n": 18
    },
    {
     "id": "s11-yolka-practice",
@@ -4547,12 +4547,12 @@ export default [
    {
     "id": "s11-yolka-practice-2",
     "title": "Practice 2: Фёдор Достоевский · Ёлка и свадьба",
-    "n": 18
+    "n": 17
    },
    {
     "id": "s11-yolka-practice-3",
     "title": "Practice 3: Фёдор Достоевский · Ёлка и свадьба",
-    "n": 19
+    "n": 18
    },
    {
     "id": "s11-yolka-practice-4",
@@ -4567,12 +4567,12 @@ export default [
    {
     "id": "s11-yolka-practice-6",
     "title": "Practice 6: Фёдор Достоевский · Ёлка и свадьба",
-    "n": 20
+    "n": 19
    },
    {
     "id": "s11-yolka-practice-7",
     "title": "Practice 7: Фёдор Достоевский · Ёлка и свадьба",
-    "n": 20
+    "n": 19
    },
    {
     "id": "s11-yolka-practice-8",
@@ -4602,7 +4602,7 @@ export default [
    {
     "id": "s13-pismo-bratu",
     "title": "Антон Чехов · Письмо брату Николаю (1886)",
-    "n": 19
+    "n": 18
    },
    {
     "id": "s13-pismo-bratu-practice",
@@ -4637,12 +4637,12 @@ export default [
    {
     "id": "s14-zhemchuzhnoe-ozherelie",
     "title": "Николай Лесков · Жемчужное ожерелье",
-    "n": 16
+    "n": 15
    },
    {
     "id": "s14-zhemchuzhnoe-ozherelie-practice",
     "title": "Practice 1: Николай Лесков · Жемчужное ожерелье",
-    "n": 20
+    "n": 19
    },
    {
     "id": "s14-zhemchuzhnoe-ozherelie-practice-2",
@@ -4657,12 +4657,12 @@ export default [
    {
     "id": "s14-zhemchuzhnoe-ozherelie-practice-4",
     "title": "Practice 4: Николай Лесков · Жемчужное ожерелье",
-    "n": 18
+    "n": 16
    },
    {
     "id": "s14-zhemchuzhnoe-ozherelie-practice-5",
     "title": "Practice 5: Николай Лесков · Жемчужное ожерелье",
-    "n": 18
+    "n": 17
    },
    {
     "id": "s14-zhemchuzhnoe-ozherelie-practice-6",
@@ -4802,22 +4802,22 @@ export default [
    {
     "id": "g2-nouns-sg",
     "title": "Nouns: the singular",
-    "n": 59
+    "n": 53
    },
    {
     "id": "g3-nouns-pl",
     "title": "Nouns: the plural",
-    "n": 63
+    "n": 59
    },
    {
     "id": "g4-noun-irregular",
     "title": "Irregular nouns",
-    "n": 133
+    "n": 126
    },
    {
     "id": "g5-noun-awkward",
     "title": "Fleeting vowels, bare genitives, nouns that never change",
-    "n": 111
+    "n": 103
    },
    {
     "id": "g6-adjectives",
