@@ -12548,7 +12548,18 @@ export default function App() {
       if (!q.err) fdPrefetch(kind);
     });
   };
+  // Whatever was left open on the Vocab tab — a quiz, the match game, a drill
+  // — put away, so the next thing asked for is the one that shows. (A quiz
+  // of grammar terms left open earlier was what the page kept drawing first.)
+  var clearVocabView = function() {
+    fdSeq.current++;
+    fdNext.current = null;
+    setQuizMode(false); setMatchGame(null); setRv(null);
+    setTermDrill(function(t){ return t && t.where === "vocab" ? null : t; });
+    setVocabDrill(null); setFd(null);
+  };
   var fdStart = function(kind) {
+    clearVocabView();
     fdNext.current = null;
     setVocabDrill(kind);
     setFd({ kind: kind, q: null, input: "", checked: false, right: false, n: 0, nRight: 0, busy: true, err: "" });
@@ -12570,6 +12581,7 @@ export default function App() {
   };
   // The Case drills, opened from the same menu.
   var openCaseDrills = function() {
+    clearVocabView();
     setVocabDrill("cases");
     stopTTS();
     if ((!cdQs.length || cdOver) && !cdBusy) startCaseDrills();
@@ -27151,6 +27163,7 @@ quizMode ? (
                     return;
                   }
                   setVocabSec("words");
+                  clearVocabView();
                   setQuizMenu(true);
                   if (go === "cases") openCaseDrills();
                   else if (go === "decl" || go === "conj") fdStart(go);
