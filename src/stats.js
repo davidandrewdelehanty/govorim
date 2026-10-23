@@ -154,19 +154,32 @@ export function totals(stats) {
 // carries the same list with its buttons; this is the part a push message
 // needs, kept where the server can import it.
 export var GOAL_KINDS = [
-  { k: "words", f: "read", one: "word", what: "to read" },
-  { k: "cards", f: "practiced", one: "card", what: "to review" },
-  { k: "quiz", f: "quiz", one: "quiz answer", what: "" },
-  { k: "match", f: "match", one: "match round", what: "" },
-  { k: "terms", f: "terms", one: "grammar term", what: "" },
-  { k: "decl", f: "decl", one: "declension", what: "" },
-  { k: "conj", f: "conj", one: "conjugation", what: "" },
-  { k: "drills", f: "cases", one: "case drill", what: "" },
-  { k: "verbs", f: "verbs", one: "verb answer", what: "" },
-  { k: "numbers", f: "numbers", one: "number answer", what: "" },
-  { k: "course", f: "course", one: "course exercise", what: "" },
-  { k: "sections", f: "sections", one: "course section", what: "" },
+  { k: "words", f: "read", one: "word", what: "to read", label: "Words read" },
+  { k: "cards", f: "practiced", one: "card", what: "to review", label: "Vocabulary reviewed" },
+  { k: "quiz", f: "quiz", one: "quiz answer", what: "", label: "Multiple-choice quiz" },
+  { k: "match", f: "match", one: "match round", what: "", label: "Match rounds won" },
+  { k: "terms", f: "terms", one: "grammar term", what: "", label: "Grammar terms" },
+  { k: "decl", f: "decl", one: "declension", what: "", label: "Declension practice" },
+  { k: "conj", f: "conj", one: "conjugation", what: "", label: "Conjugation practice" },
+  { k: "drills", f: "cases", one: "case drill", what: "", label: "Case drills" },
+  { k: "verbs", f: "verbs", one: "verb answer", what: "", label: "Verb practice" },
+  { k: "numbers", f: "numbers", one: "number answer", what: "", label: "Counting and numerals" },
+  { k: "course", f: "course", one: "course exercise", what: "", label: "Course exercises right" },
+  { k: "sections", f: "sections", one: "course section", what: "", label: "Course sections finished" },
 ];
+
+// Every goal that is set, against the day: [{ k, label, one, goal, have, left, met }].
+export function goalsStatus(goals, rec) {
+  var out = [];
+  GOAL_KINDS.forEach(function (g) {
+    var goal = Number((goals || {})[g.k]) || 0;
+    if (goal <= 0) return;
+    var have = Number((rec || {})[g.f]) || 0;
+    out.push({ k: g.k, label: g.label, one: g.one, what: g.what, goal: goal, have: have,
+               left: Math.max(0, goal - have), met: have >= goal });
+  });
+  return out;
+}
 
 // What is still short today, in words: "320 words to read · 6 cards to review".
 // Empty when nothing is set or everything is met.

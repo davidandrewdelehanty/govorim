@@ -32,7 +32,7 @@ import webpush from "web-push";
 import { requireUser, listAccounts, r2GetJson, r2PutJson, userDataKey } from "../lib/auth.js";
 import { siteName, isPublicSite } from "../lib/site.js";
 import { sendEmail } from "../lib/admin/helpers.js";
-import { goalsShortfall } from "../src/stats.js";
+import { goalsShortfall, goalsStatus } from "../src/stats.js";
 
 // The reminder can also go by email, to the reader's own address, when they
 // have asked for that on the My page (goals.emailRemind). The time zone for a
@@ -41,12 +41,66 @@ import { goalsShortfall } from "../src/stats.js";
 const SITE_URL = isPublicSite() ? "https://samovar.live" : "https://govorim.dev";
 
 function esc(t) { return String(t).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;" }[c]; }); }
-function emailHtml(title, short, site) {
-  return "<div style=\"font-family:Georgia,serif;font-size:16px;color:#1c1610;line-height:1.5\">" +
-    "<p style=\"font-size:19px;margin:0 0 10px\"><b>" + esc(title) + "</b></p>" +
-    "<ul style=\"margin:0 0 16px;padding-left:20px\">" + short.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul>" +
-    "<p><a href=\"" + SITE_URL + "\" style=\"color:#7a2e2e\">Open " + esc(site) + "</a></p>" +
-    "<p style=\"font-size:12px;color:#777\">You asked for these reminders on your My " + esc(site) + " page; turn them off there any time.</p></div>";
+// The e-mailed reminder, set like the site: paper, ink, the rubric red, a
+// serif — every goal that is set with its bar, what is left, and the way in.
+// Tables and inline styles only, which is what mail clients render.
+function fmt(n) { return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
+function emailHtml(kind, rows, site, dayLabel) {
+  const PAPER = "#f4efe5", PAPER2 = "#ebe4d6", INK = "#1b1613", INK2 = "#6b625b", INK3 = "#8f867f",
+        RULE = "#cfc6b8", RUBRIC = "#9b2d1f", GREEN = "#2f5a2a";
+  const serif = "Georgia,'Times New Roman',Times,serif";
+  const metN = rows.filter(function (r) { return r.met; }).length;
+  const allMet = metN === rows.length;
+  const title = kind === "am" ? "Good morning" : (allMet ? "Every goal met" : "Still to do today");
+  const lead = kind === "am"
+    ? "Today's goals on " + site + " — " + rows.length + (rows.length === 1 ? " thing" : " things") + " to do."
+    : (allMet ? "All " + rows.length + " of today's goals are done." : (rows.length - metN) + " of " + rows.length + " still short, with the evening ahead.");
+  const bar = function (r) {
+    const pct = Math.max(0, Math.min(100, Math.round(100 * r.have / r.goal)));
+    return "<table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"border-collapse:collapse;margin:6px 0 0\"><tr>" +
+      "<td style=\"background:" + PAPER2 + ";height:6px;line-height:6px;font-size:0;border-radius:3px\">" +
+      "<div style=\"width:" + pct + "%;max-width:100%;height:6px;line-height:6px;font-size:0;background:" + (r.met ? GREEN : RUBRIC) + ";border-radius:3px\">&nbsp;</div>" +
+      "</td></tr></table>";
+  };
+  const row = function (r) {
+    const foot = r.met
+      ? "<span style=\"color:" + GREEN + "\">Done &#10003;</span>"
+      : fmt(r.left) + " " + esc(r.one + (r.left === 1 ? "" : "s")) + (r.what ? " " + esc(r.what) : "") + " to go";
+    return "<tr><td style=\"padding:12px 0;border-bottom:1px solid " + RULE + "\">" +
+      "<table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"border-collapse:collapse\"><tr>" +
+      "<td style=\"font-family:" + serif + ";font-size:16px;color:" + INK + "\">" + esc(r.label) + "</td>" +
+      "<td align=\"right\" style=\"font-family:" + serif + ";font-size:15px;color:" + INK + ";white-space:nowrap\"><b>" + fmt(r.have) + "</b> <span style=\"color:" + INK3 + "\">/ " + fmt(r.goal) + "</span></td>" +
+      "</tr></table>" + bar(r) +
+      "<div style=\"font-family:" + serif + ";font-size:13px;color:" + INK2 + ";margin-top:5px\">" + foot + "</div>" +
+      "</td></tr>";
+  };
+  return "<!doctype html><html><body style=\"margin:0;padding:0;background:" + PAPER + "\">" +
+    "<table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"border-collapse:collapse;background:" + PAPER + "\"><tr><td align=\"center\" style=\"padding:28px 14px\">" +
+    "<table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"border-collapse:collapse;max-width:560px\">" +
+    // masthead
+    "<tr><td style=\"padding:0 0 14px;border-bottom:1px solid " + INK + "\">" +
+    "<span style=\"font-family:" + serif + ";font-size:24px;font-weight:bold;color:" + INK + "\">" + esc(site) + "</span>" +
+    "<span style=\"font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:" + INK3 + ";padding-left:10px\">My " + esc(site) + "</span>" +
+    "</td></tr>" +
+    // kicker, title, lead
+    "<tr><td style=\"padding:22px 0 0\">" +
+    "<div style=\"font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:" + RUBRIC + "\">" + esc(dayLabel) + "</div>" +
+    "<div style=\"font-family:" + serif + ";font-size:30px;line-height:1.15;color:" + INK + ";margin:6px 0 8px\">" + esc(title) + "</div>" +
+    "<div style=\"font-family:" + serif + ";font-size:16px;line-height:1.5;color:" + INK2 + "\">" + esc(lead) + "</div>" +
+    "</td></tr>" +
+    // the goals
+    "<tr><td style=\"padding:10px 0 0\"><table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"border-collapse:collapse;border-top:1px solid " + RULE + "\">" +
+    rows.map(row).join("") +
+    "</table></td></tr>" +
+    // the way in
+    "<tr><td align=\"left\" style=\"padding:26px 0 0\">" +
+    "<a href=\"" + SITE_URL + "\" style=\"display:inline-block;font-family:" + serif + ";font-size:16px;color:" + PAPER + ";background:" + INK + ";text-decoration:none;padding:12px 26px;border-radius:999px\">Open " + esc(site) + " &rarr;</a>" +
+    "</td></tr>" +
+    // foot
+    "<tr><td style=\"padding:30px 0 0;font-family:" + serif + ";font-size:12px;line-height:1.6;color:" + INK3 + ";border-top:1px solid " + RULE + ";margin-top:30px\">" +
+    "You asked for these reminders on your My " + esc(site) + " page, where the goals and the times are yours to change and the e-mail can be turned off." +
+    "</td></tr>" +
+    "</table></td></tr></table></body></html>";
 }
 
 const WINDOW_MIN = 30;     // a time counts as "just passed" for this long — two missed cron runs
@@ -133,10 +187,15 @@ async function remindOne(account, now, site, canPushNow) {
   let changed = false, n = 0;
   for (const k of keys) {
     const d = due[k];
-    const short = goalsShortfall(goals, stats[d.day] || {});
+    const rec = stats[d.day] || {};
+    const short = goalsShortfall(goals, rec);
+    const rows = goalsStatus(goals, rec);
     push.sent[k] = now.getTime();
     changed = true;
     if (!short.length) continue;                   // nothing set, or every goal met: nothing to say
+    // the day, as the My page writes it: "Thursday, 23 October"
+    let dayLabel = "";
+    try { dayLabel = new Date(d.day + "T12:00:00Z").toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long", timeZone: "UTC" }); } catch (e) {}
     const payload = d.slot === "am"
       ? { title: "Good morning — today's " + site + " goals", body: short.join(" · "), tag: "goals-am", url: "/" }
       : { title: "Still to do today on " + site, body: short.join(" · "), tag: "goals-pm", url: "/" };
@@ -151,7 +210,7 @@ async function remindOne(account, now, site, canPushNow) {
       }
     }
     if (byEmail) {
-      const r = await sendEmail({ to: account.email, subject: payload.title, html: emailHtml(payload.title, short, site) }).catch(function () { return null; });
+      const r = await sendEmail({ to: account.email, subject: payload.title, html: emailHtml(d.slot, rows, site, dayLabel) }).catch(function () { return null; });
       if (r && r.sent) n++;
     }
   }
