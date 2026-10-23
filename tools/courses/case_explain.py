@@ -759,7 +759,7 @@ def rewrite(e, want_cases=(), mixed=False):
     gov = governed(q[:m.start()])
     top = M.parse(aw[-1])[0]
     if not gov and governing_cases(q[:m.start()]) is None and (
-            (top.tag.POS in ("VERB", "INFN", "GRND") and top.score >= 0.5) or (top.tag.POS == "ADVB" and top.score >= 0.95)):
+            (top.tag.POS in ("VERB", "INFN", "GRND") and top.score >= 0.5) or (top.tag.POS == "ADVB" and top.score >= 0.95) or norm(aw[-1]) == "дома"):
         return DROP        # «Белка надела шапочку»: the word is a verb (or «потом», an adverb) here, not the noun the course wants
     if gov and (gov[0], gov[1]) in pairs_of(aw[-1], hw[-1]):
         pair = (gov[0], gov[1])
