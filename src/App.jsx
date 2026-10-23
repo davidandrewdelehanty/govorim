@@ -2572,6 +2572,23 @@ function vocabHeads(v) {
 // A verb's conjugation, from the Wiktionary table the conjugation window shows,
 // as the one line a vocabulary card carries («present: я иду́, ты идёшь … · past: шёл,
 // шла, шло, шли · imperative: иди́, иди́те») and as the table itself.
+// A stressed word drawn so the acute sits over its vowel whatever the font:
+// each «vowel + U+0301» becomes a span that carries the mark in CSS (.st).
+function stressed(text) {
+  var t = String(text || "");
+  if (t.indexOf("\u0301") < 0) return t;
+  var out = [], buf = "", k = 0;
+  for (var i = 0; i < t.length; i++) {
+    var ch = t[i];
+    if (t[i + 1] === "\u0301") {
+      if (buf) out.push(buf); buf = "";
+      out.push(<span key={k++} className="st">{ch}</span>);
+      i++;
+    } else buf += ch;
+  }
+  if (buf) out.push(buf);
+  return out;
+}
 function conjRows(d) {
   if (!d) return [];
   var P = [["1s", "я"], ["2s", "ты"], ["3s", "он"], ["1p", "мы"], ["2p", "вы"], ["3p", "они"]];
@@ -12471,7 +12488,7 @@ export default function App() {
             className={"cj-f" + (known ? " has" : "") + (cjSay === c ? " on" : "") + (cjSay === "miss:" + c ? " miss" : "")}
             title={cjSay === "miss:" + c ? "No recording of this form" : (known ? "Play the recording" : "Look for a recording")}
             onClick={function(e){ e.stopPropagation(); sayForm(f); }}
-            onKeyDown={function(e){ if (e.key === "Enter" || e.key === " ") { e.preventDefault(); sayForm(f); } }}>{f}</span>
+            onKeyDown={function(e){ if (e.key === "Enter" || e.key === " ") { e.preventDefault(); sayForm(f); } }}>{stressed(f)}</span>
         </Fragment>
       );
     });
@@ -16555,7 +16572,7 @@ quizMode ? (
                               {ok.map(function(h){
                                 var d = rvConjOk.words[h], ft = firstTwo(d);
                                 if (!ft) return null;
-                                return <div key={h}><span className="rv-forms-inf">{d.infinitive || h}</span> — я {ft[0]}{ft[1] ? ", ты " + ft[1] : ""}</div>;
+                                return <div key={h}><span className="rv-forms-inf">{stressed(d.infinitive || h)}</span> — я {stressed(ft[0])}{ft[1] ? <>, ты {stressed(ft[1])}</> : null}</div>;
                               })}
                             </div>
                             {ok.map(function(h){
@@ -18086,6 +18103,9 @@ quizMode ? (
         .rv-word-row{display:flex;justify-content:center;align-items:center;gap:12px;margin-bottom:30px;flex-wrap:wrap}
         .rv-forms{font-family:'Literata',serif;font-size:16px;line-height:1.5;color:#5a4636;text-align:center;margin:-18px 0 10px}
         .rv-forms-inf{font-weight:600;color:#000}
+        /* The stress mark, drawn over the vowel rather than left to the font. */
+        .st{position:relative;display:inline-block}
+        .st::after{content:"\u02CA";position:absolute;left:50%;top:-.32em;transform:translateX(-50%);font-size:.7em;line-height:1;font-weight:700;pointer-events:none}
         .rv-word{font-size:42px;font-family:'Old Standard TT',serif;color:#000;font-weight:600;text-align:center}
         .rv-card .qex{margin:-14px auto 22px}
         .rv-opts{display:flex;flex-direction:column;gap:10px;max-width:560px;margin:12px auto 0}
@@ -27258,7 +27278,7 @@ quizMode ? (
                                 <div className="icj" lang="ru">
                                   {v.conj
                                     ? conjRows(Object.assign({ aspect: v.aspect }, v.conj)).map(function(r){
-                                        return <div key={r[0]}><span className="icj-l">{r[0]}</span> {r[1]}</div>;
+                                        return <div key={r[0]}><span className="icj-l">{r[0]}</span> {stressed(r[1])}</div>;
                                       })
                                     : <div>{v.conjLine}</div>}
                                 </div>
