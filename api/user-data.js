@@ -614,7 +614,7 @@ export default async function handler(req, res) {
       // Opened while studying English: counted on the English list, under
       // its own key, so the two "Most popular" lists never mix.
       const bookKey = bookName && String((req.query && req.query.l) || "") === "en" ? "en:" + bookName : bookName;
-      if (bookKey) await bumpDailyBook(bookKey);
+      if (bookKey) await bumpDailyBook(bookKey, !who);
       if (bookKey) {
         try {
           const bk = `${PREFIX}/_stats/books.json`;

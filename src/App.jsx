@@ -5086,6 +5086,13 @@ export default function App() {
   var [adminDays, setAdminDays]             = useState(null);
   var [adminDaysLoad, setAdminDaysLoad]     = useState(false);
   var [admDayOpen, setAdmDayOpen]           = useState("");
+  // Today's Site Activity: the one-day roll-up, whether its panel is open,
+  // which date it shows ("" = today) and which reader's rows are unfolded.
+  var [adminToday, setAdminToday]           = useState(null);
+  var [adminTodayLoad, setAdminTodayLoad]   = useState(false);
+  var [admTodayOpen, setAdmTodayOpen]       = useState(false);
+  var [adminTodayDate, setAdminTodayDate]   = useState("");
+  var [admTodayUser, setAdmTodayUser]       = useState("");
   // Which of the site tables above the reader list is open: courses, badges, reading.
   var [admTable, setAdmTable]               = useState("courses");
   // The Modern Russian shelf's groups, open or closed; remembered on the device.
@@ -11407,6 +11414,21 @@ export default function App() {
     } catch(e) {
       setAdminErr(e.message || "Failed to read the days");
     } finally { setAdminDaysLoad(false); }
+  };
+
+  // One whole day on the site — /api/admin/users?today=1[&date=] — for the
+  // "Today's Site Activity" panel. `date` is YYYY-MM-DD (UTC) or "" for today.
+  var loadAdminToday = async function(date) {
+    setAdminTodayLoad(true); setAdminErr("");
+    setAdminTodayDate(date || "");
+    try {
+      var r = await authFetch("/api/admin/users?today=1" + (date ? "&date=" + encodeURIComponent(date) : ""));
+      var d = await r.json();
+      if (!r.ok) throw new Error(d.error || "Failed to read the day");
+      setAdminToday(d);
+    } catch(e) {
+      setAdminErr(e.message || "Failed to read the day");
+    } finally { setAdminTodayLoad(false); }
   };
 
   // Everything the site holds on one reader, for the detail window.
@@ -19968,6 +19990,45 @@ quizMode ? (
         .admu-ctr .holders{margin-top:4px;width:100%}
         .admu-tables .admu-ct{padding-top:8px}
         /* The site day by day. */
+        .tdy{margin-bottom:12px}
+        .tdy-btn{display:flex;align-items:center;gap:12px;width:100%;text-align:left;cursor:pointer;font-family:inherit;
+          padding:14px 16px;border-radius:12px;border:1px solid rgba(42,31,20,.3);background:rgba(42,31,20,.07);color:#000;
+          flex-wrap:wrap;transition:background .15s}
+        .tdy-btn:hover,.tdy-btn.open{background:rgba(42,31,20,.14)}
+        .tdy-btn-t{font-family:'Old Standard TT',serif;font-size:18px;font-weight:700;flex:0 0 auto}
+        .tdy-btn-s{flex:1 1 220px;font-size:12px;color:rgba(42,31,20,.65);line-height:1.4}
+        .tdy-btn-a{font-size:16px;color:rgba(42,31,20,.6)}
+        .tdy-body{border:1px solid rgba(42,31,20,.15);border-top:0;border-radius:0 0 12px 12px;padding:14px 14px 18px;margin-top:-6px;padding-top:20px;background:rgba(42,31,20,.02)}
+        .tdy-bar-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+        .tdy-day{font-family:'Old Standard TT',serif;font-size:16px;flex:1 1 auto}
+        .tdy-date{font-family:inherit;font-size:12px;padding:3px 6px;border:1px solid rgba(42,31,20,.25);border-radius:6px;background:#fff}
+        .tdy-sub{font-size:10px;margin-top:-2px}
+        .tdy-sec{margin-top:20px}
+        .tdy-user{border-bottom:1px solid rgba(42,31,20,.08)}
+        .tdy-user.open{background:rgba(42,31,20,.04)}
+        .tdy-user-h{display:flex;align-items:baseline;gap:10px;width:100%;text-align:left;background:none;border:0;padding:8px 4px;cursor:pointer;font-family:inherit;color:inherit;flex-wrap:wrap}
+        .tdy-user-b{flex:1 1 220px;font-size:12px}
+        .tdy-user-d{padding:2px 6px 12px 14px;display:flex;flex-direction:column;gap:8px}
+        .tdy-new{margin-left:6px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:#8a2d1d;border-radius:999px;padding:1px 7px}
+        .tdy-tbl{display:flex;flex-direction:column}
+        .tdy-tr{display:grid;grid-template-columns:minmax(0,1fr) 64px 76px 84px 64px;gap:8px;padding:5px 2px;border-bottom:1px solid rgba(42,31,20,.07);font-size:13.5px;align-items:baseline}
+        .tdy-tr5{grid-template-columns:minmax(0,1fr) 64px 84px 70px 90px}
+        .tdy-th{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(42,31,20,.55)}
+        .tdy-tr>span:not(:first-child){text-align:right;font-variant-numeric:tabular-nums}
+        .tdy-course{margin-bottom:10px}
+        .tdy-mod{padding-left:16px;font-size:13.5px}
+        .tdy-hours{display:flex;align-items:flex-end;gap:3px;height:70px}
+        .tdy-hr{flex:1 1 0;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%}
+        .tdy-hb{width:100%;background:#8a2d1d;border-radius:2px 2px 0 0}
+        .tdy-hl{font-size:10px;color:rgba(42,31,20,.55);height:12px}
+        @media (max-width:560px){
+          .tdy-tr,.tdy-tr5{grid-template-columns:minmax(0,1fr) repeat(4,auto);gap:6px;font-size:12.5px}
+          .tdy-th{display:none}
+          .tdy-tr>span:not(:first-child)::before{content:attr(data-l) " ";color:rgba(42,31,20,.5);font-size:10px}
+          .tdy-tr{grid-template-columns:1fr 1fr}
+          .tdy-tr>span:first-child{grid-column:1 / -1}
+          .tdy-tr>span:not(:first-child){text-align:left}
+        }
         .admy-days{display:flex;flex-direction:column;border-top:1px solid var(--rule)}
         .admy-day{border-bottom:1px solid var(--rule-soft)}
         .admy-head{display:flex;align-items:baseline;gap:10px;width:100%;text-align:left;background:none;border:0;padding:10px 4px;cursor:pointer;font-family:var(--sans);color:var(--ink)}
@@ -21761,6 +21822,234 @@ quizMode ? (
             </div>
             {adminErr && <div className="adm-err">{adminErr}</div>}
             <div className="adm-body">
+              {/* Today's Site Activity — one button that opens the whole day:
+                  who came, what was opened and read, words saved and reviewed,
+                  course exercises by lesson, signed-out visitors. All of it is
+                  one call, /api/admin/users?today=1, read when the button is
+                  first pressed and again on Refresh. */}
+              {!adminLoad && (function(){
+                var TD = adminToday, open = admTodayOpen;
+                var n = function(x){ return (Number(x) || 0).toLocaleString(); };
+                var clock = function(ts){ return ts ? new Date(ts).toLocaleTimeString([], { hour: "numeric", minute: "2-digit" }) : ""; };
+                var pct = function(a, b){ return b ? Math.round(100 * a / b) + "%" : "—"; };
+                var tile = function(num, label, sub){
+                  return (
+                    <div className="admd-stat still" key={label}>
+                      <span className="n">{typeof num === "number" ? n(num) : num}</span>
+                      <span className="l">{label}</span>
+                      {sub ? <span className="l tdy-sub">{sub}</span> : null}
+                    </div>
+                  );
+                };
+                var head = (
+                  <button type="button" className={"tdy-btn" + (open ? " open" : "")}
+                    onClick={function(){ if (!open && !adminToday) loadAdminToday(""); setAdmTodayOpen(!open); }}>
+                    <span className="tdy-btn-t">Today's Site Activity</span>
+                    <span className="tdy-btn-s">
+                      {TD
+                        ? (TD.totals.activeReaders + " of " + TD.accounts + " readers active · " + n(TD.totals.wordsRead + TD.totals.wordsReadEn) +
+                           " words read · " + n(TD.totals.vocabSaved) + " saved · " + n(TD.totals.exercisesSolved) + " exercises · " + n(TD.site.visits) + " visits")
+                        : "everything that happened on the site today, in one place"}
+                    </span>
+                    <span className="tdy-btn-a">{adminTodayLoad ? "…" : (open ? "▾" : "▸")}</span>
+                  </button>
+                );
+                if (!open) return <div className="tdy">{head}</div>;
+                if (!TD) return <div className="tdy">{head}<div className="tdy-body"><div className="adm-empty">{adminTodayLoad ? "Reading the day…" : "Nothing yet."}</div></div></div>;
+                var T = TD.totals, S = TD.site;
+                var dayName = new Date(TD.date + "T12:00:00Z").toLocaleDateString(undefined, { weekday: "long", day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
+                var off = Math.round(new Date().getTimezoneOffset() / 60);
+                var peak = Math.max.apply(null, TD.hours.concat([1]));
+                var anonBooks = TD.books.filter(function(b){ return b.anonOpens > 0; });
+                var sec = function(title, note, body){
+                  return (
+                    <div className="tdy-sec">
+                      <div className="admy-k">{title}{note ? <span className="dim"> · {note}</span> : null}</div>
+                      {body}
+                    </div>
+                  );
+                };
+                var who = function(name){ return <b className="admy-who">{name}</b>; };
+                return (
+                  <div className="tdy">
+                    {head}
+                    <div className="tdy-body">
+                      <div className="tdy-bar-top">
+                        <span className="tdy-day">{dayName}{TD.isToday ? " · so far" : ""}</span>
+                        <input type="date" className="tdy-date" value={adminTodayDate} max={new Date().toISOString().slice(0, 10)}
+                          onChange={function(e){ loadAdminToday(e.target.value); }} />
+                        <button className="adm-btn" disabled={adminTodayLoad} onClick={function(){ loadAdminToday(adminTodayDate); }}>{adminTodayLoad ? "Reading…" : "Refresh"}</button>
+                      </div>
+                      <div className="admd-s" style={{lineHeight:1.5, marginBottom:10}}>
+                        Days are UTC (so “today” ends at {(function(){ var d = new Date(); d.setUTCHours(24, 0, 0, 0); return d.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" }); })()} your time).
+                        Words read and cards answered are each reader's own tally for the day; saved, reviewed and solved are stamped to the minute.
+                      </div>
+
+                      <div className="admd-stats">
+                        {tile(S.visits, "visits", S.anonVisits + " signed out")}
+                        {tile(S.logins, "sign-ins")}
+                        {tile(T.activeReaders, "active readers", "of " + TD.accounts + " accounts")}
+                        {tile(T.newAccounts, "new accounts")}
+                        {tile(S.opens, "books opened", S.anonOpens + " signed out")}
+                        {tile(T.wordsRead, "Russian words read")}
+                        {tile(T.wordsReadEn, "English words read")}
+                        {tile(T.vocabSaved, "words saved")}
+                        {tile(T.vocabReviewed, "words reviewed", T.vocabFirstSeen + " new · " + T.vocabMissed + " last missed")}
+                        {tile(T.cards, "quiz answers")}
+                        {tile(T.retired, "words retired")}
+                        {tile(T.exercisesSolved, "exercises solved", T.firstTry + " first try (" + pct(T.firstTry, T.exercisesSolved) + ")")}
+                        {tile(T.courseAnswers, "course answers", "every attempt")}
+                        {tile(T.lessonsFinished, "lessons finished")}
+                        {tile(T.drillAnswers, "drill answers")}
+                        {tile(T.booksFinished, "books marked read")}
+                        {tile(T.badges, "badges earned")}
+                        {tile(S.songOpens, "songs opened")}
+                        {tile(T.tips, "tips saved")}
+                      </div>
+
+                      {sec("Readers", TD.quiet + " other account" + (TD.quiet === 1 ? "" : "s") + " did nothing recorded",
+                        TD.readers.length === 0 ? <div className="admy-row dim">No account has recorded anything for this day yet.</div> :
+                        TD.readers.map(function(u){
+                          var op = admTodayUser === u.email;
+                          var bits = [];
+                          if (u.read) bits.push(n(u.read) + " words");
+                          if (u.readEn) bits.push(n(u.readEn) + " EN words");
+                          if (u.vocabSaved) bits.push(u.vocabSaved + " saved");
+                          if (u.vocabReviewed) bits.push(u.vocabReviewed + " reviewed");
+                          if (u.practiced) bits.push(u.practiced + " quiz");
+                          var solved = u.course.reduce(function(t, r){ return t + r.solved; }, 0);
+                          if (solved) bits.push(solved + " exercises");
+                          if (u.drills) bits.push(u.drills + " drills");
+                          if (u.sections) bits.push(u.sections + " lessons");
+                          if (u.songs.length) bits.push(u.songs.length + " songs");
+                          if (u.finished.length) bits.push(u.finished.length + " finished");
+                          if (u.badges.length) bits.push(u.badges.length + " badges");
+                          return (
+                            <div key={u.email} className={"tdy-user" + (op ? " open" : "")}>
+                              <button type="button" className="tdy-user-h" onClick={function(){ setAdmTodayUser(op ? "" : u.email); }}>
+                                <span>{who(u.name)}{u.newToday ? <span className="tdy-new">new</span> : null}</span>
+                                <span className="dim tdy-user-b">{bits.join(" · ") || "visited"}</span>
+                                <span className="admy-arrow">{op ? "▾" : "▸"}</span>
+                              </button>
+                              {op && (
+                                <div className="tdy-user-d">
+                                  <div className="admy-row dim">
+                                    {u.signedInToday ? "signed in " + clock(u.lastLoginAt) + " · " : ""}
+                                    {u.lastSeenAt ? "last seen " + new Date(u.lastSeenAt).toLocaleString([], { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" }) : ""}
+                                  </div>
+                                  {u.books.length > 0 && <div><div className="admy-k">Read</div>{u.books.map(function(b){
+                                    return <div key={b.key} className="admy-row"><span lang={b.en ? "en" : "ru"}>{b.title}</span>{b.en ? " (EN)" : ""}{b.author ? <span className="dim"> — {b.author}</span> : null} <span className="dim">· {n(b.words)} words</span></div>; })}</div>}
+                                  {u.positions.length > 0 && <div><div className="admy-k">Places kept in books</div>{u.positions.map(function(p, i){
+                                    return <div key={i} className="admy-row"><span lang="ru">{p.title}</span> <span className="dim">· chapter {p.chapter}{p.of ? " of " + p.of : ""} · {clock(p.at)}</span></div>; })}</div>}
+                                  {u.finished.length > 0 && <div><div className="admy-k">Marked read</div>{u.finished.map(function(f, i){
+                                    return <div key={i} className="admy-row"><span lang="ru">{f.title}</span>{f.author ? <span className="dim"> — {f.author}</span> : null}</div>; })}</div>}
+                                  {u.vocabSaved > 0 && <div><div className="admy-k">Words saved ({u.vocabSaved})</div><div className="admy-chips">{u.saved.map(function(w, i){
+                                    return <span key={i} className="admy-chip" title={w.from ? "from " + w.from : ""}><span lang="ru">{w.ru}</span>{w.en ? <span className="dim"> {w.en}</span> : null}</span>; })}</div></div>}
+                                  {u.vocabReviewed > 0 && <div><div className="admy-k">Words reviewed ({u.vocabReviewed}) · ✓ last answer right, ✗ missed</div><div className="admy-chips">{u.reviewed.map(function(w, i){
+                                    return <span key={i} className={"admy-chip" + (w.ok ? " done" : "")}><span lang="ru">{w.ru}</span> {w.ok ? "✓" : "✗"}<b> ×{w.reps}</b></span>; })}</div></div>}
+                                  {u.retired.length > 0 && <div><div className="admy-k">Retired as learned</div><div className="admy-chips">{u.retired.map(function(w, i){
+                                    return <span key={i} className="admy-chip done"><span lang="ru">{w.ru}</span></span>; })}</div></div>}
+                                  {u.course.length > 0 && <div><div className="admy-k">Course work</div>{u.course.map(function(r, i){
+                                    return <div key={i} className="admy-row"><span className="dim">{r.course} ·</span> {r.section}{r.exam ? <span className="dim"> (exam)</span> : null}
+                                      <span className="dim"> · {r.solved} solved{r.solved ? " (" + r.first + " first try)" : ""}{r.done ? (r.exam ? " · exam finished" + (r.grade != null ? " " + r.grade + "%" : "") : " · lesson finished") : (r.opened ? " · opened" : "")}</span></div>; })}</div>}
+                                  {u.songs.length > 0 && <div><div className="admy-k">Songs</div>{u.songs.map(function(s, i){
+                                    return <div key={i} className="admy-row"><span lang="ru">{s.title}</span>{s.artist ? <span className="dim"> — {s.artist}</span> : null}</div>; })}</div>}
+                                  {u.badges.length > 0 && <div><div className="admy-k">Badges</div>{u.badges.map(function(b, i){
+                                    return <div key={i} className="admy-row"><span className={"bdg-medal sm t" + Math.min(b.tier || 0, 4)}>{b.mark}</span> {b.title}</div>; })}</div>}
+                                  {u.tips > 0 && <div className="admy-row dim">{u.tips} tip{u.tips === 1 ? "" : "s"} saved</div>}
+                                  {u.drills + u.practiced + u.courseAnswers > 0 && <div className="admy-row dim">
+                                    {u.practiced} quiz answers · {u.drills} drill answers · {u.courseAnswers} course answers (all attempts, right or wrong)</div>}
+                                </div>
+                              )}
+                            </div>
+                          );
+                        })
+                      )}
+
+                      {sec("Books", "opened = everyone, signed in or not; words = account holders", TD.books.length === 0 ? <div className="admy-row dim">No book opened or read yet.</div> : (
+                        <div className="tdy-tbl">
+                          <div className="tdy-tr tdy-th"><span>Book</span><span>Opened</span><span>Signed out</span><span>Words read</span><span>Readers</span></div>
+                          {TD.books.slice(0, 60).map(function(b){
+                            return (
+                              <div className="tdy-tr" key={b.key}>
+                                <span><span lang={b.en ? "en" : "ru"}>{b.title}</span>{b.en ? " (EN)" : ""}{b.author ? <span className="dim"> — {b.author}</span> : null}</span>
+                                <span data-l="Opened">{b.opens || ""}</span>
+                                <span data-l="Signed out">{b.anonOpens || ""}</span>
+                                <span data-l="Words read">{b.words ? n(b.words) : ""}</span>
+                                <span data-l="Readers" title={b.readers.join(", ")}>{b.readerCount || ""}</span>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      ))}
+
+                      {sec("Signed-out visitors", "the server can see visits and opens, never reading",
+                        <div>
+                          <div className="admy-row">{S.anonVisits} visit{S.anonVisits === 1 ? "" : "s"} · {S.anonOpens} book open{S.anonOpens === 1 ? "" : "s"} · {Math.max(0, S.visits - S.anonVisits)} visit{S.visits - S.anonVisits === 1 ? "" : "s"} from signed-in readers</div>
+                          {anonBooks.length > 0
+                            ? <div className="admy-chips">{anonBooks.map(function(b){ return <span key={b.key} className="admy-chip"><span lang={b.en ? "en" : "ru"}>{b.title}</span>{b.en ? " (EN)" : ""}{b.anonOpens > 1 ? <b> ×{b.anonOpens}</b> : null}</span>; })}</div>
+                            : <div className="admy-row dim">{S.anonOpens && !S.anonBooksKnown ? "Which books they opened is recorded from this version on." : "No signed-out book opens."}</div>}
+                        </div>
+                      )}
+
+                      {sec("Vocabulary", n(T.vocabSaved) + " saved · " + n(T.vocabReviewed) + " words reviewed · " + n(T.retired) + " retired",
+                        TD.vocabSources.length === 0 ? <div className="admy-row dim">No words saved yet today. (Open a reader above to see the words themselves.)</div> : (
+                          <div>
+                            <div className="admy-row dim">Where the saved words came from</div>
+                            <div className="admy-chips">{TD.vocabSources.map(function(s){ return <span key={s.title} className="admy-chip"><span lang="ru">{s.title}</span><b> ×{s.n}</b></span>; })}</div>
+                          </div>
+                        )
+                      )}
+
+                      {sec("Courses and lessons", n(T.exercisesSolved) + " exercises solved · " + pct(T.firstTry, T.exercisesSolved) + " first try · only an exercise's first right answer is stamped",
+                        TD.courses.length === 0 ? <div className="admy-row dim">No course exercise solved yet.</div> :
+                        TD.courses.map(function(c){
+                          return (
+                            <div key={c.id} className="tdy-course">
+                              <div className="admy-row"><b>{c.title}</b> <span className="dim">· {c.readers.join(", ")} · {c.solved} solved · {pct(c.first, c.solved)} first try{c.lessons ? " · " + c.lessons + " lesson" + (c.lessons === 1 ? "" : "s") + " finished" : ""}{c.exams ? " · " + c.exams + " exam" + (c.exams === 1 ? "" : "s") : ""}</span></div>
+                              {c.sections.map(function(s){
+                                return <div key={s.title} className="admy-row tdy-mod"><span>{s.title}</span> <span className="dim">· {s.readers} reader{s.readers === 1 ? "" : "s"} · {s.solved} solved ({pct(s.first, s.solved)} first try){s.done ? " · finished ×" + s.done : ""}{s.grades.length ? " · exam " + s.grades.join("%, ") + "%" : ""}</span></div>;
+                              })}
+                            </div>
+                          );
+                        })
+                      )}
+
+                      {TD.songs.length > 0 && sec("Songs", "by account holders", <div className="admy-chips">{TD.songs.map(function(s, i){
+                        return <span key={i} className="admy-chip" title={s.who.join(", ")}><span lang="ru">{s.title}</span>{s.artist ? <span className="dim"> {s.artist}</span> : null}</span>; })}</div>)}
+
+                      {sec("When", "stamped events by hour, in your time",
+                        <div className="tdy-hours">
+                          {TD.hours.map(function(v, h){
+                            var lh = (((h - off) % 24) + 24) % 24;
+                            return (
+                              <div key={h} className="tdy-hr" title={(lh < 10 ? "0" : "") + lh + ":00 — " + v + " event" + (v === 1 ? "" : "s")}>
+                                <div className="tdy-hb" style={{height: Math.round(4 + 46 * v / peak) + "px", opacity: v ? 1 : .25}} />
+                                <div className="tdy-hl">{h % 3 === 0 ? lh : ""}</div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      )}
+
+                      {sec("The last week", "to set today against",
+                        <div className="tdy-tbl">
+                          <div className="tdy-tr tdy-th tdy-tr5"><span>Day</span><span>Visits</span><span>Signed out</span><span>Sign-ins</span><span>Book opens</span></div>
+                          {TD.trend.slice().reverse().map(function(d){
+                            return (
+                              <div className="tdy-tr tdy-tr5" key={d.date}>
+                                <span>{d.date}{d.date === TD.date ? " ◂" : ""}</span>
+                                <span data-l="Visits">{d.visits}</span><span data-l="Signed out">{d.anonVisits}</span>
+                                <span data-l="Sign-ins">{d.logins}</span><span data-l="Book opens">{d.opens}</span>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                );
+              })()}
               {/* Today, at the very head of the list. Two numbers that answer
                   "is anyone out there right now" before any question about a
                   particular reader. */}
