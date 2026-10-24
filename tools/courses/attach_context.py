@@ -90,7 +90,7 @@ def main(argv=None):
     touched = exercises = skipped = nolesson = 0
     for course in sorted(os.listdir(ROOT)):
         d = os.path.join(ROOT, course)
-        if not os.path.isdir(d) or (args.course and course != args.course):
+        if not os.path.isdir(d) or course == "prepositions" or (args.course and course != args.course):
             continue
         stems = {f[:-5] for f in os.listdir(d) if f.endswith(".json")}
         # A teaching lesson is any file that is not a practice file. Some of them

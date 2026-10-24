@@ -24,6 +24,7 @@ PER = 5          # questions from each chapter
 MIN_Q = 20       # a course with few chapters asks more of each, so the exam is at least this long
 POOL = 30        # of each chapter's exercises kept in the file (more when more are asked)
 PASS = 90        # per cent
+EXAM_PER = {"prepositions": 1}     # a course with very many chapters asks one question of each, not five
 PRACTICE = re.compile(r"-practice(-\d+)?$")
 KEEP = ("type", "q", "answers", "options", "answer", "ru", "prompt", "hint", "show", "k", "pairs", "clip")
 
@@ -55,7 +56,7 @@ def add_exams(outline):
                 topics[key]["exercises"].append(x)
         if not order:
             continue
-        per = max(PER, -(-MIN_Q // len(order)))
+        per = EXAM_PER.get(meta["id"]) or max(PER, -(-MIN_Q // len(order)))
         pool = max(POOL, per * 4)
         rnd = random.Random(meta["id"])
         out_topics = []

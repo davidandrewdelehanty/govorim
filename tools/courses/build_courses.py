@@ -78,6 +78,9 @@ for _meta, _secs in adv_courses.COURSE_DEFS:
 import topic_courses
 for _meta, _secs in topic_courses.COURSE_DEFS:
     COURSES.append(dict(_meta, modules=[], order=None, sections=_secs))
+import prep_course
+for _meta, _secs in prep_course.COURSE_DEFS:
+    COURSES.append(dict(_meta, modules=[], order=None, sections=_secs))
 import story_course
 for _meta, _secs in story_course.COURSE_DEFS:
     COURSES.append(dict(_meta, modules=[], order=None, sections=_secs))
@@ -495,8 +498,7 @@ def main(argv=None):
     io.open(os.path.join(ROOT, "src", "courses-outline.js"), "w", encoding="utf-8").write(js)
 
 
-def build_only(only, outline):
-    """The passes that take a course filter, for one course; then its entry in src/courses-outline.js."""
+def _passes(only):
     import attach_context
     attach_context.main(["--apply", "--course", only])
     try:
@@ -534,6 +536,16 @@ def build_only(only, outline):
     if only == "motion":
         import motion_short
         motion_short.main(["--apply"])
+
+
+def build_only(only, outline):
+    """The passes that take a course filter, for one course; then its entry in src/courses-outline.js."""
+    RAW = only == "prepositions"       # its explanations are final as written (prep_course.py): the passes below would only add lesson text to them
+    if RAW:
+        import tidy_explanations
+        tidy_explanations.main(["--apply", "--course", only])
+    else:
+        _passes(only)
     try:
         import fix_errors
         fix_errors.main(["--apply", "--course", only])       # markup, spacing, duplicates, typos, back-formed hints (audit_deep.py found them)

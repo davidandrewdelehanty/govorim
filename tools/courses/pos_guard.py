@@ -10,7 +10,7 @@ from collections import Counter
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(os.path.dirname(HERE))
 COURSES = os.path.join(ROOT, "public", "courses")
-CASE_COURSES = {"cases", "case-nom", "case-gen", "case-dat", "case-acc", "case-ins", "case-prp"}   # case_explain handles these
+CASE_COURSES = {"cases", "case-nom", "case-gen", "case-dat", "case-acc", "case-ins", "case-prp", "prepositions"}   # case_explain handles these
 WORD = re.compile(r"[А-Яа-яЁё]+(?:-[А-Яа-яЁё]+)?")
 HINT = re.compile(r"___ \(([^)]*)\)")
 

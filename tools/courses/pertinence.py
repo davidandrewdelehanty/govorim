@@ -47,7 +47,7 @@ except ImportError:
 
 # Courses whose exercises explain themselves (one rule per kind of drill,
 # given by their builders) or are not grammar drills at all.
-SKIP = {"fast", "gramterms", "numerals", "clock", "time", "tables", "pronouns"}
+SKIP = {"fast", "gramterms", "numerals", "clock", "time", "tables", "pronouns", "prepositions"}
 
 NORM_PREP = {"во": "в", "со": "с", "ко": "к", "об": "о", "обо": "о", "надо": "над", "передо": "перед", "подо": "под", "изо": "из", "ото": "от"}
 PREP_CASES = {

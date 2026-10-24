@@ -1,0 +1,117 @@
+# -*- coding: utf-8 -*-
+"""The modules of the Prepositions course: one per preposition and case, in the order
+genitive, dative, accusative, instrumental, prepositional.  Each is
+(slug, label shown, tokens to find in a sentence, case, English gloss, Wiktionary title,
+ Wiktionary senses, Wiktionary examples).
+The glosses are the course author's list; the senses and examples are Wiktionary's own words
+(en.wiktionary.org, CC BY-SA 4.0), where the entry has them."""
+
+CASE_NAME = {"gent": "genitive", "datv": "dative", "accs": "accusative", "ablt": "instrumental", "loct": "prepositional"}
+CASE_ORDER = ["gent", "datv", "accs", "ablt", "loct"]
+
+
+def m(slug, label, forms, case, gloss, wk=None, senses=(), ex=()):
+    return dict(slug=slug, label=label, forms=[f.split() for f in forms.split("|")], case=case, gloss=gloss, wk=wk, senses=list(senses), ex=[list(e) for e in ex])
+
+
+MODULES = [
+    # ── genitive ──
+    m("bez", "без (безо)", "без|безо", "gent", "without", "без",
+      ["without, aside from, except, minus, free of/from (signifying absence)", "minus, less"],
+      [("без воды́", "without water"), ("бе́зо всего́", "without anything"), ("не без интере́са", "not without interest")]),
+    m("blizko-ot", "близко от", "близко от", "gent", "close to"),
+    m("v-vide", "в виде", "в виде", "gent", "in the form of"),
+    m("v-zavisimosti-ot", "в зависимости от", "в зависимости от", "gent", "depending on"),
+    m("v-kachestve", "в качестве", "в качестве", "gent", "in the capacity of", "в качестве", ["as"],
+      [("Ты оста́нешься здесь в ка́честве моего́ го́стя.", "You'll stay here as my guest."), ("С 2017 го́да я рабо́таю в ка́честве журнали́ста в Нью-Йорке.", "Since 2017 I've been working as a journalist in New York.")]),
+    m("v-lice", "в лице", "в лице", "gent", "represented by"),
+    m("v-otlichie-ot", "в отличие от", "в отличие от", "gent", "unlike, as opposed to"),
+    m("v-otnoshenii", "в отношении", "в отношении", "gent", "regarding"),
+    m("v-preddverii", "в преддверии", "в преддверии", "gent", "shortly before, on the threshold of"),
+    m("v-prodolzhenie", "в продолжение", "в продолжение", "gent", "during, following up", "в продолжение", ["during"]),
+    m("vdol", "вдоль", "вдоль", "gent", "along", "вдоль", ["along"]),
+    m("vne", "вне", "вне", "gent", "outside of", "вне", ["out of, outside"]),
+    m("vozle", "возле", "возле", "gent", "near", "возле", ["beside, by, near"]),
+    m("vokrug", "вокруг", "вокруг", "gent", "around", "вокруг", ["round, around, about"]),
+    m("do", "до", "до", "gent", "until, up to, before", "до", ["before", "up to, till, until", "with respect to, concerning, regarding"]),
+    m("dlya", "для", "для", "gent", "for", "для", ["for"], [("для дете́й", "for children")]),
+    m("vmesto", "вместо", "вместо", "gent", "instead of", "вместо", ["instead of"], [("вме́сто того́, что́бы пойти́", "instead of going")]),
+    m("sredi", "среди", "среди", "gent", "among", "среди", ["among, in the midst of"]),
+    m("iz", "из", "из", "gent", "out of, from", "из", ["from", "out of", "of, through"],
+      [("Он приезжа́ет из Москвы́", "He comes from Moscow."), ("изде́лие из тка́ни", "a product (that is) made out of cloth"), ("оди́н из ста", "one out of a hundred")]),
+    m("iz-za", "из-за", "из-за", "gent", "from behind, because of", "из-за", [],
+      [("встать и́з-за стола́", "to get up from the table"), ("и́з-за кого́?", "because of whom?"), ("и́з-за чего́?", "because of what?")]),
+    m("iz-pod", "из-под", "из-под", "gent", "from under", "из-под", ["from under", "As a designation of former use, from"],
+      [("Из-под ка́мня вы́ползла змея́.", "The snake crawled out from under the stone."), ("Пакет из-под молока.", "Milk bag.")]),
+    m("krome", "кроме", "кроме", "gent", "except, besides", "кроме", ["except, besides"]),
+    m("mimo", "мимо", "мимо", "gent", "past, by", "мимо", ["past, by"]),
+    m("naprotiv", "напротив", "напротив", "gent", "opposite", "напротив", ["opposite (to/from)"],
+      [("сиде́ть напро́тив кого́-ли́бо", "to sit opposite someone"), ("Их дверь напро́тив на́шей.", "Their door's opposite ours.")]),
+    m("okolo", "около", "около", "gent", "near, about (approximately)", "около", ["near, around, about, by"]),
+    m("ot", "от", "от", "gent", "from, away from", "от", ["from, away from, of, with", "from, since, of"],
+      [("отойти́ от костра́", "to move away from a fire"), ("оторва́ть пу́говицу от пиджака́", "to tear a button from a jacket"), ("сообще́ние от бра́та", "a message from a brother")]),
+    m("posle", "после", "после", "gent", "after", "после", ["after (in time)"]),
+    m("pozadi", "позади", "позади", "gent", "behind", "позади", ["behind"]),
+    m("prezhde", "прежде", "прежде", "gent", "before", "прежде", ["before, previously to"], [("пре́жде всего́", "first of all")]),
+    m("protiv", "против", "против", "gent", "against, opposite", "против", ["against", "opposite"]),
+    m("radi", "ради", "ради", "gent", "for the sake of", "ради", ["for the sake of"], [("ра́ди меня́", "for my sake"), ("ра́ди дете́й", "for the sake of the children")]),
+    m("s-gen", "с (со)", "с|со", "gent", "from off of, since", "с",
+      ["from, off, from off, from below (with abstract nouns; nouns entailing a flat, open area; and special exceptions)", "because of, since (expressing a cause of motivation)", "from (indicating a duration of time)"],
+      [("с по́чты", "from the post office"), ("с по́ля", "from the field"), ("с рабо́ты", "from work")]),
+    m("u", "у", "у", "gent", "near, at, by (also shows possession)", "у",
+      ["at, by, near", "in the possession of (used to express \"to have\")", "belonging to (used to denote ownership of body parts or appendages of objects)", "from, of (in some constructions)"],
+      [("сиде́ть у окна́", "to sit by the window"), ("жить у мо́ря", "to live by the sea"), ("Ско́лько у тебя́ вре́мени?", "How much time do you have?")]),
+    # ── dative ──
+    m("blagodarya", "благодаря", "благодаря", "datv", "thanks to", "благодаря", ["thanks to, owing to, through (by means of), due to"],
+      [("Благодаря́ ва́жному откры́тию ре́дких артефа́ктов архео́логи мо́гут изуча́ть о́браз жи́зни в про́шлом.", "Due to the important discovery of rare artifacts, archaeologists can study the lifestyle in the past."),
+       ("Охо́тники живу́т на суро́вой земле́ благодаря́ му́дрости свои́х пре́дков.", "Hunters live on this harsh land due to the wisdom of their forefathers.")]),
+    m("vopreki", "вопреки", "вопреки", "datv", "contrary to, despite", "вопреки", ["in spite of, contrary to"]),
+    m("k", "к (ко)", "к|ко", "datv", "toward, to", "к", ["to, toward", "by, for (of time)", "against (change of position)"],
+      [("к до́му", "to the house"), ("к бра́ту", "to (my) brother"), ("ко мне", "to me")]),
+    m("naperekor", "наперекор", "наперекор", "datv", "in defiance of", "наперекор", ["counter"]),
+    m("po-dat", "по", "по", "datv", "along, by, according to, per", "по",
+      ["across, on, along, down, up, all over, (all) around", "for, on, about, in, of", "according to, from, by", "due to, on account of, out of, from, by", "on, in (the), every (or translated with a plural noun)"],
+      [("Тарака́н бе́гал по столу́.", "The cockroach ran across the table."), ("Он плыл по реке́.", "He swam down the river."), ("Они́ путеше́ствовали по Евро́пе.", "They travelled around Europe.")]),
+    m("soglasno", "согласно", "согласно", "datv", "according to, in accordance with", "согласно", ["according to, as to"]),
+    # ── accusative ──
+    m("v-acc", "в (во)", "в|во", "accs", "into (direction)", "в",
+      ["(direction) to, into", "(time) at, in, on", "per", "(indicating aim or purpose) for, as", "(indicating exact correspondence, equivalence) for"],
+      [("Он идёт в теа́тр", "He’s going to (into) the theater."), ("в три часа́", "at three o’clock")]),
+    m("za-acc", "за", "за", "accs", "behind, for (destination or time span)", "за",
+      ["(of motion) to", "(of time) during (close to в течение)", "time before an event", "for; to; by; after; over", "instead of", "(of voting) in favor of"],
+      [("за вре́мя пребыва́ния в Москве́", "during his stay in Moscow"), ("за после́дние два́дцать лет", "for the past twenty years (lt. during the last twenty years)"), ("за́ три дня", "in three days")]),
+    m("na-acc", "на", "на", "accs", "onto, to (direction)", "на",
+      ["onto, on", "to, toward", "to set out for (in the sense \"to start an activity with the intention of finishing it\"), to go for", "(duration, value, purpose) for", "about, for", "(mathematics) over, by, divided by", "(time) in, for"],
+      [("на стол", "onto the table"), ("Поста́вь/Положи́ таре́лку на стол.", "Put the plate onto the table."), ("Я сел на стул.", "I sat on a chair.")]),
+    m("pod-acc", "под", "под", "accs", "under (movement towards)", "под",
+      ["under, below, beneath", "towards, to", "approaching, slightly less than (a quantitative characteristic, such as weight, age, etc.)", "shortly before, towards, approaching (a time)", "in imitation of, à la", "for, suitable as"],
+      [("нырну́ть под во́ду", "to dive underwater"), ("положи́ть под крова́ть", "to put under a bed"), ("попа́сть под обстре́л", "to fall/come under fire")]),
+    m("pro", "про", "про", "accs", "about, concerning", "про", ["about, concerning", "(colloquial) for"],
+      [("А э́тот расска́з про тебя́.", "This story is about you."), ("Ты про меня́ ли́чно?", "Are you talking about me personally?")]),
+    m("skvoz", "сквозь", "сквозь", "accs", "through", "сквозь", ["through"]),
+    m("cherez", "через", "через", "accs", "through, across, in (time)", "через",
+      ["through", "across, over", "(time) in, after", "via", "with, with the help of", "every other"],
+      [("че́рез семь мину́т по́сле отхо́да", "seven minutes after departure"), ("до Киева через Москву́", "to Kiev via Moscow")]),
+    # ── instrumental ──
+    m("za-ins", "за", "за", "ablt", "behind, beyond (location)", "за", ["(of location) behind; beyond; on the other side of", "at; while", "owing to"],
+      [("За реко́й со́лнышко сади́тся.", "The sun is setting across the river"), ("за обе́дом разгово́р шёл о теа́тре", "at dinner the conversation turned to the theater"), ("за столо́м", "at the table")]),
+    m("mezhdu", "между", "между", "ablt", "between", "между", ["between, among"]),
+    m("nad", "над", "над|надо", "ablt", "above, on top of", "над", ["above, over"]),
+    m("pered", "перед", "перед|передо", "ablt", "in front of, before", "перед", ["in front of, before", "right/immediately before"]),
+    m("pod-ins", "под", "под", "ablt", "under (static location)", "под", ["under, below, beneath", "near, by", "at (an angle)"],
+      [("пла́вать под водо́й", "to swim underwater"), ("под кры́шей", "under a roof"), ("под руково́дством", "under the leadership (of)")]),
+    m("s-ins", "с (со)", "с|со", "ablt", "with", "с", ["with", "with (in certain time expressions)"],
+      [("с (мои́м) бра́том", "with (my) brother"), ("с (мое́й) сестро́й", "with (my) sister"), ("со все́ми", "with everybody")]),
+    # ── prepositional ──
+    m("v-prp", "в (во)", "в|во", "loct", "in, at (location)", "в", ["(location) in, at, on"], [("Он в теа́тре", "He’s at (in) the theater.")]),
+    m("na-prp", "на", "на", "loct", "on, at (location)", "на",
+      ["on, upon", "(only with certain nouns) in, at", "(places, only certain nouns) nearby, by (in the sense of near)", "by", "assigned to (a certain responsibility)", "with, for"],
+      [("на столе́", "on the table"), ("Сижу́ на сту́ле.", "I'm sitting on a chair."), ("на по́чте", "at the post office")]),
+    m("o", "о (об, обо)", "о|об|обо", "loct", "about, concerning", "о", ["about, of, on"], [("Я чита́л о нём", "I’ve read about him.")]),
+    m("pri", "при", "при", "loct", "at, in the presence of, attached to", "при",
+      ["with; when; during (in the time and/or presence (of))", "at; by"],
+      [("Э́то сло́во испо́льзуется при обще́нии с незнако́мыми людьми́.", "This word is used when talking to strangers."), ("Э́то обы́чная процеду́ра при допро́се.", "This is a normal procedure during questioning.")]),
+    m("po-prp", "по", "по", "loct", "after, upon (rare: по приезде)", "по",
+      ["(literary, official) (immediately) after, upon, on", "to the liking of", "over, for"],
+      [("по прие́зде/прибы́тии", "on/upon arrival"), ("по истече́нии полуго́да", "after six months")]),
+]

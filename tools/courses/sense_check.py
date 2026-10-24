@@ -174,7 +174,7 @@ def main(argv=None):
     seen = kept = 0
     for course in sorted(os.listdir(ROOT)):
         d = os.path.join(ROOT, course)
-        if not os.path.isdir(d) or (args.course and course != args.course):
+        if not os.path.isdir(d) or course == "prepositions" or (args.course and course != args.course):
             continue
         for fn in sorted(os.listdir(d)):
             if not fn.endswith(".json"):

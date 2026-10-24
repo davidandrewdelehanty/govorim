@@ -116,7 +116,7 @@ MAN = {
     },
     "c4-one-two-three-four-practice": {
         "q1": "**родила двух** — родить takes the accusative; for people the accusative of два/три/четыре equals the genitive: двух.",
-        "q2": "**о четырёх ногах** — о (here: «with») takes the prepositional; четыре → четырёх.",
+        "q2": "**о четырёх ногах** — о takes the prepositional: четыре → четырёх.",
         "q3": "**больше трёх лет** — больше takes the genitive: три → трёх.",
         "q4": "**обеих стран** — the numeral agrees with стран (genitive plural, feminine): обе → обеих.",
         "q5": "**завалил двух студентов** — animate accusative equals the genitive: два → двух.",

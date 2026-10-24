@@ -6738,5 +6738,310 @@ export default [
    }
   ],
   "level": "Intermediate"
+ },
+ {
+  "id": "prepositions",
+  "title": "Russian Prepositions, Case by Case",
+  "short": "Prepositions",
+  "mark": "пр",
+  "blurb": "",
+  "credit": "Meanings and examples: Wiktionary (CC BY-SA 4.0); exercises: Tatoeba (CC BY 2.0 FR), with a few sentences from the library's public-domain books and Russian Wikipedia (CC BY-SA 4.0) for rare prepositions; word forms analysed with the OpenCorpora dictionary (CC BY-SA 4.0)",
+  "creditUrl": "https://en.wiktionary.org/wiki/Category:Russian_prepositions",
+  "license": "CC BY-SA 4.0 · CC BY 2.0 FR · public domain",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "sections": [
+   {
+    "id": "pr-gen-bez",
+    "title": "без (безо) + genitive: without",
+    "n": 5
+   },
+   {
+    "id": "pr-gen-blizko-ot",
+    "title": "близко от + genitive: close to",
+    "n": 5
+   },
+   {
+    "id": "pr-gen-v-vide",
+    "title": "в виде + genitive: in the form of",
+    "n": 5
+   },
+   {
+    "id": "pr-gen-v-zavisimosti-ot",
+    "title": "в зависимости от + genitive: depending on",
+    "n": 5
+   },
+   {
+    "id": "pr-gen-v-kachestve",
+    "title": "в качестве + genitive: in the capacity of",
+    "n": 5
+   },
+   {
+    "id": "pr-gen-v-lice",
+    "title": "в лице + genitive: represented by",
+    "n": 5
+   },
+   {
+    "id": "pr-gen-v-otlichie-ot",
+    "title": "в отличие от + genitive: unlike, as opposed to",
+    "n": 5
+   },
+   {
+    "id": "pr-gen-v-otnoshenii",
+    "title": "в отношении + genitive: regarding",
+    "n": 5
+   },
+   {
+    "id": "pr-gen-v-preddverii",
+    "title": "в преддверии + genitive: shortly before, on the threshold of",
+    "n": 5
+   },
+   {
+    "id": "pr-gen-v-prodolzhenie",
+    "title": "в продолжение + genitive: during, following up",
+    "n": 5
+   },
+   {
+    "id": "pr-gen-vdol",
+    "title": "вдоль + genitive: along",
+    "n": 5
+   },
+   {
+    "id": "pr-gen-vne",
+    "title": "вне + genitive: outside of",
+    "n": 5
+   },
+   {
+    "id": "pr-gen-vozle",
+    "title": "возле + genitive: near",
+    "n": 5
+   },
+   {
+    "id": "pr-gen-vokrug",
+    "title": "вокруг + genitive: around",
+    "n": 5
+   },
+   {
+    "id": "pr-gen-do",
+    "title": "до + genitive: until, up to, before",
+    "n": 5
+   },
+   {
+    "id": "pr-gen-dlya",
+    "title": "для + genitive: for",
+    "n": 5
+   },
+   {
+    "id": "pr-gen-vmesto",
+    "title": "вместо + genitive: instead of",
+    "n": 5
+   },
+   {
+    "id": "pr-gen-sredi",
+    "title": "среди + genitive: among",
+    "n": 5
+   },
+   {
+    "id": "pr-gen-iz",
+    "title": "из + genitive: out of, from",
+    "n": 5
+   },
+   {
+    "id": "pr-gen-iz-za",
+    "title": "из-за + genitive: from behind, because of",
+    "n": 5
+   },
+   {
+    "id": "pr-gen-iz-pod",
+    "title": "из-под + genitive: from under",
+    "n": 5
+   },
+   {
+    "id": "pr-gen-krome",
+    "title": "кроме + genitive: except, besides",
+    "n": 5
+   },
+   {
+    "id": "pr-gen-mimo",
+    "title": "мимо + genitive: past, by",
+    "n": 5
+   },
+   {
+    "id": "pr-gen-naprotiv",
+    "title": "напротив + genitive: opposite",
+    "n": 5
+   },
+   {
+    "id": "pr-gen-okolo",
+    "title": "около + genitive: near, about (approximately)",
+    "n": 5
+   },
+   {
+    "id": "pr-gen-ot",
+    "title": "от + genitive: from, away from",
+    "n": 5
+   },
+   {
+    "id": "pr-gen-posle",
+    "title": "после + genitive: after",
+    "n": 5
+   },
+   {
+    "id": "pr-gen-pozadi",
+    "title": "позади + genitive: behind",
+    "n": 5
+   },
+   {
+    "id": "pr-gen-prezhde",
+    "title": "прежде + genitive: before",
+    "n": 5
+   },
+   {
+    "id": "pr-gen-protiv",
+    "title": "против + genitive: against, opposite",
+    "n": 5
+   },
+   {
+    "id": "pr-gen-radi",
+    "title": "ради + genitive: for the sake of",
+    "n": 5
+   },
+   {
+    "id": "pr-gen-s-gen",
+    "title": "с (со) + genitive: from off of, since",
+    "n": 5
+   },
+   {
+    "id": "pr-gen-u",
+    "title": "у + genitive: near, at, by (also shows possession)",
+    "n": 5
+   },
+   {
+    "id": "pr-dat-blagodarya",
+    "title": "благодаря + dative: thanks to",
+    "n": 5
+   },
+   {
+    "id": "pr-dat-vopreki",
+    "title": "вопреки + dative: contrary to, despite",
+    "n": 5
+   },
+   {
+    "id": "pr-dat-k",
+    "title": "к (ко) + dative: toward, to",
+    "n": 5
+   },
+   {
+    "id": "pr-dat-naperekor",
+    "title": "наперекор + dative: in defiance of",
+    "n": 5
+   },
+   {
+    "id": "pr-dat-po-dat",
+    "title": "по + dative: along, by, according to, per",
+    "n": 5
+   },
+   {
+    "id": "pr-dat-soglasno",
+    "title": "согласно + dative: according to, in accordance with",
+    "n": 5
+   },
+   {
+    "id": "pr-acc-v-acc",
+    "title": "в (во) + accusative: into (direction)",
+    "n": 5
+   },
+   {
+    "id": "pr-acc-za-acc",
+    "title": "за + accusative: behind, for (destination or time span)",
+    "n": 5
+   },
+   {
+    "id": "pr-acc-na-acc",
+    "title": "на + accusative: onto, to (direction)",
+    "n": 5
+   },
+   {
+    "id": "pr-acc-pod-acc",
+    "title": "под + accusative: under (movement towards)",
+    "n": 5
+   },
+   {
+    "id": "pr-acc-pro",
+    "title": "про + accusative: about, concerning",
+    "n": 5
+   },
+   {
+    "id": "pr-acc-skvoz",
+    "title": "сквозь + accusative: through",
+    "n": 5
+   },
+   {
+    "id": "pr-acc-cherez",
+    "title": "через + accusative: through, across, in (time)",
+    "n": 5
+   },
+   {
+    "id": "pr-abl-za-ins",
+    "title": "за + instrumental: behind, beyond (location)",
+    "n": 5
+   },
+   {
+    "id": "pr-abl-mezhdu",
+    "title": "между + instrumental: between",
+    "n": 5
+   },
+   {
+    "id": "pr-abl-nad",
+    "title": "над + instrumental: above, on top of",
+    "n": 5
+   },
+   {
+    "id": "pr-abl-pered",
+    "title": "перед + instrumental: in front of, before",
+    "n": 5
+   },
+   {
+    "id": "pr-abl-pod-ins",
+    "title": "под + instrumental: under (static location)",
+    "n": 5
+   },
+   {
+    "id": "pr-abl-s-ins",
+    "title": "с (со) + instrumental: with",
+    "n": 5
+   },
+   {
+    "id": "pr-loc-v-prp",
+    "title": "в (во) + prepositional: in, at (location)",
+    "n": 5
+   },
+   {
+    "id": "pr-loc-na-prp",
+    "title": "на + prepositional: on, at (location)",
+    "n": 5
+   },
+   {
+    "id": "pr-loc-o",
+    "title": "о (об, обо) + prepositional: about, concerning",
+    "n": 5
+   },
+   {
+    "id": "pr-loc-pri",
+    "title": "при + prepositional: at, in the presence of, attached to",
+    "n": 5
+   },
+   {
+    "id": "pr-loc-po-prp",
+    "title": "по + prepositional: after, upon (rare: по приезде)",
+    "n": 5
+   },
+   {
+    "id": "exam",
+    "title": "Exam",
+    "n": 57,
+    "exam": true
+   }
+  ],
+  "level": "Intermediate"
  }
 ];
