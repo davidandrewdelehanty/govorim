@@ -470,6 +470,8 @@ def main(argv=None):
     import tidy_explanations, explain_short
     tidy_explanations.main(["--apply", "--course"] + tidy_explanations.CASE_LIST)    # the case courses: no source tails, no repeated rule
     explain_short.main(["--apply"])        # the other courses: one short line per exercise, worked out from the answer's own form
+    import motion_short
+    motion_short.main(["--apply"])         # Verbs of Motion: the form, its pair, the prefix — not the whole lesson again
     try:
         import fix_errors
         fix_errors.main(["--apply"])       # markup, spacing, duplicates, typos, back-formed hints (audit_deep.py found them)
@@ -529,6 +531,9 @@ def build_only(only, outline):
     import explain_short
     if only in explain_short.DONE:
         explain_short.main(["--apply", "--course", only])
+    if only == "motion":
+        import motion_short
+        motion_short.main(["--apply"])
     try:
         import fix_errors
         fix_errors.main(["--apply", "--course", only])       # markup, spacing, duplicates, typos, back-formed hints (audit_deep.py found them)

@@ -32,11 +32,20 @@ TAILS = [
 TAIL_RES = [re.compile(t) for t in TAILS]
 
 
+BOILER = [
+    re.compile(r"\s*This genitive plural does not follow one of DLI's four basic types[^.]*\.[^.]*\.?"),
+    re.compile(r"\s*Irregular plural: [^.]*?(?=\s{2}|$)"),
+    re.compile(r"\s*(?:Declension(?: \(plural only\))?: )?[^\s·]+(?: · [^\s·]+){5}(?:; pl\. [^\s·]+(?: · [^\s·]+){5})?\.?(?=\s{2}|$)"),
+]
+
+
 def strip_tails(w):
     prev = None
     while prev != w:
         prev = w
         for r in TAIL_RES:
+            w = r.sub("", w)
+        for r in BOILER:
             w = r.sub("", w)
         w = w.strip()
         w = re.sub(r"\s*[·•—–]\s*$", "", w)

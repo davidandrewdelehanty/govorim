@@ -19,7 +19,7 @@ COURSES = os.path.join(ROOT, "public", "courses")
 import case_explain as CE
 M = CE.M
 
-SKIP = {"count", "cases", "case-nom", "case-gen", "case-dat", "case-acc", "case-ins", "case-prp", "numerals"}
+SKIP = {"count", "cases", "case-nom", "case-gen", "case-dat", "case-acc", "case-ins", "case-prp"}
 HINT = re.compile(r"___ \(((?:[^()]|\([^()]*\))*)\)")
 WORD = re.compile(r"[А-Яа-яЁё]+(?:-[А-Яа-яЁё]+)?")
 
@@ -438,7 +438,7 @@ def _case_expl(course, e):
     for part in parts:
         if part.startswith("«") or part.startswith("After a preposition"):
             continue
-        part = re.sub(r"\s*Its forms \([^)]*\):[^.]*\.", "", part)
+        part = re.sub(r"\s*Its forms \(.*$", "", part)
         part = re.sub(r"\s*Declension[^:]*:[^.]*\.", "", part)
         keep.append(part.strip())
     keep = [k for k in keep if k]
@@ -474,11 +474,21 @@ def num_expl(e, hint, a):
     gc = CE.governing_cases(before)
     if gc:
         cases &= gc
-    if len(cases) != 1:
-        return None
-    c = next(iter(cases))
-    why = governor_reason(q, c, None)
+    c = None
+    why = ""
+    if len(cases) == 1:
+        c = next(iter(cases))
+        why = governor_reason(q, c, None)
     if not why:
+        after = WORD.findall(q[m.end():])[:1]
+        if after:
+            nc = {CE._cn(p.tag.case) for p in M.parse(after[0]) if p.tag.POS == "NOUN" and p.tag.number == "plur" and p.tag.case}
+            nc &= set(CE.CASES)
+            both = cases & nc
+            if len(both) == 1 and "nomn" not in both and "accs" not in both:
+                c = next(iter(both))
+                why = "agrees with %s (%s plural)" % (after[0], CASE_NAME[c])
+    if not why or c is None:
         return None
     return "**%s → %s** (%s: %s). Numerals decline like adjectives in the plural; every part of a compound numeral declines." % (
         hint, a, {"nomn": "nom.", "gent": "gen.", "datv": "dat.", "accs": "acc.", "ablt": "instr.", "loct": "prep."}[c], why)
@@ -543,7 +553,32 @@ def bare_time_first(e, h):
     return None
 
 
+def digits_to_lemmas(e):
+    """«___ (3-му)» / «___ (1)» → «___ (третий)» / «___ (один)»: the numeral exercises hint with digits; the dictionary form of the answer stands in."""
+    q = e.get("q") or ""
+    m = HINT.search(q)
+    if not m or not re.fullmatch(r"\s*\d+(?:-[а-я]+)?\s*", m.group(1)):
+        return e
+    aw = WORD.findall((e.get("answers") or [""])[0])
+    if not aw:
+        return e
+    lem = []
+    for w in aw:
+        ps = [p for p in M.parse(w) if p.tag.POS in ("NUMR", "ADJF", "NPRO") or (str(p.tag.POS) == "NOUN" and n(p.normal_form) in ("сорок", "сто", "тысяча", "миллион"))]
+        ordinal = "-" in m.group(1)
+        if ordinal:
+            ps2 = [p for p in ps if p.tag.POS == "ADJF"]
+            ps = ps2 or ps
+        if not ps:
+            return e
+        lem.append(ps[0].normal_form)
+    e2 = dict(e)
+    e2["q"] = q[:m.start(1)] + " ".join(lem) + q[m.end(1):]
+    return e2
+
+
 def classify_and_explain(course, e):
+    e = digits_to_lemmas(e)
     q = e.get("q") or ""
     CUR_Q[0] = q
     ans = (e.get("answers") or [""])[0]
@@ -623,6 +658,59 @@ def classify_and_explain(course, e):
     return case_expl(course, e)
 
 
+PROMPT_CASE = {"nominative": "nomn", "genitive": "gent", "dative": "datv", "accusative": "accs", "instrumental": "ablt", "prepositional": "loct"}
+SPECIFIC_TABLE_RULE = {"g1-spelling", "g4-noun-irregular", "g5-noun-awkward", "g15-irregular-verbs", "g13-mutation"}
+
+
+def unquote(t):
+    t = (t or "").strip()
+    t = re.sub(r"^«|»$", "", t).strip()
+    return t
+
+
+def drill_expl(course, fn, e):
+    """The form drills (numerals n-sets, tables): «**студент → студенту** (dat. sg.) …» from the answer and the case the prompt names."""
+    q = e.get("q") or ""
+    m = HINT.search(q)
+    ans = (e.get("answers") or [""])[0]
+    if not m or not ans:
+        return None
+    h = m.group(1).strip()
+    prompt = (e.get("prompt") or "").strip()
+    rule = unquote(e.get("context"))
+    if course == "numerals" and re.match(r"\d+\s*·", h):
+        words = h.split("·", 1)[1].strip()
+        what = prompt[:1].lower() + prompt[1:] if prompt else ""
+        return "**%s → %s** — %s. %s" % (words, ans, what, rule.rstrip(".") + "." if rule else "") if what else None
+    if course == "numerals" and re.fullmatch(r"[А-Яа-яЁё]+", h):
+        what = prompt[:1].lower() + prompt[1:] if prompt else ""
+        return "**%s → %s** — %s. %s" % (h, ans, what, rule.rstrip(".") + "." if rule else "") if what else None
+    if course == "tables":
+        out = classify_and_explain(course, e)
+        if out and not out.startswith("**" + ans):
+            return out
+        # a noun, adjective or pronoun in the case(s) the prompt names
+        wc = {c for w, c in PROMPT_CASE.items() if w in prompt.lower()}
+        if wc:
+            e2 = dict(e)
+            try:
+                r = CE.rewrite(e2, wc, False)
+            except Exception:
+                r = None
+            if r is not None and r is not CE.DROP:
+                why = r[1]
+                why = re.sub(r"\s*[—–]\s*(?:DLI|forms from).*$", "", why, flags=re.S).strip()
+                parts = [re.sub(r"\s*Its forms \(.*$", "", p_).strip() for p_ in re.split(r"\s{2,}", why) if not p_.startswith(("«", "After a preposition"))]
+                parts = [re.sub(r"\s*Declension[^:]*:[^.]*\.", "", p_).strip() for p_ in parts]
+                parts = [p_ for p_ in parts if p_]
+                if parts:
+                    return "  ".join(parts) + ((" " + rule.rstrip(".") + ".") if rule and fn[:-5] in SPECIFIC_TABLE_RULE else "")
+        if fn[:-5] in SPECIFIC_TABLE_RULE and rule:
+            hl = WORD.findall(h)
+            return "**%s → %s** — %s. %s" % (hl[0] if hl else h, ans, prompt[:1].lower() + prompt[1:], rule.rstrip(".") + ".")
+    return None
+
+
 def iter_files(only):
     for cid in sorted(os.listdir(COURSES)):
         if cid in SKIP or (only and cid not in only):
@@ -635,7 +723,7 @@ def iter_files(only):
                 yield cid, os.path.join(d, fn)
 
 
-DONE = {"aspect", "verbs", "tenses", "forms", "compare", "complex", "adv3", "inter2", "stories", "time"}      # courses this explains
+DONE = {"aspect", "verbs", "tenses", "forms", "compare", "complex", "adv3", "inter2", "stories", "time", "tables", "numerals", "gramterms"}      # courses this explains
 
 
 def main(argv=None):
@@ -655,17 +743,44 @@ def main(argv=None):
         ex = j.get("exercises") or []
         if not ex:
             continue
+        if cid == "gramterms":
+            tm = {t["ru"]: t for t in j.get("terms") or []}
+            for e in ex:
+                t = tm.get(e.get("k"))
+                if t:
+                    e["why"] = "**%s** — %s%s." % (t["ru"], t["en"], " (abbreviated %s)" % t["abbr"] if t.get("abbr") else "")
+                    e["context"] = ""
+                    stats.setdefault(cid, [0, 0])[0] += 1
+            if apply:
+                io.open(p, "w", encoding="utf-8").write(json.dumps(j, ensure_ascii=False))
+            continue
+        kept = []
         for e in ex:
             if not isinstance(e, dict) or not e.get("answers"):
+                kept.append(e)
                 continue
             try:
-                w = classify_and_explain(cid, e)
+                w = None
+                if cid in ("tables", "numerals"):
+                    if not e.get("context") and e.get("why"):
+                        w = e["why"]                                # already done in an earlier run
+                    else:
+                        w = drill_expl(cid, os.path.basename(p), e)
+                if not w and not (cid in ("tables",) and False):
+                    w = classify_and_explain(cid, e)
             except Exception as x:                                  # an exercise this cannot read gets no explanation
                 w = None
+            if w:
+                import tidy_explanations as TE
+                w = TE.trim_case(w)
             st = stats.setdefault(cid, [0, 0])
             st[0 if w else 1] += 1
-            e["why"] = w or ""
+            if not w:
+                continue                                            # no explanation, no exercise
+            e["why"] = w
             e["context"] = ""
+            kept.append(e)
+        j["exercises"] = kept
         if apply:
             io.open(p, "w", encoding="utf-8").write(json.dumps(j, ensure_ascii=False))
     print("explain_short (explained, without):", {k: tuple(v) for k, v in stats.items()}, "" if apply else "(dry run)")
