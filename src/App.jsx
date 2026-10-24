@@ -10392,6 +10392,15 @@ export default function App() {
     if (cdSel !== null) return;
     var right = opt === q.correct;
     setCdSel(opt);
+    // A miss comes back (3, then 6, then 10 questions on) until it has been
+    // answered right 2 more times; repeats are practice and are not scored.
+    var again = repNext(right, q.rep || null);
+    if (again) {
+      var baseQ = Object.assign({}, q, { rep: again });
+      var at = cdIdx + 1 + repGap(again.step);
+      setCdQs(function(prev){ var a = prev.slice(); a.splice(Math.min(a.length, at), 0, baseQ); return a; });
+    }
+    if (q.rep) return;
     setCdAns(function(n){ return n + 1; });
     if (right) setCdRight(function(n){ return n + 1; });
     // Counted as it is answered, so leaving the tab without pressing Finish
@@ -12602,6 +12611,48 @@ export default function App() {
   var fdAnswers = function(shown) {
     return String(shown || "").split(/,\s*/).map(fdNorm).filter(Boolean);
   };
+  // Spaced repeats for every drill except the saved-words review (which has its
+  // own Anki-style scheduler): a question answered wrongly comes back after 3,
+  // then 6, then 10 more questions, until it has been answered right 2 more
+  // times; a miss on the way starts the count again. Repeats are practice —
+  // they are not counted in the session's score or on the leaderboard.
+  var repGap = function(step) { return [3, 6, 10][Math.min(step, 2)]; };
+  var repNext = function(right, rep) {
+    // what to schedule after an answer: null (done) or { need, step }
+    if (!right) return { need: 2, step: 0 };
+    if (rep && rep.need > 1) return { need: rep.need - 1, step: rep.step + 1 };
+    return null;
+  };
+  // Numeral practice: a digit, a case (and singular or plural, gender, animacy
+  // where the form depends on them) → the word. public/vocab/numeral-forms.json
+  // is written by tools/courses/gen_numeral_drill.py from the OpenCorpora forms.
+  var fdNumRef = useRef(null);
+  var fdNumMode = useRef("both");                      // "card" | "ord" | "both"
+  var [fdMode, setFdMode] = useState("both");
+  var FD_CASE_EN = { nomn: "nominative", gent: "genitive", datv: "dative", accs: "accusative", ablt: "instrumental", loct: "prepositional" };
+  var fdMakeNum = function() {
+    var load = fdNumRef.current ? Promise.resolve(fdNumRef.current)
+      : fetch("/vocab/numeral-forms.json").then(function(r){ return r.json(); }).then(function(j){ fdNumRef.current = j; return j; });
+    return load.then(function(j){
+      var m = fdNumMode.current;
+      var ord = m === "ord" || (m === "both" && Math.random() < 0.5);
+      var list = ord ? j.o : j.c;
+      if (!list || !list.length) return { err: "The numeral forms could not be loaded." };
+      var it = list[Math.floor(Math.random() * list.length)];
+      var ask = [FD_CASE_EN[it[1]] + (it[4] === "a" ? " (animate)" : it[4] === "i" ? " (inanimate)" : "")];
+      if (it[3]) ask.push(it[3] === "p" ? "plural" : "singular");
+      if (it[2]) ask.push({ m: "masculine", f: "feminine", n: "neuter" }[it[2]]);
+      ask.push(ord ? "ordinal" : "cardinal");
+      return { kind: "num", word: it[0] >= 10000 ? String(it[0]).replace(/\B(?=(\d{3})+(?!\d))/g, "\u2009") : String(it[0]), en: "", ask: ask.join(" "), answers: it[5].map(fdNorm), shown: it[5].join(", "), note: "" };
+    }).catch(function(){ return { err: "The numeral forms could not be loaded." }; });
+  };
+  var fdSetNumMode = function(m) {
+    fdNumMode.current = m;
+    setFdMode(m);
+    fdRepeat.current = [];
+    fdNext.current = null;
+    fdLoad("num");
+  };
   var fdMakeDecl = function() {
     return fdBank().then(async function(bank){
       var lists = fdWords("decl", bank);
@@ -12701,24 +12752,22 @@ export default function App() {
       return { err: reached ? "No verb with a table could be found just now — try again." : "Wiktionary could not be reached just now — try again in a moment." };
     });
   };
-  var fdMake = function(kind) { return kind === "decl" ? fdMakeDecl() : fdMakeConj(); };
+  var fdMake = function(kind) { return kind === "decl" ? fdMakeDecl() : kind === "num" ? fdMakeNum() : fdMakeConj(); };
   var fdPrefetch = function(kind) {
     fdMake(kind).then(function(q){ if (q && !q.err) fdNext.current = q; }).catch(function(){});
   };
   var fdLoad = function(kind) {
     var seq = ++fdSeq.current;
-    var answered = fd ? fd.n : 0;
+    var answered = fd ? (fd.steps || 0) : 0;
     var rep = null;
-    if (kind === "conj") {
-      var due = fdRepeat.current;
-      for (var ri = 0; ri < due.length; ri++) {
-        if (due[ri].due <= answered) { rep = due[ri].q; due.splice(ri, 1); break; }
-      }
+    var due = fdRepeat.current;
+    for (var ri = 0; ri < due.length; ri++) {
+      if (due[ri].due <= answered) { rep = due[ri]; due.splice(ri, 1); break; }
     }
     var pre = rep ? null : fdNext.current;
     if (!rep) fdNext.current = null;
     setFd(function(st){ return st ? Object.assign({}, st, { busy: true, err: "" }) : st; });
-    var p = rep ? Promise.resolve(Object.assign({}, rep, { again: true }))
+    var p = rep ? Promise.resolve(Object.assign({}, rep.q, { again: true, rep: { need: rep.need, step: rep.step } }))
                 : ((pre && pre.kind === kind) ? Promise.resolve(pre) : fdMake(kind));
     p.catch(function(){ return { err: "Something went wrong — try again." }; }).then(function(q){
       if (seq !== fdSeq.current) return;
@@ -12744,7 +12793,7 @@ export default function App() {
     fdNext.current = null;
     fdRepeat.current = [];
     setVocabDrill(kind);
-    setFd({ kind: kind, q: null, input: "", checked: false, right: false, n: 0, nRight: 0, busy: true, err: "" });
+    setFd({ kind: kind, q: null, input: "", checked: false, right: false, n: 0, nRight: 0, steps: 0, busy: true, err: "" });
     fdLoad(kind);
   };
   var fdStop = function() {
@@ -12760,12 +12809,16 @@ export default function App() {
     if (!given) return;
     var right = fd.q.answers.indexOf(given) >= 0;
     var fix = !right && fd.kind === "conj";
-    if (fix) {
-      // the same verb, person and tense again after three or five more questions
-      var gap = Math.random() < 0.5 ? 3 : 5;
-      fdRepeat.current.push({ q: fd.q, due: fd.n + 1 + gap });
-    }
-    setFd(Object.assign({}, fd, { checked: true, right: right, fix: fix, fixInput: "", n: fd.n + 1, nRight: fd.nRight + (right ? 1 : 0) }));
+    var rep = fd.q.rep || null;
+    var steps = (fd.steps || 0) + 1;
+    var baseQ = Object.assign({}, fd.q);
+    delete baseQ.again; delete baseQ.rep;
+    var again = repNext(right, rep);
+    if (again) fdRepeat.current.push({ q: baseQ, due: steps + repGap(again.step), need: again.need, step: again.step });
+    setFd(Object.assign({}, fd, { checked: true, right: right, fix: fix, fixInput: "", steps: steps,
+      n: fd.n + (rep ? 0 : 1), nRight: fd.nRight + (!rep && right ? 1 : 0) }));
+    if (rep) return;
+    if (fd.kind === "num") { bumpToday("practiced", 1); bumpToday("numbers", 1); bumpToday("drills", 1); return; }
     recordFormDrill(fd.kind, right);
   };
   // The Case drills, opened from the same menu.
@@ -12786,6 +12839,8 @@ export default function App() {
   // numbers from the library and Tatoeba (public/vocab/*.json).
   var [numSents, setNumSents] = useState(null);
   var [nd, setNd] = useState(null);                 // { mode, item, val, status, tries, shown, counted }
+  var ndRep = useRef([]);                           // missed items to come back: [{ mode, item, need, step, due }]
+  var ndSteps = useRef(0);
   var [ndStats, setNdStats] = useState({ count: { right: 0, total: 0, streak: 0, best: 0 }, numcase: { right: 0, total: 0, streak: 0, best: 0 } });
   // Verb practice from the Grammar tab: multiple choice, Russian → English
   // and English → Russian. Every answer counts as a card reviewed — the same
@@ -12818,8 +12873,18 @@ export default function App() {
       if (!z || z.done || z.picked.indexOf(k) >= 0 || z.picked.indexOf(z.q.answer) >= 0) return z;
       var first = z.picked.length === 0;
       var ok = k === z.q.answer;
-      if (first) bumpToday("practiced", 1);
-      return Object.assign({}, z, { picked: z.picked.concat([k]), right: z.right + (first && ok ? 1 : 0), answered: z.answered + (first ? 1 : 0) });
+      var cur = z.order[z.i], gvRp = cur && cur.rep ? cur.rep : null, order = z.order;
+      if (first) {
+        // a miss comes back (3, then 6, then 10 questions on) until it has been right 2 more times
+        var gvAgain = repNext(ok, gvRp);
+        if (gvAgain) {
+          var gvBase = Object.assign({}, cur, { rep: gvAgain });
+          order = z.order.slice();
+          order.splice(Math.min(order.length, z.i + 1 + repGap(gvAgain.step)), 0, gvBase);
+        }
+        if (!gvRp) bumpToday("practiced", 1);
+      }
+      return Object.assign({}, z, { order: order, picked: z.picked.concat([k]), right: z.right + (first && ok && !gvRp ? 1 : 0), answered: z.answered + (first && !gvRp ? 1 : 0) });
     });
   };
   var wantNumData = function() {
@@ -12843,7 +12908,16 @@ export default function App() {
     return { q: x.q, answers: acc, show: x.a, en: x.en, src: x.src, n: x.n, real: true };
   };
   var nextNum = function(mode) {
-    var it = makeNumItem(mode);
+    ndSteps.current++;
+    var it = null, dueList = ndRep.current;
+    for (var di = 0; di < dueList.length; di++) {
+      if (dueList[di].mode === mode && dueList[di].due <= ndSteps.current) {
+        var e0 = dueList.splice(di, 1)[0];
+        it = Object.assign({}, e0.item, { rep: { need: e0.need, step: e0.step } });
+        break;
+      }
+    }
+    if (!it) it = makeNumItem(mode);
     setNd(it ? { mode: mode, item: it, val: "", status: "", tries: 0, shown: false, counted: false } : null);
   };
   var checkNum = function() {
@@ -12852,8 +12926,17 @@ export default function App() {
     if (!v) return;
     var ok = nd.item.answers.some(function(a){ return normNum(a) === v; });
     var first = !nd.counted;
-    if (first) { bumpToday("practiced", 1); bumpToday("numbers", 1); }
-    setNdStats(function(m){
+    var ndRp = nd.item.rep || null;
+    if (first) {
+      // the first answer decides: a miss comes back (3, then 6, then 10 sentences on) until it has been right 2 more times
+      var ndAgain = repNext(ok, ndRp);
+      if (ndAgain) {
+        var ndBase = Object.assign({}, nd.item); delete ndBase.rep;
+        ndRep.current.push({ mode: nd.mode, item: ndBase, need: ndAgain.need, step: ndAgain.step, due: ndSteps.current + repGap(ndAgain.step) });
+      }
+    }
+    if (first && !ndRp) { bumpToday("practiced", 1); bumpToday("numbers", 1); }
+    if (!ndRp) setNdStats(function(m){
       var s0 = m[nd.mode], s1 = Object.assign({}, s0);
       if (first) { s1.total++; if (ok) s1.right++; }
       if (ok && first) { s1.streak++; s1.best = Math.max(s1.best, s1.streak); } else if (!ok) s1.streak = 0;
@@ -12900,6 +12983,7 @@ export default function App() {
         )}
         <div className="nd-stats">{st.right} right of {st.total}{st.total ? " · streak " + st.streak + " · best " + st.best : ""} · each first answer counts toward today's review score</div>
         {loading && <p className="crs-p">Loading…</p>}
+        {it && it.rep && <p className="crs-hint">You missed this one earlier — answer it right {it.rep.need} more time{it.rep.need === 1 ? "" : "s"} and it is done. Repeats are not scored.</p>}
         {it && (
           <div className={"crs-q nd-q" + (nd.status === "right" ? " ok" : "")}>
             <div className="crs-qb">
@@ -16243,6 +16327,7 @@ export default function App() {
                         {where && where.ch ? <span className="cd-from-c">Chapter {where.ch}</span> : null}
                         <button className="cd-open" onClick={function(){ goToSource({ srcBook: src.f, srcChapter: src.c }); }}>Open the chapter →</button>
                       </div>
+                      {q.rep && <p className="fd-note" style={{margin:"0 0 8px"}}>You missed this one earlier — answer it right {q.rep.need} more time{q.rep.need === 1 ? "" : "s"} and it is done. Repeats are not scored.</p>}
                       <div className="cd-s" lang="ru">
                         {parts[0]}
                         <span className={"cd-blank" + (answered ? " ok" : "")}>{answered ? q.correct : "   "}</span>
@@ -16412,6 +16497,9 @@ export default function App() {
         {!termDrill && card("Conjugation practice",
           "A verb with a conjugation table on Wiktionary, and a person and number in a tense \u2014 or a gender in the past. Type the form. Right answers count on the leaderboard.",
           function(){ fdStart("conj"); })}
+        {!termDrill && card("Numeral practice",
+          "A number in digits, a case, and singular or plural where it matters \u2014 type the number in words: \u0434\u0432\u0430\u0434\u0446\u0430\u0442\u0438 \u043f\u044f\u0442\u0438. Cardinals and ordinals. A miss comes back a few times until you have it right twice more.",
+          function(){ fdStart("num"); })}
         {!termDrill && card("Case drills",
           "Sentences from every book in the library with one word missing: pick its right case from four. Right answers count on the leaderboard.",
           openCaseDrills)}
@@ -16728,26 +16816,35 @@ quizMode ? (
               // ── Declension / conjugation practice ───────────────────────
               <>
                 <div className="phdr">
-                  <span className="pti">{fd.kind === "decl" ? "Declension practice" : "Conjugation practice"}</span>
+                  <span className="pti">{fd.kind === "decl" ? "Declension practice" : fd.kind === "num" ? "Numeral practice" : "Conjugation practice"}</span>
                   <button className="ab" onClick={fdStop}>← Back</button>
                 </div>
                 <div className="fd-wrap">
                   <p className="fd-lead">
                     {fd.kind === "decl"
                       ? "A noun — from the words you saved in the library when there are any, else one of the commonest — and a case to put it in. Type the form; Wiktionary's table is the answer key."
+                      : fd.kind === "num"
+                      ? "A number in digits, and the case to put it in — with singular or plural, gender and animacy where the form depends on them. Type the number in words."
                       : "A verb with a conjugation table on Wiktionary, and a person and number in a tense — or a gender in the past. Type the form."}
                   </p>
+                  {fd.kind === "num" && (
+                    <div className="fd-modes">
+                      {[["both", "Both"], ["card", "Cardinals"], ["ord", "Ordinals"]].map(function(mm){
+                        return <button key={mm[0]} type="button" className={"fd-mode" + (fdMode === mm[0] ? " on" : "")} onClick={function(){ if (fdMode !== mm[0]) fdSetNumMode(mm[0]); }}>{mm[1]}</button>;
+                      })}
+                    </div>
+                  )}
                   <div className="cd">
                     <div className="cd-top">
                       <span>Right: {fd.nRight} / {fd.n}</span>
                       {fd.q && <span lang="ru">{fd.q.note}</span>}
                     </div>
                     {fd.err && <p className="cd-msg">{fd.err} <button type="button" className="crs-retry" onClick={function(){ fdLoad(fd.kind); }}>Try again</button></p>}
-                    {fd.busy && !fd.q && !fd.err && <p className="cd-msg">{fd.kind === "decl" ? "Picking a noun…" : "Picking a verb…"}</p>}
+                    {fd.busy && !fd.q && !fd.err && <p className="cd-msg">{fd.kind === "decl" ? "Picking a noun…" : fd.kind === "num" ? "Picking a number…" : "Picking a verb…"}</p>}
                     {fd.q && (
                       <>
                         <div className="cd-s">
-                          <span lang="ru" className="fd-word">{fd.q.word}</span>
+                          <span lang="ru" className={"fd-word" + (fd.kind === "num" ? " fd-digit" : "")}>{fd.q.word}</span>
                           {fd.q.en ? <span className="fd-en"> — {fd.q.en}</span> : null}
                         </div>
                         <div className="cd-lemma">Write the <strong>{fd.q.ask}</strong>{fd.q.prefix ? <span className="fd-hint"> — the future of an imperfective verb is <span lang="ru">быть</span> and the infinitive: the <span lang="ru">{fd.q.prefix}</span> is given</span> : null}</div>
@@ -16764,7 +16861,7 @@ quizMode ? (
                         {fd.checked && (
                           <div className="cd-fb">
                             <div className={"cd-fb-h" + (fd.right ? " ok" : " bad")}>{fd.right ? "Correct" : "Not quite"}</div>
-                            <div className="cd-fb-x">The {fd.q.ask} of <b lang="ru">{fd.q.word}</b> is <b lang="ru">{fd.q.pronoun ? fd.q.pronoun + " " : ""}{fd.q.shown}</b>.</div>
+                            <div className="cd-fb-x">{fd.kind === "num" ? "In words, " : "The "}{fd.q.ask} {fd.kind === "num" ? "" : "of "}<b lang="ru">{fd.q.word}</b> is <b lang="ru">{fd.q.pronoun ? fd.q.pronoun + " " : ""}{fd.q.shown}</b>.</div>
                             {fd.fix && (
                               <div className="fd-fix">
                                 <div className="cd-fb-x">Type it correctly to go on — it will come back in a few questions.</div>
@@ -16779,10 +16876,12 @@ quizMode ? (
                             )}
                           </div>
                         )}
-                        {fd.q.again && !fd.checked && <p className="fd-note" style={{margin:"6px 0 0"}}>You missed this one a few questions ago — here it is again.</p>}
+                        {fd.q.again && !fd.checked && <p className="fd-note" style={{margin:"6px 0 0"}}>You missed this one earlier — answer it right {fd.q.rep ? fd.q.rep.need : 2} more time{fd.q.rep && fd.q.rep.need === 1 ? "" : "s"} and it is done. Repeats are not scored.</p>}
                       </>
                     )}
-                    <p className="fd-note">Right answers count on the leaderboard. Stress marks and ё/е are not held against you. Source: <a href={"https://en.wiktionary.org/wiki/" + encodeURIComponent((fd.q && fd.q.word) || "")} target="_blank" rel="noopener">Wiktionary</a>.</p>
+                    {fd.kind === "num"
+                      ? <p className="fd-note">Stress marks and ё/е are not held against you. Forms: the OpenCorpora dictionary (CC BY-SA 4.0), put together by the rules of the DLI Grammar Reference Book (public domain).</p>
+                      : <p className="fd-note">Right answers count on the leaderboard. Stress marks and ё/е are not held against you. Source: <a href={"https://en.wiktionary.org/wiki/" + encodeURIComponent((fd.q && fd.q.word) || "")} target="_blank" rel="noopener">Wiktionary</a>.</p>}
                   </div>
                 </div>
               </>
@@ -18584,6 +18683,10 @@ quizMode ? (
         .fd-wrap{max-width:680px;margin:0 auto;padding:18px 16px 32px}
         .fd-lead{font-family:var(--serif);font-size:14px;color:var(--ink-2);line-height:1.55;text-align:center;margin:0 0 6px}
         .fd-word{font-weight:600}
+        .fd-digit{font-size:40px;font-family:var(--display)}
+        .fd-modes{display:flex;gap:8px;justify-content:center;margin:10px 0 2px}
+        .fd-mode{font-family:var(--sans);font-size:12.5px;padding:5px 14px;border:1px solid var(--ink-3);background:transparent;color:var(--ink-2);border-radius:99px;cursor:pointer}
+        .fd-mode.on{background:var(--ink);color:var(--paper,#f5f0e8);border-color:var(--ink)}
         .fd-en{font-size:16px;color:var(--ink-2)}
         .fd-form{display:flex;gap:10px;justify-content:center;align-items:stretch;flex-wrap:wrap}
         .fd-in{width:min(100%,320px);font-size:20px;padding:8px 12px;text-align:center}
@@ -28865,7 +28968,7 @@ quizMode ? (
                   var solved = z.picked.indexOf(q.answer) >= 0;
                   return (
                     <>
-                      <div className="gvq-n">{z.i + 1} of {z.order.length} · {z.right} right</div>
+                      <div className="gvq-n">{z.i + 1} of {z.order.length} · {z.right} right{z.order[z.i] && z.order[z.i].rep ? " · missed earlier, back again (not scored)" : ""}</div>
                       <div className="gvq-ask">{q.toEn ? "What does this mean?" : "Which verb means…"}</div>
                       <div className={"gvq-prompt" + (q.toEn ? " ru" : "")} lang={q.toEn ? "ru" : "en"}>{q.prompt}</div>
                       <div className="crs-opts gvq-opts">
