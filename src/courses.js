@@ -33,12 +33,10 @@ export function mergeCourseProg(a, b) {
     if (pf) out[k].perfect = pf;
     var g = Math.max(Number(x.grade) || 0, Number(y.grade) || 0);
     if (g) out[k].grade = g;
-    // The best score in the section's own review drill (the grammar terms):
-    // 90 or more opens the next section.
+    // The best score in the section's own review drill (the grammar terms); it gates nothing.
     var d = Math.max(Number(x.drill) || 0, Number(y.drill) || 0);
     if (d) out[k].drill = d;
-    // The best score on the section's exercises, right at the first try;
-    // 90 or more opens the next section.
+    // The best score on the section's exercises, right at the first try; it gates nothing.
     var sc = Math.max(Number(x.score) || 0, Number(y.score) || 0);
     if (sc) out[k].score = sc;
   });
@@ -106,7 +104,7 @@ export function coursesDone(outline, prog) {
 export function isPractice(id) { return /-practice(-\d+)?$/.test(String(id || "")); }
 
 // Badges: one for every lesson finished, one for every course — earned by
-// passing its exam (85% or better) where it has one, by finishing every
+// passing its exam (90% or better) where it has one, by finishing every
 // section where it has not — and a ★ for a lesson, or a whole course's
 // lessons, answered without a mistake. Practice sets count toward finishing a
 // course but carry no badge of their own.
@@ -148,7 +146,7 @@ export function courseBadges(outline, prog) {
     var xr = exam ? (prog || {})[c.id + "/" + exam.id] : null;
     out.push(exam ? {
       id: "course:" + c.id, group: "course", tier: 4, mark: c.mark || "★",
-      title: c.title, desc: "Pass the exam of " + c.title + " — 85% or better",
+      title: c.title, desc: "Pass the exam of " + c.title + " — 90% or better",
       earned: !!(xr && xr.done), n: xr && xr.done ? 1 : 0, of: 1, at: (xr && xr.done) || 0, course: c.id,
       grade: (xr && xr.grade) || 0,
     } : {

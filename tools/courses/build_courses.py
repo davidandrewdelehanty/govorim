@@ -59,14 +59,14 @@ COURSES.append({
     "id": "cases", "title": "Nouns and Adjectives in Cases", "short": "Cases", "mark": "Пп",
     "blurb": "All six cases, singular and plural: what each case does, every ending, the exceptions, adjectives, "
              "possessives, surnames and which preposition takes which case — in DLI's own words, with its sentences as exercises.",
-    "credit": DLI_CREDIT, "creditUrl": DLI_URL, "license": "Public domain", "licenseUrl": "",
+    "credit": DLI_CREDIT + "; sentences from Tatoeba (CC BY 2.0 FR) and the library's public-domain books; word forms from the OpenCorpora dictionary (CC BY-SA 4.0)", "creditUrl": DLI_URL, "license": "Public domain", "licenseUrl": "",
     "modules": ["cases_a", "cases_b"], "order": None,
 })
 COURSES.append({
     "id": "forms", "title": "Verb Forms and Participles", "short": "Verb forms", "mark": "щ",
     "blurb": "The imperative, пусть and давайте, the conditional with бы, all four participles, the -ся passive and both "
              "деепричастия — how each is formed and used, in DLI's own words, with its sentences as exercises.",
-    "credit": DLI_CREDIT, "creditUrl": DLI_URL, "license": "Public domain", "licenseUrl": "",
+    "credit": DLI_CREDIT + "; sentences from Tatoeba (CC BY 2.0 FR) and the library's public-domain books; word forms from the OpenCorpora dictionary (CC BY-SA 4.0)", "creditUrl": DLI_URL, "license": "Public domain", "licenseUrl": "",
     "modules": ["forms_a", "forms_b"], "order": None,
 })
 import case_courses
@@ -467,6 +467,9 @@ def main(argv=None):
         case_explain.main(["--apply"])
     import count_explain
     count_explain.main(["--apply"])        # Counting Things: one short rule line per exercise, after the answer
+    import tidy_explanations, explain_short
+    tidy_explanations.main(["--apply", "--course"] + tidy_explanations.CASE_LIST)    # the case courses: no source tails, no repeated rule
+    explain_short.main(["--apply"])        # the other courses: one short line per exercise, worked out from the answer's own form
     try:
         import fix_errors
         fix_errors.main(["--apply"])       # markup, spacing, duplicates, typos, back-formed hints (audit_deep.py found them)
@@ -520,6 +523,12 @@ def build_only(only, outline):
     if only == "count":
         import count_explain
         count_explain.main(["--apply"])
+    if only in ("cases", "case-nom", "case-gen", "case-dat", "case-acc", "case-ins", "case-prp"):
+        import tidy_explanations
+        tidy_explanations.main(["--apply", "--course", only])
+    import explain_short
+    if only in explain_short.DONE:
+        explain_short.main(["--apply", "--course", only])
     try:
         import fix_errors
         fix_errors.main(["--apply", "--course", only])       # markup, spacing, duplicates, typos, back-formed hints (audit_deep.py found them)

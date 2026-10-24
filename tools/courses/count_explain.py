@@ -48,6 +48,23 @@ def hint(q):
     return m.group(1).strip() if m else ""
 
 
+_M = []
+
+
+def _gen_number(h, a):
+    """'sing' / 'plur' when the answer is only the genitive singular / plural of the hint noun (pymorphy3), else None."""
+    try:
+        if not _M:
+            import pymorphy3
+            _M.append(pymorphy3.MorphAnalyzer())
+        M = _M[0]
+    except Exception:
+        return None
+    nn = lambda w: w.lower().replace("ё", "е")
+    nums = {p.tag.number for p in M.parse(a) if p.tag.POS == "NOUN" and p.tag.case in ("gent", "gen2") and nn(p.normal_form) == nn(h)}
+    return next(iter(nums)) if len(nums) == 1 else None
+
+
 def counted(e):
     q, a = e["q"], e["answers"][0]
     w, h = pre(q), hint(q)
@@ -76,8 +93,8 @@ def counted(e):
         return "**%s %s** — двое, трое, четверо… семеро (collective numerals for people) take the genitive plural (%s)." % (
             prev, a, SPECIAL.get(h, "%s → %s" % (h, a)))
     if prev in QUANT:
-        if h in MASS:
-            return "**%s %s** — %s with something you cannot count (rice, jam, water) takes the genitive singular (%s → %s)." % (prev, a, prev, h, a)
+        if h in MASS or _gen_number(h, a) == "sing":
+            return "**%s %s** — %s with something you cannot count takes the genitive singular (%s → %s)." % (prev, a, prev, h, a)
         return "**%s %s** — %s with something you can count takes the genitive plural (%s)." % (prev, a, prev, SPECIAL.get(h, "%s → %s" % (h, a)))
     return None
 
@@ -216,7 +233,7 @@ def main(argv=None):
         tot += before - len(j["exercises"])
         print("%-34s %2d -> %2d  dropped %s  unexplained %s" % (fn, before, len(j["exercises"]), dropped, fails))
         if apply:
-            io.open(p, "w", encoding="utf-8").write(json.dumps(j, ensure_ascii=False, indent=1))
+            io.open(p, "w", encoding="utf-8").write(json.dumps(j, ensure_ascii=False))
     print("count_explain: %d dropped%s" % (tot, "" if apply else " (dry run)"))
 
 

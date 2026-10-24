@@ -6809,7 +6809,7 @@ export default function App() {
   // The exam is over: its grade, and — at the pass mark or above — the section
   // done, which is what earns the course's badge. The best grade is kept.
   // A section's review drill (the grammar terms) scored: the best score is
-  // kept, and 90 or more opens the next section.
+  // kept.
   var DRILL_PASS = 90;
   var noteDrill = function(key, pct) {
     if (!key || key.indexOf("/") < 0 || !(pct >= 0)) return;
@@ -6830,7 +6830,7 @@ export default function App() {
     noteDrill(termDrill.key, 100 * matchGame.won / matchGame.rounds);
   }, [termDrill, matchGame && matchGame.status, matchGame && matchGame.rounds]);
   // A module's score — its exercises right at the first try, as a share of
-  // all of them — kept at its best; 90 or more opens the next module. An
+  // all of them — kept at its best (it gates nothing; only a course exam has a pass mark, 90%). An
   // answer seeded from an earlier sitting counts as the first try recorded
   // then. A finite stream scores each round of its deal.
   var noteScore = function(key, pct) {
@@ -16493,7 +16493,7 @@ quizMode ? (
                         {rv.pool && termDrill && n > 0 && (function(){
                           var pct = Math.round(100 * right / n);
                           return <p className={"rv-done-lead rv-drill-score" + (pct >= DRILL_PASS ? " ok" : "")}>
-                            <b>{pct}%</b> right{rv.done ? "" : " so far"}{rv.done ? (pct >= DRILL_PASS ? " \u2014 passed: the next module is open." : " \u2014 " + DRILL_PASS + "% or more is needed to go on. Back to the lesson and try again.") : " \u2014 every card has to be asked for the score to count."}
+                            <b>{pct}%</b> right{rv.done ? "" : " so far"}{rv.done ? "" : " \u2014 every card has to be asked for the score to count."}
                           </p>;
                         })()}
                         {quizSkipNote && <p className="rv-done-note">{quizSkipNote}</p>}
@@ -16676,7 +16676,7 @@ quizMode ? (
                     <div className="vm-done-t">rounds right at the first try. {matchGame.pool.length ? "" : (matchGame.src ? "That was every card." : "That was every word with a meaning.")}</div>
                     {matchGame.src && termDrill && matchGame.rounds > 0 && (function(){
                       var pct = Math.round(100 * matchGame.won / matchGame.rounds);
-                      return <div className={"rv-drill-score" + (pct >= DRILL_PASS ? " ok" : "")}><b>{pct}%</b>{pct >= DRILL_PASS ? " \u2014 passed: the next module is open." : " \u2014 " + DRILL_PASS + "% or more is needed to go on; play again."}</div>;
+                      return <div className={"rv-drill-score" + (pct >= DRILL_PASS ? " ok" : "")}><b>{pct}%</b></div>;
                     })()}
                     <button className="crs-retry" onClick={function(){ startMatch(matchGame.src); }}>Play again</button>
                   </div>
@@ -27777,7 +27777,7 @@ quizMode ? (
                     <div className="navpanel crs-navpanel">
                       {course.blurb && <p className="crs-nav-blurb">{course.blurb}</p>}
                       {groups.map(function(g){
-                        if (g.key === "exam") return card(g.items[0], "Exam · pass mark 85% · earns the course's badge");
+                        if (g.key === "exam") return card(g.items[0], "Exam · pass mark 90% · earns the course's badge");
                         var isStream = g.items[0].stream && !g.items[0].n;
                         var label = isStream ? "Practice" : "Section " + (++lessonNo);
                         if (g.items.length === 1) return card(g.items[0], label);
@@ -27811,6 +27811,7 @@ quizMode ? (
                   return course.id === "gramterms" ? (Number(r.drill) || 0) : (Number(r.score) || 0);
                 };
                 var gatesNext = function(x){
+                  return false;     // no section is locked behind another: only a course's exam has a pass mark (90%)
                   if (!x || course.repeat || x.exam) return false;
                   if (course.id === "gramterms") return x.id !== "gt0-all";
                   if (x.stream && !x.finite) return false;
@@ -28378,7 +28379,7 @@ quizMode ? (
                           });
                         })()}</div>
                         {data.exam && (function(){
-                          var per = data.per || 5, pass = data.pass || 85;
+                          var per = data.per || 5, pass = data.pass || 90;
                           var shuf = function(a) { for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; };
                           if (!examDeal) {
                             // An exam left half-way is picked up where it was; otherwise it is
@@ -28597,11 +28598,10 @@ quizMode ? (
                                 ? <>Section finished ✓ · {firstRight} of {exs.length} right at the first try
                                     {(function(){
                                       var best = Number(rec.score) || 0;
-                                      if (!nextSec || course.repeat || course.id === "gramterms") return null;
-                                      return <span className={"crs-score-pct" + (best >= DRILL_PASS ? " ok" : "")}> · best score {best}%{best >= DRILL_PASS ? " \u2713" : " \u2014 " + DRILL_PASS + "% opens the next chapter"}</span>;
+                                      return null;
                                     })()}
                                     <button type="button" className="crs-retry" onClick={function(){ setExState({}); setCrsMissed(null); try { var el = document.querySelector(".crs-exw"); if (el) el.scrollIntoView({ block: "start" }); } catch (er) {} }}>
-                                      {(Number(rec.score) || 0) < DRILL_PASS && nextSec && !course.repeat && course.id !== "gramterms" ? "Try again for 90%" : "Try again for a perfect ★"}
+                                      Try again for a perfect ★
                                     </button></>
                                 : <>{Object.keys(rec.right || {}).filter(function(k){ return exIds.indexOf(k) >= 0; }).length} of {exs.length} answered</>}
                             </div>
@@ -28625,7 +28625,7 @@ quizMode ? (
                         </div>
                         {drillsTerms && termCards(data).length >= 4 && (function(){
                           var best = drillOf(sec.id);
-                          var gates = idxSec >= 1 && idxSec + 1 < course.sections.length;
+                          var gates = false;
                           return (
                             <div className="crs-review-bar">
                               <button type="button" className="btn-p crs-review-btn"

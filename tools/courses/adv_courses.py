@@ -328,7 +328,7 @@ COMPLEX = [
          ["li"], sub="спроси его, говорит ли он… · не поехать ли нам…", note=DLI + ", Lesson 91."),
 ]
 
-CREDIT = "Explanations: the DLI Basic Course grammar (public domain); sentences: Tatoeba (CC BY 2.0 FR) and the library's public-domain books"
+CREDIT = "Explanations: the DLI Basic Course grammar (public domain); sentences: Tatoeba (CC BY 2.0 FR) and the library's public-domain books; word forms analysed with the OpenCorpora dictionary (CC BY-SA 4.0)"
 DLI_URL = "https://www.fsi-language-courses.org/russian/courses/dli-russian-basic-course"
 
 

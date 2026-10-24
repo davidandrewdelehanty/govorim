@@ -244,7 +244,7 @@ PRP = [
          + wiki("Prepositional_case", "Pronouns"), ["loct:adj"], sub="-е, -и, -ах · -ом, -ой, -ых", note=WB),
 ]
 
-CREDIT = "Explanations: the Wikibooks Russian textbook (CC BY-SA 4.0) and the DLI Basic Course (public domain); sentences: Tatoeba (CC BY 2.0 FR) and the library's public-domain books"
+CREDIT = "Explanations: the Wikibooks Russian textbook (CC BY-SA 4.0) and the DLI Basic Course (public domain); sentences: Tatoeba (CC BY 2.0 FR) and the library's public-domain books; word forms analysed with the OpenCorpora dictionary (CC BY-SA 4.0)"
 WB_URL = "https://en.wikibooks.org/wiki/Russian"
 
 

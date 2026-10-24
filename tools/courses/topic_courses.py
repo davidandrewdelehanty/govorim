@@ -115,7 +115,7 @@ ADV = [
     SECD("v13-prefixes", "Verbs with prefixes", B("a5-po-s") + B("v4-sya")[:1], ["prefix", "sya"], sub="заговорить · поговорить · проговорить · отговорить"),
 ]
 
-CREDIT = "Explanations: the DLI Basic Course (public domain), the Wikibooks Russian textbook and Wiktionary (CC BY-SA 4.0); sentences: Tatoeba (CC BY 2.0 FR) and the library's public-domain books"
+CREDIT = "Explanations: the DLI Basic Course (public domain), the Wikibooks Russian textbook and Wiktionary (CC BY-SA 4.0); sentences: Tatoeba (CC BY 2.0 FR) and the library's public-domain books; word forms analysed with the OpenCorpora dictionary (CC BY-SA 4.0)"
 
 
 def _c(id, title, short, mark, blurb, secs):

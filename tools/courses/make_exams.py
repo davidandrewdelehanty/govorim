@@ -5,7 +5,7 @@
 For each course that is not a free repeat (the clock), a last section
 «Exam»: when it is opened the app deals five questions from every chapter of
 the course, in a random order, and the reader's first answer to each one is
-the one that counts. 85% or better passes, and passing earns the course's
+the one that counts. 90% or better passes, and passing earns the course's
 badge. A chapter is a lesson with its practice sets; the questions are the
 course's own exercises, nothing new is written.
 
@@ -23,7 +23,7 @@ ROOT = os.path.dirname(os.path.dirname(HERE))
 PER = 5          # questions from each chapter
 MIN_Q = 20       # a course with few chapters asks more of each, so the exam is at least this long
 POOL = 30        # of each chapter's exercises kept in the file (more when more are asked)
-PASS = 85        # per cent
+PASS = 90        # per cent
 PRACTICE = re.compile(r"-practice(-\d+)?$")
 KEEP = ("type", "q", "answers", "options", "answer", "ru", "prompt", "hint", "show", "k", "pairs", "clip")
 
