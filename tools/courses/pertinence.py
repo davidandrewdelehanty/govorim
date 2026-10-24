@@ -223,7 +223,7 @@ WANT = {
     "cases": {"k1-nom-prep": "loct|loc2|nomn", "k2-accusative": "accs", "k3-genitive": "gent", "k4-dative": "datv", "k5-instrumental": "ablt",
               "k7-genitive-plural": "gent plur", "k8-plural-cases": "plur", "k9-adjectives-singular": "ADJF|adj+|NPRO sing",
               "k10-adjectives-plural": "ADJF|adj+|NPRO plur", "k11-prepositions": "prep"},
-    "count": {"c2-genitive-plural": "gent plur", "c3-how-many": "gent", "c4-one-two-three-four": "NUMR|lemma:^(один|одна|одно|два|две|три|четыре)",
+    "count": {"c2-genitive-plural": "gent plur", "c3-how-many": "gent", "c4-one-two-three-four": "NUMR|gent|lemma:^(один/одна/одно/два/две/три/четыре)",
               "c5-five-and-up": "NUMR"},
     "aspect": {"a2-context": "impf", "a3-commands": "impr", "a4-future": "futr perf", "a5-po-s": "ans:^(по/с)"},
     "verbs": {"v1-present": "pres", "v2-past": "past", "v4-sya": "sya"},

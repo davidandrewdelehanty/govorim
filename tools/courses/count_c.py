@@ -14,7 +14,7 @@ SEC("c8-collective-half", "двое, трое… and полтора", sub="DLI L
   P("d) Collective numerals are declined like adjectives in the plural, however in oblique cases they are usually replaced by the corresponding form of the cardinal numerals: *двое детей,* but: *Я не вижу двух её детей. Она дала яблоки двум детям. Мы приехали с двумя детьми.*"),
   H("полтора, полторы, полтораста"),
   P("a) \"One and a half\" is полтора when modifying a masculine or neuter noun and полторы for feminine nouns. Modified nouns are in the genitive singular: *полтора часа, полторы минуты.* These forms are used for nominative-accusative only. For all other cases the form «полутора» is used for all genders; the modified noun takes the form of the corresponding case in plural:"),
-  T(["", "", ""], [["Nom.", "полтора часа", "полторы минуты"], ["Gen.", "полутора часов", "полутора минут"], ["Dat.", "полутора часам", "полутора минутам"], ["Acc.", "полтора часа", "полторы минуты"], ["Instr.", "полутора часами", "полутора минутами"], ["Prep.", "о полутора часах", "о полутора минутах"]]),
+  T(["", "полтора (masc., neut.)", "полторы (fem.)"], [["Nom.", "полтора часа", "полторы минуты"], ["Gen.", "полутора часов", "полутора минут"], ["Dat.", "полутора часам", "полутора минутам"], ["Acc.", "полтора часа", "полторы минуты"], ["Instr.", "полутора часами", "полутора минутами"], ["Prep.", "о полутора часах", "о полутора минутах"]]),
   P("Numerals like 1500 (человек) can be read either way: полторы тысячи человек, or тысяча пятьсот человек. b) The cardinal numeral полтораста means 150 (сто пятьдесят). The noun modified by it is in the genitive plural: *полтораста рублей.*"),
   NOTE("DLI, Lessons 98 and 99."),
 ], exercises=[

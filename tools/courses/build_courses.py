@@ -53,7 +53,7 @@ COURSES.append({
     "blurb": "Numbers and the nouns after them, numbers in every case, thousands and millions, ordinals, fractions, "
              "approximate amounts — in DLI's own words, with its sentences as exercises.",
     "credit": DLI_CREDIT, "creditUrl": DLI_URL, "license": "Public domain", "licenseUrl": "",
-    "modules": sorted(m[:-3] for m in os.listdir(HERE) if m.startswith("count_") and m.endswith(".py")), "order": None,
+    "modules": sorted(m[:-3] for m in os.listdir(HERE) if re.fullmatch(r"count_[a-z]\.py", m)), "order": None,
 })
 COURSES.append({
     "id": "cases", "title": "Nouns and Adjectives in Cases", "short": "Cases", "mark": "Пп",
@@ -215,9 +215,13 @@ def with_practice(cid, secs):
         out.append(s)
         exs = (DRILLS.get(cid) or {}).get(s["id"]) or []
         sets = [exs] if len(exs) >= 4 else []
+        if len(exs) > 24:                      # a long list is dealt in even sets
+            k = -(-len(exs) // PRACTICE_SIZE)
+            step = -(-len(exs) // k)
+            sets = [exs[a:a + step] for a in range(0, len(exs), step)]
         sets += [more[k:k + PRACTICE_SIZE] for k in range(0, len(more), PRACTICE_SIZE) if len(more[k:k + PRACTICE_SIZE]) >= 5]
         for n, xs in enumerate(sets, 1):
-            note = TATOEBA_NOTE if xs is exs else (s.get("moreNote") or REAL_NOTE)
+            note = TATOEBA_NOTE if (xs is exs or (xs and xs[0] in exs)) else (s.get("moreNote") or REAL_NOTE)
             out.append({"id": s["id"] + "-practice" + ("" if n == 1 else "-%d" % n),
                         "title": "Practice%s: %s" % ("" if len(sets) == 1 else " %d" % n, s["title"]),
                         "sub": "%d real sentences" % len(xs),

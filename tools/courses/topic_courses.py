@@ -47,7 +47,7 @@ INTER = [
          ["subst"], sub="больной · знакомый · столовая · русский"),
     SECD("i03-short-complement", "Short adjectives and what follows them", B("c7-short"), ["shortcomp"], sub="похож на · готов к · доволен результатом · рад вам"),
     SECD("i04-numerals-adjectives", "Numerals, nouns and adjectives together", B("c4-one-two-three-four") + B("k10-adjectives-plural")[-6:],
-         ["gent:count", "t:count/c4-one-two-three-four", "t:count/c1-numbers-nouns"], sub="два новых самолёта · пять ваших новых машин"),
+         ["gent:count", "t:count/c4-one-two-three-four"], sub="два новых самолёта · пять ваших новых машин"),
     SECD("i05-compound-numerals", "Compound numerals in every case", B("c5-five-and-up") + B("c6-hundreds-thousands"),
          ["t:count/c5-five-and-up", "t:count/c2-genitive-plural"], sub="двадцати одного · ста сорока пяти"),
     SECD("i06-fractions-collective", "Fractions, двое, трое, оба", B("c7-ordinals-fractions")[:8] + B("c8-collective-half") + B("f6-past-active")[-2:],

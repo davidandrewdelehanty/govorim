@@ -27,6 +27,7 @@ from tense_examples import read          # the tab-separated Tatoeba export read
 
 M = pymorphy3.MorphAnalyzer()
 PER = 14                                  # drills per section
+PER_SEC = {"c4-one-two-three-four": 28}   # 2–4 + noun and the declined numerals share one module
 WORD = re.compile(r"[А-Яа-яЁё]+(?:-[А-Яа-яЁё]+)?")
 CASES = ["nomn", "gent", "datv", "accs", "ablt", "loct"]
 CASE_EN = {"nomn": "nominative", "gent": "genitive", "datv": "dative", "accs": "accusative",
@@ -209,7 +210,7 @@ def scan(ru, en):
                 p = ps2[0]
                 num = p.tag.number
                 if w in NUM_GS and num == "sing":
-                    out.append(("count", "c1-numbers-nouns", D(j, p, "After «%s» the noun is genitive singular." % w, case_options(p, "sing", ws[j].group()) + [form_of(p, {"gent", "plur"}) or ""])))
+                    out.append(("count", "c4-one-two-three-four", D(j, p, "After «%s» the noun is genitive singular." % w, case_options(p, "sing", ws[j].group()) + [form_of(p, {"gent", "plur"}) or ""])))
                 elif (w in NUM_GP) and num == "plur":
                     out.append(("count", "c2-genitive-plural", D(j, p, "After «%s» the noun is genitive plural." % w, [ws[j].group().lower(), form_of(p, {"gent", "sing"}) or "", form_of(p, {"nomn", "plur"}) or ""])))
                 elif w in QUANT:
@@ -333,9 +334,9 @@ def main():
                 if lem[lk] >= cap or d.ru in sents:
                     continue
                 lem[lk] += 1; sents.add(d.ru); pick.append(d)
-                if len(pick) >= PER:
+                if len(pick) >= PER_SEC.get(s, PER):
                     break
-            if len(pick) >= PER:
+            if len(pick) >= PER_SEC.get(s, PER):
                 break
         out[c][s] = [exercise(d, n) for n, d in enumerate(pick)]
         print("%-7s %-26s %4d found, %2d used" % (c, s, len(ds), len(pick)))

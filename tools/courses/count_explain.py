@@ -17,6 +17,7 @@ DIR = os.path.join(ROOT, "public", "courses", "count")
 DROP = {
     "c2-genitive-plural": {"q3", "q7"},                        # same sentences as c1-numbers-nouns q2, q3
     "c6-hundreds-thousands": {"q2", "q4", "q5", "q6", "q10", "q13", "q14"},   # a noun after a preposition / ordinal: no number involved
+    "c6-hundreds-thousands-practice": {"q4"},                  # «голов» for the hint «гол»: the sentence means heads of cattle
     "c7-ordinals-fractions": {"q1", "q2", "q3"},               # a verb, a verb, a pronoun
 }
 
@@ -84,7 +85,7 @@ def counted(e):
         if prev in W2:
             form = "%s → %s" % (h, a)
             extra = " (полтора / полторы with a feminine noun)" if prev.startswith("полтор") else ""
-            return "%s — %s take the genitive singular (%s); %s." % (shown, R2, form, R1) if not extra else \
+            return "%s — %s take the genitive singular (%s)." % (shown, R2, form) if not extra else \
                    "%s — полтора (полторы with a feminine noun) takes the genitive singular, like 2–4 (%s)." % (shown, form)
         if prev in WA:
             return "%s — %s take the genitive plural (%s)." % (shown, R5, form)
@@ -170,6 +171,12 @@ MAN = {
         "q7": "**в трёх местах** — в takes the prepositional: три → трёх.",
         "q8": "**нам обоим** — укрыться впору нам, so обоим is dative: оба → обоим.",
         "q9": "**к обоим берегам** — к takes the dative: оба → обоим.",
+    },
+    "c6-hundreds-thousands-practice": {
+        "q2": "**более двухсот тысяч** — более takes the genitive, and both parts of двести decline: двести → двухсот; тысяча then takes the genitive plural: тысяч.",
+        "q8": "**около восьмидесяти миллионов** — около takes the genitive, and both parts of восемьдесят decline: восемьдесят → восьмидесяти; миллион then takes the genitive plural: миллионов.",
+        "q10": "**из пятисот претендентов** — из takes the genitive: пятьсот → пятисот; what is counted is genitive plural: претендент → претендентов.",
+        "q14": "**более четырёхсот участников** — более takes the genitive: четыреста → четырёхсот; what is counted is genitive plural: участник → участников.",
     },
     "c6-hundreds-thousands": {
         "q3": "**две тысячи** — 2–4 take the genitive singular: тысяча → тысячи.",

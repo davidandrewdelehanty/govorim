@@ -18024,11 +18024,25 @@ quizMode ? (
         .crs-exen{font-style:italic;font-size:14.5px;color:rgba(42,31,20,.6)}
         .crs-tw{overflow-x:auto}
         .crs-cap{font-family:'IBM Plex Sans',sans-serif;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:rgba(42,31,20,.55);margin-bottom:4px}
-        .crs-t{border-collapse:collapse;font-family:'Literata',serif;font-size:15px;color:#1c1610;min-width:60%}
-        .crs-t th{font-family:'IBM Plex Sans',sans-serif;font-size:12px;font-weight:600;text-align:left;color:rgba(42,31,20,.65);padding:5px 10px;border-bottom:1px solid rgba(42,31,20,.2)}
-        .crs-t tbody th{font-weight:500;border-bottom:1px solid rgba(42,31,20,.08)}
-        .crs-t td{padding:5px 10px;border-bottom:1px solid rgba(42,31,20,.08)}
+        .crs-t{border-collapse:separate;border-spacing:0;font-family:'Literata',serif;font-size:15px;color:#1c1610;min-width:60%;max-width:100%;border:1px solid rgba(42,31,20,.16);border-radius:10px;overflow:hidden;background:rgba(255,255,255,.55)}
+        .crs-t th{font-family:'IBM Plex Sans',sans-serif;font-size:12px;font-weight:600;text-align:left;color:rgba(42,31,20,.7);padding:7px 11px;background:rgba(42,31,20,.06);border-bottom:1px solid rgba(42,31,20,.16)}
+        .crs-t tbody th{font-weight:600;background:rgba(42,31,20,.035);border-bottom:1px solid rgba(42,31,20,.08);white-space:nowrap}
+        .crs-t td{padding:7px 11px;border-bottom:1px solid rgba(42,31,20,.08);overflow-wrap:anywhere}
+        .crs-t tbody tr:last-child>*{border-bottom:0}
+        .crs-t tbody tr:nth-child(even) td{background:rgba(42,31,20,.025)}
         .crs-t b{color:#8a3b1e}
+        @media (max-width:640px){
+          .crs-t{min-width:0;width:100%;font-size:14.5px}
+          .crs-t th,.crs-t td{padding:6px 8px}
+          .crs-t tbody th{white-space:normal}
+          .crs-t.stk,.crs-t.stk tbody{display:block;border:0;background:transparent}
+          .crs-t.stk thead{display:none}
+          .crs-t.stk tr{display:block;margin:0 0 10px;border:1px solid rgba(42,31,20,.16);border-radius:10px;overflow:hidden;background:rgba(255,255,255,.6)}
+          .crs-t.stk tbody th{display:block;background:rgba(138,59,30,.09);color:#8a3b1e;font-size:13px;border-bottom:1px solid rgba(42,31,20,.12);padding:6px 11px}
+          .crs-t.stk td{display:block;border-bottom:1px solid rgba(42,31,20,.07);padding:6px 11px;background:transparent !important}
+          .crs-t.stk tr>td:last-child{border-bottom:0}
+          .crs-t.stk td[data-l]::before{content:attr(data-l);display:block;font-family:'IBM Plex Sans',sans-serif;font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:rgba(42,31,20,.5);margin-bottom:1px}
+        }
         .crs-exw{display:flex;flex-direction:column;gap:10px;margin-top:6px;padding-top:6px;border-top:1px solid rgba(42,31,20,.15)}
         .crs-exi{font-size:14.5px;color:rgba(42,31,20,.65);font-style:italic}
         .crs-q{display:flex;gap:12px;padding:12px 14px;border:1px solid rgba(42,31,20,.14);border-radius:10px;background:rgba(255,255,255,.5);transition:border-color .2s,background .2s}
@@ -27722,7 +27736,7 @@ quizMode ? (
                   return out.filter(Boolean);
                 };
                 var withExamples = function(t, key) {
-                  var parts = String(t || "").split(/(\*[^*]+\*)/), nodes = [], buf = "";
+                  var parts = String(t || "").split(/(\*\*[^*]+\*\*|\*[^*]+\*)/), nodes = [], buf = "";
                   var flush = function(k){ if (buf.trim()) nodes.push(<span key={k}>{rich(buf)}</span>); buf = ""; };
                   parts.forEach(function(p, i){
                     if (/^\*[^*]+\*$/.test(p) && CYR.test(p) && p.length > 10) {
@@ -28094,17 +28108,31 @@ quizMode ? (
                       })}
                     </div>
                   );
-                  if (b.t === "table") return (
-                    <div key={i} className="crs-tw">
-                      {b.caption && <div className="crs-cap">{rich(b.caption)}</div>}
-                      <table className="crs-t">
-                        {b.head && <thead><tr>{b.head.map(function(h, k){ return <th key={k}>{rich(h)}</th>; })}</tr></thead>}
-                        <tbody>{b.rows.map(function(r, k){
-                          return <tr key={k}>{r.map(function(c, j){ return j === 0 && b.rowHeads ? <th key={j}>{rich(c)}</th> : <td key={j} lang="ru">{rich(c)}</td>; })}</tr>;
-                        })}</tbody>
-                      </table>
-                    </div>
-                  );
+                  if (b.t === "table") {
+                    // On a phone a table with wide cells would need side-scrolling: such a table
+                    // is laid out as one card per row (column heading above each cell) instead.
+                    var heads = (b.head || []).map(function(h){ return String(h || "").replace(/\*/g, "").trim(); });
+                    var hasHead = heads.some(function(h){ return h; });
+                    var ncol = Math.max(heads.length, (b.rows[0] || []).length);
+                    var wide = 0;
+                    for (var cj = 0; cj < ncol; cj++) {
+                      var mx = heads[cj] ? Math.min(heads[cj].length, 12) : 0;
+                      b.rows.forEach(function(r){ mx = Math.max(mx, String(r[cj] == null ? "" : r[cj]).replace(/\*/g, "").length); });
+                      wide += mx + 3;
+                    }
+                    var stack = ncol >= 3 && wide > 34;
+                    return (
+                      <div key={i} className="crs-tw">
+                        {b.caption && <div className="crs-cap">{rich(b.caption)}</div>}
+                        <table className={"crs-t" + (stack ? " stk" : "")}>
+                          {hasHead && <thead><tr>{heads.map(function(h, k){ return <th key={k}>{rich(b.head[k])}</th>; })}</tr></thead>}
+                          <tbody>{b.rows.map(function(r, k){
+                            return <tr key={k}>{r.map(function(c, j){ return j === 0 && b.rowHeads ? <th key={j}>{rich(c)}</th> : <td key={j} lang="ru" data-l={heads[j] || undefined}>{rich(c)}</td>; })}</tr>;
+                          })}</tbody>
+                        </table>
+                      </div>
+                    );
+                  }
                   return <Fragment key={i}>{paragraph(b.text, "p" + i)}</Fragment>;
                 };
                 // An exercise asked again in the missed round is a copy (`review`)

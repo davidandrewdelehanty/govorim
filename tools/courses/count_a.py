@@ -8,8 +8,8 @@ SRC = "From the DLI Grammar Reference Book"
 
 SECTIONS = [
 
-SEC("c1-numbers-nouns", "Numbers with nouns", sub="DLI Lesson 39 · один, два, три, четыре, пять + noun", blocks=[
-  H("Cardinal numerals with nouns"),
+SEC("c4-one-two-three-four", "один, два, три, четыре: with nouns and in every case", sub="DLI Lessons 39 and 70 · the noun after 1–4 · declension · with adjectives · special meanings of один", blocks=[
+  H("1–4 with a noun"),
   P("a) ОДИН, ОДНА, ОДНО. The numeral один has special forms for feminine and neuter nouns:"),
   EX(("один урок", ""), ("одна страница", ""), ("одно слово", "")),
   P("After all compound numbers ending with один the noun is in the nominative singular: *тридцать один урок; сорок одна страница; сто одно слово.*"),
@@ -17,23 +17,49 @@ SEC("c1-numbers-nouns", "Numbers with nouns", sub="DLI Lesson 39 · один, д
   EX(("два урока, тридцать два урока", ""), ("два слова, сорок два слова", ""), ("две страницы, сто две страницы", "")),
   P("Likewise: оба урока, оба слова, обе страницы."),
   P("c) ТРИ, ЧЕТЫРЕ. After три and четыре (also after: двадцать три, тридцать четыре, сорок три etc.) the noun is also in the genitive singular: *3 урока, 33 урока; 4 слова, 44 слова; 4 страницы, 104 страницы.*"),
-  P("d) ПЯТЬ, ШЕСТЬ, СЕМЬ etc. After all other numerals (пять, шесть, семь, etc.) as well as after all compound numbers with 5, 6, 7, etc. as last word, the noun is in the genitive plural: *5 уроков, 35 уроков; 10 страниц, 40 страниц; 11 слов, 111 слов.*"),
-  P("Note — 1) Russian compound numerals are never connected by и: hundred and five — сто пять."),
-  NOTE("DLI, Lesson 39."),
+  H("The same numerals in every case"),
+  P("Numerals are declined in Russian. They have their own pattern of declension."),
+  H("Declension of «один», «одна», «одно»"),
+  P("The number «ОДИН» acts as an adjective. It agrees with the nouns to which it refers in gender, number and case. ОДИН (ОДНА, ОДНО) declines like этот (ЭТА, ЭТО)."),
+  T(["", "Masculine", "Feminine"], [
+    ["Nom.", "один самолёт", "одна рота"], ["Gen.", "одного самолёта", "одной роты"], ["Dat.", "одному самолёту", "одной роте"],
+    ["Acc. (inanim.)", "один самолёт", "одну роту"], ["Acc. (animate)", "одного пилота", "одну медсестру"],
+    ["Instr.", "одним самолётом", "одной ротой"], ["Prep.", "об одном самолёте", "об одной роте"],
+  ]),
+  P("Note that with masculine inanimate nouns the Accusative of «ОДИН» is the same as the Nominative. With animate nouns it is the same as the Genitive: *Я вижу один грузовик. Я вижу одного человека.* The feminine Accusative is always «ОДНУ»: *Я вижу одну книгу. Я вижу одну девушку.* The neuter form «ОДНО» is declined like «ОДИН»."),
+  H("Declension of «два», «две», «три», «четыре»"),
+  T(["", "два (masc., neut.)", "две (fem.)", "три", "четыре"], [
+    ["Nom.", "два часа", "две минуты", "три урока", "четыре пары"], ["Gen.", "двух часов", "двух минут", "трёх уроков", "четырёх пар"],
+    ["Dat.", "двум часам", "двум минутам", "трём урокам", "четырём парам"], ["Acc. inan. = N.", "два часа", "две минуты", "три урока", "четыре пары"],
+    ["Acc. anim. = G.", "двух студентов", "двух девушек", "трёх студентов", "четырёх студенток"], ["Instr.", "двумя часами", "двумя минутами", "тремя уроками", "четырьмя парами"],
+    ["Prep.", "о двух часах", "о двух минутах", "о трёх уроках", "о четырёх парах"],
+  ]),
+  P("Note that the rule: \"2, 3, 4 + Gen. sing.\" concerns the Nominative (or Accusative inanimate) construction only. In oblique cases the numbers always agree in case with the noun to which they refer (двум студентам; с тремя книгами; на четырёх грузовиках). Note also the «ь» and the stress in the Instrumental case of «ЧЕТЫРЕ» — «ЧЕТЫРЬМЯ»."),
+  H("Два, три, четыре + adjective + noun"),
+  T(["", "Example", "Adjective and noun"], [
+    ["Nom.", "два новых самолёта · три больших комнаты · четыре русских студента", "adj. Gen. pl., noun Gen. sing."],
+    ["Gen.", "двух новых самолётов · трёх больших комнат", "Gen. pl."], ["Dat.", "двум новым самолётам · трём большим комнатам", "Dat. pl."],
+    ["Instr.", "двумя новыми самолётами · тремя большими комнатами", "Instr. pl."], ["Prep.", "о двух новых самолётах · о трёх больших комнатах", "Prep. pl."],
+  ], row_heads=True),
+  P("Note the complete agreement of numerals and adjectives with the nouns they modify in all cases except the Nominative. As we already know, the numerals «два», «три» and «четыре» in the Nominative case are followed by nouns in the Genitive singular, but the adjectives are in the Genitive plural."),
+  H("Special meanings of the word «один»"),
+  EX(("Один он знает это. (= Только он знает это.)", "Only he knows this."), ("Он летал один.", "He was flying alone."), ("Я с ним в одном классе.", "I'm in the same class with him."), ("Ни один человек не знает этого.", "No (not a single) man knows this."), ("Сколько книг вы прочитали? — Ни одной.", "How many books did you read? — None."), ("Я познакомился с одним студентом, который знает вас.", "I met a (certain) student who knows you.")),
+  NOTE("DLI, Lessons 39 and 70."),
 ], exercises=[
-  MC("___ страница", ["один", "одна", "одно"], 1, "The numeral один has special forms for feminine and neuter nouns. " + SRC + ", Lesson 39."),
-  MC("___ слово", ["один", "одна", "одно"], 2, SRC + ", Lesson 39."),
-  MC("___ страницы (2)", ["два", "две"], 1, "The numeral два has a special form for feminine nouns — две. " + SRC + ", Lesson 39."),
-  MC("тридцать один ___", ["урок", "урока", "уроков"], 0, "After all compound numbers ending with один the noun is in the nominative singular. " + SRC + ", Lesson 39."),
-  MC("два ___", ["урок", "урока", "уроков"], 1, "The noun after два, две is in the genitive singular. " + SRC + ", Lesson 39."),
-  MC("сорок два ___", ["слово", "слова", "слов"], 1, SRC + ", Lesson 39."),
-  MC("пять ___", ["урок", "урока", "уроков"], 2, "After пять, шесть, семь, etc. the noun is in the genitive plural. " + SRC + ", Lesson 39."),
-  MC("10 ___", ["страница", "страницы", "страниц"], 2, SRC + ", Lesson 39."),
-  MC("111 ___", ["слово", "слова", "слов"], 2, SRC + ", Lesson 39."),
   FILL("33 ___ (урок)", ["урока"], "After три and четыре (also after тридцать три…) the noun is in the genitive singular. " + SRC + ", Lesson 39."),
   FILL("___ страницы (both)", ["обе"], "Likewise: оба урока, оба слова, обе страницы. " + SRC + ", Lesson 39."),
-  MC("«a hundred and five»", ["сто и пять", "сто пять"], 1, "Russian compound numerals are never connected by и. " + SRC + ", Lesson 39."),
+  FILL("Я вижу ___ человека. (один — animate)", ["одного"], "With animate nouns it is the same as the Genitive. " + SRC + ", Lesson 70."),
+  FILL("Я вижу ___ девушку. (одна)", ["одну"], "The feminine Accusative is always «ОДНУ». " + SRC + ", Lesson 70."),
+  FILL("об ___ самолёте (один)", ["одном"], SRC + ", Lesson 70."),
+  FILL("___ часов (два — Gen.)", ["двух"], SRC + ", Lesson 70."),
+  FILL("___ урокам (три — Dat.)", ["трём", "трем"], SRC + ", Lesson 70."),
+  FILL("___ парами (четыре — Instr.)", ["четырьмя"], "Note the «ь» and the stress — «ЧЕТЫРЬМЯ». " + SRC + ", Lesson 70."),
+  MC("два ___ самолёта", ["новый", "новых", "новые"], 1, "The adjectives are in the Genitive plural. " + SRC + ", Lesson 70."),
+  FILL("с тремя ___ (книги — Instr.)", ["книгами"], "In oblique cases the numbers always agree in case with the noun. " + SRC + ", Lesson 70."),
+  MC("«He was flying alone.»", ["Он летал один.", "Один он летал."], 0, "In this meaning «один» never precedes the noun modified. " + SRC + ", Lesson 70."),
+  FILL("Сколько книг вы прочитали? — Ни ___ .", ["одной"], SRC + ", Lesson 70."),
 ]),
+
 
 SEC("c2-genitive-plural", "The genitive plural", sub="DLI Lessons 38–41 · the four basic types · deviations · человек, год", blocks=[
   H("Genitive plural of nouns (4 basic types)"),

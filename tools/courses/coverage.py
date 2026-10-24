@@ -121,15 +121,7 @@ FACETS = {
         "k8-plural-cases": [("nominative", "nomn plur"), ("genitive", "gent plur"), ("dative", "datv plur"), ("accusative", "accs plur"), ("instrumental", "ablt plur"), ("prepositional", "loct plur")],
         "k9-adjectives-singular": [("masculine", "masc sing"), ("feminine", "femn sing"), ("neuter", "neut sing")],
     },
-    "count": {
-        "c1-numbers-nouns": [("after один", "nomn sing prev:один|prev:одна|prev:одно"), ("after два, три, четыре", "gent sing afternum"), ("after пять and up", "gent plur afternum")],
-        "c2-genitive-plural": [("masculine -ов, -ев", "gent plur masc"), ("feminine", "gent plur femn"), ("neuter", "gent plur neut"), ("-ей", "gent plur end:ей$")],
-        "c3-how-many": [("много, мало", "gent sent:(много/мало/немного)\\s"), ("несколько", "gent sent:несколько"), ("сколько", "gent sent:сколько")],
-        "c4-one-two-three-four": [("genitive", "NUMR gent"), ("dative", "NUMR datv"), ("accusative", "NUMR accs"), ("instrumental", "NUMR ablt"), ("prepositional", "NUMR loct")],
-        "c5-five-and-up": [("genitive", "NUMR gent"), ("dative", "NUMR datv"), ("instrumental", "NUMR ablt"), ("prepositional", "NUMR loct")],
-        "c6-hundreds-thousands": [("hundreds", "ans:(сот/ст[аи]/сти)$|ans:^(двест/трист/четырест)"), ("тысяча", "ans:тысяч"), ("about:_около", "prep:около")],
-        "c7-ordinals-fractions": [("ordinal", "ADJF"), ("fraction, half", "sent:(треть/четверт/половин/полов/восьм/десят)")],
-    },
+    # "count": lessons there carry no extra book sentences: their practice sets are Tatoeba (with English)
     "aspect": {
         "a1-process-result": [("imperfective past", "past impf"), ("perfective past", "past perf"), ("imperfective future", "futr impf"), ("perfective future", "futr perf")],
         "a2-context": [("duration:_долго,_весь_день", "impf sent:(долго/недолго/весь/всю/всё/целый/целую)"), ("habit:_обычно,_всегда,_часто", "impf sent:(обычно/всегда/иногда/часто/редко/кажд/по_утрам/по_вечерам)")],
@@ -541,7 +533,7 @@ def apply_fill():
         doc["exercises"] = exs0
         # the lesson says where the extra sentences come from
         blocks = doc.get("blocks") or []
-        note = "Further sentences, so that every pattern above is practised: from the library's public-domain books."
+        note = "Further sentences, so that every pattern above is practised: from Tatoeba (CC BY 2.0 FR), with their English."
         if not any(b.get("t") == "note" and b.get("text") == note for b in blocks):
             blocks.append({"t": "note", "text": note})
         doc["blocks"] = blocks

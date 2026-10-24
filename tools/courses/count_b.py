@@ -5,51 +5,13 @@ SRC = "From the DLI Grammar Reference Book"
 
 SECTIONS = [
 
-SEC("c4-one-two-three-four", "один, два, три, четыре in every case", sub="DLI Lesson 70 · declension · with adjectives · special meanings of один", blocks=[
-  P("Numerals are declined in Russian. They have their own pattern of declension."),
-  H("Declension of «один», «одна», «одно»"),
-  P("The number «ОДИН» acts as an adjective. It agrees with the nouns to which it refers in gender, number and case. ОДИН (ОДНА, ОДНО) declines like этот (ЭТА, ЭТО)."),
-  T(["", "Masculine", "Feminine"], [
-    ["Nom.", "один самолёт", "одна рота"], ["Gen.", "одного самолёта", "одной роты"], ["Dat.", "одному самолёту", "одной роте"],
-    ["Acc. (inanim.)", "один самолёт", "одну роту"], ["Acc. (animate)", "одного пилота", "одну медсестру"],
-    ["Instr.", "одним самолётом", "одной ротой"], ["Prep.", "об одном самолёте", "об одной роте"],
-  ]),
-  P("Note that with masculine inanimate nouns the Accusative of «ОДИН» is the same as the Nominative. With animate nouns it is the same as the Genitive: *Я вижу один грузовик. Я вижу одного человека.* The feminine Accusative is always «ОДНУ»: *Я вижу одну книгу. Я вижу одну девушку.* The neuter form «ОДНО» is declined like «ОДИН»."),
-  H("Declension of «два», «две», «три», «четыре»"),
-  T(["", "Masc. & Neuter", "Feminine", "", ""], [
-    ["Nom.", "два часа", "две минуты", "три урока", "четыре пары"], ["Gen.", "двух часов", "двух минут", "трёх уроков", "четырёх пар"],
-    ["Dat.", "двум часам", "двум минутам", "трём урокам", "четырём парам"], ["Acc. inan. = N.", "два часа", "две минуты", "три урока", "четыре пары"],
-    ["Acc. anim. = G.", "двух студентов", "двух девушек", "трёх студентов", "четырёх студенток"], ["Instr.", "двумя часами", "двумя минутами", "тремя уроками", "четырьмя парами"],
-    ["Prep.", "о двух часах", "о двух минутах", "о трёх уроках", "о четырёх парах"],
-  ]),
-  P("Note that the rule: \"2, 3, 4 + Gen. sing.\" concerns the Nominative (or Accusative inanimate) construction only. In oblique cases the numbers always agree in case with the noun to which they refer (двум студентам; с тремя книгами; на четырёх грузовиках). Note also the «ь» and the stress in the Instrumental case of «ЧЕТЫРЕ» — «ЧЕТЫРЬМЯ»."),
-  H("Два, три, четыре + adjective + noun"),
-  T(["", "", ""], [
-    ["Nom.", "два новых самолёта · три больших комнаты · четыре русских студента", "adj. Gen. pl., noun Gen. sing."],
-    ["Gen.", "двух новых самолётов · трёх больших комнат", "Gen. pl."], ["Dat.", "двум новым самолётам · трём большим комнатам", "Dat. pl."],
-    ["Instr.", "двумя новыми самолётами · тремя большими комнатами", "Instr. pl."], ["Prep.", "о двух новых самолётах · о трёх больших комнатах", "Prep. pl."],
-  ], row_heads=True),
-  P("Note the complete agreement of numerals and adjectives with the nouns they modify in all cases except the Nominative. As we already know, the numerals «два», «три» and «четыре» in the Nominative case are followed by nouns in the Genitive singular, but the adjectives are in the Genitive plural."),
-  H("Special meanings of the word «один»"),
-  EX(("Один он знает это. (= Только он знает это.)", "Only he knows this."), ("Он летал один.", "He was flying alone."), ("Я с ним в одном классе.", "I'm in the same class with him."), ("Ни один человек не знает этого.", "No (not a single) man knows this."), ("Сколько книг вы прочитали? — Ни одной.", "How many books did you read? — None."), ("Я познакомился с одним студентом, который знает вас.", "I met a (certain) student who knows you.")),
-  NOTE("DLI, Lesson 70."),
-], exercises=[
-  FILL("Я вижу ___ человека. (один — animate)", ["одного"], "With animate nouns it is the same as the Genitive. " + SRC + ", Lesson 70."),
-  FILL("Я вижу ___ девушку. (одна)", ["одну"], "The feminine Accusative is always «ОДНУ». " + SRC + ", Lesson 70."),
-  FILL("об ___ самолёте (один)", ["одном"], SRC + ", Lesson 70."),
-  FILL("___ часов (два — Gen.)", ["двух"], SRC + ", Lesson 70."),
-  FILL("___ урокам (три — Dat.)", ["трём", "трем"], SRC + ", Lesson 70."),
-  FILL("___ парами (четыре — Instr.)", ["четырьмя"], "Note the «ь» and the stress — «ЧЕТЫРЬМЯ». " + SRC + ", Lesson 70."),
-  MC("два ___ самолёта", ["новый", "новых", "новые"], 1, "The adjectives are in the Genitive plural. " + SRC + ", Lesson 70."),
-  FILL("с тремя ___ (книги — Instr.)", ["книгами"], "In oblique cases the numbers always agree in case with the noun. " + SRC + ", Lesson 70."),
-  MC("«He was flying alone.»", ["Он летал один.", "Один он летал."], 0, "In this meaning «один» never precedes the noun modified. " + SRC + ", Lesson 70."),
-  FILL("Сколько книг вы прочитали? — Ни ___ .", ["одной"], SRC + ", Lesson 70."),
-]),
-
 SEC("c5-five-and-up", "Five to a hundred in every case", sub="DLI Lesson 71 · 5–20 and 30 · 40, 90, 100 · 50–80 · compound numerals · the accusative", blocks=[
+  H("Five and up with a noun"),
+  P("d) ПЯТЬ, ШЕСТЬ, СЕМЬ etc. After all other numerals (пять, шесть, семь, etc.) as well as after all compound numbers with 5, 6, 7, etc. as last word, the noun is in the genitive plural: *5 уроков, 35 уроков; 10 страниц, 40 страниц; 11 слов, 111 слов.*"),
+  P("Note — 1) Russian compound numerals are never connected by и: hundred and five — сто пять."),
   H("Declension of 5–20 and 30"),
   P("Numerals ending in soft sign (5–20 and 30) are declined like feminine nouns ending in soft sign (ночь, площадь etc.)."),
-  T(["", "", ""], [
+  T(["", "5 + adjective + noun", "8 + adjective + noun"], [
     ["N.", "пять новых танков", "восемь хороших машин"], ["G.", "пяти новых танков", "восьми хороших машин"], ["D.", "пяти новым танкам", "восьми хорошим машинам"],
     ["A.", "пять новых танков", "восемь хороших машин"], ["I.", "пятью новыми танками", "восемью хорошими машинами"], ["P.", "о пяти новых танках", "о восьми хороших машинах"],
   ]),
@@ -57,7 +19,7 @@ SEC("c5-five-and-up", "Five to a hundred in every case", sub="DLI Lesson 71 · 5
   H("The accusative case of compound numerals ending in 1, 2, 3, 4"),
   P("The word один follows the rule of animate and inanimate nouns even when it appears at the end of a compound numeral: *Я вижу двадцать один самолёт. Я вижу двадцать одного студента.* However, два (две), три, четыре appearing at the end of the compound numerals do not follow the above pattern in the Accusative case. Their Accusative (both animate and inanimate) is usually the same as the Nominative: *Я вижу двадцать два самолёта. Я вижу двадцать два студента. Я знаю тридцать пять человек.*"),
   H("Declension of 50, 60, 70, 80"),
-  T(["", "", ""], [
+  T(["", "50", "60"], [
     ["N.", "пятьдесят самолётов", "шестьдесят пилотов"], ["G.", "пятидесяти самолётов", "шестидесяти пилотов"], ["D.", "пятидесяти самолётам", "шестидесяти пилотам"],
     ["A.", "пятьдесят самолётов", "шестьдесят пилотов"], ["I.", "пятьюдесятью самолётами", "шестьюдесятью пилотами"], ["P.", "о пятидесяти самолётах", "о шестидесяти пилотах"],
   ]),
@@ -90,7 +52,7 @@ SEC("c6-hundreds-thousands", "Hundreds, thousands, millions, and «about»", sub
   P("Тысяча (fem.) and миллион (masc.) are used and declined as nouns and have both singular and plural forms: *одна тысяча, две тысячи, пять тысяч; один миллион, два миллиона, пять миллионов.* Тысяча and миллион are followed in all cases by the Genitive plural of the noun and its qualifier. Тысяча is quite commonly pronounced (but never spelled) like «тыща». Five hundred and fifty five = пятьсот пятьдесят пять."),
   NOTE("DLI, Lesson 69."),
   H("Declension of 200–900"),
-  T(["", "", ""], [
+  T(["", "200", "500"], [
     ["N.", "двести самолётов", "пятьсот самолётов"], ["G.", "двухсот самолётов", "пятисот самолётов"], ["D.", "двумстам самолётам", "пятистам самолётам"],
     ["A. = N.", "двести самолётов", "пятьсот самолётов"], ["I.", "двумястами самолётами", "пятьюстами самолётами"], ["P.", "о двухстах самолётах", "о пятистах самолётах"],
   ]),
@@ -124,7 +86,7 @@ SEC("c7-ordinals-fractions", "Ordinals, fractions, «equal to»", sub="DLI Lesso
   H("The word «РАВЕН»"),
   P("РАВЕН (РАВНА, РАВНО, РАВНЫ) is a short adjective commonly used as a predicate: *Здесь все равны.* — Everybody is equal here. A noun or a numeral which follows this word is in the Dative case: *Шесть плюс три равно девяти. Эта скорость равна скорости звука.* Note also: *Мне всё равно.* — I don't care (It's all the same to me)."),
   H("Declension of «сколько», «несколько»"),
-  T(["", "", ""], [["N.", "сколько танков", "несколько танков"], ["G.", "скольких танков", "нескольких танков"], ["D.", "скольким танкам", "нескольким танкам"], ["A.", "сколько танков / скольких студентов", "несколько танков / нескольких студентов"], ["I.", "сколькими танками", "несколькими танками"], ["P.", "о скольких танках", "о нескольких танках"]]),
+  T(["", "сколько", "несколько"], [["N.", "сколько танков", "несколько танков"], ["G.", "скольких танков", "нескольких танков"], ["D.", "скольким танкам", "нескольким танкам"], ["A.", "сколько танков / скольких студентов", "несколько танков / нескольких студентов"], ["I.", "сколькими танками", "несколькими танками"], ["P.", "о скольких танках", "о нескольких танках"]]),
   P("«Сколько» and «несколько» are declined like Adjectives in the plural: *На скольких самолётах есть радары? — Не знаю точно, но на нескольких есть.*"),
   NOTE("DLI, Lesson 72."),
 ], exercises=[
