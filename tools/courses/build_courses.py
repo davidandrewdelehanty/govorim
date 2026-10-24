@@ -445,6 +445,8 @@ def main(argv=None):
         pos_guard.main(["--apply"])      # a noun blank the dictionary also reads as a verb/adverb/... is dropped
     except ImportError:
         print("pos_guard skipped (pymorphy3 not installed)")
+    import hint_pos_guard
+    hint_pos_guard.main(["--apply"])     # a verb hint for a participle/gerund answer, outside the sections that teach those
     # The Verbs of Motion course: each exercise explained by the rule for its own verb or prefix.
     import motion_explain
     motion_explain.main(["--apply"])
@@ -518,6 +520,8 @@ def _passes(only):
         pos_guard.main(["--apply", "--course", only])      # a noun blank the dictionary also reads as a verb/adverb/... is dropped
     except ImportError:
         print("pos_guard skipped (pymorphy3 not installed)")
+    import hint_pos_guard
+    hint_pos_guard.main(["--apply", "--course", only])
     if only == "motion":
         import motion_explain
         motion_explain.main(["--apply"])

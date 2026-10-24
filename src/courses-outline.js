@@ -22,7 +22,7 @@ export default [
    {
     "id": "ts-v-acc",
     "title": "В + accusative: At five, once a week, that day, the first time",
-    "n": 30,
+    "n": 28,
     "stream": true,
     "finite": true
    },
@@ -50,21 +50,21 @@ export default [
    {
     "id": "ts-po-dat",
     "title": "ПО + dative plural: On Tuesdays, in the mornings",
-    "n": 18,
+    "n": 17,
     "stream": true,
     "finite": true
    },
    {
     "id": "ts-na-prep",
     "title": "НА + prepositional: This week, last week",
-    "n": 16,
+    "n": 15,
     "stream": true,
     "finite": true
    },
    {
     "id": "ts-v-prep",
     "title": "В + prepositional: In May, last year",
-    "n": 31,
+    "n": 30,
     "stream": true,
     "finite": true
    },
@@ -92,7 +92,7 @@ export default [
    {
     "id": "ts-za-acc",
     "title": "ЗА + accusative: In an hour (it took)",
-    "n": 41,
+    "n": 38,
     "stream": true,
     "finite": true
    },
@@ -127,21 +127,21 @@ export default [
    {
     "id": "ts-posle",
     "title": "ПОСЛЕ + genitive: After lunch",
-    "n": 28,
+    "n": 24,
     "stream": true,
     "finite": true
    },
    {
     "id": "ts-pered",
     "title": "ПЕРЕД + instrumental: Just before lunch",
-    "n": 8,
+    "n": 5,
     "stream": true,
     "finite": true
    },
    {
     "id": "ts-k-dat",
     "title": "К + dative: By evening, by five",
-    "n": 31,
+    "n": 30,
     "stream": true,
     "finite": true
    },
@@ -2473,7 +2473,7 @@ export default [
    {
     "id": "a5-po-s",
     "title": "по- and с- with ходить, ездить, летать",
-    "n": 6
+    "n": 5
    },
    {
     "id": "exam",
@@ -3487,7 +3487,7 @@ export default [
    {
     "id": "i08-aspect-past",
     "title": "Aspect in the past tense",
-    "n": 6
+    "n": 5
    },
    {
     "id": "i09-aspect-infinitive",
@@ -3987,7 +3987,7 @@ export default [
    {
     "id": "v13-prefixes",
     "title": "Verbs with prefixes",
-    "n": 44
+    "n": 41
    },
    {
     "id": "exam",

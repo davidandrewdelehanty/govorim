@@ -224,7 +224,7 @@ WANT = {
               "k7-genitive-plural": "gent plur", "k8-plural-cases": "plur", "k9-adjectives-singular": "ADJF|adj+|NPRO sing",
               "k10-adjectives-plural": "ADJF|adj+|NPRO plur", "k11-prepositions": "prep"},
     "count": {"c2-genitive-plural": "gent plur", "c3-how-many": "gent", "c4-one-two-three-four": "NUMR|gent|lemma:^(один/одна/одно/два/две/три/четыре)",
-              "c5-five-and-up": "NUMR"},
+              "c5-five-and-up": "NUMR", "c6-hundreds-thousands": "gent|NUMR", "c7-ordinals-fractions": "ADJF|NUMR|gent", "c8-collective-half": "gent"},
     "aspect": {"a2-context": "impf", "a3-commands": "impr", "a4-future": "futr perf", "a5-po-s": "ans:^(по/с)"},
     "verbs": {"v1-present": "pres", "v2-past": "past", "v4-sya": "sya"},
     "compare": {"c1-comparative": "COMP", "c2-irregular": "COMP", "c3-than": "COMP|gent", "c4-bolee": "bolee|COMP",
