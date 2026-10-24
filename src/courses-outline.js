@@ -1643,7 +1643,7 @@ export default [
    {
     "id": "a5-time",
     "title": "Time in the accusative",
-    "n": 16
+    "n": 15
    },
    {
     "id": "a5-time-practice",
@@ -1668,12 +1668,12 @@ export default [
    {
     "id": "a5-time-practice-5",
     "title": "Practice 5: Time in the accusative",
-    "n": 17
+    "n": 16
    },
    {
     "id": "a5-time-practice-6",
     "title": "Practice 6: Time in the accusative",
-    "n": 18
+    "n": 16
    },
    {
     "id": "a5-time-practice-7",
@@ -1708,32 +1708,32 @@ export default [
    {
     "id": "a5-time-practice-13",
     "title": "Practice 13: Time in the accusative",
-    "n": 17
+    "n": 15
    },
    {
     "id": "a5-time-practice-14",
     "title": "Practice 14: Time in the accusative",
-    "n": 14
+    "n": 13
    },
    {
     "id": "a5-time-practice-15",
     "title": "Practice 15: Time in the accusative",
-    "n": 18
+    "n": 17
    },
    {
     "id": "a5-time-practice-16",
     "title": "Practice 16: Time in the accusative",
-    "n": 15
+    "n": 14
    },
    {
     "id": "a5-time-practice-17",
     "title": "Practice 17: Time in the accusative",
-    "n": 18
+    "n": 17
    },
    {
     "id": "a5-time-practice-18",
     "title": "Practice 18: Time in the accusative",
-    "n": 19
+    "n": 17
    },
    {
     "id": "a5-time-practice-19",
@@ -1743,7 +1743,7 @@ export default [
    {
     "id": "a5-time-practice-20",
     "title": "Practice 20: Time in the accusative",
-    "n": 15
+    "n": 14
    },
    {
     "id": "a6-endings",
@@ -2353,7 +2353,7 @@ export default [
    {
     "id": "a1-process-result",
     "title": "Two aspects: the process and the result",
-    "n": 12
+    "n": 9
    },
    {
     "id": "a2-context",
@@ -3562,7 +3562,7 @@ export default [
    {
     "id": "i16-time",
     "title": "Expressing time",
-    "n": 18
+    "n": 17
    },
    {
     "id": "i16-time-practice",
@@ -3587,7 +3587,7 @@ export default [
    {
     "id": "i16-time-practice-5",
     "title": "Practice 5: Expressing time",
-    "n": 20
+    "n": 19
    },
    {
     "id": "i16-time-practice-6",
@@ -3597,22 +3597,22 @@ export default [
    {
     "id": "i16-time-practice-7",
     "title": "Practice 7: Expressing time",
-    "n": 19
+    "n": 17
    },
    {
     "id": "i16-time-practice-8",
     "title": "Practice 8: Expressing time",
-    "n": 17
+    "n": 16
    },
    {
     "id": "i16-time-practice-9",
     "title": "Practice 9: Expressing time",
-    "n": 17
+    "n": 14
    },
    {
     "id": "i16-time-practice-10",
     "title": "Practice 10: Expressing time",
-    "n": 17
+    "n": 14
    },
    {
     "id": "i16-time-practice-11",
@@ -3622,7 +3622,7 @@ export default [
    {
     "id": "i16-time-practice-12",
     "title": "Practice 12: Expressing time",
-    "n": 18
+    "n": 17
    },
    {
     "id": "i16-time-practice-13",
@@ -3637,12 +3637,12 @@ export default [
    {
     "id": "i16-time-practice-15",
     "title": "Practice 15: Expressing time",
-    "n": 13
+    "n": 12
    },
    {
     "id": "i16-time-practice-16",
     "title": "Practice 16: Expressing time",
-    "n": 20
+    "n": 19
    },
    {
     "id": "i16-time-practice-17",
@@ -3657,7 +3657,7 @@ export default [
    {
     "id": "i16-time-practice-19",
     "title": "Practice 19: Expressing time",
-    "n": 16
+    "n": 15
    },
    {
     "id": "i16-time-practice-20",

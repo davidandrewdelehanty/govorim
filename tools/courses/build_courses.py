@@ -447,6 +447,8 @@ def main(argv=None):
         print("pos_guard skipped (pymorphy3 not installed)")
     import hint_pos_guard
     hint_pos_guard.main(["--apply"])     # a verb hint for a participle/gerund answer, outside the sections that teach those
+    import topic_guard
+    topic_guard.main(["--apply"])        # time, counting and motion sections: the sentence must be about it
     # The Verbs of Motion course: each exercise explained by the rule for its own verb or prefix.
     import motion_explain
     motion_explain.main(["--apply"])
@@ -522,6 +524,8 @@ def _passes(only):
         print("pos_guard skipped (pymorphy3 not installed)")
     import hint_pos_guard
     hint_pos_guard.main(["--apply", "--course", only])
+    import topic_guard
+    topic_guard.main(["--apply", "--course", only])
     if only == "motion":
         import motion_explain
         motion_explain.main(["--apply"])
