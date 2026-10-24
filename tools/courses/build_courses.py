@@ -465,6 +465,8 @@ def main(argv=None):
         print("case_explain skipped (pymorphy3 not installed)")
     else:
         case_explain.main(["--apply"])
+    import count_explain
+    count_explain.main(["--apply"])        # Counting Things: one short rule line per exercise, after the answer
     try:
         import fix_errors
         fix_errors.main(["--apply"])       # markup, spacing, duplicates, typos, back-formed hints (audit_deep.py found them)
@@ -515,6 +517,9 @@ def build_only(only, outline):
             case_explain.main(["--apply", "--course", only])
         except ImportError:
             print("case_explain skipped (pymorphy3 not installed)")
+    if only == "count":
+        import count_explain
+        count_explain.main(["--apply"])
     try:
         import fix_errors
         fix_errors.main(["--apply", "--course", only])       # markup, spacing, duplicates, typos, back-formed hints (audit_deep.py found them)

@@ -248,7 +248,7 @@ export default [
    {
     "id": "c2-genitive-plural",
     "title": "The genitive plural",
-    "n": 8
+    "n": 6
    },
    {
     "id": "c2-genitive-plural-practice",
@@ -288,12 +288,12 @@ export default [
    {
     "id": "c6-hundreds-thousands",
     "title": "Hundreds, thousands, millions, and «about»",
-    "n": 13
+    "n": 6
    },
    {
     "id": "c7-ordinals-fractions",
     "title": "Ordinals, fractions, «equal to»",
-    "n": 3
+    "n": 0
    },
    {
     "id": "c7-ordinals-fractions-practice",
