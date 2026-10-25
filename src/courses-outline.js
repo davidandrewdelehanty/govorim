@@ -3194,7 +3194,7 @@ export default [
    {
     "id": "gt2-parts-practice",
     "title": "Practice: The parts of speech",
-    "n": 13
+    "n": 12
    },
    {
     "id": "gt3-cases",
@@ -3234,7 +3234,7 @@ export default [
    {
     "id": "gt6-adj-practice",
     "title": "Practice: The adjective: degrees of comparison, the short form",
-    "n": 4
+    "n": 5
    },
    {
     "id": "gt7-sentence",
@@ -3259,7 +3259,7 @@ export default [
    {
     "id": "exam",
     "title": "Exam",
-    "n": 39,
+    "n": 40,
     "exam": true
    }
   ],
