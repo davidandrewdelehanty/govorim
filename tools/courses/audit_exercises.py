@@ -13,6 +13,10 @@ def items():
         except Exception: continue
         out = []; walk(j, out)
         for e in out: yield f, e
+import pymorphy3
+MA = pymorphy3.MorphAnalyzer()
+def lemma_forms(lem):
+    return {f.word for p in MA.parse(lem.split()[0]) for f in p.lexeme}
 def names():
     res = []
     for f, e in items():
@@ -20,7 +24,10 @@ def names():
         if not a or not a[0].isupper(): continue
         for m in re.finditer(r"___\s*\(([^()]*)\)", q):
             pre = q[:m.start()].rstrip("   —–-«\"(")
-            if not pre or pre[-1] in ".!?…:;»" : continue          # sentence start: capital is only position
+            if not pre or pre[-1] in ".!?…:;»":                      # sentence start: the capital proves nothing, so ask the dictionary
+                if (a.lower() in (lemma_forms(m.group(1).split(",")[0].strip()))) and any({"Name", "Surn", "Geox"} & set(str(p.tag).replace(",", " ").split()) for p in MA.parse(a)[:3]):
+                    res.append((f, e, m.group(1).split(",")[0].strip()))
+                continue
             lem = m.group(1).split(",")[0].strip()
             if lem and lem[0].islower(): res.append((f, e, lem))
     return res
