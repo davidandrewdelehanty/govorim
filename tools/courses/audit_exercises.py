@@ -36,3 +36,22 @@ if __name__ == "__main__":
     c = collections.Counter(x[0].split("/")[2] for x in r)
     print("names read as common words:", len(r), dict(c))
     for f, e, lem in r[:60]: print(f.split("courses/")[1], "|", e["q"][:80], "|", e["answers"][0], "|", lem)
+
+def superlatives():
+    """A case-ending drill whose answer is a superlative or comparative of the hint word (малый → малейшую): a different word, not the case form."""
+    out = []
+    for f, e in items():
+        if "/compare/" in f: continue
+        a = (e.get("answers") or [""])[0]
+        for m in re.finditer(r"___\s*\(([^()]*)\)", e["q"]):
+            h = m.group(1)
+            if not re.search(r"\b(nom|gen|dat|acc|instr|prep)\.", h): continue
+            lemma = h.split(",")[0].split()[-1].lower().replace("ё", "е")
+            for y in re.findall(r"[А-Яа-яЁё]+", a):
+                ps = [p for p in MA.parse(y) if p.normal_form.replace("ё", "е") == lemma]
+                if ps and all("Supr" in p.tag or "Cmp" in str(p.tag) for p in ps): out.append((f, e, lemma))
+    return out
+if __name__ == "__main__":
+    s = superlatives()
+    print("superlative/comparative answers in case drills:", len(s))
+    for f, e, lem in s[:20]: print(f.split("courses/")[1], "|", e["q"][:80])
