@@ -228,9 +228,19 @@ export default [
     "n": 0
    },
    {
+    "id": "p1-to-nibud-practice",
+    "title": "Practice: -то and -нибудь",
+    "n": 16
+   },
+   {
     "id": "p2-nekogo",
     "title": "некого, нечего — and никого, ничего",
     "n": 0
+   },
+   {
+    "id": "p2-nekogo-practice",
+    "title": "Practice: некого, нечего — and никого, ничего",
+    "n": 12
    },
    {
     "id": "p3-negde",
@@ -238,9 +248,19 @@ export default [
     "n": 0
    },
    {
+    "id": "p3-negde-practice",
+    "title": "Practice: негде, некуда, некогда — and нигде, никуда, никогда",
+    "n": 14
+   },
+   {
     "id": "p4-sebya",
     "title": "себя",
     "n": 0
+   },
+   {
+    "id": "p4-sebya-practice",
+    "title": "Practice: себя",
+    "n": 12
    },
    {
     "id": "p5-svoi",
@@ -248,9 +268,19 @@ export default [
     "n": 0
    },
    {
+    "id": "p5-svoi-practice",
+    "title": "Practice: свой",
+    "n": 14
+   },
+   {
     "id": "p6-kotoryi",
     "title": "который",
     "n": 0
+   },
+   {
+    "id": "p6-kotoryi-practice",
+    "title": "Practice: который",
+    "n": 14
    },
    {
     "id": "p7-kakov",
@@ -258,9 +288,14 @@ export default [
     "n": 0
    },
    {
+    "id": "p7-kakov-practice",
+    "title": "Practice: каков, какова, каково, каковы",
+    "n": 12
+   },
+   {
     "id": "exam",
     "title": "Exam",
-    "n": 55,
+    "n": 54,
     "exam": true
    }
   ],
@@ -289,17 +324,7 @@ export default [
    },
    {
     "id": "c01-type1-practice",
-    "title": "Practice 1: Type 1: делать — verbs in -ать, -ять, -еть",
-    "n": 20
-   },
-   {
-    "id": "c01-type1-practice-2",
-    "title": "Practice 2: Type 1: делать — verbs in -ать, -ять, -еть",
-    "n": 20
-   },
-   {
-    "id": "c01-type1-practice-3",
-    "title": "Practice 3: Type 1: делать — verbs in -ать, -ять, -еть",
+    "title": "Practice: Type 1: делать — verbs in -ать, -ять, -еть",
     "n": 20
    },
    {
@@ -309,12 +334,7 @@ export default [
    },
    {
     "id": "c02-type2-practice",
-    "title": "Practice 1: Type 2: рисовать — verbs in -овать, -евать",
-    "n": 20
-   },
-   {
-    "id": "c02-type2-practice-2",
-    "title": "Practice 2: Type 2: рисовать — verbs in -овать, -евать",
+    "title": "Practice: Type 2: рисовать — verbs in -овать, -евать",
     "n": 20
    },
    {
@@ -324,17 +344,7 @@ export default [
    },
    {
     "id": "c03-reflexive-practice",
-    "title": "Practice 1: Reflexive verbs in -ся: занимаюсь, учусь",
-    "n": 20
-   },
-   {
-    "id": "c03-reflexive-practice-2",
-    "title": "Practice 2: Reflexive verbs in -ся: занимаюсь, учусь",
-    "n": 20
-   },
-   {
-    "id": "c03-reflexive-practice-3",
-    "title": "Practice 3: Reflexive verbs in -ся: занимаюсь, учусь",
+    "title": "Practice: Reflexive verbs in -ся: занимаюсь, учусь",
     "n": 20
    },
    {
@@ -354,17 +364,7 @@ export default [
    },
    {
     "id": "c05-type4-practice",
-    "title": "Practice 1: Type 4: любить, просить — verbs in -ить",
-    "n": 20
-   },
-   {
-    "id": "c05-type4-practice-2",
-    "title": "Practice 2: Type 4: любить, просить — verbs in -ить",
-    "n": 20
-   },
-   {
-    "id": "c05-type4-practice-3",
-    "title": "Practice 3: Type 4: любить, просить — verbs in -ить",
+    "title": "Practice: Type 4: любить, просить — verbs in -ить",
     "n": 20
    },
    {
@@ -374,12 +374,7 @@ export default [
    },
    {
     "id": "c06-type5-practice",
-    "title": "Practice 1: Type 5: видеть, стоять — the и-type in -еть and -ать",
-    "n": 20
-   },
-   {
-    "id": "c06-type5-practice-2",
-    "title": "Practice 2: Type 5: видеть, стоять — the и-type in -еть and -ать",
+    "title": "Practice: Type 5: видеть, стоять — the и-type in -еть and -ать",
     "n": 20
    },
    {
@@ -399,12 +394,7 @@ export default [
    },
    {
     "id": "c07-type6-practice",
-    "title": "Practice 1: Type 6: писать, ждать — -ать verbs whose stem changes",
-    "n": 20
-   },
-   {
-    "id": "c07-type6-practice-2",
-    "title": "Practice 2: Type 6: писать, ждать — -ать verbs whose stem changes",
+    "title": "Practice: Type 6: писать, ждать — -ать verbs whose stem changes",
     "n": 20
    },
    {
@@ -414,12 +404,7 @@ export default [
    },
    {
     "id": "c08-type7-practice",
-    "title": "Practice 1: Type 7: нести, вести — verbs in -ти and -сть",
-    "n": 20
-   },
-   {
-    "id": "c08-type7-practice-2",
-    "title": "Practice 2: Type 7: нести, вести — verbs in -ти and -сть",
+    "title": "Practice: Type 7: нести, вести — verbs in -ти and -сть",
     "n": 20
    },
    {
@@ -429,12 +414,7 @@ export default [
    },
    {
     "id": "c09-type8-practice",
-    "title": "Practice 1: Type 8: мочь, печь — verbs in -чь",
-    "n": 20
-   },
-   {
-    "id": "c09-type8-practice-2",
-    "title": "Practice 2: Type 8: мочь, печь — verbs in -чь",
+    "title": "Practice: Type 8: мочь, печь — verbs in -чь",
     "n": 20
    },
    {
@@ -529,17 +509,7 @@ export default [
    },
    {
     "id": "c19-irr-core-practice",
-    "title": "Practice 1: Irregular verbs 1: The true irregulars",
-    "n": 20
-   },
-   {
-    "id": "c19-irr-core-practice-2",
-    "title": "Practice 2: Irregular verbs 1: The true irregulars",
-    "n": 20
-   },
-   {
-    "id": "c19-irr-core-practice-3",
-    "title": "Practice 3: Irregular verbs 1: The true irregulars",
+    "title": "Practice: Irregular verbs 1: The true irregulars",
     "n": 20
    },
    {
@@ -549,12 +519,7 @@ export default [
    },
    {
     "id": "c20-irr-motion-practice",
-    "title": "Practice 1: Irregular verbs 2: Going on foot and by vehicle",
-    "n": 20
-   },
-   {
-    "id": "c20-irr-motion-practice-2",
-    "title": "Practice 2: Irregular verbs 2: Going on foot and by vehicle",
+    "title": "Practice: Irregular verbs 2: Going on foot and by vehicle",
     "n": 20
    },
    {
@@ -584,12 +549,7 @@ export default [
    },
    {
     "id": "c23-irr-byu-practice",
-    "title": "Practice 1: Irregular verbs 5: Short -ить, -ыть, -еть verbs",
-    "n": 20
-   },
-   {
-    "id": "c23-irr-byu-practice-2",
-    "title": "Practice 2: Irregular verbs 5: Short -ить, -ыть, -еть verbs",
+    "title": "Practice: Irregular verbs 5: Short -ить, -ыть, -еть verbs",
     "n": 20
    },
    {
@@ -599,17 +559,7 @@ export default [
    },
    {
     "id": "c24-irr-cons-practice",
-    "title": "Practice 1: Irregular verbs 6: Consonant stems: -сти, -зти, -чь",
-    "n": 20
-   },
-   {
-    "id": "c24-irr-cons-practice-2",
-    "title": "Practice 2: Irregular verbs 6: Consonant stems: -сти, -зти, -чь",
-    "n": 20
-   },
-   {
-    "id": "c24-irr-cons-practice-3",
-    "title": "Practice 3: Irregular verbs 6: Consonant stems: -сти, -зти, -чь",
+    "title": "Practice: Irregular verbs 6: Consonant stems: -сти, -зти, -чь",
     "n": 20
    },
    {
@@ -619,12 +569,7 @@ export default [
    },
    {
     "id": "c25-irr-stem-practice",
-    "title": "Practice 1: Irregular verbs 7: Stems that change",
-    "n": 20
-   },
-   {
-    "id": "c25-irr-stem-practice-2",
-    "title": "Practice 2: Irregular verbs 7: Stems that change",
+    "title": "Practice: Irregular verbs 7: Stems that change",
     "n": 20
    },
    {
@@ -654,12 +599,7 @@ export default [
    },
    {
     "id": "c28-irr-ilu-practice",
-    "title": "Practice 1: Irregular verbs 10: -ить verbs that change in the я-form only",
-    "n": 20
-   },
-   {
-    "id": "c28-irr-ilu-practice-2",
-    "title": "Practice 2: Irregular verbs 10: -ить verbs that change in the я-form only",
+    "title": "Practice: Irregular verbs 10: -ить verbs that change in the я-form only",
     "n": 20
    },
    {
@@ -710,96 +650,6 @@ export default [
    {
     "id": "a4-future-practice-3",
     "title": "Practice 3: The perfective future",
-    "n": 20
-   },
-   {
-    "id": "a4-future-practice-4",
-    "title": "Practice 4: The perfective future",
-    "n": 20
-   },
-   {
-    "id": "a4-future-practice-5",
-    "title": "Practice 5: The perfective future",
-    "n": 20
-   },
-   {
-    "id": "a4-future-practice-6",
-    "title": "Practice 6: The perfective future",
-    "n": 20
-   },
-   {
-    "id": "a4-future-practice-7",
-    "title": "Practice 7: The perfective future",
-    "n": 20
-   },
-   {
-    "id": "a4-future-practice-8",
-    "title": "Practice 8: The perfective future",
-    "n": 20
-   },
-   {
-    "id": "a4-future-practice-9",
-    "title": "Practice 9: The perfective future",
-    "n": 20
-   },
-   {
-    "id": "a4-future-practice-10",
-    "title": "Practice 10: The perfective future",
-    "n": 20
-   },
-   {
-    "id": "a4-future-practice-11",
-    "title": "Practice 11: The perfective future",
-    "n": 20
-   },
-   {
-    "id": "a4-future-practice-12",
-    "title": "Practice 12: The perfective future",
-    "n": 20
-   },
-   {
-    "id": "a4-future-practice-13",
-    "title": "Practice 13: The perfective future",
-    "n": 20
-   },
-   {
-    "id": "a4-future-practice-14",
-    "title": "Practice 14: The perfective future",
-    "n": 20
-   },
-   {
-    "id": "a4-future-practice-15",
-    "title": "Practice 15: The perfective future",
-    "n": 20
-   },
-   {
-    "id": "a4-future-practice-16",
-    "title": "Practice 16: The perfective future",
-    "n": 20
-   },
-   {
-    "id": "a4-future-practice-17",
-    "title": "Practice 17: The perfective future",
-    "n": 20
-   },
-   {
-    "id": "a4-future-practice-18",
-    "title": "Practice 18: The perfective future",
-    "n": 20
-   },
-   {
-    "id": "a4-future-practice-19",
-    "title": "Practice 19: The perfective future",
-    "n": 20
-   },
-   {
-    "id": "a4-future-practice-20",
-    "title": "Practice 20: The perfective future",
-    "n": 20
-   },
-   {
-    "id": "a4-future-practice-21",
-    "title": "Practice 21: The perfective future",
     "n": 20
    },
    {
