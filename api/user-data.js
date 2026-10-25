@@ -1051,6 +1051,8 @@ export default async function handler(req, res) {
           // one goal per kind of exercise (Oct 2026)
           quiz: num(g.quiz, 1000), match: num(g.match, 1000), terms: num(g.terms, 1000),
           decl: num(g.decl, 1000), conj: num(g.conj, 1000), numbers: num(g.numbers, 1000),
+          num: num(g.num, 1000), clock: num(g.clock, 1000), frac: num(g.frac, 1000), count: num(g.count, 1000),
+          numcase: num(g.numcase, 1000), verbs: num(g.verbs, 1000), book: num(g.book, 1000),
           // the evening reminder (from when what is short is overdue) and the morning one
           remind: hhmm(g.remind), remindAm: hhmm(g.remindAm),
           // reminders by email too, and the device's time zone for them

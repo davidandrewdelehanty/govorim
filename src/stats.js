@@ -163,6 +163,13 @@ export var GOAL_KINDS = [
   { k: "conj", f: "conj", one: "conjugation", what: "", label: "Conjugation practice (typing the form)" },
   { k: "drills", f: "cases", one: "case drill", what: "", label: "Case drills" },
   { k: "numbers", f: "numbers", one: "number answer", what: "", label: "Counting and numeral drills" },
+  { k: "num", f: "num", one: "numeral answer", what: "", label: "Numeral practice" },
+  { k: "clock", f: "clock", one: "clock answer", what: "", label: "Clock practice" },
+  { k: "frac", f: "frac", one: "fraction answer", what: "", label: "Fractions practice" },
+  { k: "count", f: "count", one: "counting answer", what: "", label: "Counting objects (Grammar page)" },
+  { k: "numcase", f: "numcase", one: "numeral-case answer", what: "", label: "Numerals in cases (Grammar page)" },
+  { k: "verbs", f: "verbs", one: "verb answer", what: "", label: "Verb practice (Grammar page)" },
+  { k: "book", f: "book", one: "book exercise", what: "", label: "Exercises in the reader" },
   { k: "course", f: "course", one: "course exercise", what: "", label: "Course exercises right" },
   { k: "sections", f: "sections", one: "course section", what: "", label: "Course sections finished" },
 ];

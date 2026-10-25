@@ -5094,6 +5094,10 @@ export default function App() {
   var [admTodayOpen, setAdmTodayOpen]       = useState(false);
   var [adminTodayDate, setAdminTodayDate]   = useState("");
   var [admTodayUser, setAdmTodayUser]       = useState("");
+  // Who uses My Samovar: the readers with saved goals or visits to the page.
+  var [adminMy, setAdminMy]                 = useState(null);
+  var [adminMyLoad, setAdminMyLoad]         = useState(false);
+  var [admMyOpen, setAdmMyOpen]             = useState(false);
   // Which of the site tables above the reader list is open: courses, badges, reading.
   var [admTable, setAdmTable]               = useState("courses");
   // The Modern Russian shelf's groups, open or closed; remembered on the device.
@@ -6433,6 +6437,7 @@ export default function App() {
   // `remindAm` the morning one. Both go to the reader's devices as push
   // messages when they have turned them on (see the push code below).
   var GOALS_DEFAULT = { words: GOAL_WORDS, cards: GOAL_CARDS, quiz: 0, match: 0, terms: 0, decl: 0, conj: 0, drills: 10, numbers: 0,
+                        num: 0, clock: 0, frac: 0, count: 0, numcase: 0, verbs: 0, book: 0,
                         course: 10, sections: 1, remind: "17:00", remindAm: "08:00", notify: false, emailRemind: false, alertEmail: "", tz: "", updatedAt: 0 };
   var [goals, setGoalsRaw] = useState(GOALS_DEFAULT);
   var goalsLoaded = useRef(false);
@@ -6462,6 +6467,9 @@ export default function App() {
     if (!goalsLoaded.current) return;
     storage.set("gv_goals_v1", JSON.stringify(goals)).catch(function(){});
   }, [goals]);
+  // Each visit to the My page is counted in the day's log (stats[day].myOpen),
+  // so the admin panel can say who uses it.
+  useEffect(function(){ if (tab === "my") bumpToday("myOpen", 1); }, [tab]);
   // `go` is where the row's button takes the reader; `btn` what it says.
   var GOAL_ROWS = [
     { k: "words", f: "read", label: "Words read", one: "word", tab: "chat", go: "read", btn: "Read →", set: "Words to read", max: 100000 },
@@ -6472,7 +6480,14 @@ export default function App() {
     { k: "decl", f: "decl", label: "Declension practice (typing the form)", one: "answer", tab: "vocab", go: "decl", btn: "Practise →", set: "Declension practice — forms typed", max: 1000 },
     { k: "conj", f: "conj", label: "Conjugation practice (typing the form)", one: "answer", tab: "vocab", go: "conj", btn: "Practise →", set: "Conjugation practice — forms typed", max: 1000 },
     { k: "drills", f: "cases", label: "Case-drill questions", one: "question", tab: "drills", go: "cases", btn: "Drill →", set: "Case-drill questions", max: 1000 },
-    { k: "numbers", f: "numbers", label: "Counting and numeral drills", one: "answer", tab: "vocab", go: "numbers", btn: "Practise →", set: "Counting and numeral drills (Grammar page)", max: 1000 },
+    { k: "numbers", f: "numbers", label: "Counting and numeral drills", one: "answer", tab: "vocab", go: "numbers", btn: "Practise →", set: "Counting and numeral drills — all of them together", max: 1000 },
+    { k: "num", f: "num", label: "Numeral practice", one: "answer", tab: "vocab", go: "num", btn: "Practise →", set: "Numeral practice — numbers in words", max: 1000 },
+    { k: "clock", f: "clock", label: "Clock practice", one: "answer", tab: "vocab", go: "clock", btn: "Practise →", set: "Clock practice — telling the time", max: 1000 },
+    { k: "frac", f: "frac", label: "Fractions practice", one: "answer", tab: "vocab", go: "frac", btn: "Practise →", set: "Fractions practice", max: 1000 },
+    { k: "count", f: "count", label: "Counting objects", one: "answer", tab: "vocab", go: "count", btn: "Practise →", set: "Counting objects (Grammar page)", max: 1000 },
+    { k: "numcase", f: "numcase", label: "Numerals in cases", one: "answer", tab: "vocab", go: "numcase", btn: "Practise →", set: "Numerals in cases (Grammar page)", max: 1000 },
+    { k: "verbs", f: "verbs", label: "Verb practice", one: "answer", tab: "vocab", go: "verbs", btn: "Practise →", set: "Verb practice — the ▶ Practice quizzes on the Grammar page", max: 1000 },
+    { k: "book", f: "book", label: "Exercises in the reader", one: "answer", tab: "chat", go: "read", btn: "Read →", set: "Exercises in the reader — a book's own Exercises tab", max: 1000 },
     { k: "course", f: "course", label: "Course exercises right", one: "exercise", tab: "courses", go: "courses", btn: "Courses →", set: "Course exercises right", max: 1000 },
     { k: "sections", f: "sections", label: "Course sections finished", one: "section", tab: "courses", go: "courses", btn: "Courses →", set: "Course sections to finish", max: 100 },
   ];
@@ -11433,6 +11448,19 @@ export default function App() {
     } finally { setAdminTodayLoad(false); }
   };
 
+  // Who uses My Samovar — /api/admin/users?mysamovar=1.
+  var loadAdminMy = async function() {
+    setAdminMyLoad(true); setAdminErr("");
+    try {
+      var r = await authFetch("/api/admin/users?mysamovar=1");
+      var d = await r.json();
+      if (!r.ok) throw new Error(d.error || "Failed to read My " + SITE_NAME_LATIN + " use");
+      setAdminMy(d);
+    } catch(e) {
+      setAdminErr(e.message || "Failed to read My " + SITE_NAME_LATIN + " use");
+    } finally { setAdminMyLoad(false); }
+  };
+
   // Everything the site holds on one reader, for the detail window.
   var loadUserDetail = async function(email) {
     setAdminDetailLoad(true); setAdminErr(""); setAdminDetailView("");
@@ -12902,7 +12930,7 @@ export default function App() {
     setFd(Object.assign({}, fd, { checked: true, right: right, fix: fix, fixInput: "", steps: steps,
       n: fd.n + (rep ? 0 : 1), nRight: fd.nRight + (!rep && right ? 1 : 0) }));
     if (rep) return;
-    if (fd.kind === "num" || fd.kind === "clock" || fd.kind === "frac") { if (right) bumpToday(fd.kind + "Ok", 1); bumpToday("practiced", 1); bumpToday("numbers", 1); bumpToday("drills", 1); return; }
+    if (fd.kind === "num" || fd.kind === "clock" || fd.kind === "frac") { if (right) bumpToday(fd.kind + "Ok", 1); bumpToday(fd.kind, 1); bumpToday("practiced", 1); bumpToday("numbers", 1); bumpToday("drills", 1); return; }
     recordFormDrill(fd.kind, right);
   };
   // The Case drills, opened from the same menu.
@@ -12966,7 +12994,7 @@ export default function App() {
           order = z.order.slice();
           order.splice(Math.min(order.length, z.i + 1 + repGap(gvAgain.step)), 0, gvBase);
         }
-        if (!gvRp) bumpToday("practiced", 1);
+        if (!gvRp) { bumpToday("practiced", 1); bumpToday("verbs", 1); }
       }
       return Object.assign({}, z, { order: order, picked: z.picked.concat([k]), right: z.right + (first && ok && !gvRp ? 1 : 0), answered: z.answered + (first && !gvRp ? 1 : 0) });
     });
@@ -13019,7 +13047,7 @@ export default function App() {
         ndRep.current.push({ mode: nd.mode, item: ndBase, need: ndAgain.need, step: ndAgain.step, due: ndSteps.current + repGap(ndAgain.step) });
       }
     }
-    if (first && !ndRp) { bumpToday("practiced", 1); bumpToday("numbers", 1); }
+    if (first && !ndRp) { bumpToday("practiced", 1); bumpToday("numbers", 1); bumpToday(nd.mode === "numcase" ? "numcase" : "count", 1); }
     if (!ndRp) setNdStats(function(m){
       var s0 = m[nd.mode], s1 = Object.assign({}, s0);
       if (first) { s1.total++; if (ok) s1.right++; }
@@ -21915,6 +21943,68 @@ quizMode ? (
                   course exercises by lesson, signed-out visitors. All of it is
                   one call, /api/admin/users?today=1, read when the button is
                   first pressed and again on Refresh. */}
+              {/* Who uses My Samovar: every reader with saved goals or a visit
+                  to the page, with their goals, reminders and last 30 days. */}
+              {!adminLoad && (function(){
+                var MY = adminMy, open = admMyOpen;
+                var head = (
+                  <button type="button" className={"tdy-btn" + (open ? " open" : "")}
+                    onClick={function(){ if (!open && !adminMy) loadAdminMy(); setAdmMyOpen(!open); }}>
+                    <span className="tdy-btn-t">Who uses My {SITE_NAME_LATIN}</span>
+                    <span className="tdy-btn-s">
+                      {MY ? (MY.users.length + " of " + MY.accounts + " readers · " +
+                              MY.users.filter(function(u){ return u.saved; }).length + " with goals saved · " +
+                              MY.users.filter(function(u){ return u.notify || u.emailRemind; }).length + " with reminders on")
+                          : "every reader who has set goals or opened the page"}
+                    </span>
+                    <span className="tdy-btn-a">{adminMyLoad ? "…" : (open ? "▾" : "▸")}</span>
+                  </button>
+                );
+                if (!open) return <div className="tdy">{head}</div>;
+                if (!MY) return <div className="tdy">{head}<div className="tdy-body"><div className="adm-empty">{adminMyLoad ? "Reading every reader's goals…" : "Nothing yet."}</div></div></div>;
+                var date = function(ts){ return ts ? new Date(ts).toLocaleDateString(undefined, { day: "numeric", month: "short", year: "numeric" }) : "—"; };
+                return (
+                  <div className="tdy">
+                    {head}
+                    <div className="tdy-body">
+                      <div className="tdy-sec">
+                        <div className="admy-k">Readers<span className="dim"> · visits to the page are counted from 25 Oct 2026 · <button type="button" onClick={loadAdminMy} style={{background:"none",border:0,padding:0,font:"inherit",color:"inherit",textDecoration:"underline",cursor:"pointer"}}>Refresh</button></span></div>
+                        {!MY.users.length && <div className="adm-empty">No one yet.</div>}
+                        <div style={{overflowX:"auto"}}>
+                          <table className="admd-sheet">
+                            <thead><tr>
+                              <th>Reader</th><th>Goals set</th><th>Today</th><th>Last 30 days</th><th>Visits</th><th>Reminders</th><th>Goals changed</th>
+                            </tr></thead>
+                            <tbody>
+                              {MY.users.map(function(u){
+                                var met = u.today.filter(function(t){ return t.have >= t.goal; }).length;
+                                return (
+                                  <tr key={u.email}>
+                                    <td><b className="admy-who">{u.name}</b>{u.username ? <div className="dim" style={{fontSize:12}}>{u.email}</div> : null}</td>
+                                    <td>{u.goals.length
+                                      ? u.goals.map(function(g){ return <div key={g.k} style={{whiteSpace:"nowrap"}}>{g.label}: {g.goal.toLocaleString()}</div>; })
+                                      : <span className="dim">{u.saved ? "none" : "never saved"}</span>}</td>
+                                    <td>{u.today.length ? met + " / " + u.today.length + " met" : "—"}</td>
+                                    <td style={{whiteSpace:"nowrap"}}>{u.last30.active} days active<br/>{u.goals.length ? (u.last30.allMet + " all met · " + u.last30.someMet + " some met") : ""}</td>
+                                    <td style={{whiteSpace:"nowrap"}}>{u.opens ? (u.opens + " on " + u.openDays + (u.openDays === 1 ? " day" : " days")) : "—"}{u.lastOpen ? <div className="dim" style={{fontSize:12}}>last {u.lastOpen}</div> : null}</td>
+                                    <td style={{whiteSpace:"nowrap"}}>
+                                      {u.notify ? ("push " + (u.remindAm || "08:00") + " & " + (u.remind || "17:00") + (u.pushDevices ? " · " + u.pushDevices + (u.pushDevices === 1 ? " device" : " devices") : "")) : ""}
+                                      {u.notify && u.emailRemind ? <br/> : null}
+                                      {u.emailRemind ? "e-mail" : ""}
+                                      {!u.notify && !u.emailRemind ? <span className="dim">off</span> : null}
+                                    </td>
+                                    <td style={{whiteSpace:"nowrap"}}>{date(u.goalsUpdated)}</td>
+                                  </tr>
+                                );
+                              })}
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })()}
               {!adminLoad && (function(){
                 var TD = adminToday, open = admTodayOpen;
                 var n = function(x){ return (Number(x) || 0).toLocaleString(); };
@@ -27569,6 +27659,7 @@ quizMode ? (
                                   return (
                                     <button key={i} disabled={answered} onClick={function(){
                                       setExSelected(opt);
+                                      bumpToday("book", 1);
                                       if (isCorrect) setExScore(function(s){ return s + 1; });
                                     }} style={{background:bg,border:"1px solid "+brd,color:col,padding:"13px 18px",borderRadius:10,fontSize:18,fontFamily:"'Literata',serif",cursor: answered ? "default" : "pointer",textAlign:"left",transition:"all .15s"}}>
                                       <span style={{display:"inline-block",width:20,color:"rgba(42,31,20,.45)",fontFamily:"'IBM Plex Sans',sans-serif",fontSize:13}}>{String.fromCharCode(65 + i)}.</span>
@@ -27918,15 +28009,15 @@ quizMode ? (
                   if (go === "read") { setTab("chat"); return; }
                   if (go === "courses") { setTab("courses"); return; }
                   setTab("vocab");
-                  if (go === "numbers") {
-                    setVocabSec("grammar"); setGramSec("count"); getVerbIdx(); loadExamples();
+                  if (go === "numbers" || go === "count" || go === "numcase" || go === "verbs") {
+                    setVocabSec("grammar"); setGramSec(go === "numcase" ? "numcase" : go === "verbs" ? "freq" : "count"); getVerbIdx(); loadExamples();
                     return;
                   }
                   setVocabSec("exercises");
                   clearVocabView();
                   setQuizMenu(false);
                   if (go === "cases") openCaseDrills();
-                  else if (go === "decl" || go === "conj") fdStart(go);
+                  else if (go === "decl" || go === "conj" || go === "num" || go === "clock" || go === "frac") fdStart(go);
                   else if (go === "terms") startTermsFromVocab();
                 };
                 var num = function(k, max) {
