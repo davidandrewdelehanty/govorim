@@ -418,7 +418,7 @@ export default [
    {
     "id": "k9-adjectives-singular-practice",
     "title": "Practice: Adjectives and possessives, singular",
-    "n": 14
+    "n": 13
    },
    {
     "id": "k10-adjectives-plural",
@@ -710,7 +710,7 @@ export default [
   "short": "Verbs",
   "mark": "Гл",
   "blurb": "",
-  "credit": "Explanations: the DLI Basic Course grammar (public domain); sentences: Tatoeba (CC BY 2.0 FR) and the library's public-domain books; word forms analysed with the OpenCorpora dictionary (CC BY-SA 4.0)",
+  "credit": "Explanations: the DLI Basic Course grammar (public domain); sentences: Tatoeba (CC BY 2.0 FR) and the library's public-domain books; word forms analysed with the OpenCorpora dictionary (CC BY-SA 4.0); verb forms from the OpenCorpora dictionary, stress marks from the OpenRussian CSV export (CC BY-SA 4.0) and Koziev's accent list, kept where the two agree",
   "creditUrl": "https://www.fsi-language-courses.org/russian/courses/dli-russian-basic-course",
   "license": "Public domain · CC BY 2.0 FR",
   "licenseUrl": "",

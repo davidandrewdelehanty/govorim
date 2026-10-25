@@ -332,8 +332,12 @@ CREDIT = "Explanations: the DLI Basic Course grammar (public domain); sentences:
 DLI_URL = "https://www.fsi-language-courses.org/russian/courses/dli-russian-basic-course"
 
 
+VERB_CREDIT = ("; verb forms from the OpenCorpora dictionary, stress marks from the OpenRussian CSV export (CC BY-SA 4.0) "
+               "and Koziev's accent list, kept where the two agree")
+
+
 def _c(id, title, short, mark, blurb, secs):
-    return ({"id": id, "title": title, "short": short, "mark": mark, "blurb": blurb, "credit": CREDIT, "creditUrl": DLI_URL,
+    return ({"id": id, "title": title, "short": short, "mark": mark, "blurb": blurb, "credit": CREDIT + (VERB_CREDIT if id == "verbs" else ""), "creditUrl": DLI_URL,
              "license": "Public domain · CC BY 2.0 FR", "licenseUrl": ""}, secs)
 
 
