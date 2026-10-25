@@ -120,8 +120,12 @@ for (const e of publicEntries) {
   if (e.filename) {
     keepDirs.add("audio-sync/" + path.posix.basename(e.filename).replace(/\.[^.]+$/, ""));
   }
+  // The Maps tab's place file: coordinates and search patterns, no text of
+  // the book itself.
+  if (e.maps) keepFiles.add("maps/" + path.posix.basename(String(e.maps)) + ".json");
   if (e.isBible) {
     anyBible = true;
+    keepDirs.add("maps/bible");
     // Scripture's English is not a parallelEn folder — it is keyed off the
     // audiobook path at runtime — so it has to be named explicitly or a public
     // Bible would ship with no English at all.

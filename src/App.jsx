@@ -36,6 +36,7 @@ var DLI_NUM_TABLES = [
     ["A. = N.", "двести самолётов", "пятьсот самолётов"], ["I.", "двумястами самолётами", "пятьюстами самолётами"], ["P.", "о двухстах самолётах", "о пятистах самолётах"]]],
 ];
 import { normNum } from "./numerals.js";
+import { BookMaps } from "./bookmaps.jsx";
 
 // localStorage-backed storage shim, matching the previous window.storage Promise API.
 // Keeps the rest of the app code unchanged (still uses await storage.get/set/delete).
@@ -13747,6 +13748,8 @@ export default function App() {
         // Plays only: enables inline golden speaker-name formatting. Novels
         // must never get it — "Москва. Тишина стояла..." is not a character.
         play: !!opts.play,
+        // Names the place file for the Maps tab (/books/maps/<name>.json).
+        maps: opts.maps || "",
         isBible: !!opts.isBible,
         bibleEn: opts.bibleEn || null,
         // The reader's own file rather than a catalogue book. Decides whether
@@ -13938,6 +13941,8 @@ export default function App() {
         enTitle: book.enTitle || "",
         translator: book.translator || "",
         play: !!book.play,
+        // The Maps tab's place file, /books/maps/<name>.json (War and Peace).
+        maps: typeof book.maps === "string" ? book.maps : "",
         flowEn: !!book.flowEn,
         // Keeps a poem whose stanza or footnote numbers would otherwise be
         // read as chapter markers on one page (see the marker re-split).
@@ -26321,6 +26326,10 @@ quizMode ? (
                   <div className="lit-tabs">
                   <button className={"ltab"+(lview==="read"?" on":"")} onClick={function(){ setLview("read"); }}>Read</button>
                   <button className={"ltab"+(lview==="nav"?" on":"")} onClick={function(){ setLview("nav"); }}>Contents</button>
+                  {(bookMeta.isBible || bookMeta.maps) && (
+                    <button className={"ltab"+(lview==="maps"?" on":"")} title="The places this chapter names, on a map"
+                      onClick={function(){ setLview("maps"); }}>Maps</button>
+                  )}
                   <button className={"ltab"+(lview==="search"?" on":"")} onClick={function(){ setLview("search"); }}>Search</button>
                   {(function(){
                     var bm = bookmarkMap[bookKey(bookMeta)];
@@ -27359,6 +27368,29 @@ quizMode ? (
                   </div>
                 )}
 
+                {lview==="maps" && (bookMeta.isBible || bookMeta.maps) && (
+                  <div className="navpanel">
+                    <BookMaps
+                      mode={bookMeta.isBible ? "bible" : "novel"}
+                      name={bookMeta.maps || ""}
+                      chapters={chapters}
+                      cidx={cidx}
+                      keyOf={function(i){ return chapters[i] ? bibleKeyFromHeading(chapters[i].heading) : null; }}
+                      bookName={(function(){ var sg = chapters[cidx] ? bibleNavSegs(chapters[cidx].heading) : null; return sg ? sg[1] : ""; })()}
+                      chapterLabel={function(i){
+                        var h = chapters[i] && chapters[i].heading;
+                        return h ? String(h).split(/\s+[\u2013—]\s+/).slice(-2).join(" · ") : ("Chapter " + (i + 1));
+                      }}
+                      onJump={function(ci, off){
+                        setLview("read");
+                        requestSrcJump(off, bookMeta);
+                        setJumpTick(function(t){ return t + 1; });
+                        if (ci !== cidx) navLit(ci);
+                        else setTimeout(function(){ scrollToOffset(off); }, 60);
+                      }}
+                    />
+                  </div>
+                )}
                 {lview==="search" && (
                   <>
                     <div className="lsbar">
