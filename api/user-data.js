@@ -33,7 +33,7 @@ import {
 import { listAccounts, userIdFor, r2GetJson as authGetJson, userDataKey as authDataKey, isAdminEmail, coursesCompleted } from "../lib/auth.js";
 import { requireUser, currentUser, bumpDaily, bumpDailyBook, touchSeen, findAccount,
   updateBoardRow, readBoards, learnedCount, finishedCount, wordsRead, wordsReadEn, cardsReviewed,
-  songsCount, drillsDone, declRight, conjRight, uidForUsername, isHiddenUid } from "../lib/auth.js";
+  songsCount, drillsDone, declRight, conjRight, statBoards, uidForUsername, isHiddenUid } from "../lib/auth.js";
 import { sendEmail } from "../lib/admin/helpers.js";
 import { r2Endpoint } from "../lib/r2-endpoint.js";
 import { computeBadges } from "../src/badges.js";
@@ -855,7 +855,7 @@ export default async function handler(req, res) {
         }
         await r2Put(userId, "stats", merged);
         await noteBoard(user, { words: wordsRead(merged), reviewed: cardsReviewed(merged),
-                                wordsEn: wordsReadEn(merged) });
+                                wordsEn: wordsReadEn(merged), ...statBoards(merged) });
         return res.status(200).json({ ok: true, stats: merged });
       }
 

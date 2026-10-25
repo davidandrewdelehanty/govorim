@@ -5384,6 +5384,7 @@ export default function App() {
       // Recorded once each, as answered right — only a round with no miss counts.
       if (!g.tries && !g.src) g.round.forEach(function(v){ recordAnswer(v._key || v.id || v.ru, true); });
       if (!g.tries) bumpToday(g.src ? "terms" : "match", g.src ? g.round.length : 1);   // the day's goals
+      if (!g.tries && g.src) bumpToday("termsOk", g.round.length);     // right answers, for the leaderboard
       setMatchGame(Object.assign({}, g, { map: map, sel: null, status: "right", won: g.won + (g.tries ? 0 : 1), rounds: g.rounds + 1 }));
       return;
     }
@@ -12900,7 +12901,7 @@ export default function App() {
     setFd(Object.assign({}, fd, { checked: true, right: right, fix: fix, fixInput: "", steps: steps,
       n: fd.n + (rep ? 0 : 1), nRight: fd.nRight + (!rep && right ? 1 : 0) }));
     if (rep) return;
-    if (fd.kind === "num" || fd.kind === "clock" || fd.kind === "frac") { bumpToday("practiced", 1); bumpToday("numbers", 1); bumpToday("drills", 1); return; }
+    if (fd.kind === "num" || fd.kind === "clock" || fd.kind === "frac") { if (right) bumpToday(fd.kind + "Ok", 1); bumpToday("practiced", 1); bumpToday("numbers", 1); bumpToday("drills", 1); return; }
     recordFormDrill(fd.kind, right);
   };
   // The Case drills, opened from the same menu.
@@ -14563,6 +14564,7 @@ export default function App() {
     var correct = opt === c.q.correct;
     setQuizSelected(opt);
     bumpToday(rv.pool ? "terms" : "quiz", 1);     // the day's goals
+    if (correct) bumpToday(rv.pool ? "termsOk" : "quizOk", 1);     // right answers, for the leaderboard
     if (!rv.pool) {                       // a course's cards are not scheduled or counted
       recordAnswer(c.key, correct);
       if (c.from === "new") rvBumpDay("newSeen");
@@ -24019,7 +24021,7 @@ quizMode ? (
               <p className="sde">
                 {targetLang === "en"
                   ? "The readers who have read the most in English. Switch the menu at the top to Study Russian for the Russian boards."
-                  : "The readers who have reviewed the most cards, read the most words, answered the most case, declension and conjugation drills correctly, listened to the most songs and completed the most courses."}
+                  : "The readers who have reviewed the most cards, read the most words, answered the most course exercises, case, declension, conjugation, numeral, clock and fractions questions correctly, won the most match rounds, listened to the most songs and completed the most courses."}
               </p>
               {me && !me.username && (
                 <div className="lb-join">
@@ -24042,6 +24044,13 @@ quizMode ? (
                     { key: "drills", h: "Case drills right", sub: "every right answer in a case drill, from any book", unit: "right answers" },
                     { key: "decl", h: "Declensions right", sub: "every noun put in the right case and number in declension practice", unit: "right answers" },
                     { key: "conj", h: "Conjugations right", sub: "every verb form typed right in conjugation practice", unit: "right answers" },
+                    { key: "quizRight", h: "Quiz answers right", sub: "every right answer in the multiple-choice quiz on your saved words", unit: "right answers" },
+                    { key: "matchWon", h: "Match rounds won", sub: "rounds of the match game with all four right at the first try", unit: "rounds" },
+                    { key: "termsRight", h: "Grammar terms right", sub: "right answers in the grammar terms quiz and match game", unit: "right answers" },
+                    { key: "numRight", h: "Numerals right", sub: "every number typed right in numeral practice, cardinal or ordinal", unit: "right answers" },
+                    { key: "clockRight", h: "Clock times right", sub: "every time put right in clock practice, as digits or in words", unit: "right answers" },
+                    { key: "fracRight", h: "Fractions right", sub: "every fraction written right in words in fractions practice", unit: "right answers" },
+                    { key: "exRight", h: "Course exercises right", sub: "course exercises answered right, each counted the first time it is right", unit: "right answers" },
                     { key: "songs", h: "Songs listened to", sub: "different songs played in the Music tab — each song counts once", unit: "songs" },
                     { key: "courses", h: "Courses completed", sub: "courses finished in the Courses tab — the exam passed, or every section done where there is no exam", unit: "courses" },
                   ]).map(function(col){
