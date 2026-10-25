@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "— Все пустые, ___: они не имеют никакого политического значения.",
-   "lemma": "письмо",
-   "options": [
-    "обыкновенные письма",
-    "обыкновенным письмам",
-    "обыкновенных письмах",
-    "обыкновенными письмами"
-   ],
-   "correct": "обыкновенные письма",
-   "case": "Именительный (Nominative)",
-   "explain": "«обыкновенные письма» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "В душе ее происходила ___.",
    "lemma": "мука",
    "options": [
@@ -25,78 +11,22 @@
    ],
    "correct": "ужасная мука",
    "case": "Именительный (Nominative)",
-   "explain": "«ужасная мука» — the subject of the sentence stands in the nominative.",
+   "explain": "«ужасная мука» is the subject of «происходила» — who or what does it — so nominative.",
    "id": "c3"
-  },
-  {
-   "sentence": "Женщины сидели молча в весьма ___; скука была страшная.",
-   "lemma": "раздумье",
-   "options": [
-    "неприятного раздумья",
-    "неприятным раздумьем",
-    "неприятному раздумью",
-    "неприятном раздумье"
-   ],
-   "correct": "неприятном раздумье",
-   "case": "Предложный (Prepositional)",
-   "explain": "«неприятном раздумье» — after the preposition «в», for location or topic.",
-   "id": "c4"
-  },
-  {
-   "sentence": "— Да, — начал Белоярцев, — пока пожалуют ___, нам нужно условиться, что говорить.",
-   "lemma": "гость",
-   "options": [
-    "дорогие гости",
-    "дорогих гостях",
-    "дорогими гостями",
-    "дорогих гостей"
-   ],
-   "correct": "дорогие гости",
-   "case": "Именительный (Nominative)",
-   "explain": "«дорогие гости» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
-  },
-  {
-   "sentence": "— Это очень ___: никто не поверит такой басне.",
-   "lemma": "маска",
-   "options": [
-    "плохая маска",
-    "плохой маске",
-    "плохой маской",
-    "плохой маски"
-   ],
-   "correct": "плохая маска",
-   "case": "Именительный (Nominative)",
-   "explain": "«плохая маска» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
   },
   {
    "sentence": "— Оттого, что если полиция идет, так уж она знает,куда идет, и, наконец, вместе жить и ___ никому не запрещено.",
    "lemma": "человек",
    "options": [
     "чужие люди",
+    "чужих людях",
     "чужим людям",
-    "чужими людьми",
-    "чужих людей"
+    "чужими людьми"
    ],
    "correct": "чужим людям",
    "case": "Дательный (Dative)",
-   "explain": "«чужим людям» — the dative marks the indirect object or recipient.",
+   "explain": "«запрещено» takes the dative (кому? чему?).",
    "id": "c7"
-  },
-  {
-   "sentence": "Верно уж я имею свои основания, — заговорил Белоярцев, позволивший себе по поводу ___ и с Лизою беседовать в своем любимом тоне.",
-   "lemma": "случай",
-   "options": [
-    "экстренного случая",
-    "экстренном случае",
-    "экстренному случаю",
-    "экстренным случаем"
-   ],
-   "correct": "экстренного случая",
-   "case": "Родительный (Genitive)",
-   "explain": "«экстренного случая» — after the preposition «по», the genitive here marks possession, absence, or quantity.",
-   "id": "c8"
   },
   {
    "sentence": "Верно уж я имею свои основания, — заговорил Белоярцев, позволивший себе по поводу экстренного случая и с Лизою беседовать в своем ___.",
@@ -109,7 +39,7 @@
    ],
    "correct": "любимом тоне",
    "case": "Предложный (Prepositional)",
-   "explain": "«любимом тоне» — after the preposition «в», for location or topic.",
+   "explain": "«любимом тоне» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c9"
   },
   {
@@ -123,7 +53,7 @@
    ],
    "correct": "райнеровские поправки",
    "case": "Именительный (Nominative)",
-   "explain": "«райнеровские поправки» — the subject of the sentence stands in the nominative.",
+   "explain": "«райнеровские поправки» is the subject of «есть» — who or what does it — so nominative.",
    "id": "c10"
   },
   {
@@ -137,22 +67,8 @@
    ],
    "correct": "пустой конверт",
    "case": "Винительный (Accusative)",
-   "explain": "«пустой конверт» — the accusative marks the direct object of the verb.",
+   "explain": "«пустой конверт» is the direct object of «поднес» (кого? что?) — accusative.",
    "id": "c11"
-  },
-  {
-   "sentence": "— Вы ___, — отвечала та с легкой иронией.",
-   "lemma": "человек",
-   "options": [
-    "особенным человеком",
-    "особенный человек",
-    "особенного человека",
-    "особенном человеке"
-   ],
-   "correct": "особенный человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«особенный человек» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
   },
   {
    "sentence": "Шаги и говор раздались у ___, и, наконец, дрогнул звонок.",
@@ -165,7 +81,7 @@
    ],
    "correct": "самой лестницы",
    "case": "Родительный (Genitive)",
-   "explain": "«самой лестницы» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«самой лестницы» — «у» always takes the genitive.",
    "id": "c14"
   },
   {
@@ -179,22 +95,8 @@
    ],
    "correct": "роковой топот",
    "case": "Именительный (Nominative)",
-   "explain": "«роковой топот» — the subject of the sentence stands in the nominative.",
+   "explain": "«роковой топот» is the subject of «раздался» — who or what does it — so nominative.",
    "id": "c15"
-  },
-  {
-   "sentence": "Тяжелый роковой топот раздался в темной передней, и на порог залы выползла небольшая ___ в крытом сукном овчинном тулупе, воротник которого был завернут за уши.",
-   "lemma": "фигурка",
-   "options": [
-    "круглой фигурке",
-    "круглая фигурка",
-    "круглой фигурки",
-    "круглой фигуркой"
-   ],
-   "correct": "круглая фигурка",
-   "case": "Именительный (Nominative)",
-   "explain": "«круглая фигурка» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
   },
   {
    "sentence": "По ___ это нельзя-с.",
@@ -207,7 +109,7 @@
    ],
    "correct": "мелочной торговле",
    "case": "Дательный (Dative)",
-   "explain": "«мелочной торговле» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«мелочной торговле» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c17"
   },
   {
@@ -221,7 +123,7 @@
    ],
    "correct": "общей обстановке",
    "case": "Предложный (Prepositional)",
-   "explain": "«общей обстановке» — after the preposition «при», for location or topic.",
+   "explain": "«общей обстановке» — «при» always takes the prepositional.",
    "id": "c18"
   },
   {
@@ -235,22 +137,8 @@
    ],
    "correct": "другим ожиданиям",
    "case": "Дательный (Dative)",
-   "explain": "«другим ожиданиям» — the dative marks the indirect object or recipient.",
+   "explain": "«отвечавшей» takes the dative (кому? чему?).",
    "id": "c19"
-  },
-  {
-   "sentence": "Ступина, глянув на Белоярцева, опять прыснула ___.",
-   "lemma": "смех",
-   "options": [
-    "неудержимому смеху",
-    "неудержимым смехом",
-    "неудержимый смех",
-    "неудержимого смеха"
-   ],
-   "correct": "неудержимым смехом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«неудержимым смехом» — the instrumental marks the means, company, or complement.",
-   "id": "c20"
   },
   {
    "sentence": "— И твой муж, Марфа, тоже хорош, — продолжал Белоярцев, — лезет, как будто ___ стучит.",
@@ -263,7 +151,7 @@
    ],
    "correct": "целый полк",
    "case": "Именительный (Nominative)",
-   "explain": "«целый полк» — the subject of the sentence stands in the nominative.",
+   "explain": "«целый полк» is the subject of «стучит» — who or what does it — so nominative.",
    "id": "c21"
   }
  ]

@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Вместе с Кириллом Громовым скрылись Ахваткин и тот ___, которого видел Кошевой, когда пришел к Громовым.",
-   "lemma": "казак",
-   "options": [
-    "незнакомого казака",
-    "незнакомом казаке",
-    "незнакомому казаку",
-    "незнакомый казак"
-   ],
-   "correct": "незнакомый казак",
-   "case": "Именительный (Nominative)",
-   "explain": "«незнакомый казак» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Из Вешенской в Татарский приехал ___ Дончека.",
    "lemma": "отряд",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "небольшой отряд",
    "case": "Именительный (Nominative)",
-   "explain": "«небольшой отряд» — the subject of the sentence stands in the nominative.",
+   "explain": "«небольшой отряд» is the subject of «приехал» — who or what does it — so nominative.",
    "id": "c2"
   },
   {
@@ -39,22 +25,8 @@
    ],
    "correct": "верхнедонского округа",
    "case": "Родительный (Genitive)",
-   "explain": "«Верхнедонского округа» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«верхнедонского округа» depends on the noun «пределах» (whose? of what?) — genitive.",
    "id": "c5"
-  },
-  {
-   "sentence": "Махорку заменял ___ — самосад.",
-   "lemma": "табак",
-   "options": [
-    "доморощенном табаке",
-    "доморощенным табаком",
-    "доморощенного табака",
-    "доморощенный табак"
-   ],
-   "correct": "доморощенный табак",
-   "case": "Винительный (Accusative)",
-   "explain": "«доморощенный табак» — the accusative marks the direct object of the verb.",
-   "id": "c6"
   },
   {
    "sentence": "В ___ растащили все метрические книги, а когда покурили их, по домам пошло на цигарки все, включая старые ребячьи учебники и даже стариковские священные книги.",
@@ -67,50 +39,8 @@
    ],
    "correct": "церковной караулке",
    "case": "Предложный (Prepositional)",
-   "explain": "«церковной караулке» — after the preposition «в», for location or topic.",
+   "explain": "«церковной караулке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c9"
-  },
-  {
-   "sentence": "В церковной караулке растащили все ___, а когда покурили их, по домам пошло на цигарки все, включая старые ребячьи учебники и даже стариковские священные книги.",
-   "lemma": "книга",
-   "options": [
-    "метрические книги",
-    "метрическими книгами",
-    "метрических книгах",
-    "метрическим книгам"
-   ],
-   "correct": "метрические книги",
-   "case": "Винительный (Accusative)",
-   "explain": "«метрические книги» — the accusative marks the direct object of the verb.",
-   "id": "c10"
-  },
-  {
-   "sentence": "В церковной караулке растащили все метрические книги, а когда покурили их, по домам пошло на цигарки все, включая старые ___ и даже стариковские священные книги.",
-   "lemma": "учебник",
-   "options": [
-    "ребячьих учебниках",
-    "ребячьи учебники",
-    "ребячьими учебниками",
-    "ребячьим учебникам"
-   ],
-   "correct": "ребячьи учебники",
-   "case": "Винительный (Accusative)",
-   "explain": "«ребячьи учебники» — the accusative marks the direct object of the verb.",
-   "id": "c11"
-  },
-  {
-   "sentence": "В церковной караулке растащили все метрические книги, а когда покурили их, по домам пошло на цигарки все, включая старые ребячьи учебники и даже стариковские ___.",
-   "lemma": "книга",
-   "options": [
-    "священным книгам",
-    "священными книгами",
-    "священные книги",
-    "священных книг"
-   ],
-   "correct": "священные книги",
-   "case": "Винительный (Accusative)",
-   "explain": "«священные книги» — the accusative marks the direct object of the verb.",
-   "id": "c12"
   },
   {
    "sentence": "— У бабы моей крышка на сундуке была обклеена ___ — содрал и покурил.",
@@ -123,92 +53,8 @@
    ],
    "correct": "старыми газетами",
    "case": "Творительный (Instrumental)",
-   "explain": "«старыми газетами» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «обклеена», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c13"
-  },
-  {
-   "sentence": "___ был, такая святая книжка, — тоже искурил.",
-   "lemma": "завет",
-   "options": [
-    "новым заветом",
-    "новом завете",
-    "новый завет",
-    "новому завету"
-   ],
-   "correct": "новый завет",
-   "case": "Именительный (Nominative)",
-   "explain": "«Новый завет» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
-  },
-  {
-   "sentence": "Новый завет был, такая ___, — тоже искурил.",
-   "lemma": "книжка",
-   "options": [
-    "святая книжка",
-    "святой книжке",
-    "святой книжкой",
-    "святой книжки"
-   ],
-   "correct": "святая книжка",
-   "case": "Именительный (Nominative)",
-   "explain": "«святая книжка» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
-  },
-  {
-   "sentence": "Очень ты им нужен, как и весь ___.",
-   "lemma": "народ",
-   "options": [
-    "трудящегося народа",
-    "трудящимся народом",
-    "трудящийся народ",
-    "трудящемуся народу"
-   ],
-   "correct": "трудящийся народ",
-   "case": "Именительный (Nominative)",
-   "explain": "«трудящийся народ» — the subject of the sentence stands in the nominative.",
-   "id": "c18"
-  },
-  {
-   "sentence": "Началось это с того ___, когда он в присутствии Прохора завел разговор о Григории, да так эта небольшая размолвка и не забылась.",
-   "lemma": "день",
-   "options": [
-    "памятного дня",
-    "памятном дне",
-    "памятным днём",
-    "памятный день"
-   ],
-   "correct": "памятного дня",
-   "case": "Родительный (Genitive)",
-   "explain": "«памятного дня» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
-   "id": "c20"
-  },
-  {
-   "sentence": "Началось это с того памятного дня, когда он в присутствии Прохора завел разговор о Григории, да так эта ___ и не забылась.",
-   "lemma": "размолвка",
-   "options": [
-    "небольшой размолвкой",
-    "небольшая размолвка",
-    "небольшой размолвки",
-    "небольшой размолвке"
-   ],
-   "correct": "небольшая размолвка",
-   "case": "Именительный (Nominative)",
-   "explain": "«небольшая размолвка» — the subject of the sentence stands in the nominative.",
-   "id": "c21"
-  },
-  {
-   "sentence": "— ___ ишо летом на Маныч за солью съездили, а тебе все некогда было об этом подумать, — с укором сказала Дуняшка.",
-   "lemma": "человек",
-   "options": [
-    "добрым людям",
-    "добрые люди",
-    "добрых людях",
-    "добрыми людьми"
-   ],
-   "correct": "добрые люди",
-   "case": "Именительный (Nominative)",
-   "explain": "«Добрые люди» — the subject of the sentence stands in the nominative.",
-   "id": "c22"
   },
   {
    "sentence": "— Ты шуточки оставь до ___!",
@@ -221,50 +67,22 @@
    ],
    "correct": "другого раза",
    "case": "Родительный (Genitive)",
-   "explain": "«другого раза» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«другого раза» — «до» always takes the genitive.",
    "id": "c23"
-  },
-  {
-   "sentence": "Ты взвар будешь пить или ___ положить тебе?",
-   "lemma": "молоко",
-   "options": [
-    "кислым молоком",
-    "кислого молока",
-    "кислое молоко",
-    "кислом молоке"
-   ],
-   "correct": "кислого молока",
-   "case": "Родительный (Genitive)",
-   "explain": "«кислого молока» — the genitive here marks possession, absence, or quantity.",
-   "id": "c26"
   },
   {
    "sentence": "Она зачем-то сняла ___, снова покрылась и, бесцельно переставляя посуду на лавке, все никак не могла унять охватившего ее сильного волнения.",
    "lemma": "платок",
    "options": [
-    "головного платка",
-    "головной платок",
+    "головным платком",
+    "головном платке",
     "головному платку",
-    "головном платке"
+    "головной платок"
    ],
    "correct": "головной платок",
    "case": "Винительный (Accusative)",
-   "explain": "«головной платок» — the accusative marks the direct object of the verb.",
+   "explain": "«головной платок» is the direct object of «сняла» (кого? что?) — accusative.",
    "id": "c28"
-  },
-  {
-   "sentence": "Она зачем-то сняла головной платок, снова покрылась и, бесцельно переставляя посуду на лавке, все никак не могла унять охватившего ее ___.",
-   "lemma": "волнение",
-   "options": [
-    "сильного волнения",
-    "сильным волнением",
-    "сильному волнению",
-    "сильном волнении"
-   ],
-   "correct": "сильного волнения",
-   "case": "Родительный (Genitive)",
-   "explain": "«сильного волнения» — the genitive here marks possession, absence, or quantity.",
-   "id": "c29"
   }
  ]
 }

@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Матовая стеклянная двухстворчатая дверь, сквозь стены просвечивают ___ медицинских приборов.",
-   "lemma": "часть",
-   "options": [
-    "металлическими частями",
-    "металлических частей",
-    "металлические части",
-    "металлических частях"
-   ],
-   "correct": "металлические части",
-   "case": "Винительный (Accusative)",
-   "explain": "«металлические части» — the accusative marks the direct object of the verb.",
-   "id": "c1"
-  },
-  {
    "sentence": "Матовая стеклянная двухстворчатая дверь, сквозь стены просвечивают металлические части ___.",
    "lemma": "прибор",
    "options": [
@@ -25,36 +11,8 @@
    ],
    "correct": "медицинских приборов",
    "case": "Родительный (Genitive)",
-   "explain": "«медицинских приборов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«медицинских приборов» depends on the noun «части» (whose? of what?) — genitive.",
    "id": "c2"
-  },
-  {
-   "sentence": "Перед стеной ___ и пожилая ассистентка, ещё сохранившая характерные черты Зои Берёзкиной.",
-   "lemma": "профессор",
-   "options": [
-    "старый профессор",
-    "старому профессору",
-    "старым профессором",
-    "старого профессора"
-   ],
-   "correct": "старый профессор",
-   "case": "Именительный (Nominative)",
-   "explain": "«старый профессор» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
-   "sentence": "Перед стеной старый профессор и ___, ещё сохранившая характерные черты Зои Берёзкиной.",
-   "lemma": "ассистентка",
-   "options": [
-    "пожилая ассистентка",
-    "пожилой ассистенткой",
-    "пожилой ассистентке",
-    "пожилой ассистентки"
-   ],
-   "correct": "пожилая ассистентка",
-   "case": "Именительный (Nominative)",
-   "explain": "«пожилая ассистентка» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
   },
   {
    "sentence": "Перед стеной старый профессор и пожилая ассистентка, ещё сохранившая ___ Зои Берёзкиной.",
@@ -67,22 +25,8 @@
    ],
    "correct": "характерные черты",
    "case": "Винительный (Accusative)",
-   "explain": "«характерные черты» — the accusative marks the direct object of the verb.",
+   "explain": "«характерные черты» is the direct object of «сохранившая» (кого? что?) — accusative.",
    "id": "c5"
-  },
-  {
-   "sentence": "Товарищ Берёзкина, вы стали жить воспоминаниями и заговорили ___.",
-   "lemma": "язык",
-   "options": [
-    "непонятным языком",
-    "непонятному языку",
-    "непонятного языка",
-    "непонятном языке"
-   ],
-   "correct": "непонятным языком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«непонятным языком» — the instrumental marks the means, company, or complement.",
-   "id": "c6"
   },
   {
    "sentence": "На случай поломки при ___.",
@@ -95,7 +39,7 @@
    ],
    "correct": "быстром размораживании",
    "case": "Предложный (Prepositional)",
-   "explain": "«быстром размораживании» — after the preposition «при», for location or topic.",
+   "explain": "«быстром размораживании» — «при» always takes the prepositional.",
    "id": "c7"
   },
   {
@@ -109,21 +53,21 @@
    ],
    "correct": "подобных случаях",
    "case": "Предложный (Prepositional)",
-   "explain": "«подобных случаях» — after the preposition «в», for location or topic.",
+   "explain": "«подобных случаях» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c8"
   },
   {
    "sentence": "А вы не осведомлены относительно объёма желудка и печени, на случай выделения ___ спирта и водки, могущих воспламениться при необходимом высоком вольтаже?",
    "lemma": "содержание",
    "options": [
-    "возможном содержании",
-    "возможного содержания",
     "возможному содержанию",
-    "возможным содержанием"
+    "возможного содержания",
+    "возможном содержании",
+    "возможное содержание"
    ],
    "correct": "возможного содержания",
    "case": "Родительный (Genitive)",
-   "explain": "«возможного содержания» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«возможного содержания» depends on the noun «выделения» (whose? of what?) — genitive.",
    "id": "c9"
   },
   {
@@ -137,7 +81,7 @@
    ],
    "correct": "стеклянная стена",
    "case": "Именительный (Nominative)",
-   "explain": "«стеклянная стена» — the subject of the sentence stands in the nominative.",
+   "explain": "«стеклянная стена» is the subject of «расходится» — who or what does it — so nominative.",
    "id": "c10"
   },
   {
@@ -151,7 +95,7 @@
    ],
    "correct": "человечьих размеров",
    "case": "Родительный (Genitive)",
-   "explain": "«человечьих размеров» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«человечьих размеров» depends on the noun «ящик» (whose? of what?) — genitive.",
    "id": "c12"
   },
   {
@@ -165,7 +109,7 @@
    ],
    "correct": "невидимой проволоке",
    "case": "Предложный (Prepositional)",
-   "explain": "«невидимой проволоке» — after the preposition «на», for location or topic.",
+   "explain": "«невидимой проволоке» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c13"
   },
   {
@@ -179,36 +123,8 @@
    ],
    "correct": "правой стенки",
    "case": "Родительный (Genitive)",
-   "explain": "«правой стенки» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«правой стенки» — «у» always takes the genitive.",
    "id": "c15"
-  },
-  {
-   "sentence": "Он сросся с музыкой, они называли это «___».",
-   "lemma": "душа",
-   "options": [
-    "чуткая душа",
-    "чуткой душой",
-    "чуткой души",
-    "чуткой душе"
-   ],
-   "correct": "чуткой душой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«чуткой душой» — the instrumental marks the means, company, or complement.",
-   "id": "c16"
-  },
-  {
-   "sentence": "Нет, это совсем ___!",
-   "lemma": "отделение",
-   "options": [
-    "другим отделением",
-    "другого отделения",
-    "другое отделение",
-    "другому отделению"
-   ],
-   "correct": "другое отделение",
-   "case": "Именительный (Nominative)",
-   "explain": "«другое отделение» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
   },
   {
    "sentence": "В древности был такой ___.",
@@ -221,7 +137,7 @@
    ],
    "correct": "антисанитарный обычай",
    "case": "Именительный (Nominative)",
-   "explain": "«антисанитарный обычай» — the subject of the sentence stands in the nominative.",
+   "explain": "«антисанитарный обычай» is the subject of «был» — who or what does it — so nominative.",
    "id": "c18"
   },
   {
@@ -235,7 +151,7 @@
    ],
    "correct": "белой стене",
    "case": "Предложный (Prepositional)",
-   "explain": "«белой стене» — after the preposition «на», for location or topic.",
+   "explain": "«белой стене» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c19"
   }
  ]

@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "___, опутанный слезливыми бабами, обыкновенно терпеливо сносил подобные сцены и по беспредельной своей доброте никогда не умел остановить их прежде, чем эти сцены совершенно выводили его из терпения.",
-   "lemma": "экс-гусар",
-   "options": [
-    "храбрый экс-гусар",
-    "храброму экс-гусару",
-    "храбрым экс-гусаром",
-    "храброго экс-гусара"
-   ],
-   "correct": "храбрый экс-гусар",
-   "case": "Именительный (Nominative)",
-   "explain": "«Храбрый экс-гусар» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Храбрый экс-гусар, опутанный ___, обыкновенно терпеливо сносил подобные сцены и по беспредельной своей доброте никогда не умел остановить их прежде, чем эти сцены совершенно выводили его из терпения.",
-   "lemma": "баба",
-   "options": [
-    "слезливых баб",
-    "слезливыми бабами",
-    "слезливые бабы",
-    "слезливым бабам"
-   ],
-   "correct": "слезливыми бабами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«слезливыми бабами» — the instrumental marks the means, company, or complement.",
-   "id": "c2"
-  },
-  {
    "sentence": "Храбрый экс-гусар, опутанный слезливыми бабами, обыкновенно терпеливо сносил ___ и по беспредельной своей доброте никогда не умел остановить их прежде, чем эти сцены совершенно выводили его из терпения.",
    "lemma": "сцена",
    "options": [
@@ -39,7 +11,7 @@
    ],
    "correct": "подобные сцены",
    "case": "Винительный (Accusative)",
-   "explain": "«подобные сцены» — the accusative marks the direct object of the verb.",
+   "explain": "«подобные сцены» is the direct object of «сносил» (кого? что?) — accusative.",
    "id": "c3"
   },
   {
@@ -53,7 +25,7 @@
    ],
    "correct": "золотой свадьбы",
    "case": "Родительный (Genitive)",
-   "explain": "«золотой свадьбы» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«золотой свадьбы» — «до» always takes the genitive.",
    "id": "c4"
   },
   {
@@ -67,22 +39,8 @@
    ],
    "correct": "белого шлафора",
    "case": "Родительный (Genitive)",
-   "explain": "«белого шлафора» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«белого шлафора» is the object of a negated verb («не надела») — genitive instead of the accusative.",
    "id": "c5"
-  },
-  {
-   "sentence": "___ была опять удачна не менее первой.",
-   "lemma": "проба",
-   "options": [
-    "второй пробе",
-    "второй пробой",
-    "вторая проба",
-    "второй пробы"
-   ],
-   "correct": "вторая проба",
-   "case": "Именительный (Nominative)",
-   "explain": "«Вторая проба» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
   },
   {
    "sentence": "— Реформы, значит, реформы, и до вас дошли ___?",
@@ -95,36 +53,22 @@
    ],
    "correct": "благодетельные реформы",
    "case": "Именительный (Nominative)",
-   "explain": "«благодетельные реформы» — the subject of the sentence stands in the nominative.",
+   "explain": "«благодетельные реформы» is the subject of «дошли» — who or what does it — so nominative.",
    "id": "c7"
   },
   {
    "sentence": "___ уж нет, — как-то двусмысленно заметила Ольга Сергеевна.",
    "lemma": "порядок",
    "options": [
-    "прежних порядков",
-    "прежним порядкам",
     "прежними порядками",
-    "прежние порядки"
+    "прежних порядках",
+    "прежним порядкам",
+    "прежних порядков"
    ],
    "correct": "прежних порядков",
    "case": "Родительный (Genitive)",
-   "explain": "«Прежних порядков» — the genitive here marks possession, absence, or quantity.",
+   "explain": "What is absent after «нет» — genitive.",
    "id": "c8"
-  },
-  {
-   "sentence": "— А краснеют-то ___ еще так же точно, как и прежние, — продолжал шутить старик.",
-   "lemma": "институтка",
-   "options": [
-    "нынешним институткам",
-    "нынешних институтках",
-    "нынешними институтками",
-    "нынешние институтки"
-   ],
-   "correct": "нынешние институтки",
-   "case": "Именительный (Nominative)",
-   "explain": "«нынешние институтки» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
   },
   {
    "sentence": "— Из ___ есть такие, что, кажется, ни перед чем и ни перед кем не покраснеют.",
@@ -137,7 +81,7 @@
    ],
    "correct": "нынешних институток",
    "case": "Родительный (Genitive)",
-   "explain": "«нынешних институток» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«нынешних институток» — «из» always takes the genitive.",
    "id": "c10"
   },
   {
@@ -151,78 +95,22 @@
    ],
    "correct": "розовые сети",
    "case": "Винительный (Accusative)",
-   "explain": "«розовые сети» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«розовые сети» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c11"
-  },
-  {
-   "sentence": "— А, — рассмотреть хотите, это ___.",
-   "lemma": "дело",
-   "options": [
-    "другому делу",
-    "другом деле",
-    "другое дело",
-    "другим делом"
-   ],
-   "correct": "другое дело",
-   "case": "Именительный (Nominative)",
-   "explain": "«другое дело» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
   },
   {
    "sentence": "— ___ тоже так не поступали.",
    "lemma": "институтка",
    "options": [
     "прежними институтками",
+    "прежних институтках",
     "прежние институтки",
-    "прежних институток",
     "прежним институткам"
    ],
    "correct": "прежние институтки",
    "case": "Именительный (Nominative)",
-   "explain": "«Прежние институтки» — the subject of the sentence stands in the nominative.",
+   "explain": "«прежние институтки» is the subject of «поступали» — who or what does it — so nominative.",
    "id": "c13"
-  },
-  {
-   "sentence": "Ольга Сергеевна прямо из-за самовара ушла к себе; для Гловацкой велели запрягать ее лошадь, а на балкон подали душистый ___.",
-   "lemma": "варенец",
-   "options": [
-    "розового варенца",
-    "розовый варенец",
-    "розовом варенце",
-    "розовым варенцом"
-   ],
-   "correct": "розовый варенец",
-   "case": "Именительный (Nominative)",
-   "explain": "«розовый варенец» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
-  },
-  {
-   "sentence": "На дворе были густые ___, и из-за меревского сада выплывала красная луна.",
-   "lemma": "сумерки",
-   "options": [
-    "летним сумеркам",
-    "летних сумерках",
-    "летних сумерек",
-    "летние сумерки"
-   ],
-   "correct": "летние сумерки",
-   "case": "Именительный (Nominative)",
-   "explain": "«летние сумерки» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
-  },
-  {
-   "sentence": "На дворе были густые летние сумерки, и из-за меревского сада выплывала ___.",
-   "lemma": "луна",
-   "options": [
-    "красной луны",
-    "красная луна",
-    "красной луной",
-    "красной луне"
-   ],
-   "correct": "красная луна",
-   "case": "Именительный (Nominative)",
-   "explain": "«красная луна» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
   },
   {
    "sentence": "Зина, Софи и Лиза проводили ее до ___.",
@@ -235,22 +123,8 @@
    ],
    "correct": "самых дрожек",
    "case": "Родительный (Genitive)",
-   "explain": "«самых дрожек» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«самых дрожек» — «до» always takes the genitive.",
    "id": "c17"
-  },
-  {
-   "sentence": "— Однако какие там ___, в самом деле, творятся, папа, — говорила Женни, снимая у себя в комнате шляпку.",
-   "lemma": "вещь",
-   "options": [
-    "странными вещами",
-    "странным вещам",
-    "странных вещах",
-    "странные вещи"
-   ],
-   "correct": "странные вещи",
-   "case": "Именительный (Nominative)",
-   "explain": "«странные вещи» — the subject of the sentence stands in the nominative.",
-   "id": "c18"
   }
  ]
 }

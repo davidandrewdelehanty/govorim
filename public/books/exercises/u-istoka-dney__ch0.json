@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "В простенке стоит ___ красного дерева, а на полу возле него сидит ребенок трех или четырех лет.",
-   "lemma": "туалет",
-   "options": [
-    "старинном туалете",
-    "старинного туалета",
-    "старинный туалет",
-    "старинному туалету"
-   ],
-   "correct": "старинный туалет",
-   "case": "Именительный (Nominative)",
-   "explain": "«старинный туалет» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
    "sentence": "В простенке стоит старинный туалет ___, а на полу возле него сидит ребенок трех или четырех лет.",
    "lemma": "дерево",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "красного дерева",
    "case": "Родительный (Genitive)",
-   "explain": "«красного дерева» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«красного дерева» depends on the noun «туалет» (whose? of what?) — genitive.",
    "id": "c3"
   },
   {
@@ -39,22 +25,8 @@
    ],
    "correct": "степного августа",
    "case": "Родительный (Genitive)",
-   "explain": "«степного августа» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«степного августа» depends on the noun «конец» (whose? of what?) — genitive.",
    "id": "c4"
-  },
-  {
-   "sentence": "А он открыл дверцу в тумбе туалета, обоняет ___ старинных духов и тщательно укладывает на полированную полочку синие гербовые бумаги.",
-   "lemma": "запах",
-   "options": [
-    "кисленький запах",
-    "кисленьком запахе",
-    "кисленьким запахом",
-    "кисленькому запаху"
-   ],
-   "correct": "кисленький запах",
-   "case": "Винительный (Accusative)",
-   "explain": "«кисленький запах» — the accusative marks the direct object of the verb.",
-   "id": "c5"
   },
   {
    "sentence": "А он открыл дверцу в тумбе туалета, обоняет кисленький запах ___ и тщательно укладывает на полированную полочку синие гербовые бумаги.",
@@ -67,21 +39,21 @@
    ],
    "correct": "старинных духов",
    "case": "Родительный (Genitive)",
-   "explain": "«старинных духов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«старинных духов» depends on the noun «запах» (whose? of what?) — genitive.",
    "id": "c6"
   },
   {
    "sentence": "А он открыл дверцу в тумбе туалета, обоняет кисленький запах старинных духов и тщательно укладывает на полированную полочку синие ___.",
    "lemma": "бумага",
    "options": [
+    "гербовые бумаги",
     "гербовых бумаг",
-    "гербовых бумагах",
-    "гербовыми бумагами",
-    "гербовые бумаги"
+    "гербовым бумагам",
+    "гербовыми бумагами"
    ],
    "correct": "гербовые бумаги",
    "case": "Винительный (Accusative)",
-   "explain": "«гербовые бумаги» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«гербовые бумаги» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c7"
   },
   {
@@ -95,36 +67,22 @@
    ],
    "correct": "синих бумаг",
    "case": "Родительный (Genitive)",
-   "explain": "«синих бумаг» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«синих бумаг» depends on the noun «кипу» (whose? of what?) — genitive.",
    "id": "c9"
   },
   {
    "sentence": "А для того, чтобы было что укладывать, подарили большую кипу синих бумаг с красивыми ___.",
    "lemma": "птица",
    "options": [
-    "двуглавых птиц",
     "двуглавым птицам",
-    "двуглавыми птицами",
-    "двуглавых птицах"
+    "двуглавых птицах",
+    "двуглавые птицы",
+    "двуглавыми птицами"
    ],
    "correct": "двуглавыми птицами",
    "case": "Творительный (Instrumental)",
-   "explain": "«двуглавыми птицами» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«двуглавыми птицами» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c10"
-  },
-  {
-   "sentence": "Накопится много и ___, вроде коробочек и граненых пузырьков, стоящих на туалете.",
-   "lemma": "вещь",
-   "options": [
-    "другим вещам",
-    "других вещах",
-    "другие вещи",
-    "других вещей"
-   ],
-   "correct": "других вещей",
-   "case": "Родительный (Genitive)",
-   "explain": "«других вещей» — the genitive here marks possession, absence, or quantity.",
-   "id": "c11"
   },
   {
    "sentence": "Увы, в простой ___ с голыми бревенчатыми стенами совсем почти пусто: только стулья, да большая кровать, да августовское солнце, косо озаряющее некрашеный пол.",
@@ -137,22 +95,8 @@
    ],
    "correct": "деревенской комнате",
    "case": "Предложный (Prepositional)",
-   "explain": "«деревенской комнате» — after the preposition «в», for location or topic.",
+   "explain": "«деревенской комнате» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c12"
-  },
-  {
-   "sentence": "Увы, в простой деревенской комнате с голыми бревенчатыми стенами совсем почти пусто: только стулья, да большая кровать, да ___, косо озаряющее некрашеный пол.",
-   "lemma": "солнце",
-   "options": [
-    "августовское солнце",
-    "августовскому солнцу",
-    "августовского солнца",
-    "августовском солнце"
-   ],
-   "correct": "августовское солнце",
-   "case": "Именительный (Nominative)",
-   "explain": "«августовское солнце» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
   },
   {
    "sentence": "Но, во-первых, до нее не дотянешься, если даже приставить к окну стул, а во-вторых, из щели в углу может выбежать на высоких ___ большой серый паук.",
@@ -165,22 +109,8 @@
    ],
    "correct": "тонких ножках",
    "case": "Предложный (Prepositional)",
-   "explain": "«тонких ножках» — after the preposition «на», for location or topic.",
+   "explain": "«тонких ножках» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c16"
-  },
-  {
-   "sentence": "Но, во-первых, до нее не дотянешься, если даже приставить к окну стул, а во-вторых, из щели в углу может выбежать на высоких тонких ножках большой ___.",
-   "lemma": "паук",
-   "options": [
-    "серому пауку",
-    "серым пауком",
-    "серый паук",
-    "сером пауке"
-   ],
-   "correct": "серый паук",
-   "case": "Именительный (Nominative)",
-   "explain": "«серый паук» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
   }
  ]
 }

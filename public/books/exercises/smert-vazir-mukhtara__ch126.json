@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Пожав плечами и назвав Аббаса ___, Грибоедов отправился знакомым путем.",
-   "lemma": "плут",
-   "options": [
-    "старого плута",
-    "старым плутом",
-    "старом плуте",
-    "старому плуту"
-   ],
-   "correct": "старым плутом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«старым плутом» — the instrumental marks the means, company, or complement.",
-   "id": "c2"
-  },
-  {
    "sentence": "Он посмотрел на башню дворца и на баляханэ, как на ___.",
    "lemma": "ворота",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "красные ворота",
    "case": "Винительный (Accusative)",
-   "explain": "«Красные ворота» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«красные ворота» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c3"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "кирпичной дороге",
    "case": "Дательный (Dative)",
-   "explain": "«кирпичной дороге» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«кирпичной дороге» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c6"
   },
   {
@@ -53,7 +39,7 @@
    ],
    "correct": "четырехугольного двора",
    "case": "Родительный (Genitive)",
-   "explain": "«четырехугольного двора» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«четырехугольного двора» — «из» always takes the genitive.",
    "id": "c7"
   },
   {
@@ -67,64 +53,8 @@
    ],
    "correct": "огромные рамы",
    "case": "Именительный (Nominative)",
-   "explain": "«огромные рамы» — the subject of the sentence stands in the nominative.",
+   "explain": "«огромные рамы» is the subject of «Шли» — who or what does it — so nominative.",
    "id": "c8"
-  },
-  {
-   "sentence": "И еще башня и совсем ___.",
-   "lemma": "дворик",
-   "options": [
-    "маленьким двориком",
-    "маленькому дворику",
-    "маленький дворик",
-    "маленьком дворике"
-   ],
-   "correct": "маленький дворик",
-   "case": "Именительный (Nominative)",
-   "explain": "«маленький дворик» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
-  },
-  {
-   "sentence": "Это был ___ Аббаса.",
-   "lemma": "двор",
-   "options": [
-    "монетный двор",
-    "монетном дворе",
-    "монетному двору",
-    "монетного двора"
-   ],
-   "correct": "монетный двор",
-   "case": "Именительный (Nominative)",
-   "explain": "«монетный двор» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
-  },
-  {
-   "sentence": "Дверь была ___, но Грибоедов, входя, нагнул голову.",
-   "lemma": "высота",
-   "options": [
-    "достаточной высоты",
-    "достаточной высоте",
-    "достаточной высотой",
-    "достаточная высота"
-   ],
-   "correct": "достаточной высоты",
-   "case": "Родительный (Genitive)",
-   "explain": "«достаточной высоты» — the genitive here marks possession, absence, or quantity.",
-   "id": "c11"
-  },
-  {
-   "sentence": "___ весь помещался в одной комнате.",
-   "lemma": "двор",
-   "options": [
-    "монетном дворе",
-    "монетному двору",
-    "монетный двор",
-    "монетного двора"
-   ],
-   "correct": "монетный двор",
-   "case": "Именительный (Nominative)",
-   "explain": "«Монетный двор» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
   },
   {
    "sentence": "Полутемно и даже прохладно от ___.",
@@ -137,21 +67,21 @@
    ],
    "correct": "земляного пола",
    "case": "Родительный (Genitive)",
-   "explain": "«земляного пола» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«земляного пола» — «от» always takes the genitive.",
    "id": "c13"
   },
   {
    "sentence": "Аббас сидел на простом ___.",
    "lemma": "трон",
    "options": [
+    "деревянном троне",
     "деревянного трона",
-    "деревянный трон",
     "деревянному трону",
-    "деревянном троне"
+    "деревянным троном"
    ],
    "correct": "деревянном троне",
    "case": "Предложный (Prepositional)",
-   "explain": "«деревянном троне» — after the preposition «на», for location or topic.",
+   "explain": "«деревянном троне» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c14"
   },
   {
@@ -165,78 +95,8 @@
    ],
    "correct": "верхних одежд",
    "case": "Родительный (Genitive)",
-   "explain": "«верхних одежд» — after the preposition «без», the genitive here marks possession, absence, or quantity.",
+   "explain": "«верхних одежд» — «без» always takes the genitive.",
    "id": "c15"
-  },
-  {
-   "sentence": "Аббас сидел прямо, в белом халате, и лицо его было от ___ желтое.",
-   "lemma": "свет",
-   "options": [
-    "неверного света",
-    "неверному свету",
-    "неверном свете",
-    "неверным светом"
-   ],
-   "correct": "неверного света",
-   "case": "Родительный (Genitive)",
-   "explain": "«неверного света» — the genitive here marks possession, absence, or quantity.",
-   "id": "c17"
-  },
-  {
-   "sentence": "___ громадный золотой канделябр, несоразмерно вздувшийся в серединной части, лежал на блюде, как плод, свисал тусклыми кисточками, пузырился крохотными виноградинками.",
-   "lemma": "работа",
-   "options": [
-    "древней работы",
-    "древней работой",
-    "древней работе",
-    "древняя работа"
-   ],
-   "correct": "древней работы",
-   "case": "Родительный (Genitive)",
-   "explain": "«Древней работы» — the genitive here marks possession, absence, or quantity.",
-   "id": "c19"
-  },
-  {
-   "sentence": "Древней работы громадный ___, несоразмерно вздувшийся в серединной части, лежал на блюде, как плод, свисал тусклыми кисточками, пузырился крохотными виноградинками.",
-   "lemma": "канделябр",
-   "options": [
-    "золотом канделябре",
-    "золотой канделябр",
-    "золотым канделябром",
-    "золотого канделябра"
-   ],
-   "correct": "золотой канделябр",
-   "case": "Именительный (Nominative)",
-   "explain": "«золотой канделябр» — the subject of the sentence stands in the nominative.",
-   "id": "c20"
-  },
-  {
-   "sentence": "Древней работы громадный золотой канделябр, несоразмерно вздувшийся в серединной части, лежал на блюде, как плод, свисал ___, пузырился крохотными виноградинками.",
-   "lemma": "кисточка",
-   "options": [
-    "тусклые кисточки",
-    "тусклых кисточек",
-    "тусклыми кисточками",
-    "тусклым кисточкам"
-   ],
-   "correct": "тусклыми кисточками",
-   "case": "Творительный (Instrumental)",
-   "explain": "«тусклыми кисточками» — the instrumental marks the means, company, or complement.",
-   "id": "c21"
-  },
-  {
-   "sentence": "И все были с мельчайшими ___.",
-   "lemma": "надпись",
-   "options": [
-    "иголочных надписях",
-    "иголочным надписям",
-    "иголочными надписями",
-    "иголочные надписи"
-   ],
-   "correct": "иголочными надписями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«иголочными надписями» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c22"
   },
   {
    "sentence": "Их несли к огню, и ___ копошились, перекладывали их и ставили в огонь.",
@@ -249,7 +109,7 @@
    ],
    "correct": "полуголые люди",
    "case": "Именительный (Nominative)",
-   "explain": "«полуголые люди» — the subject of the sentence stands in the nominative.",
+   "explain": "«полуголые люди» is the subject of «несли» — who or what does it — so nominative.",
    "id": "c23"
   },
   {
@@ -263,36 +123,8 @@
    ],
    "correct": "золотых струек",
    "case": "Родительный (Genitive)",
-   "explain": "«золотых струек» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«золотых струек» — «от» always takes the genitive.",
    "id": "c24"
-  },
-  {
-   "sentence": "___ тогда самым жалостным и проклятым образом, как живое существо, влезло в него.",
-   "lemma": "одиночество",
-   "options": [
-    "безобразном одиночестве",
-    "безобразное одиночество",
-    "безобразного одиночества",
-    "безобразным одиночеством"
-   ],
-   "correct": "безобразное одиночество",
-   "case": "Именительный (Nominative)",
-   "explain": "«Безобразное одиночество» — the subject of the sentence stands in the nominative.",
-   "id": "c25"
-  },
-  {
-   "sentence": "Безобразное одиночество тогда самым жалостным и проклятым образом, как ___, влезло в него.",
-   "lemma": "существо",
-   "options": [
-    "живое существо",
-    "живого существа",
-    "живом существе",
-    "живым существом"
-   ],
-   "correct": "живое существо",
-   "case": "Именительный (Nominative)",
-   "explain": "«живое существо» — the subject of the sentence stands in the nominative.",
-   "id": "c26"
   }
  ]
 }

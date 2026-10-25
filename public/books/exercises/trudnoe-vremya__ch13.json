@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Напрасно же ты ей прежде не внушал, что ___ неприлично смотреть на мужиков в то время, когда их порют.",
-   "lemma": "дама",
-   "options": [
-    "благородная дама",
-    "благородной дамы",
-    "благородной дамой",
-    "благородной даме"
-   ],
-   "correct": "благородной даме",
-   "case": "Дательный (Dative)",
-   "explain": "«благородной даме» — the dative marks the indirect object or recipient.",
-   "id": "c1"
-  },
-  {
    "sentence": "В продолжение дня Щетинин несколько раз подкрадывался к ___ и прислушивался, но, ничего не расслушав, объявил прислуге, что барыня почивает, и не велел ее беспокоить.",
    "lemma": "комната",
    "options": [
@@ -25,36 +11,8 @@
    ],
    "correct": "жениной комнате",
    "case": "Дательный (Dative)",
-   "explain": "«жениной комнате» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«жениной комнате» — «к» always takes the dative.",
    "id": "c2"
-  },
-  {
-   "sentence": "Там ___ были заперты окна, а потому было душно, как в бане, и пахло что-то странно, краской не краской, вообще каким-то кадетским корпусом.",
-   "lemma": "день",
-   "options": [
-    "целом дне",
-    "целого дня",
-    "целый день",
-    "целым днём"
-   ],
-   "correct": "целый день",
-   "case": "Винительный (Accusative)",
-   "explain": "«целый день» — the accusative marks the direct object of the verb.",
-   "id": "c3"
-  },
-  {
-   "sentence": "Там целый день были заперты окна, а потому было душно, как в бане, и пахло что-то странно, краской не краской, вообще каким-то ___.",
-   "lemma": "корпус",
-   "options": [
-    "кадетском корпусе",
-    "кадетский корпус",
-    "кадетским корпусом",
-    "кадетскому корпусу"
-   ],
-   "correct": "кадетским корпусом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«кадетским корпусом» — the instrumental marks the means, company, or complement.",
-   "id": "c4"
   },
   {
    "sentence": "По селу ___ ходит, так нужно ее застрелить.",
@@ -67,7 +25,7 @@
    ],
    "correct": "бешеная собака",
    "case": "Именительный (Nominative)",
-   "explain": "«бешеная собака» — the subject of the sentence stands in the nominative.",
+   "explain": "«бешеная собака» is the subject of «ходит» — who or what does it — so nominative.",
    "id": "c5"
   },
   {
@@ -81,7 +39,7 @@
    ],
    "correct": "другого места",
    "case": "Родительный (Genitive)",
-   "explain": "«другого места» — the genitive here marks possession, absence, or quantity.",
+   "explain": "What is absent after «нет» — genitive.",
    "id": "c6"
   },
   {
@@ -95,22 +53,8 @@
    ],
    "correct": "крестьянских ребятишек",
    "case": "Родительный (Genitive)",
-   "explain": "«крестьянских ребятишек» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«крестьянских ребятишек» — «из» always takes the genitive.",
    "id": "c7"
-  },
-  {
-   "sentence": "На дворе было пасмурно, шел мелкий, почти ___; в окна пробиралась гнилая, холодная сырость.",
-   "lemma": "дождик",
-   "options": [
-    "невидимый дождик",
-    "невидимого дождика",
-    "невидимому дождику",
-    "невидимым дождиком"
-   ],
-   "correct": "невидимый дождик",
-   "case": "Именительный (Nominative)",
-   "explain": "«невидимый дождик» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
   },
   {
    "sentence": "Я давно уже догадывалась об этом, но вчера один случай окончательно показал мне, в каком ___ Вы заставляли меня принимать невольное участие.",
@@ -123,36 +67,8 @@
    ],
    "correct": "гнусном деле",
    "case": "Предложный (Prepositional)",
-   "explain": "«гнусном деле» — after the preposition «в», for location or topic.",
+   "explain": "«гнусном деле» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c9"
-  },
-  {
-   "sentence": "Пробежав письмо, Щетинин несколько минут стоял среди комнаты с ___, держа себя одною рукою за голову, потом бросился в комнату к Марье Николавне, — Дверь заперта.",
-   "lemma": "рот",
-   "options": [
-    "полуоткрытым ртом",
-    "полуоткрытый рот",
-    "полуоткрытом рте",
-    "полуоткрытому рту"
-   ],
-   "correct": "полуоткрытым ртом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«полуоткрытым ртом» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c10"
-  },
-  {
-   "sentence": "Постояв у двери, он пошел и написал записку, в которой повторил просьбу позволить ему переговорить об очень ___; через несколько минут на той же записке был получен ответ: «После».",
-   "lemma": "дело",
-   "options": [
-    "важным делом",
-    "важного дела",
-    "важном деле",
-    "важное дело"
-   ],
-   "correct": "важном деле",
-   "case": "Предложный (Prepositional)",
-   "explain": "«важном деле» — after the preposition «об», for location or topic.",
-   "id": "c11"
   }
  ]
 }

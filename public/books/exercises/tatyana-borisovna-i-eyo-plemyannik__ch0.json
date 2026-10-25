@@ -1,76 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Дайте мне руку, ___, и поедемте вместе со мной.",
-   "lemma": "читатель",
-   "options": [
-    "любезным читателем",
-    "любезному читателю",
-    "любезный читатель",
-    "любезного читателя"
-   ],
-   "correct": "любезный читатель",
-   "case": "Именительный (Nominative)",
-   "explain": "«любезный читатель» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Татьяна Борисовна — женщина лет пятидесяти, с большими ___ навыкате, несколько тупым носом, румяными щеками и двойным подбородком.",
-   "lemma": "глаз",
-   "options": [
-    "серыми глазами",
-    "серым глазам",
-    "серых глаз",
-    "серые глаза"
-   ],
-   "correct": "серыми глазами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«серыми глазами» — the instrumental marks the means, company, or complement.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Татьяна Борисовна — женщина лет пятидесяти, с большими серыми глазами навыкате, несколько ___, румяными щеками и двойным подбородком.",
-   "lemma": "нос",
-   "options": [
-    "тупого носа",
-    "тупым носом",
-    "тупом носе",
-    "тупому носу"
-   ],
-   "correct": "тупым носом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«тупым носом» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c3"
-  },
-  {
-   "sentence": "Татьяна Борисовна — женщина лет пятидесяти, с большими серыми глазами навыкате, несколько тупым носом, румяными щеками и ___.",
-   "lemma": "подбородок",
-   "options": [
-    "двойной подбородок",
-    "двойным подбородком",
-    "двойном подбородке",
-    "двойного подбородка"
-   ],
-   "correct": "двойным подбородком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«двойным подбородком» — the instrumental marks the means, company, or complement.",
-   "id": "c4"
-  },
-  {
-   "sentence": "Татьяна Борисовна весьма ___.",
-   "lemma": "женщина",
-   "options": [
-    "замечательная женщина",
-    "замечательной женщиной",
-    "замечательной женщины",
-    "замечательной женщине"
-   ],
-   "correct": "замечательная женщина",
-   "case": "Именительный (Nominative)",
-   "explain": "«замечательная женщина» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
-  },
-  {
    "sentence": "Живет она безвыездно в своем ___, с соседями мало знается, принимает и любит одних молодых людей.",
    "lemma": "поместье",
    "options": [
@@ -81,7 +11,7 @@
    ],
    "correct": "маленьком поместье",
    "case": "Предложный (Prepositional)",
-   "explain": "«маленьком поместье» — after the preposition «в», for location or topic.",
+   "explain": "«маленьком поместье» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c6"
   },
   {
@@ -95,22 +25,8 @@
    ],
    "correct": "молодых людей",
    "case": "Винительный (Accusative)",
-   "explain": "«молодых людей» — the accusative marks the direct object of the verb.",
+   "explain": "«молодых людей» is the direct object of «любит» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c7"
-  },
-  {
-   "sentence": "Ходит она обыкновенно в сером тафтяном платье и белом чепце с висячими ___; любит покушать, но без излишества; варенье, сушенье и соленье предоставляет ключнице.",
-   "lemma": "лента",
-   "options": [
-    "лиловых лент",
-    "лиловые ленты",
-    "лиловыми лентами",
-    "лиловым лентам"
-   ],
-   "correct": "лиловыми лентами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«лиловыми лентами» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c10"
   },
   {
    "sentence": "Чем же она занимается ___?",
@@ -123,22 +39,8 @@
    ],
    "correct": "целый день",
    "case": "Винительный (Accusative)",
-   "explain": "«целый день» — the accusative marks the direct object of the verb.",
+   "explain": "«целый день» tells how long or how often, with no preposition — accusative.",
    "id": "c11"
-  },
-  {
-   "sentence": "В ее небольших, уютных комнатках хорошо, тепло человеку; у ней всегда в доме ___, если можно так выразиться.",
-   "lemma": "погода",
-   "options": [
-    "прекрасная погода",
-    "прекрасной погоды",
-    "прекрасной погодой",
-    "прекрасной погоде"
-   ],
-   "correct": "прекрасная погода",
-   "case": "Именительный (Nominative)",
-   "explain": "«прекрасная погода» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
   },
   {
    "sentence": "Сколько раз мне, например, случалось спросить у ___: как, братец, проехать, положим, в Грачовку?",
@@ -151,36 +53,8 @@
    ],
    "correct": "встречного мужика",
    "case": "Родительный (Genitive)",
-   "explain": "«встречного мужика» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«встречного мужика» — «у» always takes the genitive.",
    "id": "c15"
-  },
-  {
-   "sentence": "— «О, ___! да Амченск-то где?» — «А я почем знаю?» — «В России Амченск, глупый».",
-   "lemma": "голова",
-   "options": [
-    "глупой голове",
-    "глупой головой",
-    "глупой головы",
-    "глупая голова"
-   ],
-   "correct": "глупая голова",
-   "case": "Именительный (Nominative)",
-   "explain": "«глупая голова» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
-  },
-  {
-   "sentence": "Бонапартишку-то его светлейшество ___ Михайло Илларионович Голенищев-Кутузов Смоленский, с божиею помощью, из российских пределов выгнать изволил.",
-   "lemma": "князь",
-   "options": [
-    "покойного князя",
-    "покойному князю",
-    "покойном князе",
-    "покойный князь"
-   ],
-   "correct": "покойный князь",
-   "case": "Именительный (Nominative)",
-   "explain": "«покойный князь» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
   },
   {
    "sentence": "Бонапартишку-то его светлейшество покойный князь Михайло Илларионович Голенищев-Кутузов Смоленский, с божиею помощью, из ___ выгнать изволил.",
@@ -193,78 +67,8 @@
    ],
    "correct": "российских пределов",
    "case": "Родительный (Genitive)",
-   "explain": "«российских пределов» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«российских пределов» — «из» always takes the genitive.",
    "id": "c18"
-  },
-  {
-   "sentence": "У одного из ее приятелей, хорошего и смирного ___, была сестра, старая девица лет тридцати восьми с половиной, существо добрейшее, но исковерканное, натянутое и восторженное.",
-   "lemma": "человек",
-   "options": [
-    "молодого человека",
-    "молодой человек",
-    "молодому человеку",
-    "молодым человеком"
-   ],
-   "correct": "молодого человека",
-   "case": "Винительный (Accusative)",
-   "explain": "«молодого человека» — the accusative marks the direct object of the verb.",
-   "id": "c21"
-  },
-  {
-   "sentence": "У одного из ее приятелей, хорошего и смирного молодого человека, была сестра, ___ лет тридцати восьми с половиной, существо добрейшее, но исковерканное, натянутое и восторженное.",
-   "lemma": "девица",
-   "options": [
-    "старой девицы",
-    "старой девице",
-    "старая девица",
-    "старой девицей"
-   ],
-   "correct": "старая девица",
-   "case": "Именительный (Nominative)",
-   "explain": "«старая девица» — the subject of the sentence stands in the nominative.",
-   "id": "c22"
-  },
-  {
-   "sentence": "В одно прекрасное утро моя ___, не говоря худого слова, велела оседлать себе лошадь и отправилась к Татьяне Борисовне.",
-   "lemma": "девица",
-   "options": [
-    "старой девицы",
-    "старой девице",
-    "старая девица",
-    "старой девицей"
-   ],
-   "correct": "старая девица",
-   "case": "Именительный (Nominative)",
-   "explain": "«старая девица» — the subject of the sentence stands in the nominative.",
-   "id": "c23"
-  },
-  {
-   "sentence": "Вот она, эта простая и вместе с тем ___!",
-   "lemma": "женщина",
-   "options": [
-    "глубокой женщиной",
-    "глубокая женщина",
-    "глубокой женщины",
-    "глубокой женщине"
-   ],
-   "correct": "глубокая женщина",
-   "case": "Именительный (Nominative)",
-   "explain": "«глубокая женщина» — the subject of the sentence stands in the nominative.",
-   "id": "c25"
-  },
-  {
-   "sentence": "___ высидела у Татьяны Борисовны три часа, не умолкая ни на мгновенье.",
-   "lemma": "девица",
-   "options": [
-    "старой девицей",
-    "старая девица",
-    "старой девицы",
-    "старой девице"
-   ],
-   "correct": "старая девица",
-   "case": "Именительный (Nominative)",
-   "explain": "«Старая девица» — the subject of the sentence stands in the nominative.",
-   "id": "c26"
   },
   {
    "sentence": "Тотчас после ухода ___ бедная помещица отправилась в баню, напилась липового чаю и легла в постель.",
@@ -277,7 +81,7 @@
    ],
    "correct": "нежданной гостьи",
    "case": "Родительный (Genitive)",
-   "explain": "«нежданной гостьи» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«нежданной гостьи» depends on the noun «ухода» (whose? of what?) — genitive.",
    "id": "c27"
   },
   {
@@ -291,7 +95,7 @@
    ],
    "correct": "бедная помещица",
    "case": "Именительный (Nominative)",
-   "explain": "«бедная помещица» — the subject of the sentence stands in the nominative.",
+   "explain": "«бедная помещица» is the subject of «отправилась» — who or what does it — so nominative.",
    "id": "c28"
   },
   {
@@ -305,7 +109,7 @@
    ],
    "correct": "старая девица",
    "case": "Именительный (Nominative)",
-   "explain": "«старая девица» — the subject of the sentence stands in the nominative.",
+   "explain": "«старая девица» is the subject of «вернулась» — who or what does it — so nominative.",
    "id": "c29"
   },
   {
@@ -319,133 +123,35 @@
    ],
    "correct": "покойного брата",
    "case": "Родительный (Genitive)",
-   "explain": "«покойного брата» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«покойного брата» depends on the noun «сын» (whose? of what?) — genitive.",
    "id": "c30"
-  },
-  {
-   "sentence": "С особенным усердием трудился он недели за две до имении Татьяны Борисовны: являлся первый с поздравлением и подносил свиток, повязанный ___.",
-   "lemma": "ленточка",
-   "options": [
-    "розовой ленточке",
-    "розовая ленточка",
-    "розовой ленточки",
-    "розовой ленточкой"
-   ],
-   "correct": "розовой ленточкой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«розовой ленточкой» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c32"
-  },
-  {
-   "sentence": "Беневоленский, Петр Михайлыч, ___ и кавалер.",
-   "lemma": "советник",
-   "options": [
-    "коллежским советником",
-    "коллежский советник",
-    "коллежского советника",
-    "коллежскому советнику"
-   ],
-   "correct": "коллежский советник",
-   "case": "Именительный (Nominative)",
-   "explain": "«коллежский советник» — the subject of the sentence stands in the nominative.",
-   "id": "c34"
-  },
-  {
-   "sentence": "Но прежде чем мы приступим к продолжению рассказа, позвольте, ___, познакомить вас с этим новым лицом.",
-   "lemma": "читатель",
-   "options": [
-    "любезным читателем",
-    "любезному читателю",
-    "любезный читатель",
-    "любезного читателя"
-   ],
-   "correct": "любезный читатель",
-   "case": "Именительный (Nominative)",
-   "explain": "«любезный читатель» — the subject of the sentence stands in the nominative.",
-   "id": "c35"
   },
   {
    "sentence": "Но прежде чем мы приступим к продолжению рассказа, позвольте, любезный читатель, познакомить вас с этим ___.",
    "lemma": "лицо",
    "options": [
     "новом лице",
+    "новое лицо",
     "новым лицом",
-    "нового лица",
     "новому лицу"
    ],
    "correct": "новым лицом",
    "case": "Творительный (Instrumental)",
-   "explain": "«новым лицом» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«новым лицом» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c36"
-  },
-  {
-   "sentence": "Любовь к художеству и художникам придает этим людям приторность неизъяснимую; знаться с ними, с ними разговаривать — мучительно: ___, вымазанные медом.",
-   "lemma": "дубина",
-   "options": [
-    "настоящих дубин",
-    "настоящим дубинам",
-    "настоящих дубинах",
-    "настоящие дубины"
-   ],
-   "correct": "настоящие дубины",
-   "case": "Именительный (Nominative)",
-   "explain": "«настоящие дубины» — the subject of the sentence stands in the nominative.",
-   "id": "c37"
-  },
-  {
-   "sentence": "Всякий доморощенный, самолюбивый, перехитренный и посредственный талант величают они гением, или, правильнее, «хэнием»; ___ Италии, южный лимон, душистые пары берегов Бренты не сходят у них с языка.",
-   "lemma": "небо",
-   "options": [
-    "синее небо",
-    "синем небе",
-    "синему небу",
-    "синим небом"
-   ],
-   "correct": "синее небо",
-   "case": "Именительный (Nominative)",
-   "explain": "«синее небо» — the subject of the sentence stands in the nominative.",
-   "id": "c38"
-  },
-  {
-   "sentence": "Всякий доморощенный, самолюбивый, перехитренный и посредственный талант величают они гением, или, правильнее, «хэнием»; синее небо Италии, ___, душистые пары берегов Бренты не сходят у них с языка.",
-   "lemma": "лимон",
-   "options": [
-    "южный лимон",
-    "южного лимона",
-    "южном лимоне",
-    "южному лимону"
-   ],
-   "correct": "южный лимон",
-   "case": "Именительный (Nominative)",
-   "explain": "«южный лимон» — the subject of the sentence stands in the nominative.",
-   "id": "c39"
-  },
-  {
-   "sentence": "«Хорошо, ___, — промолвил он наконец, — хорошо, очень хорошо».",
-   "lemma": "человек",
-   "options": [
-    "молодом человеке",
-    "молодым человеком",
-    "молодой человек",
-    "молодому человеку"
-   ],
-   "correct": "молодой человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«молодой человек» — the subject of the sentence stands in the nominative.",
-   "id": "c44"
   },
   {
    "sentence": "Из города — дорог; у соседей, у Артамоновых, есть живописец и, говорят, отличный, да барыня ему запрещает ___ уроки давать.",
    "lemma": "человек",
    "options": [
     "чужим людям",
-    "чужие люди",
-    "чужих людей",
-    "чужих людях"
+    "чужими людьми",
+    "чужих людях",
+    "чужие люди"
    ],
    "correct": "чужим людям",
    "case": "Дательный (Dative)",
-   "explain": "«чужим людям» — the dative marks the indirect object or recipient.",
+   "explain": "«запрещает» takes the dative (кому? чему?).",
    "id": "c45"
   },
   {
@@ -459,7 +165,7 @@
    ],
    "correct": "нового питомца",
    "case": "Винительный (Accusative)",
-   "explain": "«нового питомца» — the accusative marks the direct object of the verb.",
+   "explain": "«нового питомца» is the direct object of «увез» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c47"
   },
   {
@@ -473,7 +179,7 @@
    ],
    "correct": "жестокий удар",
    "case": "Именительный (Nominative)",
-   "explain": "«Жестокий удар» — the subject of the sentence stands in the nominative.",
+   "explain": "«жестокий удар» is the subject of «лишил» — who or what does it — so nominative.",
    "id": "c50"
   },
   {
@@ -487,7 +193,7 @@
    ],
    "correct": "последней опоры",
    "case": "Родительный (Genitive)",
-   "explain": "«последней опоры» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«лишил» takes its object in the genitive.",
    "id": "c51"
   },
   {
@@ -501,36 +207,8 @@
    ],
    "correct": "вторичной присылки",
    "case": "Родительный (Genitive)",
-   "explain": "«вторичной присылки» — after the preposition «после», the genitive here marks possession, absence, or quantity.",
+   "explain": "«вторичной присылки» — «после» always takes the genitive.",
    "id": "c52"
-  },
-  {
-   "sentence": "По письму его она ждала человека болезненного и худого, а увидела малого плечистого, толстого, с лицом широким и красным, с курчавыми и ___.",
-   "lemma": "волос",
-   "options": [
-    "жирных волос",
-    "жирным волосам",
-    "жирных волосах",
-    "жирными волосами"
-   ],
-   "correct": "жирными волосами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«жирными волосами» — the instrumental marks the means, company, or complement.",
-   "id": "c54"
-  },
-  {
-   "sentence": "Я, дескать, художник, ___!",
-   "lemma": "казак",
-   "options": [
-    "вольному казаку",
-    "вольный казак",
-    "вольного казака",
-    "вольном казаке"
-   ],
-   "correct": "вольный казак",
-   "case": "Именительный (Nominative)",
-   "explain": "«вольный казак» — the subject of the sentence stands in the nominative.",
-   "id": "c55"
   },
   {
    "sentence": "Хороша русская удаль, да немногим она к лицу; а бездарные Полежаевы ___ невыносимы.",
@@ -543,22 +221,8 @@
    ],
    "correct": "второй руки",
    "case": "Родительный (Genitive)",
-   "explain": "«второй руки» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«второй руки» depends on the noun «Полежаевы» (whose? of what?) — genitive.",
    "id": "c56"
-  },
-  {
-   "sentence": "Но будет поздно, ___!",
-   "lemma": "друг",
-   "options": [
-    "милом друге",
-    "милый друг",
-    "милому другу",
-    "милым другом"
-   ],
-   "correct": "милый друг",
-   "case": "Именительный (Nominative)",
-   "explain": "«милый друг» — the subject of the sentence stands in the nominative.",
-   "id": "c58"
   },
   {
    "sentence": "«Я стра-ажду, я стра-ажду», — завыл в ___ племянник.",
@@ -571,7 +235,7 @@
    ],
    "correct": "соседней комнате",
    "case": "Предложный (Prepositional)",
-   "explain": "«соседней комнате» — after the preposition «в», for location or topic.",
+   "explain": "«соседней комнате» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c59"
   }
  ]

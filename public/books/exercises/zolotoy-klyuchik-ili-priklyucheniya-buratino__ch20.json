@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Синьор Карабас держал на привязи двух ___.",
-   "lemma": "собака",
-   "options": [
-    "полицейских собак",
-    "полицейских собаках",
-    "полицейским собакам",
-    "полицейские собаки"
-   ],
-   "correct": "полицейских собак",
-   "case": "Родительный (Genitive)",
-   "explain": "«полицейских собак» — the genitive here marks possession, absence, or quantity.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Увидев на ровном поле беглецов, он разинул ___.",
-   "lemma": "рот",
-   "options": [
-    "зубастом рте",
-    "зубастого рта",
-    "зубастый рот",
-    "зубастому рту"
-   ],
-   "correct": "зубастый рот",
-   "case": "Винительный (Accusative)",
-   "explain": "«зубастый рот» — the accusative marks the direct object of the verb.",
-   "id": "c2"
-  },
-  {
    "sentence": "___ сначала стали кидать задними лапами землю.",
    "lemma": "пёс",
    "options": [
@@ -39,7 +11,7 @@
    ],
    "correct": "свирепые псы",
    "case": "Именительный (Nominative)",
-   "explain": "«Свирепые псы» — the subject of the sentence stands in the nominative.",
+   "explain": "«свирепые псы» is the subject of «стали» — who or what does it — so nominative.",
    "id": "c3"
   },
   {
@@ -53,50 +25,8 @@
    ],
    "correct": "полицейскими псами",
    "case": "Творительный (Instrumental)",
-   "explain": "«полицейскими псами» — after the preposition «за», the instrumental marks the means, company, or complement.",
+   "explain": "«полицейскими псами» — «за» takes the instrumental here (где? за чем? за кем?) — the accusative would mean motion behind or 'for' (куда? за что?).",
    "id": "c4"
-  },
-  {
-   "sentence": "Оскалил ___ и прыгнул влево, прыгнул вправо, расправляя мускулы, и тоже стал с оттяжкой кидать задними ногами землю.",
-   "lemma": "зуб",
-   "options": [
-    "белым зубам",
-    "белых зубах",
-    "белых зубов",
-    "белые зубы"
-   ],
-   "correct": "белые зубы",
-   "case": "Винительный (Accusative)",
-   "explain": "«белые зубы» — the accusative marks the direct object of the verb.",
-   "id": "c5"
-  },
-  {
-   "sentence": "Оскалил белые зубы и прыгнул влево, прыгнул вправо, расправляя мускулы, и тоже стал с оттяжкой кидать ___ землю.",
-   "lemma": "нога",
-   "options": [
-    "задних ногах",
-    "задним ногам",
-    "задними ногами",
-    "задние ноги"
-   ],
-   "correct": "задними ногами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«задними ногами» — the instrumental marks the means, company, or complement.",
-   "id": "c6"
-  },
-  {
-   "sentence": "Спасайте нив чем не виноватых ___!..",
-   "lemma": "человечек",
-   "options": [
-    "деревянных человечках",
-    "деревянные человечки",
-    "деревянным человечкам",
-    "деревянных человечков"
-   ],
-   "correct": "деревянных человечков",
-   "case": "Родительный (Genitive)",
-   "explain": "«деревянных человечков» — the genitive here marks possession, absence, or quantity.",
-   "id": "c7"
   },
   {
    "sentence": "___ увернулся и зубами тяпнул одного пса за огрызок хвоста, другого за ляжку.",
@@ -109,7 +39,7 @@
    ],
    "correct": "ловкий пудель",
    "case": "Именительный (Nominative)",
-   "explain": "«Ловкий пудель» — the subject of the sentence stands in the nominative.",
+   "explain": "«ловкий пудель» is the subject of «увернулся» — who or what does it — so nominative.",
    "id": "c8"
   },
   {
@@ -123,22 +53,8 @@
    ],
    "correct": "третий раз",
    "case": "Винительный (Accusative)",
-   "explain": "«третий раз» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«третий раз» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c9"
-  },
-  {
-   "sentence": "Курносые бульдоги теперь по-настоящему обозлились, засопели, бежали за Артемоном не спеша, упрямо, готовые лучше сдохнуть, но добраться до горла ___.",
-   "lemma": "пудель",
-   "options": [
-    "суетливый пудель",
-    "суетливом пуделе",
-    "суетливого пуделя",
-    "суетливым пуделем"
-   ],
-   "correct": "суетливого пуделя",
-   "case": "Родительный (Genitive)",
-   "explain": "«суетливого пуделя» — the genitive here marks possession, absence, or quantity.",
-   "id": "c10"
   },
   {
    "sentence": "И опять помчались по полю вокруг ___ Артемон и за ним помятые и покусанные полицейские псы.",
@@ -151,36 +67,8 @@
    ],
    "correct": "одинокой сосны",
    "case": "Родительный (Genitive)",
-   "explain": "«одинокой сосны» — after the preposition «вокруг», the genitive here marks possession, absence, or quantity.",
+   "explain": "«одинокой сосны» — «вокруг» always takes the genitive.",
    "id": "c12"
-  },
-  {
-   "sentence": "И опять помчались по полю вокруг одинокой сосны Артемон и за ним помятые и покусанные ___.",
-   "lemma": "пёс",
-   "options": [
-    "полицейские псы",
-    "полицейских псах",
-    "полицейскими псами",
-    "полицейским псам"
-   ],
-   "correct": "полицейские псы",
-   "case": "Именительный (Nominative)",
-   "explain": "«полицейские псы» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
-  },
-  {
-   "sentence": "Летели, гудели толстые ___ в золотых плащах, шипели крыльями свирепые шершни.",
-   "lemma": "шмель",
-   "options": [
-    "черно-бархатные шмели",
-    "черно-бархатными шмелями",
-    "черно-бархатным шмелям",
-    "черно-бархатных шмелях"
-   ],
-   "correct": "черно-бархатные шмели",
-   "case": "Именительный (Nominative)",
-   "explain": "«черно-бархатные шмели» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
   },
   {
    "sentence": "Летели, гудели толстые черно-бархатные шмели в ___, шипели крыльями свирепые шершни.",
@@ -193,21 +81,21 @@
    ],
    "correct": "золотых плащах",
    "case": "Предложный (Prepositional)",
-   "explain": "«золотых плащах» — after the preposition «в», for location or topic.",
+   "explain": "«золотых плащах» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c16"
   },
   {
    "sentence": "Все звери, птицы и насекомые самоотверженно накинулись на ненавистных ___.",
    "lemma": "собака",
    "options": [
-    "полицейских собак",
-    "полицейских собаках",
+    "полицейскими собаками",
     "полицейским собакам",
+    "полицейских собак",
     "полицейские собаки"
    ],
    "correct": "полицейских собак",
    "case": "Винительный (Accusative)",
-   "explain": "«полицейских собак» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«полицейских собак» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c18"
   },
   {
@@ -221,22 +109,8 @@
    ],
    "correct": "крокетного шара",
    "case": "Родительный (Genitive)",
-   "explain": "«крокетного шара» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«крокетного шара» depends on the noun «скоростью» (whose? of what?) — genitive.",
    "id": "c19"
-  },
-  {
-   "sentence": "Коршун клевал то одного пса, то другого ___ в череп.",
-   "lemma": "клюв",
-   "options": [
-    "кривым клювом",
-    "кривом клюве",
-    "кривой клюв",
-    "кривому клюву"
-   ],
-   "correct": "кривым клювом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«кривым клювом» — the instrumental marks the means, company, or complement.",
-   "id": "c20"
   },
   {
    "sentence": "То же случилось и с ___: второй слепой уж кинулся ему в пасть.",
@@ -249,7 +123,7 @@
    ],
    "correct": "другим бульдогом",
    "case": "Творительный (Instrumental)",
-   "explain": "«другим бульдогом» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«другим бульдогом» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c21"
   },
   {
@@ -263,7 +137,7 @@
    ],
    "correct": "огромного рта",
    "case": "Родительный (Genitive)",
-   "explain": "«огромного рта» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«огромного рта» — «из» always takes the genitive.",
    "id": "c22"
   },
   {
@@ -277,7 +151,7 @@
    ],
    "correct": "итальянской сосны",
    "case": "Родительный (Genitive)",
-   "explain": "«итальянской сосны» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«итальянской сосны» depends on the noun «ствол» (whose? of what?) — genitive.",
    "id": "c23"
   },
   {
@@ -291,7 +165,7 @@
    ],
    "correct": "самой верхушке",
    "case": "Предложный (Prepositional)",
-   "explain": "«самой верхушке» — after the preposition «на», for location or topic.",
+   "explain": "«самой верхушке» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c24"
   },
   {
@@ -305,22 +179,8 @@
    ],
    "correct": "смолистому стволу",
    "case": "Дательный (Dative)",
-   "explain": "«смолистому стволу» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«смолистому стволу» — «к» always takes the dative.",
    "id": "c25"
-  },
-  {
-   "sentence": "Когда борода окончилась и Карабас Барабас уперся носом в дерево, Буратино показал ему ___ и побежал к Лебединому озеру — искать Мальвину и Пьеро.",
-   "lemma": "язык",
-   "options": [
-    "длинного языка",
-    "длинном языке",
-    "длинному языку",
-    "длинный язык"
-   ],
-   "correct": "длинный язык",
-   "case": "Винительный (Accusative)",
-   "explain": "«длинный язык» — the accusative marks the direct object of the verb.",
-   "id": "c26"
   },
   {
    "sentence": "Когда борода окончилась и Карабас Барабас уперся носом в дерево, Буратино показал ему длинный язык и побежал к ___ — искать Мальвину и Пьеро.",
@@ -333,22 +193,8 @@
    ],
    "correct": "лебединому озеру",
    "case": "Дательный (Dative)",
-   "explain": "«Лебединому озеру» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«лебединому озеру» — «к» always takes the dative.",
    "id": "c27"
-  },
-  {
-   "sentence": "На поле остались два полицейских пса, за жизнь которых, по-видимому, нельзя было дать и дохлой ___, и растерянный доктор кукольных наук синьор Карабас Барабас, плотно приклеенный бородой к итальянской сосне.",
-   "lemma": "муха",
-   "options": [
-    "сухой мухе",
-    "сухая муха",
-    "сухой мухой",
-    "сухой мухи"
-   ],
-   "correct": "сухой мухи",
-   "case": "Родительный (Genitive)",
-   "explain": "«сухой мухи» — the genitive here marks possession, absence, or quantity.",
-   "id": "c28"
   },
   {
    "sentence": "На поле остались два полицейских пса, за жизнь которых, по-видимому, нельзя было дать и дохлой сухой мухи, и растерянный доктор ___ синьор Карабас Барабас, плотно приклеенный бородой к итальянской сосне.",
@@ -361,7 +207,7 @@
    ],
    "correct": "кукольных наук",
    "case": "Родительный (Genitive)",
-   "explain": "«кукольных наук» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«кукольных наук» depends on the noun «доктор» (whose? of what?) — genitive.",
    "id": "c29"
   },
   {
@@ -375,7 +221,7 @@
    ],
    "correct": "итальянской сосне",
    "case": "Дательный (Dative)",
-   "explain": "«итальянской сосне» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«итальянской сосне» — «к» always takes the dative.",
    "id": "c30"
   }
  ]

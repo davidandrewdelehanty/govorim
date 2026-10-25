@@ -1,62 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Барин сидит в глубоком ___, перед большим письменным столом, почти сплошь заставленным разными безделушками, всё реликвиями прошлого.",
-   "lemma": "кресло",
-   "options": [
-    "кожаному креслу",
-    "кожаным креслом",
-    "кожаного кресла",
-    "кожаном кресле"
-   ],
-   "correct": "кожаном кресле",
-   "case": "Предложный (Prepositional)",
-   "explain": "«кожаном кресле» — after the preposition «перед», for location or topic.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Барин сидит в глубоком кожаном кресле, перед большим письменным столом, почти сплошь заставленным ___, всё реликвиями прошлого.",
-   "lemma": "безделушка",
-   "options": [
-    "разных безделушках",
-    "разным безделушкам",
-    "разными безделушками",
-    "разные безделушки"
-   ],
-   "correct": "разными безделушками",
-   "case": "Творительный (Instrumental)",
-   "explain": "«разными безделушками» — the instrumental marks the means, company, or complement.",
-   "id": "c2"
-  },
-  {
-   "sentence": "С каждой из них связано какое-либо воспоминание, а над столом висит ___ пожилой, красивой женщины, с лицом строгим и освещённым глубокой мыслью, — это самое дорогое воспоминание.",
-   "lemma": "портрет",
-   "options": [
-    "акварельным портретом",
-    "акварельному портрету",
-    "акварельного портрета",
-    "акварельный портрет"
-   ],
-   "correct": "акварельный портрет",
-   "case": "Именительный (Nominative)",
-   "explain": "«акварельный портрет» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
-   "sentence": "С каждой из них связано какое-либо воспоминание, а над столом висит акварельный портрет пожилой, красивой женщины, с лицом строгим и освещённым глубокой мыслью, — это самое ___.",
-   "lemma": "воспоминание",
-   "options": [
-    "дорогому воспоминанию",
-    "дорогое воспоминание",
-    "дорогом воспоминании",
-    "дорогим воспоминанием"
-   ],
-   "correct": "дорогое воспоминание",
-   "case": "Именительный (Nominative)",
-   "explain": "«дорогое воспоминание» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
-  },
-  {
    "sentence": "И везде кругом барина в маленькой ___ ничего, что не вызывало бы теней прошлого.",
    "lemma": "комната",
    "options": [
@@ -67,7 +11,7 @@
    ],
    "correct": "уютной комнате",
    "case": "Предложный (Prepositional)",
-   "explain": "«уютной комнате» — after the preposition «в», for location or topic.",
+   "explain": "«уютной комнате» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c5"
   },
   {
@@ -81,36 +25,8 @@
    ],
    "correct": "длинном чубуке",
    "case": "Предложный (Prepositional)",
-   "explain": "«длинном чубуке» — after the preposition «на», for location or topic.",
+   "explain": "«длинном чубуке» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c8"
-  },
-  {
-   "sentence": "Дым табака сизыми волнами носится в воздухе, образует голубоватые ___, застывает на минуту в виде лёгкой, еле заметной глазу ткани — и исчезает.",
-   "lemma": "узор",
-   "options": [
-    "фантастических узоров",
-    "фантастических узорах",
-    "фантастические узоры",
-    "фантастическим узорам"
-   ],
-   "correct": "фантастические узоры",
-   "case": "Винительный (Accusative)",
-   "explain": "«фантастические узоры» — the accusative marks the direct object of the verb.",
-   "id": "c10"
-  },
-  {
-   "sentence": "Снова являются образы, а клубы дыма из трубки становятся все гуще и стоят мягким ___ над старческой, трясущейся головой, с лицом, исчерченным глубокими морщинами и украшенным пушистой рамой седых волос.",
-   "lemma": "облако",
-   "options": [
-    "лиловатом облаке",
-    "лиловатое облако",
-    "лиловатым облаком",
-    "лиловатого облака"
-   ],
-   "correct": "лиловатым облаком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«лиловатым облаком» — the instrumental marks the means, company, or complement.",
-   "id": "c11"
   },
   {
    "sentence": "Снова являются образы, а клубы дыма из трубки становятся все гуще и стоят мягким лиловатым облаком над старческой, трясущейся головой, с лицом, исчерченным ___ и украшенным пушистой рамой седых волос.",
@@ -123,7 +39,7 @@
    ],
    "correct": "глубокими морщинами",
    "case": "Творительный (Instrumental)",
-   "explain": "«глубокими морщинами» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «исчерченным», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c12"
   },
   {
@@ -137,7 +53,7 @@
    ],
    "correct": "пушистой рамой",
    "case": "Творительный (Instrumental)",
-   "explain": "«пушистой рамой» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «украшенным», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c13"
   },
   {
@@ -151,22 +67,8 @@
    ],
    "correct": "стенных часов",
    "case": "Родительный (Genitive)",
-   "explain": "«стенных часов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«стенных часов» depends on the noun «маятник» (whose? of what?) — genitive.",
    "id": "c14"
-  },
-  {
-   "sentence": "С портрета на стене в лицо старика сосредоточенно и важно смотрят ___ женщины и как будто ждут чего-то от старого одинокого человека.",
-   "lemma": "глаз",
-   "options": [
-    "тёмных глаз",
-    "тёмных глазах",
-    "тёмные глаза",
-    "тёмными глазами"
-   ],
-   "correct": "тёмные глаза",
-   "case": "Винительный (Accusative)",
-   "explain": "«тёмные глаза» — the accusative marks the direct object of the verb.",
-   "id": "c15"
   },
   {
    "sentence": "С портрета на стене в лицо старика сосредоточенно и важно смотрят тёмные глаза женщины и как будто ждут чего-то от старого ___.",
@@ -179,7 +81,7 @@
    ],
    "correct": "одинокого человека",
    "case": "Родительный (Genitive)",
-   "explain": "«одинокого человека» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«одинокого человека» — «от» always takes the genitive.",
    "id": "c16"
   },
   {
@@ -193,36 +95,8 @@
    ],
    "correct": "осенний ветер",
    "case": "Именительный (Nominative)",
-   "explain": "«осенний ветер» — the subject of the sentence stands in the nominative.",
+   "explain": "«осенний ветер» is the subject of «ноет» — who or what does it — so nominative.",
    "id": "c17"
-  },
-  {
-   "sentence": "Он жил, как большинство тех серых и скучных людей, которых снисходительно принято называть «___».",
-   "lemma": "человек",
-   "options": [
-    "порядочные люди",
-    "порядочных людей",
-    "порядочным людям",
-    "порядочными людьми"
-   ],
-   "correct": "порядочными людьми",
-   "case": "Творительный (Instrumental)",
-   "explain": "«порядочными людьми» — the instrumental marks the means, company, or complement.",
-   "id": "c19"
-  },
-  {
-   "sentence": "В виде ___ встречаются друзья, — слишком точно отражающие тебя в себе, как в зеркале; очень интересные и ценные сначала — они скоро становятся скучны и исчезают, превращаясь в знакомых.",
-   "lemma": "исключение",
-   "options": [
-    "редким исключениям",
-    "редкие исключения",
-    "редких исключений",
-    "редкими исключениями"
-   ],
-   "correct": "редких исключений",
-   "case": "Родительный (Genitive)",
-   "explain": "«редких исключений» — after the preposition «в», the genitive here marks possession, absence, or quantity.",
-   "id": "c21"
   },
   {
    "sentence": "У ___ не сохранилось друзей.",
@@ -235,22 +109,8 @@
    ],
    "correct": "одинокого старика",
    "case": "Родительный (Genitive)",
-   "explain": "«одинокого старика» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«одинокого старика» — «у» always takes the genitive.",
    "id": "c22"
-  },
-  {
-   "sentence": "Он переменяет её и снова думает всё о том, чем бы скрасить ___ жизни.",
-   "lemma": "день",
-   "options": [
-    "последними днями",
-    "последние дни",
-    "последних дней",
-    "последних днях"
-   ],
-   "correct": "последние дни",
-   "case": "Винительный (Accusative)",
-   "explain": "«последние дни» — the accusative marks the direct object of the verb.",
-   "id": "c23"
   },
   {
    "sentence": "___ дыма поднялись по потолку и исчезли, потому что трубка потухла, и её чубук, выпавши из руки старика, уже лежит на полу.",
@@ -263,22 +123,8 @@
    ],
    "correct": "голубые клубы",
    "case": "Именительный (Nominative)",
-   "explain": "«Голубые клубы» — the subject of the sentence stands in the nominative.",
+   "explain": "«голубые клубы» is the subject of «поднялись» — who or what does it — so nominative.",
    "id": "c24"
-  },
-  {
-   "sentence": "Откинутая на спинку кресла ___ с морщинистым лицом в раме серебряных волос всё вздрагивает, руки, протянутые вдоль туловища, неподвижны, жёлтые и сухие кисти их с крючковатыми пальцами лежат на коленах.",
-   "lemma": "голова",
-   "options": [
-    "седой головой",
-    "седая голова",
-    "седой головы",
-    "седой голове"
-   ],
-   "correct": "седая голова",
-   "case": "Именительный (Nominative)",
-   "explain": "«седая голова» — the subject of the sentence stands in the nominative.",
-   "id": "c25"
   },
   {
    "sentence": "Откинутая на спинку кресла седая голова с морщинистым лицом в раме ___ всё вздрагивает, руки, протянутые вдоль туловища, неподвижны, жёлтые и сухие кисти их с крючковатыми пальцами лежат на коленах.",
@@ -291,50 +137,8 @@
    ],
    "correct": "серебряных волос",
    "case": "Родительный (Genitive)",
-   "explain": "«серебряных волос» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«серебряных волос» depends on the noun «раме» (whose? of what?) — genitive.",
    "id": "c27"
-  },
-  {
-   "sentence": "Откинутая на спинку кресла седая голова с морщинистым лицом в раме серебряных волос всё вздрагивает, руки, протянутые вдоль туловища, неподвижны, жёлтые и сухие кисти их с ___ лежат на коленах.",
-   "lemma": "палец",
-   "options": [
-    "крючковатые пальцы",
-    "крючковатыми пальцами",
-    "крючковатых пальцах",
-    "крючковатым пальцам"
-   ],
-   "correct": "крючковатыми пальцами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«крючковатыми пальцами» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c28"
-  },
-  {
-   "sentence": "Из-под закрытых век его одна за другой катятся слёзы — это ___, но от них мокры обе его дряблые щеки.",
-   "lemma": "слеза",
-   "options": [
-    "мелких слезах",
-    "мелкие слёзы",
-    "мелким слезам",
-    "мелкими слезами"
-   ],
-   "correct": "мелкие слёзы",
-   "case": "Именительный (Nominative)",
-   "explain": "«мелкие слёзы» — the subject of the sentence stands in the nominative.",
-   "id": "c29"
-  },
-  {
-   "sentence": "За окном дождь шумит и печально воет ___.",
-   "lemma": "ветер",
-   "options": [
-    "осеннего ветра",
-    "осеннему ветру",
-    "осенний ветер",
-    "осеннем ветре"
-   ],
-   "correct": "осенний ветер",
-   "case": "Именительный (Nominative)",
-   "explain": "«осенний ветер» — the subject of the sentence stands in the nominative.",
-   "id": "c31"
   }
  ]
 }

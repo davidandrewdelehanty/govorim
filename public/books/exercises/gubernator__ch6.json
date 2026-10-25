@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Несколько ___ прошло без писем.",
-   "lemma": "день",
-   "options": [
-    "следующих дней",
-    "следующие дни",
-    "следующим дням",
-    "следующих днях"
-   ],
-   "correct": "следующих дней",
-   "case": "Родительный (Genitive)",
-   "explain": "«следующих дней» — the genitive here marks possession, absence, or quantity.",
-   "id": "c1"
-  },
-  {
    "sentence": "И быстро шли дни, как взмахи ___: вверх взмахнет — день, вниз повеет — ночь.",
    "lemma": "крыло",
    "options": [
@@ -25,36 +11,8 @@
    ],
    "correct": "огромных крыльев",
    "case": "Родительный (Genitive)",
-   "explain": "«огромных крыльев» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«огромных крыльев» depends on the noun «взмахи» (whose? of what?) — genitive.",
    "id": "c2"
-  },
-  {
-   "sentence": "Потом принял ___ и поднялся по лестнице наверх.",
-   "lemma": "вид",
-   "options": [
-    "великосветскому виду",
-    "великосветский вид",
-    "великосветским видом",
-    "великосветского вида"
-   ],
-   "correct": "великосветский вид",
-   "case": "Винительный (Accusative)",
-   "explain": "«великосветский вид» — the accusative marks the direct object of the verb.",
-   "id": "c4"
-  },
-  {
-   "sentence": "То, что дверь была не заперта, швейцар объяснил забывчивостью, но в такое время, когда все ждут преступления, ___ было непростительно.",
-   "lemma": "ротозейство",
-   "options": [
-    "подобного ротозейства",
-    "подобное ротозейство",
-    "подобным ротозейством",
-    "подобном ротозействе"
-   ],
-   "correct": "подобное ротозейство",
-   "case": "Именительный (Nominative)",
-   "explain": "«подобное ротозейство» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
   },
   {
    "sentence": "— Я в ___, ваше превосходительство, — жаловался губернаторше Судак, прижимая к надушенной груди белую перчатку.",
@@ -67,7 +25,7 @@
    ],
    "correct": "невозможном положении",
    "case": "Предложный (Prepositional)",
-   "explain": "«невозможном положении» — after the preposition «в», for location or topic.",
+   "explain": "«невозможном положении» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c6"
   },
   {
@@ -81,7 +39,7 @@
    ],
    "correct": "священной воли",
    "case": "Родительный (Genitive)",
-   "explain": "«священной воли» — after the preposition «против», the genitive here marks possession, absence, or quantity.",
+   "explain": "«священной воли» — «против» always takes the genitive.",
    "id": "c7"
   },
   {
@@ -95,50 +53,8 @@
    ],
    "correct": "итальянская опера",
    "case": "Именительный (Nominative)",
-   "explain": "«итальянская опера» — the subject of the sentence stands in the nominative.",
+   "explain": "«итальянская опера» is the subject of «прибудет» — who or what does it — so nominative.",
    "id": "c8"
-  },
-  {
-   "sentence": "Я тебе баки-то подрежу, ___!",
-   "lemma": "морда",
-   "options": [
-    "жирная морда",
-    "жирной мордой",
-    "жирной морды",
-    "жирной морде"
-   ],
-   "correct": "жирная морда",
-   "case": "Именительный (Nominative)",
-   "explain": "«жирная морда» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
-  },
-  {
-   "sentence": "Распустил баки, как тайный с-советник, ___, и думает, что дверь можно не закрывать!",
-   "lemma": "сын",
-   "options": [
-    "сукин сын",
-    "сукином сыне",
-    "сукиного сына",
-    "сукиному сыну"
-   ],
-   "correct": "сукин сын",
-   "case": "Именительный (Nominative)",
-   "explain": "«сукин сын» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
-  },
-  {
-   "sentence": "— Я прошу тебя, Pierre, — говорила она томно и закрывала глаза большими ___, и желтая напудренная кожа обвисала на щеках, как у легавой собаки.",
-   "lemma": "век",
-   "options": [
-    "коричневые века",
-    "коричневых веков",
-    "коричневыми веками",
-    "коричневых веках"
-   ],
-   "correct": "коричневыми веками",
-   "case": "Творительный (Instrumental)",
-   "explain": "«коричневыми веками» — the instrumental marks the means, company, or complement.",
-   "id": "c11"
   },
   {
    "sentence": "— Я прошу тебя, Pierre, — говорила она томно и закрывала глаза большими коричневыми веками, и желтая напудренная кожа обвисала на щеках, как у ___.",
@@ -151,22 +67,8 @@
    ],
    "correct": "легавой собаки",
    "case": "Родительный (Genitive)",
-   "explain": "«легавой собаки» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«легавой собаки» — «у» always takes the genitive.",
    "id": "c12"
-  },
-  {
-   "sentence": "Успокоенная решением уехать, губернаторша вяло торопила его — она как-то запоздала в этот раз с своим ___, и нужно было время, чтобы покончить с портнихами.",
-   "lemma": "туалет",
-   "options": [
-    "осеннего туалета",
-    "осенним туалетом",
-    "осеннем туалете",
-    "осеннему туалету"
-   ],
-   "correct": "осенним туалетом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«осенним туалетом» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c13"
   },
   {
    "sentence": "В ___, охватившей губернатора с внезапным прекращением писем, ему чувствовалось что-то неокончательное — словно намек на тихий голос, звучащий где-то вдалеке.",
@@ -179,7 +81,7 @@
    ],
    "correct": "молчаливой пустоте",
    "case": "Предложный (Prepositional)",
-   "explain": "«молчаливой пустоте» — after the preposition «в», for location or topic.",
+   "explain": "«молчаливой пустоте» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c14"
   },
   {
@@ -193,7 +95,7 @@
    ],
    "correct": "внезапным прекращением",
    "case": "Творительный (Instrumental)",
-   "explain": "«внезапным прекращением» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«внезапным прекращением» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c15"
   },
   {
@@ -207,36 +109,8 @@
    ],
    "correct": "пустой комнате",
    "case": "Предложный (Prepositional)",
-   "explain": "«пустой комнате» — after the preposition «в», for location or topic.",
+   "explain": "«пустой комнате» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c17"
-  },
-  {
-   "sentence": "И когда получилось письмо — последнее ___, — он взял его, как будто только его и ждал, и только удивился тому, что было оно в нежно окрашенном узком конверте с изображением незабудки на обратной стороне.",
-   "lemma": "письмо",
-   "options": [
-    "запоздалом письме",
-    "запоздалым письмом",
-    "запоздалому письму",
-    "запоздалое письмо"
-   ],
-   "correct": "запоздалое письмо",
-   "case": "Именительный (Nominative)",
-   "explain": "«запоздалое письмо» — the subject of the sentence stands in the nominative.",
-   "id": "c18"
-  },
-  {
-   "sentence": "И когда получилось письмо — последнее запоздалое письмо, — он взял его, как будто только его и ждал, и только удивился тому, что было оно в нежно окрашенном ___ с изображением незабудки на обратной стороне.",
-   "lemma": "конверт",
-   "options": [
-    "узкого конверта",
-    "узком конверте",
-    "узкому конверту",
-    "узким конвертом"
-   ],
-   "correct": "узком конверте",
-   "case": "Предложный (Prepositional)",
-   "explain": "«узком конверте» — after the preposition «в», for location or topic.",
-   "id": "c19"
   },
   {
    "sentence": "И когда получилось письмо — последнее запоздалое письмо, — он взял его, как будто только его и ждал, и только удивился тому, что было оно в нежно окрашенном узком конверте с изображением незабудки на ___.",
@@ -249,36 +123,8 @@
    ],
    "correct": "обратной стороне",
    "case": "Предложный (Prepositional)",
-   "explain": "«обратной стороне» — after the preposition «на», for location or topic.",
+   "explain": "«обратной стороне» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c20"
-  },
-  {
-   "sentence": "Но вы тоже ___, достойный сожаления, и поэтому я пишу вам это письмо.",
-   "lemma": "человек",
-   "options": [
-    "несчастный человек",
-    "несчастном человеке",
-    "несчастным человеком",
-    "несчастному человеку"
-   ],
-   "correct": "несчастный человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«несчастный человек» — the subject of the sentence stands in the nominative.",
-   "id": "c22"
-  },
-  {
-   "sentence": "Мне приснилось, что хоронили вас не в черном гробу, как стариков и вообще ___, а в белом, как хоронят девушек, и несли ваш гроб по Московской улице городовые, но не на руках, а на головах.",
-   "lemma": "человек",
-   "options": [
-    "пожилые люди",
-    "пожилых людях",
-    "пожилым людям",
-    "пожилых людей"
-   ],
-   "correct": "пожилых людей",
-   "case": "Родительный (Genitive)",
-   "explain": "«пожилых людей» — the genitive here marks possession, absence, or quantity.",
-   "id": "c23"
   },
   {
    "sentence": "Мне приснилось, что хоронили вас не в черном гробу, как стариков и вообще пожилых людей, а в белом, как хоронят девушек, и несли ваш гроб по ___ городовые, но не на руках, а на головах.",
@@ -291,7 +137,7 @@
    ],
    "correct": "московской улице",
    "case": "Дательный (Dative)",
-   "explain": "«Московской улице» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«московской улице» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c24"
   },
   {
@@ -305,7 +151,7 @@
    ],
    "correct": "московской улице",
    "case": "Предложный (Prepositional)",
-   "explain": "«Московской улице» — after the preposition «на», for location or topic.",
+   "explain": "«московской улице» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c25"
   },
   {
@@ -319,36 +165,8 @@
    ],
    "correct": "осеннее ненастье",
    "case": "Именительный (Nominative)",
-   "explain": "«осеннее ненастье» — the subject of the sentence stands in the nominative.",
+   "explain": "«осеннее ненастье» is the subject of «началось» — who or what does it — so nominative.",
    "id": "c27"
-  },
-  {
-   "sentence": "Уже началось осеннее ненастье и слякоть, и ночь темнела густым ___; и в тяжести этого мрака чувствовалось, как далеко солнце — как давно оно ушло и как еще не скоро вернется.",
-   "lemma": "мрак",
-   "options": [
-    "осенний мрак",
-    "осеннему мраку",
-    "осенним мраком",
-    "осеннего мрака"
-   ],
-   "correct": "осенним мраком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«осенним мраком» — the instrumental marks the means, company, or complement.",
-   "id": "c28"
-  },
-  {
-   "sentence": "Далеко налево, у подъезда, горели два яркие фонаря с рефлекторами; ___ их вонзался во тьму, но не разгонял ее: тут же она и стояла, спокойная, густая, тяжелая.",
-   "lemma": "свет",
-   "options": [
-    "белый свет",
-    "белом свете",
-    "белым светом",
-    "белого света"
-   ],
-   "correct": "белый свет",
-   "case": "Именительный (Nominative)",
-   "explain": "«белый свет» — the subject of the sentence stands in the nominative.",
-   "id": "c29"
   },
   {
    "sentence": "Город, вероятно, уже спал, так как, кроме ___ на улицах, не видно было ни одного освещенного окна и езды не слышно было.",
@@ -361,7 +179,7 @@
    ],
    "correct": "редких фонарей",
    "case": "Родительный (Genitive)",
-   "explain": "«редких фонарей» — after the preposition «кроме», the genitive here marks possession, absence, or quantity.",
+   "explain": "«редких фонарей» — «кроме» always takes the genitive.",
    "id": "c30"
   }
  ]

@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "В горенку перенесла; вчерася-тко-сь ___ с работницей оттапливала; мне-то ни слова не голчит, а, вестимо, ради того, чтобы не так уж оченно прямо кинулся в глаза Ананью Яковличу.",
-   "lemma": "день",
-   "options": [
-    "целый день",
-    "целым днём",
-    "целом дне",
-    "целому дню"
-   ],
-   "correct": "целый день",
-   "case": "Винительный (Accusative)",
-   "explain": "«целый день» — the accusative marks the direct object of the verb.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Один у нас, голубонька, ___, злодей наш бурмистр Калистрат Григорьич; вся деревня голосит теперь о том, не зажмешь рты-то.",
-   "lemma": "человек",
-   "options": [
-    "добром человеке",
-    "доброму человеку",
-    "доброго человека",
-    "добрый человек"
-   ],
-   "correct": "добрый человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«добрый человек» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
    "sentence": "«Не трожь, говорит, ее; ___ про то знает и простил ее».",
    "lemma": "барин",
    "options": [
@@ -39,7 +11,7 @@
    ],
    "correct": "сам барин",
    "case": "Именительный (Nominative)",
-   "explain": "«сам барин» — the subject of the sentence stands in the nominative.",
+   "explain": "«сам барин» is the subject of «знает» — who or what does it — so nominative.",
    "id": "c3"
   },
   {
@@ -53,22 +25,8 @@
    ],
    "correct": "хорошего сукна",
    "case": "Родительный (Genitive)",
-   "explain": "«хорошего сукна» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«хорошего сукна» depends on the noun «сибирке» (whose? of what?) — genitive.",
    "id": "c4"
-  },
-  {
-   "sentence": "Ананий Яковлев (вынимая из кисы ___ и подавая его матери).",
-   "lemma": "платок",
-   "options": [
-    "драдедамовый платок",
-    "драдедамовому платку",
-    "драдедамового платка",
-    "драдедамовым платком"
-   ],
-   "correct": "драдедамовый платок",
-   "case": "Винительный (Accusative)",
-   "explain": "«драдедамовый платок» — the accusative marks the direct object of the verb.",
-   "id": "c5"
   },
   {
    "sentence": "А мне дляче ___ не привез?",
@@ -81,7 +39,7 @@
    ],
    "correct": "красной шапки",
    "case": "Родительный (Genitive)",
-   "explain": "«красной шапки» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«красной шапки» is the object of a negated verb («не привез») — genitive instead of the accusative.",
    "id": "c6"
   },
   {
@@ -95,92 +53,8 @@
    ],
    "correct": "красной шапки",
    "case": "Родительный (Genitive)",
-   "explain": "«красной шапки» — after the preposition «без», the genitive here marks possession, absence, or quantity.",
+   "explain": "«красной шапки» — «без» always takes the genitive.",
    "id": "c7"
-  },
-  {
-   "sentence": "(Дяде Никону.) Полно, ___, болтаться-то тут тебе, словно мотовило.",
-   "lemma": "хрен",
-   "options": [
-    "старый хрен",
-    "старым хреном",
-    "старому хрену",
-    "старом хрене"
-   ],
-   "correct": "старый хрен",
-   "case": "Именительный (Nominative)",
-   "explain": "«старый хрен» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
-  },
-  {
-   "sentence": "___ это нынче тракт стал: почесть, что заброшен!",
-   "lemma": "дело",
-   "options": [
-    "пустом деле",
-    "пустого дела",
-    "пустому делу",
-    "пустое дело"
-   ],
-   "correct": "пустое дело",
-   "case": "Именительный (Nominative)",
-   "explain": "«Пустое дело» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
-  },
-  {
-   "sentence": "Поставят, ___, машину в нутро корабля; она вертит колеса, и какая ни на есть там буря, ему нипочем.",
-   "lemma": "манер",
-   "options": [
-    "спокойным манером",
-    "спокойного манера",
-    "спокойному манеру",
-    "спокойном манере"
-   ],
-   "correct": "спокойным манером",
-   "case": "Творительный (Instrumental)",
-   "explain": "«спокойным манером» — the instrumental marks the means, company, or complement.",
-   "id": "c12"
-  },
-  {
-   "sentence": "Может быть, даже ___ этот случай приладим.",
-   "lemma": "год",
-   "options": [
-    "нынешнем годе",
-    "нынешнему году",
-    "нынешним годом",
-    "нынешнего года"
-   ],
-   "correct": "нынешним годом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«нынешним годом» — the instrumental marks the means, company, or complement.",
-   "id": "c13"
-  },
-  {
-   "sentence": "Теперь барин мне, значит, говорит: «Никашка, говорит, пошто ты, старый пес, свои ___ в заделье ломаешь, — шел бы в Питер».",
-   "lemma": "кость",
-   "options": [
-    "старых костей",
-    "старых костях",
-    "старые кости",
-    "старым костям"
-   ],
-   "correct": "старые кости",
-   "case": "Винительный (Accusative)",
-   "explain": "«старые кости» — the accusative marks the direct object of the verb.",
-   "id": "c14"
-  },
-  {
-   "sentence": "На другую, может, прежде народу требовалось тысячи две, а теперь одна эта ___ только и действует.",
-   "lemma": "машина",
-   "options": [
-    "самой машине",
-    "самой машины",
-    "самой машиной",
-    "самая машина"
-   ],
-   "correct": "самая машина",
-   "case": "Именительный (Nominative)",
-   "explain": "«самая машина» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
   },
   {
    "sentence": "___ тоже из иностранных земель идет и тем большое подспорье для леса делает.",
@@ -193,7 +67,7 @@
    ],
    "correct": "каменный уголь",
    "case": "Именительный (Nominative)",
-   "explain": "«Каменный уголь» — the subject of the sentence stands in the nominative.",
+   "explain": "«каменный уголь» is the subject of «идет» — who or what does it — so nominative.",
    "id": "c16"
   },
   {
@@ -207,50 +81,8 @@
    ],
    "correct": "иностранных земель",
    "case": "Родительный (Genitive)",
-   "explain": "«иностранных земель» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«иностранных земель» — «из» always takes the genitive.",
    "id": "c17"
-  },
-  {
-   "sentence": "Теперича, что такое значит ___ али купец?",
-   "lemma": "человек",
-   "options": [
-    "мастеровому человеку",
-    "мастеровом человеке",
-    "мастеровой человек",
-    "мастерового человека"
-   ],
-   "correct": "мастеровой человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«мастеровой человек» — the subject of the sentence stands in the nominative.",
-   "id": "c19"
-  },
-  {
-   "sentence": "Графу Милорадычу теперь надо коляску изготовить, платье себе испошить, супруге своей подарком какую-нибудь вещь сделать, — ___ и будь готов, сейчас команда: «Пошел во дворец!» — и являйся.",
-   "lemma": "человек",
-   "options": [
-    "мастеровому человеку",
-    "мастеровом человеке",
-    "мастеровой человек",
-    "мастерового человека"
-   ],
-   "correct": "мастеровой человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«мастеровой человек» — the subject of the sentence stands in the nominative.",
-   "id": "c20"
-  },
-  {
-   "sentence": "___ завсегда должен паче себя наблюдать, чем мастеровой.",
-   "lemma": "человек",
-   "options": [
-    "торговом человеке",
-    "торговый человек",
-    "торговому человеку",
-    "торгового человека"
-   ],
-   "correct": "торговый человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«Торговый человек» — the subject of the sentence stands in the nominative.",
-   "id": "c21"
   },
   {
    "sentence": "Ничего я его ___ не понял!..",
@@ -263,35 +95,21 @@
    ],
    "correct": "глупых слов",
    "case": "Родительный (Genitive)",
-   "explain": "«глупых слов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«глупых слов» is the object of a negated verb («не понял») — genitive instead of the accusative.",
    "id": "c22"
-  },
-  {
-   "sentence": "Не раздражай ты еще пуще моего сердца своими ___!..",
-   "lemma": "речь",
-   "options": [
-    "пустых речей",
-    "пустые речи",
-    "пустых речах",
-    "пустыми речами"
-   ],
-   "correct": "пустыми речами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«пустыми речами» — the instrumental marks the means, company, or complement.",
-   "id": "c23"
   },
   {
    "sentence": "Жимши за экие ___ экие годы, станете ли без бабы жить?",
    "lemma": "место",
    "options": [
-    "дальними местами",
-    "дальние места",
     "дальним местам",
-    "дальних местах"
+    "дальних местах",
+    "дальних мест",
+    "дальние места"
    ],
    "correct": "дальние места",
    "case": "Винительный (Accusative)",
-   "explain": "«дальние места» — after the preposition «за», the accusative marks the direct object of the verb.",
+   "explain": "«дальние места» — «за» takes the accusative here (куда? за что? за кого?) — the instrumental would mean position behind or at (где? за чем?).",
    "id": "c24"
   },
   {
@@ -305,7 +123,7 @@
    ],
    "correct": "экие годы",
    "case": "Винительный (Accusative)",
-   "explain": "«экие годы» — the accusative marks the direct object of the verb.",
+   "explain": "«экие годы» tells how long or how often, with no preposition — accusative.",
    "id": "c25"
   },
   {
@@ -319,7 +137,7 @@
    ],
    "correct": "чужих глаз",
    "case": "Родительный (Genitive)",
-   "explain": "«чужих глаз» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«чужих глаз» — «для» always takes the genitive.",
    "id": "c26"
   },
   {
@@ -333,7 +151,7 @@
    ],
    "correct": "белый свет",
    "case": "Винительный (Accusative)",
-   "explain": "«белый свет» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«белый свет» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c27"
   }
  ]

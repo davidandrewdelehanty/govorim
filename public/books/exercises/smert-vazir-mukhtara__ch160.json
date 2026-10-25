@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "___, принужденный жить в Париже, писал, что мысли его сосланы во французский язык.",
-   "lemma": "поэт",
-   "options": [
-    "немецкого поэта",
-    "немецком поэте",
-    "немецкий поэт",
-    "немецкому поэту"
-   ],
-   "correct": "немецкий поэт",
-   "case": "Именительный (Nominative)",
-   "explain": "«Немецкий поэт» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Столетие назад государство русское имело руководителем ___ Нессельрода, человека многоязычного и поэтому бессмысленного.",
    "lemma": "политика",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "иностранной политики",
    "case": "Родительный (Genitive)",
-   "explain": "«иностранной политики» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«иностранной политики» depends on the noun «руководителем» (whose? of what?) — genitive.",
    "id": "c4"
   },
   {
@@ -33,28 +19,14 @@
    "lemma": "письмо",
    "options": [
     "дамским письмом",
-    "дамского письма",
-    "дамском письме",
-    "дамскому письму"
+    "дамскому письму",
+    "дамское письмо",
+    "дамском письме"
    ],
    "correct": "дамским письмом",
    "case": "Творительный (Instrumental)",
-   "explain": "«дамским письмом» — after the preposition «между», the instrumental marks the means, company, or complement.",
+   "explain": "«дамским письмом» — «между» + instrumental: between.",
    "id": "c5"
-  },
-  {
-   "sentence": "Терялась граница между дипломатическим дамским письмом и ___.",
-   "lemma": "шифр",
-   "options": [
-    "изменничьему шифру",
-    "изменничьем шифре",
-    "изменничий шифр",
-    "изменничьим шифром"
-   ],
-   "correct": "изменничьим шифром",
-   "case": "Творительный (Instrumental)",
-   "explain": "«изменничьим шифром» — the instrumental marks the means, company, or complement.",
-   "id": "c6"
   },
   {
    "sentence": "«Измена» стало словом военным и применялось только в том случае, если человек изменял один раз, — ___ уже переходила в разряд дел дипломатических.",
@@ -67,7 +39,7 @@
    ],
    "correct": "двукратная измена",
    "case": "Именительный (Nominative)",
-   "explain": "«двукратная измена» — the subject of the sentence stands in the nominative.",
+   "explain": "«двукратная измена» is the subject of «переходила» — who or what does it — so nominative.",
    "id": "c7"
   },
   {
@@ -81,22 +53,8 @@
    ],
    "correct": "другое слово",
    "case": "Именительный (Nominative)",
-   "explain": "«другое слово» — the subject of the sentence stands in the nominative.",
+   "explain": "«другое слово» is the subject of «существовало» — who or what does it — so nominative.",
    "id": "c8"
-  },
-  {
-   "sentence": "Фаддей, верный и любимый друг Александра Сергеевича, ___, передался французам, сражался против русских войск в 1812 году, попал в плен к своим и стал русским литератором.",
-   "lemma": "офицер",
-   "options": [
-    "русский офицер",
-    "русском офицере",
-    "русским офицером",
-    "русского офицера"
-   ],
-   "correct": "русский офицер",
-   "case": "Именительный (Nominative)",
-   "explain": "«русский офицер» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
   },
   {
    "sentence": "Фаддей, верный и любимый друг Александра Сергеевича, русский офицер, передался французам, сражался против ___ в 1812 году, попал в плен к своим и стал русским литератором.",
@@ -109,36 +67,8 @@
    ],
    "correct": "русских войск",
    "case": "Родительный (Genitive)",
-   "explain": "«русских войск» — after the preposition «против», the genitive here marks possession, absence, or quantity.",
+   "explain": "«русских войск» — «против» always takes the genitive.",
    "id": "c11"
-  },
-  {
-   "sentence": "Один из них поразил меня своим ___, своей гордой, воинственной поступью; другой — блеском женоподобной красоты своей, цветом юного, почти отроческого возраста.",
-   "lemma": "рост",
-   "options": [
-    "колоссальном росте",
-    "колоссального роста",
-    "колоссальному росту",
-    "колоссальным ростом"
-   ],
-   "correct": "колоссальным ростом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«колоссальным ростом» — the instrumental marks the means, company, or complement.",
-   "id": "c14"
-  },
-  {
-   "sentence": "Один из них поразил меня своим колоссальным ростом, своей гордой, воинственной поступью; другой — блеском женоподобной красоты своей, цветом юного, почти ___.",
-   "lemma": "возраст",
-   "options": [
-    "отроческом возрасте",
-    "отроческого возраста",
-    "отроческий возраст",
-    "отроческому возрасту"
-   ],
-   "correct": "отроческого возраста",
-   "case": "Родительный (Genitive)",
-   "explain": "«отроческого возраста» — the genitive here marks possession, absence, or quantity.",
-   "id": "c15"
   },
   {
    "sentence": "Ходжа-Мирза-Якуб, человек ___, учености и богатства, был евнух.",
@@ -151,78 +81,8 @@
    ],
    "correct": "большого роста",
    "case": "Родительный (Genitive)",
-   "explain": "«большого роста» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«большого роста» depends on the noun «человек» (whose? of what?) — genitive.",
    "id": "c16"
-  },
-  {
-   "sentence": "В руках его были большие ___ и гарем.",
-   "lemma": "дело",
-   "options": [
-    "торговых делах",
-    "торговые дела",
-    "торговыми делами",
-    "торговых дел"
-   ],
-   "correct": "торговые дела",
-   "case": "Именительный (Nominative)",
-   "explain": "«торговые дела» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
-  },
-  {
-   "sentence": "Он почувствовал, что эти руки — его, что они — простые, ___, белые и в перстнях, когда он обнимал девочку по имени Диль-Фируз.",
-   "lemma": "рука",
-   "options": [
-    "человеческих руках",
-    "человеческими руками",
-    "человеческих рук",
-    "человеческие руки"
-   ],
-   "correct": "человеческие руки",
-   "case": "Именительный (Nominative)",
-   "explain": "«человеческие руки» — the subject of the sentence stands in the nominative.",
-   "id": "c18"
-  },
-  {
-   "sentence": "Шах был недолговечен, ___ подбивал его на новую войну, и войну будет вести Аббас-Мирза.",
-   "lemma": "доктор",
-   "options": [
-    "английским доктором",
-    "английский доктор",
-    "английскому доктору",
-    "английского доктора"
-   ],
-   "correct": "английский доктор",
-   "case": "Именительный (Nominative)",
-   "explain": "«английский доктор» — the subject of the sentence stands in the nominative.",
-   "id": "c21"
-  },
-  {
-   "sentence": "Он был тегеранским человеком, но ___ его жительства была снова Эривань.",
-   "lemma": "место",
-   "options": [
-    "основным местом",
-    "основного места",
-    "основном месте",
-    "основное место"
-   ],
-   "correct": "основным местом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«основным местом» — the instrumental marks the means, company, or complement.",
-   "id": "c23"
-  },
-  {
-   "sentence": "Якуб Маркарян был безвестный ___.",
-   "lemma": "человек",
-   "options": [
-    "эриванский человек",
-    "эриванского человека",
-    "эриванскому человеку",
-    "эриванском человеке"
-   ],
-   "correct": "эриванский человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«эриванский человек» — the subject of the sentence stands in the nominative.",
-   "id": "c24"
   },
   {
    "sentence": "Снова Вазир-Мухтар сидел, заложа ногу на ногу, перед шахом в ___, и шах задыхался.",
@@ -235,7 +95,7 @@
    ],
    "correct": "полуторапудовой одежде",
    "case": "Предложный (Prepositional)",
-   "explain": "«полуторапудовой одежде» — after the preposition «в», for location or topic.",
+   "explain": "«полуторапудовой одежде» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c25"
   },
   {
@@ -249,7 +109,7 @@
    ],
    "correct": "немедленной выдачи",
    "case": "Родительный (Genitive)",
-   "explain": "«немедленной выдачи» — the genitive here marks possession, absence, or quantity.",
+   "explain": "With «требовавший», a verb of waiting, seeking, asking or wanting, the object can stand in the genitive — as here.",
    "id": "c31"
   }
  ]

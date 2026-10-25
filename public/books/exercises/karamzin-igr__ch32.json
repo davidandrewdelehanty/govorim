@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Ростовский Князь обратил в пепел Кострому, пленил жителей; Георгий два раза приступал к Ростову и, заключив весьма ___ с Константином, выслал Димитрия из Москвы.",
-   "lemma": "мир",
-   "options": [
-    "неискреннем мире",
-    "неискренний мир",
-    "неискренним миром",
-    "неискреннего мира"
-   ],
-   "correct": "неискренний мир",
-   "case": "Винительный (Accusative)",
-   "explain": "«неискренний мир» — the accusative marks the direct object of the verb.",
-   "id": "c1"
-  },
-  {
    "sentence": "Рюрик скончался: Князь трезвый, набожный, усердный строитель церквей, впрочем не имевший ___ братьев своих: ни кротости Романовой, ни твердости Давида, ни воинской доблести Мстислава Храброго.",
    "lemma": "слава",
    "options": [
@@ -25,35 +11,21 @@
    ],
    "correct": "доброй славы",
    "case": "Родительный (Genitive)",
-   "explain": "«доброй славы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«доброй славы» is the object of a negated verb («не имевший») — genitive instead of the accusative.",
    "id": "c2"
-  },
-  {
-   "sentence": "Сей мужественный Князь был тогда стражем северо-западной России: с одной стороны тревожили оную Литовцы, с другой — властолюбие Немцев угрожало ей ___.",
-   "lemma": "опасность",
-   "options": [
-    "великих опасностей",
-    "великими опасностями",
-    "великие опасности",
-    "великим опасностям"
-   ],
-   "correct": "великими опасностями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«великими опасностями» — the instrumental marks the means, company, or complement.",
-   "id": "c3"
   },
   {
    "sentence": "Сия речь тронула Новогородцев, легкомысленных, однако ж чувствительных к народной чести, ко славе ___.",
    "lemma": "подвиг",
    "options": [
-    "великодушными подвигами",
     "великодушные подвиги",
+    "великодушными подвигами",
     "великодушных подвигов",
-    "великодушным подвигам"
+    "великодушных подвигах"
    ],
    "correct": "великодушных подвигов",
    "case": "Родительный (Genitive)",
-   "explain": "«великодушных подвигов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«великодушных подвигов» depends on the noun «славе» (whose? of what?) — genitive.",
    "id": "c5"
   },
   {
@@ -67,22 +39,8 @@
    ],
    "correct": "знаменитых граждан",
    "case": "Родительный (Genitive)",
-   "explain": "«знаменитых граждан» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«знаменитых граждан» depends on the noun «собою» (whose? of what?) — genitive.",
    "id": "c6"
-  },
-  {
-   "sentence": "Четверть ржи стоила около трех рублей шестидесяти копеек нынешними ___, овса рубль 7 копеек, воз репы два рубля 86 копеек.",
-   "lemma": "деньга",
-   "options": [
-    "серебряными деньгами",
-    "серебряные деньги",
-    "серебряных деньгах",
-    "серебряным деньгам"
-   ],
-   "correct": "серебряными деньгами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«серебряными деньгами» — the instrumental marks the means, company, or complement.",
-   "id": "c8"
   },
   {
    "sentence": "Сей Князь говорил, что он помнит свое обещание быть всегда их другом; что освободит ___, заключенных в Торжке, восстановит благоденствие Новагорода или положит свою голову.",
@@ -95,7 +53,7 @@
    ],
    "correct": "невинных граждан",
    "case": "Винительный (Accusative)",
-   "explain": "«невинных граждан» — the accusative marks the direct object of the verb.",
+   "explain": "«невинных граждан» is the direct object of «освободит» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c11"
   },
   {
@@ -109,7 +67,7 @@
    ],
    "correct": "сия война",
    "case": "Именительный (Nominative)",
-   "explain": "«Сия война» — the subject of the sentence stands in the nominative.",
+   "explain": "«сия война» is the subject of «имела» — who or what does it — so nominative.",
    "id": "c12"
   },
   {
@@ -117,28 +75,14 @@
    "lemma": "союз",
    "options": [
     "тайному союзу",
-    "тайный союз",
-    "тайного союза",
-    "тайном союзе"
+    "тайном союзе",
+    "тайным союзом",
+    "тайный союз"
    ],
    "correct": "тайный союз",
    "case": "Винительный (Accusative)",
-   "explain": "«тайный союз» — the accusative marks the direct object of the verb.",
+   "explain": "«тайный союз» is the direct object of «заключил» (кого? что?) — accusative.",
    "id": "c13"
-  },
-  {
-   "sentence": "___ началися в Торопецкой области.",
-   "lemma": "действие",
-   "options": [
-    "неприятельские действия",
-    "неприятельскими действиями",
-    "неприятельских действиях",
-    "неприятельских действий"
-   ],
-   "correct": "неприятельские действия",
-   "case": "Именительный (Nominative)",
-   "explain": "«Неприятельские действия» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
   },
   {
    "sentence": "Константин с полками своими находился в стане Новогородском: Георгий, Ярослав и Князья Муромские, действуя заодно, вооружили ___ и в необозримых рядах стали на берегу Кзы.",
@@ -151,7 +95,7 @@
    ],
    "correct": "самых поселян",
    "case": "Винительный (Accusative)",
-   "explain": "«самых поселян» — the accusative marks the direct object of the verb.",
+   "explain": "«самых поселян» is the direct object of «вооружили» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c15"
   },
   {
@@ -165,22 +109,8 @@
    ],
    "correct": "липецком поле",
    "case": "Предложный (Prepositional)",
-   "explain": "«Липецком поле» — after the preposition «на», for location or topic.",
+   "explain": "«липецком поле» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c17"
-  },
-  {
-   "sentence": "Мстислав принял вызов: долго советовался с Константином, обязал его ___ верности и ночью выступил из стана к назначенному для битвы месту, с трубным звуком, с грозным кликом воинским.",
-   "lemma": "обет",
-   "options": [
-    "торжественными обетами",
-    "торжественным обетам",
-    "торжественных обетах",
-    "торжественные обеты"
-   ],
-   "correct": "торжественными обетами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«торжественными обетами» — the instrumental marks the means, company, or complement.",
-   "id": "c18"
   },
   {
    "sentence": "Мстислав стал на ___, велев отборным молодым людям ударить на полки Ярославовы.",
@@ -193,22 +123,8 @@
    ],
    "correct": "другой горе",
    "case": "Предложный (Prepositional)",
-   "explain": "«другой горе» — after the preposition «на», for location or topic.",
+   "explain": "«другой горе» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c22"
-  },
-  {
-   "sentence": "Мстислав стал на другой горе, велев отборным ___ ударить на полки Ярославовы.",
-   "lemma": "человек",
-   "options": [
-    "молодыми людьми",
-    "молодым людям",
-    "молодых людей",
-    "молодые люди"
-   ],
-   "correct": "молодым людям",
-   "case": "Дательный (Dative)",
-   "explain": "«молодым людям» — the dative marks the indirect object or recipient.",
-   "id": "c23"
   },
   {
    "sentence": "Ночью пришли в Владимир ___; а на другой день Георгий, созвав граждан, молил их доказать ему свое усердие мужественною защитою столицы.",
@@ -221,7 +137,7 @@
    ],
    "correct": "многие раненые",
    "case": "Именительный (Nominative)",
-   "explain": "«многие раненые» — the subject of the sentence stands in the nominative.",
+   "explain": "«многие раненые» is the subject of «пришли» — who or what does it — so nominative.",
    "id": "c25"
   },
   {
@@ -235,22 +151,8 @@
    ],
    "correct": "сим случаем",
    "case": "Творительный (Instrumental)",
-   "explain": "«сим случаем» — the instrumental marks the means, company, or complement.",
+   "explain": "«воспользоваться» takes the instrumental.",
    "id": "c27"
-  },
-  {
-   "sentence": "Принужденный выехать из столицы, Георгий омочил слезами гроб родителя, в душевной горести жаловался на Ярослава, виновника столь ___; сел в ладию с женою и поехал в Городец Волжский, или Радилов.",
-   "lemma": "война",
-   "options": [
-    "несчастная война",
-    "несчастной войной",
-    "несчастной войне",
-    "несчастной войны"
-   ],
-   "correct": "несчастной войны",
-   "case": "Родительный (Genitive)",
-   "explain": "«несчастной войны» — the genitive here marks possession, absence, or quantity.",
-   "id": "c28"
   }
  ]
 }

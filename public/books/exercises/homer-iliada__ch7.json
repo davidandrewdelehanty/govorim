@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Столько далекий от ада, как ___ от дола!",
-   "lemma": "небо",
-   "options": [
-    "светлое небо",
-    "светлом небе",
-    "светлому небу",
-    "светлого неба"
-   ],
-   "correct": "светлое небо",
-   "case": "Именительный (Nominative)",
-   "explain": "«светлое небо» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Страшные крики подняв, задождили ___.",
-   "lemma": "стрела",
-   "options": [
-    "свистящие стрелы",
-    "свистящими стрелами",
-    "свистящим стрелам",
-    "свистящих стрелах"
-   ],
-   "correct": "свистящие стрелы",
-   "case": "Винительный (Accusative)",
-   "explain": "«свистящие стрелы» — the accusative marks the direct object of the verb.",
-   "id": "c2"
-  },
-  {
    "sentence": "Зевс, возвещая троянам победу ___.",
    "lemma": "битва",
    "options": [
@@ -39,49 +11,21 @@
    ],
    "correct": "сомнительной битвы",
    "case": "Родительный (Genitive)",
-   "explain": "«сомнительной битвы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«сомнительной битвы» depends on the noun «победу» (whose? of what?) — genitive.",
    "id": "c3"
-  },
-  {
-   "sentence": "Прежде меня, для нее ___ младого!",
-   "lemma": "муж",
-   "options": [
-    "драгоценного мужа",
-    "драгоценным мужем",
-    "драгоценному мужу",
-    "драгоценном муже"
-   ],
-   "correct": "драгоценного мужа",
-   "case": "Родительный (Genitive)",
-   "explain": "«драгоценного мужа» — the genitive here marks possession, absence, or quantity.",
-   "id": "c4"
-  },
-  {
-   "sentence": "После герой Эврипил, ___ Эвемона.",
-   "lemma": "сын",
-   "options": [
-    "препрославленный сын",
-    "препрославленным сыном",
-    "препрославленного сына",
-    "препрославленном сыне"
-   ],
-   "correct": "препрославленный сын",
-   "case": "Именительный (Nominative)",
-   "explain": "«препрославленный сын» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
   },
   {
    "sentence": "Стал под ___ Теламонова сына Аякса.",
    "lemma": "щит",
    "options": [
-    "великим щитом",
-    "великому щиту",
     "великом щите",
-    "великий щит"
+    "великим щитом",
+    "великого щита",
+    "великому щиту"
    ],
    "correct": "великим щитом",
    "case": "Творительный (Instrumental)",
-   "explain": "«великим щитом» — after the preposition «под», the instrumental marks the means, company, or complement.",
+   "explain": "«великим щитом» — «под» takes the instrumental here (где? под чем?) — the accusative would mean movement under (куда? под что?).",
    "id": "c6"
   },
   {
@@ -95,36 +39,22 @@
    ],
    "correct": "олимпийских богов",
    "case": "Винительный (Accusative)",
-   "explain": "«олимпийских богов» — the accusative marks the direct object of the verb.",
+   "explain": "«олимпийских богов» is the direct object of «умоляли» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c7"
   },
   {
    "sentence": "Гибнущим горестно, мы хоть в ___ не поможем?",
    "lemma": "раз",
    "options": [
-    "последнему разу",
-    "последнем разе",
     "последним разом",
-    "последний раз"
+    "последнему разу",
+    "последний раз",
+    "последнего раза"
    ],
    "correct": "последний раз",
    "case": "Винительный (Accusative)",
-   "explain": "«последний раз» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«последний раз» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c8"
-  },
-  {
-   "sentence": "Он не избегнул бы ___ глубокого Стикса.",
-   "lemma": "вода",
-   "options": [
-    "гибельными водами",
-    "гибельных водах",
-    "гибельным водам",
-    "гибельных вод"
-   ],
-   "correct": "гибельных вод",
-   "case": "Родительный (Genitive)",
-   "explain": "«гибельных вод» — the genitive here marks possession, absence, or quantity.",
-   "id": "c9"
   },
   {
    "sentence": "Будет ли рад, как мы явимся обе на ___?",
@@ -137,7 +67,7 @@
    ],
    "correct": "битвенном поле",
    "case": "Предложный (Prepositional)",
-   "explain": "«битвенном поле» — after the preposition «на», for location or topic.",
+   "explain": "«битвенном поле» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c10"
   },
   {
@@ -151,7 +81,7 @@
    ],
    "correct": "свирепая злоба",
    "case": "Именительный (Nominative)",
-   "explain": "«свирепая злоба» — the subject of the sentence stands in the nominative.",
+   "explain": "«свирепая злоба» is the subject of «волновала» — who or what does it — so nominative.",
    "id": "c11"
   },
   {
@@ -165,7 +95,7 @@
    ],
    "correct": "шумного моря",
    "case": "Родительный (Genitive)",
-   "explain": "«шумного моря» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«шумного моря» depends on the noun «береге» (whose? of what?) — genitive.",
    "id": "c12"
   }
  ]

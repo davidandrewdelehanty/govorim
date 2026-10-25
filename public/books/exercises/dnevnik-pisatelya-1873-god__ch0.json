@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Это ___, то есть чрезвычайное для меня (я никого не хочу обижать), произошло, однако, довольно просто.",
-   "lemma": "событие",
-   "options": [
-    "чрезвычайное событие",
-    "чрезвычайному событию",
-    "чрезвычайном событии",
-    "чрезвычайным событием"
-   ],
-   "correct": "чрезвычайное событие",
-   "case": "Именительный (Nominative)",
-   "explain": "«чрезвычайное событие» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Двадцатого декабря я как раз читал статью \"___\" о бракосочетании китайского императора; она оставила во мне сильное впечатление.",
    "lemma": "ведомость",
    "options": [
@@ -25,21 +11,21 @@
    ],
    "correct": "московских ведомостей",
    "case": "Родительный (Genitive)",
-   "explain": "«Московских ведомостей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«московских ведомостей» depends on the noun «статью» (whose? of what?) — genitive.",
    "id": "c2"
   },
   {
    "sentence": "Двадцатого декабря я как раз читал статью \"Московских ведомостей\" о бракосочетании ___; она оставила во мне сильное впечатление.",
    "lemma": "император",
    "options": [
-    "китайским императором",
+    "китайский император",
     "китайского императора",
-    "китайском императоре",
-    "китайский император"
+    "китайскому императору",
+    "китайском императоре"
    ],
    "correct": "китайского императора",
    "case": "Родительный (Genitive)",
-   "explain": "«китайского императора» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«китайского императора» depends on the noun «бракосочетании» (whose? of what?) — genitive.",
    "id": "c3"
   },
   {
@@ -53,22 +39,8 @@
    ],
    "correct": "сложное событие",
    "case": "Именительный (Nominative)",
-   "explain": "«сложное событие» — the subject of the sentence stands in the nominative.",
+   "explain": "«сложное событие» is the subject of «произошло» — who or what does it — so nominative.",
    "id": "c4"
-  },
-  {
-   "sentence": "Но встал бы ___ третьего его секретаря и, держа в руках диплом о моем назначении в редакторы, произнес бы нам внушительным, но ласковым голосом определенное церемониями наставление.",
-   "lemma": "помощник",
-   "options": [
-    "третьим помощником",
-    "третий помощник",
-    "третьему помощнику",
-    "третьего помощника"
-   ],
-   "correct": "третий помощник",
-   "case": "Именительный (Nominative)",
-   "explain": "«третий помощник» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
   },
   {
    "sentence": "Только в \"Московских ведомостях\" ___ пишутся в полтора столбца и – к удивлению – понятно; да и то если принадлежат известному перу.",
@@ -81,7 +53,7 @@
    ],
    "correct": "передовые статьи",
    "case": "Именительный (Nominative)",
-   "explain": "«передовые статьи» — the subject of the sentence stands in the nominative.",
+   "explain": "«передовые статьи» is the subject of «пишутся» — who or what does it — so nominative.",
    "id": "c7"
   },
   {
@@ -95,22 +67,8 @@
    ],
    "correct": "известному перу",
    "case": "Дательный (Dative)",
-   "explain": "«известному перу» — the dative marks the indirect object or recipient.",
+   "explain": "«принадлежат» takes the dative (кому? чему?).",
    "id": "c8"
-  },
-  {
-   "sentence": "Правда и то: если никто не хочет задумываться, то, казалось бы, тем легче ___.",
-   "lemma": "литератор",
-   "options": [
-    "русским литератором",
-    "русского литератора",
-    "русскому литератору",
-    "русский литератор"
-   ],
-   "correct": "русскому литератору",
-   "case": "Дательный (Dative)",
-   "explain": "«русскому литератору» — the dative marks the indirect object or recipient.",
-   "id": "c13"
   },
   {
    "sentence": "Положение омерзительное, ибо это всё равно, что говорить самому с собой и издавать журнал для ___.",
@@ -123,7 +81,7 @@
    ],
    "correct": "собственного удовольствия",
    "case": "Родительный (Genitive)",
-   "explain": "«собственного удовольствия» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«собственного удовольствия» — «для» always takes the genitive.",
    "id": "c14"
   },
   {
@@ -137,7 +95,7 @@
    ],
    "correct": "собственного удовольствия",
    "case": "Родительный (Genitive)",
-   "explain": "«собственного удовольствия» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«собственного удовольствия» — «для» always takes the genitive.",
    "id": "c15"
   },
   {
@@ -151,22 +109,8 @@
    ],
    "correct": "собственного удовольствия",
    "case": "Родительный (Genitive)",
-   "explain": "«собственного удовольствия» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«собственного удовольствия» — «для» always takes the genitive.",
    "id": "c16"
-  },
-  {
-   "sentence": "Но поставьте вместо льва ___, каким каждый обязан быть, и нравоучение выйдет то же самое.",
-   "lemma": "человек",
-   "options": [
-    "порядочного человека",
-    "порядочный человек",
-    "порядочным человеком",
-    "порядочном человеке"
-   ],
-   "correct": "порядочного человека",
-   "case": "Родительный (Genitive)",
-   "explain": "«порядочного человека» — the genitive here marks possession, absence, or quantity.",
-   "id": "c18"
   }
  ]
 }

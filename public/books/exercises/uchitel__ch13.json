@@ -1,46 +1,18 @@
 {
  "cases": [
   {
-   "sentence": "Он был плотен, родовит, с матовым цветом ___, сед.",
-   "lemma": "лицо",
-   "options": [
-    "моложавого лица",
-    "моложавом лице",
-    "моложавому лицу",
-    "моложавое лицо"
-   ],
-   "correct": "моложавого лица",
-   "case": "Родительный (Genitive)",
-   "explain": "«моложавого лица» — the genitive here marks possession, absence, or quantity.",
-   "id": "c2"
-  },
-  {
    "sentence": "Земский доктор держался строго, но просто, и его черемисское лицо и взгляды сквозь очки между ___ чая не пугали.",
    "lemma": "глотка",
    "options": [
-    "быстрыми глотками",
-    "быстрых глотках",
     "быстрые глотки",
-    "быстрых глоток"
+    "быстрым глоткам",
+    "быстрых глотках",
+    "быстрыми глотками"
    ],
    "correct": "быстрыми глотками",
    "case": "Творительный (Instrumental)",
-   "explain": "«быстрыми глотками» — after the preposition «между», the instrumental marks the means, company, or complement.",
+   "explain": "«быстрыми глотками» — «между» + instrumental: between.",
    "id": "c4"
-  },
-  {
-   "sentence": "Родственницы хозяйки, княжны Трипольские, часто вставляли свои замечания в рассказ Беклемишева о его поездке к министру Ермолову ___, гримасничая, когда улыбались.",
-   "lemma": "тон",
-   "options": [
-    "ленивый тон",
-    "ленивым тоном",
-    "ленивого тона",
-    "ленивому тону"
-   ],
-   "correct": "ленивым тоном",
-   "case": "Творительный (Instrumental)",
-   "explain": "«ленивым тоном» — the instrumental marks the means, company, or complement.",
-   "id": "c5"
   },
   {
    "sentence": "И у священника и у лавочника велись тогда ___ о них.",
@@ -53,7 +25,7 @@
    ],
    "correct": "бесконечные разговоры",
    "case": "Именительный (Nominative)",
-   "explain": "«бесконечные разговоры» — the subject of the sentence stands in the nominative.",
+   "explain": "«бесконечные разговоры» is the subject of «велись» — who or what does it — so nominative.",
    "id": "c6"
   },
   {
@@ -67,7 +39,7 @@
    ],
    "correct": "старого повара",
    "case": "Родительный (Genitive)",
-   "explain": "«старого повара» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«старого повара» — «от» always takes the genitive.",
    "id": "c7"
   },
   {
@@ -81,7 +53,7 @@
    ],
    "correct": "другой группе",
    "case": "Дательный (Dative)",
-   "explain": "«другой группе» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«другой группе» — «к» always takes the dative.",
    "id": "c10"
   },
   {
@@ -95,78 +67,8 @@
    ],
    "correct": "профессиональном образовании",
    "case": "Предложный (Prepositional)",
-   "explain": "«профессиональном образовании» — after the preposition «о», for location or topic.",
+   "explain": "«профессиональном образовании» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c11"
-  },
-  {
-   "sentence": "Особенно нехорошо ему было от пристального и ___ Беклемишева.",
-   "lemma": "взгляд",
-   "options": [
-    "спокойному взгляду",
-    "спокойного взгляда",
-    "спокойном взгляде",
-    "спокойным взглядом"
-   ],
-   "correct": "спокойного взгляда",
-   "case": "Родительный (Genitive)",
-   "explain": "«спокойного взгляда» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
-   "id": "c12"
-  },
-  {
-   "sentence": "Но все-таки он присел к столу, предварительно посмотрев на стул и раздвинув полы сюртука, расставил ___ свои тонкие ноги и, поставив локоть на колено, стал пощипывать кончики своих жидких белесых усов.",
-   "lemma": "угол",
-   "options": [
-    "острых углах",
-    "острым углам",
-    "острыми углами",
-    "острые углы"
-   ],
-   "correct": "острыми углами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«острыми углами» — the instrumental marks the means, company, or complement.",
-   "id": "c13"
-  },
-  {
-   "sentence": "Но все-таки он присел к столу, предварительно посмотрев на стул и раздвинув полы сюртука, расставил острыми углами свои ___ и, поставив локоть на колено, стал пощипывать кончики своих жидких белесых усов.",
-   "lemma": "нога",
-   "options": [
-    "тонких ногах",
-    "тонким ногам",
-    "тонкие ноги",
-    "тонкими ногами"
-   ],
-   "correct": "тонкие ноги",
-   "case": "Винительный (Accusative)",
-   "explain": "«тонкие ноги» — the accusative marks the direct object of the verb.",
-   "id": "c14"
-  },
-  {
-   "sentence": "Но все-таки он присел к столу, предварительно посмотрев на стул и раздвинув полы сюртука, расставил острыми углами свои тонкие ноги и, поставив локоть на колено, стал пощипывать кончики своих жидких ___.",
-   "lemma": "ус",
-   "options": [
-    "белесых усах",
-    "белесым усам",
-    "белесыми усами",
-    "белесых усов"
-   ],
-   "correct": "белесых усов",
-   "case": "Родительный (Genitive)",
-   "explain": "«белесых усов» — the genitive here marks possession, absence, or quantity.",
-   "id": "c15"
-  },
-  {
-   "sentence": "Он долго стоял перед камином, рассматривал ___ Толстого, писанный масляными красками.",
-   "lemma": "портрет",
-   "options": [
-    "большой портрет",
-    "большим портретом",
-    "большом портрете",
-    "большого портрета"
-   ],
-   "correct": "большой портрет",
-   "case": "Винительный (Accusative)",
-   "explain": "«большой портрет» — the accusative marks the direct object of the verb.",
-   "id": "c18"
   },
   {
    "sentence": "Он долго стоял перед камином, рассматривал большой портрет Толстого, писанный ___.",
@@ -179,7 +81,7 @@
    ],
    "correct": "масляными красками",
    "case": "Творительный (Instrumental)",
-   "explain": "«масляными красками» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «писанный», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c19"
   }
  ]

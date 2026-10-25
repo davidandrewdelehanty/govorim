@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Известие о сем и ___ привезен сюда сегодня из главной квартиры действующей в Персии Российской Армии, ведомства Государственной Коллегии Иностранных Дел Коллежским Советником Грибоедовым.",
-   "lemma": "трактат",
-   "options": [
-    "самом трактате",
-    "самым трактатом",
-    "самому трактату",
-    "самый трактат"
-   ],
-   "correct": "самый трактат",
-   "case": "Именительный (Nominative)",
-   "explain": "«самый трактат» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
    "sentence": "Известие о сем и самый трактат привезен сюда сегодня из ___ действующей в Персии Российской Армии, ведомства Государственной Коллегии Иностранных Дел Коллежским Советником Грибоедовым.",
    "lemma": "квартира",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "главной квартиры",
    "case": "Родительный (Genitive)",
-   "explain": "«главной квартиры» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«главной квартиры» — «из» always takes the genitive.",
    "id": "c3"
   },
   {
@@ -39,50 +25,8 @@
    ],
    "correct": "иностранных дел",
    "case": "Родительный (Genitive)",
-   "explain": "«Иностранных Дел» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«иностранных дел» depends on the noun «Коллегии» (whose? of what?) — genitive.",
    "id": "c4"
-  },
-  {
-   "sentence": "Пушки Петропавловской крепости — ___ Петербурга.",
-   "lemma": "газета",
-   "options": [
-    "орудийная газета",
-    "орудийной газете",
-    "орудийной газеты",
-    "орудийной газетой"
-   ],
-   "correct": "орудийная газета",
-   "case": "Именительный (Nominative)",
-   "explain": "«орудийная газета» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
-  },
-  {
-   "sentence": "В жизнь каждой комнаты и канцелярии вторгается ___.",
-   "lemma": "выстрел",
-   "options": [
-    "пушечному выстрелу",
-    "пушечным выстрелом",
-    "пушечный выстрел",
-    "пушечного выстрела"
-   ],
-   "correct": "пушечный выстрел",
-   "case": "Винительный (Accusative)",
-   "explain": "«пушечный выстрел» — the accusative marks the direct object of the verb.",
-   "id": "c6"
-  },
-  {
-   "sentence": "___ изумления кончается тем, что взрослые проверяют часы, а дети начинают бессознательно играть в солдатики.",
-   "lemma": "миг",
-   "options": [
-    "краткий миг",
-    "краткого мига",
-    "кратким мигом",
-    "кратком миге"
-   ],
-   "correct": "краткий миг",
-   "case": "Именительный (Nominative)",
-   "explain": "«Краткий миг» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
   },
   {
    "sentence": "Петропавловская крепость была тем местом, где лежали мертвые императоры и сидели ___.",
@@ -95,7 +39,7 @@
    ],
    "correct": "живые бунтовщики",
    "case": "Именительный (Nominative)",
-   "explain": "«живые бунтовщики» — the subject of the sentence stands in the nominative.",
+   "explain": "«живые бунтовщики» is the subject of «сидели» — who or what does it — so nominative.",
    "id": "c8"
   },
   {
@@ -109,21 +53,21 @@
    ],
    "correct": "коллежский советник",
    "case": "Именительный (Nominative)",
-   "explain": "«коллежский советник» — the subject of the sentence stands in the nominative.",
+   "explain": "«коллежский советник» is the subject of «прибыл» — who or what does it — so nominative.",
    "id": "c9"
   },
   {
    "sentence": "Он словно опустился в тяжелый ___, обступивший его тело со всех сторон, провалился сквозь дно, и нумерные шторы, казалось, пали на окна навсегда.",
    "lemma": "диван",
    "options": [
-    "мягкого дивана",
-    "мягком диване",
+    "мягким диваном",
     "мягкий диван",
-    "мягкому дивану"
+    "мягкому дивану",
+    "мягкого дивана"
    ],
    "correct": "мягкий диван",
    "case": "Винительный (Accusative)",
-   "explain": "«мягкий диван» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«мягкий диван» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c10"
   },
   {
@@ -137,22 +81,8 @@
    ],
    "correct": "иностранных дел",
    "case": "Родительный (Genitive)",
-   "explain": "«Иностранных Дел» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«иностранных дел» depends on the noun «Коллегию» (whose? of what?) — genitive.",
    "id": "c11"
-  },
-  {
-   "sentence": "Сколько ___ он пожал, а взгляды у всех были такие, как будто в глубине зала, куда он поспешно проникал, готовилась неожиданная западня.",
-   "lemma": "рука",
-   "options": [
-    "разнообразных рук",
-    "разнообразными руками",
-    "разнообразным рукам",
-    "разнообразных руках"
-   ],
-   "correct": "разнообразных рук",
-   "case": "Родительный (Genitive)",
-   "explain": "«разнообразных рук» — the genitive here marks possession, absence, or quantity.",
-   "id": "c12"
   },
   {
    "sentence": "Сколько разнообразных рук он пожал, а взгляды у всех были такие, как будто в глубине зала, куда он поспешно проникал, готовилась ___.",
@@ -165,22 +95,8 @@
    ],
    "correct": "неожиданная западня",
    "case": "Именительный (Nominative)",
-   "explain": "«неожиданная западня» — the subject of the sentence stands in the nominative.",
+   "explain": "«неожиданная западня» is the subject of «готовилась» — who or what does it — so nominative.",
    "id": "c13"
-  },
-  {
-   "sentence": "Все ___ Петербурга были в этот день пьяны завистью, больны от нее, а ночью безотрадно и горячо молились в подушки.",
-   "lemma": "советник",
-   "options": [
-    "коллежскими советниками",
-    "коллежских советниках",
-    "коллежским советникам",
-    "коллежские советники"
-   ],
-   "correct": "коллежские советники",
-   "case": "Именительный (Nominative)",
-   "explain": "«коллежские советники» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
   },
   {
    "sentence": "Карл-Роберт Нессельрод, серый лицом карлик, руководитель наружной ___.",
@@ -193,7 +109,7 @@
    ],
    "correct": "российской политики",
    "case": "Родительный (Genitive)",
-   "explain": "«российской политики» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«российской политики» depends on the noun «руководитель» (whose? of what?) — genitive.",
    "id": "c15"
   },
   {
@@ -207,22 +123,8 @@
    ],
    "correct": "коллежский советник",
    "case": "Именительный (Nominative)",
-   "explain": "«коллежский советник» — the subject of the sentence stands in the nominative.",
+   "explain": "«коллежский советник» is the subject of «стоял» — who or what does it — so nominative.",
    "id": "c16"
-  },
-  {
-   "sentence": "Карлик высунул вперед женскую ручку, и ___ легла на другую, желтую цветом.",
-   "lemma": "ручка",
-   "options": [
-    "белой ручке",
-    "белой ручкой",
-    "белой ручки",
-    "белая ручка"
-   ],
-   "correct": "белая ручка",
-   "case": "Именительный (Nominative)",
-   "explain": "«белая ручка» — the subject of the sentence stands in the nominative.",
-   "id": "c18"
   },
   {
    "sentence": "___ легла на объемистый пакет с сургучами.",
@@ -235,50 +137,8 @@
    ],
    "correct": "белая ручка",
    "case": "Именительный (Nominative)",
-   "explain": "«Белая ручка» — the subject of the sentence stands in the nominative.",
+   "explain": "«белая ручка» is the subject of «легла» — who or what does it — so nominative.",
    "id": "c19"
-  },
-  {
-   "sentence": "— Приветствую вас, господин секретарь, и вас, господа, со ___.",
-   "lemma": "мир",
-   "options": [
-    "славному миру",
-    "славный мир",
-    "славным миром",
-    "славном мире"
-   ],
-   "correct": "славным миром",
-   "case": "Творительный (Instrumental)",
-   "explain": "«славным миром» — after the preposition «со», the instrumental marks the means, company, or complement.",
-   "id": "c20"
-  },
-  {
-   "sentence": "— Условия мира, в котором вы столь много нам помогли, для нас так выгодны, что с ___ кажутся даже неосуществимыми.",
-   "lemma": "взгляд",
-   "options": [
-    "первый взгляд",
-    "первого взгляда",
-    "первому взгляду",
-    "первом взгляде"
-   ],
-   "correct": "первого взгляда",
-   "case": "Родительный (Genitive)",
-   "explain": "«первого взгляда» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
-   "id": "c21"
-  },
-  {
-   "sentence": "Он улыбнулся печально и приятно, и эту улыбочку забыл на лице, ___ дребезжали по Грибоедову.",
-   "lemma": "глаз",
-   "options": [
-    "серых глаз",
-    "серыми глазами",
-    "серые глаза",
-    "серых глазах"
-   ],
-   "correct": "серые глаза",
-   "case": "Именительный (Nominative)",
-   "explain": "«серые глаза» — the subject of the sentence stands in the nominative.",
-   "id": "c22"
   },
   {
    "sentence": "Не ___ сидел перед министром, а сидели два авгура, которые торговались за знание.",
@@ -291,92 +151,50 @@
    ],
    "correct": "коллежский советник",
    "case": "Именительный (Nominative)",
-   "explain": "«коллежский советник» — the subject of the sentence stands in the nominative.",
+   "explain": "«коллежский советник» is the subject of «сидел» — who or what does it — so nominative.",
    "id": "c23"
   },
   {
    "sentence": "___ не сбавлял цены со своего знания, даже не вытянул головы в знак внимания.",
    "lemma": "авгур",
    "options": [
-    "вторым авгуром",
     "второй авгур",
-    "второго авгура",
-    "втором авгуре"
+    "втором авгуре",
+    "второму авгуру",
+    "вторым авгуром"
    ],
    "correct": "второй авгур",
    "case": "Именительный (Nominative)",
-   "explain": "«Второй авгур» — the subject of the sentence stands in the nominative.",
+   "explain": "«второй авгур» is the subject of «сбавлял» — who or what does it — so nominative.",
    "id": "c24"
   },
   {
    "sentence": "— Я полагаю, ваше превосходительство, что, с одной стороны, границы наши по Араксу, до самого Едибулукского брода, отныне явятся ___.",
    "lemma": "граница",
    "options": [
-    "естественным границам",
-    "естественные границы",
     "естественными границами",
-    "естественных границ"
+    "естественных границ",
+    "естественным границам",
+    "естественных границах"
    ],
    "correct": "естественными границами",
    "case": "Творительный (Instrumental)",
-   "explain": "«естественными границами» — the instrumental marks the means, company, or complement.",
+   "explain": "After «явятся», what someone or something is or becomes stands in the instrumental.",
    "id": "c25"
   },
   {
    "sentence": "Старший беспомощно оглянулся: грек Родофиникин, раскоряка, заведовавший ___, заболел лихорадкой.",
    "lemma": "департамент",
    "options": [
-    "азиатский департамент",
-    "азиатском департаменте",
     "азиатским департаментом",
-    "азиатского департамента"
+    "азиатского департамента",
+    "азиатском департаменте",
+    "азиатскому департаменту"
    ],
    "correct": "азиатским департаментом",
    "case": "Творительный (Instrumental)",
-   "explain": "«Азиатским департаментом» — the instrumental marks the means, company, or complement.",
+   "explain": "«заведовавший» takes the instrumental.",
    "id": "c26"
-  },
-  {
-   "sentence": "Он бы тут улыбнулся, раскоряка, он бы свел разговор на какие-нибудь пустяки, и притом самого ___ («какая халва в Персии! и хурме!»), и потом сразу же похлопал бы по плечу, конечно, в моральном смысле.",
-   "lemma": "свойство",
-   "options": [
-    "будничным свойством",
-    "будничного свойства",
-    "будничном свойстве",
-    "будничное свойство"
-   ],
-   "correct": "будничного свойства",
-   "case": "Родительный (Genitive)",
-   "explain": "«будничного свойства» — the genitive here marks possession, absence, or quantity.",
-   "id": "c27"
-  },
-  {
-   "sentence": "Он ведь не мог так, прямо сказать ___, что как раньше он хотел ускорить позорно затянувшуюся, безвыходную персидскую войну, так всеми силами он теперь должен будет стараться замедлить войну с Турцией.",
-   "lemma": "советник",
-   "options": [
-    "коллежского советника",
-    "коллежским советником",
-    "коллежскому советнику",
-    "коллежский советник"
-   ],
-   "correct": "коллежскому советнику",
-   "case": "Дательный (Dative)",
-   "explain": "«коллежскому советнику» — the dative marks the indirect object or recipient.",
-   "id": "c30"
-  },
-  {
-   "sentence": "И вот он сидит, машет ___, а между тем просто-напросто стоит уехать и выйти в отставку, пока не поздно.",
-   "lemma": "ручка",
-   "options": [
-    "удалой ручке",
-    "удалой ручкой",
-    "удалая ручка",
-    "удалой ручки"
-   ],
-   "correct": "удалой ручкой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«удалой ручкой» — the instrumental marks the means, company, or complement.",
-   "id": "c31"
   },
   {
    "sentence": "Князь Ливен, посол в Лондоне, писал Нессельроду, что не выходит на улицу: дюк Веллингтон не желает с ним знаться, и только некоторые неудачи ___ его умилостивят.",
@@ -389,22 +207,8 @@
    ],
    "correct": "русских войск",
    "case": "Родительный (Genitive)",
-   "explain": "«русских войск» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«русских войск» depends on the noun «неудачи» (whose? of what?) — genitive.",
    "id": "c32"
-  },
-  {
-   "sentence": "А лорд Абердин начал ___ симпатизировать Меттерниху.",
-   "lemma": "образ",
-   "options": [
-    "странном образе",
-    "странный образ",
-    "странным образом",
-    "странного образа"
-   ],
-   "correct": "странным образом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«странным образом» — the instrumental marks the means, company, or complement.",
-   "id": "c33"
   },
   {
    "sentence": "Но здесь открывалась ___ — венский учитель отрекся от петербургского ученика, он ругал его на всех языках Дантоном и идиотом.",
@@ -417,22 +221,8 @@
    ],
    "correct": "старая рана",
    "case": "Именительный (Nominative)",
-   "explain": "«старая рана» — the subject of the sentence stands in the nominative.",
+   "explain": "«старая рана» is the subject of «открывалась» — who or what does it — so nominative.",
    "id": "c34"
-  },
-  {
-   "sentence": "Но здесь открывалась старая рана — ___ отрекся от петербургского ученика, он ругал его на всех языках Дантоном и идиотом.",
-   "lemma": "учитель",
-   "options": [
-    "венский учитель",
-    "венского учителя",
-    "венским учителем",
-    "венском учителе"
-   ],
-   "correct": "венский учитель",
-   "case": "Именительный (Nominative)",
-   "explain": "«венский учитель» — the subject of the sentence stands in the nominative.",
-   "id": "c35"
   },
   {
    "sentence": "Но здесь открывалась старая рана — венский учитель отрекся от ___, он ругал его на всех языках Дантоном и идиотом.",
@@ -445,7 +235,7 @@
    ],
    "correct": "петербургского ученика",
    "case": "Родительный (Genitive)",
-   "explain": "«петербургского ученика» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«петербургского ученика» — «от» always takes the genitive.",
    "id": "c36"
   },
   {
@@ -459,36 +249,8 @@
    ],
    "correct": "английском корабле",
    "case": "Предложный (Prepositional)",
-   "explain": "«английском корабле» — after the preposition «на», for location or topic.",
+   "explain": "«английском корабле» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c37"
-  },
-  {
-   "sentence": "Равновесие и параллельная дружба качались теперь, как ___, и это он, он, Карл-Роберт Нессельрод, кричал, как его мать в тот момент, когда она рожала его на корабле.",
-   "lemma": "корабль",
-   "options": [
-    "английский корабль",
-    "английским кораблём",
-    "английского корабля",
-    "английскому кораблю"
-   ],
-   "correct": "английский корабль",
-   "case": "Именительный (Nominative)",
-   "explain": "«английский корабль» — the subject of the sentence stands in the nominative.",
-   "id": "c38"
-  },
-  {
-   "sentence": "— Мы еще поговорим, ___ Грибоедов.",
-   "lemma": "господин",
-   "options": [
-    "дорогом господине",
-    "дорогого господина",
-    "дорогим господином",
-    "дорогой господин"
-   ],
-   "correct": "дорогой господин",
-   "case": "Именительный (Nominative)",
-   "explain": "«дорогой господин» — the subject of the sentence stands in the nominative.",
-   "id": "c39"
   }
  ]
 }

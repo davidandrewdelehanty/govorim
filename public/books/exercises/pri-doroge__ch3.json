@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "___ съедали ветры и туманы, пегими стали мокрые поля.",
-   "lemma": "снег",
-   "options": [
-    "серым снегом",
-    "сером снеге",
-    "серому снегу",
-    "серый снег"
-   ],
-   "correct": "серый снег",
-   "case": "Винительный (Accusative)",
-   "explain": "«Серый снег» — the accusative marks the direct object of the verb.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Кончилась ___, наступила великая суббота.",
-   "lemma": "неделя",
-   "options": [
-    "страстной недели",
-    "страстной неделей",
-    "страстная неделя",
-    "страстной неделе"
-   ],
-   "correct": "страстная неделя",
-   "case": "Именительный (Nominative)",
-   "explain": "«Страстная неделя» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
    "sentence": "Кончилась Страстная неделя, наступила ___.",
    "lemma": "суббота",
    "options": [
@@ -39,7 +11,7 @@
    ],
    "correct": "великая суббота",
    "case": "Именительный (Nominative)",
-   "explain": "«великая суббота» — the subject of the sentence stands in the nominative.",
+   "explain": "«великая суббота» is the subject of «наступила» — who or what does it — so nominative.",
    "id": "c4"
   },
   {
@@ -53,21 +25,21 @@
    ],
    "correct": "пасмурный вечер",
    "case": "Винительный (Accusative)",
-   "explain": "«пасмурный вечер» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«пасмурный вечер» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c5"
   },
   {
    "sentence": "Неприютно гудели голые лозинки на окраинах села, из-за них, в неверном ___, глядели сине-белесые тучи, грозя дождем, делая горизонты зловещими.",
    "lemma": "сумрак",
    "options": [
-    "вечернем сумраке",
-    "вечерний сумрак",
+    "вечерним сумраком",
+    "вечернего сумрака",
     "вечернему сумраку",
-    "вечерним сумраком"
+    "вечернем сумраке"
    ],
    "correct": "вечернем сумраке",
    "case": "Предложный (Prepositional)",
-   "explain": "«вечернем сумраке» — after the preposition «в», for location or topic.",
+   "explain": "«вечернем сумраке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c6"
   },
   {
@@ -81,7 +53,7 @@
    ],
    "correct": "широкой улице",
    "case": "Предложный (Prepositional)",
-   "explain": "«широкой улице» — after the preposition «на», for location or topic.",
+   "explain": "«широкой улице» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c8"
   },
   {
@@ -95,7 +67,7 @@
    ],
    "correct": "ранних огнях",
    "case": "Предложный (Prepositional)",
-   "explain": "«ранних огнях» — after the preposition «в», for location or topic.",
+   "explain": "«ранних огнях» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c9"
   },
   {
@@ -109,7 +81,7 @@
    ],
    "correct": "чужих рук",
    "case": "Родительный (Genitive)",
-   "explain": "«чужих рук» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«касаться» takes its object in the genitive.",
    "id": "c16"
   },
   {
@@ -123,64 +95,22 @@
    ],
    "correct": "тайного сближения",
    "case": "Родительный (Genitive)",
-   "explain": "«тайного сближения» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«тайного сближения» depends on the noun «начало» (whose? of what?) — genitive.",
    "id": "c17"
   },
   {
    "sentence": "Она увидела стекла, залитые дождем, и почувствовала, что уже ничего не ждет, ничего не хочет, что просто ей приятно вставать, прибирать избу, топить печь, заниматься ___.",
    "lemma": "дело",
    "options": [
+    "обыденных делах",
+    "обыденным делам",
     "обыденными делами",
-    "обыденных дел",
-    "обыденные дела",
-    "обыденным делам"
+    "обыденных дел"
    ],
    "correct": "обыденными делами",
    "case": "Творительный (Instrumental)",
-   "explain": "«обыденными делами» — the instrumental marks the means, company, or complement.",
+   "explain": "«заниматься» takes the instrumental.",
    "id": "c20"
-  },
-  {
-   "sentence": "Со двора перешагнул порог Володя, свежо пахнущий дождем и затхло — ___.",
-   "lemma": "армяк",
-   "options": [
-    "мокрого армяка",
-    "мокрым армяком",
-    "мокрому армяку",
-    "мокром армяке"
-   ],
-   "correct": "мокрым армяком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«мокрым армяком» — the instrumental marks the means, company, or complement.",
-   "id": "c22"
-  },
-  {
-   "sentence": "___, точно посыпанное порохом, было мокро.",
-   "lemma": "лицо",
-   "options": [
-    "смуглого лица",
-    "смуглом лице",
-    "смуглым лицом",
-    "смуглое лицо"
-   ],
-   "correct": "смуглое лицо",
-   "case": "Именительный (Nominative)",
-   "explain": "«Смуглое лицо» — the subject of the sentence stands in the nominative.",
-   "id": "c23"
-  },
-  {
-   "sentence": "Скоро он скрылся за перевалом, и стало так тихо, что как будто в двух шагах раздавался бой перепелов, перекликавшихся в самых ___, за чуть синевшим леском.",
-   "lemma": "хлеб",
-   "options": [
-    "дальние хлеба",
-    "дальних хлебах",
-    "дальними хлебами",
-    "дальних хлебов"
-   ],
-   "correct": "дальних хлебах",
-   "case": "Предложный (Prepositional)",
-   "explain": "«дальних хлебах» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c25"
   }
  ]
 }

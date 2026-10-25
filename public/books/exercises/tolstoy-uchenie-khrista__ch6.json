@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "И уже вечером нашел еще людей без работы и сказал им: что вы стоите здесь ___ без дела?",
-   "lemma": "день",
-   "options": [
-    "целый день",
-    "целым днём",
-    "целого дня",
-    "целом дне"
-   ],
-   "correct": "целый день",
-   "case": "Винительный (Accusative)",
-   "explain": "«целый день» — the accusative marks the direct object of the verb.",
-   "id": "c1"
-  },
-  {
    "sentence": "И эти первые стали роптать на хозяина виноградника и говорили: эти работали один час, а мы ___ с утра, и ты сравнял их с нами.",
    "lemma": "день",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "целый день",
    "case": "Винительный (Accusative)",
-   "explain": "«целый день» — the accusative marks the direct object of the verb.",
+   "explain": "«целый день» tells how long or how often, with no preposition — accusative.",
    "id": "c2"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "чужой стороне",
    "case": "Предложный (Prepositional)",
-   "explain": "«чужой стороне» — after the preposition «на», for location or topic.",
+   "explain": "«чужой стороне» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c3"
   },
   {
@@ -53,36 +39,8 @@
    ],
    "correct": "чужой стороне",
    "case": "Предложный (Prepositional)",
-   "explain": "«чужой стороне» — after the preposition «на», for location or topic.",
+   "explain": "«чужой стороне» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c4"
-  },
-  {
-   "sentence": "И когда все сели за стол, пришел ___ с поля и увидал, что в доме что-то празднуют, и подозвал старший сын работника и спросил: что такое у нас празднуют?",
-   "lemma": "сын",
-   "options": [
-    "большой сын",
-    "большом сыне",
-    "большим сыном",
-    "большого сына"
-   ],
-   "correct": "большой сын",
-   "case": "Именительный (Nominative)",
-   "explain": "«большой сын» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
-  },
-  {
-   "sentence": "И когда все сели за стол, пришел большой сын с поля и увидал, что в доме что-то празднуют, и подозвал ___ работника и спросил: что такое у нас празднуют?",
-   "lemma": "сын",
-   "options": [
-    "старшего сына",
-    "старший сын",
-    "старшим сыном",
-    "старшему сыну"
-   ],
-   "correct": "старший сын",
-   "case": "Именительный (Nominative)",
-   "explain": "«старший сын» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
   },
   {
    "sentence": "___ обиделся и не пошел в дом.",
@@ -95,21 +53,21 @@
    ],
    "correct": "большой брат",
    "case": "Именительный (Nominative)",
-   "explain": "«Большой брат» — the subject of the sentence stands in the nominative.",
+   "explain": "«большой брат» is the subject of «обиделся» — who or what does it — so nominative.",
    "id": "c7"
   },
   {
    "sentence": "Но ___ не пошел и сказал отцу: сколько лет на тебя работаю и приказа твоего не ослушаюсь, а ты для меня никогда теленка поеного не резал.",
    "lemma": "сын",
    "options": [
-    "старшего сына",
-    "старший сын",
     "старшим сыном",
-    "старшему сыну"
+    "старшем сыне",
+    "старшему сыну",
+    "старший сын"
    ],
    "correct": "старший сын",
    "case": "Именительный (Nominative)",
-   "explain": "«старший сын» — the subject of the sentence stands in the nominative.",
+   "explain": "«старший сын» is the subject of «пошел» — who or what does it — so nominative.",
    "id": "c8"
   },
   {
@@ -123,7 +81,7 @@
    ],
    "correct": "меньшой брат",
    "case": "Именительный (Nominative)",
-   "explain": "«меньшой брат» — the subject of the sentence stands in the nominative.",
+   "explain": "«меньшой брат» is the subject of «ушел» — who or what does it — so nominative.",
    "id": "c9"
   },
   {
@@ -137,7 +95,7 @@
    ],
    "correct": "другому сыну",
    "case": "Дательный (Dative)",
-   "explain": "«другому сыну» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«другому сыну» — «к» always takes the dative.",
    "id": "c13"
   },
   {
@@ -151,7 +109,7 @@
    ],
    "correct": "второй сын",
    "case": "Именительный (Nominative)",
-   "explain": "«второй сын» — the subject of the sentence stands in the nominative.",
+   "explain": "«второй сын» is the subject of «сказал» — who or what does it — so nominative.",
    "id": "c14"
   },
   {
@@ -165,36 +123,8 @@
    ],
    "correct": "старшего приказчика",
    "case": "Винительный (Accusative)",
-   "explain": "«старшего приказчика» — the accusative marks the direct object of the verb.",
+   "explain": "«старшего приказчика» is the direct object of «послал» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c15"
-  },
-  {
-   "sentence": "Хозяин — это отец; сад — это мир: работники — это люди; оброк — это жизнь духовная; посланцы хозяина — это ___, которые напоминают людям о том, что им надо жить не для тела, а для духа.",
-   "lemma": "человек",
-   "options": [
-    "святым людям",
-    "святыми людьми",
-    "святых людей",
-    "святые люди"
-   ],
-   "correct": "святые люди",
-   "case": "Именительный (Nominative)",
-   "explain": "«святые люди» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
-  },
-  {
-   "sentence": "Заблудшие люди думают, что жизнь дана им для их ___, а не для исполнения воли отца, и убивают в себе жизнь духа и потому лишаются жизни.",
-   "lemma": "благо",
-   "options": [
-    "телесного блага",
-    "телесным благом",
-    "телесном благе",
-    "телесному благу"
-   ],
-   "correct": "телесного блага",
-   "case": "Родительный (Genitive)",
-   "explain": "«телесного блага» — the genitive here marks possession, absence, or quantity.",
-   "id": "c17"
   },
   {
    "sentence": "Берегитесь их, потому что они заняли место ___, пророков.",
@@ -207,7 +137,7 @@
    ],
    "correct": "истинных учителей",
    "case": "Родительный (Genitive)",
-   "explain": "«истинных учителей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«истинных учителей» depends on the noun «место» (whose? of what?) — genitive.",
    "id": "c18"
   }
  ]

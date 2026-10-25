@@ -1,62 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Было когда-то двадцать пять ___, родных братьев по матери — старой оловянной ложке, ружьё на плече, голова прямо, красный с синим мундир — ну, прелесть что за солдаты!",
-   "lemma": "солдатик",
-   "options": [
-    "оловянным солдатикам",
-    "оловянных солдатиках",
-    "оловянных солдатиков",
-    "оловянные солдатики"
-   ],
-   "correct": "оловянных солдатиков",
-   "case": "Родительный (Genitive)",
-   "explain": "«оловянных солдатиков» — the genitive here marks possession, absence, or quantity.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Было когда-то двадцать пять оловянных солдатиков, ___ по матери — старой оловянной ложке, ружьё на плече, голова прямо, красный с синим мундир — ну, прелесть что за солдаты!",
-   "lemma": "брат",
-   "options": [
-    "родными братьями",
-    "родных братьях",
-    "родные братья",
-    "родных братьев"
-   ],
-   "correct": "родных братьев",
-   "case": "Родительный (Genitive)",
-   "explain": "«родных братьев» — the genitive here marks possession, absence, or quantity.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Было когда-то двадцать пять оловянных солдатиков, родных братьев по матери — старой ___, ружьё на плече, голова прямо, красный с синим мундир — ну, прелесть что за солдаты!",
-   "lemma": "ложка",
-   "options": [
-    "оловянной ложки",
-    "оловянной ложке",
-    "оловянная ложка",
-    "оловянной ложкой"
-   ],
-   "correct": "оловянной ложке",
-   "case": "Дательный (Dative)",
-   "explain": "«оловянной ложке» — the dative marks the indirect object or recipient.",
-   "id": "c3"
-  },
-  {
-   "sentence": "Это закричал, хлопая в ладоши, ___, которому подарили оловянных солдатиков в день его рождения.",
-   "lemma": "мальчик",
-   "options": [
-    "маленького мальчика",
-    "маленький мальчик",
-    "маленьким мальчиком",
-    "маленькому мальчику"
-   ],
-   "correct": "маленький мальчик",
-   "case": "Именительный (Nominative)",
-   "explain": "«маленький мальчик» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
-  },
-  {
    "sentence": "Это закричал, хлопая в ладоши, маленький мальчик, которому подарили ___ в день его рождения.",
    "lemma": "солдатик",
    "options": [
@@ -67,7 +11,7 @@
    ],
    "correct": "оловянных солдатиков",
    "case": "Винительный (Accusative)",
-   "explain": "«оловянных солдатиков» — the accusative marks the direct object of the verb.",
+   "explain": "«оловянных солдатиков» is the direct object of «подарили» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c5"
   },
   {
@@ -81,7 +25,7 @@
    ],
    "correct": "разных игрушек",
    "case": "Родительный (Genitive)",
-   "explain": "«разных игрушек» — the genitive here marks possession, absence, or quantity.",
+   "explain": "After «много», a word of quantity — genitive.",
    "id": "c6"
   },
   {
@@ -95,22 +39,8 @@
    ],
    "correct": "маленькие окна",
    "case": "Винительный (Accusative)",
-   "explain": "«маленькие окна» — after the preposition «сквозь», the accusative marks the direct object of the verb.",
+   "explain": "«маленькие окна» — «сквозь» always takes the accusative.",
    "id": "c7"
-  },
-  {
-   "sentence": "Сквозь маленькие окна можно было видеть ___; перед самым дворцом, вокруг маленького зеркальца, которое изображало озеро, стояли деревца, а по озеру плавали и любовались своим отражением восковые лебеди.",
-   "lemma": "покои",
-   "options": [
-    "дворцовым покоям",
-    "дворцовых покоев",
-    "дворцовыми покоями",
-    "дворцовые покои"
-   ],
-   "correct": "дворцовые покои",
-   "case": "Винительный (Accusative)",
-   "explain": "«дворцовые покои» — the accusative marks the direct object of the verb.",
-   "id": "c8"
   },
   {
    "sentence": "Сквозь маленькие окна можно было видеть дворцовые покои; перед ___, вокруг маленького зеркальца, которое изображало озеро, стояли деревца, а по озеру плавали и любовались своим отражением восковые лебеди.",
@@ -123,7 +53,7 @@
    ],
    "correct": "самым дворцом",
    "case": "Творительный (Instrumental)",
-   "explain": "«самым дворцом» — after the preposition «перед», the instrumental marks the means, company, or complement.",
+   "explain": "«самым дворцом» — «перед» always takes the instrumental.",
    "id": "c9"
   },
   {
@@ -137,36 +67,22 @@
    ],
    "correct": "маленького зеркальца",
    "case": "Родительный (Genitive)",
-   "explain": "«маленького зеркальца» — after the preposition «вокруг», the genitive here marks possession, absence, or quantity.",
+   "explain": "«маленького зеркальца» — «вокруг» always takes the genitive.",
    "id": "c10"
   },
   {
    "sentence": "Всё это было чудо как мило, но милее всего была барышня, стоявшая на ___ дворца.",
    "lemma": "порог",
    "options": [
-    "сам порог",
-    "самом пороге",
     "самого порога",
+    "самому порогу",
+    "самом пороге",
     "самим порогом"
    ],
    "correct": "самом пороге",
    "case": "Предложный (Prepositional)",
-   "explain": "«самом пороге» — after the preposition «на», for location or topic.",
+   "explain": "«самом пороге» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c11"
-  },
-  {
-   "sentence": "Она тоже была вырезана из бумаги и одета в юбочку из тончайшего батиста; через плечо у неё шла узенькая ___ в виде шарфа, а на груди сверкала розетка величиною с лицо самой барышни.",
-   "lemma": "ленточка",
-   "options": [
-    "голубой ленточкой",
-    "голубой ленточке",
-    "голубая ленточка",
-    "голубой ленточки"
-   ],
-   "correct": "голубая ленточка",
-   "case": "Именительный (Nominative)",
-   "explain": "«голубая ленточка» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
   },
   {
    "sentence": "Она тоже была вырезана из бумаги и одета в юбочку из тончайшего батиста; через плечо у неё шла узенькая голубая ленточка в виде шарфа, а на груди сверкала розетка величиною с лицо ___.",
@@ -179,7 +95,7 @@
    ],
    "correct": "самой барышни",
    "case": "Родительный (Genitive)",
-   "explain": "«самой барышни» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«самой барышни» depends on the noun «лицо» (whose? of what?) — genitive.",
    "id": "c13"
   },
   {
@@ -193,7 +109,7 @@
    ],
    "correct": "оловянных солдатиков",
    "case": "Винительный (Accusative)",
-   "explain": "«оловянных солдатиков» — the accusative marks the direct object of the verb.",
+   "explain": "«оловянных солдатиков» is the direct object of «уложили» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c14"
   },
   {
@@ -207,92 +123,8 @@
    ],
    "correct": "оловянные солдатики",
    "case": "Именительный (Nominative)",
-   "explain": "«Оловянные солдатики» — the subject of the sentence stands in the nominative.",
+   "explain": "«оловянные солдатики» is the subject of «принялись» — who or what does it — so nominative.",
    "id": "c15"
-  },
-  {
-   "sentence": "Не трогались с места только танцовщица и ___: она по-прежнему держалась на вытянутом носке, простирая руки вперёд, он бодро стоял и не сводил с неё глаз.",
-   "lemma": "солдатик",
-   "options": [
-    "оловянный солдатик",
-    "оловянным солдатиком",
-    "оловянного солдатика",
-    "оловянном солдатике"
-   ],
-   "correct": "оловянный солдатик",
-   "case": "Именительный (Nominative)",
-   "explain": "«оловянный солдатик» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
-  },
-  {
-   "sentence": "Там не было табаку, а сидел маленький ___; табакерка-то была с фокусом!",
-   "lemma": "тролль",
-   "options": [
-    "чёрный тролль",
-    "чёрного тролля",
-    "чёрному троллю",
-    "чёрном тролле"
-   ],
-   "correct": "чёрный тролль",
-   "case": "Именительный (Nominative)",
-   "explain": "«чёрный тролль» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
-  },
-  {
-   "sentence": "— ___, — сказал тролль, — нечего тебе заглядываться!",
-   "lemma": "солдатик",
-   "options": [
-    "оловянного солдатика",
-    "оловянным солдатиком",
-    "оловянному солдатику",
-    "оловянный солдатик"
-   ],
-   "correct": "оловянный солдатик",
-   "case": "Именительный (Nominative)",
-   "explain": "«Оловянный солдатик» — the subject of the sentence stands in the nominative.",
-   "id": "c18"
-  },
-  {
-   "sentence": "___ будто и не слыхал.",
-   "lemma": "солдатик",
-   "options": [
-    "оловянного солдатика",
-    "оловянным солдатиком",
-    "оловянному солдатику",
-    "оловянный солдатик"
-   ],
-   "correct": "оловянный солдатик",
-   "case": "Именительный (Nominative)",
-   "explain": "«Оловянный солдатик» — the subject of the sentence stands in the nominative.",
-   "id": "c19"
-  },
-  {
-   "sentence": "Вдруг — по милости ли тролля или от сквозняка — окно распахнулось, и наш солдатик полетел головой вниз с ___, — только в ушах засвистело!",
-   "lemma": "этаж",
-   "options": [
-    "третьем этаже",
-    "третьему этажу",
-    "третьим этажом",
-    "третьего этажа"
-   ],
-   "correct": "третьего этажа",
-   "case": "Родительный (Genitive)",
-   "explain": "«третьего этажа» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
-   "id": "c20"
-  },
-  {
-   "sentence": "Когда опять прояснилось, пришли двое ___.",
-   "lemma": "мальчишка",
-   "options": [
-    "уличных мальчишек",
-    "уличных мальчишках",
-    "уличными мальчишками",
-    "уличные мальчишки"
-   ],
-   "correct": "уличных мальчишек",
-   "case": "Родительный (Genitive)",
-   "explain": "«уличных мальчишек» — the genitive here marks possession, absence, or quantity.",
-   "id": "c21"
   },
   {
    "sentence": "И они сделали из ___ лодочку, посадили туда оловянного солдатика и пустили в канавку.",
@@ -305,22 +137,8 @@
    ],
    "correct": "газетной бумаги",
    "case": "Родительный (Genitive)",
-   "explain": "«газетной бумаги» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«газетной бумаги» — «из» always takes the genitive.",
    "id": "c22"
-  },
-  {
-   "sentence": "И они сделали из газетной бумаги лодочку, посадили туда ___ и пустили в канавку.",
-   "lemma": "солдатик",
-   "options": [
-    "оловянном солдатике",
-    "оловянного солдатика",
-    "оловянный солдатик",
-    "оловянным солдатиком"
-   ],
-   "correct": "оловянного солдатика",
-   "case": "Винительный (Accusative)",
-   "explain": "«оловянного солдатика» — the accusative marks the direct object of the verb.",
-   "id": "c23"
   },
   {
    "sentence": "___ бежали рядом и хлопали в ладошки.",
@@ -333,7 +151,7 @@
    ],
    "correct": "сами мальчишки",
    "case": "Именительный (Nominative)",
-   "explain": "«Сами мальчишки» — the subject of the sentence stands in the nominative.",
+   "explain": "«сами мальчишки» is the subject of «бежали» — who or what does it — so nominative.",
    "id": "c24"
   },
   {
@@ -347,7 +165,7 @@
    ],
    "correct": "длинные мостки",
    "case": "Винительный (Accusative)",
-   "explain": "«длинные мостки» — after the preposition «под», the accusative marks the direct object of the verb.",
+   "explain": "«длинные мостки» — «под» takes the accusative here (куда? под что? or near a time — под вечер) — the instrumental would mean position under (где? под чем?).",
    "id": "c25"
   },
   {
@@ -361,7 +179,7 @@
    ],
    "correct": "гадкого тролля",
    "case": "Родительный (Genitive)",
-   "explain": "«гадкого тролля» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«гадкого тролля» depends on the noun «шутки» (whose? of what?) — genitive.",
    "id": "c26"
   },
   {
@@ -375,7 +193,7 @@
    ],
    "correct": "большая крыса",
    "case": "Именительный (Nominative)",
-   "explain": "«большая крыса» — the subject of the sentence stands in the nominative.",
+   "explain": "«большая крыса» is the subject of «выскочила» — who or what does it — so nominative.",
    "id": "c27"
   },
   {
@@ -389,7 +207,7 @@
    ],
    "correct": "оловянный солдатик",
    "case": "Именительный (Nominative)",
-   "explain": "«оловянный солдатик» — the subject of the sentence stands in the nominative.",
+   "explain": "«оловянный солдатик» is the subject of «молчал» — who or what does it — so nominative.",
    "id": "c28"
   },
   {
@@ -403,35 +221,21 @@
    ],
    "correct": "оловянный солдатик",
    "case": "Именительный (Nominative)",
-   "explain": "«оловянный солдатик» — the subject of the sentence stands in the nominative.",
+   "explain": "«оловянный солдатик» is the subject of «увидел» — who or what does it — so nominative.",
    "id": "c29"
-  },
-  {
-   "sentence": "Но течение несло лодку всё быстрее и быстрее, и оловянный солдатик уже увидел впереди свет, как вдруг услышал такой ___, что струсил бы любой храбрец.",
-   "lemma": "шум",
-   "options": [
-    "страшном шуме",
-    "страшный шум",
-    "страшным шумом",
-    "страшному шуму"
-   ],
-   "correct": "страшный шум",
-   "case": "Винительный (Accusative)",
-   "explain": "«страшный шум» — the accusative marks the direct object of the verb.",
-   "id": "c30"
   },
   {
    "sentence": "Представьте себе, у конца мостика вода из канавки устремилась в ___!",
    "lemma": "канал",
    "options": [
-    "большой канал",
+    "большому каналу",
     "большим каналом",
-    "большом канале",
-    "большого канала"
+    "большого канала",
+    "большой канал"
    ],
    "correct": "большой канал",
    "case": "Винительный (Accusative)",
-   "explain": "«большой канал» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«большой канал» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c31"
   },
   {
@@ -445,7 +249,7 @@
    ],
    "correct": "большому водопаду",
    "case": "Дательный (Dative)",
-   "explain": "«большому водопаду» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«большому водопаду» — «к» always takes the dative.",
    "id": "c32"
   },
   {
@@ -459,7 +263,7 @@
    ],
    "correct": "оловянный солдатик",
    "case": "Именительный (Nominative)",
-   "explain": "«оловянный солдатик» — the subject of the sentence stands in the nominative.",
+   "explain": "«оловянный солдатик» is the subject of «пошёл» — who or what does it — so nominative.",
    "id": "c33"
   },
   {
@@ -473,78 +277,36 @@
    ],
    "correct": "оловянный солдатик",
    "case": "Именительный (Nominative)",
-   "explain": "«оловянный солдатик» — the subject of the sentence stands in the nominative.",
+   "explain": "«оловянный солдатик» is the subject of «держался» — who or what does it — so nominative.",
    "id": "c34"
-  },
-  {
-   "sentence": "Рыба металась туда и сюда, выделывала самые ___, но вдруг замерла, точно в неё ударила молния.",
-   "lemma": "скачка",
-   "options": [
-    "удивительных скачках",
-    "удивительных скачков",
-    "удивительные скачки",
-    "удивительными скачками"
-   ],
-   "correct": "удивительные скачки",
-   "case": "Винительный (Accusative)",
-   "explain": "«удивительные скачки» — the accusative marks the direct object of the verb.",
-   "id": "c35"
-  },
-  {
-   "sentence": "Дело в том, что рыбу поймали, свезли на рынок, потом она попала на кухню, и кухарка распорола ей брюхо ___.",
-   "lemma": "нож",
-   "options": [
-    "большим ножом",
-    "большему ножу",
-    "большем ноже",
-    "больший нож"
-   ],
-   "correct": "большим ножом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«большим ножом» — the instrumental marks the means, company, or complement.",
-   "id": "c36"
   },
   {
    "sentence": "Кухарка взяла оловянного солдатика двумя пальцами за талию и понесла в комнату, куда сбежались посмотреть на ___ все домашние.",
    "lemma": "путешественник",
    "options": [
+    "замечательного путешественника",
     "замечательному путешественнику",
-    "замечательном путешественнике",
     "замечательным путешественником",
-    "замечательного путешественника"
+    "замечательный путешественник"
    ],
    "correct": "замечательного путешественника",
    "case": "Винительный (Accusative)",
-   "explain": "«замечательного путешественника» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«замечательного путешественника» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c37"
   },
   {
    "sentence": "Но ___ ничуть не загордился.",
    "lemma": "солдатик",
    "options": [
-    "оловянный солдатик",
-    "оловянным солдатиком",
-    "оловянного солдатика",
-    "оловянном солдатике"
-   ],
-   "correct": "оловянный солдатик",
-   "case": "Именительный (Nominative)",
-   "explain": "«оловянный солдатик» — the subject of the sentence stands in the nominative.",
-   "id": "c38"
-  },
-  {
-   "sentence": "___ был тронут и чуть не заплакал оловом, но это было бы неприлично, и он удержался.",
-   "lemma": "солдатик",
-   "options": [
-    "оловянного солдатика",
+    "оловянном солдатике",
     "оловянным солдатиком",
     "оловянному солдатику",
     "оловянный солдатик"
    ],
    "correct": "оловянный солдатик",
    "case": "Именительный (Nominative)",
-   "explain": "«Оловянный солдатик» — the subject of the sentence stands in the nominative.",
-   "id": "c39"
+   "explain": "«оловянный солдатик» is the subject of «загордился» — who or what does it — so nominative.",
+   "id": "c38"
   },
   {
    "sentence": "___ стоял охваченный пламенем: ему было ужасно жарко, от огня или любви — он и сам не знал.",
@@ -557,7 +319,7 @@
    ],
    "correct": "оловянный солдатик",
    "case": "Именительный (Nominative)",
-   "explain": "«Оловянный солдатик» — the subject of the sentence stands in the nominative.",
+   "explain": "«оловянный солдатик» is the subject of «стоял» — who or what does it — so nominative.",
    "id": "c40"
   },
   {
@@ -571,21 +333,21 @@
    ],
    "correct": "оловянный солдатик",
    "case": "Именительный (Nominative)",
-   "explain": "«оловянный солдатик» — the subject of the sentence stands in the nominative.",
+   "explain": "«оловянный солдатик» is the subject of «растаял» — who or what does it — so nominative.",
    "id": "c41"
   },
   {
    "sentence": "На ___ горничная выгребала из печки золу и нашла маленькое оловянное сердечко; от танцовщицы же осталась одна розетка, да и та вся обгорела и почернела, как уголь.",
    "lemma": "день",
    "options": [
-    "другой день",
+    "другому дню",
     "другого дня",
-    "другом дне",
-    "другому дню"
+    "другой день",
+    "другим днём"
    ],
    "correct": "другой день",
    "case": "Винительный (Accusative)",
-   "explain": "«другой день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«другой день» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c42"
   }
  ]

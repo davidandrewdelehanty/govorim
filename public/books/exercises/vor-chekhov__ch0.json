@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Дул сырой, ___, с темного неба моросил мелкий дождь.",
-   "lemma": "ветер",
-   "options": [
-    "холодном ветре",
-    "холодного ветра",
-    "холодному ветру",
-    "холодный ветер"
-   ],
-   "correct": "холодный ветер",
-   "case": "Именительный (Nominative)",
-   "explain": "«холодный ветер» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "В одной из них, маленькой и сгорбленной, он узнал ___, единственного на весь уезд «образованного человека».",
    "lemma": "доктор",
    "options": [
@@ -25,22 +11,8 @@
    ],
    "correct": "здешнего доктора",
    "case": "Винительный (Accusative)",
-   "explain": "«здешнего доктора» — the accusative marks the direct object of the verb.",
+   "explain": "«здешнего доктора» is the direct object of «узнал» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c2"
-  },
-  {
-   "sentence": "В одной из них, маленькой и сгорбленной, он узнал здешнего доктора, единственного на весь уезд «___».",
-   "lemma": "человек",
-   "options": [
-    "образованном человеке",
-    "образованному человеку",
-    "образованным человеком",
-    "образованного человека"
-   ],
-   "correct": "образованного человека",
-   "case": "Винительный (Accusative)",
-   "explain": "«образованного человека» — the accusative marks the direct object of the verb.",
-   "id": "c3"
   },
   {
    "sentence": "Федор Степаныч остановился и прислонился к ___: пусть пройдут.",
@@ -53,22 +25,8 @@
    ],
    "correct": "мокрому забору",
    "case": "Дательный (Dative)",
-   "explain": "«мокрому забору» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«мокрому забору» — «к» always takes the dative.",
    "id": "c4"
-  },
-  {
-   "sentence": "Колокола-тенора заливались ___ и быстро отбивали звуки, точно спешили куда-нибудь.",
-   "lemma": "голос",
-   "options": [
-    "всевозможных голосах",
-    "всевозможных голосов",
-    "всевозможным голосам",
-    "всевозможными голосами"
-   ],
-   "correct": "всевозможными голосами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«всевозможными голосами» — the instrumental marks the means, company, or complement.",
-   "id": "c6"
   },
   {
    "sentence": "Вместо этого ___ зеленый палисадник и его домик с тремя окнами.",
@@ -81,7 +39,7 @@
    ],
    "correct": "грязного забора",
    "case": "Родительный (Genitive)",
-   "explain": "«грязного забора» — after the preposition «вместо», the genitive here marks possession, absence, or quantity.",
+   "explain": "«грязного забора» — «вместо» always takes the genitive.",
    "id": "c9"
   },
   {
@@ -95,7 +53,7 @@
    ],
    "correct": "глупая головка",
    "case": "Именительный (Nominative)",
-   "explain": "«глупая головка» — the subject of the sentence stands in the nominative.",
+   "explain": "«глупая головка» is the subject of «утопает» — who or what does it — so nominative.",
    "id": "c11"
   },
   {
@@ -109,7 +67,7 @@
    ],
    "correct": "кружевной подушке",
    "case": "Предложный (Prepositional)",
-   "explain": "«кружевной подушке» — after the preposition «в», for location or topic.",
+   "explain": "«кружевной подушке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c12"
   },
   {
@@ -123,7 +81,7 @@
    ],
    "correct": "грязного снега",
    "case": "Родительный (Genitive)",
-   "explain": "«грязного снега» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«грязного снега» — «от» always takes the genitive.",
    "id": "c13"
   },
   {
@@ -137,22 +95,8 @@
    ],
    "correct": "почтовый тарантас",
    "case": "Именительный (Nominative)",
-   "explain": "«почтовый тарантас» — the subject of the sentence stands in the nominative.",
+   "explain": "«почтовый тарантас» is the subject of «ехал» — who or what does it — so nominative.",
    "id": "c16"
-  },
-  {
-   "sentence": "Из-за чемоданов выглядывала ___.",
-   "lemma": "головка",
-   "options": [
-    "женской головкой",
-    "женской головки",
-    "женская головка",
-    "женской головке"
-   ],
-   "correct": "женская головка",
-   "case": "Именительный (Nominative)",
-   "explain": "«женская головка» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
   },
   {
    "sentence": "До ___ шатался ссыльный по городу и искал квартиры.",
@@ -165,7 +109,7 @@
    ],
    "correct": "самого вечера",
    "case": "Родительный (Genitive)",
-   "explain": "«самого вечера» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«самого вечера» — «до» always takes the genitive.",
    "id": "c18"
   }
  ]

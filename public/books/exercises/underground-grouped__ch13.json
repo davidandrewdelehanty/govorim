@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Я застал у него еще двух моих ___.",
-   "lemma": "товарищ",
-   "options": [
-    "школьными товарищами",
-    "школьных товарищах",
-    "школьным товарищам",
-    "школьных товарищей"
-   ],
-   "correct": "школьных товарищей",
-   "case": "Родительный (Genitive)",
-   "explain": "«школьных товарищей» — the genitive here marks possession, absence, or quantity.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Они толковали, повидимому, об одном ___.",
-   "lemma": "дело",
-   "options": [
-    "важному делу",
-    "важное дело",
-    "важном деле",
-    "важным делом"
-   ],
-   "correct": "важном деле",
-   "case": "Предложный (Prepositional)",
-   "explain": "«важном деле» — after the preposition «об», for location or topic.",
-   "id": "c2"
-  },
-  {
    "sentence": "Очевидно, меня считали чем-то вроде самой ___.",
    "lemma": "муха",
    "options": [
@@ -39,77 +11,21 @@
    ],
    "correct": "обыкновенной мухи",
    "case": "Родительный (Genitive)",
-   "explain": "«обыкновенной мухи» — after the preposition «вроде», the genitive here marks possession, absence, or quantity.",
+   "explain": "«обыкновенной мухи» — «вроде» always takes the genitive.",
    "id": "c3"
-  },
-  {
-   "sentence": "Мосье Зверков был все время и моим ___.",
-   "lemma": "товарищ",
-   "options": [
-    "школьный товарищ",
-    "школьном товарище",
-    "школьным товарищем",
-    "школьному товарищу"
-   ],
-   "correct": "школьным товарищем",
-   "case": "Творительный (Instrumental)",
-   "explain": "«школьным товарищем» — the instrumental marks the means, company, or complement.",
-   "id": "c5"
-  },
-  {
-   "sentence": "В низших классах он был только хорошенький, ___, которого все любили.",
-   "lemma": "мальчик",
-   "options": [
-    "резвым мальчиком",
-    "резвый мальчик",
-    "резвому мальчику",
-    "резвого мальчика"
-   ],
-   "correct": "резвый мальчик",
-   "case": "Именительный (Nominative)",
-   "explain": "«резвый мальчик» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
-  },
-  {
-   "sentence": "Я, впрочем, ненавидел его и в низших классах, и именно за то, что он был хорошенький и ___.",
-   "lemma": "мальчик",
-   "options": [
-    "резвым мальчиком",
-    "резвый мальчик",
-    "резвому мальчику",
-    "резвого мальчика"
-   ],
-   "correct": "резвый мальчик",
-   "case": "Именительный (Nominative)",
-   "explain": "«резвый мальчик» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
-  },
-  {
-   "sentence": "Притом же как-то принято было у нас считать Зверкова специалистом по части ловкости и ___.",
-   "lemma": "манера",
-   "options": [
-    "хорошим манерам",
-    "хорошими манерами",
-    "хороших манер",
-    "хороших манерах"
-   ],
-   "correct": "хороших манер",
-   "case": "Родительный (Genitive)",
-   "explain": "«хороших манер» — the genitive here marks possession, absence, or quantity.",
-   "id": "c9"
   },
   {
    "sentence": "Я ненавидел то, что он рассказывал о своих ___ с женщинами (он не решался начинать с женщинами, не имея еще офицерских эполет, и ждал их с нетерпением) и о том, как он поминутно будет выходить на дуэли.",
    "lemma": "успех",
    "options": [
-    "будущих успехах",
-    "будущих успехов",
     "будущим успехам",
-    "будущие успехи"
+    "будущих успехов",
+    "будущих успехах",
+    "будущими успехами"
    ],
    "correct": "будущих успехах",
    "case": "Предложный (Prepositional)",
-   "explain": "«будущих успехах» — after the preposition «о», for location or topic.",
+   "explain": "«будущих успехах» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c10"
   },
   {
@@ -117,13 +33,13 @@
    "lemma": "успех",
    "options": [
     "казарменно-поручичьих успехов",
-    "казарменно-поручичьих успехах",
     "казарменно-поручичьим успехам",
-    "казарменно-поручичьи успехи"
+    "казарменно-поручичьих успехах",
+    "казарменно-поручичьими успехами"
    ],
    "correct": "казарменно-поручичьих успехах",
    "case": "Предложный (Prepositional)",
-   "explain": "«казарменно-поручичьих успехах» — after the preposition «об», for location or topic.",
+   "explain": "«казарменно-поручичьих успехах» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c11"
   },
   {
@@ -137,7 +53,7 @@
    ],
    "correct": "другие слухи",
    "case": "Именительный (Nominative)",
-   "explain": "«другие слухи» — the subject of the sentence stands in the nominative.",
+   "explain": "«другие слухи» is the subject of «пошли» — who or what does it — so nominative.",
    "id": "c12"
   },
   {
@@ -151,7 +67,7 @@
    ],
    "correct": "древнего генерала",
    "case": "Родительный (Genitive)",
-   "explain": "«древнего генерала» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«древнего генерала» depends on the noun «дочками» (whose? of what?) — genitive.",
    "id": "c14"
   },
   {
@@ -165,36 +81,8 @@
    ],
    "correct": "равной ноге",
    "case": "Предложный (Prepositional)",
-   "explain": "«равной ноге» — after the preposition «на», for location or topic.",
+   "explain": "«равной ноге» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c15"
-  },
-  {
-   "sentence": "Зверкову он доводился каким-то ___, и это, глупо сказать, придавало ему между нами некоторое значение.",
-   "lemma": "родственник",
-   "options": [
-    "дальнем родственнике",
-    "дальнему родственнику",
-    "дальним родственником",
-    "дальнего родственника"
-   ],
-   "correct": "дальним родственником",
-   "case": "Творительный (Instrumental)",
-   "explain": "«дальним родственником» — the instrumental marks the means, company, or complement.",
-   "id": "c16"
-  },
-  {
-   "sentence": "– Да ведь у нас кружок свой, приятельский, – злился Ферфичкин, тоже берясь за шляпу. – Это не ___.",
-   "lemma": "собрание",
-   "options": [
-    "официальным собранием",
-    "официального собрания",
-    "официальном собрании",
-    "официальное собрание"
-   ],
-   "correct": "официальное собрание",
-   "case": "Именительный (Nominative)",
-   "explain": "«официальное собрание» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
   },
   {
    "sentence": "Симонов, с которым я остался с глазу на глаз, был в каком-то ___ и странно посмотрел на меня.",
@@ -207,36 +95,8 @@
    ],
    "correct": "досадливом недоумении",
    "case": "Предложный (Prepositional)",
-   "explain": "«досадливом недоумении» — after the preposition «в», for location or topic.",
+   "explain": "«досадливом недоумении» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c18"
-  },
-  {
-   "sentence": "Он осекся и стал ходить по комнате с еще ___.",
-   "lemma": "досада",
-   "options": [
-    "большая досада",
-    "большей досады",
-    "большей досадой",
-    "большей досаде"
-   ],
-   "correct": "большей досадой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«большей досадой» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c19"
-  },
-  {
-   "sentence": "Что же вы не ска-же-те! – вскрикнул я, схватив фуражку, с удивительно, впрочем, ___, бог знает откуда налетевшим.",
-   "lemma": "вид",
-   "options": [
-    "развязном виде",
-    "развязному виду",
-    "развязным видом",
-    "развязного вида"
-   ],
-   "correct": "развязным видом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«развязным видом» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c20"
   },
   {
    "sentence": "Они цинически смеялись над моим лицом, над моей ___; а между тем какие глупые у них самих были лица!",
@@ -249,21 +109,21 @@
    ],
    "correct": "мешковатой фигурой",
    "case": "Творительный (Instrumental)",
-   "explain": "«мешковатой фигурой» — after the preposition «над», the instrumental marks the means, company, or complement.",
+   "explain": "«мешковатой фигурой» — «над» always takes the instrumental.",
    "id": "c24"
   },
   {
    "sentence": "Они таких ___ не понимали, такими внушающими, поражающими предметами не интересовались, что поневоле я стал считать их ниже себя.",
    "lemma": "вещь",
    "options": [
-    "необходимые вещи",
     "необходимым вещам",
-    "необходимых вещах",
-    "необходимых вещей"
+    "необходимых вещей",
+    "необходимыми вещами",
+    "необходимых вещах"
    ],
    "correct": "необходимых вещей",
    "case": "Родительный (Genitive)",
-   "explain": "«необходимых вещей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«необходимых вещей» is the object of a negated verb («не понимали») — genitive instead of the accusative.",
    "id": "c25"
   },
   {
@@ -277,7 +137,7 @@
    ],
    "correct": "дурного примера",
    "case": "Родительный (Genitive)",
-   "explain": "«дурного примера» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«дурного примера» — «от» always takes the genitive.",
    "id": "c26"
   },
   {
@@ -291,50 +151,8 @@
    ],
    "correct": "специального курса",
    "case": "Родительный (Genitive)",
-   "explain": "«специального курса» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«специального курса» depends on the noun «состав» (whose? of what?) — genitive.",
    "id": "c27"
-  },
-  {
-   "sentence": "Но я уже был деспот в душе; я хотел неограниченно властвовать над его душой; я хотел вселить в него презрение к окружавшей его среде; я потребовал от него высокомерного и ___ с этой средой.",
-   "lemma": "разрыв",
-   "options": [
-    "окончательным разрывом",
-    "окончательного разрыва",
-    "окончательный разрыв",
-    "окончательном разрыве"
-   ],
-   "correct": "окончательного разрыва",
-   "case": "Родительный (Genitive)",
-   "explain": "«окончательного разрыва» — the genitive here marks possession, absence, or quantity.",
-   "id": "c28"
-  },
-  {
-   "sentence": "С непривычки, что ли, но мне всю жизнь, при всяком внешнем, хотя бы мельчайшем событии, все казалось, что вот сейчас и наступит какой-нибудь ___ в моей жизни.",
-   "lemma": "перелом",
-   "options": [
-    "радикальный перелом",
-    "радикального перелома",
-    "радикальном переломе",
-    "радикальному перелому"
-   ],
-   "correct": "радикальный перелом",
-   "case": "Именительный (Nominative)",
-   "explain": "«радикальный перелом» — the subject of the sentence stands in the nominative.",
-   "id": "c30"
-  },
-  {
-   "sentence": "Но таких ___ были тысячи, и все они волновали меня до бессилия.",
-   "lemma": "вещь",
-   "options": [
-    "главных вещах",
-    "главных вещей",
-    "главным вещам",
-    "главными вещами"
-   ],
-   "correct": "главных вещей",
-   "case": "Родительный (Genitive)",
-   "explain": "«главных вещей» — the genitive here marks possession, absence, or quantity.",
-   "id": "c31"
   },
   {
    "sentence": "А главное, на панталонах, на ___ было огромное желтое пятно.",
@@ -347,22 +165,8 @@
    ],
    "correct": "самой коленке",
    "case": "Предложный (Prepositional)",
-   "explain": "«самой коленке» — after the preposition «на», for location or topic.",
+   "explain": "«самой коленке» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c32"
-  },
-  {
-   "sentence": "Я предчувствовал, что одно уже это пятно отнимет у меня девять десятых ___.",
-   "lemma": "достоинство",
-   "options": [
-    "собственного достоинства",
-    "собственному достоинству",
-    "собственное достоинство",
-    "собственным достоинством"
-   ],
-   "correct": "собственного достоинства",
-   "case": "Родительный (Genitive)",
-   "explain": "«собственного достоинства» — the genitive here marks possession, absence, or quantity.",
-   "id": "c33"
   }
  ]
 }

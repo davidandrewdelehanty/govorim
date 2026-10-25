@@ -1,48 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "И ___! – казалось бы, делать добро – давать деньги нуждающимся – очень хорошее дело и должно располагать к любви к людям, выходило же наоборот: это дело вызывало во мне недоброжелательность и осуждение людей.",
-   "lemma": "дело",
-   "options": [
-    "странного дела",
-    "странное дело",
-    "странном деле",
-    "странным делом"
-   ],
-   "correct": "странное дело",
-   "case": "Именительный (Nominative)",
-   "explain": "«странное дело» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "И странное дело! – казалось бы, делать добро – давать деньги нуждающимся – очень ___ и должно располагать к любви к людям, выходило же наоборот: это дело вызывало во мне недоброжелательность и осуждение людей.",
-   "lemma": "дело",
-   "options": [
-    "хорошее дело",
-    "хорошего дела",
-    "хорошем деле",
-    "хорошим делом"
-   ],
-   "correct": "хорошее дело",
-   "case": "Именительный (Nominative)",
-   "explain": "«хорошее дело» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Были из просящих ___, которые возбуждали во мне неприятное чувство; но я, раз дав старушке, не имел права отказывать и этим, и я стал давать.",
-   "lemma": "пьяница",
-   "options": [
-    "очевидных пьяниц",
-    "очевидных пьяницах",
-    "очевидные пьяницы",
-    "очевидным пьяницам"
-   ],
-   "correct": "очевидные пьяницы",
-   "case": "Именительный (Nominative)",
-   "explain": "«очевидные пьяницы» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
-  },
-  {
    "sentence": "Я вышел на улицу; ___ люди шли за мной и просили денег.",
    "lemma": "род",
    "options": [
@@ -53,7 +11,7 @@
    ],
    "correct": "разного рода",
    "case": "Родительный (Genitive)",
-   "explain": "«разного рода» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«разного рода» depends on the noun «люди» (whose? of what?) — genitive.",
    "id": "c7"
   },
   {
@@ -67,7 +25,7 @@
    ],
    "correct": "другой день",
    "case": "Винительный (Accusative)",
-   "explain": "«другой день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«другой день» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c11"
   },
   {
@@ -81,22 +39,8 @@
    ],
    "correct": "окончательного обхода",
    "case": "Родительный (Genitive)",
-   "explain": "«окончательного обхода» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«окончательного обхода» — «до» always takes the genitive.",
    "id": "c12"
-  },
-  {
-   "sentence": "И очень часто мне казалось, что те ___, которые он вымогает от меня, не улучшат, а ухудшат его положение.",
-   "lemma": "деньга",
-   "options": [
-    "самых деньгах",
-    "самых денег",
-    "самые деньги",
-    "самыми деньгами"
-   ],
-   "correct": "самые деньги",
-   "case": "Именительный (Nominative)",
-   "explain": "«самые деньги» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
   },
   {
    "sentence": "Чем чаще я ходил в эти дома, чем в большее общение входил с тамошними людьми, тем очевиднее мне становилось невозможным что-нибудь сделать, но я все не отставал от своей затеи до последнего ___ переписи.",
@@ -109,35 +53,21 @@
    ],
    "correct": "ночного обхода",
    "case": "Родительный (Genitive)",
-   "explain": "«ночного обхода» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«ночного обхода» — «до» always takes the genitive.",
    "id": "c16"
-  },
-  {
-   "sentence": "Мне особенно совестно вспомнить этот ___.",
-   "lemma": "обход",
-   "options": [
-    "последнему обходу",
-    "последнего обхода",
-    "последнем обходе",
-    "последний обход"
-   ],
-   "correct": "последний обход",
-   "case": "Винительный (Accusative)",
-   "explain": "«последний обход» — the accusative marks the direct object of the verb.",
-   "id": "c17"
   },
   {
    "sentence": "В 7 часов стали ко мне собираться все те, которые хотели участвовать в этом последнем ___.",
    "lemma": "обход",
    "options": [
+    "ночным обходом",
     "ночному обходу",
-    "ночной обход",
-    "ночного обхода",
-    "ночном обходе"
+    "ночном обходе",
+    "ночного обхода"
    ],
    "correct": "ночном обходе",
    "case": "Предложный (Prepositional)",
-   "explain": "«ночном обходе» — after the preposition «в», for location or topic.",
+   "explain": "«ночном обходе» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c18"
   },
   {
@@ -145,42 +75,28 @@
    "lemma": "курточка",
    "options": [
     "охотничьи курточки",
-    "охотничьих курточках",
-    "охотничьими курточками",
-    "охотничьим курточкам"
+    "охотничьим курточкам",
+    "охотничьих курточек",
+    "охотничьими курточками"
    ],
    "correct": "охотничьи курточки",
    "case": "Винительный (Accusative)",
-   "explain": "«охотничьи курточки» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«охотничьи курточки» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c19"
   },
   {
    "sentence": "Они взяли с собой особенные ___ и необыкновенные карандаши.",
    "lemma": "книжка",
    "options": [
+    "записных книжках",
     "записным книжкам",
-    "записных книжек",
     "записные книжки",
     "записными книжками"
    ],
    "correct": "записные книжки",
    "case": "Винительный (Accusative)",
-   "explain": "«записные книжки» — the accusative marks the direct object of the verb.",
+   "explain": "«записные книжки» is the direct object of «взяли» (кого? что?) — accusative.",
    "id": "c21"
-  },
-  {
-   "sentence": "На них яснее видна была глупость и фальшь нашего положения, но и все мы остальные были в таком же ___.",
-   "lemma": "положение",
-   "options": [
-    "фальшивого положения",
-    "фальшивое положение",
-    "фальшивым положением",
-    "фальшивом положении"
-   ],
-   "correct": "фальшивом положении",
-   "case": "Предложный (Prepositional)",
-   "explain": "«фальшивом положении» — after the preposition «в», for location or topic.",
-   "id": "c22"
   },
   {
    "sentence": "Перед отъездом произошло между нами совещание, вроде ___, о том, как, с чего начинать, как разделиться и т. п.",
@@ -193,22 +109,8 @@
    ],
    "correct": "военного совета",
    "case": "Родительный (Genitive)",
-   "explain": "«военного совета» — after the preposition «вроде», the genitive here marks possession, absence, or quantity.",
+   "explain": "«военного совета» — «вроде» always takes the genitive.",
    "id": "c23"
-  },
-  {
-   "sentence": "Впереди нас, во мраке, шел Ваня в пальто и ___ с фонарем, а за ним и мы.",
-   "lemma": "штаны",
-   "options": [
-    "белыми штанами",
-    "белых штанов",
-    "белых штанах",
-    "белые штаны"
-   ],
-   "correct": "белых штанах",
-   "case": "Предложный (Prepositional)",
-   "explain": "«белых штанах» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c24"
   },
   {
    "sentence": "___ с детьми на узких койках спали с чужими мужчинами.",
@@ -221,7 +123,7 @@
    ],
    "correct": "многие женщины",
    "case": "Именительный (Nominative)",
-   "explain": "«Многие женщины» — the subject of the sentence stands in the nominative.",
+   "explain": "«многие женщины» is the subject of «спали» — who or what does it — so nominative.",
    "id": "c25"
   },
   {
@@ -235,7 +137,7 @@
    ],
    "correct": "чужими мужчинами",
    "case": "Творительный (Instrumental)",
-   "explain": "«чужими мужчинами» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«чужими мужчинами» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c27"
   },
   {
@@ -249,7 +151,7 @@
    ],
    "correct": "огромному количеству",
    "case": "Дательный (Dative)",
-   "explain": "«огромному количеству» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«огромному количеству» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c28"
   },
   {
@@ -263,7 +165,7 @@
    ],
    "correct": "другого человека",
    "case": "Родительный (Genitive)",
-   "explain": "«другого человека» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«другого человека» depends on the noun «теле» (whose? of what?) — genitive.",
    "id": "c30"
   }
  ]

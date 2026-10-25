@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Не спит только ___ провизора Черномордика, содержателя б—ской аптеки.",
-   "lemma": "жена",
-   "options": [
-    "молодая жена",
-    "молодой жене",
-    "молодой жены",
-    "молодой женой"
-   ],
-   "correct": "молодая жена",
-   "case": "Именительный (Nominative)",
-   "explain": "«молодая жена» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Сидит она у ___, в одной сорочке, и глядит на улицу.",
    "lemma": "окно",
    "options": [
@@ -25,22 +11,8 @@
    ],
    "correct": "открытого окна",
    "case": "Родительный (Genitive)",
-   "explain": "«открытого окна» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«открытого окна» — «у» always takes the genitive.",
    "id": "c2"
-  },
-  {
-   "sentence": "___ впилась ему в переносицу, но он этого не чувствует и даже улыбается, так как ему снится, будто все в городе кашляют и непрерывно покупают у него капли датского короля.",
-   "lemma": "блоха",
-   "options": [
-    "жадной блохой",
-    "жадной блохи",
-    "жадной блохе",
-    "жадная блоха"
-   ],
-   "correct": "жадная блоха",
-   "case": "Именительный (Nominative)",
-   "explain": "«Жадная блоха» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
   },
   {
    "sentence": "Жадная блоха впилась ему в переносицу, но он этого не чувствует и даже улыбается, так как ему снится, будто все в городе кашляют и непрерывно покупают у него капли ___.",
@@ -53,7 +25,7 @@
    ],
    "correct": "датского короля",
    "case": "Родительный (Genitive)",
-   "explain": "«датского короля» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«датского короля» depends on the noun «капли» (whose? of what?) — genitive.",
    "id": "c4"
   },
   {
@@ -67,7 +39,7 @@
    ],
    "correct": "большого пожара",
    "case": "Родительный (Genitive)",
-   "explain": "«большого пожара» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«большого пожара» — «от» always takes the genitive.",
    "id": "c5"
   },
   {
@@ -81,7 +53,7 @@
    ],
    "correct": "ночной тишины",
    "case": "Родительный (Genitive)",
-   "explain": "«ночной тишины» — after the preposition «среди», the genitive here marks possession, absence, or quantity.",
+   "explain": "«ночной тишины» — «среди» always takes the genitive.",
    "id": "c6"
   },
   {
@@ -95,64 +67,8 @@
    ],
    "correct": "прошлой неделе",
    "case": "Предложный (Prepositional)",
-   "explain": "«прошлой неделе» — after the preposition «на», for location or topic.",
+   "explain": "«прошлой неделе» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c7"
-  },
-  {
-   "sentence": "Аптекарша, спрятавшись за занавеску, слышит ___.",
-   "lemma": "звонок",
-   "options": [
-    "сиплым звонком",
-    "сиплом звонке",
-    "сиплого звонка",
-    "сиплый звонок"
-   ],
-   "correct": "сиплый звонок",
-   "case": "Винительный (Accusative)",
-   "explain": "«сиплый звонок» — the accusative marks the direct object of the verb.",
-   "id": "c9"
-  },
-  {
-   "sentence": "___ смугл, бородат и неповоротлив.",
-   "lemma": "доктор",
-   "options": [
-    "толстобрюхий доктор",
-    "толстобрюхом докторе",
-    "толстобрюхого доктора",
-    "толстобрюхим доктором"
-   ],
-   "correct": "толстобрюхий доктор",
-   "case": "Именительный (Nominative)",
-   "explain": "«Толстобрюхий доктор» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
-  },
-  {
-   "sentence": "Офицер же розов, безус, женоподобен и гибок, как ___.",
-   "lemma": "хлыст",
-   "options": [
-    "английский хлыст",
-    "английском хлысте",
-    "английского хлыста",
-    "английским хлыстом"
-   ],
-   "correct": "английский хлыст",
-   "case": "Именительный (Nominative)",
-   "explain": "«английский хлыст» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
-  },
-  {
-   "sentence": "Покупатели, не мигая, глядят на ее спину; доктор жмурится, как ___, а поручик очень серьезен.",
-   "lemma": "кот",
-   "options": [
-    "сытого кота",
-    "сытым котом",
-    "сытый кот",
-    "сытому коту"
-   ],
-   "correct": "сытый кот",
-   "case": "Именительный (Nominative)",
-   "explain": "«сытый кот» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
   },
   {
    "sentence": "— ___ вижу, что дама в аптеке торгует, — говорит доктор.",
@@ -165,50 +81,8 @@
    ],
    "correct": "первый раз",
    "case": "Винительный (Accusative)",
-   "explain": "«Первый раз» — the accusative marks the direct object of the verb.",
+   "explain": "«первый раз» tells how long or how often, with no preposition — accusative.",
    "id": "c13"
-  },
-  {
-   "sentence": "Это ___ аптекарь изволят почивать.",
-   "lemma": "господин",
-   "options": [
-    "самого господина",
-    "сам господин",
-    "самому господину",
-    "самим господином"
-   ],
-   "correct": "сам господин",
-   "case": "Именительный (Nominative)",
-   "explain": "«сам господин» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
-  },
-  {
-   "sentence": "Она вступает в разговор, хохочет, кокетничает и даже, после долгих просьб покупателей, выпивает унца два ___.",
-   "lemma": "вино",
-   "options": [
-    "красное вино",
-    "красного вина",
-    "красному вину",
-    "красном вине"
-   ],
-   "correct": "красного вина",
-   "case": "Родительный (Genitive)",
-   "explain": "«красного вина» — the genitive here marks possession, absence, or quantity.",
-   "id": "c16"
-  },
-  {
-   "sentence": "Обтесов вынимает из кармана ___, долго роется в пачке денег и расплачивается.",
-   "lemma": "бумажник",
-   "options": [
-    "толстый бумажник",
-    "толстом бумажнике",
-    "толстому бумажнику",
-    "толстым бумажником"
-   ],
-   "correct": "толстый бумажник",
-   "case": "Винительный (Accusative)",
-   "explain": "«толстый бумажник» — the accusative marks the direct object of the verb.",
-   "id": "c17"
   },
   {
    "sentence": "Наконец покупатели, после ___, целуют у аптекарши ручку и нерешительно, словно раздумывая, не забыли ли они чего-нибудь, выходят из аптеки.",
@@ -221,7 +95,7 @@
    ],
    "correct": "долгих разговоров",
    "case": "Родительный (Genitive)",
-   "explain": "«долгих разговоров» — after the preposition «после», the genitive here marks possession, absence, or quantity.",
+   "explain": "«долгих разговоров» — «после» always takes the genitive.",
    "id": "c18"
   }
  ]

@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Послышались убегающие шаги, затем — грянули выстрелы, затем — ___.",
-   "lemma": "крик",
-   "options": [
-    "диким криком",
-    "дикого крика",
-    "диком крике",
-    "дикий крик"
-   ],
-   "correct": "дикий крик",
-   "case": "Именительный (Nominative)",
-   "explain": "«дикий крик» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
    "sentence": "Проиграв «пешку», Шельга сделал ___.",
    "lemma": "ход",
    "options": [
@@ -25,22 +11,8 @@
    ],
    "correct": "хороший ход",
    "case": "Винительный (Accusative)",
-   "explain": "«хороший ход» — the accusative marks the direct object of the verb.",
+   "explain": "«хороший ход» is the direct object of «сделал» (кого? что?) — accusative.",
    "id": "c3"
-  },
-  {
-   "sentence": "— Есть осмотреть боны, — ответил моряк, едва попадая спросонок в рукава ___.",
-   "lemma": "куртка",
-   "options": [
-    "морская куртка",
-    "морской куртке",
-    "морской курткой",
-    "морской куртки"
-   ],
-   "correct": "морской куртки",
-   "case": "Родительный (Genitive)",
-   "explain": "«морской куртки» — the genitive here marks possession, absence, or quantity.",
-   "id": "c4"
   },
   {
    "sentence": "Петька, чтобы тебе тридцать раз утонуть в ___, что же ты смотрел, паразит, деревенщина паршивая?",
@@ -53,35 +25,21 @@
    ],
    "correct": "тухлой воде",
    "case": "Предложный (Prepositional)",
-   "explain": "«тухлой воде» — after the preposition «в», for location or topic.",
+   "explain": "«тухлой воде» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c7"
-  },
-  {
-   "sentence": "Моряк неудержимо мчался фордевиндом по неизведанным безднам ___.",
-   "lemma": "язык",
-   "options": [
-    "великорусский язык",
-    "великорусского языка",
-    "великорусском языке",
-    "великорусскому языку"
-   ],
-   "correct": "великорусского языка",
-   "case": "Родительный (Genitive)",
-   "explain": "«великорусского языка» — the genitive here marks possession, absence, or quantity.",
-   "id": "c9"
   },
   {
    "sentence": "Прошло часа три по крайней мере, покуда он на быстроходном ___ не вылетел в открытое море.",
    "lemma": "катер",
    "options": [
-    "сторожевом катере",
     "сторожевому катеру",
     "сторожевого катера",
-    "сторожевой катер"
+    "сторожевом катере",
+    "сторожевым катером"
    ],
    "correct": "сторожевом катере",
    "case": "Предложный (Prepositional)",
-   "explain": "«сторожевом катере» — after the preposition «на», for location or topic.",
+   "explain": "«сторожевом катере» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c10"
   },
   {
@@ -95,7 +53,7 @@
    ],
    "correct": "подводных камней",
    "case": "Родительный (Genitive)",
-   "explain": "«подводных камней» — after the preposition «среди», the genitive here marks possession, absence, or quantity.",
+   "explain": "«подводных камней» — «среди» always takes the genitive.",
    "id": "c12"
   },
   {
@@ -109,78 +67,8 @@
    ],
    "correct": "пассажирских аэропланов",
    "case": "Родительный (Genitive)",
-   "explain": "«пассажирских аэропланов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«пассажирских аэропланов» depends on the noun «отлете» (whose? of what?) — genitive.",
    "id": "c13"
-  },
-  {
-   "sentence": "В просветы между ветвями с ___ долетали голоса, плеск весел, женский смех.",
-   "lemma": "вода",
-   "options": [
-    "оранжевых вод",
-    "оранжевые воды",
-    "оранжевых водах",
-    "оранжевым водам"
-   ],
-   "correct": "оранжевых вод",
-   "case": "Родительный (Genitive)",
-   "explain": "«оранжевых вод» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
-   "id": "c14"
-  },
-  {
-   "sentence": "В просветы между ветвями с оранжевых вод долетали голоса, плеск весел, ___.",
-   "lemma": "смех",
-   "options": [
-    "женским смехом",
-    "женском смехе",
-    "женскому смеху",
-    "женский смех"
-   ],
-   "correct": "женский смех",
-   "case": "Именительный (Nominative)",
-   "explain": "«женский смех» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
-  },
-  {
-   "sentence": "Старые, как мир, дела творились под темными кущами леса на островах, где бессонно перекликались ___ какие-то птички, пощелкивали соловьи.",
-   "lemma": "голос",
-   "options": [
-    "тревожных голосах",
-    "тревожными голосами",
-    "тревожные голоса",
-    "тревожных голосов"
-   ],
-   "correct": "тревожными голосами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«тревожными голосами» — the instrumental marks the means, company, or complement.",
-   "id": "c16"
-  },
-  {
-   "sentence": "Все живое, вынырнув из дождей и вьюг ___, торопилось жить, с веселой жадностью глотало хмельную прелесть этой ночи.",
-   "lemma": "зима",
-   "options": [
-    "долгой зимой",
-    "долгой зимы",
-    "долгая зима",
-    "долгой зиме"
-   ],
-   "correct": "долгой зимы",
-   "case": "Родительный (Genitive)",
-   "explain": "«долгой зимы» — the genitive here marks possession, absence, or quantity.",
-   "id": "c17"
-  },
-  {
-   "sentence": "— Не было у тебя ничего: ни отца, ни матери, одно ___.",
-   "lemma": "пузо",
-   "options": [
-    "голодным пузом",
-    "голодном пузе",
-    "голодному пузу",
-    "голодное пузо"
-   ],
-   "correct": "голодное пузо",
-   "case": "Именительный (Nominative)",
-   "explain": "«голодное пузо» — the subject of the sentence stands in the nominative.",
-   "id": "c19"
   }
  ]
 }

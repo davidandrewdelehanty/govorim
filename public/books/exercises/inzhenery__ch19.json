@@ -1,48 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Балластная возка — ___ на линии — шла и без него.",
-   "lemma": "работа",
-   "options": [
-    "единственной работы",
-    "единственная работа",
-    "единственной работе",
-    "единственной работой"
-   ],
-   "correct": "единственная работа",
-   "case": "Именительный (Nominative)",
-   "explain": "«единственная работа» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Сидя на тормозе, ему оставалось только переживать все это бурное, такое еще ___.",
-   "lemma": "прошлое",
-   "options": [
-    "недавнего прошлого",
-    "недавнем прошлом",
-    "недавним прошлым",
-    "недавнее прошлое"
-   ],
-   "correct": "недавнее прошлое",
-   "case": "Именительный (Nominative)",
-   "explain": "«недавнее прошлое» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
-   "sentence": "Вот уродливо торчащая из-под насыпи ___, которую ошибочно разбил Карташев и которая теперь осталась немым, но красноречивым памятником его инженерного искусства.",
-   "lemma": "труба",
-   "options": [
-    "деревянной трубы",
-    "деревянная труба",
-    "деревянной трубе",
-    "деревянной трубой"
-   ],
-   "correct": "деревянная труба",
-   "case": "Именительный (Nominative)",
-   "explain": "«деревянная труба» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
-  },
-  {
    "sentence": "Вот уродливо торчащая из-под насыпи деревянная труба, которую ошибочно разбил Карташев и которая теперь осталась немым, но красноречивым памятником его ___.",
    "lemma": "искусство",
    "options": [
@@ -53,7 +11,7 @@
    ],
    "correct": "инженерного искусства",
    "case": "Родительный (Genitive)",
-   "explain": "«инженерного искусства» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«инженерного искусства» depends on the noun «памятником» (whose? of what?) — genitive.",
    "id": "c5"
   },
   {
@@ -67,22 +25,8 @@
    ],
    "correct": "питательная труба",
    "case": "Именительный (Nominative)",
-   "explain": "«питательная труба» — the subject of the sentence stands in the nominative.",
+   "explain": "«питательная труба» is the subject of «вышла» — who or what does it — so nominative.",
    "id": "c6"
-  },
-  {
-   "sentence": "И водокачка на станции — разбитая по ошибке на полторы сажени дальше от пути, вследствие чего ее питательная труба вышла ___.",
-   "lemma": "длина",
-   "options": [
-    "уродливой длины",
-    "уродливой длине",
-    "уродливая длина",
-    "уродливой длиной"
-   ],
-   "correct": "уродливой длины",
-   "case": "Родительный (Genitive)",
-   "explain": "«уродливой длины» — the genitive here marks possession, absence, or quantity.",
-   "id": "c7"
   },
   {
    "sentence": "— Ну, что — они без году неделю служили, — пренебрежительно бросил ___.",
@@ -95,7 +39,7 @@
    ],
    "correct": "главный бухгалтер",
    "case": "Именительный (Nominative)",
-   "explain": "«главный бухгалтер» — the subject of the sentence stands in the nominative.",
+   "explain": "«главный бухгалтер» is the subject of «бросил» — who or what does it — so nominative.",
    "id": "c8"
   },
   {
@@ -109,7 +53,7 @@
    ],
    "correct": "первого участка",
    "case": "Родительный (Genitive)",
-   "explain": "«первого участка» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«первого участка» depends on the noun «начальником» (whose? of what?) — genitive.",
    "id": "c9"
   },
   {
@@ -123,22 +67,8 @@
    ],
    "correct": "другой дороге",
    "case": "Предложный (Prepositional)",
-   "explain": "«другой дороге» — after the preposition «на», for location or topic.",
+   "explain": "«другой дороге» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c10"
-  },
-  {
-   "sentence": "___ до вечера, до отхода поезда в Одессу, Карташев провел у Петровых.",
-   "lemma": "день",
-   "options": [
-    "остальному дню",
-    "остальным днём",
-    "остальном дне",
-    "остальной день"
-   ],
-   "correct": "остальной день",
-   "case": "Винительный (Accusative)",
-   "explain": "«Остальной день» — the accusative marks the direct object of the verb.",
-   "id": "c11"
   },
   {
    "sentence": "Если солнце светит, он думает о дожде; если какая-нибудь радость — он ищет ___ и до тех пор не успокоится, пока не сведет на нет всю эту радость.",
@@ -151,7 +81,7 @@
    ],
    "correct": "отрицательной стороны",
    "case": "Родительный (Genitive)",
-   "explain": "«отрицательной стороны» — the genitive here marks possession, absence, or quantity.",
+   "explain": "With «ищет», a verb of waiting, seeking, asking or wanting, the object can stand in the genitive — as here.",
    "id": "c12"
   },
   {
@@ -165,22 +95,8 @@
    ],
    "correct": "главному инженеру",
    "case": "Дательный (Dative)",
-   "explain": "«главному инженеру» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«главному инженеру» — «к» always takes the dative.",
    "id": "c13"
-  },
-  {
-   "sentence": "Мы — самая обыкновенная, самая настоящая ___, преследующая только свои интересы, учитывая все, что может принести нам выгоду.",
-   "lemma": "лавочка",
-   "options": [
-    "торговой лавочке",
-    "торговая лавочка",
-    "торговой лавочки",
-    "торговой лавочкой"
-   ],
-   "correct": "торговая лавочка",
-   "case": "Именительный (Nominative)",
-   "explain": "«торговая лавочка» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
   },
   {
    "sentence": "Начальник ___ — прекрасная, благородная личность, преданная своему делу.",
@@ -193,50 +109,8 @@
    ],
    "correct": "тыловых сообщений",
    "case": "Родительный (Genitive)",
-   "explain": "«тыловых сообщений» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«тыловых сообщений» depends on the noun «Начальник» (whose? of what?) — genitive.",
    "id": "c15"
-  },
-  {
-   "sentence": "— И рубашка и обеды, — говорила Аглаида Васильевна, гладя роскошные русые волосы Ани, — и ровная, ласковая, как ___.",
-   "lemma": "день",
-   "options": [
-    "ясный день",
-    "ясного дня",
-    "ясном дне",
-    "ясным днём"
-   ],
-   "correct": "ясный день",
-   "case": "Именительный (Nominative)",
-   "explain": "«ясный день» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
-  },
-  {
-   "sentence": "Там пусть мужа на трон посадят другие, — пусть сбросят его в самую преисподнюю, а с ней все тот же ___.",
-   "lemma": "день",
-   "options": [
-    "ясный день",
-    "ясного дня",
-    "ясном дне",
-    "ясным днём"
-   ],
-   "correct": "ясный день",
-   "case": "Винительный (Accusative)",
-   "explain": "«ясный день» — the accusative marks the direct object of the verb.",
-   "id": "c17"
-  },
-  {
-   "sentence": "— ___, — согласилась Аглаида Васильевна.",
-   "lemma": "деньга",
-   "options": [
-    "большими деньгами",
-    "больших деньгах",
-    "большим деньгам",
-    "большие деньги"
-   ],
-   "correct": "большие деньги",
-   "case": "Именительный (Nominative)",
-   "explain": "«Большие деньги» — the subject of the sentence stands in the nominative.",
-   "id": "c18"
   }
  ]
 }

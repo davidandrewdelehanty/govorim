@@ -1,76 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "И не только не нашли, но ясно признали, что то самое, что приводило меня в отчаяние — бессмыслица жизни, — есть единственное ___, доступное человеку.",
-   "lemma": "знание",
-   "options": [
-    "несомненного знания",
-    "несомненное знание",
-    "несомненным знанием",
-    "несомненном знании"
-   ],
-   "correct": "несомненное знание",
-   "case": "Именительный (Nominative)",
-   "explain": "«несомненное знание» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Это было то ___, когда я сам усложнялся и развивался.",
-   "lemma": "время",
-   "options": [
-    "самое время",
-    "самому времени",
-    "самого времени",
-    "самым временем"
-   ],
-   "correct": "самое время",
-   "case": "Именительный (Nominative)",
-   "explain": "«самое время» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
-   "sentence": "— Ответ: В бесконечно ___, в бесконечно долгое время, бесконечно малые частицы видоизменяются в бесконечной сложности, и когда ты поймешь законы этих видоизменений, тогда поймешь, зачем ты живешь.",
-   "lemma": "пространство",
-   "options": [
-    "большим пространством",
-    "большом пространстве",
-    "большому пространству",
-    "большого пространства"
-   ],
-   "correct": "большом пространстве",
-   "case": "Предложный (Prepositional)",
-   "explain": "«большом пространстве» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c4"
-  },
-  {
-   "sentence": "— Ответ: В бесконечно большом пространстве, в бесконечно долгое время, бесконечно ___ видоизменяются в бесконечной сложности, и когда ты поймешь законы этих видоизменений, тогда поймешь, зачем ты живешь.",
-   "lemma": "частица",
-   "options": [
-    "малых частиц",
-    "малых частицах",
-    "малые частицы",
-    "малыми частицами"
-   ],
-   "correct": "малые частицы",
-   "case": "Винительный (Accusative)",
-   "explain": "«малые частицы» — the accusative marks the direct object of the verb.",
-   "id": "c5"
-  },
-  {
-   "sentence": "Для того чтобы понять, что он такое, человек должен прежде понять, что такое всё это ___, состоящее из таких же людей, как и он сам, не понимающих самих себя.",
-   "lemma": "человечество",
-   "options": [
-    "таинственным человечеством",
-    "таинственное человечество",
-    "таинственному человечеству",
-    "таинственном человечестве"
-   ],
-   "correct": "таинственное человечество",
-   "case": "Именительный (Nominative)",
-   "explain": "«таинственное человечество» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
-  },
-  {
    "sentence": "Задача ___ есть причинная последовательность материальных явлений.",
    "lemma": "наука",
    "options": [
@@ -81,7 +11,7 @@
    ],
    "correct": "опытной науки",
    "case": "Родительный (Genitive)",
-   "explain": "«опытной науки» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«опытной науки» depends on the noun «Задача» (whose? of what?) — genitive.",
    "id": "c7"
   },
   {
@@ -95,22 +25,8 @@
    ],
    "correct": "материальных явлений",
    "case": "Родительный (Genitive)",
-   "explain": "«материальных явлений» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«материальных явлений» depends on the noun «последовательность» (whose? of what?) — genitive.",
    "id": "c8"
-  },
-  {
-   "sentence": "Стоит ___ ввести вопрос о конечной причине, и получается чепуха.",
-   "lemma": "наука",
-   "options": [
-    "опытной науке",
-    "опытной наукой",
-    "опытной науки",
-    "опытная наука"
-   ],
-   "correct": "опытной науке",
-   "case": "Дательный (Dative)",
-   "explain": "«опытной науке» — the dative marks the indirect object or recipient.",
-   "id": "c9"
   },
   {
    "sentence": "Стоит опытной науке ввести вопрос о ___, и получается чепуха.",
@@ -123,7 +39,7 @@
    ],
    "correct": "конечной причине",
    "case": "Предложный (Prepositional)",
-   "explain": "«конечной причине» — after the preposition «о», for location or topic.",
+   "explain": "«конечной причине» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c10"
   },
   {
@@ -137,21 +53,21 @@
    ],
    "correct": "умозрительной науки",
    "case": "Родительный (Genitive)",
-   "explain": "«умозрительной науки» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«умозрительной науки» depends on the noun «Задача» (whose? of what?) — genitive.",
    "id": "c11"
   },
   {
    "sentence": "Стоит ввести исследование ___, как явления социальные, исторические, и получается чепуха.",
    "lemma": "явление",
    "options": [
-    "причинными явлениями",
-    "причинные явления",
     "причинных явлений",
-    "причинным явлениям"
+    "причинным явлениям",
+    "причинные явления",
+    "причинных явлениях"
    ],
    "correct": "причинных явлений",
    "case": "Родительный (Genitive)",
-   "explain": "«причинных явлений» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«причинных явлений» depends on the noun «исследование» (whose? of what?) — genitive.",
    "id": "c12"
   },
   {
@@ -165,7 +81,7 @@
    ],
    "correct": "опытная наука",
    "case": "Именительный (Nominative)",
-   "explain": "«Опытная наука» — the subject of the sentence stands in the nominative.",
+   "explain": "«опытная наука» is the subject of «дает» — who or what does it — so nominative.",
    "id": "c13"
   },
   {
@@ -179,22 +95,8 @@
    ],
    "correct": "человеческого ума",
    "case": "Родительный (Genitive)",
-   "explain": "«человеческого ума» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«человеческого ума» depends on the noun «величие» (whose? of what?) — genitive.",
    "id": "c14"
-  },
-  {
-   "sentence": "Опытная наука тогда только дает положительное знание и являет величие человеческого ума, когда она не вводит в свои исследования ___.",
-   "lemma": "причина",
-   "options": [
-    "конечная причина",
-    "конечной причине",
-    "конечной причины",
-    "конечной причиной"
-   ],
-   "correct": "конечной причины",
-   "case": "Родительный (Genitive)",
-   "explain": "«конечной причины» — the genitive here marks possession, absence, or quantity.",
-   "id": "c15"
   }
  ]
 }

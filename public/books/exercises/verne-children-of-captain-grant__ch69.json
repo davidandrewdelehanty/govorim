@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Как бесконечно он был обязан леди Гленарван, этой ___, и ее спутникам!",
-   "lemma": "женщина",
-   "options": [
-    "благородной женщиной",
-    "благородная женщина",
-    "благородной женщины",
-    "благородной женщине"
-   ],
-   "correct": "благородной женщине",
-   "case": "Дательный (Dative)",
-   "explain": "«благородной женщине» — the dative marks the indirect object or recipient.",
-   "id": "c1"
-  },
-  {
    "sentence": "Разве все они, от самого Гленарвана и до ___, не боролись и не страдали ради него!",
    "lemma": "матрос",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "последнего матроса",
    "case": "Родительный (Genitive)",
-   "explain": "«последнего матроса» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«последнего матроса» — «до» always takes the genitive.",
    "id": "c2"
   },
   {
@@ -33,13 +19,13 @@
    "lemma": "майор",
    "options": [
     "невозмутимом майоре",
-    "невозмутимого майора",
-    "невозмутимому майору",
-    "невозмутимый майор"
+    "невозмутимым майором",
+    "невозмутимый майор",
+    "невозмутимому майору"
    ],
    "correct": "невозмутимый майор",
    "case": "Именительный (Nominative)",
-   "explain": "«невозмутимый майор» — the subject of the sentence stands in the nominative.",
+   "explain": "«невозмутимый майор» is the subject of «мог» — who or what does it — so nominative.",
    "id": "c3"
   },
   {
@@ -53,22 +39,8 @@
    ],
    "correct": "любимых детей",
    "case": "Винительный (Accusative)",
-   "explain": "«любимых детей» — the accusative marks the direct object of the verb.",
+   "explain": "«любимых детей» is the direct object of «осыпал» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c4"
-  },
-  {
-   "sentence": "И он осыпал любимых детей ___.",
-   "lemma": "поцелуй",
-   "options": [
-    "бесконечные поцелуи",
-    "бесконечными поцелуями",
-    "бесконечным поцелуям",
-    "бесконечных поцелуев"
-   ],
-   "correct": "бесконечными поцелуями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«бесконечными поцелуями» — the instrumental marks the means, company, or complement.",
-   "id": "c5"
   },
   {
    "sentence": "Когда наступила очередь Джона Манглса, ___ покраснел, как девушка, и во время разговора с отцом Мери голос его дрожал.",
@@ -81,7 +53,7 @@
    ],
    "correct": "молодой капитан",
    "case": "Именительный (Nominative)",
-   "explain": "«молодой капитан» — the subject of the sentence stands in the nominative.",
+   "explain": "«молодой капитан» is the subject of «покраснел» — who or what does it — so nominative.",
    "id": "c6"
   },
   {
@@ -95,50 +67,8 @@
    ],
    "correct": "юного героя",
    "case": "Родительный (Genitive)",
-   "explain": "«юного героя» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«юного героя» depends on the noun «подвигах» (whose? of what?) — genitive.",
    "id": "c7"
-  },
-  {
-   "sentence": "Гарри Грант узнал о подвигах юного героя, узнал, как мальчик уже отчасти уплатил Гленарвану ___.",
-   "lemma": "долг",
-   "options": [
-    "отцовского долга",
-    "отцовскому долгу",
-    "отцовский долг",
-    "отцовским долгом"
-   ],
-   "correct": "отцовский долг",
-   "case": "Винительный (Accusative)",
-   "explain": "«отцовский долг» — the accusative marks the direct object of the verb.",
-   "id": "c8"
-  },
-  {
-   "sentence": "Но Гарри Гранту хотелось, прежде чем на остров будет высажен Айртон, принять там, на своей скале, ___.",
-   "lemma": "друг",
-   "options": [
-    "новых друзей",
-    "новыми друзьями",
-    "новых друзьях",
-    "новые друзья"
-   ],
-   "correct": "новых друзей",
-   "case": "Винительный (Accusative)",
-   "explain": "«новых друзей» — the accusative marks the direct object of the verb.",
-   "id": "c9"
-  },
-  {
-   "sentence": "Он пригласил их посетить свой ___ и отобедать за столом Робинзона Океании.",
-   "lemma": "домик",
-   "options": [
-    "деревянный домик",
-    "деревянного домика",
-    "деревянном домике",
-    "деревянным домиком"
-   ],
-   "correct": "деревянный домик",
-   "case": "Винительный (Accusative)",
-   "explain": "«деревянный домик» — the accusative marks the direct object of the verb.",
-   "id": "c10"
   },
   {
    "sentence": "Этот островок был, в сущности, вершиной ___ и представлял собой плоскогорье со множеством базальтовых скал и обломков вулканических пород.",
@@ -151,21 +81,21 @@
    ],
    "correct": "подводной горы",
    "case": "Родительный (Genitive)",
-   "explain": "«подводной горы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«подводной горы» depends on the noun «вершиной» (whose? of what?) — genitive.",
    "id": "c11"
   },
   {
    "sentence": "Этот островок был, в сущности, вершиной подводной горы и представлял собой плоскогорье со множеством ___ и обломков вулканических пород.",
    "lemma": "скала",
    "options": [
-    "базальтовыми скалами",
-    "базальтовым скалам",
+    "базальтовые скалы",
     "базальтовых скал",
+    "базальтовым скалам",
     "базальтовых скалах"
    ],
    "correct": "базальтовых скал",
    "case": "Родительный (Genitive)",
-   "explain": "«базальтовых скал» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«базальтовых скал» depends on the noun «множеством» (whose? of what?) — genitive.",
    "id": "c12"
   },
   {
@@ -179,7 +109,7 @@
    ],
    "correct": "вулканических пород",
    "case": "Родительный (Genitive)",
-   "explain": "«вулканических пород» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«вулканических пород» depends on the noun «обломков» (whose? of what?) — genitive.",
    "id": "c13"
   },
   {
@@ -193,7 +123,7 @@
    ],
    "correct": "подземного огня",
    "case": "Родительный (Genitive)",
-   "explain": "«подземного огня» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«подземного огня» depends on the noun «действием» (whose? of what?) — genitive.",
    "id": "c14"
   },
   {
@@ -207,22 +137,8 @@
    ],
    "correct": "тихого океана",
    "case": "Родительный (Genitive)",
-   "explain": "«Тихого океана» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«тихого океана» depends on the noun «дна» (whose? of what?) — genitive.",
    "id": "c15"
-  },
-  {
-   "sentence": "Но с тех пор прошло уже много веков, вулкан потух, и его вершина превратилась в остров, на нем образовался ___ почвы; этой новой землей постепенно завладела растительность.",
-   "lemma": "слой",
-   "options": [
-    "плодородного слоя",
-    "плодородным слоем",
-    "плодородный слой",
-    "плодородном слое"
-   ],
-   "correct": "плодородный слой",
-   "case": "Именительный (Nominative)",
-   "explain": "«плодородный слой» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
   },
   {
    "sentence": "Проплывавшие мимо острова китобои высадили здесь ___ — коз и свиней, которые размножились и с течением времени одичали.",
@@ -235,7 +151,7 @@
    ],
    "correct": "домашних животных",
    "case": "Винительный (Accusative)",
-   "explain": "«домашних животных» — the accusative marks the direct object of the verb.",
+   "explain": "«домашних животных» is the direct object of «высадили» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c17"
   },
   {
@@ -249,49 +165,21 @@
    ],
    "correct": "тихого океана",
    "case": "Родительный (Genitive)",
-   "explain": "«Тихого океана» — after the preposition «среди», the genitive here marks possession, absence, or quantity.",
+   "explain": "«тихого океана» — «среди» always takes the genitive.",
    "id": "c18"
-  },
-  {
-   "sentence": "Несколько тщательно обработанных акров земли приносили им ___.",
-   "lemma": "овощ",
-   "options": [
-    "превосходные овощи",
-    "превосходными овощами",
-    "превосходных овощей",
-    "превосходных овощах"
-   ],
-   "correct": "превосходные овощи",
-   "case": "Винительный (Accusative)",
-   "explain": "«превосходные овощи» — the accusative marks the direct object of the verb.",
-   "id": "c19"
-  },
-  {
-   "sentence": "Гости подошли к домику, осененному зелеными ___; перед его окнами живописно расстилалось море, сверкавшее под лучами солнца.",
-   "lemma": "дерево",
-   "options": [
-    "камедные деревья",
-    "камедными деревьями",
-    "камедных деревьев",
-    "камедных деревьях"
-   ],
-   "correct": "камедными деревьями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«камедными деревьями» — after the preposition «к», the instrumental marks the means, company, or complement.",
-   "id": "c20"
   },
   {
    "sentence": "Под ___ поставили стол, и все уселись вокруг него.",
    "lemma": "дерево",
    "options": [
-    "раскидистыми деревьями",
     "раскидистых деревьях",
-    "раскидистые деревья",
+    "раскидистыми деревьями",
+    "раскидистым деревьям",
     "раскидистых деревьев"
    ],
    "correct": "раскидистыми деревьями",
    "case": "Творительный (Instrumental)",
-   "explain": "«раскидистыми деревьями» — after the preposition «под», the instrumental marks the means, company, or complement.",
+   "explain": "«раскидистыми деревьями» — «под» takes the instrumental here (где? под чем?) — the accusative would mean movement under (куда? под что?).",
    "id": "c21"
   },
   {
@@ -305,50 +193,8 @@
    ],
    "correct": "дикого цикория",
    "case": "Родительный (Genitive)",
-   "explain": "«дикого цикория» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«дикого цикория» depends on the noun «стебля» (whose? of what?) — genitive.",
    "id": "c22"
-  },
-  {
-   "sentence": "Жаркое из козлятины, хлеб из нарду, несколько чашек молока, два-три стебля дикого цикория и чистая ___ составляли эту простую, идиллическую трапезу.",
-   "lemma": "вода",
-   "options": [
-    "холодной водой",
-    "холодная вода",
-    "холодной воды",
-    "холодной воде"
-   ],
-   "correct": "холодная вода",
-   "case": "Именительный (Nominative)",
-   "explain": "«холодная вода» — the subject of the sentence stands in the nominative.",
-   "id": "c23"
-  },
-  {
-   "sentence": "— Жалеть пройдоху Айртона не приходится: этот островок — ___!",
-   "lemma": "рай",
-   "options": [
-    "настоящему раю",
-    "настоящем рае",
-    "настоящий рай",
-    "настоящим раем"
-   ],
-   "correct": "настоящий рай",
-   "case": "Именительный (Nominative)",
-   "explain": "«настоящий рай» — the subject of the sentence stands in the nominative.",
-   "id": "c24"
-  },
-  {
-   "sentence": "— Но я очень жалею, что Мария-Тереза не обширный плодородный остров с рекой вместо ручья и ___ вместо бухточки.",
-   "lemma": "порт",
-   "options": [
-    "удобным портом",
-    "удобному порту",
-    "удобный порт",
-    "удобном порте"
-   ],
-   "correct": "удобным портом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«удобным портом» — the instrumental marks the means, company, or complement.",
-   "id": "c25"
   },
   {
    "sentence": "— Потому что тогда я основал бы здесь, в ___, колонию, которую подарил бы Шотландии.",
@@ -361,7 +207,7 @@
    ],
    "correct": "тихом океане",
    "case": "Предложный (Prepositional)",
-   "explain": "«Тихом океане» — after the preposition «в», for location or topic.",
+   "explain": "«тихом океане» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c26"
   },
   {
@@ -375,7 +221,7 @@
    ],
    "correct": "несчастные братья",
    "case": "Именительный (Nominative)",
-   "explain": "«несчастные братья» — the subject of the sentence stands in the nominative.",
+   "explain": "«несчастные братья» is the subject of «нашли» — who or what does it — so nominative.",
    "id": "c27"
   },
   {
@@ -389,49 +235,21 @@
    ],
    "correct": "новой земле",
    "case": "Предложный (Prepositional)",
-   "explain": "«новой земле» — after the preposition «на», for location or topic.",
+   "explain": "«новой земле» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c28"
-  },
-  {
-   "sentence": "— ___, достойный благородного сердца!",
-   "lemma": "план",
-   "options": [
-    "прекрасном плане",
-    "прекрасного плана",
-    "прекрасный план",
-    "прекрасным планом"
-   ],
-   "correct": "прекрасный план",
-   "case": "Именительный (Nominative)",
-   "explain": "«Прекрасный план» — the subject of the sentence stands in the nominative.",
-   "id": "c29"
-  },
-  {
-   "sentence": "— Прекрасный план, достойный ___!",
-   "lemma": "сердце",
-   "options": [
-    "благородном сердце",
-    "благородному сердцу",
-    "благородное сердце",
-    "благородного сердца"
-   ],
-   "correct": "благородного сердца",
-   "case": "Родительный (Genitive)",
-   "explain": "«благородного сердца» — the genitive here marks possession, absence, or quantity.",
-   "id": "c30"
   },
   {
    "sentence": "Всем не терпелось услышать на этом ___, в этом скромном домике рассказ о том, как потерпевшие крушение прожили два долгих года вдали от людей.",
    "lemma": "островок",
    "options": [
-    "сам островок",
     "самом островке",
-    "самого островка",
-    "самим островком"
+    "самому островку",
+    "самим островком",
+    "самого островка"
    ],
    "correct": "самом островке",
    "case": "Предложный (Prepositional)",
-   "explain": "«самом островке» — after the preposition «на», for location or topic.",
+   "explain": "«самом островке» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c31"
   },
   {
@@ -445,36 +263,22 @@
    ],
    "correct": "скромном домике",
    "case": "Предложный (Prepositional)",
-   "explain": "«скромном домике» — after the preposition «в», for location or topic.",
+   "explain": "«скромном домике» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c32"
   },
   {
    "sentence": "— Моя история, — начал он, — это история всех робинзонов, заброшенных на ___.",
    "lemma": "остров",
    "options": [
-    "пустынного острова",
-    "пустынном острове",
     "пустынный остров",
+    "пустынного острова",
+    "пустынным островом",
     "пустынному острову"
    ],
    "correct": "пустынный остров",
    "case": "Винительный (Accusative)",
-   "explain": "«пустынный остров» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«пустынный остров» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c33"
-  },
-  {
-   "sentence": "В ночь с двадцать шестого на двадцать седьмое июня 1862 года «Британия», потеряв управление во время ___, разбилась о риф Мария-Тереза.",
-   "lemma": "буря",
-   "options": [
-    "шестидневной бурей",
-    "шестидневной бури",
-    "шестидневной буре",
-    "шестидневная буря"
-   ],
-   "correct": "шестидневной бури",
-   "case": "Родительный (Genitive)",
-   "explain": "«шестидневной бури» — after the preposition «во», the genitive here marks possession, absence, or quantity.",
-   "id": "c34"
   },
   {
    "sentence": "Море так бушевало, что спасти всех было невозможно, и моя ___ погибла.",
@@ -487,21 +291,21 @@
    ],
    "correct": "несчастная команда",
    "case": "Именительный (Nominative)",
-   "explain": "«несчастная команда» — the subject of the sentence stands in the nominative.",
+   "explain": "«несчастная команда» is the subject of «погибла» — who or what does it — so nominative.",
    "id": "c35"
   },
   {
    "sentence": "Земля, приютившая нас, оказалась ___ длиной в пять миль, шириной в две.",
    "lemma": "островок",
    "options": [
-    "пустынного островка",
-    "пустынный островок",
+    "пустынном островке",
     "пустынному островку",
+    "пустынного островка",
     "пустынным островком"
    ],
    "correct": "пустынным островком",
    "case": "Творительный (Instrumental)",
-   "explain": "«пустынным островком» — the instrumental marks the means, company, or complement.",
+   "explain": "After «оказалась», what someone or something is or becomes stands in the instrumental.",
    "id": "c36"
   },
   {
@@ -515,22 +319,8 @@
    ],
    "correct": "пресной воды",
    "case": "Родительный (Genitive)",
-   "explain": "«пресной воды» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«пресной воды» depends on the noun «источник» (whose? of what?) — genitive.",
    "id": "c37"
-  },
-  {
-   "sentence": "Очутившись с моими двумя матросами в этом ___ земного шара, я не пал духом и приготовился к упорной борьбе.",
-   "lemma": "уголок",
-   "options": [
-    "затерянному уголку",
-    "затерянного уголка",
-    "затерянный уголок",
-    "затерянном уголке"
-   ],
-   "correct": "затерянном уголке",
-   "case": "Предложный (Prepositional)",
-   "explain": "«затерянном уголке» — after the preposition «в», for location or topic.",
-   "id": "c38"
   },
   {
    "sentence": "Очутившись с моими двумя матросами в этом затерянном уголке ___, я не пал духом и приготовился к упорной борьбе.",
@@ -543,7 +333,7 @@
    ],
    "correct": "земного шара",
    "case": "Родительный (Genitive)",
-   "explain": "«земного шара» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«земного шара» depends on the noun «уголке» (whose? of what?) — genitive.",
    "id": "c39"
   },
   {
@@ -557,64 +347,8 @@
    ],
    "correct": "упорной борьбе",
    "case": "Дательный (Dative)",
-   "explain": "«упорной борьбе» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«упорной борьбе» — «к» always takes the dative.",
    "id": "c40"
-  },
-  {
-   "sentence": "Боб и Джо, мои ___ по несчастью, стали энергично помогать мне.",
-   "lemma": "товарищ",
-   "options": [
-    "отважных товарищах",
-    "отважные товарищи",
-    "отважными товарищами",
-    "отважных товарищей"
-   ],
-   "correct": "отважные товарищи",
-   "case": "Именительный (Nominative)",
-   "explain": "«отважные товарищи» — the subject of the sentence stands in the nominative.",
-   "id": "c41"
-  },
-  {
-   "sentence": "___ были трудны, но вскоре охота и рыбная ловля обеспечили нас пищей: остров кишел дикими козами, а у берегов было много рыбы.",
-   "lemma": "день",
-   "options": [
-    "первые дни",
-    "первым дням",
-    "первых дней",
-    "первыми днями"
-   ],
-   "correct": "первые дни",
-   "case": "Именительный (Nominative)",
-   "explain": "«Первые дни» — the subject of the sentence stands in the nominative.",
-   "id": "c42"
-  },
-  {
-   "sentence": "Первые дни были трудны, но вскоре охота и ___ обеспечили нас пищей: остров кишел дикими козами, а у берегов было много рыбы.",
-   "lemma": "ловля",
-   "options": [
-    "рыбной ловли",
-    "рыбная ловля",
-    "рыбной ловлей",
-    "рыбной ловле"
-   ],
-   "correct": "рыбная ловля",
-   "case": "Именительный (Nominative)",
-   "explain": "«рыбная ловля» — the subject of the sentence stands in the nominative.",
-   "id": "c43"
-  },
-  {
-   "sentence": "Первые дни были трудны, но вскоре охота и рыбная ловля обеспечили нас пищей: остров кишел ___, а у берегов было много рыбы.",
-   "lemma": "коза",
-   "options": [
-    "диких коз",
-    "дикие козы",
-    "диким козам",
-    "дикими козами"
-   ],
-   "correct": "дикими козами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«дикими козами» — the instrumental marks the means, company, or complement.",
-   "id": "c44"
   },
   {
    "sentence": "Приборы, которые мне удалось спасти от крушения, помогли мне точно определить, где находится наш островок, и я понял, что он лежит вдали от ___ судов и что только счастливый случай может выручить нас.",
@@ -627,22 +361,8 @@
    ],
    "correct": "обычных путей",
    "case": "Родительный (Genitive)",
-   "explain": "«обычных путей» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«обычных путей» — «от» always takes the genitive.",
    "id": "c45"
-  },
-  {
-   "sentence": "Приборы, которые мне удалось спасти от крушения, помогли мне точно определить, где находится наш островок, и я понял, что он лежит вдали от обычных путей судов и что только ___ может выручить нас.",
-   "lemma": "случай",
-   "options": [
-    "счастливому случаю",
-    "счастливым случаем",
-    "счастливого случая",
-    "счастливый случай"
-   ],
-   "correct": "счастливый случай",
-   "case": "Именительный (Nominative)",
-   "explain": "«счастливый случай» — the subject of the sentence stands in the nominative.",
-   "id": "c46"
   },
   {
    "sentence": "Не переставая думать о моих ___, но уже не надеясь снова увидеть их, я решил смело принять выпавшее мне на долю испытание.",
@@ -655,7 +375,7 @@
    ],
    "correct": "любимых детях",
    "case": "Предложный (Prepositional)",
-   "explain": "«любимых детях» — after the preposition «о», for location or topic.",
+   "explain": "«любимых детях» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c47"
   },
   {
@@ -669,22 +389,8 @@
    ],
    "correct": "другие овощи",
    "case": "Именительный (Nominative)",
-   "explain": "«другие овощи» — the subject of the sentence stands in the nominative.",
+   "explain": "«другие овощи» is the subject of «появились» — who or what does it — so nominative.",
    "id": "c48"
-  },
-  {
-   "sentence": "Из нарду, росшего на дне пересохших ручьев, мы стали печь довольно ___.",
-   "lemma": "хлеб",
-   "options": [
-    "вкусном хлебе",
-    "вкусного хлеба",
-    "вкусным хлебом",
-    "вкусный хлеб"
-   ],
-   "correct": "вкусный хлеб",
-   "case": "Винительный (Accusative)",
-   "explain": "«вкусный хлеб» — the accusative marks the direct object of the verb.",
-   "id": "c49"
   },
   {
    "sentence": "Только ___ мог спасти нас.",
@@ -697,35 +403,21 @@
    ],
    "correct": "счастливый случай",
    "case": "Именительный (Nominative)",
-   "explain": "«счастливый случай» — the subject of the sentence stands in the nominative.",
+   "explain": "«счастливый случай» is the subject of «мог» — who or what does it — so nominative.",
    "id": "c50"
-  },
-  {
-   "sentence": "Сколько раз высматривали мы с ___, не появится ли судно в морской дали!",
-   "lemma": "скала",
-   "options": [
-    "береговых скал",
-    "береговые скалы",
-    "береговых скалах",
-    "береговыми скалами"
-   ],
-   "correct": "береговых скал",
-   "case": "Родительный (Genitive)",
-   "explain": "«береговых скал» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
-   "id": "c51"
   },
   {
    "sentence": "Ах, что это был за ___!",
    "lemma": "день",
    "options": [
-    "мучительным днём",
-    "мучительному дню",
+    "мучительном дне",
+    "мучительный день",
     "мучительного дня",
-    "мучительный день"
+    "мучительному дню"
    ],
    "correct": "мучительный день",
    "case": "Винительный (Accusative)",
-   "explain": "«мучительный день» — after the preposition «за», the accusative marks the direct object of the verb.",
+   "explain": "«мучительный день» — «за» takes the accusative here (куда? за что? за кого?) — the instrumental would mean position behind or at (где? за чем?).",
    "id": "c52"
   },
   {
@@ -739,22 +431,8 @@
    ],
    "correct": "отчаянные крики",
    "case": "Винительный (Accusative)",
-   "explain": "«отчаянные крики» — the accusative marks the direct object of the verb.",
+   "explain": "«отчаянные крики» is the direct object of «испустил» (кого? что?) — accusative.",
    "id": "c53"
-  },
-  {
-   "sentence": "И какое великое счастье: дети, мои ___ были в этой шлюпке и протягивали ко мне руки!..",
-   "lemma": "ребёнок",
-   "options": [
-    "дорогих детях",
-    "дорогих детей",
-    "дорогими детьми",
-    "дорогие дети"
-   ],
-   "correct": "дорогие дети",
-   "case": "Именительный (Nominative)",
-   "explain": "«дорогие дети» — the subject of the sentence stands in the nominative.",
-   "id": "c54"
   },
   {
    "sentence": "___ капитана утонули в поцелуях и ласках, которыми его осыпали Мери и Роберт.",
@@ -767,7 +445,7 @@
    ],
    "correct": "последние слова",
    "case": "Именительный (Nominative)",
-   "explain": "«Последние слова» — the subject of the sentence stands in the nominative.",
+   "explain": "«последние слова» is the subject of «утонули» — who or what does it — so nominative.",
    "id": "c55"
   },
   {
@@ -781,36 +459,22 @@
    ],
    "correct": "почтенный географ",
    "case": "Именительный (Nominative)",
-   "explain": "«Почтенный географ» — the subject of the sentence stands in the nominative.",
+   "explain": "«почтенный географ» is the subject of «перебирал» — who or what does it — so nominative.",
    "id": "c56"
   },
   {
    "sentence": "Почтенный географ в ___ перебирал в уме слова документа.",
    "lemma": "раз",
    "options": [
-    "тысячный раз",
-    "тысячном разе",
     "тысячному разу",
-    "тысячного раза"
+    "тысячного раза",
+    "тысячным разом",
+    "тысячный раз"
    ],
    "correct": "тысячный раз",
    "case": "Винительный (Accusative)",
-   "explain": "«тысячный раз» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«тысячный раз» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c57"
-  },
-  {
-   "sentence": "Какое же из этих размытых ___ слов относилось к рифу Мария-Тереза?",
-   "lemma": "вода",
-   "options": [
-    "морской воды",
-    "морской воде",
-    "морской водой",
-    "морская вода"
-   ],
-   "correct": "морской водой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«морской водой» — after the preposition «из», the instrumental marks the means, company, or complement.",
-   "id": "c58"
   },
   {
    "sentence": "— Капитан, — воскликнул он, — скажите же мне наконец, что содержалось в вашей ___?",
@@ -823,49 +487,35 @@
    ],
    "correct": "загадочной записке",
    "case": "Предложный (Prepositional)",
-   "explain": "«загадочной записке» — after the preposition «в», for location or topic.",
+   "explain": "«загадочной записке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c59"
   },
   {
    "sentence": "— Но, как вам известно, стремясь увеличить шансы на спасение, я вложил в бутылку три записки на ___.",
    "lemma": "язык",
    "options": [
-    "разными языками",
-    "разных языков",
     "разных языках",
-    "разные языки"
+    "разным языкам",
+    "разными языками",
+    "разных языков"
    ],
    "correct": "разных языках",
    "case": "Предложный (Prepositional)",
-   "explain": "«разных языках» — after the preposition «на», for location or topic.",
+   "explain": "«разных языках» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c60"
-  },
-  {
-   "sentence": "— Тогда скажите нам французский текст, — сказал Гленарван, — он был наименее поврежден водой, и наши толкования основывались ___ на нем.",
-   "lemma": "образ",
-   "options": [
-    "главном образе",
-    "главным образом",
-    "главному образу",
-    "главный образ"
-   ],
-   "correct": "главным образом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«главным образом» — the instrumental marks the means, company, or complement.",
-   "id": "c61"
   },
   {
    "sentence": "Патагония, Австралия, Новая Зеландия казались ему ___ крушения.",
    "lemma": "место",
    "options": [
-    "бесспорное место",
-    "бесспорном месте",
+    "бесспорного места",
     "бесспорным местом",
-    "бесспорного места"
+    "бесспорному месту",
+    "бесспорном месте"
    ],
    "correct": "бесспорным местом",
    "case": "Творительный (Instrumental)",
-   "explain": "«бесспорным местом» — the instrumental marks the means, company, or complement.",
+   "explain": "After «казались», what someone or something is or becomes stands in the instrumental.",
    "id": "c62"
   },
   {
@@ -879,7 +529,7 @@
    ],
    "correct": "проницательного географа",
    "case": "Винительный (Accusative)",
-   "explain": "«проницательного географа» — the accusative marks the direct object of the verb.",
+   "explain": "«проницательного географа» is the direct object of «ввел» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c63"
   },
   {
@@ -893,21 +543,21 @@
    ],
    "correct": "французского названия",
    "case": "Родительный (Genitive)",
-   "explain": "«французского названия» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«французского названия» depends on the noun «частью» (whose? of what?) — genitive.",
    "id": "c64"
   },
   {
    "sentence": "Правда, этой ошибки трудно было избежать, раз на всех ___ «Дункана» этот остров значился под названием Мария-Тереза.",
    "lemma": "карта",
    "options": [
-    "корабельным картам",
-    "корабельные карты",
     "корабельными картами",
-    "корабельных картах"
+    "корабельных картах",
+    "корабельным картам",
+    "корабельных карт"
    ],
    "correct": "корабельных картах",
    "case": "Предложный (Prepositional)",
-   "explain": "«корабельных картах» — after the preposition «на», for location or topic.",
+   "explain": "«корабельных картах» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c65"
   },
   {
@@ -921,22 +571,8 @@
    ],
    "correct": "двойном названии",
    "case": "Предложный (Prepositional)",
-   "explain": "«двойном названии» — after the preposition «об», for location or topic.",
+   "explain": "«двойном названии» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c66"
-  },
-  {
-   "sentence": "Это ___, заблуждение, недостойное секретаря Географического общества!",
-   "lemma": "ошибка",
-   "options": [
-    "непростительной ошибкой",
-    "непростительная ошибка",
-    "непростительной ошибки",
-    "непростительной ошибке"
-   ],
-   "correct": "непростительная ошибка",
-   "case": "Именительный (Nominative)",
-   "explain": "«непростительная ошибка» — the subject of the sentence stands in the nominative.",
-   "id": "c67"
   },
   {
    "sentence": "Это непростительная ошибка, заблуждение, недостойное секретаря ___!",
@@ -949,92 +585,64 @@
    ],
    "correct": "географического общества",
    "case": "Родительный (Genitive)",
-   "explain": "«Географического общества» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«географического общества» depends on the noun «секретаря» (whose? of what?) — genitive.",
    "id": "c68"
-  },
-  {
-   "sentence": "Он ничего не брал с собой, желая, чтобы преступник наследовал ___.",
-   "lemma": "человек",
-   "options": [
-    "честным человеком",
-    "честному человеку",
-    "честной человек",
-    "честном человеке"
-   ],
-   "correct": "честному человеку",
-   "case": "Дательный (Dative)",
-   "explain": "«честному человеку» — the dative marks the indirect object or recipient.",
-   "id": "c69"
   },
   {
    "sentence": "— По-видимому, Айртон, я сделал ошибку, высадив вас в ___.",
    "lemma": "место",
    "options": [
-    "обитаемые места",
-    "обитаемых мест",
+    "обитаемыми местами",
     "обитаемым местам",
-    "обитаемых местах"
+    "обитаемых местах",
+    "обитаемых мест"
    ],
    "correct": "обитаемых местах",
    "case": "Предложный (Prepositional)",
-   "explain": "«обитаемых местах» — after the preposition «в», for location or topic.",
+   "explain": "«обитаемых местах» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c70"
   },
   {
    "sentence": "— Вы сейчас останетесь вместо меня на этом ___.",
    "lemma": "островок",
    "options": [
-    "пустынном островке",
-    "пустынный островок",
     "пустынным островком",
+    "пустынного островка",
+    "пустынном островке",
     "пустынному островку"
    ],
    "correct": "пустынном островке",
    "case": "Предложный (Prepositional)",
-   "explain": "«пустынном островке» — after the preposition «на», for location or topic.",
+   "explain": "«пустынном островке» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c71"
   },
   {
    "sentence": "— Итак, Айртон, вы по-прежнему хотите, чтобы я высадил вас на ___?",
    "lemma": "остров",
    "options": [
-    "необитаемым островом",
-    "необитаемом острове",
     "необитаемому острову",
-    "необитаемый остров"
+    "необитаемым островом",
+    "необитаемый остров",
+    "необитаемого острова"
    ],
    "correct": "необитаемый остров",
    "case": "Винительный (Accusative)",
-   "explain": "«необитаемый остров» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«необитаемый остров» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c72"
   },
   {
    "sentence": "Вы здесь, вдали от всякой земли, будете лишены общения с ___.",
    "lemma": "человек",
    "options": [
-    "других людей",
     "другими людьми",
+    "другим людям",
     "других людях",
-    "другим людям"
+    "другие люди"
    ],
    "correct": "другими людьми",
    "case": "Творительный (Instrumental)",
-   "explain": "«другими людьми» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«другими людьми» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c73"
-  },
-  {
-   "sentence": "То были ___, которыми обменялись Гленарван и боцман.",
-   "lemma": "слово",
-   "options": [
-    "последним словам",
-    "последние слова",
-    "последних словах",
-    "последними словами"
-   ],
-   "correct": "последние слова",
-   "case": "Именительный (Nominative)",
-   "explain": "«последние слова» — the subject of the sentence stands in the nominative.",
-   "id": "c74"
   },
   {
    "sentence": "С юта пассажиры видели, как боцман, скрестив на груди руки, неподвижно, словно статуя, стоял на ___.",
@@ -1047,7 +655,7 @@
    ],
    "correct": "прибрежной скале",
    "case": "Предложный (Prepositional)",
-   "explain": "«прибрежной скале» — after the preposition «на», for location or topic.",
+   "explain": "«прибрежной скале» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c75"
   },
   {
@@ -1061,7 +669,7 @@
    ],
    "correct": "вечерней мгле",
    "case": "Предложный (Prepositional)",
-   "explain": "«вечерней мгле» — after the preposition «в», for location or topic.",
+   "explain": "«вечерней мгле» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c76"
   }
  ]

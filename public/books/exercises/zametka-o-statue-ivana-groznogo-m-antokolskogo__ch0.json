@@ -1,31 +1,17 @@
 {
  "cases": [
   {
-   "sentence": "Не могу не поделиться с читателями «СПб. ведомостей» тем ___, которое произвело на меня новое проявление русского искусства.",
-   "lemma": "впечатление",
-   "options": [
-    "отрадному впечатлению",
-    "отрадным впечатлением",
-    "отрадном впечатлении",
-    "отрадного впечатления"
-   ],
-   "correct": "отрадным впечатлением",
-   "case": "Творительный (Instrumental)",
-   "explain": "«отрадным впечатлением» — the instrumental marks the means, company, or complement.",
-   "id": "c1"
-  },
-  {
    "sentence": "Не могу не поделиться с читателями «СПб. ведомостей» тем отрадным впечатлением, которое произвело на меня новое проявление ___.",
    "lemma": "искусство",
    "options": [
+    "русское искусство",
+    "русском искусстве",
     "русского искусства",
-    "русским искусством",
-    "русскому искусству",
-    "русском искусстве"
+    "русскому искусству"
    ],
    "correct": "русского искусства",
    "case": "Родительный (Genitive)",
-   "explain": "«русского искусства» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«русского искусства» depends on the noun «проявление» (whose? of what?) — genitive.",
    "id": "c2"
   },
   {
@@ -33,13 +19,13 @@
    "lemma": "год",
    "options": [
     "прошлый год",
-    "прошлого года",
     "прошлом годе",
-    "прошлому году"
+    "прошлого года",
+    "прошлым годом"
    ],
    "correct": "прошлого года",
    "case": "Родительный (Genitive)",
-   "explain": "«прошлого года» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«прошлого года» depends on the noun «конца» (whose? of what?) — genitive.",
    "id": "c4"
   },
   {
@@ -53,22 +39,8 @@
    ],
    "correct": "молодого ваятеля",
    "case": "Родительный (Genitive)",
-   "explain": "«молодого ваятеля» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«молодого ваятеля» depends on the noun «мастерская» (whose? of what?) — genitive.",
    "id": "c5"
-  },
-  {
-   "sentence": "___ овладело им; он, видимо — один, положим, где-нибудь в отдаленном покое дворца в Александровской слободе.",
-   "lemma": "раздумье",
-   "options": [
-    "тяжким раздумьем",
-    "тяжкое раздумье",
-    "тяжкого раздумья",
-    "тяжком раздумье"
-   ],
-   "correct": "тяжкое раздумье",
-   "case": "Именительный (Nominative)",
-   "explain": "«Тяжкое раздумье» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
   },
   {
    "sentence": "Тяжкое раздумье овладело им; он, видимо — один, положим, где-нибудь в отдаленном покое дворца в ___.",
@@ -81,50 +53,22 @@
    ],
    "correct": "александровской слободе",
    "case": "Предложный (Prepositional)",
-   "explain": "«Александровской слободе» — after the preposition «в», for location or topic.",
+   "explain": "«александровской слободе» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c7"
   },
   {
    "sentence": "Не нужно быть особенно ___, чтоб понять, что хотел сказать художник.",
    "lemma": "человек",
    "options": [
-    "чуткий человек",
-    "чутким человеком",
+    "чуткому человеку",
+    "чуткого человека",
     "чутком человеке",
-    "чуткого человека"
+    "чутким человеком"
    ],
    "correct": "чутким человеком",
    "case": "Творительный (Instrumental)",
-   "explain": "«чутким человеком» — the instrumental marks the means, company, or complement.",
+   "explain": "After «быть», what someone or something is or becomes stands in the instrumental.",
    "id": "c10"
-  },
-  {
-   "sentence": "И с каким ___ все это проведено!",
-   "lemma": "такт",
-   "options": [
-    "верного такта",
-    "верный такт",
-    "верным тактом",
-    "верному такту"
-   ],
-   "correct": "верным тактом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«верным тактом» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c11"
-  },
-  {
-   "sentence": "Укажу хоть на скуфью, которую, говорят, ___ из традиционных классиков желали бы видеть устраненной и которую неподдающееся чутье художника, к счастью, удержало.",
-   "lemma": "критик",
-   "options": [
-    "многими критиками",
-    "многих критиках",
-    "многих критиков",
-    "многие критики"
-   ],
-   "correct": "многие критики",
-   "case": "Именительный (Nominative)",
-   "explain": "«многие критики» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
   },
   {
    "sentence": "Укажу хоть на скуфью, которую, говорят, многие критики из ___ желали бы видеть устраненной и которую неподдающееся чутье художника, к счастью, удержало.",
@@ -137,50 +81,8 @@
    ],
    "correct": "традиционных классиков",
    "case": "Родительный (Genitive)",
-   "explain": "«традиционных классиков» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«традиционных классиков» — «из» always takes the genitive.",
    "id": "c13"
-  },
-  {
-   "sentence": "Каким образом возвысился он до такого ___ своей задачи — я, судя по прошедшему, не могу себе дать хорошенько отчета; но факт перед глазами, и поневоле приходится воскликнуть: «Spiritus fiat ubi vult».",
-   "lemma": "понимание",
-   "options": [
-    "ясным пониманием",
-    "ясное понимание",
-    "ясном понимании",
-    "ясного понимания"
-   ],
-   "correct": "ясного понимания",
-   "case": "Родительный (Genitive)",
-   "explain": "«ясного понимания» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
-   "id": "c14"
-  },
-  {
-   "sentence": "Я в состоянии сообщить несколько ___ о художнике, так блистательно начавшем свою карьеру.",
-   "lemma": "сведение",
-   "options": [
-    "достоверным сведениям",
-    "достоверными сведениями",
-    "достоверных сведений",
-    "достоверные сведения"
-   ],
-   "correct": "достоверных сведений",
-   "case": "Родительный (Genitive)",
-   "explain": "«достоверных сведений» — the genitive here marks possession, absence, or quantity.",
-   "id": "c15"
-  },
-  {
-   "sentence": "Родители его содержали трактир, и до ___ маленький Марк им помогал по хозяйству.",
-   "lemma": "возраст",
-   "options": [
-    "тринадцатилетнего возраста",
-    "тринадцатилетнем возрасте",
-    "тринадцатилетнему возрасту",
-    "тринадцатилетний возраст"
-   ],
-   "correct": "тринадцатилетнего возраста",
-   "case": "Родительный (Genitive)",
-   "explain": "«тринадцатилетнего возраста» — the genitive here marks possession, absence, or quantity.",
-   "id": "c16"
   },
   {
    "sentence": "У ___ Марк, заваленный дневной работой, по ночам должен был прятаться на чердаке, чтоб предаваться там на свободе своему любимому занятию — рисованию.",
@@ -193,7 +95,7 @@
    ],
    "correct": "нового хозяина",
    "case": "Родительный (Genitive)",
-   "explain": "«нового хозяина» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«нового хозяина» — «у» always takes the genitive.",
    "id": "c17"
   },
   {
@@ -207,49 +109,21 @@
    ],
    "correct": "дневной работой",
    "case": "Творительный (Instrumental)",
-   "explain": "«дневной работой» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «заваленный», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c18"
-  },
-  {
-   "sentence": "У нового хозяина Марк, заваленный дневной работой, по ночам должен был прятаться на чердаке, чтоб предаваться там на свободе своему ___ — рисованию.",
-   "lemma": "занятие",
-   "options": [
-    "любимое занятие",
-    "любимым занятием",
-    "любимому занятию",
-    "любимого занятия"
-   ],
-   "correct": "любимому занятию",
-   "case": "Дательный (Dative)",
-   "explain": "«любимому занятию» — the dative marks the indirect object or recipient.",
-   "id": "c19"
-  },
-  {
-   "sentence": "___ он добывал себе средства к пропитанию.",
-   "lemma": "работа",
-   "options": [
-    "резчицкой работе",
-    "резчицкая работа",
-    "резчицкой работы",
-    "резчицкой работой"
-   ],
-   "correct": "резчицкой работой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«Резчицкой работой» — the instrumental marks the means, company, or complement.",
-   "id": "c20"
   },
   {
    "sentence": "Продолжать работать после 1868 года в Академии стало ему невозможным, так как ___ он кончил, а конкурировать вольнослушающим не дозволяется.",
    "lemma": "занятие",
    "options": [
-    "классных занятий",
+    "классным занятиям",
     "классными занятиями",
     "классные занятия",
     "классных занятиях"
    ],
    "correct": "классные занятия",
    "case": "Винительный (Accusative)",
-   "explain": "«классные занятия» — the accusative marks the direct object of the verb.",
+   "explain": "«классные занятия» is the direct object of «кончил» (кого? что?) — accusative.",
    "id": "c21"
   },
   {
@@ -263,7 +137,7 @@
    ],
    "correct": "психологических черт",
    "case": "Родительный (Genitive)",
-   "explain": "«психологических черт» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«психологических черт» depends on the noun «тонкость» (whose? of what?) — genitive.",
    "id": "c22"
   },
   {
@@ -277,7 +151,7 @@
    ],
    "correct": "чужие края",
    "case": "Винительный (Accusative)",
-   "explain": "«чужие края» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«чужие края» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c23"
   },
   {
@@ -291,21 +165,21 @@
    ],
    "correct": "скорое осуществление",
    "case": "Именительный (Nominative)",
-   "explain": "«скорое осуществление» — the subject of the sentence stands in the nominative.",
+   "explain": "«скорое осуществление» is the subject of «может» — who or what does it — so nominative.",
    "id": "c24"
   },
   {
    "sentence": "Было бы грустно думать, что скорое осуществление ___ может встретить какие-либо препятствия.",
    "lemma": "желание",
    "options": [
-    "подобным желанием",
     "подобном желании",
-    "подобного желания",
-    "подобное желание"
+    "подобному желанию",
+    "подобное желание",
+    "подобного желания"
    ],
    "correct": "подобного желания",
    "case": "Родительный (Genitive)",
-   "explain": "«подобного желания» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«подобного желания» depends on the noun «осуществление» (whose? of what?) — genitive.",
    "id": "c25"
   }
  ]

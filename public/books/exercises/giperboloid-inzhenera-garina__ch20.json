@@ -1,46 +1,18 @@
 {
  "cases": [
   {
-   "sentence": "Тыклинский поминутно раскланивался, расправлял ___, влажно поглядывал на Зою Монроз и ел со сдержанной жадностью.",
-   "lemma": "ус",
-   "options": [
-    "висячие усы",
-    "висячими усами",
-    "висячих усов",
-    "висячих усах"
-   ],
-   "correct": "висячие усы",
-   "case": "Винительный (Accusative)",
-   "explain": "«висячие усы» — the accusative marks the direct object of the verb.",
-   "id": "c1"
-  },
-  {
    "sentence": "Я побывал в разрушенном доме, — пани и пан знают, конечно, что в этом доме ___ чуть было не разрезал меня пополам своим аппаратом.",
    "lemma": "байстрюк",
    "options": [
+    "проклятому байстрюку",
     "проклятый байстрюк",
-    "проклятом байстрюке",
     "проклятым байстрюком",
-    "проклятого байстрюка"
+    "проклятом байстрюке"
    ],
    "correct": "проклятый байстрюк",
    "case": "Именительный (Nominative)",
-   "explain": "«проклятый байстрюк» — the subject of the sentence stands in the nominative.",
+   "explain": "«проклятый байстрюк» is the subject of «разрезал» — who or what does it — so nominative.",
    "id": "c2"
-  },
-  {
-   "sentence": "___ Зои Монроз, лежавшая на скатерти, быстро перебирала пальцами, сверкала отполированными ногтями, бриллиантами, изумрудами, сапфирами перстней.",
-   "lemma": "рука",
-   "options": [
-    "длинная рука",
-    "длинной руке",
-    "длинной руки",
-    "длинной рукой"
-   ],
-   "correct": "длинная рука",
-   "case": "Именительный (Nominative)",
-   "explain": "«Длинная рука» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
   },
   {
    "sentence": "Да, пан Роллинг, в эту минуту я понял, что Господь руководил вами, когда вы послали меня вырвать у русских страшное оружие, которое они могут обратить против всего ___.",
@@ -53,21 +25,21 @@
    ],
    "correct": "цивилизованного мира",
    "case": "Родительный (Genitive)",
-   "explain": "«цивилизованного мира» — after the preposition «против», the genitive here marks possession, absence, or quantity.",
+   "explain": "«цивилизованного мира» — «против» always takes the genitive.",
    "id": "c5"
   },
   {
    "sentence": "Увидев меня, он схватил ___, давно мне знакомый, где он обычно держал модель аппарата, и выскочил в соседнюю комнату.",
    "lemma": "чемодан",
    "options": [
-    "кожаный чемодан",
-    "кожаного чемодана",
+    "кожаному чемодану",
     "кожаным чемоданом",
-    "кожаному чемодану"
+    "кожаном чемодане",
+    "кожаный чемодан"
    ],
    "correct": "кожаный чемодан",
    "case": "Винительный (Accusative)",
-   "explain": "«кожаный чемодан» — the accusative marks the direct object of the verb.",
+   "explain": "«кожаный чемодан» is the direct object of «схватил» (кого? что?) — accusative.",
    "id": "c7"
   },
   {
@@ -81,7 +53,7 @@
    ],
    "correct": "уголовному розыску",
    "case": "Дательный (Dative)",
-   "explain": "«уголовному розыску» — the dative marks the indirect object or recipient.",
+   "explain": "«уголовному розыску» is the indirect object of «давать» — to or for whom (кому?) — dative.",
    "id": "c9"
   },
   {
@@ -95,36 +67,8 @@
    ],
    "correct": "плохонькой гостинице",
    "case": "Предложный (Prepositional)",
-   "explain": "«плохонькой гостинице» — after the preposition «в», for location or topic.",
+   "explain": "«плохонькой гостинице» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c10"
-  },
-  {
-   "sentence": "Но так как мистер Роллинг отлично понимает, что Тыклинский выдумал всю эту историю в целях выманить как можно больше денег, то он добродушно позволяет и в дальнейшем оказывать ему ___.",
-   "lemma": "услуга",
-   "options": [
-    "незначительным услугам",
-    "незначительных услугах",
-    "незначительных услуг",
-    "незначительные услуги"
-   ],
-   "correct": "незначительные услуги",
-   "case": "Винительный (Accusative)",
-   "explain": "«незначительные услуги» — the accusative marks the direct object of the verb.",
-   "id": "c12"
-  },
-  {
-   "sentence": "___ за весь завтрак Роллинг улыбнулся, вынул из жилетного кармана золотую зубочистку и вонзил ее между зубами.",
-   "lemma": "раз",
-   "options": [
-    "первым разом",
-    "первому разу",
-    "первый раз",
-    "первом разе"
-   ],
-   "correct": "первый раз",
-   "case": "Винительный (Accusative)",
-   "explain": "«Первый раз» — the accusative marks the direct object of the verb.",
-   "id": "c13"
   },
   {
    "sentence": "Первый раз за весь завтрак Роллинг улыбнулся, вынул из ___ золотую зубочистку и вонзил ее между зубами.",
@@ -137,7 +81,7 @@
    ],
    "correct": "жилетного кармана",
    "case": "Родительный (Genitive)",
-   "explain": "«жилетного кармана» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«жилетного кармана» — «из» always takes the genitive.",
    "id": "c14"
   },
   {
@@ -151,7 +95,7 @@
    ],
    "correct": "приличных сыщиков",
    "case": "Родительный (Genitive)",
-   "explain": "«приличных сыщиков» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«приличных сыщиков» depends on the noun «работа» (whose? of what?) — genitive.",
    "id": "c15"
   }
  ]

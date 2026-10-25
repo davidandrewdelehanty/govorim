@@ -1,62 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Трескучий морозище как стал в конце октября, так и продержался вплоть до ___.",
-   "lemma": "апрель",
-   "options": [
-    "самого апреля",
-    "самим апрелем",
-    "сам апрель",
-    "самом апреле"
-   ],
-   "correct": "самого апреля",
-   "case": "Родительный (Genitive)",
-   "explain": "«самого апреля» — the genitive here marks possession, absence, or quantity.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Бывало, стоило мне только моргнуть глазом, звякнуть шпорой и крутнуть ус — и самая ___ обращалась в послушного ягненка.",
-   "lemma": "красавица",
-   "options": [
-    "гордой красавицей",
-    "гордая красавица",
-    "гордой красавице",
-    "гордой красавицы"
-   ],
-   "correct": "гордая красавица",
-   "case": "Именительный (Nominative)",
-   "explain": "«гордая красавица» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
-   "sentence": "А какой я был сорванец, ___, вы и представить себе не можете.",
-   "lemma": "головушка",
-   "options": [
-    "буйная головушка",
-    "буйной головушке",
-    "буйной головушкой",
-    "буйной головушки"
-   ],
-   "correct": "буйная головушка",
-   "case": "Именительный (Nominative)",
-   "explain": "«буйная головушка» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
-  },
-  {
-   "sentence": "Ну-с, ехали мы, ехали, кружились-кружились, и этак к полночи наши кони уперлись в ворота имения, как теперь помню, графа Боядловского, ___.",
-   "lemma": "поляк",
-   "options": [
-    "богатом поляке",
-    "богатым поляком",
-    "богатый поляк",
-    "богатого поляка"
-   ],
-   "correct": "богатого поляка",
-   "case": "Родительный (Genitive)",
-   "explain": "«богатого поляка» — the genitive here marks possession, absence, or quantity.",
-   "id": "c8"
-  },
-  {
    "sentence": "___ Боядловский жил в ту пору в Париже, и нас принял его управляющий, поляк Казимир Хапцинский.",
    "lemma": "граф",
    "options": [
@@ -67,22 +11,8 @@
    ],
    "correct": "сам граф",
    "case": "Именительный (Nominative)",
-   "explain": "«Сам граф» — the subject of the sentence stands in the nominative.",
+   "explain": "«сам граф» is the subject of «жил» — who or what does it — so nominative.",
    "id": "c10"
-  },
-  {
-   "sentence": "— Не знаю, — засмеялся поляк, — но мне кажется, что это место самое подходящее для привидений и ___.",
-   "lemma": "дух",
-   "options": [
-    "нечистых духах",
-    "нечистым духам",
-    "нечистых духов",
-    "нечистые духи"
-   ],
-   "correct": "нечистых духов",
-   "case": "Родительный (Genitive)",
-   "explain": "«нечистых духов» — the genitive here marks possession, absence, or quantity.",
-   "id": "c11"
   },
   {
    "sentence": "Ветер отпевал кого-то, деревья гнулись с воем и плачем; какая-то чертовщинка, должно быть, ставня, жалобно скрипела и стучала по ___.",
@@ -95,36 +25,22 @@
    ],
    "correct": "оконной раме",
    "case": "Дательный (Dative)",
-   "explain": "«оконной раме» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«оконной раме» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c13"
   },
   {
    "sentence": "Когда я закрывал глаза, мне казалось, что моя кровать носилась по всему ___ и играла в чехарду с духами.",
    "lemma": "дом",
    "options": [
-    "пустой дом",
-    "пустом доме",
     "пустым домом",
-    "пустому дому"
+    "пустом доме",
+    "пустому дому",
+    "пустого дома"
    ],
    "correct": "пустому дому",
    "case": "Дательный (Dative)",
-   "explain": "«пустому дому» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«пустому дому» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c14"
-  },
-  {
-   "sentence": "Три девицы, слушавшие полковника, придвинулись поближе к рассказчику и уставились на него ___.",
-   "lemma": "глаз",
-   "options": [
-    "неподвижных глазах",
-    "неподвижными глазами",
-    "неподвижные глаза",
-    "неподвижных глаз"
-   ],
-   "correct": "неподвижными глазами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«неподвижными глазами» — the instrumental marks the means, company, or complement.",
-   "id": "c16"
   },
   {
    "sentence": "То мне казалось, что воры лезут в окно, то слышался чей-то шёпот, то кто-то касался моего плеча — вообще чудилась чертовщина, какая знакома всякому, кто когда-нибудь находился в ___.",
@@ -137,7 +53,7 @@
    ],
    "correct": "нервном напряжении",
    "case": "Предложный (Prepositional)",
-   "explain": "«нервном напряжении» — after the preposition «в», for location or topic.",
+   "explain": "«нервном напряжении» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c17"
   },
   {
@@ -151,36 +67,8 @@
    ],
    "correct": "мелодический голосок",
    "case": "Именительный (Nominative)",
-   "explain": "«мелодический голосок» — the subject of the sentence stands in the nominative.",
+   "explain": "«мелодический голосок» is the subject of «сказал» — who or what does it — so nominative.",
    "id": "c19"
-  },
-  {
-   "sentence": "Значит, вам хотелось бы, чтоб это была не моя ___, а какая-нибудь посторонняя женщина!",
-   "lemma": "жена",
-   "options": [
-    "законной женой",
-    "законной жене",
-    "законная жена",
-    "законной жены"
-   ],
-   "correct": "законная жена",
-   "case": "Именительный (Nominative)",
-   "explain": "«законная жена» — the subject of the sentence stands in the nominative.",
-   "id": "c27"
-  },
-  {
-   "sentence": "Значит, вам хотелось бы, чтоб это была не моя законная жена, а какая-нибудь ___!",
-   "lemma": "женщина",
-   "options": [
-    "посторонней женщиной",
-    "посторонняя женщина",
-    "посторонней женщины",
-    "посторонней женщине"
-   ],
-   "correct": "посторонняя женщина",
-   "case": "Именительный (Nominative)",
-   "explain": "«посторонняя женщина» — the subject of the sentence stands in the nominative.",
-   "id": "c28"
   }
  ]
 }

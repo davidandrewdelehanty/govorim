@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Его красивое холёное лицо с превосходно расчёсанной ___ и спокойными голубыми глазами, смотревшими сквозь золотые очки, было неподвижно и непроницаемо.",
-   "lemma": "борода",
-   "options": [
-    "золотистая борода",
-    "золотистой бородой",
-    "золотистой бороды",
-    "золотистой бороде"
-   ],
-   "correct": "золотистой бородой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«золотистой бородой» — the instrumental marks the means, company, or complement.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Его красивое холёное лицо с превосходно расчёсанной золотистой бородой и спокойными ___, смотревшими сквозь золотые очки, было неподвижно и непроницаемо.",
-   "lemma": "глаз",
-   "options": [
-    "голубым глазам",
-    "голубых глазах",
-    "голубыми глазами",
-    "голубых глаз"
-   ],
-   "correct": "голубыми глазами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«голубыми глазами» — the instrumental marks the means, company, or complement.",
-   "id": "c2"
-  },
-  {
    "sentence": "Его красивое холёное лицо с превосходно расчёсанной золотистой бородой и спокойными голубыми глазами, смотревшими сквозь ___, было неподвижно и непроницаемо.",
    "lemma": "очки",
    "options": [
@@ -39,35 +11,21 @@
    ],
    "correct": "золотые очки",
    "case": "Винительный (Accusative)",
-   "explain": "«золотые очки» — after the preposition «сквозь», the accusative marks the direct object of the verb.",
+   "explain": "«золотые очки» — «сквозь» always takes the accusative.",
    "id": "c3"
-  },
-  {
-   "sentence": "Что прежде достигалось ___ умозаключений и догадок, теперь я познаю интуитивно.",
-   "lemma": "путь",
-   "options": [
-    "длинным путём",
-    "длинному пути",
-    "длинном пути",
-    "длинного пути"
-   ],
-   "correct": "длинным путём",
-   "case": "Творительный (Instrumental)",
-   "explain": "«длинным путём» — the instrumental marks the means, company, or complement.",
-   "id": "c4"
   },
   {
    "sentence": "Я переживаю самим собою ___ о том, что пространство и время — суть фикции.",
    "lemma": "идея",
    "options": [
-    "великими идеями",
     "великих идеях",
-    "великих идей",
-    "великие идеи"
+    "великие идеи",
+    "великим идеям",
+    "великими идеями"
    ],
    "correct": "великие идеи",
    "case": "Винительный (Accusative)",
-   "explain": "«великие идеи» — the accusative marks the direct object of the verb.",
+   "explain": "«великие идеи» is the direct object of «переживаю» (кого? что?) — accusative.",
    "id": "c5"
   },
   {
@@ -81,36 +39,8 @@
    ],
    "correct": "остальной толпы",
    "case": "Родительный (Genitive)",
-   "explain": "«остальной толпы» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«остальной толпы» — «для» always takes the genitive.",
    "id": "c6"
-  },
-  {
-   "sentence": "— ___, — сказал он, вставая.",
-   "lemma": "логика",
-   "options": [
-    "редкой логикой",
-    "редкой логики",
-    "редкая логика",
-    "редкой логике"
-   ],
-   "correct": "редкая логика",
-   "case": "Именительный (Nominative)",
-   "explain": "«Редкая логика» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
-  },
-  {
-   "sentence": "Ему принесли чай; он, не присаживаясь, в два приёма опорожнил большую кружку и почти в одно мгновение съел ___ белого хлеба.",
-   "lemma": "кусок",
-   "options": [
-    "большим куском",
-    "большому куску",
-    "большого куска",
-    "большой кусок"
-   ],
-   "correct": "большой кусок",
-   "case": "Винительный (Accusative)",
-   "explain": "«большой кусок» — the accusative marks the direct object of the verb.",
-   "id": "c8"
   },
   {
    "sentence": "Ему принесли чай; он, не присаживаясь, в два приёма опорожнил большую кружку и почти в одно мгновение съел большой кусок ___.",
@@ -123,22 +53,8 @@
    ],
    "correct": "белого хлеба",
    "case": "Родительный (Genitive)",
-   "explain": "«белого хлеба» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«белого хлеба» depends on the noun «кусок» (whose? of what?) — genitive.",
    "id": "c9"
-  },
-  {
-   "sentence": "И когда тот повернулся к нему лицом, он чуть не отшатнулся в испуге: столько ___ и ненависти горело в безумных глазах.",
-   "lemma": "злоба",
-   "options": [
-    "дикой злобе",
-    "дикая злоба",
-    "дикой злобы",
-    "дикой злобой"
-   ],
-   "correct": "дикой злобы",
-   "case": "Родительный (Genitive)",
-   "explain": "«дикой злобы» — the genitive here marks possession, absence, or quantity.",
-   "id": "c10"
   },
   {
    "sentence": "Они прошли в докторский кабинет; больной сам встал на платформу небольших ___: фельдшер, свесив его, отметил в книге против его имени 109 фунтов.",
@@ -151,7 +67,7 @@
    ],
    "correct": "десятичных весов",
    "case": "Родительный (Genitive)",
-   "explain": "«десятичных весов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«десятичных весов» depends on the noun «платформу» (whose? of what?) — genitive.",
    "id": "c13"
   },
   {
@@ -165,22 +81,8 @@
    ],
    "correct": "необыкновенный аппетит",
    "case": "Винительный (Accusative)",
-   "explain": "«необыкновенный аппетит» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«необыкновенный аппетит» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c15"
-  },
-  {
-   "sentence": "Больной почти не спал и ___ проводил в непрерывном движении.",
-   "lemma": "день",
-   "options": [
-    "целыми днями",
-    "целых днях",
-    "целые дни",
-    "целым дням"
-   ],
-   "correct": "целые дни",
-   "case": "Винительный (Accusative)",
-   "explain": "«целые дни» — the accusative marks the direct object of the verb.",
-   "id": "c16"
   },
   {
    "sentence": "Больной почти не спал и целые дни проводил в ___.",
@@ -193,7 +95,7 @@
    ],
    "correct": "непрерывном движении",
    "case": "Предложный (Prepositional)",
-   "explain": "«непрерывном движении» — after the preposition «в», for location or topic.",
+   "explain": "«непрерывном движении» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c17"
   }
  ]

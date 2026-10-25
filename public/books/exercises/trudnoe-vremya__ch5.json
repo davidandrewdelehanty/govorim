@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Действительно, в городе был мировой съезд и к тому же — ___.",
-   "lemma": "ярмарка",
-   "options": [
-    "крестьянской ярмарки",
-    "крестьянской ярмарке",
-    "крестьянская ярмарка",
-    "крестьянской ярмаркой"
-   ],
-   "correct": "крестьянская ярмарка",
-   "case": "Именительный (Nominative)",
-   "explain": "«крестьянская ярмарка» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
    "sentence": "В сторонке, у весов, стояло шесть человек ___ в суконных галстухах и в белых холщовых мундирах.",
    "lemma": "солдат",
    "options": [
@@ -25,22 +11,8 @@
    ],
    "correct": "гарнизонных солдат",
    "case": "Родительный (Genitive)",
-   "explain": "«гарнизонных солдат» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«гарнизонных солдат» depends on the noun «человек» (whose? of what?) — genitive.",
    "id": "c3"
-  },
-  {
-   "sentence": "В сторонке, у весов, стояло шесть человек гарнизонных солдат в суконных галстухах и в белых ___.",
-   "lemma": "мундир",
-   "options": [
-    "холщовые мундиры",
-    "холщовыми мундирами",
-    "холщовых мундиров",
-    "холщовых мундирах"
-   ],
-   "correct": "холщовых мундирах",
-   "case": "Предложный (Prepositional)",
-   "explain": "«холщовых мундирах» — after the preposition «в», for location or topic.",
-   "id": "c4"
   },
   {
    "sentence": "На ___ стоял солдат с заплаканным лицом.",
@@ -53,7 +25,7 @@
    ],
    "correct": "правом фланге",
    "case": "Предложный (Prepositional)",
-   "explain": "«правом фланге» — after the preposition «на», for location or topic.",
+   "explain": "«правом фланге» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c5"
   },
   {
@@ -67,21 +39,21 @@
    ],
    "correct": "табачный дым",
    "case": "Именительный (Nominative)",
-   "explain": "«табачный дым» — the subject of the sentence stands in the nominative.",
+   "explain": "«табачный дым» is the subject of «вылетал» — who or what does it — so nominative.",
    "id": "c7"
   },
   {
    "sentence": "В этот день назначено было открытие по возобновлении ___, с переименованием его в соединенный, так как в новом клубе предполагалось соединить все сословия.",
    "lemma": "клуб",
    "options": [
-    "дворянским клубом",
     "дворянского клуба",
-    "дворянскому клубу",
-    "дворянском клубе"
+    "дворянский клуб",
+    "дворянском клубе",
+    "дворянскому клубу"
    ],
    "correct": "дворянского клуба",
    "case": "Родительный (Genitive)",
-   "explain": "«дворянского клуба» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«дворянского клуба» depends on the noun «возобновлении» (whose? of what?) — genitive.",
    "id": "c8"
   },
   {
@@ -95,36 +67,8 @@
    ],
    "correct": "мировой съезд",
    "case": "Именительный (Nominative)",
-   "explain": "«Мировой съезд» — the subject of the sentence stands in the nominative.",
+   "explain": "«мировой съезд» is the subject of «помещался» — who or what does it — so nominative.",
    "id": "c10"
-  },
-  {
-   "sentence": "Впереди маршировал маленький ___ и размахивал планом полюбовного размежевания вместо сабли.",
-   "lemma": "помещик",
-   "options": [
-    "толстенькому помещику",
-    "толстенького помещика",
-    "толстеньком помещике",
-    "толстенький помещик"
-   ],
-   "correct": "толстенький помещик",
-   "case": "Именительный (Nominative)",
-   "explain": "«толстенький помещик» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
-  },
-  {
-   "sentence": "По улице пронесся легонький тарантас, запряженный тройкою ___.",
-   "lemma": "лошадка",
-   "options": [
-    "маленькие лошадки",
-    "маленькими лошадками",
-    "маленьких лошадках",
-    "маленьких лошадок"
-   ],
-   "correct": "маленьких лошадок",
-   "case": "Родительный (Genitive)",
-   "explain": "«маленьких лошадок» — the genitive here marks possession, absence, or quantity.",
-   "id": "c12"
   },
   {
    "sentence": "В нем сидел ___ в военной фуражке, но с бородою, и делал Щетинину ручкою.",
@@ -137,7 +81,7 @@
    ],
    "correct": "полный мужчина",
    "case": "Именительный (Nominative)",
-   "explain": "«полный мужчина» — the subject of the sentence stands in the nominative.",
+   "explain": "«полный мужчина» is the subject of «сидел» — who or what does it — so nominative.",
    "id": "c13"
   },
   {
@@ -151,7 +95,7 @@
    ],
    "correct": "военной фуражке",
    "case": "Предложный (Prepositional)",
-   "explain": "«военной фуражке» — after the preposition «в», for location or topic.",
+   "explain": "«военной фуражке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c14"
   },
   {
@@ -165,21 +109,21 @@
    ],
    "correct": "сельские власти",
    "case": "Именительный (Nominative)",
-   "explain": "«сельские власти» — the subject of the sentence stands in the nominative.",
+   "explain": "«сельские власти» is the subject of «лежали» — who or what does it — so nominative.",
    "id": "c15"
   },
   {
    "sentence": "Заседание ___ еще не кончилось.",
    "lemma": "съезд",
    "options": [
+    "мировому съезду",
+    "мирового съезда",
     "мировой съезд",
-    "мировым съездом",
-    "мировом съезде",
-    "мирового съезда"
+    "мировом съезде"
    ],
    "correct": "мирового съезда",
    "case": "Родительный (Genitive)",
-   "explain": "«мирового съезда» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«мирового съезда» depends on the noun «Заседание» (whose? of what?) — genitive.",
    "id": "c16"
   },
   {
@@ -193,7 +137,7 @@
    ],
    "correct": "большой стол",
    "case": "Именительный (Nominative)",
-   "explain": "«большой стол» — the subject of the sentence stands in the nominative.",
+   "explain": "«большой стол» is the subject of «стоял» — who or what does it — so nominative.",
    "id": "c17"
   },
   {
@@ -207,92 +151,8 @@
    ],
    "correct": "прочие дворяне",
    "case": "Именительный (Nominative)",
-   "explain": "«прочие дворяне» — the subject of the sentence stands in the nominative.",
+   "explain": "«прочие дворяне» is the subject of «бродили» — who or what does it — so nominative.",
    "id": "c18"
-  },
-  {
-   "sentence": "Из буфета слышался ___, смех и остроты.",
-   "lemma": "разговор",
-   "options": [
-    "бойкого разговора",
-    "бойкий разговор",
-    "бойкому разговору",
-    "бойком разговоре"
-   ],
-   "correct": "бойкий разговор",
-   "case": "Винительный (Accusative)",
-   "explain": "«бойкий разговор» — the accusative marks the direct object of the verb.",
-   "id": "c19"
-  },
-  {
-   "sentence": "— Ну, что, батюшка, как у вас ___ процветает?",
-   "lemma": "труд",
-   "options": [
-    "свободному труду",
-    "свободным трудом",
-    "свободный труд",
-    "свободном труде"
-   ],
-   "correct": "свободный труд",
-   "case": "Именительный (Nominative)",
-   "explain": "«свободный труд» — the subject of the sentence stands in the nominative.",
-   "id": "c23"
-  },
-  {
-   "sentence": "Мой товарищ, Яков Васильич Рязанов; ___ нашего участка, Семен Семеныч, — познакомьтесь, — говорил Щетинин.",
-   "lemma": "посредник",
-   "options": [
-    "мировым посредником",
-    "мирового посредника",
-    "мировой посредник",
-    "мировому посреднику"
-   ],
-   "correct": "мировой посредник",
-   "case": "Именительный (Nominative)",
-   "explain": "«мировой посредник» — the subject of the sentence stands in the nominative.",
-   "id": "c24"
-  },
-  {
-   "sentence": "За несколько минут до обеда на улице загремели бубенчики, и у крыльца остановилась ___ отличных серых коней.",
-   "lemma": "тройка",
-   "options": [
-    "взмыленной тройкой",
-    "взмыленной тройки",
-    "взмыленная тройка",
-    "взмыленной тройке"
-   ],
-   "correct": "взмыленная тройка",
-   "case": "Именительный (Nominative)",
-   "explain": "«взмыленная тройка» — the subject of the sentence stands in the nominative.",
-   "id": "c25"
-  },
-  {
-   "sentence": "За несколько минут до обеда на улице загремели бубенчики, и у крыльца остановилась взмыленная тройка отличных ___.",
-   "lemma": "конь",
-   "options": [
-    "серым коням",
-    "серыми конями",
-    "серых коней",
-    "серых конях"
-   ],
-   "correct": "серых коней",
-   "case": "Родительный (Genitive)",
-   "explain": "«серых коней» — the genitive here marks possession, absence, or quantity.",
-   "id": "c26"
-  },
-  {
-   "sentence": "В залу вошел полный, румяный ___ в английском пиджаке, с пледом на руке.",
-   "lemma": "помещик",
-   "options": [
-    "молодому помещику",
-    "молодого помещика",
-    "молодым помещиком",
-    "молодой помещик"
-   ],
-   "correct": "молодой помещик",
-   "case": "Именительный (Nominative)",
-   "explain": "«молодой помещик» — the subject of the sentence stands in the nominative.",
-   "id": "c27"
   },
   {
    "sentence": "В залу вошел полный, румяный молодой помещик в ___, с пледом на руке.",
@@ -305,50 +165,8 @@
    ],
    "correct": "английском пиджаке",
    "case": "Предложный (Prepositional)",
-   "explain": "«английском пиджаке» — after the preposition «в», for location or topic.",
+   "explain": "«английском пиджаке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c28"
-  },
-  {
-   "sentence": "На диване действительно сидел купец с ___ и бессмысленно водил глазами.",
-   "lemma": "нос",
-   "options": [
-    "красным носом",
-    "красный нос",
-    "красному носу",
-    "красном носе"
-   ],
-   "correct": "красным носом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«красным носом» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c29"
-  },
-  {
-   "sentence": "Из буфета выглядывал ___ и, стоя в дверях, подобострастно кланялся, не решаясь войти в залу.",
-   "lemma": "купец",
-   "options": [
-    "другому купцу",
-    "другого купца",
-    "другой купец",
-    "другом купце"
-   ],
-   "correct": "другой купец",
-   "case": "Именительный (Nominative)",
-   "explain": "«другой купец» — the subject of the sentence stands in the nominative.",
-   "id": "c30"
-  },
-  {
-   "sentence": "— А что, позвольте вас спросить, — спросил Рязанова его сосед, ___, — телеграмму посылать будут 8?",
-   "lemma": "учитель",
-   "options": [
-    "уездном учителе",
-    "уездного учителя",
-    "уездным учителем",
-    "уездный учитель"
-   ],
-   "correct": "уездный учитель",
-   "case": "Именительный (Nominative)",
-   "explain": "«уездный учитель» — the subject of the sentence stands in the nominative.",
-   "id": "c32"
   },
   {
    "sentence": "— Нет, он на ___, — мы с ним на охоте были, — уморил: собрал мужиков и им латинскую речь сказал.",
@@ -361,7 +179,7 @@
    ],
    "correct": "прошлой неделе",
    "case": "Предложный (Prepositional)",
-   "explain": "«прошлой неделе» — after the preposition «на», for location or topic.",
+   "explain": "«прошлой неделе» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c34"
   },
   {
@@ -375,7 +193,7 @@
    ],
    "correct": "другой комнате",
    "case": "Предложный (Prepositional)",
-   "explain": "«другой комнате» — after the preposition «в», for location or topic.",
+   "explain": "«другой комнате» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c36"
   },
   {
@@ -389,7 +207,7 @@
    ],
    "correct": "третий посредник",
    "case": "Именительный (Nominative)",
-   "explain": "«третий посредник» — the subject of the sentence stands in the nominative.",
+   "explain": "«третий посредник» is the subject of «махал» — who or what does it — so nominative.",
    "id": "c37"
   },
   {
@@ -403,7 +221,7 @@
    ],
    "correct": "пьяные мужики",
    "case": "Именительный (Nominative)",
-   "explain": "«пьяные мужики» — the subject of the sentence stands in the nominative.",
+   "explain": "«пьяные мужики» is the subject of «бродили» — who or what does it — so nominative.",
    "id": "c38"
   }
  ]

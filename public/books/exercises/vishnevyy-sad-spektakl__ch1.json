@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Старая, покривившаяся, давно заброшенная часовенка, возле нее колодец, ___, когда-то бывшие, по-видимому, могильными плитами, и старая скамья.",
-   "lemma": "камень",
-   "options": [
-    "большими камнями",
-    "большим камням",
-    "большие камни",
-    "больших камнях"
-   ],
-   "correct": "большие камни",
-   "case": "Именительный (Nominative)",
-   "explain": "«большие камни» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Старая, покривившаяся, давно заброшенная часовенка, возле нее колодец, большие камни, когда-то бывшие, по-видимому, могильными плитами, и ___.",
-   "lemma": "скамья",
-   "options": [
-    "старая скамья",
-    "старой скамье",
-    "старой скамьи",
-    "старой скамьёй"
-   ],
-   "correct": "старая скамья",
-   "case": "Именительный (Nominative)",
-   "explain": "«старая скамья» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
    "sentence": "Вдали ряд ___, и далеко-далеко на горизонте неясно обозначается большой город, который бывает виден только в очень хорошую, ясную погоду.",
    "lemma": "столб",
    "options": [
@@ -39,22 +11,8 @@
    ],
    "correct": "телеграфных столбов",
    "case": "Родительный (Genitive)",
-   "explain": "«телеграфных столбов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«телеграфных столбов» depends on the noun «ряд» (whose? of what?) — genitive.",
    "id": "c3"
-  },
-  {
-   "sentence": "Вдали ряд телеграфных столбов, и далеко-далеко на горизонте неясно обозначается ___, который бывает виден только в очень хорошую, ясную погоду.",
-   "lemma": "город",
-   "options": [
-    "большой город",
-    "большого города",
-    "большом городе",
-    "большим городом"
-   ],
-   "correct": "большой город",
-   "case": "Именительный (Nominative)",
-   "explain": "«большой город» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
   },
   {
    "sentence": "Шарлотта в ___: она сняла с плеч ружье и поправляет пряжку на ремне.",
@@ -67,64 +25,8 @@
    ],
    "correct": "старой фуражке",
    "case": "Предложный (Prepositional)",
-   "explain": "«старой фуражке» — after the preposition «в», for location or topic.",
+   "explain": "«старой фуражке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c5"
-  },
-  {
-   "sentence": "А я прыгала salto mortale и ___.",
-   "lemma": "штучка",
-   "options": [
-    "разными штучками",
-    "разных штучках",
-    "разных штучек",
-    "разные штучки"
-   ],
-   "correct": "разные штучки",
-   "case": "Именительный (Nominative)",
-   "explain": "«разные штучки» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
-  },
-  {
-   "sentence": "И когда папаша и мамаша умерли, меня взяла к себе одна ___ и стала меня учить.",
-   "lemma": "госпожа",
-   "options": [
-    "немецкой госпожой",
-    "немецкая госпожа",
-    "немецкой госпожи",
-    "немецкой госпоже"
-   ],
-   "correct": "немецкая госпожа",
-   "case": "Именительный (Nominative)",
-   "explain": "«немецкая госпожа» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
-  },
-  {
-   "sentence": "Я развитой человек, читаю разные ___, но никак не могу понять направления, чего мне собственно хочется, жить мне или застрелиться, собственно говоря, но тем не менее я всегда ношу при себе револьвер.",
-   "lemma": "книга",
-   "options": [
-    "замечательным книгам",
-    "замечательных книгах",
-    "замечательными книгами",
-    "замечательные книги"
-   ],
-   "correct": "замечательные книги",
-   "case": "Винительный (Accusative)",
-   "explain": "«замечательные книги» — the accusative marks the direct object of the verb.",
-   "id": "c11"
-  },
-  {
-   "sentence": "(Надевает ружье.) Ты, Епиходов, очень ___ и очень страшный; тебя должны безумно любить женщины.",
-   "lemma": "человек",
-   "options": [
-    "умному человеку",
-    "умного человека",
-    "умным человеком",
-    "умный человек"
-   ],
-   "correct": "умный человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«умный человек» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
   },
   {
    "sentence": "Собственно говоря, не касаясь других предметов, я должен выразиться о себе, между прочим, что судьба относится ко мне без сожаления, как буря к ___.",
@@ -137,7 +39,7 @@
    ],
    "correct": "небольшому кораблю",
    "case": "Дательный (Dative)",
-   "explain": "«небольшому кораблю» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«небольшому кораблю» — «к» always takes the dative.",
    "id": "c14"
   },
   {
@@ -151,7 +53,7 @@
    ],
    "correct": "глупый человек",
    "case": "Именительный (Nominative)",
-   "explain": "«Глупый человек» — the subject of the sentence stands in the nominative.",
+   "explain": "«глупый человек» is the subject of «говоря» — who or what does it — so nominative.",
    "id": "c16"
   },
   {
@@ -165,148 +67,8 @@
    ],
    "correct": "дурного поведения",
    "case": "Родительный (Genitive)",
-   "explain": "«дурного поведения» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«дурного поведения» depends on the noun «девушка» (whose? of what?) — genitive.",
    "id": "c17"
-  },
-  {
-   "sentence": "Вам говорят ___, имение ваше продается, а вы точно не понимаете.",
-   "lemma": "язык",
-   "options": [
-    "русском языке",
-    "русскому языку",
-    "русским языком",
-    "русский язык"
-   ],
-   "correct": "русским языком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«русским языком» — the instrumental marks the means, company, or complement.",
-   "id": "c21"
-  },
-  {
-   "sentence": "Это наш знаменитый ___.",
-   "lemma": "оркестр",
-   "options": [
-    "еврейском оркестре",
-    "еврейский оркестр",
-    "еврейского оркестра",
-    "еврейским оркестром"
-   ],
-   "correct": "еврейский оркестр",
-   "case": "Именительный (Nominative)",
-   "explain": "«еврейский оркестр» — the subject of the sentence stands in the nominative.",
-   "id": "c23"
-  },
-  {
-   "sentence": "Она у меня из простых, работает ___, а главное, вас любит.",
-   "lemma": "день",
-   "options": [
-    "целому дню",
-    "целого дня",
-    "целый день",
-    "целым днём"
-   ],
-   "correct": "целый день",
-   "case": "Именительный (Nominative)",
-   "explain": "«целый день» — the subject of the sentence stands in the nominative.",
-   "id": "c24"
-  },
-  {
-   "sentence": "(Смеется.) А воля вышла, я уже ___ был.",
-   "lemma": "камердинер",
-   "options": [
-    "старшем камердинере",
-    "старшему камердинеру",
-    "старший камердинер",
-    "старшим камердинером"
-   ],
-   "correct": "старшим камердинером",
-   "case": "Творительный (Instrumental)",
-   "explain": "«старшим камердинером» — the instrumental marks the means, company, or complement.",
-   "id": "c25"
-  },
-  {
-   "sentence": "Наш ___ все с барышнями ходит.",
-   "lemma": "студент",
-   "options": [
-    "вечного студента",
-    "вечным студентом",
-    "вечный студент",
-    "вечном студенте"
-   ],
-   "correct": "вечный студент",
-   "case": "Именительный (Nominative)",
-   "explain": "«вечный студент» — the subject of the sentence stands in the nominative.",
-   "id": "c26"
-  },
-  {
-   "sentence": "Я, Ермолай Алексеич, так понимаю: вы ___, будете скоро миллионером.",
-   "lemma": "человек",
-   "options": [
-    "богатому человеку",
-    "богатого человека",
-    "богатом человеке",
-    "богатый человек"
-   ],
-   "correct": "богатый человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«богатый человек» — the subject of the sentence stands in the nominative.",
-   "id": "c28"
-  },
-  {
-   "sentence": "Вот как в смысле обмена веществ нужен ___, который съедает все, что попадается ему на пути, так и ты нужен.",
-   "lemma": "зверь",
-   "options": [
-    "хищный зверь",
-    "хищному зверю",
-    "хищном звере",
-    "хищного зверя"
-   ],
-   "correct": "хищный зверь",
-   "case": "Именительный (Nominative)",
-   "explain": "«хищный зверь» — the subject of the sentence stands in the nominative.",
-   "id": "c29"
-  },
-  {
-   "sentence": "И, очевидно, все ___ у нас для того только, чтобы отвести глаза себе и другим.",
-   "lemma": "разговор",
-   "options": [
-    "хорошие разговоры",
-    "хороших разговорах",
-    "хорошими разговорами",
-    "хорошим разговорам"
-   ],
-   "correct": "хорошие разговоры",
-   "case": "Именительный (Nominative)",
-   "explain": "«хорошие разговоры» — the subject of the sentence stands in the nominative.",
-   "id": "c31"
-  },
-  {
-   "sentence": "Варя боится, а вдруг мы полюбим друг друга, и ___ не отходит от нас.",
-   "lemma": "день",
-   "options": [
-    "целых днях",
-    "целые дни",
-    "целым дням",
-    "целыми днями"
-   ],
-   "correct": "целые дни",
-   "case": "Винительный (Accusative)",
-   "explain": "«целые дни» — the accusative marks the direct object of the verb.",
-   "id": "c36"
-  },
-  {
-   "sentence": "Она своей ___ не может понять, что мы выше любви.",
-   "lemma": "голова",
-   "options": [
-    "узкой головой",
-    "узкой голове",
-    "узкой головы",
-    "узкая голова"
-   ],
-   "correct": "узкой головой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«узкой головой» — the instrumental marks the means, company, or complement.",
-   "id": "c37"
   },
   {
    "sentence": "Мы идем неудержимо к ___, которая горит там вдали!",
@@ -319,7 +81,7 @@
    ],
    "correct": "яркой звезде",
    "case": "Дательный (Dative)",
-   "explain": "«яркой звезде» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«яркой звезде» — «к» always takes the dative.",
    "id": "c38"
   },
   {
@@ -333,7 +95,7 @@
    ],
    "correct": "чудесных мест",
    "case": "Родительный (Genitive)",
-   "explain": "«чудесных мест» — the genitive here marks possession, absence, or quantity.",
+   "explain": "After «много», a word of quantity — genitive.",
    "id": "c39"
   }
  ]

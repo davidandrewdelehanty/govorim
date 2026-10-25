@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Снова, после долгих лет разлуки, я увидел этот ___, в котором мелькнуло несколько счастливых дней моего детства и который много раз потом снился мне во сне, в дортуарах школ, хлопотавших о моем образовании.",
-   "lemma": "сад",
-   "options": [
-    "огромным садом",
-    "огромном саде",
-    "огромный сад",
-    "огромному саду"
-   ],
-   "correct": "огромный сад",
-   "case": "Винительный (Accusative)",
-   "explain": "«огромный сад» — the accusative marks the direct object of the verb.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Снова, после долгих лет разлуки, я увидел этот огромный сад, в котором мелькнуло несколько ___ моего детства и который много раз потом снился мне во сне, в дортуарах школ, хлопотавших о моем образовании.",
-   "lemma": "день",
-   "options": [
-    "счастливых днях",
-    "счастливых дней",
-    "счастливые дни",
-    "счастливым дням"
-   ],
-   "correct": "счастливых дней",
-   "case": "Родительный (Genitive)",
-   "explain": "«счастливых дней» — the genitive here marks possession, absence, or quantity.",
-   "id": "c2"
-  },
-  {
    "sentence": "Я выскочил из повозки и пошел прямо через сад к ___.",
    "lemma": "дом",
    "options": [
@@ -39,7 +11,7 @@
    ],
    "correct": "барскому дому",
    "case": "Дательный (Dative)",
-   "explain": "«барскому дому» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«барскому дому» — «к» always takes the dative.",
    "id": "c3"
   },
   {
@@ -53,7 +25,7 @@
    ],
    "correct": "столетних лип",
    "case": "Родительный (Genitive)",
-   "explain": "«столетних лип» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«столетних лип» depends on the noun «аллею» (whose? of what?) — genitive.",
    "id": "c4"
   },
   {
@@ -67,7 +39,7 @@
    ],
    "correct": "дорогих растений",
    "case": "Родительный (Genitive)",
-   "explain": "«дорогих растений» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«дорогих растений» depends on the noun «горшками» (whose? of what?) — genitive.",
    "id": "c6"
   },
   {
@@ -81,64 +53,8 @@
    ],
    "correct": "недавним разговором",
    "case": "Творительный (Instrumental)",
-   "explain": "«недавним разговором» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «взволнованный», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c9"
-  },
-  {
-   "sentence": "А! ___ русскими буквами — ухитрился!",
-   "lemma": "слово",
-   "options": [
-    "французские слова",
-    "французскими словами",
-    "французских слов",
-    "французским словам"
-   ],
-   "correct": "французские слова",
-   "case": "Именительный (Nominative)",
-   "explain": "«французские слова» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
-  },
-  {
-   "sentence": "А! французские слова ___ — ухитрился!",
-   "lemma": "буква",
-   "options": [
-    "русским буквам",
-    "русские буквы",
-    "русскими буквами",
-    "русских букв"
-   ],
-   "correct": "русскими буквами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«русскими буквами» — the instrumental marks the means, company, or complement.",
-   "id": "c11"
-  },
-  {
-   "sentence": "С этим ___ была какая-нибудь история, подумал я, которую старик не может мне объяснить.",
-   "lemma": "язык",
-   "options": [
-    "французским языком",
-    "французского языка",
-    "французском языке",
-    "французский язык"
-   ],
-   "correct": "французским языком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«французским языком» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c12"
-  },
-  {
-   "sentence": "— Один вопрос, Гаврила: каков он собой? видный, ___?",
-   "lemma": "рост",
-   "options": [
-    "высокому росту",
-    "высоким ростом",
-    "высокий рост",
-    "высокого роста"
-   ],
-   "correct": "высокого роста",
-   "case": "Родительный (Genitive)",
-   "explain": "«высокого роста» — the genitive here marks possession, absence, or quantity.",
-   "id": "c13"
   },
   {
    "sentence": "Точно ему возвратили его ___, избавленного от какой-нибудь смертельной опасности.",
@@ -151,7 +67,7 @@
    ],
    "correct": "родного сына",
    "case": "Винительный (Accusative)",
-   "explain": "«родного сына» — the accusative marks the direct object of the verb.",
+   "explain": "«родного сына» is the direct object of «возвратили» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c14"
   },
   {
@@ -165,7 +81,7 @@
    ],
    "correct": "первых порывов",
    "case": "Родительный (Genitive)",
-   "explain": "«первых порывов» — after the preposition «после», the genitive here marks possession, absence, or quantity.",
+   "explain": "«первых порывов» — «после» always takes the genitive.",
    "id": "c15"
   },
   {
@@ -179,64 +95,8 @@
    ],
    "correct": "железные дороги",
    "case": "Винительный (Accusative)",
-   "explain": "«железные дороги» — after the preposition «про», the accusative marks the direct object of the verb.",
+   "explain": "«железные дороги» — «про» always takes the accusative.",
    "id": "c16"
-  },
-  {
-   "sentence": "И знаешь, — прибавил дядя полушепотом, многозначительно прищуривая ___, — немного, эдак, вольных идей!",
-   "lemma": "глаз",
-   "options": [
-    "правому глазу",
-    "правым глазом",
-    "правого глаза",
-    "правый глаз"
-   ],
-   "correct": "правый глаз",
-   "case": "Винительный (Accusative)",
-   "explain": "«правый глаз» — the accusative marks the direct object of the verb.",
-   "id": "c17"
-  },
-  {
-   "sentence": "И знаешь, — прибавил дядя полушепотом, многозначительно прищуривая правый глаз, — немного, эдак, ___!",
-   "lemma": "идея",
-   "options": [
-    "вольными идеями",
-    "вольных идей",
-    "вольные идеи",
-    "вольным идеям"
-   ],
-   "correct": "вольных идей",
-   "case": "Родительный (Genitive)",
-   "explain": "«вольных идей» — the genitive here marks possession, absence, or quantity.",
-   "id": "c18"
-  },
-  {
-   "sentence": "— А учит он, ваша милость, так, что по-нашему выходит ___ купи да медный грош положи.",
-   "lemma": "ящик",
-   "options": [
-    "золотому ящику",
-    "золотой ящик",
-    "золотого ящика",
-    "золотым ящиком"
-   ],
-   "correct": "золотой ящик",
-   "case": "Именительный (Nominative)",
-   "explain": "«золотой ящик» — the subject of the sentence stands in the nominative.",
-   "id": "c22"
-  },
-  {
-   "sentence": "— Это он для произношения, Сережа, единственно для произношения, — проговорил дядя каким-то ___.",
-   "lemma": "голос",
-   "options": [
-    "просительного голоса",
-    "просительным голосом",
-    "просительном голосе",
-    "просительному голосу"
-   ],
-   "correct": "просительным голосом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«просительным голосом» — the instrumental marks the means, company, or complement.",
-   "id": "c25"
   },
   {
    "sentence": "До сих пор он хоронился за спинами ___, слушал в мрачном безмолвии и все время не сгонял с лица какой-то двусмысленной, горько-лукавой усмешки.",
@@ -249,7 +109,7 @@
    ],
    "correct": "других мужиков",
    "case": "Родительный (Genitive)",
-   "explain": "«других мужиков» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«других мужиков» depends on the noun «спинами» (whose? of what?) — genitive.",
    "id": "c26"
   },
   {
@@ -263,22 +123,8 @@
    ],
    "correct": "мрачном безмолвии",
    "case": "Предложный (Prepositional)",
-   "explain": "«мрачном безмолвии» — after the preposition «в», for location or topic.",
+   "explain": "«мрачном безмолвии» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c27"
-  },
-  {
-   "sentence": "Оно, брат, как-то нельзя было там: ___; да и сами они потихоньку пришли.",
-   "lemma": "дело",
-   "options": [
-    "щекотливым делом",
-    "щекотливое дело",
-    "щекотливого дела",
-    "щекотливому делу"
-   ],
-   "correct": "щекотливое дело",
-   "case": "Именительный (Nominative)",
-   "explain": "«щекотливое дело» — the subject of the sentence stands in the nominative.",
-   "id": "c29"
   },
   {
    "sentence": "— Впрочем, знаете, дядюшка, у меня на этот счет выработалась своя ___, — перебил я, торопясь высказать мою идею.",
@@ -291,64 +137,8 @@
    ],
    "correct": "особая идея",
    "case": "Именительный (Nominative)",
-   "explain": "«особая идея» — the subject of the sentence stands in the nominative.",
+   "explain": "«особая идея» is the subject of «выработалась» — who or what does it — so nominative.",
    "id": "c31"
-  },
-  {
-   "sentence": "Добрейшая, благороднейшая старушка; без претензий — это можно сказать; ___ немножко, да это и лучше.",
-   "lemma": "покрой",
-   "options": [
-    "старый покрой",
-    "старом покрое",
-    "старого покроя",
-    "старым покроем"
-   ],
-   "correct": "старого покроя",
-   "case": "Родительный (Genitive)",
-   "explain": "«старого покроя» — the genitive here marks possession, absence, or quantity.",
-   "id": "c34"
-  },
-  {
-   "sentence": "Фома, в насмешку, прозвал его « ___» — ничего: не сердится.",
-   "lemma": "незнакомец",
-   "options": [
-    "молчаливому незнакомцу",
-    "молчаливым незнакомцем",
-    "молчаливом незнакомце",
-    "молчаливый незнакомец"
-   ],
-   "correct": "молчаливый незнакомец",
-   "case": "Именительный (Nominative)",
-   "explain": "«молчаливый незнакомец» — the subject of the sentence stands in the nominative.",
-   "id": "c36"
-  },
-  {
-   "sentence": "Одеваясь, я заметил, что еще почти ничего не узнал из того, что хотел узнать, хотя и говорил с дядей ___.",
-   "lemma": "час",
-   "options": [
-    "целого часа",
-    "целый час",
-    "целым часом",
-    "целому часу"
-   ],
-   "correct": "целый час",
-   "case": "Винительный (Accusative)",
-   "explain": "«целый час» — the accusative marks the direct object of the verb.",
-   "id": "c41"
-  },
-  {
-   "sentence": "Одно только было для меня несколько ясно: дядя все еще настойчиво хотел, чтоб я женился; следовательно, все ___, именно, что дядя влюблен в ту же особу сам, — неуместны.",
-   "lemma": "слух",
-   "options": [
-    "противоположным слухам",
-    "противоположные слухи",
-    "противоположных слухов",
-    "противоположными слухами"
-   ],
-   "correct": "противоположные слухи",
-   "case": "Именительный (Nominative)",
-   "explain": "«противоположные слухи» — the subject of the sentence stands in the nominative.",
-   "id": "c42"
   },
   {
    "sentence": "Помню, что я был в ___.",
@@ -361,7 +151,7 @@
    ],
    "correct": "большой тревоге",
    "case": "Предложный (Prepositional)",
-   "explain": "«большой тревоге» — after the preposition «в», for location or topic.",
+   "explain": "«большой тревоге» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c43"
   },
   {
@@ -375,36 +165,22 @@
    ],
    "correct": "сам дядя",
    "case": "Именительный (Nominative)",
-   "explain": "«сам дядя» — the subject of the sentence stands in the nominative.",
+   "explain": "«сам дядя» is the subject of «играет» — who or what does it — so nominative.",
    "id": "c45"
   },
   {
    "sentence": "И что за странную роль играет сам дядя здесь, в своем ___?",
    "lemma": "дом",
    "options": [
-    "собственный дом",
     "собственному дому",
     "собственного дома",
+    "собственным домом",
     "собственном доме"
    ],
    "correct": "собственном доме",
    "case": "Предложный (Prepositional)",
-   "explain": "«собственном доме» — after the preposition «в», for location or topic.",
+   "explain": "«собственном доме» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c46"
-  },
-  {
-   "sentence": "Признаюсь, что все это представилось мне вдруг чем-то совершенно бессмысленным; а романические и ___ мои совсем вылетели из головы при первом столкновении с действительностью.",
-   "lemma": "мечта",
-   "options": [
-    "героических мечтах",
-    "героические мечты",
-    "героическим мечтам",
-    "героическими мечтами"
-   ],
-   "correct": "героические мечты",
-   "case": "Именительный (Nominative)",
-   "explain": "«героические мечты» — the subject of the sentence stands in the nominative.",
-   "id": "c47"
   },
   {
    "sentence": "Признаюсь, что все это представилось мне вдруг чем-то совершенно бессмысленным; а романические и героические мечты мои совсем вылетели из головы при ___ с действительностью.",
@@ -417,64 +193,8 @@
    ],
    "correct": "первом столкновении",
    "case": "Предложный (Prepositional)",
-   "explain": "«первом столкновении» — after the preposition «при», for location or topic.",
+   "explain": "«первом столкновении» — «при» always takes the prepositional.",
    "id": "c48"
-  },
-  {
-   "sentence": "Это был еще ___, для лакея одетый прекрасно, не хуже иного губернского франта.",
-   "lemma": "человек",
-   "options": [
-    "молодому человеку",
-    "молодым человеком",
-    "молодой человек",
-    "молодого человека"
-   ],
-   "correct": "молодой человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«молодой человек» — the subject of the sentence stands in the nominative.",
-   "id": "c50"
-  },
-  {
-   "sentence": "Это был еще молодой человек, для лакея одетый прекрасно, не хуже иного ___.",
-   "lemma": "франт",
-   "options": [
-    "губернский франт",
-    "губернским франтом",
-    "губернском франте",
-    "губернского франта"
-   ],
-   "correct": "губернского франта",
-   "case": "Родительный (Genitive)",
-   "explain": "«губернского франта» — the genitive here marks possession, absence, or quantity.",
-   "id": "c51"
-  },
-  {
-   "sentence": "___, белые брюки, палевый жилет, лакированные полусапожки и розовый галстучек подобраны были, очевидно, не без цели.",
-   "lemma": "фрак",
-   "options": [
-    "коричневому фраку",
-    "коричневый фрак",
-    "коричневом фраке",
-    "коричневым фраком"
-   ],
-   "correct": "коричневый фрак",
-   "case": "Именительный (Nominative)",
-   "explain": "«Коричневый фрак» — the subject of the sentence stands in the nominative.",
-   "id": "c52"
-  },
-  {
-   "sentence": "Коричневый фрак, ___, палевый жилет, лакированные полусапожки и розовый галстучек подобраны были, очевидно, не без цели.",
-   "lemma": "брюки",
-   "options": [
-    "белые брюки",
-    "белых брюках",
-    "белым брюкам",
-    "белых брюк"
-   ],
-   "correct": "белые брюки",
-   "case": "Именительный (Nominative)",
-   "explain": "«белые брюки» — the subject of the sentence stands in the nominative.",
-   "id": "c53"
   },
   {
    "sentence": "Улыбка на ___ его выражала какую-то грусть и, однако ж, деликатную грусть.",
@@ -487,106 +207,8 @@
    ],
    "correct": "тонких губах",
    "case": "Предложный (Prepositional)",
-   "explain": "«тонких губах» — after the preposition «на», for location or topic.",
+   "explain": "«тонких губах» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c55"
-  },
-  {
-   "sentence": "Длинные, белобрысые и ___ его были завиты в кудри и напомажены.",
-   "lemma": "волос",
-   "options": [
-    "жидкие волосы",
-    "жидких волос",
-    "жидкими волосами",
-    "жидких волосах"
-   ],
-   "correct": "жидкие волосы",
-   "case": "Именительный (Nominative)",
-   "explain": "«жидкие волосы» — the subject of the sentence stands in the nominative.",
-   "id": "c56"
-  },
-  {
-   "sentence": "Ручки его были беленькие, чистенькие, вымытые чуть ли не в ___; пальцы оканчивались щеголеватыми, длиннейшими розовыми ногтями.",
-   "lemma": "вода",
-   "options": [
-    "розовой воды",
-    "розовой водой",
-    "розовая вода",
-    "розовой воде"
-   ],
-   "correct": "розовой воде",
-   "case": "Предложный (Prepositional)",
-   "explain": "«розовой воде» — after the preposition «в», for location or topic.",
-   "id": "c57"
-  },
-  {
-   "sentence": "Ручки его были беленькие, чистенькие, вымытые чуть ли не в розовой воде; пальцы оканчивались щеголеватыми, длиннейшими ___.",
-   "lemma": "ноготь",
-   "options": [
-    "розовыми ногтями",
-    "розовым ногтям",
-    "розовых ногтях",
-    "розовые ногти"
-   ],
-   "correct": "розовыми ногтями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«розовыми ногтями» — the instrumental marks the means, company, or complement.",
-   "id": "c58"
-  },
-  {
-   "sentence": "___, неизвестно почему, мне, сгоряча, не понравилось.",
-   "lemma": "обстоятельство",
-   "options": [
-    "последнем обстоятельстве",
-    "последним обстоятельством",
-    "последнее обстоятельство",
-    "последнему обстоятельству"
-   ],
-   "correct": "последнее обстоятельство",
-   "case": "Именительный (Nominative)",
-   "explain": "«Последнее обстоятельство» — the subject of the sentence stands in the nominative.",
-   "id": "c59"
-  },
-  {
-   "sentence": "Все — конечно, воля ваша обзывать меня ___; но разговором моим многие генералы и даже некоторые столичные графы оставались довольны-с.",
-   "lemma": "слово",
-   "options": [
-    "всяческим словам",
-    "всяческих слов",
-    "всяческих словах",
-    "всяческими словами"
-   ],
-   "correct": "всяческими словами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«всяческими словами» — the instrumental marks the means, company, or complement.",
-   "id": "c62"
-  },
-  {
-   "sentence": "Все — конечно, воля ваша обзывать меня всяческими словами; но разговором моим ___ и даже некоторые столичные графы оставались довольны-с.",
-   "lemma": "генерал",
-   "options": [
-    "многие генералы",
-    "многих генералов",
-    "многих генералах",
-    "многими генералами"
-   ],
-   "correct": "многие генералы",
-   "case": "Именительный (Nominative)",
-   "explain": "«многие генералы» — the subject of the sentence stands in the nominative.",
-   "id": "c63"
-  },
-  {
-   "sentence": "Все — конечно, воля ваша обзывать меня всяческими словами; но разговором моим многие генералы и даже некоторые ___ оставались довольны-с.",
-   "lemma": "граф",
-   "options": [
-    "столичных графах",
-    "столичными графами",
-    "столичным графам",
-    "столичные графы"
-   ],
-   "correct": "столичные графы",
-   "case": "Именительный (Nominative)",
-   "explain": "«столичные графы» — the subject of the sentence stands in the nominative.",
-   "id": "c64"
   }
  ]
 }

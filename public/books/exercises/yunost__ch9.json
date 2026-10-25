@@ -1,60 +1,18 @@
 {
  "cases": [
   {
-   "sentence": "Много тут было ___ и лиц, но все они, по моим тогдашним понятиям, легко распределялись на три рода.",
-   "lemma": "фигура",
-   "options": [
-    "разнообразными фигурами",
-    "разнообразные фигуры",
-    "разнообразных фигур",
-    "разнообразным фигурам"
-   ],
-   "correct": "разнообразных фигур",
-   "case": "Родительный (Genitive)",
-   "explain": "«разнообразных фигур» — the genitive here marks possession, absence, or quantity.",
-   "id": "c3"
-  },
-  {
    "sentence": "Много тут было разнообразных фигур и лиц, но все они, по моим ___, легко распределялись на три рода.",
    "lemma": "понятие",
    "options": [
-    "тогдашние понятия",
+    "тогдашних понятиях",
     "тогдашними понятиями",
-    "тогдашним понятиям",
-    "тогдашних понятиях"
+    "тогдашних понятий",
+    "тогдашним понятиям"
    ],
    "correct": "тогдашним понятиям",
    "case": "Дательный (Dative)",
-   "explain": "«тогдашним понятиям» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«тогдашним понятиям» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c4"
-  },
-  {
-   "sentence": "Были такие же, как я, явившиеся на экзамен с гувернерами или родителями, и в числе их меньшой Ивин с знакомым мне Фростом и Иленька Грап с своим ___.",
-   "lemma": "отец",
-   "options": [
-    "старый отец",
-    "старого отца",
-    "старым отцом",
-    "старом отце"
-   ],
-   "correct": "старым отцом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«старым отцом» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c5"
-  },
-  {
-   "sentence": "Все таковые были с пушистыми подбородками, имели выпущенное белье и сидели смирно, не раскрывая книг и тетрадей, принесенных с собою, и с видимой робостью смотрели на профессоров и ___.",
-   "lemma": "стол",
-   "options": [
-    "экзаменные столы",
-    "экзаменных столах",
-    "экзаменных столов",
-    "экзаменными столами"
-   ],
-   "correct": "экзаменные столы",
-   "case": "Винительный (Accusative)",
-   "explain": "«экзаменные столы» — the accusative marks the direct object of the verb.",
-   "id": "c7"
   },
   {
    "sentence": "___ экзаменующиеся были молодые люди в гимназических мундирах, из которых многие уже брили бороды.",
@@ -67,7 +25,7 @@
    ],
    "correct": "второго рода",
    "case": "Родительный (Genitive)",
-   "explain": "«Второго рода» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«второго рода» depends on the noun «экзаменующиеся» (whose? of what?) — genitive.",
    "id": "c8"
   },
   {
@@ -81,7 +39,7 @@
    ],
    "correct": "видимого белья",
    "case": "Родительный (Genitive)",
-   "explain": "«видимого белья» — after the preposition «без», the genitive here marks possession, absence, or quantity.",
+   "explain": "«видимого белья» — «без» always takes the genitive.",
    "id": "c11"
   },
   {
@@ -95,50 +53,8 @@
    ],
    "correct": "последнему роду",
    "case": "Дательный (Dative)",
-   "explain": "«последнему роду» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«последнему роду» — «к» always takes the dative.",
    "id": "c12"
-  },
-  {
-   "sentence": "Когда вызвали Семенова, то мой сосед с седыми волосами и ___, грубо толкнув меня, перелез через мои ноги и пошел к столу.",
-   "lemma": "глаз",
-   "options": [
-    "блестящим глазам",
-    "блестящих глаз",
-    "блестящими глазами",
-    "блестящих глазах"
-   ],
-   "correct": "блестящими глазами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«блестящими глазами» — the instrumental marks the means, company, or complement.",
-   "id": "c14"
-  },
-  {
-   "sentence": "-- Иконин, иди, тебя зовут; да кто же Бартеньев, Морденьев? я не знаю, признавайся, -- говорил высокий ___, стоявший за мной.",
-   "lemma": "гимназист",
-   "options": [
-    "румяному гимназисту",
-    "румяного гимназиста",
-    "румяном гимназисте",
-    "румяный гимназист"
-   ],
-   "correct": "румяный гимназист",
-   "case": "Именительный (Nominative)",
-   "explain": "«румяный гимназист» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
-  },
-  {
-   "sentence": "Впереди меня шел Иконин, высокий ___ лет двадцати пяти, принадлежавший к третьему роду, старых.",
-   "lemma": "человек",
-   "options": [
-    "молодом человеке",
-    "молодым человеком",
-    "молодой человек",
-    "молодого человека"
-   ],
-   "correct": "молодой человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«молодой человек» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
   },
   {
    "sentence": "Впереди меня шел Иконин, высокий молодой человек лет двадцати пяти, принадлежавший к ___, старых.",
@@ -151,36 +67,8 @@
    ],
    "correct": "третьему роду",
    "case": "Дательный (Dative)",
-   "explain": "«третьему роду» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«третьему роду» — «к» always takes the dative.",
    "id": "c17"
-  },
-  {
-   "sentence": "На нем был оливковый ___, атласный синий галстук, на котором лежали сзади длинные белокурые волосы, тщательно причесанные Ю la мужик.",
-   "lemma": "фрак",
-   "options": [
-    "узеньком фраке",
-    "узенькому фраку",
-    "узенький фрак",
-    "узенького фрака"
-   ],
-   "correct": "узенький фрак",
-   "case": "Именительный (Nominative)",
-   "explain": "«узенький фрак» — the subject of the sentence stands in the nominative.",
-   "id": "c18"
-  },
-  {
-   "sentence": "На нем был оливковый узенький фрак, атласный синий галстук, на котором лежали сзади длинные ___, тщательно причесанные Ю la мужик.",
-   "lemma": "волос",
-   "options": [
-    "белокурыми волосами",
-    "белокурые волосы",
-    "белокурых волосах",
-    "белокурых волос"
-   ],
-   "correct": "белокурые волосы",
-   "case": "Именительный (Nominative)",
-   "explain": "«белокурые волосы» — the subject of the sentence stands in the nominative.",
-   "id": "c19"
   },
   {
    "sentence": "___ продолжалось минуты две.",
@@ -193,7 +81,7 @@
    ],
    "correct": "общее молчание",
    "case": "Именительный (Nominative)",
-   "explain": "«Общее молчание» — the subject of the sentence stands in the nominative.",
+   "explain": "«общее молчание» is the subject of «продолжалось» — who or what does it — so nominative.",
    "id": "c20"
   },
   {
@@ -207,7 +95,7 @@
    ],
    "correct": "молодой профессор",
    "case": "Именительный (Nominative)",
-   "explain": "«молодой профессор» — the subject of the sentence stands in the nominative.",
+   "explain": "«молодой профессор» is the subject of «сказал» — who or what does it — so nominative.",
    "id": "c21"
   },
   {
@@ -221,7 +109,7 @@
    ],
    "correct": "молодой профессор",
    "case": "Именительный (Nominative)",
-   "explain": "«молодой профессор» — the subject of the sentence stands in the nominative.",
+   "explain": "«молодой профессор» is the subject of «сказал» — who or what does it — so nominative.",
    "id": "c22"
   }
  ]

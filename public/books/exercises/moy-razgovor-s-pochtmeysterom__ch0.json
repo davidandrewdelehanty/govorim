@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "— Скажите, пожалуйста, Семен Алексеич, — обратился я к почтмейстеру, получая от него ___ на один (1) рубль, — зачем это к денежным пакетам прикладывают пять печатей?",
-   "lemma": "пакет",
-   "options": [
-    "денежным пакетом",
-    "денежный пакет",
-    "денежному пакету",
-    "денежном пакете"
-   ],
-   "correct": "денежный пакет",
-   "case": "Винительный (Accusative)",
-   "explain": "«денежный пакет» — the accusative marks the direct object of the verb.",
-   "id": "c1"
-  },
-  {
    "sentence": "— Скажите, пожалуйста, Семен Алексеич, — обратился я к почтмейстеру, получая от него денежный пакет на один (1) рубль, — зачем это к ___ прикладывают пять печатей?",
    "lemma": "пакет",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "денежным пакетам",
    "case": "Дательный (Dative)",
-   "explain": "«денежным пакетам» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«денежным пакетам» — «к» always takes the dative.",
    "id": "c2"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "государственной тайны",
    "case": "Родительный (Genitive)",
-   "explain": "«государственной тайны» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«государственной тайны» is the object of a negated verb («не составляет») — genitive instead of the accusative.",
    "id": "c4"
   },
   {
@@ -53,63 +39,21 @@
    ],
    "correct": "нижних чинов",
    "case": "Родительный (Genitive)",
-   "explain": "«нижних чинов» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«нижних чинов» — «из» always takes the genitive.",
    "id": "c5"
-  },
-  {
-   "sentence": "Взять для примера хоть мою мамашу, которая посылала мне этот ___.",
-   "lemma": "рубль",
-   "options": [
-    "самым рублём",
-    "самому рублю",
-    "самый рубль",
-    "самого рубля"
-   ],
-   "correct": "самый рубль",
-   "case": "Винительный (Accusative)",
-   "explain": "«самый рубль» — the accusative marks the direct object of the verb.",
-   "id": "c6"
-  },
-  {
-   "sentence": "Вы ___ его в 20-ти книгах записываете, пятью номерами номеруете и за десять замков прячете, словно разбойника какого или святотатца.",
-   "lemma": "дело",
-   "options": [
-    "первое дело",
-    "первому делу",
-    "первым делом",
-    "первом деле"
-   ],
-   "correct": "первым делом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«первым делом» — the instrumental marks the means, company, or complement.",
-   "id": "c8"
-  },
-  {
-   "sentence": "Засим почтальон приносит мне от вас объявление, и я расписуюсь, что объявление получено ___.",
-   "lemma": "число",
-   "options": [
-    "таким-то числом",
-    "такое-то число",
-    "такого-то числа",
-    "таком-то числе"
-   ],
-   "correct": "такого-то числа",
-   "case": "Родительный (Genitive)",
-   "explain": "«такого-то числа» — the genitive here marks possession, absence, or quantity.",
-   "id": "c9"
   },
   {
    "sentence": "И за какую такую провинность вы мне этот ___ прислали?",
    "lemma": "рубль",
    "options": [
-    "самым рублём",
     "самому рублю",
-    "самый рубль",
-    "самого рубля"
+    "самом рубле",
+    "самым рублём",
+    "самый рубль"
    ],
    "correct": "самый рубль",
    "case": "Винительный (Accusative)",
-   "explain": "«самый рубль» — the accusative marks the direct object of the verb.",
+   "explain": "«самый рубль» is the direct object of «прислали» (кого? что?) — accusative.",
    "id": "c10"
   }
  ]

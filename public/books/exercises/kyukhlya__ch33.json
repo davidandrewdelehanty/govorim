@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Дядя Флери, друг Анахарсиса Клоотца, оратора рода человеческого, одинокий и ___, обломок 93-го года, писал свой труд о всемирной революции.",
-   "lemma": "математик",
-   "options": [
-    "сумрачного математика",
-    "сумрачному математику",
-    "сумрачный математик",
-    "сумрачным математиком"
-   ],
-   "correct": "сумрачный математик",
-   "case": "Именительный (Nominative)",
-   "explain": "«сумрачный математик» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Дядя Флери зорко следил за ___.",
    "lemma": "сведение",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "русскими сведениями",
    "case": "Творительный (Instrumental)",
-   "explain": "«русскими сведениями» — after the preposition «за», the instrumental marks the means, company, or complement.",
+   "explain": "«русскими сведениями» — «за» takes the instrumental here (где? за чем? за кем?) — the accusative would mean motion behind or 'for' (куда? за что?).",
    "id": "c2"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "русский профессор",
    "case": "Именительный (Nominative)",
-   "explain": "«русский профессор» — the subject of the sentence stands in the nominative.",
+   "explain": "«русский профессор» is the subject of «читает» — who or what does it — so nominative.",
    "id": "c3"
   },
   {
@@ -53,7 +39,7 @@
    ],
    "correct": "русской литературе",
    "case": "Предложный (Prepositional)",
-   "explain": "«русской литературе» — after the preposition «о», for location or topic.",
+   "explain": "«русской литературе» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c4"
   },
   {
@@ -67,22 +53,8 @@
    ],
    "correct": "русского поэта",
    "case": "Винительный (Accusative)",
-   "explain": "«русского поэта» — the accusative marks the direct object of the verb.",
+   "explain": "«русского поэта» is the direct object of «услышал» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c5"
-  },
-  {
-   "sentence": "Длинная, согбенная фигура, вытянутое лицо, кривящийся рот, ___ с лихорадочно двигающимися пальцами, тонкий и хриплый голос — все это кого-то напоминало дяде Флери.",
-   "lemma": "рука",
-   "options": [
-    "огромным рукам",
-    "огромные руки",
-    "огромными руками",
-    "огромных рук"
-   ],
-   "correct": "огромные руки",
-   "case": "Винительный (Accusative)",
-   "explain": "«огромные руки» — the accusative marks the direct object of the verb.",
-   "id": "c6"
   },
   {
    "sentence": "Зал Атенея был переполнен, в ___ сидели литературные знаменитости — дядя Флери видел сухой профиль белокурого Констана, бледное лицо и горящие глаза Жульена, толстое, крупное лицо Жуи.",
@@ -95,7 +67,7 @@
    ],
    "correct": "первых рядах",
    "case": "Предложный (Prepositional)",
-   "explain": "«первых рядах» — after the preposition «в», for location or topic.",
+   "explain": "«первых рядах» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c7"
   },
   {
@@ -109,7 +81,7 @@
    ],
    "correct": "литературные знаменитости",
    "case": "Именительный (Nominative)",
-   "explain": "«литературные знаменитости» — the subject of the sentence stands in the nominative.",
+   "explain": "«литературные знаменитости» is the subject of «сидели» — who or what does it — so nominative.",
    "id": "c8"
   },
   {
@@ -123,63 +95,21 @@
    ],
    "correct": "сухой профиль",
    "case": "Винительный (Accusative)",
-   "explain": "«сухой профиль» — the accusative marks the direct object of the verb.",
+   "explain": "«сухой профиль» is the direct object of «видел» (кого? что?) — accusative.",
    "id": "c9"
-  },
-  {
-   "sentence": "Зал Атенея был переполнен, в первых рядах сидели литературные знаменитости — дядя Флери видел сухой профиль белокурого Констана, ___ и горящие глаза Жульена, толстое, крупное лицо Жуи.",
-   "lemma": "лицо",
-   "options": [
-    "бледным лицом",
-    "бледное лицо",
-    "бледному лицу",
-    "бледном лице"
-   ],
-   "correct": "бледное лицо",
-   "case": "Именительный (Nominative)",
-   "explain": "«бледное лицо» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
-  },
-  {
-   "sentence": "Зал Атенея был переполнен, в первых рядах сидели литературные знаменитости — дядя Флери видел сухой профиль белокурого Констана, бледное лицо и горящие глаза Жульена, толстое, ___ Жуи.",
-   "lemma": "лицо",
-   "options": [
-    "крупном лице",
-    "крупному лицу",
-    "крупного лица",
-    "крупное лицо"
-   ],
-   "correct": "крупное лицо",
-   "case": "Именительный (Nominative)",
-   "explain": "«крупное лицо» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
-  },
-  {
-   "sentence": "Рядом сидел какой-то ___ с мутными глазами, который усердно записывал лекции и жадно всматривался во все лица, — может быть, газетчик, журналист.",
-   "lemma": "человек",
-   "options": [
-    "бесцветном человеке",
-    "бесцветного человека",
-    "бесцветный человек",
-    "бесцветным человеком"
-   ],
-   "correct": "бесцветный человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«бесцветный человек» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
   },
   {
    "sentence": "По отдаленным предкам он имел возможность приблизиться к разрешению ___.",
    "lemma": "вопрос",
    "options": [
-    "русском вопросе",
     "русского вопроса",
     "русскому вопросу",
-    "русским вопросом"
+    "русском вопросе",
+    "русский вопрос"
    ],
    "correct": "русского вопроса",
    "case": "Родительный (Genitive)",
-   "explain": "«русского вопроса» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«русского вопроса» depends on the noun «разрешению» (whose? of what?) — genitive.",
    "id": "c14"
   },
   {
@@ -193,50 +123,8 @@
    ],
    "correct": "странного поэта",
    "case": "Родительный (Genitive)",
-   "explain": "«странного поэта» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«странного поэта» depends on the noun «лекции» (whose? of what?) — genitive.",
    "id": "c16"
-  },
-  {
-   "sentence": "Но песни, ___ русские, самые напевы их и самое стихосложение — заунывны.",
-   "lemma": "песня",
-   "options": [
-    "старинных песен",
-    "старинными песнями",
-    "старинные песни",
-    "старинным песням"
-   ],
-   "correct": "старинные песни",
-   "case": "Именительный (Nominative)",
-   "explain": "«старинные песни» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
-  },
-  {
-   "sentence": "Но песни, старинные песни русские, ___ их и самое стихосложение — заунывны.",
-   "lemma": "напев",
-   "options": [
-    "самые напевы",
-    "самыми напевами",
-    "самых напевах",
-    "самым напевам"
-   ],
-   "correct": "самые напевы",
-   "case": "Именительный (Nominative)",
-   "explain": "«самые напевы» — the subject of the sentence stands in the nominative.",
-   "id": "c18"
-  },
-  {
-   "sentence": "Он стоял бледный, ___ его сверкали.",
-   "lemma": "глаз",
-   "options": [
-    "выпуклым глазам",
-    "выпуклые глаза",
-    "выпуклыми глазами",
-    "выпуклых глазах"
-   ],
-   "correct": "выпуклые глаза",
-   "case": "Именительный (Nominative)",
-   "explain": "«выпуклые глаза» — the subject of the sentence stands in the nominative.",
-   "id": "c19"
   },
   {
    "sentence": "— Не дурной ли это знак, что, начиная с древней истории русской, есть у народа что-то, что мешает ему стать великим, благодатным явлением в мире нравственном, среди всех ___?",
@@ -249,92 +137,8 @@
    ],
    "correct": "других народов",
    "case": "Родительный (Genitive)",
-   "explain": "«других народов» — after the preposition «среди», the genitive here marks possession, absence, or quantity.",
+   "explain": "«других народов» — «среди» always takes the genitive.",
    "id": "c20"
-  },
-  {
-   "sentence": "О, какая ___, как распространяется рабством развращение!",
-   "lemma": "картина",
-   "options": [
-    "ненавистной картиной",
-    "ненавистной картине",
-    "ненавистная картина",
-    "ненавистной картины"
-   ],
-   "correct": "ненавистная картина",
-   "case": "Именительный (Nominative)",
-   "explain": "«ненавистная картина» — the subject of the sentence stands in the nominative.",
-   "id": "c21"
-  },
-  {
-   "sentence": "И тогда Флери понял: эта откинутая голова была похожа на голову его друга, Анахарсиса Клоотца, оратора ___, — дядя Флери помнил, как палач поднял ее за волосы.",
-   "lemma": "род",
-   "options": [
-    "человеческий род",
-    "человеческому роду",
-    "человеческого рода",
-    "человеческом роде"
-   ],
-   "correct": "человеческого рода",
-   "case": "Родительный (Genitive)",
-   "explain": "«человеческого рода» — the genitive here marks possession, absence, or quantity.",
-   "id": "c22"
-  },
-  {
-   "sentence": "— ___, берегите себя, вы нужны своему отечеству.",
-   "lemma": "человек",
-   "options": [
-    "молодому человеку",
-    "молодой человек",
-    "молодым человеком",
-    "молодого человека"
-   ],
-   "correct": "молодой человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«Молодой человек» — the subject of the sentence stands in the nominative.",
-   "id": "c23"
-  },
-  {
-   "sentence": "Когда Вильгельм выходил одним из последних из зала Атенея, два человека шли вместе с ним: дядя Флери и маленький ___ с водянистыми глазами.",
-   "lemma": "человек",
-   "options": [
-    "белокурый человек",
-    "белокуром человеке",
-    "белокурому человеку",
-    "белокурым человеком"
-   ],
-   "correct": "белокурый человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«белокурый человек» — the subject of the sentence stands in the nominative.",
-   "id": "c24"
-  },
-  {
-   "sentence": "— Мой ___, если мы пройдем с вами в одну небольшую кофейню Латинского квартала, где мне необходимо будет вам сказать несколько слов, от которых многое для меня зависит, — я буду счастлив.",
-   "lemma": "друг",
-   "options": [
-    "молодым другом",
-    "молодого друга",
-    "молодом друге",
-    "молодой друг"
-   ],
-   "correct": "молодой друг",
-   "case": "Именительный (Nominative)",
-   "explain": "«молодой друг» — the subject of the sentence stands in the nominative.",
-   "id": "c26"
-  },
-  {
-   "sentence": "— Мой молодой друг, если мы пройдем с вами в одну небольшую кофейню ___, где мне необходимо будет вам сказать несколько слов, от которых многое для меня зависит, — я буду счастлив.",
-   "lemma": "квартал",
-   "options": [
-    "латинским кварталом",
-    "латинском квартале",
-    "латинскому кварталу",
-    "латинского квартала"
-   ],
-   "correct": "латинского квартала",
-   "case": "Родительный (Genitive)",
-   "explain": "«Латинского квартала» — the genitive here marks possession, absence, or quantity.",
-   "id": "c27"
   }
  ]
 }

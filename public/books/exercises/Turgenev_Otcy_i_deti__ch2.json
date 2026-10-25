@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "– ___ его – естественные науки.",
-   "lemma": "предмет",
-   "options": [
-    "главным предметом",
-    "главного предмета",
-    "главный предмет",
-    "главном предмете"
-   ],
-   "correct": "главный предмет",
-   "case": "Именительный (Nominative)",
-   "explain": "«Главный предмет» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "– Главный предмет его – ___.",
-   "lemma": "наука",
-   "options": [
-    "естественные науки",
-    "естественных науках",
-    "естественными науками",
-    "естественных наук"
-   ],
-   "correct": "естественные науки",
-   "case": "Именительный (Nominative)",
-   "explain": "«естественные науки» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
    "sentence": "Но тот даже не пошевельнулся: это был человек ___, не разделявший новейших воззрений.",
    "lemma": "закал",
    "options": [
@@ -39,50 +11,8 @@
    ],
    "correct": "старого закала",
    "case": "Родительный (Genitive)",
-   "explain": "«старого закала» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«старого закала» depends on the noun «человек» (whose? of what?) — genitive.",
    "id": "c4"
-  },
-  {
-   "sentence": "– Да, – процедил сквозь зубы Николай Петрович. – Подбивают их, вот что беда; ну, и ___ все еще нету.",
-   "lemma": "старание",
-   "options": [
-    "настоящем старании",
-    "настоящему старанию",
-    "настоящего старания",
-    "настоящее старание"
-   ],
-   "correct": "настоящего старания",
-   "case": "Родительный (Genitive)",
-   "explain": "«настоящего старания» — the genitive here marks possession, absence, or quantity.",
-   "id": "c5"
-  },
-  {
-   "sentence": "Аркадий вдруг остановился, бросил ___ назад и умолк.",
-   "lemma": "взгляд",
-   "options": [
-    "косвенного взгляда",
-    "косвенном взгляде",
-    "косвенный взгляд",
-    "косвенному взгляду"
-   ],
-   "correct": "косвенный взгляд",
-   "case": "Винительный (Accusative)",
-   "explain": "«косвенный взгляд» — the accusative marks the direct object of the verb.",
-   "id": "c9"
-  },
-  {
-   "sentence": "– Не помню, писал ли я тебе, – начал Николай Петрович, – твоя ___, Егоровна, скончалась.",
-   "lemma": "нянюшка",
-   "options": [
-    "бывшая нянюшка",
-    "бывшей нянюшке",
-    "бывшей нянюшкой",
-    "бывшей нянюшки"
-   ],
-   "correct": "бывшая нянюшка",
-   "case": "Именительный (Nominative)",
-   "explain": "«бывшая нянюшка» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
   },
   {
    "sentence": "– ___ найдет мою откровенность неуместною, но, во-первых, это скрыть нельзя, а во-вторых, тебе известно, у меня всегда были особенные принципы насчет отношений отца к сыну.",
@@ -95,7 +25,7 @@
    ],
    "correct": "строгий моралист",
    "case": "Именительный (Nominative)",
-   "explain": "«Строгий моралист» — the subject of the sentence stands in the nominative.",
+   "explain": "«строгий моралист» is the subject of «найдет» — who or what does it — so nominative.",
    "id": "c12"
   },
   {
@@ -109,22 +39,8 @@
    ],
    "correct": "долгого молчания",
    "case": "Родительный (Genitive)",
-   "explain": "«долгого молчания» — after the preposition «после», the genitive here marks possession, absence, or quantity.",
+   "explain": "«долгого молчания» — «после» always takes the genitive.",
    "id": "c14"
-  },
-  {
-   "sentence": "Он сбросил с себя шинель и так весело, таким ___ посмотрел на отца, что тот опять его обнял.",
-   "lemma": "мальчик",
-   "options": [
-    "молоденького мальчика",
-    "молоденький мальчик",
-    "молоденькому мальчику",
-    "молоденьким мальчиком"
-   ],
-   "correct": "молоденьким мальчиком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«молоденьким мальчиком» — the instrumental marks the means, company, or complement.",
-   "id": "c16"
   },
   {
    "sentence": "– Конечно, – промолвил Аркадий, – но что за ___ сегодня!",
@@ -137,7 +53,7 @@
    ],
    "correct": "чудный день",
    "case": "Винительный (Accusative)",
-   "explain": "«чудный день» — after the preposition «за», the accusative marks the direct object of the verb.",
+   "explain": "«чудный день» — «за» takes the accusative here (куда? за что? за кого?) — the instrumental would mean position behind or at (где? за чем?).",
    "id": "c17"
   },
   {
@@ -151,7 +67,7 @@
    ],
    "correct": "полном блеске",
    "case": "Предложный (Prepositional)",
-   "explain": "«полном блеске» — after the preposition «в», for location or topic.",
+   "explain": "«полном блеске» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c18"
   },
   {
@@ -165,7 +81,7 @@
    ],
    "correct": "деревянного дома",
    "case": "Родительный (Genitive)",
-   "explain": "«деревянного дома» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«деревянного дома» depends on the noun «крыльцом» (whose? of what?) — genitive.",
    "id": "c19"
   }
  ]

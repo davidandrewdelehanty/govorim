@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Райский ___ выбрался на гору и дошел до домика Козлова.",
-   "lemma": "берег",
-   "options": [
-    "нижнему берегу",
-    "нижним берегом",
-    "нижнем береге",
-    "нижнего берега"
-   ],
-   "correct": "нижним берегом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«нижним берегом» — the instrumental marks the means, company, or complement.",
-   "id": "c1"
-  },
-  {
-   "sentence": "— Дай мне скорее ___, да нет ли вина?",
-   "lemma": "панталоны",
-   "options": [
-    "другие панталоны",
-    "другими панталонами",
-    "других панталон",
-    "другим панталонам"
-   ],
-   "correct": "другие панталоны",
-   "case": "Именительный (Nominative)",
-   "explain": "«другие панталоны» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
    "sentence": "— Через Волгу переезжал в ___, да у острова дурачина рыбак сослепа в тину попал: надо было выскочить и стащить лодку.",
    "lemma": "лодка",
    "options": [
@@ -39,7 +11,7 @@
    ],
    "correct": "рыбачьей лодке",
    "case": "Предложный (Prepositional)",
-   "explain": "«рыбачьей лодке» — after the preposition «в», for location or topic.",
+   "explain": "«рыбачьей лодке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c3"
   },
   {
@@ -53,22 +25,8 @@
    ],
    "correct": "большом кресле",
    "case": "Предложный (Prepositional)",
-   "explain": "«большом кресле» — after the preposition «в», for location or topic.",
+   "explain": "«большом кресле» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c4"
-  },
-  {
-   "sentence": "Он был не блондин, а бледный лицом, и волосы, бледно-русые, закинутые густой гривой на уши и на затылок, открывали большой ___.",
-   "lemma": "лоб",
-   "options": [
-    "выпуклому лбу",
-    "выпуклый лоб",
-    "выпуклого лба",
-    "выпуклым лбом"
-   ],
-   "correct": "выпуклый лоб",
-   "case": "Винительный (Accusative)",
-   "explain": "«выпуклый лоб» — the accusative marks the direct object of the verb.",
-   "id": "c5"
   },
   {
    "sentence": "Открытое, как будто ___ далеко выходило вперед.",
@@ -81,7 +39,7 @@
    ],
    "correct": "дерзкое лицо",
    "case": "Именительный (Nominative)",
-   "explain": "«дерзкое лицо» — the subject of the sentence stands in the nominative.",
+   "explain": "«дерзкое лицо» is the subject of «выходило» — who or what does it — so nominative.",
    "id": "c6"
   },
   {
@@ -95,22 +53,8 @@
    ],
    "correct": "серых глаз",
    "case": "Родительный (Genitive)",
-   "explain": "«серых глаз» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«серых глаз» depends on the noun «Взгляд» (whose? of what?) — genitive.",
    "id": "c7"
-  },
-  {
-   "sentence": "— Как это ты обмолвился ___, а еще ученый!",
-   "lemma": "слово",
-   "options": [
-    "умному слову",
-    "умное слово",
-    "умного слова",
-    "умным словом"
-   ],
-   "correct": "умным словом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«умным словом» — the instrumental marks the means, company, or complement.",
-   "id": "c8"
   },
   {
    "sentence": "Честь имею рекомендоваться: Марк Волоков, пятнадцатого класса, состоящий под надзором полиции чиновник, невольный ___ гражданин!",
@@ -123,7 +67,7 @@
    ],
    "correct": "здешнего города",
    "case": "Родительный (Genitive)",
-   "explain": "«здешнего города» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«здешнего города» depends on the noun «невольный» (whose? of what?) — genitive.",
    "id": "c9"
   },
   {
@@ -137,7 +81,7 @@
    ],
    "correct": "здешних мест",
    "case": "Родительный (Genitive)",
-   "explain": "«здешних мест» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«здешних мест» depends on the noun «ужас» (whose? of what?) — genitive.",
    "id": "c10"
   },
   {
@@ -151,36 +95,22 @@
    ],
    "correct": "общему хору",
    "case": "Дательный (Dative)",
-   "explain": "«общему хору» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«общему хору» — «к» always takes the dative.",
    "id": "c11"
   },
   {
    "sentence": "Кажется, я ему оставил ___: ночью будил не раз, окна отворял у него в спальне.",
    "lemma": "сувенир",
    "options": [
-    "кое-каких сувениров",
+    "кое-каким сувенирам",
     "кое-какие сувениры",
-    "кое-каких сувенирах",
-    "кое-какими сувенирами"
+    "кое-какими сувенирами",
+    "кое-каких сувенирах"
    ],
    "correct": "кое-какие сувениры",
    "case": "Винительный (Accusative)",
-   "explain": "«кое-какие сувениры» — the accusative marks the direct object of the verb.",
+   "explain": "«кое-какие сувениры» is the direct object of «оставил» (кого? что?) — accusative.",
    "id": "c12"
-  },
-  {
-   "sentence": "Другие ездят в палаты, в правления — по утрам, третьи сидят у своих лавок и играют в шашки, четвертые живут по поместьям и проделывают ___ — везде искусство!",
-   "lemma": "штука",
-   "options": [
-    "другие штуки",
-    "других штуках",
-    "другими штуками",
-    "другим штукам"
-   ],
-   "correct": "другие штуки",
-   "case": "Винительный (Accusative)",
-   "explain": "«другие штуки» — the accusative marks the direct object of the verb.",
-   "id": "c13"
   },
   {
    "sentence": "— У вас нет охоты пристать к ___?",
@@ -193,36 +123,8 @@
    ],
    "correct": "которому-нибудь разряду",
    "case": "Дательный (Dative)",
-   "explain": "«которому-нибудь разряду» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«которому-нибудь разряду» — «к» always takes the dative.",
    "id": "c14"
-  },
-  {
-   "sentence": "Марк вдруг засмеялся, услыхав ___, и быстро вскочил на ноги.",
-   "lemma": "слово",
-   "options": [
-    "последних слов",
-    "последним словам",
-    "последних словах",
-    "последние слова"
-   ],
-   "correct": "последние слова",
-   "case": "Винительный (Accusative)",
-   "explain": "«последние слова» — the accusative marks the direct object of the verb.",
-   "id": "c15"
-  },
-  {
-   "sentence": "___ — как это можно?",
-   "lemma": "шум",
-   "options": [
-    "ночном шуме",
-    "ночному шуму",
-    "ночной шум",
-    "ночным шумом"
-   ],
-   "correct": "ночной шум",
-   "case": "Именительный (Nominative)",
-   "explain": "«Ночной шум» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
   },
   {
    "sentence": "— Вон там подальше лучше бы: от ___ или с обрыва, — сказал Марк.",
@@ -235,7 +137,7 @@
    ],
    "correct": "фруктового сада",
    "case": "Родительный (Genitive)",
-   "explain": "«фруктового сада» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«фруктового сада» — «от» always takes the genitive.",
    "id": "c17"
   },
   {
@@ -249,22 +151,8 @@
    ],
    "correct": "старого дома",
    "case": "Родительный (Genitive)",
-   "explain": "«старого дома» — after the preposition «близ», the genitive here marks possession, absence, or quantity.",
+   "explain": "«старого дома» — «близ» always takes the genitive.",
    "id": "c18"
-  },
-  {
-   "sentence": "Она засмеялась своей ___ во весь рот, глаза блеснули, как у кошки, и она, далеко вскинув ноги, перескочила через плетень, юбка задела за сучок.",
-   "lemma": "улыбка",
-   "options": [
-    "широкой улыбке",
-    "широкой улыбки",
-    "широкая улыбка",
-    "широкой улыбкой"
-   ],
-   "correct": "широкой улыбкой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«широкой улыбкой» — the instrumental marks the means, company, or complement.",
-   "id": "c21"
   },
   {
    "sentence": "Райский между тем воротился к ___: он старался отворить калитку, но не хотел стучаться, чтоб не разбудить бабушку.",
@@ -277,7 +165,7 @@
    ],
    "correct": "главным воротам",
    "case": "Дательный (Dative)",
-   "explain": "«главным воротам» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«главным воротам» — «к» always takes the dative.",
    "id": "c22"
   },
   {
@@ -291,7 +179,7 @@
    ],
    "correct": "преступной жены",
    "case": "Родительный (Genitive)",
-   "explain": "«преступной жены» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«преступной жены» depends on the noun «пользу» (whose? of what?) — genitive.",
    "id": "c23"
   }
  ]

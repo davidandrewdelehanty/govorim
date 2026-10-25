@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Точно такая погода была в ночь под Рождество тысяча восемьсот восемьдесят ___, когда я еще не был в арестантских ротах, а служил оценщиком в ссудной кассе отставного штабс-капитана Тупаева.",
-   "lemma": "год",
-   "options": [
-    "второй год",
-    "вторым годом",
-    "второго года",
-    "втором годе"
-   ],
-   "correct": "второго года",
-   "case": "Родительный (Genitive)",
-   "explain": "«второго года» — the genitive here marks possession, absence, or quantity.",
-   "id": "c2"
-  },
-  {
    "sentence": "Точно такая погода была в ночь под Рождество тысяча восемьсот восемьдесят второго года, когда я еще не был в ___, а служил оценщиком в ссудной кассе отставного штабс-капитана Тупаева.",
    "lemma": "рота",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "арестантских ротах",
    "case": "Предложный (Prepositional)",
-   "explain": "«арестантских ротах» — after the preposition «в», for location or topic.",
+   "explain": "«арестантских ротах» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c3"
   },
   {
@@ -39,91 +25,21 @@
    ],
    "correct": "ссудной кассе",
    "case": "Предложный (Prepositional)",
-   "explain": "«ссудной кассе» — after the preposition «в», for location or topic.",
+   "explain": "«ссудной кассе» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c4"
-  },
-  {
-   "sentence": "Точно такая погода была в ночь под Рождество тысяча восемьсот восемьдесят второго года, когда я еще не был в арестантских ротах, а служил оценщиком в ссудной кассе ___ Тупаева.",
-   "lemma": "штабс-капитан",
-   "options": [
-    "отставном штабс-капитане",
-    "отставного штабс-капитана",
-    "отставной штабс-капитан",
-    "отставному штабс-капитану"
-   ],
-   "correct": "отставного штабс-капитана",
-   "case": "Родительный (Genitive)",
-   "explain": "«отставного штабс-капитана» — the genitive here marks possession, absence, or quantity.",
-   "id": "c5"
-  },
-  {
-   "sentence": "Кладовая, в которой я по воле хозяина имел свое ночное местопребывание и изображал из себя сторожевую собаку, слабо освещалась синим ___.",
-   "lemma": "огонёк",
-   "options": [
-    "лампадный огонёк",
-    "лампадном огоньке",
-    "лампадным огоньком",
-    "лампадному огоньку"
-   ],
-   "correct": "лампадным огоньком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«лампадным огоньком» — the instrumental marks the means, company, or complement.",
-   "id": "c6"
-  },
-  {
-   "sentence": "Когда я высовывал голову из-за витрины и бросал ___ на темное, вспотевшее окно, мне казалось, что в кладовую с улицы глядели человеческие лица.",
-   "lemma": "взгляд",
-   "options": [
-    "робкого взгляда",
-    "робкий взгляд",
-    "робкому взгляду",
-    "робким взглядом"
-   ],
-   "correct": "робкий взгляд",
-   "case": "Именительный (Nominative)",
-   "explain": "«робкий взгляд» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
-  },
-  {
-   "sentence": "Ведь ты ___, понимаешь!",
-   "lemma": "бедняк",
-   "options": [
-    "самом бедняке",
-    "сам бедняк",
-    "самим бедняком",
-    "самому бедняку"
-   ],
-   "correct": "сам бедняк",
-   "case": "Именительный (Nominative)",
-   "explain": "«сам бедняк» — the subject of the sentence stands in the nominative.",
-   "id": "c24"
-  },
-  {
-   "sentence": "Если бы не бедность, разве у меня хватило бы храбрости оценивать в гроши то, что стоит здоровья, тепла, ___?",
-   "lemma": "радость",
-   "options": [
-    "праздничных радостей",
-    "праздничных радостях",
-    "праздничным радостям",
-    "праздничные радости"
-   ],
-   "correct": "праздничных радостей",
-   "case": "Родительный (Genitive)",
-   "explain": "«праздничных радостей» — the genitive here marks possession, absence, or quantity.",
-   "id": "c25"
   },
   {
    "sentence": "Это был бородатый старик с бледной, испитой физиономией, в порванном ___ и в опорках.",
    "lemma": "сюртучишко",
    "options": [
+    "солдатскому сюртучишку",
     "солдатском сюртучишке",
-    "солдатский сюртучишко",
     "солдатского сюртучишка",
-    "солдатскому сюртучишку"
+    "солдатским сюртучишком"
    ],
    "correct": "солдатском сюртучишке",
    "case": "Предложный (Prepositional)",
-   "explain": "«солдатском сюртучишке» — after the preposition «в», for location or topic.",
+   "explain": "«солдатском сюртучишке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c27"
   },
   {
@@ -137,36 +53,8 @@
    ],
    "correct": "худой парень",
    "case": "Именительный (Nominative)",
-   "explain": "«худой парень» — the subject of the sentence stands in the nominative.",
+   "explain": "«худой парень» is the subject of «подошел» — who or what does it — so nominative.",
    "id": "c28"
-  },
-  {
-   "sentence": "К нему подошел высокий худой парень с ужасно ___, в рубахе навыпуск и в короткой, рваной жакетке.",
-   "lemma": "рука",
-   "options": [
-    "длинным рукам",
-    "длинными руками",
-    "длинных руках",
-    "длинных рук"
-   ],
-   "correct": "длинными руками",
-   "case": "Творительный (Instrumental)",
-   "explain": "«длинными руками» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c29"
-  },
-  {
-   "sentence": "Старик и ___, растопырив руки, набросились на меня, но, увидев револьвер, попятились назад.",
-   "lemma": "парень",
-   "options": [
-    "молодому парню",
-    "молодой парень",
-    "молодом парне",
-    "молодого парня"
-   ],
-   "correct": "молодой парень",
-   "case": "Именительный (Nominative)",
-   "explain": "«молодой парень» — the subject of the sentence stands in the nominative.",
-   "id": "c30"
   },
   {
    "sentence": "Набив ___, я завязал остальные драгоценности в узел и швырнул их старухе.",
@@ -179,36 +67,22 @@
    ],
    "correct": "нищенские карманы",
    "case": "Винительный (Accusative)",
-   "explain": "«нищенские карманы» — the accusative marks the direct object of the verb.",
+   "explain": "«нищенские карманы» is the direct object of «завязал» (кого? что?) — accusative.",
    "id": "c33"
   },
   {
    "sentence": "Набив нищенские карманы, я завязал ___ в узел и швырнул их старухе.",
    "lemma": "драгоценность",
    "options": [
-    "остальных драгоценностей",
+    "остальными драгоценностями",
     "остальные драгоценности",
-    "остальных драгоценностях",
-    "остальными драгоценностями"
+    "остальным драгоценностям",
+    "остальных драгоценностях"
    ],
    "correct": "остальные драгоценности",
    "case": "Винительный (Accusative)",
-   "explain": "«остальные драгоценности» — the accusative marks the direct object of the verb.",
+   "explain": "«остальные драгоценности» is the direct object of «завязал» (кого? что?) — accusative.",
    "id": "c34"
-  },
-  {
-   "sentence": "Подал я в окно старухе шубу, узел с черной парой, ___ и кстати уж и гитару.",
-   "lemma": "сорочка",
-   "options": [
-    "кружевные сорочки",
-    "кружевных сорочках",
-    "кружевным сорочкам",
-    "кружевными сорочками"
-   ],
-   "correct": "кружевные сорочки",
-   "case": "Именительный (Nominative)",
-   "explain": "«кружевные сорочки» — the subject of the sentence stands in the nominative.",
-   "id": "c35"
   },
   {
    "sentence": "Бывают же такие ___!",
@@ -221,21 +95,21 @@
    ],
    "correct": "странные сны",
    "case": "Именительный (Nominative)",
-   "explain": "«странные сны» — the subject of the sentence stands in the nominative.",
+   "explain": "«странные сны» is the subject of «Бывают» — who or what does it — so nominative.",
    "id": "c36"
   },
   {
    "sentence": "Тут занавес опускается, вновь поднимается, и я вижу ___.",
    "lemma": "декорация",
    "options": [
+    "новых декорациях",
+    "новыми декорациями",
     "новые декорации",
-    "новым декорациям",
-    "новых декораций",
-    "новыми декорациями"
+    "новым декорациям"
    ],
    "correct": "новые декорации",
    "case": "Винительный (Accusative)",
-   "explain": "«новые декорации» — the accusative marks the direct object of the verb.",
+   "explain": "«новые декорации» is the direct object of «вижу» (кого? что?) — accusative.",
    "id": "c37"
   },
   {
@@ -249,7 +123,7 @@
    ],
    "correct": "другом месте",
    "case": "Предложный (Prepositional)",
-   "explain": "«другом месте» — after the preposition «в», for location or topic.",
+   "explain": "«другом месте» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c38"
   },
   {
@@ -263,7 +137,7 @@
    ],
    "correct": "арестантских ротах",
    "case": "Предложный (Prepositional)",
-   "explain": "«арестантских ротах» — after the preposition «в», for location or topic.",
+   "explain": "«арестантских ротах» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c39"
   }
  ]

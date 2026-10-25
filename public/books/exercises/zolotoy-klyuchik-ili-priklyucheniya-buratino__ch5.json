@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "По дороге он даже не смотрел на сласти, выставленные в лавках, — маковые на меду треугольнички, ___ и леденцы в виде петухов, насаженных на палочку.",
-   "lemma": "пирожок",
-   "options": [
-    "сладких пирожков",
-    "сладким пирожкам",
-    "сладкие пирожки",
-    "сладких пирожках"
-   ],
-   "correct": "сладкие пирожки",
-   "case": "Именительный (Nominative)",
-   "explain": "«сладкие пирожки» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Улицу переходил ___ Базилио, которого можно было схватить за хвост.",
    "lemma": "кот",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "полосатый кот",
    "case": "Именительный (Nominative)",
-   "explain": "«полосатый кот» — the subject of the sentence stands in the nominative.",
+   "explain": "«полосатый кот» is the subject of «переходил» — who or what does it — so nominative.",
    "id": "c2"
   },
   {
@@ -39,21 +25,21 @@
    ],
    "correct": "средиземного моря",
    "case": "Родительный (Genitive)",
-   "explain": "«Средиземного моря» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«средиземного моря» depends on the noun «берегу» (whose? of what?) — genitive.",
    "id": "c3"
   },
   {
    "sentence": "Он увидел ___, украшенный разноцветными флагами, хлопающими от морского ветра.",
    "lemma": "балаган",
    "options": [
-    "полотняного балагана",
     "полотняном балагане",
+    "полотняным балаганом",
     "полотняный балаган",
     "полотняному балагану"
    ],
    "correct": "полотняный балаган",
    "case": "Винительный (Accusative)",
-   "explain": "«полотняный балаган» — the accusative marks the direct object of the verb.",
+   "explain": "«полотняный балаган» is the direct object of «увидел» (кого? что?) — accusative.",
    "id": "c4"
   },
   {
@@ -67,7 +53,7 @@
    ],
    "correct": "разноцветными флагами",
    "case": "Творительный (Instrumental)",
-   "explain": "«разноцветными флагами» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «украшенный», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c5"
   },
   {
@@ -81,36 +67,8 @@
    ],
    "correct": "морского ветра",
    "case": "Родительный (Genitive)",
-   "explain": "«морского ветра» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«морского ветра» — «от» always takes the genitive.",
    "id": "c6"
-  },
-  {
-   "sentence": "— Скажите, пожалуйста, сколько стоит ___?",
-   "lemma": "билет",
-   "options": [
-    "входной билет",
-    "входному билету",
-    "входным билетом",
-    "входного билета"
-   ],
-   "correct": "входной билет",
-   "case": "Именительный (Nominative)",
-   "explain": "«входной билет» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
-  },
-  {
-   "sentence": "— С ччччудными картинками и ___.",
-   "lemma": "буква",
-   "options": [
-    "большие буквы",
-    "большими буквами",
-    "большим буквам",
-    "больших буквах"
-   ],
-   "correct": "большими буквами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«большими буквами» — the instrumental marks the means, company, or complement.",
-   "id": "c10"
   },
   {
    "sentence": "— Послушайте, дайте мне в первом ряду билет на единственное представление ___.",
@@ -123,7 +81,7 @@
    ],
    "correct": "кукольного театра",
    "case": "Родительный (Genitive)",
-   "explain": "«кукольного театра» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«кукольного театра» depends on the noun «представление» (whose? of what?) — genitive.",
    "id": "c11"
   }
  ]

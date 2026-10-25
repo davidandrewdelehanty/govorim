@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Нельзя было назвать нездоровьем то, что Иван Ильич говорил иногда, что у него ___ во рту и что-то неловко в левой стороне живота.",
-   "lemma": "вкус",
-   "options": [
-    "странному вкусу",
-    "странного вкуса",
-    "странном вкусе",
-    "странный вкус"
-   ],
-   "correct": "странный вкус",
-   "case": "Именительный (Nominative)",
-   "explain": "«странный вкус» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Нельзя было назвать нездоровьем то, что Иван Ильич говорил иногда, что у него странный вкус во рту и что-то неловко в ___ живота.",
    "lemma": "сторона",
    "options": [
@@ -25,36 +11,8 @@
    ],
    "correct": "левой стороне",
    "case": "Предложный (Prepositional)",
-   "explain": "«левой стороне» — after the preposition «в», for location or topic.",
+   "explain": "«левой стороне» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c2"
-  },
-  {
-   "sentence": "Как он в суде делал вид над подсудимыми, так точно над ним ___ делал тоже вид.",
-   "lemma": "доктор",
-   "options": [
-    "знаменитый доктор",
-    "знаменитого доктора",
-    "знаменитом докторе",
-    "знаменитому доктору"
-   ],
-   "correct": "знаменитый доктор",
-   "case": "Именительный (Nominative)",
-   "explain": "«знаменитый доктор» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
-   "sentence": "С точки зрения доктора, вопрос этот был праздный и не подлежал обсуждению; существовало только взвешиванье вероятностей — блуждающей почки, ___ и болезней слепой кишки.",
-   "lemma": "катар",
-   "options": [
-    "хроническом катаре",
-    "хроническим катаром",
-    "хроническому катару",
-    "хронического катара"
-   ],
-   "correct": "хронического катара",
-   "case": "Родительный (Genitive)",
-   "explain": "«хронического катара» — the genitive here marks possession, absence, or quantity.",
-   "id": "c4"
   },
   {
    "sentence": "С точки зрения доктора, вопрос этот был праздный и не подлежал обсуждению; существовало только взвешиванье вероятностей — блуждающей почки, хронического катара и болезней ___.",
@@ -67,7 +25,7 @@
    ],
    "correct": "слепой кишки",
    "case": "Родительный (Genitive)",
-   "explain": "«слепой кишки» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«слепой кишки» depends on the noun «болезней» (whose? of what?) — genitive.",
    "id": "c5"
   },
   {
@@ -81,22 +39,8 @@
    ],
    "correct": "слепой кишки",
    "case": "Родительный (Genitive)",
-   "explain": "«слепой кишки» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«слепой кишки» depends on the noun «пользу» (whose? of what?) — genitive.",
    "id": "c7"
-  },
-  {
-   "sentence": "И спор этот на глазах Ивана Ильича доктор блестящим образом разрешил в пользу слепой кишки, сделав оговорку о том, что исследование мочи может дать ___ и что тогда дело будет пересмотрено.",
-   "lemma": "улика",
-   "options": [
-    "новыми уликами",
-    "новым уликам",
-    "новых уликах",
-    "новые улики"
-   ],
-   "correct": "новые улики",
-   "case": "Винительный (Accusative)",
-   "explain": "«новые улики» — the accusative marks the direct object of the verb.",
-   "id": "c8"
   },
   {
    "sentence": "Все это было точь-в-точь то же, что делал тысячу раз сам Иван Ильич над подсудимыми таким ___.",
@@ -109,22 +53,8 @@
    ],
    "correct": "блестящим манером",
    "case": "Творительный (Instrumental)",
-   "explain": "«блестящим манером» — after the preposition «над», the instrumental marks the means, company, or complement.",
+   "explain": "«блестящим манером» — «над» always takes the instrumental.",
    "id": "c9"
-  },
-  {
-   "sentence": "И это заключение болезненно поразило Ивана Ильича, вызвав в нем чувство большой жалости к себе и ___ на этого равнодушного к такому важному вопросу доктора.",
-   "lemma": "злоба",
-   "options": [
-    "большая злоба",
-    "большой злобой",
-    "большой злобе",
-    "большой злобы"
-   ],
-   "correct": "большой злобы",
-   "case": "Родительный (Genitive)",
-   "explain": "«большой злобы» — the genitive here marks possession, absence, or quantity.",
-   "id": "c10"
   },
   {
    "sentence": "И это заключение болезненно поразило Ивана Ильича, вызвав в нем чувство большой жалости к себе и большой злобы на этого равнодушного к такому ___ доктора.",
@@ -137,22 +67,8 @@
    ],
    "correct": "важному вопросу",
    "case": "Дательный (Dative)",
-   "explain": "«важному вопросу» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«важному вопросу» — «к» always takes the dative.",
    "id": "c11"
-  },
-  {
-   "sentence": "Всю дорогу он не переставая перебирал все, что говорил доктор, стараясь все эти запутанные, неясные ___ перевести на простой язык и прочесть в них ответ на вопрос: плохо — очень ли плохо мне, или еще ничего?",
-   "lemma": "слово",
-   "options": [
-    "научным словам",
-    "научных словах",
-    "научные слова",
-    "научными словами"
-   ],
-   "correct": "научные слова",
-   "case": "Винительный (Accusative)",
-   "explain": "«научные слова» — the accusative marks the direct object of the verb.",
-   "id": "c12"
   },
   {
    "sentence": "Всю дорогу он не переставая перебирал все, что говорил доктор, стараясь все эти запутанные, неясные научные слова перевести на ___ и прочесть в них ответ на вопрос: плохо — очень ли плохо мне, или еще ничего?",
@@ -165,7 +81,7 @@
    ],
    "correct": "простой язык",
    "case": "Винительный (Accusative)",
-   "explain": "«простой язык» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«простой язык» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c13"
   },
   {
@@ -179,21 +95,21 @@
    ],
    "correct": "самого доктора",
    "case": "Родительный (Genitive)",
-   "explain": "«самого доктора» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«самого доктора» — «до» always takes the genitive.",
    "id": "c15"
   },
   {
    "sentence": "___ Ивана Ильича со времени посещения доктора стало точное исполнение предписаний доктора относительно гигиены и принимания лекарств и прислушиванье к своей боли, ко всем своим отправлениям организма.",
    "lemma": "занятие",
    "options": [
-    "главное занятие",
-    "главным занятием",
+    "главного занятия",
+    "главном занятии",
     "главному занятию",
-    "главного занятия"
+    "главным занятием"
    ],
    "correct": "главным занятием",
    "case": "Творительный (Instrumental)",
-   "explain": "«Главным занятием» — the instrumental marks the means, company, or complement.",
+   "explain": "After «стало», what someone or something is or becomes stands in the instrumental.",
    "id": "c16"
   },
   {
@@ -203,40 +119,26 @@
     "главным интересам",
     "главных интересах",
     "главными интересами",
-    "главные интересы"
+    "главных интересов"
    ],
    "correct": "главными интересами",
    "case": "Творительный (Instrumental)",
-   "explain": "«Главными интересами» — the instrumental marks the means, company, or complement.",
+   "explain": "After «стали», what someone or something is or becomes stands in the instrumental.",
    "id": "c18"
   },
   {
    "sentence": "Ухудшало его положение то, что он читал ___ и советовался с докторами.",
    "lemma": "книга",
    "options": [
-    "медицинских книгах",
-    "медицинскими книгами",
     "медицинские книги",
-    "медицинских книг"
+    "медицинскими книгами",
+    "медицинских книгах",
+    "медицинским книгам"
    ],
    "correct": "медицинские книги",
    "case": "Винительный (Accusative)",
-   "explain": "«медицинские книги» — the accusative marks the direct object of the verb.",
+   "explain": "«медицинские книги» is the direct object of «читал» (кого? что?) — accusative.",
    "id": "c21"
-  },
-  {
-   "sentence": "Но после недели не почувствовав облегчения и потеряв доверие и к ___ и к этому, пришел в еще большее уныние.",
-   "lemma": "лечение",
-   "options": [
-    "прежние лечения",
-    "прежними лечениями",
-    "прежних лечений",
-    "прежним лечениям"
-   ],
-   "correct": "прежним лечениям",
-   "case": "Дательный (Dative)",
-   "explain": "«прежним лечениям» — after the preposition «в», the dative marks the indirect object or recipient.",
-   "id": "c22"
   },
   {
    "sentence": "Раз ___ рассказывала про исцеление иконами.",
@@ -249,22 +151,8 @@
    ],
    "correct": "знакомая дама",
    "case": "Именительный (Nominative)",
-   "explain": "«знакомая дама» — the subject of the sentence stands in the nominative.",
+   "explain": "«знакомая дама» is the subject of «рассказывала» — who or what does it — so nominative.",
    "id": "c23"
-  },
-  {
-   "sentence": "Сдавали, разминались ___, складывались бубны к бубнам, их семь.",
-   "lemma": "карта",
-   "options": [
-    "новых картах",
-    "новыми картами",
-    "новые карты",
-    "новым картам"
-   ],
-   "correct": "новые карты",
-   "case": "Именительный (Nominative)",
-   "explain": "«новые карты» — the subject of the sentence stands in the nominative.",
-   "id": "c25"
   }
  ]
 }

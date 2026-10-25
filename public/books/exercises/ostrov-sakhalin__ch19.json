@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "— ___ местных воинских команд.",
-   "lemma": "чин",
-   "options": [
-    "нижние чины",
-    "нижних чинов",
-    "нижним чинам",
-    "нижними чинами"
-   ],
-   "correct": "нижние чины",
-   "case": "Именительный (Nominative)",
-   "explain": "«Нижние чины» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "— Нижние чины местных ___.",
    "lemma": "команда",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "воинских команд",
    "case": "Родительный (Genitive)",
-   "explain": "«воинских команд» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«воинских команд» depends on the noun «чины» (whose? of what?) — genitive.",
    "id": "c2"
   },
   {
@@ -39,50 +25,8 @@
    ],
    "correct": "крутые горы",
    "case": "Винительный (Accusative)",
-   "explain": "«крутые горы» — after the preposition «через», the accusative marks the direct object of the verb.",
+   "explain": "«крутые горы» — «через» always takes the accusative.",
    "id": "c6"
-  },
-  {
-   "sentence": "Даже пешком я с трудом перелезал через крутые горы Сахалина, покрытые то густым ___, то местным бамбуком.",
-   "lemma": "лес",
-   "options": [
-    "валежного леса",
-    "валежный лес",
-    "валежному лесу",
-    "валежным лесом"
-   ],
-   "correct": "валежным лесом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«валежным лесом» — the instrumental marks the means, company, or complement.",
-   "id": "c7"
-  },
-  {
-   "sentence": "Всё ___ солдат было разбросано по западному, южному и юго-восточному побережьям; пункты, в которых они жили, назывались постами.",
-   "lemma": "количество",
-   "options": [
-    "небольшого количества",
-    "небольшому количеству",
-    "небольшим количеством",
-    "небольшое количество"
-   ],
-   "correct": "небольшое количество",
-   "case": "Именительный (Nominative)",
-   "explain": "«небольшое количество» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
-  },
-  {
-   "sentence": "В Муравьевском посту стояла ___, в Корсаковском три роты 4-го сибирского батальона и взвод горной батареи, в прочих же постах, как, например, Мануйский или Сортунайский, было только по шести солдат.",
-   "lemma": "рота",
-   "options": [
-    "стрелковой ротой",
-    "стрелковая рота",
-    "стрелковой роты",
-    "стрелковой роте"
-   ],
-   "correct": "стрелковая рота",
-   "case": "Именительный (Nominative)",
-   "explain": "«стрелковая рота» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
   },
   {
    "sentence": "В Муравьевском посту стояла стрелковая рота, в Корсаковском три роты 4-го ___ и взвод горной батареи, в прочих же постах, как, например, Мануйский или Сортунайский, было только по шести солдат.",
@@ -95,7 +39,7 @@
    ],
    "correct": "сибирского батальона",
    "case": "Родительный (Genitive)",
-   "explain": "«сибирского батальона» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«сибирского батальона» depends on the noun «роты» (whose? of what?) — genitive.",
    "id": "c10"
   },
   {
@@ -109,36 +53,8 @@
    ],
    "correct": "горной батареи",
    "case": "Родительный (Genitive)",
-   "explain": "«горной батареи» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«горной батареи» depends on the noun «взвод» (whose? of what?) — genitive.",
    "id": "c11"
-  },
-  {
-   "sentence": "При разнообразии своих занятий солдат не успевал научиться ___ и забывал то, чему был научен, а вместе с ним отставали и офицеры, и строевая часть находилась в самом плачевном состоянии.",
-   "lemma": "дело",
-   "options": [
-    "военному делу",
-    "военное дело",
-    "военным делом",
-    "военном деле"
-   ],
-   "correct": "военному делу",
-   "case": "Дательный (Dative)",
-   "explain": "«военному делу» — the dative marks the indirect object or recipient.",
-   "id": "c12"
-  },
-  {
-   "sentence": "При разнообразии своих занятий солдат не успевал научиться военному делу и забывал то, чему был научен, а вместе с ним отставали и офицеры, и строевая часть находилась в самом ___.",
-   "lemma": "состояние",
-   "options": [
-    "плачевное состояние",
-    "плачевному состоянию",
-    "плачевном состоянии",
-    "плачевного состояния"
-   ],
-   "correct": "плачевном состоянии",
-   "case": "Предложный (Prepositional)",
-   "explain": "«плачевном состоянии» — after the preposition «в», for location or topic.",
-   "id": "c13"
   },
   {
    "sentence": "В Корсаковском посту до 1875 года караул помещался в ссыльнокаторжной тюрьме; тут же была и ___ в виде темных конур.",
@@ -151,7 +67,7 @@
    ],
    "correct": "военная гауптвахта",
    "case": "Именительный (Nominative)",
-   "explain": "«военная гауптвахта» — the subject of the sentence stands in the nominative.",
+   "explain": "«военная гауптвахта» is the subject of «была» — who or what does it — so nominative.",
    "id": "c14"
   },
   {
@@ -165,7 +81,7 @@
    ],
    "correct": "стеснительная обстановка",
    "case": "Именительный (Nominative)",
-   "explain": "«стеснительная обстановка» — the subject of the sentence stands in the nominative.",
+   "explain": "«стеснительная обстановка» is the subject of «допускается» — who or what does it — so nominative.",
    "id": "c15"
   },
   {
@@ -179,7 +95,7 @@
    ],
    "correct": "военная охрана",
    "case": "Именительный (Nominative)",
-   "explain": "«военная охрана» — the subject of the sentence stands in the nominative.",
+   "explain": "«военная охрана» is the subject of «состоит» — who or what does it — so nominative.",
    "id": "c16"
   },
   {
@@ -193,7 +109,7 @@
    ],
    "correct": "нижних чинов",
    "case": "Родительный (Genitive)",
-   "explain": "«нижних чинов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«нижних чинов» depends on the noun «г» (whose? of what?) — genitive.",
    "id": "c17"
   },
   {
@@ -207,78 +123,22 @@
    ],
    "correct": "хозяйственные надобности",
    "case": "Именительный (Nominative)",
-   "explain": "«Хозяйственные надобности» — the subject of the sentence stands in the nominative.",
+   "explain": "«хозяйственные надобности» is the subject of «отвлекают» — who or what does it — so nominative.",
    "id": "c19"
-  },
-  {
-   "sentence": "Хозяйственные надобности отвлекают значительное число солдат, так что чувствуется ___ в конвое, и караулы не могут быть рассчитаны на три очереди.",
-   "lemma": "недостаток",
-   "options": [
-    "постоянному недостатку",
-    "постоянного недостатка",
-    "постоянным недостатком",
-    "постоянный недостаток"
-   ],
-   "correct": "постоянный недостаток",
-   "case": "Именительный (Nominative)",
-   "explain": "«постоянный недостаток» — the subject of the sentence stands in the nominative.",
-   "id": "c20"
-  },
-  {
-   "sentence": "___ кроток, молчалив, послушен и трезв; пьяных солдат, которые шумели бы на улице, я видел только в Корсаковском посту.",
-   "lemma": "солдат",
-   "options": [
-    "сахалинском солдате",
-    "сахалинскому солдату",
-    "сахалинский солдат",
-    "сахалинского солдата"
-   ],
-   "correct": "сахалинский солдат",
-   "case": "Именительный (Nominative)",
-   "explain": "«Сахалинский солдат» — the subject of the sentence stands in the nominative.",
-   "id": "c21"
-  },
-  {
-   "sentence": "Сахалинский солдат кроток, молчалив, послушен и трезв; ___, которые шумели бы на улице, я видел только в Корсаковском посту.",
-   "lemma": "солдат",
-   "options": [
-    "пьяными солдатами",
-    "пьяным солдатам",
-    "пьяных солдатах",
-    "пьяных солдат"
-   ],
-   "correct": "пьяных солдат",
-   "case": "Винительный (Accusative)",
-   "explain": "«пьяных солдат» — the accusative marks the direct object of the verb.",
-   "id": "c22"
   },
   {
    "sentence": "Но он груб, неразвит и бестолков, и за недосугом не успевает проникнуться сознанием ___ и чести и потому бывает не чужд ошибок, делающих его часто таким же врагом порядка, как те, кого он сторожит и ловит.",
    "lemma": "долг",
    "options": [
-    "воинским долгом",
+    "воинского долга",
     "воинскому долгу",
-    "воинском долге",
-    "воинского долга"
+    "воинский долг",
+    "воинском долге"
    ],
    "correct": "воинского долга",
    "case": "Родительный (Genitive)",
-   "explain": "«воинского долга» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«воинского долга» depends on the noun «сознанием» (whose? of what?) — genitive.",
    "id": "c24"
-  },
-  {
-   "sentence": "На самом же деле надзор до сих пор был самым ___ сахалинской каторги.",
-   "lemma": "место",
-   "options": [
-    "больному месту",
-    "больного места",
-    "больным местом",
-    "больном месте"
-   ],
-   "correct": "больным местом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«больным местом» — after the preposition «до», the instrumental marks the means, company, or complement.",
-   "id": "c26"
   },
   {
    "sentence": "На самом же деле надзор до сих пор был самым больным местом ___.",
@@ -291,36 +151,8 @@
    ],
    "correct": "сахалинской каторги",
    "case": "Родительный (Genitive)",
-   "explain": "«сахалинской каторги» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«сахалинской каторги» depends on the noun «местом» (whose? of what?) — genitive.",
    "id": "c27"
-  },
-  {
-   "sentence": "В настоящее время на Сахалине ___ около 150, а младших вдвое больше.",
-   "lemma": "надзиратель",
-   "options": [
-    "старшие надзиратели",
-    "старшим надзирателям",
-    "старших надзирателей",
-    "старшими надзирателями"
-   ],
-   "correct": "старших надзирателей",
-   "case": "Родительный (Genitive)",
-   "explain": "«старших надзирателей» — the genitive here marks possession, absence, or quantity.",
-   "id": "c28"
-  },
-  {
-   "sentence": "___, состоящие на действительной службе, составляют 6% всего комплекса старших, зато должности младших надзирателей исправляют почти одни только рядовые, командируемые от местных команд.",
-   "lemma": "чин",
-   "options": [
-    "нижние чины",
-    "нижних чинов",
-    "нижним чинам",
-    "нижними чинами"
-   ],
-   "correct": "нижние чины",
-   "case": "Именительный (Nominative)",
-   "explain": "«Нижние чины» — the subject of the sentence stands in the nominative.",
-   "id": "c30"
   },
   {
    "sentence": "Нижние чины, состоящие на ___, составляют 6% всего комплекса старших, зато должности младших надзирателей исправляют почти одни только рядовые, командируемые от местных команд.",
@@ -333,7 +165,7 @@
    ],
    "correct": "действительной службе",
    "case": "Предложный (Prepositional)",
-   "explain": "«действительной службе» — after the preposition «на», for location or topic.",
+   "explain": "«действительной службе» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c31"
   },
   {
@@ -347,7 +179,7 @@
    ],
    "correct": "младших надзирателей",
    "case": "Родительный (Genitive)",
-   "explain": "«младших надзирателей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«младших надзирателей» depends on the noun «должности» (whose? of what?) — genitive.",
    "id": "c32"
   },
   {
@@ -361,64 +193,8 @@
    ],
    "correct": "местных команд",
    "case": "Родительный (Genitive)",
-   "explain": "«местных команд» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«местных команд» — «от» always takes the genitive.",
    "id": "c33"
-  },
-  {
-   "sentence": "Надо заметить при этом, что в надзиратели командируются не лучшие солдаты, так как начальники команд, в интересах ___, отпускают в тюрьму менее способных, а лучших удерживают при частях.",
-   "lemma": "служба",
-   "options": [
-    "строевая служба",
-    "строевой службе",
-    "строевой службы",
-    "строевой службой"
-   ],
-   "correct": "строевой службы",
-   "case": "Родительный (Genitive)",
-   "explain": "«строевой службы» — the genitive here marks possession, absence, or quantity.",
-   "id": "c34"
-  },
-  {
-   "sentence": "В тюрьмах много надзирателей, но нет порядка, и надзиратели служат лишь ___ для администрации, о чем свидетельствует сам начальник острова.",
-   "lemma": "тормоз",
-   "options": [
-    "постоянным тормозом",
-    "постоянном тормозе",
-    "постоянного тормоза",
-    "постоянному тормозу"
-   ],
-   "correct": "постоянным тормозом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«постоянным тормозом» — the instrumental marks the means, company, or complement.",
-   "id": "c35"
-  },
-  {
-   "sentence": "В тюрьмах много надзирателей, но нет порядка, и надзиратели служат лишь постоянным тормозом для администрации, о чем свидетельствует ___ острова.",
-   "lemma": "начальник",
-   "options": [
-    "самого начальника",
-    "самим начальником",
-    "самому начальнику",
-    "сам начальник"
-   ],
-   "correct": "сам начальник",
-   "case": "Именительный (Nominative)",
-   "explain": "«сам начальник» — the subject of the sentence stands in the nominative.",
-   "id": "c36"
-  },
-  {
-   "sentence": "___ надзирателей не ограничиваются одною только тесною областью женских бараков и одиночных помещений.",
-   "lemma": "похождение",
-   "options": [
-    "любовных похождениях",
-    "любовным похождениям",
-    "любовных похождений",
-    "любовные похождения"
-   ],
-   "correct": "любовные похождения",
-   "case": "Именительный (Nominative)",
-   "explain": "«Любовные похождения» — the subject of the sentence stands in the nominative.",
-   "id": "c37"
   },
   {
    "sentence": "Любовные похождения надзирателей не ограничиваются одною только тесною областью ___ и одиночных помещений.",
@@ -431,64 +207,22 @@
    ],
    "correct": "женских бараков",
    "case": "Родительный (Genitive)",
-   "explain": "«женских бараков» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«женских бараков» depends on the noun «областью» (whose? of what?) — genitive.",
    "id": "c38"
-  },
-  {
-   "sentence": "Любовные похождения надзирателей не ограничиваются одною только тесною областью женских бараков и ___.",
-   "lemma": "помещение",
-   "options": [
-    "одиночных помещений",
-    "одиночных помещениях",
-    "одиночные помещения",
-    "одиночным помещениям"
-   ],
-   "correct": "одиночных помещений",
-   "case": "Родительный (Genitive)",
-   "explain": "«одиночных помещений» — the genitive here marks possession, absence, or quantity.",
-   "id": "c39"
   },
   {
    "sentence": "___ не уважает их и относится к ним с презрительною небрежностью.",
    "lemma": "население",
    "options": [
     "ссыльном населении",
-    "ссыльного населения",
-    "ссыльное население",
-    "ссыльному населению"
+    "ссыльному населению",
+    "ссыльным населением",
+    "ссыльное население"
    ],
    "correct": "ссыльное население",
    "case": "Именительный (Nominative)",
-   "explain": "«Ссыльное население» — the subject of the sentence stands in the nominative.",
+   "explain": "«ссыльное население» is the subject of «уважает» — who or what does it — so nominative.",
    "id": "c42"
-  },
-  {
-   "sentence": "В тюрьме он — прислуга, отворяющая и запирающая двери, а на работах ___.",
-   "lemma": "человек",
-   "options": [
-    "лишнем человеке",
-    "лишний человек",
-    "лишнему человеку",
-    "лишним человеком"
-   ],
-   "correct": "лишний человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«лишний человек» — the subject of the sentence stands in the nominative.",
-   "id": "c43"
-  },
-  {
-   "sentence": "Если судить по официальным отчетам и корреспонденциям, то в шестидесятых и семидесятых годах сахалинская интеллигенция отличалась полнейшим ___.",
-   "lemma": "ничтожество",
-   "options": [
-    "нравственным ничтожеством",
-    "нравственному ничтожеству",
-    "нравственное ничтожество",
-    "нравственного ничтожества"
-   ],
-   "correct": "нравственным ничтожеством",
-   "case": "Творительный (Instrumental)",
-   "explain": "«нравственным ничтожеством» — the instrumental marks the means, company, or complement.",
-   "id": "c44"
   },
   {
    "sentence": "При ___ тюрьмы обращались в приюты разврата, в игорные дома, людей развращали, ожесточали, засекали домертва.",
@@ -501,22 +235,8 @@
    ],
    "correct": "тогдашних чиновниках",
    "case": "Предложный (Prepositional)",
-   "explain": "«тогдашних чиновниках» — after the preposition «при», for location or topic.",
+   "explain": "«тогдашних чиновниках» — «при» always takes the prepositional.",
    "id": "c45"
-  },
-  {
-   "sentence": "Самым ___ в этом смысле является некий майор Николаев, бывший в продолжение семи лет начальником Дуйского поста.",
-   "lemma": "администратор",
-   "options": [
-    "яркому администратору",
-    "ярком администраторе",
-    "ярким администратором",
-    "яркого администратора"
-   ],
-   "correct": "ярким администратором",
-   "case": "Творительный (Instrumental)",
-   "explain": "«ярким администратором» — the instrumental marks the means, company, or complement.",
-   "id": "c47"
   },
   {
    "sentence": "О том, какие способности проложили этому грубому, неотесанному человеку дорогу к ___, сведений нет.",
@@ -529,7 +249,7 @@
    ],
    "correct": "майорскому чину",
    "case": "Дательный (Dative)",
-   "explain": "«майорскому чину» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«майорскому чину» — «к» always takes the dative.",
    "id": "c49"
   },
   {
@@ -543,7 +263,7 @@
    ],
    "correct": "подобные благоглупости",
    "case": "Именительный (Nominative)",
-   "explain": "«Подобные благоглупости» — the subject of the sentence stands in the nominative.",
+   "explain": "«подобные благоглупости» is the subject of «действовали» — who or what does it — so nominative.",
    "id": "c50"
   },
   {
@@ -557,64 +277,8 @@
    ],
    "correct": "каторжным работам",
    "case": "Дательный (Dative)",
-   "explain": "«каторжным работам» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«каторжным работам» — «к» always takes the dative.",
    "id": "c51"
-  },
-  {
-   "sentence": "Когда спросишь какого-нибудь старика-поселенца, были ли в его время на острове ___, то он сначала помолчит немного, как бы припоминая, и потом уж ответит: «Всякое бывало».",
-   "lemma": "человек",
-   "options": [
-    "хороших людей",
-    "хорошими людьми",
-    "хорошие люди",
-    "хорошим людям"
-   ],
-   "correct": "хорошие люди",
-   "case": "Именительный (Nominative)",
-   "explain": "«хорошие люди» — the subject of the sentence stands in the nominative.",
-   "id": "c52"
-  },
-  {
-   "sentence": "Николай Шаховской, ___, умный и честный человек.",
-   "lemma": "администратор",
-   "options": [
-    "отличному администратору",
-    "отличным администратором",
-    "отличного администратора",
-    "отличный администратор"
-   ],
-   "correct": "отличный администратор",
-   "case": "Именительный (Nominative)",
-   "explain": "«отличный администратор» — the subject of the sentence stands in the nominative.",
-   "id": "c53"
-  },
-  {
-   "sentence": "Это был по преимуществу ___.",
-   "lemma": "работник",
-   "options": [
-    "кабинетному работнику",
-    "кабинетного работника",
-    "кабинетным работником",
-    "кабинетный работник"
-   ],
-   "correct": "кабинетный работник",
-   "case": "Именительный (Nominative)",
-   "explain": "«кабинетный работник» — the subject of the sentence stands in the nominative.",
-   "id": "c54"
-  },
-  {
-   "sentence": "В 1879 году начал функционировать ___, и мало-помалу должности на Сахалине стали занимать уроженцы Европейской России.",
-   "lemma": "флот",
-   "options": [
-    "добровольном флоте",
-    "добровольного флота",
-    "добровольному флоту",
-    "добровольный флот"
-   ],
-   "correct": "добровольный флот",
-   "case": "Именительный (Nominative)",
-   "explain": "«Добровольный флот» — the subject of the sentence stands in the nominative.",
-   "id": "c55"
   },
   {
    "sentence": "В 1884 г. на Сахалине было введено ___, вызвавшее усиленный прилив, или, как здесь говорят, сплав новых людей.",
@@ -627,7 +291,7 @@
    ],
    "correct": "новое положение",
    "case": "Именительный (Nominative)",
-   "explain": "«новое положение» — the subject of the sentence stands in the nominative.",
+   "explain": "«новое положение» is the subject of «введено» — who or what does it — so nominative.",
    "id": "c56"
   },
   {
@@ -641,7 +305,7 @@
    ],
    "correct": "новых людей",
    "case": "Родительный (Genitive)",
-   "explain": "«новых людей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«новых людей» depends on the noun «сплав» (whose? of what?) — genitive.",
    "id": "c57"
   },
   {
@@ -655,7 +319,7 @@
    ],
    "correct": "сахалинское общество",
    "case": "Именительный (Nominative)",
-   "explain": "«сахалинское общество» — the subject of the sentence stands in the nominative.",
+   "explain": "«сахалинское общество» is the subject of «производит» — who or what does it — so nominative.",
    "id": "c59"
   },
   {
@@ -669,7 +333,7 @@
    ],
    "correct": "сильные бури",
    "case": "Именительный (Nominative)",
-   "explain": "«сильные бури» — the subject of the sentence stands in the nominative.",
+   "explain": "«сильные бури» is the subject of «бывают» — who or what does it — so nominative.",
    "id": "c61"
   },
   {
@@ -683,22 +347,8 @@
    ],
    "correct": "печальном положении",
    "case": "Предложный (Prepositional)",
-   "explain": "«печальном положении» — after the preposition «в», for location or topic.",
+   "explain": "«печальном положении» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c62"
-  },
-  {
-   "sentence": "В почтово-телеграфной конторе обращаются с народом грубо, простым смертным выдают корреспонденцию только на четвертый и пятый день по приходе почты; телеграфисты безграмотны, ___ не соблюдается.",
-   "lemma": "тайна",
-   "options": [
-    "телеграфная тайна",
-    "телеграфной тайной",
-    "телеграфной тайны",
-    "телеграфной тайне"
-   ],
-   "correct": "телеграфная тайна",
-   "case": "Именительный (Nominative)",
-   "explain": "«телеграфная тайна» — the subject of the sentence stands in the nominative.",
-   "id": "c64"
   },
   {
    "sentence": "___ и хорошие дела уже не составляют редкости.",
@@ -711,22 +361,8 @@
    ],
    "correct": "хорошие люди",
    "case": "Именительный (Nominative)",
-   "explain": "«Хорошие люди» — the subject of the sentence stands in the nominative.",
+   "explain": "«хорошие люди» is the subject of «составляют» — who or what does it — so nominative.",
    "id": "c66"
-  },
-  {
-   "sentence": "Хорошие люди и ___ уже не составляют редкости.",
-   "lemma": "дело",
-   "options": [
-    "хороших дел",
-    "хорошие дела",
-    "хорошими делами",
-    "хороших делах"
-   ],
-   "correct": "хорошие дела",
-   "case": "Именительный (Nominative)",
-   "explain": "«хорошие дела» — the subject of the sentence stands in the nominative.",
-   "id": "c67"
   },
   {
    "sentence": "Необходимо, чтобы маловажные дела не отвлекали чиновников от их ___.",
@@ -739,78 +375,8 @@
    ],
    "correct": "главных обязанностей",
    "case": "Родительный (Genitive)",
-   "explain": "«главных обязанностей» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«главных обязанностей» — «от» always takes the genitive.",
    "id": "c69"
-  },
-  {
-   "sentence": "___, помимо председательства в полицейских управлениях, сами должны раздавать бабам кормовые, участвовать в разного рода комиссиях, осмотрах и т. п.",
-   "lemma": "начальник",
-   "options": [
-    "окружным начальникам",
-    "окружными начальниками",
-    "окружные начальники",
-    "окружных начальниках"
-   ],
-   "correct": "окружные начальники",
-   "case": "Именительный (Nominative)",
-   "explain": "«Окружные начальники» — the subject of the sentence stands in the nominative.",
-   "id": "c70"
-  },
-  {
-   "sentence": "Окружные начальники, помимо председательства в полицейских управлениях, сами должны раздавать бабам кормовые, участвовать в ___ комиссиях, осмотрах и т. п.",
-   "lemma": "род",
-   "options": [
-    "разного рода",
-    "разном роде",
-    "разный род",
-    "разным родом"
-   ],
-   "correct": "разного рода",
-   "case": "Родительный (Genitive)",
-   "explain": "«разного рода» — the genitive here marks possession, absence, or quantity.",
-   "id": "c72"
-  },
-  {
-   "sentence": "При таких условиях ___ должен или работать через силу, как говорится, до ошаления, или же, махнув рукой, взвалить громадную часть своей работы на писарей-каторжных, как оно и бывает чаще всего.",
-   "lemma": "чиновник",
-   "options": [
-    "сахалинскому чиновнику",
-    "сахалинского чиновника",
-    "сахалинским чиновником",
-    "сахалинский чиновник"
-   ],
-   "correct": "сахалинский чиновник",
-   "case": "Именительный (Nominative)",
-   "explain": "«сахалинский чиновник» — the subject of the sentence stands in the nominative.",
-   "id": "c73"
-  },
-  {
-   "sentence": "В местных канцеляриях писаря-каторжные заняты не только перепиской, но и сами составляют ___.",
-   "lemma": "бумага",
-   "options": [
-    "важных бумаг",
-    "важными бумагами",
-    "важные бумаги",
-    "важным бумагам"
-   ],
-   "correct": "важные бумаги",
-   "case": "Винительный (Accusative)",
-   "explain": "«важные бумаги» — the accusative marks the direct object of the verb.",
-   "id": "c74"
-  },
-  {
-   "sentence": "Избавиться от такого всесильного писаря можно только одним способом: посадить на его место одного или двух ___.",
-   "lemma": "чиновник",
-   "options": [
-    "настоящих чиновников",
-    "настоящих чиновниках",
-    "настоящим чиновникам",
-    "настоящие чиновники"
-   ],
-   "correct": "настоящих чиновников",
-   "case": "Родительный (Genitive)",
-   "explain": "«настоящих чиновников» — the genitive here marks possession, absence, or quantity.",
-   "id": "c75"
   },
   {
    "sentence": "Несомненно также, что, с развитием общественной жизни, ___ мало-помалу теряет свои непривлекательные особенности и процент сумасшедших, пьяниц и самоубийц понижается.",
@@ -823,7 +389,7 @@
    ],
    "correct": "здешняя служба",
    "case": "Именительный (Nominative)",
-   "explain": "«здешняя служба» — the subject of the sentence stands in the nominative.",
+   "explain": "«здешняя служба» is the subject of «теряет» — who or what does it — so nominative.",
    "id": "c76"
   },
   {
@@ -831,13 +397,13 @@
    "lemma": "особенность",
    "options": [
     "непривлекательными особенностями",
-    "непривлекательным особенностям",
-    "непривлекательных особенностей",
-    "непривлекательные особенности"
+    "непривлекательных особенностях",
+    "непривлекательные особенности",
+    "непривлекательным особенностям"
    ],
    "correct": "непривлекательные особенности",
    "case": "Винительный (Accusative)",
-   "explain": "«непривлекательные особенности» — the accusative marks the direct object of the verb.",
+   "explain": "«непривлекательные особенности» is the direct object of «теряет» (кого? что?) — accusative.",
    "id": "c77"
   }
  ]

@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Это была большая ___ с азиатскими коврами и амфорами оливкового масла, совершавшая плавание от Селевкии Антиохийской к берегам Италии.",
-   "lemma": "трирема",
-   "options": [
-    "торговой триремой",
-    "торговая трирема",
-    "торговой триреме",
-    "торговой триремы"
-   ],
-   "correct": "торговая трирема",
-   "case": "Именительный (Nominative)",
-   "explain": "«торговая трирема» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Это была большая торговая трирема с азиатскими коврами и амфорами ___, совершавшая плавание от Селевкии Антиохийской к берегам Италии.",
    "lemma": "масло",
    "options": [
@@ -25,36 +11,8 @@
    ],
    "correct": "оливкового масла",
    "case": "Родительный (Genitive)",
-   "explain": "«оливкового масла» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«оливкового масла» depends on the noun «амфорами» (whose? of what?) — genitive.",
    "id": "c3"
-  },
-  {
-   "sentence": "Между островами ___ направлялась она к острову Криту, где должна была взять груз шерсти и высадить нескольких монахов в уединенную обитель на морском берегу.",
-   "lemma": "архипелаг",
-   "options": [
-    "эгейском архипелаге",
-    "эгейского архипелага",
-    "эгейский архипелаг",
-    "эгейскому архипелагу"
-   ],
-   "correct": "эгейского архипелага",
-   "case": "Родительный (Genitive)",
-   "explain": "«Эгейского архипелага» — the genitive here marks possession, absence, or quantity.",
-   "id": "c4"
-  },
-  {
-   "sentence": "Старцы, находившиеся на передней части палубы, проводили дни в благочестивых беседах, молитвах и обычной ___ – плетении корзин из пальмовых ветвей.",
-   "lemma": "работа",
-   "options": [
-    "монастырская работа",
-    "монастырской работой",
-    "монастырской работе",
-    "монастырской работы"
-   ],
-   "correct": "монастырской работе",
-   "case": "Предложный (Prepositional)",
-   "explain": "«монастырской работе» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c6"
   },
   {
    "sentence": "Старцы, находившиеся на передней части палубы, проводили дни в благочестивых беседах, молитвах и обычной монастырской работе – плетении корзин из ___.",
@@ -67,7 +25,7 @@
    ],
    "correct": "пальмовых ветвей",
    "case": "Родительный (Genitive)",
-   "explain": "«пальмовых ветвей» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«пальмовых ветвей» — «из» always takes the genitive.",
    "id": "c7"
   },
   {
@@ -81,22 +39,8 @@
    ],
    "correct": "христианского учителя",
    "case": "Родительный (Genitive)",
-   "explain": "«христианского учителя» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«христианского учителя» depends on the noun «творение» (whose? of what?) — genitive.",
    "id": "c10"
-  },
-  {
-   "sentence": "Арсиноя лепила из воска маленькие изваяния, ___ для большого, мраморного.",
-   "lemma": "опыт",
-   "options": [
-    "подготовительные опыты",
-    "подготовительных опытах",
-    "подготовительных опытов",
-    "подготовительными опытами"
-   ],
-   "correct": "подготовительные опыты",
-   "case": "Именительный (Nominative)",
-   "explain": "«подготовительные опыты» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
   },
   {
    "sentence": "Это было обнаженное тело ___, с лицом, полным неземной печали; – Анатолий хотел и все не решался спросить ее: кто это, Дионис или Христос?",
@@ -109,22 +53,8 @@
    ],
    "correct": "олимпийского бога",
    "case": "Родительный (Genitive)",
-   "explain": "«олимпийского бога» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«олимпийского бога» depends on the noun «тело» (whose? of what?) — genitive.",
    "id": "c13"
-  },
-  {
-   "sentence": "Арсиноя давно покинула ___.",
-   "lemma": "одежда",
-   "options": [
-    "монашеские одежды",
-    "монашеским одеждам",
-    "монашеских одежд",
-    "монашескими одеждами"
-   ],
-   "correct": "монашеские одежды",
-   "case": "Винительный (Accusative)",
-   "explain": "«монашеские одежды» — the accusative marks the direct object of the verb.",
-   "id": "c14"
   },
   {
    "sentence": "___ отворачивались от нее с презрением, называли Отступницей.",
@@ -137,7 +67,7 @@
    ],
    "correct": "благочестивые люди",
    "case": "Именительный (Nominative)",
-   "explain": "«Благочестивые люди» — the subject of the sentence stands in the nominative.",
+   "explain": "«благочестивые люди» is the subject of «отворачивались» — who or what does it — so nominative.",
    "id": "c15"
   },
   {
@@ -151,7 +81,7 @@
    ],
    "correct": "прежнего богатства",
    "case": "Родительный (Genitive)",
-   "explain": "«прежнего богатства» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«прежнего богатства» — «из» always takes the genitive.",
    "id": "c17"
   },
   {
@@ -165,35 +95,21 @@
    ],
    "correct": "неаполитанского залива",
    "case": "Родительный (Genitive)",
-   "explain": "«Неаполитанского залива» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«неаполитанского залива» depends on the noun «берегу» (whose? of what?) — genitive.",
    "id": "c18"
-  },
-  {
-   "sentence": "На берегу Неаполитанского залива, недалеко от Бай, сохранилось у нее маленькое поместье с той ___, в которой Мирра провела последние дни свои.",
-   "lemma": "вилла",
-   "options": [
-    "самой виллы",
-    "сама вилла",
-    "самой виллой",
-    "самой вилле"
-   ],
-   "correct": "самой виллой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«самой виллой» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c19"
   },
   {
    "sentence": "На берегу Неаполитанского залива, недалеко от Бай, сохранилось у нее маленькое поместье с той самой виллой, в которой Мирра провела ___ свои.",
    "lemma": "день",
    "options": [
     "последним дням",
+    "последними днями",
     "последние дни",
-    "последних дней",
     "последних днях"
    ],
    "correct": "последние дни",
    "case": "Винительный (Accusative)",
-   "explain": "«последние дни» — the accusative marks the direct object of the verb.",
+   "explain": "«последние дни» is the direct object of «провела» (кого? что?) — accusative.",
    "id": "c20"
   },
   {
@@ -207,7 +123,7 @@
    ],
    "correct": "тревожных годов",
    "case": "Родительный (Genitive)",
-   "explain": "«тревожных годов» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«тревожных годов» — «от» always takes the genitive.",
    "id": "c21"
   },
   {
@@ -221,7 +137,7 @@
    ],
    "correct": "сельской тишине",
    "case": "Предложный (Prepositional)",
-   "explain": "«сельской тишине» — after the preposition «в», for location or topic.",
+   "explain": "«сельской тишине» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c22"
   },
   {
@@ -235,22 +151,8 @@
    ],
    "correct": "маленького острова",
    "case": "Родительный (Genitive)",
-   "explain": "«маленького острова» — after the preposition «мимо», the genitive here marks possession, absence, or quantity.",
+   "explain": "«маленького острова» — «мимо» always takes the genitive.",
    "id": "c23"
-  },
-  {
-   "sentence": "Чтобы избегнуть ___, корабль должен был пройти очень близко от берега.",
-   "lemma": "камень",
-   "options": [
-    "подводными камнями",
-    "подводные камни",
-    "подводным камням",
-    "подводных камней"
-   ],
-   "correct": "подводных камней",
-   "case": "Родительный (Genitive)",
-   "explain": "«подводных камней» — the genitive here marks possession, absence, or quantity.",
-   "id": "c24"
   },
   {
    "sentence": "Здесь, вокруг ___, море было так прозрачно, что можно было видеть на дне серебристо-белый песок с черными пятнами мхов.",
@@ -263,7 +165,7 @@
    ],
    "correct": "обрывистого мыса",
    "case": "Родительный (Genitive)",
-   "explain": "«обрывистого мыса» — after the preposition «вокруг», the genitive here marks possession, absence, or quantity.",
+   "explain": "«обрывистого мыса» — «вокруг» always takes the genitive.",
    "id": "c25"
   },
   {
@@ -277,7 +179,7 @@
    ],
    "correct": "мшистых корнях",
    "case": "Предложный (Prepositional)",
-   "explain": "«мшистых корнях» — after the preposition «на», for location or topic.",
+   "explain": "«мшистых корнях» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c26"
   },
   {
@@ -291,7 +193,7 @@
    ],
    "correct": "бедных пастухов",
    "case": "Родительный (Genitive)",
-   "explain": "«бедных пастухов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«бедных пастухов» depends on the noun «дети» (whose? of what?) — genitive.",
    "id": "c27"
   },
   {
@@ -305,21 +207,21 @@
    ],
    "correct": "кипарисовой роще",
    "case": "Предложный (Prepositional)",
-   "explain": "«кипарисовой роще» — after the preposition «в», for location or topic.",
+   "explain": "«кипарисовой роще» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c28"
   },
   {
    "sentence": "Анатолий обернулся к Арсиное, указывая на этот ___ Эллады.",
    "lemma": "уголок",
    "options": [
-    "мирного уголка",
-    "мирным уголком",
     "мирный уголок",
-    "мирном уголке"
+    "мирного уголка",
+    "мирному уголку",
+    "мирным уголком"
    ],
    "correct": "мирный уголок",
    "case": "Винительный (Accusative)",
-   "explain": "«мирный уголок» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«мирный уголок» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c29"
   },
   {
@@ -333,7 +235,7 @@
    ],
    "correct": "неведомые братья",
    "case": "Именительный (Nominative)",
-   "explain": "«неведомые братья» — the subject of the sentence stands in the nominative.",
+   "explain": "«неведомые братья» is the subject of «подымут» — who or what does it — so nominative.",
    "id": "c31"
   },
   {
@@ -347,50 +249,8 @@
    ],
    "correct": "варварской тьме",
    "case": "Предложный (Prepositional)",
-   "explain": "«варварской тьме» — after the preposition «в», for location or topic.",
+   "explain": "«варварской тьме» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c32"
-  },
-  {
-   "sentence": "Юлиан был прав: в бесславии, в безмолвии, чуждые всем, одинокие, должны мы терпеть до конца; должны спрятать в пепел последнюю искру, чтобы ___ было чем зажечь новые светочи.",
-   "lemma": "поколение",
-   "options": [
-    "грядущими поколениями",
-    "грядущие поколения",
-    "грядущих поколениях",
-    "грядущим поколениям"
-   ],
-   "correct": "грядущим поколениям",
-   "case": "Дательный (Dative)",
-   "explain": "«грядущим поколениям» — the dative marks the indirect object or recipient.",
-   "id": "c33"
-  },
-  {
-   "sentence": "Юлиан был прав: в бесславии, в безмолвии, чуждые всем, одинокие, должны мы терпеть до конца; должны спрятать в пепел последнюю искру, чтобы грядущим поколениям было чем зажечь ___.",
-   "lemma": "светоч",
-   "options": [
-    "новые светочи",
-    "новых светочей",
-    "новых светочах",
-    "новыми светочами"
-   ],
-   "correct": "новые светочи",
-   "case": "Винительный (Accusative)",
-   "explain": "«новые светочи» — the accusative marks the direct object of the verb.",
-   "id": "c34"
-  },
-  {
-   "sentence": "– В самом деле, – обратился к нему Анатолий, со своей обычной, немного ___, – вот уже более четырех месяцев, как мы с тобой друзья, а между тем я до сих пор не знаю, кто ты – христианин или эллин?",
-   "lemma": "улыбка",
-   "options": [
-    "легкомысленной улыбкой",
-    "легкомысленная улыбка",
-    "легкомысленной улыбки",
-    "легкомысленной улыбке"
-   ],
-   "correct": "легкомысленной улыбкой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«легкомысленной улыбкой» — after the preposition «со», the instrumental marks the means, company, or complement.",
-   "id": "c36"
   },
   {
    "sentence": "Ему почудилась ___, мраморная белая, залитая солнцем, многоколонная, как Пропилеи в Афинах, ведущая прямо в голубое небо.",
@@ -403,22 +263,8 @@
    ],
    "correct": "широкая лестница",
    "case": "Именительный (Nominative)",
-   "explain": "«широкая лестница» — the subject of the sentence stands in the nominative.",
+   "explain": "«широкая лестница» is the subject of «почудилась» — who or what does it — so nominative.",
    "id": "c37"
-  },
-  {
-   "sentence": "___ почти скрылась за утесами.",
-   "lemma": "роща",
-   "options": [
-    "кипарисовая роща",
-    "кипарисовой рощей",
-    "кипарисовой роще",
-    "кипарисовой рощи"
-   ],
-   "correct": "кипарисовая роща",
-   "case": "Именительный (Nominative)",
-   "explain": "«Кипарисовая роща» — the subject of the sentence stands in the nominative.",
-   "id": "c38"
   },
   {
    "sentence": "И в тишине вдруг послышались ___ церковного пения: это старцы-отшельники, на передней части корабля, пели хором вечернюю молитву.",
@@ -431,7 +277,7 @@
    ],
    "correct": "медленные звуки",
    "case": "Именительный (Nominative)",
-   "explain": "«медленные звуки» — the subject of the sentence stands in the nominative.",
+   "explain": "«медленные звуки» is the subject of «послышались» — who or what does it — so nominative.",
    "id": "c39"
   },
   {
@@ -445,7 +291,7 @@
    ],
    "correct": "церковного пения",
    "case": "Родительный (Genitive)",
-   "explain": "«церковного пения» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«церковного пения» depends on the noun «звуки» (whose? of what?) — genitive.",
    "id": "c40"
   },
   {
@@ -459,22 +305,8 @@
    ],
    "correct": "иные звуки",
    "case": "Именительный (Nominative)",
-   "explain": "«иные звуки» — the subject of the sentence stands in the nominative.",
+   "explain": "«иные звуки» is the subject of «пронеслись» — who or what does it — so nominative.",
    "id": "c41"
-  },
-  {
-   "sentence": "И высоко под самое небо возносились ___ пастушьей свирели, смешиваясь со словами молитвы Господней.",
-   "lemma": "звук",
-   "options": [
-    "чистых звуках",
-    "чистыми звуками",
-    "чистые звуки",
-    "чистых звуков"
-   ],
-   "correct": "чистые звуки",
-   "case": "Винительный (Accusative)",
-   "explain": "«чистые звуки» — the accusative marks the direct object of the verb.",
-   "id": "c42"
   },
   {
    "sentence": "___ солнца потух на камнях блаженного острова.",
@@ -487,7 +319,7 @@
    ],
    "correct": "последний луч",
    "case": "Именительный (Nominative)",
-   "explain": "«Последний луч» — the subject of the sentence stands in the nominative.",
+   "explain": "«последний луч» is the subject of «потух» — who or what does it — so nominative.",
    "id": "c43"
   },
   {
@@ -501,22 +333,8 @@
    ],
    "correct": "блаженного острова",
    "case": "Родительный (Genitive)",
-   "explain": "«блаженного острова» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«блаженного острова» depends on the noun «камнях» (whose? of what?) — genitive.",
    "id": "c44"
-  },
-  {
-   "sentence": "Доносились глухо ___ грома.",
-   "lemma": "раскат",
-   "options": [
-    "первых раскатов",
-    "первыми раскатами",
-    "первым раскатам",
-    "первые раскаты"
-   ],
-   "correct": "первые раскаты",
-   "case": "Именительный (Nominative)",
-   "explain": "«первые раскаты» — the subject of the sentence stands in the nominative.",
-   "id": "c45"
   }
  ]
 }

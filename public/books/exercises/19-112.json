@@ -1,46 +1,18 @@
 {
  "cases": [
   {
-   "id": "c1",
-   "sentence": "Воздайте ___ Господу, слуги Господни!",
-   "lemma": "хвала",
-   "options": [
-    "хвалу",
-    "хвалы",
-    "хвале",
-    "хвалой"
-   ],
-   "correct": "хвалу",
-   "case": "Винительный (Accusative)",
-   "explain": "The transitive verb воздайте (give/render) governs the accusative case for its direct object."
-  },
-  {
-   "id": "c2",
-   "sentence": "Воздайте хвалу имени ___, да будет прославлено имя Господне отныне и вовеки.",
-   "lemma": "Господь",
-   "options": [
-    "Господь",
-    "Господа",
-    "Господу",
-    "Господом"
-   ],
-   "correct": "Господа",
-   "case": "Родительный (Genitive)",
-   "explain": "The preposition имени (to the name of) is followed by the genitive case."
-  },
-  {
    "id": "c3",
    "sentence": "От востока и до запада да будет прославлено имя Господне. Господь превознесен над всеми ___.",
    "lemma": "народ",
    "options": [
-    "народ",
-    "народа",
     "народам",
-    "народами"
+    "народах",
+    "народами",
+    "народов"
    ],
    "correct": "народами",
    "case": "Творительный (Instrumental)",
-   "explain": "The preposition над (above) in the sense of superiority governs the instrumental case."
+   "explain": "«народами» — «над» always takes the instrumental."
   },
   {
    "id": "c4",
@@ -54,7 +26,7 @@
    ],
    "correct": "троне",
    "case": "Предложный (Prepositional)",
-   "explain": "The preposition на (on) indicating place governs the prepositional case."
+   "explain": "«троне» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?)."
   },
   {
    "id": "c6",
@@ -68,21 +40,7 @@
    ],
    "correct": "праха",
    "case": "Родительный (Genitive)",
-   "explain": "The preposition из (from) always governs the genitive case."
-  },
-  {
-   "id": "c7",
-   "sentence": "Он поднимает бедного из праха и возвышает нищего из ___.",
-   "lemma": "грязь",
-   "options": [
-    "грязи",
-    "грязь",
-    "грязью",
-    "грязе"
-   ],
-   "correct": "грязи",
-   "case": "Родительный (Genitive)",
-   "explain": "The preposition из (from) governs the genitive case."
+   "explain": "«праха» — «из» always takes the genitive."
   },
   {
    "id": "c8",
@@ -90,93 +48,13 @@
    "lemma": "женщина",
    "options": [
     "женщину",
-    "женщины",
     "женщине",
+    "женщина",
     "женщиной"
    ],
    "correct": "женщину",
    "case": "Винительный (Accusative)",
-   "explain": "The transitive verb вселяет (settles/places) governs the accusative case for its direct object."
-  }
- ],
- "reading": [
-  {
-   "id": "r1",
-   "ru": "Аллилуйя! Воздайте хвалу Господу, слуги Господни!",
-   "question": "Who is being called upon to give praise to God?",
-   "options": [
-    "The servants of the Lord",
-    "All the people",
-    "The kings and rulers",
-    "The angels"
-   ],
-   "correct": "The servants of the Lord",
-   "explain": "The text directly states 'слуги Господни' (the servants of the Lord) should give praise."
-  },
-  {
-   "id": "r2",
-   "ru": "От востока и до запада да будет прославлено имя Господне.",
-   "question": "Where, according to this verse, should the name of the Lord be glorified?",
-   "options": [
-    "From east to west",
-    "In all the heavens",
-    "In the temples",
-    "Among the righteous only"
-   ],
-   "correct": "From east to west",
-   "explain": "The text explicitly says 'От востока и до запада' (from east to west)."
-  },
-  {
-   "id": "r3",
-   "ru": "Господь превознесен над всеми народами, и слава Его выше небес.",
-   "question": "How is the Lord's glory compared to the heavens?",
-   "options": [
-    "His glory is higher than the heavens",
-    "His glory is equal to the heavens",
-    "His glory fills the heavens",
-    "His glory is less than the heavens"
-   ],
-   "correct": "His glory is higher than the heavens",
-   "explain": "The text says 'слава Его выше небес' (His glory is higher than the heavens)."
-  },
-  {
-   "id": "r4",
-   "ru": "Кто подобен Господу нашему Богу, восседающему на троне в вышине?",
-   "question": "What is the nature of the God described in this verse?",
-   "options": [
-    "He sits on a throne on high",
-    "He dwells among the people",
-    "He is hidden from sight",
-    "He sits with the angels"
-   ],
-   "correct": "He sits on a throne on high",
-   "explain": "The text describes God as 'восседающему на троне в вышине' (sitting upon a throne on high)."
-  },
-  {
-   "id": "r5",
-   "ru": "Он поднимает бедного из праха и возвышает нищего из грязи, чтобы посадить их с вождями, с вождями их народа.",
-   "question": "Why does God lift the poor and needy?",
-   "options": [
-    "To seat them with leaders of their people",
-    "To test their faith",
-    "To humble the rich",
-    "To teach them humility"
-   ],
-   "correct": "To seat them with leaders of their people",
-   "explain": "The text says He lifts them 'чтобы посадить их с вождями, с вождями их народа' (to seat them with leaders, the leaders of their people)."
-  },
-  {
-   "id": "r6",
-   "ru": "Бесплодную женщину вселяет в дом счастливой матерью. Аллилуйя!",
-   "question": "What miraculous transformation does this verse describe?",
-   "options": [
-    "A barren woman becomes a joyful mother",
-    "A widow finds a new home",
-    "A woman gains wealth and riches",
-    "A childless woman adopts children"
-   ],
-   "correct": "A barren woman becomes a joyful mother",
-   "explain": "The text says God 'вселяет в дом счастливой матерью' (settles her in a home as a joyful mother)."
+   "explain": "«женщину» is the direct object of «вселяет» (кого? что?) — accusative."
   }
  ]
 }

@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Самый ___ у нас, конечно, лист лопуха: наденешь его на животик — вот тебе и передник, а положишь в дождик на головку — зонтик!",
-   "lemma": "лист",
-   "options": [
-    "большому листу",
-    "большом листе",
-    "большой лист",
-    "большим листом"
-   ],
-   "correct": "большой лист",
-   "case": "Именительный (Nominative)",
-   "explain": "«большой лист» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "А ___, белых, больших, кушали в старину важные господа; из улиток приготовлялось фрикасе, и господа, кушая его, приговаривали: «Ах, как вкусно!» Они и вправду воображали себе, что это ужасно вкусно.",
-   "lemma": "улитка",
-   "options": [
-    "самих улиток",
-    "самими улитками",
-    "самих улитках",
-    "сами улитки"
-   ],
-   "correct": "самих улиток",
-   "case": "Родительный (Genitive)",
-   "explain": "«самих улиток» — the genitive here marks possession, absence, or quantity.",
-   "id": "c2"
-  },
-  {
    "sentence": "Так вот, эти большие ___ ели лопухи, потому и стали сеять лопух.",
    "lemma": "улитка",
    "options": [
@@ -39,7 +11,7 @@
    ],
    "correct": "белые улитки",
    "case": "Именительный (Nominative)",
-   "explain": "«белые улитки» — the subject of the sentence stands in the nominative.",
+   "explain": "«белые улитки» is the subject of «ели» — who or what does it — so nominative.",
    "id": "c3"
   },
   {
@@ -53,7 +25,7 @@
    ],
    "correct": "барская усадьба",
    "case": "Именительный (Nominative)",
-   "explain": "«барская усадьба» — the subject of the sentence stands in the nominative.",
+   "explain": "«барская усадьба» is the subject of «Была» — who or what does it — so nominative.",
    "id": "c4"
   },
   {
@@ -67,7 +39,7 @@
    ],
    "correct": "последняя пара",
    "case": "Именительный (Nominative)",
-   "explain": "«последняя пара» — the subject of the sentence stands in the nominative.",
+   "explain": "«последняя пара» is the subject of «жила» — who or what does it — so nominative.",
    "id": "c5"
   },
   {
@@ -81,35 +53,21 @@
    ],
    "correct": "старых-престарых улиток",
    "case": "Родительный (Genitive)",
-   "explain": "«старых-престарых улиток» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«старых-престарых улиток» depends on the noun «пара» (whose? of what?) — genitive.",
    "id": "c6"
-  },
-  {
-   "sentence": "Они и сами не знали, сколько им лет, но отлично помнили, что прежде их было много, что они очень старинной ___ и что весь этот лес был насажен исключительно для них и для их родичей.",
-   "lemma": "порода",
-   "options": [
-    "иностранной породы",
-    "иностранная порода",
-    "иностранной породой",
-    "иностранной породе"
-   ],
-   "correct": "иностранной породы",
-   "case": "Родительный (Genitive)",
-   "explain": "«иностранной породы» — the genitive here marks possession, absence, or quantity.",
-   "id": "c7"
   },
   {
    "sentence": "___ ни разу не выходили из своего леса, но знали, что где-то есть что-то, называющееся «барскою усадьбой»; там улиток варят до тех пор, пока они не почернеют, а потом кладут на серебряное блюдо.",
    "lemma": "улитка",
    "options": [
-    "старых улиток",
+    "старые улитки",
+    "старым улиткам",
     "старых улитках",
-    "старыми улитками",
-    "старые улитки"
+    "старыми улитками"
    ],
    "correct": "старые улитки",
    "case": "Именительный (Nominative)",
-   "explain": "«Старые улитки» — the subject of the sentence stands in the nominative.",
+   "explain": "«старые улитки» is the subject of «выходили» — who or what does it — so nominative.",
    "id": "c8"
   },
   {
@@ -123,22 +81,8 @@
    ],
    "correct": "серебряном блюде",
    "case": "Предложный (Prepositional)",
-   "explain": "«серебряном блюде» — after the preposition «на», for location or topic.",
+   "explain": "«серебряном блюде» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c9"
-  },
-  {
-   "sentence": "И ни ___, ни жаба, ни дождевой червяк — никто из тех, кого они спрашивали, ничего не мог сказать об этом: никому ещё не приходилось быть сваренным и лежать на серебряном блюде!",
-   "lemma": "жук",
-   "options": [
-    "майский жук",
-    "майским жуком",
-    "майскому жуку",
-    "майском жуке"
-   ],
-   "correct": "майский жук",
-   "case": "Именительный (Nominative)",
-   "explain": "«майский жук» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
   },
   {
    "sentence": "И ни майский жук, ни жаба, ни дождевой червяк — никто из тех, кого они спрашивали, ничего не мог сказать об этом: никому ещё не приходилось быть сваренным и лежать на ___!",
@@ -151,7 +95,7 @@
    ],
    "correct": "серебряном блюде",
    "case": "Предложный (Prepositional)",
-   "explain": "«серебряном блюде» — after the preposition «на», for location or topic.",
+   "explain": "«серебряном блюде» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c11"
   },
   {
@@ -165,7 +109,7 @@
    ],
    "correct": "самого рождения",
    "case": "Родительный (Genitive)",
-   "explain": "«самого рождения» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
+   "explain": "«самого рождения» — «с» takes the genitive here (с чего? откуда? с каких пор?): from, off, since — with the instrumental it would mean 'with'.",
    "id": "c12"
   },
   {
@@ -179,50 +123,8 @@
    ],
    "correct": "серебряном блюде",
    "case": "Предложный (Prepositional)",
-   "explain": "«серебряном блюде» — after the preposition «на», for location or topic.",
+   "explain": "«серебряном блюде» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c13"
-  },
-  {
-   "sentence": "Ведь он уж ___ всё ползёт вверх по стебельку; просто голова кружится, как поглядишь!",
-   "lemma": "день",
-   "options": [
-    "третьего дня",
-    "третьим днём",
-    "третий день",
-    "третьем дне"
-   ],
-   "correct": "третий день",
-   "case": "Винительный (Accusative)",
-   "explain": "«третий день» — the accusative marks the direct object of the verb.",
-   "id": "c14"
-  },
-  {
-   "sentence": "— ___ без домов есть, конечно, — сказал улитка-папаша, — но ведь это же простонародье!",
-   "lemma": "улитка",
-   "options": [
-    "чёрными улитками",
-    "чёрным улиткам",
-    "чёрные улитки",
-    "чёрных улитках"
-   ],
-   "correct": "чёрные улитки",
-   "case": "Именительный (Nominative)",
-   "explain": "«Чёрные улитки» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
-  },
-  {
-   "sentence": "— Шагах в ста отсюда на кустике крыжовника сидит в своём домике одна ___.",
-   "lemma": "улитка",
-   "options": [
-    "маленькой улитки",
-    "маленькая улитка",
-    "маленькой улитке",
-    "маленькой улиткой"
-   ],
-   "correct": "маленькая улитка",
-   "case": "Именительный (Nominative)",
-   "explain": "«маленькая улитка» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
   },
   {
    "sentence": "Всего в ста ___ отсюда!",
@@ -235,21 +137,21 @@
    ],
    "correct": "человеческих шагах",
    "case": "Предложный (Prepositional)",
-   "explain": "«человеческих шагах» — after the preposition «в», for location or topic.",
+   "explain": "«человеческих шагах» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c17"
   },
   {
    "sentence": "Она отправилась в путь и благополучно добралась до лопухов на ___ путешествия.",
    "lemma": "день",
    "options": [
+    "восьмого дня",
+    "восьмому дню",
     "восьмой день",
-    "восьмым днём",
-    "восьмом дне",
-    "восьмого дня"
+    "восьмым днём"
    ],
    "correct": "восьмой день",
    "case": "Винительный (Accusative)",
-   "explain": "«восьмой день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«восьмой день» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c18"
   },
   {
@@ -263,7 +165,7 @@
    ],
    "correct": "молодые улитки",
    "case": "Именительный (Nominative)",
-   "explain": "«молодые улитки» — the subject of the sentence stands in the nominative.",
+   "explain": "«молодые улитки» is the subject of «стали» — who or what does it — so nominative.",
    "id": "c19"
   },
   {
@@ -277,7 +179,7 @@
    ],
    "correct": "серебряном блюде",
    "case": "Предложный (Prepositional)",
-   "explain": "«серебряном блюде» — after the preposition «на», for location or topic.",
+   "explain": "«серебряном блюде» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c20"
   }
  ]

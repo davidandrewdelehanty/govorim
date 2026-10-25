@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Недавно еще не могли найти во всем ___ двух палачей.",
-   "lemma": "народ",
-   "options": [
-    "русскому народу",
-    "русским народом",
-    "русском народе",
-    "русский народ"
-   ],
-   "correct": "русском народе",
-   "case": "Предложный (Prepositional)",
-   "explain": "«русском народе» — after the preposition «во», for location or topic.",
-   "id": "c2"
-  },
-  {
    "sentence": "Помню, как тогда Соловьев Владимир с радостью рассказывал мне, как не могли по всей России найти ___, и одного возили с места на место.",
    "lemma": "палач",
    "options": [
@@ -25,22 +11,8 @@
    ],
    "correct": "другого палача",
    "case": "Винительный (Accusative)",
-   "explain": "«другого палача» — the accusative marks the direct object of the verb.",
+   "explain": "«другого палача» is the direct object of «найти» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c3"
-  },
-  {
-   "sentence": "В Орле в прошлых месяцах, как и везде, понадобился палач, и тотчас же нашелся человек, который согласился исполнять это дело, срядившись с заведующим ___ за 50 рублей с человека.",
-   "lemma": "убийство",
-   "options": [
-    "правительственные убийства",
-    "правительственными убийствами",
-    "правительственных убийств",
-    "правительственным убийствам"
-   ],
-   "correct": "правительственными убийствами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«правительственными убийствами» — the instrumental marks the means, company, or complement.",
-   "id": "c5"
   },
   {
    "sentence": "Накануне казни к распорядителю ___ пришел неизвестный человек, желающий переговорить по тайному делу.",
@@ -53,7 +25,7 @@
    ],
    "correct": "правительственных убийств",
    "case": "Родительный (Genitive)",
-   "explain": "«правительственных убийств» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«правительственных убийств» depends on the noun «распорядителю» (whose? of what?) — genitive.",
    "id": "c6"
   },
   {
@@ -67,35 +39,21 @@
    ],
    "correct": "неизвестный человек",
    "case": "Именительный (Nominative)",
-   "explain": "«неизвестный человек» — the subject of the sentence stands in the nominative.",
+   "explain": "«неизвестный человек» is the subject of «пришел» — who or what does it — so nominative.",
    "id": "c7"
-  },
-  {
-   "sentence": "Так действуют эти совершаемые правительством преступления на худших, наименее ___ народа.",
-   "lemma": "человек",
-   "options": [
-    "нравственных людях",
-    "нравственным людям",
-    "нравственные люди",
-    "нравственных людей"
-   ],
-   "correct": "нравственных людей",
-   "case": "Родительный (Genitive)",
-   "explain": "«нравственных людей» — the genitive here marks possession, absence, or quantity.",
-   "id": "c10"
   },
   {
    "sentence": "Но ___ эти не могут оставаться без влияния и на большинство средних, в нравственном отношении, людей.",
    "lemma": "дело",
    "options": [
-    "ужасных дел",
-    "ужасными делами",
+    "ужасных делах",
     "ужасным делам",
-    "ужасные дела"
+    "ужасные дела",
+    "ужасными делами"
    ],
    "correct": "ужасные дела",
    "case": "Именительный (Nominative)",
-   "explain": "«ужасные дела» — the subject of the sentence stands in the nominative.",
+   "explain": "«ужасные дела» is the subject of «могут» — who or what does it — so nominative.",
    "id": "c11"
   },
   {
@@ -109,7 +67,7 @@
    ],
    "correct": "нравственном отношении",
    "case": "Предложный (Prepositional)",
-   "explain": "«нравственном отношении» — after the preposition «в», for location or topic.",
+   "explain": "«нравственном отношении» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c12"
   },
   {
@@ -123,50 +81,22 @@
    ],
    "correct": "крупных землевладельцев",
    "case": "Винительный (Accusative)",
-   "explain": "«крупных землевладельцев» — the accusative marks the direct object of the verb.",
+   "explain": "«крупных землевладельцев» is the direct object of «Перебить» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c13"
-  },
-  {
-   "sentence": "Перебить крупных землевладельцев для того, чтобы завладеть их землями, представляется теперь многим людям самым ___ земельного вопроса.",
-   "lemma": "разрешение",
-   "options": [
-    "верного разрешения",
-    "верным разрешением",
-    "верном разрешении",
-    "верному разрешению"
-   ],
-   "correct": "верным разрешением",
-   "case": "Творительный (Instrumental)",
-   "explain": "«верным разрешением» — the instrumental marks the means, company, or complement.",
-   "id": "c14"
   },
   {
    "sentence": "Перебить крупных землевладельцев для того, чтобы завладеть их землями, представляется теперь многим людям самым верным разрешением ___.",
    "lemma": "вопрос",
    "options": [
-    "земельного вопроса",
     "земельный вопрос",
-    "земельном вопросе",
-    "земельным вопросом"
+    "земельному вопросу",
+    "земельного вопроса",
+    "земельном вопросе"
    ],
    "correct": "земельного вопроса",
    "case": "Родительный (Genitive)",
-   "explain": "«земельного вопроса» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«земельного вопроса» depends on the noun «разрешением» (whose? of what?) — genitive.",
    "id": "c15"
-  },
-  {
-   "sentence": "Да, как ни ужасны ___, нравственное, духовное, невидимое зло, производимое ими, без сравнения еще ужаснее.",
-   "lemma": "дело",
-   "options": [
-    "самые дела",
-    "самыми делами",
-    "самых делах",
-    "самым делам"
-   ],
-   "correct": "самые дела",
-   "case": "Именительный (Nominative)",
-   "explain": "«самые дела» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
   }
  ]
 }

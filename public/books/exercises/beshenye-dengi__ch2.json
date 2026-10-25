@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "И завод может приносить ___, и лесу много.",
-   "lemma": "доход",
-   "options": [
-    "большому доходу",
-    "большом доходе",
-    "большим доходом",
-    "большой доход"
-   ],
-   "correct": "большой доход",
-   "case": "Винительный (Accusative)",
-   "explain": "«большой доход» — the accusative marks the direct object of the verb.",
-   "id": "c2"
-  },
-  {
    "sentence": "Если все ___ так живут, значит, не стыдно, а средства нужны небольшие.",
    "lemma": "человек",
    "options": [
@@ -25,22 +11,8 @@
    ],
    "correct": "порядочные люди",
    "case": "Именительный (Nominative)",
-   "explain": "«порядочные люди» — the subject of the sentence stands in the nominative.",
+   "explain": "«порядочные люди» is the subject of «живут» — who or what does it — so nominative.",
    "id": "c3"
-  },
-  {
-   "sentence": "Вы не знаете самых простых вещей, которые ___ известны.",
-   "lemma": "ребёнок",
-   "options": [
-    "маленьким детям",
-    "маленькими детьми",
-    "маленьких детях",
-    "маленькие дети"
-   ],
-   "correct": "маленьким детям",
-   "case": "Дательный (Dative)",
-   "explain": "«маленьким детям» — the dative marks the indirect object or recipient.",
-   "id": "c5"
   },
   {
    "sentence": "Того, что вы называете состоянием, действительно довольно для ___; этого состояния ему достанет на перчатки.",
@@ -53,36 +25,8 @@
    ],
    "correct": "холостого человека",
    "case": "Родительный (Genitive)",
-   "explain": "«холостого человека» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«холостого человека» — «для» always takes the genitive.",
    "id": "c6"
-  },
-  {
-   "sentence": "Да, мой ___, мы немножко ошиблись.",
-   "lemma": "друг",
-   "options": [
-    "истинным другом",
-    "истинном друге",
-    "истинного друга",
-    "истинный друг"
-   ],
-   "correct": "истинный друг",
-   "case": "Именительный (Nominative)",
-   "explain": "«истинный друг» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
-  },
-  {
-   "sentence": "Надо завести этот ___.",
-   "lemma": "обычай",
-   "options": [
-    "прекрасный обычай",
-    "прекрасным обычаем",
-    "прекрасному обычаю",
-    "прекрасного обычая"
-   ],
-   "correct": "прекрасный обычай",
-   "case": "Винительный (Accusative)",
-   "explain": "«прекрасный обычай» — the accusative marks the direct object of the verb.",
-   "id": "c10"
   },
   {
    "sentence": "Без жертв никакое ___ не обходится.",
@@ -95,78 +39,22 @@
    ],
    "correct": "полезное нововведение",
    "case": "Именительный (Nominative)",
-   "explain": "«полезное нововведение» — the subject of the sentence stands in the nominative.",
+   "explain": "«полезное нововведение» is the subject of «обходится» — who or what does it — so nominative.",
    "id": "c11"
-  },
-  {
-   "sentence": "Вы не хотите ли придать какую-нибудь важность тому, что я позволила Телятеву, моему ___, поцеловать мою руку?",
-   "lemma": "друг",
-   "options": [
-    "старому другу",
-    "старым другом",
-    "старого друга",
-    "старый друг"
-   ],
-   "correct": "старому другу",
-   "case": "Дательный (Dative)",
-   "explain": "«старому другу» — the dative marks the indirect object or recipient.",
-   "id": "c12"
-  },
-  {
-   "sentence": "(Подает руку Телятеву.) Он ___.",
-   "lemma": "человек",
-   "options": [
-    "грубый человек",
-    "грубого человека",
-    "грубом человеке",
-    "грубым человеком"
-   ],
-   "correct": "грубый человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«грубый человек» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
-  },
-  {
-   "sentence": "Кучумов бывает во втором часу, это ___, так мы и запишем.",
-   "lemma": "дело",
-   "options": [
-    "важном деле",
-    "важным делом",
-    "важного дела",
-    "важное дело"
-   ],
-   "correct": "важное дело",
-   "case": "Именительный (Nominative)",
-   "explain": "«важное дело» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
   },
   {
    "sentence": "Я ___, запросто, не люблю.",
    "lemma": "обед",
    "options": [
-    "домашние обеды",
     "домашними обедами",
-    "домашних обедов",
-    "домашним обедам"
+    "домашних обедах",
+    "домашним обедам",
+    "домашних обедов"
    ],
    "correct": "домашних обедов",
    "case": "Родительный (Genitive)",
-   "explain": "«домашних обедов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«домашних обедов» is the object of a negated verb («не люблю») — genitive instead of the accusative.",
    "id": "c16"
-  },
-  {
-   "sentence": "В них всегда есть что-то фамильярное: либо квас посередине стола в большом графине, либо ___, либо миска с отбитой ручкой, либо пирожки свечным салом пахнут.",
-   "lemma": "наливка",
-   "options": [
-    "домашними наливками",
-    "домашних наливок",
-    "домашние наливки",
-    "домашних наливках"
-   ],
-   "correct": "домашние наливки",
-   "case": "Именительный (Nominative)",
-   "explain": "«домашние наливки» — the subject of the sentence stands in the nominative.",
-   "id": "c18"
   },
   {
    "sentence": "___ говоришь ты, Лидия.",
@@ -179,50 +67,8 @@
    ],
    "correct": "страшные слова",
    "case": "Винительный (Accusative)",
-   "explain": "«Страшные слова» — the accusative marks the direct object of the verb.",
+   "explain": "«страшные слова» is the direct object of «говоришь» (кого? что?) — accusative.",
    "id": "c19"
-  },
-  {
-   "sentence": "Это будет первый мой ___.",
-   "lemma": "подвиг",
-   "options": [
-    "женскому подвигу",
-    "женский подвиг",
-    "женского подвига",
-    "женским подвигом"
-   ],
-   "correct": "женский подвиг",
-   "case": "Именительный (Nominative)",
-   "explain": "«женский подвиг» — the subject of the sentence stands in the nominative.",
-   "id": "c20"
-  },
-  {
-   "sentence": "Лидия берет их и ___ идет в кабинет мужа.",
-   "lemma": "шаг",
-   "options": [
-    "решительный шаг",
-    "решительного шага",
-    "решительным шагом",
-    "решительному шагу"
-   ],
-   "correct": "решительным шагом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«решительным шагом» — the instrumental marks the means, company, or complement.",
-   "id": "c21"
-  },
-  {
-   "sentence": "Да разве я не ___, разве я не женщина!",
-   "lemma": "человек",
-   "options": [
-    "живой человек",
-    "живого человека",
-    "живым человеком",
-    "живом человеке"
-   ],
-   "correct": "живой человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«живой человек» — the subject of the sentence stands in the nominative.",
-   "id": "c22"
   },
   {
    "sentence": "Если есть у тебя тайна, так береги ее про себя, я до ___ не охотник.",
@@ -235,22 +81,8 @@
    ],
    "correct": "чужих тайн",
    "case": "Родительный (Genitive)",
-   "explain": "«чужих тайн» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«чужих тайн» — «до» always takes the genitive.",
    "id": "c23"
-  },
-  {
-   "sentence": "Она теперь в затруднении, отец денег не высылает, у него какое-то ___.",
-   "lemma": "предприятие",
-   "options": [
-    "большом предприятии",
-    "большому предприятию",
-    "большого предприятия",
-    "большое предприятие"
-   ],
-   "correct": "большое предприятие",
-   "case": "Именительный (Nominative)",
-   "explain": "«большое предприятие» — the subject of the sentence stands in the nominative.",
-   "id": "c24"
   },
   {
    "sentence": "Через улицу, напротив, есть ___ в три окна на улицу; я его смотрел, он для нас будет очень достаточен.",
@@ -263,7 +95,7 @@
    ],
    "correct": "одноэтажный домик",
    "case": "Именительный (Nominative)",
-   "explain": "«одноэтажный домик» — the subject of the sentence stands in the nominative.",
+   "explain": "«одноэтажный домик» is the subject of «есть» — who or what does it — so nominative.",
    "id": "c25"
   },
   {
@@ -277,7 +109,7 @@
    ],
    "correct": "святого чувства",
    "case": "Родительный (Genitive)",
-   "explain": "«святого чувства» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«святого чувства» — «для» always takes the genitive.",
    "id": "c26"
   }
  ]

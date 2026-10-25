@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Больше всего во дворце Грибоедов любил ___, галерею, соединявшую апартаменты со службами.",
-   "lemma": "коридор",
-   "options": [
-    "низеньким коридором",
-    "низеньком коридоре",
-    "низенькому коридору",
-    "низенький коридор"
-   ],
-   "correct": "низенький коридор",
-   "case": "Винительный (Accusative)",
-   "explain": "«низенький коридор» — the accusative marks the direct object of the verb.",
-   "id": "c1"
-  },
-  {
    "sentence": "Изредка по нему шлепали туфли ___ и шуршали белые облачка горничных.",
    "lemma": "слуга",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "сонных слуг",
    "case": "Родительный (Genitive)",
-   "explain": "«сонных слуг» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«сонных слуг» depends on the noun «туфли» (whose? of what?) — genitive.",
    "id": "c2"
   },
   {
@@ -39,36 +25,8 @@
    ],
    "correct": "неподобающем месте",
    "case": "Предложный (Prepositional)",
-   "explain": "«неподобающем месте» — after the preposition «в», for location or topic.",
+   "explain": "«неподобающем месте» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c3"
-  },
-  {
-   "sentence": "Сашка сидел на стуле, а кругом уселись повара, лакеи и дымили трубками какие-то черные ___.",
-   "lemma": "человек",
-   "options": [
-    "усатым людям",
-    "усатых людей",
-    "усатыми людьми",
-    "усатые люди"
-   ],
-   "correct": "усатые люди",
-   "case": "Именительный (Nominative)",
-   "explain": "«усатые люди» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
-  },
-  {
-   "sentence": "Сашка читал «Сиротку», ___ Фаддея, первую главу из его будущего обширного романа «Выжигин».",
-   "lemma": "сочинение",
-   "options": [
-    "нового сочинения",
-    "новое сочинение",
-    "новом сочинении",
-    "новым сочинением"
-   ],
-   "correct": "новое сочинение",
-   "case": "Именительный (Nominative)",
-   "explain": "«новое сочинение» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
   },
   {
    "sentence": "Сашка читал «Сиротку», новое сочинение Фаддея, первую главу из его будущего ___ «Выжигин».",
@@ -81,22 +39,8 @@
    ],
    "correct": "обширного романа",
    "case": "Родительный (Genitive)",
-   "explain": "«обширного романа» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«обширного романа» — «из» always takes the genitive.",
    "id": "c6"
-  },
-  {
-   "sentence": "— Я теперь, братец, пишу ___ с приключениями, и герой страдает прямо как собака, пока доходит до благополучия.",
-   "lemma": "роман",
-   "options": [
-    "настоящему роману",
-    "настоящего романа",
-    "настоящий роман",
-    "настоящем романе"
-   ],
-   "correct": "настоящий роман",
-   "case": "Винительный (Accusative)",
-   "explain": "«настоящий роман» — the accusative marks the direct object of the verb.",
-   "id": "c7"
   },
   {
    "sentence": "Человек богатый всегда прочтет, потому что приятно, братец ты мой, читать о холоде и там о страданиях перед ___.",
@@ -109,22 +53,8 @@
    ],
    "correct": "роскошным камином",
    "case": "Творительный (Instrumental)",
-   "explain": "«роскошным камином» — after the preposition «перед», the instrumental marks the means, company, or complement.",
+   "explain": "«роскошным камином» — «перед» always takes the instrumental.",
    "id": "c8"
-  },
-  {
-   "sentence": "«А вот и ___», — подумал Грибоедов.",
-   "lemma": "критик",
-   "options": [
-    "первому критику",
-    "первого критика",
-    "первом критике",
-    "первый критик"
-   ],
-   "correct": "первый критик",
-   "case": "Именительный (Nominative)",
-   "explain": "«первый критик» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
   },
   {
    "sentence": "— «Смотря, как ___ ласкаются к своим матерям и нянькам, я ласкался к моей кудлашке и называл ее маменькою и нянюшкою, обнимал ее, целовал, прижимал к груди и валялся с нею на песке».",
@@ -137,92 +67,22 @@
    ],
    "correct": "другие дети",
    "case": "Именительный (Nominative)",
-   "explain": "«другие дети» — the subject of the sentence stands in the nominative.",
+   "explain": "«другие дети» is the subject of «ласкаются» — who or what does it — so nominative.",
    "id": "c10"
   },
   {
    "sentence": "Сашка поднял наконец свои ___.",
    "lemma": "око",
    "options": [
-    "ясные очи",
-    "ясными очами",
+    "ясных очах",
     "ясным очам",
-    "ясных очей"
+    "ясными очами",
+    "ясные очи"
    ],
    "correct": "ясные очи",
    "case": "Винительный (Accusative)",
-   "explain": "«ясные очи» — the accusative marks the direct object of the verb.",
+   "explain": "«ясные очи» is the direct object of «поднял» (кого? что?) — accusative.",
    "id": "c11"
-  },
-  {
-   "sentence": "— Что собака не может быть, как говорится, маменькой, — сказал он, напирая на «маменьку», — это еще ___.",
-   "lemma": "дело",
-   "options": [
-    "малом деле",
-    "малым делом",
-    "малого дела",
-    "малое дело"
-   ],
-   "correct": "малое дело",
-   "case": "Именительный (Nominative)",
-   "explain": "«малое дело» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
-  },
-  {
-   "sentence": "— «Мне хотелось любить людей, — читал Сашка, — особенно женщин, но я не мог питать к ним ___, кроме боязни».",
-   "lemma": "чувство",
-   "options": [
-    "другое чувство",
-    "другим чувством",
-    "другого чувства",
-    "другому чувству"
-   ],
-   "correct": "другого чувства",
-   "case": "Родительный (Genitive)",
-   "explain": "«другого чувства» — the genitive here marks possession, absence, or quantity.",
-   "id": "c14"
-  },
-  {
-   "sentence": "— И это очень даже часто случается, — холодно сказал вдруг Сашка, — не только что ребенок, а иногда и ___ не довольно умеют разговаривать с барышнями.",
-   "lemma": "мужчина",
-   "options": [
-    "пожилого мужчину",
-    "пожилой мужчина",
-    "пожилым мужчиной",
-    "пожилом мужчине"
-   ],
-   "correct": "пожилой мужчина",
-   "case": "Именительный (Nominative)",
-   "explain": "«пожилой мужчина» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
-  },
-  {
-   "sentence": "Грибоедов, осторожно ступая ___, прокрался в свою большую белую комнату, напоминавшую присутственные места, и позвонил.",
-   "lemma": "туфля",
-   "options": [
-    "длинных туфлях",
-    "длинных туфель",
-    "длинные туфли",
-    "длинными туфлями"
-   ],
-   "correct": "длинными туфлями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«длинными туфлями» — the instrumental marks the means, company, or complement.",
-   "id": "c16"
-  },
-  {
-   "sentence": "— Я бы вас и не подумал, Александр Дмитриевич, тревожить, но, к прискорбию, будет ___, и, согласитесь, неудобно щеголять в мундире, по которому вы ни разу еще не изволили пройтиться щеткой.",
-   "lemma": "парад",
-   "options": [
-    "большой парад",
-    "большого парада",
-    "большому параду",
-    "большом параде"
-   ],
-   "correct": "большой парад",
-   "case": "Именительный (Nominative)",
-   "explain": "«большой парад» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
   }
  ]
 }

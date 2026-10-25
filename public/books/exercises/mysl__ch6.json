@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Не старайтесь разобрать зачеркнутое в конце четвертого листа и вообще не придавайте ___ моим помаркам, как мнимым признакам расстроенного мышления.",
-   "lemma": "значение",
-   "options": [
-    "излишним значением",
-    "излишнему значению",
-    "излишнем значении",
-    "излишнего значения"
-   ],
-   "correct": "излишнего значения",
-   "case": "Родительный (Genitive)",
-   "explain": "«излишнего значения» — the genitive here marks possession, absence, or quantity.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Не старайтесь разобрать зачеркнутое в конце четвертого листа и вообще не придавайте излишнего значения моим помаркам, как ___ расстроенного мышления.",
-   "lemma": "признак",
-   "options": [
-    "мнимые признаки",
-    "мнимым признакам",
-    "мнимыми признаками",
-    "мнимых признаках"
-   ],
-   "correct": "мнимым признакам",
-   "case": "Дательный (Dative)",
-   "explain": "«мнимым признакам» — the dative marks the indirect object or recipient.",
-   "id": "c2"
-  },
-  {
    "sentence": "В том ___, в котором я очутился, я должен быть страшно осторожен, чего я не скрываю и что вы прекрасно понимаете.",
    "lemma": "положение",
    "options": [
@@ -39,7 +11,7 @@
    ],
    "correct": "странном положении",
    "case": "Предложный (Prepositional)",
-   "explain": "«странном положении» — after the preposition «в», for location or topic.",
+   "explain": "«странном положении» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c3"
   },
   {
@@ -53,7 +25,7 @@
    ],
    "correct": "ночной мрак",
    "case": "Именительный (Nominative)",
-   "explain": "«Ночной мрак» — the subject of the sentence stands in the nominative.",
+   "explain": "«ночной мрак» is the subject of «действует» — who or what does it — so nominative.",
    "id": "c4"
   },
   {
@@ -67,22 +39,8 @@
    ],
    "correct": "страшные мысли",
    "case": "Именительный (Nominative)",
-   "explain": "«страшные мысли» — the subject of the sentence stands in the nominative.",
+   "explain": "«страшные мысли» is the subject of «приходят» — who or what does it — so nominative.",
    "id": "c5"
-  },
-  {
-   "sentence": "У нее, кажется, есть на стороне любовник, но женщина она красивая, тихая и не жадная, и я легко помирился с этим ___, который почти неизбежен в положении человека, приобретающего любовь за деньги.",
-   "lemma": "недостаток",
-   "options": [
-    "маленьким недостатком",
-    "маленькому недостатку",
-    "маленького недостатка",
-    "маленький недостаток"
-   ],
-   "correct": "маленьким недостатком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«маленьким недостатком» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c7"
   },
   {
    "sentence": "И вот эта ___ первая нанесла мне удар.",
@@ -95,7 +53,7 @@
    ],
    "correct": "глупая женщина",
    "case": "Именительный (Nominative)",
-   "explain": "«глупая женщина» — the subject of the sentence stands in the nominative.",
+   "explain": "«глупая женщина» is the subject of «нанесла» — who or what does it — so nominative.",
    "id": "c8"
   },
   {
@@ -109,22 +67,8 @@
    ],
    "correct": "других людей",
    "case": "Родительный (Genitive)",
-   "explain": "«других людей» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«других людей» — «у» always takes the genitive.",
    "id": "c9"
-  },
-  {
-   "sentence": "Мелькали в голове отрывки фраз из моей роли, мысленно воспроизводились движения, которые я делал, и изредка лениво проползали ___: а вот тут лучше можно было сказать или сделать.",
-   "lemma": "мысль",
-   "options": [
-    "критические мысли",
-    "критическим мыслям",
-    "критических мыслях",
-    "критических мыслей"
-   ],
-   "correct": "критические мысли",
-   "case": "Винительный (Accusative)",
-   "explain": "«критические мысли» — the accusative marks the direct object of the verb.",
-   "id": "c10"
   },
   {
    "sentence": "Когда приехали арестовать меня, я оказался, по их словам, в ___ — взлохмаченный, в разорванном платье, бледный и страшный.",
@@ -137,21 +81,21 @@
    ],
    "correct": "ужасном виде",
    "case": "Предложный (Prepositional)",
-   "explain": "«ужасном виде» — after the preposition «в», for location or topic.",
+   "explain": "«ужасном виде» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c11"
   },
   {
    "sentence": "Разве пережить такую ночь и все-таки не сойти с ума не значит обладать ___?",
    "lemma": "мозг",
    "options": [
-    "несокрушимого мозга",
-    "несокрушимым мозгом",
     "несокрушимому мозгу",
-    "несокрушимый мозг"
+    "несокрушимым мозгом",
+    "несокрушимого мозга",
+    "несокрушимом мозге"
    ],
    "correct": "несокрушимым мозгом",
    "case": "Творительный (Instrumental)",
-   "explain": "«несокрушимым мозгом» — the instrumental marks the means, company, or complement.",
+   "explain": "«обладать» takes the instrumental.",
    "id": "c12"
   },
   {
@@ -165,22 +109,8 @@
    ],
    "correct": "чудовищный голос",
    "case": "Именительный (Nominative)",
-   "explain": "«чудовищный голос» — the subject of the sentence stands in the nominative.",
+   "explain": "«чудовищный голос» is the subject of «исходит» — who or what does it — so nominative.",
    "id": "c15"
-  },
-  {
-   "sentence": "И вдруг вы узнали, что там, в ___, живут.",
-   "lemma": "комната",
-   "options": [
-    "другими комнатами",
-    "другим комнатам",
-    "других комнатах",
-    "других комнат"
-   ],
-   "correct": "других комнатах",
-   "case": "Предложный (Prepositional)",
-   "explain": "«других комнатах» — after the preposition «в», for location or topic.",
-   "id": "c17"
   },
   {
    "sentence": "Живут какие-то ___, быть может люди, быть может что-нибудь другое, и дом принадлежит им.",
@@ -193,50 +123,8 @@
    ],
    "correct": "загадочные существа",
    "case": "Именительный (Nominative)",
-   "explain": "«загадочные существа» — the subject of the sentence stands in the nominative.",
+   "explain": "«загадочные существа» is the subject of «Живут» — who or what does it — so nominative.",
    "id": "c18"
-  },
-  {
-   "sentence": "Простите, гг. эксперты, что такой важный для экспертизы момент, как это ___ после убийства, я описал в таких общих и неопределенных выражениях.",
-   "lemma": "состояние",
-   "options": [
-    "ужасном состоянии",
-    "ужасное состояние",
-    "ужасным состоянием",
-    "ужасного состояния"
-   ],
-   "correct": "ужасное состояние",
-   "case": "Именительный (Nominative)",
-   "explain": "«ужасное состояние» — the subject of the sentence stands in the nominative.",
-   "id": "c19"
-  },
-  {
-   "sentence": "Но это все, что я помню и что могу передать ___.",
-   "lemma": "язык",
-   "options": [
-    "человеческом языке",
-    "человеческим языком",
-    "человеческому языку",
-    "человеческий язык"
-   ],
-   "correct": "человеческим языком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«человеческим языком» — the instrumental marks the means, company, or complement.",
-   "id": "c20"
-  },
-  {
-   "sentence": "Например, не могу я передать ___ того ужаса, который я все время тогда испытывал.",
-   "lemma": "язык",
-   "options": [
-    "человеческом языке",
-    "человеческим языком",
-    "человеческому языку",
-    "человеческий язык"
-   ],
-   "correct": "человеческим языком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«человеческим языком» — the instrumental marks the means, company, or complement.",
-   "id": "c21"
   }
  ]
 }

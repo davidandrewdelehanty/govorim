@@ -1,60 +1,18 @@
 {
  "cases": [
   {
-   "sentence": "Эта ___, вся залитая сверкающими огнями, и несметные толпы народа ослепляют мой взор.",
-   "lemma": "равнина",
-   "options": [
-    "необозримой равнине",
-    "необозримой равниной",
-    "необозримая равнина",
-    "необозримой равнины"
-   ],
-   "correct": "необозримая равнина",
-   "case": "Именительный (Nominative)",
-   "explain": "«необозримая равнина» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Эта необозримая равнина, вся залитая ___, и несметные толпы народа ослепляют мой взор.",
-   "lemma": "огонь",
-   "options": [
-    "сверкающих огнях",
-    "сверкающие огни",
-    "сверкающим огням",
-    "сверкающими огнями"
-   ],
-   "correct": "сверкающими огнями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«сверкающими огнями» — the instrumental marks the means, company, or complement.",
-   "id": "c2"
-  },
-  {
    "sentence": "На ___, очень рано утром, Жюльен переписывал в библиотеке письма, когда мадемуазель Матильда вошла туда через маленькую дверь, отлично скрытую корешками книг.",
    "lemma": "день",
    "options": [
-    "другом дне",
     "другой день",
     "другим днём",
+    "другому дню",
     "другого дня"
    ],
    "correct": "другой день",
    "case": "Винительный (Accusative)",
-   "explain": "«другой день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«другой день» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c3"
-  },
-  {
-   "sentence": "В девятнадцать лет эта ___ уже не могла заинтересоваться романом, если он не был пикантно-остроумным.",
-   "lemma": "девушка",
-   "options": [
-    "бедная девушка",
-    "бедной девушке",
-    "бедной девушки",
-    "бедной девушкой"
-   ],
-   "correct": "бедная девушка",
-   "case": "Именительный (Nominative)",
-   "explain": "«бедная девушка» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
   },
   {
    "sentence": "Но, возвращаясь из ___, на самой середине улицы дю Бак, желая разойтись со встречным кабриолетом, он упал и весь выпачкался в грязи.",
@@ -67,7 +25,7 @@
    ],
    "correct": "булонского леса",
    "case": "Родительный (Genitive)",
-   "explain": "«Булонского леса» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«булонского леса» — «из» always takes the genitive.",
    "id": "c5"
   },
   {
@@ -81,22 +39,8 @@
    ],
    "correct": "самой середине",
    "case": "Предложный (Prepositional)",
-   "explain": "«самой середине» — after the preposition «на», for location or topic.",
+   "explain": "«самой середине» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c6"
-  },
-  {
-   "sentence": "Но, возвращаясь из Булонского леса, на самой середине улицы дю Бак, желая разойтись со ___, он упал и весь выпачкался в грязи.",
-   "lemma": "кабриолет",
-   "options": [
-    "встречным кабриолетом",
-    "встречного кабриолета",
-    "встречному кабриолету",
-    "встречном кабриолете"
-   ],
-   "correct": "встречным кабриолетом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«встречным кабриолетом» — after the preposition «со», the instrumental marks the means, company, or complement.",
-   "id": "c7"
   },
   {
    "sentence": "За обедом маркиз, желая заговорить с ним, спросил, хорошо ли прошла прогулка верхом, на что Норбер поспешно ответил в ___.",
@@ -109,7 +53,7 @@
    ],
    "correct": "общих выражениях",
    "case": "Предложный (Prepositional)",
-   "explain": "«общих выражениях» — after the preposition «в», for location or topic.",
+   "explain": "«общих выражениях» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c8"
   },
   {
@@ -123,36 +67,8 @@
    ],
    "correct": "длинной улицы",
    "case": "Родительный (Genitive)",
-   "explain": "«длинной улицы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«длинной улицы» depends on the noun «середине» (whose? of what?) — genitive.",
    "id": "c9"
-  },
-  {
-   "sentence": "— Этот ___ мне нравится, — сказа маркиз академику, — настоящий провинциал-простак; даже рассказывает о своей беде при д_а_м_а_х.",
-   "lemma": "священник",
-   "options": [
-    "маленьком священнике",
-    "маленьким священником",
-    "маленький священник",
-    "маленького священника"
-   ],
-   "correct": "маленький священник",
-   "case": "Именительный (Nominative)",
-   "explain": "«маленький священник» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
-  },
-  {
-   "sentence": "— Этот маленький священник мне нравится, — сказа маркиз академику, — ___; даже рассказывает о своей беде при д_а_м_а_х.",
-   "lemma": "провинциал-простак",
-   "options": [
-    "настоящим провинциалом-простаком",
-    "настоящий провинциал-простак",
-    "настоящем провинциале-простаке",
-    "настоящему провинциалу-простаку"
-   ],
-   "correct": "настоящий провинциал-простак",
-   "case": "Именительный (Nominative)",
-   "explain": "«настоящий провинциал-простак» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
   },
   {
    "sentence": "Слушатели Жюльена отнеслись так непринужденно к его несчастью, что в конце обеда, когда ___ принял другое направление, мадемуазель Матильда спросила брата о подробностях злополучного происшествия.",
@@ -165,7 +81,7 @@
    ],
    "correct": "общий разговор",
    "case": "Именительный (Nominative)",
-   "explain": "«общий разговор» — the subject of the sentence stands in the nominative.",
+   "explain": "«общий разговор» is the subject of «принял» — who or what does it — so nominative.",
    "id": "c12"
   },
   {
@@ -179,21 +95,21 @@
    ],
    "correct": "злополучного происшествия",
    "case": "Родительный (Genitive)",
-   "explain": "«злополучного происшествия» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«злополучного происшествия» depends on the noun «подробностях» (whose? of what?) — genitive.",
    "id": "c13"
   },
   {
    "sentence": "На ___ Жюльен прослушал две лекции по богословию, а потом, вернувшись, переписал штук двадцать писем.",
    "lemma": "день",
    "options": [
-    "другом дне",
     "другой день",
+    "другого дня",
     "другим днём",
-    "другого дня"
+    "другому дню"
    ],
    "correct": "другой день",
    "case": "Винительный (Accusative)",
-   "explain": "«другой день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«другой день» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c14"
   },
   {
@@ -207,22 +123,8 @@
    ],
    "correct": "молодого человека",
    "case": "Родительный (Genitive)",
-   "explain": "«молодого человека» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«молодого человека» depends on the noun «библиотеке» (whose? of what?) — genitive.",
    "id": "c15"
-  },
-  {
-   "sentence": "Он нашел в библиотеке какого-то молодого человека, очень изысканно одетого, но с ___ и выражением зависти в лице.",
-   "lemma": "манер",
-   "options": [
-    "дурным манерам",
-    "дурные манеры",
-    "дурных манерах",
-    "дурными манерами"
-   ],
-   "correct": "дурными манерами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«дурными манерами» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c16"
   },
   {
    "sentence": "Он был племянник академика, друга госпожи де Ла Моль и готовился к ___.",
@@ -235,22 +137,8 @@
    ],
    "correct": "литературной карьере",
    "case": "Дательный (Dative)",
-   "explain": "«литературной карьере» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«литературной карьере» — «к» always takes the dative.",
    "id": "c17"
-  },
-  {
-   "sentence": "— Надеюсь, — сказал он Жюльену, — что вы в ___ побываете в манеже и что через несколько недель я с величайшим удовольствием буду кататься с вами.",
-   "lemma": "время",
-   "options": [
-    "скорого времени",
-    "скором времени",
-    "скорое время",
-    "скорым временем"
-   ],
-   "correct": "скором времени",
-   "case": "Предложный (Prepositional)",
-   "explain": "«скором времени» — after the preposition «с», for location or topic.",
-   "id": "c18"
   },
   {
    "sentence": "— О юный смельчак, — сказал Норбер, — здесь слишком много экипажей, и правят ими ___!",
@@ -263,7 +151,7 @@
    ],
    "correct": "бесшабашные люди",
    "case": "Именительный (Nominative)",
-   "explain": "«бесшабашные люди» — the subject of the sentence stands in the nominative.",
+   "explain": "«бесшабашные люди» is the subject of «правят» — who or what does it — so nominative.",
    "id": "c19"
   },
   {
@@ -277,7 +165,7 @@
    ],
    "correct": "лихого наездника",
    "case": "Винительный (Accusative)",
-   "explain": "«лихого наездника» — the accusative marks the direct object of the verb.",
+   "explain": "«лихого наездника» is the direct object of «представить» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c20"
   },
   {
@@ -291,7 +179,7 @@
    ],
    "correct": "молодой граф",
    "case": "Именительный (Nominative)",
-   "explain": "«молодой граф» — the subject of the sentence stands in the nominative.",
+   "explain": "«молодой граф» is the subject of «слышал» — who or what does it — so nominative.",
    "id": "c21"
   },
   {
@@ -305,22 +193,8 @@
    ],
    "correct": "скором времени",
    "case": "Предложный (Prepositional)",
-   "explain": "«скором времени» — after the preposition «в», for location or topic.",
+   "explain": "«скором времени» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c22"
-  },
-  {
-   "sentence": "«Если Жюльен подобен ___, пусть он погибнет, — думал он, — если же это человек мужественный, пусть пробивается сам».",
-   "lemma": "тростник",
-   "options": [
-    "слабый тростник",
-    "слабым тростником",
-    "слабого тростника",
-    "слабому тростнику"
-   ],
-   "correct": "слабому тростнику",
-   "case": "Дательный (Dative)",
-   "explain": "«слабому тростнику» — the dative marks the indirect object or recipient.",
-   "id": "c23"
   }
  ]
 }

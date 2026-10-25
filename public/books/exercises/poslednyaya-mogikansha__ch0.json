@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Я и помещик ___ Докукин, у которого я гостил весною, сидели в одно прекрасное весеннее утро в бабушкиных креслах и лениво глядели в окно.",
-   "lemma": "штаб-ротмистр",
-   "options": [
-    "отставному штаб-ротмистру",
-    "отставном штаб-ротмистре",
-    "отставной штаб-ротмистр",
-    "отставным штаб-ротмистром"
-   ],
-   "correct": "отставной штаб-ротмистр",
-   "case": "Именительный (Nominative)",
-   "explain": "«отставной штаб-ротмистр» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Я и помещик отставной штаб-ротмистр Докукин, у которого я гостил весною, сидели в одно прекрасное весеннее утро в ___ и лениво глядели в окно.",
    "lemma": "кресло",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "бабушкиных креслах",
    "case": "Предложный (Prepositional)",
-   "explain": "«бабушкиных креслах» — after the preposition «в», for location or topic.",
+   "explain": "«бабушкиных креслах» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c2"
   },
   {
@@ -39,22 +25,8 @@
    ],
    "correct": "судебному приставу",
    "case": "Дательный (Dative)",
-   "explain": "«судебному приставу» — the dative marks the indirect object or recipient.",
+   "explain": "«рад» takes the dative.",
    "id": "c3"
-  },
-  {
-   "sentence": "В воротах показалась сначала лошадиная голова с зеленой дугой, затем целая лошадь и, наконец, темная, тяжелая бричка с большими ___, напоминавшими крылья жука, когда последний собирается лететь.",
-   "lemma": "крыло",
-   "options": [
-    "безобразных крыльев",
-    "безобразными крыльями",
-    "безобразные крылья",
-    "безобразным крыльям"
-   ],
-   "correct": "безобразными крыльями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«безобразными крыльями» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c4"
   },
   {
    "sentence": "— Грешно не иметь к ___ родственных чувств, но — верите ли?",
@@ -67,7 +39,7 @@
    ],
    "correct": "родной сестре",
    "case": "Дательный (Dative)",
-   "explain": "«родной сестре» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«родной сестре» — «к» always takes the dative.",
    "id": "c5"
   },
   {
@@ -81,22 +53,8 @@
    ],
    "correct": "родственных чувств",
    "case": "Родительный (Genitive)",
-   "explain": "«родственных чувств» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«родственных чувств» depends on the noun «сестре» (whose? of what?) — genitive.",
    "id": "c6"
-  },
-  {
-   "sentence": "— ___ вы дяденьке Василию Антипычу отдали-с, а пестрые приказали мне до зимы спрятать, — оправдывался тенорок.",
-   "lemma": "брюки",
-   "options": [
-    "синие брюки",
-    "синих брюках",
-    "синим брюкам",
-    "синими брюками"
-   ],
-   "correct": "синие брюки",
-   "case": "Именительный (Nominative)",
-   "explain": "«Синие брюки» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
   },
   {
    "sentence": "Дверь наконец отворилась, и в комнату вошла дама лет сорока, высокая, полная, рассыпчатая, в шёлковом ___.",
@@ -109,134 +67,8 @@
    ],
    "correct": "голубом платье",
    "case": "Предложный (Prepositional)",
-   "explain": "«голубом платье» — after the preposition «в», for location or topic.",
+   "explain": "«голубом платье» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c10"
-  },
-  {
-   "sentence": "Вслед за ___ семенил маленький, худенький человечек в пестром сюртучке, широких панталонах и бархатной жилетке, — узкоплечий, бритый, с красным носиком.",
-   "lemma": "дама",
-   "options": [
-    "полной дамой",
-    "полной даме",
-    "полная дама",
-    "полной дамы"
-   ],
-   "correct": "полной дамой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«полной дамой» — after the preposition «в», the instrumental marks the means, company, or complement.",
-   "id": "c11"
-  },
-  {
-   "sentence": "Вслед за полной дамой семенил маленький, ___ в пестром сюртучке, широких панталонах и бархатной жилетке, — узкоплечий, бритый, с красным носиком.",
-   "lemma": "человечек",
-   "options": [
-    "худенького человечка",
-    "худенькому человечку",
-    "худенький человечек",
-    "худеньком человечке"
-   ],
-   "correct": "худенький человечек",
-   "case": "Именительный (Nominative)",
-   "explain": "«худенький человечек» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
-  },
-  {
-   "sentence": "На его жилетке болталась ___, похожая на цепь от лампадки.",
-   "lemma": "цепочка",
-   "options": [
-    "золотой цепочке",
-    "золотая цепочка",
-    "золотой цепочкой",
-    "золотой цепочки"
-   ],
-   "correct": "золотая цепочка",
-   "case": "Именительный (Nominative)",
-   "explain": "«золотая цепочка» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
-  },
-  {
-   "sentence": "Так глядят ___, когда бывают виноваты.",
-   "lemma": "ребёнок",
-   "options": [
-    "маленькими детьми",
-    "маленькие дети",
-    "маленьким детям",
-    "маленьких детей"
-   ],
-   "correct": "маленькие дети",
-   "case": "Именительный (Nominative)",
-   "explain": "«маленькие дети» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
-  },
-  {
-   "sentence": "— ___ полезно это слушать.",
-   "lemma": "человек",
-   "options": [
-    "молодых людей",
-    "молодые люди",
-    "молодым людям",
-    "молодых людях"
-   ],
-   "correct": "молодым людям",
-   "case": "Дательный (Dative)",
-   "explain": "«Молодым людям» — the dative marks the indirect object or recipient.",
-   "id": "c17"
-  },
-  {
-   "sentence": "Докукин позвал Тимошку и заказал ___.",
-   "lemma": "обед",
-   "options": [
-    "постный обед",
-    "постном обеде",
-    "постного обеда",
-    "постному обеду"
-   ],
-   "correct": "постный обед",
-   "case": "Винительный (Accusative)",
-   "explain": "«постный обед» — the accusative marks the direct object of the verb.",
-   "id": "c18"
-  },
-  {
-   "sentence": "А вот мы господина ___ спросим.",
-   "lemma": "человек",
-   "options": [
-    "молодом человеке",
-    "молодому человеку",
-    "молодого человека",
-    "молодым человеком"
-   ],
-   "correct": "молодого человека",
-   "case": "Винительный (Accusative)",
-   "explain": "«молодого человека» — the accusative marks the direct object of the verb.",
-   "id": "c20"
-  },
-  {
-   "sentence": "___, — обратилась она ко мне, — по-вашему, это хорошо, ежели благородный человек со всякою шушвалью компанию водит?",
-   "lemma": "человек",
-   "options": [
-    "молодом человеке",
-    "молодому человеку",
-    "молодым человеком",
-    "молодой человек"
-   ],
-   "correct": "молодой человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«Молодой человек» — the subject of the sentence stands in the nominative.",
-   "id": "c21"
-  },
-  {
-   "sentence": "Молодой человек, — обратилась она ко мне, — по-вашему, это хорошо, ежели ___ со всякою шушвалью компанию водит?",
-   "lemma": "человек",
-   "options": [
-    "благородному человеку",
-    "благородном человеке",
-    "благородным человеком",
-    "благородный человек"
-   ],
-   "correct": "благородный человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«благородный человек» — the subject of the sentence stands in the nominative.",
-   "id": "c22"
   }
  ]
 }

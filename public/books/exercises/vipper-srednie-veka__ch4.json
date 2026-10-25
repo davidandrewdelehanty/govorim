@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "В истории Западной Европы такой ___, каков был Карл, появился лишь тысячу лет спустя в лице Наполеона.",
-   "lemma": "завоеватель",
-   "options": [
-    "крупного завоевателя",
-    "крупный завоеватель",
-    "крупном завоевателе",
-    "крупному завоевателю"
-   ],
-   "correct": "крупный завоеватель",
-   "case": "Именительный (Nominative)",
-   "explain": "«крупный завоеватель» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "В глазах потомков он вырос в образ сверхчеловека, глубокомудрого, способного читать в сердцах подчиненных; его воображали предводителем позднейших ___ против неверных.",
    "lemma": "поход",
    "options": [
@@ -25,22 +11,8 @@
    ],
    "correct": "крестовых походов",
    "case": "Родительный (Genitive)",
-   "explain": "«крестовых походов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«крестовых походов» depends on the noun «предводителем» (whose? of what?) — genitive.",
    "id": "c2"
-  },
-  {
-   "sentence": "Для больших, трудных войн он поднимал на ноги общее ополчение: ___ заставляли складываться по трое, по четверо, чтобы снарядить одного ополченца из своей среды.",
-   "lemma": "крестьянин",
-   "options": [
-    "небогатых крестьянах",
-    "небогатых крестьян",
-    "небогатыми крестьянами",
-    "небогатые крестьяне"
-   ],
-   "correct": "небогатых крестьян",
-   "case": "Винительный (Accusative)",
-   "explain": "«небогатых крестьян» — the accusative marks the direct object of the verb.",
-   "id": "c3"
   },
   {
    "sentence": "Ослушаться короля не решались: за неповиновение грозил ___ в 20 быков.",
@@ -53,7 +25,7 @@
    ],
    "correct": "разорительный штраф",
    "case": "Именительный (Nominative)",
-   "explain": "«разорительный штраф» — the subject of the sentence stands in the nominative.",
+   "explain": "«разорительный штраф» is the subject of «грозил» — who or what does it — so nominative.",
    "id": "c4"
   },
   {
@@ -67,21 +39,21 @@
    ],
    "correct": "мирские дела",
    "case": "Винительный (Accusative)",
-   "explain": "«мирские дела» — after the preposition «во», the accusative marks the direct object of the verb.",
+   "explain": "«мирские дела» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c5"
   },
   {
    "sentence": "В 829 г. в Париже синод (собрание ___) объявил, что духовная власть выше светской.",
    "lemma": "духовенство",
    "options": [
-    "местным духовенством",
-    "местном духовенстве",
+    "местного духовенства",
     "местное духовенство",
-    "местного духовенства"
+    "местному духовенству",
+    "местном духовенстве"
    ],
    "correct": "местного духовенства",
    "case": "Родительный (Genitive)",
-   "explain": "«местного духовенства» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«местного духовенства» depends on the noun «собрание» (whose? of what?) — genitive.",
    "id": "c6"
   },
   {
@@ -95,21 +67,21 @@
    ],
    "correct": "старого императора",
    "case": "Винительный (Accusative)",
-   "explain": "«старого императора» — the accusative marks the direct object of the verb.",
+   "explain": "«старого императора» is the direct object of «покинула» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c7"
   },
   {
    "sentence": "___, Людовик и Карл, не хотели повиноваться старшему, обладавшему императорским титулом.",
    "lemma": "брат",
    "options": [
+    "младшим братьям",
     "младшими братьями",
-    "младших братьев",
     "младших братьях",
     "младшие братья"
    ],
    "correct": "младшие братья",
    "case": "Именительный (Nominative)",
-   "explain": "«Младшие братья» — the subject of the sentence stands in the nominative.",
+   "explain": "«младшие братья» is the subject of «хотели» — who or what does it — so nominative.",
    "id": "c8"
   },
   {
@@ -123,7 +95,7 @@
    ],
    "correct": "восточных франков",
    "case": "Родительный (Genitive)",
-   "explain": "«восточных франков» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«восточных франков» depends on the noun «франков» (whose? of what?) — genitive.",
    "id": "c9"
   },
   {
@@ -137,7 +109,7 @@
    ],
    "correct": "зарейнских германцев",
    "case": "Родительный (Genitive)",
-   "explain": "«зарейнских германцев» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«зарейнских германцев» depends on the noun «франков» (whose? of what?) — genitive.",
    "id": "c10"
   },
   {
@@ -151,7 +123,7 @@
    ],
    "correct": "франкским вождям",
    "case": "Дательный (Dative)",
-   "explain": "«франкским вождям» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«франкским вождям» — «к» always takes the dative.",
    "id": "c11"
   },
   {
@@ -165,36 +137,8 @@
    ],
    "correct": "западных стран",
    "case": "Родительный (Genitive)",
-   "explain": "«западных стран» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«западных стран» depends on the noun «епископами» (whose? of what?) — genitive.",
    "id": "c12"
-  },
-  {
-   "sentence": "Настоящим ___ показал себя папа Николай I (858—67).",
-   "lemma": "деспот",
-   "options": [
-    "церковным деспотом",
-    "церковный деспот",
-    "церковному деспоту",
-    "церковном деспоте"
-   ],
-   "correct": "церковным деспотом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«церковным деспотом» — the instrumental marks the means, company, or complement.",
-   "id": "c13"
-  },
-  {
-   "sentence": "Раздробление державы, созданной Карлом, совпало с появлением на ее окраинах, северной и южной, двух ___, сарацин и норма нно в, вторгавшихся со стороны морей Средиземного и Северного.",
-   "lemma": "враг",
-   "options": [
-    "опасных врагов",
-    "опасным врагам",
-    "опасными врагами",
-    "опасные враги"
-   ],
-   "correct": "опасных врагов",
-   "case": "Родительный (Genitive)",
-   "explain": "«опасных врагов» — the genitive here marks possession, absence, or quantity.",
-   "id": "c14"
   },
   {
    "sentence": "Занятые ___, преемники Карла не заботились об охране границ империи, о поддержании береговой охраны.",
@@ -207,22 +151,8 @@
    ],
    "correct": "взаимными спорами",
    "case": "Творительный (Instrumental)",
-   "explain": "«взаимными спорами» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «Занятые», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c15"
-  },
-  {
-   "sentence": "Занятые взаимными спорами, преемники Карла не заботились об охране границ империи, о поддержании ___.",
-   "lemma": "охрана",
-   "options": [
-    "береговой охране",
-    "береговой охраной",
-    "береговой охраны",
-    "береговая охрана"
-   ],
-   "correct": "береговой охраны",
-   "case": "Родительный (Genitive)",
-   "explain": "«береговой охраны» — the genitive here marks possession, absence, or quantity.",
-   "id": "c16"
   },
   {
    "sentence": "Пользуясь этим, «___» начали дерзко нападать на побережья, въезжать в устья рек, грабить и жечь города и селения.",
@@ -235,7 +165,7 @@
    ],
    "correct": "морские волки",
    "case": "Именительный (Nominative)",
-   "explain": "«морские волки» — the subject of the sentence stands in the nominative.",
+   "explain": "«морские волки» is the subject of «начали» — who or what does it — so nominative.",
    "id": "c17"
   },
   {
@@ -249,22 +179,8 @@
    ],
    "correct": "дальнейших нападений",
    "case": "Родительный (Genitive)",
-   "explain": "«дальнейших нападений» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«дальнейших нападений» depends on the noun «основой» (whose? of what?) — genitive.",
    "id": "c19"
-  },
-  {
-   "sentence": "Они укрепились недалеко от Ниццы в нынешней южной Франции и стали совершать отсюда набеги вдоль Альп, запирая ___ движению богомольцев и купцов и разоряя долины.",
-   "lemma": "проход",
-   "options": [
-    "горных проходов",
-    "горным проходам",
-    "горных проходах",
-    "горные проходы"
-   ],
-   "correct": "горные проходы",
-   "case": "Винительный (Accusative)",
-   "explain": "«горные проходы» — the accusative marks the direct object of the verb.",
-   "id": "c20"
   },
   {
    "sentence": "В этих странах ко времени образования Карловой монархии заметен ___ воинственных масс, прибывавших с востока из-за Балтийского моря.",
@@ -277,7 +193,7 @@
    ],
    "correct": "большой наплыв",
    "case": "Именительный (Nominative)",
-   "explain": "«большой наплыв» — the subject of the sentence stands in the nominative.",
+   "explain": "«большой наплыв» is the subject of «заметен» — who or what does it — so nominative.",
    "id": "c21"
   },
   {
@@ -291,7 +207,7 @@
    ],
    "correct": "воинственных масс",
    "case": "Родительный (Genitive)",
-   "explain": "«воинственных масс» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«воинственных масс» depends on the noun «наплыв» (whose? of what?) — genitive.",
    "id": "c22"
   },
   {
@@ -305,77 +221,21 @@
    ],
    "correct": "балтийского моря",
    "case": "Родительный (Genitive)",
-   "explain": "«Балтийского моря» — after the preposition «из-за», the genitive here marks possession, absence, or quantity.",
+   "explain": "«балтийского моря» — «из-за» always takes the genitive.",
    "id": "c23"
-  },
-  {
-   "sentence": "___, опираясь на большие дружины, положили основание нынешним трем северным государствам: Дании, Швеции, Норвегии.",
-   "lemma": "вождь",
-   "options": [
-    "могущественным вождям",
-    "могущественных вождях",
-    "могущественные вожди",
-    "могущественными вождями"
-   ],
-   "correct": "могущественные вожди",
-   "case": "Именительный (Nominative)",
-   "explain": "«Могущественные вожди» — the subject of the sentence stands in the nominative.",
-   "id": "c24"
-  },
-  {
-   "sentence": "Могущественные вожди, опираясь на большие дружины, положили основание нынешним трем ___: Дании, Швеции, Норвегии.",
-   "lemma": "государство",
-   "options": [
-    "северных государств",
-    "северные государства",
-    "северными государствами",
-    "северным государствам"
-   ],
-   "correct": "северным государствам",
-   "case": "Дательный (Dative)",
-   "explain": "«северным государствам» — the dative marks the indirect object or recipient.",
-   "id": "c26"
-  },
-  {
-   "sentence": "Норманские викинги,-т. е. ___, выходили из фиордов (глубоких морских заливов) Норвегии и Дании.",
-   "lemma": "вождь",
-   "options": [
-    "береговых вождях",
-    "береговым вождям",
-    "береговые вожди",
-    "береговых вождей"
-   ],
-   "correct": "береговые вожди",
-   "case": "Именительный (Nominative)",
-   "explain": "«береговые вожди» — the subject of the sentence stands in the nominative.",
-   "id": "c27"
-  },
-  {
-   "sentence": "Норманские викинги,-т. е. береговые вожди, выходили из фиордов (глубоких ___) Норвегии и Дании.",
-   "lemma": "залив",
-   "options": [
-    "морских заливов",
-    "морских заливах",
-    "морским заливам",
-    "морские заливы"
-   ],
-   "correct": "морских заливов",
-   "case": "Родительный (Genitive)",
-   "explain": "«морских заливов» — the genitive here marks possession, absence, or quantity.",
-   "id": "c28"
   },
   {
    "sentence": "Перерезывая Северное море на своих ___, в одно и то же время парусных и гребных, норманны как бы лучами расходились во все стороны.",
    "lemma": "суд",
    "options": [
-    "небольших судов",
     "небольшими судами",
+    "небольших судов",
     "небольших судах",
-    "небольшие суды"
+    "небольшим судам"
    ],
    "correct": "небольших судах",
    "case": "Предложный (Prepositional)",
-   "explain": "«небольших судах» — after the preposition «на», for location or topic.",
+   "explain": "«небольших судах» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c29"
   },
   {
@@ -389,7 +249,7 @@
    ],
    "correct": "умершего вождя",
    "case": "Винительный (Accusative)",
-   "explain": "«Умершего вождя» — the accusative marks the direct object of the verb.",
+   "explain": "«умершего вождя» is the direct object of «хоронили» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c30"
   },
   {
@@ -403,22 +263,8 @@
    ],
    "correct": "франкские вожди",
    "case": "Именительный (Nominative)",
-   "explain": "«Франкские вожди» — the subject of the sentence stands in the nominative.",
+   "explain": "«франкские вожди» is the subject of «пытались» — who or what does it — so nominative.",
    "id": "c31"
-  },
-  {
-   "sentence": "Франкские вожди пытались действовать на северян своим ___, которым одолели саксов — проповедью христианства; но в среде норманнов вера юга плохо прививалась.",
-   "lemma": "средство",
-   "options": [
-    "обычное средство",
-    "обычному средству",
-    "обычным средством",
-    "обычного средства"
-   ],
-   "correct": "обычным средством",
-   "case": "Творительный (Instrumental)",
-   "explain": "«обычным средством» — the instrumental marks the means, company, or complement.",
-   "id": "c32"
   },
   {
    "sentence": "Однако в 845 г. ___ Эрик отправил свой флот к устью Эльбы; поднявшись вверх по реке, викинги напали на Гамбург, заставили бежать Ансгария и разорили город.",
@@ -431,22 +277,8 @@
    ],
    "correct": "датский король",
    "case": "Именительный (Nominative)",
-   "explain": "«датский король» — the subject of the sentence stands in the nominative.",
+   "explain": "«датский король» is the subject of «отправил» — who or what does it — so nominative.",
    "id": "c33"
-  },
-  {
-   "sentence": "В годы, следовавшие за договором в Вердене, ___ переживало очень тяжелое положение.",
-   "lemma": "государство",
-   "options": [
-    "франкским государством",
-    "франкскому государству",
-    "франкское государство",
-    "франкского государства"
-   ],
-   "correct": "франкское государство",
-   "case": "Именительный (Nominative)",
-   "explain": "«франкское государство» — the subject of the sentence stands in the nominative.",
-   "id": "c34"
   },
   {
    "sentence": "Нападения сарацин и норманнов ускорили распадение державы Карла Великого; но в отдельных странах население стало объединяться против ___, а из этих объединений возникли национальные государства новой Европы.",
@@ -459,36 +291,8 @@
    ],
    "correct": "жестокого врага",
    "case": "Родительный (Genitive)",
-   "explain": "«жестокого врага» — after the preposition «против», the genitive here marks possession, absence, or quantity.",
+   "explain": "«жестокого врага» — «против» always takes the genitive.",
    "id": "c36"
-  },
-  {
-   "sentence": "Нападения сарацин и норманнов ускорили распадение державы Карла Великого; но в отдельных странах население стало объединяться против жестокого врага, а из этих объединений возникли ___ новой Европы.",
-   "lemma": "государство",
-   "options": [
-    "национальных государств",
-    "национальных государствах",
-    "национальные государства",
-    "национальным государствам"
-   ],
-   "correct": "национальные государства",
-   "case": "Именительный (Nominative)",
-   "explain": "«национальные государства» — the subject of the sentence stands in the nominative.",
-   "id": "c37"
-  },
-  {
-   "sentence": "В борьбе Альфреда, ___ англосаксов, с датчанами, было не мало превратностей.",
-   "lemma": "герой",
-   "options": [
-    "национальным героем",
-    "национального героя",
-    "национальному герою",
-    "национальный герой"
-   ],
-   "correct": "национального героя",
-   "case": "Родительный (Genitive)",
-   "explain": "«национального героя» — the genitive here marks possession, absence, or quantity.",
-   "id": "c38"
   },
   {
    "sentence": "Еще рассказывали, что Альфред, переодеваясь странствующим певцом, проникал в ___, высматривал положение, изучал нравы врагов.",
@@ -501,22 +305,8 @@
    ],
    "correct": "датский лагерь",
    "case": "Винительный (Accusative)",
-   "explain": "«датский лагерь» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«датский лагерь» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c40"
-  },
-  {
-   "sentence": "Альфредово южное, ___ составляло лишь одну треть нынѣшней Англии.",
-   "lemma": "королевство",
-   "options": [
-    "английское королевство",
-    "английского королевства",
-    "английском королевстве",
-    "английским королевством"
-   ],
-   "correct": "английское королевство",
-   "case": "Именительный (Nominative)",
-   "explain": "«английское королевство» — the subject of the sentence stands in the nominative.",
-   "id": "c41"
   },
   {
    "sentence": "Король занялся прежде всего возобновлением гавани Лондона, построением больших морских судов; с его времени началась ___ английской столицы.",
@@ -529,50 +319,8 @@
    ],
    "correct": "торговая слава",
    "case": "Именительный (Nominative)",
-   "explain": "«торговая слава» — the subject of the sentence stands in the nominative.",
+   "explain": "«торговая слава» is the subject of «началась» — who or what does it — so nominative.",
    "id": "c42"
-  },
-  {
-   "sentence": "Король занялся прежде всего возобновлением гавани Лондона, построением больших морских судов; с его времени началась торговая слава ___.",
-   "lemma": "столица",
-   "options": [
-    "английской столицы",
-    "английской столице",
-    "английской столицей",
-    "английская столица"
-   ],
-   "correct": "английской столицы",
-   "case": "Родительный (Genitive)",
-   "explain": "«английской столицы» — the genitive here marks possession, absence, or quantity.",
-   "id": "c43"
-  },
-  {
-   "sentence": "___ Альфреда было восстановление книг и научных занятий.",
-   "lemma": "забота",
-   "options": [
-    "другой заботой",
-    "другая забота",
-    "другой заботы",
-    "другой заботе"
-   ],
-   "correct": "другой заботой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«Другой заботой» — the instrumental marks the means, company, or complement.",
-   "id": "c44"
-  },
-  {
-   "sentence": "Другой заботой Альфреда было восстановление книг и ___.",
-   "lemma": "занятие",
-   "options": [
-    "научных занятиях",
-    "научными занятиями",
-    "научные занятия",
-    "научных занятий"
-   ],
-   "correct": "научных занятий",
-   "case": "Родительный (Genitive)",
-   "explain": "«научных занятий» — the genitive here marks possession, absence, or quantity.",
-   "id": "c45"
   },
   {
    "sentence": "Петра более ___, как богомольцы, многими тысячами пробиравшиеся к его гробнице с дальнего острова.",
@@ -585,22 +333,8 @@
    ],
    "correct": "усердных почитателей",
    "case": "Родительный (Genitive)",
-   "explain": "«усердных почитателей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«усердных почитателей» depends on the noun «Петра» (whose? of what?) — genitive.",
    "id": "c46"
-  },
-  {
-   "sentence": "Встретив преграду на острове, датчане обрушились ___ на материк.",
-   "lemma": "сила",
-   "options": [
-    "главным силам",
-    "главных сил",
-    "главными силами",
-    "главных силах"
-   ],
-   "correct": "главными силами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«главными силами» — the instrumental marks the means, company, or complement.",
-   "id": "c49"
   },
   {
    "sentence": "Император разочаровал ___ своим малодушием: вместо того, чтобы пустить против врага свои превосходные силы, он золотом купил отступление норманнов.",
@@ -613,22 +347,8 @@
    ],
    "correct": "мужественных борцов",
    "case": "Винительный (Accusative)",
-   "explain": "«мужественных борцов» — the accusative marks the direct object of the verb.",
+   "explain": "«мужественных борцов» is the direct object of «разочаровал» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c51"
-  },
-  {
-   "sentence": "Император разочаровал мужественных борцов своим малодушием: вместо того, чтобы пустить против врага свои ___, он золотом купил отступление норманнов.",
-   "lemma": "сила",
-   "options": [
-    "превосходными силами",
-    "превосходные силы",
-    "превосходных силах",
-    "превосходных сил"
-   ],
-   "correct": "превосходные силы",
-   "case": "Винительный (Accusative)",
-   "explain": "«превосходные силы» — the accusative marks the direct object of the verb.",
-   "id": "c52"
   },
   {
    "sentence": "Франция была в то время (около 900 г.) значительно меньше современной; ее ___ представляла почти прямую линию от Шельды к устью Роны.",
@@ -641,22 +361,8 @@
    ],
    "correct": "восточная граница",
    "case": "Именительный (Nominative)",
-   "explain": "«восточная граница» — the subject of the sentence stands in the nominative.",
+   "explain": "«восточная граница» is the subject of «представляла» — who or what does it — so nominative.",
    "id": "c53"
-  },
-  {
-   "sentence": "Располагая отрядами, нередко более сильными, чем ___, присвоивши себе право выбора короля, магнаты считались его ровнями (по французски pairs).",
-   "lemma": "сеньор",
-   "options": [
-    "верховного сеньора",
-    "верховный сеньор",
-    "верховном сеньоре",
-    "верховным сеньором"
-   ],
-   "correct": "верховный сеньор",
-   "case": "Именительный (Nominative)",
-   "explain": "«верховный сеньор» — the subject of the sentence stands in the nominative.",
-   "id": "c54"
   },
   {
    "sentence": "Одним из этих ___ был утвердившийся в северной Франции норманский вождь Роль, или Роллон.",
@@ -669,64 +375,8 @@
    ],
    "correct": "самостоятельных сеньеров",
    "case": "Родительный (Genitive)",
-   "explain": "«самостоятельных сеньеров» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«самостоятельных сеньеров» — «из» always takes the genitive.",
    "id": "c55"
-  },
-  {
-   "sentence": "Выделившееся из империи, подобно Франции и Италии, ___ также было меньше позднейшей Германии.",
-   "lemma": "королевство",
-   "options": [
-    "германском королевстве",
-    "германским королевством",
-    "германского королевства",
-    "германское королевство"
-   ],
-   "correct": "германское королевство",
-   "case": "Именительный (Nominative)",
-   "explain": "«германское королевство» — the subject of the sentence stands in the nominative.",
-   "id": "c56"
-  },
-  {
-   "sentence": "Хотя на западе оно и заходило дальше ___, захватывая Голландию, Бельгию и французские области, начиная от р.",
-   "lemma": "предел",
-   "options": [
-    "нынешним пределам",
-    "нынешних пределах",
-    "нынешние пределы",
-    "нынешних пределов"
-   ],
-   "correct": "нынешних пределов",
-   "case": "Родительный (Genitive)",
-   "explain": "«нынешних пределов» — the genitive here marks possession, absence, or quantity.",
-   "id": "c57"
-  },
-  {
-   "sentence": "Хотя на западе оно и заходило дальше нынешних пределов, захватывая Голландию, Бельгию и ___, начиная от р.",
-   "lemma": "область",
-   "options": [
-    "французскими областями",
-    "французские области",
-    "французских областях",
-    "французских областей"
-   ],
-   "correct": "французские области",
-   "case": "Винительный (Accusative)",
-   "explain": "«французские области» — the accusative marks the direct object of the verb.",
-   "id": "c58"
-  },
-  {
-   "sentence": "В то время как Англия и Франция были поглощены борьбой с норманнами и датчанами, Германии пришлось иметь дело со славянами, среди которых, так же, как и в Скандинавии, стали возникать ___.",
-   "lemma": "государство",
-   "options": [
-    "большими государствами",
-    "большим государствам",
-    "больших государств",
-    "большие государства"
-   ],
-   "correct": "большие государства",
-   "case": "Именительный (Nominative)",
-   "explain": "«большие государства» — the subject of the sentence stands in the nominative.",
-   "id": "c59"
   },
   {
    "sentence": "В борьбе с восточными соседями ___ поддерживала церковь так же, как во времена Бонифация и Карла Великого.",
@@ -739,7 +389,7 @@
    ],
    "correct": "германских королей",
    "case": "Родительный (Genitive)",
-   "explain": "«германских королей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«германских королей» depends on the noun «соседями» (whose? of what?) — genitive.",
    "id": "c61"
   },
   {
@@ -753,22 +403,8 @@
    ],
    "correct": "индийским арийцам",
    "case": "Дательный (Dative)",
-   "explain": "«индийским арийцам» — after the preposition «подобно», the dative marks the indirect object or recipient.",
+   "explain": "«индийским арийцам» — «подобно» always takes the dative.",
    "id": "c62"
-  },
-  {
-   "sentence": "По языку славяне родственны иранцам, грекам, германцам, т. е. народам арийским, или индоевропейским; всего ближе к ним по наречию их ___, племена латвийско-литовские.",
-   "lemma": "сосед",
-   "options": [
-    "северные соседи",
-    "северных соседей",
-    "северными соседями",
-    "северным соседям"
-   ],
-   "correct": "северные соседи",
-   "case": "Именительный (Nominative)",
-   "explain": "«северные соседи» — the subject of the sentence stands in the nominative.",
-   "id": "c63"
   },
   {
    "sentence": "Неизвестно, когда славяне впервые появились в Европе; византийцы застали их живущими по склонам Карпат и по рекам ___.",
@@ -781,36 +417,8 @@
    ],
    "correct": "черноморского бассейна",
    "case": "Родительный (Genitive)",
-   "explain": "«Черноморского бассейна» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«черноморского бассейна» depends on the noun «рекам» (whose? of what?) — genitive.",
    "id": "c64"
-  },
-  {
-   "sentence": "Великое переселение V века сильно потрясло ___.",
-   "lemma": "мир",
-   "options": [
-    "славянским миром",
-    "славянском мире",
-    "славянского мира",
-    "славянский мир"
-   ],
-   "correct": "славянский мир",
-   "case": "Именительный (Nominative)",
-   "explain": "«славянский мир» — the subject of the sentence stands in the nominative.",
-   "id": "c65"
-  },
-  {
-   "sentence": "Горы со своих ___ поселения у Балтийского моря прошли к Черноморью, прорезавши славянские племена посредине; в состав государства Эрманриха вошли юговосточные славяне, жившие по рекам Черноморского склона.",
-   "lemma": "место",
-   "options": [
-    "старые места",
-    "старых мест",
-    "старых местах",
-    "старым местам"
-   ],
-   "correct": "старых мест",
-   "case": "Родительный (Genitive)",
-   "explain": "«старых мест» — after the preposition «со», the genitive here marks possession, absence, or quantity.",
-   "id": "c66"
   },
   {
    "sentence": "Горы со своих старых мест поселения у ___ прошли к Черноморью, прорезавши славянские племена посредине; в состав государства Эрманриха вошли юговосточные славяне, жившие по рекам Черноморского склона.",
@@ -823,7 +431,7 @@
    ],
    "correct": "балтийского моря",
    "case": "Родительный (Genitive)",
-   "explain": "«Балтийского моря» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«балтийского моря» — «у» always takes the genitive.",
    "id": "c67"
   },
   {
@@ -837,7 +445,7 @@
    ],
    "correct": "юговосточные славяне",
    "case": "Именительный (Nominative)",
-   "explain": "«юговосточные славяне» — the subject of the sentence stands in the nominative.",
+   "explain": "«юговосточные славяне» is the subject of «вошли» — who or what does it — so nominative.",
    "id": "c68"
   },
   {
@@ -851,7 +459,7 @@
    ],
    "correct": "черноморского склона",
    "case": "Родительный (Genitive)",
-   "explain": "«Черноморского склона» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«черноморского склона» depends on the noun «рекам» (whose? of what?) — genitive.",
    "id": "c69"
   },
   {
@@ -865,7 +473,7 @@
    ],
    "correct": "гуннская орда",
    "case": "Именительный (Nominative)",
-   "explain": "«гуннская орда» — the subject of the sentence stands in the nominative.",
+   "explain": "«гуннская орда» is the subject of «разрушилась» — who or what does it — so nominative.",
    "id": "c70"
   },
   {
@@ -879,22 +487,8 @@
    ],
    "correct": "южнославянские племена",
    "case": "Именительный (Nominative)",
-   "explain": "«южнославянские племена» — the subject of the sentence stands in the nominative.",
+   "explain": "«южнославянские племена» is the subject of «подчинились» — who or what does it — so nominative.",
    "id": "c71"
-  },
-  {
-   "sentence": "Если этой толпе ___ удавалось опрокинуть врага, всадники бросались его преследовать и забирать добычу; в случае неудачи передовых воинов они имели достаточно времени, чтобы спастись отступлением.",
-   "lemma": "воин",
-   "options": [
-    "слабых воинов",
-    "слабыми воинами",
-    "слабые воины",
-    "слабых воинах"
-   ],
-   "correct": "слабых воинов",
-   "case": "Родительный (Genitive)",
-   "explain": "«слабых воинов» — the genitive here marks possession, absence, or quantity.",
-   "id": "c72"
   },
   {
    "sentence": "Если этой толпе слабых воинов удавалось опрокинуть врага, всадники бросались его преследовать и забирать добычу; в случае неудачи ___ они имели достаточно времени, чтобы спастись отступлением.",
@@ -907,7 +501,7 @@
    ],
    "correct": "передовых воинов",
    "case": "Родительный (Genitive)",
-   "explain": "«передовых воинов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«передовых воинов» depends on the noun «неудачи» (whose? of what?) — genitive.",
    "id": "c73"
   },
   {
@@ -921,7 +515,7 @@
    ],
    "correct": "свободный выход",
    "case": "Именительный (Nominative)",
-   "explain": "«свободный выход» — the subject of the sentence stands in the nominative.",
+   "explain": "«свободный выход» is the subject of «был» — who or what does it — so nominative.",
    "id": "c74"
   },
   {
@@ -935,22 +529,8 @@
    ],
    "correct": "горского происхождения",
    "case": "Родительный (Genitive)",
-   "explain": "«горского происхождения» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«горского происхождения» — «у» always takes the genitive.",
    "id": "c75"
-  },
-  {
-   "sentence": "Они отличаются ___ и уступчивостью; нет в них ни жадности, ни лживости; напротив, они радушны и гостеприимны.",
-   "lemma": "характер",
-   "options": [
-    "мягкого характера",
-    "мягкий характер",
-    "мягким характером",
-    "мягком характере"
-   ],
-   "correct": "мягким характером",
-   "case": "Творительный (Instrumental)",
-   "explain": "«мягким характером» — the instrumental marks the means, company, or complement.",
-   "id": "c77"
   },
   {
    "sentence": "Расселившись сначала под давлением кочевников, а потом силой своего ___, славяне заняли около % всей Европы.",
@@ -963,7 +543,7 @@
    ],
    "correct": "собственного оружия",
    "case": "Родительный (Genitive)",
-   "explain": "«собственного оружия» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«собственного оружия» depends on the noun «силой» (whose? of what?) — genitive.",
    "id": "c78"
   },
   {
@@ -977,7 +557,7 @@
    ],
    "correct": "балтийского моря",
    "case": "Родительный (Genitive)",
-   "explain": "«Балтийского моря» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«балтийского моря» — «от» always takes the genitive.",
    "id": "c79"
   },
   {
@@ -991,7 +571,7 @@
    ],
    "correct": "внешнего однообразия",
    "case": "Родительный (Genitive)",
-   "explain": "«внешнего однообразия» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«внешнего однообразия» is the object of a negated verb («не представляли») — genitive instead of the accusative.",
    "id": "c82"
   },
   {
@@ -1005,36 +585,22 @@
    ],
    "correct": "северного края",
    "case": "Родительный (Genitive)",
-   "explain": "«северного края» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«северного края» — «от» always takes the genitive.",
    "id": "c85"
   },
   {
    "sentence": "У них было два главных пути: один на судах через Каспийское море от северного края Персии, другой на верблюдах от Ховарезма (Хивы) по нынешним ___.",
    "lemma": "степь",
    "options": [
-    "киргизские степи",
-    "киргизскими степями",
+    "киргизских степях",
+    "киргизских степей",
     "киргизским степям",
-    "киргизских степей"
+    "киргизскими степями"
    ],
    "correct": "киргизским степям",
    "case": "Дательный (Dative)",
-   "explain": "«киргизским степям» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«киргизским степям» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c86"
-  },
-  {
-   "sentence": "Плывя по Волге вверх, арабские купцы доезжали до города Болгар а, недалеко от впадения Камы, где и вступали в торговые сношения с народом, родственным ___.",
-   "lemma": "болгарин",
-   "options": [
-    "дунайским болгарам",
-    "дунайских болгар",
-    "дунайских болгарах",
-    "дунайские болгары"
-   ],
-   "correct": "дунайским болгарам",
-   "case": "Дательный (Dative)",
-   "explain": "«дунайским болгарам» — the dative marks the indirect object or recipient.",
-   "id": "c89"
   },
   {
    "sentence": "На волжские рынки рабам привозили множество всякого рода товаров славяне и финны из нынешней средней и северной России; арабские серебряные ди р ге мы доходили до ___ и проникали в Скандинавию.",
@@ -1047,22 +613,8 @@
    ],
    "correct": "балтийского моря",
    "case": "Родительный (Genitive)",
-   "explain": "«Балтийского моря» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«балтийского моря» — «до» always takes the genitive.",
    "id": "c91"
-  },
-  {
-   "sentence": "___, вывозившимся арабами из восточной Европы, были шкуры пушных зверей: соболей, горностаев, бобров, куниц и др.; из них ни один мех так не ценился, как чернобурая лисица.",
-   "lemma": "товар",
-   "options": [
-    "главный товар",
-    "главном товаре",
-    "главного товара",
-    "главным товаром"
-   ],
-   "correct": "главным товаром",
-   "case": "Творительный (Instrumental)",
-   "explain": "«Главным товаром» — the instrumental marks the means, company, or complement.",
-   "id": "c92"
   },
   {
    "sentence": "Главным товаром, вывозившимся арабами из восточной Европы, были шкуры ___: соболей, горностаев, бобров, куниц и др.; из них ни один мех так не ценился, как чернобурая лисица.",
@@ -1075,7 +627,7 @@
    ],
    "correct": "пушных зверей",
    "case": "Родительный (Genitive)",
-   "explain": "«пушных зверей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«пушных зверей» depends on the noun «шкуры» (whose? of what?) — genitive.",
    "id": "c93"
   },
   {
@@ -1089,22 +641,8 @@
    ],
    "correct": "торговые сношения",
    "case": "Именительный (Nominative)",
-   "explain": "«торговые сношения» — the subject of the sentence stands in the nominative.",
+   "explain": "«торговые сношения» is the subject of «начали» — who or what does it — so nominative.",
    "id": "c94"
-  },
-  {
-   "sentence": "В IX в. торговые сношения арабов начали как бы кольцом охватывать ___ старой римской империи, Италию и Византию.",
-   "lemma": "страна",
-   "options": [
-    "христианских стран",
-    "христианским странам",
-    "христианских странах",
-    "христианские страны"
-   ],
-   "correct": "христианские страны",
-   "case": "Винительный (Accusative)",
-   "explain": "«христианские страны» — the accusative marks the direct object of the verb.",
-   "id": "c95"
   },
   {
    "sentence": "Сама Византия находилась в это время, благодаря тяжелым ___ и внешним неудачам, в расстройстве и слабости.",
@@ -1117,36 +655,8 @@
    ],
    "correct": "внутренним волнениям",
    "case": "Дательный (Dative)",
-   "explain": "«внутренним волнениям» — after the preposition «благодаря», the dative marks the indirect object or recipient.",
+   "explain": "«внутренним волнениям» — «благодаря» always takes the dative.",
    "id": "c96"
-  },
-  {
-   "sentence": "Сама Византия находилась в это время, благодаря тяжелым внутренним волнениям и ___, в расстройстве и слабости.",
-   "lemma": "неудача",
-   "options": [
-    "внешние неудачи",
-    "внешних неудач",
-    "внешними неудачами",
-    "внешним неудачам"
-   ],
-   "correct": "внешним неудачам",
-   "case": "Дательный (Dative)",
-   "explain": "«внешним неудачам» — the dative marks the indirect object or recipient.",
-   "id": "c97"
-  },
-  {
-   "sentence": "По его настоянию собор 815 г. воспретил возжигать свечи и курить ладан перед «___» и осудил «бесполезное и несогласное с преданиями церкви» производство икон.",
-   "lemma": "дерево",
-   "options": [
-    "бездушное дерево",
-    "бездушным деревом",
-    "бездушного дерева",
-    "бездушному дереву"
-   ],
-   "correct": "бездушным деревом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«бездушным деревом» — after the preposition «перед», the instrumental marks the means, company, or complement.",
-   "id": "c98"
   },
   {
    "sentence": "___ завладели на пороге Эгейского моря островом Притом: его новое имя, Кан дия, происходит от арабского хан да к, глубокого рва, которым завоеватели окружили построенную ими крепость.",
@@ -1159,63 +669,21 @@
    ],
    "correct": "испанские сарацины",
    "case": "Именительный (Nominative)",
-   "explain": "«Испанские сарацины» — the subject of the sentence stands in the nominative.",
+   "explain": "«испанские сарацины» is the subject of «завладели» — who or what does it — so nominative.",
    "id": "c99"
-  },
-  {
-   "sentence": "Испанские сарацины завладели на пороге ___ островом Притом: его новое имя, Кан дия, происходит от арабского хан да к, глубокого рва, которым завоеватели окружили построенную ими крепость.",
-   "lemma": "море",
-   "options": [
-    "эгейского моря",
-    "эгейское море",
-    "эгейском море",
-    "эгейским морем"
-   ],
-   "correct": "эгейского моря",
-   "case": "Родительный (Genitive)",
-   "explain": "«Эгейского моря» — the genitive here marks possession, absence, or quantity.",
-   "id": "c100"
-  },
-  {
-   "sentence": "Испанские сарацины завладели на пороге Эгейского моря островом Притом: его ___, Кан дия, происходит от арабского хан да к, глубокого рва, которым завоеватели окружили построенную ими крепость.",
-   "lemma": "имя",
-   "options": [
-    "новому имени",
-    "новом имени",
-    "новое имя",
-    "новым именем"
-   ],
-   "correct": "новое имя",
-   "case": "Именительный (Nominative)",
-   "explain": "«новое имя» — the subject of the sentence stands in the nominative.",
-   "id": "c101"
-  },
-  {
-   "sentence": "Испанские сарацины завладели на пороге Эгейского моря островом Притом: его новое имя, Кан дия, происходит от арабского хан да к, ___, которым завоеватели окружили построенную ими крепость.",
-   "lemma": "ров",
-   "options": [
-    "глубоким рвом",
-    "глубокому рву",
-    "глубокий ров",
-    "глубокого рва"
-   ],
-   "correct": "глубокого рва",
-   "case": "Родительный (Genitive)",
-   "explain": "«глубокого рва» — after the preposition «к», the genitive here marks possession, absence, or quantity.",
-   "id": "c102"
   },
   {
    "sentence": "В то же время начались нападения ___ на Сицилию и южную Италию.",
    "lemma": "моряк",
    "options": [
-    "мусульманских моряков",
-    "мусульманскими моряками",
     "мусульманским морякам",
-    "мусульманских моряках"
+    "мусульманских моряках",
+    "мусульманских моряков",
+    "мусульманские моряки"
    ],
    "correct": "мусульманских моряков",
    "case": "Родительный (Genitive)",
-   "explain": "«мусульманских моряков» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«мусульманских моряков» depends on the noun «нападения» (whose? of what?) — genitive.",
    "id": "c103"
   },
   {
@@ -1229,7 +697,7 @@
    ],
    "correct": "византийская торговля",
    "case": "Именительный (Nominative)",
-   "explain": "«Византийская торговля» — the subject of the sentence stands in the nominative.",
+   "explain": "«византийская торговля» is the subject of «пришла» — who or what does it — so nominative.",
    "id": "c104"
   },
   {
@@ -1243,7 +711,7 @@
    ],
    "correct": "пограничная черта",
    "case": "Именительный (Nominative)",
-   "explain": "«пограничная черта» — the subject of the sentence stands in the nominative.",
+   "explain": "«пограничная черта» is the subject of «прошла» — who or what does it — so nominative.",
    "id": "c106"
   },
   {
@@ -1257,7 +725,7 @@
    ],
    "correct": "малоазийский берег",
    "case": "Винительный (Accusative)",
-   "explain": "«малоазийский берег» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«малоазийский берег» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c107"
   },
   {
@@ -1271,7 +739,7 @@
    ],
    "correct": "даровым обучением",
    "case": "Творительный (Instrumental)",
-   "explain": "«даровым обучением» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«даровым обучением» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c108"
   },
   {
@@ -1285,7 +753,7 @@
    ],
    "correct": "тайных дел",
    "case": "Родительный (Genitive)",
-   "explain": "«тайных дел» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«тайных дел» depends on the noun «секретаря» (whose? of what?) — genitive.",
    "id": "c109"
   },
   {
@@ -1299,7 +767,7 @@
    ],
    "correct": "властолюбивый папа",
    "case": "Именительный (Nominative)",
-   "explain": "«властолюбивый папа» — the subject of the sentence stands in the nominative.",
+   "explain": "«властолюбивый папа» is the subject of «воспротивился» — who or what does it — so nominative.",
    "id": "c110"
   },
   {
@@ -1313,50 +781,8 @@
    ],
    "correct": "гениальными представителями",
    "case": "Творительный (Instrumental)",
-   "explain": "«гениальными представителями» — after the preposition «между», the instrumental marks the means, company, or complement.",
+   "explain": "«гениальными представителями» — «между» + instrumental: between.",
    "id": "c111"
-  },
-  {
-   "sentence": "Своего ученика и друга, македонянина Константина, он отправил ко двору хазарского кагана, которому незадолго до того ___ выстроили на нижнем Дону крепость С а рк е л.",
-   "lemma": "инженер",
-   "options": [
-    "византийским инженерам",
-    "византийскими инженерами",
-    "византийские инженеры",
-    "византийских инженерах"
-   ],
-   "correct": "византийские инженеры",
-   "case": "Именительный (Nominative)",
-   "explain": "«византийские инженеры» — the subject of the sentence stands in the nominative.",
-   "id": "c112"
-  },
-  {
-   "sentence": "Вскоре после этой поездки Фотий послал Константина вместе с его ___ Мефодием в государство великоморавское.",
-   "lemma": "брат",
-   "options": [
-    "старшим братом",
-    "старший брат",
-    "старшем брате",
-    "старшему брату"
-   ],
-   "correct": "старшим братом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«старшим братом» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c113"
-  },
-  {
-   "sentence": "Значительно уступавшие им в образованности ___ должны были преклониться перед их искусством и знаниями; их прозвали «философами».",
-   "lemma": "проповедник",
-   "options": [
-    "западными проповедниками",
-    "западные проповедники",
-    "западных проповедников",
-    "западных проповедниках"
-   ],
-   "correct": "западные проповедники",
-   "case": "Именительный (Nominative)",
-   "explain": "«западные проповедники» — the subject of the sentence stands in the nominative.",
-   "id": "c114"
   },
   {
    "sentence": "Фотию не удалось однако сохранить руководство над этим далеким ___.",
@@ -1369,7 +795,7 @@
    ],
    "correct": "северным предприятием",
    "case": "Творительный (Instrumental)",
-   "explain": "«северным предприятием» — after the preposition «над», the instrumental marks the means, company, or complement.",
+   "explain": "«северным предприятием» — «над» always takes the instrumental.",
    "id": "c115"
   },
   {
@@ -1383,7 +809,7 @@
    ],
    "correct": "политические соображения",
    "case": "Именительный (Nominative)",
-   "explain": "«политические соображения» — the subject of the sentence stands in the nominative.",
+   "explain": "«политические соображения» is the subject of «были» — who or what does it — so nominative.",
    "id": "c116"
   },
   {
@@ -1397,22 +823,8 @@
    ],
    "correct": "новой вере",
    "case": "Предложный (Prepositional)",
-   "explain": "«новой вере» — after the preposition «в», for location or topic.",
+   "explain": "«новой вере» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c117"
-  },
-  {
-   "sentence": "У царя были также политические соображения для принятия христианства: он видел в новой вере, признающей божественность власти, средство обуздать бояр (т. е. ___ и обладателей земель).",
-   "lemma": "стадовладелец",
-   "options": [
-    "богатым стадовладельцам",
-    "богатыми стадовладельцами",
-    "богатые стадовладельцы",
-    "богатых стадовладельцев"
-   ],
-   "correct": "богатых стадовладельцев",
-   "case": "Родительный (Genitive)",
-   "explain": "«богатых стадовладельцев» — the genitive here marks possession, absence, or quantity.",
-   "id": "c118"
   },
   {
    "sentence": "Когда он потребовал крещения от всего народа, бояре возмутили толпу и подступили ко дворцу, угрожая возвести на престол ___, язычника.",
@@ -1425,7 +837,7 @@
    ],
    "correct": "другого царя",
    "case": "Родительный (Genitive)",
-   "explain": "«другого царя» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«другого царя» depends on the noun «престол» (whose? of what?) — genitive.",
    "id": "c119"
   },
   {
@@ -1439,7 +851,7 @@
    ],
    "correct": "самих зачинщиков",
    "case": "Винительный (Accusative)",
-   "explain": "«самих зачинщиков» — the accusative marks the direct object of the verb.",
+   "explain": "«самих зачинщиков» is the direct object of «казнил» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c120"
   },
   {
@@ -1453,7 +865,7 @@
    ],
    "correct": "вселенских соборов",
    "case": "Родительный (Genitive)",
-   "explain": "«вселенских соборов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«вселенских соборов» depends on the noun «историю» (whose? of what?) — genitive.",
    "id": "c121"
   },
   {
@@ -1467,36 +879,8 @@
    ],
    "correct": "византийскому принцу",
    "case": "Дательный (Dative)",
-   "explain": "«византийскому принцу» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«византийскому принцу» — «к» always takes the dative.",
    "id": "c122"
-  },
-  {
-   "sentence": "По его словам, ___ должен во всем соблюдать спокойствие и рассудительность.",
-   "lemma": "правитель",
-   "options": [
-    "христианского правителя",
-    "христианскому правителю",
-    "христианский правитель",
-    "христианском правителе"
-   ],
-   "correct": "христианский правитель",
-   "case": "Именительный (Nominative)",
-   "explain": "«христианский правитель» — the subject of the sentence stands in the nominative.",
-   "id": "c123"
-  },
-  {
-   "sentence": "Нужно следить за своей внешностью, походкой и всеми вообще движениями; нехорошо быстро говорить, громко смеяться, вести ___.",
-   "lemma": "разговор",
-   "options": [
-    "неприличные разговоры",
-    "неприличным разговорам",
-    "неприличных разговоров",
-    "неприличными разговорами"
-   ],
-   "correct": "неприличные разговоры",
-   "case": "Винительный (Accusative)",
-   "explain": "«неприличные разговоры» — the accusative marks the direct object of the verb.",
-   "id": "c124"
   },
   {
    "sentence": "___ воителя не в завоеваниях, не во внешнем расширении государства, а в нравственном совершенствовании своих подданных, в облагорожении их духа.",
@@ -1509,64 +893,8 @@
    ],
    "correct": "истинная слава",
    "case": "Именительный (Nominative)",
-   "explain": "«Истинная слава» — the subject of the sentence stands in the nominative.",
+   "explain": "«истинная слава» is the subject of «воителя» — who or what does it — so nominative.",
    "id": "c125"
-  },
-  {
-   "sentence": "Так же, как знаменитый его предшественник, Григорий I, при обращении англосаксов, папа советует никого из язычников не принуждать к принятию ___; пусть остается старая национальная одежда и обычаи.",
-   "lemma": "вера",
-   "options": [
-    "новая вера",
-    "новой вере",
-    "новой веры",
-    "новой верой"
-   ],
-   "correct": "новой веры",
-   "case": "Родительный (Genitive)",
-   "explain": "«новой веры» — the genitive here marks possession, absence, or quantity.",
-   "id": "c128"
-  },
-  {
-   "sentence": "Так же, как знаменитый его предшественник, Григорий I, при обращении англосаксов, папа советует никого из язычников не принуждать к принятию новой веры; пусть остается старая ___ и обычаи.",
-   "lemma": "одежда",
-   "options": [
-    "национальной одежде",
-    "национальной одежды",
-    "национальная одежда",
-    "национальной одеждой"
-   ],
-   "correct": "национальная одежда",
-   "case": "Именительный (Nominative)",
-   "explain": "«национальная одежда» — the subject of the sentence stands in the nominative.",
-   "id": "c129"
-  },
-  {
-   "sentence": "Он не настаивает на слишком ___ постов, как того требовали византийцы.",
-   "lemma": "соблюдение",
-   "options": [
-    "строгое соблюдение",
-    "строгом соблюдении",
-    "строгим соблюдением",
-    "строгому соблюдению"
-   ],
-   "correct": "строгом соблюдении",
-   "case": "Предложный (Prepositional)",
-   "explain": "«строгом соблюдении» — after the preposition «на», for location or topic.",
-   "id": "c130"
-  },
-  {
-   "sentence": "Папа считает особенно важным установление десятины для содержания духовенства и ___ для всех, кто ищет охраны от преследования властей.",
-   "lemma": "убежище",
-   "options": [
-    "церковное убежище",
-    "церковного убежища",
-    "церковном убежище",
-    "церковному убежищу"
-   ],
-   "correct": "церковного убежища",
-   "case": "Родительный (Genitive)",
-   "explain": "«церковного убежища» — the genitive here marks possession, absence, or quantity.",
-   "id": "c131"
   },
   {
    "sentence": "В Константинополе эта ___ папы вызвала сильное негодование: не только при дворе, но и в народе поняли обиду, нанесенную Византии.",
@@ -1579,7 +907,7 @@
    ],
    "correct": "новая победа",
    "case": "Именительный (Nominative)",
-   "explain": "«новая победа» — the subject of the sentence stands in the nominative.",
+   "explain": "«новая победа» is the subject of «вызвала» — who or what does it — so nominative.",
    "id": "c132"
   },
   {
@@ -1593,7 +921,7 @@
    ],
    "correct": "христианским миром",
    "case": "Творительный (Instrumental)",
-   "explain": "«христианским миром» — after the preposition «над», the instrumental marks the means, company, or complement.",
+   "explain": "«христианским миром» — «над» always takes the instrumental.",
    "id": "c133"
   },
   {
@@ -1607,7 +935,7 @@
    ],
    "correct": "западному императору",
    "case": "Дательный (Dative)",
-   "explain": "«западному императору» — the dative marks the indirect object or recipient.",
+   "explain": "«западному императору» is the indirect object of «предложил» — to or for whom (кому?) — dative.",
    "id": "c134"
   },
   {
@@ -1621,22 +949,8 @@
    ],
    "correct": "римского первосвященника",
    "case": "Винительный (Accusative)",
-   "explain": "«римского первосвященника» — the accusative marks the direct object of the verb.",
+   "explain": "«римского первосвященника» is the direct object of «низвергнуть» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c135"
-  },
-  {
-   "sentence": "\"Василий Происходил из ___, поселенной в Македонии (отсюда основанная им династия, самая долгая в византийской истории, 867—1054, называется Македонской).",
-   "lemma": "семья",
-   "options": [
-    "армянской семье",
-    "армянская семья",
-    "армянской семьёй",
-    "армянской семьи"
-   ],
-   "correct": "армянской семьи",
-   "case": "Родительный (Genitive)",
-   "explain": "«армянской семьи» — after the preposition «в», the genitive here marks possession, absence, or quantity.",
-   "id": "c138"
   },
   {
    "sentence": "Обладая громадной ___, ловкий наездник и укротитель коней, он понравился Михаилу III, увлекавшемуся цирковыми ристаниями.",
@@ -1649,105 +963,49 @@
    ],
    "correct": "физической силой",
    "case": "Творительный (Instrumental)",
-   "explain": "«физической силой» — the instrumental marks the means, company, or complement.",
+   "explain": "«Обладая» takes the instrumental.",
    "id": "c139"
-  },
-  {
-   "sentence": "Обладая громадной физической силой, ___ и укротитель коней, он понравился Михаилу III, увлекавшемуся цирковыми ристаниями.",
-   "lemma": "наездник",
-   "options": [
-    "ловком наезднике",
-    "ловкий наездник",
-    "ловкому наезднику",
-    "ловким наездником"
-   ],
-   "correct": "ловкий наездник",
-   "case": "Именительный (Nominative)",
-   "explain": "«ловкий наездник» — the subject of the sentence stands in the nominative.",
-   "id": "c140"
   },
   {
    "sentence": "Обладая громадной физической силой, ловкий наездник и укротитель коней, он понравился Михаилу III, увлекавшемуся ___.",
    "lemma": "ристание",
    "options": [
-    "цирковых ристаний",
-    "цирковыми ристаниями",
+    "цирковым ристаниям",
     "цирковых ристаниях",
-    "цирковые ристания"
+    "цирковых ристаний",
+    "цирковыми ристаниями"
    ],
    "correct": "цирковыми ристаниями",
    "case": "Творительный (Instrumental)",
-   "explain": "«цирковыми ристаниями» — the instrumental marks the means, company, or complement.",
+   "explain": "«увлекавшемуся» takes the instrumental.",
    "id": "c141"
-  },
-  {
-   "sentence": "Свой ___ власти он старался укрепить дружбой с напою и ради нее-то вернул на патриарший престол свергнутого Вардой Игнатия.",
-   "lemma": "захват",
-   "options": [
-    "незаконный захват",
-    "незаконном захвате",
-    "незаконным захватом",
-    "незаконного захвата"
-   ],
-   "correct": "незаконный захват",
-   "case": "Винительный (Accusative)",
-   "explain": "«незаконный захват» — the accusative marks the direct object of the verb.",
-   "id": "c142"
   },
   {
    "sentence": "В глазах большинства ___ он еще более поднялся, как защитник независимости Византии и провозвестник ее духовного первенства.",
    "lemma": "общество",
    "options": [
+    "византийскому обществу",
+    "византийском обществе",
     "византийского общества",
-    "византийским обществом",
-    "византийское общество",
-    "византийском обществе"
+    "византийское общество"
    ],
    "correct": "византийского общества",
    "case": "Родительный (Genitive)",
-   "explain": "«византийского общества» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«византийского общества» depends on the noun «большинства» (whose? of what?) — genitive.",
    "id": "c144"
-  },
-  {
-   "sentence": "В глазах большинства византийского общества он еще более поднялся, как защитник независимости Византии и провозвестник ее ___.",
-   "lemma": "первенство",
-   "options": [
-    "духовном первенстве",
-    "духовного первенства",
-    "духовное первенство",
-    "духовному первенству"
-   ],
-   "correct": "духовного первенства",
-   "case": "Родительный (Genitive)",
-   "explain": "«духовного первенства» — the genitive here marks possession, absence, or quantity.",
-   "id": "c145"
-  },
-  {
-   "sentence": "Его осыпали ___ (приветствиями), как патриота, все цехи константинопольских ремесленников вплоть до меховщиков, рыботорговцев, плотников, слесарей.",
-   "lemma": "адрес",
-   "options": [
-    "сочувственными адресами",
-    "сочувственные адреса",
-    "сочувственных адресов",
-    "сочувственным адресам"
-   ],
-   "correct": "сочувственными адресами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«сочувственными адресами» — the instrumental marks the means, company, or complement.",
-   "id": "c146"
   },
   {
    "sentence": "Еще в другом отношении Фотий испытал торжество своих ___: царь Борис, недовольный тем, что папа не утверждает угодных ему епископов, отклонился от Рима и просил прислать византийских проповедников.",
    "lemma": "замысел",
    "options": [
-    "прежних замыслах",
-    "прежними замыслами",
+    "прежним замыслам",
+    "прежних замыслов",
     "прежние замыслы",
-    "прежних замыслов"
+    "прежних замыслах"
    ],
    "correct": "прежних замыслов",
    "case": "Родительный (Genitive)",
-   "explain": "«прежних замыслов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«прежних замыслов» depends on the noun «торжество» (whose? of what?) — genitive.",
    "id": "c149"
   },
   {
@@ -1761,21 +1019,21 @@
    ],
    "correct": "византийских проповедников",
    "case": "Винительный (Accusative)",
-   "explain": "«византийских проповедников» — the accusative marks the direct object of the verb.",
+   "explain": "«византийских проповедников» is the direct object of «прислать» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c150"
   },
   {
    "sentence": "Достигнув власти путем преступлений, Василий сделался потом ___ (867—886), одним из лучших в Византии.",
    "lemma": "правитель",
    "options": [
-    "превосходный правитель",
     "превосходного правителя",
     "превосходном правителе",
+    "превосходному правителю",
     "превосходным правителем"
    ],
    "correct": "превосходным правителем",
    "case": "Творительный (Instrumental)",
-   "explain": "«превосходным правителем» — the instrumental marks the means, company, or complement.",
+   "explain": "After «сделался», what someone or something is or becomes stands in the instrumental.",
    "id": "c151"
   },
   {
@@ -1789,7 +1047,7 @@
    ],
    "correct": "византийского государства",
    "case": "Родительный (Genitive)",
-   "explain": "«византийского государства» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«византийского государства» depends on the noun «силы» (whose? of what?) — genitive.",
    "id": "c152"
   },
   {
@@ -1803,22 +1061,8 @@
    ],
    "correct": "государственных доходов",
    "case": "Родительный (Genitive)",
-   "explain": "«государственных доходов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«государственных доходов» depends on the noun «ведомство» (whose? of what?) — genitive.",
    "id": "c153"
-  },
-  {
-   "sentence": "Строгостью, бережливостью, ___ всех обязательств и жалований он восстановил старую славу византийского управления.",
-   "lemma": "уплата",
-   "options": [
-    "точной уплате",
-    "точной уплаты",
-    "точной уплатой",
-    "точная уплата"
-   ],
-   "correct": "точной уплатой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«точной уплатой» — the instrumental marks the means, company, or complement.",
-   "id": "c155"
   },
   {
    "sentence": "Строгостью, бережливостью, точной уплатой всех обязательств и жалований он восстановил старую славу ___.",
@@ -1831,7 +1075,7 @@
    ],
    "correct": "византийского управления",
    "case": "Родительный (Genitive)",
-   "explain": "«византийского управления» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«византийского управления» depends on the noun «славу» (whose? of what?) — genitive.",
    "id": "c156"
   },
   {
@@ -1845,22 +1089,8 @@
    ],
    "correct": "богатая казна",
    "case": "Именительный (Nominative)",
-   "explain": "«Богатая казна» — the subject of the sentence stands in the nominative.",
+   "explain": "«богатая казна» is the subject of «дала» — who or what does it — so nominative.",
    "id": "c157"
-  },
-  {
-   "sentence": "Участки были ___, и сообразно этому служба с них была неодинакова.",
-   "lemma": "величина",
-   "options": [
-    "различной величиной",
-    "различной величине",
-    "различная величина",
-    "различной величины"
-   ],
-   "correct": "различной величины",
-   "case": "Родительный (Genitive)",
-   "explain": "«различной величины» — the genitive here marks possession, absence, or quantity.",
-   "id": "c158"
   },
   {
    "sentence": "Помимо ___ под названием Вас или к (царских законов), он велел еще составить сокращенный сборник, так на.",
@@ -1873,49 +1103,21 @@
    ],
    "correct": "большого свода",
    "case": "Родительный (Genitive)",
-   "explain": "«большого свода» — after the preposition «помимо», the genitive here marks possession, absence, or quantity.",
+   "explain": "«большого свода» — «помимо» always takes the genitive.",
    "id": "c159"
-  },
-  {
-   "sentence": "Помимо большого свода под названием Вас или к (___), он велел еще составить сокращенный сборник, так на.",
-   "lemma": "закон",
-   "options": [
-    "царских законах",
-    "царских законов",
-    "царскими законами",
-    "царские законы"
-   ],
-   "correct": "царских законов",
-   "case": "Родительный (Genitive)",
-   "explain": "«царских законов» — the genitive here marks possession, absence, or quantity.",
-   "id": "c160"
-  },
-  {
-   "sentence": "Про хи рон (руководство) из наиболее ___, чтобы сделать законодательство общедоступным.",
-   "lemma": "постановление",
-   "options": [
-    "важные постановления",
-    "важным постановлениям",
-    "важными постановлениями",
-    "важных постановлений"
-   ],
-   "correct": "важных постановлений",
-   "case": "Родительный (Genitive)",
-   "explain": "«важных постановлений» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
-   "id": "c161"
   },
   {
    "sentence": "Фотий, как великий ученый, принимал участие в составлении ___.",
    "lemma": "сборник",
    "options": [
-    "законодательным сборникам",
-    "законодательными сборниками",
+    "законодательные сборники",
     "законодательных сборниках",
-    "законодательных сборников"
+    "законодательных сборников",
+    "законодательным сборникам"
    ],
    "correct": "законодательных сборников",
    "case": "Родительный (Genitive)",
-   "explain": "«законодательных сборников» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«законодательных сборников» depends on the noun «составлении» (whose? of what?) — genitive.",
    "id": "c162"
   },
   {
@@ -1929,7 +1131,7 @@
    ],
    "correct": "правильной вере",
    "case": "Предложный (Prepositional)",
-   "explain": "«правильной вере» — after the preposition «в», for location or topic.",
+   "explain": "«правильной вере» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c163"
   },
   {
@@ -1943,22 +1145,8 @@
    ],
    "correct": "истинному учению",
    "case": "Дательный (Dative)",
-   "explain": "«истинному учению» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«истинному учению» — «к» always takes the dative.",
    "id": "c164"
-  },
-  {
-   "sentence": "В действительности, однако, между духовной и светской властью далеко не было того равенства и ___, которое мыслилось Фотию.",
-   "lemma": "уважение",
-   "options": [
-    "взаимном уважении",
-    "взаимным уважением",
-    "взаимное уважение",
-    "взаимного уважения"
-   ],
-   "correct": "взаимного уважения",
-   "case": "Родительный (Genitive)",
-   "explain": "«взаимного уважения» — the genitive here marks possession, absence, or quantity.",
-   "id": "c165"
   },
   {
    "sentence": "Преемник Василия, Лев VI (886—912), по прозванию Философ, обязанный Фотию своим образованием, сместил его внезапно без объяснения причин и назначил патриархом своего 16 ___.",
@@ -1971,7 +1159,7 @@
    ],
    "correct": "летнего брата",
    "case": "Винительный (Accusative)",
-   "explain": "«летнего брата» — the accusative marks the direct object of the verb.",
+   "explain": "«летнего брата» is the direct object of «назначил» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c166"
   },
   {
@@ -1985,22 +1173,8 @@
    ],
    "correct": "девятый век",
    "case": "Именительный (Nominative)",
-   "explain": "«девятый век» — the subject of the sentence stands in the nominative.",
+   "explain": "«девятый век» is the subject of «занимает» — who or what does it — so nominative.",
    "id": "c167"
-  },
-  {
-   "sentence": "___ всех этих государств состоит в том, что каждое из них заключает в себе нацию, т.е.. соединение людей хотя и разных племен, однако сближенных общностью языка, преданий и быта.",
-   "lemma": "черта",
-   "options": [
-    "отличительной чертой",
-    "отличительной черте",
-    "отличительной черты",
-    "отличительная черта"
-   ],
-   "correct": "отличительная черта",
-   "case": "Именительный (Nominative)",
-   "explain": "«Отличительная черта» — the subject of the sentence stands in the nominative.",
-   "id": "c168"
   },
   {
    "sentence": "___ отмечен также оживлением христианства, проникающего в страны восточной и северной Европы.",
@@ -2013,7 +1187,7 @@
    ],
    "correct": "девятый век",
    "case": "Именительный (Nominative)",
-   "explain": "«Девятый век» — the subject of the sentence stands in the nominative.",
+   "explain": "«девятый век» is the subject of «отмечен» — who or what does it — so nominative.",
    "id": "c169"
   },
   {
@@ -2027,36 +1201,8 @@
    ],
    "correct": "церковных школ",
    "case": "Родительный (Genitive)",
-   "explain": "«церковных школ» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«церковных школ» — «из» always takes the genitive.",
    "id": "c170"
-  },
-  {
-   "sentence": "Из церковных школ выходят деятельные, смелые, самоотверженные люди, направляясь просвещать варваров и воспитывать их к более ___.",
-   "lemma": "нрав",
-   "options": [
-    "мягких нравах",
-    "мягких нравов",
-    "мягкие нравы",
-    "мягким нравам"
-   ],
-   "correct": "мягким нравам",
-   "case": "Дательный (Dative)",
-   "explain": "«мягким нравам» — after the preposition «к», the dative marks the indirect object or recipient.",
-   "id": "c171"
-  },
-  {
-   "sentence": "В то же время среди ученых растет интерес к изучению ___, происходит первое возрождение наук в Европе.",
-   "lemma": "культура",
-   "options": [
-    "древняя культура",
-    "древней культуре",
-    "древней культуры",
-    "древней культурой"
-   ],
-   "correct": "древней культуры",
-   "case": "Родительный (Genitive)",
-   "explain": "«древней культуры» — the genitive here marks possession, absence, or quantity.",
-   "id": "c172"
   },
   {
    "sentence": "В то же время среди ученых растет интерес к изучению древней культуры, происходит ___ наук в Европе.",
@@ -2069,7 +1215,7 @@
    ],
    "correct": "первое возрождение",
    "case": "Именительный (Nominative)",
-   "explain": "«первое возрождение» — the subject of the sentence stands in the nominative.",
+   "explain": "«первое возрождение» is the subject of «происходит» — who or what does it — so nominative.",
    "id": "c173"
   },
   {
@@ -2083,7 +1229,7 @@
    ],
    "correct": "выдающимися деятелями",
    "case": "Творительный (Instrumental)",
-   "explain": "«выдающимися деятелями» — after the preposition «между», the instrumental marks the means, company, or complement.",
+   "explain": "«выдающимися деятелями» — «между» + instrumental: between.",
    "id": "c174"
   },
   {
@@ -2097,7 +1243,7 @@
    ],
    "correct": "римские папы",
    "case": "Именительный (Nominative)",
-   "explain": "«Римские папы» — the subject of the sentence stands in the nominative.",
+   "explain": "«римские папы» is the subject of «требуют» — who or what does it — so nominative.",
    "id": "c175"
   },
   {
@@ -2111,36 +1257,8 @@
    ],
    "correct": "константинопольские патриархи",
    "case": "Именительный (Nominative)",
-   "explain": "«константинопольские патриархи» — the subject of the sentence stands in the nominative.",
+   "explain": "«константинопольские патриархи» is the subject of «отстаивают» — who or what does it — so nominative.",
    "id": "c176"
-  },
-  {
-   "sentence": "В споре Николая I с Фотием впервые наметилось разделение церквей: западной, в странах бывшей ___ империи, и восточной, з гречссчой ее половине.",
-   "lemma": "половина",
-   "options": [
-    "римской половины",
-    "римской половиной",
-    "римской половине",
-    "римская половина"
-   ],
-   "correct": "римской половины",
-   "case": "Родительный (Genitive)",
-   "explain": "«римской половины» — the genitive here marks possession, absence, or quantity.",
-   "id": "c177"
-  },
-  {
-   "sentence": "Распространением христианства Византия старалась ослабить натиск окружающих ее ___, приобрести среди них друзей и союзников.",
-   "lemma": "народ",
-   "options": [
-    "варварские народы",
-    "варварских народов",
-    "варварскими народами",
-    "варварских народах"
-   ],
-   "correct": "варварских народов",
-   "case": "Родительный (Genitive)",
-   "explain": "«варварских народов» — the genitive here marks possession, absence, or quantity.",
-   "id": "c178"
   },
   {
    "sentence": "Но как раз в ближайшем соседстве, в Болгарии от перенесения к варварам ___ на первых порах получились только новые опасности для империи.",
@@ -2153,7 +1271,7 @@
    ],
    "correct": "греческой культуры",
    "case": "Родительный (Genitive)",
-   "explain": "«греческой культуры» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«греческой культуры» depends on the noun «варварам» (whose? of what?) — genitive.",
    "id": "c179"
   },
   {
@@ -2167,21 +1285,21 @@
    ],
    "correct": "новые опасности",
    "case": "Именительный (Nominative)",
-   "explain": "«новые опасности» — the subject of the sentence stands in the nominative.",
+   "explain": "«новые опасности» is the subject of «получились» — who or what does it — so nominative.",
    "id": "c181"
   },
   {
    "sentence": "Император Лев Философ неосторожным назначением ___ на товары, приходившие из Болгарии, оскорбил Симеона и вызвал его на войну.",
    "lemma": "пошлина",
    "options": [
-    "высокие пошлины",
-    "высокими пошлинами",
     "высоких пошлин",
-    "высоких пошлинах"
+    "высокие пошлины",
+    "высоких пошлинах",
+    "высоким пошлинам"
    ],
    "correct": "высоких пошлин",
    "case": "Родительный (Genitive)",
-   "explain": "«высоких пошлин» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«высоких пошлин» depends on the noun «назначением» (whose? of what?) — genitive.",
    "id": "c183"
   },
   {
@@ -2195,22 +1313,8 @@
    ],
    "correct": "болгарский царь",
    "case": "Именительный (Nominative)",
-   "explain": "«Болгарский царь» — the subject of the sentence stands in the nominative.",
+   "explain": "«болгарский царь» is the subject of «поручал» — who or what does it — so nominative.",
    "id": "c184"
-  },
-  {
-   "sentence": "Болгарский царь поручал при осаде городов ставить ___ арабу-инженеру; один из военачальников Симеона носил турецкое имя Альп- Багатура.",
-   "lemma": "машина",
-   "options": [
-    "стенобитных машин",
-    "стенобитных машинах",
-    "стенобитные машины",
-    "стенобитным машинам"
-   ],
-   "correct": "стенобитные машины",
-   "case": "Винительный (Accusative)",
-   "explain": "«стенобитные машины» — the accusative marks the direct object of the verb.",
-   "id": "c185"
   },
   {
    "sentence": "У Льва на службе были хазарские наемники, а в крайности ему пришлось даже вооружить ___.",
@@ -2223,7 +1327,7 @@
    ],
    "correct": "мусульманских пленников",
    "case": "Винительный (Accusative)",
-   "explain": "«мусульманских пленников» — the accusative marks the direct object of the verb.",
+   "explain": "«мусульманских пленников» is the direct object of «вооружить» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c186"
   },
   {
@@ -2237,7 +1341,7 @@
    ],
    "correct": "финского племени",
    "case": "Родительный (Genitive)",
-   "explain": "«финского племени» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«финского племени» depends on the noun «народ» (whose? of what?) — genitive.",
    "id": "c187"
   },
   {
@@ -2251,21 +1355,21 @@
    ],
    "correct": "болгарского царства",
    "case": "Родительный (Genitive)",
-   "explain": "«болгарского царства» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«болгарского царства» depends on the noun «часть» (whose? of what?) — genitive.",
    "id": "c188"
   },
   {
    "sentence": "Появление в середине Европы ___, подобных гуннам и авраам, определило дальнейшую судьбу славянских народов.",
    "lemma": "кочевник",
    "options": [
-    "новых кочевниках",
+    "новые кочевники",
     "новых кочевников",
-    "новыми кочевниками",
-    "новые кочевники"
+    "новым кочевникам",
+    "новых кочевниках"
    ],
    "correct": "новых кочевников",
    "case": "Родительный (Genitive)",
-   "explain": "«новых кочевников» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«новых кочевников» depends on the noun «Появление» (whose? of what?) — genitive.",
    "id": "c189"
   },
   {
@@ -2279,36 +1383,8 @@
    ],
    "correct": "славянских народов",
    "case": "Родительный (Genitive)",
-   "explain": "«славянских народов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«славянских народов» depends on the noun «судьбу» (whose? of what?) — genitive.",
    "id": "c190"
-  },
-  {
-   "sentence": "Теперь ___ не могли больше проникать за Дунай и Карпаты; отрезанные венграми, северные славяне неизбежно должны были подпасть влиянию Германии и Рима.",
-   "lemma": "проповедник",
-   "options": [
-    "греческим проповедникам",
-    "греческих проповедниках",
-    "греческих проповедников",
-    "греческие проповедники"
-   ],
-   "correct": "греческие проповедники",
-   "case": "Именительный (Nominative)",
-   "explain": "«греческие проповедники» — the subject of the sentence stands in the nominative.",
-   "id": "c191"
-  },
-  {
-   "sentence": "Теперь греческие проповедники не могли больше проникать за Дунай и Карпаты; отрезанные венграми, ___ неизбежно должны были подпасть влиянию Германии и Рима.",
-   "lemma": "славянин",
-   "options": [
-    "северные славяне",
-    "северным славянам",
-    "северных славянах",
-    "северных славян"
-   ],
-   "correct": "северные славяне",
-   "case": "Именительный (Nominative)",
-   "explain": "«северные славяне» — the subject of the sentence stands in the nominative.",
-   "id": "c192"
   },
   {
    "sentence": "Освободившись от венгерской опасности, Симеон обратился к завоеванию ___.",
@@ -2321,7 +1397,7 @@
    ],
    "correct": "балканского полуострова",
    "case": "Родительный (Genitive)",
-   "explain": "«Балканского полуострова» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«балканского полуострова» depends on the noun «завоеванию» (whose? of what?) — genitive.",
    "id": "c193"
   },
   {
@@ -2335,22 +1411,8 @@
    ],
    "correct": "багряной палате",
    "case": "Предложный (Prepositional)",
-   "explain": "«Багряной палате» — after the preposition «в», for location or topic.",
+   "explain": "«багряной палате» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c194"
-  },
-  {
-   "sentence": "У византийцев остались в Европе только Константинополь, Солунь и еще несколько ___.",
-   "lemma": "город",
-   "options": [
-    "приморскими городами",
-    "приморских городах",
-    "приморских городов",
-    "приморские города"
-   ],
-   "correct": "приморских городов",
-   "case": "Родительный (Genitive)",
-   "explain": "«приморских городов» — the genitive here marks possession, absence, or quantity.",
-   "id": "c195"
   },
   {
    "sentence": "Спасло Византию лишь новое обращение к венграм и печенегам, а также отпадение сербов от ___.",
@@ -2363,21 +1425,21 @@
    ],
    "correct": "болгарской державы",
    "case": "Родительный (Genitive)",
-   "explain": "«болгарской державы» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«болгарской державы» — «от» always takes the genitive.",
    "id": "c196"
   },
   {
    "sentence": "По своим ___, по увлечению наукой и литературой Симеон похож на Карла Великого и Альфреда английского.",
    "lemma": "замысел",
    "options": [
-    "великодержавных замыслов",
-    "великодержавных замыслах",
     "великодержавным замыслам",
-    "великодержавные замыслы"
+    "великодержавных замыслах",
+    "великодержавными замыслами",
+    "великодержавных замыслов"
    ],
    "correct": "великодержавным замыслам",
    "case": "Дательный (Dative)",
-   "explain": "«великодержавным замыслам» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«великодержавным замыслам» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c197"
   },
   {
@@ -2391,36 +1453,8 @@
    ],
    "correct": "болгарского завоевания",
    "case": "Родительный (Genitive)",
-   "explain": "«болгарского завоевания» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«болгарского завоевания» depends on the noun «грозой» (whose? of what?) — genitive.",
    "id": "c198"
-  },
-  {
-   "sentence": "Одновременно с грозой болгарского завоевания, Византия терпела от нашествий ___, свирепствовавших на Черном море.",
-   "lemma": "моряк",
-   "options": [
-    "русскими моряками",
-    "русских моряках",
-    "русские моряки",
-    "русских моряков"
-   ],
-   "correct": "русских моряков",
-   "case": "Родительный (Genitive)",
-   "explain": "«русских моряков» — the genitive here marks possession, absence, or quantity.",
-   "id": "c199"
-  },
-  {
-   "sentence": "В год разгрома венграми ___ (906), по рассказу русского летописца, на Константинополь напал большой флот под предводительством киевского князя Олега, за свои удачи прослывшего вещим (колдуном).",
-   "lemma": "государство",
-   "options": [
-    "великоморавского государства",
-    "великоморавскому государству",
-    "великоморавское государство",
-    "великоморавском государстве"
-   ],
-   "correct": "великоморавского государства",
-   "case": "Родительный (Genitive)",
-   "explain": "«великоморавского государства» — the genitive here marks possession, absence, or quantity.",
-   "id": "c200"
   },
   {
    "sentence": "В год разгрома венграми великоморавского государства (906), по рассказу ___, на Константинополь напал большой флот под предводительством киевского князя Олега, за свои удачи прослывшего вещим (колдуном).",
@@ -2433,22 +1467,8 @@
    ],
    "correct": "русского летописца",
    "case": "Родительный (Genitive)",
-   "explain": "«русского летописца» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«русского летописца» depends on the noun «рассказу» (whose? of what?) — genitive.",
    "id": "c201"
-  },
-  {
-   "sentence": "В год разгрома венграми великоморавского государства (906), по рассказу русского летописца, на Константинополь напал ___ под предводительством киевского князя Олега, за свои удачи прослывшего вещим (колдуном).",
-   "lemma": "флот",
-   "options": [
-    "большом флоте",
-    "большого флота",
-    "большой флот",
-    "большим флотом"
-   ],
-   "correct": "большой флот",
-   "case": "Винительный (Accusative)",
-   "explain": "«большой флот» — the accusative marks the direct object of the verb.",
-   "id": "c202"
   },
   {
    "sentence": "Высадившись на берегу близ ___, он будто бы велел поставить свои корабли на колеса, и ветер подкатил их к самим стенам.",
@@ -2461,7 +1481,7 @@
    ],
    "correct": "византийской столицы",
    "case": "Родительный (Genitive)",
-   "explain": "«византийской столицы» — after the preposition «близ», the genitive here marks possession, absence, or quantity.",
+   "explain": "«византийской столицы» — «близ» always takes the genitive.",
    "id": "c203"
   },
   {
@@ -2475,7 +1495,7 @@
    ],
    "correct": "самим стенам",
    "case": "Дательный (Dative)",
-   "explain": "«самим стенам» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«самим стенам» — «к» always takes the dative.",
    "id": "c204"
   },
   {
@@ -2489,22 +1509,8 @@
    ],
    "correct": "византийские писатели",
    "case": "Именительный (Nominative)",
-   "explain": "«Византийские писатели» — the subject of the sentence stands in the nominative.",
+   "explain": "«византийские писатели» is the subject of «упоминают» — who or what does it — so nominative.",
    "id": "c205"
-  },
-  {
-   "sentence": "___ с греками 911 года подписали дружинники Киевского князя, имена которых звучат не по-славянски: Карлы, Иньгелд, Фарлоф, Верьмут, Руалд.",
-   "lemma": "договор",
-   "options": [
-    "торговому договору",
-    "торгового договора",
-    "торговый договор",
-    "торговым договором"
-   ],
-   "correct": "торговый договор",
-   "case": "Именительный (Nominative)",
-   "explain": "«Торговый договор» — the subject of the sentence stands in the nominative.",
-   "id": "c206"
   },
   {
    "sentence": "Торговый договор с греками 911 года подписали дружинники ___, имена которых звучат не по-славянски: Карлы, Иньгелд, Фарлоф, Верьмут, Руалд.",
@@ -2517,7 +1523,7 @@
    ],
    "correct": "киевского князя",
    "case": "Родительный (Genitive)",
-   "explain": "«Киевского князя» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«киевского князя» depends on the noun «дружинники» (whose? of what?) — genitive.",
    "id": "c207"
   },
   {
@@ -2531,7 +1537,7 @@
    ],
    "correct": "первой остановке",
    "case": "Предложный (Prepositional)",
-   "explain": "«первой остановке» — after the preposition «на», for location or topic.",
+   "explain": "«первой остановке» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c208"
   },
   {
@@ -2545,35 +1551,21 @@
    ],
    "correct": "новгородский князь",
    "case": "Именительный (Nominative)",
-   "explain": "«новгородский князь» — the subject of the sentence stands in the nominative.",
+   "explain": "«новгородский князь» is the subject of «мог» — who or what does it — so nominative.",
    "id": "c209"
-  },
-  {
-   "sentence": "Так и поступил Олег, сначала княживший в Новгороде: он спустился по Днепру и овладел Киевом; затем, утвердившись здесь, из Киева совершил свой ___ на Византию.",
-   "lemma": "поход",
-   "options": [
-    "знаменитый поход",
-    "знаменитому походу",
-    "знаменитым походом",
-    "знаменитого похода"
-   ],
-   "correct": "знаменитый поход",
-   "case": "Винительный (Accusative)",
-   "explain": "«знаменитый поход» — the accusative marks the direct object of the verb.",
-   "id": "c210"
   },
   {
    "sentence": "В Киеве варяги уже не могли сохранить господствующее положение, какое занимали в Новгороде: среди многочисленного и сильного племени полян - руси они утрачивали свой ___ и обычаи, становились русскими.",
    "lemma": "язык",
    "options": [
-    "скандинавский язык",
     "скандинавским языком",
-    "скандинавскому языку",
-    "скандинавского языка"
+    "скандинавский язык",
+    "скандинавском языке",
+    "скандинавскому языку"
    ],
    "correct": "скандинавский язык",
    "case": "Винительный (Accusative)",
-   "explain": "«скандинавский язык» — the accusative marks the direct object of the verb.",
+   "explain": "«скандинавский язык» is the direct object of «утрачивали» (кого? что?) — accusative.",
    "id": "c211"
   },
   {
@@ -2587,7 +1579,7 @@
    ],
    "correct": "северного края",
    "case": "Родительный (Genitive)",
-   "explain": "«северного края» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«северного края» depends on the noun «правителем» (whose? of what?) — genitive.",
    "id": "c214"
   },
   {
@@ -2601,22 +1593,8 @@
    ],
    "correct": "киевский летописец",
    "case": "Именительный (Nominative)",
-   "explain": "«киевский летописец» — the subject of the sentence stands in the nominative.",
+   "explain": "«киевский летописец» is the subject of «постарался» — who or what does it — so nominative.",
    "id": "c215"
-  },
-  {
-   "sentence": "Записавши это известие, киевский летописец постарался связать Рюрика с Олегом и вывести от Рюрика весь род князей большого ___.",
-   "lemma": "государство",
-   "options": [
-    "восточно-славянском государстве",
-    "восточно-славянское государство",
-    "восточно-славянского государства",
-    "восточно-славянским государством"
-   ],
-   "correct": "восточно-славянского государства",
-   "case": "Родительный (Genitive)",
-   "explain": "«восточно-славянского государства» — the genitive here marks possession, absence, or quantity.",
-   "id": "c216"
   },
   {
    "sentence": "В Киев Олег прибыл с маленьким Игорем на руках, убил ___, Аскольда и Дира, и сел на их место.",
@@ -2629,22 +1607,8 @@
    ],
    "correct": "тамошних князей",
    "case": "Винительный (Accusative)",
-   "explain": "«Тамошних князей» — the accusative marks the direct object of the verb.",
+   "explain": "«тамошних князей» is the direct object of «убил» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c217"
-  },
-  {
-   "sentence": "В 941 году Игорь двинул ___ подвластных ему варягов и славян, а также наемных печенегов к Константинополю.",
-   "lemma": "сила",
-   "options": [
-    "большими силами",
-    "больших сил",
-    "большие силы",
-    "больших силах"
-   ],
-   "correct": "большие силы",
-   "case": "Винительный (Accusative)",
-   "explain": "«большие силы» — the accusative marks the direct object of the verb.",
-   "id": "c218"
   },
   {
    "sentence": "Крыму успел прислать в столицу известие о выходе в море ___, и византийцы заперли врагу доступ в Босфор.",
@@ -2657,7 +1621,7 @@
    ],
    "correct": "русского флота",
    "case": "Родительный (Genitive)",
-   "explain": "«русского флота» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«русского флота» depends on the noun «море» (whose? of what?) — genitive.",
    "id": "c219"
   },
   {
@@ -2671,22 +1635,8 @@
    ],
    "correct": "македонской конницы",
    "case": "Родительный (Genitive)",
-   "explain": "«македонской конницы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«македонской конницы» depends on the noun «Натиском» (whose? of what?) — genitive.",
    "id": "c220"
-  },
-  {
-   "sentence": "Натиском македонской конницы удалось прогнать их с суши, а греческим огнем истребить значительную часть их флота; ___ вынуждены были возвратиться домой.",
-   "lemma": "корабль",
-   "options": [
-    "остальных кораблях",
-    "остальным кораблям",
-    "остальные корабли",
-    "остальных кораблей"
-   ],
-   "correct": "остальные корабли",
-   "case": "Именительный (Nominative)",
-   "explain": "«остальные корабли» — the subject of the sentence stands in the nominative.",
-   "id": "c221"
   },
   {
    "sentence": "О таком набеге ___, независимо от киевского князя, рассказывает арабский географ Масуди.",
@@ -2699,7 +1649,7 @@
    ],
    "correct": "русских дружин",
    "case": "Родительный (Genitive)",
-   "explain": "«русских дружин» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«русских дружин» depends on the noun «набеге» (whose? of what?) — genitive.",
    "id": "c223"
   },
   {
@@ -2713,7 +1663,7 @@
    ],
    "correct": "киевского князя",
    "case": "Родительный (Genitive)",
-   "explain": "«киевского князя» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«киевского князя» — «от» always takes the genitive.",
    "id": "c224"
   },
   {
@@ -2727,22 +1677,8 @@
    ],
    "correct": "арабский географ",
    "case": "Именительный (Nominative)",
-   "explain": "«арабский географ» — the subject of the sentence stands in the nominative.",
+   "explain": "«арабский географ» is the subject of «рассказывает» — who or what does it — so nominative.",
    "id": "c225"
-  },
-  {
-   "sentence": "Никто не решался напасть на руссо в ___; наконец мусульмане, жившие в хазарском государстве, сказали кагану: «позволь нам отомстить, ибо этот народ разоряет страну наших братьев единоверцев».",
-   "lemma": "море",
-   "options": [
-    "открытого моря",
-    "открытым морем",
-    "открытому морю",
-    "открытом море"
-   ],
-   "correct": "открытом море",
-   "case": "Предложный (Prepositional)",
-   "explain": "«открытом море» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c226"
   },
   {
    "sentence": "После ___ при Стиле, мусульманам удалось изгнать русских из пределов хазарского государства.",
@@ -2755,7 +1691,7 @@
    ],
    "correct": "упорного боя",
    "case": "Родительный (Genitive)",
-   "explain": "«упорного боя» — after the preposition «после», the genitive here marks possession, absence, or quantity.",
+   "explain": "«упорного боя» — «после» always takes the genitive.",
    "id": "c228"
   },
   {
@@ -2769,7 +1705,7 @@
    ],
    "correct": "хазарского государства",
    "case": "Родительный (Genitive)",
-   "explain": "«хазарского государства» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«хазарского государства» depends on the noun «пределов» (whose? of what?) — genitive.",
    "id": "c229"
   },
   {
@@ -2783,36 +1719,8 @@
    ],
    "correct": "большого ума",
    "case": "Родительный (Genitive)",
-   "explain": "«большого ума» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«большого ума» depends on the noun «личностью» (whose? of what?) — genitive.",
    "id": "c230"
-  },
-  {
-   "sentence": "Хотя ___ и преувеличивает дела Ольги, но она всетаки была выдающейся правительницей.",
-   "lemma": "писатель",
-   "options": [
-    "русским писателем",
-    "русскому писателю",
-    "русском писателе",
-    "русский писатель"
-   ],
-   "correct": "русский писатель",
-   "case": "Именительный (Nominative)",
-   "explain": "«русский писатель» — the subject of the sentence stands in the nominative.",
-   "id": "c231"
-  },
-  {
-   "sentence": "___ Святослава (957—72) были направлены на восток против хазарского царства.",
-   "lemma": "поход",
-   "options": [
-    "первыми походами",
-    "первым походам",
-    "первые походы",
-    "первых походов"
-   ],
-   "correct": "первые походы",
-   "case": "Именительный (Nominative)",
-   "explain": "«Первые походы» — the subject of the sentence stands in the nominative.",
-   "id": "c233"
   },
   {
    "sentence": "Первые походы Святослава (957—72) были направлены на восток против ___.",
@@ -2825,22 +1733,8 @@
    ],
    "correct": "хазарского царства",
    "case": "Родительный (Genitive)",
-   "explain": "«хазарского царства» — after the preposition «против», the genitive here marks possession, absence, or quantity.",
+   "explain": "«хазарского царства» — «против» always takes the genitive.",
    "id": "c234"
-  },
-  {
-   "sentence": "Вскоре ему открылся ___ для завоеваний на противоположной, западной от Киева стороне в непосредственной близости Византии.",
-   "lemma": "простор",
-   "options": [
-    "новом просторе",
-    "новым простором",
-    "новому простору",
-    "новый простор"
-   ],
-   "correct": "новый простор",
-   "case": "Именительный (Nominative)",
-   "explain": "«новый простор» — the subject of the sentence stands in the nominative.",
-   "id": "c235"
   },
   {
    "sentence": "Искусная политика ___, распространявших христианство среди восточных народов и заключавших с ними торговые договоры, создала новое могущество Византии.",
@@ -2853,7 +1747,7 @@
    ],
    "correct": "византийских правителей",
    "case": "Родительный (Genitive)",
-   "explain": "«византийских правителей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«византийских правителей» depends on the noun «политика» (whose? of what?) — genitive.",
    "id": "c236"
   },
   {
@@ -2867,36 +1761,8 @@
    ],
    "correct": "восточных народов",
    "case": "Родительный (Genitive)",
-   "explain": "«восточных народов» — after the preposition «среди», the genitive here marks possession, absence, or quantity.",
+   "explain": "«восточных народов» — «среди» always takes the genitive.",
    "id": "c237"
-  },
-  {
-   "sentence": "Искусная политика византийских правителей, распространявших христианство среди восточных народов и заключавших с ними ___, создала новое могущество Византии.",
-   "lemma": "договор",
-   "options": [
-    "торговые договоры",
-    "торговым договорам",
-    "торговыми договорами",
-    "торговых договорах"
-   ],
-   "correct": "торговые договоры",
-   "case": "Винительный (Accusative)",
-   "explain": "«торговые договоры» — the accusative marks the direct object of the verb.",
-   "id": "c238"
-  },
-  {
-   "sentence": "В из ан тины, полновесные ___, чеканенные в Константинополе, стали одолевать в международной торговле арабские серебряные диргемы.",
-   "lemma": "монета",
-   "options": [
-    "золотые монеты",
-    "золотыми монетами",
-    "золотых монетах",
-    "золотых монет"
-   ],
-   "correct": "золотые монеты",
-   "case": "Винительный (Accusative)",
-   "explain": "«золотые монеты» — the accusative marks the direct object of the verb.",
-   "id": "c239"
   },
   {
    "sentence": "В из ан тины, полновесные золотые монеты, чеканенные в Константинополе, стали одолевать в ___ арабские серебряные диргемы.",
@@ -2909,22 +1775,8 @@
    ],
    "correct": "международной торговле",
    "case": "Предложный (Prepositional)",
-   "explain": "«международной торговле» — after the preposition «в», for location or topic.",
+   "explain": "«международной торговле» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c240"
-  },
-  {
-   "sentence": "В из ан тины, полновесные золотые монеты, чеканенные в Константинополе, стали одолевать в международной торговле арабские ___.",
-   "lemma": "диргем",
-   "options": [
-    "серебряным диргемам",
-    "серебряными диргемами",
-    "серебряные диргемы",
-    "серебряных диргемов"
-   ],
-   "correct": "серебряные диргемы",
-   "case": "Винительный (Accusative)",
-   "explain": "«серебряные диргемы» — the accusative marks the direct object of the verb.",
-   "id": "c241"
   },
   {
    "sentence": "___ дала Византии возможность покупать помощь воинственных народов восточной Европы, венгров, русских, печенегов, увеличивать число своих стратиотовпоселенцев.",
@@ -2937,7 +1789,7 @@
    ],
    "correct": "богатая казна",
    "case": "Именительный (Nominative)",
-   "explain": "«Богатая казна» — the subject of the sentence stands in the nominative.",
+   "explain": "«богатая казна» is the subject of «дала» — who or what does it — so nominative.",
    "id": "c242"
   },
   {
@@ -2945,28 +1797,14 @@
    "lemma": "народ",
    "options": [
     "воинственных народов",
-    "воинственным народам",
+    "воинственных народах",
     "воинственные народы",
-    "воинственных народах"
+    "воинственными народами"
    ],
    "correct": "воинственных народов",
    "case": "Родительный (Genitive)",
-   "explain": "«воинственных народов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«воинственных народов» depends on the noun «помощь» (whose? of what?) — genitive.",
    "id": "c243"
-  },
-  {
-   "sentence": "___ Аббасидов, арабы Брака, из воителей превратились в народ ремесленников, купцов, ученых.",
-   "lemma": "опора",
-   "options": [
-    "главной опорой",
-    "главная опора",
-    "главной опоры",
-    "главной опоре"
-   ],
-   "correct": "главная опора",
-   "case": "Именительный (Nominative)",
-   "explain": "«Главная опора» — the subject of the sentence stands in the nominative.",
-   "id": "c244"
   },
   {
    "sentence": "Не доверяя ___, халиф завел себе гвардию из турок, среднеазиатского кочевого племени.",
@@ -2979,22 +1817,8 @@
    ],
    "correct": "столичному населению",
    "case": "Дательный (Dative)",
-   "explain": "«столичному населению» — the dative marks the indirect object or recipient.",
+   "explain": "«доверяя» takes the dative (кому? чему?).",
    "id": "c245"
-  },
-  {
-   "sentence": "Не доверяя столичному населению, халиф завел себе гвардию из турок, среднеазиатского ___.",
-   "lemma": "племя",
-   "options": [
-    "кочевом племени",
-    "кочевым племенем",
-    "кочевого племени",
-    "кочевому племени"
-   ],
-   "correct": "кочевого племени",
-   "case": "Родительный (Genitive)",
-   "explain": "«кочевого племени» — the genitive here marks possession, absence, or quantity.",
-   "id": "c246"
   },
   {
    "sentence": "___ скоро получили такую силу в государстве, что халиф передал все управление главнокомандующему армии, под титулом эмир - а л ь - омр а (князя князей).",
@@ -3007,22 +1831,8 @@
    ],
    "correct": "турецкие солдаты",
    "case": "Именительный (Nominative)",
-   "explain": "«Турецкие солдаты» — the subject of the sentence stands in the nominative.",
+   "explain": "«турецкие солдаты» is the subject of «получили» — who or what does it — so nominative.",
    "id": "c247"
-  },
-  {
-   "sentence": "Турецкие наемники ^стоили несравненно дороже прежних арабских и персидских войск: халиф тратил на них два миллиона золотых — вдвое больше ___ поголовной подати со всего государства.",
-   "lemma": "поступление",
-   "options": [
-    "ежегодному поступлению",
-    "ежегодного поступления",
-    "ежегодном поступлении",
-    "ежегодным поступлением"
-   ],
-   "correct": "ежегодного поступления",
-   "case": "Родительный (Genitive)",
-   "explain": "«ежегодного поступления» — the genitive here marks possession, absence, or quantity.",
-   "id": "c248"
   },
   {
    "sentence": "___ сохранили лишь в молитвах имя главного багдадского халифа.",
@@ -3035,7 +1845,7 @@
    ],
    "correct": "новые правители",
    "case": "Именительный (Nominative)",
-   "explain": "«Новые правители» — the subject of the sentence stands in the nominative.",
+   "explain": "«новые правители» is the subject of «сохранили» — who or what does it — so nominative.",
    "id": "c249"
   },
   {
@@ -3049,7 +1859,7 @@
    ],
    "correct": "багдадского халифа",
    "case": "Родительный (Genitive)",
-   "explain": "«багдадского халифа» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«багдадского халифа» depends on the noun «имя» (whose? of what?) — genitive.",
    "id": "c250"
   },
   {
@@ -3063,7 +1873,7 @@
    ],
    "correct": "достаточной силы",
    "case": "Родительный (Genitive)",
-   "explain": "«достаточной силы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«достаточной силы» is the object of a negated verb («не имел») — genitive instead of the accusative.",
    "id": "c251"
   },
   {
@@ -3077,64 +1887,8 @@
    ],
    "correct": "византийского нападения",
    "case": "Родительный (Genitive)",
-   "explain": "«византийского нападения» — after the preposition «против», the genitive here marks possession, absence, or quantity.",
+   "explain": "«византийского нападения» — «против» always takes the genitive.",
    "id": "c252"
-  },
-  {
-   "sentence": "Оно началось при Никифор из рода Фок, ___ Каппадокии, сделавшемся императором благодаря браку с Феофано, матерью Василия и Константина, двух малолетних наследников македонской династии.",
-   "lemma": "землевладелец",
-   "options": [
-    "богатым землевладельцем",
-    "богатый землевладелец",
-    "богатого землевладельца",
-    "богатом землевладельце"
-   ],
-   "correct": "богатом землевладельце",
-   "case": "Предложный (Prepositional)",
-   "explain": "«богатом землевладельце» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c253"
-  },
-  {
-   "sentence": "Оно началось при Никифор из рода Фок, богатом землевладельце Каппадокии, сделавшемся императором благодаря браку с Феофано, матерью Василия и Константина, двух ___ македонской династии.",
-   "lemma": "наследник",
-   "options": [
-    "малолетние наследники",
-    "малолетними наследниками",
-    "малолетних наследниках",
-    "малолетних наследников"
-   ],
-   "correct": "малолетних наследников",
-   "case": "Родительный (Genitive)",
-   "explain": "«малолетних наследников» — the genitive here marks possession, absence, or quantity.",
-   "id": "c254"
-  },
-  {
-   "sentence": "Но вместо того, чтобы помогать византийцам, Святослав завладел сам восточной Болгарией и водворился в Пере я слав це (Преславе), ___ Симеона.",
-   "lemma": "столица",
-   "options": [
-    "бывшей столицы",
-    "бывшая столица",
-    "бывшей столицей",
-    "бывшей столице"
-   ],
-   "correct": "бывшей столице",
-   "case": "Предложный (Prepositional)",
-   "explain": "«бывшей столице» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c256"
-  },
-  {
-   "sentence": "К счастию для византийцев, русского князя отвлекли с Дуная грозные события, происходившие на его родине: ___ печенегов осадили Киев, где заперлась Ольга с малолетними детьми Святослава.",
-   "lemma": "сила",
-   "options": [
-    "большими силами",
-    "больших сил",
-    "большие силы",
-    "больших силах"
-   ],
-   "correct": "большие силы",
-   "case": "Именительный (Nominative)",
-   "explain": "«большие силы» — the subject of the sentence stands in the nominative.",
-   "id": "c257"
   },
   {
    "sentence": "К счастию для византийцев, русского князя отвлекли с Дуная грозные события, происходившие на его родине: большие силы печенегов осадили Киев, где заперлась Ольга с ___ Святослава.",
@@ -3147,7 +1901,7 @@
    ],
    "correct": "малолетними детьми",
    "case": "Творительный (Instrumental)",
-   "explain": "«малолетними детьми» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«малолетними детьми» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c258"
   },
   {
@@ -3161,22 +1915,8 @@
    ],
    "correct": "свободного пропуска",
    "case": "Родительный (Genitive)",
-   "explain": "«свободного пропуска» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«свободного пропуска» depends on the noun «условием» (whose? of what?) — genitive.",
    "id": "c260"
-  },
-  {
-   "sentence": "Наконец, мучимый голодом, Святослав должен был сдаться под условием свободного пропуска домой; русские отказались не только от Болгарии, но и от притязаний на Корсунь; Святослав обещал быть ___ Византии.",
-   "lemma": "союзник",
-   "options": [
-    "верного союзника",
-    "верному союзнику",
-    "верным союзником",
-    "верном союзнике"
-   ],
-   "correct": "верным союзником",
-   "case": "Творительный (Instrumental)",
-   "explain": "«верным союзником» — the instrumental marks the means, company, or complement.",
-   "id": "c261"
   },
   {
    "sentence": "При заключении мира, ___ имел свидание с императором.",
@@ -3189,7 +1929,7 @@
    ],
    "correct": "русский князь",
    "case": "Именительный (Nominative)",
-   "explain": "«русский князь» — the subject of the sentence stands in the nominative.",
+   "explain": "«русский князь» is the subject of «имел» — who or what does it — so nominative.",
    "id": "c262"
   },
   {
@@ -3203,36 +1943,8 @@
    ],
    "correct": "разодетой свиты",
    "case": "Родительный (Genitive)",
-   "explain": "«разодетой свиты» — after the preposition «среди», the genitive here marks possession, absence, or quantity.",
+   "explain": "«разодетой свиты» — «среди» always takes the genitive.",
    "id": "c264"
-  },
-  {
-   "sentence": "Обремененный ___, Святослав двинулся на судах к устью Днепра.",
-   "lemma": "добыча",
-   "options": [
-    "богатой добычей",
-    "богатой добыче",
-    "богатой добычи",
-    "богатая добыча"
-   ],
-   "correct": "богатой добычей",
-   "case": "Творительный (Instrumental)",
-   "explain": "«богатой добычей» — the instrumental marks the means, company, or complement.",
-   "id": "c265"
-  },
-  {
-   "sentence": "Владимир, опасаясь той же участи, вызвал из-за моря варягов, собрал славян (новгородцев), криви чей и чудь (___) и двинулся с ними на юг; по дороге к Киеву он захватил Полоцк на Зап.",
-   "lemma": "племя",
-   "options": [
-    "финском племени",
-    "финского племени",
-    "финским племенем",
-    "финское племя"
-   ],
-   "correct": "финское племя",
-   "case": "Именительный (Nominative)",
-   "explain": "«финское племя» — the subject of the sentence stands in the nominative.",
-   "id": "c266"
   },
   {
    "sentence": "Двине, убил ___ Рогволода и взял себе насильно в жены его дочь Рогнеду, обещанную Ярополку.",
@@ -3245,7 +1957,7 @@
    ],
    "correct": "тамошнего князя",
    "case": "Винительный (Accusative)",
-   "explain": "«тамошнего князя» — the accusative marks the direct object of the verb.",
+   "explain": "«тамошнего князя» is the direct object of «убил» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c267"
   },
   {
@@ -3259,92 +1971,22 @@
    ],
    "correct": "камских болгар",
    "case": "Винительный (Accusative)",
-   "explain": "«камских болгар» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«камских болгар» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c268"
-  },
-  {
-   "sentence": "В столице он поставил на холме вне двора теремного, т. е. княжеского, ___ Перуна с серебряной головой и золотыми усами, а также идолы Хора, Дажьбога и Стрибога.",
-   "lemma": "изображение",
-   "options": [
-    "деревянному изображению",
-    "деревянное изображение",
-    "деревянным изображением",
-    "деревянного изображения"
-   ],
-   "correct": "деревянное изображение",
-   "case": "Именительный (Nominative)",
-   "explain": "«деревянное изображение» — the subject of the sentence stands in the nominative.",
-   "id": "c269"
-  },
-  {
-   "sentence": "В столице он поставил на холме вне двора теремного, т. е. княжеского, деревянное изображение Перуна с серебряной головой и ___, а также идолы Хора, Дажьбога и Стрибога.",
-   "lemma": "ус",
-   "options": [
-    "золотых усов",
-    "золотыми усами",
-    "золотые усы",
-    "золотых усах"
-   ],
-   "correct": "золотыми усами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«золотыми усами» — the instrumental marks the means, company, or complement.",
-   "id": "c271"
-  },
-  {
-   "sentence": "В отдаленный Новгород он послал своего дядю Добрыню вводить поклонение ___: кумир Перуна поставили тоже на холме над р.",
-   "lemma": "бог",
-   "options": [
-    "киевском боге",
-    "киевским богом",
-    "киевскому богу",
-    "киевский бог"
-   ],
-   "correct": "киевскому богу",
-   "case": "Дательный (Dative)",
-   "explain": "«киевскому богу» — the dative marks the indirect object or recipient.",
-   "id": "c272"
-  },
-  {
-   "sentence": "Уже давно за преобладание в Киеве спорили представители трех вероисповеданий: ___, православные византийцы и мусульмане халифата.",
-   "lemma": "католик",
-   "options": [
-    "германские католики",
-    "германских католиках",
-    "германских католиков",
-    "германскими католиками"
-   ],
-   "correct": "германские католики",
-   "case": "Именительный (Nominative)",
-   "explain": "«германские католики» — the subject of the sentence stands in the nominative.",
-   "id": "c273"
   },
   {
    "sentence": "Всего меньше успеха имели мусульмане благодаря отдаленности халифата и вследствие разрушения Святославом ___, которое служило посредником в распространении ислама в Европе.",
    "lemma": "царство",
    "options": [
-    "хазарским царством",
+    "хазарское царство",
     "хазарскому царству",
-    "хазарском царстве",
-    "хазарского царства"
+    "хазарского царства",
+    "хазарском царстве"
    ],
    "correct": "хазарского царства",
    "case": "Родительный (Genitive)",
-   "explain": "«хазарского царства» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«хазарского царства» depends on the noun «разрушения» (whose? of what?) — genitive.",
    "id": "c274"
-  },
-  {
-   "sentence": "Своих проповедников они стали направлять в Киев раньше всех ___, еще приФотии.",
-   "lemma": "исповедание",
-   "options": [
-    "другие исповедания",
-    "другими исповеданиями",
-    "других исповеданий",
-    "другим исповеданиям"
-   ],
-   "correct": "других исповеданий",
-   "case": "Родительный (Genitive)",
-   "explain": "«других исповеданий» — the genitive here marks possession, absence, or quantity.",
-   "id": "c275"
   },
   {
    "sentence": "Илии в Киеве, построенной ___.",
@@ -3357,7 +1999,7 @@
    ],
    "correct": "греческими архитекторами",
    "case": "Творительный (Instrumental)",
-   "explain": "«греческими архитекторами» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «построенной», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c276"
   },
   {
@@ -3371,50 +2013,8 @@
    ],
    "correct": "тесному союзу",
    "case": "Дательный (Dative)",
-   "explain": "«тесному союзу» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«тесному союзу» — «к» always takes the dative.",
    "id": "c277"
-  },
-  {
-   "sentence": "После внезапной смерти Цимисхия, отравленного в самом ___, власть перешла в руки багрянородных императоров македонской династии, Василия и Константина.",
-   "lemma": "возраст",
-   "options": [
-    "цветущий возраст",
-    "цветущего возраста",
-    "цветущему возрасту",
-    "цветущем возрасте"
-   ],
-   "correct": "цветущем возрасте",
-   "case": "Предложный (Prepositional)",
-   "explain": "«цветущем возрасте» — after the preposition «в», for location or topic.",
-   "id": "c278"
-  },
-  {
-   "sentence": "После внезапной смерти Цимисхия, отравленного в самом цветущем возрасте, власть перешла в руки ___ македонской династии, Василия и Константина.",
-   "lemma": "император",
-   "options": [
-    "багрянородных императорах",
-    "багрянородными императорами",
-    "багрянородных императоров",
-    "багрянородным императорам"
-   ],
-   "correct": "багрянородных императоров",
-   "case": "Родительный (Genitive)",
-   "explain": "«багрянородных императоров» — the genitive here marks possession, absence, or quantity.",
-   "id": "c279"
-  },
-  {
-   "sentence": "Самовластию императора вовсе не намерены были подчиниться в ла стели,т.е. крупные ___, располагавшие множеством слуг и крепостных, точно князья самостоятельные в своих громадных имениях.",
-   "lemma": "землевладелец",
-   "options": [
-    "малоазийских землевладельцах",
-    "малоазийских землевладельцев",
-    "малоазийские землевладельцы",
-    "малоазийскими землевладельцами"
-   ],
-   "correct": "малоазийские землевладельцы",
-   "case": "Именительный (Nominative)",
-   "explain": "«малоазийские землевладельцы» — the subject of the sentence stands in the nominative.",
-   "id": "c281"
   },
   {
    "sentence": "Самовластию императора вовсе не намерены были подчиниться в ла стели,т.е. крупные малоазийские землевладельцы, располагавшие множеством слуг и крепостных, точно князья самостоятельные в своих ___.",
@@ -3427,7 +2027,7 @@
    ],
    "correct": "громадных имениях",
    "case": "Предложный (Prepositional)",
-   "explain": "«громадных имениях» — after the preposition «в», for location or topic.",
+   "explain": "«громадных имениях» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c282"
   },
   {
@@ -3441,7 +2041,7 @@
    ],
    "correct": "византийские священники",
    "case": "Именительный (Nominative)",
-   "explain": "«византийские священники» — the subject of the sentence stands in the nominative.",
+   "explain": "«византийские священники» is the subject of «приехали» — who or what does it — so nominative.",
    "id": "c284"
   },
   {
@@ -3455,7 +2055,7 @@
    ],
    "correct": "языческих богов",
    "case": "Родительный (Genitive)",
-   "explain": "«языческих богов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«языческих богов» depends on the noun «водворении» (whose? of what?) — genitive.",
    "id": "c285"
   },
   {
@@ -3469,7 +2069,7 @@
    ],
    "correct": "языческих богов",
    "case": "Винительный (Accusative)",
-   "explain": "«языческих богов» — the accusative marks the direct object of the verb.",
+   "explain": "«языческих богов» is the direct object of «опрокинуть» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c287"
   },
   {
@@ -3483,7 +2083,7 @@
    ],
    "correct": "новая вера",
    "case": "Именительный (Nominative)",
-   "explain": "«новая вера» — the subject of the sentence stands in the nominative.",
+   "explain": "«новая вера» is the subject of «утвердилась» — who or what does it — so nominative.",
    "id": "c288"
   },
   {
@@ -3497,22 +2097,8 @@
    ],
    "correct": "княжеской воли",
    "case": "Родительный (Genitive)",
-   "explain": "«княжеской воли» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«княжеской воли» depends on the noun «Исполнители» (whose? of what?) — genitive.",
    "id": "c289"
-  },
-  {
-   "sentence": "Исполнители княжеской воли, особенно ты с я цкий (___) Путята, сурово расправлялись с мятежниками, так что у новгородцев сложилась поговорка: «Добрыня крестил огнем, а Путята мечем.»",
-   "lemma": "начальник",
-   "options": [
-    "военный начальник",
-    "военным начальником",
-    "военного начальника",
-    "военном начальнике"
-   ],
-   "correct": "военный начальник",
-   "case": "Именительный (Nominative)",
-   "explain": "«военный начальник» — the subject of the sentence stands in the nominative.",
-   "id": "c290"
   },
   {
    "sentence": "Лишь укрепившись в восточной части империи, мог Василий приблизиться к главной цели своей жизни — уничтожению ___.",
@@ -3525,7 +2111,7 @@
    ],
    "correct": "болгарского царства",
    "case": "Родительный (Genitive)",
-   "explain": "«болгарского царства» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«болгарского царства» depends on the noun «уничтожению» (whose? of what?) — genitive.",
    "id": "c291"
   },
   {
@@ -3539,7 +2125,7 @@
    ],
    "correct": "тридцатилетней борьбе",
    "case": "Предложный (Prepositional)",
-   "explain": "«тридцатилетней борьбе» — after the preposition «в», for location or topic.",
+   "explain": "«тридцатилетней борьбе» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c292"
   },
   {
@@ -3553,36 +2139,8 @@
    ],
    "correct": "решительной битве",
    "case": "Предложный (Prepositional)",
-   "explain": "«решительной битве» — after the preposition «в», for location or topic.",
+   "explain": "«решительной битве» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c293"
-  },
-  {
-   "sentence": "Свою победу он завершил неслыханной жестокостью, приказав ослепить 15.000 ___, при чем на каждую сотню оставил по одному одноглазому, чтобы привести слепцов домой (отсюда прозвание Василия-Болгаробойца).",
-   "lemma": "болгарин",
-   "options": [
-    "пленных болгарах",
-    "пленных болгар",
-    "пленным болгарам",
-    "пленные болгары"
-   ],
-   "correct": "пленных болгар",
-   "case": "Родительный (Genitive)",
-   "explain": "«пленных болгар» — the genitive here marks possession, absence, or quantity.",
-   "id": "c294"
-  },
-  {
-   "sentence": "Болгарское царство, в течение 300 лет угрожавшее Византии, перестало существовать, ___ сделались фемами империи под управлением византийских наместников.",
-   "lemma": "область",
-   "options": [
-    "отдельных областях",
-    "отдельными областями",
-    "отдельных областей",
-    "отдельные области"
-   ],
-   "correct": "отдельные области",
-   "case": "Именительный (Nominative)",
-   "explain": "«отдельные области» — the subject of the sentence stands in the nominative.",
-   "id": "c295"
   },
   {
    "sentence": "Болгарское царство, в течение 300 лет угрожавшее Византии, перестало существовать, отдельные области сделались фемами империи под управлением ___.",
@@ -3595,22 +2153,8 @@
    ],
    "correct": "византийских наместников",
    "case": "Родительный (Genitive)",
-   "explain": "«византийских наместников» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«византийских наместников» depends on the noun «управлением» (whose? of what?) — genitive.",
    "id": "c296"
-  },
-  {
-   "sentence": "Василий II (976—1025) и Владимир (980—1015) были двумя крупнейшими властителями своего времени, Византия и Киевская Русь двумя самыми ___ мира.",
-   "lemma": "государство",
-   "options": [
-    "сильных государствах",
-    "сильным государствам",
-    "сильные государства",
-    "сильными государствами"
-   ],
-   "correct": "сильными государствами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«сильными государствами» — the instrumental marks the means, company, or complement.",
-   "id": "c297"
   },
   {
    "sentence": "После ___ Никифора, Цимисхия и Василия II, византийские владения простирались от морей, омывающих южную Италию, до Кавказских гор и от Дуная до Тигра и Аравийской пустыни.",
@@ -3623,7 +2167,7 @@
    ],
    "correct": "удачных войн",
    "case": "Родительный (Genitive)",
-   "explain": "«удачных войн» — after the preposition «после», the genitive here marks possession, absence, or quantity.",
+   "explain": "«удачных войн» — «после» always takes the genitive.",
    "id": "c298"
   },
   {
@@ -3637,7 +2181,7 @@
    ],
    "correct": "византийские владения",
    "case": "Именительный (Nominative)",
-   "explain": "«византийские владения» — the subject of the sentence stands in the nominative.",
+   "explain": "«византийские владения» is the subject of «простирались» — who or what does it — so nominative.",
    "id": "c299"
   },
   {
@@ -3651,21 +2195,21 @@
    ],
    "correct": "кавказских гор",
    "case": "Родительный (Genitive)",
-   "explain": "«Кавказских гор» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«кавказских гор» — «до» always takes the genitive.",
    "id": "c300"
   },
   {
    "sentence": "В просвещенных ___, которые принесли с собою византийские книги, законы и обычаи, Владимир приобрел новую опору своей власти.",
    "lemma": "священник",
    "options": [
-    "греческим священникам",
-    "греческих священников",
+    "греческими священниками",
     "греческих священниках",
-    "греческими священниками"
+    "греческим священникам",
+    "греческие священники"
    ],
    "correct": "греческих священниках",
    "case": "Предложный (Prepositional)",
-   "explain": "«греческих священниках» — after the preposition «в», for location or topic.",
+   "explain": "«греческих священниках» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c301"
   },
   {
@@ -3679,22 +2223,8 @@
    ],
    "correct": "византийские книги",
    "case": "Винительный (Accusative)",
-   "explain": "«византийские книги» — the accusative marks the direct object of the verb.",
+   "explain": "«византийские книги» is the direct object of «принесли» (кого? что?) — accusative.",
    "id": "c302"
-  },
-  {
-   "sentence": "Они настояли на том, чтобы князь казнил разбойников и убийц, а не давал бы ___ и преступникам отделываться от наказания в ирой, т. е. уплатой денежного выкупа.",
-   "lemma": "человек",
-   "options": [
-    "лихих людях",
-    "лихих людей",
-    "лихими людьми",
-    "лихим людям"
-   ],
-   "correct": "лихим людям",
-   "case": "Дательный (Dative)",
-   "explain": "«лихим людям» — the dative marks the indirect object or recipient.",
-   "id": "c303"
   },
   {
    "sentence": "Они настояли на том, чтобы князь казнил разбойников и убийц, а не давал бы лихим людям и преступникам отделываться от наказания в ирой, т. е. уплатой ___.",
@@ -3707,7 +2237,7 @@
    ],
    "correct": "денежного выкупа",
    "case": "Родительный (Genitive)",
-   "explain": "«денежного выкупа» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«денежного выкупа» depends on the noun «уплатой» (whose? of what?) — genitive.",
    "id": "c304"
   },
   {
@@ -3721,21 +2251,21 @@
    ],
    "correct": "киевская держава",
    "case": "Именительный (Nominative)",
-   "explain": "«Киевская держава» — the subject of the sentence stands in the nominative.",
+   "explain": "«киевская держава» is the subject of «привлекала» — who or what does it — so nominative.",
    "id": "c305"
   },
   {
    "sentence": "Киевская держава привлекала большое внимание ___, германцев, чехов и поляков.",
    "lemma": "сосед",
    "options": [
+    "западные соседи",
     "западных соседей",
-    "западных соседях",
-    "западными соседями",
-    "западным соседям"
+    "западным соседям",
+    "западных соседях"
    ],
    "correct": "западных соседей",
    "case": "Родительный (Genitive)",
-   "explain": "«западных соседей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«западных соседей» depends on the noun «внимание» (whose? of what?) — genitive.",
    "id": "c306"
   },
   {
@@ -3749,7 +2279,7 @@
    ],
    "correct": "товарищеском общении",
    "case": "Предложный (Prepositional)",
-   "explain": "«товарищеском общении» — after the preposition «в», for location or topic.",
+   "explain": "«товарищеском общении» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c307"
   },
   {
@@ -3763,7 +2293,7 @@
    ],
    "correct": "киевского князя",
    "case": "Родительный (Genitive)",
-   "explain": "«киевского князя» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«киевского князя» depends on the noun «властью» (whose? of what?) — genitive.",
    "id": "c308"
   },
   {
@@ -3777,7 +2307,7 @@
    ],
    "correct": "другие князья",
    "case": "Именительный (Nominative)",
-   "explain": "«другие князья» — the subject of the sentence stands in the nominative.",
+   "explain": "«другие князья» is the subject of «исчезли» — who or what does it — so nominative.",
    "id": "c309"
   },
   {
@@ -3791,7 +2321,7 @@
    ],
    "correct": "старший сын",
    "case": "Именительный (Nominative)",
-   "explain": "«старший сын» — the subject of the sentence stands in the nominative.",
+   "explain": "«старший сын» is the subject of «хотел» — who or what does it — so nominative.",
    "id": "c310"
   },
   {
@@ -3805,7 +2335,7 @@
    ],
    "correct": "святым мученикам",
    "case": "Дательный (Dative)",
-   "explain": "«святым мученикам» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«святым мученикам» — «к» always takes the dative.",
    "id": "c311"
   },
   {
@@ -3819,7 +2349,7 @@
    ],
    "correct": "новгородский князь",
    "case": "Именительный (Nominative)",
-   "explain": "«новгородский князь» — the subject of the sentence stands in the nominative.",
+   "explain": "«новгородский князь» is the subject of «собрался» — who or what does it — so nominative.",
    "id": "c314"
   },
   {
@@ -3833,7 +2363,7 @@
    ],
    "correct": "опасного соперника",
    "case": "Винительный (Accusative)",
-   "explain": "«опасного соперника» — the accusative marks the direct object of the verb.",
+   "explain": "«опасного соперника» is the direct object of «встретил» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c315"
   },
   {
@@ -3847,36 +2377,8 @@
    ],
    "correct": "другого брата",
    "case": "Родительный (Genitive)",
-   "explain": "«другого брата» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«другого брата» depends on the noun «лице» (whose? of what?) — genitive.",
    "id": "c316"
-  },
-  {
-   "sentence": "Мстислав утвердился в стране северян, по правую сторону Днепра, и старался захватить также ___ с Киевом.",
-   "lemma": "берег",
-   "options": [
-    "левым берегом",
-    "левого берега",
-    "левом береге",
-    "левый берег"
-   ],
-   "correct": "левый берег",
-   "case": "Винительный (Accusative)",
-   "explain": "«левый берег» — the accusative marks the direct object of the verb.",
-   "id": "c317"
-  },
-  {
-   "sentence": "Своим увлечением ___ Ярослав напоминает Симеона болгарского.",
-   "lemma": "культура",
-   "options": [
-    "византийской культуры",
-    "византийская культура",
-    "византийской культуре",
-    "византийской культурой"
-   ],
-   "correct": "византийской культурой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«византийской культурой» — the instrumental marks the means, company, or complement.",
-   "id": "c318"
   },
   {
    "sentence": "Софии, и Золотые ворота в главной ___.",
@@ -3889,64 +2391,22 @@
    ],
    "correct": "крепостной стене",
    "case": "Предложный (Prepositional)",
-   "explain": "«крепостной стене» — after the preposition «в», for location or topic.",
+   "explain": "«крепостной стене» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c319"
-  },
-  {
-   "sentence": "В 1043 г. под предлогом мщения за убитого в Константинополе ___, Ярослав отправил к берегам Византии большой флот, предводительствуемый его старшим сыном Владимиром и воеводой Вышатой.",
-   "lemma": "купец",
-   "options": [
-    "русском купце",
-    "русскому купцу",
-    "русского купца",
-    "русским купцом"
-   ],
-   "correct": "русского купца",
-   "case": "Родительный (Genitive)",
-   "explain": "«русского купца» — the genitive here marks possession, absence, or quantity.",
-   "id": "c320"
   },
   {
    "sentence": "В 1043 г. под предлогом мщения за убитого в Константинополе русского купца, Ярослав отправил к берегам Византии ___, предводительствуемый его старшим сыном Владимиром и воеводой Вышатой.",
    "lemma": "флот",
    "options": [
-    "большом флоте",
-    "большого флота",
     "большой флот",
-    "большим флотом"
+    "большим флотом",
+    "большому флоту",
+    "большом флоте"
    ],
    "correct": "большой флот",
    "case": "Винительный (Accusative)",
-   "explain": "«большой флот» — the accusative marks the direct object of the verb.",
+   "explain": "«большой флот» is the direct object of «отправил» (кого? что?) — accusative.",
    "id": "c321"
-  },
-  {
-   "sentence": "В 1043 г. под предлогом мщения за убитого в Константинополе русского купца, Ярослав отправил к берегам Византии большой флот, предводительствуемый его ___ Владимиром и воеводой Вышатой.",
-   "lemma": "сын",
-   "options": [
-    "старшего сына",
-    "старшим сыном",
-    "старший сын",
-    "старшем сыне"
-   ],
-   "correct": "старшим сыном",
-   "case": "Творительный (Instrumental)",
-   "explain": "«старшим сыном» — after the preposition «за», the instrumental marks the means, company, or complement.",
-   "id": "c322"
-  },
-  {
-   "sentence": "В русский язык, не применявшийся до тех пор в литературе, он старается внести ___ и сравнения из болгарских церковных книг, и речь его вследствие этого принимает смешанный русско-болгарский характер.",
-   "lemma": "оборот",
-   "options": [
-    "поэтические обороты",
-    "поэтическими оборотами",
-    "поэтических оборотов",
-    "поэтическим оборотам"
-   ],
-   "correct": "поэтические обороты",
-   "case": "Винительный (Accusative)",
-   "explain": "«поэтические обороты» — the accusative marks the direct object of the verb.",
-   "id": "c324"
   },
   {
    "sentence": "В русский язык, не применявшийся до тех пор в литературе, он старается внести поэтические обороты и сравнения из болгарских ___, и речь его вследствие этого принимает смешанный русско-болгарский характер.",
@@ -3959,36 +2419,8 @@
    ],
    "correct": "церковных книг",
    "case": "Родительный (Genitive)",
-   "explain": "«церковных книг» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«церковных книг» — «из» always takes the genitive.",
    "id": "c325"
-  },
-  {
-   "sentence": "Иларион исполнен сознания величия своего народа и своей страны: ___ не какая-нибудь худая и неизвестная, а напротив, она «вѣдома и слышим есть всѣми коньци земля».",
-   "lemma": "земля",
-   "options": [
-    "русская земля",
-    "русской землёй",
-    "русской земли",
-    "русской земле"
-   ],
-   "correct": "русская земля",
-   "case": "Именительный (Nominative)",
-   "explain": "«русская земля» — the subject of the sentence stands in the nominative.",
-   "id": "c326"
-  },
-  {
-   "sentence": "Современником Ярослава был еще другой выдающийся ___, составивший первую летопись.",
-   "lemma": "писатель",
-   "options": [
-    "русским писателем",
-    "русскому писателю",
-    "русском писателе",
-    "русский писатель"
-   ],
-   "correct": "русский писатель",
-   "case": "Именительный (Nominative)",
-   "explain": "«русский писатель» — the subject of the sentence stands in the nominative.",
-   "id": "c327"
   },
   {
    "sentence": "Обычай составлять запись ___ был принесен из Византии греческим духовенством, и появилась впервые летопись при митрополичьей церкви св.",
@@ -4001,7 +2433,7 @@
    ],
    "correct": "замечательных событий",
    "case": "Родительный (Genitive)",
-   "explain": "«замечательных событий» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«замечательных событий» depends on the noun «запись» (whose? of what?) — genitive.",
    "id": "c328"
   },
   {
@@ -4015,7 +2447,7 @@
    ],
    "correct": "греческим духовенством",
    "case": "Творительный (Instrumental)",
-   "explain": "«греческим духовенством» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «принесен», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c329"
   },
   {
@@ -4029,50 +2461,8 @@
    ],
    "correct": "русского автора",
    "case": "Родительный (Genitive)",
-   "explain": "«русского автора» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«русского автора» — «у» always takes the genitive.",
    "id": "c330"
-  },
-  {
-   "sentence": "Рассказ заканчивается ___ Ярослава и похвалой книжной науке.",
-   "lemma": "прославление",
-   "options": [
-    "ораторского прославления",
-    "ораторскому прославлению",
-    "ораторским прославлением",
-    "ораторском прославлении"
-   ],
-   "correct": "ораторским прославлением",
-   "case": "Творительный (Instrumental)",
-   "explain": "«ораторским прославлением» — the instrumental marks the means, company, or complement.",
-   "id": "c333"
-  },
-  {
-   "sentence": "Сочинения Илариона и летописца отражают понятия нар очи ты х мужей, т. е. высших классов общества, ___, дружинников и богатых горожан, в среду которых только и могло проникнуть в то время просвещение.",
-   "lemma": "семья",
-   "options": [
-    "княжеской семьёй",
-    "княжеской семьи",
-    "княжеской семье",
-    "княжеская семья"
-   ],
-   "correct": "княжеской семьи",
-   "case": "Родительный (Genitive)",
-   "explain": "«княжеской семьи» — the genitive here marks possession, absence, or quantity.",
-   "id": "c334"
-  },
-  {
-   "sentence": "Сочинения Илариона и летописца отражают понятия нар очи ты х мужей, т. е. высших классов общества, княжеской семьи, дружинников и ___, в среду которых только и могло проникнуть в то время просвещение.",
-   "lemma": "горожанин",
-   "options": [
-    "богатых горожанах",
-    "богатым горожанам",
-    "богатых горожан",
-    "богатые горожане"
-   ],
-   "correct": "богатых горожан",
-   "case": "Родительный (Genitive)",
-   "explain": "«богатых горожан» — the genitive here marks possession, absence, or quantity.",
-   "id": "c335"
   },
   {
    "sentence": "___ показали в этой области блестящие способности, обнаружили силу воображения, поэтический дар, нашли красоту языка.",
@@ -4085,64 +2475,8 @@
    ],
    "correct": "русские люди",
    "case": "Именительный (Nominative)",
-   "explain": "«Русские люди» — the subject of the sentence stands in the nominative.",
+   "explain": "«русские люди» is the subject of «показали» — who or what does it — so nominative.",
    "id": "c336"
-  },
-  {
-   "sentence": "Русские люди показали в этой области ___, обнаружили силу воображения, поэтический дар, нашли красоту языка.",
-   "lemma": "способность",
-   "options": [
-    "блестящих способностях",
-    "блестящих способностей",
-    "блестящими способностями",
-    "блестящие способности"
-   ],
-   "correct": "блестящие способности",
-   "case": "Именительный (Nominative)",
-   "explain": "«блестящие способности» — the subject of the sentence stands in the nominative.",
-   "id": "c337"
-  },
-  {
-   "sentence": "Русские люди показали в этой области блестящие способности, обнаружили силу воображения, ___, нашли красоту языка.",
-   "lemma": "дар",
-   "options": [
-    "поэтическим даром",
-    "поэтического дара",
-    "поэтическому дару",
-    "поэтический дар"
-   ],
-   "correct": "поэтический дар",
-   "case": "Винительный (Accusative)",
-   "explain": "«поэтический дар» — the accusative marks the direct object of the verb.",
-   "id": "c338"
-  },
-  {
-   "sentence": "Забравшись в середину ___, венгры сделались ничем Божиим для западной Европы, подобно своим предшественникам, гуннам.",
-   "lemma": "страна",
-   "options": [
-    "земледельческих странах",
-    "земледельческими странами",
-    "земледельческие страны",
-    "земледельческих стран"
-   ],
-   "correct": "земледельческих стран",
-   "case": "Родительный (Genitive)",
-   "explain": "«земледельческих стран» — the genitive here marks possession, absence, or quantity.",
-   "id": "c339"
-  },
-  {
-   "sentence": "В Германии каждое из племен — саксы, франки, баварцы =— имея во главе своего ___, оборонялось за себя, старалось откупиться от венгерского грабежа данью, не заботясь вовсе об участи соседей.",
-   "lemma": "герцог",
-   "options": [
-    "наследственного герцога",
-    "наследственном герцоге",
-    "наследственному герцогу",
-    "наследственным герцогом"
-   ],
-   "correct": "наследственного герцога",
-   "case": "Родительный (Genitive)",
-   "explain": "«наследственного герцога» — the genitive here marks possession, absence, or quantity.",
-   "id": "c340"
   },
   {
    "sentence": "В Германии каждое из племен — саксы, франки, баварцы =— имея во главе своего наследственного герцога, оборонялось за себя, старалось откупиться от ___ данью, не заботясь вовсе об участи соседей.",
@@ -4155,7 +2489,7 @@
    ],
    "correct": "венгерского грабежа",
    "case": "Родительный (Genitive)",
-   "explain": "«венгерского грабежа» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«венгерского грабежа» — «от» always takes the genitive.",
    "id": "c341"
   },
   {
@@ -4169,7 +2503,7 @@
    ],
    "correct": "другими племенами",
    "case": "Творительный (Instrumental)",
-   "explain": "«другими племенами» — after the preposition «над», the instrumental marks the means, company, or complement.",
+   "explain": "«другими племенами» — «над» always takes the instrumental.",
    "id": "c342"
   },
   {
@@ -4183,7 +2517,7 @@
    ],
    "correct": "великий успех",
    "case": "Именительный (Nominative)",
-   "explain": "«великий успех» — the subject of the sentence stands in the nominative.",
+   "explain": "«великий успех» is the subject of «закрепил» — who or what does it — so nominative.",
    "id": "c343"
   },
   {
@@ -4197,7 +2531,7 @@
    ],
    "correct": "местных властителей",
    "case": "Винительный (Accusative)",
-   "explain": "«местных властителей» — the accusative marks the direct object of the verb.",
+   "explain": "«местных властителей» is the direct object of «заменил» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c344"
   },
   {
@@ -4211,77 +2545,21 @@
    ],
    "correct": "испанского халифа",
    "case": "Родительный (Genitive)",
-   "explain": "«испанского халифа» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«испанского халифа» depends on the noun «взгляд» (whose? of what?) — genitive.",
    "id": "c345"
-  },
-  {
-   "sentence": "На взгляд испанского халифа это была не очень ___: по мнению араба, король должен был один удержать всю власть, а не доверять слишком много магнатам, хотя бы это были его близкие родственники.",
-   "lemma": "мера",
-   "options": [
-    "разумной меры",
-    "разумная мера",
-    "разумной мерой",
-    "разумной мере"
-   ],
-   "correct": "разумная мера",
-   "case": "Именительный (Nominative)",
-   "explain": "«разумная мера» — the subject of the sentence stands in the nominative.",
-   "id": "c346"
-  },
-  {
-   "sentence": "На взгляд испанского халифа это была не очень разумная мера: по мнению араба, король должен был один удержать всю власть, а не доверять слишком много магнатам, хотя бы это были его ___.",
-   "lemma": "родственник",
-   "options": [
-    "близкие родственники",
-    "близких родственниках",
-    "близким родственникам",
-    "близкими родственниками"
-   ],
-   "correct": "близкие родственники",
-   "case": "Именительный (Nominative)",
-   "explain": "«близкие родственники» — the subject of the sentence stands in the nominative.",
-   "id": "c347"
-  },
-  {
-   "sentence": "Оттон этим не стеснялся и сам распределял ___.",
-   "lemma": "должность",
-   "options": [
-    "церковных должностях",
-    "церковными должностями",
-    "церковные должности",
-    "церковных должностей"
-   ],
-   "correct": "церковные должности",
-   "case": "Винительный (Accusative)",
-   "explain": "«церковные должности» — the accusative marks the direct object of the verb.",
-   "id": "c349"
-  },
-  {
-   "sentence": "Генрих Птицелов и Оттон I разделяли ___ тогдашних германцев.",
-   "lemma": "понятие",
-   "options": [
-    "варварские понятия",
-    "варварскими понятиями",
-    "варварских понятиях",
-    "варварским понятиям"
-   ],
-   "correct": "варварские понятия",
-   "case": "Винительный (Accusative)",
-   "explain": "«варварские понятия» — the accusative marks the direct object of the verb.",
-   "id": "c350"
   },
   {
    "sentence": "Генрих Птицелов и Оттон I разделяли варварские понятия ___.",
    "lemma": "германец",
    "options": [
-    "тогдашних германцах",
-    "тогдашних германцев",
     "тогдашним германцам",
-    "тогдашними германцами"
+    "тогдашних германцев",
+    "тогдашние германцы",
+    "тогдашних германцах"
    ],
    "correct": "тогдашних германцев",
    "case": "Родительный (Genitive)",
-   "explain": "«тогдашних германцев» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«тогдашних германцев» depends on the noun «понятия» (whose? of what?) — genitive.",
    "id": "c351"
   },
   {
@@ -4295,22 +2573,8 @@
    ],
    "correct": "самих клириков",
    "case": "Родительный (Genitive)",
-   "explain": "«самих клириков» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«самих клириков» depends on the noun «нравы» (whose? of what?) — genitive.",
    "id": "c352"
-  },
-  {
-   "sentence": "Несмотря на этот ___ поединка, король приказал обезглавить Герона; архиепископ захватил труп его и лишь за большой выкуп отдал голову казненного его дочери.",
-   "lemma": "исход",
-   "options": [
-    "неожиданного исхода",
-    "неожиданном исходе",
-    "неожиданный исход",
-    "неожиданным исходом"
-   ],
-   "correct": "неожиданный исход",
-   "case": "Винительный (Accusative)",
-   "explain": "«неожиданный исход» — the accusative marks the direct object of the verb.",
-   "id": "c353"
   },
   {
    "sentence": "Несмотря на этот неожиданный исход поединка, король приказал обезглавить Герона; архиепископ захватил труп его и лишь за ___ отдал голову казненного его дочери.",
@@ -4323,63 +2587,21 @@
    ],
    "correct": "большой выкуп",
    "case": "Винительный (Accusative)",
-   "explain": "«большой выкуп» — after the preposition «за», the accusative marks the direct object of the verb.",
+   "explain": "«большой выкуп» — «за» takes the accusative here (куда? за что? за кого?) — the instrumental would mean position behind or at (где? за чем?).",
    "id": "c354"
-  },
-  {
-   "sentence": "___ носили новые епископства, учрежденные Отгоном на севере по нижнему течению pp.",
-   "lemma": "характер",
-   "options": [
-    "ином характере",
-    "иной характер",
-    "иному характеру",
-    "иным характером"
-   ],
-   "correct": "иной характер",
-   "case": "Винительный (Accusative)",
-   "explain": "«Иной характер» — the accusative marks the direct object of the verb.",
-   "id": "c355"
-  },
-  {
-   "sentence": "Иной характер носили ___, учрежденные Отгоном на севере по нижнему течению pp.",
-   "lemma": "епископство",
-   "options": [
-    "новые епископства",
-    "новых епископствах",
-    "новыми епископствами",
-    "новых епископств"
-   ],
-   "correct": "новые епископства",
-   "case": "Винительный (Accusative)",
-   "explain": "«новые епископства» — the accusative marks the direct object of the verb.",
-   "id": "c356"
-  },
-  {
-   "sentence": "Современник Святослава, князь Мешок (или Мечислав 963—92) упорно боролся с германскими маркграфами (наместниками марок, ___), которым Оттон поручил завоевание заэльбского края.",
-   "lemma": "область",
-   "options": [
-    "пограничными областями",
-    "пограничным областям",
-    "пограничных областей",
-    "пограничные области"
-   ],
-   "correct": "пограничных областей",
-   "case": "Родительный (Genitive)",
-   "explain": "«пограничных областей» — the genitive here marks possession, absence, or quantity.",
-   "id": "c359"
   },
   {
    "sentence": "Современник Святослава, князь Мешок (или Мечислав 963—92) упорно боролся с германскими маркграфами (наместниками марок, пограничных областей), которым Оттон поручил завоевание ___.",
    "lemma": "край",
    "options": [
+    "заэльбском крае",
+    "заэльбский край",
     "заэльбскому краю",
-    "заэльбским краем",
-    "заэльбского края",
-    "заэльбском крае"
+    "заэльбского края"
    ],
    "correct": "заэльбского края",
    "case": "Родительный (Genitive)",
-   "explain": "«заэльбского края» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«заэльбского края» depends on the noun «завоевание» (whose? of what?) — genitive.",
    "id": "c360"
   },
   {
@@ -4393,7 +2615,7 @@
    ],
    "correct": "польский князь",
    "case": "Именительный (Nominative)",
-   "explain": "«Польский князь» — the subject of the sentence stands in the nominative.",
+   "explain": "«польский князь» is the subject of «сохранил» — who or what does it — so nominative.",
    "id": "c361"
   },
   {
@@ -4407,36 +2629,22 @@
    ],
    "correct": "германского короля",
    "case": "Родительный (Genitive)",
-   "explain": "«германского короля» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«германского короля» depends on the noun «вассалом» (whose? of what?) — genitive.",
    "id": "c362"
   },
   {
    "sentence": "От покорения ___ внимание Оттона было скоро отвлечено за Альпы в Италию.",
    "lemma": "мир",
    "options": [
-    "славянским миром",
+    "славянскому миру",
     "славянского мира",
-    "славянском мире",
-    "славянскому миру"
+    "славянский мир",
+    "славянском мире"
    ],
    "correct": "славянского мира",
    "case": "Родительный (Genitive)",
-   "explain": "«славянского мира» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«славянского мира» depends on the noun «покорения» (whose? of what?) — genitive.",
    "id": "c363"
-  },
-  {
-   "sentence": "В той же мере, как болгарские и киевские князья тяготели к Византии, вожди германцев подчинились очарованию старинной ___, которая для них соединялась с обладанием Римом и Италией.",
-   "lemma": "культура",
-   "options": [
-    "римской культуре",
-    "римской культурой",
-    "римской культуры",
-    "римская культура"
-   ],
-   "correct": "римской культуры",
-   "case": "Родительный (Genitive)",
-   "explain": "«римской культуры» — the genitive here marks possession, absence, or quantity.",
-   "id": "c364"
   },
   {
    "sentence": "Объединение Италии было затруднено ___, растянутостью узкого полуострова, вдобавок еще перерезанного во всю длину горным хребтом.",
@@ -4449,22 +2657,8 @@
    ],
    "correct": "географическими условиями",
    "case": "Творительный (Instrumental)",
-   "explain": "«географическими условиями» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «затруднено», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c365"
-  },
-  {
-   "sentence": "Объединение Италии было затруднено географическими условиями, растянутостью ___, вдобавок еще перерезанного во всю длину горным хребтом.",
-   "lemma": "полуостров",
-   "options": [
-    "узком полуострове",
-    "узкому полуострову",
-    "узким полуостровом",
-    "узкого полуострова"
-   ],
-   "correct": "узкого полуострова",
-   "case": "Родительный (Genitive)",
-   "explain": "«узкого полуострова» — the genitive here marks possession, absence, or quantity.",
-   "id": "c366"
   },
   {
    "sentence": "Объединение Италии было затруднено географическими условиями, растянутостью узкого полуострова, вдобавок еще перерезанного во всю длину ___.",
@@ -4477,7 +2671,7 @@
    ],
    "correct": "горным хребтом",
    "case": "Творительный (Instrumental)",
-   "explain": "«горным хребтом» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «перерезанного», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c367"
   },
   {
@@ -4491,7 +2685,7 @@
    ],
    "correct": "германский король",
    "case": "Именительный (Nominative)",
-   "explain": "«Германский король» — the subject of the sentence stands in the nominative.",
+   "explain": "«германский король» is the subject of «перешел» — who or what does it — so nominative.",
    "id": "c368"
   },
   {
@@ -4505,22 +2699,8 @@
    ],
    "correct": "рыцарским войском",
    "case": "Творительный (Instrumental)",
-   "explain": "«рыцарским войском» — after the preposition «на», the instrumental marks the means, company, or complement.",
+   "explain": "«рыцарским войском» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c369"
-  },
-  {
-   "sentence": "Германский король перешел Альпы с большим рыцарским войском и в Павии, старой ___, надел на себя так на. железную корону Италии (в золотой короне был железный гвоздь с креста Спасителя).",
-   "lemma": "столица",
-   "options": [
-    "лангобардской столицей",
-    "лангобардской столице",
-    "лангобардская столица",
-    "лангобардской столицы"
-   ],
-   "correct": "лангобардской столице",
-   "case": "Дательный (Dative)",
-   "explain": "«лангобардской столице» — the dative marks the indirect object or recipient.",
-   "id": "c370"
   },
   {
    "sentence": "Германский король перешел Альпы с большим рыцарским войском и в Павии, старой лангобардской столице, надел на себя так на. железную корону Италии (в ___ был железный гвоздь с креста Спасителя).",
@@ -4533,22 +2713,8 @@
    ],
    "correct": "золотой короне",
    "case": "Предложный (Prepositional)",
-   "explain": "«золотой короне» — after the preposition «в», for location or topic.",
+   "explain": "«золотой короне» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c371"
-  },
-  {
-   "sentence": "Петра, облеченный в одежду клирика, он принял из рук папы ___ (962).",
-   "lemma": "венец",
-   "options": [
-    "императорский венец",
-    "императорскому венцу",
-    "императорским венцом",
-    "императорском венце"
-   ],
-   "correct": "императорский венец",
-   "case": "Именительный (Nominative)",
-   "explain": "«императорский венец» — the subject of the sentence stands in the nominative.",
-   "id": "c373"
   },
   {
    "sentence": "В то же время они подчиняются влиянию Византии, вводят у себя церемониал ___.",
@@ -4561,7 +2727,7 @@
    ],
    "correct": "константинопольского двора",
    "case": "Родительный (Genitive)",
-   "explain": "«константинопольского двора» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«константинопольского двора» depends on the noun «церемониал» (whose? of what?) — genitive.",
    "id": "c374"
   },
   {
@@ -4575,21 +2741,21 @@
    ],
    "correct": "греческой царевне",
    "case": "Предложный (Prepositional)",
-   "explain": "«греческой царевне» — after the preposition «на», for location or topic.",
+   "explain": "«греческой царевне» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c375"
   },
   {
    "sentence": "С другой стороны Оттон увлекался ___.",
    "lemma": "подвиг",
    "options": [
-    "монашеских подвигов",
+    "монашеских подвигах",
     "монашеским подвигам",
-    "монашескими подвигами",
-    "монашеские подвиги"
+    "монашеских подвигов",
+    "монашескими подвигами"
    ],
    "correct": "монашескими подвигами",
    "case": "Творительный (Instrumental)",
-   "explain": "«монашескими подвигами» — the instrumental marks the means, company, or complement.",
+   "explain": "«увлекался» takes the instrumental.",
    "id": "c377"
   },
   {
@@ -4603,21 +2769,21 @@
    ],
    "correct": "упорных боях",
    "case": "Предложный (Prepositional)",
-   "explain": "«упорных боях» — after the preposition «в», for location or topic.",
+   "explain": "«упорных боях» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c379"
   },
   {
    "sentence": "Преемник Оттона, император Генрих II, в упорных боях с трудом высвободил от поляков ___ и оттеснил их из Праги.",
    "lemma": "владение",
    "options": [
+    "германских владениях",
     "германским владениям",
-    "германскими владениями",
     "германские владения",
-    "германских владений"
+    "германскими владениями"
    ],
    "correct": "германские владения",
    "case": "Винительный (Accusative)",
-   "explain": "«германские владения» — the accusative marks the direct object of the verb.",
+   "explain": "«германские владения» is the direct object of «высвободил» (кого? что?) — accusative.",
    "id": "c380"
   }
  ]

@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Казармы для помещения полка только что начали строить на окраине местечка, за ___, на так называемом выгоне, а до их окончания полк со всеми своими учреждениями был расквартирован по частным квартирам.",
-   "lemma": "дорога",
-   "options": [
-    "железной дорогой",
-    "железной дороги",
-    "железная дорога",
-    "железной дороге"
-   ],
-   "correct": "железной дорогой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«железной дорогой» — after the preposition «со», the instrumental marks the means, company, or complement.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Пять-шесть ___ уже сошлись на вечер, но дамы еще не съезжались.",
-   "lemma": "офицер",
-   "options": [
-    "холостые офицеры",
-    "холостых офицеров",
-    "холостыми офицерами",
-    "холостым офицерам"
-   ],
-   "correct": "холостых офицеров",
-   "case": "Родительный (Genitive)",
-   "explain": "«холостых офицеров» — the genitive here marks possession, absence, or quantity.",
-   "id": "c3"
-  },
-  {
    "sentence": "Между ними издавна существовало ___ в знании хорошего тона, а этот тон считал позорным для дамы являться одной из первых на бал.",
    "lemma": "соревнование",
    "options": [
@@ -39,7 +11,7 @@
    ],
    "correct": "странное соревнование",
    "case": "Именительный (Nominative)",
-   "explain": "«странное соревнование» — the subject of the sentence stands in the nominative.",
+   "explain": "«странное соревнование» is the subject of «существовало» — who or what does it — so nominative.",
    "id": "c4"
   },
   {
@@ -47,13 +19,13 @@
    "lemma": "тон",
    "options": [
     "хороший тон",
+    "хорошем тоне",
     "хорошему тону",
-    "хорошего тона",
-    "хорошим тоном"
+    "хорошего тона"
    ],
    "correct": "хорошего тона",
    "case": "Родительный (Genitive)",
-   "explain": "«хорошего тона» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«хорошего тона» depends on the noun «знании» (whose? of what?) — genitive.",
    "id": "c5"
   },
   {
@@ -67,22 +39,8 @@
    ],
    "correct": "стеклянной галерее",
    "case": "Предложный (Prepositional)",
-   "explain": "«стеклянной галерее» — after the preposition «в», for location or topic.",
+   "explain": "«стеклянной галерее» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c6"
-  },
-  {
-   "sentence": "Музыканты уже сидели на своих местах в стеклянной галерее, соединявшейся одним большим ___ с залой.",
-   "lemma": "окно",
-   "options": [
-    "многостекольного окна",
-    "многостекольном окне",
-    "многостекольным окном",
-    "многостекольному окну"
-   ],
-   "correct": "многостекольным окном",
-   "case": "Творительный (Instrumental)",
-   "explain": "«многостекольным окном» — the instrumental marks the means, company, or complement.",
-   "id": "c7"
   },
   {
    "sentence": "Благодаря ___ эта большая комната с голыми стенами, оклеенными белыми обоями, с венскими стульями по бокам, с тюлевыми занавесками на окнах, казалась особенно пустой.",
@@ -95,22 +53,8 @@
    ],
    "correct": "яркому освещению",
    "case": "Дательный (Dative)",
-   "explain": "«яркому освещению» — after the preposition «благодаря», the dative marks the indirect object or recipient.",
+   "explain": "«яркому освещению» — «благодаря» always takes the dative.",
    "id": "c8"
-  },
-  {
-   "sentence": "Благодаря яркому освещению эта ___ с голыми стенами, оклеенными белыми обоями, с венскими стульями по бокам, с тюлевыми занавесками на окнах, казалась особенно пустой.",
-   "lemma": "комната",
-   "options": [
-    "большей комнатой",
-    "большей комнате",
-    "большей комнаты",
-    "большая комната"
-   ],
-   "correct": "большая комната",
-   "case": "Именительный (Nominative)",
-   "explain": "«большая комната» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
   },
   {
    "sentence": "Благодаря яркому освещению эта большая комната с голыми стенами, оклеенными ___, с венскими стульями по бокам, с тюлевыми занавесками на окнах, казалась особенно пустой.",
@@ -123,36 +67,8 @@
    ],
    "correct": "белыми обоями",
    "case": "Творительный (Instrumental)",
-   "explain": "«белыми обоями» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «оклеенными», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c11"
-  },
-  {
-   "sentence": "Олизар - длинный, тонкий, прилизанный, напомаженный - ___, с голым, но морщинистым, хлыщеватым лицом, все время сыпал бильярдными прибаутками.",
-   "lemma": "старик",
-   "options": [
-    "молодым стариком",
-    "молодому старику",
-    "молодом старике",
-    "молодой старик"
-   ],
-   "correct": "молодой старик",
-   "case": "Именительный (Nominative)",
-   "explain": "«молодой старик» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
-  },
-  {
-   "sentence": "Олизар - длинный, тонкий, прилизанный, напомаженный - молодой старик, с голым, но морщинистым, хлыщеватым лицом, все время сыпал ___.",
-   "lemma": "прибаутка",
-   "options": [
-    "бильярдных прибаутках",
-    "бильярдным прибауткам",
-    "бильярдных прибауток",
-    "бильярдными прибаутками"
-   ],
-   "correct": "бильярдными прибаутками",
-   "case": "Творительный (Instrumental)",
-   "explain": "«бильярдными прибаутками» — the instrumental marks the means, company, or complement.",
-   "id": "c13"
   },
   {
    "sentence": "Но ему доставляло странное, непонятное другим удовольствие торчать в карточной, или в ___ за спинами игроков, или в столовой, когда там особенно кутили.",
@@ -165,35 +81,21 @@
    ],
    "correct": "бильярдной комнате",
    "case": "Предложный (Prepositional)",
-   "explain": "«бильярдной комнате» — after the preposition «в», for location or topic.",
+   "explain": "«бильярдной комнате» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c14"
-  },
-  {
-   "sentence": "- Как здоровье Марьи Викторовны? - спросил Ромашов тем развязным и умышленно ___, каким говорят с глухими и туго понимающими людьми и каким с Лещенкой в полку говорили все, даже прапорщики.",
-   "lemma": "голос",
-   "options": [
-    "громкого голоса",
-    "громком голосе",
-    "громкий голос",
-    "громким голосом"
-   ],
-   "correct": "громким голосом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«громким голосом» — the instrumental marks the means, company, or complement.",
-   "id": "c17"
   },
   {
    "sentence": "Лещенко забрал в рот ___ усов и сосредоточенно пожевал их.",
    "lemma": "кончик",
    "options": [
     "бурыми кончиками",
-    "бурых кончиков",
     "бурые кончики",
-    "бурым кончикам"
+    "бурым кончикам",
+    "бурых кончиках"
    ],
    "correct": "бурые кончики",
    "case": "Винительный (Accusative)",
-   "explain": "«бурые кончики» — the accusative marks the direct object of the verb.",
+   "explain": "«бурые кончики» is the direct object of «забрал» (кого? что?) — accusative.",
    "id": "c18"
   },
   {
@@ -207,22 +109,8 @@
    ],
    "correct": "полковым адъютантом",
    "case": "Творительный (Instrumental)",
-   "explain": "«полковым адъютантом» — after the preposition «перед», the instrumental marks the means, company, or complement.",
+   "explain": "«полковым адъютантом» — «перед» always takes the instrumental.",
    "id": "c19"
-  },
-  {
-   "sentence": "- Вот я вас и хочу попросить, голубчик, - продолжал Лещенко ___. - Бог уж с ней, устройте, чтобы она не очень сидела.",
-   "lemma": "тон",
-   "options": [
-    "умильный тон",
-    "умильным тоном",
-    "умильного тона",
-    "умильном тоне"
-   ],
-   "correct": "умильным тоном",
-   "case": "Творительный (Instrumental)",
-   "explain": "«умильным тоном» — the instrumental marks the means, company, or complement.",
-   "id": "c20"
   },
   {
    "sentence": "Ему было неудобно играть вследствие его ___, и он должен был тянуться на животе через бильярд.",
@@ -235,36 +123,8 @@
    ],
    "correct": "небольшого роста",
    "case": "Родительный (Genitive)",
-   "explain": "«небольшого роста» — after the preposition «вследствие», the genitive here marks possession, absence, or quantity.",
+   "explain": "«небольшого роста» — «вследствие» always takes the genitive.",
    "id": "c21"
-  },
-  {
-   "sentence": "Агамалов стукнул ___ кия о пол.",
-   "lemma": "конец",
-   "options": [
-    "толстом конце",
-    "толстого конца",
-    "толстому концу",
-    "толстым концом"
-   ],
-   "correct": "толстым концом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«толстым концом» — the instrumental marks the means, company, or complement.",
-   "id": "c23"
-  },
-  {
-   "sentence": "Вместе с ___ и звонкой болтовней тесная передняя вдруг наполнялась запахом мороза, духов, пудры и лайковых перчаток, - неуловимым, глубоко волнующим запахом нарядных и красивых женщин перед балом.",
-   "lemma": "смех",
-   "options": [
-    "женском смехе",
-    "женским смехом",
-    "женский смех",
-    "женскому смеху"
-   ],
-   "correct": "женским смехом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«женским смехом» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c24"
   },
   {
    "sentence": "Какая ласка чувствовалась в прикосновении их ___, их шарфов и вееров!..",
@@ -277,36 +137,8 @@
    ],
    "correct": "маленьких рук",
    "case": "Родительный (Genitive)",
-   "explain": "«маленьких рук» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«маленьких рук» depends on the noun «прикосновении» (whose? of what?) — genitive.",
    "id": "c25"
-  },
-  {
-   "sentence": "Он знал также, что ___ по годам носят одно и то же \"шикарное\" платье, делая жалкие попытки обновлять его к особенно пышным вечерам, а перчатки чистят бензином.",
-   "lemma": "дама",
-   "options": [
-    "полковые дамы",
-    "полковыми дамами",
-    "полковым дамам",
-    "полковых дамах"
-   ],
-   "correct": "полковые дамы",
-   "case": "Именительный (Nominative)",
-   "explain": "«полковые дамы» — the subject of the sentence stands in the nominative.",
-   "id": "c26"
-  },
-  {
-   "sentence": "Он знал также, что полковые дамы по годам носят одно и то же \"шикарное\" платье, делая ___ обновлять его к особенно пышным вечерам, а перчатки чистят бензином.",
-   "lemma": "попытка",
-   "options": [
-    "жалких попыток",
-    "жалкими попытками",
-    "жалкие попытки",
-    "жалких попытках"
-   ],
-   "correct": "жалкие попытки",
-   "case": "Винительный (Accusative)",
-   "explain": "«жалкие попытки» — the accusative marks the direct object of the verb.",
-   "id": "c27"
   },
   {
    "sentence": "Ему смешным и претенциозным казалось их ___ к разным эгреткам, шарфикам, огромным поддельным камням, к перьям и обилию лент: в этом сказывалась какая-то тряпичная, безвкусная, домашнего изделия роскошь.",
@@ -319,7 +151,7 @@
    ],
    "correct": "общее пристрастие",
    "case": "Именительный (Nominative)",
-   "explain": "«общее пристрастие» — the subject of the sentence stands in the nominative.",
+   "explain": "«общее пристрастие» is the subject of «казалось» — who or what does it — so nominative.",
    "id": "c28"
   },
   {
@@ -327,28 +159,14 @@
    "lemma": "белила",
    "options": [
     "жирными белилами",
-    "жирным белилам",
     "жирные белила",
-    "жирных белил"
+    "жирных белилах",
+    "жирным белилам"
    ],
    "correct": "жирные белила",
    "case": "Винительный (Accusative)",
-   "explain": "«жирные белила» — the accusative marks the direct object of the verb.",
+   "explain": "«жирные белила» is the direct object of «употребляли» (кого? что?) — accusative.",
    "id": "c29"
-  },
-  {
-   "sentence": "Они употребляли жирные белила и румяна, во неумело и грубо до наивности: у иных от этих средств лица принимали зловещий ___.",
-   "lemma": "оттенок",
-   "options": [
-    "синеватом оттенке",
-    "синеватый оттенок",
-    "синеватому оттенку",
-    "синеватого оттенка"
-   ],
-   "correct": "синеватый оттенок",
-   "case": "Винительный (Accusative)",
-   "explain": "«синеватый оттенок» — the accusative marks the direct object of the verb.",
-   "id": "c30"
   },
   {
    "sentence": "- Mesdames!.. Mesdames! - говорил Ромашов, изображая собою против воли ___ и расшаркиваясь во все стороны.",
@@ -361,7 +179,7 @@
    ],
    "correct": "любезного кавалера",
    "case": "Родительный (Genitive)",
-   "explain": "«любезного кавалера» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«любезного кавалера» depends on the noun «воли» (whose? of what?) — genitive.",
    "id": "c32"
   },
   {
@@ -375,50 +193,8 @@
    ],
    "correct": "табачный дым",
    "case": "Именительный (Nominative)",
-   "explain": "«табачный дым» — the subject of the sentence stands in the nominative.",
+   "explain": "«табачный дым» is the subject of «колыхался» — who or what does it — so nominative.",
    "id": "c34"
-  },
-  {
-   "sentence": "Густой и пестрый шум голосов сливался со стуком ножей, щелканьем ___ и хлопаньем кухонной двери.",
-   "lemma": "шар",
-   "options": [
-    "бильярдные шары",
-    "бильярдных шарах",
-    "бильярдных шаров",
-    "бильярдными шарами"
-   ],
-   "correct": "бильярдных шаров",
-   "case": "Родительный (Genitive)",
-   "explain": "«бильярдных шаров» — the genitive here marks possession, absence, or quantity.",
-   "id": "c35"
-  },
-  {
-   "sentence": "- Что? - обернулся он и, вынув одну руку из кармана, не переставая щуриться, с ___ покрутил длинный рыжий ус, скосив на него глаза и отставив локоть вверх. - А-а!",
-   "lemma": "вид",
-   "options": [
-    "изысканном виде",
-    "изысканным видом",
-    "изысканный вид",
-    "изысканному виду"
-   ],
-   "correct": "изысканным видом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«изысканным видом» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c36"
-  },
-  {
-   "sentence": "Он был о себе ___, считая себя знатоком лошадей и женщин, прекрасным танцором и притом изящным, великосветским, но, несмотря на свои двадцать четыре года, уже пожившим и разочарованным человеком.",
-   "lemma": "мнение",
-   "options": [
-    "высокому мнению",
-    "высоком мнении",
-    "высокого мнения",
-    "высокое мнение"
-   ],
-   "correct": "высокого мнения",
-   "case": "Родительный (Genitive)",
-   "explain": "«высокого мнения» — the genitive here marks possession, absence, or quantity.",
-   "id": "c37"
   },
   {
    "sentence": "Говорили об ___, только что тогда разрешенных, и мнения расходились.",
@@ -431,7 +207,7 @@
    ],
    "correct": "офицерских поединках",
    "case": "Предложный (Prepositional)",
-   "explain": "«офицерских поединках» — after the preposition «об», for location or topic.",
+   "explain": "«офицерских поединках» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c40"
   },
   {
@@ -445,64 +221,8 @@
    ],
    "correct": "первой роты",
    "case": "Родительный (Genitive)",
-   "explain": "«первой роты» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«первой роты» depends on the noun «командир» (whose? of what?) — genitive.",
    "id": "c44"
-  },
-  {
-   "sentence": "Осадчий славился, как и полковник Шульгович, не только в полку, но и во всей дивизии своим необыкновенным по размерам и красоте голосом, а также ___ и страшной физической силой.",
-   "lemma": "рост",
-   "options": [
-    "огромном росте",
-    "огромным ростом",
-    "огромный рост",
-    "огромному росту"
-   ],
-   "correct": "огромным ростом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«огромным ростом» — the instrumental marks the means, company, or complement.",
-   "id": "c45"
-  },
-  {
-   "sentence": "Осадчий славился, как и полковник Шульгович, не только в полку, но и во всей дивизии своим необыкновенным по размерам и красоте голосом, а также огромным ростом и страшной ___.",
-   "lemma": "сила",
-   "options": [
-    "физической силой",
-    "физической силы",
-    "физической силе",
-    "физическая сила"
-   ],
-   "correct": "физической силой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«физической силой» — the instrumental marks the means, company, or complement.",
-   "id": "c46"
-  },
-  {
-   "sentence": "Был он известен также и своим ___ строевой службы.",
-   "lemma": "знание",
-   "options": [
-    "замечательном знании",
-    "замечательного знания",
-    "замечательное знание",
-    "замечательным знанием"
-   ],
-   "correct": "замечательным знанием",
-   "case": "Творительный (Instrumental)",
-   "explain": "«замечательным знанием» — the instrumental marks the means, company, or complement.",
-   "id": "c47"
-  },
-  {
-   "sentence": "Был он известен также и своим замечательным знанием ___.",
-   "lemma": "служба",
-   "options": [
-    "строевой службой",
-    "строевой службе",
-    "строевой службы",
-    "строевая служба"
-   ],
-   "correct": "строевой службы",
-   "case": "Родительный (Genitive)",
-   "explain": "«строевой службы» — the genitive here marks possession, absence, or quantity.",
-   "id": "c48"
   },
   {
    "sentence": "- Ну-с, итак, какое же резюме ___?",
@@ -515,7 +235,7 @@
    ],
    "correct": "почтенного собрания",
    "case": "Родительный (Genitive)",
-   "explain": "«почтенного собрания» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«почтенного собрания» depends on the noun «резюме» (whose? of what?) — genitive.",
    "id": "c49"
   },
   {
@@ -529,7 +249,7 @@
    ],
    "correct": "самом начале",
    "case": "Предложный (Prepositional)",
-   "explain": "«самом начале» — after the preposition «в», for location or topic.",
+   "explain": "«самом начале» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c50"
   },
   {
@@ -543,7 +263,7 @@
    ],
    "correct": "собственном мнении",
    "case": "Предложный (Prepositional)",
-   "explain": "«собственном мнении» — after the preposition «о», for location or topic.",
+   "explain": "«собственном мнении» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c51"
   },
   {
@@ -557,36 +277,8 @@
    ],
    "correct": "голосовых средств",
    "case": "Родительный (Genitive)",
-   "explain": "«голосовых средств» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«голосовых средств» depends on the noun «недостаточности» (whose? of what?) — genitive.",
    "id": "c52"
-  },
-  {
-   "sentence": "Подпоручик Михин, маленький, ___, со смуглым, рябым и веснушчатым лицом, на котором робко, почти испуганно глядели нежные темные глаза, вдруг покраснел до слез.",
-   "lemma": "юноша",
-   "options": [
-    "слабогрудым юношей",
-    "слабогрудого юноши",
-    "слабогрудого юношу",
-    "слабогрудый юноша"
-   ],
-   "correct": "слабогрудый юноша",
-   "case": "Именительный (Nominative)",
-   "explain": "«слабогрудый юноша» — the subject of the sentence stands in the nominative.",
-   "id": "c53"
-  },
-  {
-   "sentence": "Я вам говорю: из этого выйдет одна только пошлость, вот именно вроде тех ___, о которых мы читаем в газетах.",
-   "lemma": "дуэль",
-   "options": [
-    "французские дуэли",
-    "французских дуэлях",
-    "французскими дуэлями",
-    "французских дуэлей"
-   ],
-   "correct": "французских дуэлей",
-   "case": "Родительный (Genitive)",
-   "explain": "«французских дуэлей» — the genitive here marks possession, absence, or quantity.",
-   "id": "c56"
   },
   {
    "sentence": "За завтраком ___ обменялись дружеским рукопожатием\".",
@@ -599,36 +291,8 @@
    ],
    "correct": "недавние враги",
    "case": "Именительный (Nominative)",
-   "explain": "«недавние враги» — the subject of the sentence stands in the nominative.",
+   "explain": "«недавние враги» is the subject of «обменялись» — who or what does it — so nominative.",
    "id": "c57"
-  },
-  {
-   "sentence": "За завтраком недавние враги обменялись ___\".",
-   "lemma": "рукопожатие",
-   "options": [
-    "дружеское рукопожатие",
-    "дружеским рукопожатием",
-    "дружескому рукопожатию",
-    "дружеского рукопожатия"
-   ],
-   "correct": "дружеским рукопожатием",
-   "case": "Творительный (Instrumental)",
-   "explain": "«дружеским рукопожатием» — the instrumental marks the means, company, or complement.",
-   "id": "c58"
-  },
-  {
-   "sentence": "На ходу он быстро шаркал ногами, приседал, балансировал туловищем и раскачивал опущенными руками с таким видом, как будто он выделывал подготовительные па какого-то веселого ___. - Ваш-шу руку.",
-   "lemma": "танец",
-   "options": [
-    "балетный танец",
-    "балетному танцу",
-    "балетным танцем",
-    "балетного танца"
-   ],
-   "correct": "балетного танца",
-   "case": "Родительный (Genitive)",
-   "explain": "«балетного танца» — the genitive here marks possession, absence, or quantity.",
-   "id": "c59"
   }
  ]
 }

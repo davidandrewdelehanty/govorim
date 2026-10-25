@@ -1,62 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Весной зацветали ___ сады, одевался в зелень Царский сад, солнце ломилось во все окна, зажигало в них пожары.",
-   "lemma": "цвет",
-   "options": [
-    "белый цвет",
-    "белом цвете",
-    "белым цветом",
-    "белого цвета"
-   ],
-   "correct": "белым цветом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«белым цветом» — the instrumental marks the means, company, or complement.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Весной зацветали белым цветом сады, одевался в зелень ___, солнце ломилось во все окна, зажигало в них пожары.",
-   "lemma": "сад",
-   "options": [
-    "царскому саду",
-    "царского сада",
-    "царским садом",
-    "царский сад"
-   ],
-   "correct": "царский сад",
-   "case": "Винительный (Accusative)",
-   "explain": "«Царский сад» — the accusative marks the direct object of the verb.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Черно-синие густые ночи над водой, ___ Св.",
-   "lemma": "крест",
-   "options": [
-    "электрический крест",
-    "электрическим крестом",
-    "электрического креста",
-    "электрическом кресте"
-   ],
-   "correct": "электрический крест",
-   "case": "Именительный (Nominative)",
-   "explain": "«электрический крест» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
-  },
-  {
-   "sentence": "Но это были времена легендарные, те времена, когда в садах самого ___ нашей Родины жило беспечальное, юное поколение.",
-   "lemma": "город",
-   "options": [
-    "прекрасным городом",
-    "прекрасному городу",
-    "прекрасном городе",
-    "прекрасного города"
-   ],
-   "correct": "прекрасного города",
-   "case": "Родительный (Genitive)",
-   "explain": "«прекрасного города» — the genitive here marks possession, absence, or quantity.",
-   "id": "c5"
-  },
-  {
    "sentence": "___ оборвались, и внезапно и грозно наступила история.",
    "lemma": "время",
    "options": [
@@ -67,50 +11,8 @@
    ],
    "correct": "легендарные времена",
    "case": "Именительный (Nominative)",
-   "explain": "«Легендарные времена» — the subject of the sentence stands in the nominative.",
+   "explain": "«легендарные времена» is the subject of «оборвались» — who or what does it — so nominative.",
    "id": "c6"
-  },
-  {
-   "sentence": "Когда ___ (ведь и небесному терпению есть предел) убьет всех до единого современных писателей и явится лет через 50 новый настоящий Лев Толстой, будет создана изумительная книга о великих боях в Киеве.",
-   "lemma": "гром",
-   "options": [
-    "небесный гром",
-    "небесного грома",
-    "небесном громе",
-    "небесному грому"
-   ],
-   "correct": "небесный гром",
-   "case": "Именительный (Nominative)",
-   "explain": "«небесный гром» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
-  },
-  {
-   "sentence": "Когда небесный гром (ведь и небесному терпению есть предел) убьет всех до единого ___ и явится лет через 50 новый настоящий Лев Толстой, будет создана изумительная книга о великих боях в Киеве.",
-   "lemma": "писатель",
-   "options": [
-    "современных писателей",
-    "современным писателям",
-    "современными писателями",
-    "современные писатели"
-   ],
-   "correct": "современных писателей",
-   "case": "Родительный (Genitive)",
-   "explain": "«современных писателей» — after the preposition «через», the genitive here marks possession, absence, or quantity.",
-   "id": "c10"
-  },
-  {
-   "sentence": "Когда небесный гром (ведь и небесному терпению есть предел) убьет всех до единого современных писателей и явится лет через 50 новый настоящий Лев Толстой, будет создана ___ о великих боях в Киеве.",
-   "lemma": "книга",
-   "options": [
-    "изумительной книги",
-    "изумительной книге",
-    "изумительная книга",
-    "изумительной книгой"
-   ],
-   "correct": "изумительная книга",
-   "case": "Именительный (Nominative)",
-   "explain": "«изумительная книга» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
   },
   {
    "sentence": "Когда небесный гром (ведь и небесному терпению есть предел) убьет всех до единого современных писателей и явится лет через 50 новый настоящий Лев Толстой, будет создана изумительная книга о ___ в Киеве.",
@@ -123,7 +25,7 @@
    ],
    "correct": "великих боях",
    "case": "Предложный (Prepositional)",
-   "explain": "«великих боях» — after the preposition «о», for location or topic.",
+   "explain": "«великих боях» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c12"
   },
   {
@@ -137,50 +39,8 @@
    ],
    "correct": "теплушечных мемуаристов",
    "case": "Родительный (Genitive)",
-   "explain": "«теплушечных мемуаристов» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«теплушечных мемуаристов» — «из» always takes the genitive.",
    "id": "c14"
-  },
-  {
-   "sentence": "Не попали они в Киев случайно, потому что ___ их спешно увело из Одессы.",
-   "lemma": "начальство",
-   "options": [
-    "умном начальстве",
-    "умного начальства",
-    "умным начальством",
-    "умное начальство"
-   ],
-   "correct": "умное начальство",
-   "case": "Именительный (Nominative)",
-   "explain": "«умное начальство» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
-  },
-  {
-   "sentence": "Достаточно припомнить: немцы, ___ в тазах на головах, явились в Киев с фельдмаршалом Эйхгорном и великолепными туго завязанными обозными фурами.",
-   "lemma": "немец",
-   "options": [
-    "железных немцах",
-    "железные немцы",
-    "железным немцам",
-    "железных немцев"
-   ],
-   "correct": "железные немцы",
-   "case": "Именительный (Nominative)",
-   "explain": "«железные немцы» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
-  },
-  {
-   "sentence": "Достаточно припомнить: немцы, железные немцы в тазах на головах, явились в Киев с фельдмаршалом Эйхгорном и великолепными туго завязанными ___.",
-   "lemma": "фура",
-   "options": [
-    "обозных фур",
-    "обозные фуры",
-    "обозных фурах",
-    "обозными фурами"
-   ],
-   "correct": "обозными фурами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«обозными фурами» — the instrumental marks the means, company, or complement.",
-   "id": "c18"
   },
   {
    "sentence": "Рекорд побил ___, впоследствии служащий союза городов Семен Васильевич Петлюра.",
@@ -193,7 +53,7 @@
    ],
    "correct": "знаменитый бухгалтер",
    "case": "Именительный (Nominative)",
-   "explain": "«знаменитый бухгалтер» — the subject of the sentence stands in the nominative.",
+   "explain": "«знаменитый бухгалтер» is the subject of «побил» — who or what does it — so nominative.",
    "id": "c19"
   },
   {
@@ -207,22 +67,8 @@
    ],
    "correct": "польские паны",
    "case": "Именительный (Nominative)",
-   "explain": "«польские паны» — the subject of the sentence stands in the nominative.",
+   "explain": "«польские паны» is the subject of «приехали» — who or what does it — so nominative.",
    "id": "c20"
-  },
-  {
-   "sentence": "Самыми последними под занавес приехали зачем-то польские паны (явление XIV-e) с французскими ___.",
-   "lemma": "пушка",
-   "options": [
-    "дальнобойных пушек",
-    "дальнобойным пушкам",
-    "дальнобойные пушки",
-    "дальнобойными пушками"
-   ],
-   "correct": "дальнобойными пушками",
-   "case": "Творительный (Instrumental)",
-   "explain": "«дальнобойными пушками» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c21"
   },
   {
    "sentence": "На переломе ___ среди совершенно безоблачного неба советская конница грубо и буденно заехала куда-то, куда не нужно, и паны в течение нескольких часов оставили заколдованный город.",
@@ -235,50 +81,8 @@
    ],
    "correct": "второго месяца",
    "case": "Родительный (Genitive)",
-   "explain": "«второго месяца» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«второго месяца» depends on the noun «переломе» (whose? of what?) — genitive.",
    "id": "c23"
-  },
-  {
-   "sentence": "На переломе второго месяца среди совершенно безоблачного неба ___ грубо и буденно заехала куда-то, куда не нужно, и паны в течение нескольких часов оставили заколдованный город.",
-   "lemma": "конница",
-   "options": [
-    "советской коннице",
-    "советская конница",
-    "советской конницы",
-    "советской конницей"
-   ],
-   "correct": "советская конница",
-   "case": "Именительный (Nominative)",
-   "explain": "«советская конница» — the subject of the sentence stands in the nominative.",
-   "id": "c24"
-  },
-  {
-   "sentence": "На переломе второго месяца среди совершенно безоблачного неба советская конница грубо и буденно заехала куда-то, куда не нужно, и паны в течение нескольких часов оставили ___.",
-   "lemma": "город",
-   "options": [
-    "заколдованным городом",
-    "заколдованному городу",
-    "заколдованного города",
-    "заколдованный город"
-   ],
-   "correct": "заколдованный город",
-   "case": "Винительный (Accusative)",
-   "explain": "«заколдованный город» — the accusative marks the direct object of the verb.",
-   "id": "c25"
-  },
-  {
-   "sentence": "Наши же европеизированные кузены вздумали щегольнуть своими ___ и разбили три моста через Днепр, причем Цепной — вдребезги.",
-   "lemma": "средство",
-   "options": [
-    "подрывными средствами",
-    "подрывным средствам",
-    "подрывных средствах",
-    "подрывных средств"
-   ],
-   "correct": "подрывными средствами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«подрывными средствами» — the instrumental marks the means, company, or complement.",
-   "id": "c27"
   },
   {
    "sentence": "И посейчас, из воды вместо ___ — гордости Киева — торчат только серые унылые быки.",
@@ -291,78 +95,8 @@
    ],
    "correct": "великолепного сооружения",
    "case": "Родительный (Genitive)",
-   "explain": "«великолепного сооружения» — after the preposition «вместо», the genitive here marks possession, absence, or quantity.",
+   "explain": "«великолепного сооружения» — «вместо» always takes the genitive.",
    "id": "c28"
-  },
-  {
-   "sentence": "И посейчас, из воды вместо великолепного сооружения — гордости Киева — торчат только серые ___.",
-   "lemma": "бык",
-   "options": [
-    "унылые быки",
-    "унылых быков",
-    "унылым быкам",
-    "унылых быках"
-   ],
-   "correct": "унылые быки",
-   "case": "Именительный (Nominative)",
-   "explain": "«унылые быки» — the subject of the sentence stands in the nominative.",
-   "id": "c29"
-  },
-  {
-   "sentence": "Не унывайте, милые ___!",
-   "lemma": "гражданин",
-   "options": [
-    "киевские граждане",
-    "киевскими гражданами",
-    "киевских гражданах",
-    "киевских граждан"
-   ],
-   "correct": "киевские граждане",
-   "case": "Именительный (Nominative)",
-   "explain": "«киевские граждане» — the subject of the sentence stands in the nominative.",
-   "id": "c30"
-  },
-  {
-   "sentence": "Когда-нибудь поляки перестанут на нас сердиться и отстроят нам ___, еще лучше прежнего.",
-   "lemma": "мост",
-   "options": [
-    "нового моста",
-    "новый мост",
-    "новым мостом",
-    "новому мосту"
-   ],
-   "correct": "новый мост",
-   "case": "Винительный (Accusative)",
-   "explain": "«новый мост» — the accusative marks the direct object of the verb.",
-   "id": "c31"
-  },
-  {
-   "sentence": "Если в сумерки пройтись по пустынным и гулким ___, охватят воспоминания.",
-   "lemma": "улица",
-   "options": [
-    "широкие улицы",
-    "широким улицам",
-    "широкими улицами",
-    "широких улиц"
-   ],
-   "correct": "широким улицам",
-   "case": "Дательный (Dative)",
-   "explain": "«широким улицам» — after the preposition «по», the dative marks the indirect object or recipient.",
-   "id": "c32"
-  },
-  {
-   "sentence": "Днем, в ярком солнце, в дивных парках над обрывами — ___.",
-   "lemma": "покой",
-   "options": [
-    "великом покое",
-    "великим покоем",
-    "великий покой",
-    "великого покоя"
-   ],
-   "correct": "великий покой",
-   "case": "Именительный (Nominative)",
-   "explain": "«великий покой» — the subject of the sentence stands in the nominative.",
-   "id": "c35"
   },
   {
    "sentence": "Сторожа жгут кучи прошлогодних листьев, тянет дымом в ___.",
@@ -375,7 +109,7 @@
    ],
    "correct": "пустынных аллеях",
    "case": "Предложный (Prepositional)",
-   "explain": "«пустынных аллеях» — after the preposition «в», for location or topic.",
+   "explain": "«пустынных аллеях» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c36"
   },
   {
@@ -389,7 +123,7 @@
    ],
    "correct": "редкие фигурки",
    "case": "Именительный (Nominative)",
-   "explain": "«Редкие фигурки» — the subject of the sentence stands in the nominative.",
+   "explain": "«редкие фигурки» is the subject of «бродят» — who or what does it — so nominative.",
    "id": "c37"
   },
   {
@@ -403,7 +137,7 @@
    ],
    "correct": "измерительных приборов",
    "case": "Родительный (Genitive)",
-   "explain": "«измерительных приборов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«измерительных приборов» depends on the noun «осколки» (whose? of what?) — genitive.",
    "id": "c40"
   },
   {
@@ -417,22 +151,8 @@
    ],
    "correct": "коммунального трамвая",
    "case": "Родительный (Genitive)",
-   "explain": "«коммунального трамвая» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«коммунального трамвая» depends on the noun «звонки» (whose? of what?) — genitive.",
    "id": "c43"
-  },
-  {
-   "sentence": "Больше того: ___ — стрелой перекинутый между двумя обрывами Царского сада, лишился совершенно всех деревянных части.",
-   "lemma": "мост",
-   "options": [
-    "воздушному мосту",
-    "воздушным мостом",
-    "воздушного моста",
-    "воздушный мост"
-   ],
-   "correct": "воздушный мост",
-   "case": "Именительный (Nominative)",
-   "explain": "«воздушный мост» — the subject of the sentence stands in the nominative.",
-   "id": "c44"
   },
   {
    "sentence": "Больше того: воздушный мост — стрелой перекинутый между двумя обрывами ___, лишился совершенно всех деревянных части.",
@@ -445,7 +165,7 @@
    ],
    "correct": "царского сада",
    "case": "Родительный (Genitive)",
-   "explain": "«Царского сада» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«царского сада» depends on the noun «обрывами» (whose? of what?) — genitive.",
    "id": "c45"
   },
   {
@@ -459,7 +179,7 @@
    ],
    "correct": "последней щепочки",
    "case": "Родительный (Genitive)",
-   "explain": "«последней щепочки» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«последней щепочки» — «до» always takes the genitive.",
    "id": "c46"
   },
   {
@@ -473,36 +193,22 @@
    ],
    "correct": "порядочные дыры",
    "case": "Именительный (Nominative)",
-   "explain": "«порядочные дыры» — the subject of the sentence stands in the nominative.",
+   "explain": "«порядочные дыры» is the subject of «есть» — who or what does it — so nominative.",
    "id": "c48"
   },
   {
    "sentence": "И вышел заведующий и начал вертеться между ___.",
    "lemma": "каска",
    "options": [
-    "медных касках",
-    "медных касок",
+    "медными касками",
     "медным каскам",
-    "медными касками"
+    "медные каски",
+    "медных касках"
    ],
    "correct": "медными касками",
    "case": "Творительный (Instrumental)",
-   "explain": "«медными касками» — after the preposition «между», the instrumental marks the means, company, or complement.",
+   "explain": "«медными касками» — «между» + instrumental: between.",
    "id": "c51"
-  },
-  {
-   "sentence": "Но даже если это и не так, все-таки ___ налицо — дом сгорел.",
-   "lemma": "факт",
-   "options": [
-    "основного факта",
-    "основному факту",
-    "основным фактом",
-    "основной факт"
-   ],
-   "correct": "основной факт",
-   "case": "Именительный (Nominative)",
-   "explain": "«основной факт» — the subject of the sentence stands in the nominative.",
-   "id": "c52"
   },
   {
    "sentence": "Киевское ___ начало обнаруживать признаки бурной энергии.",
@@ -515,22 +221,8 @@
    ],
    "correct": "коммунальное хозяйство",
    "case": "Именительный (Nominative)",
-   "explain": "«коммунальное хозяйство» — the subject of the sentence stands in the nominative.",
+   "explain": "«коммунальное хозяйство» is the subject of «начало» — who or what does it — so nominative.",
    "id": "c53"
-  },
-  {
-   "sentence": "И сейчас уже в квартирах в Киеве горит свет, из кранов течет вода, идут ремонты, на улицах чисто и ходит по улицам этот самый ___.",
-   "lemma": "трамвай",
-   "options": [
-    "коммунальный трамвай",
-    "коммунального трамвая",
-    "коммунальным трамваем",
-    "коммунальному трамваю"
-   ],
-   "correct": "коммунальный трамвай",
-   "case": "Именительный (Nominative)",
-   "explain": "«коммунальный трамвай» — the subject of the sentence stands in the nominative.",
-   "id": "c54"
   }
  ]
 }

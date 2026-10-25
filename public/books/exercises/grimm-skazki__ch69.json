@@ -1,88 +1,18 @@
 {
  "cases": [
   {
-   "sentence": "Дорога его шла лесом, и среди того леса стоял ___, а около замка росло дерево, и на самой его вершине пел и попрыгивал львиный жаворонок.",
-   "lemma": "замок",
-   "options": [
-    "прекрасный замок",
-    "прекрасному замку",
-    "прекрасном замке",
-    "прекрасного замка"
-   ],
-   "correct": "прекрасный замок",
-   "case": "Именительный (Nominative)",
-   "explain": "«прекрасный замок» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Дорога его шла лесом, и среди того леса стоял прекрасный замок, а около замка росло дерево, и на самой его вершине пел и попрыгивал ___.",
-   "lemma": "жаворонок",
-   "options": [
-    "львиный жаворонок",
-    "львиного жаворонка",
-    "львином жаворонке",
-    "львиным жаворонком"
-   ],
-   "correct": "львиный жаворонок",
-   "case": "Именительный (Nominative)",
-   "explain": "«львиный жаворонок» — after the preposition «на», the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
-   "sentence": "А тот лев был ___ и днем имел образ льва, и все его люди также были львами; ночью же все они принимали свой человеческий образ.",
-   "lemma": "королевич",
-   "options": [
-    "заколдованный королевич",
-    "заколдованному королевичу",
-    "заколдованном королевиче",
-    "заколдованного королевича"
-   ],
-   "correct": "заколдованный королевич",
-   "case": "Именительный (Nominative)",
-   "explain": "«заколдованный королевич» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
    "sentence": "А тот лев был заколдованный королевич и днем имел образ льва, и все его люди также были львами; ночью же все они принимали свой ___.",
    "lemma": "образ",
    "options": [
-    "человеческого образа",
-    "человеческом образе",
     "человеческим образом",
-    "человеческий образ"
+    "человеческий образ",
+    "человеческом образе",
+    "человеческому образу"
    ],
    "correct": "человеческий образ",
    "case": "Винительный (Accusative)",
-   "explain": "«человеческий образ» — the accusative marks the direct object of the verb.",
+   "explain": "«человеческий образ» is the direct object of «принимали» (кого? что?) — accusative.",
    "id": "c4"
-  },
-  {
-   "sentence": "___ была принята львом весьма радушно и отведена в замок.",
-   "lemma": "девица",
-   "options": [
-    "красной девице",
-    "красной девицей",
-    "красная девица",
-    "красной девицы"
-   ],
-   "correct": "красная девица",
-   "case": "Именительный (Nominative)",
-   "explain": "«Красная девица» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
-  },
-  {
-   "sentence": "Однажды пришел лев к своей жене и сказал ей: «Завтра ___ в доме твоего отца — твоя старшая сестра выходит замуж, и если ты желаешь на том празднике быть, то мои львы отвезут тебя туда».",
-   "lemma": "праздник",
-   "options": [
-    "большим праздником",
-    "большом празднике",
-    "большого праздника",
-    "большой праздник"
-   ],
-   "correct": "большой праздник",
-   "case": "Именительный (Nominative)",
-   "explain": "«большой праздник» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
   },
   {
    "sentence": "Однажды пришел лев к своей жене и сказал ей: «Завтра большой праздник в доме твоего отца — твоя ___ выходит замуж, и если ты желаешь на том празднике быть, то мои львы отвезут тебя туда».",
@@ -95,64 +25,22 @@
    ],
    "correct": "старшая сестра",
    "case": "Именительный (Nominative)",
-   "explain": "«старшая сестра» — the subject of the sentence stands in the nominative.",
+   "explain": "«старшая сестра» is the subject of «выходит» — who or what does it — so nominative.",
    "id": "c7"
   },
   {
    "sentence": "Та отвечала, что охотно повидалась бы с отцом, поехала в ___, и львы ее сопровождали.",
    "lemma": "дом",
    "options": [
+    "родительский дом",
     "родительского дома",
-    "родительским домом",
-    "родительском доме",
-    "родительский дом"
+    "родительскому дому",
+    "родительским домом"
    ],
    "correct": "родительский дом",
    "case": "Винительный (Accusative)",
-   "explain": "«родительский дом» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«родительский дом» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c8"
-  },
-  {
-   "sentence": "Она же рассказала, какой у нее ___ и как ей хорошо живется, и проведя с ними все время, пока длились свадебные празднества, уехала обратно в лес к мужу-льву.",
-   "lemma": "муж",
-   "options": [
-    "чудесный муж",
-    "чудесным мужем",
-    "чудесном муже",
-    "чудесного мужа"
-   ],
-   "correct": "чудесный муж",
-   "case": "Именительный (Nominative)",
-   "explain": "«чудесный муж» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
-  },
-  {
-   "sentence": "Она же рассказала, какой у нее чудесный муж и как ей хорошо живется, и проведя с ними все время, пока длились ___, уехала обратно в лес к мужу-льву.",
-   "lemma": "празднество",
-   "options": [
-    "свадебным празднествам",
-    "свадебных празднествах",
-    "свадебные празднества",
-    "свадебными празднествами"
-   ],
-   "correct": "свадебные празднества",
-   "case": "Именительный (Nominative)",
-   "explain": "«свадебные празднества» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
-  },
-  {
-   "sentence": "Когда выходила замуж ее ___ и она была опять приглашена на свадьбу, она сказала льву: «На этот раз я не поеду одна, ты тоже должен ехать со мною».",
-   "lemma": "сестра",
-   "options": [
-    "второй сестрой",
-    "второй сестре",
-    "вторая сестра",
-    "второй сестры"
-   ],
-   "correct": "вторая сестра",
-   "case": "Именительный (Nominative)",
-   "explain": "«вторая сестра» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
   },
   {
    "sentence": "Она велела там отвести особую залу и так прочно защитить ее от света, чтобы никакой луч не мог туда проникнуть от ___, когда они будут зажжены в доме; там и должен был лев постоянно находиться.",
@@ -165,7 +53,7 @@
    ],
    "correct": "свадебных свечей",
    "case": "Родительный (Genitive)",
-   "explain": "«свадебных свечей» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«свадебных свечей» — «от» always takes the genitive.",
    "id": "c12"
   },
   {
@@ -179,21 +67,21 @@
    ],
    "correct": "сырого дерева",
    "case": "Родительный (Genitive)",
-   "explain": "«сырого дерева» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«сырого дерева» — «из» always takes the genitive.",
    "id": "c13"
   },
   {
    "sentence": "Однажды, в то время когда она шла по своему ___, капли крови и перышки вдруг перестали падать сверху, и когда она глянула вверх, голубок исчез у нее из глаз!",
    "lemma": "путь",
    "options": [
+    "обычным путём",
     "обычного пути",
-    "обычный путь",
     "обычном пути",
     "обычному пути"
    ],
    "correct": "обычному пути",
    "case": "Дательный (Dative)",
-   "explain": "«обычному пути» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«обычному пути» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c14"
   },
   {
@@ -207,7 +95,7 @@
    ],
    "correct": "красного моря",
    "case": "Родительный (Genitive)",
-   "explain": "«Красного моря» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«красного моря» — «у» always takes the genitive.",
    "id": "c15"
   },
   {
@@ -221,22 +109,8 @@
    ],
    "correct": "красному морю",
    "case": "Дательный (Dative)",
-   "explain": "«Красному морю» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«красному морю» — «к» always takes the dative.",
    "id": "c16"
-  },
-  {
-   "sentence": "Подошла она к Красному морю и все нашла в том самом виде, как ей говорил ___.",
-   "lemma": "ветер",
-   "options": [
-    "ночной ветер",
-    "ночным ветром",
-    "ночном ветре",
-    "ночному ветру"
-   ],
-   "correct": "ночной ветер",
-   "case": "Винительный (Accusative)",
-   "explain": "«ночной ветер» — the accusative marks the direct object of the verb.",
-   "id": "c17"
   },
   {
    "sentence": "Тогда ___ осталась опять одна-одинешенька, всеми покинутая, и опустилась наземь, и стала плакать.",
@@ -249,22 +123,8 @@
    ],
    "correct": "бедная странница",
    "case": "Именительный (Nominative)",
-   "explain": "«бедная странница» — the subject of the sentence stands in the nominative.",
+   "explain": "«бедная странница» is the subject of «осталась» — who or what does it — so nominative.",
    "id": "c18"
-  },
-  {
-   "sentence": "С наступлением ночи, когда юноша уже уснул, ___ его была введена в его опочивальню.",
-   "lemma": "жена",
-   "options": [
-    "законная жена",
-    "законной женой",
-    "законной жене",
-    "законной жены"
-   ],
-   "correct": "законная жена",
-   "case": "Именительный (Nominative)",
-   "explain": "«законная жена» — the subject of the sentence stands in the nominative.",
-   "id": "c19"
   },
   {
    "sentence": "Как наступило утро, так вывели опять жену из опочивальни, и она должна была отдать ___ свое золотое платье.",
@@ -277,7 +137,7 @@
    ],
    "correct": "жестокой невесте",
    "case": "Дательный (Dative)",
-   "explain": "«жестокой невесте» — the dative marks the indirect object or recipient.",
+   "explain": "«жестокой невесте» is the indirect object of «отдать» — to or for whom (кому?) — dative.",
    "id": "c20"
   },
   {
@@ -291,7 +151,7 @@
    ],
    "correct": "несчастная жена",
    "case": "Именительный (Nominative)",
-   "explain": "«несчастная жена» — the subject of the sentence stands in the nominative.",
+   "explain": "«несчастная жена» is the subject of «запечалилась» — who or what does it — so nominative.",
    "id": "c21"
   },
   {
@@ -305,22 +165,8 @@
    ],
    "correct": "прошлый раз",
    "case": "Винительный (Accusative)",
-   "explain": "«прошлый раз» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«прошлый раз» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c22"
-  },
-  {
-   "sentence": "И вот они тайно ушли из замка ночью, опасаясь отца королевны, ___, и сели на грифа, который понес их за Красное море; и когда они были на самой середине моря, обронила она свой заветный орех.",
-   "lemma": "волшебник",
-   "options": [
-    "злой волшебник",
-    "злому волшебнику",
-    "злым волшебником",
-    "злого волшебника"
-   ],
-   "correct": "злого волшебника",
-   "case": "Родительный (Genitive)",
-   "explain": "«злого волшебника» — the genitive here marks possession, absence, or quantity.",
-   "id": "c23"
   },
   {
    "sentence": "И вот они тайно ушли из замка ночью, опасаясь отца королевны, злого волшебника, и сели на грифа, который понес их за Красное море; и когда они были на ___ моря, обронила она свой заветный орех.",
@@ -333,22 +179,8 @@
    ],
    "correct": "самой середине",
    "case": "Предложный (Prepositional)",
-   "explain": "«самой середине» — after the preposition «на», for location or topic.",
+   "explain": "«самой середине» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c24"
-  },
-  {
-   "sentence": "И вот они тайно ушли из замка ночью, опасаясь отца королевны, злого волшебника, и сели на грифа, который понес их за Красное море; и когда они были на самой середине моря, обронила она свой ___.",
-   "lemma": "орех",
-   "options": [
-    "заветного ореха",
-    "заветном орехе",
-    "заветному ореху",
-    "заветный орех"
-   ],
-   "correct": "заветный орех",
-   "case": "Винительный (Accusative)",
-   "explain": "«заветный орех» — the accusative marks the direct object of the verb.",
-   "id": "c25"
   },
   {
    "sentence": "Тотчас выросло из него большое ___, на котором гриф отдохнуть мог, а затем принес их домой, где они нашли своего ребенка уже выросшим и похорошевшим.",
@@ -361,7 +193,7 @@
    ],
    "correct": "ореховое дерево",
    "case": "Именительный (Nominative)",
-   "explain": "«ореховое дерево» — the subject of the sentence stands in the nominative.",
+   "explain": "«ореховое дерево» is the subject of «выросло» — who or what does it — so nominative.",
    "id": "c26"
   }
  ]

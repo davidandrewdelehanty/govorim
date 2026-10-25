@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Он вызван был без присяги, и я помню, что к нему все стороны отнеслись с самых ___ допроса чрезвычайно мягко и симпатично.",
-   "lemma": "слово",
-   "options": [
-    "первые слова",
-    "первых словах",
-    "первыми словами",
-    "первых слов"
-   ],
-   "correct": "первых слов",
-   "case": "Родительный (Genitive)",
-   "explain": "«первых слов» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
-   "id": "c1"
-  },
-  {
    "sentence": "Видно было, что ему предшествовала ___.",
    "lemma": "слава",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "добрая слава",
    "case": "Именительный (Nominative)",
-   "explain": "«добрая слава» — the subject of the sentence stands in the nominative.",
+   "explain": "«добрая слава» is the subject of «предшествовала» — who or what does it — so nominative.",
    "id": "c2"
   },
   {
@@ -39,50 +25,8 @@
    ],
    "correct": "несчастному брату",
    "case": "Дательный (Dative)",
-   "explain": "«несчастному брату» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«несчастному брату» — «к» always takes the dative.",
    "id": "c3"
-  },
-  {
-   "sentence": "Но я всегда был убежден, что некоторое высшее чувство всегда спасет его в роковую минуту, как и спасло в самом деле, потому что не он убил отца моего, — твердо закончил Алеша ___ и на всю залу.",
-   "lemma": "голос",
-   "options": [
-    "громкого голоса",
-    "громкому голосу",
-    "громким голосом",
-    "громком голосе"
-   ],
-   "correct": "громким голосом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«громким голосом» — the instrumental marks the means, company, or complement.",
-   "id": "c6"
-  },
-  {
-   "sentence": "Прокурор вздрогнул, как ___, заслышавший трубный сигнал.",
-   "lemma": "конь",
-   "options": [
-    "боевого коня",
-    "боевой конь",
-    "боевом коне",
-    "боевым конём"
-   ],
-   "correct": "боевой конь",
-   "case": "Именительный (Nominative)",
-   "explain": "«боевой конь» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
-  },
-  {
-   "sentence": "Прокурор вздрогнул, как боевой конь, заслышавший ___.",
-   "lemma": "сигнал",
-   "options": [
-    "трубный сигнал",
-    "трубным сигналом",
-    "трубного сигнала",
-    "трубном сигнале"
-   ],
-   "correct": "трубный сигнал",
-   "case": "Винительный (Accusative)",
-   "explain": "«трубный сигнал» — the accusative marks the direct object of the verb.",
-   "id": "c8"
   },
   {
    "sentence": "— Будьте уверены, что я совершенно верю самой полной искренности убеждения вашего, не обусловливая и не ассимилируя его нисколько с любовью к вашему ___.",
@@ -95,22 +39,8 @@
    ],
    "correct": "несчастному брату",
    "case": "Дательный (Dative)",
-   "explain": "«несчастному брату» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«несчастному брату» — «к» always takes the dative.",
    "id": "c9"
-  },
-  {
-   "sentence": "___ ваш на весь трагический эпизод, разыгравшийся в вашем семействе, уже известен нам по предварительному следствию.",
-   "lemma": "взгляд",
-   "options": [
-    "своеобразном взгляде",
-    "своеобразный взгляд",
-    "своеобразным взглядом",
-    "своеобразному взгляду"
-   ],
-   "correct": "своеобразный взгляд",
-   "case": "Именительный (Nominative)",
-   "explain": "«Своеобразный взгляд» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
   },
   {
    "sentence": "Своеобразный взгляд ваш на весь ___, разыгравшийся в вашем семействе, уже известен нам по предварительному следствию.",
@@ -123,7 +53,7 @@
    ],
    "correct": "трагический эпизод",
    "case": "Винительный (Accusative)",
-   "explain": "«трагический эпизод» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«трагический эпизод» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c11"
   },
   {
@@ -137,7 +67,7 @@
    ],
    "correct": "ином доказательстве",
    "case": "Предложный (Prepositional)",
-   "explain": "«ином доказательстве» — after the preposition «на», for location or topic.",
+   "explain": "«ином доказательстве» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c14"
   },
   {
@@ -151,22 +81,8 @@
    ],
    "correct": "данного показания",
    "case": "Родительный (Genitive)",
-   "explain": "«данного показания» — after the preposition «насчет», the genitive here marks possession, absence, or quantity.",
+   "explain": "«данного показания» — «насчёт» always takes the genitive.",
    "id": "c16"
-  },
-  {
-   "sentence": "Захотел лучше остаться в ее глазах вором, но не отдал, а самый ___ был в том, что и вперед знал, что не отдам!",
-   "lemma": "позор",
-   "options": [
-    "главного позора",
-    "главный позор",
-    "главном позоре",
-    "главным позором"
-   ],
-   "correct": "главный позор",
-   "case": "Именительный (Nominative)",
-   "explain": "«главный позор» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
   },
   {
    "sentence": "Председатель начал вопросы свои осторожно, чрезвычайно почтительно, как бы боясь коснуться «___» и уважая великое несчастие.",
@@ -179,7 +95,7 @@
    ],
    "correct": "иных струн",
    "case": "Родительный (Genitive)",
-   "explain": "«иных струн» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«коснуться» takes its object in the genitive.",
    "id": "c18"
   },
   {
@@ -193,22 +109,8 @@
    ],
    "correct": "существенный смысл",
    "case": "Винительный (Accusative)",
-   "explain": "«существенный смысл» — the accusative marks the direct object of the verb.",
+   "explain": "«существенный смысл» is the direct object of «передаю» (кого? что?) — accusative.",
    "id": "c20"
-  },
-  {
-   "sentence": "Что же до членов суда, то Катерину Ивановну выслушали в благоговейном, так сказать, даже ___.",
-   "lemma": "молчание",
-   "options": [
-    "стыдливом молчании",
-    "стыдливое молчание",
-    "стыдливым молчанием",
-    "стыдливого молчания"
-   ],
-   "correct": "стыдливом молчании",
-   "case": "Предложный (Prepositional)",
-   "explain": "«стыдливом молчании» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c25"
   },
   {
    "sentence": "Многое было приобретено: человек, отдающий, в ___, последние пять тысяч, и потом тот же человек, убивающий отца ночью с целью ограбить его на три тысячи, — это было нечто отчасти и несвязуемое.",
@@ -221,92 +123,8 @@
    ],
    "correct": "благородном порыве",
    "case": "Предложный (Prepositional)",
-   "explain": "«благородном порыве» — after the preposition «в», for location or topic.",
+   "explain": "«благородном порыве» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c27"
-  },
-  {
-   "sentence": "«Дело» вдруг облилось каким-то ___.",
-   "lemma": "свет",
-   "options": [
-    "новый свет",
-    "новым светом",
-    "новом свете",
-    "нового света"
-   ],
-   "correct": "новым светом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«новым светом» — the instrumental marks the means, company, or complement.",
-   "id": "c28"
-  },
-  {
-   "sentence": "Плавно, своею неслышною походкой, с маленькою раскачкой, как ходят иногда ___, приблизилась она к балюстраде, пристально смотря на председателя и ни разу не взглянув ни направо, ни налево.",
-   "lemma": "женщина",
-   "options": [
-    "полных женщин",
-    "полных женщинах",
-    "полным женщинам",
-    "полные женщины"
-   ],
-   "correct": "полные женщины",
-   "case": "Именительный (Nominative)",
-   "explain": "«полные женщины» — the subject of the sentence stands in the nominative.",
-   "id": "c29"
-  },
-  {
-   "sentence": "Я думаю только, что она была раздражена и тяжело чувствовала на себе ___ жадной к скандалу нашей публики.",
-   "lemma": "взгляд",
-   "options": [
-    "презрительно-любопытными взглядами",
-    "презрительно-любопытным взглядам",
-    "презрительно-любопытные взгляды",
-    "презрительно-любопытных взглядах"
-   ],
-   "correct": "презрительно-любопытные взгляды",
-   "case": "Винительный (Accusative)",
-   "explain": "«презрительно-любопытные взгляды» — the accusative marks the direct object of the verb.",
-   "id": "c30"
-  },
-  {
-   "sentence": "Как-то коснулось дело до Самсонова: «Какое кому дело, — с каким-то ___ тотчас же огрызнулась она, — он был мой благодетель, он меня босоногую взял, когда меня родные из избы вышвырнули».",
-   "lemma": "вызов",
-   "options": [
-    "наглого вызова",
-    "наглый вызов",
-    "наглым вызовом",
-    "наглом вызове"
-   ],
-   "correct": "наглым вызовом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«наглым вызовом» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c31"
-  },
-  {
-   "sentence": "Конечно, ее мигом спросили: какие же у ней основания для такого ___, но оснований не оказалось тоже и у ней никаких.",
-   "lemma": "обвинение",
-   "options": [
-    "решительному обвинению",
-    "решительным обвинением",
-    "решительного обвинения",
-    "решительном обвинении"
-   ],
-   "correct": "решительного обвинения",
-   "case": "Родительный (Genitive)",
-   "explain": "«решительного обвинения» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
-   "id": "c32"
-  },
-  {
-   "sentence": "— Да ведь он же мне ___.",
-   "lemma": "брат",
-   "options": [
-    "двоюродном брате",
-    "двоюродного брата",
-    "двоюродный брат",
-    "двоюродным братом"
-   ],
-   "correct": "двоюродный брат",
-   "case": "Именительный (Nominative)",
-   "explain": "«двоюродный брат» — the subject of the sentence stands in the nominative.",
-   "id": "c34"
   },
   {
    "sentence": "Этот ___ оказался совершенною неожиданностью для всех, никто про него до сих пор не знал во всем городе, даже в монастыре, даже не знал Митя.",
@@ -319,7 +137,7 @@
    ],
    "correct": "новый факт",
    "case": "Именительный (Nominative)",
-   "explain": "«новый факт» — the subject of the sentence stands in the nominative.",
+   "explain": "«новый факт» is the subject of «оказался» — who or what does it — so nominative.",
    "id": "c35"
   },
   {
@@ -333,7 +151,7 @@
    ],
    "correct": "общем мнении",
    "case": "Предложный (Prepositional)",
-   "explain": "«общем мнении» — after the preposition «в», for location or topic.",
+   "explain": "«общем мнении» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c36"
   },
   {
@@ -347,7 +165,7 @@
    ],
    "correct": "презрительных взглядов",
    "case": "Родительный (Genitive)",
-   "explain": "«презрительных взглядов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«презрительных взглядов» depends on the noun «Сотни» (whose? of what?) — genitive.",
    "id": "c37"
   }
  ]

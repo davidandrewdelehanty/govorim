@@ -1,59 +1,17 @@
 {
  "cases": [
   {
-   "sentence": "Мазурку украшал проезжий гвардейский гусар в малиновых рейтузах, с худеньким ___ и маленькой головкой на длинной худой шее.",
-   "lemma": "личико",
-   "options": [
-    "девичье личико",
-    "девичьим личиком",
-    "девичьего личика",
-    "девичьему личику"
-   ],
-   "correct": "девичьим личиком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«девичьим личиком» — the instrumental marks the means, company, or complement.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Мазурку украшал проезжий гвардейский гусар в малиновых рейтузах, с худеньким девичьим личиком и маленькой головкой на длинной ___.",
-   "lemma": "шея",
-   "options": [
-    "худая шея",
-    "худой шеей",
-    "худой шее",
-    "худой шеи"
-   ],
-   "correct": "худой шее",
-   "case": "Предложный (Prepositional)",
-   "explain": "«худой шее» — after the preposition «на», for location or topic.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Дирижер танцев, ___, с завистью поглядывал на эти «выкрутасы», как он назвал своей даме штуки гусара.",
-   "lemma": "пехотинец",
-   "options": [
-    "армейском пехотинце",
-    "армейским пехотинцем",
-    "армейский пехотинец",
-    "армейскому пехотинцу"
-   ],
-   "correct": "армейский пехотинец",
-   "case": "Именительный (Nominative)",
-   "explain": "«армейский пехотинец» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
    "sentence": "В комнате, где играл тапер, на столе разложены были все вещицы для котильона: множество ___ из свежих цветов, звезды, банты, картонные головы.",
    "lemma": "букет",
    "options": [
     "небольших букетов",
     "небольшим букетам",
-    "небольшие букеты",
-    "небольшими букетами"
+    "небольших букетах",
+    "небольшие букеты"
    ],
    "correct": "небольших букетов",
    "case": "Родительный (Genitive)",
-   "explain": "«небольших букетов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«небольших букетов» depends on the noun «множество» (whose? of what?) — genitive.",
    "id": "c4"
   },
   {
@@ -67,36 +25,8 @@
    ],
    "correct": "свежих цветов",
    "case": "Родительный (Genitive)",
-   "explain": "«свежих цветов» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«свежих цветов» — «из» always takes the genitive.",
    "id": "c5"
-  },
-  {
-   "sentence": "В комнате, где играл тапер, на столе разложены были все вещицы для котильона: множество небольших букетов из свежих цветов, звезды, банты, ___.",
-   "lemma": "голова",
-   "options": [
-    "картонных голов",
-    "картонным головам",
-    "картонных головах",
-    "картонные головы"
-   ],
-   "correct": "картонные головы",
-   "case": "Винительный (Accusative)",
-   "explain": "«картонные головы» — the accusative marks the direct object of the verb.",
-   "id": "c6"
-  },
-  {
-   "sentence": "Анна Серафимовна сидела около двери этой ___.",
-   "lemma": "комната",
-   "options": [
-    "проходная комната",
-    "проходной комнаты",
-    "проходной комнатой",
-    "проходной комнате"
-   ],
-   "correct": "проходной комнаты",
-   "case": "Родительный (Genitive)",
-   "explain": "«проходной комнаты» — the genitive here marks possession, absence, or quantity.",
-   "id": "c7"
   },
   {
    "sentence": "Растения густо обставляли эту залу и делали ее похожей на ___.",
@@ -109,21 +39,21 @@
    ],
    "correct": "зимний сад",
    "case": "Винительный (Accusative)",
-   "explain": "«зимний сад» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«зимний сад» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c9"
   },
   {
    "sentence": "Один раз и Палтусов наклонился в ее сторону и сказал что-то обидное по своему ___.",
    "lemma": "тон",
    "options": [
-    "снисходительного тона",
-    "снисходительный тон",
+    "снисходительном тоне",
     "снисходительному тону",
+    "снисходительного тона",
     "снисходительным тоном"
    ],
    "correct": "снисходительному тону",
    "case": "Дательный (Dative)",
-   "explain": "«снисходительному тону» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«снисходительному тону» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c10"
   },
   {
@@ -137,22 +67,8 @@
    ],
    "correct": "другой пары",
    "case": "Родительный (Genitive)",
-   "explain": "«другой пары» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«другой пары» depends on the noun «разговор» (whose? of what?) — genitive.",
    "id": "c11"
-  },
-  {
-   "sentence": "— Проводил, — ___ выговорил Палтусов.",
-   "lemma": "тон",
-   "options": [
-    "простом тоне",
-    "простому тону",
-    "простой тон",
-    "простым тоном"
-   ],
-   "correct": "простым тоном",
-   "case": "Творительный (Instrumental)",
-   "explain": "«простым тоном» — the instrumental marks the means, company, or complement.",
-   "id": "c13"
   }
  ]
 }

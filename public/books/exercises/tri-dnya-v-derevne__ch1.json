@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Из-за угла выходит молодая длиннолицая, худая, очень бедно, холодно по погоде ___.",
-   "lemma": "крестьянка",
-   "options": [
-    "одетой крестьянкой",
-    "одетая крестьянка",
-    "одетой крестьянке",
-    "одетой крестьянки"
-   ],
-   "correct": "одетая крестьянка",
-   "case": "Именительный (Nominative)",
-   "explain": "«одетая крестьянка» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Оказывается, что живущему у нас врачу есть дело к больному в той ___, из которой приходила солдатка, и в той, где волостное правление.",
    "lemma": "деревня",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "самой деревне",
    "case": "Предложный (Prepositional)",
-   "explain": "«самой деревне» — after the preposition «в», for location or topic.",
+   "explain": "«самой деревне» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c3"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "волостном правлении",
    "case": "Предложный (Prepositional)",
-   "explain": "«волостном правлении» — after the preposition «в», for location or topic.",
+   "explain": "«волостном правлении» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c4"
   },
   {
@@ -53,7 +39,7 @@
    ],
    "correct": "рудокопной шахте",
    "case": "Предложный (Prepositional)",
-   "explain": "«рудокопной шахте» — after the preposition «в», for location or topic.",
+   "explain": "«рудокопной шахте» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c5"
   },
   {
@@ -67,7 +53,7 @@
    ],
    "correct": "старшая девочка",
    "case": "Именительный (Nominative)",
-   "explain": "«Старшая девочка» — the subject of the sentence stands in the nominative.",
+   "explain": "«старшая девочка» is the subject of «понимает» — who or what does it — so nominative.",
    "id": "c6"
   },
   {
@@ -81,7 +67,7 @@
    ],
    "correct": "утренней солдатке",
    "case": "Дательный (Dative)",
-   "explain": "«утренней солдатке» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«утренней солдатке» — «к» always takes the dative.",
    "id": "c7"
   },
   {
@@ -95,92 +81,22 @@
    ],
    "correct": "первого двора",
    "case": "Родительный (Genitive)",
-   "explain": "«первого двора» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«первого двора» — «у» always takes the genitive.",
    "id": "c8"
   },
   {
    "sentence": "Оказывается, что в этом ___ живет очень знакомая мне вдова, живущая милостыней, которую она умеет особенно упорно и назойливо выпрашивать.",
    "lemma": "двор",
    "options": [
-    "первый двор",
     "первому двору",
+    "первым двором",
     "первом дворе",
-    "первым двором"
+    "первого двора"
    ],
    "correct": "первом дворе",
    "case": "Предложный (Prepositional)",
-   "explain": "«первом дворе» — after the preposition «в», for location or topic.",
+   "explain": "«первом дворе» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c9"
-  },
-  {
-   "sentence": "Как ни жалки по деревням дома ___, такого заваливающегося дома, как дом солдатки, я давно не видал.",
-   "lemma": "человек",
-   "options": [
-    "бедными людьми",
-    "бедным людям",
-    "бедных людей",
-    "бедных людях"
-   ],
-   "correct": "бедных людей",
-   "case": "Родительный (Genitive)",
-   "explain": "«бедных людей» — the genitive here marks possession, absence, or quantity.",
-   "id": "c10"
-  },
-  {
-   "sentence": "___ с печкой, занимающей треть ее, вся была перекошена, черная, грязная и, к удивлению моему, полна народа.",
-   "lemma": "избушка",
-   "options": [
-    "маленькой избушки",
-    "маленькой избушкой",
-    "маленькой избушке",
-    "маленькая избушка"
-   ],
-   "correct": "маленькая избушка",
-   "case": "Именительный (Nominative)",
-   "explain": "«Маленькая избушка» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
-  },
-  {
-   "sentence": "Я думал найти одну солдатку с ее детьми, но тут и золовка, ___ с детьми, и старуха свекровь.",
-   "lemma": "баба",
-   "options": [
-    "молодой бабой",
-    "молодой бабе",
-    "молодой бабы",
-    "молодая баба"
-   ],
-   "correct": "молодая баба",
-   "case": "Именительный (Nominative)",
-   "explain": "«молодая баба» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
-  },
-  {
-   "sentence": "Сергиевское — богатое ___, в сорока верстах от нас.",
-   "lemma": "село",
-   "options": [
-    "большим селом",
-    "большого села",
-    "большом селе",
-    "большое село"
-   ],
-   "correct": "большое село",
-   "case": "Именительный (Nominative)",
-   "explain": "«большое село» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
-  },
-  {
-   "sentence": "Небольшая, но ___, в середине люлька, и женщина усиленно качает ее.",
-   "lemma": "горница",
-   "options": [
-    "чистой горницы",
-    "чистой горницей",
-    "чистой горнице",
-    "чистая горница"
-   ],
-   "correct": "чистая горница",
-   "case": "Именительный (Nominative)",
-   "explain": "«чистая горница» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
   },
   {
    "sentence": "Врач держит его за пульс ___.",
@@ -193,22 +109,8 @@
    ],
    "correct": "левой руки",
    "case": "Родительный (Genitive)",
-   "explain": "«левой руки» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«левой руки» depends on the noun «пульс» (whose? of what?) — genitive.",
    "id": "c15"
-  },
-  {
-   "sentence": "Врач, все еще занятый больным, ___ говорит мне одно слово.",
-   "lemma": "голос",
-   "options": [
-    "тихому голосу",
-    "тихий голос",
-    "тихим голосом",
-    "тихом голосе"
-   ],
-   "correct": "тихим голосом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«тихим голосом» — the instrumental marks the means, company, or complement.",
-   "id": "c16"
   },
   {
    "sentence": "У крыльца стоит ___ коней цугом в ковровых санях.",
@@ -221,7 +123,7 @@
    ],
    "correct": "великолепная пара",
    "case": "Именительный (Nominative)",
-   "explain": "«великолепная пара» — the subject of the sentence stands in the nominative.",
+   "explain": "«великолепная пара» is the subject of «стоит» — who or what does it — so nominative.",
    "id": "c18"
   },
   {
@@ -235,7 +137,7 @@
    ],
    "correct": "обеденным столом",
    "case": "Творительный (Instrumental)",
-   "explain": "«обеденным столом» — after the preposition «за», the instrumental marks the means, company, or complement.",
+   "explain": "«обеденным столом» — «за» takes the instrumental here (где? за чем? за кем?) — the accusative would mean motion behind or 'for' (куда? за что?).",
    "id": "c20"
   },
   {
@@ -249,7 +151,7 @@
    ],
    "correct": "гигиенический обед",
    "case": "Именительный (Nominative)",
-   "explain": "«гигиенический обед» — the subject of the sentence stands in the nominative.",
+   "explain": "«гигиенический обед» is the subject of «приготовлен» — who or what does it — so nominative.",
    "id": "c21"
   }
  ]

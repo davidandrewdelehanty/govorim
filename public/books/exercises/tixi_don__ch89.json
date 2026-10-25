@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Сколько ни голосить в дни годовщины и поминок — не донесет восточный ветер криков их до Галиции и Восточной Пруссии, до осевших холмиков ___!..",
-   "lemma": "могила",
-   "options": [
-    "братских могил",
-    "братских могилах",
-    "братским могилам",
-    "братские могилы"
-   ],
-   "correct": "братских могил",
-   "case": "Родительный (Genitive)",
-   "explain": "«братских могил» — the genitive here marks possession, absence, or quantity.",
-   "id": "c1"
-  },
-  {
    "sentence": "Билась головой о жесткую землю жена Прохора Шамиля, грызла земляной пол зубами, наглядевшись, как ласкает вернувшийся брат ___, Мартин Шамиль, свою беременную жену, нянчит детей и раздает им подарки.",
    "lemma": "муж",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "покойного мужа",
    "case": "Родительный (Genitive)",
-   "explain": "«покойного мужа» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«покойного мужа» depends on the noun «брат» (whose? of what?) — genitive.",
    "id": "c2"
   },
   {
@@ -39,36 +25,8 @@
    ],
    "correct": "последней рубахи",
    "case": "Родительный (Genitive)",
-   "explain": "«последней рубахи» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«последней рубахи» depends on the noun «ворот» (whose? of what?) — genitive.",
    "id": "c3"
-  },
-  {
-   "sentence": "Рви жидкие от безрадостной тяжкой жизни волосы, кусай свои в кровь искусанные губы, ломай изуродованные работой руки и бейся на земле у порога ___!",
-   "lemma": "курень",
-   "options": [
-    "пустой курень",
-    "пустом курене",
-    "пустого куреня",
-    "пустым куренём"
-   ],
-   "correct": "пустого куреня",
-   "case": "Родительный (Genitive)",
-   "explain": "«пустого куреня» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
-   "id": "c4"
-  },
-  {
-   "sentence": "Осиротели семьи Маныцкова, Афоньки Озерова, Евлантия Калинина, Лиховидова, Ермакова и ___.",
-   "lemma": "казак",
-   "options": [
-    "другими казаками",
-    "других казаков",
-    "других казаках",
-    "другим казакам"
-   ],
-   "correct": "других казаков",
-   "case": "Родительный (Genitive)",
-   "explain": "«других казаков» — the genitive here marks possession, absence, or quantity.",
-   "id": "c5"
   },
   {
    "sentence": "Казаки ___ Донецкого округа шли домой земляческими валками.",
@@ -81,7 +39,7 @@
    ],
    "correct": "верховых станиц",
    "case": "Родительный (Genitive)",
-   "explain": "«верховых станиц» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«верховых станиц» depends on the noun «Казаки» (whose? of what?) — genitive.",
    "id": "c6"
   },
   {
@@ -95,22 +53,8 @@
    ],
    "correct": "донецкого округа",
    "case": "Родительный (Genitive)",
-   "explain": "«Донецкого округа» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«донецкого округа» depends on the noun «станиц» (whose? of what?) — genitive.",
    "id": "c7"
-  },
-  {
-   "sentence": "Через хутор ___ и ночь тянулись конные, человек по десять — сорок, направляясь на левую сторону Дона.",
-   "lemma": "день",
-   "options": [
-    "татарского дня",
-    "татарский день",
-    "татарским днём",
-    "татарском дне"
-   ],
-   "correct": "татарский день",
-   "case": "Винительный (Accusative)",
-   "explain": "«Татарский день» — the accusative marks the direct object of the verb.",
-   "id": "c8"
   },
   {
    "sentence": "В конце зимы под Новочеркасском уже завязывались зачатки ___, а в верховьях Дона, в хуторах и станицах, кладбищенская покоилась тишина.",
@@ -123,22 +67,8 @@
    ],
    "correct": "гражданской войны",
    "case": "Родительный (Genitive)",
-   "explain": "«гражданской войны» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«гражданской войны» depends on the noun «зачатки» (whose? of what?) — genitive.",
    "id": "c9"
-  },
-  {
-   "sentence": "В куренях лишь шла скрытая, иногда прорывавшаяся наружу, ___: старики не ладили с фронтовиками.",
-   "lemma": "междоусобица",
-   "options": [
-    "семейной междоусобицы",
-    "семейной междоусобицей",
-    "семейной междоусобице",
-    "семейная междоусобица"
-   ],
-   "correct": "семейная междоусобица",
-   "case": "Именительный (Nominative)",
-   "explain": "«семейная междоусобица» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
   },
   {
    "sentence": "О войне, закипавшей под стольным градом Области войска Донского, знали лишь понаслышке; смутно разбираясь в возникавших ___, выжидали событий, прислушивались.",
@@ -151,22 +81,8 @@
    ],
    "correct": "политических течениях",
    "case": "Предложный (Prepositional)",
-   "explain": "«политических течениях» — after the preposition «в», for location or topic.",
+   "explain": "«политических течениях» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c11"
-  },
-  {
-   "sentence": "Вернувшиеся с фронта казаки отдыхали возле жен, отъедались, не чуяли, что у порогов куреней караулят их ___ и тяготы, чем те, которые приходилось переносить на пережитой войне.",
-   "lemma": "беда",
-   "options": [
-    "горших бед",
-    "горшим бедам",
-    "горшие беды",
-    "горших бедах"
-   ],
-   "correct": "горшие беды",
-   "case": "Винительный (Accusative)",
-   "explain": "«горшие беды» — the accusative marks the direct object of the verb.",
-   "id": "c12"
   }
  ]
 }

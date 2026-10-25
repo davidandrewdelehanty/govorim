@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "___ августа; число, должно быть, тридцатое или тридцать первое.",
-   "lemma": "конец",
-   "options": [
-    "самым концом",
-    "самый конец",
-    "самом конце",
-    "самому концу"
-   ],
-   "correct": "самый конец",
-   "case": "Именительный (Nominative)",
-   "explain": "«Самый конец» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "После трехмесячных ___ кадеты, окончившие полный курс, съезжаются в последний раз в корпус, где учились, проказили, порою сидели в карцере, ссорились и дружили целых семь лет подряд.",
    "lemma": "каникулы",
    "options": [
@@ -25,35 +11,21 @@
    ],
    "correct": "летних каникул",
    "case": "Родительный (Genitive)",
-   "explain": "«летних каникул» — after the preposition «после», the genitive here marks possession, absence, or quantity.",
+   "explain": "«летних каникул» — «после» always takes the genitive.",
    "id": "c2"
-  },
-  {
-   "sentence": "После трехмесячных летних каникул кадеты, окончившие ___, съезжаются в последний раз в корпус, где учились, проказили, порою сидели в карцере, ссорились и дружили целых семь лет подряд.",
-   "lemma": "курс",
-   "options": [
-    "полный курс",
-    "полному курсу",
-    "полном курсе",
-    "полным курсом"
-   ],
-   "correct": "полный курс",
-   "case": "Винительный (Accusative)",
-   "explain": "«полный курс» — the accusative marks the direct object of the verb.",
-   "id": "c3"
   },
   {
    "sentence": "Вот налево от входа в железные ворота — каменное двухэтажное здание, грязно-желтое и облупленное, построенное пятьдесят лет назад в николаевском ___.",
    "lemma": "стиль",
    "options": [
-    "солдатском стиле",
-    "солдатский стиль",
     "солдатским стилем",
+    "солдатском стиле",
+    "солдатскому стилю",
     "солдатского стиля"
    ],
    "correct": "солдатском стиле",
    "case": "Предложный (Prepositional)",
-   "explain": "«солдатском стиле» — after the preposition «в», for location or topic.",
+   "explain": "«солдатском стиле» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c6"
   },
   {
@@ -67,22 +39,8 @@
    ],
    "correct": "второго корпуса",
    "case": "Родительный (Genitive)",
-   "explain": "«второго корпуса» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«второго корпуса» depends on the noun «церкви» (whose? of what?) — genitive.",
    "id": "c7"
-  },
-  {
-   "sentence": "___, как и всегда, ровно в три часа шла на обед в общую корпусную столовую, спускаясь вниз по широкой каменной вьющейся лестнице.",
-   "lemma": "рота",
-   "options": [
-    "строевая рота",
-    "строевой ротой",
-    "строевой роты",
-    "строевой роте"
-   ],
-   "correct": "строевая рота",
-   "case": "Именительный (Nominative)",
-   "explain": "«Строевая рота» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
   },
   {
    "sentence": "Строевая рота, как и всегда, ровно в три часа шла на обед в общую корпусную столовую, спускаясь вниз по широкой каменной ___.",
@@ -95,22 +53,8 @@
    ],
    "correct": "вьющейся лестнице",
    "case": "Дательный (Dative)",
-   "explain": "«вьющейся лестнице» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«вьющейся лестнице» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c9"
-  },
-  {
-   "sentence": "Довольно спокойно пришел юноша в карцер и сам себя посадил в одну из трех камер, за железную решетку, на голую дубовую нару, а ___ Круглов, не говоря ни слова, запер его на ключ.",
-   "lemma": "дядька",
-   "options": [
-    "карцерный дядька",
-    "карцерным дядькой",
-    "карцерному дядьке",
-    "карцерном дядьке"
-   ],
-   "correct": "карцерный дядька",
-   "case": "Именительный (Nominative)",
-   "explain": "«карцерный дядька» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
   },
   {
    "sentence": "Есть перехотелось от волнения и от ___ во рту.",
@@ -123,7 +67,7 @@
    ],
    "correct": "терпкого вкуса",
    "case": "Родительный (Genitive)",
-   "explain": "«терпкого вкуса» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«терпкого вкуса» — «от» always takes the genitive.",
    "id": "c12"
   },
   {
@@ -137,64 +81,22 @@
    ],
    "correct": "полная тишина",
    "case": "Именительный (Nominative)",
-   "explain": "«полная тишина» — the subject of the sentence stands in the nominative.",
+   "explain": "«полная тишина» is the subject of «наступила» — who or what does it — so nominative.",
    "id": "c13"
-  },
-  {
-   "sentence": "Он кружился в маленьком пространстве четырех ___, и новые дикие и дерзкие мысли все более овладевали им.",
-   "lemma": "шаг",
-   "options": [
-    "квадратных шагов",
-    "квадратным шагам",
-    "квадратными шагами",
-    "квадратные шаги"
-   ],
-   "correct": "квадратных шагов",
-   "case": "Родительный (Genitive)",
-   "explain": "«квадратных шагов» — the genitive here marks possession, absence, or quantity.",
-   "id": "c15"
   },
   {
    "sentence": "И я покорно подчинялся ___.",
    "lemma": "закон",
    "options": [
-    "глупым законом",
     "глупому закону",
+    "глупым законом",
     "глупого закона",
-    "глупый закон"
+    "глупом законе"
    ],
    "correct": "глупому закону",
    "case": "Дательный (Dative)",
-   "explain": "«глупому закону» — the dative marks the indirect object or recipient.",
+   "explain": "«подчинялся» takes the dative (кому? чему?).",
    "id": "c17"
-  },
-  {
-   "sentence": "Он теперь во столько раз несправедлив, во сколько во все ___ бывал прав.",
-   "lemma": "раз",
-   "options": [
-    "прежним разам",
-    "прежних раз",
-    "прежними разами",
-    "прежние разы"
-   ],
-   "correct": "прежние разы",
-   "case": "Винительный (Accusative)",
-   "explain": "«прежние разы» — the accusative marks the direct object of the verb.",
-   "id": "c18"
-  },
-  {
-   "sentence": "Или его ___ Валерка?",
-   "lemma": "сын",
-   "options": [
-    "сопливого сына",
-    "сопливом сыне",
-    "сопливому сыну",
-    "сопливый сын"
-   ],
-   "correct": "сопливый сын",
-   "case": "Именительный (Nominative)",
-   "explain": "«сопливый сын» — the subject of the sentence stands in the nominative.",
-   "id": "c19"
   },
   {
    "sentence": "Выйдя из корпуса, ___ по окончании курса держат экзамены в технические училища, в межевой институт, в лесную академию или в другое высшее училище, где не требуются латынь и греческий язык.",
@@ -207,50 +109,8 @@
    ],
    "correct": "многие кадеты",
    "case": "Именительный (Nominative)",
-   "explain": "«многие кадеты» — the subject of the sentence stands in the nominative.",
+   "explain": "«многие кадеты» is the subject of «держат» — who or what does it — so nominative.",
    "id": "c20"
-  },
-  {
-   "sentence": "Выйдя из корпуса, многие кадеты по окончании курса держат экзамены в технические училища, в межевой институт, в лесную академию или в другое высшее училище, где не требуются латынь и ___.",
-   "lemma": "язык",
-   "options": [
-    "греческим языком",
-    "греческому языку",
-    "греческий язык",
-    "греческом языке"
-   ],
-   "correct": "греческий язык",
-   "case": "Винительный (Accusative)",
-   "explain": "«греческий язык» — the accusative marks the direct object of the verb.",
-   "id": "c23"
-  },
-  {
-   "sentence": "Карцер был расположен в том же ___, где и строевая рота.",
-   "lemma": "этаж",
-   "options": [
-    "верхний этаж",
-    "верхнего этажа",
-    "верхним этажом",
-    "верхнем этаже"
-   ],
-   "correct": "верхнем этаже",
-   "case": "Предложный (Prepositional)",
-   "explain": "«верхнем этаже» — after the preposition «в», for location or topic.",
-   "id": "c24"
-  },
-  {
-   "sentence": "Карцер был расположен в том же верхнем этаже, где и ___.",
-   "lemma": "рота",
-   "options": [
-    "строевой роте",
-    "строевой роты",
-    "строевая рота",
-    "строевой ротой"
-   ],
-   "correct": "строевая рота",
-   "case": "Именительный (Nominative)",
-   "explain": "«строевая рота» — the subject of the sentence stands in the nominative.",
-   "id": "c25"
   },
   {
    "sentence": "Уборная же была общая для карцера и для ___.",
@@ -263,22 +123,8 @@
    ],
    "correct": "ротной спальни",
    "case": "Родительный (Genitive)",
-   "explain": "«ротной спальни» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«ротной спальни» — «для» always takes the genitive.",
    "id": "c26"
-  },
-  {
-   "sentence": "Таково было ___, пока карцер в подвальном этаже ремонтировался.",
-   "lemma": "устройство",
-   "options": [
-    "временном устройстве",
-    "временного устройства",
-    "временное устройство",
-    "временному устройству"
-   ],
-   "correct": "временное устройство",
-   "case": "Именительный (Nominative)",
-   "explain": "«временное устройство» — the subject of the sentence stands in the nominative.",
-   "id": "c27"
   },
   {
    "sentence": "Таково было временное устройство, пока карцер в ___ ремонтировался.",
@@ -291,21 +137,21 @@
    ],
    "correct": "подвальном этаже",
    "case": "Предложный (Prepositional)",
-   "explain": "«подвальном этаже» — after the preposition «в», for location or topic.",
+   "explain": "«подвальном этаже» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c28"
   },
   {
    "sentence": "Но едва только Александров приблизился к порогу спальни, как сразу помчался между ___ кроватей.",
    "lemma": "ряд",
    "options": [
-    "серых рядов",
-    "серыми рядами",
     "серых рядах",
-    "серые ряды"
+    "серыми рядами",
+    "серые ряды",
+    "серым рядам"
    ],
    "correct": "серыми рядами",
    "case": "Творительный (Instrumental)",
-   "explain": "«серыми рядами» — after the preposition «между», the instrumental marks the means, company, or complement.",
+   "explain": "«серыми рядами» — «между» + instrumental: between.",
    "id": "c30"
   },
   {
@@ -319,22 +165,8 @@
    ],
    "correct": "татарских князей",
    "case": "Родительный (Genitive)",
-   "explain": "«татарских князей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«татарских князей» depends on the noun «кровь» (whose? of what?) — genitive.",
    "id": "c31"
-  },
-  {
-   "sentence": "— Какое же вы имеете право не повиноваться своему ___?",
-   "lemma": "начальник",
-   "options": [
-    "прямого начальника",
-    "прямому начальнику",
-    "прямым начальником",
-    "прямой начальник"
-   ],
-   "correct": "прямому начальнику",
-   "case": "Дательный (Dative)",
-   "explain": "«прямому начальнику» — the dative marks the indirect object or recipient.",
-   "id": "c33"
   },
   {
    "sentence": "___ хлынула Александрову в голову, и все в его глазах приятно порозовело.",
@@ -347,63 +179,35 @@
    ],
    "correct": "горячая волна",
    "case": "Именительный (Nominative)",
-   "explain": "«Горячая волна» — the subject of the sentence stands in the nominative.",
+   "explain": "«горячая волна» is the subject of «хлынула» — who or what does it — so nominative.",
    "id": "c34"
   },
   {
    "sentence": "— Такое право, что я больше не хочу учиться во втором ___, где со мною поступили так несправедливо.",
    "lemma": "корпус",
    "options": [
-    "московский корпус",
+    "московского корпуса",
     "московскому корпусу",
     "московским корпусом",
     "московском корпусе"
    ],
    "correct": "московском корпусе",
    "case": "Предложный (Prepositional)",
-   "explain": "«московском корпусе» — after the preposition «во», for location or topic.",
+   "explain": "«московском корпусе» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c35"
-  },
-  {
-   "sentence": "С этой минуты я больше не кадет, а ___.",
-   "lemma": "человек",
-   "options": [
-    "свободным человеком",
-    "свободном человеке",
-    "свободный человек",
-    "свободного человека"
-   ],
-   "correct": "свободный человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«свободный человек» — the subject of the sentence stands in the nominative.",
-   "id": "c36"
-  },
-  {
-   "sentence": "— ___, сколько вам лет?",
-   "lemma": "юноша",
-   "options": [
-    "милый юноша",
-    "милому юноше",
-    "милого юноши",
-    "милым юношей"
-   ],
-   "correct": "милый юноша",
-   "case": "Именительный (Nominative)",
-   "explain": "«Милый юноша» — the subject of the sentence stands in the nominative.",
-   "id": "c37"
   },
   {
    "sentence": "— Но я вам должен сказать, что в возрасте семнадцати лет ___ не имеет почти никаких личных и общественных прав.",
    "lemma": "человек",
    "options": [
-    "молодым человеком",
-    "молодому человеку",
     "молодой человек",
-    "молодого человека"
+    "молодом человеке",
+    "молодому человеку",
+    "молодым человеком"
    ],
    "correct": "молодой человек",
    "case": "Именительный (Nominative)",
-   "explain": "«молодой человек» — the subject of the sentence stands in the nominative.",
+   "explain": "«молодой человек» is the subject of «имеет» — who or what does it — so nominative.",
    "id": "c38"
   },
   {
@@ -417,22 +221,8 @@
    ],
    "correct": "восемнадцатилетний возраст",
    "case": "Именительный (Nominative)",
-   "explain": "«восемнадцатилетний возраст» — the subject of the sentence stands in the nominative.",
+   "explain": "«восемнадцатилетний возраст» is the subject of «требуется» — who or what does it — so nominative.",
    "id": "c39"
-  },
-  {
-   "sentence": "В вашем же положении вы находитесь на попечении родителей, родственников, или опекунов, или какого-нибудь ___.",
-   "lemma": "учреждение",
-   "options": [
-    "общественном учреждении",
-    "общественным учреждением",
-    "общественного учреждения",
-    "общественному учреждению"
-   ],
-   "correct": "общественного учреждения",
-   "case": "Родительный (Genitive)",
-   "explain": "«общественного учреждения» — the genitive here marks possession, absence, or quantity.",
-   "id": "c40"
   },
   {
    "sentence": "Утро дает совет как говорят ___.",
@@ -445,7 +235,7 @@
    ],
    "correct": "мудрые французы",
    "case": "Именительный (Nominative)",
-   "explain": "«мудрые французы» — the subject of the sentence stands in the nominative.",
+   "explain": "«мудрые французы» is the subject of «говорят» — who or what does it — so nominative.",
    "id": "c41"
   },
   {
@@ -459,35 +249,21 @@
    ],
    "correct": "проклятого застенка",
    "case": "Родительный (Genitive)",
-   "explain": "«проклятого застенка» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«проклятого застенка» — «из» always takes the genitive.",
    "id": "c42"
-  },
-  {
-   "sentence": "— Господин поручик, обратился он к Михину, — это не он, а его дурацкий ___ скандалит.",
-   "lemma": "возраст",
-   "options": [
-    "переломному возрасту",
-    "переломный возраст",
-    "переломным возрастом",
-    "переломном возрасте"
-   ],
-   "correct": "переломный возраст",
-   "case": "Именительный (Nominative)",
-   "explain": "«переломный возраст» — the subject of the sentence stands in the nominative.",
-   "id": "c43"
   },
   {
    "sentence": "Ведь все мы переживали этот ___.",
    "lemma": "период",
    "options": [
+    "козлином периоде",
     "козлиный период",
-    "козлиному периоду",
-    "козлиного периода",
-    "козлином периоде"
+    "козлиным периодом",
+    "козлиному периоду"
    ],
    "correct": "козлиный период",
    "case": "Винительный (Accusative)",
-   "explain": "«козлиный период» — the accusative marks the direct object of the verb.",
+   "explain": "«козлиный период» is the direct object of «переживали» (кого? что?) — accusative.",
    "id": "c44"
   },
   {
@@ -501,7 +277,7 @@
    ],
    "correct": "старшей сестры",
    "case": "Родительный (Genitive)",
-   "explain": "«старшей сестры» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«старшей сестры» depends on the noun «Муж» (whose? of what?) — genitive.",
    "id": "c45"
   },
   {
@@ -515,7 +291,7 @@
    ],
    "correct": "тверской улице",
    "case": "Предложный (Prepositional)",
-   "explain": "«Тверской улице» — after the preposition «на», for location or topic.",
+   "explain": "«тверской улице» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c46"
   },
   {
@@ -529,92 +305,8 @@
    ],
    "correct": "прошлой неделе",
    "case": "Предложный (Prepositional)",
-   "explain": "«прошлой неделе» — after the preposition «на», for location or topic.",
+   "explain": "«прошлой неделе» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c47"
-  },
-  {
-   "sentence": "Потянулись секунды, минуты и часы, ___.",
-   "lemma": "часы",
-   "options": [
-    "бесконечных часах",
-    "бесконечных часов",
-    "бесконечными часами",
-    "бесконечные часы"
-   ],
-   "correct": "бесконечные часы",
-   "case": "Именительный (Nominative)",
-   "explain": "«бесконечные часы» — the subject of the sentence stands in the nominative.",
-   "id": "c49"
-  },
-  {
-   "sentence": "А кроме того, вся ___ была недовольна несправедливым наказанием Александрова и глухо волновалась.",
-   "lemma": "рота",
-   "options": [
-    "строевой роте",
-    "строевой роты",
-    "строевая рота",
-    "строевой ротой"
-   ],
-   "correct": "строевая рота",
-   "case": "Именительный (Nominative)",
-   "explain": "«строевая рота» — the subject of the sentence stands in the nominative.",
-   "id": "c50"
-  },
-  {
-   "sentence": "А кроме того, вся строевая рота была недовольна ___ Александрова и глухо волновалась.",
-   "lemma": "наказание",
-   "options": [
-    "несправедливом наказании",
-    "несправедливому наказанию",
-    "несправедливого наказания",
-    "несправедливым наказанием"
-   ],
-   "correct": "несправедливым наказанием",
-   "case": "Творительный (Instrumental)",
-   "explain": "«несправедливым наказанием» — the instrumental marks the means, company, or complement.",
-   "id": "c51"
-  },
-  {
-   "sentence": "Начался он из-за пустяков, по поводу жуликоватого эконома и ___.",
-   "lemma": "пища",
-   "options": [
-    "плохой пищи",
-    "плохая пища",
-    "плохой пищей",
-    "плохой пище"
-   ],
-   "correct": "плохой пищи",
-   "case": "Родительный (Genitive)",
-   "explain": "«плохой пищи» — the genitive here marks possession, absence, or quantity.",
-   "id": "c52"
-  },
-  {
-   "sentence": "Во втором корпусе боролись с ним очень просто, ___.",
-   "lemma": "средство",
-   "options": [
-    "домашним средствам",
-    "домашние средства",
-    "домашних средств",
-    "домашними средствами"
-   ],
-   "correct": "домашними средствами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«домашними средствами» — the instrumental marks the means, company, or complement.",
-   "id": "c54"
-  },
-  {
-   "sentence": "Наконец — ___ на приветствие директора: «Здравствуйте, кадеты», начала упорно отвечать вместо «здравия желаем, ваше превосходительство» — «Здравия желаем, кулебяки с рисом».",
-   "lemma": "рота",
-   "options": [
-    "строевой роте",
-    "строевой роты",
-    "строевая рота",
-    "строевой ротой"
-   ],
-   "correct": "строевая рота",
-   "case": "Именительный (Nominative)",
-   "explain": "«строевая рота» — the subject of the sentence stands in the nominative.",
-   "id": "c55"
   },
   {
    "sentence": "В четвертом же корпусе благодаря ___ начальства это мальчишеское недовольство обратилось в злое массовое восстание.",
@@ -627,7 +319,7 @@
    ],
    "correct": "неумелому нажиму",
    "case": "Дательный (Dative)",
-   "explain": "«неумелому нажиму» — after the preposition «благодаря», the dative marks the indirect object or recipient.",
+   "explain": "«неумелому нажиму» — «благодаря» always takes the dative.",
    "id": "c56"
   },
   {
@@ -641,36 +333,8 @@
    ],
    "correct": "мальчишеское недовольство",
    "case": "Именительный (Nominative)",
-   "explain": "«мальчишеское недовольство» — the subject of the sentence stands in the nominative.",
+   "explain": "«мальчишеское недовольство» is the subject of «обратилось» — who or what does it — so nominative.",
    "id": "c57"
-  },
-  {
-   "sentence": "Были разбиты все лампы и стекла, штыками расковыряли двери и рамы, растерзали на куски ___.",
-   "lemma": "книга",
-   "options": [
-    "библиотечными книгами",
-    "библиотечным книгам",
-    "библиотечные книги",
-    "библиотечных книг"
-   ],
-   "correct": "библиотечные книги",
-   "case": "Винительный (Accusative)",
-   "explain": "«библиотечные книги» — the accusative marks the direct object of the verb.",
-   "id": "c58"
-  },
-  {
-   "sentence": "___ были выгнаны из корпуса на волю Божию.",
-   "lemma": "мальчик",
-   "options": [
-    "многими мальчиками",
-    "многих мальчиков",
-    "многие мальчики",
-    "многим мальчикам"
-   ],
-   "correct": "многие мальчики",
-   "case": "Именительный (Nominative)",
-   "explain": "«Многие мальчики» — the subject of the sentence stands in the nominative.",
-   "id": "c59"
   },
   {
    "sentence": "Навстречу ему поднялся и вышел его зять, Иван Александрович Мажанов, муж его ___, Сони.",
@@ -683,22 +347,8 @@
    ],
    "correct": "старшей сестры",
    "case": "Родительный (Genitive)",
-   "explain": "«старшей сестры» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«старшей сестры» depends on the noun «муж» (whose? of what?) — genitive.",
    "id": "c61"
-  },
-  {
-   "sentence": "Его ___ была — шестая книга дворянских родов, где значилась и его фамилия.",
-   "lemma": "чтение",
-   "options": [
-    "единственного чтения",
-    "единственным чтением",
-    "единственном чтении",
-    "единственное чтение"
-   ],
-   "correct": "единственное чтение",
-   "case": "Именительный (Nominative)",
-   "explain": "«единственное чтение» — the subject of the sentence stands in the nominative.",
-   "id": "c62"
   },
   {
    "sentence": "Его единственное чтение была — шестая книга ___, где значилась и его фамилия.",
@@ -711,7 +361,7 @@
    ],
    "correct": "дворянских родов",
    "case": "Родительный (Genitive)",
-   "explain": "«дворянских родов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«дворянских родов» depends on the noun «книга» (whose? of what?) — genitive.",
    "id": "c64"
   },
   {
@@ -725,7 +375,7 @@
    ],
    "correct": "разумовского училища",
    "case": "Родительный (Genitive)",
-   "explain": "«Разумовского училища» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«разумовского училища» — «из» always takes the genitive.",
    "id": "c65"
   },
   {
@@ -739,64 +389,22 @@
    ],
    "correct": "материнскому сердцу",
    "case": "Дательный (Dative)",
-   "explain": "«материнскому сердцу» — the dative marks the indirect object or recipient.",
+   "explain": "«материнскому сердцу» is the indirect object of «причинишь» — to or for whom (кому?) — dative.",
    "id": "c67"
-  },
-  {
-   "sentence": "А знай, что ___, которое выговаривает человеческий язык, это — слово «мама».",
-   "lemma": "слово",
-   "options": [
-    "первым словом",
-    "первого слова",
-    "первое слово",
-    "первом слове"
-   ],
-   "correct": "первое слово",
-   "case": "Именительный (Nominative)",
-   "explain": "«первое слово» — the subject of the sentence stands in the nominative.",
-   "id": "c68"
   },
   {
    "sentence": "А знай, что первое слово, которое выговаривает ___, это — слово «мама».",
    "lemma": "язык",
    "options": [
-    "человеческому языку",
-    "человеческого языка",
+    "человеческом языке",
     "человеческий язык",
+    "человеческому языку",
     "человеческим языком"
    ],
    "correct": "человеческий язык",
    "case": "Винительный (Accusative)",
-   "explain": "«человеческий язык» — the accusative marks the direct object of the verb.",
+   "explain": "«человеческий язык» is the direct object of «выговаривает» (кого? что?) — accusative.",
    "id": "c69"
-  },
-  {
-   "sentence": "Вспомнил еще (как ___) первую неделю Андреева стояния.",
-   "lemma": "певчий",
-   "options": [
-    "бывшим певчим",
-    "бывшему певчему",
-    "бывшего певчего",
-    "бывший певчий"
-   ],
-   "correct": "бывший певчий",
-   "case": "Именительный (Nominative)",
-   "explain": "«бывший певчий» — the subject of the sentence stands in the nominative.",
-   "id": "c70"
-  },
-  {
-   "sentence": "И хор и вместе с ним Александров, ___, отвечали: «Помилуй мя, боже, помилуй мя».",
-   "lemma": "тенор",
-   "options": [
-    "второго тенора",
-    "второму тенору",
-    "второй тенор",
-    "втором теноре"
-   ],
-   "correct": "второй тенор",
-   "case": "Именительный (Nominative)",
-   "explain": "«второй тенор» — the subject of the sentence stands in the nominative.",
-   "id": "c71"
   }
  ]
 }

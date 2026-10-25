@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Граф Тюрен ввел его в большую приемную, где дожидалось много генералов, камергеров и ___, из которых многих Балашев видал при дворе русского императора.",
-   "lemma": "магнат",
-   "options": [
-    "польских магнатах",
-    "польскими магнатами",
-    "польских магнатов",
-    "польским магнатам"
-   ],
-   "correct": "польских магнатов",
-   "case": "Родительный (Genitive)",
-   "explain": "«польских магнатов» — the genitive here marks possession, absence, or quantity.",
-   "id": "c1"
-  },
-  {
    "sentence": "Граф Тюрен ввел его в большую приемную, где дожидалось много генералов, камергеров и польских магнатов, из которых многих Балашев видал при дворе ___.",
    "lemma": "император",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "русского императора",
    "case": "Родительный (Genitive)",
-   "explain": "«русского императора» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«русского императора» depends on the noun «дворе» (whose? of what?) — genitive.",
    "id": "c2"
   },
   {
@@ -39,50 +25,8 @@
    ],
    "correct": "русского генерала",
    "case": "Винительный (Accusative)",
-   "explain": "«русского генерала» — the accusative marks the direct object of the verb.",
+   "explain": "«русского генерала» is the direct object of «примет» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c3"
-  },
-  {
-   "sentence": "После нескольких минут ожидания, ___ вышел в большую приемную и, учтиво поклонившись Балашеву, пригласил его итти за собой.",
-   "lemma": "камергер",
-   "options": [
-    "дежурном камергере",
-    "дежурный камергер",
-    "дежурного камергера",
-    "дежурным камергером"
-   ],
-   "correct": "дежурный камергер",
-   "case": "Именительный (Nominative)",
-   "explain": "«дежурный камергер» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
-  },
-  {
-   "sentence": "Балашев вошел в маленькую приемную, из которой одна дверь вела в кабинет, в тот самый кабинет, из которого отправлял его ___.",
-   "lemma": "император",
-   "options": [
-    "русского императора",
-    "русском императоре",
-    "русскому императору",
-    "русский император"
-   ],
-   "correct": "русский император",
-   "case": "Именительный (Nominative)",
-   "explain": "«русский император» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
-  },
-  {
-   "sentence": "За дверью послышались ___.",
-   "lemma": "шаг",
-   "options": [
-    "поспешными шагами",
-    "поспешные шаги",
-    "поспешных шагах",
-    "поспешным шагам"
-   ],
-   "correct": "поспешные шаги",
-   "case": "Именительный (Nominative)",
-   "explain": "«поспешные шаги» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
   },
   {
    "sentence": "Он только что окончил свой туалет для ___.",
@@ -95,7 +39,7 @@
    ],
    "correct": "верховой езды",
    "case": "Родительный (Genitive)",
-   "explain": "«верховой езды» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«верховой езды» — «для» always takes the genitive.",
    "id": "c7"
   },
   {
@@ -109,22 +53,8 @@
    ],
    "correct": "белым жилетом",
    "case": "Творительный (Instrumental)",
-   "explain": "«белым жилетом» — after the preposition «над», the instrumental marks the means, company, or complement.",
+   "explain": "«белым жилетом» — «над» always takes the instrumental.",
    "id": "c9"
-  },
-  {
-   "sentence": "Он был в синем мундире, раскрытом над белым жилетом, спускавшимся на круглый живот, в белых лосинах, обтягивавших ___ коротких ног, и в ботфортах.",
-   "lemma": "ляжка",
-   "options": [
-    "жирных ляжек",
-    "жирными ляжками",
-    "жирных ляжках",
-    "жирные ляжки"
-   ],
-   "correct": "жирные ляжки",
-   "case": "Винительный (Accusative)",
-   "explain": "«жирные ляжки» — the accusative marks the direct object of the verb.",
-   "id": "c12"
   },
   {
    "sentence": "Он был в синем мундире, раскрытом над белым жилетом, спускавшимся на круглый живот, в белых лосинах, обтягивавших жирные ляжки ___, и в ботфортах.",
@@ -137,7 +67,7 @@
    ],
    "correct": "коротких ног",
    "case": "Родительный (Genitive)",
-   "explain": "«коротких ног» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«коротких ног» depends on the noun «ляжки» (whose? of what?) — genitive.",
    "id": "c13"
   },
   {
@@ -151,92 +81,8 @@
    ],
    "correct": "широкого лба",
    "case": "Родительный (Genitive)",
-   "explain": "«широкого лба» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«широкого лба» depends on the noun «серединой» (whose? of what?) — genitive.",
    "id": "c14"
-  },
-  {
-   "sentence": "На моложавом, ___ его с выступающим подбородком было выражение милостивого и величественного императорского приветствия.",
-   "lemma": "лицо",
-   "options": [
-    "полном лице",
-    "полное лицо",
-    "полного лица",
-    "полному лицу"
-   ],
-   "correct": "полном лице",
-   "case": "Предложный (Prepositional)",
-   "explain": "«полном лице» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c15"
-  },
-  {
-   "sentence": "На моложавом, полном лице его с выступающим подбородком было выражение милостивого и величественного ___.",
-   "lemma": "приветствие",
-   "options": [
-    "императорском приветствии",
-    "императорским приветствием",
-    "императорского приветствия",
-    "императорскому приветствию"
-   ],
-   "correct": "императорского приветствия",
-   "case": "Родительный (Genitive)",
-   "explain": "«императорского приветствия» — the genitive here marks possession, absence, or quantity.",
-   "id": "c16"
-  },
-  {
-   "sentence": "Вся его потолстевшая, ___ с широкими, толстыми плечами и невольно выставленным вперед животом и грудью, имела тот представительный, осанистый вид, который имеют в холе живущие сорокалетние люди.",
-   "lemma": "фигура",
-   "options": [
-    "короткая фигура",
-    "короткой фигуре",
-    "короткой фигуры",
-    "короткой фигурой"
-   ],
-   "correct": "короткая фигура",
-   "case": "Именительный (Nominative)",
-   "explain": "«короткая фигура» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
-  },
-  {
-   "sentence": "Вся его потолстевшая, короткая фигура с широкими, толстыми плечами и невольно выставленным вперед животом и грудью, имела тот представительный, осанистый вид, который имеют в холе живущие ___.",
-   "lemma": "человек",
-   "options": [
-    "сорокалетним людям",
-    "сорокалетние люди",
-    "сорокалетних людях",
-    "сорокалетних людей"
-   ],
-   "correct": "сорокалетние люди",
-   "case": "Именительный (Nominative)",
-   "explain": "«сорокалетние люди» — the subject of the sentence stands in the nominative.",
-   "id": "c18"
-  },
-  {
-   "sentence": "Кроме того видно было, что он в этот день находился в самом ___ духа.",
-   "lemma": "расположение",
-   "options": [
-    "хорошему расположению",
-    "хорошим расположением",
-    "хорошем расположении",
-    "хорошего расположения"
-   ],
-   "correct": "хорошем расположении",
-   "case": "Предложный (Prepositional)",
-   "explain": "«хорошем расположении» — after the preposition «в», for location or topic.",
-   "id": "c19"
-  },
-  {
-   "sentence": "— Он взглянул в лицо Балашева своими ___ и тотчас же стал смотреть мимо него.",
-   "lemma": "глаз",
-   "options": [
-    "больших глаз",
-    "большим глазам",
-    "большие глаза",
-    "большими глазами"
-   ],
-   "correct": "большими глазами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«большими глазами» — the instrumental marks the means, company, or complement.",
-   "id": "c20"
   },
   {
    "sentence": "— И он ясно и коротко стал излагать причины своего неудовольствия против ___.",
@@ -249,7 +95,7 @@
    ],
    "correct": "русского правительства",
    "case": "Родительный (Genitive)",
-   "explain": "«русского правительства» — after the preposition «против», the genitive here marks possession, absence, or quantity.",
+   "explain": "«русского правительства» — «против» always takes the genitive.",
    "id": "c21"
   },
   {
@@ -263,7 +109,7 @@
    ],
    "correct": "французский император",
    "case": "Именительный (Nominative)",
-   "explain": "«французский император» — the subject of the sentence stands in the nominative.",
+   "explain": "«французский император» is the subject of «говорил» — who or what does it — so nominative.",
    "id": "c22"
   },
   {
@@ -277,21 +123,21 @@
    ],
    "correct": "французские войска",
    "case": "Именительный (Nominative)",
-   "explain": "«французские войска» — the subject of the sentence stands in the nominative.",
+   "explain": "«французские войска» is the subject of «отступили» — who or what does it — so nominative.",
    "id": "c24"
   },
   {
    "sentence": "Наполеон заметил смущение Балашева при высказываньи ___: лицо его дрогнуло, левая икра ноги начала мерно дрожать.",
    "lemma": "слово",
    "options": [
-    "последним словам",
     "последних слов",
-    "последними словами",
+    "последних словах",
+    "последним словам",
     "последние слова"
    ],
    "correct": "последних слов",
    "case": "Родительный (Genitive)",
-   "explain": "«последних слов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«последних слов» depends on the noun «высказываньи» (whose? of what?) — genitive.",
    "id": "c25"
   },
   {
@@ -305,7 +151,7 @@
    ],
    "correct": "левая икра",
    "case": "Именительный (Nominative)",
-   "explain": "«левая икра» — the subject of the sentence stands in the nominative.",
+   "explain": "«левая икра» is the subject of «начала» — who or what does it — so nominative.",
    "id": "c26"
   },
   {
@@ -319,7 +165,7 @@
    ],
    "correct": "левой ноге",
    "case": "Предложный (Prepositional)",
-   "explain": "«левой ноге» — after the preposition «в», for location or topic.",
+   "explain": "«левой ноге» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c27"
   },
   {
@@ -333,22 +179,8 @@
    ],
    "correct": "строгом выражении",
    "case": "Предложный (Prepositional)",
-   "explain": "«строгом выражении» — after the preposition «в», for location or topic.",
+   "explain": "«строгом выражении» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c29"
-  },
-  {
-   "sentence": "Лицо его как будто окаменело в своем строгом выражении и ___ дрожала еще быстрее, чем прежде.",
-   "lemma": "нога",
-   "options": [
-    "левой ноги",
-    "левой ногой",
-    "левой ноге",
-    "левая нога"
-   ],
-   "correct": "левая нога",
-   "case": "Именительный (Nominative)",
-   "explain": "«левая нога» — the subject of the sentence stands in the nominative.",
-   "id": "c30"
   },
   {
    "sentence": "Он бы мог однако присоединить их к своей империи, и в одно царствование он бы расширил Россию от ___ до устьев Дуная.",
@@ -361,22 +193,8 @@
    ],
    "correct": "ботнического залива",
    "case": "Родительный (Genitive)",
-   "explain": "«Ботнического залива» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«ботнического залива» — «от» always takes the genitive.",
    "id": "c34"
-  },
-  {
-   "sentence": "О, какое ___ могло бы быть царствование императора Александра!",
-   "lemma": "царствование",
-   "options": [
-    "прекрасным царствованием",
-    "прекрасного царствования",
-    "прекрасное царствование",
-    "прекрасному царствованию"
-   ],
-   "correct": "прекрасное царствование",
-   "case": "Именительный (Nominative)",
-   "explain": "«прекрасное царствование» — the subject of the sentence stands in the nominative.",
-   "id": "c35"
   },
   {
    "sentence": "Вы разрезаны надвое и прогнаны из ___.",
@@ -389,77 +207,21 @@
    ],
    "correct": "польских провинций",
    "case": "Родительный (Genitive)",
-   "explain": "«польских провинций» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«польских провинций» — «из» always takes the genitive.",
    "id": "c37"
-  },
-  {
-   "sentence": "Шведы — их предопределение быть управляемыми ___.",
-   "lemma": "король",
-   "options": [
-    "сумасшедших королей",
-    "сумасшедшие короли",
-    "сумасшедших королях",
-    "сумасшедшими королями"
-   ],
-   "correct": "сумасшедшими королями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«сумасшедшими королями» — the instrumental marks the means, company, or complement.",
-   "id": "c38"
-  },
-  {
-   "sentence": "— Знайте, что ежели вы поколеблете Пруссию против меня, знайте, что я сотру ее с карты Европы, — сказал он с бледным, искаженным злобой лицом, энергическим жестом одной ___ ударяя по другой.",
-   "lemma": "рука",
-   "options": [
-    "маленькой руке",
-    "маленькой рукой",
-    "маленькая рука",
-    "маленькой руки"
-   ],
-   "correct": "маленькой руки",
-   "case": "Родительный (Genitive)",
-   "explain": "«маленькой руки» — the genitive here marks possession, absence, or quantity.",
-   "id": "c39"
-  },
-  {
-   "sentence": "Да, вот чтό с вами будет, вот что́ вы выиграли, удалившись от меня, — сказал он и молча прошел несколько раз по комнате, вздрагивая своими ___.",
-   "lemma": "плечо",
-   "options": [
-    "толстым плечам",
-    "толстыми плечами",
-    "толстых плечах",
-    "толстых плеч"
-   ],
-   "correct": "толстыми плечами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«толстыми плечами» — the instrumental marks the means, company, or complement.",
-   "id": "c40"
-  },
-  {
-   "sentence": "Балашев, чувствуя необходимость возражать, сказал, что со стороны России дела не представляются в таком ___.",
-   "lemma": "вид",
-   "options": [
-    "мрачному виду",
-    "мрачный вид",
-    "мрачном виде",
-    "мрачным видом"
-   ],
-   "correct": "мрачном виде",
-   "case": "Предложный (Prepositional)",
-   "explain": "«мрачном виде» — after the preposition «в», for location or topic.",
-   "id": "c43"
   },
   {
    "sentence": "Дверь отворилась; почтительно изгибающийся камергер подал императору шляпу и перчатки, другой подал ___.",
    "lemma": "платок",
    "options": [
-    "носового платка",
+    "носовым платком",
     "носовом платке",
-    "носовому платку",
-    "носовой платок"
+    "носовой платок",
+    "носовому платку"
    ],
    "correct": "носовой платок",
    "case": "Винительный (Accusative)",
-   "explain": "«носовой платок» — the accusative marks the direct object of the verb.",
+   "explain": "«носовой платок» is the direct object of «подал» (кого? что?) — accusative.",
    "id": "c44"
   }
  ]

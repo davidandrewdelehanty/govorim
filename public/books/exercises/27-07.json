@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Первый был точно лев и имел ___.",
-   "lemma": "крыло",
-   "options": [
-    "орлиным крыльям",
-    "орлиные крылья",
-    "орлиными крыльями",
-    "орлиных крыльях"
-   ],
-   "correct": "орлиные крылья",
-   "case": "Винительный (Accusative)",
-   "explain": "«орлиные крылья» — the accusative marks the direct object of the verb.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Я глядел, пока не были вырваны его крылья, и, поднятый над землей, он встал на две ноги, как человек, и дано ему было ___.",
-   "lemma": "сердце",
-   "options": [
-    "человеческое сердце",
-    "человеческого сердца",
-    "человеческом сердце",
-    "человеческому сердцу"
-   ],
-   "correct": "человеческое сердце",
-   "case": "Именительный (Nominative)",
-   "explain": "«человеческое сердце» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
    "sentence": "И явился ___, подобный медведю.",
    "lemma": "зверь",
    "options": [
@@ -39,7 +11,7 @@
    ],
    "correct": "второй зверь",
    "case": "Именительный (Nominative)",
-   "explain": "«второй зверь» — the subject of the sentence stands in the nominative.",
+   "explain": "«второй зверь» is the subject of «явился» — who or what does it — so nominative.",
    "id": "c4"
   },
   {
@@ -53,7 +25,7 @@
    ],
    "correct": "иной зверь",
    "case": "Именительный (Nominative)",
-   "explain": "«иной зверь» — the subject of the sentence stands in the nominative.",
+   "explain": "«иной зверь» is the subject of «явился» — who or what does it — so nominative.",
    "id": "c5"
   },
   {
@@ -67,36 +39,22 @@
    ],
    "correct": "железные зубы",
    "case": "Именительный (Nominative)",
-   "explain": "«железные зубы» — the subject of the sentence stands in the nominative.",
+   "explain": "«железные зубы» is the subject of «были» — who or what does it — so nominative.",
    "id": "c7"
   },
   {
    "sentence": "Он не был похож на всех ___, и было у него десять рогов.",
    "lemma": "зверь",
    "options": [
+    "предыдущими зверями",
     "предыдущих зверей",
     "предыдущим зверям",
-    "предыдущими зверями",
-    "предыдущих зверях"
+    "предыдущие звери"
    ],
    "correct": "предыдущих зверей",
    "case": "Винительный (Accusative)",
-   "explain": "«предыдущих зверей» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«предыдущих зверей» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c8"
-  },
-  {
-   "sentence": "Пока я размышлял о рогах, явился ___, маленький, вышедший среди них, и три из прежних рогов были с корнем вырваны перед ним.",
-   "lemma": "рог",
-   "options": [
-    "другом роге",
-    "другим рогом",
-    "другой рог",
-    "другого рога"
-   ],
-   "correct": "другой рог",
-   "case": "Именительный (Nominative)",
-   "explain": "«другой рог» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
   },
   {
    "sentence": "Пока я размышлял о рогах, явился другой рог, маленький, вышедший среди них, и три из ___ были с корнем вырваны перед ним.",
@@ -109,7 +67,7 @@
    ],
    "correct": "прежних рогов",
    "case": "Родительный (Genitive)",
-   "explain": "«прежних рогов» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«прежних рогов» — «из» always takes the genitive.",
    "id": "c10"
   },
   {
@@ -123,22 +81,8 @@
    ],
    "correct": "высокомерных слов",
    "case": "Родительный (Genitive)",
-   "explain": "«высокомерных слов» — after the preposition «из-за», the genitive here marks possession, absence, or quantity.",
+   "explain": "«высокомерных слов» — «из-за» always takes the genitive.",
    "id": "c11"
-  },
-  {
-   "sentence": "___ были лишены власти, но оставлены на определенное время в живых.",
-   "lemma": "зверь",
-   "options": [
-    "прочих зверей",
-    "прочие звери",
-    "прочих зверях",
-    "прочим зверям"
-   ],
-   "correct": "прочие звери",
-   "case": "Именительный (Nominative)",
-   "explain": "«Прочие звери» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
   },
   {
    "sentence": "Я подошел к одному из стоящих там и спросил его об ___ всего этого.",
@@ -151,50 +95,8 @@
    ],
    "correct": "истинном значении",
    "case": "Предложный (Prepositional)",
-   "explain": "«истинном значении» — after the preposition «об», for location or topic.",
+   "explain": "«истинном значении» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c14"
-  },
-  {
-   "sentence": "Тогда я захотел узнать истину о четвертом звере, не похожем на всех остальных и самом жутком, с его ___ и бронзовыми когтями — о том звере, что крушил и пожирал свои жертвы и попирал ногами остатки.",
-   "lemma": "зуб",
-   "options": [
-    "железных зубов",
-    "железные зубы",
-    "железными зубами",
-    "железным зубам"
-   ],
-   "correct": "железными зубами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«железными зубами» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c15"
-  },
-  {
-   "sentence": "Тогда я захотел узнать истину о четвертом звере, не похожем на всех остальных и самом жутком, с его железными зубами и ___ — о том звере, что крушил и пожирал свои жертвы и попирал ногами остатки.",
-   "lemma": "коготь",
-   "options": [
-    "бронзовых когтей",
-    "бронзовым когтям",
-    "бронзовыми когтями",
-    "бронзовых когтях"
-   ],
-   "correct": "бронзовыми когтями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«бронзовыми когтями» — the instrumental marks the means, company, or complement.",
-   "id": "c16"
-  },
-  {
-   "sentence": "Он будет говорить слова против Всевышнего и святых Его изнурит, и будет стараться переменить ___ и законы.",
-   "lemma": "время",
-   "options": [
-    "праздничных временах",
-    "праздничными временами",
-    "праздничные времена",
-    "праздничным временам"
-   ],
-   "correct": "праздничные времена",
-   "case": "Винительный (Accusative)",
-   "explain": "«праздничные времена» — the accusative marks the direct object of the verb.",
-   "id": "c18"
   }
  ]
 }

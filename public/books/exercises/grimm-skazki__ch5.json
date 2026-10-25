@@ -1,60 +1,18 @@
 {
  "cases": [
   {
-   "sentence": "Жил-был однажды ___, и заболел он, и пришло ему в голову:«Видно, лежу я на смертном одре, и не подняться уж мне с него».",
-   "lemma": "король",
-   "options": [
-    "старого короля",
-    "старом короле",
-    "старым королём",
-    "старый король"
-   ],
-   "correct": "старый король",
-   "case": "Именительный (Nominative)",
-   "explain": "«старый король» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Жил-был однажды старый король, и заболел он, и пришло ему в голову:«Видно, лежу я на ___, и не подняться уж мне с него».",
    "lemma": "одр",
    "options": [
-    "смертному одру",
-    "смертный одр",
     "смертном одре",
+    "смертному одру",
+    "смертным одром",
     "смертного одра"
    ],
    "correct": "смертном одре",
    "case": "Предложный (Prepositional)",
-   "explain": "«смертном одре» — after the preposition «на», for location or topic.",
+   "explain": "«смертном одре» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c2"
-  },
-  {
-   "sentence": "Этот Иоганн был его ___ и так назывался потому, что всю жизнь служил королю верой и правдой.",
-   "lemma": "слуга",
-   "options": [
-    "любимом слуге",
-    "любимому слуге",
-    "любимого слуги",
-    "любимый слуга"
-   ],
-   "correct": "любимый слуга",
-   "case": "Именительный (Nominative)",
-   "explain": "«любимый слуга» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
-   "sentence": "Верный Иоганн еще раз поклялся ___, что исполнит его завет, и тот стал мало-помалу затихать, склонился головой на подушку и скончался.",
-   "lemma": "король",
-   "options": [
-    "старому королю",
-    "старым королём",
-    "старый король",
-    "старом короле"
-   ],
-   "correct": "старому королю",
-   "case": "Дательный (Dative)",
-   "explain": "«старому королю» — the dative marks the indirect object or recipient.",
-   "id": "c4"
   },
   {
    "sentence": "Когда же ___ траура миновало, верный Иоганн сказал королю:«Ну, теперь пора тебе осмотреть все, что ты унаследовал; я покажу тебе весь замок твоего отца».",
@@ -67,22 +25,8 @@
    ],
    "correct": "обычное время",
    "case": "Именительный (Nominative)",
-   "explain": "«обычное время» — the subject of the sentence stands in the nominative.",
+   "explain": "«обычное время» is the subject of «миновало» — who or what does it — so nominative.",
    "id": "c5"
-  },
-  {
-   "sentence": "И он повел его всюду, вверх и вниз, и показал ему все богатства и все дивные покои замка; не показал только одного покоя, в котором было сокрыто изображение королевны с ___.",
-   "lemma": "крыша",
-   "options": [
-    "золотая крыша",
-    "золотой крыши",
-    "золотой крыше",
-    "золотой крышей"
-   ],
-   "correct": "золотой крыши",
-   "case": "Родительный (Genitive)",
-   "explain": "«золотой крыши» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
-   "id": "c6"
   },
   {
    "sentence": "Тогда верный Иоганн стал его удерживать и сказал: «Я отцу твоему перед его кончиною обещал, что ты не увидишь скрытое в этом покое; я знаю, что и тебя и меня это могло бы повести к ___».",
@@ -95,50 +39,8 @@
    ],
    "correct": "великим бедствиям",
    "case": "Дательный (Dative)",
-   "explain": "«великим бедствиям» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«великим бедствиям» — «к» always takes the dative.",
    "id": "c7"
-  },
-  {
-   "sentence": "— Если я не проникну в этот покой, то я наверно погибну: я и день и ночь буду жить в ___, пока своими глазами не увижу того, что там скрыто.",
-   "lemma": "тревога",
-   "options": [
-    "вечная тревога",
-    "вечной тревоге",
-    "вечной тревоги",
-    "вечной тревогой"
-   ],
-   "correct": "вечной тревоге",
-   "case": "Предложный (Prepositional)",
-   "explain": "«вечной тревоге» — after the preposition «в», for location or topic.",
-   "id": "c8"
-  },
-  {
-   "sentence": "Отомкнув дверь, он поспешил войти первый и думал прикрыть изображение, чтобы оно не бросилось в глаза ___, но все было напрасно!",
-   "lemma": "король",
-   "options": [
-    "юный король",
-    "юным королём",
-    "юному королю",
-    "юном короле"
-   ],
-   "correct": "юному королю",
-   "case": "Дательный (Dative)",
-   "explain": "«юному королю» — the dative marks the indirect object or recipient.",
-   "id": "c9"
-  },
-  {
-   "sentence": "И как только увидел он изображение красавицы-королевны, которое было прекрасно и притом все блистало золотом и ___, так и грянулся в обморок.",
-   "lemma": "камень",
-   "options": [
-    "драгоценными камнями",
-    "драгоценным камням",
-    "драгоценные камни",
-    "драгоценных камнях"
-   ],
-   "correct": "драгоценными камнями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«драгоценными камнями» — the instrumental marks the means, company, or complement.",
-   "id": "c10"
   },
   {
    "sentence": "___ долго обдумывал, как бы ему приступить к этому делу, потому что мудрено было добиться даже возможности повидать королевну.",
@@ -151,50 +53,22 @@
    ],
    "correct": "верный слуга",
    "case": "Именительный (Nominative)",
-   "explain": "«Верный слуга» — the subject of the sentence stands in the nominative.",
+   "explain": "«верный слуга» is the subject of «обдумывал» — who or what does it — so nominative.",
    "id": "c11"
   },
   {
    "sentence": "Король тотчас приказал созвать всех мастеров со своего королевства, заставил их работать день и ночь, пока наконец они не переработали все золото во множество ___.",
    "lemma": "вещь",
    "options": [
-    "прекрасных вещей",
     "прекрасные вещи",
-    "прекрасным вещам",
-    "прекрасными вещами"
+    "прекрасных вещах",
+    "прекрасных вещей",
+    "прекрасным вещам"
    ],
    "correct": "прекрасных вещей",
    "case": "Родительный (Genitive)",
-   "explain": "«прекрасных вещей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«прекрасных вещей» depends on the noun «множество» (whose? of what?) — genitive.",
    "id": "c12"
-  },
-  {
-   "sentence": "Когда все это было погружено на корабль, верный Иоганн надел купеческое платье, и ___ тоже должен был следовать его примеру, чтобы их никто не мог узнать.",
-   "lemma": "король",
-   "options": [
-    "юному королю",
-    "юный король",
-    "юном короле",
-    "юным королём"
-   ],
-   "correct": "юный король",
-   "case": "Именительный (Nominative)",
-   "explain": "«юный король» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
-  },
-  {
-   "sentence": "Затем они поплыли по морю и плыли по нему, пока не доплыли до города, в котором жила королевна с ___.",
-   "lemma": "крыша",
-   "options": [
-    "золотая крыша",
-    "золотой крыши",
-    "золотой крыше",
-    "золотой крышей"
-   ],
-   "correct": "золотой крыши",
-   "case": "Родительный (Genitive)",
-   "explain": "«золотой крыши» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
-   "id": "c14"
   },
   {
    "sentence": "Затем он набрал в свой фартучек различных ___, сошел с корабля на сушу и направился к королевскому замку.",
@@ -207,7 +81,7 @@
    ],
    "correct": "золотых предметов",
    "case": "Родительный (Genitive)",
-   "explain": "«золотых предметов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«золотых предметов» depends on the noun «фартучек» (whose? of what?) — genitive.",
    "id": "c15"
   },
   {
@@ -221,7 +95,7 @@
    ],
    "correct": "королевскому замку",
    "case": "Дательный (Dative)",
-   "explain": "«королевскому замку» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«королевскому замку» — «к» always takes the dative.",
    "id": "c16"
   },
   {
@@ -235,50 +109,8 @@
    ],
    "correct": "красивая девушка",
    "case": "Именительный (Nominative)",
-   "explain": "«красивая девушка» — the subject of the sentence stands in the nominative.",
+   "explain": "«красивая девушка» is the subject of «сидит» — who or what does it — so nominative.",
    "id": "c17"
-  },
-  {
-   "sentence": "Тогда она воскликнула: «Ах, какие славные ___!» — и ведра поставила на землю, и стала весь товар перебирать, штука за штукой.",
-   "lemma": "вещь",
-   "options": [
-    "золотых вещей",
-    "золотых вещах",
-    "золотым вещам",
-    "золотые вещи"
-   ],
-   "correct": "золотые вещи",
-   "case": "Именительный (Nominative)",
-   "explain": "«золотые вещи» — the subject of the sentence stands in the nominative.",
-   "id": "c18"
-  },
-  {
-   "sentence": "Когда ___ взглянула на товар, то она осталась им очень довольна и сказала: «Это все так прекрасно сработано, что я у тебя сразу все скуплю».",
-   "lemma": "королевна",
-   "options": [
-    "самой королевны",
-    "самой королевной",
-    "самой королевне",
-    "сама королевна"
-   ],
-   "correct": "сама королевна",
-   "case": "Именительный (Nominative)",
-   "explain": "«сама королевна» — the subject of the sentence stands in the nominative.",
-   "id": "c19"
-  },
-  {
-   "sentence": "А король-то между тем показывал ей в каюте всю золотую утварь, каждую штуку отдельно — блюда, чаши и кубки, птиц золотых, лесного и всякого ___.",
-   "lemma": "зверь",
-   "options": [
-    "диковинному зверю",
-    "диковинного зверя",
-    "диковинным зверем",
-    "диковинный зверь"
-   ],
-   "correct": "диковинного зверя",
-   "case": "Родительный (Genitive)",
-   "explain": "«диковинного зверя» — the genitive here marks possession, absence, or quantity.",
-   "id": "c20"
   },
   {
    "sentence": "Когда королевна осмотрела последнюю вещь, она поблагодарила купца и собралась домой; но, приблизясь к борту корабля, увидела себя вдали от берега: корабль на всех парусах летел в ___.",
@@ -291,78 +123,8 @@
    ],
    "correct": "открытом море",
    "case": "Предложный (Prepositional)",
-   "explain": "«открытом море» — after the preposition «в», for location or topic.",
+   "explain": "«открытом море» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c21"
-  },
-  {
-   "sentence": "Один ворон воскликнул: «Эге, вот он и везет к себе королевну с ___».",
-   "lemma": "крыша",
-   "options": [
-    "золотая крыша",
-    "золотой крыши",
-    "золотой крыше",
-    "золотой крышей"
-   ],
-   "correct": "золотой крыши",
-   "case": "Родительный (Genitive)",
-   "explain": "«золотой крыши» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
-   "id": "c22"
-  },
-  {
-   "sentence": "Вот если другой вместо короля успеет вскочить на коня, вытащит из кобуры пистолю и насмерть убьет рыжего коня, тогда ___ спасен.",
-   "lemma": "король",
-   "options": [
-    "юному королю",
-    "юный король",
-    "юном короле",
-    "юным королём"
-   ],
-   "correct": "юный король",
-   "case": "Именительный (Nominative)",
-   "explain": "«юный король» — the subject of the sentence stands in the nominative.",
-   "id": "c23"
-  },
-  {
-   "sentence": "Если конь и будет убит, ___ все же не добьется руки своей невесты.",
-   "lemma": "король",
-   "options": [
-    "юному королю",
-    "юный король",
-    "юном короле",
-    "юным королём"
-   ],
-   "correct": "юный король",
-   "case": "Именительный (Nominative)",
-   "explain": "«юный король» — the subject of the sentence stands in the nominative.",
-   "id": "c24"
-  },
-  {
-   "sentence": "Когда они вместе вступят в замок, там на блюде будет лежать богатая ___ для жениха, на вид златотканая, а на самом-то деле -сплошная смола да сера!",
-   "lemma": "рубаха",
-   "options": [
-    "свадебной рубахой",
-    "свадебная рубаха",
-    "свадебной рубахи",
-    "свадебной рубахе"
-   ],
-   "correct": "свадебная рубаха",
-   "case": "Именительный (Nominative)",
-   "explain": "«свадебная рубаха» — the subject of the sentence stands in the nominative.",
-   "id": "c25"
-  },
-  {
-   "sentence": "— Стоит только кому-нибудь, надев рукавицы, схватить эту рубаху и швырнуть ее в огонь — и она сгорит, а ___ будет спасен!",
-   "lemma": "король",
-   "options": [
-    "юному королю",
-    "юный король",
-    "юном короле",
-    "юным королём"
-   ],
-   "correct": "юный король",
-   "case": "Именительный (Nominative)",
-   "explain": "«юный король» — the subject of the sentence stands in the nominative.",
-   "id": "c26"
   },
   {
    "sentence": "Как только они причалили к берегу, случилось именно то, что предсказал ворон: откуда ни возьмись, явился перед королем ___ золотисто-рыжей масти.",
@@ -375,7 +137,7 @@
    ],
    "correct": "чудный конь",
    "case": "Именительный (Nominative)",
-   "explain": "«чудный конь» — the subject of the sentence stands in the nominative.",
+   "explain": "«чудный конь» is the subject of «явился» — who or what does it — so nominative.",
    "id": "c27"
   },
   {
@@ -389,22 +151,8 @@
    ],
    "correct": "готовая рубаха",
    "case": "Именительный (Nominative)",
-   "explain": "«готовая рубаха» — the subject of the sentence stands in the nominative.",
+   "explain": "«готовая рубаха» is the subject of «лежала» — who or what does it — so nominative.",
    "id": "c28"
-  },
-  {
-   "sentence": "Вот вступили они в замок, и там в одной из зал на блюде лежала совсем готовая рубаха для жениха и с ___ казалась сотканною из серебра и золота.",
-   "lemma": "взгляд",
-   "options": [
-    "первый взгляд",
-    "первого взгляда",
-    "первым взглядом",
-    "первом взгляде"
-   ],
-   "correct": "первого взгляда",
-   "case": "Родительный (Genitive)",
-   "explain": "«первого взгляда» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
-   "id": "c29"
   },
   {
    "sentence": "___ поспешил к блюду и хотел уже взять рубаху с блюда, но верный Иоганн отстранил его, скомкал рубаху в своих рукавицах, быстро поднес к огню и дал сгореть дотла.",
@@ -417,7 +165,7 @@
    ],
    "correct": "юный король",
    "case": "Именительный (Nominative)",
-   "explain": "«Юный король» — the subject of the sentence stands in the nominative.",
+   "explain": "«юный король» is the subject of «поспешил» — who or what does it — so nominative.",
    "id": "c30"
   },
   {
@@ -431,7 +179,7 @@
    ],
    "correct": "обычная пляска",
    "case": "Именительный (Nominative)",
-   "explain": "«обычная пляска» — the subject of the sentence stands in the nominative.",
+   "explain": "«обычная пляска» is the subject of «началась» — who or what does it — so nominative.",
    "id": "c31"
   },
   {
@@ -445,7 +193,7 @@
    ],
    "correct": "юный король",
    "case": "Именительный (Nominative)",
-   "explain": "«юный король» — the subject of the sentence stands in the nominative.",
+   "explain": "«юный король» is the subject of «видел» — who or what does it — so nominative.",
    "id": "c32"
   },
   {
@@ -459,21 +207,21 @@
    ],
    "correct": "последних словах",
    "case": "Предложный (Prepositional)",
-   "explain": "«последних словах» — after the preposition «при», for location or topic.",
+   "explain": "«последних словах» — «при» always takes the prepositional.",
    "id": "c33"
   },
   {
    "sentence": "Король очень обрадовался, и когда увидел, что королева возвращается из церкви, то спрятал и верного Иоганна, и обоих детей в ___.",
    "lemma": "шкаф",
    "options": [
-    "большому шкафу",
-    "большом шкафе",
     "большой шкаф",
-    "большим шкафом"
+    "большим шкафом",
+    "большого шкафа",
+    "большому шкафу"
    ],
    "correct": "большой шкаф",
    "case": "Винительный (Accusative)",
-   "explain": "«большой шкаф» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«большой шкаф» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c34"
   },
   {
@@ -487,7 +235,7 @@
    ],
    "correct": "великом благополучии",
    "case": "Предложный (Prepositional)",
-   "explain": "«великом благополучии» — after the preposition «в», for location or topic.",
+   "explain": "«великом благополучии» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c35"
   }
  ]

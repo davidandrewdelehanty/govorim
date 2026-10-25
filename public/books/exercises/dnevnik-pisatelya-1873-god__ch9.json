@@ -1,116 +1,32 @@
 {
  "cases": [
   {
-   "sentence": "В \"___\" (№ 103) появилась на меня ругательная заметка.",
-   "lemma": "мир",
-   "options": [
-    "русском мире",
-    "русского мира",
-    "русским миром",
-    "русскому миру"
-   ],
-   "correct": "русском мире",
-   "case": "Предложный (Prepositional)",
-   "explain": "«Русском мире» — after the preposition «в», for location or topic.",
-   "id": "c1"
-  },
-  {
-   "sentence": "\"___ о женатом монахе.",
-   "lemma": "понятие",
-   "options": [
-    "холостых понятиях",
-    "холостые понятия",
-    "холостыми понятиями",
-    "холостым понятиям"
-   ],
-   "correct": "холостые понятия",
-   "case": "Именительный (Nominative)",
-   "explain": "«Холостые понятия» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
    "sentence": "Это и прекрасно, что их описывают: в духовном быту очень много ___, и почему их не изображать с их добрыми и худыми сторонами?",
    "lemma": "лицо",
    "options": [
-    "типических лиц",
     "типическими лицами",
+    "типическим лицам",
     "типических лицах",
-    "типические лица"
+    "типических лиц"
    ],
    "correct": "типических лиц",
    "case": "Родительный (Genitive)",
-   "explain": "«типических лиц» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«типических лиц» is the object of a negated verb («не изображать») — genitive instead of the accusative.",
    "id": "c4"
-  },
-  {
-   "sentence": "Что значит \"вслед за псаломщиком, обличившим в \"___\" невежество писателя Достоевского\"?",
-   "lemma": "мир",
-   "options": [
-    "русском мире",
-    "русского мира",
-    "русским миром",
-    "русскому миру"
-   ],
-   "correct": "русском мире",
-   "case": "Предложный (Prepositional)",
-   "explain": "«Русском мире» — after the preposition «в», for location or topic.",
-   "id": "c6"
-  },
-  {
-   "sentence": "(И опять \"___\"!) Отыскиваю (№ 87), действительно есть обличение, подписано \"Псаломщик\".",
-   "lemma": "мир",
-   "options": [
-    "русскому миру",
-    "русском мире",
-    "русский мир",
-    "русским миром"
-   ],
-   "correct": "русский мир",
-   "case": "Именительный (Nominative)",
-   "explain": "«Русский мир» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
-  },
-  {
-   "sentence": "Прервем на минуту: во-первых, такой ___ у меня совсем нет.",
-   "lemma": "фраза",
-   "options": [
-    "глупой фразе",
-    "глупой фразой",
-    "глупой фразы",
-    "глупая фраза"
-   ],
-   "correct": "глупой фразы",
-   "case": "Родительный (Genitive)",
-   "explain": "«глупой фразы» — the genitive here marks possession, absence, or quantity.",
-   "id": "c9"
   },
   {
    "sentence": "Выходит, пожалуй, что у нас, в теперешних ___, певчие поют сидя.",
    "lemma": "храм",
    "options": [
-    "православных храмах",
     "православными храмами",
-    "православные храмы",
-    "православным храмам"
+    "православным храмам",
+    "православных храмов",
+    "православных храмах"
    ],
    "correct": "православных храмах",
    "case": "Предложный (Prepositional)",
-   "explain": "«православных храмах» — after the preposition «в», for location or topic.",
+   "explain": "«православных храмах» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c10"
-  },
-  {
-   "sentence": "___ всегда полезно выслушать.",
-   "lemma": "человек",
-   "options": [
-    "сведущим человеком",
-    "сведущего человека",
-    "сведущему человеку",
-    "сведущем человеке"
-   ],
-   "correct": "сведущего человека",
-   "case": "Родительный (Genitive)",
-   "explain": "«Сведущего человека» — the genitive here marks possession, absence, or quantity.",
-   "id": "c11"
   },
   {
    "sentence": "С насупившимся видом ___ вы являетесь нас поправлять, а между тем сами ничего не говорите точного?",
@@ -123,36 +39,8 @@
    ],
    "correct": "глубокого историка",
    "case": "Родительный (Genitive)",
-   "explain": "«глубокого историка» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«глубокого историка» depends on the noun «видом» (whose? of what?) — genitive.",
    "id": "c12"
-  },
-  {
-   "sentence": "Вы только ответьте, г-н Псаломщик, как по-вашему: польское влияние, отразившееся одновременно у нас на очень многом и даже вот на клире, - давно оно было, по-вашему, или всего только ___?",
-   "lemma": "день",
-   "options": [
-    "третий день",
-    "третьем дне",
-    "третьего дня",
-    "третьим днём"
-   ],
-   "correct": "третьего дня",
-   "case": "Родительный (Genitive)",
-   "explain": "«третьего дня» — the genitive here marks possession, absence, or quantity.",
-   "id": "c13"
-  },
-  {
-   "sentence": "___, которое, казалось, должно бы быть сама любовь, и то простить не в состоянии!..",
-   "lemma": "лицо",
-   "options": [
-    "духовное лицо",
-    "духовным лицом",
-    "духовном лице",
-    "духовного лица"
-   ],
-   "correct": "духовное лицо",
-   "case": "Именительный (Nominative)",
-   "explain": "«Духовное лицо» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
   },
   {
    "sentence": "А ___ опять \"стоит у монастырской ограды и, приложив свою пылавшую голову к монастырской стене, плачет\" и просит выманить к ней определившегося в монастырь мужа, с тем что она \"будет ему рабой и собакой\".",
@@ -165,7 +53,7 @@
    ],
    "correct": "покинутая жена",
    "case": "Именительный (Nominative)",
-   "explain": "«покинутая жена» — the subject of the sentence stands in the nominative.",
+   "explain": "«покинутая жена» is the subject of «стоит» — who or what does it — so nominative.",
    "id": "c17"
   },
   {
@@ -179,7 +67,7 @@
    ],
    "correct": "монастырской ограды",
    "case": "Родительный (Genitive)",
-   "explain": "«монастырской ограды» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«монастырской ограды» — «у» always takes the genitive.",
    "id": "c18"
   },
   {
@@ -193,119 +81,35 @@
    ],
    "correct": "монастырской стене",
    "case": "Дательный (Dative)",
-   "explain": "«монастырской стене» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«монастырской стене» — «к» always takes the dative.",
    "id": "c19"
-  },
-  {
-   "sentence": "Какая жалкая, невозможная и ___!",
-   "lemma": "небылица",
-   "options": [
-    "смешной небылице",
-    "смешная небылица",
-    "смешной небылицей",
-    "смешной небылицы"
-   ],
-   "correct": "смешная небылица",
-   "case": "Именительный (Nominative)",
-   "explain": "«смешная небылица» — the subject of the sentence stands in the nominative.",
-   "id": "c20"
   },
   {
    "sentence": "Теперь ответим по пунктам и, во-первых, успокоим взволнованного священника Касторского в самом ___, объяснив ему, что повесть \"Дьячок\" вовсе не бытовая.",
    "lemma": "пункт",
    "options": [
-    "главному пункту",
     "главном пункте",
     "главным пунктом",
-    "главный пункт"
+    "главному пункту",
+    "главного пункта"
    ],
    "correct": "главном пункте",
    "case": "Предложный (Prepositional)",
-   "explain": "«главном пункте» — after the preposition «в», for location or topic.",
+   "explain": "«главном пункте» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c21"
-  },
-  {
-   "sentence": "Почтенному автору ее г-ну Недолину (не псевдоним), часть своей жизни проведшему на самой деятельной ___, никакого дела не было в настоящем случае до церковного быта.",
-   "lemma": "служба",
-   "options": [
-    "государственной службы",
-    "государственная служба",
-    "государственной службой",
-    "государственной службе"
-   ],
-   "correct": "государственной службе",
-   "case": "Предложный (Prepositional)",
-   "explain": "«государственной службе» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c22"
-  },
-  {
-   "sentence": "Почтенному автору ее г-ну Недолину (не псевдоним), часть своей жизни проведшему на самой деятельной государственной службе, никакого дела не было в настоящем случае до ___.",
-   "lemma": "быт",
-   "options": [
-    "церковном быте",
-    "церковный быт",
-    "церковного быта",
-    "церковным бытом"
-   ],
-   "correct": "церковного быта",
-   "case": "Родительный (Genitive)",
-   "explain": "«церковного быта» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
-   "id": "c24"
-  },
-  {
-   "sentence": "Знаете ли вы, священник Касторский, что ___, описанные со всею исключительностию их случайности, почти всегда носят на себе характер фантастический, почти невероятный?",
-   "lemma": "происшествие",
-   "options": [
-    "истинных происшествий",
-    "истинным происшествиям",
-    "истинные происшествия",
-    "истинными происшествиями"
-   ],
-   "correct": "истинные происшествия",
-   "case": "Именительный (Nominative)",
-   "explain": "«истинные происшествия» — the subject of the sentence stands in the nominative.",
-   "id": "c25"
-  },
-  {
-   "sentence": "Задача искусства - не случайности быта, а общая их идея, зорко угаданная и верно снятая со всего многоразличия однородных ___.",
-   "lemma": "явление",
-   "options": [
-    "жизненным явлениям",
-    "жизненными явлениями",
-    "жизненных явлений",
-    "жизненных явлениях"
-   ],
-   "correct": "жизненных явлений",
-   "case": "Родительный (Genitive)",
-   "explain": "«жизненных явлений» — the genitive here marks possession, absence, or quantity.",
-   "id": "c26"
-  },
-  {
-   "sentence": "В рассказе г-на Недолина обобщено совсем ___ человеческого духа.",
-   "lemma": "явление",
-   "options": [
-    "другом явлении",
-    "другому явлению",
-    "другим явлением",
-    "другое явление"
-   ],
-   "correct": "другое явление",
-   "case": "Именительный (Nominative)",
-   "explain": "«другое явление» — the subject of the sentence stands in the nominative.",
-   "id": "c27"
   },
   {
    "sentence": "В рассказе г-на Недолина обобщено совсем другое явление ___.",
    "lemma": "дух",
    "options": [
     "человеческого духа",
-    "человеческому духу",
-    "человеческим духом",
-    "человеческий дух"
+    "человеческий дух",
+    "человеческом духе",
+    "человеческому духу"
    ],
    "correct": "человеческого духа",
    "case": "Родительный (Genitive)",
-   "explain": "«человеческого духа» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«человеческого духа» depends on the noun «явление» (whose? of what?) — genitive.",
    "id": "c28"
   },
   {
@@ -319,22 +123,8 @@
    ],
    "correct": "десятилетнего мальчика",
    "case": "Родительный (Genitive)",
-   "explain": "«десятилетнего мальчика» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«десятилетнего мальчика» depends on the noun «школе» (whose? of what?) — genitive.",
    "id": "c29"
-  },
-  {
-   "sentence": "Но для повествователя, для поэта могут быть и ___, кроме бытовой стороны; есть общие, вечные и, кажется, вовеки неисследимые глубины духа и характера человеческого.",
-   "lemma": "задача",
-   "options": [
-    "другими задачами",
-    "другие задачи",
-    "других задач",
-    "других задачах"
-   ],
-   "correct": "другие задачи",
-   "case": "Именительный (Nominative)",
-   "explain": "«другие задачи» — the subject of the sentence stands in the nominative.",
-   "id": "c33"
   },
   {
    "sentence": "Но для повествователя, для поэта могут быть и другие задачи, кроме ___; есть общие, вечные и, кажется, вовеки неисследимые глубины духа и характера человеческого.",
@@ -347,7 +137,7 @@
    ],
    "correct": "бытовой стороны",
    "case": "Родительный (Genitive)",
-   "explain": "«бытовой стороны» — after the preposition «кроме», the genitive here marks possession, absence, or quantity.",
+   "explain": "«бытовой стороны» — «кроме» always takes the genitive.",
    "id": "c34"
   },
   {
@@ -361,22 +151,8 @@
    ],
    "correct": "полемической статьи",
    "case": "Родительный (Genitive)",
-   "explain": "«полемической статьи» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«полемической статьи» depends on the noun «заглавие» (whose? of what?) — genitive.",
    "id": "c35"
-  },
-  {
-   "sentence": "Успокоив вас, попрошу вас обратить внимание на заглавие вашей полемической статьи: \"___ о женатом монахе\".",
-   "lemma": "понятие",
-   "options": [
-    "холостых понятиях",
-    "холостые понятия",
-    "холостыми понятиями",
-    "холостым понятиям"
-   ],
-   "correct": "холостые понятия",
-   "case": "Именительный (Nominative)",
-   "explain": "«Холостые понятия» — the subject of the sentence stands in the nominative.",
-   "id": "c36"
   },
   {
    "sentence": "И разве есть ___ и женатые понятия?",
@@ -389,36 +165,8 @@
    ],
    "correct": "холостые понятия",
    "case": "Именительный (Nominative)",
-   "explain": "«холостые понятия» — the subject of the sentence stands in the nominative.",
+   "explain": "«холостые понятия» is the subject of «есть» — who or what does it — so nominative.",
    "id": "c37"
-  },
-  {
-   "sentence": "___ вот в чем: кто вам сказал, что наш дьячок поступил в монахи?",
-   "lemma": "дело",
-   "options": [
-    "главное дело",
-    "главном деле",
-    "главного дела",
-    "главным делом"
-   ],
-   "correct": "главное дело",
-   "case": "Именительный (Nominative)",
-   "explain": "«Главное дело» — the subject of the sentence stands in the nominative.",
-   "id": "c38"
-  },
-  {
-   "sentence": "Мало того, в рассказе г-на Недолина есть совершенно ___ на то, что дьячок только проживал в монастыре, а отнюдь не был пострижен в монахи, как вы с такою бесцеремонностию присочинили, батюшка.",
-   "lemma": "указание",
-   "options": [
-    "ясным указанием",
-    "ясного указания",
-    "ясному указанию",
-    "ясное указание"
-   ],
-   "correct": "ясное указание",
-   "case": "Именительный (Nominative)",
-   "explain": "«ясное указание» — the subject of the sentence stands in the nominative.",
-   "id": "c43"
   },
   {
    "sentence": "\"Но ведь это не объяснено в повести!\" - воскликнете вы в ___.",
@@ -431,22 +179,8 @@
    ],
    "correct": "чрезвычайном гневе",
    "case": "Предложный (Prepositional)",
-   "explain": "«чрезвычайном гневе» — after the preposition «в», for location or topic.",
+   "explain": "«чрезвычайном гневе» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c46"
-  },
-  {
-   "sentence": "Женщина, которая ___ выстаивает у монастырской стены и плачет, не пойдет подавать просьбы и не станет уже действовать силой.",
-   "lemma": "день",
-   "options": [
-    "целыми днями",
-    "целые дни",
-    "целых днях",
-    "целых дней"
-   ],
-   "correct": "целые дни",
-   "case": "Винительный (Accusative)",
-   "explain": "«целые дни» — the accusative marks the direct object of the verb.",
-   "id": "c47"
   },
   {
    "sentence": "Женщина, которая целые дни выстаивает у ___ и плачет, не пойдет подавать просьбы и не станет уже действовать силой.",
@@ -459,7 +193,7 @@
    ],
    "correct": "монастырской стены",
    "case": "Родительный (Genitive)",
-   "explain": "«монастырской стены» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«монастырской стены» — «у» always takes the genitive.",
    "id": "c48"
   },
   {
@@ -473,7 +207,7 @@
    ],
    "correct": "авторского увлечения",
    "case": "Родительный (Genitive)",
-   "explain": "«авторского увлечения» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«авторского увлечения» depends on the noun «порыве» (whose? of what?) — genitive.",
    "id": "c49"
   },
   {
@@ -487,7 +221,7 @@
    ],
    "correct": "прежним бытом",
    "case": "Творительный (Instrumental)",
-   "explain": "«прежним бытом» — after the preposition «над», the instrumental marks the means, company, or complement.",
+   "explain": "«прежним бытом» — «над» always takes the instrumental.",
    "id": "c50"
   },
   {
@@ -501,7 +235,7 @@
    ],
    "correct": "прежней средой",
    "case": "Творительный (Instrumental)",
-   "explain": "«прежней средой» — after the preposition «над», the instrumental marks the means, company, or complement.",
+   "explain": "«прежней средой» — «над» always takes the instrumental.",
    "id": "c51"
   },
   {
@@ -515,120 +249,8 @@
    ],
    "correct": "бытовой стороне",
    "case": "Предложный (Prepositional)",
-   "explain": "«бытовой стороне» — after the preposition «в», for location or topic.",
+   "explain": "«бытовой стороне» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c52"
-  },
-  {
-   "sentence": "Нет, батюшка, этот ___ гораздо значительнее, чем вам кажется, и поглубже.",
-   "lemma": "рассказик",
-   "options": [
-    "крошечным рассказиком",
-    "крошечного рассказика",
-    "крошечном рассказике",
-    "крошечный рассказик"
-   ],
-   "correct": "крошечный рассказик",
-   "case": "Именительный (Nominative)",
-   "explain": "«крошечный рассказик» — the subject of the sentence stands in the nominative.",
-   "id": "c53"
-  },
-  {
-   "sentence": "Как уживаетесь вы с ___ сами?",
-   "lemma": "разделение",
-   "options": [
-    "подобным разделениям",
-    "подобными разделениями",
-    "подобные разделения",
-    "подобных разделениях"
-   ],
-   "correct": "подобными разделениями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«подобными разделениями» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c58"
-  },
-  {
-   "sentence": "Видите ли, в чем тут ___: в том, что современные критики и хвалят, пожалуй, иногда современных писателей-художников, и даже публика довольна (потому что, что же ей, наконец, читать?).",
-   "lemma": "штука",
-   "options": [
-    "главная штука",
-    "главной штуки",
-    "главной штукой",
-    "главной штуке"
-   ],
-   "correct": "главная штука",
-   "case": "Именительный (Nominative)",
-   "explain": "«главная штука» — the subject of the sentence stands in the nominative.",
-   "id": "c59"
-  },
-  {
-   "sentence": "Видите ли, в чем тут главная штука: в том, что ___ и хвалят, пожалуй, иногда современных писателей-художников, и даже публика довольна (потому что, что же ей, наконец, читать?).",
-   "lemma": "критик",
-   "options": [
-    "современным критикам",
-    "современных критиках",
-    "современные критики",
-    "современными критиками"
-   ],
-   "correct": "современные критики",
-   "case": "Именительный (Nominative)",
-   "explain": "«современные критики» — the subject of the sentence stands in the nominative.",
-   "id": "c60"
-  },
-  {
-   "sentence": "___ характерно и безобразно, а десять словечек перед тем ничего, как и у всех людей.",
-   "lemma": "словечко",
-   "options": [
-    "одиннадцатое словечко",
-    "одиннадцатом словечке",
-    "одиннадцатому словечку",
-    "одиннадцатым словечком"
-   ],
-   "correct": "одиннадцатое словечко",
-   "case": "Именительный (Nominative)",
-   "explain": "«Одиннадцатое словечко» — the subject of the sentence stands in the nominative.",
-   "id": "c62"
-  },
-  {
-   "sentence": "Публика хвалит, ну а опытного ___ не надуете.",
-   "lemma": "литератор",
-   "options": [
-    "старом литераторе",
-    "старого литератора",
-    "старым литератором",
-    "старый литератор"
-   ],
-   "correct": "старого литератора",
-   "case": "Родительный (Genitive)",
-   "explain": "«старого литератора» — the genitive here marks possession, absence, or quantity.",
-   "id": "c63"
-  },
-  {
-   "sentence": "___, что высказанное слово серебряное, а невысказанное - золотое, давным-давно уже не в привычках наших художников.",
-   "lemma": "правило",
-   "options": [
-    "драгоценном правиле",
-    "драгоценного правила",
-    "драгоценному правилу",
-    "драгоценное правило"
-   ],
-   "correct": "драгоценное правило",
-   "case": "Именительный (Nominative)",
-   "explain": "«Драгоценное правило» — the subject of the sentence stands in the nominative.",
-   "id": "c64"
-  },
-  {
-   "sentence": "Впрочем, ___ для нашего писателя-художника несколько тонко; пожалуй, и не поймет.",
-   "lemma": "замечание",
-   "options": [
-    "подобному замечанию",
-    "подобное замечание",
-    "подобным замечанием",
-    "подобном замечании"
-   ],
-   "correct": "подобное замечание",
-   "case": "Именительный (Nominative)",
-   "explain": "«подобное замечание» — the subject of the sentence stands in the nominative.",
-   "id": "c65"
   },
   {
    "sentence": "Я, например, не встречал еще ни одного священника во всю мою жизнь, даже самого высокообразованного, совершенно без всяких ___ разговора, относящихся до его сословной среды.",
@@ -641,7 +263,7 @@
    ],
    "correct": "характерных особенностей",
    "case": "Родительный (Genitive)",
-   "explain": "«характерных особенностей» — after the preposition «без», the genitive here marks possession, absence, or quantity.",
+   "explain": "«характерных особенностей» — «без» always takes the genitive.",
    "id": "c66"
   },
   {
@@ -655,38 +277,10 @@
    ],
    "correct": "сословной среды",
    "case": "Родительный (Genitive)",
-   "explain": "«сословной среды» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«сословной среды» — «до» always takes the genitive.",
    "id": "c67"
   },
   {
-   "sentence": "Таким образом, ___, при известных обстоятельствах и в известной среде, заставит говорить иногда как священника начала столетия и тоже при известных обстоятельствах и известной среде.",
-   "lemma": "священник",
-   "options": [
-    "современного священника",
-    "современный священник",
-    "современному священнику",
-    "современным священником"
-   ],
-   "correct": "современного священника",
-   "case": "Родительный (Genitive)",
-   "explain": "«современного священника» — the genitive here marks possession, absence, or quantity.",
-   "id": "c68"
-  },
-  {
-   "sentence": "Таким образом, современного священника, при ___ и в известной среде, заставит говорить иногда как священника начала столетия и тоже при известных обстоятельствах и известной среде.",
-   "lemma": "обстоятельство",
-   "options": [
-    "известных обстоятельств",
-    "известными обстоятельствами",
-    "известных обстоятельствах",
-    "известным обстоятельствам"
-   ],
-   "correct": "известных обстоятельствах",
-   "case": "Предложный (Prepositional)",
-   "explain": "«известных обстоятельствах» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c69"
-  },
-  {
    "sentence": "Таким образом, современного священника, при известных обстоятельствах и в ___, заставит говорить иногда как священника начала столетия и тоже при известных обстоятельствах и известной среде.",
    "lemma": "среда",
    "options": [
@@ -697,50 +291,8 @@
    ],
    "correct": "известной среде",
    "case": "Предложный (Prepositional)",
-   "explain": "«известной среде» — after the preposition «в», for location or topic.",
+   "explain": "«известной среде» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c70"
-  },
-  {
-   "sentence": "Таким образом, современного священника, при ___ и в известной среде, заставит говорить иногда как священника начала столетия и тоже при известных обстоятельствах и известной среде.",
-   "lemma": "обстоятельство",
-   "options": [
-    "известных обстоятельств",
-    "известными обстоятельствами",
-    "известных обстоятельствах",
-    "известным обстоятельствам"
-   ],
-   "correct": "известных обстоятельствах",
-   "case": "Предложный (Prepositional)",
-   "explain": "«известных обстоятельствах» — after the preposition «при», for location or topic.",
-   "id": "c71"
-  },
-  {
-   "sentence": "Таким образом, современного священника, при известных обстоятельствах и в ___, заставит говорить иногда как священника начала столетия и тоже при известных обстоятельствах и известной среде.",
-   "lemma": "среда",
-   "options": [
-    "известной средой",
-    "известная среда",
-    "известной среде",
-    "известной среды"
-   ],
-   "correct": "известной среде",
-   "case": "Предложный (Prepositional)",
-   "explain": "«известной среде» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c72"
-  },
-  {
-   "sentence": "Священник Касторский начинает, как и все, некоторое время почти совсем не напоминая собою ___.",
-   "lemma": "среда",
-   "options": [
-    "известной средой",
-    "известная среда",
-    "известной среды",
-    "известной среде"
-   ],
-   "correct": "известной среды",
-   "case": "Родительный (Genitive)",
-   "explain": "«известной среды» — the genitive here marks possession, absence, or quantity.",
-   "id": "c73"
   },
   {
    "sentence": "Но так было надо автору: надо было его оставить в покое, чтобы ___ вышла серьезнее, а порицание г-ну Недолину строже, ибо смешная и характерная фраза нарушила бы строгость.",
@@ -753,7 +305,7 @@
    ],
    "correct": "литературная похвала",
    "case": "Именительный (Nominative)",
-   "explain": "«литературная похвала» — the subject of the sentence stands in the nominative.",
+   "explain": "«литературная похвала» is the subject of «вышла» — who or what does it — so nominative.",
    "id": "c74"
   },
   {
@@ -767,7 +319,7 @@
    ],
    "correct": "прекрасным голосом",
    "case": "Творительный (Instrumental)",
-   "explain": "«прекрасным голосом» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «одаренном», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c75"
   },
   {
@@ -781,7 +333,7 @@
    ],
    "correct": "священнической среде",
    "case": "Предложный (Prepositional)",
-   "explain": "«священнической среде» — after the preposition «в», for location or topic.",
+   "explain": "«священнической среде» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c76"
   },
   {
@@ -795,50 +347,8 @@
    ],
    "correct": "малообразованные люди",
    "case": "Именительный (Nominative)",
-   "explain": "«малообразованные люди» — the subject of the sentence stands in the nominative.",
+   "explain": "«малообразованные люди» is the subject of «встречаются» — who or what does it — so nominative.",
    "id": "c77"
-  },
-  {
-   "sentence": "Такое ___ прилично было бы разве пономарю, а всё же не священнику.",
-   "lemma": "выражение",
-   "options": [
-    "ошибочным выражением",
-    "ошибочного выражения",
-    "ошибочное выражение",
-    "ошибочному выражению"
-   ],
-   "correct": "ошибочное выражение",
-   "case": "Именительный (Nominative)",
-   "explain": "«ошибочное выражение» — the subject of the sentence stands in the nominative.",
-   "id": "c78"
-  },
-  {
-   "sentence": "Вышла ужасная глупость: ___ - да еще глумится над чудесами и делит их на мудреные и немудреные!",
-   "lemma": "лицо",
-   "options": [
-    "духовному лицу",
-    "духовном лице",
-    "духовного лица",
-    "духовное лицо"
-   ],
-   "correct": "духовное лицо",
-   "case": "Именительный (Nominative)",
-   "explain": "«духовное лицо» — the subject of the sentence stands in the nominative.",
-   "id": "c79"
-  },
-  {
-   "sentence": "Одним словом, господа, вся эта ___, положим, еще и сойдет в повестях, но, повторяю вам, не выдержит столкновения с действительностию и тотчас же обличит себя.",
-   "lemma": "работа",
-   "options": [
-    "вывесочной работой",
-    "вывесочной работы",
-    "вывесочной работе",
-    "вывесочная работа"
-   ],
-   "correct": "вывесочная работа",
-   "case": "Именительный (Nominative)",
-   "explain": "«вывесочная работа» — the subject of the sentence stands in the nominative.",
-   "id": "c80"
   },
   {
    "sentence": "Не вам, господа-художники, надуть ___.",
@@ -851,7 +361,7 @@
    ],
    "correct": "старого литератора",
    "case": "Винительный (Accusative)",
-   "explain": "«старого литератора» — the accusative marks the direct object of the verb.",
+   "explain": "«старого литератора» is the direct object of «надуть» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c81"
   },
   {
@@ -865,36 +375,8 @@
    ],
    "correct": "странное обстоятельство",
    "case": "Именительный (Nominative)",
-   "explain": "«странное обстоятельство» — the subject of the sentence stands in the nominative.",
+   "explain": "«странное обстоятельство» is the subject of «смутило» — who or what does it — so nominative.",
    "id": "c82"
-  },
-  {
-   "sentence": "А причем же тут сам \"___\"?",
-   "lemma": "мир",
-   "options": [
-    "русскому миру",
-    "русском мире",
-    "русский мир",
-    "русским миром"
-   ],
-   "correct": "русский мир",
-   "case": "Именительный (Nominative)",
-   "explain": "«Русский мир» — the subject of the sentence stands in the nominative.",
-   "id": "c83"
-  },
-  {
-   "sentence": "Ничего и никогда не имел с \"___\" и не предполагал иметь.",
-   "lemma": "мир",
-   "options": [
-    "русским миром",
-    "русскому миру",
-    "русском мире",
-    "русский мир"
-   ],
-   "correct": "русским миром",
-   "case": "Творительный (Instrumental)",
-   "explain": "«Русским миром» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c84"
   }
  ]
 }

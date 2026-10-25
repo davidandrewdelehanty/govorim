@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "На очень холодной площади в декабре месяце тысяча восемьсот двадцать ___ перестали существовать люди двадцатых годов с их прыгающей походкой.",
-   "lemma": "год",
-   "options": [
-    "пятого года",
-    "пятому году",
-    "пятый год",
-    "пятом годе"
-   ],
-   "correct": "пятого года",
-   "case": "Родительный (Genitive)",
-   "explain": "«пятого года» — the genitive here marks possession, absence, or quantity.",
-   "id": "c1"
-  },
-  {
    "sentence": "На очень холодной площади в декабре месяце тысяча восемьсот двадцать пятого года перестали существовать люди ___ с их прыгающей походкой.",
    "lemma": "год",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "двадцатых годов",
    "case": "Родительный (Genitive)",
-   "explain": "«двадцатых годов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«двадцатых годов» depends on the noun «люди» (whose? of what?) — genitive.",
    "id": "c2"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "михайловского манежа",
    "case": "Родительный (Genitive)",
-   "explain": "«Михайловского манежа» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«михайловского манежа» — «у» always takes the genitive.",
    "id": "c3"
   },
   {
@@ -53,7 +39,7 @@
    ],
    "correct": "большой застенок",
    "case": "Именительный (Nominative)",
-   "explain": "«большой застенок» — the subject of the sentence stands in the nominative.",
+   "explain": "«большой застенок» is the predicate after «был» — what someone or something is: the nominative of the predicate (the instrumental is also possible after быть, so it is not offered).",
    "id": "c4"
   },
   {
@@ -67,49 +53,21 @@
    ],
    "correct": "удивительной немоты",
    "case": "Родительный (Genitive)",
-   "explain": "«удивительной немоты» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«удивительной немоты» depends on the noun «Лица» (whose? of what?) — genitive.",
    "id": "c5"
-  },
-  {
-   "sentence": "Жилы были жандармскими кантами северной небесной голубизны, и ___ Бенкендорфа стала небом Петербурга.",
-   "lemma": "немота",
-   "options": [
-    "остзейской немоте",
-    "остзейская немота",
-    "остзейской немоты",
-    "остзейской немотой"
-   ],
-   "correct": "остзейская немота",
-   "case": "Именительный (Nominative)",
-   "explain": "«остзейская немота» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
-  },
-  {
-   "sentence": "___, пораженный устройством русского механизма, писал о нем: «империя каталогов», и добавлял: «блестящих».",
-   "lemma": "путешественник-француз",
-   "options": [
-    "случайный путешественник-француз",
-    "случайном путешественнике-французе",
-    "случайным путешественником-французом",
-    "случайного путешественника-француза"
-   ],
-   "correct": "случайный путешественник-француз",
-   "case": "Именительный (Nominative)",
-   "explain": "«Случайный путешественник-француз» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
   },
   {
    "sentence": "Случайный путешественник-француз, пораженный устройством ___, писал о нем: «империя каталогов», и добавлял: «блестящих».",
    "lemma": "механизм",
    "options": [
     "русского механизма",
-    "русский механизм",
+    "русскому механизму",
     "русском механизме",
-    "русским механизмом"
+    "русский механизм"
    ],
    "correct": "русского механизма",
    "case": "Родительный (Genitive)",
-   "explain": "«русского механизма» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«русского механизма» depends on the noun «устройством» (whose? of what?) — genitive.",
    "id": "c8"
   },
   {
@@ -123,7 +81,7 @@
    ],
    "correct": "ясным почерком",
    "case": "Творительный (Instrumental)",
-   "explain": "«ясным почерком» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «написанными», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c10"
   },
   {
@@ -137,7 +95,7 @@
    ],
    "correct": "обыденного разговора",
    "case": "Родительный (Genitive)",
-   "explain": "«обыденного разговора» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«обыденного разговора» depends on the noun «слов» (whose? of what?) — genitive.",
    "id": "c11"
   },
   {
@@ -151,7 +109,7 @@
    ],
    "correct": "двадцатых годов",
    "case": "Родительный (Genitive)",
-   "explain": "«двадцатых годов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«двадцатых годов» depends on the noun «полководец» (whose? of what?) — genitive.",
    "id": "c12"
   },
   {
@@ -165,21 +123,21 @@
    ],
    "correct": "тридцатых годов",
    "case": "Родительный (Genitive)",
-   "explain": "«тридцатых годов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«тридцатых годов» depends on the noun «толпе» (whose? of what?) — genitive.",
    "id": "c13"
   },
   {
    "sentence": "Кругом они слышали ___, они всеми силами бились над таким словом, как «камер-юнкер» или «аренда», и тоже их не понимали.",
    "lemma": "слово",
    "options": [
-    "других словах",
-    "другими словами",
     "другие слова",
-    "других слов"
+    "других словах",
+    "другим словам",
+    "другими словами"
    ],
    "correct": "другие слова",
    "case": "Винительный (Accusative)",
-   "explain": "«другие слова» — the accusative marks the direct object of the verb.",
+   "explain": "«другие слова» is the direct object of «слышали» (кого? что?) — accusative.",
    "id": "c14"
   },
   {
@@ -193,7 +151,7 @@
    ],
    "correct": "двадцатых годов",
    "case": "Родительный (Genitive)",
-   "explain": "«двадцатых годов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«двадцатых годов» depends on the noun «Людям» (whose? of what?) — genitive.",
    "id": "c15"
   },
   {
@@ -207,36 +165,8 @@
    ],
    "correct": "пышные подвязки",
    "case": "Именительный (Nominative)",
-   "explain": "«пышные подвязки» — the subject of the sentence stands in the nominative.",
+   "explain": "«пышные подвязки» is the subject of «появились» — who or what does it — so nominative.",
    "id": "c19"
-  },
-  {
-   "sentence": "Разврат с девчонками ___ оказался добросовестным и ребяческим, тайные общества показались «сотней прапорщиков».",
-   "lemma": "год",
-   "options": [
-    "двадцатых годах",
-    "двадцатые годы",
-    "двадцатых годов",
-    "двадцатым годам"
-   ],
-   "correct": "двадцатых годов",
-   "case": "Родительный (Genitive)",
-   "explain": "«двадцатых годов» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
-   "id": "c20"
-  },
-  {
-   "sentence": "Разврат с девчонками двадцатых годов оказался добросовестным и ребяческим, ___ показались «сотней прапорщиков».",
-   "lemma": "общество",
-   "options": [
-    "тайные общества",
-    "тайным обществам",
-    "тайными обществами",
-    "тайных обществах"
-   ],
-   "correct": "тайные общества",
-   "case": "Именительный (Nominative)",
-   "explain": "«тайные общества» — the subject of the sentence stands in the nominative.",
-   "id": "c21"
   },
   {
    "sentence": "Как страшна была жизнь превращаемых, жизнь тех из ___, у которых перемещалась кровь!",
@@ -249,7 +179,7 @@
    ],
    "correct": "двадцатых годов",
    "case": "Родительный (Genitive)",
-   "explain": "«двадцатых годов» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«двадцатых годов» — «из» always takes the genitive.",
    "id": "c23"
   },
   {
@@ -263,22 +193,8 @@
    ],
    "correct": "чужой рукой",
    "case": "Творительный (Instrumental)",
-   "explain": "«чужой рукой» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «направляемые», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c24"
-  },
-  {
-   "sentence": "Запах самых ___ закрепляется на разложении, на отбросе (амбра — отброс морского животного), и самый тонкий запах ближе всего к вони.",
-   "lemma": "дух",
-   "options": [
-    "тонких духов",
-    "тонким духам",
-    "тонких духах",
-    "тонкими духами"
-   ],
-   "correct": "тонких духов",
-   "case": "Родительный (Genitive)",
-   "explain": "«тонких духов» — the genitive here marks possession, absence, or quantity.",
-   "id": "c26"
   },
   {
    "sentence": "Запах самых тонких духов закрепляется на разложении, на отбросе (амбра — отброс ___), и самый тонкий запах ближе всего к вони.",
@@ -291,36 +207,8 @@
    ],
    "correct": "морского животного",
    "case": "Родительный (Genitive)",
-   "explain": "«морского животного» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«морского животного» depends on the noun «отброс» (whose? of what?) — genitive.",
    "id": "c27"
-  },
-  {
-   "sentence": "Запах самых тонких духов закрепляется на разложении, на отбросе (амбра — отброс морского животного), и самый ___ ближе всего к вони.",
-   "lemma": "запах",
-   "options": [
-    "тонкий запах",
-    "тонкому запаху",
-    "тонком запахе",
-    "тонкого запаха"
-   ],
-   "correct": "тонкий запах",
-   "case": "Именительный (Nominative)",
-   "explain": "«тонкий запах» — the subject of the sentence stands in the nominative.",
-   "id": "c28"
-  },
-  {
-   "sentence": "Вот — уже в наши дни поэты забыли даже о духах и продают ___ за благоухание.",
-   "lemma": "отброс",
-   "options": [
-    "самых отбросах",
-    "самым отбросам",
-    "самые отбросы",
-    "самыми отбросами"
-   ],
-   "correct": "самые отбросы",
-   "case": "Винительный (Accusative)",
-   "explain": "«самые отбросы» — the accusative marks the direct object of the verb.",
-   "id": "c29"
   },
   {
    "sentence": "Старый ___ лежит в моих венах, и кровь пробирается медленно, как бы сквозь пустоты разоренных империй.",
@@ -333,7 +221,7 @@
    ],
    "correct": "азиатский уксус",
    "case": "Именительный (Nominative)",
-   "explain": "«азиатский уксус» — the subject of the sentence stands in the nominative.",
+   "explain": "«азиатский уксус» is the subject of «лежит» — who or what does it — so nominative.",
    "id": "c30"
   },
   {
@@ -347,7 +235,7 @@
    ],
    "correct": "небольшого роста",
    "case": "Родительный (Genitive)",
-   "explain": "«небольшого роста» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«небольшого роста» depends on the noun «Человек» (whose? of what?) — genitive.",
    "id": "c31"
   }
  ]

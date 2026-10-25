@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "В Генуе, на маленькой площади перед вокзалом, собралась ___ народа — преобладают рабочие, но много солидно одетых, хорошо откормленных людей.",
-   "lemma": "толпа",
-   "options": [
-    "густая толпа",
-    "густой толпой",
-    "густой толпе",
-    "густой толпы"
-   ],
-   "correct": "густая толпа",
-   "case": "Именительный (Nominative)",
-   "explain": "«густая толпа» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Во главе толпы — члены муниципалитета, над их головами колышется тяжелое, искусно вышитое шелком знамя города, а рядом с ним реют разноцветные знамена ___.",
    "lemma": "организация",
    "options": [
@@ -25,21 +11,21 @@
    ],
    "correct": "рабочих организаций",
    "case": "Родительный (Genitive)",
-   "explain": "«рабочих организаций» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«рабочих организаций» depends on the noun «знамена» (whose? of what?) — genitive.",
    "id": "c2"
   },
   {
    "sentence": "У ног его, вокруг пьедестала, музыканты разложили ___, медь на солнце сверкает, точно золото.",
    "lemma": "труба",
    "options": [
-    "медные трубы",
     "медными трубами",
     "медным трубам",
-    "медных труб"
+    "медных трубах",
+    "медные трубы"
    ],
    "correct": "медные трубы",
    "case": "Винительный (Accusative)",
-   "explain": "«медные трубы» — the accusative marks the direct object of the verb.",
+   "explain": "«медные трубы» is the direct object of «разложили» (кого? что?) — accusative.",
    "id": "c4"
   },
   {
@@ -53,22 +39,8 @@
    ],
    "correct": "тяжкое дыхание",
    "case": "Именительный (Nominative)",
-   "explain": "«тяжкое дыхание» — the subject of the sentence stands in the nominative.",
+   "explain": "«тяжкое дыхание» is the subject of «доносится» — who or what does it — so nominative.",
    "id": "c5"
-  },
-  {
-   "sentence": "Из порта доносится тяжкое дыхание пароходов, ___ винта в воде, звон цепей, свистки и крики — на площади тихо, душно и всё облито жарким солнцем.",
-   "lemma": "работа",
-   "options": [
-    "глухой работы",
-    "глухой работе",
-    "глухой работой",
-    "глухая работа"
-   ],
-   "correct": "глухая работа",
-   "case": "Именительный (Nominative)",
-   "explain": "«глухая работа» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
   },
   {
    "sentence": "Из порта доносится тяжкое дыхание пароходов, глухая работа винта в воде, звон цепей, свистки и крики — на площади тихо, душно и всё облито ___.",
@@ -81,50 +53,8 @@
    ],
    "correct": "жарким солнцем",
    "case": "Творительный (Instrumental)",
-   "explain": "«жарким солнцем» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «облито», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c7"
-  },
-  {
-   "sentence": "Тяжело и не торопясь толпа расступилась, очистив ___ в улицу.",
-   "lemma": "проход",
-   "options": [
-    "широкому проходу",
-    "широкого прохода",
-    "широкий проход",
-    "широком проходе"
-   ],
-   "correct": "широкий проход",
-   "case": "Винительный (Accusative)",
-   "explain": "«широкий проход» — the accusative marks the direct object of the verb.",
-   "id": "c8"
-  },
-  {
-   "sentence": "Из-за колонн вокзала идет стройная процессия маленьких людей, они полуодеты и кажутся мохнатыми в своих лохмотьях, мохнатыми, точно какие-то ___.",
-   "lemma": "зверёк",
-   "options": [
-    "странным зверькам",
-    "странными зверьками",
-    "странных зверьках",
-    "странные зверьки"
-   ],
-   "correct": "странные зверьки",
-   "case": "Именительный (Nominative)",
-   "explain": "«странные зверьки» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
-  },
-  {
-   "sentence": "В окнах отелей, на крышах домов белыми птицами трепещут платки, оттуда сыплется на головы людей дождь цветов и веселые, ___.",
-   "lemma": "крик",
-   "options": [
-    "громкими криками",
-    "громкие крики",
-    "громких криков",
-    "громких криках"
-   ],
-   "correct": "громкие крики",
-   "case": "Именительный (Nominative)",
-   "explain": "«громкие крики» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
   },
   {
    "sentence": "Всё стало праздничным, всё ожило, и ___ расцвел какими-то яркими пятнами.",
@@ -137,22 +67,8 @@
    ],
    "correct": "серый мрамор",
    "case": "Именительный (Nominative)",
-   "explain": "«серый мрамор» — the subject of the sentence stands in the nominative.",
+   "explain": "«серый мрамор» is the subject of «расцвел» — who or what does it — so nominative.",
    "id": "c13"
-  },
-  {
-   "sentence": "Всё стало праздничным, всё ожило, и серый мрамор расцвел какими-то ___.",
-   "lemma": "пятно",
-   "options": [
-    "ярким пятнам",
-    "яркими пятнами",
-    "яркие пятна",
-    "ярких пятнах"
-   ],
-   "correct": "яркими пятнами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«яркими пятнами» — the instrumental marks the means, company, or complement.",
-   "id": "c14"
   },
   {
    "sentence": "Почти все дети расхватаны по рукам, они сидят на плечах взрослых, прижаты к ___ каких-то усатых людей; музыка едва слышна в шуме, смехе и криках.",
@@ -165,7 +81,7 @@
    ],
    "correct": "широким грудям",
    "case": "Дательный (Dative)",
-   "explain": "«широким грудям» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«широким грудям» — «к» always takes the dative.",
    "id": "c18"
   },
   {
@@ -179,36 +95,8 @@
    ],
    "correct": "усатых людей",
    "case": "Родительный (Genitive)",
-   "explain": "«усатых людей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«усатых людей» depends on the noun «грудям» (whose? of what?) — genitive.",
    "id": "c19"
-  },
-  {
-   "sentence": "Всюду веселое возбуждение, ___, влажные добрые глаза, и уже кое-где дети забастовщиков жуют хлеб.",
-   "lemma": "лицо",
-   "options": [
-    "праздничных лицах",
-    "праздничными лицами",
-    "праздничные лица",
-    "праздничным лицам"
-   ],
-   "correct": "праздничные лица",
-   "case": "Именительный (Nominative)",
-   "explain": "«праздничные лица» — the subject of the sentence stands in the nominative.",
-   "id": "c20"
-  },
-  {
-   "sentence": "Горбатая и ___ с лицом бабы-яги и жесткими полосами на костлявом подбородке стоит у подножия статуи Колумба и — плачет, отирая красные глаза концом выцветшей шали.",
-   "lemma": "женщина",
-   "options": [
-    "седой женщиной",
-    "седой женщины",
-    "седая женщина",
-    "седой женщине"
-   ],
-   "correct": "седая женщина",
-   "case": "Именительный (Nominative)",
-   "explain": "«седая женщина» — the subject of the sentence stands in the nominative.",
-   "id": "c23"
   },
   {
    "sentence": "Горбатая и седая женщина с лицом бабы-яги и жесткими полосами на ___ стоит у подножия статуи Колумба и — плачет, отирая красные глаза концом выцветшей шали.",
@@ -221,36 +109,8 @@
    ],
    "correct": "костлявом подбородке",
    "case": "Предложный (Prepositional)",
-   "explain": "«костлявом подбородке» — after the preposition «на», for location or topic.",
+   "explain": "«костлявом подбородке» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c24"
-  },
-  {
-   "sentence": "Горбатая и седая женщина с лицом бабы-яги и жесткими полосами на костлявом подбородке стоит у подножия статуи Колумба и — плачет, отирая ___ концом выцветшей шали.",
-   "lemma": "глаз",
-   "options": [
-    "красные глаза",
-    "красными глазами",
-    "красных глазах",
-    "красным глазам"
-   ],
-   "correct": "красные глаза",
-   "case": "Винительный (Accusative)",
-   "explain": "«красные глаза» — the accusative marks the direct object of the verb.",
-   "id": "c25"
-  },
-  {
-   "sentence": "Люди уходят, уводя и унося с собою детей, на площади остаются смятые цветы, бумажки от конфект, веселая группа факино и над ними ___ человека, открывшего Новый Свет.",
-   "lemma": "фигура",
-   "options": [
-    "благородная фигура",
-    "благородной фигурой",
-    "благородной фигуры",
-    "благородной фигуре"
-   ],
-   "correct": "благородная фигура",
-   "case": "Именительный (Nominative)",
-   "explain": "«благородная фигура» — the subject of the sentence stands in the nominative.",
-   "id": "c31"
   },
   {
    "sentence": "А из улиц, точно из ___, красиво льются веселые крики людей, идущих встречу новой жизни.",
@@ -263,7 +123,7 @@
    ],
    "correct": "огромных труб",
    "case": "Родительный (Genitive)",
-   "explain": "«огромных труб» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«огромных труб» — «из» always takes the genitive.",
    "id": "c32"
   }
  ]

@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Это был еще серенький скворец, — попытался, должно быть, вылететь из гнезда, но не сдержали ___, и он упал и забился в угол, на прижатые к земле листья одуванчика.",
-   "lemma": "крыло",
-   "options": [
-    "неумелые крылья",
-    "неумелыми крыльями",
-    "неумелым крыльям",
-    "неумелых крыльях"
-   ],
-   "correct": "неумелые крылья",
-   "case": "Винительный (Accusative)",
-   "explain": "«неумелые крылья» — the accusative marks the direct object of the verb.",
-   "id": "c1"
-  },
-  {
    "sentence": "Разбудили его воробьи — безобразничали, дрались на ___.",
    "lemma": "ветка",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "сиреневой ветке",
    "case": "Предложный (Prepositional)",
-   "explain": "«сиреневой ветке» — after the preposition «на», for location or topic.",
+   "explain": "«сиреневой ветке» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c3"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "солнечный свет",
    "case": "Винительный (Accusative)",
-   "explain": "«солнечный свет» — after the preposition «про», the accusative marks the direct object of the verb.",
+   "explain": "«солнечный свет» — «про» always takes the accusative.",
    "id": "c5"
   },
   {
@@ -53,7 +39,7 @@
    ],
    "correct": "коротких лапах",
    "case": "Предложный (Prepositional)",
-   "explain": "«коротких лапах» — after the preposition «на», for location or topic.",
+   "explain": "«коротких лапах» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c6"
   },
   {
@@ -67,22 +53,8 @@
    ],
    "correct": "узкие зрачки",
    "case": "Именительный (Nominative)",
-   "explain": "«узкие зрачки» — the subject of the sentence stands in the nominative.",
+   "explain": "«узкие зрачки» is the subject of «горели» — who or what does it — so nominative.",
    "id": "c8"
-  },
-  {
-   "sentence": "Голова у него была круглая, с редкими усами дыбом, а зеленые глаза, узкие зрачки горели ___.",
-   "lemma": "злоба",
-   "options": [
-    "дьявольской злобой",
-    "дьявольская злоба",
-    "дьявольской злобе",
-    "дьявольской злобы"
-   ],
-   "correct": "дьявольской злобой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«дьявольской злобой» — the instrumental marks the means, company, or complement.",
-   "id": "c9"
   },
   {
    "sentence": "Желтухин просунул туда голову, осмотрелся, вылез наружу, прыгнул в текучий легкий воздух и, мелко-мелко трепеща крылышками, полетел над ___.",
@@ -95,7 +67,7 @@
    ],
    "correct": "самым полом",
    "case": "Творительный (Instrumental)",
-   "explain": "«самым полом» — after the preposition «над», the instrumental marks the means, company, or complement.",
+   "explain": "«самым полом» — «над» always takes the instrumental.",
    "id": "c10"
   },
   {
@@ -109,7 +81,7 @@
    ],
    "correct": "второй комнате",
    "case": "Предложный (Prepositional)",
-   "explain": "«второй комнате» — after the preposition «во», for location or topic.",
+   "explain": "«второй комнате» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c11"
   },
   {
@@ -123,64 +95,22 @@
    ],
    "correct": "круглого стола",
    "case": "Родительный (Genitive)",
-   "explain": "«круглого стола» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«круглого стола» — «у» always takes the genitive.",
    "id": "c12"
-  },
-  {
-   "sentence": "Они ели, — брали руками ___ и клали их в рот.",
-   "lemma": "кусок",
-   "options": [
-    "большими кусками",
-    "большие куски",
-    "большим кускам",
-    "больших кусках"
-   ],
-   "correct": "большие куски",
-   "case": "Винительный (Accusative)",
-   "explain": "«большие куски» — the accusative marks the direct object of the verb.",
-   "id": "c13"
   },
   {
    "sentence": "Перед вечером Никита поставил на подоконник ___ с крылечком, дверкой и двумя окошечками.",
    "lemma": "домик",
    "options": [
     "деревянном домике",
+    "деревянный домик",
     "деревянному домику",
-    "деревянного домика",
-    "деревянный домик"
+    "деревянным домиком"
    ],
    "correct": "деревянный домик",
    "case": "Винительный (Accusative)",
-   "explain": "«деревянный домик» — the accusative marks the direct object of the verb.",
+   "explain": "«деревянный домик» is the direct object of «поставил» (кого? что?) — accusative.",
    "id": "c14"
-  },
-  {
-   "sentence": "Так в доме, кроме кота и ежа, стала жить третья ___ — Желтухин.",
-   "lemma": "душа",
-   "options": [
-    "живая душа",
-    "живой душе",
-    "живой душой",
-    "живой души"
-   ],
-   "correct": "живая душа",
-   "case": "Именительный (Nominative)",
-   "explain": "«живая душа» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
-  },
-  {
-   "sentence": "В августе его сманили ___ в стаю, обучили летать, и, когда в саду стали осыпаться листья, Желтухин — чуть зорька — улетел с перелетными птицами за море, в Африку.",
-   "lemma": "скворец",
-   "options": [
-    "диких скворцах",
-    "дикими скворцами",
-    "дикие скворцы",
-    "диким скворцам"
-   ],
-   "correct": "дикие скворцы",
-   "case": "Именительный (Nominative)",
-   "explain": "«дикие скворцы» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
   }
  ]
 }

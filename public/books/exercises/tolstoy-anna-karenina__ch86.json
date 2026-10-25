@@ -1,59 +1,17 @@
 {
  "cases": [
   {
-   "sentence": "Послышались шаги и ___, потом женский голос и смех, и вслед за тем вошли ожидаемые гости: – Сафо Штольц и сияющий преизбытком здоровья молодой человек, так называемый Васька.",
-   "lemma": "голос",
-   "options": [
-    "мужского голоса",
-    "мужской голос",
-    "мужским голосом",
-    "мужском голосе"
-   ],
-   "correct": "мужской голос",
-   "case": "Именительный (Nominative)",
-   "explain": "«мужской голос» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Послышались шаги и мужской голос, потом ___ и смех, и вслед за тем вошли ожидаемые гости: – Сафо Штольц и сияющий преизбытком здоровья молодой человек, так называемый Васька.",
-   "lemma": "голос",
-   "options": [
-    "женским голосом",
-    "женскому голосу",
-    "женский голос",
-    "женском голосе"
-   ],
-   "correct": "женский голос",
-   "case": "Винительный (Accusative)",
-   "explain": "«женский голос» — the accusative marks the direct object of the verb.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Послышались шаги и мужской голос, потом женский голос и смех, и вслед за тем вошли ожидаемые гости: – Сафо Штольц и сияющий преизбытком здоровья ___, так называемый Васька.",
-   "lemma": "человек",
-   "options": [
-    "молодой человек",
-    "молодому человеку",
-    "молодом человеке",
-    "молодым человеком"
-   ],
-   "correct": "молодой человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«молодой человек» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
    "sentence": "Он вошел за Сафо в гостиную и по гостиной прошел за ней, как будто был к ней привязан, и не спускал с нее ___, как будто хотел съесть ее.",
    "lemma": "глаз",
    "options": [
-    "блестящие глаза",
-    "блестящих глаз",
+    "блестящих глазах",
+    "блестящими глазами",
     "блестящим глазам",
-    "блестящих глазах"
+    "блестящих глаз"
    ],
    "correct": "блестящих глаз",
    "case": "Родительный (Genitive)",
-   "explain": "«блестящих глаз» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«блестящих глаз» is the object of a negated verb («не спускал») — genitive instead of the accusative.",
    "id": "c4"
   },
   {
@@ -67,50 +25,8 @@
    ],
    "correct": "молодого человека",
    "case": "Винительный (Accusative)",
-   "explain": "«молодого человека» — the accusative marks the direct object of the verb.",
+   "explain": "«молодого человека» is the direct object of «представила» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c5"
-  },
-  {
-   "sentence": "Лиза Меркалова была худая брюнетка с восточным ___ лица и прелестными, неизъяснимыми, как все говорили, глазами.",
-   "lemma": "тип",
-   "options": [
-    "ленивым типом",
-    "ленивый тип",
-    "ленивом типе",
-    "ленивого типа"
-   ],
-   "correct": "ленивым типом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«ленивым типом» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c7"
-  },
-  {
-   "sentence": "Усталый и вместе ___ этих окруженных тесным кругом глаз поражал своею совершенною искренностью.",
-   "lemma": "взгляд",
-   "options": [
-    "страстным взглядом",
-    "страстный взгляд",
-    "страстном взгляде",
-    "страстному взгляду"
-   ],
-   "correct": "страстный взгляд",
-   "case": "Именительный (Nominative)",
-   "explain": "«страстный взгляд» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
-  },
-  {
-   "sentence": "Усталый и вместе страстный взгляд этих окруженных ___ глаз поражал своею совершенною искренностью.",
-   "lemma": "круг",
-   "options": [
-    "тесным кругом",
-    "тесному кругу",
-    "тесном круге",
-    "тесного круга"
-   ],
-   "correct": "тесным кругом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«тесным кругом» — the instrumental marks the means, company, or complement.",
-   "id": "c9"
   },
   {
    "sentence": "Сафо, закурив папиросу, ушла в сад с двумя ___.",
@@ -118,12 +34,12 @@
    "options": [
     "молодые люди",
     "молодых людях",
-    "молодых людей",
+    "молодым людям",
     "молодыми людьми"
    ],
    "correct": "молодыми людьми",
    "case": "Творительный (Instrumental)",
-   "explain": "«молодыми людьми» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«молодыми людьми» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c10"
   },
   {
@@ -137,22 +53,8 @@
    ],
    "correct": "привязчивых вопросов",
    "case": "Родительный (Genitive)",
-   "explain": "«привязчивых вопросов» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«привязчивых вопросов» — «от» always takes the genitive.",
    "id": "c11"
-  },
-  {
-   "sentence": "– Слишком ___, – сказал он, – ехать после этого общества к старухе Вреде.",
-   "lemma": "контраст",
-   "options": [
-    "большому контрасту",
-    "большой контраст",
-    "большого контраста",
-    "большим контрастом"
-   ],
-   "correct": "большой контраст",
-   "case": "Именительный (Nominative)",
-   "explain": "«большой контраст» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
   }
  ]
 }

@@ -1,31 +1,17 @@
 {
  "cases": [
   {
-   "sentence": "По вечерам, на закате солнца, когда ___ отливали между трубами домов золотом, в узких улицах большого города слышен был по временам какой-то удивительный звон, — казалось, звонили в большой церковный колокол.",
-   "lemma": "облако",
-   "options": [
-    "вечерними облаками",
-    "вечерних облаков",
-    "вечерние облака",
-    "вечерних облаках"
-   ],
-   "correct": "вечерние облака",
-   "case": "Именительный (Nominative)",
-   "explain": "«вечерние облака» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "По вечерам, на закате солнца, когда вечерние облака отливали между трубами домов золотом, в ___ большого города слышен был по временам какой-то удивительный звон, — казалось, звонили в большой церковный колокол.",
    "lemma": "улица",
    "options": [
-    "узких улиц",
+    "узким улицам",
     "узких улицах",
     "узкими улицами",
-    "узкие улицы"
+    "узких улиц"
    ],
    "correct": "узких улицах",
    "case": "Предложный (Prepositional)",
-   "explain": "«узких улицах» — after the preposition «в», for location or topic.",
+   "explain": "«узких улицах» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c2"
   },
   {
@@ -39,35 +25,21 @@
    ],
    "correct": "большого города",
    "case": "Родительный (Genitive)",
-   "explain": "«большого города» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«большого города» depends on the noun «улицах» (whose? of what?) — genitive.",
    "id": "c3"
-  },
-  {
-   "sentence": "По вечерам, на закате солнца, когда вечерние облака отливали между трубами домов золотом, в узких улицах большого города слышен был по временам какой-то ___, — казалось, звонили в большой церковный колокол.",
-   "lemma": "звон",
-   "options": [
-    "удивительного звона",
-    "удивительному звону",
-    "удивительный звон",
-    "удивительным звоном"
-   ],
-   "correct": "удивительный звон",
-   "case": "Именительный (Nominative)",
-   "explain": "«удивительный звон» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
   },
   {
    "sentence": "По вечерам, на закате солнца, когда вечерние облака отливали между трубами домов золотом, в узких улицах большого города слышен был по временам какой-то удивительный звон, — казалось, звонили в большой ___.",
    "lemma": "колокол",
    "options": [
-    "церковному колоколу",
-    "церковном колоколе",
+    "церковного колокола",
     "церковный колокол",
-    "церковного колокола"
+    "церковным колоколом",
+    "церковному колоколу"
    ],
    "correct": "церковный колокол",
    "case": "Винительный (Accusative)",
-   "explain": "«церковный колокол» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«церковный колокол» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c5"
   },
   {
@@ -81,36 +53,8 @@
    ],
    "correct": "вечерний колокол",
    "case": "Именительный (Nominative)",
-   "explain": "«вечерний колокол» — the subject of the sentence stands in the nominative.",
+   "explain": "«вечерний колокол» is the subject of «звонит» — who or what does it — so nominative.",
    "id": "c6"
-  },
-  {
-   "sentence": "За городом, где домики расположены пореже и окружены садами и ___, вечернее небо было ещё красивее, а колокол звучал куда громче, явственнее.",
-   "lemma": "поле",
-   "options": [
-    "небольшими полями",
-    "небольшие поля",
-    "небольших полей",
-    "небольшим полям"
-   ],
-   "correct": "небольшими полями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«небольшими полями» — the instrumental marks the means, company, or complement.",
-   "id": "c7"
-  },
-  {
-   "sentence": "За городом, где домики расположены пореже и окружены садами и небольшими полями, ___ было ещё красивее, а колокол звучал куда громче, явственнее.",
-   "lemma": "небо",
-   "options": [
-    "вечернему небу",
-    "вечернего неба",
-    "вечернее небо",
-    "вечернем небе"
-   ],
-   "correct": "вечернее небо",
-   "case": "Именительный (Nominative)",
-   "explain": "«вечернее небо» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
   },
   {
    "sentence": "Казалось, что это звонят на колокольне церкви, схоронившейся где-то в ___ тихого, душистого леса.",
@@ -123,22 +67,8 @@
    ],
    "correct": "самой глубине",
    "case": "Предложный (Prepositional)",
-   "explain": "«самой глубине» — after the preposition «в», for location or topic.",
+   "explain": "«самой глубине» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c9"
-  },
-  {
-   "sentence": "А ведь у этого колокола такой ___, что следовало бы отправиться в лес, послушать его вблизи!",
-   "lemma": "звук",
-   "options": [
-    "красивым звуком",
-    "красивом звуке",
-    "красивый звук",
-    "красивому звуку"
-   ],
-   "correct": "красивый звук",
-   "case": "Именительный (Nominative)",
-   "explain": "«красивый звук» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
   },
   {
    "sentence": "И вот ___ потянулись туда в экипажах, бедные — пешком; но дороге, казалось, не было конца, и, достигнув опушки леса, все делали привал в тени росших тут ив и воображали себя в настоящем лесу.",
@@ -151,64 +81,8 @@
    ],
    "correct": "богатые люди",
    "case": "Именительный (Nominative)",
-   "explain": "«богатые люди» — the subject of the sentence stands in the nominative.",
+   "explain": "«богатые люди» is the subject of «потянулись» — who or what does it — so nominative.",
    "id": "c11"
-  },
-  {
-   "sentence": "Сюда же понаехали из города кондитеры и разбили здесь свои палатки; один из них повесил над входом в свою ___: он был без язычка, но зато смазан в защиту от дождя дёгтем.",
-   "lemma": "колокол",
-   "options": [
-    "небольшим колоколом",
-    "небольшой колокол",
-    "небольшом колоколе",
-    "небольшого колокола"
-   ],
-   "correct": "небольшой колокол",
-   "case": "Винительный (Accusative)",
-   "explain": "«небольшой колокол» — the accusative marks the direct object of the verb.",
-   "id": "c12"
-  },
-  {
-   "sentence": "Трое уверяли, что исходили весь лес насквозь и всё продолжали слышать ___, но им казалось уже, что он исходит из города.",
-   "lemma": "звон",
-   "options": [
-    "чудный звон",
-    "чудного звона",
-    "чудным звоном",
-    "чудному звону"
-   ],
-   "correct": "чудный звон",
-   "case": "Винительный (Accusative)",
-   "explain": "«чудный звон» — the accusative marks the direct object of the verb.",
-   "id": "c13"
-  },
-  {
-   "sentence": "Обратил своё внимание на колокол и ___ и даже обещал пожаловать того, кто разузнает, откуда исходит звон, во «всемирные звонари», хотя бы и оказалось, что никакого колокола не было.",
-   "lemma": "император",
-   "options": [
-    "самому императору",
-    "самим императором",
-    "самом императоре",
-    "сам император"
-   ],
-   "correct": "сам император",
-   "case": "Именительный (Nominative)",
-   "explain": "«сам император» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
-  },
-  {
-   "sentence": "Тогда масса народу стала ходить в лес ради того, чтобы добиться обещанного ___, но лишь один принёс домой более или менее путное объяснение.",
-   "lemma": "местечко",
-   "options": [
-    "хлебному местечку",
-    "хлебном местечке",
-    "хлебным местечком",
-    "хлебного местечка"
-   ],
-   "correct": "хлебного местечка",
-   "case": "Родительный (Genitive)",
-   "explain": "«хлебного местечка» — the genitive here marks possession, absence, or quantity.",
-   "id": "c15"
   },
   {
    "sentence": "Никто не проникал в самую чащу леса, да и он тоже, но всё-таки он утверждал, что звон производила ___, ударяясь головой о дуплистое дерево.",
@@ -221,7 +95,7 @@
    ],
    "correct": "большая сова",
    "case": "Именительный (Nominative)",
-   "explain": "«большая сова» — the subject of the sentence stands in the nominative.",
+   "explain": "«большая сова» is the subject of «производила» — who or what does it — so nominative.",
    "id": "c16"
   },
   {
@@ -235,50 +109,8 @@
    ],
    "correct": "небольшой статейке",
    "case": "Дательный (Dative)",
-   "explain": "«небольшой статейке» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«небольшой статейке» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c17"
-  },
-  {
-   "sentence": "Это был для них важный день, — из детей они сразу стали взрослыми, более ___, и детским душам их надлежало сразу же преобразиться.",
-   "lemma": "существо",
-   "options": [
-    "разумным существам",
-    "разумными существами",
-    "разумные существа",
-    "разумных существ"
-   ],
-   "correct": "разумными существами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«разумными существами» — the instrumental marks the means, company, or complement.",
-   "id": "c18"
-  },
-  {
-   "sentence": "Это был для них важный день, — из детей они сразу стали взрослыми, более разумными существами, и ___ их надлежало сразу же преобразиться.",
-   "lemma": "душа",
-   "options": [
-    "детскими душами",
-    "детских душах",
-    "детских душ",
-    "детским душам"
-   ],
-   "correct": "детским душам",
-   "case": "Дательный (Dative)",
-   "explain": "«детским душам» — the dative marks the indirect object or recipient.",
-   "id": "c19"
-  },
-  {
-   "sentence": "Другой, бедный юноша, должен был возвратить в назначенный час праздничную куртку и сапоги ___, у которого он взял их для этого торжественного случая.",
-   "lemma": "сын",
-   "options": [
-    "хозяйскому сыну",
-    "хозяйском сыне",
-    "хозяйский сын",
-    "хозяйского сына"
-   ],
-   "correct": "хозяйскому сыну",
-   "case": "Дательный (Dative)",
-   "explain": "«хозяйскому сыну» — the dative marks the indirect object or recipient.",
-   "id": "c20"
   },
   {
    "sentence": "Другой, бедный юноша, должен был возвратить в назначенный час праздничную куртку и сапоги хозяйскому сыну, у которого он взял их для этого ___.",
@@ -291,7 +123,7 @@
    ],
    "correct": "торжественного случая",
    "case": "Родительный (Genitive)",
-   "explain": "«торжественного случая» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«торжественного случая» — «для» always takes the genitive.",
    "id": "c21"
   },
   {
@@ -305,21 +137,21 @@
    ],
    "correct": "самом деле",
    "case": "Предложный (Prepositional)",
-   "explain": "«самом деле» — after the preposition «на», for location or topic.",
+   "explain": "«самом деле» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c22"
   },
   {
    "sentence": "Ноги путались в ___ дикого ясминника и анемонов, дорогу преграждали цепи цветущего вьюнка и ежевики, перекинутые с одного дерева на другое.",
    "lemma": "стебель",
    "options": [
-    "высоких стеблях",
-    "высокие стебли",
+    "высоких стеблей",
     "высоким стеблям",
+    "высоких стеблях",
     "высокими стеблями"
    ],
    "correct": "высоких стеблях",
    "case": "Предложный (Prepositional)",
-   "explain": "«высоких стеблях» — after the preposition «в», for location or topic.",
+   "explain": "«высоких стеблях» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c23"
   },
   {
@@ -333,7 +165,7 @@
    ],
    "correct": "дикого ясминника",
    "case": "Родительный (Genitive)",
-   "explain": "«дикого ясминника» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«дикого ясминника» depends on the noun «стеблях» (whose? of what?) — genitive.",
    "id": "c24"
   },
   {
@@ -347,7 +179,7 @@
    ],
    "correct": "цветущего вьюнка",
    "case": "Родительный (Genitive)",
-   "explain": "«цветущего вьюнка» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«цветущего вьюнка» depends on the noun «цепи» (whose? of what?) — genitive.",
    "id": "c25"
   },
   {
@@ -361,36 +193,8 @@
    ],
    "correct": "солнечные зайчики",
    "case": "Именительный (Nominative)",
-   "explain": "«солнечные зайчики» — the subject of the sentence stands in the nominative.",
+   "explain": "«солнечные зайчики» is the subject of «бегали» — who or what does it — so nominative.",
    "id": "c26"
-  },
-  {
-   "sentence": "На пути попадались и большие ___, обросшие разноцветным мхом; из-под них, журча, пробивались свежие болтливые струйки источников.",
-   "lemma": "глыба",
-   "options": [
-    "каменными глыбами",
-    "каменных глыб",
-    "каменные глыбы",
-    "каменных глыбах"
-   ],
-   "correct": "каменные глыбы",
-   "case": "Именительный (Nominative)",
-   "explain": "«каменные глыбы» — the subject of the sentence stands in the nominative.",
-   "id": "c27"
-  },
-  {
-   "sentence": "На пути попадались и большие каменные глыбы, обросшие ___; из-под них, журча, пробивались свежие болтливые струйки источников.",
-   "lemma": "мох",
-   "options": [
-    "разноцветного мха",
-    "разноцветном мхе",
-    "разноцветным мхом",
-    "разноцветному мху"
-   ],
-   "correct": "разноцветным мхом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«разноцветным мхом» — the instrumental marks the means, company, or complement.",
-   "id": "c28"
   },
   {
    "sentence": "Вот перед ними домик, выстроенный из ___ и ветвей.",
@@ -403,7 +207,7 @@
    ],
    "correct": "древесной коры",
    "case": "Родительный (Genitive)",
-   "explain": "«древесной коры» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«древесной коры» — «из» always takes the genitive.",
    "id": "c29"
   },
   {
@@ -417,7 +221,7 @@
    ],
    "correct": "маленький колокол",
    "case": "Именительный (Nominative)",
-   "explain": "«маленький колокол» — the subject of the sentence stands in the nominative.",
+   "explain": "«маленький колокол» is the subject of «висел» — who or what does it — so nominative.",
    "id": "c30"
   },
   {
@@ -431,7 +235,7 @@
    ],
    "correct": "неведомый колокол",
    "case": "Именительный (Nominative)",
-   "explain": "«неведомый колокол» — the subject of the sentence stands in the nominative.",
+   "explain": "«неведомый колокол» is the subject of «имел» — who or what does it — so nominative.",
    "id": "c31"
   },
   {
@@ -445,106 +249,36 @@
    ],
    "correct": "иной звук",
    "case": "Винительный (Accusative)",
-   "explain": "«иной звук» — the accusative marks the direct object of the verb.",
+   "explain": "«иной звук» is the direct object of «имел» (кого? что?) — accusative.",
    "id": "c32"
-  },
-  {
-   "sentence": "Казалось, что это играет ___; музыка слышалась слева, с той стороны, которая ближе к сердцу.",
-   "lemma": "орган",
-   "options": [
-    "церковного органа",
-    "церковном органе",
-    "церковному органу",
-    "церковный орган"
-   ],
-   "correct": "церковный орган",
-   "case": "Именительный (Nominative)",
-   "explain": "«церковный орган» — the subject of the sentence stands in the nominative.",
-   "id": "c33"
   },
   {
    "sentence": "Вдруг в кустах послышался шорох, и перед королевичем появился юноша в ___ и в такой тесной и короткой куртке, что рукава едва заходили ему за локти.",
    "lemma": "башмак",
    "options": [
+    "деревянными башмаками",
     "деревянным башмакам",
     "деревянных башмаках",
-    "деревянные башмаки",
     "деревянных башмаков"
    ],
    "correct": "деревянных башмаках",
    "case": "Предложный (Prepositional)",
-   "explain": "«деревянных башмаках» — after the preposition «в», for location or topic.",
+   "explain": "«деревянных башмаках» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c34"
-  },
-  {
-   "sentence": "Вдруг в кустах послышался шорох, и перед королевичем появился юноша в деревянных башмаках и в такой тесной и ___, что рукава едва заходили ему за локти.",
-   "lemma": "куртка",
-   "options": [
-    "короткая куртка",
-    "короткой курткой",
-    "короткой куртки",
-    "короткой куртке"
-   ],
-   "correct": "короткой куртке",
-   "case": "Предложный (Prepositional)",
-   "explain": "«короткой куртке» — after the preposition «в», for location or topic.",
-   "id": "c35"
-  },
-  {
-   "sentence": "Оба узнали друг друга; ___ был тот самый, которому надо было торопиться возвратить хозяйскому сыну праздничную куртку и сапоги.",
-   "lemma": "юноша",
-   "options": [
-    "бедного юношу",
-    "бедным юношей",
-    "бедный юноша",
-    "бедному юноше"
-   ],
-   "correct": "бедный юноша",
-   "case": "Именительный (Nominative)",
-   "explain": "«бедный юноша» — the subject of the sentence stands in the nominative.",
-   "id": "c36"
   },
   {
    "sentence": "Оба узнали друг друга; бедный юноша был тот самый, которому надо было торопиться возвратить ___ праздничную куртку и сапоги.",
    "lemma": "сын",
    "options": [
-    "хозяйскому сыну",
     "хозяйском сыне",
+    "хозяйскому сыну",
     "хозяйский сын",
-    "хозяйского сына"
+    "хозяйским сыном"
    ],
    "correct": "хозяйскому сыну",
    "case": "Дательный (Dative)",
-   "explain": "«хозяйскому сыну» — the dative marks the indirect object or recipient.",
+   "explain": "«хозяйскому сыну» is the indirect object of «возвратить» — to or for whom (кому?) — dative.",
    "id": "c37"
-  },
-  {
-   "sentence": "Покончив с этим и надев свою собственную плохонькую куртку и ___, он отправился в лес один: колокол звучал так дивно, что он не мог не пойти!",
-   "lemma": "башмак",
-   "options": [
-    "деревянным башмакам",
-    "деревянных башмаков",
-    "деревянных башмаках",
-    "деревянные башмаки"
-   ],
-   "correct": "деревянные башмаки",
-   "case": "Винительный (Accusative)",
-   "explain": "«деревянные башмаки» — the accusative marks the direct object of the verb.",
-   "id": "c38"
-  },
-  {
-   "sentence": "Королевич тоже получил несколько ___, но его дорога всё-таки освещалась солнышком, и за ним-то мы и пойдём,- он был бравый малый!",
-   "lemma": "царапина",
-   "options": [
-    "добрых царапинах",
-    "добрыми царапинами",
-    "добрым царапинам",
-    "добрых царапин"
-   ],
-   "correct": "добрых царапин",
-   "case": "Родительный (Genitive)",
-   "explain": "«добрых царапин» — the genitive here marks possession, absence, or quantity.",
-   "id": "c39"
   },
   {
    "sentence": "___ сидели в ветвях деревьев и скалили зубы.",
@@ -557,50 +291,8 @@
    ],
    "correct": "гадкие обезьяны",
    "case": "Именительный (Nominative)",
-   "explain": "«Гадкие обезьяны» — the subject of the sentence stands in the nominative.",
+   "explain": "«гадкие обезьяны» is the subject of «сидели» — who or what does it — so nominative.",
    "id": "c40"
-  },
-  {
-   "sentence": "Сколько росло тут ___!",
-   "lemma": "цвет",
-   "options": [
-    "чудные цвета",
-    "чудным цветам",
-    "чудных цветов",
-    "чудных цветах"
-   ],
-   "correct": "чудных цветов",
-   "case": "Родительный (Genitive)",
-   "explain": "«чудных цветов» — the genitive here marks possession, absence, or quantity.",
-   "id": "c41"
-  },
-  {
-   "sentence": "___ лилий с ярко-красными тычинками, небесно-голубые тюльпаны, колеблемые ветром, яблони, отягчённые плодами, похожими на большие блестящие мыльные пузыри.",
-   "lemma": "чашечка",
-   "options": [
-    "белые чашечки",
-    "белым чашечкам",
-    "белых чашечек",
-    "белых чашечках"
-   ],
-   "correct": "белые чашечки",
-   "case": "Именительный (Nominative)",
-   "explain": "«Белые чашечки» — the subject of the sentence stands in the nominative.",
-   "id": "c42"
-  },
-  {
-   "sentence": "Попадались тут и чудесные ___, окружённые великолепными дубами и буками.",
-   "lemma": "лужайка",
-   "options": [
-    "зелёных лужайках",
-    "зелёные лужайки",
-    "зелёных лужаек",
-    "зелёными лужайками"
-   ],
-   "correct": "зелёные лужайки",
-   "case": "Именительный (Nominative)",
-   "explain": "«зелёные лужайки» — the subject of the sentence stands in the nominative.",
-   "id": "c43"
   },
   {
    "sentence": "Попадались тут и чудесные зелёные лужайки, окружённые ___ и буками.",
@@ -613,7 +305,7 @@
    ],
    "correct": "великолепными дубами",
    "case": "Творительный (Instrumental)",
-   "explain": "«великолепными дубами» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «окружённые», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c44"
   },
   {
@@ -627,50 +319,8 @@
    ],
    "correct": "вьющихся растений",
    "case": "Родительный (Genitive)",
-   "explain": "«вьющихся растений» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«вьющихся растений» depends on the noun «стебли» (whose? of what?) — genitive.",
    "id": "c45"
-  },
-  {
-   "sentence": "Были тут и ___; по ним плавали, хлопая белыми крыльями, дикие лебеди.",
-   "lemma": "озеро",
-   "options": [
-    "тихим озёрам",
-    "тихими озёрами",
-    "тихих озёрах",
-    "тихие озёра"
-   ],
-   "correct": "тихие озёра",
-   "case": "Именительный (Nominative)",
-   "explain": "«тихие озёра» — the subject of the sentence stands in the nominative.",
-   "id": "c46"
-  },
-  {
-   "sentence": "Были тут и тихие озёра; по ним плавали, хлопая ___, дикие лебеди.",
-   "lemma": "крыло",
-   "options": [
-    "белым крыльям",
-    "белыми крыльями",
-    "белые крылья",
-    "белых крыльев"
-   ],
-   "correct": "белыми крыльями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«белыми крыльями» — the instrumental marks the means, company, or complement.",
-   "id": "c47"
-  },
-  {
-   "sentence": "Были тут и тихие озёра; по ним плавали, хлопая белыми крыльями, ___.",
-   "lemma": "лебедь",
-   "options": [
-    "дикие лебеди",
-    "дикими лебедями",
-    "диких лебедях",
-    "диких лебедей"
-   ],
-   "correct": "дикие лебеди",
-   "case": "Именительный (Nominative)",
-   "explain": "«дикие лебеди» — the subject of the sentence stands in the nominative.",
-   "id": "c48"
   },
   {
    "sentence": "Королевич часто останавливался и прислушивался, — ему казалось порою, что звон раздаётся из глубины этих ___.",
@@ -683,7 +333,7 @@
    ],
    "correct": "тихих озёр",
    "case": "Родительный (Genitive)",
-   "explain": "«тихих озёр» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«тихих озёр» depends on the noun «глубины» (whose? of what?) — genitive.",
    "id": "c49"
   },
   {
@@ -697,35 +347,21 @@
    ],
    "correct": "торжественная тишина",
    "case": "Именительный (Nominative)",
-   "explain": "«торжественная тишина» — the subject of the sentence stands in the nominative.",
+   "explain": "«торжественная тишина» is the subject of «воцарилась» — who or what does it — so nominative.",
    "id": "c50"
-  },
-  {
-   "sentence": "Но мне, может быть, удастся ещё раз взглянуть на красное солнышко, прежде чем оно зайдёт, если я взберусь на те скалы, — они выше самых ___!",
-   "lemma": "дерево",
-   "options": [
-    "высоких деревьев",
-    "высоких деревьях",
-    "высокими деревьями",
-    "высокие деревья"
-   ],
-   "correct": "высоких деревьев",
-   "case": "Родительный (Genitive)",
-   "explain": "«высоких деревьев» — the genitive here marks possession, absence, or quantity.",
-   "id": "c51"
   },
   {
    "sentence": "И, цепляясь за стебли и корни, он стал карабкаться по ___, из-под которых выползали ужи, а безобразные жабы точно собирались залаять на него.",
    "lemma": "камень",
    "options": [
-    "мокрыми камнями",
     "мокрым камням",
-    "мокрых камнях",
-    "мокрые камни"
+    "мокрыми камнями",
+    "мокрых камней",
+    "мокрых камнях"
    ],
    "correct": "мокрым камням",
    "case": "Дательный (Dative)",
-   "explain": "«мокрым камням» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«мокрым камням» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c52"
   },
   {
@@ -739,7 +375,7 @@
    ],
    "correct": "безобразные жабы",
    "case": "Именительный (Nominative)",
-   "explain": "«безобразные жабы» — the subject of the sentence stands in the nominative.",
+   "explain": "«безобразные жабы» is the subject of «собирались» — who or what does it — so nominative.",
    "id": "c53"
   },
   {
@@ -753,64 +389,8 @@
    ],
    "correct": "чудном сиянии",
    "case": "Предложный (Prepositional)",
-   "explain": "«чудном сиянии» — after the preposition «в», for location or topic.",
+   "explain": "«чудном сиянии» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c54"
-  },
-  {
-   "sentence": "Вся природа была одним обширным ___; деревья и медлительные облака — стройными колоннами, цветы и трава — богатыми коврами, небо — огромным куполом.",
-   "lemma": "храм",
-   "options": [
-    "чудном храме",
-    "чудного храма",
-    "чудной храм",
-    "чудным храмом"
-   ],
-   "correct": "чудным храмом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«чудным храмом» — the instrumental marks the means, company, or complement.",
-   "id": "c55"
-  },
-  {
-   "sentence": "Вся природа была одним обширным чудным храмом; деревья и ___ — стройными колоннами, цветы и трава — богатыми коврами, небо — огромным куполом.",
-   "lemma": "облако",
-   "options": [
-    "медлительных облаков",
-    "медлительные облака",
-    "медлительными облаками",
-    "медлительных облаках"
-   ],
-   "correct": "медлительные облака",
-   "case": "Именительный (Nominative)",
-   "explain": "«медлительные облака» — the subject of the sentence stands in the nominative.",
-   "id": "c56"
-  },
-  {
-   "sentence": "Вся природа была одним обширным чудным храмом; деревья и медлительные облака — стройными колоннами, цветы и трава — ___, небо — огромным куполом.",
-   "lemma": "ковёр",
-   "options": [
-    "богатым коврам",
-    "богатых коврах",
-    "богатыми коврами",
-    "богатых ковров"
-   ],
-   "correct": "богатыми коврами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«богатыми коврами» — the instrumental marks the means, company, or complement.",
-   "id": "c57"
-  },
-  {
-   "sentence": "Вся природа была одним обширным чудным храмом; деревья и медлительные облака — стройными колоннами, цветы и трава — богатыми коврами, небо — ___.",
-   "lemma": "купол",
-   "options": [
-    "огромном куполе",
-    "огромному куполу",
-    "огромного купола",
-    "огромным куполом"
-   ],
-   "correct": "огромным куполом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«огромным куполом» — the instrumental marks the means, company, or complement.",
-   "id": "c58"
   },
   {
    "sentence": "В ту же минуту справа появился ___ в куртке с короткими рукавами и в деревянных башмаках.",
@@ -823,64 +403,36 @@
    ],
    "correct": "бедный юноша",
    "case": "Именительный (Nominative)",
-   "explain": "«бедный юноша» — the subject of the sentence stands in the nominative.",
+   "explain": "«бедный юноша» is the subject of «появился» — who or what does it — so nominative.",
    "id": "c59"
-  },
-  {
-   "sentence": "В ту же минуту справа появился бедный юноша в куртке с ___ и в деревянных башмаках.",
-   "lemma": "рукав",
-   "options": [
-    "коротких рукавах",
-    "короткими рукавами",
-    "коротким рукавам",
-    "короткие рукава"
-   ],
-   "correct": "короткими рукавами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«короткими рукавами» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c60"
   },
   {
    "sentence": "В ту же минуту справа появился бедный юноша в куртке с короткими рукавами и в ___.",
    "lemma": "башмак",
    "options": [
-    "деревянным башмакам",
+    "деревянных башмаков",
+    "деревянными башмаками",
     "деревянных башмаках",
-    "деревянные башмаки",
-    "деревянных башмаков"
+    "деревянным башмакам"
    ],
    "correct": "деревянных башмаках",
    "case": "Предложный (Prepositional)",
-   "explain": "«деревянных башмаках» — after the preposition «в», for location or topic.",
+   "explain": "«деревянных башмаках» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c61"
   },
   {
    "sentence": "Юноши бросились друг к другу и обнялись в этом ___ природы и поэзии, а над ними всё звучал невидимый священный колокол и хоры блаженных духов сливались в одном ликующем «Аллилуйя!»",
    "lemma": "храм",
    "options": [
-    "обширный храм",
-    "обширном храме",
+    "обширному храму",
     "обширным храмом",
-    "обширного храма"
+    "обширного храма",
+    "обширном храме"
    ],
    "correct": "обширном храме",
    "case": "Предложный (Prepositional)",
-   "explain": "«обширном храме» — after the preposition «в», for location or topic.",
+   "explain": "«обширном храме» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c62"
-  },
-  {
-   "sentence": "Юноши бросились друг к другу и обнялись в этом обширном храме природы и поэзии, а над ними всё звучал невидимый ___ и хоры блаженных духов сливались в одном ликующем «Аллилуйя!»",
-   "lemma": "колокол",
-   "options": [
-    "священном колоколе",
-    "священный колокол",
-    "священным колоколом",
-    "священному колоколу"
-   ],
-   "correct": "священный колокол",
-   "case": "Именительный (Nominative)",
-   "explain": "«священный колокол» — the subject of the sentence stands in the nominative.",
-   "id": "c63"
   }
  ]
 }

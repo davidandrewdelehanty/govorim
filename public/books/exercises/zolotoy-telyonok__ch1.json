@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Это они построили города, возвели ___, провели канализацию и водопровод, замостили улицы и осветили их электрическими лампами.",
-   "lemma": "здание",
-   "options": [
-    "многоэтажные здания",
-    "многоэтажных зданиях",
-    "многоэтажными зданиями",
-    "многоэтажным зданиям"
-   ],
-   "correct": "многоэтажные здания",
-   "case": "Винительный (Accusative)",
-   "explain": "«многоэтажные здания» — the accusative marks the direct object of the verb.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Это они построили города, возвели многоэтажные здания, провели канализацию и водопровод, замостили улицы и осветили их ___.",
-   "lemma": "лампа",
-   "options": [
-    "электрическими лампами",
-    "электрическим лампам",
-    "электрических ламп",
-    "электрических лампах"
-   ],
-   "correct": "электрическими лампами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«электрическими лампами» — the instrumental marks the means, company, or complement.",
-   "id": "c3"
-  },
-  {
    "sentence": "И когда все было готово, когда ___ приняла сравнительно благоустроенный вид, появились автомобилисты.",
    "lemma": "планета",
    "options": [
@@ -39,7 +11,7 @@
    ],
    "correct": "родная планета",
    "case": "Именительный (Nominative)",
-   "explain": "«родная планета» — the subject of the sentence stands in the nominative.",
+   "explain": "«родная планета» is the subject of «приняла» — who or what does it — so nominative.",
    "id": "c4"
   },
   {
@@ -53,7 +25,7 @@
    ],
    "correct": "благоустроенный вид",
    "case": "Винительный (Accusative)",
-   "explain": "«благоустроенный вид» — the accusative marks the direct object of the verb.",
+   "explain": "«благоустроенный вид» is the direct object of «приняла» (кого? что?) — accusative.",
    "id": "c5"
   },
   {
@@ -67,7 +39,7 @@
    ],
    "correct": "обширной стране",
    "case": "Предложный (Prepositional)",
-   "explain": "«обширной стране» — after the preposition «в», for location or topic.",
+   "explain": "«обширной стране» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c7"
   },
   {
@@ -81,35 +53,21 @@
    ],
    "correct": "мирной перевозки",
    "case": "Родительный (Genitive)",
-   "explain": "«мирной перевозки» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«мирной перевозки» — «для» always takes the genitive.",
    "id": "c8"
-  },
-  {
-   "sentence": "В нашей обширной стране обыкновенный автомобиль, предназначенный, по мысли пешеходов, для мирной перевозки людей и грузов, принял ___ братоубийственного снаряда.",
-   "lemma": "очертание",
-   "options": [
-    "грозные очертания",
-    "грозным очертаниям",
-    "грозными очертаниями",
-    "грозных очертаний"
-   ],
-   "correct": "грозные очертания",
-   "case": "Винительный (Accusative)",
-   "explain": "«грозные очертания» — the accusative marks the direct object of the verb.",
-   "id": "c9"
   },
   {
    "sentence": "В нашей обширной стране обыкновенный автомобиль, предназначенный, по мысли пешеходов, для мирной перевозки людей и грузов, принял грозные очертания ___.",
    "lemma": "снаряд",
    "options": [
-    "братоубийственном снаряде",
-    "братоубийственным снарядом",
     "братоубийственного снаряда",
-    "братоубийственному снаряду"
+    "братоубийственному снаряду",
+    "братоубийственном снаряде",
+    "братоубийственный снаряд"
    ],
    "correct": "братоубийственного снаряда",
    "case": "Родительный (Genitive)",
-   "explain": "«братоубийственного снаряда» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«братоубийственного снаряда» depends on the noun «очертания» (whose? of what?) — genitive.",
    "id": "c10"
   },
   {
@@ -123,7 +81,7 @@
    ],
    "correct": "серебряного носа",
    "case": "Родительный (Genitive)",
-   "explain": "«серебряного носа» — after the preposition «из-под», the genitive here marks possession, absence, or quantity.",
+   "explain": "«серебряного носа» — «из-под» always takes the genitive.",
    "id": "c11"
   },
   {
@@ -137,36 +95,8 @@
    ],
    "correct": "уличного катехизиса",
    "case": "Родительный (Genitive)",
-   "explain": "«уличного катехизиса» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«уличного катехизиса» depends on the noun «правил» (whose? of what?) — genitive.",
    "id": "c12"
-  },
-  {
-   "sentence": "Они, давшие миру таких замечательных людей, как Гораций, Бойль, Мариотт, Лобачевский, Гутенберг и Анатоль Франс, принуждены теперь кривляться самым ___, чтобы только напомнить о своем существовании.",
-   "lemma": "образ",
-   "options": [
-    "пошлому образу",
-    "пошлом образе",
-    "пошлым образом",
-    "пошлый образ"
-   ],
-   "correct": "пошлым образом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«пошлым образом» — the instrumental marks the means, company, or complement.",
-   "id": "c13"
-  },
-  {
-   "sentence": "Это ___, который вышел из Владивостока юношей и на склоне лет у самых ворот Москвы будет задавлен тяжелым автокаром, номер которого так и не успеют заметить.",
-   "lemma": "пешеход-физкультурник",
-   "options": [
-    "советского пешехода-физкультурника",
-    "советском пешеходе-физкультурнике",
-    "советскому пешеходу-физкультурнику",
-    "советский пешеход-физкультурник"
-   ],
-   "correct": "советский пешеход-физкультурник",
-   "case": "Именительный (Nominative)",
-   "explain": "«советский пешеход-физкультурник» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
   },
   {
    "sentence": "Это советский пешеход-физкультурник, который вышел из Владивостока юношей и на склоне лет у ___ Москвы будет задавлен тяжелым автокаром, номер которого так и не успеют заметить.",
@@ -179,22 +109,8 @@
    ],
    "correct": "самых ворот",
    "case": "Родительный (Genitive)",
-   "explain": "«самых ворот» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«самых ворот» — «у» always takes the genitive.",
    "id": "c16"
-  },
-  {
-   "sentence": "Или другой, европейский могикан ___.",
-   "lemma": "движение",
-   "options": [
-    "пешеходным движением",
-    "пешеходном движении",
-    "пешеходное движение",
-    "пешеходного движения"
-   ],
-   "correct": "пешеходного движения",
-   "case": "Родительный (Genitive)",
-   "explain": "«пешеходного движения» — the genitive here marks possession, absence, or quantity.",
-   "id": "c17"
   },
   {
    "sentence": "Он охотно пошел бы так, без бочки, но тогда никто не заметит, что он действительно пешеход ___, и про него не напишут в газетах.",
@@ -207,7 +123,7 @@
    ],
    "correct": "дальнего следования",
    "case": "Родительный (Genitive)",
-   "explain": "«дальнего следования» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«дальнего следования» depends on the noun «пешеход» (whose? of what?) — genitive.",
    "id": "c18"
   },
   {
@@ -221,7 +137,7 @@
    ],
    "correct": "автомобильного масла",
    "case": "Родительный (Genitive)",
-   "explain": "«автомобильного масла» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«автомобильного масла» depends on the noun «качества» (whose? of what?) — genitive.",
    "id": "c19"
   },
   {
@@ -235,22 +151,8 @@
    ],
    "correct": "русских городах",
    "case": "Предложный (Prepositional)",
-   "explain": "«русских городах» — after the preposition «в», for location or topic.",
+   "explain": "«русских городах» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c20"
-  },
-  {
-   "sentence": "Там он еще является хозяином улиц, беззаботно бродит по мостовой и пересекает ее самым ___ в любом направлении.",
-   "lemma": "образ",
-   "options": [
-    "замысловатым образом",
-    "замысловатом образе",
-    "замысловатый образ",
-    "замысловатому образу"
-   ],
-   "correct": "замысловатым образом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«замысловатым образом» — the instrumental marks the means, company, or complement.",
-   "id": "c21"
   },
   {
    "sentence": "Гражданин в фуражке с белым верхом, какую по большей части носят администраторы ___ и конферансье, несомненно принадлежал к большей и лучшей части человечества.",
@@ -263,21 +165,21 @@
    ],
    "correct": "летних садов",
    "case": "Родительный (Genitive)",
-   "explain": "«летних садов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«летних садов» depends on the noun «администраторы» (whose? of what?) — genitive.",
    "id": "c23"
   },
   {
    "sentence": "В руке он держал небольшой ___.",
    "lemma": "саквояж",
    "options": [
-    "акушерскому саквояжу",
-    "акушерским саквояжем",
     "акушерский саквояж",
-    "акушерского саквояжа"
+    "акушерском саквояже",
+    "акушерскому саквояжу",
+    "акушерским саквояжем"
    ],
    "correct": "акушерский саквояж",
    "case": "Винительный (Accusative)",
-   "explain": "«акушерский саквояж» — the accusative marks the direct object of the verb.",
+   "explain": "«акушерский саквояж» is the direct object of «держал» (кого? что?) — accusative.",
    "id": "c24"
   },
   {
@@ -291,7 +193,7 @@
    ],
    "correct": "артистической фуражке",
    "case": "Предложный (Prepositional)",
-   "explain": "«артистической фуражке» — after the preposition «в», for location or topic.",
+   "explain": "«артистической фуражке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c25"
   },
   {
@@ -305,7 +207,7 @@
    ],
    "correct": "церковных куполов",
    "case": "Родительный (Genitive)",
-   "explain": "«церковных куполов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«церковных куполов» depends on the noun «золото» (whose? of what?) — genitive.",
    "id": "c26"
   },
   {
@@ -319,7 +221,7 @@
    ],
    "correct": "официальным зданием",
    "case": "Творительный (Instrumental)",
-   "explain": "«официальным зданием» — after the preposition «над», the instrumental marks the means, company, or complement.",
+   "explain": "«официальным зданием» — «над» always takes the instrumental.",
    "id": "c27"
   },
   {
@@ -333,7 +235,7 @@
    ],
    "correct": "башенных ворот",
    "case": "Родительный (Genitive)",
-   "explain": "«башенных ворот» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«башенных ворот» — «у» always takes the genitive.",
    "id": "c28"
   },
   {
@@ -347,7 +249,7 @@
    ],
    "correct": "провинциального кремля",
    "case": "Родительный (Genitive)",
-   "explain": "«провинциального кремля» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«провинциального кремля» depends on the noun «ворот» (whose? of what?) — genitive.",
    "id": "c29"
   },
   {
@@ -361,7 +263,7 @@
    ],
    "correct": "любимых дочерей",
    "case": "Винительный (Accusative)",
-   "explain": "«любимых дочерей» — the accusative marks the direct object of the verb.",
+   "explain": "«любимых дочерей» is the direct object of «вспоминали» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c30"
   },
   {
@@ -375,50 +277,8 @@
    ],
    "correct": "церковного подвала",
    "case": "Родительный (Genitive)",
-   "explain": "«церковного подвала» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«церковного подвала» — «из» always takes the genitive.",
    "id": "c31"
-  },
-  {
-   "sentence": "Из церковного подвала несло холодом, бил оттуда кислый ___.",
-   "lemma": "запах",
-   "options": [
-    "винном запахе",
-    "винным запахом",
-    "винный запах",
-    "винному запаху"
-   ],
-   "correct": "винный запах",
-   "case": "Винительный (Accusative)",
-   "explain": "«винный запах» — the accusative marks the direct object of the verb.",
-   "id": "c32"
-  },
-  {
-   "sentence": "Пройдя под ___ со свежим известковым лозунгом: «Привет 5-й окружной конференции женщин и девушек», он очутился у начала длинной аллеи, именовавшейся Бульваром Молодых Дарований.",
-   "lemma": "арка",
-   "options": [
-    "фанерной арки",
-    "фанерная арка",
-    "фанерной арке",
-    "фанерной аркой"
-   ],
-   "correct": "фанерной аркой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«фанерной аркой» — after the preposition «со», the instrumental marks the means, company, or complement.",
-   "id": "c33"
-  },
-  {
-   "sentence": "Пройдя под фанерной аркой со свежим ___: «Привет 5-й окружной конференции женщин и девушек», он очутился у начала длинной аллеи, именовавшейся Бульваром Молодых Дарований.",
-   "lemma": "лозунг",
-   "options": [
-    "известкового лозунга",
-    "известковому лозунгу",
-    "известковый лозунг",
-    "известковым лозунгом"
-   ],
-   "correct": "известковым лозунгом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«известковым лозунгом» — the instrumental marks the means, company, or complement.",
-   "id": "c34"
   },
   {
    "sentence": "Пройдя под фанерной аркой со свежим известковым лозунгом: «Привет 5-й окружной конференции женщин и девушек», он очутился у начала ___, именовавшейся Бульваром Молодых Дарований.",
@@ -431,7 +291,7 @@
    ],
    "correct": "длинной аллеи",
    "case": "Родительный (Genitive)",
-   "explain": "«длинной аллеи» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«длинной аллеи» depends on the noun «начала» (whose? of what?) — genitive.",
    "id": "c35"
   },
   {
@@ -445,22 +305,8 @@
    ],
    "correct": "одинокие девицы",
    "case": "Именительный (Nominative)",
-   "explain": "«одинокие девицы» — the subject of the sentence stands in the nominative.",
+   "explain": "«одинокие девицы» is the subject of «сидели» — who or what does it — so nominative.",
    "id": "c36"
-  },
-  {
-   "sentence": "Почти на всех скамьях Бульвара Молодых Дарований сидели одинокие девицы с ___ в руках.",
-   "lemma": "книжка",
-   "options": [
-    "раскрытыми книжками",
-    "раскрытые книжки",
-    "раскрытым книжкам",
-    "раскрытых книжках"
-   ],
-   "correct": "раскрытыми книжками",
-   "case": "Творительный (Instrumental)",
-   "explain": "«раскрытыми книжками» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c37"
   },
   {
    "sentence": "Когда приезжий вступил в прохладную аллею, на скамьях произошло ___.",
@@ -473,106 +319,8 @@
    ],
    "correct": "заметное движение",
    "case": "Именительный (Nominative)",
-   "explain": "«заметное движение» — the subject of the sentence stands in the nominative.",
+   "explain": "«заметное движение» is the subject of «произошло» — who or what does it — so nominative.",
    "id": "c39"
-  },
-  {
-   "sentence": "Девушки, прикрывшись книгами Гладкова, Элизы Ожешко и Сейфуллиной, бросали на приезжего ___.",
-   "lemma": "взгляд",
-   "options": [
-    "трусливые взгляды",
-    "трусливыми взглядами",
-    "трусливых взглядов",
-    "трусливых взглядах"
-   ],
-   "correct": "трусливые взгляды",
-   "case": "Винительный (Accusative)",
-   "explain": "«трусливые взгляды» — the accusative marks the direct object of the verb.",
-   "id": "c40"
-  },
-  {
-   "sentence": "Рядом с ним, держась за пыльное, облупленное крыло экипажа и размахивая ___ с тисненой надписью «Musique», быстро шел человек в длиннополой толстовке.",
-   "lemma": "папка",
-   "options": [
-    "вздутая папка",
-    "вздутой папки",
-    "вздутой папкой",
-    "вздутой папке"
-   ],
-   "correct": "вздутой папкой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«вздутой папкой» — the instrumental marks the means, company, or complement.",
-   "id": "c41"
-  },
-  {
-   "sentence": "Седок, ___ с висячим, как банан, носом, сжимал ногами чемодан и время от времени показывал своему собеседнику кукиш.",
-   "lemma": "мужчина",
-   "options": [
-    "пожилой мужчина",
-    "пожилым мужчиной",
-    "пожилом мужчине",
-    "пожилому мужчине"
-   ],
-   "correct": "пожилой мужчина",
-   "case": "Именительный (Nominative)",
-   "explain": "«пожилой мужчина» — the subject of the sentence stands in the nominative.",
-   "id": "c42"
-  },
-  {
-   "sentence": "В пылу спора его ___, околыш которой сверкал зеленым диванным плюшем, покосилась набок.",
-   "lemma": "фуражка",
-   "options": [
-    "инженерская фуражка",
-    "инженерской фуражкой",
-    "инженерской фуражки",
-    "инженерской фуражке"
-   ],
-   "correct": "инженерская фуражка",
-   "case": "Именительный (Nominative)",
-   "explain": "«инженерская фуражка» — the subject of the sentence stands in the nominative.",
-   "id": "c43"
-  },
-  {
-   "sentence": "В пылу спора его инженерская фуражка, околыш которой сверкал зеленым ___, покосилась набок.",
-   "lemma": "плюш",
-   "options": [
-    "диванным плюшем",
-    "диванному плюшу",
-    "диванном плюше",
-    "диванный плюш"
-   ],
-   "correct": "диванным плюшем",
-   "case": "Творительный (Instrumental)",
-   "explain": "«диванным плюшем» — the instrumental marks the means, company, or complement.",
-   "id": "c44"
-  },
-  {
-   "sentence": "Вскоре стали слышны и ___.",
-   "lemma": "слово",
-   "options": [
-    "прочих словах",
-    "прочих слов",
-    "прочими словами",
-    "прочие слова"
-   ],
-   "correct": "прочие слова",
-   "case": "Именительный (Nominative)",
-   "explain": "«прочие слова» — the subject of the sentence stands in the nominative.",
-   "id": "c45"
-  },
-  {
-   "sentence": "— А я вам говорю, что на такие условия к вам не поедет ни один ___, — ответил Талмудовский, стараясь вернуть кукиш на прежнюю позицию.",
-   "lemma": "специалист",
-   "options": [
-    "приличному специалисту",
-    "приличный специалист",
-    "приличном специалисте",
-    "приличным специалистом"
-   ],
-   "correct": "приличный специалист",
-   "case": "Именительный (Nominative)",
-   "explain": "«приличный специалист» — the subject of the sentence stands in the nominative.",
-   "id": "c47"
   },
   {
    "sentence": "Сами всюду пишут: «Свобода, равенство и братство», а меня хотят заставить работать в этой ___.",
@@ -585,35 +333,21 @@
    ],
    "correct": "крысиной норе",
    "case": "Предложный (Prepositional)",
-   "explain": "«крысиной норе» — after the preposition «в», for location or topic.",
+   "explain": "«крысиной норе» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c49"
-  },
-  {
-   "sentence": "Председатель, черноглазый ___ в синем пиджаке и в таких же брюках, заправленных в сапоги на высоких скороходских каблучках, посмотрел на посетителя довольно рассеянно и заявил, что не узнает.",
-   "lemma": "человек",
-   "options": [
-    "большеголовом человеке",
-    "большеголовым человеком",
-    "большеголового человека",
-    "большеголовый человек"
-   ],
-   "correct": "большеголовый человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«большеголовый человек» — the subject of the sentence stands in the nominative.",
-   "id": "c52"
   },
   {
    "sentence": "Он живо вспомнил ___ революционного лейтенанта с бледным лицом и в черной пелерине с бронзовыми львиными застежками.",
    "lemma": "облик",
    "options": [
     "знаменитому облику",
-    "знаменитого облика",
-    "знаменитый облик",
-    "знаменитым обликом"
+    "знаменитым обликом",
+    "знаменитом облике",
+    "знаменитый облик"
    ],
    "correct": "знаменитый облик",
    "case": "Винительный (Accusative)",
-   "explain": "«знаменитый облик» — the accusative marks the direct object of the verb.",
+   "explain": "«знаменитый облик» is the direct object of «вспомнил» (кого? что?) — accusative.",
    "id": "c54"
   },
   {
@@ -627,7 +361,7 @@
    ],
    "correct": "революционного лейтенанта",
    "case": "Родительный (Genitive)",
-   "explain": "«революционного лейтенанта» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«революционного лейтенанта» depends on the noun «облик» (whose? of what?) — genitive.",
    "id": "c55"
   },
   {
@@ -641,49 +375,21 @@
    ],
    "correct": "черноморского героя",
    "case": "Родительный (Genitive)",
-   "explain": "«черноморского героя» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«черноморского героя» depends on the noun «сыну» (whose? of what?) — genitive.",
    "id": "c57"
-  },
-  {
-   "sentence": "Пока он собирался с мыслями, чтобы задать сыну черноморского героя приличествующий случаю вопрос, посетитель присматривался к меблировке кабинета взглядом ___.",
-   "lemma": "покупатель",
-   "options": [
-    "разборчивом покупателе",
-    "разборчивый покупатель",
-    "разборчивым покупателем",
-    "разборчивого покупателя"
-   ],
-   "correct": "разборчивого покупателя",
-   "case": "Винительный (Accusative)",
-   "explain": "«разборчивого покупателя» — the accusative marks the direct object of the verb.",
-   "id": "c58"
-  },
-  {
-   "sentence": "Когда-то, в царские времена, меблировка ___ производилась по трафарету.",
-   "lemma": "место",
-   "options": [
-    "присутственным местам",
-    "присутственных мест",
-    "присутственные места",
-    "присутственными местами"
-   ],
-   "correct": "присутственных мест",
-   "case": "Родительный (Genitive)",
-   "explain": "«присутственных мест» — the genitive here marks possession, absence, or quantity.",
-   "id": "c60"
   },
   {
    "sentence": "Люди забыли, как нужно обставлять помещения ___, и в служебных кабинетах показались предметы, считавшиеся до сих пор неотъемлемой принадлежностью частной квартиры.",
    "lemma": "лицо",
    "options": [
-    "должностными лицами",
-    "должностных лицах",
     "должностных лиц",
-    "должностным лицам"
+    "должностным лицам",
+    "должностные лица",
+    "должностных лицах"
    ],
    "correct": "должностных лиц",
    "case": "Родительный (Genitive)",
-   "explain": "«должностных лиц» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«должностных лиц» depends on the noun «помещения» (whose? of what?) — genitive.",
    "id": "c61"
   },
   {
@@ -697,22 +403,8 @@
    ],
    "correct": "частной квартиры",
    "case": "Родительный (Genitive)",
-   "explain": "«частной квартиры» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«частной квартиры» depends on the noun «принадлежностью» (whose? of what?) — genitive.",
    "id": "c63"
-  },
-  {
-   "sentence": "— Да, проездом, — ответил посетитель, разглядывая козетку и все более убеждаясь, что ___ исполкома плохи.",
-   "lemma": "дело",
-   "options": [
-    "финансовым делам",
-    "финансовые дела",
-    "финансовыми делами",
-    "финансовых дел"
-   ],
-   "correct": "финансовые дела",
-   "case": "Именительный (Nominative)",
-   "explain": "«финансовые дела» — the subject of the sentence stands in the nominative.",
-   "id": "c64"
   },
   {
    "sentence": "Он предпочитал исполкомы, обставленные новой шведской мебелью ___.",
@@ -725,7 +417,7 @@
    ],
    "correct": "ленинградского древтреста",
    "case": "Родительный (Genitive)",
-   "explain": "«ленинградского древтреста» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«ленинградского древтреста» depends on the noun «мебелью» (whose? of what?) — genitive.",
    "id": "c65"
   },
   {
@@ -739,7 +431,7 @@
    ],
    "correct": "прямого ответа",
    "case": "Родительный (Genitive)",
-   "explain": "«прямого ответа» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«прямого ответа» — «от» always takes the genitive.",
    "id": "c67"
   },
   {
@@ -753,7 +445,7 @@
    ],
    "correct": "очаковского героя",
    "case": "Родительный (Genitive)",
-   "explain": "«очаковского героя» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«очаковского героя» depends on the noun «имя» (whose? of what?) — genitive.",
    "id": "c68"
   },
   {
@@ -767,21 +459,21 @@
    ],
    "correct": "частному лицу",
    "case": "Дательный (Dative)",
-   "explain": "«частному лицу» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«частному лицу» — «к» always takes the dative.",
    "id": "c69"
   },
   {
    "sentence": "___ сын лейтенанта произнес с надрывом.",
    "lemma": "слово",
    "options": [
-    "последние слова",
+    "последним словам",
     "последними словами",
-    "последних словах",
-    "последних слов"
+    "последние слова",
+    "последних словах"
    ],
    "correct": "последние слова",
    "case": "Винительный (Accusative)",
-   "explain": "«Последние слова» — the accusative marks the direct object of the verb.",
+   "explain": "«последние слова» is the direct object of «произнес» (кого? что?) — accusative.",
    "id": "c71"
   },
   {
@@ -795,7 +487,7 @@
    ],
    "correct": "новым интонациям",
    "case": "Дательный (Dative)",
-   "explain": "«новым интонациям» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«новым интонациям» — «к» always takes the dative.",
    "id": "c72"
   },
   {
@@ -809,7 +501,7 @@
    ],
    "correct": "черноморского героя",
    "case": "Родительный (Genitive)",
-   "explain": "«черноморского героя» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«черноморского героя» depends on the noun «сын» (whose? of what?) — genitive.",
    "id": "c73"
   },
   {
@@ -823,7 +515,7 @@
    ],
    "correct": "узкими рамками",
    "case": "Творительный (Instrumental)",
-   "explain": "«узкими рамками» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «стесненный», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c74"
   },
   {
@@ -837,36 +529,8 @@
    ],
    "correct": "местного бюджета",
    "case": "Родительный (Genitive)",
-   "explain": "«местного бюджета» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«местного бюджета» depends on the noun «рамками» (whose? of what?) — genitive.",
    "id": "c75"
-  },
-  {
-   "sentence": "Председатель, стесненный узкими рамками местного бюджета, смог дать только восемь рублей и три талона на обед в кооперативной столовой «___ желудка».",
-   "lemma": "друг",
-   "options": [
-    "бывшим другом",
-    "бывшего друга",
-    "бывший друг",
-    "бывшему другу"
-   ],
-   "correct": "бывший друг",
-   "case": "Именительный (Nominative)",
-   "explain": "«Бывший друг» — the subject of the sentence stands in the nominative.",
-   "id": "c76"
-  },
-  {
-   "sentence": "Сын героя уложил деньги и талоны в глубокий карман поношенного серого в яблоках пиджака и уже собрался было подняться с розового пуфика, когда за дверью кабинета послышался топот и ___ секретаря.",
-   "lemma": "возглас",
-   "options": [
-    "заградительного возгласа",
-    "заградительном возгласе",
-    "заградительным возгласом",
-    "заградительный возглас"
-   ],
-   "correct": "заградительный возглас",
-   "case": "Именительный (Nominative)",
-   "explain": "«заградительный возглас» — the subject of the sentence stands in the nominative.",
-   "id": "c79"
   },
   {
    "sentence": "Дверь поспешно растворилась, и на пороге ее показался ___.",
@@ -879,22 +543,8 @@
    ],
    "correct": "новый посетитель",
    "case": "Именительный (Nominative)",
-   "explain": "«новый посетитель» — the subject of the sentence stands in the nominative.",
+   "explain": "«новый посетитель» is the subject of «показался» — who or what does it — so nominative.",
    "id": "c80"
-  },
-  {
-   "sentence": "— Сын великого, ___ лейтенанта Шмидта, — повторил пришелец.",
-   "lemma": "герой",
-   "options": [
-    "незабвенный герой",
-    "незабвенном герое",
-    "незабвенному герою",
-    "незабвенного героя"
-   ],
-   "correct": "незабвенного героя",
-   "case": "Винительный (Accusative)",
-   "explain": "«незабвенного героя» — the accusative marks the direct object of the verb.",
-   "id": "c82"
   },
   {
    "sentence": "И председатель в ___ указал на первого посетителя, лицо которого внезапно приобрело сонное выражение.",
@@ -907,7 +557,7 @@
    ],
    "correct": "полном расстройстве",
    "case": "Предложный (Prepositional)",
-   "explain": "«полном расстройстве» — after the preposition «в», for location or topic.",
+   "explain": "«полном расстройстве» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c83"
   },
   {
@@ -921,7 +571,7 @@
    ],
    "correct": "щекотливое мгновение",
    "case": "Именительный (Nominative)",
-   "explain": "«щекотливое мгновение» — the subject of the sentence stands in the nominative.",
+   "explain": "«щекотливое мгновение» is the subject of «наступило» — who or what does it — so nominative.",
    "id": "c85"
   },
   {
@@ -935,7 +585,7 @@
    ],
    "correct": "второго сына",
    "case": "Родительный (Genitive)",
-   "explain": "«второго сына» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«второго сына» depends on the noun «глазах» (whose? of what?) — genitive.",
    "id": "c86"
   },
   {
@@ -949,36 +599,8 @@
    ],
    "correct": "скверная улыбка",
    "case": "Именительный (Nominative)",
-   "explain": "«скверная улыбка» — the subject of the sentence stands in the nominative.",
+   "explain": "«скверная улыбка» is the subject of «появилась» — who or what does it — so nominative.",
    "id": "c87"
-  },
-  {
-   "sentence": "И вот, когда ___ лейтенанта уже казалось, что все потеряно и что ужасный председательский гнев свалится сейчас на его рыжую голову, с розового пуфика пришло спасение.",
-   "lemma": "сын",
-   "options": [
-    "второму сыну",
-    "второго сына",
-    "вторым сыном",
-    "втором сыне"
-   ],
-   "correct": "второму сыну",
-   "case": "Дательный (Dative)",
-   "explain": "«второму сыну» — the dative marks the indirect object or recipient.",
-   "id": "c88"
-  },
-  {
-   "sentence": "И вот, когда второму сыну лейтенанта уже казалось, что все потеряно и что ужасный ___ свалится сейчас на его рыжую голову, с розового пуфика пришло спасение.",
-   "lemma": "гнев",
-   "options": [
-    "председательском гневе",
-    "председательский гнев",
-    "председательскому гневу",
-    "председательского гнева"
-   ],
-   "correct": "председательский гнев",
-   "case": "Именительный (Nominative)",
-   "explain": "«председательский гнев» — the subject of the sentence stands in the nominative.",
-   "id": "c89"
   },
   {
    "sentence": "И ___ заключил второго сына в объятия.",
@@ -991,7 +613,7 @@
    ],
    "correct": "первый сын",
    "case": "Именительный (Nominative)",
-   "explain": "«первый сын» — the subject of the sentence stands in the nominative.",
+   "explain": "«первый сын» is the subject of «заключил» — who or what does it — so nominative.",
    "id": "c92"
   },
   {
@@ -1005,36 +627,8 @@
    ],
    "correct": "второго сына",
    "case": "Винительный (Accusative)",
-   "explain": "«второго сына» — the accusative marks the direct object of the verb.",
+   "explain": "«второго сына» is the direct object of «заключил» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c93"
-  },
-  {
-   "sentence": "___ ознаменовалась такими сумбурными ласками и столь необыкновенными по силе объятиями, что второй сын черноморского революционера вышел из них с побледневшим от боли лицом.",
-   "lemma": "встреча",
-   "options": [
-    "счастливой встрече",
-    "счастливой встречи",
-    "счастливой встречей",
-    "счастливая встреча"
-   ],
-   "correct": "счастливая встреча",
-   "case": "Именительный (Nominative)",
-   "explain": "«Счастливая встреча» — the subject of the sentence stands in the nominative.",
-   "id": "c94"
-  },
-  {
-   "sentence": "Счастливая встреча ознаменовалась такими ___ и столь необыкновенными по силе объятиями, что второй сын черноморского революционера вышел из них с побледневшим от боли лицом.",
-   "lemma": "ласка",
-   "options": [
-    "сумбурным ласкам",
-    "сумбурными ласками",
-    "сумбурных ласках",
-    "сумбурные ласки"
-   ],
-   "correct": "сумбурными ласками",
-   "case": "Творительный (Instrumental)",
-   "explain": "«сумбурными ласками» — the instrumental marks the means, company, or complement.",
-   "id": "c95"
   },
   {
    "sentence": "Счастливая встреча ознаменовалась такими сумбурными ласками и столь необыкновенными по силе объятиями, что ___ черноморского революционера вышел из них с побледневшим от боли лицом.",
@@ -1047,7 +641,7 @@
    ],
    "correct": "второй сын",
    "case": "Именительный (Nominative)",
-   "explain": "«второй сын» — the subject of the sentence stands in the nominative.",
+   "explain": "«второй сын» is the subject of «вышел» — who or what does it — so nominative.",
    "id": "c96"
   },
   {
@@ -1061,92 +655,22 @@
    ],
    "correct": "черноморского революционера",
    "case": "Родительный (Genitive)",
-   "explain": "«черноморского революционера» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«черноморского революционера» depends on the noun «сын» (whose? of what?) — genitive.",
    "id": "c97"
-  },
-  {
-   "sentence": "Ввиду этого спасительную комбинацию тут же на месте пришлось развить, пополнить ___ и новыми, ускользнувшими от Истпарта подробностями восстания моряков в 1905 году.",
-   "lemma": "деталь",
-   "options": [
-    "бытовым деталям",
-    "бытовыми деталями",
-    "бытовые детали",
-    "бытовых деталей"
-   ],
-   "correct": "бытовыми деталями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«бытовыми деталями» — the instrumental marks the means, company, or complement.",
-   "id": "c98"
-  },
-  {
-   "sentence": "— Да, я жил, — пробормотал ___ лейтенанта, — у нее.",
-   "lemma": "сын",
-   "options": [
-    "второго сына",
-    "второму сыну",
-    "второй сын",
-    "втором сыне"
-   ],
-   "correct": "второй сын",
-   "case": "Именительный (Nominative)",
-   "explain": "«второй сын» — the subject of the sentence stands in the nominative.",
-   "id": "c104"
-  },
-  {
-   "sentence": "— Я писал, — неожиданно ответил братец, чувствуя ___ веселости, — заказные письма посылал.",
-   "lemma": "прилив",
-   "options": [
-    "необыкновенного прилива",
-    "необыкновенному приливу",
-    "необыкновенный прилив",
-    "необыкновенным приливом"
-   ],
-   "correct": "необыкновенный прилив",
-   "case": "Винительный (Accusative)",
-   "explain": "«необыкновенный прилив» — the accusative marks the direct object of the verb.",
-   "id": "c105"
-  },
-  {
-   "sentence": "— Я писал, — неожиданно ответил братец, чувствуя необыкновенный прилив веселости, — ___ посылал.",
-   "lemma": "письмо",
-   "options": [
-    "заказные письма",
-    "заказных письмах",
-    "заказными письмами",
-    "заказным письмам"
-   ],
-   "correct": "заказные письма",
-   "case": "Винительный (Accusative)",
-   "explain": "«заказные письма» — the accusative marks the direct object of the verb.",
-   "id": "c106"
   },
   {
    "sentence": "И он полез в боковой карман, откуда действительно вынул множество ___, но показал их почему-то не брату, а председателю исполкома, да и то издали.",
    "lemma": "бумажка",
    "options": [
     "лежалых бумажек",
-    "лежалыми бумажками",
     "лежалых бумажках",
-    "лежалым бумажкам"
+    "лежалым бумажкам",
+    "лежалые бумажки"
    ],
    "correct": "лежалых бумажек",
    "case": "Родительный (Genitive)",
-   "explain": "«лежалых бумажек» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«лежалых бумажек» depends on the noun «множество» (whose? of what?) — genitive.",
    "id": "c108"
-  },
-  {
-   "sentence": "За углом ___ они остановились.",
-   "lemma": "дом",
-   "options": [
-    "исполкомовским домом",
-    "исполкомовского дома",
-    "исполкомовскому дому",
-    "исполкомовский дом"
-   ],
-   "correct": "исполкомовского дома",
-   "case": "Родительный (Genitive)",
-   "explain": "«исполкомовского дома» — the genitive here marks possession, absence, or quantity.",
-   "id": "c110"
   },
   {
    "sentence": "— Кстати, о детстве, — сказал ___, — в детстве таких, как вы, я убивал на месте.",
@@ -1159,36 +683,22 @@
    ],
    "correct": "первый сын",
    "case": "Именительный (Nominative)",
-   "explain": "«первый сын» — the subject of the sentence stands in the nominative.",
+   "explain": "«первый сын» is the subject of «сказал» — who or what does it — so nominative.",
    "id": "c111"
   },
   {
    "sentence": "Или, короче выражаясь, жизнь диктует нам свои ___.",
    "lemma": "закон",
    "options": [
-    "суровых законах",
-    "суровые законы",
+    "суровым законам",
     "суровыми законами",
-    "суровых законов"
+    "суровые законы",
+    "суровых законах"
    ],
    "correct": "суровые законы",
    "case": "Винительный (Accusative)",
-   "explain": "«суровые законы» — the accusative marks the direct object of the verb.",
+   "explain": "«суровые законы» is the direct object of «диктует» (кого? что?) — accusative.",
    "id": "c115"
-  },
-  {
-   "sentence": "Рыжеволосый молчал, подавленный ___.",
-   "lemma": "обвинение",
-   "options": [
-    "справедливому обвинению",
-    "справедливого обвинения",
-    "справедливым обвинением",
-    "справедливое обвинение"
-   ],
-   "correct": "справедливым обвинением",
-   "case": "Творительный (Instrumental)",
-   "explain": "«справедливым обвинением» — the instrumental marks the means, company, or complement.",
-   "id": "c116"
   },
   {
    "sentence": "— Видите, вон идет человек в ___?",
@@ -1201,7 +711,7 @@
    ],
    "correct": "соломенной шляпе",
    "case": "Предложный (Prepositional)",
-   "explain": "«соломенной шляпе» — after the preposition «в», for location or topic.",
+   "explain": "«соломенной шляпе» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c117"
   },
   {
@@ -1215,64 +725,8 @@
    ],
    "correct": "соломенная шляпа",
    "case": "Именительный (Nominative)",
-   "explain": "«соломенная шляпа» — the subject of the sentence stands in the nominative.",
+   "explain": "«соломенная шляпа» is the subject of «сидела» — who or what does it — so nominative.",
    "id": "c118"
-  },
-  {
-   "sentence": "Брюки были настолько коротки, что обнажали ___ кальсон.",
-   "lemma": "завязка",
-   "options": [
-    "белых завязок",
-    "белых завязках",
-    "белыми завязками",
-    "белые завязки"
-   ],
-   "correct": "белые завязки",
-   "case": "Именительный (Nominative)",
-   "explain": "«белые завязки» — the subject of the sentence stands in the nominative.",
-   "id": "c120"
-  },
-  {
-   "sentence": "Под усами гражданина, подобно огоньку папиросы, пылал ___.",
-   "lemma": "зуб",
-   "options": [
-    "золотого зуба",
-    "золотой зуб",
-    "золотому зубу",
-    "золотым зубом"
-   ],
-   "correct": "золотой зуб",
-   "case": "Винительный (Accusative)",
-   "explain": "«золотой зуб» — the accusative marks the direct object of the verb.",
-   "id": "c121"
-  },
-  {
-   "sentence": "— У лейтенанта было три сына, — заметил Бендер, — два умных, а ___.",
-   "lemma": "дурак",
-   "options": [
-    "третьем дураке",
-    "третьему дураку",
-    "третьим дураком",
-    "третий дурак"
-   ],
-   "correct": "третий дурак",
-   "case": "Именительный (Nominative)",
-   "explain": "«третий дурак» — the subject of the sentence stands in the nominative.",
-   "id": "c122"
-  },
-  {
-   "sentence": "Сдружившиеся дети лейтенанта Шмидта вышли из-за угла и подступили к окну ___.",
-   "lemma": "кабинет",
-   "options": [
-    "председательском кабинете",
-    "председательскому кабинету",
-    "председательский кабинет",
-    "председательского кабинета"
-   ],
-   "correct": "председательского кабинета",
-   "case": "Родительный (Genitive)",
-   "explain": "«председательского кабинета» — the genitive here marks possession, absence, or quantity.",
-   "id": "c124"
   },
   {
    "sentence": "Прижимая шляпу к ___, он остановился около стола и долго шевелил толстыми губами.",
@@ -1285,35 +739,21 @@
    ],
    "correct": "сальному пиджаку",
    "case": "Дательный (Dative)",
-   "explain": "«сальному пиджаку» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«сальному пиджаку» — «к» always takes the dative.",
    "id": "c125"
-  },
-  {
-   "sentence": "Прижимая шляпу к сальному пиджаку, он остановился около стола и долго шевелил ___.",
-   "lemma": "губа",
-   "options": [
-    "толстым губам",
-    "толстых губ",
-    "толстыми губами",
-    "толстых губах"
-   ],
-   "correct": "толстыми губами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«толстыми губами» — the instrumental marks the means, company, or complement.",
-   "id": "c126"
   },
   {
    "sentence": "В ту же самую минуту сотрудники, придав телу Паниковского ___ и инерцию, выбросили его на улицу.",
    "lemma": "размах",
    "options": [
-    "достаточном размахе",
-    "достаточного размаха",
+    "достаточный размах",
     "достаточным размахом",
-    "достаточный размах"
+    "достаточном размахе",
+    "достаточному размаху"
    ],
    "correct": "достаточный размах",
    "case": "Винительный (Accusative)",
-   "explain": "«достаточный размах» — the accusative marks the direct object of the verb.",
+   "explain": "«достаточный размах» is the direct object of «выбросили» (кого? что?) — accusative.",
    "id": "c129"
   }
  ]

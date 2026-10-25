@@ -1,73 +1,17 @@
 {
  "cases": [
   {
-   "sentence": "Агафья Матвеевна трои сутки жила одним кофе, и только для Ильи Ильича готовились три блюда, а ___ как-нибудь и что-нибудь.",
-   "lemma": "ель",
-   "options": [
-    "прочих елей",
-    "прочим елям",
-    "прочими елями",
-    "прочие ели"
-   ],
-   "correct": "прочие ели",
-   "case": "Именительный (Nominative)",
-   "explain": "«прочие ели» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "И ___ господа-то кушают, и на другой день.",
-   "lemma": "день",
-   "options": [
-    "целом дне",
-    "целому дню",
-    "целым днём",
-    "целый день"
-   ],
-   "correct": "целый день",
-   "case": "Винительный (Accusative)",
-   "explain": "«целый день» — the accusative marks the direct object of the verb.",
-   "id": "c3"
-  },
-  {
-   "sentence": "Огромная форель, ___, перепелки, мороженое и отличное вино — все это достойно ознаменовало годичный праздник.",
-   "lemma": "цыплёнок",
-   "options": [
-    "фаршированные цыплята",
-    "фаршированных цыплят",
-    "фаршированным цыплятам",
-    "фаршированных цыплятах"
-   ],
-   "correct": "фаршированные цыплята",
-   "case": "Именительный (Nominative)",
-   "explain": "«фаршированные цыплята» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
-  },
-  {
-   "sentence": "Огромная форель, фаршированные цыплята, перепелки, мороженое и ___ — все это достойно ознаменовало годичный праздник.",
-   "lemma": "вино",
-   "options": [
-    "отличному вину",
-    "отличном вине",
-    "отличное вино",
-    "отличного вина"
-   ],
-   "correct": "отличное вино",
-   "case": "Именительный (Nominative)",
-   "explain": "«отличное вино» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
-  },
-  {
    "sentence": "Огромная форель, фаршированные цыплята, перепелки, мороженое и отличное вино — все это достойно ознаменовало ___.",
    "lemma": "праздник",
    "options": [
-    "годичном празднике",
     "годичным праздником",
-    "годичного праздника",
-    "годичный праздник"
+    "годичный праздник",
+    "годичном празднике",
+    "годичному празднику"
    ],
    "correct": "годичный праздник",
    "case": "Винительный (Accusative)",
-   "explain": "«годичный праздник» — the accusative marks the direct object of the verb.",
+   "explain": "«годичный праздник» is the direct object of «ознаменовало» (кого? что?) — accusative.",
    "id": "c8"
   },
   {
@@ -81,7 +25,7 @@
    ],
    "correct": "дорогих гостей",
    "case": "Винительный (Accusative)",
-   "explain": "«дорогих гостей» — the accusative marks the direct object of the verb.",
+   "explain": "«дорогих гостей» is the direct object of «угостить» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c9"
   },
   {
@@ -95,7 +39,7 @@
    ],
    "correct": "жирной кулебяки",
    "case": "Родительный (Genitive)",
-   "explain": "«жирной кулебяки» — after the preposition «вместо», the genitive here marks possession, absence, or quantity.",
+   "explain": "«жирной кулебяки» — «вместо» always takes the genitive.",
    "id": "c10"
   },
   {
@@ -109,7 +53,7 @@
    ],
    "correct": "громадный ананас",
    "case": "Именительный (Nominative)",
-   "explain": "«громадный ананас» — the subject of the sentence stands in the nominative.",
+   "explain": "«громадный ананас» is the subject of «красовался» — who or what does it — so nominative.",
    "id": "c11"
   },
   {
@@ -123,7 +67,7 @@
    ],
    "correct": "самому обеду",
    "case": "Дательный (Dative)",
-   "explain": "«самому обеду» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«самому обеду» — «к» always takes the dative.",
    "id": "c12"
   },
   {
@@ -137,7 +81,7 @@
    ],
    "correct": "самом деле",
    "case": "Предложный (Prepositional)",
-   "explain": "«самом деле» — after the preposition «в», for location or topic.",
+   "explain": "«самом деле» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c13"
   },
   {
@@ -151,22 +95,8 @@
    ],
    "correct": "самом деле",
    "case": "Предложный (Prepositional)",
-   "explain": "«самом деле» — after the preposition «в», for location or topic.",
+   "explain": "«самом деле» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c15"
-  },
-  {
-   "sentence": "— Ты — ___, Андрей, — возразил Обломов, — у тебя крылья есть: ты не живешь, ты летаешь; у тебя есть дарования, самолюбие; ты вон не толст, не одолевают ячмени, не чешется затылок.",
-   "lemma": "дело",
-   "options": [
-    "другого дела",
-    "другому делу",
-    "другое дело",
-    "другом деле"
-   ],
-   "correct": "другое дело",
-   "case": "Именительный (Nominative)",
-   "explain": "«другое дело» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
   },
   {
    "sentence": "— Тебя послушать, так ты и бумаги не умеешь в управу написать и письма к ___, а к Ольге письмо написал же?",
@@ -179,7 +109,7 @@
    ],
    "correct": "домовому хозяину",
    "case": "Дательный (Dative)",
-   "explain": "«домовому хозяину» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«домовому хозяину» — «к» always takes the dative.",
    "id": "c18"
   },
   {
@@ -193,7 +123,7 @@
    ],
    "correct": "английского магазина",
    "case": "Родительный (Genitive)",
-   "explain": "«английского магазина» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«английского магазина» — «из» always takes the genitive.",
    "id": "c19"
   }
  ]

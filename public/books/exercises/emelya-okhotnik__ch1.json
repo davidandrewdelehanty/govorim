@@ -1,62 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Стояли ___ июня месяца, самое жаркое время в Тычках.",
-   "lemma": "день",
-   "options": [
-    "последних днях",
-    "последними днями",
-    "последних дней",
-    "последние дни"
-   ],
-   "correct": "последние дни",
-   "case": "Именительный (Nominative)",
-   "explain": "«последние дни» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "В избушке Емели бедный Лыско уже ___ завывал от голода, как волк зимой.",
-   "lemma": "день",
-   "options": [
-    "третьем дне",
-    "третьему дню",
-    "третьим днём",
-    "третий день"
-   ],
-   "correct": "третий день",
-   "case": "Винительный (Accusative)",
-   "explain": "«третий день» — the accusative marks the direct object of the verb.",
-   "id": "c2"
-  },
-  {
-   "sentence": "На нем были новые лапти, котомка с хлебом за плечами, ___ и теплая оленья шапка на голове.",
-   "lemma": "кафтан",
-   "options": [
-    "рваного кафтана",
-    "рваный кафтан",
-    "рваному кафтану",
-    "рваном кафтане"
-   ],
-   "correct": "рваный кафтан",
-   "case": "Именительный (Nominative)",
-   "explain": "«рваный кафтан» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
-  },
-  {
-   "sentence": "На нем были новые лапти, котомка с хлебом за плечами, рваный кафтан и теплая ___ на голове.",
-   "lemma": "шапка",
-   "options": [
-    "оленьей шапке",
-    "оленьей шапки",
-    "оленья шапка",
-    "оленьей шапкой"
-   ],
-   "correct": "оленья шапка",
-   "case": "Именительный (Nominative)",
-   "explain": "«оленья шапка» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
-  },
-  {
    "sentence": "Старик давно уже не носил шляпы, а зиму и лето ходил в своей ___, которая отлично защищала его лысую голову от зимнего холода и от летнего зноя.",
    "lemma": "шапка",
    "options": [
@@ -67,7 +11,7 @@
    ],
    "correct": "оленьей шапке",
    "case": "Предложный (Prepositional)",
-   "explain": "«оленьей шапке» — after the preposition «в», for location or topic.",
+   "explain": "«оленьей шапке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c6"
   },
   {
@@ -81,7 +25,7 @@
    ],
    "correct": "зимнего холода",
    "case": "Родительный (Genitive)",
-   "explain": "«зимнего холода» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«зимнего холода» — «от» always takes the genitive.",
    "id": "c7"
   },
   {
@@ -95,50 +39,8 @@
    ],
    "correct": "летнего зноя",
    "case": "Родительный (Genitive)",
-   "explain": "«летнего зноя» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«летнего зноя» — «от» always takes the genitive.",
    "id": "c8"
-  },
-  {
-   "sentence": "Тропинка, по которой он шел, змейкой взбиралась на гору, минуя ___ и крутые уступы.",
-   "lemma": "камень",
-   "options": [
-    "большим камням",
-    "больших камнях",
-    "больших камней",
-    "большие камни"
-   ],
-   "correct": "большие камни",
-   "case": "Винительный (Accusative)",
-   "explain": "«большие камни» — the accusative marks the direct object of the verb.",
-   "id": "c9"
-  },
-  {
-   "sentence": "Тропинка, по которой он шел, змейкой взбиралась на гору, минуя большие камни и ___.",
-   "lemma": "уступ",
-   "options": [
-    "крутых уступах",
-    "крутых уступов",
-    "крутым уступам",
-    "крутые уступы"
-   ],
-   "correct": "крутые уступы",
-   "case": "Именительный (Nominative)",
-   "explain": "«крутые уступы» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
-  },
-  {
-   "sentence": "___ был вырублен, а около дороги ютились молодые березки, кусты жимолости, и зеленым шатром раскидывалась рябина.",
-   "lemma": "лес",
-   "options": [
-    "крупный лес",
-    "крупном лесе",
-    "крупного леса",
-    "крупным лесом"
-   ],
-   "correct": "крупный лес",
-   "case": "Именительный (Nominative)",
-   "explain": "«Крупный лес» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
   },
   {
    "sentence": "Там и сям попадались ___ из молодого ельника, который зеленой щеткой вставал по сторонам дороги и весело топорщился лапистыми и мохнатыми ветвями.",
@@ -151,7 +53,7 @@
    ],
    "correct": "густые перелески",
    "case": "Именительный (Nominative)",
-   "explain": "«густые перелески» — the subject of the sentence stands in the nominative.",
+   "explain": "«густые перелески» is the subject of «попадались» — who or what does it — so nominative.",
    "id": "c12"
   },
   {
@@ -165,7 +67,7 @@
    ],
    "correct": "молодого ельника",
    "case": "Родительный (Genitive)",
-   "explain": "«молодого ельника» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«молодого ельника» — «из» always takes the genitive.",
    "id": "c13"
   },
   {
@@ -179,7 +81,7 @@
    ],
    "correct": "широкий вид",
    "case": "Именительный (Nominative)",
-   "explain": "«широкий вид» — the subject of the sentence stands in the nominative.",
+   "explain": "«широкий вид» is the subject of «открывался» — who or what does it — so nominative.",
    "id": "c14"
   },
   {
@@ -193,22 +95,8 @@
    ],
    "correct": "горной котловины",
    "case": "Родительный (Genitive)",
-   "explain": "«горной котловины» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«горной котловины» depends on the noun «дне» (whose? of what?) — genitive.",
    "id": "c15"
-  },
-  {
-   "sentence": "Деревушка совсем спряталась на дне глубокой горной котловины, и ___ казались отсюда черными точками.",
-   "lemma": "изба",
-   "options": [
-    "крестьянских изб",
-    "крестьянскими избами",
-    "крестьянских избах",
-    "крестьянские избы"
-   ],
-   "correct": "крестьянские избы",
-   "case": "Именительный (Nominative)",
-   "explain": "«крестьянские избы» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
   },
   {
    "sentence": "___ поднимались высоко к небу своими острыми вершинами.",
@@ -221,35 +109,21 @@
    ],
    "correct": "громадные ели",
    "case": "Именительный (Nominative)",
-   "explain": "«Громадные ели» — the subject of the sentence stands in the nominative.",
+   "explain": "«громадные ели» is the subject of «поднимались» — who or what does it — so nominative.",
    "id": "c17"
-  },
-  {
-   "sentence": "Громадные ели поднимались высоко к небу своими ___.",
-   "lemma": "вершина",
-   "options": [
-    "острых вершинах",
-    "острыми вершинами",
-    "острым вершинам",
-    "острые вершины"
-   ],
-   "correct": "острыми вершинами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«острыми вершинами» — the instrumental marks the means, company, or complement.",
-   "id": "c18"
   },
   {
    "sentence": "Трава в таком лесу не растет, и Емеля шел по мягкому ___, как по ковру.",
    "lemma": "мох",
    "options": [
-    "желтоватому мху",
-    "желтоватый мох",
     "желтоватого мха",
-    "желтоватом мхе"
+    "желтоватом мхе",
+    "желтоватым мхом",
+    "желтоватому мху"
    ],
    "correct": "желтоватому мху",
    "case": "Дательный (Dative)",
-   "explain": "«желтоватому мху» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«желтоватому мху» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c19"
   },
   {
@@ -263,7 +137,7 @@
    ],
    "correct": "другие охотники",
    "case": "Именительный (Nominative)",
-   "explain": "«другие охотники» — the subject of the sentence stands in the nominative.",
+   "explain": "«другие охотники» is the subject of «распугали» — who or what does it — so nominative.",
    "id": "c20"
   },
   {
@@ -277,7 +151,7 @@
    ],
    "correct": "слабый визг",
    "case": "Именительный (Nominative)",
-   "explain": "«слабый визг» — the subject of the sentence stands in the nominative.",
+   "explain": "«слабый визг» is the subject of «послышался» — who or what does it — so nominative.",
    "id": "c21"
   },
   {
@@ -291,7 +165,7 @@
    ],
    "correct": "лесных животных",
    "case": "Родительный (Genitive)",
-   "explain": "«лесных животных» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«лесных животных» — «из» always takes the genitive.",
    "id": "c22"
   },
   {
@@ -299,13 +173,13 @@
    "lemma": "рог",
    "options": [
     "ветвистым рогам",
-    "ветвистых рогов",
-    "ветвистые рога",
-    "ветвистыми рогами"
+    "ветвистых рогах",
+    "ветвистыми рогами",
+    "ветвистые рога"
    ],
    "correct": "ветвистые рога",
    "case": "Винительный (Accusative)",
-   "explain": "«ветвистые рога» — the accusative marks the direct object of the verb.",
+   "explain": "«ветвистые рога» is the direct object of «приложил» (кого? что?) — accusative.",
    "id": "c23"
   },
   {
@@ -319,7 +193,7 @@
    ],
    "correct": "самой спине",
    "case": "Дательный (Dative)",
-   "explain": "«самой спине» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«самой спине» — «к» always takes the dative.",
    "id": "c24"
   },
   {
@@ -333,7 +207,7 @@
    ],
    "correct": "бедная собака",
    "case": "Именительный (Nominative)",
-   "explain": "«Бедная собака» — the subject of the sentence stands in the nominative.",
+   "explain": "«бедная собака» is the subject of «чувствовала» — who or what does it — so nominative.",
    "id": "c25"
   },
   {
@@ -347,7 +221,7 @@
    ],
    "correct": "жареной оленины",
    "case": "Родительный (Genitive)",
-   "explain": "«жареной оленины» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«жареной оленины» depends on the noun «запах» (whose? of what?) — genitive.",
    "id": "c26"
   },
   {
@@ -361,7 +235,7 @@
    ],
    "correct": "передними лапами",
    "case": "Творительный (Instrumental)",
-   "explain": "«передними лапами» — after the preposition «между», the instrumental marks the means, company, or complement.",
+   "explain": "«передними лапами» — «между» + instrumental: between.",
    "id": "c28"
   },
   {
@@ -375,7 +249,7 @@
    ],
    "correct": "сухая корочка",
    "case": "Именительный (Nominative)",
-   "explain": "«сухая корочка» — the subject of the sentence stands in the nominative.",
+   "explain": "«сухая корочка» is the subject of «выпала» — who or what does it — so nominative.",
    "id": "c29"
   }
  ]

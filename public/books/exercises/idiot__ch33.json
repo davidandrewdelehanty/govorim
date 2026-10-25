@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Это очень ___, смиреннейшее существо.",
-   "lemma": "человек",
-   "options": [
-    "смиренный человек",
-    "смиренном человеке",
-    "смиренного человека",
-    "смиренному человеку"
-   ],
-   "correct": "смиренный человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«смиренный человек» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
    "sentence": "Я любил ___, когда начинало морозить, и когда зажигали газ; ходил иногда далеко.",
    "lemma": "сумерки",
    "options": [
@@ -25,22 +11,8 @@
    ],
    "correct": "мартовские сумерки",
    "case": "Винительный (Accusative)",
-   "explain": "«мартовские сумерки» — the accusative marks the direct object of the verb.",
+   "explain": "«мартовские сумерки» is the direct object of «любил» (кого? что?) — accusative.",
    "id": "c3"
-  },
-  {
-   "sentence": "Эта вещь была большой, сафьянный, старого устройства и туго набитый бумажник; но почему-то я с ___ угадал, что в нем было что угодно, но только не деньги.",
-   "lemma": "взгляд",
-   "options": [
-    "первый взгляд",
-    "первому взгляду",
-    "первом взгляде",
-    "первого взгляда"
-   ],
-   "correct": "первого взгляда",
-   "case": "Родительный (Genitive)",
-   "explain": "«первого взгляда» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
-   "id": "c5"
   },
   {
    "sentence": "Дом был огромной величины, одна из тех громадин, которые строятся аферистами для ___; в иных из таких домов бывает иногда нумеров до ста.",
@@ -53,7 +25,7 @@
    ],
    "correct": "мелких квартир",
    "case": "Родительный (Genitive)",
-   "explain": "«мелких квартир» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«мелких квартир» — «для» always takes the genitive.",
    "id": "c6"
   },
   {
@@ -67,22 +39,8 @@
    ],
    "correct": "огромного двора",
    "case": "Родительный (Genitive)",
-   "explain": "«огромного двора» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«огромного двора» depends on the noun «углу» (whose? of what?) — genitive.",
    "id": "c7"
-  },
-  {
-   "sentence": "Из-под кровати высовывался ___, и торчали два узла с каким-то тряпьем.",
-   "lemma": "чемодан",
-   "options": [
-    "незапертым чемоданом",
-    "незапертого чемодана",
-    "незапертый чемодан",
-    "незапертому чемодану"
-   ],
-   "correct": "незапертый чемодан",
-   "case": "Винительный (Accusative)",
-   "explain": "«незапертый чемодан» — the accusative marks the direct object of the verb.",
-   "id": "c10"
   },
   {
    "sentence": "Одну минуту я даже думал, что он бросится в драку; он побледнел точно в ___ и ужасно испугал жену.",
@@ -95,22 +53,8 @@
    ],
    "correct": "женской истерике",
    "case": "Предложный (Prepositional)",
-   "explain": "«женской истерике» — after the preposition «в», for location or topic.",
+   "explain": "«женской истерике» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c12"
-  },
-  {
-   "sentence": "Я видел, как господин бросался во все стороны, чтобы найти мне ___, как он схватил, наконец, с одного стула лохмотья, бросил их на пол и, торопясь, подал мне стул, осторожно меня усаживая.",
-   "lemma": "стул",
-   "options": [
-    "порожний стул",
-    "порожнего стула",
-    "порожним стулом",
-    "порожнему стулу"
-   ],
-   "correct": "порожний стул",
-   "case": "Винительный (Accusative)",
-   "explain": "«порожний стул» — the accusative marks the direct object of the verb.",
-   "id": "c14"
   },
   {
    "sentence": "\"Он был очень сбит с толку и как будто все еще не мог придти в себя; бумажник торчал у него в ___.",
@@ -123,7 +67,7 @@
    ],
    "correct": "левой руке",
    "case": "Предложный (Prepositional)",
-   "explain": "«левой руке» — after the preposition «в», for location or topic.",
+   "explain": "«левой руке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c17"
   },
   {
@@ -137,7 +81,7 @@
    ],
    "correct": "прошлой неделе",
    "case": "Предложный (Prepositional)",
-   "explain": "«прошлой неделе» — after the preposition «на», for location or topic.",
+   "explain": "«прошлой неделе» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c18"
   },
   {
@@ -151,36 +95,8 @@
    ],
    "correct": "проклятый кашель",
    "case": "Именительный (Nominative)",
-   "explain": "«проклятый кашель» — the subject of the sentence stands in the nominative.",
+   "explain": "«проклятый кашель» is the subject of «захватил» — who or what does it — so nominative.",
    "id": "c19"
-  },
-  {
-   "sentence": "При этом она очень сконфузилась, так что даже румянец заиграл на ее бледно-желтых, ___.",
-   "lemma": "щека",
-   "options": [
-    "сухими щеками",
-    "сухих щёк",
-    "сухих щеках",
-    "сухие щёки"
-   ],
-   "correct": "сухих щеках",
-   "case": "Предложный (Prepositional)",
-   "explain": "«сухих щеках» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c20"
-  },
-  {
-   "sentence": "\"- С ___ видно, — отвечал я поневоле насмешливо, — сюда много приезжают из провинций с надеждами, бегают, и так вот и живут.",
-   "lemma": "взгляд",
-   "options": [
-    "первый взгляд",
-    "первому взгляду",
-    "первом взгляде",
-    "первого взгляда"
-   ],
-   "correct": "первого взгляда",
-   "case": "Родительный (Genitive)",
-   "explain": "«первого взгляда» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
-   "id": "c21"
   },
   {
    "sentence": "\"С этим Бахмутовым в гимназии, в продолжение нескольких лет, я был в ___.",
@@ -193,7 +109,7 @@
    ],
    "correct": "постоянной вражде",
    "case": "Предложный (Prepositional)",
-   "explain": "«постоянной вражде» — after the preposition «в», for location or topic.",
+   "explain": "«постоянной вражде» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c25"
   },
   {
@@ -207,22 +123,8 @@
    ],
    "correct": "больших церемониях",
    "case": "Предложный (Prepositional)",
-   "explain": "«больших церемониях» — after the preposition «при», for location or topic.",
+   "explain": "«больших церемониях» — «при» always takes the prepositional.",
    "id": "c26"
-  },
-  {
-   "sentence": "\"И действительно, это дело, самым ___, обделалось у нас как не надо лучше.",
-   "lemma": "образ",
-   "options": [
-    "неожиданного образа",
-    "неожиданным образом",
-    "неожиданный образ",
-    "неожиданном образе"
-   ],
-   "correct": "неожиданным образом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«неожиданным образом» — the instrumental marks the means, company, or complement.",
-   "id": "c27"
   },
   {
    "sentence": "Но организация \"___\" и вопрос о личной свободе — два вопроса различные и взаимно себя не исключающие.",
@@ -235,7 +137,7 @@
    ],
    "correct": "общественной милостыни",
    "case": "Родительный (Genitive)",
-   "explain": "«общественной милостыни» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«общественной милостыни» depends on the noun «организация» (whose? of what?) — genitive.",
    "id": "c30"
   },
   {
@@ -249,22 +151,8 @@
    ],
    "correct": "личной свободе",
    "case": "Предложный (Prepositional)",
-   "explain": "«личной свободе» — after the preposition «о», for location or topic.",
+   "explain": "«личной свободе» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c31"
-  },
-  {
-   "sentence": "Единичное ___ останется всегда, потому что оно есть потребность личности, живая потребность прямого влияния одной личности на другую.",
-   "lemma": "дело",
-   "options": [
-    "доброго дела",
-    "добрым делом",
-    "доброе дело",
-    "добром деле"
-   ],
-   "correct": "доброе дело",
-   "case": "Именительный (Nominative)",
-   "explain": "«доброе дело» — the subject of the sentence stands in the nominative.",
-   "id": "c32"
   },
   {
    "sentence": "Единичное доброе дело останется всегда, потому что оно есть потребность личности, живая потребность ___ одной личности на другую.",
@@ -277,7 +165,7 @@
    ],
    "correct": "прямого влияния",
    "case": "Родительный (Genitive)",
-   "explain": "«прямого влияния» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«прямого влияния» depends on the noun «потребность» (whose? of what?) — genitive.",
    "id": "c33"
   },
   {
@@ -291,36 +179,8 @@
    ],
    "correct": "равной ноге",
    "case": "Предложный (Prepositional)",
-   "explain": "«равной ноге» — after the preposition «на», for location or topic.",
+   "explain": "«равной ноге» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c34"
-  },
-  {
-   "sentence": "Мне рассказывал один бывший в Сибири, что он сам был свидетелем, как самые ___ вспоминали про генерала, а между тем, посещая партии, генерал редко мог раздать более двадцати копеек на брата.",
-   "lemma": "преступник",
-   "options": [
-    "закоренелых преступников",
-    "закоренелыми преступниками",
-    "закоренелым преступникам",
-    "закоренелые преступники"
-   ],
-   "correct": "закоренелые преступники",
-   "case": "Именительный (Nominative)",
-   "explain": "«закоренелые преступники» — the subject of the sentence stands in the nominative.",
-   "id": "c35"
-  },
-  {
-   "sentence": "Самый лучший ___, самый острый из них может рассчитать только несколько ходов вперед; про одного французского игрока, умевшего рассчитать десять ходов вперед, писали как про чудо.",
-   "lemma": "игрок",
-   "options": [
-    "шахматного игрока",
-    "шахматный игрок",
-    "шахматному игроку",
-    "шахматным игроком"
-   ],
-   "correct": "шахматный игрок",
-   "case": "Именительный (Nominative)",
-   "explain": "«шахматный игрок» — the subject of the sentence stands in the nominative.",
-   "id": "c36"
   },
   {
    "sentence": "Самый лучший шахматный игрок, самый острый из них может рассчитать только несколько ходов вперед; про одного ___, умевшего рассчитать десять ходов вперед, писали как про чудо.",
@@ -333,7 +193,7 @@
    ],
    "correct": "французского игрока",
    "case": "Винительный (Accusative)",
-   "explain": "«французского игрока» — after the preposition «про», the accusative marks the direct object of the verb.",
+   "explain": "«французского игрока» — «про» always takes the accusative.",
    "id": "c37"
   },
   {
@@ -347,7 +207,7 @@
    ],
    "correct": "самого дома",
    "case": "Родительный (Genitive)",
-   "explain": "«самого дома» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«самого дома» — «до» always takes the genitive.",
    "id": "c39"
   },
   {
@@ -361,7 +221,7 @@
    ],
    "correct": "последнего убеждения",
    "case": "Родительный (Genitive)",
-   "explain": "«последнего убеждения» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«последнего убеждения» depends on the noun «семя» (whose? of what?) — genitive.",
    "id": "c41"
   },
   {
@@ -375,22 +235,8 @@
    ],
    "correct": "страшный испуг",
    "case": "Именительный (Nominative)",
-   "explain": "«Страшный испуг» — the subject of the sentence stands in the nominative.",
+   "explain": "«страшный испуг» is the subject of «напал» — who or what does it — so nominative.",
    "id": "c42"
-  },
-  {
-   "sentence": "Иногда, думая об этом постоянном испуге моем, я быстро леденел от ___: по этому испугу я ведь мог заключить, что \"последнее убеждение\" мое слишком серьезно засело во мне и непременно придет к своему разрешению.",
-   "lemma": "ужас",
-   "options": [
-    "новом ужасе",
-    "нового ужаса",
-    "новым ужасом",
-    "новый ужас"
-   ],
-   "correct": "нового ужаса",
-   "case": "Родительный (Genitive)",
-   "explain": "«нового ужаса» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
-   "id": "c43"
   },
   {
    "sentence": "Иногда, думая об этом постоянном испуге моем, я быстро леденел от нового ужаса: по этому испугу я ведь мог заключить, что \"___\" мое слишком серьезно засело во мне и непременно придет к своему разрешению.",
@@ -403,92 +249,50 @@
    ],
    "correct": "последнее убеждение",
    "case": "Именительный (Nominative)",
-   "explain": "«последнее убеждение» — the subject of the sentence stands in the nominative.",
+   "explain": "«последнее убеждение» is the subject of «засело» — who or what does it — so nominative.",
    "id": "c44"
-  },
-  {
-   "sentence": "Три недели спустя все было кончено, и решимость явилась, но по весьма ___.",
-   "lemma": "обстоятельство",
-   "options": [
-    "странным обстоятельством",
-    "странного обстоятельства",
-    "странному обстоятельству",
-    "странное обстоятельство"
-   ],
-   "correct": "странному обстоятельству",
-   "case": "Дательный (Dative)",
-   "explain": "«странному обстоятельству» — after the preposition «по», the dative marks the indirect object or recipient.",
-   "id": "c45"
   },
   {
    "sentence": "Я дал ему все ___, и он скоро ушел; а так как он и приходил только за справками, то тем бы дело между нами и кончилось.",
    "lemma": "справка",
    "options": [
     "нужным справкам",
+    "нужными справками",
     "нужных справках",
-    "нужные справки",
-    "нужных справок"
+    "нужные справки"
    ],
    "correct": "нужные справки",
    "case": "Винительный (Accusative)",
-   "explain": "«нужные справки» — the accusative marks the direct object of the verb.",
+   "explain": "«нужные справки» is the direct object of «дал» (кого? что?) — accusative.",
    "id": "c46"
   },
   {
    "sentence": "Но он слишком заинтересовал меня, и весь этот день я был под влиянием ___, так что решился пойти к нему на другой день сам, отдать визит.",
    "lemma": "мысль",
    "options": [
-    "странные мысли",
+    "странным мыслям",
+    "странных мыслях",
     "странных мыслей",
-    "странными мыслями",
-    "странных мыслях"
+    "странные мысли"
    ],
    "correct": "странных мыслей",
    "case": "Родительный (Genitive)",
-   "explain": "«странных мыслей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«странных мыслей» depends on the noun «влиянием» (whose? of what?) — genitive.",
    "id": "c47"
   },
   {
    "sentence": "Рогожин был мне очевидно не рад и даже \"деликатно\" намекнул, что нам нечего продолжать знакомство; но все-таки я провел очень ___, как, вероятно, и он.",
    "lemma": "час",
    "options": [
-    "любопытного часа",
+    "любопытным часом",
     "любопытный час",
     "любопытном часе",
-    "любопытным часом"
+    "любопытному часу"
    ],
    "correct": "любопытный час",
    "case": "Винительный (Accusative)",
-   "explain": "«любопытный час» — the accusative marks the direct object of the verb.",
+   "explain": "«любопытный час» is the direct object of «провел» (кого? что?) — accusative.",
    "id": "c49"
-  },
-  {
-   "sentence": "Я не намекал ему о моем \"___\", но мне почему-то показалось, что он, слушая меня, угадал его.",
-   "lemma": "убеждение",
-   "options": [
-    "последнем убеждении",
-    "последнее убеждение",
-    "последнего убеждения",
-    "последним убеждением"
-   ],
-   "correct": "последнем убеждении",
-   "case": "Предложный (Prepositional)",
-   "explain": "«последнем убеждении» — after the preposition «о», for location or topic.",
-   "id": "c50"
-  },
-  {
-   "sentence": "Кроме того, я еще с утра чувствовал себя нехорошо; к вечеру я очень ослабел и лег на кровать, а по временам чувствовал ___ и даже минутами бредил.",
-   "lemma": "жар",
-   "options": [
-    "сильному жару",
-    "сильного жара",
-    "сильном жаре",
-    "сильный жар"
-   ],
-   "correct": "сильный жар",
-   "case": "Именительный (Nominative)",
-   "explain": "«сильный жар» — the subject of the sentence stands in the nominative.",
-   "id": "c51"
   },
   {
    "sentence": "Минутами я был в ___ и смятении, так что Коля ушел в беспокойстве.",
@@ -501,7 +305,7 @@
    ],
    "correct": "чрезвычайной тоске",
    "case": "Предложный (Prepositional)",
-   "explain": "«чрезвычайной тоске» — after the preposition «в», for location or topic.",
+   "explain": "«чрезвычайной тоске» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c52"
   },
   {
@@ -515,7 +319,7 @@
    ],
    "correct": "артистическом отношении",
    "case": "Предложный (Prepositional)",
-   "explain": "«артистическом отношении» — after the preposition «в», for location or topic.",
+   "explain": "«артистическом отношении» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c53"
   },
   {
@@ -529,36 +333,8 @@
    ],
    "correct": "необыкновенной красоты",
    "case": "Родительный (Genitive)",
-   "explain": "«необыкновенной красоты» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«необыкновенной красоты» depends on the noun «оттенком» (whose? of what?) — genitive.",
    "id": "c54"
-  },
-  {
-   "sentence": "Мне кажется, живописцы обыкновенно повадились изображать Христа и на кресте, и снятого со креста, все еще с оттенком необыкновенной красоты в лице; эту красоту они ищут сохранить ему даже при самых ___.",
-   "lemma": "мука",
-   "options": [
-    "страшных мук",
-    "страшных муках",
-    "страшные муки",
-    "страшным мукам"
-   ],
-   "correct": "страшных муках",
-   "case": "Предложный (Prepositional)",
-   "explain": "«страшных муках» — after the preposition «при», for location or topic.",
-   "id": "c55"
-  },
-  {
-   "sentence": "Картиной этою как будто именно выражается это понятие о темной, наглой и ___, которой все подчинено, и передается вам невольно.",
-   "lemma": "сила",
-   "options": [
-    "бессмысленно-вечная сила",
-    "бессмысленно-вечной силе",
-    "бессмысленно-вечной силы",
-    "бессмысленно-вечной силой"
-   ],
-   "correct": "бессмысленно-вечной силе",
-   "case": "Предложный (Prepositional)",
-   "explain": "«бессмысленно-вечной силе» — after the preposition «о», for location or topic.",
-   "id": "c57"
   },
   {
    "sentence": "И если б этот ___ мог увидать свой образ накануне казни, то так ли бы сам он взошел на крест, и так ли бы умер как теперь?",
@@ -571,50 +347,8 @@
    ],
    "correct": "самый учитель",
    "case": "Именительный (Nominative)",
-   "explain": "«самый учитель» — the subject of the sentence stands in the nominative.",
+   "explain": "«самый учитель» is the subject of «мог» — who or what does it — so nominative.",
    "id": "c58"
-  },
-  {
-   "sentence": "Я думаю, что был уже час первый в начале; я совершенно не спал и лежал с ___; вдруг дверь моей комнаты отворилась, и вошел Рогожин.",
-   "lemma": "глаз",
-   "options": [
-    "открытыми глазами",
-    "открытых глазах",
-    "открытые глаза",
-    "открытым глазам"
-   ],
-   "correct": "открытыми глазами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«открытыми глазами» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c59"
-  },
-  {
-   "sentence": "Я не встал с постели; не помню, сколько времени я пролежал еще с ___ и все думал; бог знает о чем я думал; не помню тоже, как я забылся.",
-   "lemma": "глаз",
-   "options": [
-    "открытыми глазами",
-    "открытых глазах",
-    "открытые глаза",
-    "открытым глазам"
-   ],
-   "correct": "открытыми глазами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«открытыми глазами» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c63"
-  },
-  {
-   "sentence": "\"Вот этот ___, который я так подробно описал, и был причиной, что я совершенно \"решился\".",
-   "lemma": "случай",
-   "options": [
-    "особенного случая",
-    "особенному случаю",
-    "особенным случаем",
-    "особенный случай"
-   ],
-   "correct": "особенный случай",
-   "case": "Именительный (Nominative)",
-   "explain": "«особенный случай» — the subject of the sentence stands in the nominative.",
-   "id": "c64"
   },
   {
    "sentence": "___ способствовала, стало быть, не логика, не логическое убеждение, а отвращение.",
@@ -627,50 +361,8 @@
    ],
    "correct": "окончательному решению",
    "case": "Дательный (Dative)",
-   "explain": "«Окончательному решению» — the dative marks the indirect object or recipient.",
+   "explain": "«способствовала» takes the dative (кому? чему?).",
    "id": "c65"
-  },
-  {
-   "sentence": "Окончательному решению способствовала, стало быть, не логика, не ___, а отвращение.",
-   "lemma": "убеждение",
-   "options": [
-    "логическом убеждении",
-    "логическому убеждению",
-    "логическое убеждение",
-    "логического убеждения"
-   ],
-   "correct": "логическое убеждение",
-   "case": "Именительный (Nominative)",
-   "explain": "«логическое убеждение» — the subject of the sentence stands in the nominative.",
-   "id": "c66"
-  },
-  {
-   "sentence": "И только тогда, когда я, уже в сумерки, ощутил, наконец, в себе ___ полный решимости, мне стало легче.",
-   "lemma": "момент",
-   "options": [
-    "окончательным моментом",
-    "окончательный момент",
-    "окончательного момента",
-    "окончательном моменте"
-   ],
-   "correct": "окончательный момент",
-   "case": "Винительный (Accusative)",
-   "explain": "«окончательный момент» — the accusative marks the direct object of the verb.",
-   "id": "c67"
-  },
-  {
-   "sentence": "Это был только ___; за другим моментом я ездил в Павловск, но это уже довольно объяснено\".",
-   "lemma": "момент",
-   "options": [
-    "первому моменту",
-    "первым моментом",
-    "первом моменте",
-    "первый момент"
-   ],
-   "correct": "первый момент",
-   "case": "Именительный (Nominative)",
-   "explain": "«первый момент» — the subject of the sentence stands in the nominative.",
-   "id": "c68"
   },
   {
    "sentence": "Это был только первый момент; за ___ я ездил в Павловск, но это уже довольно объяснено\".",
@@ -683,7 +375,7 @@
    ],
    "correct": "другим моментом",
    "case": "Творительный (Instrumental)",
-   "explain": "«другим моментом» — after the preposition «за», the instrumental marks the means, company, or complement.",
+   "explain": "«другим моментом» — «за» takes the instrumental here (где? за чем? за кем?) — the accusative would mean motion behind or 'for' (куда? за что?).",
    "id": "c69"
   }
  ]

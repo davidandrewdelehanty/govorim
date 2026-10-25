@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "___ был искренно растроган.",
-   "lemma": "оратор",
-   "options": [
-    "самого оратора",
-    "самом ораторе",
-    "сам оратор",
-    "самому оратору"
-   ],
-   "correct": "сам оратор",
-   "case": "Именительный (Nominative)",
-   "explain": "«Сам оратор» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Но если бы даже залепетали дамы ___, и в их главе сама прокурорша, супруга Ипполита Кирилловича, то и тогда бы его нельзя было удержать в это мгновение.",
    "lemma": "мир",
    "options": [
@@ -25,50 +11,8 @@
    ],
    "correct": "целого мира",
    "case": "Родительный (Genitive)",
-   "explain": "«целого мира» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«целого мира» depends on the noun «дамы» (whose? of what?) — genitive.",
    "id": "c2"
-  },
-  {
-   "sentence": "Но если бы даже залепетали дамы целого мира, и в их главе ___, супруга Ипполита Кирилловича, то и тогда бы его нельзя было удержать в это мгновение.",
-   "lemma": "прокурорша",
-   "options": [
-    "сама прокурорша",
-    "самой прокурорши",
-    "самой прокуроршей",
-    "самой прокурорше"
-   ],
-   "correct": "сама прокурорша",
-   "case": "Именительный (Nominative)",
-   "explain": "«сама прокурорша» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
-   "sentence": "Он был бледен, он сотрясался от волнения; ___, первые фразы, выговоренные им, были даже и непонятны; он задыхался, плохо выговаривал, сбивался.",
-   "lemma": "слово",
-   "options": [
-    "первыми словами",
-    "первым словам",
-    "первые слова",
-    "первых слов"
-   ],
-   "correct": "первые слова",
-   "case": "Именительный (Nominative)",
-   "explain": "«первые слова» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
-  },
-  {
-   "sentence": "Он был бледен, он сотрясался от волнения; первые слова, ___, выговоренные им, были даже и непонятны; он задыхался, плохо выговаривал, сбивался.",
-   "lemma": "фраза",
-   "options": [
-    "первых фраз",
-    "первыми фразами",
-    "первые фразы",
-    "первых фразах"
-   ],
-   "correct": "первые фразы",
-   "case": "Именительный (Nominative)",
-   "explain": "«первые фразы» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
   },
   {
    "sentence": "Приводится даже, что он говорил при этом ___.",
@@ -81,64 +25,22 @@
    ],
    "correct": "удивительном случае",
    "case": "Предложный (Prepositional)",
-   "explain": "«удивительном случае» — after the preposition «при», for location or topic.",
+   "explain": "«удивительном случае» — «при» always takes the prepositional.",
    "id": "c6"
-  },
-  {
-   "sentence": "___ Смердяков, преображенный в какого-то байроновского героя, мстящего обществу за свою незаконнорожденность, — разве это не поэма в байроновском вкусе?",
-   "lemma": "идиот",
-   "options": [
-    "слабоумным идиотом",
-    "слабоумного идиота",
-    "слабоумный идиот",
-    "слабоумном идиоте"
-   ],
-   "correct": "слабоумный идиот",
-   "case": "Именительный (Nominative)",
-   "explain": "«Слабоумный идиот» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
   },
   {
    "sentence": "Слабоумный идиот Смердяков, преображенный в какого-то ___, мстящего обществу за свою незаконнорожденность, — разве это не поэма в байроновском вкусе?",
    "lemma": "герой",
    "options": [
-    "байроновскому герою",
-    "байроновском герое",
     "байроновского героя",
+    "байроновскому герою",
+    "байроновский герой",
     "байроновским героем"
    ],
    "correct": "байроновского героя",
    "case": "Винительный (Accusative)",
-   "explain": "«байроновского героя» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«байроновского героя» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c8"
-  },
-  {
-   "sentence": "Затем возвещают нам, что наша трибуна есть трибуна истины и ___, и вот с этой трибуны „здравых понятий“ раздается, с клятвою, аксиома, что называть убийство отца отцеубийством есть только один предрассудок!",
-   "lemma": "понятие",
-   "options": [
-    "здравых понятий",
-    "здравым понятиям",
-    "здравых понятиях",
-    "здравые понятия"
-   ],
-   "correct": "здравых понятий",
-   "case": "Родительный (Genitive)",
-   "explain": "«здравых понятий» — the genitive here marks possession, absence, or quantity.",
-   "id": "c10"
-  },
-  {
-   "sentence": "Затем возвещают нам, что наша трибуна есть трибуна истины и ___, и вот с этой трибуны „здравых понятий“ раздается, с клятвою, аксиома, что называть убийство отца отцеубийством есть только один предрассудок!",
-   "lemma": "понятие",
-   "options": [
-    "здравых понятий",
-    "здравым понятиям",
-    "здравых понятиях",
-    "здравые понятия"
-   ],
-   "correct": "здравых понятий",
-   "case": "Родительный (Genitive)",
-   "explain": "«здравых понятий» — the genitive here marks possession, absence, or quantity.",
-   "id": "c11"
   },
   {
    "sentence": "Отцеубийство — это, видите ли, только „жупел“ ___.",
@@ -151,7 +53,7 @@
    ],
    "correct": "московской купчихи",
    "case": "Родительный (Genitive)",
-   "explain": "«московской купчихи» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«московской купчихи» depends on the noun «жупел» (whose? of what?) — genitive.",
    "id": "c12"
   },
   {
@@ -165,36 +67,8 @@
    ],
    "correct": "молодом поколении",
    "case": "Предложный (Prepositional)",
-   "explain": "«молодом поколении» — after the preposition «в», for location or topic.",
+   "explain": "«молодом поколении» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c13"
-  },
-  {
-   "sentence": "Исправляются Евангелие и религия: это, дескать, все мистика, а вот у нас лишь настоящее христианство, уже проверенное анализом рассудка и ___.",
-   "lemma": "понятие",
-   "options": [
-    "здравых понятий",
-    "здравым понятиям",
-    "здравых понятиях",
-    "здравые понятия"
-   ],
-   "correct": "здравых понятий",
-   "case": "Родительный (Genitive)",
-   "explain": "«здравых понятий» — the genitive here marks possession, absence, or quantity.",
-   "id": "c14"
-  },
-  {
-   "sentence": "А Христос именно велит не так делать, беречься так делать, потому что ___ так делает, мы же должны прощать и ланиту свою подставлять, а не в ту же меру отмеривать, в которую мерят нам наши обидчики.",
-   "lemma": "мир",
-   "options": [
-    "злобного мира",
-    "злобном мире",
-    "злобному миру",
-    "злобный мир"
-   ],
-   "correct": "злобный мир",
-   "case": "Именительный (Nominative)",
-   "explain": "«злобный мир» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
   },
   {
    "sentence": "Затем на обвинение, что будто он разрешает ___ убивать отцов, Фетюкович с глубоким достоинством заметил, что и возражать не станет.",
@@ -207,36 +81,8 @@
    ],
    "correct": "молодому поколению",
    "case": "Дательный (Dative)",
-   "explain": "«молодому поколению» — the dative marks the indirect object or recipient.",
+   "explain": "«разрешает» takes the dative (кому? чему?).",
    "id": "c17"
-  },
-  {
-   "sentence": "Затем предоставлено было слово ___.",
-   "lemma": "подсудимый",
-   "options": [
-    "самом подсудимом",
-    "самому подсудимому",
-    "сам подсудимый",
-    "самим подсудимым"
-   ],
-   "correct": "самому подсудимому",
-   "case": "Дательный (Dative)",
-   "explain": "«самому подсудимому» — the dative marks the indirect object or recipient.",
-   "id": "c19"
-  },
-  {
-   "sentence": "Каждый миг стремился исправиться, а жил ___ подобен.",
-   "lemma": "зверь",
-   "options": [
-    "дикого зверя",
-    "дикий зверь",
-    "диким зверем",
-    "дикому зверю"
-   ],
-   "correct": "дикому зверю",
-   "case": "Дательный (Dative)",
-   "explain": "«дикому зверю» — the dative marks the indirect object or recipient.",
-   "id": "c22"
   },
   {
    "sentence": "А докторам не верьте, я в ___, только душе моей тяжело.",
@@ -249,7 +95,7 @@
    ],
    "correct": "полном уме",
    "case": "Предложный (Prepositional)",
-   "explain": "«полном уме» — after the preposition «в», for location or topic.",
+   "explain": "«полном уме» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c23"
   },
   {
@@ -263,7 +109,7 @@
    ],
    "correct": "эффектной минуте",
    "case": "Дательный (Dative)",
-   "explain": "«эффектной минуте» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«эффектной минуте» — «к» always takes the dative.",
    "id": "c25"
   },
   {
@@ -277,7 +123,7 @@
    ],
    "correct": "общего энтузиазма",
    "case": "Родительный (Genitive)",
-   "explain": "«общего энтузиазма» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«общего энтузиазма» depends on the noun «минуте» (whose? of what?) — genitive.",
    "id": "c26"
   },
   {
@@ -291,7 +137,7 @@
    ],
    "correct": "мужской половине",
    "case": "Предложный (Prepositional)",
-   "explain": "«мужской половине» — after the preposition «в», for location or topic.",
+   "explain": "«мужской половине» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c27"
   },
   {
@@ -305,7 +151,7 @@
    ],
    "correct": "невидимые нити",
    "case": "Именительный (Nominative)",
-   "explain": "«невидимые нити» — the subject of the sentence stands in the nominative.",
+   "explain": "«невидимые нити» is the subject of «есть» — who or what does it — so nominative.",
    "id": "c29"
   },
   {
@@ -319,50 +165,8 @@
    ],
    "correct": "земской управы",
    "case": "Родительный (Genitive)",
-   "explain": "«земской управы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«земской управы» depends on the noun «член» (whose? of what?) — genitive.",
    "id": "c30"
-  },
-  {
-   "sentence": "— Оправдают наверно, — послышался ___.",
-   "lemma": "голос",
-   "options": [
-    "решительном голосе",
-    "решительным голосом",
-    "решительного голоса",
-    "решительный голос"
-   ],
-   "correct": "решительный голос",
-   "case": "Именительный (Nominative)",
-   "explain": "«решительный голос» — the subject of the sentence stands in the nominative.",
-   "id": "c32"
-  },
-  {
-   "sentence": "— Помилуйте, господа, ведь оправдали же у нас ___ актрису, которая законной жене своего любовника горло перерезала.",
-   "lemma": "пост",
-   "options": [
-    "великий пост",
-    "великим постом",
-    "великого поста",
-    "великом посте"
-   ],
-   "correct": "великим постом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«Великим постом» — the instrumental marks the means, company, or complement.",
-   "id": "c34"
-  },
-  {
-   "sentence": "— Чего доброго, завтра весь «___» разнесет, десять дней пьянствовать будет.",
-   "lemma": "город",
-   "options": [
-    "столичный город",
-    "столичного города",
-    "столичным городом",
-    "столичном городе"
-   ],
-   "correct": "столичный город",
-   "case": "Именительный (Nominative)",
-   "explain": "«Столичный город» — the subject of the sentence stands in the nominative.",
-   "id": "c35"
   },
   {
    "sentence": "Из ___ много оказалось очень довольных.",
@@ -375,22 +179,8 @@
    ],
    "correct": "мужской публики",
    "case": "Родительный (Genitive)",
-   "explain": "«мужской публики» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«мужской публики» — «из» always takes the genitive.",
    "id": "c39"
-  },
-  {
-   "sentence": "— Клянусь Богом и ___ его, в крови отца моего не виновен!",
-   "lemma": "суд",
-   "options": [
-    "страшном суде",
-    "страшным судом",
-    "страшного суда",
-    "страшный суд"
-   ],
-   "correct": "страшным судом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«Страшным судом» — the instrumental marks the means, company, or complement.",
-   "id": "c40"
   },
   {
    "sentence": "На хорах, наверху, в самом заднем углу раздался пронзительный ___: это была Грушенька.",
@@ -403,7 +193,7 @@
    ],
    "correct": "женский вопль",
    "case": "Именительный (Nominative)",
-   "explain": "«женский вопль» — the subject of the sentence stands in the nominative.",
+   "explain": "«женский вопль» is the subject of «раздался» — who or what does it — so nominative.",
    "id": "c41"
   },
   {
@@ -417,7 +207,7 @@
    ],
    "correct": "судебных прений",
    "case": "Родительный (Genitive)",
-   "explain": "«судебных прений» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«судебных прений» depends on the noun «началом» (whose? of what?) — genitive.",
    "id": "c42"
   }
  ]

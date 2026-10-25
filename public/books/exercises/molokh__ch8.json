@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Ясная и теплая погода, прочно установившаяся в течение ___, никак не могла помешать поездке.",
-   "lemma": "неделя",
-   "options": [
-    "последней недели",
-    "последняя неделя",
-    "последней неделе",
-    "последней неделей"
-   ],
-   "correct": "последней недели",
-   "case": "Родительный (Genitive)",
-   "explain": "«последней недели» — after the preposition «в», the genitive here marks possession, absence, or quantity.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Приглашенных было до девяноста человек; они толпились оживленными группами на платформе, со смехом и ___.",
-   "lemma": "восклицание",
-   "options": [
-    "громким восклицаниям",
-    "громкие восклицания",
-    "громкими восклицаниями",
-    "громких восклицаний"
-   ],
-   "correct": "громкими восклицаниями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«громкими восклицаниями» — the instrumental marks the means, company, or complement.",
-   "id": "c2"
-  },
-  {
    "sentence": "___ оказался экстренный поезд.",
    "lemma": "сюрприз",
    "options": [
@@ -39,7 +11,7 @@
    ],
    "correct": "первым сюрпризом",
    "case": "Творительный (Instrumental)",
-   "explain": "«Первым сюрпризом» — the instrumental marks the means, company, or complement.",
+   "explain": "After «оказался», what someone or something is or becomes stands in the instrumental.",
    "id": "c3"
   },
   {
@@ -53,7 +25,7 @@
    ],
    "correct": "экстренный поезд",
    "case": "Именительный (Nominative)",
-   "explain": "«экстренный поезд» — the subject of the sentence stands in the nominative.",
+   "explain": "«экстренный поезд» is the subject of «оказался» — who or what does it — so nominative.",
    "id": "c4"
   },
   {
@@ -67,36 +39,8 @@
    ],
    "correct": "паровозного депо",
    "case": "Родительный (Genitive)",
-   "explain": "«паровозного депо» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«паровозного депо» — «из» always takes the genitive.",
    "id": "c5"
-  },
-  {
-   "sentence": "Дамы не могли удержаться от криков удивления и восторга: вся ___ была украшена флагами и живыми цветами.",
-   "lemma": "машина",
-   "options": [
-    "громадная машина",
-    "громадной машиной",
-    "громадной машины",
-    "громадной машине"
-   ],
-   "correct": "громадная машина",
-   "case": "Именительный (Nominative)",
-   "explain": "«громадная машина» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
-  },
-  {
-   "sentence": "Дамы не могли удержаться от криков удивления и восторга: вся громадная машина была украшена флагами и ___.",
-   "lemma": "цвета",
-   "options": [
-    "живые цвета",
-    "живых цветах",
-    "живыми цветами",
-    "живых цветов"
-   ],
-   "correct": "живыми цветами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«живыми цветами» — the instrumental marks the means, company, or complement.",
-   "id": "c7"
   },
   {
    "sentence": "Из-под зелени и цветов стальные и медные части машины эффектно сверкали в ___ осеннего заходящего солнца.",
@@ -109,7 +53,7 @@
    ],
    "correct": "золотых лучах",
    "case": "Предложный (Prepositional)",
-   "explain": "«золотых лучах» — after the preposition «в», for location or topic.",
+   "explain": "«золотых лучах» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c8"
   },
   {
@@ -123,7 +67,7 @@
    ],
    "correct": "первого класса",
    "case": "Родительный (Genitive)",
-   "explain": "«первого класса» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«первого класса» depends on the noun «вагонов» (whose? of what?) — genitive.",
    "id": "c9"
   },
   {
@@ -137,22 +81,8 @@
    ],
    "correct": "бешеной балки",
    "case": "Родительный (Genitive)",
-   "explain": "«Бешеной балки» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«бешеной балки» — «до» always takes the genitive.",
    "id": "c10"
-  },
-  {
-   "sentence": "Свежевский быстро обернулся и убедился, что этот ядовитый вопрос задал Андреа, глядевший на него со своим обычным ___, заложив руки глубоко в карманы брюк.",
-   "lemma": "вид",
-   "options": [
-    "невозмутимому виду",
-    "невозмутимым видом",
-    "невозмутимого вида",
-    "невозмутимом виде"
-   ],
-   "correct": "невозмутимым видом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«невозмутимым видом» — after the preposition «со», the instrumental marks the means, company, or complement.",
-   "id": "c11"
   },
   {
    "sentence": "Почти одновременно с подачей ___ приехали Зиненки в сопровождении Квашнина и Шелковникова.",
@@ -165,7 +95,7 @@
    ],
    "correct": "экстренного поезда",
    "case": "Родительный (Genitive)",
-   "explain": "«экстренного поезда» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«экстренного поезда» depends on the noun «подачей» (whose? of what?) — genitive.",
    "id": "c13"
   },
   {
@@ -179,35 +109,21 @@
    ],
    "correct": "заводских рабочих",
    "case": "Родительный (Genitive)",
-   "explain": "«заводских рабочих» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«заводских рабочих» depends on the noun «матери» (whose? of what?) — genitive.",
    "id": "c15"
-  },
-  {
-   "sentence": "Еще с утра жены, сестры и матери заводских рабочих, прослышав о предстоящем пикнике, стали собираться на вокзале; многие принесли с собою и ___.",
-   "lemma": "ребята",
-   "options": [
-    "грудным ребятам",
-    "грудными ребятами",
-    "грудных ребятах",
-    "грудных ребят"
-   ],
-   "correct": "грудных ребят",
-   "case": "Винительный (Accusative)",
-   "explain": "«грудных ребят» — the accusative marks the direct object of the verb.",
-   "id": "c17"
   },
   {
    "sentence": "С выражением ___ на загорелых, изнуренных лицах сидели они уже много часов на ступенях вокзального крыльца и на земле, вдоль стен, бросавших длинные тени.",
    "lemma": "терпение",
    "options": [
-    "деревянного терпения",
-    "деревянном терпении",
     "деревянному терпению",
-    "деревянным терпением"
+    "деревянное терпение",
+    "деревянном терпении",
+    "деревянного терпения"
    ],
    "correct": "деревянного терпения",
    "case": "Родительный (Genitive)",
-   "explain": "«деревянного терпения» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«деревянного терпения» depends on the noun «выражением» (whose? of what?) — genitive.",
    "id": "c18"
   },
   {
@@ -221,22 +137,8 @@
    ],
    "correct": "вокзального крыльца",
    "case": "Родительный (Genitive)",
-   "explain": "«вокзального крыльца» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«вокзального крыльца» depends on the noun «ступенях» (whose? of what?) — genitive.",
    "id": "c19"
-  },
-  {
-   "sentence": "С выражением деревянного терпения на загорелых, изнуренных лицах сидели они уже много часов на ступенях вокзального крыльца и на земле, вдоль стен, бросавших ___.",
-   "lemma": "тень",
-   "options": [
-    "длинными тенями",
-    "длинные тени",
-    "длинных теней",
-    "длинным теням"
-   ],
-   "correct": "длинные тени",
-   "case": "Винительный (Accusative)",
-   "explain": "«длинные тени» — the accusative marks the direct object of the verb.",
-   "id": "c20"
   },
   {
    "sentence": "На расспросы ___ они отвечали, что им нужно «рыжего и толстого начальника».",
@@ -249,7 +151,7 @@
    ],
    "correct": "станционного начальства",
    "case": "Родительный (Genitive)",
-   "explain": "«станционного начальства» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«станционного начальства» depends on the noun «расспросы» (whose? of what?) — genitive.",
    "id": "c21"
   },
   {
@@ -263,22 +165,8 @@
    ],
    "correct": "минутный переполох",
    "case": "Винительный (Accusative)",
-   "explain": "«минутный переполох» — the accusative marks the direct object of the verb.",
+   "explain": "«минутный переполох» is the direct object of «вызывал» (кого? что?) — accusative.",
    "id": "c22"
-  },
-  {
-   "sentence": "Сначала Квашнин ничего не мог разобрать: бабы кричали все сразу и протягивали к нему ___.",
-   "lemma": "младенец",
-   "options": [
-    "грудным младенцам",
-    "грудных младенцев",
-    "грудных младенцах",
-    "грудные младенцы"
-   ],
-   "correct": "грудных младенцев",
-   "case": "Родительный (Genitive)",
-   "explain": "«грудных младенцев» — the genitive here marks possession, absence, or quantity.",
-   "id": "c23"
   },
   {
    "sentence": "Квашнин увидел, что ему не вырваться из этого ___, обступившего его со всех сторон.",
@@ -291,7 +179,7 @@
    ],
    "correct": "живого кольца",
    "case": "Родительный (Genitive)",
-   "explain": "«живого кольца» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«живого кольца» — «из» always takes the genitive.",
    "id": "c24"
   },
   {
@@ -305,36 +193,8 @@
    ],
    "correct": "серого пальто",
    "case": "Родительный (Genitive)",
-   "explain": "«серого пальто» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«серого пальто» depends on the noun «полы» (whose? of what?) — genitive.",
    "id": "c25"
-  },
-  {
-   "sentence": "С ___ вам будут строить печи и покроют ваши бараки тесом.",
-   "lemma": "день",
-   "options": [
-    "завтрашнему дню",
-    "завтрашнем дне",
-    "завтрашнего дня",
-    "завтрашний день"
-   ],
-   "correct": "завтрашнего дня",
-   "case": "Родительный (Genitive)",
-   "explain": "«завтрашнего дня» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
-   "id": "c26"
-  },
-  {
-   "sentence": "— Ты смотри, коли нам печей не поставят, так мы анжинеров позовем, чтобы нас греть приходили, — крикнула та самая ___, которой Квашнин приказал говорить за всех.",
-   "lemma": "баба",
-   "options": [
-    "калужская баба",
-    "калужской бабой",
-    "калужской бабе",
-    "калужской бабы"
-   ],
-   "correct": "калужская баба",
-   "case": "Именительный (Nominative)",
-   "explain": "«калужская баба» — the subject of the sentence stands in the nominative.",
-   "id": "c27"
   },
   {
    "sentence": "— А то как же, — отозвалась бойко другая, — пусть нас тогда ___ греет.",
@@ -347,50 +207,8 @@
    ],
    "correct": "сам генерал",
    "case": "Именительный (Nominative)",
-   "explain": "«сам генерал» — the subject of the sentence stands in the nominative.",
+   "explain": "«сам генерал» is the subject of «греет» — who or what does it — so nominative.",
    "id": "c28"
-  },
-  {
-   "sentence": "Этот ___, окончившийся так благополучно, сразу развеселил всех.",
-   "lemma": "эпизод",
-   "options": [
-    "неожиданному эпизоду",
-    "неожиданный эпизод",
-    "неожиданном эпизоде",
-    "неожиданным эпизодом"
-   ],
-   "correct": "неожиданный эпизод",
-   "case": "Именительный (Nominative)",
-   "explain": "«неожиданный эпизод» — the subject of the sentence stands in the nominative.",
-   "id": "c29"
-  },
-  {
-   "sentence": "Вы можете обещать им все что угодно — алюминиевые жилища, восьмичасовой ___ и бифштексы на завтрак, — но делайте это очень уверенно.",
-   "lemma": "день",
-   "options": [
-    "рабочий день",
-    "рабочего дня",
-    "рабочему дню",
-    "рабочим днём"
-   ],
-   "correct": "рабочий день",
-   "case": "Винительный (Accusative)",
-   "explain": "«рабочий день» — the accusative marks the direct object of the verb.",
-   "id": "c30"
-  },
-  {
-   "sentence": "Вспоминая подробности только что потушенного ___ и громко смеясь, Квашнин сел в вагон.",
-   "lemma": "бунт",
-   "options": [
-    "бабьем бунте",
-    "бабьего бунта",
-    "бабьим бунтом",
-    "бабий бунт"
-   ],
-   "correct": "бабьего бунта",
-   "case": "Родительный (Genitive)",
-   "explain": "«бабьего бунта» — the genitive here marks possession, absence, or quantity.",
-   "id": "c31"
   },
   {
    "sentence": "___ исчезли из его души; он верил в свое близкое счастье, и никогда еще мир не казался ему таким прекрасным, люди такими добрыми, а жизнь такой легкой и радостной.",
@@ -403,7 +221,7 @@
    ],
    "correct": "прежние сомнения",
    "case": "Именительный (Nominative)",
-   "explain": "«Прежние сомнения» — the subject of the sentence stands in the nominative.",
+   "explain": "«прежние сомнения» is the subject of «исчезли» — who or what does it — so nominative.",
    "id": "c33"
   },
   {
@@ -417,7 +235,7 @@
    ],
    "correct": "тонкие брови",
    "case": "Именительный (Nominative)",
-   "explain": "«тонкие брови» — the subject of the sentence stands in the nominative.",
+   "explain": "«тонкие брови» is the subject of «надломленные» — who or what does it — so nominative.",
    "id": "c35"
   },
   {
@@ -431,7 +249,7 @@
    ],
    "correct": "лживого характера",
    "case": "Родительный (Genitive)",
-   "explain": "«лживого характера» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«лживого характера» depends on the noun «признак» (whose? of what?) — genitive.",
    "id": "c36"
   }
  ]

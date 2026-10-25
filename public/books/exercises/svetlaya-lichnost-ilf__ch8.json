@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Подлинный ___ ПУМа Петр Каллистратович Иванопольский за время сидения в допре действительно сохранил свежесть мыслей, накопил много энергии и окончательно распростился со всеми предрассудками.",
-   "lemma": "управделами",
-   "options": [
-    "бывшему управделами",
-    "бывшего управделами",
-    "бывший управделами",
-    "бывшим управделами"
-   ],
-   "correct": "бывший управделами",
-   "case": "Именительный (Nominative)",
-   "explain": "«бывший управделами» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Но вы знаете, какой у вас есть ___!",
    "lemma": "однофамилец",
    "options": [
@@ -25,50 +11,22 @@
    ],
    "correct": "ужасный однофамилец",
    "case": "Именительный (Nominative)",
-   "explain": "«ужасный однофамилец» — the subject of the sentence stands in the nominative.",
+   "explain": "«ужасный однофамилец» is the subject of «есть» — who or what does it — so nominative.",
    "id": "c2"
   },
   {
    "sentence": "Когда Иванопольский узнал все ___, ему стала понятна холодность друзей и плачевная участь, постигшая торговый дом «Лапидус и Ганичкин».",
    "lemma": "новость",
    "options": [
-    "пищеславских новостях",
+    "пищеславскими новостями",
     "пищеславским новостям",
-    "пищеславские новости",
-    "пищеславских новостей"
+    "пищеславских новостях",
+    "пищеславские новости"
    ],
    "correct": "пищеславские новости",
    "case": "Винительный (Accusative)",
-   "explain": "«пищеславские новости» — the accusative marks the direct object of the verb.",
+   "explain": "«пищеславские новости» is the direct object of «узнал» (кого? что?) — accusative.",
    "id": "c3"
-  },
-  {
-   "sentence": "Когда Иванопольский узнал все пищеславские новости, ему стала понятна холодность друзей и плачевная участь, постигшая ___ «Лапидус и Ганичкин».",
-   "lemma": "дом",
-   "options": [
-    "торгового дома",
-    "торговому дому",
-    "торговым домом",
-    "торговый дом"
-   ],
-   "correct": "торговый дом",
-   "case": "Винительный (Accusative)",
-   "explain": "«торговый дом» — the accusative marks the direct object of the verb.",
-   "id": "c4"
-  },
-  {
-   "sentence": "Даже ___, которую он получил уже в невидимом состоянии?",
-   "lemma": "комната",
-   "options": [
-    "новой комнаты",
-    "новой комнатой",
-    "новой комнате",
-    "новая комната"
-   ],
-   "correct": "новая комната",
-   "case": "Именительный (Nominative)",
-   "explain": "«новая комната» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
   },
   {
    "sentence": "Даже новая комната, которую он получил уже в ___?",
@@ -81,7 +39,7 @@
    ],
    "correct": "невидимом состоянии",
    "case": "Предложный (Prepositional)",
-   "explain": "«невидимом состоянии» — after the preposition «в», for location or topic.",
+   "explain": "«невидимом состоянии» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c6"
   },
   {
@@ -95,49 +53,21 @@
    ],
    "correct": "юридическому лицу",
    "case": "Дательный (Dative)",
-   "explain": "«юридическому лицу» — the dative marks the indirect object or recipient.",
+   "explain": "«юридическому лицу» is the indirect object of «пришить» — to or for whom (кому?) — dative.",
    "id": "c7"
-  },
-  {
-   "sentence": "Собеседники еще раз попытались пробить ___, облекающий физическое тело Петра Каллистратовича.",
-   "lemma": "панцирь",
-   "options": [
-    "юридическом панцире",
-    "юридический панцирь",
-    "юридическим панцирем",
-    "юридического панциря"
-   ],
-   "correct": "юридический панцирь",
-   "case": "Винительный (Accusative)",
-   "explain": "«юридический панцирь» — the accusative marks the direct object of the verb.",
-   "id": "c8"
-  },
-  {
-   "sentence": "Опозорить человека можно и ___.",
-   "lemma": "дело",
-   "options": [
-    "гражданским делом",
-    "гражданского дела",
-    "гражданское дело",
-    "гражданскому делу"
-   ],
-   "correct": "гражданским делом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«гражданским делом» — the instrumental marks the means, company, or complement.",
-   "id": "c9"
   },
   {
    "sentence": "Наша задача — посадить его на скамью подсудимых и добиться ___.",
    "lemma": "приговор",
    "options": [
     "обвинительного приговора",
-    "обвинительный приговор",
+    "обвинительным приговором",
     "обвинительному приговору",
     "обвинительном приговоре"
    ],
    "correct": "обвинительного приговора",
    "case": "Родительный (Genitive)",
-   "explain": "«обвинительного приговора» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«добиться» takes its object in the genitive.",
    "id": "c10"
   },
   {
@@ -151,78 +81,8 @@
    ],
    "correct": "нового соседа",
    "case": "Родительный (Genitive)",
-   "explain": "«нового соседа» — after the preposition «против», the genitive here marks possession, absence, or quantity.",
+   "explain": "«нового соседа» — «против» always takes the genitive.",
    "id": "c12"
-  },
-  {
-   "sentence": "___ был тих и кроток и даже на мандолине играл по правилам — только до одиннадцати часов вечера.",
-   "lemma": "жилец",
-   "options": [
-    "невидимым жильцом",
-    "невидимому жильцу",
-    "невидимого жильца",
-    "невидимый жилец"
-   ],
-   "correct": "невидимый жилец",
-   "case": "Именительный (Nominative)",
-   "explain": "«Невидимый жилец» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
-  },
-  {
-   "sentence": "Иванопольский понял, однако, что жильцы дома N 16 готовы лжесвидетельствовать против Прозрачного в любом деле, но так как ___ еще не было, свидетели были пока не нужны и оставлены про запас.",
-   "lemma": "дело",
-   "options": [
-    "самом деле",
-    "самим делом",
-    "самого дела",
-    "самому делу"
-   ],
-   "correct": "самого дела",
-   "case": "Родительный (Genitive)",
-   "explain": "«самого дела» — the genitive here marks possession, absence, or quantity.",
-   "id": "c14"
-  },
-  {
-   "sentence": "Сотрудники любили его, хотя Пташников, понимавший, какая пропасть ныне отделяет его от Евсея, уже не смел давать ему ___.",
-   "lemma": "совет",
-   "options": [
-    "медицинскими советами",
-    "медицинских советах",
-    "медицинских советов",
-    "медицинские советы"
-   ],
-   "correct": "медицинских советов",
-   "case": "Родительный (Genitive)",
-   "explain": "«медицинских советов» — the genitive here marks possession, absence, or quantity.",
-   "id": "c15"
-  },
-  {
-   "sentence": "Устроив Прозрачному юбилей и польстив ему ___ на доме мадам Безлюдной, Евсей Львович спешил с разработкой проекта памятника другу и благодетелю.",
-   "lemma": "доска",
-   "options": [
-    "памятной доской",
-    "памятной доске",
-    "памятная доска",
-    "памятной доски"
-   ],
-   "correct": "памятной доской",
-   "case": "Творительный (Instrumental)",
-   "explain": "«памятной доской» — the instrumental marks the means, company, or complement.",
-   "id": "c16"
-  },
-  {
-   "sentence": "Дайте мне заказ, и я вам сделаю прекраснейшую колонну с барельефами и другими ___.",
-   "lemma": "украшение",
-   "options": [
-    "скульптурных украшениях",
-    "скульптурным украшениям",
-    "скульптурных украшений",
-    "скульптурными украшениями"
-   ],
-   "correct": "скульптурными украшениями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«скульптурными украшениями» — the instrumental marks the means, company, or complement.",
-   "id": "c18"
   },
   {
    "sentence": "Кстати, у нас на дворе есть много ___ от Центрального клуба.",
@@ -235,7 +95,7 @@
    ],
    "correct": "свободных колонн",
    "case": "Родительный (Genitive)",
-   "explain": "«свободных колонн» — the genitive here marks possession, absence, or quantity.",
+   "explain": "After «много», a word of quantity — genitive.",
    "id": "c19"
   },
   {
@@ -249,7 +109,7 @@
    ],
    "correct": "центрального клуба",
    "case": "Родительный (Genitive)",
-   "explain": "«Центрального клуба» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«центрального клуба» — «от» always takes the genitive.",
    "id": "c20"
   },
   {
@@ -263,50 +123,8 @@
    ],
    "correct": "новая идея",
    "case": "Именительный (Nominative)",
-   "explain": "«Новая идея» — the subject of the sentence stands in the nominative.",
+   "explain": "«новая идея» is the subject of «увлекла» — who or what does it — so nominative.",
    "id": "c21"
-  },
-  {
-   "sentence": "Но не успел проект пройти все ___, как произошло нечто совершенно непредвиденное.",
-   "lemma": "инстанция",
-   "options": [
-    "положенных инстанциях",
-    "положенные инстанции",
-    "положенных инстанций",
-    "положенным инстанциям"
-   ],
-   "correct": "положенные инстанции",
-   "case": "Винительный (Accusative)",
-   "explain": "«положенные инстанции» — the accusative marks the direct object of the verb.",
-   "id": "c22"
-  },
-  {
-   "sentence": "Придя однажды на службу, Иоаннопольский заметил, что Пташников смотрит на него ___.",
-   "lemma": "взгляд",
-   "options": [
-    "кроличьим взглядом",
-    "кроличьего взгляда",
-    "кроличьему взгляду",
-    "кроличий взгляд"
-   ],
-   "correct": "кроличьим взглядом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«кроличьим взглядом» — the instrumental marks the means, company, or complement.",
-   "id": "c23"
-  },
-  {
-   "sentence": "— У вас очень ___.",
-   "lemma": "вид",
-   "options": [
-    "нехорошем виде",
-    "нехороший вид",
-    "нехорошему виду",
-    "нехорошим видом"
-   ],
-   "correct": "нехороший вид",
-   "case": "Именительный (Nominative)",
-   "explain": "«нехороший вид» — the subject of the sentence stands in the nominative.",
-   "id": "c24"
   },
   {
    "sentence": "Может быть, у вас на ___.",
@@ -319,7 +137,7 @@
    ],
    "correct": "нервной почве",
    "case": "Предложный (Prepositional)",
-   "explain": "«нервной почве» — after the preposition «на», for location or topic.",
+   "explain": "«нервной почве» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c25"
   },
   {
@@ -333,7 +151,7 @@
    ],
    "correct": "нервной почве",
    "case": "Предложный (Prepositional)",
-   "explain": "«нервной почве» — after the preposition «на», for location or topic.",
+   "explain": "«нервной почве» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c26"
   },
   {
@@ -347,7 +165,7 @@
    ],
    "correct": "учрежденский знахарь",
    "case": "Именительный (Nominative)",
-   "explain": "«учрежденский знахарь» — the subject of the sentence stands in the nominative.",
+   "explain": "«учрежденский знахарь» is the subject of «вошел» — who or what does it — so nominative.",
    "id": "c27"
   },
   {
@@ -361,36 +179,8 @@
    ],
    "correct": "квартирной хозяйки",
    "case": "Родительный (Genitive)",
-   "explain": "«квартирной хозяйки» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«квартирной хозяйки» — «от» always takes the genitive.",
    "id": "c28"
-  },
-  {
-   "sentence": "Ну, родился ребенок, но ведь это же его ___!",
-   "lemma": "дело",
-   "options": [
-    "интимное дело",
-    "интимного дела",
-    "интимным делом",
-    "интимному делу"
-   ],
-   "correct": "интимное дело",
-   "case": "Именительный (Nominative)",
-   "explain": "«интимное дело» — the subject of the sentence stands in the nominative.",
-   "id": "c29"
-  },
-  {
-   "sentence": "У вас слишком ___!",
-   "lemma": "язык",
-   "options": [
-    "длинный язык",
-    "длинным языком",
-    "длинном языке",
-    "длинному языку"
-   ],
-   "correct": "длинный язык",
-   "case": "Именительный (Nominative)",
-   "explain": "«длинный язык» — the subject of the sentence stands in the nominative.",
-   "id": "c32"
   },
   {
    "sentence": "— А между прочим, говорят, что ___ голодает, в то время как Прозрачный купается в роскоши.",
@@ -403,78 +193,8 @@
    ],
    "correct": "бедная женщина",
    "case": "Именительный (Nominative)",
-   "explain": "«бедная женщина» — the subject of the sentence stands in the nominative.",
+   "explain": "«бедная женщина» is the subject of «голодает» — who or what does it — so nominative.",
    "id": "c33"
-  },
-  {
-   "sentence": "При вашем положении вы должны пресекать ___ в корне.",
-   "lemma": "выступление",
-   "options": [
-    "подобных выступлений",
-    "подобные выступления",
-    "подобными выступлениями",
-    "подобным выступлениям"
-   ],
-   "correct": "подобные выступления",
-   "case": "Винительный (Accusative)",
-   "explain": "«подобные выступления» — the accusative marks the direct object of the verb.",
-   "id": "c34"
-  },
-  {
-   "sentence": "Еще большую энергию вдохнул в него ___.",
-   "lemma": "звонок",
-   "options": [
-    "телефонному звонку",
-    "телефонном звонке",
-    "телефонного звонка",
-    "телефонный звонок"
-   ],
-   "correct": "телефонный звонок",
-   "case": "Винительный (Accusative)",
-   "explain": "«телефонный звонок» — the accusative marks the direct object of the verb.",
-   "id": "c35"
-  },
-  {
-   "sentence": "___ с недоумением сообщил, что Прозрачному вчинен гражданский иск на содержание ребенка, прижитого им от гражданки Безлюдной.",
-   "lemma": "голос",
-   "options": [
-    "дружеский голос",
-    "дружеским голосом",
-    "дружескому голосу",
-    "дружеском голосе"
-   ],
-   "correct": "дружеский голос",
-   "case": "Именительный (Nominative)",
-   "explain": "«Дружеский голос» — the subject of the sentence stands in the nominative.",
-   "id": "c36"
-  },
-  {
-   "sentence": "Дружеский голос с недоумением сообщил, что Прозрачному вчинен ___ на содержание ребенка, прижитого им от гражданки Безлюдной.",
-   "lemma": "иск",
-   "options": [
-    "гражданскому иску",
-    "гражданского иска",
-    "гражданский иск",
-    "гражданским иском"
-   ],
-   "correct": "гражданский иск",
-   "case": "Винительный (Accusative)",
-   "explain": "«гражданский иск» — the accusative marks the direct object of the verb.",
-   "id": "c37"
-  },
-  {
-   "sentence": "Так как общественность проявляет к процессу большой интерес, ___ будет устроено на Тимирязевской площади, под открытым небом!",
-   "lemma": "заседание",
-   "options": [
-    "судебным заседанием",
-    "судебном заседании",
-    "судебного заседания",
-    "судебное заседание"
-   ],
-   "correct": "судебное заседание",
-   "case": "Именительный (Nominative)",
-   "explain": "«судебное заседание» — the subject of the sentence stands in the nominative.",
-   "id": "c39"
   },
   {
    "sentence": "Когда Иоаннопольский сбежал по лестнице, то увидел, что у дверей Пищ-Ка-Ха стояла мадам Безлюдная в легком ___ с вышивкой.",
@@ -487,49 +207,21 @@
    ],
    "correct": "белом платье",
    "case": "Предложный (Prepositional)",
-   "explain": "«белом платье» — after the preposition «в», for location or topic.",
+   "explain": "«белом платье» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c41"
-  },
-  {
-   "sentence": "На руках у нее лежал большой ___, из которого слышался слабый писк.",
-   "lemma": "кокон",
-   "options": [
-    "белым коконом",
-    "белом коконе",
-    "белый кокон",
-    "белому кокону"
-   ],
-   "correct": "белый кокон",
-   "case": "Именительный (Nominative)",
-   "explain": "«белый кокон» — the subject of the sentence stands in the nominative.",
-   "id": "c42"
-  },
-  {
-   "sentence": "На руках у нее лежал большой белый кокон, из которого слышался ___.",
-   "lemma": "писк",
-   "options": [
-    "слабым писком",
-    "слабый писк",
-    "слабому писку",
-    "слабом писке"
-   ],
-   "correct": "слабый писк",
-   "case": "Именительный (Nominative)",
-   "explain": "«слабый писк» — the subject of the sentence stands in the nominative.",
-   "id": "c43"
   },
   {
    "sentence": "— ___ этого не сделал бы.",
    "lemma": "босяк",
    "options": [
-    "последнем босяке",
-    "последнему босяку",
     "последний босяк",
-    "последнего босяка"
+    "последнему босяку",
+    "последним босяком",
+    "последнем босяке"
    ],
    "correct": "последний босяк",
    "case": "Именительный (Nominative)",
-   "explain": "«Последний босяк» — the subject of the sentence stands in the nominative.",
+   "explain": "«последний босяк» is the subject of «сделал» — who or what does it — so nominative.",
    "id": "c44"
   }
  ]

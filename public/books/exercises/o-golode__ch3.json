@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Администрация и земство представляют себе задачу прокормления ___ точно так же, как представляют себе такую же задачу прокормления данного количества скотины.",
-   "lemma": "народ",
-   "options": [
-    "голодном народе",
-    "голодным народом",
-    "голодного народа",
-    "голодный народ"
-   ],
-   "correct": "голодного народа",
-   "case": "Родительный (Genitive)",
-   "explain": "«голодного народа» — the genitive here marks possession, absence, or quantity.",
-   "id": "c1"
-  },
-  {
    "sentence": "Администрация и земство представляют себе задачу прокормления голодного народа точно так же, как представляют себе такую же задачу прокормления ___ скотины.",
    "lemma": "количество",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "данного количества",
    "case": "Родительный (Genitive)",
-   "explain": "«данного количества» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«данного количества» depends on the noun «прокормления» (whose? of what?) — genitive.",
    "id": "c2"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "среднего мужика",
    "case": "Родительный (Genitive)",
-   "explain": "«среднего мужика» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«среднего мужика» depends on the noun «бюджет» (whose? of what?) — genitive.",
    "id": "c3"
   },
   {
@@ -53,50 +39,8 @@
    ],
    "correct": "самарского края",
    "case": "Родительный (Genitive)",
-   "explain": "«Самарского края» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«самарского края» depends on the noun «заселения» (whose? of what?) — genitive.",
    "id": "c4"
-  },
-  {
-   "sentence": "Думать то, что ___ наживает только то, что он получает с своей надельной земли, и проживает только то, что он проест, большая ошибка.",
-   "lemma": "двор",
-   "options": [
-    "крестьянский двор",
-    "крестьянским двором",
-    "крестьянского двора",
-    "крестьянском дворе"
-   ],
-   "correct": "крестьянский двор",
-   "case": "Именительный (Nominative)",
-   "explain": "«крестьянский двор» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
-  },
-  {
-   "sentence": "Думать то, что крестьянский двор наживает только то, что он получает с своей надельной земли, и проживает только то, что он проест, ___.",
-   "lemma": "ошибка",
-   "options": [
-    "большей ошибки",
-    "большей ошибке",
-    "большей ошибкой",
-    "большая ошибка"
-   ],
-   "correct": "большая ошибка",
-   "case": "Именительный (Nominative)",
-   "explain": "«большая ошибка» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
-  },
-  {
-   "sentence": "___ крестьянина в том, что зарабатывают он и его домашние, зарабатывают ли они это на наемной земле, или работая на помещика, или живя у чужих людей, или промыслами.",
-   "lemma": "богатство",
-   "options": [
-    "главного богатства",
-    "главному богатству",
-    "главным богатством",
-    "главное богатство"
-   ],
-   "correct": "главное богатство",
-   "case": "Именительный (Nominative)",
-   "explain": "«Главное богатство» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
   },
   {
    "sentence": "Главное богатство крестьянина в том, что зарабатывают он и его домашние, зарабатывают ли они это на наемной земле, или работая на помещика, или живя у ___, или промыслами.",
@@ -109,7 +53,7 @@
    ],
    "correct": "чужих людей",
    "case": "Родительный (Genitive)",
-   "explain": "«чужих людей» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«чужих людей» — «у» always takes the genitive.",
    "id": "c8"
   },
   {
@@ -123,22 +67,8 @@
    ],
    "correct": "мужицкой семье",
    "case": "Предложный (Prepositional)",
-   "explain": "«мужицкой семье» — after the preposition «в», for location or topic.",
+   "explain": "«мужицкой семье» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c9"
-  },
-  {
-   "sentence": "Старик плетет лапти; это ___.",
-   "lemma": "заработок",
-   "options": [
-    "обычным заработкам",
-    "обычные заработки",
-    "обычных заработках",
-    "обычных заработков"
-   ],
-   "correct": "обычные заработки",
-   "case": "Именительный (Nominative)",
-   "explain": "«обычные заработки» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
   },
   {
    "sentence": "Из ___, не входящих в графы, составляется главный приход мужицкой семьи.",
@@ -151,7 +81,7 @@
    ],
    "correct": "таких-то статей",
    "case": "Родительный (Genitive)",
-   "explain": "«таких-то статей» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«таких-то статей» — «из» always takes the genitive.",
    "id": "c11"
   },
   {
@@ -165,7 +95,7 @@
    ],
    "correct": "главный приход",
    "case": "Именительный (Nominative)",
-   "explain": "«главный приход» — the subject of the sentence stands in the nominative.",
+   "explain": "«главный приход» is the subject of «составляется» — who or what does it — so nominative.",
    "id": "c12"
   },
   {
@@ -179,7 +109,7 @@
    ],
    "correct": "мужицкой семьи",
    "case": "Родительный (Genitive)",
-   "explain": "«мужицкой семьи» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«мужицкой семьи» depends on the noun «приход» (whose? of what?) — genitive.",
    "id": "c13"
   },
   {
@@ -187,42 +117,14 @@
    "lemma": "двор",
    "options": [
     "бедного двора",
+    "бедным двором",
     "бедному двору",
-    "бедный двор",
     "бедном дворе"
    ],
    "correct": "бедном дворе",
    "case": "Предложный (Prepositional)",
-   "explain": "«бедном дворе» — after the preposition «в», for location or topic.",
+   "explain": "«бедном дворе» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c14"
-  },
-  {
-   "sentence": "Так что ___ труднее увеличить приход и уменьшить расход.",
-   "lemma": "хозяин",
-   "options": [
-    "всяком хозяине",
-    "всякому хозяину",
-    "всякого хозяина",
-    "всякий хозяин"
-   ],
-   "correct": "всякому хозяину",
-   "case": "Дательный (Dative)",
-   "explain": "«всякому хозяину» — the dative marks the indirect object or recipient.",
-   "id": "c15"
-  },
-  {
-   "sentence": "В одном из земств учреждены даже советы при попечителях, из священника, старшины, ___ и двух уполномоченных, которые должны решать, кому сколько дать.",
-   "lemma": "староста",
-   "options": [
-    "церковного старосты",
-    "церковном старосте",
-    "церковного старосту",
-    "церковным старостой"
-   ],
-   "correct": "церковного старосты",
-   "case": "Родительный (Genitive)",
-   "explain": "«церковного старосты» — the genitive here marks possession, absence, or quantity.",
-   "id": "c16"
   },
   {
    "sentence": "Но советы эти ничего не помогут делу распределения, потому что по спискам и по тому, что известно теперь о ___, никак нельзя определить того, что с ними будет.",
@@ -235,22 +137,8 @@
    ],
    "correct": "крестьянских семьях",
    "case": "Предложный (Prepositional)",
-   "explain": "«крестьянских семьях» — after the preposition «о», for location or topic.",
+   "explain": "«крестьянских семьях» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c17"
-  },
-  {
-   "sentence": "Набралась такая толпа, что двух задавили до смерти и большинство денег досталось ___, а бедным, слабым ничего не досталось.",
-   "lemma": "золоторотец",
-   "options": [
-    "здоровых золоторотцев",
-    "здоровым золоторотцам",
-    "здоровые золоторотцы",
-    "здоровых золоторотцах"
-   ],
-   "correct": "здоровым золоторотцам",
-   "case": "Дательный (Dative)",
-   "explain": "«здоровым золоторотцам» — the dative marks the indirect object or recipient.",
-   "id": "c18"
   },
   {
    "sentence": "Очевидно, какую путаницу в понятиях производит такое появление ___ приобретения.",
@@ -263,7 +151,7 @@
    ],
    "correct": "нового способа",
    "case": "Родительный (Genitive)",
-   "explain": "«нового способа» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«нового способа» depends on the noun «появление» (whose? of what?) — genitive.",
    "id": "c19"
   },
   {
@@ -277,22 +165,8 @@
    ],
    "correct": "настоящий голод",
    "case": "Именительный (Nominative)",
-   "explain": "«настоящий голод» — the subject of the sentence stands in the nominative.",
+   "explain": "«настоящий голод» is the subject of «наступит» — who or what does it — so nominative.",
    "id": "c21"
-  },
-  {
-   "sentence": "И тот, и другой, и третий сбиты с обычного ___ жизни.",
-   "lemma": "ход",
-   "options": [
-    "трудового хода",
-    "трудовым ходом",
-    "трудовому ходу",
-    "трудовом ходе"
-   ],
-   "correct": "трудового хода",
-   "case": "Родительный (Genitive)",
-   "explain": "«трудового хода» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
-   "id": "c23"
   }
  ]
 }

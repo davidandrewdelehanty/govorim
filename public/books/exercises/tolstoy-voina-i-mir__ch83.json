@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Приехав в Петербург, Пьер никого не известил о своем приезде, никуда не выезжал, и стал ___ проводить за чтением Фомы Кемпийского, книги, которая неизвестно кем была доставлена ему.",
-   "lemma": "день",
-   "options": [
-    "целым дням",
-    "целыми днями",
-    "целые дни",
-    "целых днях"
-   ],
-   "correct": "целые дни",
-   "case": "Винительный (Accusative)",
-   "explain": "«целые дни» — the accusative marks the direct object of the verb.",
-   "id": "c1"
-  },
-  {
    "sentence": "Я за ___ почитаю исполнение воли этого лица.",
    "lemma": "долг",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "священный долг",
    "case": "Винительный (Accusative)",
-   "explain": "«священный долг» — after the preposition «за», the accusative marks the direct object of the verb.",
+   "explain": "«священный долг» — «за» takes the accusative here (куда? за что? за кого?) — the instrumental would mean position behind or at (где? за чем?).",
    "id": "c2"
   },
   {
@@ -33,28 +19,14 @@
    "lemma": "каменьщик",
    "options": [
     "свободных каменьщиков",
-    "свободными каменьщиками",
-    "свободные каменьщики",
-    "свободным каменьщикам"
+    "свободным каменьщикам",
+    "свободных каменьщиках",
+    "свободные каменьщики"
    ],
    "correct": "свободных каменьщиков",
    "case": "Родительный (Genitive)",
-   "explain": "«свободных каменьщиков» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«свободных каменьщиков» depends on the noun «братство» (whose? of what?) — genitive.",
    "id": "c3"
-  },
-  {
-   "sentence": "Холодный и строгий тон человека, которого Пьер видел почти всегда на балах с любезною улыбкою, в обществе самых ___, поразил Пьера.",
-   "lemma": "женщина",
-   "options": [
-    "блестящих женщин",
-    "блестящие женщины",
-    "блестящим женщинам",
-    "блестящими женщинами"
-   ],
-   "correct": "блестящих женщин",
-   "case": "Родительный (Genitive)",
-   "explain": "«блестящих женщин» — the genitive here marks possession, absence, or quantity.",
-   "id": "c4"
   },
   {
    "sentence": "Въехав в ворота ___, где было помещение ложи, и пройдя по темной лестнице, они вошли в освещенную, небольшую прихожую, где без помощи прислуги, сняли шубы.",
@@ -67,7 +39,7 @@
    ],
    "correct": "большого дома",
    "case": "Родительный (Genitive)",
-   "explain": "«большого дома» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«большого дома» depends on the noun «ворота» (whose? of what?) — genitive.",
    "id": "c5"
   },
   {
@@ -81,22 +53,8 @@
    ],
    "correct": "небольшому шкафу",
    "case": "Дательный (Dative)",
-   "explain": "«небольшому шкафу» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«небольшому шкафу» — «к» always takes the dative.",
    "id": "c7"
-  },
-  {
-   "sentence": "___ его с опущенными руками, с сморщенною и улыбающеюся физиономией, неверными робкими шагами подвигалась за Вилларским.",
-   "lemma": "фигура",
-   "options": [
-    "огромной фигурой",
-    "огромной фигуры",
-    "огромной фигуре",
-    "огромная фигура"
-   ],
-   "correct": "огромная фигура",
-   "case": "Именительный (Nominative)",
-   "explain": "«Огромная фигура» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
   },
   {
    "sentence": "В дверь послышались ___.",
@@ -109,22 +67,8 @@
    ],
    "correct": "сильные удары",
    "case": "Именительный (Nominative)",
-   "explain": "«сильные удары» — the subject of the sentence stands in the nominative.",
+   "explain": "«сильные удары» is the subject of «послышались» — who or what does it — so nominative.",
    "id": "c9"
-  },
-  {
-   "sentence": "Прочтя первые слова Евангелия: «В начале бе слово и слово бе к Богу», Пьер обошел стол и увидал большой, наполненный чем-то и ___.",
-   "lemma": "ящик",
-   "options": [
-    "открытым ящиком",
-    "открытый ящик",
-    "открытом ящике",
-    "открытого ящика"
-   ],
-   "correct": "открытый ящик",
-   "case": "Винительный (Accusative)",
-   "explain": "«открытый ящик» — the accusative marks the direct object of the verb.",
-   "id": "c10"
   },
   {
    "sentence": "При ___, к которому однако уже успел Пьер приглядеться, вошел невысокий человек.",
@@ -137,7 +81,7 @@
    ],
    "correct": "слабом свете",
    "case": "Предложный (Prepositional)",
-   "explain": "«слабом свете» — after the preposition «при», for location or topic.",
+   "explain": "«слабом свете» — «при» always takes the prepositional.",
    "id": "c11"
   },
   {
@@ -151,22 +95,8 @@
    ],
    "correct": "невысокий человек",
    "case": "Именительный (Nominative)",
-   "explain": "«невысокий человек» — the subject of the sentence stands in the nominative.",
+   "explain": "«невысокий человек» is the subject of «вошел» — who or what does it — so nominative.",
    "id": "c12"
-  },
-  {
-   "sentence": "Видимо с света войдя в темноту, человек этот остановился; потом ___ он подвинулся к столу и положил на него небольшие, закрытые кожаными перчатками, руки.",
-   "lemma": "шаг",
-   "options": [
-    "осторожные шаги",
-    "осторожным шагам",
-    "осторожных шагов",
-    "осторожными шагами"
-   ],
-   "correct": "осторожными шагами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«осторожными шагами» — the instrumental marks the means, company, or complement.",
-   "id": "c13"
   },
   {
    "sentence": "Видимо с света войдя в темноту, человек этот остановился; потом осторожными шагами он подвинулся к столу и положил на него небольшие, закрытые ___, руки.",
@@ -179,64 +109,8 @@
    ],
    "correct": "кожаными перчатками",
    "case": "Творительный (Instrumental)",
-   "explain": "«кожаными перчатками» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «закрытые», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c14"
-  },
-  {
-   "sentence": "Пьер, подойдя ближе, узнал в риторе знакомого человека, Смольянинова, но ему оскорбительно было думать, что вошедший был ___: вошедший был только брат и добродетельный наставник.",
-   "lemma": "человек",
-   "options": [
-    "знакомый человек",
-    "знакомом человеке",
-    "знакомому человеку",
-    "знакомого человека"
-   ],
-   "correct": "знакомый человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«знакомый человек» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
-  },
-  {
-   "sentence": "Пьер, подойдя ближе, узнал в риторе знакомого человека, Смольянинова, но ему оскорбительно было думать, что вошедший был знакомый человек: вошедший был только брат и ___.",
-   "lemma": "наставник",
-   "options": [
-    "добродетельный наставник",
-    "добродетельном наставнике",
-    "добродетельным наставником",
-    "добродетельного наставника"
-   ],
-   "correct": "добродетельный наставник",
-   "case": "Именительный (Nominative)",
-   "explain": "«добродетельный наставник» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
-  },
-  {
-   "sentence": "Но так как ___ такого свойства, что никто не может его знать и им пользоваться, если долговременным и прилежным очищением самого себя не приуготовлен, то не всяк может надеяться скоро обрести его.",
-   "lemma": "таинство",
-   "options": [
-    "сие таинство",
-    "сему таинству",
-    "сего таинства",
-    "сим таинством"
-   ],
-   "correct": "сие таинство",
-   "case": "Именительный (Nominative)",
-   "explain": "«сие таинство» — the subject of the sentence stands in the nominative.",
-   "id": "c19"
-  },
-  {
-   "sentence": "Сия храмина убранством своим, которое вы видите, уже должна была изъяснить вашему сердцу, ежели оно искренно, более нежели слова; вы увидите, может быть, и при дальнейшем вашем принятии ___ изъяснения.",
-   "lemma": "образ",
-   "options": [
-    "подобным образом",
-    "подобном образе",
-    "подобному образу",
-    "подобный образ"
-   ],
-   "correct": "подобный образ",
-   "case": "Именительный (Nominative)",
-   "explain": "«подобный образ» — the subject of the sentence stands in the nominative.",
-   "id": "c21"
   },
   {
    "sentence": "Орден наш подражает ___, которые открывали свое учение иероглифами.",
@@ -249,22 +123,8 @@
    ],
    "correct": "древним обществам",
    "case": "Дательный (Dative)",
-   "explain": "«древним обществам» — the dative marks the indirect object or recipient.",
+   "explain": "«подражает» takes the dative (кому? чему?).",
    "id": "c22"
-  },
-  {
-   "sentence": "— В знак щедрости прошу вас отдать мне все ___.",
-   "lemma": "вещь",
-   "options": [
-    "драгоценными вещами",
-    "драгоценных вещей",
-    "драгоценные вещи",
-    "драгоценных вещах"
-   ],
-   "correct": "драгоценные вещи",
-   "case": "Винительный (Accusative)",
-   "explain": "«драгоценные вещи» — the accusative marks the direct object of the verb.",
-   "id": "c23"
   },
   {
    "sentence": "Масон открыл рубашку на его левой груди, и, нагнувшись, поднял его штанину на ___ выше колена.",
@@ -277,22 +137,8 @@
    ],
    "correct": "левой ноге",
    "case": "Предложный (Prepositional)",
-   "explain": "«левой ноге» — after the preposition «на», for location or topic.",
+   "explain": "«левой ноге» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c25"
-  },
-  {
-   "sentence": "— Женщины, — сказал тихим, чуть ___ Пьер.",
-   "lemma": "голос",
-   "options": [
-    "слышного голоса",
-    "слышным голосом",
-    "слышном голосе",
-    "слышный голос"
-   ],
-   "correct": "слышным голосом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«слышным голосом» — the instrumental marks the means, company, or complement.",
-   "id": "c28"
   },
   {
    "sentence": "— ___ говорю вам: обратите всё ваше внимание на самого себя, наложите цепи на свои чувства и ищите блаженства не в страстях, а в своем сердце.",
@@ -305,7 +151,7 @@
    ],
    "correct": "последний раз",
    "case": "Винительный (Accusative)",
-   "explain": "«Последний раз» — the accusative marks the direct object of the verb.",
+   "explain": "«последний раз» tells how long or how often, with no preposition — accusative.",
    "id": "c29"
   }
  ]

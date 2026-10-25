@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "— В самом ___ слова!",
-   "lemma": "смысл",
-   "options": [
-    "строгим смыслом",
-    "строгом смысле",
-    "строгого смысла",
-    "строгий смысл"
-   ],
-   "correct": "строгом смысле",
-   "case": "Предложный (Prepositional)",
-   "explain": "«строгом смысле» — after the preposition «в», for location or topic.",
-   "id": "c3"
-  },
-  {
-   "sentence": "— Тип? тип — это оригинал, это такой ___!",
-   "lemma": "человек",
-   "options": [
-    "смешным человеком",
-    "смешной человек",
-    "смешного человека",
-    "смешном человеке"
-   ],
-   "correct": "смешной человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«смешной человек» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
-  },
-  {
    "sentence": "___ сидишь подле бабушки и чего-чего в голову не войдет.",
    "lemma": "раз",
    "options": [
@@ -39,22 +11,8 @@
    ],
    "correct": "иной раз",
    "case": "Винительный (Accusative)",
-   "explain": "«Иной раз» — the accusative marks the direct object of the verb.",
+   "explain": "«иной раз» tells how long or how often, with no preposition — accusative.",
    "id": "c7"
-  },
-  {
-   "sentence": "— Есть, Настенька, если вы того не знаете, есть в Петербурге довольно ___.",
-   "lemma": "уголок",
-   "options": [
-    "странные уголки",
-    "странных уголков",
-    "странных уголках",
-    "странным уголкам"
-   ],
-   "correct": "странные уголки",
-   "case": "Именительный (Nominative)",
-   "explain": "«странные уголки» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
   },
   {
    "sentence": "В эти места как будто не заглядывает то же солнце, которое светит для всех ___, а заглядывает какое-то другое, новое, как будто нарочно заказанное для этих углов, и светит на все иным, особенным светом.",
@@ -67,7 +25,7 @@
    ],
    "correct": "петербургских людей",
    "case": "Родительный (Genitive)",
-   "explain": "«петербургских людей» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«петербургских людей» — «для» always takes the genitive.",
    "id": "c11"
   },
   {
@@ -81,35 +39,21 @@
    ],
    "correct": "странные люди",
    "case": "Именительный (Nominative)",
-   "explain": "«странные люди» — the subject of the sentence stands in the nominative.",
+   "explain": "«странные люди» is the subject of «проживают» — who or what does it — so nominative.",
    "id": "c12"
-  },
-  {
-   "sentence": "Мечтатель — если нужно его ___ — не человек, а, знаете, какое-то существо среднего рода.",
-   "lemma": "определение",
-   "options": [
-    "подробного определения",
-    "подробном определении",
-    "подробным определением",
-    "подробное определение"
-   ],
-   "correct": "подробное определение",
-   "case": "Именительный (Nominative)",
-   "explain": "«подробное определение» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
   },
   {
    "sentence": "Мечтатель — если нужно его подробное определение — не человек, а, знаете, какое-то существо ___.",
    "lemma": "род",
    "options": [
-    "средним родом",
+    "среднему роду",
+    "средний род",
     "среднем роде",
-    "среднего рода",
-    "среднему роду"
+    "среднего рода"
    ],
    "correct": "среднего рода",
    "case": "Родительный (Genitive)",
-   "explain": "«среднего рода» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«среднего рода» depends on the noun «существо» (whose? of what?) — genitive.",
    "id": "c14"
   },
   {
@@ -123,7 +67,7 @@
    ],
    "correct": "собственного гостеприимства",
    "case": "Родительный (Genitive)",
-   "explain": "«собственного гостеприимства» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«собственного гостеприимства» depends on the noun «тяжестью» (whose? of what?) — genitive.",
    "id": "c15"
   },
   {
@@ -137,7 +81,7 @@
    ],
    "correct": "петербургском небе",
    "case": "Предложный (Prepositional)",
-   "explain": "«петербургском небе» — after the preposition «на», for location or topic.",
+   "explain": "«петербургском небе» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c16"
   },
   {
@@ -151,7 +95,7 @@
    ],
    "correct": "любимым играм",
    "case": "Дательный (Dative)",
-   "explain": "«любимым играм» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«любимым играм» — «к» always takes the dative.",
    "id": "c18"
   },
   {
@@ -165,21 +109,21 @@
    ],
    "correct": "радостное чувство",
    "case": "Именительный (Nominative)",
-   "explain": "«радостное чувство» — the subject of the sentence stands in the nominative.",
+   "explain": "«радостное чувство» is the subject of «подействовало» — who or what does it — so nominative.",
    "id": "c19"
   },
   {
    "sentence": "Посмотрите на него сбоку, Настенька: вы тотчас увидите, что радостное чувство уже счастливо подействовало на его ___ и болезненно раздраженную фантазию.",
    "lemma": "нерв",
    "options": [
-    "слабые нервы",
-    "слабых нервах",
+    "слабыми нервами",
+    "слабым нервам",
     "слабых нервов",
-    "слабым нервам"
+    "слабые нервы"
    ],
    "correct": "слабые нервы",
    "case": "Винительный (Accusative)",
-   "explain": "«слабые нервы» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«слабые нервы» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c20"
   },
   {
@@ -193,7 +137,7 @@
    ],
    "correct": "сегодняшнем вечере",
    "case": "Предложный (Prepositional)",
-   "explain": "«сегодняшнем вечере» — after the preposition «о», for location or topic.",
+   "explain": "«сегодняшнем вечере» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c21"
   },
   {
@@ -207,7 +151,7 @@
    ],
    "correct": "блестящей карете",
    "case": "Предложный (Prepositional)",
-   "explain": "«блестящей карете» — after the preposition «в», for location or topic.",
+   "explain": "«блестящей карете» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c23"
   },
   {
@@ -221,50 +165,8 @@
    ],
    "correct": "прощальный луч",
    "case": "Именительный (Nominative)",
-   "explain": "«прощальный луч» — the subject of the sentence stands in the nominative.",
+   "explain": "«прощальный луч» is the subject of «стал» — who or what does it — so nominative.",
    "id": "c24"
-  },
-  {
-   "sentence": "В комнате потемнело; на душе его пусто и грустно; ___ мечтаний рушилось вокруг него, рушилось без следа, без шума и треска, пронеслось, как сновидение, а он и сам не помнит, что ему грезилось.",
-   "lemma": "царство",
-   "options": [
-    "целое царство",
-    "целым царством",
-    "целого царства",
-    "целому царству"
-   ],
-   "correct": "целое царство",
-   "case": "Именительный (Nominative)",
-   "explain": "«целое царство» — the subject of the sentence stands in the nominative.",
-   "id": "c25"
-  },
-  {
-   "sentence": "Но какое-то темное ощущение, от которого слегка заныла и волнуется грудь его, какое-то ___ соблазнительно щекочет и раздражает его фантазию и незаметно сзывает целый рой новых призраков.",
-   "lemma": "желание",
-   "options": [
-    "новом желании",
-    "новое желание",
-    "нового желания",
-    "новым желанием"
-   ],
-   "correct": "новое желание",
-   "case": "Именительный (Nominative)",
-   "explain": "«новое желание» — the subject of the sentence stands in the nominative.",
-   "id": "c26"
-  },
-  {
-   "sentence": "Но какое-то темное ощущение, от которого слегка заныла и волнуется грудь его, какое-то новое желание соблазнительно щекочет и раздражает его фантазию и незаметно сзывает целый рой ___.",
-   "lemma": "призрак",
-   "options": [
-    "новыми призраками",
-    "новым призракам",
-    "новые призраки",
-    "новых призраков"
-   ],
-   "correct": "новых призраков",
-   "case": "Родительный (Genitive)",
-   "explain": "«новых призраков» — the genitive here marks possession, absence, or quantity.",
-   "id": "c27"
   },
   {
    "sentence": "Вот оно уже слегка прорывается вспышками, вот уже и книга, взятая без цели и наудачу, выпадает из рук моего мечтателя, не дошедшего и до ___.",
@@ -277,63 +179,21 @@
    ],
    "correct": "третьей страницы",
    "case": "Родительный (Genitive)",
-   "explain": "«третьей страницы» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«третьей страницы» — «до» always takes the genitive.",
    "id": "c28"
-  },
-  {
-   "sentence": "Воображение его снова настроено, возбуждено, и вдруг опять ___, новая, очаровательная жизнь блеснула перед ним в блестящей своей перспективе.",
-   "lemma": "мир",
-   "options": [
-    "новому миру",
-    "новым миром",
-    "нового мира",
-    "новый мир"
-   ],
-   "correct": "новый мир",
-   "case": "Именительный (Nominative)",
-   "explain": "«новый мир» — the subject of the sentence stands in the nominative.",
-   "id": "c29"
-  },
-  {
-   "sentence": "Посмотрите, какие ___, какой бесконечный рой восторженных грез.",
-   "lemma": "приключение",
-   "options": [
-    "разнообразные приключения",
-    "разнообразными приключениями",
-    "разнообразных приключениях",
-    "разнообразным приключениям"
-   ],
-   "correct": "разнообразные приключения",
-   "case": "Именительный (Nominative)",
-   "explain": "«разнообразные приключения» — the subject of the sentence stands in the nominative.",
-   "id": "c34"
-  },
-  {
-   "sentence": "Посмотрите, какие разнообразные приключения, какой ___ восторженных грез.",
-   "lemma": "рой",
-   "options": [
-    "бесконечного роя",
-    "бесконечным роем",
-    "бесконечный рой",
-    "бесконечном рое"
-   ],
-   "correct": "бесконечный рой",
-   "case": "Именительный (Nominative)",
-   "explain": "«бесконечный рой» — the subject of the sentence stands in the nominative.",
-   "id": "c35"
   },
   {
    "sentence": "Неужели он только и видел ее в одних ___ и только лишь снилась ему эта страсть?",
    "lemma": "призрак",
    "options": [
-    "обольстительных призраках",
     "обольстительными призраками",
-    "обольстительные призраки",
-    "обольстительных призраков"
+    "обольстительных призраках",
+    "обольстительным призракам",
+    "обольстительные призраки"
    ],
    "correct": "обольстительных призраках",
    "case": "Предложный (Prepositional)",
-   "explain": "«обольстительных призраках» — after the preposition «в», for location or topic.",
+   "explain": "«обольстительных призраках» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c37"
   },
   {
@@ -347,7 +207,7 @@
    ],
    "correct": "поздний час",
    "case": "Винительный (Accusative)",
-   "explain": "«поздний час» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«поздний час» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c38"
   },
   {
@@ -361,7 +221,7 @@
    ],
    "correct": "патетические возгласы",
    "case": "Винительный (Accusative)",
-   "explain": "«патетические возгласы» — the accusative marks the direct object of the verb.",
+   "explain": "«патетические возгласы» is the direct object of «кончив» (кого? что?) — accusative.",
    "id": "c40"
   },
   {
@@ -375,22 +235,8 @@
    ],
    "correct": "сам бог",
    "case": "Именительный (Nominative)",
-   "explain": "«сам бог» — the subject of the sentence stands in the nominative.",
+   "explain": "«сам бог» is the subject of «послал» — who or what does it — so nominative.",
    "id": "c42"
-  },
-  {
-   "sentence": "О, будьте благословенны, вы, ___, за то, что не отвергли меня с первого раза, за то, что уже я могу сказать, что я жил хоть два вечера в моей жизни!",
-   "lemma": "девушка",
-   "options": [
-    "милая девушка",
-    "милой девушки",
-    "милой девушкой",
-    "милой девушке"
-   ],
-   "correct": "милая девушка",
-   "case": "Именительный (Nominative)",
-   "explain": "«милая девушка» — the subject of the sentence stands in the nominative.",
-   "id": "c43"
   },
   {
    "sentence": "Еще пройдут годы, и за ними придет ___, придет с клюкой трясучая старость, а за ними тоска и уныние.",
@@ -403,36 +249,8 @@
    ],
    "correct": "угрюмое одиночество",
    "case": "Именительный (Nominative)",
-   "explain": "«угрюмое одиночество» — the subject of the sentence stands in the nominative.",
+   "explain": "«угрюмое одиночество» is the subject of «придет» — who or what does it — so nominative.",
    "id": "c46"
-  },
-  {
-   "sentence": "Я ___, я мало училась, хотя мне бабушка и нанимала учителя; но, право, я вас понимаю, потому что все, что вы мне пересказали теперь, я уж сама прожила, когда бабушка меня пришпилила к платью.",
-   "lemma": "девушка",
-   "options": [
-    "простой девушке",
-    "простой девушки",
-    "простой девушкой",
-    "простая девушка"
-   ],
-   "correct": "простая девушка",
-   "case": "Именительный (Nominative)",
-   "explain": "«простая девушка» — the subject of the sentence stands in the nominative.",
-   "id": "c48"
-  },
-  {
-   "sentence": "Вы очень ___; обещаетесь ли вы, что вы дадите мне этот совет?",
-   "lemma": "человек",
-   "options": [
-    "умном человеке",
-    "умному человеку",
-    "умный человек",
-    "умным человеком"
-   ],
-   "correct": "умный человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«умный человек» — the subject of the sentence stands in the nominative.",
-   "id": "c49"
   }
  ]
 }

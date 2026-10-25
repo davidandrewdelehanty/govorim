@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "-- ___ с этой девочкой, господи, прости меня грешного!",
-   "lemma": "наказание",
-   "options": [
-    "чистом наказании",
-    "чистым наказанием",
-    "чистое наказание",
-    "чистого наказания"
-   ],
-   "correct": "чистое наказание",
-   "case": "Именительный (Nominative)",
-   "explain": "«Чистое наказание» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
-  },
-  {
    "sentence": "___, по обыкновению, поднимались из-за гребенки, как сияние.",
    "lemma": "волос",
    "options": [
@@ -25,77 +11,21 @@
    ],
    "correct": "рыжие волосы",
    "case": "Именительный (Nominative)",
-   "explain": "«Рыжие волосы» — the subject of the sentence stands in the nominative.",
+   "explain": "«рыжие волосы» is the subject of «поднимались» — who or what does it — so nominative.",
    "id": "c5"
-  },
-  {
-   "sentence": "___ на ногах, целый день -- и боже мой, даже глядеть на вас и то тяжко.",
-   "lemma": "день",
-   "options": [
-    "целом дне",
-    "целому дню",
-    "целый день",
-    "целого дня"
-   ],
-   "correct": "целый день",
-   "case": "Винительный (Accusative)",
-   "explain": "«Целый день» — the accusative marks the direct object of the verb.",
-   "id": "c7"
-  },
-  {
-   "sentence": "Только по необыкновенно ___, робкому, озабоченному взгляду, который она мельком бросила, выходя из комнаты, можно было догадаться, что это была мать.",
-   "lemma": "глаз",
-   "options": [
-    "добрых глазах",
-    "добрым глазам",
-    "добрые глаза",
-    "добрыми глазами"
-   ],
-   "correct": "добрым глазам",
-   "case": "Дательный (Dative)",
-   "explain": "«добрым глазам» — after the preposition «по», the dative marks the indirect object or recipient.",
-   "id": "c9"
-  },
-  {
-   "sentence": "Только по необыкновенно добрым глазам, робкому, ___, который она мельком бросила, выходя из комнаты, можно было догадаться, что это была мать.",
-   "lemma": "взгляд",
-   "options": [
-    "озабоченном взгляде",
-    "озабоченным взглядом",
-    "озабоченному взгляду",
-    "озабоченный взгляд"
-   ],
-   "correct": "озабоченному взгляду",
-   "case": "Дательный (Dative)",
-   "explain": "«озабоченному взгляду» — the dative marks the indirect object or recipient.",
-   "id": "c10"
-  },
-  {
-   "sentence": "В продолжение всех двенадцати евангелий нужно было стоять среди церкви неподвижно, и ___, самое длинное, самое красивое, читал он сам.",
-   "lemma": "евангелие",
-   "options": [
-    "первому евангелию",
-    "первым евангелием",
-    "первого евангелия",
-    "первое евангелие"
-   ],
-   "correct": "первое евангелие",
-   "case": "Именительный (Nominative)",
-   "explain": "«первое евангелие» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
   },
   {
    "sentence": "Кажется, жизнь бы отдал, только бы не видеть этих жалких, дешевых ставень, низких потолков, не чувствовать этого тяжкого ___.",
    "lemma": "запах",
    "options": [
-    "монастырский запах",
     "монастырскому запаху",
-    "монастырского запаха",
-    "монастырском запахе"
+    "монастырском запахе",
+    "монастырским запахом",
+    "монастырского запаха"
    ],
    "correct": "монастырского запаха",
    "case": "Родительный (Genitive)",
-   "explain": "«монастырского запаха» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«монастырского запаха» is the object of a negated verb («не чувствовать») — genitive instead of the accusative.",
    "id": "c13"
   },
   {
@@ -109,7 +39,7 @@
    ],
    "correct": "соседней комнате",
    "case": "Предложный (Prepositional)",
-   "explain": "«соседней комнате» — after the preposition «в», for location or topic.",
+   "explain": "«соседней комнате» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c14"
   },
   {
@@ -123,7 +53,7 @@
    ],
    "correct": "панкратиевском монастыре",
    "case": "Предложный (Prepositional)",
-   "explain": "«Панкратиевском монастыре» — after the preposition «в», for location or topic.",
+   "explain": "«панкратиевском монастыре» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c16"
   },
   {
@@ -137,22 +67,8 @@
    ],
    "correct": "целый год",
    "case": "Винительный (Accusative)",
-   "explain": "«целый год» — the accusative marks the direct object of the verb.",
+   "explain": "«целый год» tells how long or how often, with no preposition — accusative.",
    "id": "c17"
-  },
-  {
-   "sentence": "Увидев его сморщенное лицо и ___, она испугалась, упала на колени пред кроватью и стала целовать его лицо, плечи, руки.",
-   "lemma": "глаз",
-   "options": [
-    "большим глазам",
-    "больших глазах",
-    "большие глаза",
-    "большими глазами"
-   ],
-   "correct": "большие глаза",
-   "case": "Именительный (Nominative)",
-   "explain": "«большие глаза» — the subject of the sentence stands in the nominative.",
-   "id": "c22"
   },
   {
    "sentence": "А на ___ была Пасха.",
@@ -165,22 +81,8 @@
    ],
    "correct": "другой день",
    "case": "Винительный (Accusative)",
-   "explain": "«другой день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«другой день» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c23"
-  },
-  {
-   "sentence": "В городе было сорок две церкви и шесть монастырей; гулкий, радостный звон с утра до вечера стоял над городом, не умолкая, волнуя ___; птицы пели, солнце ярко светило.",
-   "lemma": "воздух",
-   "options": [
-    "весенним воздухом",
-    "весеннему воздуху",
-    "весенний воздух",
-    "весеннем воздухе"
-   ],
-   "correct": "весенний воздух",
-   "case": "Винительный (Accusative)",
-   "explain": "«весенний воздух» — the accusative marks the direct object of the verb.",
-   "id": "c24"
   },
   {
    "sentence": "На большой базарной площади было шумно, колыхались качели, играли шарманки, визжала гармоника, раздавались ___.",
@@ -193,7 +95,7 @@
    ],
    "correct": "пьяные голоса",
    "case": "Именительный (Nominative)",
-   "explain": "«пьяные голоса» — the subject of the sentence stands in the nominative.",
+   "explain": "«пьяные голоса» is the subject of «раздавались» — who or what does it — so nominative.",
    "id": "c25"
   },
   {
@@ -207,7 +109,7 @@
    ],
    "correct": "главной улице",
    "case": "Предложный (Prepositional)",
-   "explain": "«главной улице» — after the preposition «на», for location or topic.",
+   "explain": "«главной улице» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c26"
   },
   {
@@ -221,7 +123,7 @@
    ],
    "correct": "викарный архиерей",
    "case": "Именительный (Nominative)",
-   "explain": "«викарный архиерей» — the subject of the sentence stands in the nominative.",
+   "explain": "«викарный архиерей» is the subject of «назначен» — who or what does it — so nominative.",
    "id": "c27"
   }
  ]

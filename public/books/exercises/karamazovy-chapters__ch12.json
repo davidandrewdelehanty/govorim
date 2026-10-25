@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Это была очень ___ с необходимою мебелью; кровать была узенькая, железная, а на ней вместо тюфяка один только войлок.",
-   "lemma": "комнатка",
-   "options": [
-    "маленькой комнатки",
-    "маленькой комнатке",
-    "маленькой комнаткой",
-    "маленькая комнатка"
-   ],
-   "correct": "маленькая комнатка",
-   "case": "Именительный (Nominative)",
-   "explain": "«маленькая комнатка» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "В лице Алеши опять изобразилось ___.",
-   "lemma": "движение",
-   "options": [
-    "сильного движения",
-    "сильное движение",
-    "сильному движению",
-    "сильном движении"
-   ],
-   "correct": "сильное движение",
-   "case": "Именительный (Nominative)",
-   "explain": "«сильное движение» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
    "sentence": "А поклон этот страшно поразил Алешу; он веровал слепо, что в нем был ___.",
    "lemma": "смысл",
    "options": [
@@ -39,78 +11,22 @@
    ],
    "correct": "таинственный смысл",
    "case": "Именительный (Nominative)",
-   "explain": "«таинственный смысл» — the subject of the sentence stands in the nominative.",
+   "explain": "«таинственный смысл» is the subject of «был» — who or what does it — so nominative.",
    "id": "c3"
-  },
-  {
-   "sentence": "Он пошел поскорее лесом, отделявшим скит от монастыря, и, не в силах даже выносить свои мысли, до того они давили его, стал смотреть на вековые сосны по обеим сторонам ___.",
-   "lemma": "дорожка",
-   "options": [
-    "лесная дорожка",
-    "лесной дорожкой",
-    "лесной дорожке",
-    "лесной дорожки"
-   ],
-   "correct": "лесной дорожки",
-   "case": "Родительный (Genitive)",
-   "explain": "«лесной дорожки» — the genitive here marks possession, absence, or quantity.",
-   "id": "c4"
-  },
-  {
-   "sentence": "Случится она между твоими братцами и твоим ___.",
-   "lemma": "батюшка",
-   "options": [
-    "богатеньким батюшкой",
-    "богатеньком батюшке",
-    "богатенький батюшка",
-    "богатенького батюшку"
-   ],
-   "correct": "богатеньким батюшкой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«богатеньким батюшкой» — the instrumental marks the means, company, or complement.",
-   "id": "c5"
   },
   {
    "sentence": "Вот отец Зосима и стукнулся лбом на всякий ___.",
    "lemma": "случай",
    "options": [
-    "будущий случай",
     "будущего случая",
     "будущему случаю",
-    "будущем случае"
+    "будущий случай",
+    "будущим случаем"
    ],
    "correct": "будущий случай",
    "case": "Винительный (Accusative)",
-   "explain": "«будущий случай» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«будущий случай» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c6"
-  },
-  {
-   "sentence": "Почему это тебя так занимает, вот ___?",
-   "lemma": "дело",
-   "options": [
-    "первого дела",
-    "первом деле",
-    "первому делу",
-    "первое дело"
-   ],
-   "correct": "первое дело",
-   "case": "Именительный (Nominative)",
-   "explain": "«первое дело» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
-  },
-  {
-   "sentence": "Пусть он и ___, Митенька-то (он глуп, но честен); но он — сладострастник.",
-   "lemma": "человек",
-   "options": [
-    "честный человек",
-    "честном человеке",
-    "честным человеком",
-    "честного человека"
-   ],
-   "correct": "честный человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«честный человек» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
   },
   {
    "sentence": "Певец ___, Пушкин, ножки в стихах воспевал; другие не воспевают, а смотреть на ножки не могут без судорог.",
@@ -123,22 +39,8 @@
    ],
    "correct": "женских ножек",
    "case": "Родительный (Genitive)",
-   "explain": "«женских ножек» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«женских ножек» depends on the noun «Певец» (whose? of what?) — genitive.",
    "id": "c9"
-  },
-  {
-   "sentence": "Все это, брат, ___.",
-   "lemma": "музыка",
-   "options": [
-    "старой музыки",
-    "старой музыке",
-    "старой музыкой",
-    "старая музыка"
-   ],
-   "correct": "старая музыка",
-   "case": "Именительный (Nominative)",
-   "explain": "«старая музыка» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
   },
   {
    "sentence": "В этом весь ваш ___ заключается: сладострастники, стяжатели и юродивые!",
@@ -151,22 +53,8 @@
    ],
    "correct": "карамазовский вопрос",
    "case": "Именительный (Nominative)",
-   "explain": "«карамазовский вопрос» — the subject of the sentence stands in the nominative.",
+   "explain": "«карамазовский вопрос» is the subject of «заключается» — who or what does it — so nominative.",
    "id": "c12"
-  },
-  {
-   "sentence": "Брат твой Иван теперь ___ пока в шутку по какому-то глупейшему неизвестному расчету печатает, будучи сам атеистом, и в подлости этой сам сознается — брат твой этот, Иван.",
-   "lemma": "статейка",
-   "options": [
-    "богословских статейках",
-    "богословских статеек",
-    "богословским статейкам",
-    "богословские статейки"
-   ],
-   "correct": "богословские статейки",
-   "case": "Именительный (Nominative)",
-   "explain": "«богословские статейки» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
   },
   {
    "sentence": "Бросить невесту, несравненную красоту, Катерину Ивановну, богатую, дворянку и полковничью дочь, и жениться на Грушеньке, бывшей содержанке ___, развратного мужика и городского головы Самсонова.",
@@ -179,7 +67,7 @@
    ],
    "correct": "старого купчишки",
    "case": "Родительный (Genitive)",
-   "explain": "«старого купчишки» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«старого купчишки» depends on the noun «содержанке» (whose? of what?) — genitive.",
    "id": "c14"
   },
   {
@@ -193,36 +81,8 @@
    ],
    "correct": "прошлой неделе",
    "case": "Предложный (Prepositional)",
-   "explain": "«прошлой неделе» — after the preposition «на», for location or topic.",
+   "explain": "«прошлой неделе» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c15"
-  },
-  {
-   "sentence": "— А я так слышал, что ___ у Катерины Ивановны он отделывал меня на чем свет стоит — вот до чего интересовался вашим покорным слугой.",
-   "lemma": "день",
-   "options": [
-    "третьему дню",
-    "третьим днём",
-    "третий день",
-    "третьего дня"
-   ],
-   "correct": "третьего дня",
-   "case": "Родительный (Genitive)",
-   "explain": "«третьего дня» — the genitive here marks possession, absence, or quantity.",
-   "id": "c17"
-  },
-  {
-   "sentence": "Положим, я только ___ и тля пред вами, дворянами, но не оскорбляйте же меня так весело и беспутно.",
-   "lemma": "сын",
-   "options": [
-    "поповского сына",
-    "поповским сыном",
-    "поповскому сыну",
-    "поповский сын"
-   ],
-   "correct": "поповский сын",
-   "case": "Именительный (Nominative)",
-   "explain": "«поповский сын» — the subject of the sentence stands in the nominative.",
-   "id": "c20"
   },
   {
    "sentence": "Ракитин был в ___.",
@@ -235,22 +95,8 @@
    ],
    "correct": "сильном раздражении",
    "case": "Предложный (Prepositional)",
-   "explain": "«сильном раздражении» — after the preposition «в», for location or topic.",
+   "explain": "«сильном раздражении» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c21"
-  },
-  {
-   "sentence": "А насчет родства, так скорей твой братец али даже ___ навяжет ее тебе, а не мне, в родню.",
-   "lemma": "батюшка",
-   "options": [
-    "самом батюшке",
-    "самого батюшки",
-    "сам батюшка",
-    "самого батюшку"
-   ],
-   "correct": "сам батюшка",
-   "case": "Именительный (Nominative)",
-   "explain": "«сам батюшка» — the subject of the sentence stands in the nominative.",
-   "id": "c22"
   }
  ]
 }

@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Вешенская, как ___, стала центром восстания.",
-   "lemma": "станица",
-   "options": [
-    "окружная станица",
-    "окружной станице",
-    "окружной станицей",
-    "окружной станицы"
-   ],
-   "correct": "окружная станица",
-   "case": "Именительный (Nominative)",
-   "explain": "«окружная станица» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
    "sentence": "После ___ и толков решили сохранить прежнюю структуру власти.",
    "lemma": "спор",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "долгих споров",
    "case": "Родительный (Genitive)",
-   "explain": "«долгих споров» — after the preposition «после», the genitive here marks possession, absence, or quantity.",
+   "explain": "«долгих споров» — «после» always takes the genitive.",
    "id": "c3"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "окружного исполкома",
    "case": "Родительный (Genitive)",
-   "explain": "«окружного исполкома» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«окружного исполкома» depends on the noun «состав» (whose? of what?) — genitive.",
    "id": "c4"
   },
   {
@@ -53,7 +39,7 @@
    ],
    "correct": "уважаемых казаков",
    "case": "Винительный (Accusative)",
-   "explain": "«уважаемых казаков» — the accusative marks the direct object of the verb.",
+   "explain": "«уважаемых казаков» is the direct object of «выбрали» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c5"
   },
   {
@@ -67,7 +53,7 @@
    ],
    "correct": "военного чиновника",
    "case": "Винительный (Accusative)",
-   "explain": "«военного чиновника» — the accusative marks the direct object of the verb.",
+   "explain": "«военного чиновника» is the direct object of «посадили» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c6"
   },
   {
@@ -81,63 +67,21 @@
    ],
    "correct": "артиллерийского ведомства",
    "case": "Родительный (Genitive)",
-   "explain": "«артиллерийского ведомства» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«артиллерийского ведомства» depends on the noun «чиновника» (whose? of what?) — genitive.",
    "id": "c7"
-  },
-  {
-   "sentence": "Суярова на должности командующего объединенными ___ сменил молодой — двадцативосьмилетний — хорунжий Кудинов Павел, георгиевский кавалер всех четырех степеней, краснобай и умница.",
-   "lemma": "сила",
-   "options": [
-    "повстанческих сил",
-    "повстанческими силами",
-    "повстанческим силам",
-    "повстанческие силы"
-   ],
-   "correct": "повстанческими силами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«повстанческими силами» — the instrumental marks the means, company, or complement.",
-   "id": "c8"
-  },
-  {
-   "sentence": "Суярова на должности командующего объединенными повстанческими силами сменил молодой — двадцативосьмилетний — хорунжий Кудинов Павел, ___ всех четырех степеней, краснобай и умница.",
-   "lemma": "кавалер",
-   "options": [
-    "георгиевский кавалер",
-    "георгиевском кавалере",
-    "георгиевским кавалером",
-    "георгиевскому кавалеру"
-   ],
-   "correct": "георгиевский кавалер",
-   "case": "Именительный (Nominative)",
-   "explain": "«георгиевский кавалер» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
-  },
-  {
-   "sentence": "Отличался он слабохарактерностью, и не ему бы править ___ в такое буревое время, но тянулись к нему казаки за простоту и обходительность.",
-   "lemma": "округ",
-   "options": [
-    "мятежный округ",
-    "мятежным округом",
-    "мятежном округе",
-    "мятежному округу"
-   ],
-   "correct": "мятежным округом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«мятежным округом» — the instrumental marks the means, company, or complement.",
-   "id": "c10"
   },
   {
    "sentence": "На их ___ заамурцы засыпали их пулеметным дождем, крыли из двух батарей.",
    "lemma": "выстрел",
    "options": [
     "жалких выстрелов",
-    "жалкими выстрелами",
     "жалкие выстрелы",
-    "жалких выстрелах"
+    "жалкими выстрелами",
+    "жалким выстрелам"
    ],
    "correct": "жалкие выстрелы",
    "case": "Винительный (Accusative)",
-   "explain": "«жалкие выстрелы» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«жалкие выстрелы» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c12"
   },
   {
@@ -151,64 +95,8 @@
    ],
    "correct": "соседних хуторов",
    "case": "Родительный (Genitive)",
-   "explain": "«соседних хуторов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«соседних хуторов» depends on the noun «сотнями» (whose? of what?) — genitive.",
    "id": "c13"
-  },
-  {
-   "sentence": "Внизу, из вогнутой ___, в три цепи шли красные.",
-   "lemma": "котловина",
-   "options": [
-    "просторной котловиной",
-    "просторной котловины",
-    "просторная котловина",
-    "просторной котловине"
-   ],
-   "correct": "просторной котловины",
-   "case": "Родительный (Genitive)",
-   "explain": "«просторной котловины» — the genitive here marks possession, absence, or quantity.",
-   "id": "c14"
-  },
-  {
-   "sentence": "— Он отдал еще несколько ___, достал бинокль.",
-   "lemma": "распоряжение",
-   "options": [
-    "последними распоряжениями",
-    "последних распоряжениях",
-    "последние распоряжения",
-    "последних распоряжений"
-   ],
-   "correct": "последних распоряжений",
-   "case": "Родительный (Genitive)",
-   "explain": "«последних распоряжений» — the genitive here marks possession, absence, or quantity.",
-   "id": "c15"
-  },
-  {
-   "sentence": "— Я давно примечаю: ___ видать.",
-   "lemma": "глаз",
-   "options": [
-    "простого глаза",
-    "простому глазу",
-    "простом глазе",
-    "простым глазом"
-   ],
-   "correct": "простым глазом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«простым глазом» — the instrumental marks the means, company, or complement.",
-   "id": "c16"
-  },
-  {
-   "sentence": "___, — «пластунки», как их шутя прозвали конные, — несмотря на строгий приказ не сходиться, собирались толпами, делились патронами, курили, перекидывались шутками.",
-   "lemma": "пехота",
-   "options": [
-    "татарской пехотой",
-    "татарская пехота",
-    "татарской пехоте",
-    "татарской пехоты"
-   ],
-   "correct": "татарская пехота",
-   "case": "Именительный (Nominative)",
-   "explain": "«Татарская пехота» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
   },
   {
    "sentence": "Я в лизерве оставил одну сотню, да на ___ и яры сгодятся.",
@@ -221,7 +109,7 @@
    ],
    "correct": "худой конец",
    "case": "Винительный (Accusative)",
-   "explain": "«худой конец» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«худой конец» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c19"
   },
   {
@@ -235,7 +123,7 @@
    ],
    "correct": "полновесный звук",
    "case": "Именительный (Nominative)",
-   "explain": "«полновесный звук» — the subject of the sentence stands in the nominative.",
+   "explain": "«полновесный звук» is the subject of «вырвался» — who or what does it — so nominative.",
    "id": "c20"
   },
   {
@@ -249,36 +137,8 @@
    ],
    "correct": "белая пенка",
    "case": "Именительный (Nominative)",
-   "explain": "«белая пенка» — the subject of the sentence stands in the nominative.",
+   "explain": "«белая пенка» is the subject of «таял» — who or what does it — so nominative.",
    "id": "c21"
-  },
-  {
-   "sentence": "У одного из коноводов вырвался раненный ___ белоногий конь Мартина Шамиля и, обезумев, промчался через цепь рубежинских казаков, пошел под гору к красным.",
-   "lemma": "пуля",
-   "options": [
-    "шальной пулей",
-    "шальная пуля",
-    "шальной пули",
-    "шальной пуле"
-   ],
-   "correct": "шальной пулей",
-   "case": "Творительный (Instrumental)",
-   "explain": "«шальной пулей» — the instrumental marks the means, company, or complement.",
-   "id": "c22"
-  },
-  {
-   "sentence": "У одного из коноводов вырвался раненный шальной пулей ___ Мартина Шамиля и, обезумев, промчался через цепь рубежинских казаков, пошел под гору к красным.",
-   "lemma": "конь",
-   "options": [
-    "белоногом коне",
-    "белоногому коню",
-    "белоногого коня",
-    "белоногий конь"
-   ],
-   "correct": "белоногий конь",
-   "case": "Именительный (Nominative)",
-   "explain": "«белоногий конь» — the subject of the sentence stands in the nominative.",
-   "id": "c23"
   },
   {
    "sentence": "У одного из коноводов вырвался раненный шальной пулей белоногий конь Мартина Шамиля и, обезумев, промчался через цепь ___, пошел под гору к красным.",
@@ -291,50 +151,8 @@
    ],
    "correct": "рубежинских казаков",
    "case": "Родительный (Genitive)",
-   "explain": "«рубежинских казаков» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«рубежинских казаков» depends on the noun «цепь» (whose? of what?) — genitive.",
    "id": "c24"
-  },
-  {
-   "sentence": "Били только ___ — и нашкодили: невзрачный казачишка с Верхне-Кривского хутора одного за другим переметил пулями трех пулеметчиков, и «максим» с закипевшей в кожухе, водой умолк.",
-   "lemma": "стрелка",
-   "options": [
-    "искусные стрелки",
-    "искусных стрелках",
-    "искусными стрелками",
-    "искусным стрелкам"
-   ],
-   "correct": "искусные стрелки",
-   "case": "Именительный (Nominative)",
-   "explain": "«искусные стрелки» — the subject of the sentence stands in the nominative.",
-   "id": "c25"
-  },
-  {
-   "sentence": "Били только искусные стрелки — и нашкодили: ___ с Верхне-Кривского хутора одного за другим переметил пулями трех пулеметчиков, и «максим» с закипевшей в кожухе, водой умолк.",
-   "lemma": "казачишка",
-   "options": [
-    "невзрачным казачишкой",
-    "невзрачному казачишке",
-    "невзрачном казачишке",
-    "невзрачный казачишка"
-   ],
-   "correct": "невзрачный казачишка",
-   "case": "Именительный (Nominative)",
-   "explain": "«невзрачный казачишка» — the subject of the sentence stands in the nominative.",
-   "id": "c26"
-  },
-  {
-   "sentence": "Пулемет опять зарокотал, рассеивая ___.",
-   "lemma": "семя",
-   "options": [
-    "смертные семена",
-    "смертных семенах",
-    "смертными семенами",
-    "смертным семенам"
-   ],
-   "correct": "смертные семена",
-   "case": "Винительный (Accusative)",
-   "explain": "«смертные семена» — the accusative marks the direct object of the verb.",
-   "id": "c27"
   },
   {
    "sentence": "Аникушка докопался до ___, не переставая чудить.",
@@ -347,7 +165,7 @@
    ],
    "correct": "голенькой земли",
    "case": "Родительный (Genitive)",
-   "explain": "«голенькой земли» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«голенькой земли» — «до» always takes the genitive.",
    "id": "c28"
   },
   {
@@ -361,7 +179,7 @@
    ],
    "correct": "взрослое население",
    "case": "Именительный (Nominative)",
-   "explain": "«взрослое население» — the subject of the sentence stands in the nominative.",
+   "explain": "«взрослое население» is the subject of «вышло» — who or what does it — so nominative.",
    "id": "c29"
   },
   {
@@ -375,22 +193,8 @@
    ],
    "correct": "красные цепи",
    "case": "Именительный (Nominative)",
-   "explain": "«Красные цепи» — the subject of the sentence stands in the nominative.",
+   "explain": "«красные цепи» is the subject of «стали» — who or what does it — so nominative.",
    "id": "c31"
-  },
-  {
-   "sentence": "Коротко посоветовавшись с сотенными, Петро обнажил ___, сняв две цепи еланцев, — приказал им в конном строю идти на север, к Дону, чтобы там поддержать наскок Григория.",
-   "lemma": "фланг",
-   "options": [
-    "правом фланге",
-    "правый фланг",
-    "правым флангом",
-    "правого фланга"
-   ],
-   "correct": "правый фланг",
-   "case": "Винительный (Accusative)",
-   "explain": "«правый фланг» — the accusative marks the direct object of the verb.",
-   "id": "c32"
   },
   {
    "sentence": "Сотни на виду у красных выстроились на той стороне ___, пошли на низ к Дону.",
@@ -403,22 +207,8 @@
    ],
    "correct": "красного яра",
    "case": "Родительный (Genitive)",
-   "explain": "«Красного яра» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«красного яра» depends on the noun «стороне» (whose? of what?) — genitive.",
    "id": "c33"
-  },
-  {
-   "sentence": "Стрельба по отступавшим ___ возобновилась.",
-   "lemma": "цепь",
-   "options": [
-    "красных цепей",
-    "красным цепям",
-    "красными цепями",
-    "красные цепи"
-   ],
-   "correct": "красным цепям",
-   "case": "Дательный (Dative)",
-   "explain": "«красным цепям» — after the preposition «по», the dative marks the indirect object or recipient.",
-   "id": "c34"
   },
   {
    "sentence": "Она и в самом деле взяла Петров карабин; с колена, по-мужски, уверенно прижав приклад к вершине груди, к ___, два раза выстрелила.",
@@ -431,7 +221,7 @@
    ],
    "correct": "узкому плечу",
    "case": "Дательный (Dative)",
-   "explain": "«узкому плечу» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«узкому плечу» — «к» always takes the dative.",
    "id": "c36"
   }
  ]

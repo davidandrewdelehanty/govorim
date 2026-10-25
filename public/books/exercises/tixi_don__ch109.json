@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "По хутору Сетракову рассасывалась ___.",
-   "lemma": "прохлада",
-   "options": [
-    "предвечерней прохладой",
-    "предвечерней прохладе",
-    "предвечерняя прохлада",
-    "предвечерней прохлады"
-   ],
-   "correct": "предвечерняя прохлада",
-   "case": "Именительный (Nominative)",
-   "explain": "«предвечерняя прохлада» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "От домов на сухую дорогу падали огромные ___.",
    "lemma": "тень",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "косые тени",
    "case": "Именительный (Nominative)",
-   "explain": "«косые тени» — the subject of the sentence stands in the nominative.",
+   "explain": "«косые тени» is the subject of «падали» — who or what does it — so nominative.",
    "id": "c2"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "крайних дворов",
    "case": "Родительный (Genitive)",
-   "explain": "«крайних дворов» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«крайних дворов» — «из» always takes the genitive.",
    "id": "c3"
   },
   {
@@ -53,7 +39,7 @@
    ],
    "correct": "германской войны",
    "case": "Родительный (Genitive)",
-   "explain": "«германской войны» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«германской войны» — «из» always takes the genitive.",
    "id": "c4"
   },
   {
@@ -67,7 +53,7 @@
    ],
    "correct": "звонкий бег",
    "case": "Именительный (Nominative)",
-   "explain": "«звонкий бег» — the subject of the sentence stands in the nominative.",
+   "explain": "«звонкий бег» is the subject of «дошел» — who or what does it — so nominative.",
    "id": "c5"
   },
   {
@@ -81,7 +67,7 @@
    ],
    "correct": "молочной струи",
    "case": "Родительный (Genitive)",
-   "explain": "«молочной струи» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«молочной струи» depends on the noun «бег» (whose? of what?) — genitive.",
    "id": "c6"
   },
   {
@@ -95,176 +81,22 @@
    ],
    "correct": "левой руке",
    "case": "Предложный (Prepositional)",
-   "explain": "«левой руке» — after the preposition «в», for location or topic.",
+   "explain": "«левой руке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c7"
-  },
-  {
-   "sentence": "По шляху ___ катилась пыль, за ней двигались ряды пехоты, обоз, конные.",
-   "lemma": "шар",
-   "options": [
-    "багровый шар",
-    "багровому шару",
-    "багровым шаром",
-    "багрового шара"
-   ],
-   "correct": "багровым шаром",
-   "case": "Творительный (Instrumental)",
-   "explain": "«багровым шаром» — the instrumental marks the means, company, or complement.",
-   "id": "c8"
-  },
-  {
-   "sentence": "Гля, ___ у них!..",
-   "lemma": "лоскут",
-   "options": [
-    "красном лоскуте",
-    "красный лоскут",
-    "красному лоскуту",
-    "красного лоскута"
-   ],
-   "correct": "красный лоскут",
-   "case": "Именительный (Nominative)",
-   "explain": "«красный лоскут» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
-  },
-  {
-   "sentence": "___, кося злым глазом, гоняя в запененном рту мундштуки, ударил передней ногой в плетень.",
-   "lemma": "конь",
-   "options": [
-    "караковый конь",
-    "караковому коню",
-    "караковым конём",
-    "каракового коня"
-   ],
-   "correct": "караковый конь",
-   "case": "Именительный (Nominative)",
-   "explain": "«Караковый конь» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
-  },
-  {
-   "sentence": "Караковый конь, кося ___, гоняя в запененном рту мундштуки, ударил передней ногой в плетень.",
-   "lemma": "глаз",
-   "options": [
-    "злом глазе",
-    "злого глаза",
-    "злой глаз",
-    "злым глазом"
-   ],
-   "correct": "злым глазом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«злым глазом» — the instrumental marks the means, company, or complement.",
-   "id": "c11"
-  },
-  {
-   "sentence": "Караковый конь, кося злым глазом, гоняя в запененном рту мундштуки, ударил ___ в плетень.",
-   "lemma": "нога",
-   "options": [
-    "передняя нога",
-    "передней ногой",
-    "передней ноге",
-    "передней ноги"
-   ],
-   "correct": "передней ногой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«передней ногой» — the instrumental marks the means, company, or complement.",
-   "id": "c12"
-  },
-  {
-   "sentence": "Один — верзила со свалявшимся, как ___, чубом, цепляясь за шашку ногами, пошел на овечий баз.",
-   "lemma": "грива",
-   "options": [
-    "лошадиной гривы",
-    "лошадиная грива",
-    "лошадиной гривой",
-    "лошадиной гриве"
-   ],
-   "correct": "лошадиная грива",
-   "case": "Именительный (Nominative)",
-   "explain": "«лошадиная грива» — after the preposition «за», the subject of the sentence stands in the nominative.",
-   "id": "c13"
-  },
-  {
-   "sentence": "Он ничего не говорил и только тогда, крякнув, пошел на крыльцо, когда валух, с перерезанным шашкой горлом, засучил ___.",
-   "lemma": "нога",
-   "options": [
-    "тонких ногах",
-    "тонкими ногами",
-    "тонкие ноги",
-    "тонких ног"
-   ],
-   "correct": "тонкими ногами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«тонкими ногами» — the instrumental marks the means, company, or complement.",
-   "id": "c14"
-  },
-  {
-   "sentence": "Она, стиснув зубы, стояла у печи, глядела на него ___.",
-   "lemma": "глаз",
-   "options": [
-    "испуганными глазами",
-    "испуганным глазам",
-    "испуганные глаза",
-    "испуганных глазах"
-   ],
-   "correct": "испуганными глазами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«испуганными глазами» — the instrumental marks the means, company, or complement.",
-   "id": "c15"
-  },
-  {
-   "sentence": "Едва лишь спустился с крыльца, — услышал ___ жены.",
-   "lemma": "голос",
-   "options": [
-    "плачущем голосе",
-    "плачущего голоса",
-    "плачущим голосом",
-    "плачущий голос"
-   ],
-   "correct": "плачущий голос",
-   "case": "Винительный (Accusative)",
-   "explain": "«плачущий голос» — the accusative marks the direct object of the verb.",
-   "id": "c16"
   },
   {
    "sentence": "Разложившиеся под влиянием ___, обильно наводнивших собою отряд, красногвардейцы бесчинствовали по дороге.",
    "lemma": "элемент",
    "options": [
-    "уголовных элементах",
-    "уголовным элементам",
+    "уголовные элементы",
     "уголовных элементов",
-    "уголовными элементами"
+    "уголовным элементам",
+    "уголовных элементах"
    ],
    "correct": "уголовных элементов",
    "case": "Родительный (Genitive)",
-   "explain": "«уголовных элементов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«уголовных элементов» depends on the noun «влиянием» (whose? of what?) — genitive.",
    "id": "c17"
-  },
-  {
-   "sentence": "А в это время трое ___, высланных из хутора, уже поднимали в окрестных хуторах сполох.",
-   "lemma": "казак",
-   "options": [
-    "верховых казаков",
-    "верховыми казаками",
-    "верховых казаках",
-    "верховые казаки"
-   ],
-   "correct": "верховых казаков",
-   "case": "Родительный (Genitive)",
-   "explain": "«верховых казаков» — the genitive here marks possession, absence, or quantity.",
-   "id": "c18"
-  },
-  {
-   "sentence": "Две четырехорудийные батареи, двадцать шесть пулеметов, тысяча винтовок, ___ боевого снаряжения попали в руки казаков.",
-   "lemma": "запас",
-   "options": [
-    "большой запас",
-    "большим запасом",
-    "большого запаса",
-    "большом запасе"
-   ],
-   "correct": "большой запас",
-   "case": "Именительный (Nominative)",
-   "explain": "«большой запас» — the subject of the sentence stands in the nominative.",
-   "id": "c20"
   },
   {
    "sentence": "Две четырехорудийные батареи, двадцать шесть пулеметов, тысяча винтовок, большой запас ___ попали в руки казаков.",
@@ -277,22 +109,8 @@
    ],
    "correct": "боевого снаряжения",
    "case": "Родительный (Genitive)",
-   "explain": "«боевого снаряжения» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«боевого снаряжения» depends on the noun «запас» (whose? of what?) — genitive.",
    "id": "c21"
-  },
-  {
-   "sentence": "День спустя уж цвели по всему округу ___ скакавших по шляхам и проселкам нарочных.",
-   "lemma": "флажок",
-   "options": [
-    "красным флажкам",
-    "красные флажки",
-    "красными флажками",
-    "красных флажках"
-   ],
-   "correct": "красные флажки",
-   "case": "Винительный (Accusative)",
-   "explain": "«красные флажки» — the accusative marks the direct object of the verb.",
-   "id": "c22"
   },
   {
    "sentence": "В двадцатых числах апреля верховые станицы ___ откололись.",
@@ -305,21 +123,21 @@
    ],
    "correct": "донецкого округа",
    "case": "Родительный (Genitive)",
-   "explain": "«Донецкого округа» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«донецкого округа» depends on the noun «станицы» (whose? of what?) — genitive.",
    "id": "c24"
   },
   {
    "sentence": "___ избрана Вешенская, многолюдная, вторая в области, после Михайловской, по величине и многочисленности хуторов станицы.",
    "lemma": "центр",
    "options": [
-    "окружном центре",
-    "окружному центру",
     "окружным центром",
-    "окружный центр"
+    "окружном центре",
+    "окружного центра",
+    "окружному центру"
    ],
    "correct": "окружным центром",
    "case": "Творительный (Instrumental)",
-   "explain": "«Окружным центром» — the instrumental marks the means, company, or complement.",
+   "explain": "After «избрана» (to call, consider or make someone something), that something is in the instrumental.",
    "id": "c25"
   },
   {
@@ -333,22 +151,8 @@
    ],
    "correct": "прежних хуторов",
    "case": "Родительный (Genitive)",
-   "explain": "«прежних хуторов» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«прежних хуторов» — «из» always takes the genitive.",
    "id": "c26"
-  },
-  {
-   "sentence": "___ дружно избран был казак Еланской станицы, генерал, окончивший военную академию, Захар Акимович Алферов.",
-   "lemma": "атаман",
-   "options": [
-    "окружном атамане",
-    "окружный атаман",
-    "окружного атамана",
-    "окружным атаманом"
-   ],
-   "correct": "окружным атаманом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«Окружным атаманом» — the instrumental marks the means, company, or complement.",
-   "id": "c28"
   }
  ]
 }

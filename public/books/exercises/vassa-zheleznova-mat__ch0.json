@@ -1,62 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "___ — спальня и рабочий кабинет Вассы Железновой.",
-   "lemma": "комната",
-   "options": [
-    "большей комнате",
-    "большая комната",
-    "большей комнаты",
-    "большей комнатой"
-   ],
-   "correct": "большая комната",
-   "case": "Именительный (Nominative)",
-   "explain": "«Большая комната» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
-  },
-  {
-   "sentence": "Большая комната — спальня и ___ Вассы Железновой.",
-   "lemma": "кабинет",
-   "options": [
-    "рабочий кабинет",
-    "рабочем кабинете",
-    "рабочим кабинетом",
-    "рабочему кабинету"
-   ],
-   "correct": "рабочий кабинет",
-   "case": "Именительный (Nominative)",
-   "explain": "«рабочий кабинет» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
-  },
-  {
-   "sentence": "Около стола — ___, за нею, под окном — кушетка.",
-   "lemma": "конторка",
-   "options": [
-    "высокая конторка",
-    "высокой конторкой",
-    "высокой конторке",
-    "высокой конторки"
-   ],
-   "correct": "высокая конторка",
-   "case": "Именительный (Nominative)",
-   "explain": "«высокая конторка» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
-  },
-  {
-   "sentence": "В правом углу — изразцовая лежанка, около неё — ___ и дверь в молельную.",
-   "lemma": "шкаф",
-   "options": [
-    "несгораемого шкафа",
-    "несгораемому шкафу",
-    "несгораемый шкаф",
-    "несгораемым шкафом"
-   ],
-   "correct": "несгораемый шкаф",
-   "case": "Именительный (Nominative)",
-   "explain": "«несгораемый шкаф» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
-  },
-  {
    "sentence": "В ___ — широкие двери в столовую; виден стол, над ним люстра.",
    "lemma": "стена",
    "options": [
@@ -67,36 +11,8 @@
    ],
    "correct": "задней стене",
    "case": "Предложный (Prepositional)",
-   "explain": "«задней стене» — after the preposition «в», for location or topic.",
+   "explain": "«задней стене» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c8"
-  },
-  {
-   "sentence": "В задней стене — ___ в столовую; виден стол, над ним люстра.",
-   "lemma": "дверь",
-   "options": [
-    "широкими дверями",
-    "широкие двери",
-    "широким дверям",
-    "широких дверях"
-   ],
-   "correct": "широкие двери",
-   "case": "Именительный (Nominative)",
-   "explain": "«широкие двери» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
-  },
-  {
-   "sentence": "(Михаил входит в столовую, дёргает себя за усы, провожая зятя ___.)",
-   "lemma": "взгляд",
-   "options": [
-    "угрюмому взгляду",
-    "угрюмого взгляда",
-    "угрюмым взглядом",
-    "угрюмом взгляде"
-   ],
-   "correct": "угрюмым взглядом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«угрюмым взглядом» — the instrumental marks the means, company, or complement.",
-   "id": "c12"
   },
   {
    "sentence": "Да не очень умно распоряжайся, не так, как в ___.",
@@ -109,7 +25,7 @@
    ],
    "correct": "прошлый раз",
    "case": "Винительный (Accusative)",
-   "explain": "«прошлый раз» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«прошлый раз» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c13"
   },
   {
@@ -123,21 +39,21 @@
    ],
    "correct": "простых мужиков",
    "case": "Родительный (Genitive)",
-   "explain": "«простых мужиков» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«простых мужиков» — «из» always takes the genitive.",
    "id": "c18"
   },
   {
    "sentence": "Я вот начал ___ покупать у староверов, за рекой, — мать загрызла: богу, говорит, не молишься, а денег тратишь много!",
    "lemma": "икона",
    "options": [
-    "старинным иконам",
+    "старинные иконы",
     "старинных иконах",
-    "старинных икон",
-    "старинные иконы"
+    "старинным иконам",
+    "старинными иконами"
    ],
    "correct": "старинные иконы",
    "case": "Винительный (Accusative)",
-   "explain": "«старинные иконы» — the accusative marks the direct object of the verb.",
+   "explain": "«старинные иконы» is the direct object of «начал» (кого? что?) — accusative.",
    "id": "c23"
   }
  ]

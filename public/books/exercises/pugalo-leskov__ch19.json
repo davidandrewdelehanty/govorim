@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Я был очень счастлив в своём детстве в том отношении, что ___ религии мне были даны превосходным христианином.",
-   "lemma": "урок",
-   "options": [
-    "первых уроков",
-    "первых уроках",
-    "первыми уроками",
-    "первые уроки"
-   ],
-   "correct": "первые уроки",
-   "case": "Именительный (Nominative)",
-   "explain": "«первые уроки» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
    "sentence": "Я был очень счастлив в своём детстве в том отношении, что первые уроки религии мне были даны ___.",
    "lemma": "христианин",
    "options": [
@@ -25,36 +11,8 @@
    ],
    "correct": "превосходным христианином",
    "case": "Творительный (Instrumental)",
-   "explain": "«превосходным христианином» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «даны», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c3"
-  },
-  {
-   "sentence": "Это был ___ Остромыслений — хороший друг моего отца и друг всех нас, детей, которых он умел научить любить правду и милосердие.",
-   "lemma": "священник",
-   "options": [
-    "орловскому священнику",
-    "орловского священника",
-    "орловском священнике",
-    "орловский священник"
-   ],
-   "correct": "орловский священник",
-   "case": "Именительный (Nominative)",
-   "explain": "«орловский священник» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
-  },
-  {
-   "sentence": "Это был орловский священник Остромыслений — ___ моего отца и друг всех нас, детей, которых он умел научить любить правду и милосердие.",
-   "lemma": "друг",
-   "options": [
-    "хорошим другом",
-    "хорошему другу",
-    "хорошего друга",
-    "хороший друг"
-   ],
-   "correct": "хороший друг",
-   "case": "Именительный (Nominative)",
-   "explain": "«хороший друг» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
   },
   {
    "sentence": "— Ты очень счастлив; твоя душа в день рождества была — как ясли для ___, который пришёл на землю, чтоб пострадать за несчастных.",
@@ -67,7 +25,7 @@
    ],
    "correct": "святого младенца",
    "case": "Родительный (Genitive)",
-   "explain": "«святого младенца» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«святого младенца» — «для» always takes the genitive.",
    "id": "c6"
   },
   {
@@ -81,64 +39,22 @@
    ],
    "correct": "дальнейшие годы",
    "case": "Винительный (Accusative)",
-   "explain": "«дальнейшие годы» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«дальнейшие годы» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c8"
-  },
-  {
-   "sentence": "В новом имении, которое купила тётушка, был хороший ___ на проезжем трактовом пункте.",
-   "lemma": "двор",
-   "options": [
-    "постоялым двором",
-    "постоялому двору",
-    "постоялом дворе",
-    "постоялый двор"
-   ],
-   "correct": "постоялый двор",
-   "case": "Именительный (Nominative)",
-   "explain": "«постоялый двор» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
   },
   {
    "sentence": "В новом имении, которое купила тётушка, был хороший постоялый двор на проезжем ___.",
    "lemma": "пункт",
    "options": [
-    "трактовому пункту",
+    "трактового пункта",
+    "трактовом пункте",
     "трактовым пунктом",
-    "трактовый пункт",
-    "трактовом пункте"
+    "трактовому пункту"
    ],
    "correct": "трактовом пункте",
    "case": "Предложный (Prepositional)",
-   "explain": "«трактовом пункте» — after the preposition «на», for location or topic.",
+   "explain": "«трактовом пункте» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c11"
-  },
-  {
-   "sentence": "Тут сбылись мои давние ___: я не только близко познакомился с Селиваном, но мы питали один к другому полное доверие и дружбу.",
-   "lemma": "сон",
-   "options": [
-    "детские сны",
-    "детскими снами",
-    "детским снам",
-    "детских снов"
-   ],
-   "correct": "детские сны",
-   "case": "Именительный (Nominative)",
-   "explain": "«детские сны» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
-  },
-  {
-   "sentence": "И действительно, вышло так, что как только просветились очи окружавших Селивана, так сделалось светлым и его ___.",
-   "lemma": "лицо",
-   "options": [
-    "собственному лицу",
-    "собственного лица",
-    "собственном лице",
-    "собственное лицо"
-   ],
-   "correct": "собственное лицо",
-   "case": "Именительный (Nominative)",
-   "explain": "«собственное лицо» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
   },
   {
    "sentence": "Из ___ Селивана особенно не любил лакей Борисушка, которого Селиван чуть не задушил в ту памятную нам рождественскую ночь.",
@@ -151,7 +67,7 @@
    ],
    "correct": "тётушкиных людей",
    "case": "Родительный (Genitive)",
-   "explain": "«тётушкиных людей» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«тётушкиных людей» — «из» always takes the genitive.",
    "id": "c14"
   }
  ]

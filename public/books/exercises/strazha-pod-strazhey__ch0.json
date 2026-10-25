@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Нечто подобное представлял из себя и прокурор Хламовского ___, Алексей Тимофеевич Балбинский, когда после третьего звонка спешил занять место в вагоне.",
-   "lemma": "суд",
-   "options": [
-    "окружному суду",
-    "окружного суда",
-    "окружным судом",
-    "окружном суде"
-   ],
-   "correct": "окружного суда",
-   "case": "Родительный (Genitive)",
-   "explain": "«окружного суда» — the genitive here marks possession, absence, or quantity.",
-   "id": "c1"
-  },
-  {
    "sentence": "Нечто подобное представлял из себя и прокурор Хламовского окружного суда, Алексей Тимофеевич Балбинский, когда после ___ спешил занять место в вагоне.",
    "lemma": "звонок",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "третьего звонка",
    "case": "Родительный (Genitive)",
-   "explain": "«третьего звонка» — after the preposition «после», the genitive here marks possession, absence, or quantity.",
+   "explain": "«третьего звонка» — «после» always takes the genitive.",
    "id": "c2"
   },
   {
@@ -33,13 +19,13 @@
    "lemma": "лицо",
    "options": [
     "красное лицо",
-    "красным лицом",
     "красного лица",
+    "красном лице",
     "красному лицу"
    ],
    "correct": "красного лица",
    "case": "Родительный (Genitive)",
-   "explain": "«красного лица» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
+   "explain": "«красного лица» — «с» takes the genitive here (с чего? откуда? с каких пор?): from, off, since — with the instrumental it would mean 'with'.",
    "id": "c4"
   },
   {
@@ -53,22 +39,8 @@
    ],
    "correct": "долгих странствований",
    "case": "Родительный (Genitive)",
-   "explain": "«долгих странствований» — after the preposition «после», the genitive here marks possession, absence, or quantity.",
+   "explain": "«долгих странствований» — «после» always takes the genitive.",
    "id": "c8"
-  },
-  {
-   "sentence": "Нужно было ___ навязать мне на шею это сокровище!",
-   "lemma": "рок",
-   "options": [
-    "злом роке",
-    "злому року",
-    "злым роком",
-    "злой рок"
-   ],
-   "correct": "злому року",
-   "case": "Дательный (Dative)",
-   "explain": "«злому року» — the dative marks the indirect object or recipient.",
-   "id": "c11"
   },
   {
    "sentence": "Сейчас вот за ___ послала.",
@@ -81,7 +53,7 @@
    ],
    "correct": "горячей водой",
    "case": "Творительный (Instrumental)",
-   "explain": "«горячей водой» — after the preposition «за», the instrumental marks the means, company, or complement.",
+   "explain": "«горячей водой» — «за» takes the instrumental here (где? за чем? за кем?) — the accusative would mean motion behind or 'for' (куда? за что?).",
    "id": "c13"
   },
   {
@@ -95,22 +67,8 @@
    ],
    "correct": "личная свобода",
    "case": "Именительный (Nominative)",
-   "explain": "«личная свобода» — the subject of the sentence stands in the nominative.",
+   "explain": "«личная свобода» is the subject of «значит» — who or what does it — so nominative.",
    "id": "c14"
-  },
-  {
-   "sentence": "___ увлечешься и, знаете ли, ни за что ни про что человечину под стражу упечешь.",
-   "lemma": "раз",
-   "options": [
-    "иной раз",
-    "ином разе",
-    "иным разом",
-    "иному разу"
-   ],
-   "correct": "иной раз",
-   "case": "Винительный (Accusative)",
-   "explain": "«Иной раз» — the accusative marks the direct object of the verb.",
-   "id": "c15"
   },
   {
    "sentence": "___ закрою глаза и мечтаю: а что, если бы да кабы она да попала бы ко мне в когти в качестве подсудимой?",
@@ -123,7 +81,7 @@
    ],
    "correct": "иной раз",
    "case": "Винительный (Accusative)",
-   "explain": "«Иной раз» — the accusative marks the direct object of the verb.",
+   "explain": "«иной раз» tells how long or how often, with no preposition — accusative.",
    "id": "c16"
   },
   {
@@ -137,36 +95,8 @@
    ],
    "correct": "горячей водой",
    "case": "Творительный (Instrumental)",
-   "explain": "«горячей водой» — after the preposition «за», the instrumental marks the means, company, or complement.",
+   "explain": "«горячей водой» — «за» takes the instrumental here (где? за чем? за кем?) — the accusative would mean motion behind or 'for' (куда? за что?).",
    "id": "c17"
-  },
-  {
-   "sentence": "Вбежав утром в вагон к Фляжкину, он повалился на диван и залился ___.",
-   "lemma": "смех",
-   "options": [
-    "счастливому смеху",
-    "счастливым смехом",
-    "счастливого смеха",
-    "счастливом смехе"
-   ],
-   "correct": "счастливым смехом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«счастливым смехом» — the instrumental marks the means, company, or complement.",
-   "id": "c18"
-  },
-  {
-   "sentence": "Так я, братец, вот что сделаю: сяду на ___ и айда!",
-   "lemma": "поезд",
-   "options": [
-    "встречному поезду",
-    "встречным поездом",
-    "встречный поезд",
-    "встречного поезда"
-   ],
-   "correct": "встречный поезд",
-   "case": "Винительный (Accusative)",
-   "explain": "«встречный поезд» — the accusative marks the direct object of the verb.",
-   "id": "c20"
   }
  ]
 }

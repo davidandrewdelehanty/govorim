@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Пришел давно знакомый всей Яме Ванька-Встанька - высокий, худой, красноносый ___, в форме лесного кондуктора, в высоких сапогах, с деревянным аршином, всегда торчащим из бокового кармана.",
-   "lemma": "старик",
-   "options": [
-    "седому старику",
-    "седой старик",
-    "седом старике",
-    "седым стариком"
-   ],
-   "correct": "седой старик",
-   "case": "Именительный (Nominative)",
-   "explain": "«седой старик» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Пришел давно знакомый всей Яме Ванька-Встанька - высокий, худой, красноносый седой старик, в форме ___, в высоких сапогах, с деревянным аршином, всегда торчащим из бокового кармана.",
    "lemma": "кондуктор",
    "options": [
@@ -25,22 +11,8 @@
    ],
    "correct": "лесного кондуктора",
    "case": "Родительный (Genitive)",
-   "explain": "«лесного кондуктора» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«лесного кондуктора» depends on the noun «форме» (whose? of what?) — genitive.",
    "id": "c2"
-  },
-  {
-   "sentence": "Пришел давно знакомый всей Яме Ванька-Встанька - высокий, худой, красноносый седой старик, в форме лесного кондуктора, в высоких сапогах, с ___, всегда торчащим из бокового кармана.",
-   "lemma": "аршин",
-   "options": [
-    "деревянном аршине",
-    "деревянным аршином",
-    "деревянный аршин",
-    "деревянному аршину"
-   ],
-   "correct": "деревянным аршином",
-   "case": "Творительный (Instrumental)",
-   "explain": "«деревянным аршином» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c4"
   },
   {
    "sentence": "Пришел давно знакомый всей Яме Ванька-Встанька - высокий, худой, красноносый седой старик, в форме лесного кондуктора, в высоких сапогах, с деревянным аршином, всегда торчащим из ___.",
@@ -53,50 +25,22 @@
    ],
    "correct": "бокового кармана",
    "case": "Родительный (Genitive)",
-   "explain": "«бокового кармана» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«бокового кармана» — «из» always takes the genitive.",
    "id": "c5"
   },
   {
    "sentence": "___ и вечера проводил он завсегдатаем в бильярдной при трактире, вечно вполпьяна, рассыпая свои шуточки, рифмы и приговорочки, фамильярничая со швейцаром, с экономками и девушками.",
    "lemma": "день",
    "options": [
-    "целых днях",
-    "целых дней",
+    "целыми днями",
     "целые дни",
+    "целых днях",
     "целым дням"
    ],
    "correct": "целые дни",
    "case": "Винительный (Accusative)",
-   "explain": "«Целые дни» — the accusative marks the direct object of the verb.",
+   "explain": "«целые дни» is the direct object of «проводил» (кого? что?) — accusative.",
    "id": "c6"
-  },
-  {
-   "sentence": "Балагуря таким образом, Ванька-Встанька просиживал в залах заведения ___ и ночи.",
-   "lemma": "вечер",
-   "options": [
-    "целых вечеров",
-    "целыми вечерами",
-    "целые вечера",
-    "целых вечерах"
-   ],
-   "correct": "целые вечера",
-   "case": "Винительный (Accusative)",
-   "explain": "«целые вечера» — the accusative marks the direct object of the verb.",
-   "id": "c7"
-  },
-  {
-   "sentence": "И по какому-то странному душевному сочувствию девицы считали его почти своим; иногда оказывали ему маленькие ___ и даже покупали ему на свой счет пиво и водку.",
-   "lemma": "услуга",
-   "options": [
-    "временными услугами",
-    "временные услуги",
-    "временным услугам",
-    "временных услугах"
-   ],
-   "correct": "временные услуги",
-   "case": "Винительный (Accusative)",
-   "explain": "«временные услуги» — the accusative marks the direct object of the verb.",
-   "id": "c8"
   },
   {
    "sentence": "Они были шумны, веселы, но даже и здесь, в ___, не прекращали своих мелочных счетов и разговоров об открытых и закрытых бенефисах, о хозяевах, о женах хозяев.",
@@ -109,22 +53,8 @@
    ],
    "correct": "публичном доме",
    "case": "Предложный (Prepositional)",
-   "explain": "«публичном доме» — after the preposition «в», for location or topic.",
+   "explain": "«публичном доме» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c9"
-  },
-  {
-   "sentence": "Но у Анны Марковны они сейчас же заказали себе кадриль и плясали ее, особенно пятую фигуру, где кавалеры выделывают соло, совершенно как настоящие парижане, даже заложив ___ в проймы жилетов.",
-   "lemma": "палец",
-   "options": [
-    "больших пальцев",
-    "большими пальцами",
-    "больших пальцах",
-    "большие пальцы"
-   ],
-   "correct": "большие пальцы",
-   "case": "Винительный (Accusative)",
-   "explain": "«большие пальцы» — the accusative marks the direct object of the verb.",
-   "id": "c11"
   },
   {
    "sentence": "Но остаться с девицами они не захотели, а обещали прийти потом, когда закончат всю ревизию ___.",
@@ -137,7 +67,7 @@
    ],
    "correct": "публичных домов",
    "case": "Родительный (Genitive)",
-   "explain": "«публичных домов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«публичных домов» depends on the noun «ревизию» (whose? of what?) — genitive.",
    "id": "c12"
   },
   {
@@ -151,7 +81,7 @@
    ],
    "correct": "местных аптек",
    "case": "Родительный (Genitive)",
-   "explain": "«местных аптек» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«местных аптек» — «из» always takes the genitive.",
    "id": "c14"
   },
   {
@@ -165,7 +95,7 @@
    ],
    "correct": "общего внимания",
    "case": "Родительный (Genitive)",
-   "explain": "«общего внимания» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«общего внимания» is the object of a negated verb («не поворачивая») — genitive instead of the accusative.",
    "id": "c15"
   },
   {
@@ -179,7 +109,7 @@
    ],
    "correct": "оптического магазина",
    "case": "Родительный (Genitive)",
-   "explain": "«оптического магазина» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«оптического магазина» — «из» always takes the genitive.",
    "id": "c16"
   },
   {
@@ -193,7 +123,7 @@
    ],
    "correct": "профессиональные дела",
    "case": "Именительный (Nominative)",
-   "explain": "«профессиональные дела» — the subject of the sentence stands in the nominative.",
+   "explain": "«профессиональные дела» is the subject of «находились» — who or what does it — so nominative.",
    "id": "c19"
   },
   {
@@ -207,7 +137,7 @@
    ],
    "correct": "гастрономического магазина",
    "case": "Родительный (Genitive)",
-   "explain": "«гастрономического магазина» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«гастрономического магазина» — «из» always takes the genitive.",
    "id": "c22"
   },
   {
@@ -221,36 +151,8 @@
    ],
    "correct": "хороших нравов",
    "case": "Родительный (Genitive)",
-   "explain": "«хороших нравов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«хороших нравов» depends on the noun «самоучитель» (whose? of what?) — genitive.",
    "id": "c23"
-  },
-  {
-   "sentence": "Словом, все они делали вид, будто принадлежат к самому ___, и если танцуют, то делают это, только снисходя до маленькой товарищеской услуги.",
-   "lemma": "общество",
-   "options": [
-    "изысканному обществу",
-    "изысканным обществом",
-    "изысканного общества",
-    "изысканном обществе"
-   ],
-   "correct": "изысканному обществу",
-   "case": "Дательный (Dative)",
-   "explain": "«изысканному обществу» — the dative marks the indirect object or recipient.",
-   "id": "c24"
-  },
-  {
-   "sentence": "Словом, все они делали вид, будто принадлежат к самому изысканному обществу, и если танцуют, то делают это, только снисходя до маленькой ___.",
-   "lemma": "услуга",
-   "options": [
-    "товарищеской услуге",
-    "товарищеская услуга",
-    "товарищеской услугой",
-    "товарищеской услуги"
-   ],
-   "correct": "товарищеской услуги",
-   "case": "Родительный (Genitive)",
-   "explain": "«товарищеской услуги» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
-   "id": "c25"
   },
   {
    "sentence": "Какой-то человек, весь окровавленный, у которого лицо, при ___ лунного серпа, казалось от крови черным, бегал по улице, ругался и, нисколько не обращая внимания на свои раны, искал шапку, потерянную в драке.",
@@ -263,7 +165,7 @@
    ],
    "correct": "бледном свете",
    "case": "Предложный (Prepositional)",
-   "explain": "«бледном свете» — after the preposition «при», for location or topic.",
+   "explain": "«бледном свете» — «при» always takes the prepositional.",
    "id": "c27"
   },
   {
@@ -277,7 +179,7 @@
    ],
    "correct": "лунного серпа",
    "case": "Родительный (Genitive)",
-   "explain": "«лунного серпа» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«лунного серпа» depends on the noun «свете» (whose? of what?) — genitive.",
    "id": "c28"
   },
   {
@@ -291,7 +193,7 @@
    ],
    "correct": "механической привычке",
    "case": "Дательный (Dative)",
-   "explain": "«механической привычке» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«механической привычке» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c30"
   }
  ]

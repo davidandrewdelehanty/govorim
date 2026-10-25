@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "-- Спасибо, милый мой Сашенька, слушай: ты знаешь ___ с дуплом, что у беседки?",
-   "lemma": "дуб",
-   "options": [
-    "старый дуб",
-    "старом дубе",
-    "старому дубу",
-    "старым дубом"
-   ],
-   "correct": "старый дуб",
-   "case": "Именительный (Nominative)",
-   "explain": "«старый дуб» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Мальчик поднял кольцо, во весь дух пустился бежать -- и в три минуты очутился у ___.",
    "lemma": "дерево",
    "options": [
@@ -25,22 +11,8 @@
    ],
    "correct": "заветного дерева",
    "case": "Родительный (Genitive)",
-   "explain": "«заветного дерева» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«заветного дерева» — «у» always takes the genitive.",
    "id": "c2"
-  },
-  {
-   "sentence": "-- Оставь это кольцо, ___, -- кричал Саша, -- или я проучу тебя по-свойски.",
-   "lemma": "заяц",
-   "options": [
-    "рыжем зайце",
-    "рыжего зайца",
-    "рыжий заяц",
-    "рыжему зайцу"
-   ],
-   "correct": "рыжий заяц",
-   "case": "Именительный (Nominative)",
-   "explain": "«рыжий заяц» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
   },
   {
    "sentence": "Они боролись несколько минут, наконец ___ одолел.",
@@ -53,7 +25,7 @@
    ],
    "correct": "рыжий мальчик",
    "case": "Именительный (Nominative)",
-   "explain": "«рыжий мальчик» — the subject of the sentence stands in the nominative.",
+   "explain": "«рыжий мальчик» is the subject of «одолел» — who or what does it — so nominative.",
    "id": "c4"
   },
   {
@@ -67,22 +39,8 @@
    ],
    "correct": "скверному мальчику",
    "case": "Дательный (Dative)",
-   "explain": "«скверному мальчику» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«скверному мальчику» — «к» always takes the dative.",
    "id": "c11"
-  },
-  {
-   "sentence": "-- Я ___ господ Дубровских, -- отвечал рыжий мальчик.",
-   "lemma": "человек",
-   "options": [
-    "дворовым человеком",
-    "дворовому человеку",
-    "дворового человека",
-    "дворовый человек"
-   ],
-   "correct": "дворовый человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«дворовый человек» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
   },
   {
    "sentence": "-- Я дворовый человек господ Дубровских, -- отвечал ___.",
@@ -95,21 +53,21 @@
    ],
    "correct": "рыжий мальчик",
    "case": "Именительный (Nominative)",
-   "explain": "«рыжий мальчик» — the subject of the sentence stands in the nominative.",
+   "explain": "«рыжий мальчик» is the subject of «отвечал» — who or what does it — so nominative.",
    "id": "c13"
   },
   {
    "sentence": "Но ужели и в самом деле она звала его на помощь? -- думал Кирила Петрович, расхаживая по комнате и сердито насвистывая \"Гром победы\". -- Может быть, я наконец нашел на его ___, и он от нас не увернется.",
    "lemma": "след",
    "options": [
+    "горячих следов",
+    "горячими следами",
     "горячим следам",
-    "горячие следы",
-    "горячих следах",
-    "горячих следов"
+    "горячие следы"
    ],
    "correct": "горячие следы",
    "case": "Винительный (Accusative)",
-   "explain": "«горячие следы» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«горячие следы» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c16"
   },
   {
@@ -123,7 +81,7 @@
    ],
    "correct": "самого атамана",
    "case": "Винительный (Accusative)",
-   "explain": "«самого атамана» — the accusative marks the direct object of the verb.",
+   "explain": "«самого атамана» is the direct object of «поймать» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c17"
   },
   {
@@ -137,7 +95,7 @@
    ],
    "correct": "13-летнего мальчика",
    "case": "Винительный (Accusative)",
-   "explain": "«13-летнего мальчика» — the accusative marks the direct object of the verb.",
+   "explain": "«13-летнего мальчика» is the direct object of «увидев» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c18"
   }
  ]

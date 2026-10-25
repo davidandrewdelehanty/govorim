@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Я узнал это от самых ___, хотя он представляет себя частным лицом.",
-   "lemma": "человек",
-   "options": [
-    "достоверным людям",
-    "достоверные люди",
-    "достоверными людьми",
-    "достоверных людей"
-   ],
-   "correct": "достоверных людей",
-   "case": "Родительный (Genitive)",
-   "explain": "«достоверных людей» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Я узнал это от самых достоверных людей, хотя он представляет себя ___.",
-   "lemma": "лицо",
-   "options": [
-    "частным лицом",
-    "частное лицо",
-    "частном лице",
-    "частному лицу"
-   ],
-   "correct": "частным лицом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«частным лицом» — the instrumental marks the means, company, or complement.",
-   "id": "c2"
-  },
-  {
    "sentence": "(Вздохнув.) До сих пор, благодарение богу, подбирались к ___; теперь пришла очередь к нашему.",
    "lemma": "город",
    "options": [
@@ -39,22 +11,8 @@
    ],
    "correct": "другим городам",
    "case": "Дательный (Dative)",
-   "explain": "«другим городам» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«другим городам» — «к» always takes the dative.",
    "id": "c4"
-  },
-  {
-   "sentence": "Я думаю, Антон Антонович, что здесь тонкая и больше ___.",
-   "lemma": "причина",
-   "options": [
-    "политической причине",
-    "политической причины",
-    "политической причиной",
-    "политическая причина"
-   ],
-   "correct": "политическая причина",
-   "case": "Именительный (Nominative)",
-   "explain": "«политическая причина» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
   },
   {
    "sentence": "Начальство имеет ___: даром что далеко, а оно себе мотает на ус.",
@@ -67,22 +25,8 @@
    ],
    "correct": "тонкие виды",
    "case": "Винительный (Accusative)",
-   "explain": "«тонкие виды» — the accusative marks the direct object of the verb.",
+   "explain": "«тонкие виды» is the direct object of «имеет» (кого? что?) — accusative.",
    "id": "c6"
-  },
-  {
-   "sentence": "Нехорошо, что у вас больные такой ___ курят, что всегда расчихаешься, когда войдешь.",
-   "lemma": "табак",
-   "options": [
-    "крепким табаком",
-    "крепком табаке",
-    "крепкий табак",
-    "крепкого табака"
-   ],
-   "correct": "крепкий табак",
-   "case": "Винительный (Accusative)",
-   "explain": "«крепкий табак» — the accusative marks the direct object of the verb.",
-   "id": "c8"
   },
   {
    "sentence": "Вам тоже посоветовал бы, Аммос Федорович, обратить внимание на ___.",
@@ -95,7 +39,7 @@
    ],
    "correct": "присутственные места",
    "case": "Винительный (Accusative)",
-   "explain": "«присутственные места» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«присутственные места» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c9"
   },
   {
@@ -109,50 +53,8 @@
    ],
    "correct": "домашних гусей",
    "case": "Винительный (Accusative)",
-   "explain": "«домашних гусей» — the accusative marks the direct object of the verb.",
+   "explain": "«домашних гусей» is the direct object of «завели» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c10"
-  },
-  {
-   "sentence": "Кроме того, дурно, что у вас высушивается в самом присутствии всякая дрянь и над ___ с бумагами охотничий арапник.",
-   "lemma": "шкап",
-   "options": [
-    "самый шкап",
-    "самом шкапе",
-    "самого шкапа",
-    "самым шкапом"
-   ],
-   "correct": "самым шкапом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«самым шкапом» — the instrumental marks the means, company, or complement.",
-   "id": "c13"
-  },
-  {
-   "sentence": "В этом случае может помочь ___ Христиан Иванович.",
-   "lemma": "медикамент",
-   "options": [
-    "разных медикаментах",
-    "разных медикаментов",
-    "разными медикаментами",
-    "разные медикаменты"
-   ],
-   "correct": "разными медикаментами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«разными медикаментами» — the instrumental marks the means, company, or complement.",
-   "id": "c15"
-  },
-  {
-   "sentence": "Насчет же ___ и того, что называет в письме Андрей Иванович грешками, я ничего не могу сказать.",
-   "lemma": "распоряжение",
-   "options": [
-    "внутреннего распоряжения",
-    "внутреннему распоряжению",
-    "внутренним распоряжением",
-    "внутреннее распоряжение"
-   ],
-   "correct": "внутреннего распоряжения",
-   "case": "Родительный (Genitive)",
-   "explain": "«внутреннего распоряжения» — after the preposition «насчет», the genitive here marks possession, absence, or quantity.",
-   "id": "c16"
   },
   {
    "sentence": "Это уже так ___ устроено, и волтерианцы напрасно против этого говорят.",
@@ -165,50 +67,8 @@
    ],
    "correct": "самим богом",
    "case": "Творительный (Instrumental)",
-   "explain": "«самим богом» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «устроено», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c17"
-  },
-  {
-   "sentence": "Ну, а что из того, что вы берете взятки ___?",
-   "lemma": "щенок",
-   "options": [
-    "борзых щенков",
-    "борзыми щенками",
-    "борзые щенки",
-    "борзым щенкам"
-   ],
-   "correct": "борзыми щенками",
-   "case": "Творительный (Instrumental)",
-   "explain": "«борзыми щенками» — the instrumental marks the means, company, or complement.",
-   "id": "c18"
-  },
-  {
-   "sentence": "Да ведь сам собою дошел, ___.",
-   "lemma": "ум",
-   "options": [
-    "собственном уме",
-    "собственного ума",
-    "собственный ум",
-    "собственным умом"
-   ],
-   "correct": "собственным умом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«собственным умом» — the instrumental marks the means, company, or complement.",
-   "id": "c19"
-  },
-  {
-   "sentence": "Впрочем, я так только упомянул о уездном суде; а по правде сказать, вряд ли кто когда-нибудь заглянет туда; это уж такое ___, сам бог ему покровительствует.",
-   "lemma": "место",
-   "options": [
-    "завидное место",
-    "завидному месту",
-    "завидном месте",
-    "завидного места"
-   ],
-   "correct": "завидное место",
-   "case": "Именительный (Nominative)",
-   "explain": "«завидное место» — the subject of the sentence stands in the nominative.",
-   "id": "c22"
   },
   {
    "sentence": "Впрочем, я так только упомянул о уездном суде; а по правде сказать, вряд ли кто когда-нибудь заглянет туда; это уж такое завидное место, ___ ему покровительствует.",
@@ -221,7 +81,7 @@
    ],
    "correct": "сам бог",
    "case": "Именительный (Nominative)",
-   "explain": "«сам бог» — the subject of the sentence stands in the nominative.",
+   "explain": "«сам бог» is the subject of «покровительствует» — who or what does it — so nominative.",
    "id": "c23"
   },
   {
@@ -235,22 +95,8 @@
    ],
    "correct": "учебных заведений",
    "case": "Родительный (Genitive)",
-   "explain": "«учебных заведений» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«учебных заведений» depends on the noun «смотрителю» (whose? of what?) — genitive.",
    "id": "c24"
-  },
-  {
-   "sentence": "Они люди, конечно, ученые и воспитывались в разных коллегиях, но имеют очень ___, натурально неразлучные с ученым званием.",
-   "lemma": "поступок",
-   "options": [
-    "странных поступках",
-    "странные поступки",
-    "странных поступков",
-    "странными поступками"
-   ],
-   "correct": "странные поступки",
-   "case": "Винительный (Accusative)",
-   "explain": "«странные поступки» — the accusative marks the direct object of the verb.",
-   "id": "c26"
   },
   {
    "sentence": "Он-то ее сделал от ___, а мне выговор: зачем вольнодумные мысли внушаются юношеству.",
@@ -263,36 +109,8 @@
    ],
    "correct": "доброго сердца",
    "case": "Родительный (Genitive)",
-   "explain": "«доброго сердца» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«доброго сердца» — «от» always takes the genitive.",
    "id": "c27"
-  },
-  {
-   "sentence": "Да, таков уже неизъяснимый закон судеб: ___ либо пьяница, или рожу такую состроит, что хоть святых выноси.",
-   "lemma": "человек",
-   "options": [
-    "умного человека",
-    "умный человек",
-    "умном человеке",
-    "умному человеку"
-   ],
-   "correct": "умный человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«умный человек» — the subject of the sentence stands in the nominative.",
-   "id": "c28"
-  },
-  {
-   "sentence": "Всего боишься: всякий мешается, всякому хочется показать, что он тоже ___.",
-   "lemma": "человек",
-   "options": [
-    "умного человека",
-    "умный человек",
-    "умном человеке",
-    "умному человеку"
-   ],
-   "correct": "умный человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«умный человек» — the subject of the sentence stands in the nominative.",
-   "id": "c29"
   }
  ]
 }

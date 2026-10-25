@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "В ту же ночь, откланявшись ___, Болконский ехал к армии, сам не зная, где он найдет ее, и опасаясь по дороге к Кремсу быть перехваченным французами.",
-   "lemma": "министр",
-   "options": [
-    "военном министре",
-    "военный министр",
-    "военному министру",
-    "военного министра"
-   ],
-   "correct": "военному министру",
-   "case": "Дательный (Dative)",
-   "explain": "«военному министру» — the dative marks the indirect object or recipient.",
-   "id": "c1"
-  },
-  {
    "sentence": "В Брюнне всё ___ укладывалось, и уже отправлялись тяжести в Ольмюц.",
    "lemma": "население",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "придворное население",
    "case": "Именительный (Nominative)",
-   "explain": "«придворное население» — the subject of the sentence stands in the nominative.",
+   "explain": "«придворное население» is the subject of «укладывалось» — who or what does it — so nominative.",
    "id": "c2"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "казачьего начальника",
    "case": "Родительный (Genitive)",
-   "explain": "«казачьего начальника» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«казачьего начальника» — «у» always takes the genitive.",
    "id": "c3"
   },
   {
@@ -53,7 +39,7 @@
    ],
    "correct": "непрерывный стон",
    "case": "Именительный (Nominative)",
-   "explain": "«непрерывный стон» — the subject of the sentence stands in the nominative.",
+   "explain": "«непрерывный стон» is the subject of «стоял» — who or what does it — so nominative.",
    "id": "c4"
   },
   {
@@ -67,7 +53,7 @@
    ],
    "correct": "общего гула",
    "case": "Родительный (Genitive)",
-   "explain": "«общего гула» — after the preposition «посреди», the genitive here marks possession, absence, or quantity.",
+   "explain": "«общего гула» — «посреди» always takes the genitive.",
    "id": "c5"
   },
   {
@@ -81,21 +67,21 @@
    ],
    "correct": "кожаным верхом",
    "case": "Творительный (Instrumental)",
-   "explain": "«кожаным верхом» — after the preposition «под», the instrumental marks the means, company, or complement.",
+   "explain": "«кожаным верхом» — «под» takes the instrumental here (где? под чем?) — the accusative would mean movement under (куда? под что?).",
    "id": "c7"
   },
   {
    "sentence": "Князь Андрей видел, что офицер находился в том ___ беспричинного бешенства, в котором люди не помнят, что́ говорят.",
    "lemma": "припадок",
    "options": [
-    "пьяный припадок",
-    "пьяном припадке",
     "пьяному припадку",
+    "пьяном припадке",
+    "пьяным припадком",
     "пьяного припадка"
    ],
    "correct": "пьяном припадке",
    "case": "Предложный (Prepositional)",
-   "explain": "«пьяном припадке» — after the preposition «в», for location or topic.",
+   "explain": "«пьяном припадке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c10"
   },
   {
@@ -109,7 +95,7 @@
    ],
    "correct": "беспричинного бешенства",
    "case": "Родительный (Genitive)",
-   "explain": "«беспричинного бешенства» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«беспричинного бешенства» depends on the noun «припадке» (whose? of what?) — genitive.",
    "id": "c11"
   },
   {
@@ -123,7 +109,7 @@
    ],
    "correct": "первому дому",
    "case": "Дательный (Dative)",
-   "explain": "«первому дому» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«первому дому» — «к» always takes the dative.",
    "id": "c13"
   },
   {
@@ -137,7 +123,7 @@
    ],
    "correct": "первого дома",
    "case": "Родительный (Genitive)",
-   "explain": "«первого дома» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«первого дома» depends on the noun «окну» (whose? of what?) — genitive.",
    "id": "c14"
   },
   {
@@ -151,7 +137,7 @@
    ],
    "correct": "маленького окна",
    "case": "Родительный (Genitive)",
-   "explain": "«маленького окна» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«маленького окна» — «из» always takes the genitive.",
    "id": "c15"
   },
   {
@@ -165,22 +151,8 @@
    ],
    "correct": "сочным ртом",
    "case": "Творительный (Instrumental)",
-   "explain": "«сочным ртом» — the instrumental marks the means, company, or complement.",
+   "explain": "After «звал» (to call, consider or make someone something), that something is in the instrumental.",
    "id": "c16"
-  },
-  {
-   "sentence": "Войдя в дом, князь Андрей увидал Несвицкого и еще ___, закусывавших что-то.",
-   "lemma": "адъютант",
-   "options": [
-    "другого адъютанта",
-    "другой адъютант",
-    "другим адъютантом",
-    "другому адъютанту"
-   ],
-   "correct": "другого адъютанта",
-   "case": "Винительный (Accusative)",
-   "explain": "«другого адъютанта» — the accusative marks the direct object of the verb.",
-   "id": "c17"
   },
   {
    "sentence": "— Теперь, князь, ни повозок, ничего не найдете, и ваш Петр Бог его знает где, — сказал ___.",
@@ -193,7 +165,7 @@
    ],
    "correct": "другой адъютант",
    "case": "Именительный (Nominative)",
-   "explain": "«другой адъютант» — the subject of the sentence stands in the nominative.",
+   "explain": "«другой адъютант» is the subject of «сказал» — who or what does it — so nominative.",
    "id": "c18"
   },
   {
@@ -207,7 +179,7 @@
    ],
    "correct": "богемские горы",
    "case": "Винительный (Accusative)",
-   "explain": "«Богемские горы» — after the preposition «через», the accusative marks the direct object of the verb.",
+   "explain": "«богемские горы» — «через» always takes the accusative.",
    "id": "c20"
   },
   {
@@ -221,77 +193,21 @@
    ],
    "correct": "недавнем столкновении",
    "case": "Предложный (Prepositional)",
-   "explain": "«недавнем столкновении» — after the preposition «о», for location or topic.",
+   "explain": "«недавнем столкновении» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c21"
-  },
-  {
-   "sentence": "Он вспомнил в эту минуту о недавнем столкновении с лекарскою женой и ___.",
-   "lemma": "офицер",
-   "options": [
-    "фурштатского офицера",
-    "фурштатский офицер",
-    "фурштатским офицером",
-    "фурштатскому офицеру"
-   ],
-   "correct": "фурштатским офицером",
-   "case": "Творительный (Instrumental)",
-   "explain": "«фурштатским офицером» — the instrumental marks the means, company, or complement.",
-   "id": "c22"
-  },
-  {
-   "sentence": "Но в то время, как он хотел отворить дверь, голоса в комнате замолкли, дверь сама отворилась, и Кутузов, с своим ___ на пухлом лице, показался на пороге.",
-   "lemma": "нос",
-   "options": [
-    "орлиный нос",
-    "орлиным носом",
-    "орлиного носа",
-    "орлиному носу"
-   ],
-   "correct": "орлиным носом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«орлиным носом» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c24"
-  },
-  {
-   "sentence": "Багратион, невысокий, с восточным типом твердого и неподвижного лица, сухой, еще не ___, вышел за главнокомандующим.",
-   "lemma": "человек",
-   "options": [
-    "старого человека",
-    "старый человек",
-    "старом человеке",
-    "старым человеком"
-   ],
-   "correct": "старый человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«старый человек» — the subject of the sentence stands in the nominative.",
-   "id": "c27"
-  },
-  {
-   "sentence": "— Садись, — сказал Кутузов и, заметив, что Болконский медлит, — мне ___ самому нужны, самому нужны.",
-   "lemma": "офицер",
-   "options": [
-    "хороших офицерах",
-    "хорошие офицеры",
-    "хорошим офицерам",
-    "хороших офицеров"
-   ],
-   "correct": "хорошие офицеры",
-   "case": "Именительный (Nominative)",
-   "explain": "«хорошие офицеры» — the subject of the sentence stands in the nominative.",
-   "id": "c29"
   },
   {
    "sentence": "Он с тонкою насмешливостью расспрашивал князя Андрея о подробностях его свидания с императором, об отзывах, слышанных при дворе о кремском деле, и о некоторых общих ___.",
    "lemma": "женщина",
    "options": [
-    "знакомым женщинам",
-    "знакомых женщин",
+    "знакомые женщины",
     "знакомых женщинах",
-    "знакомые женщины"
+    "знакомыми женщинами",
+    "знакомым женщинам"
    ],
    "correct": "знакомых женщинах",
    "case": "Предложный (Prepositional)",
-   "explain": "«знакомых женщинах» — after the preposition «о», for location or topic.",
+   "explain": "«знакомых женщинах» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c32"
   }
  ]

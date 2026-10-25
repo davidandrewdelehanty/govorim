@@ -1,87 +1,17 @@
 {
  "cases": [
   {
-   "sentence": "Кое-где в двориках ___ валялись куриные сиротливые перья, вызывая слезы на глазах, да в больницах поправлялись последние из жадных, доканчивая кровавый понос со рвотой.",
-   "lemma": "городок",
-   "options": [
-    "уездных городков",
-    "уездными городками",
-    "уездным городкам",
-    "уездных городках"
-   ],
-   "correct": "уездных городков",
-   "case": "Родительный (Genitive)",
-   "explain": "«уездных городков» — the genitive here marks possession, absence, or quantity.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Кое-где в двориках уездных городков валялись куриные ___, вызывая слезы на глазах, да в больницах поправлялись последние из жадных, доканчивая кровавый понос со рвотой.",
-   "lemma": "перо",
-   "options": [
-    "сиротливые перья",
-    "сиротливым перьям",
-    "сиротливых перьев",
-    "сиротливых перьях"
-   ],
-   "correct": "сиротливые перья",
-   "case": "Именительный (Nominative)",
-   "explain": "«сиротливые перья» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Кое-где в двориках уездных городков валялись куриные сиротливые перья, вызывая слезы на глазах, да в больницах поправлялись последние из жадных, доканчивая ___ со рвотой.",
-   "lemma": "понос",
-   "options": [
-    "кровавый понос",
-    "кровавому поносу",
-    "кровавого поноса",
-    "кровавом поносе"
-   ],
-   "correct": "кровавый понос",
-   "case": "Винительный (Accusative)",
-   "explain": "«кровавый понос» — the accusative marks the direct object of the verb.",
-   "id": "c3"
-  },
-  {
-   "sentence": "___, к счастью, на всю республику было не более тысячи.",
-   "lemma": "смерть",
-   "options": [
-    "людских смертей",
-    "людскими смертями",
-    "людских смертях",
-    "людским смертям"
-   ],
-   "correct": "людских смертей",
-   "case": "Родительный (Genitive)",
-   "explain": "«Людских смертей» — the genitive here marks possession, absence, or quantity.",
-   "id": "c4"
-  },
-  {
-   "sentence": "___ тоже не последовало.",
-   "lemma": "беспорядок",
-   "options": [
-    "большими беспорядками",
-    "большим беспорядкам",
-    "больших беспорядках",
-    "больших беспорядков"
-   ],
-   "correct": "больших беспорядков",
-   "case": "Родительный (Genitive)",
-   "explain": "«Больших беспорядков» — the genitive here marks possession, absence, or quantity.",
-   "id": "c5"
-  },
-  {
    "sentence": "Об’явился было, правда, в Волоколамске пророк, возвестившим, что падеж кур вызван ни кем иным, как комиссарами, но ___ не имел.",
    "lemma": "успех",
    "options": [
     "особенным успехом",
-    "особенного успеха",
-    "особенный успех",
-    "особенному успеху"
+    "особенному успеху",
+    "особенном успехе",
+    "особенного успеха"
    ],
    "correct": "особенного успеха",
    "case": "Родительный (Genitive)",
-   "explain": "«особенного успеха» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«особенного успеха» is the object of a negated verb («не имел») — genitive instead of the accusative.",
    "id": "c6"
   },
   {
@@ -95,22 +25,8 @@
    ],
    "correct": "волоколамском базаре",
    "case": "Предложный (Prepositional)",
-   "explain": "«Волоколамском базаре» — after the preposition «на», for location or topic.",
+   "explain": "«волоколамском базаре» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c7"
-  },
-  {
-   "sentence": "По счастью, расторопные ___ приняли меры, в результате которых, во-первых, пророк прекратил свою деятельность, а во-вторых, стекла на телеграфе вставили.",
-   "lemma": "власть",
-   "options": [
-    "волоколамскими властями",
-    "волоколамских властей",
-    "волоколамских властях",
-    "волоколамские власти"
-   ],
-   "correct": "волоколамские власти",
-   "case": "Именительный (Nominative)",
-   "explain": "«волоколамские власти» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
   },
   {
    "sentence": "Дойдя на Севере до Архангельска и Сюмкина Выселка, мор остановился сам собой по той причине, что итти ему дальше было некуда, — в ___ куры, как известно, не водятся.",
@@ -123,7 +39,7 @@
    ],
    "correct": "белом море",
    "case": "Предложный (Prepositional)",
-   "explain": "«Белом море» — after the preposition «в», for location or topic.",
+   "explain": "«белом море» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c10"
   },
   {
@@ -137,64 +53,22 @@
    ],
    "correct": "соседними правительствами",
    "case": "Творительный (Instrumental)",
-   "explain": "«соседними правительствами» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «принятые», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c12"
-  },
-  {
-   "sentence": "___ шумно, жадно обсуждала неслыханный в истории падеж, а правительство советских республик, не поднимая никакого шума, работало не покладая рук.",
-   "lemma": "пресса",
-   "options": [
-    "заграничной прессы",
-    "заграничной прессе",
-    "заграничной прессой",
-    "заграничная пресса"
-   ],
-   "correct": "заграничная пресса",
-   "case": "Именительный (Nominative)",
-   "explain": "«Заграничная пресса» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
   },
   {
    "sentence": "Заграничная пресса шумно, жадно обсуждала неслыханный в истории падеж, а правительство ___, не поднимая никакого шума, работало не покладая рук.",
    "lemma": "республика",
    "options": [
-    "советских республиках",
     "советским республикам",
     "советских республик",
-    "советскими республиками"
+    "советских республиках",
+    "советские республики"
    ],
    "correct": "советских республик",
    "case": "Родительный (Genitive)",
-   "explain": "«советских республик» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«советских республик» depends on the noun «правительство» (whose? of what?) — genitive.",
    "id": "c14"
-  },
-  {
-   "sentence": "Чрезвычайная комиссия по борьбе с куриной чумой переименовалась в чрезвычайную комиссию по поднятию и возрождению куроводства в республике, пополнившись новой ___, в составе шестнадцати товарищей.",
-   "lemma": "тройка",
-   "options": [
-    "чрезвычайной тройки",
-    "чрезвычайной тройке",
-    "чрезвычайная тройка",
-    "чрезвычайной тройкой"
-   ],
-   "correct": "чрезвычайной тройкой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«чрезвычайной тройкой» — the instrumental marks the means, company, or complement.",
-   "id": "c16"
-  },
-  {
-   "sentence": "В газетах под их портретами появились заголовки: «___ яиц за границей» и «Господин Юз хочет сорвать яичную кампанию».",
-   "lemma": "закупка",
-   "options": [
-    "массовой закупкой",
-    "массовой закупки",
-    "массовой закупке",
-    "массовая закупка"
-   ],
-   "correct": "массовая закупка",
-   "case": "Именительный (Nominative)",
-   "explain": "«Массовая закупка» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
   },
   {
    "sentence": "___ выбили его из колеи и навалили на него двойную тяжесть.",
@@ -207,50 +81,22 @@
    ],
    "correct": "куриные события",
    "case": "Именительный (Nominative)",
-   "explain": "«Куриные события» — the subject of the sentence stands in the nominative.",
+   "explain": "«куриные события» is the subject of «выбили» — who or what does it — so nominative.",
    "id": "c18"
   },
   {
    "sentence": "Целыми вечерами ему приходилось работать в заседании ___ и время от времени выносить длинные беседы то с Альфредом Бронским, то с механическим толстяком.",
    "lemma": "комиссия",
    "options": [
-    "куриным комиссиям",
-    "куриными комиссиями",
     "куриных комиссиях",
+    "куриным комиссиям",
+    "куриные комиссии",
     "куриных комиссий"
    ],
    "correct": "куриных комиссий",
    "case": "Родительный (Genitive)",
-   "explain": "«куриных комиссий» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«куриных комиссий» depends on the noun «заседании» (whose? of what?) — genitive.",
    "id": "c19"
-  },
-  {
-   "sentence": "Целыми вечерами ему приходилось работать в заседании куриных комиссий и время от времени выносить ___ то с Альфредом Бронским, то с механическим толстяком.",
-   "lemma": "беседа",
-   "options": [
-    "длинных бесед",
-    "длинным беседам",
-    "длинных беседах",
-    "длинные беседы"
-   ],
-   "correct": "длинные беседы",
-   "case": "Винительный (Accusative)",
-   "explain": "«длинные беседы» — the accusative marks the direct object of the verb.",
-   "id": "c20"
-  },
-  {
-   "sentence": "Работал Персиков без особого жара в куриной области, да оно и понятно, — вся его голова была полна другим — основным и важным — тем, от чего его оторвала его ___, т.-е. от красного луча.",
-   "lemma": "катастрофа",
-   "options": [
-    "куриной катастрофы",
-    "куриной катастрофе",
-    "куриной катастрофой",
-    "куриная катастрофа"
-   ],
-   "correct": "куриная катастрофа",
-   "case": "Именительный (Nominative)",
-   "explain": "«куриная катастрофа» — the subject of the sentence stands in the nominative.",
-   "id": "c22"
   },
   {
    "sentence": "Работал Персиков без особого жара в куриной области, да оно и понятно, — вся его голова была полна другим — основным и важным — тем, от чего его оторвала его куриная катастрофа, т.-е. от ___.",
@@ -263,22 +109,8 @@
    ],
    "correct": "красного луча",
    "case": "Родительный (Genitive)",
-   "explain": "«красного луча» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«красного луча» — «от» always takes the genitive.",
    "id": "c23"
-  },
-  {
-   "sentence": "Микроскопы были заряжены ___, в камере под лучом зрела со сказочной быстротою рыбья и лягушачья икра.",
-   "lemma": "препарат",
-   "options": [
-    "новых препаратах",
-    "новыми препаратами",
-    "новым препаратам",
-    "новые препараты"
-   ],
-   "correct": "новыми препаратами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«новыми препаратами» — after the preposition «со», the instrumental marks the means, company, or complement.",
-   "id": "c24"
   },
   {
    "sentence": "Дело шло о ___ за границей для профессора Персикова.",
@@ -291,35 +123,21 @@
    ],
    "correct": "большом заказе",
    "case": "Предложный (Prepositional)",
-   "explain": "«большом заказе» — after the preposition «о», for location or topic.",
+   "explain": "«большом заказе» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c25"
-  },
-  {
-   "sentence": "Прошла еще неделя, при чем Персиков, все более отдаляясь от затихающих ___, всецело погрузился в изучение луча.",
-   "lemma": "вопрос",
-   "options": [
-    "куриные вопросы",
-    "куриным вопросам",
-    "куриных вопросах",
-    "куриных вопросов"
-   ],
-   "correct": "куриных вопросов",
-   "case": "Родительный (Genitive)",
-   "explain": "«куриных вопросов» — the genitive here marks possession, absence, or quantity.",
-   "id": "c27"
   },
   {
    "sentence": "___ не сходили теперь с его глаз, и почти всякую ночь Персиков ночевал в институте.",
    "lemma": "кольцо",
    "options": [
-    "красных колец",
+    "красными кольцами",
     "красным кольцам",
-    "красных кольцах",
-    "красные кольца"
+    "красные кольца",
+    "красных кольцах"
    ],
    "correct": "красные кольца",
    "case": "Именительный (Nominative)",
-   "explain": "«Красные кольца» — the subject of the sentence stands in the nominative.",
+   "explain": "«красные кольца» is the subject of «сходили» — who or what does it — so nominative.",
    "id": "c28"
   },
   {
@@ -333,22 +151,8 @@
    ],
    "correct": "громадном зале",
    "case": "Предложный (Prepositional)",
-   "explain": "«громадном зале» — after the preposition «в», for location or topic.",
+   "explain": "«громадном зале» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c29"
-  },
-  {
-   "sentence": "На эстраде, рядом с кафедрой, сидела на стеклянном столе, тяжко дыша и серея, на блюде, ___ величиною с кошку.",
-   "lemma": "лягушка",
-   "options": [
-    "влажной лягушки",
-    "влажная лягушка",
-    "влажной лягушке",
-    "влажной лягушкой"
-   ],
-   "correct": "влажная лягушка",
-   "case": "Именительный (Nominative)",
-   "explain": "«влажная лягушка» — the subject of the sentence stands in the nominative.",
-   "id": "c32"
   },
   {
    "sentence": "Перед ним в дыхании и тумане были сотни желтых лиц и мужских белых грудей, и вдруг желтая кобура пистолета мелькнула и пропала где-то за ___.",
@@ -361,7 +165,7 @@
    ],
    "correct": "белой колонной",
    "case": "Творительный (Instrumental)",
-   "explain": "«белой колонной» — after the preposition «за», the instrumental marks the means, company, or complement.",
+   "explain": "«белой колонной» — «за» takes the instrumental here (где? за чем? за кем?) — the accusative would mean motion behind or 'for' (куда? за что?).",
    "id": "c34"
   },
   {
@@ -375,7 +179,7 @@
    ],
    "correct": "августовский день",
    "case": "Именительный (Nominative)",
-   "explain": "«августовский день» — the subject of the sentence stands in the nominative.",
+   "explain": "«августовский день» is the subject of «Был» — who or what does it — so nominative.",
    "id": "c36"
   },
   {
@@ -389,22 +193,8 @@
    ],
    "correct": "острого света",
    "case": "Родительный (Genitive)",
-   "explain": "«острого света» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«острого света» depends on the noun «пучок» (whose? of what?) — genitive.",
    "id": "c37"
-  },
-  {
-   "sentence": "Лицо вошедшего произвело на Персикова то же впечатление, что и на всех — крайне ___.",
-   "lemma": "впечатление",
-   "options": [
-    "неприятным впечатлением",
-    "неприятному впечатлению",
-    "неприятное впечатление",
-    "неприятного впечатления"
-   ],
-   "correct": "неприятное впечатление",
-   "case": "Именительный (Nominative)",
-   "explain": "«неприятное впечатление» — the subject of the sentence stands in the nominative.",
-   "id": "c39"
   },
   {
    "sentence": "И сам Персиков в полутьме у ___ луча, выпадавшего из рефлектора, был достаточно странен и величественен в винтовом кресле.",
@@ -417,7 +207,7 @@
    ],
    "correct": "острой иглы",
    "case": "Родительный (Genitive)",
-   "explain": "«острой иглы» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«острой иглы» — «у» always takes the genitive.",
    "id": "c42"
   },
   {
@@ -431,22 +221,8 @@
    ],
    "correct": "винтовом кресле",
    "case": "Предложный (Prepositional)",
-   "explain": "«винтовом кресле» — after the preposition «в», for location or topic.",
+   "explain": "«винтовом кресле» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c43"
-  },
-  {
-   "sentence": "— Я назначен заведующим ___ «Красный Луч», — пояснил пришлый.",
-   "lemma": "совхоз",
-   "options": [
-    "показательного совхоза",
-    "показательным совхозом",
-    "показательном совхозе",
-    "показательному совхозу"
-   ],
-   "correct": "показательным совхозом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«показательным совхозом» — the instrumental marks the means, company, or complement.",
-   "id": "c44"
   },
   {
    "sentence": "— И вот к вам, товарищ, с ___.",
@@ -459,7 +235,7 @@
    ],
    "correct": "секретным отношением",
    "case": "Творительный (Instrumental)",
-   "explain": "«секретным отношением» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«секретным отношением» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c45"
   },
   {
@@ -473,64 +249,8 @@
    ],
    "correct": "плотной бумаге",
    "case": "Предложный (Prepositional)",
-   "explain": "«плотной бумаге» — after the preposition «на», for location or topic.",
+   "explain": "«плотной бумаге» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c46"
-  },
-  {
-   "sentence": "— Можете купить ___ у Швабе на Кузнецком, — раздраженно ответил профессор.",
-   "lemma": "перчатка",
-   "options": [
-    "резиновые перчатки",
-    "резиновых перчатках",
-    "резиновым перчаткам",
-    "резиновых перчаток"
-   ],
-   "correct": "резиновые перчатки",
-   "case": "Винительный (Accusative)",
-   "explain": "«резиновые перчатки» — the accusative marks the direct object of the verb.",
-   "id": "c47"
-  },
-  {
-   "sentence": "И почему при помощи еще ___?",
-   "lemma": "луч",
-   "options": [
-    "неизученном луче",
-    "неизученным лучом",
-    "неизученный луч",
-    "неизученного луча"
-   ],
-   "correct": "неизученного луча",
-   "case": "Родительный (Genitive)",
-   "explain": "«неизученного луча» — the genitive here marks possession, absence, or quantity.",
-   "id": "c48"
-  },
-  {
-   "sentence": "Надвигались ___, серость овладела институтом, потекла по коридорам.",
-   "lemma": "сумерки",
-   "options": [
-    "июльских сумерек",
-    "июльскими сумерками",
-    "июльские сумерки",
-    "июльским сумеркам"
-   ],
-   "correct": "июльские сумерки",
-   "case": "Именительный (Nominative)",
-   "explain": "«июльские сумерки» — the subject of the sentence stands in the nominative.",
-   "id": "c50"
-  },
-  {
-   "sentence": "Жабы почему-то подняди особенно ___ и стрекотали зловеще и предостерегающе.",
-   "lemma": "концерт",
-   "options": [
-    "тоскливом концерте",
-    "тоскливому концерту",
-    "тоскливый концерт",
-    "тоскливого концерта"
-   ],
-   "correct": "тоскливый концерт",
-   "case": "Винительный (Accusative)",
-   "explain": "«тоскливый концерт» — the accusative marks the direct object of the verb.",
-   "id": "c52"
   },
   {
    "sentence": "В ___ прозвучал звонок из кабинета Персикова.",
@@ -543,7 +263,7 @@
    ],
    "correct": "глубоких сумерках",
    "case": "Предложный (Prepositional)",
-   "explain": "«глубоких сумерках» — after the preposition «в», for location or topic.",
+   "explain": "«глубоких сумерках» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c53"
   },
   {
@@ -557,22 +277,8 @@
    ],
    "correct": "чайного стакана",
    "case": "Родительный (Genitive)",
-   "explain": "«чайного стакана» — after the preposition «около», the genitive here marks possession, absence, or quantity.",
+   "explain": "«чайного стакана» — «около» always takes the genitive.",
    "id": "c55"
-  },
-  {
-   "sentence": "___, уже ближе к полуночи, Панкрат, сидя босиком на скамье в скупо освещенном вестибюле, говорил бессонному дежурному котелку, почесывая грудь под ситцевой рубахой.",
-   "lemma": "вечер",
-   "options": [
-    "позднего вечера",
-    "поздний вечер",
-    "поздним вечером",
-    "позднем вечере"
-   ],
-   "correct": "поздним вечером",
-   "case": "Творительный (Instrumental)",
-   "explain": "«Поздним вечером» — the instrumental marks the means, company, or complement.",
-   "id": "c56"
   }
  ]
 }

@@ -1,90 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Гости сидели ___ у стола, а Наташа, с книжкой в руках, поместилась в углу, под лампой.",
-   "lemma": "кружок",
-   "options": [
-    "тесным кружком",
-    "тесному кружку",
-    "тесного кружка",
-    "тесном кружке"
-   ],
-   "correct": "тесным кружком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«тесным кружком» — the instrumental marks the means, company, or complement.",
-   "id": "c1"
-  },
-  {
-   "sentence": "___ сливался с тонкой, задумчивой песней самовара, в комнате красивой лентой вился рассказ о диких людях, которые жили в пещерах и убивали камнями зверей.",
-   "lemma": "голос",
-   "options": [
-    "звучного голоса",
-    "звучным голосом",
-    "звучному голосу",
-    "звучный голос"
-   ],
-   "correct": "звучный голос",
-   "case": "Именительный (Nominative)",
-   "explain": "«Звучный голос» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Весовщиков сидел на стуле прямо, точно деревянный, упираясь ладонями в колена, и его рябое лицо без бровей, с ___, было неподвижно, как маска.",
-   "lemma": "губа",
-   "options": [
-    "тонкими губами",
-    "тонким губам",
-    "тонких губах",
-    "тонкие губы"
-   ],
-   "correct": "тонкими губами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«тонкими губами» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c5"
-  },
-  {
-   "sentence": "Не мигая ___, он упорно смотрел на свое лицо, отраженное в блестящей меди самовара, и, казалось, не дышал.",
-   "lemma": "глаз",
-   "options": [
-    "узких глазах",
-    "узких глаз",
-    "узкими глазами",
-    "узким глазам"
-   ],
-   "correct": "узкими глазами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«узкими глазами» — the instrumental marks the means, company, or complement.",
-   "id": "c6"
-  },
-  {
-   "sentence": "Мать чувствовала это особенное, неведомое ей и, под журчание голоса Наташи, вспоминала ___ своей молодости, грубые слова парней, от которых всегда пахло перегорелой водкой, их циничные шутки.",
-   "lemma": "вечеринка",
-   "options": [
-    "шумным вечеринкам",
-    "шумные вечеринки",
-    "шумными вечеринками",
-    "шумных вечеринок"
-   ],
-   "correct": "шумные вечеринки",
-   "case": "Винительный (Accusative)",
-   "explain": "«шумные вечеринки» — the accusative marks the direct object of the verb.",
-   "id": "c7"
-  },
-  {
-   "sentence": "Мать чувствовала это особенное, неведомое ей и, под журчание голоса Наташи, вспоминала шумные вечеринки своей молодости, грубые слова парней, от которых всегда пахло перегорелой водкой, их ___.",
-   "lemma": "шутка",
-   "options": [
-    "циничным шуткам",
-    "циничных шутках",
-    "циничные шутки",
-    "циничных шуток"
-   ],
-   "correct": "циничные шутки",
-   "case": "Именительный (Nominative)",
-   "explain": "«циничные шутки» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
-  },
-  {
    "sentence": "-- Мне не то надо знать, как люди жили, а как надо жить! -- раздался в комнате ___ Весовщикова.",
    "lemma": "голос",
    "options": [
@@ -95,7 +11,7 @@
    ],
    "correct": "недовольный голос",
    "case": "Именительный (Nominative)",
-   "explain": "«недовольный голос» — the subject of the sentence stands in the nominative.",
+   "explain": "«недовольный голос» is the subject of «раздался» — who or what does it — so nominative.",
    "id": "c9"
   },
   {
@@ -109,22 +25,8 @@
    ],
    "correct": "резких слов",
    "case": "Родительный (Genitive)",
-   "explain": "«резких слов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«резких слов» is the object of a negated verb («не говорил») — genitive instead of the accusative.",
    "id": "c10"
-  },
-  {
-   "sentence": "Весовщиков, рыжий и приведенный Павлом фабричный стояли все трое ___ и почему-то не нравились матери.",
-   "lemma": "группа",
-   "options": [
-    "тесной группы",
-    "тесная группа",
-    "тесной группе",
-    "тесной группой"
-   ],
-   "correct": "тесной группой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«тесной группой» — the instrumental marks the means, company, or complement.",
-   "id": "c11"
   },
   {
    "sentence": "-- Сытых немало, честных нет! -- говорил хохол. -- Мы должны построить мостик через болото этой гниючей жизни к ___ доброты сердечной, вот наше дело, товарищи!",
@@ -137,22 +39,8 @@
    ],
    "correct": "будущему царству",
    "case": "Дательный (Dative)",
-   "explain": "«будущему царству» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«будущему царству» — «к» always takes the dative.",
    "id": "c12"
-  },
-  {
-   "sentence": "Наташа смотрела на нее, немного прищурив глаза, и этот ___ сконфузил мать.",
-   "lemma": "взгляд",
-   "options": [
-    "пристальному взгляду",
-    "пристальном взгляде",
-    "пристальный взгляд",
-    "пристального взгляда"
-   ],
-   "correct": "пристальный взгляд",
-   "case": "Винительный (Accusative)",
-   "explain": "«пристальный взгляд» — the accusative marks the direct object of the verb.",
-   "id": "c13"
   },
   {
    "sentence": "Она суетилась вокруг стола, убирая посуду, довольная, даже вспотев от ___, -- она была рада, что все было так хорошо и мирно кончилось.",
@@ -165,36 +53,8 @@
    ],
    "correct": "приятного волнения",
    "case": "Родительный (Genitive)",
-   "explain": "«приятного волнения» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«приятного волнения» — «от» always takes the genitive.",
    "id": "c14"
-  },
-  {
-   "sentence": "Она не была уверена в этом, ей хотелось услышать от сына ___.",
-   "lemma": "ответ",
-   "options": [
-    "утвердительном ответе",
-    "утвердительный ответ",
-    "утвердительным ответом",
-    "утвердительному ответу"
-   ],
-   "correct": "утвердительный ответ",
-   "case": "Винительный (Accusative)",
-   "explain": "«утвердительный ответ» — the accusative marks the direct object of the verb.",
-   "id": "c15"
-  },
-  {
-   "sentence": "В сердце закипали слезы и, подобно ___, слепо и жалобно трепетало ожидание горя, о котором так спокойно, уверенно говорил сын.",
-   "lemma": "бабочка",
-   "options": [
-    "ночной бабочкой",
-    "ночной бабочки",
-    "ночной бабочке",
-    "ночная бабочка"
-   ],
-   "correct": "ночной бабочке",
-   "case": "Дательный (Dative)",
-   "explain": "«ночной бабочке» — the dative marks the indirect object or recipient.",
-   "id": "c20"
   },
   {
    "sentence": "Перед глазами ее встала плоская ___.",
@@ -207,7 +67,7 @@
    ],
    "correct": "снежная равнина",
    "case": "Именительный (Nominative)",
-   "explain": "«снежная равнина» — the subject of the sentence stands in the nominative.",
+   "explain": "«снежная равнина» is the subject of «встала» — who or what does it — so nominative.",
    "id": "c21"
   },
   {
@@ -221,7 +81,7 @@
    ],
    "correct": "маленькие ноги",
    "case": "Именительный (Nominative)",
-   "explain": "«маленькие ноги» — the subject of the sentence stands in the nominative.",
+   "explain": "«маленькие ноги» is the subject of «вязнут» — who or what does it — so nominative.",
    "id": "c22"
   },
   {
@@ -235,7 +95,7 @@
    ],
    "correct": "мутной равнины",
    "case": "Родительный (Genitive)",
-   "explain": "«мутной равнины» — after the preposition «среди», the genitive here marks possession, absence, or quantity.",
+   "explain": "«мутной равнины» — «среди» always takes the genitive.",
    "id": "c23"
   },
   {
@@ -249,7 +109,7 @@
    ],
    "correct": "резвой игре",
    "case": "Предложный (Prepositional)",
-   "explain": "«резвой игре» — after the preposition «в», for location or topic.",
+   "explain": "«резвой игре» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c24"
   },
   {
@@ -263,7 +123,7 @@
    ],
    "correct": "осеннего ветра",
    "case": "Родительный (Genitive)",
-   "explain": "«осеннего ветра» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«осеннего ветра» depends on the noun «игре» (whose? of what?) — genitive.",
    "id": "c25"
   }
  ]

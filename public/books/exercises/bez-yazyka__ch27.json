@@ -1,31 +1,17 @@
 {
  "cases": [
   {
-   "sentence": "На платформе царствовало необычайное оживление: выгружали земледельческие машины и камень, слышалась беготня и ___ на странном горловом жаргоне.",
-   "lemma": "крик",
-   "options": [
-    "громкими криками",
-    "громким крикам",
-    "громкие крики",
-    "громких криков"
-   ],
-   "correct": "громкие крики",
-   "case": "Именительный (Nominative)",
-   "explain": "«громкие крики» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "На платформе царствовало необычайное оживление: выгружали земледельческие машины и камень, слышалась беготня и громкие крики на странном ___.",
    "lemma": "жаргон",
    "options": [
-    "горловой жаргон",
     "горловым жаргоном",
-    "горловом жаргоне",
-    "горлового жаргона"
+    "горлового жаргона",
+    "горловому жаргону",
+    "горловом жаргоне"
    ],
    "correct": "горловом жаргоне",
    "case": "Предложный (Prepositional)",
-   "explain": "«горловом жаргоне» — after the preposition «на», for location or topic.",
+   "explain": "«горловом жаргоне» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c2"
   },
   {
@@ -39,78 +25,22 @@
    ],
    "correct": "данных обстоятельствах",
    "case": "Предложный (Prepositional)",
-   "explain": "«данных обстоятельствах» — after the preposition «при», for location or topic.",
+   "explain": "«данных обстоятельствах» — «при» always takes the prepositional.",
    "id": "c3"
-  },
-  {
-   "sentence": "— Слушай, Евгений, — говорил один ___, с легким гортанным акцентом.",
-   "lemma": "тенор",
-   "options": [
-    "высокий тенор",
-    "высокому тенору",
-    "высоким тенором",
-    "высокого тенора"
-   ],
-   "correct": "высоким тенором",
-   "case": "Творительный (Instrumental)",
-   "explain": "«высоким тенором» — the instrumental marks the means, company, or complement.",
-   "id": "c4"
-  },
-  {
-   "sentence": "— Слушай, Евгений, — говорил один высоким тенором, с легким ___.",
-   "lemma": "акцент",
-   "options": [
-    "гортанный акцент",
-    "гортанного акцента",
-    "гортанном акценте",
-    "гортанным акцентом"
-   ],
-   "correct": "гортанным акцентом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«гортанным акцентом» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c5"
-  },
-  {
-   "sentence": "— Нет, не могу, — ответил другой ___.",
-   "lemma": "баритон",
-   "options": [
-    "грудным баритоном",
-    "грудного баритона",
-    "грудному баритону",
-    "грудной баритон"
-   ],
-   "correct": "грудным баритоном",
-   "case": "Творительный (Instrumental)",
-   "explain": "«грудным баритоном» — the instrumental marks the means, company, or complement.",
-   "id": "c6"
   },
   {
    "sentence": "Он положил ___ на полку, над головой Матвея, и затем его взгляд упал на лицо спящего.",
    "lemma": "узелок",
    "options": [
-    "небольшом узелке",
     "небольшим узелком",
-    "небольшой узелок",
-    "небольшого узелка"
+    "небольшом узелке",
+    "небольшому узелку",
+    "небольшой узелок"
    ],
    "correct": "небольшой узелок",
    "case": "Винительный (Accusative)",
-   "explain": "«небольшой узелок» — the accusative marks the direct object of the verb.",
+   "explain": "«небольшой узелок» is the direct object of «положил» (кого? что?) — accusative.",
    "id": "c7"
-  },
-  {
-   "sentence": "Губы его шевелились и бормотали что-то, и на лице виднелось выражение ___.",
-   "lemma": "просьба",
-   "options": [
-    "покорной просьбе",
-    "покорная просьба",
-    "покорной просьбой",
-    "покорной просьбы"
-   ],
-   "correct": "покорной просьбы",
-   "case": "Родительный (Genitive)",
-   "explain": "«покорной просьбы» — the genitive here marks possession, absence, or quantity.",
-   "id": "c9"
   },
   {
    "sentence": "Всю эту короткую молчаливую сцену наблюдал ___ в цилиндре своими рысьими глазками, в которых светилось странное выражение — какого-то насмешливого доброжелательства.",
@@ -123,22 +53,8 @@
    ],
    "correct": "серый господин",
    "case": "Именительный (Nominative)",
-   "explain": "«серый господин» — the subject of the sentence stands in the nominative.",
+   "explain": "«серый господин» is the subject of «наблюдал» — who or what does it — so nominative.",
    "id": "c10"
-  },
-  {
-   "sentence": "Всю эту короткую молчаливую сцену наблюдал серый господин в цилиндре своими ___, в которых светилось странное выражение — какого-то насмешливого доброжелательства.",
-   "lemma": "глазок",
-   "options": [
-    "рысьими глазками",
-    "рысьих глазках",
-    "рысьим глазкам",
-    "рысьих глазков"
-   ],
-   "correct": "рысьими глазками",
-   "case": "Творительный (Instrumental)",
-   "explain": "«рысьими глазками» — the instrumental marks the means, company, or complement.",
-   "id": "c11"
   },
   {
    "sentence": "Всю эту короткую молчаливую сцену наблюдал серый господин в цилиндре своими рысьими глазками, в которых светилось ___ — какого-то насмешливого доброжелательства.",
@@ -151,77 +67,49 @@
    ],
    "correct": "странное выражение",
    "case": "Именительный (Nominative)",
-   "explain": "«странное выражение» — the subject of the sentence stands in the nominative.",
+   "explain": "«странное выражение» is the subject of «светилось» — who or what does it — so nominative.",
    "id": "c12"
-  },
-  {
-   "sentence": "Всю эту короткую молчаливую сцену наблюдал серый господин в цилиндре своими рысьими глазками, в которых светилось странное выражение — какого-то ___.",
-   "lemma": "доброжелательство",
-   "options": [
-    "насмешливого доброжелательства",
-    "насмешливому доброжелательству",
-    "насмешливым доброжелательством",
-    "насмешливое доброжелательство"
-   ],
-   "correct": "насмешливого доброжелательства",
-   "case": "Родительный (Genitive)",
-   "explain": "«насмешливого доброжелательства» — the genitive here marks possession, absence, or quantity.",
-   "id": "c13"
   },
   {
    "sentence": "Здравствуйте, судья Дикинсон, — ответил он на чистом ___, протягивая судье руку.— Простите, я вас не заметил.",
    "lemma": "язык",
    "options": [
-    "английском языке",
     "английскому языку",
     "английского языка",
-    "английский язык"
+    "английском языке",
+    "английским языком"
    ],
    "correct": "английском языке",
    "case": "Предложный (Prepositional)",
-   "explain": "«английском языке» — after the preposition «на», for location or topic.",
+   "explain": "«английском языке» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c14"
-  },
-  {
-   "sentence": "— Очевидно, иностранец, — сказал судья Дикинсон, меряя спящего Матвея испытующим, ___.",
-   "lemma": "взгляд",
-   "options": [
-    "внимательным взглядом",
-    "внимательному взгляду",
-    "внимательного взгляда",
-    "внимательный взгляд"
-   ],
-   "correct": "внимательным взглядом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«внимательным взглядом» — the instrumental marks the means, company, or complement.",
-   "id": "c15"
   },
   {
    "sentence": "Я видел: они выписали ___ — лучшая марка в Америке.",
    "lemma": "машина",
    "options": [
-    "хорошие машины",
-    "хороших машинах",
     "хорошими машинами",
-    "хороших машин"
+    "хорошие машины",
+    "хорошим машинам",
+    "хороших машинах"
    ],
    "correct": "хорошие машины",
    "case": "Винительный (Accusative)",
-   "explain": "«хорошие машины» — the accusative marks the direct object of the verb.",
+   "explain": "«хорошие машины» is the direct object of «выписали» (кого? что?) — accusative.",
    "id": "c16"
   },
   {
    "sentence": "— Читали вы извлечение из отчетов ___?..",
    "lemma": "комитет",
    "options": [
-    "эмиграционный комитет",
     "эмиграционного комитета",
     "эмиграционным комитетом",
-    "эмиграционному комитету"
+    "эмиграционном комитете",
+    "эмиграционный комитет"
    ],
    "correct": "эмиграционного комитета",
    "case": "Родительный (Genitive)",
-   "explain": "«эмиграционного комитета» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«эмиграционного комитета» depends on the noun «отчетов» (whose? of what?) — genitive.",
    "id": "c17"
   },
   {
@@ -235,36 +123,8 @@
    ],
    "correct": "нью-йоркского дикаря",
    "case": "Родительный (Genitive)",
-   "explain": "«нью-йоркского дикаря» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«нью-йоркского дикаря» depends on the noun «истории» (whose? of what?) — genitive.",
    "id": "c18"
-  },
-  {
-   "sentence": "Не все ___ верны.",
-   "lemma": "известие",
-   "options": [
-    "газетными известиями",
-    "газетным известиям",
-    "газетных известий",
-    "газетные известия"
-   ],
-   "correct": "газетные известия",
-   "case": "Именительный (Nominative)",
-   "explain": "«газетные известия» — the subject of the sentence stands in the nominative.",
-   "id": "c19"
-  },
-  {
-   "sentence": "И я считаю оскорбительной нелепостью ___ о том, что они кусаются.",
-   "lemma": "толк",
-   "options": [
-    "газетным толкам",
-    "газетных толках",
-    "газетными толками",
-    "газетные толки"
-   ],
-   "correct": "газетные толки",
-   "case": "Винительный (Accusative)",
-   "explain": "«газетные толки» — the accusative marks the direct object of the verb.",
-   "id": "c20"
   },
   {
    "sentence": "___ вынул изо рта сигару и некоторое время смотрел на собеседника, как будто удивленный неожиданным оборотом разговора.",
@@ -277,106 +137,8 @@
    ],
    "correct": "серый господин",
    "case": "Именительный (Nominative)",
-   "explain": "«Серый господин» — the subject of the sentence stands in the nominative.",
+   "explain": "«серый господин» is the subject of «вынул» — who or what does it — so nominative.",
    "id": "c21"
-  },
-  {
-   "sentence": "Серый господин вынул изо рта сигару и некоторое время смотрел на собеседника, как будто удивленный ___ разговора.",
-   "lemma": "оборот",
-   "options": [
-    "неожиданный оборот",
-    "неожиданному обороту",
-    "неожиданного оборота",
-    "неожиданным оборотом"
-   ],
-   "correct": "неожиданным оборотом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«неожиданным оборотом» — the instrumental marks the means, company, or complement.",
-   "id": "c22"
-  },
-  {
-   "sentence": "Вы были бы ___.",
-   "lemma": "адвокат",
-   "options": [
-    "отличным адвокатом",
-    "отличном адвокате",
-    "отличному адвокату",
-    "отличный адвокат"
-   ],
-   "correct": "отличным адвокатом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«отличным адвокатом» — the instrumental marks the means, company, or complement.",
-   "id": "c23"
-  },
-  {
-   "sentence": "— Я вижу на вас, судья Дикинсон, ваш ___!",
-   "lemma": "костюм",
-   "options": [
-    "рабочего костюма",
-    "рабочий костюм",
-    "рабочим костюмом",
-    "рабочем костюме"
-   ],
-   "correct": "рабочий костюм",
-   "case": "Именительный (Nominative)",
-   "explain": "«рабочий костюм» — the subject of the sentence stands in the nominative.",
-   "id": "c24"
-  },
-  {
-   "sentence": "— О, это немного ___, — ответил Дикинсон.",
-   "lemma": "дело",
-   "options": [
-    "другое дело",
-    "другому делу",
-    "другого дела",
-    "другом деле"
-   ],
-   "correct": "другое дело",
-   "case": "Именительный (Nominative)",
-   "explain": "«другое дело» — the subject of the sentence stands in the nominative.",
-   "id": "c25"
-  },
-  {
-   "sentence": "— Но, повторяю, это ___.",
-   "lemma": "дело",
-   "options": [
-    "другое дело",
-    "другому делу",
-    "другого дела",
-    "другом деле"
-   ],
-   "correct": "другое дело",
-   "case": "Именительный (Nominative)",
-   "explain": "«другое дело» — the subject of the sentence stands in the nominative.",
-   "id": "c26"
-  },
-  {
-   "sentence": "Это напоминает мне, чем я был и чем стал, то есть чем именно я обязан моим ___.",
-   "lemma": "доспех",
-   "options": [
-    "старые доспехи",
-    "старых доспехах",
-    "старыми доспехами",
-    "старым доспехам"
-   ],
-   "correct": "старым доспехам",
-   "case": "Дательный (Dative)",
-   "explain": "«старым доспехам» — the dative marks the indirect object or recipient.",
-   "id": "c27"
-  },
-  {
-   "sentence": "Нилов, снимая свой узел, еще раз пристально и как будто в нерешимости посмотрел на Матвея, но, заметив ___ Дикинсона, взял узел и попрощался с судьей.",
-   "lemma": "взгляд",
-   "options": [
-    "остром взгляде",
-    "острым взглядом",
-    "острого взгляда",
-    "острый взгляд"
-   ],
-   "correct": "острый взгляд",
-   "case": "Винительный (Accusative)",
-   "explain": "«острый взгляд» — the accusative marks the direct object of the verb.",
-   "id": "c28"
   },
   {
    "sentence": "Я усмехнулся и сказал: «Для ___, я не прочь попасть в президенты».",
@@ -389,7 +151,7 @@
    ],
    "correct": "первого случая",
    "case": "Родительный (Genitive)",
-   "explain": "«первого случая» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«первого случая» — «для» always takes the genitive.",
    "id": "c29"
   },
   {
@@ -403,7 +165,7 @@
    ],
    "correct": "русского джентльмена",
    "case": "Винительный (Accusative)",
-   "explain": "«русского джентльмена» — the accusative marks the direct object of the verb.",
+   "explain": "«русского джентльмена» is the direct object of «заметил» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c30"
   },
   {
@@ -417,7 +179,7 @@
    ],
    "correct": "неудобном положении",
    "case": "Предложный (Prepositional)",
-   "explain": "«неудобном положении» — after the preposition «в», for location or topic.",
+   "explain": "«неудобном положении» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c31"
   }
  ]

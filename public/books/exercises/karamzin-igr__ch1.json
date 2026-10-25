@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Но и ___ должен читать Историю.",
-   "lemma": "гражданин",
-   "options": [
-    "простого гражданина",
-    "простой гражданин",
-    "простым гражданином",
-    "простом гражданине"
-   ],
-   "correct": "простой гражданин",
-   "case": "Именительный (Nominative)",
-   "explain": "«простой гражданин» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "На ___ Олимпийских умолкал шум, и толпы безмолвствовали вокруг Геродота, читающего предания веков.",
    "lemma": "игра",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "славных играх",
    "case": "Предложный (Prepositional)",
-   "explain": "«славных играх» — after the preposition «на», for location or topic.",
+   "explain": "«славных играх» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c2"
   },
   {
@@ -39,36 +25,22 @@
    ],
    "correct": "полного удовольствия",
    "case": "Родительный (Genitive)",
-   "explain": "«полного удовольствия» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«полного удовольствия» — «для» always takes the genitive.",
    "id": "c3"
   },
   {
    "sentence": "Не только Новгород, Киев, Владимир, но и хижины Ельца, Козельска, Галича делаются ___ и немые предметы — красноречивыми.",
    "lemma": "памятник",
    "options": [
-    "любопытным памятникам",
     "любопытных памятниках",
     "любопытными памятниками",
-    "любопытные памятники"
+    "любопытным памятникам",
+    "любопытных памятников"
    ],
    "correct": "любопытными памятниками",
    "case": "Творительный (Instrumental)",
-   "explain": "«любопытными памятниками» — the instrumental marks the means, company, or complement.",
+   "explain": "After «делаются», what someone or something is or becomes stands in the instrumental.",
    "id": "c5"
-  },
-  {
-   "sentence": "Тени ___ везде рисуют картины перед нами.",
-   "lemma": "столетие",
-   "options": [
-    "минувшим столетиям",
-    "минувшие столетия",
-    "минувших столетий",
-    "минувших столетиях"
-   ],
-   "correct": "минувших столетий",
-   "case": "Родительный (Genitive)",
-   "explain": "«минувших столетий» — the genitive here marks possession, absence, or quantity.",
-   "id": "c6"
   },
   {
    "sentence": "Подобно Америке Россия имеет своих диких; подобно ___ Европы являет плоды долговременной гражданской жизни.",
@@ -81,21 +53,21 @@
    ],
    "correct": "другим странам",
    "case": "Дательный (Dative)",
-   "explain": "«другим странам» — the dative marks the indirect object or recipient.",
+   "explain": "«другим странам» is the indirect object of «являет» — to or for whom (кому?) — dative.",
    "id": "c7"
   },
   {
    "sentence": "Таковы суть подвиги Святослава, гроза Батыева, восстание Россиян при Донском, падение Новагорода, взятие Казани, торжество ___ во время Междоцарствия.",
    "lemma": "добродетель",
    "options": [
+    "народные добродетели",
     "народных добродетелях",
-    "народными добродетелями",
     "народным добродетелям",
     "народных добродетелей"
    ],
    "correct": "народных добродетелей",
    "case": "Родительный (Genitive)",
-   "explain": "«народных добродетелей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«народных добродетелей» depends on the noun «торжество» (whose? of what?) — genitive.",
    "id": "c8"
   },
   {
@@ -109,7 +81,7 @@
    ],
    "correct": "редкое богатство",
    "case": "Именительный (Nominative)",
-   "explain": "«редкое богатство» — the subject of the sentence stands in the nominative.",
+   "explain": "«редкое богатство» is the subject of «есть» — who or what does it — so nominative.",
    "id": "c9"
   },
   {
@@ -123,36 +95,8 @@
    ],
    "correct": "высоком понятии",
    "case": "Предложный (Prepositional)",
-   "explain": "«высоком понятии» — after the preposition «в», for location or topic.",
+   "explain": "«высоком понятии» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c12"
-  },
-  {
-   "sentence": "Если исключить из бессмертного творения Фукидидова ___, что останется?",
-   "lemma": "речь",
-   "options": [
-    "вымышленные речи",
-    "вымышленным речам",
-    "вымышленных речах",
-    "вымышленными речами"
-   ],
-   "correct": "вымышленные речи",
-   "case": "Винительный (Accusative)",
-   "explain": "«вымышленные речи» — the accusative marks the direct object of the verb.",
-   "id": "c13"
-  },
-  {
-   "sentence": "___ о междоусобии Греческих городов: толпы злодействуют, режутся за честь Афин или Спарты, как у нас за честь Мономахова или Олегова Дома.",
-   "lemma": "рассказ",
-   "options": [
-    "голом рассказе",
-    "голым рассказом",
-    "голого рассказа",
-    "голый рассказ"
-   ],
-   "correct": "голый рассказ",
-   "case": "Именительный (Nominative)",
-   "explain": "«Голый рассказ» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
   },
   {
    "sentence": "Голый рассказ о междоусобии ___: толпы злодействуют, режутся за честь Афин или Спарты, как у нас за честь Мономахова или Олегова Дома.",
@@ -165,7 +109,7 @@
    ],
    "correct": "греческих городов",
    "case": "Родительный (Genitive)",
-   "explain": "«Греческих городов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«греческих городов» depends on the noun «междоусобии» (whose? of what?) — genitive.",
    "id": "c15"
   },
   {
@@ -179,22 +123,8 @@
    ],
    "correct": "глубокомысленный живописец",
    "case": "Именительный (Nominative)",
-   "explain": "«Глубокомысленный живописец» — the subject of the sentence stands in the nominative.",
+   "explain": "«глубокомысленный живописец» is the subject of «представляет» — who or what does it — so nominative.",
    "id": "c16"
-  },
-  {
-   "sentence": "Он завидовал Титу Ливию в богатстве предмета; а Ливий, плавный, красноречивый, иногда ___ наполняет известиями о сшибках и разбоях, которые едва ли важнее Половецких набегов.",
-   "lemma": "книга",
-   "options": [
-    "целые книги",
-    "целым книгам",
-    "целых книгах",
-    "целых книг"
-   ],
-   "correct": "целые книги",
-   "case": "Винительный (Accusative)",
-   "explain": "«целые книги» — the accusative marks the direct object of the verb.",
-   "id": "c17"
   },
   {
    "sentence": "Но сии обозрения, сии картины не заменяют летописей, и кто читал единственно Робертсоново Введение в Историю Карла V, тот ещё не имеет основательного, истинного понятия о Европе ___.",
@@ -207,22 +137,8 @@
    ],
    "correct": "средних времён",
    "case": "Родительный (Genitive)",
-   "explain": "«средних времён» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«средних времён» depends on the noun «Европе» (whose? of what?) — genitive.",
    "id": "c18"
-  },
-  {
-   "sentence": "Мало, что ___, окинув глазами памятники веков, скажет нам свои примечания: мы должны сами видеть действия и действующих: тогда знаем Историю.",
-   "lemma": "человек",
-   "options": [
-    "умному человеку",
-    "умным человеком",
-    "умный человек",
-    "умном человеке"
-   ],
-   "correct": "умный человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«умный человек» — the subject of the sentence stands in the nominative.",
-   "id": "c19"
   },
   {
    "sentence": "Хвастливость ___ и нега Читателей осудят ли на вечное забвение дела и судьбу наших предков?",
@@ -235,7 +151,7 @@
    ],
    "correct": "авторского красноречия",
    "case": "Родительный (Genitive)",
-   "explain": "«авторского красноречия» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«авторского красноречия» depends on the noun «Хвастливость» (whose? of what?) — genitive.",
    "id": "c20"
   },
   {
@@ -249,7 +165,7 @@
    ],
    "correct": "истинных дарований",
    "case": "Родительный (Genitive)",
-   "explain": "«истинных дарований» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«истинных дарований» — «для» always takes the genitive.",
    "id": "c21"
   },
   {
@@ -263,7 +179,7 @@
    ],
    "correct": "добросовестных читателей",
    "case": "Винительный (Accusative)",
-   "explain": "«добросовестных Читателей» — the accusative marks the direct object of the verb.",
+   "explain": "«добросовестных читателей» is the direct object of «обманывать» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c22"
   },
   {
@@ -277,7 +193,7 @@
    ],
    "correct": "сухим хартиям",
    "case": "Дательный (Dative)",
-   "explain": "«сухим хартиям» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«сухим хартиям» — «к» always takes the dative.",
    "id": "c23"
   },
   {
@@ -291,92 +207,22 @@
    ],
    "correct": "данного вещества",
    "case": "Родительный (Genitive)",
-   "explain": "«данного вещества» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«данного вещества» — «из» always takes the genitive.",
    "id": "c24"
-  },
-  {
-   "sentence": "Знание всех Прав на свете, учёность Немецкая, остроумие Вольтерово, ни ___ Макиавелево в Историке не заменяют таланта изображать действия.",
-   "lemma": "глубокомыслие",
-   "options": [
-    "самом глубокомыслии",
-    "самого глубокомыслия",
-    "самое глубокомыслие",
-    "самым глубокомыслием"
-   ],
-   "correct": "самое глубокомыслие",
-   "case": "Именительный (Nominative)",
-   "explain": "«самое глубокомыслие» — the subject of the sentence stands in the nominative.",
-   "id": "c25"
-  },
-  {
-   "sentence": "Англичане славятся Юмом, Немцы Иоанном Мюллером, и справедливо: оба суть ___ Древних, — не подражатели: ибо каждый век, каждый народ даёт особенные краски искусному Бытописателю.",
-   "lemma": "совместник",
-   "options": [
-    "достойным совместникам",
-    "достойных совместниках",
-    "достойные совместники",
-    "достойных совместников"
-   ],
-   "correct": "достойные совместники",
-   "case": "Именительный (Nominative)",
-   "explain": "«достойные совместники» — the subject of the sentence stands in the nominative.",
-   "id": "c26"
   },
   {
    "sentence": "Англичане славятся Юмом, Немцы Иоанном Мюллером, и справедливо: оба суть достойные совместники Древних, — не подражатели: ибо каждый век, каждый народ даёт ___ искусному Бытописателю.",
    "lemma": "краска",
    "options": [
-    "особенных красок",
-    "особенных красках",
     "особенные краски",
+    "особенными красками",
+    "особенных красках",
     "особенным краскам"
    ],
    "correct": "особенные краски",
    "case": "Винительный (Accusative)",
-   "explain": "«особенные краски» — the accusative marks the direct object of the verb.",
+   "explain": "«особенные краски» is the direct object of «даёт» (кого? что?) — accusative.",
    "id": "c27"
-  },
-  {
-   "sentence": "Хотел ли Мюллер, часто вставляя в рассказ ___, уподобиться Тациту?",
-   "lemma": "апоффегма",
-   "options": [
-    "нравственные апоффегмы",
-    "нравственных апоффегмах",
-    "нравственными апоффегмами",
-    "нравственным апоффегмам"
-   ],
-   "correct": "нравственные апоффегмы",
-   "case": "Винительный (Accusative)",
-   "explain": "«нравственные апоффегмы» — the accusative marks the direct object of the verb.",
-   "id": "c29"
-  },
-  {
-   "sentence": "Не знаю; но ___ блистать умом, или казаться глубокомысленным, едва ли не противно истинному вкусу.",
-   "lemma": "желание",
-   "options": [
-    "сего желания",
-    "сём желании",
-    "сие желание",
-    "сему желанию"
-   ],
-   "correct": "сие желание",
-   "case": "Именительный (Nominative)",
-   "explain": "«сие желание» — the subject of the sentence stands in the nominative.",
-   "id": "c30"
-  },
-  {
-   "sentence": "Не знаю; но сие желание блистать умом, или казаться глубокомысленным, едва ли не противно ___.",
-   "lemma": "вкус",
-   "options": [
-    "истинном вкусе",
-    "истинный вкус",
-    "истинному вкусу",
-    "истинным вкусом"
-   ],
-   "correct": "истинному вкусу",
-   "case": "Дательный (Dative)",
-   "explain": "«истинному вкусу» — the dative marks the indirect object or recipient.",
-   "id": "c31"
   },
   {
    "sentence": "Заметим, что сии апоффегмы бывают для ___ или полуистинами, или весьма обыкновенными истинами, которые не имеют большой цены в Истории, где ищем действий и характеров.",
@@ -389,22 +235,8 @@
    ],
    "correct": "основательных умов",
    "case": "Родительный (Genitive)",
-   "explain": "«основательных умов» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«основательных умов» — «для» always takes the genitive.",
    "id": "c32"
-  },
-  {
-   "sentence": "Заметим, что сии апоффегмы бывают для основательных умов или полуистинами, или весьма ___, которые не имеют большой цены в Истории, где ищем действий и характеров.",
-   "lemma": "истина",
-   "options": [
-    "обыкновенным истинам",
-    "обыкновенными истинами",
-    "обыкновенных истинах",
-    "обыкновенных истин"
-   ],
-   "correct": "обыкновенными истинами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«обыкновенными истинами» — the instrumental marks the means, company, or complement.",
-   "id": "c33"
   },
   {
    "sentence": "Заметим, что сии апоффегмы бывают для основательных умов или полуистинами, или весьма обыкновенными истинами, которые не имеют ___ в Истории, где ищем действий и характеров.",
@@ -417,50 +249,8 @@
    ],
    "correct": "большой цены",
    "case": "Родительный (Genitive)",
-   "explain": "«большой цены» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«большой цены» is the object of a negated verb («не имеют») — genitive instead of the accusative.",
    "id": "c34"
-  },
-  {
-   "sentence": "___ есть долг бытописателя, а хорошая отдельная мысль дар: читатель требует первого и благодарит за второе, когда уже требование его исполнено.",
-   "lemma": "повествование",
-   "options": [
-    "искусному повествованию",
-    "искусном повествовании",
-    "искусное повествование",
-    "искусным повествованием"
-   ],
-   "correct": "искусное повествование",
-   "case": "Именительный (Nominative)",
-   "explain": "«Искусное повествование» — the subject of the sentence stands in the nominative.",
-   "id": "c35"
-  },
-  {
-   "sentence": "Чувство: мы, наше, оживляет повествование — и как ___, следствие ума слабого или души слабой, несносно в Историке, так любовь к отечеству даст его кисти жар, силу, прелесть.",
-   "lemma": "пристрастие",
-   "options": [
-    "грубым пристрастием",
-    "грубом пристрастии",
-    "грубое пристрастие",
-    "грубому пристрастию"
-   ],
-   "correct": "грубое пристрастие",
-   "case": "Именительный (Nominative)",
-   "explain": "«грубое пристрастие» — the subject of the sentence stands in the nominative.",
-   "id": "c37"
-  },
-  {
-   "sentence": "Надлежало или не сказать ничего, или сказать всё о таком-то Князе, дабы он жил в нашей памяти не одним ___, но с некоторою нравственною физиогномиею.",
-   "lemma": "имя",
-   "options": [
-    "сухого имени",
-    "сухому имени",
-    "сухим именем",
-    "сухое имя"
-   ],
-   "correct": "сухим именем",
-   "case": "Творительный (Instrumental)",
-   "explain": "«сухим именем» — after the preposition «о», the instrumental marks the means, company, or complement.",
-   "id": "c38"
   },
   {
    "sentence": "Взор наш, в созерцании ___, не стремится ли обыкновенно — мимо всего близкого, ясного — к концу горизонта, где густеют, меркнут тени и начинается непроницаемость?",
@@ -473,36 +263,8 @@
    ],
    "correct": "великого пространства",
    "case": "Родительный (Genitive)",
-   "explain": "«великого пространства» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«великого пространства» depends on the noun «созерцании» (whose? of what?) — genitive.",
    "id": "c39"
-  },
-  {
-   "sentence": "Счастливы Древние: они не ведали сего мелочного труда, в коем теряется половина времени, скучает ум, вянет воображение: ___, приносимая достоверности, однакож необходимая!",
-   "lemma": "жертва",
-   "options": [
-    "тягостная жертва",
-    "тягостной жертвы",
-    "тягостной жертвой",
-    "тягостной жертве"
-   ],
-   "correct": "тягостная жертва",
-   "case": "Именительный (Nominative)",
-   "explain": "«тягостная жертва» — the subject of the sentence stands in the nominative.",
-   "id": "c41"
-  },
-  {
-   "sentence": "Для охотников все бывает любопытно: ___, слово; малейшая черта древности даёт повод к соображениям.",
-   "lemma": "имя",
-   "options": [
-    "старого имени",
-    "старом имени",
-    "старое имя",
-    "старым именем"
-   ],
-   "correct": "старое имя",
-   "case": "Именительный (Nominative)",
-   "explain": "«старое имя» — the subject of the sentence stands in the nominative.",
-   "id": "c42"
   },
   {
    "sentence": "Система Уделов была характером ___, единовластие второй, изменение гражданских обычаев третьей.",
@@ -515,7 +277,7 @@
    ],
    "correct": "первой эпохи",
    "case": "Родительный (Genitive)",
-   "explain": "«первой эпохи» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«первой эпохи» depends on the noun «характером» (whose? of what?) — genitive.",
    "id": "c43"
   },
   {
@@ -523,13 +285,13 @@
    "lemma": "обычай",
    "options": [
     "гражданским обычаям",
-    "гражданскими обычаями",
+    "гражданские обычаи",
     "гражданских обычаях",
     "гражданских обычаев"
    ],
    "correct": "гражданских обычаев",
    "case": "Родительный (Genitive)",
-   "explain": "«гражданских обычаев» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«гражданских обычаев» depends on the noun «изменение» (whose? of what?) — genitive.",
    "id": "c44"
   },
   {
@@ -543,7 +305,7 @@
    ],
    "correct": "добрых сограждан",
    "case": "Родительный (Genitive)",
-   "explain": "«добрых сограждан» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«добрых сограждан» depends on the noun «снисходительности» (whose? of what?) — genitive.",
    "id": "c45"
   }
  ]

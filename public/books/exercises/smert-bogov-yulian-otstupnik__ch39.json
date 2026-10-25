@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Это был ___ отступления на шестнадцатые календы июня.",
-   "lemma": "ночлег",
-   "options": [
-    "первом ночлеге",
-    "первый ночлег",
-    "первого ночлега",
-    "первому ночлегу"
-   ],
-   "correct": "первый ночлег",
-   "case": "Именительный (Nominative)",
-   "explain": "«первый ночлег» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Желая перед ___ истощить римское войско, они подожгли богатые нивы с желтевшим, спелым ячменем и пшеницей, все житницы и сеновалы в селениях.",
    "lemma": "нападение",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "решительным нападением",
    "case": "Творительный (Instrumental)",
-   "explain": "«решительным нападением» — after the preposition «перед», the instrumental marks the means, company, or complement.",
+   "explain": "«решительным нападением» — «перед» always takes the instrumental.",
    "id": "c3"
   },
   {
@@ -39,22 +25,8 @@
    ],
    "correct": "недавнего пожара",
    "case": "Родительный (Genitive)",
-   "explain": "«недавнего пожара» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«недавнего пожара» — «от» always takes the genitive.",
    "id": "c4"
-  },
-  {
-   "sentence": "Им помогали потоки и ручьи, выходившие из берегов вследствие краткого, но сильного ___ снегов на горных вершинах Армении.",
-   "lemma": "таяние",
-   "options": [
-    "летнему таянию",
-    "летнее таяние",
-    "летнем таянии",
-    "летнего таяния"
-   ],
-   "correct": "летнего таяния",
-   "case": "Родительный (Genitive)",
-   "explain": "«летнего таяния» — the genitive here marks possession, absence, or quantity.",
-   "id": "c5"
   },
   {
    "sentence": "Вода быстро высыхала под знойным ___.",
@@ -67,7 +39,7 @@
    ],
    "correct": "июньским солнцем",
    "case": "Творительный (Instrumental)",
-   "explain": "«июньским солнцем» — after the preposition «под», the instrumental marks the means, company, or complement.",
+   "explain": "«июньским солнцем» — «под» takes the instrumental here (где? под чем?) — the accusative would mean movement under (куда? под что?).",
    "id": "c7"
   },
   {
@@ -81,22 +53,8 @@
    ],
    "correct": "мокрого угля",
    "case": "Родительный (Genitive)",
-   "explain": "«мокрого угля» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«мокрого угля» — «от» always takes the genitive.",
    "id": "c8"
-  },
-  {
-   "sentence": "Из тлеющих болот подымались тучи насекомых: москитов, ___, оводов и мух.",
-   "lemma": "шершень",
-   "options": [
-    "ядовитых шершнях",
-    "ядовитыми шершнями",
-    "ядовитым шершням",
-    "ядовитых шершней"
-   ],
-   "correct": "ядовитых шершней",
-   "case": "Родительный (Genitive)",
-   "explain": "«ядовитых шершней» — the genitive here marks possession, absence, or quantity.",
-   "id": "c9"
   },
   {
    "sentence": "Они носились над ___, прилипали к пыльной потной коже легионеров.",
@@ -109,7 +67,7 @@
    ],
    "correct": "вьючными животными",
    "case": "Творительный (Instrumental)",
-   "explain": "«вьючными животными» — after the preposition «над», the instrumental marks the means, company, or complement.",
+   "explain": "«вьючными животными» — «над» always takes the instrumental.",
    "id": "c10"
   },
   {
@@ -123,7 +81,7 @@
    ],
    "correct": "потной коже",
    "case": "Дательный (Dative)",
-   "explain": "«потной коже» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«потной коже» — «к» always takes the dative.",
    "id": "c11"
   },
   {
@@ -137,7 +95,7 @@
    ],
    "correct": "трудного перехода",
    "case": "Родительный (Genitive)",
-   "explain": "«трудного перехода» — after the preposition «после», the genitive here marks possession, absence, or quantity.",
+   "explain": "«трудного перехода» — «после» always takes the genitive.",
    "id": "c12"
   },
   {
@@ -151,7 +109,7 @@
    ],
    "correct": "прозрачных мух",
    "case": "Родительный (Genitive)",
-   "explain": "«прозрачных мух» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«прозрачных мух» depends on the noun «укуса» (whose? of what?) — genitive.",
    "id": "c13"
   },
   {
@@ -159,13 +117,13 @@
    "lemma": "язва",
    "options": [
     "гнойные язвы",
-    "гнойных язвах",
-    "гнойных язв",
-    "гнойными язвами"
+    "гнойными язвами",
+    "гнойным язвам",
+    "гнойных язв"
    ],
    "correct": "гнойные язвы",
    "case": "Винительный (Accusative)",
-   "explain": "«гнойные язвы» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«гнойные язвы» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c14"
   },
   {
@@ -179,22 +137,8 @@
    ],
    "correct": "знойных облаков",
    "case": "Родительный (Genitive)",
-   "explain": "«знойных облаков» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«знойных облаков» depends on the noun «пеленой» (whose? of what?) — genitive.",
    "id": "c17"
-  },
-  {
-   "sentence": "Небо покрыто было ровной пеленой белых знойных облаков; но для глаз их ___ был еще томительнее солнца; небо казалось низким, плотным, удушливым, как в жаркой бане нависший потолок.",
-   "lemma": "свет",
-   "options": [
-    "неподвижному свету",
-    "неподвижным светом",
-    "неподвижного света",
-    "неподвижный свет"
-   ],
-   "correct": "неподвижный свет",
-   "case": "Именительный (Nominative)",
-   "explain": "«неподвижный свет» — the subject of the sentence stands in the nominative.",
-   "id": "c18"
   },
   {
    "sentence": "Небо покрыто было ровной пеленой белых знойных облаков; но для глаз их неподвижный свет был еще томительнее солнца; небо казалось низким, плотным, удушливым, как в ___ нависший потолок.",
@@ -207,36 +151,8 @@
    ],
    "correct": "жаркой бане",
    "case": "Предложный (Prepositional)",
-   "explain": "«жаркой бане» — after the preposition «в», for location or topic.",
+   "explain": "«жаркой бане» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c19"
-  },
-  {
-   "sentence": "Другие тихонько молились и плакали, как ___, прося товарищей о куске хлеба, о глотке вина.",
-   "lemma": "ребёнок",
-   "options": [
-    "больные дети",
-    "больными детьми",
-    "больных детях",
-    "больным детям"
-   ],
-   "correct": "больные дети",
-   "case": "Именительный (Nominative)",
-   "explain": "«больные дети» — the subject of the sentence stands in the nominative.",
-   "id": "c20"
-  },
-  {
-   "sentence": "Император велел раздать голодным последние ___, которые сберегали для него и для его приближенных.",
-   "lemma": "припас",
-   "options": [
-    "съестных припасов",
-    "съестные припасы",
-    "съестным припасам",
-    "съестных припасах"
-   ],
-   "correct": "съестные припасы",
-   "case": "Винительный (Accusative)",
-   "explain": "«съестные припасы» — the accusative marks the direct object of the verb.",
-   "id": "c21"
   },
   {
    "sentence": "Благодаря ___, чувствовал он все время возбуждение и, вместе с тем, странную легкость в теле, как бы окрыленность: она поддерживала и удесятеряла силы.",
@@ -249,7 +165,7 @@
    ],
    "correct": "крайнему воздержанию",
    "case": "Дательный (Dative)",
-   "explain": "«крайнему воздержанию» — after the preposition «благодаря», the dative marks the indirect object or recipient.",
+   "explain": "«крайнему воздержанию» — «благодаря» always takes the dative.",
    "id": "c23"
   },
   {
@@ -263,7 +179,7 @@
    ],
    "correct": "последних запасов",
    "case": "Родительный (Genitive)",
-   "explain": "«последних запасов» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«последних запасов» — «из» always takes the genitive.",
    "id": "c24"
   },
   {
@@ -277,22 +193,8 @@
    ],
    "correct": "медной лампады",
    "case": "Родительный (Genitive)",
-   "explain": "«медной лампады» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«медной лампады» depends on the noun «нагар» (whose? of what?) — genitive.",
    "id": "c25"
-  },
-  {
-   "sentence": "Кругом были разбросаны ___ из походной библиотеки – среди них Евангелие.",
-   "lemma": "свитка",
-   "options": [
-    "пергаментными свитками",
-    "пергаментные свитки",
-    "пергаментных свитках",
-    "пергаментным свиткам"
-   ],
-   "correct": "пергаментные свитки",
-   "case": "Именительный (Nominative)",
-   "explain": "«пергаментные свитки» — the subject of the sentence stands in the nominative.",
-   "id": "c26"
   },
   {
    "sentence": "Кругом были разбросаны пергаментные свитки из ___ – среди них Евангелие.",
@@ -305,120 +207,8 @@
    ],
    "correct": "походной библиотеки",
    "case": "Родительный (Genitive)",
-   "explain": "«походной библиотеки» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«походной библиотеки» — «из» always takes the genitive.",
    "id": "c27"
-  },
-  {
-   "sentence": "Он приготовился писать: это была его любимая ___, философское сочинение Против галилеян, начатое два с половиной месяца назад, при выступлении в поход.",
-   "lemma": "работа",
-   "options": [
-    "ночная работа",
-    "ночной работе",
-    "ночной работы",
-    "ночной работой"
-   ],
-   "correct": "ночная работа",
-   "case": "Именительный (Nominative)",
-   "explain": "«ночная работа» — the subject of the sentence stands in the nominative.",
-   "id": "c28"
-  },
-  {
-   "sentence": "Он приготовился писать: это была его любимая ночная работа, ___ Против галилеян, начатое два с половиной месяца назад, при выступлении в поход.",
-   "lemma": "сочинение",
-   "options": [
-    "философское сочинение",
-    "философского сочинения",
-    "философским сочинением",
-    "философском сочинении"
-   ],
-   "correct": "философское сочинение",
-   "case": "Именительный (Nominative)",
-   "explain": "«философское сочинение» — the subject of the sentence stands in the nominative.",
-   "id": "c29"
-  },
-  {
-   "sentence": "В дверях стоял отрок в темной ___ из верблюжьего волоса, с пыльным овечьим мехом, перекинутым через плечо, – милостью египетских отшельников, с босыми нежными ногами в пальмовых сандалиях.",
-   "lemma": "туника",
-   "options": [
-    "бедной тунике",
-    "бедной туникой",
-    "бедной туники",
-    "бедная туника"
-   ],
-   "correct": "бедной тунике",
-   "case": "Предложный (Prepositional)",
-   "explain": "«бедной тунике» — after the preposition «с», for location or topic.",
-   "id": "c30"
-  },
-  {
-   "sentence": "В дверях стоял отрок в темной бедной тунике из верблюжьего волоса, с пыльным ___, перекинутым через плечо, – милостью египетских отшельников, с босыми нежными ногами в пальмовых сандалиях.",
-   "lemma": "мех",
-   "options": [
-    "овечьего меха",
-    "овечьему меху",
-    "овечьим мехом",
-    "овечий мех"
-   ],
-   "correct": "овечьим мехом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«овечьим мехом» — after the preposition «из», the instrumental marks the means, company, or complement.",
-   "id": "c31"
-  },
-  {
-   "sentence": "В дверях стоял отрок в темной бедной тунике из верблюжьего волоса, с пыльным овечьим мехом, перекинутым через плечо, – милостью ___, с босыми нежными ногами в пальмовых сандалиях.",
-   "lemma": "отшельник",
-   "options": [
-    "египетскими отшельниками",
-    "египетских отшельниках",
-    "египетские отшельники",
-    "египетских отшельников"
-   ],
-   "correct": "египетских отшельников",
-   "case": "Родительный (Genitive)",
-   "explain": "«египетских отшельников» — the genitive here marks possession, absence, or quantity.",
-   "id": "c32"
-  },
-  {
-   "sentence": "В дверях стоял отрок в темной бедной тунике из верблюжьего волоса, с пыльным овечьим мехом, перекинутым через плечо, – милостью египетских отшельников, с босыми ___ в пальмовых сандалиях.",
-   "lemma": "нога",
-   "options": [
-    "нежных ног",
-    "нежными ногами",
-    "нежные ноги",
-    "нежных ногах"
-   ],
-   "correct": "нежными ногами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«нежными ногами» — the instrumental marks the means, company, or complement.",
-   "id": "c33"
-  },
-  {
-   "sentence": "Царствовала тишина, какая бывает только в самый ___ после полуночи.",
-   "lemma": "час",
-   "options": [
-    "глухого часа",
-    "глухому часу",
-    "глухой час",
-    "глухим часом"
-   ],
-   "correct": "глухой час",
-   "case": "Винительный (Accusative)",
-   "explain": "«глухой час» — after the preposition «в», the accusative marks the direct object of the verb.",
-   "id": "c34"
-  },
-  {
-   "sentence": "– Помнишь, – произнес ___, – помнишь Юлиан, как ты приходил ко мне в монастырь?",
-   "lemma": "голос",
-   "options": [
-    "знакомого голоса",
-    "знакомому голосу",
-    "знакомом голосе",
-    "знакомый голос"
-   ],
-   "correct": "знакомый голос",
-   "case": "Винительный (Accusative)",
-   "explain": "«знакомый голос» — the accusative marks the direct object of the verb.",
-   "id": "c35"
   },
   {
    "sentence": "Отрок откинул темный ___ с головы.",
@@ -431,7 +221,7 @@
    ],
    "correct": "монашеский покров",
    "case": "Винительный (Accusative)",
-   "explain": "«монашеский покров» — the accusative marks the direct object of the verb.",
+   "explain": "«монашеский покров» is the direct object of «откинул» (кого? что?) — accusative.",
    "id": "c36"
   },
   {
@@ -445,7 +235,7 @@
    ],
    "correct": "золотые кудри",
    "case": "Винительный (Accusative)",
-   "explain": "«золотые кудри» — the accusative marks the direct object of the verb.",
+   "explain": "«золотые кудри» is the direct object of «увидел» (кого? что?) — accusative.",
    "id": "c37"
   },
   {
@@ -459,7 +249,7 @@
    ],
    "correct": "слепого старца",
    "case": "Родительный (Genitive)",
-   "explain": "«слепого старца» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«слепого старца» depends on the noun «ученик» (whose? of what?) — genitive.",
    "id": "c38"
   },
   {
@@ -473,7 +263,7 @@
    ],
    "correct": "походный стул",
    "case": "Винительный (Accusative)",
-   "explain": "«походный стул» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«походный стул» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c39"
   },
   {
@@ -487,50 +277,8 @@
    ],
    "correct": "леопардовой кожей",
    "case": "Творительный (Instrumental)",
-   "explain": "«леопардовой кожей» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «покрытый», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c40"
-  },
-  {
-   "sentence": "Она опустилась на походный стул, покрытый леопардовой кожей, и продолжала спокойно, с прежней ___.",
-   "lemma": "улыбка",
-   "options": [
-    "грустной улыбки",
-    "грустной улыбке",
-    "грустной улыбкой",
-    "грустная улыбка"
-   ],
-   "correct": "грустной улыбкой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«грустной улыбкой» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c41"
-  },
-  {
-   "sentence": "Он любил детей и свободу, и веселие пиршеств, и ___.",
-   "lemma": "лилия",
-   "options": [
-    "белыми лилиями",
-    "белые лилии",
-    "белым лилиям",
-    "белых лилиях"
-   ],
-   "correct": "белые лилии",
-   "case": "Именительный (Nominative)",
-   "explain": "«белые лилии» — the subject of the sentence stands in the nominative.",
-   "id": "c42"
-  },
-  {
-   "sentence": "В двадцатых числах июля ___, после долгого перехода по выжженной степи, нашло в глубокой долине речки Дурус немного травы, уцелевшей от пожара.",
-   "lemma": "войско",
-   "options": [
-    "римское войско",
-    "римском войске",
-    "римского войска",
-    "римским войском"
-   ],
-   "correct": "римское войско",
-   "case": "Именительный (Nominative)",
-   "explain": "«римское войско» — the subject of the sentence stands in the nominative.",
-   "id": "c45"
   },
   {
    "sentence": "В двадцатых числах июля римское войско, после ___ по выжженной степи, нашло в глубокой долине речки Дурус немного травы, уцелевшей от пожара.",
@@ -543,7 +291,7 @@
    ],
    "correct": "долгого перехода",
    "case": "Родительный (Genitive)",
-   "explain": "«долгого перехода» — after the preposition «после», the genitive here marks possession, absence, or quantity.",
+   "explain": "«долгого перехода» — «после» always takes the genitive.",
    "id": "c46"
   },
   {
@@ -557,7 +305,7 @@
    ],
    "correct": "глубокой долине",
    "case": "Предложный (Prepositional)",
-   "explain": "«глубокой долине» — after the preposition «в», for location or topic.",
+   "explain": "«глубокой долине» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c47"
   },
   {
@@ -571,22 +319,8 @@
    ],
    "correct": "пыльным лицам",
    "case": "Дательный (Dative)",
-   "explain": "«пыльным лицам» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«пыльным лицам» — «к» always takes the dative.",
    "id": "c48"
-  },
-  {
-   "sentence": "Легионеры несказанно обрадовались ей, ложились на землю, вдыхали пахучую сырость и к пыльным лицам, к воспаленным векам прижимали ___ трав.",
-   "lemma": "стебель",
-   "options": [
-    "влажные стебли",
-    "влажных стеблей",
-    "влажными стеблями",
-    "влажным стеблям"
-   ],
-   "correct": "влажные стебли",
-   "case": "Именительный (Nominative)",
-   "explain": "«влажные стебли» — the subject of the sentence stands in the nominative.",
-   "id": "c49"
   },
   {
    "sentence": "Рядом было поле ___.",
@@ -599,7 +333,7 @@
    ],
    "correct": "спелой пшеницы",
    "case": "Родительный (Genitive)",
-   "explain": "«спелой пшеницы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«спелой пшеницы» depends on the noun «поле» (whose? of what?) — genitive.",
    "id": "c50"
   },
   {
@@ -613,7 +347,7 @@
    ],
    "correct": "уютной долине",
    "case": "Предложный (Prepositional)",
-   "explain": "«уютной долине» — after the preposition «в», for location or topic.",
+   "explain": "«уютной долине» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c51"
   },
   {
@@ -627,22 +361,8 @@
    ],
    "correct": "римские стражи",
    "case": "Именительный (Nominative)",
-   "explain": "«римские стражи» — the subject of the sentence stands in the nominative.",
+   "explain": "«римские стражи» is the subject of «заметили» — who or what does it — so nominative.",
    "id": "c53"
-  },
-  {
-   "sentence": "Когорты в оборонительном порядке, наподобие большого ___, под охраной щитов, сдвинутых и образовавших как бы ряд медных стен, расположились лагерем на берегу ручья.",
-   "lemma": "круг",
-   "options": [
-    "правильному кругу",
-    "правильного круга",
-    "правильным кругом",
-    "правильном круге"
-   ],
-   "correct": "правильного круга",
-   "case": "Родительный (Genitive)",
-   "explain": "«правильного круга» — after the preposition «наподобие», the genitive here marks possession, absence, or quantity.",
-   "id": "c55"
   },
   {
    "sentence": "Когорты в оборонительном порядке, наподобие большого правильного круга, под охраной щитов, сдвинутых и образовавших как бы ряд ___, расположились лагерем на берегу ручья.",
@@ -655,7 +375,7 @@
    ],
    "correct": "медных стен",
    "case": "Родительный (Genitive)",
-   "explain": "«медных стен» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«медных стен» depends on the noun «ряд» (whose? of what?) — genitive.",
    "id": "c56"
   }
  ]

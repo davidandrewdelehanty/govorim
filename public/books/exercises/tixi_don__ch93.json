@@ -1,76 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Люди самых ___, возрастов и даже национальностей.",
-   "lemma": "профессия",
-   "options": [
-    "разнообразных профессиях",
-    "разнообразными профессиями",
-    "разнообразных профессий",
-    "разнообразным профессиям"
-   ],
-   "correct": "разнообразных профессий",
-   "case": "Родительный (Genitive)",
-   "explain": "«разнообразных профессий» — the genitive here marks possession, absence, or quantity.",
-   "id": "c1"
-  },
-  {
-   "sentence": "___ у меня, что ли?..",
-   "lemma": "батальон",
-   "options": [
-    "женский батальон",
-    "женским батальоном",
-    "женском батальоне",
-    "женского батальона"
-   ],
-   "correct": "женский батальон",
-   "case": "Именительный (Nominative)",
-   "explain": "«Женский батальон» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
-   "sentence": "Посылаем к Вам ___ Анну Погудко.",
-   "lemma": "товарищ",
-   "options": [
-    "хорошем товарище",
-    "хорошему товарищу",
-    "хороший товарищ",
-    "хорошего товарища"
-   ],
-   "correct": "хорошего товарища",
-   "case": "Винительный (Accusative)",
-   "explain": "«хорошего товарища» — the accusative marks the direct object of the verb.",
-   "id": "c4"
-  },
-  {
-   "sentence": "Мы уступили ее ___ и, посылая ее, надеемся, что Вы сделаете из нее боевого пулеметчика.",
-   "lemma": "настояние",
-   "options": [
-    "горячими настояниями",
-    "горячие настояния",
-    "горячим настояниям",
-    "горячих настояниях"
-   ],
-   "correct": "горячим настояниям",
-   "case": "Дательный (Dative)",
-   "explain": "«горячим настояниям» — the dative marks the indirect object or recipient.",
-   "id": "c5"
-  },
-  {
-   "sentence": "Горячо рекомендуя ее Вам, прошу об одном: она — ___, но горяча, немного экзальтированна (еще не перебродила молодость), удерживайте ее от безрассудных поступков, берегите.",
-   "lemma": "работник",
-   "options": [
-    "ценном работнике",
-    "ценным работником",
-    "ценный работник",
-    "ценного работника"
-   ],
-   "correct": "ценный работник",
-   "case": "Именительный (Nominative)",
-   "explain": "«ценный работник» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
-  },
-  {
    "sentence": "Горячо рекомендуя ее Вам, прошу об одном: она — ценный работник, но горяча, немного экзальтированна (еще не перебродила молодость), удерживайте ее от ___, берегите.",
    "lemma": "поступок",
    "options": [
@@ -81,7 +11,7 @@
    ],
    "correct": "безрассудных поступков",
    "case": "Родительный (Genitive)",
-   "explain": "«безрассудных поступков» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«безрассудных поступков» — «от» always takes the genitive.",
    "id": "c7"
   },
   {
@@ -95,7 +25,7 @@
    ],
    "correct": "московской улице",
    "case": "Предложный (Prepositional)",
-   "explain": "«Московской улице» — after the preposition «на», for location or topic.",
+   "explain": "«московской улице» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c9"
   },
   {
@@ -109,7 +39,7 @@
    ],
    "correct": "военному делу",
    "case": "Дательный (Dative)",
-   "explain": "«военному делу» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«военному делу» — «к» always takes the dative.",
    "id": "c11"
   },
   {
@@ -117,28 +47,14 @@
    "lemma": "конопин",
    "options": [
     "синими конопинами",
+    "синим конопинам",
     "синие конопины",
-    "синих конопинах",
     "синих конопинов"
    ],
    "correct": "синие конопины",
    "case": "Винительный (Accusative)",
-   "explain": "«синие конопины» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«синие конопины» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c13"
-  },
-  {
-   "sentence": "Она назойливо приставала к Бунчуку, хватала его за рукава ___, неотступно торчала около пулемета.",
-   "lemma": "демисезон",
-   "options": [
-    "неуклюжего демисезона",
-    "неуклюжий демисезон",
-    "неуклюжим демисезоном",
-    "неуклюжем демисезоне"
-   ],
-   "correct": "неуклюжего демисезона",
-   "case": "Родительный (Genitive)",
-   "explain": "«неуклюжего демисезона» — the genitive here marks possession, absence, or quantity.",
-   "id": "c14"
   },
   {
    "sentence": "А при ___ какое отклонение?",
@@ -151,22 +67,8 @@
    ],
    "correct": "большом ветре",
    "case": "Предложный (Prepositional)",
-   "explain": "«большом ветре» — after the preposition «при», for location or topic.",
+   "explain": "«большом ветре» — «при» always takes the prepositional.",
    "id": "c15"
-  },
-  {
-   "sentence": "Она, ___ оправляя волосы, ждала ответа, чуть откинув голову, скосив в его сторону глаза.",
-   "lemma": "жест",
-   "options": [
-    "привычному жесту",
-    "привычный жест",
-    "привычном жесте",
-    "привычным жестом"
-   ],
-   "correct": "привычным жестом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«привычным жестом» — the instrumental marks the means, company, or complement.",
-   "id": "c17"
   },
   {
    "sentence": "Но Бунчук прослушал; медленно всходил он по ступенькам, стиснутый ___.",
@@ -179,35 +81,21 @@
    ],
    "correct": "сладостно-болезненным чувством",
    "case": "Творительный (Instrumental)",
-   "explain": "«сладостно-болезненным чувством» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «стиснутый», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c18"
-  },
-  {
-   "sentence": "У нее от напряжения (неловко было управляться с волосами, не скинув платка) чуть шевелились просвеченные ___ розовые ноздри.",
-   "lemma": "солнце",
-   "options": [
-    "низким солнцем",
-    "низкое солнце",
-    "низкому солнцу",
-    "низком солнце"
-   ],
-   "correct": "низким солнцем",
-   "case": "Творительный (Instrumental)",
-   "explain": "«низким солнцем» — the instrumental marks the means, company, or complement.",
-   "id": "c19"
   },
   {
    "sentence": "Она назвала какой-то ___.",
    "lemma": "переулок",
    "options": [
-    "окраинный переулок",
-    "окраинного переулка",
     "окраинному переулку",
+    "окраинный переулок",
+    "окраинным переулком",
     "окраинном переулке"
    ],
    "correct": "окраинный переулок",
    "case": "Винительный (Accusative)",
-   "explain": "«окраинный переулок» — the accusative marks the direct object of the verb.",
+   "explain": "«окраинный переулок» is the direct object of «назвала» (кого? что?) — accusative.",
    "id": "c21"
   },
   {
@@ -221,7 +109,7 @@
    ],
    "correct": "тихой рощей",
    "case": "Творительный (Instrumental)",
-   "explain": "«Тихой рощей» — after the preposition «за», the instrumental marks the means, company, or complement.",
+   "explain": "«тихой рощей» — «за» takes the instrumental here (где? за чем? за кем?) — the accusative would mean motion behind or 'for' (куда? за что?).",
    "id": "c22"
   },
   {
@@ -235,50 +123,8 @@
    ],
    "correct": "многие рабочие",
    "case": "Именительный (Nominative)",
-   "explain": "«многие рабочие» — the subject of the sentence stands in the nominative.",
+   "explain": "«многие рабочие» is the subject of «думают» — who or what does it — so nominative.",
    "id": "c23"
-  },
-  {
-   "sentence": "— Видишь ли: за евреями упрочилась слава, и я знаю, что многие рабочие так думают, — я ведь ___, — вскользь заметил он, — что евреи только направляют, а сами под огонь не идут.",
-   "lemma": "рабочий",
-   "options": [
-    "сам рабочий",
-    "самого рабочего",
-    "самому рабочему",
-    "самим рабочим"
-   ],
-   "correct": "сам рабочий",
-   "case": "Именительный (Nominative)",
-   "explain": "«сам рабочий» — the subject of the sentence stands in the nominative.",
-   "id": "c24"
-  },
-  {
-   "sentence": "Это ошибочно, и ты вот ___ опровергаешь это ошибочное мнение.",
-   "lemma": "образ",
-   "options": [
-    "блестящего образа",
-    "блестящим образом",
-    "блестящем образе",
-    "блестящий образ"
-   ],
-   "correct": "блестящим образом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«блестящим образом» — the instrumental marks the means, company, or complement.",
-   "id": "c25"
-  },
-  {
-   "sentence": "Она нарочно кружила по переулкам и, коротко рассказав о себе, продолжала расспрашивать его о корниловском выступлении, о настроении ___, об Октябрьском перевороте.",
-   "lemma": "рабочий",
-   "options": [
-    "питерским рабочим",
-    "питерскими рабочими",
-    "питерских рабочих",
-    "питерские рабочие"
-   ],
-   "correct": "питерских рабочих",
-   "case": "Родительный (Genitive)",
-   "explain": "«питерских рабочих» — the genitive here marks possession, absence, or quantity.",
-   "id": "c27"
   }
  ]
 }

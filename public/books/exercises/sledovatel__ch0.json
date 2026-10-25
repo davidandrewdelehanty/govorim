@@ -1,45 +1,17 @@
 {
  "cases": [
   {
-   "sentence": "___ и судебный следователь ехали в один хороший весенний полдень на вскрытие.",
-   "lemma": "врач",
-   "options": [
-    "уездный врач",
-    "уездным врачом",
-    "уездному врачу",
-    "уездном враче"
-   ],
-   "correct": "уездный врач",
-   "case": "Именительный (Nominative)",
-   "explain": "«Уездный врач» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Уездный врач и ___ ехали в один хороший весенний полдень на вскрытие.",
-   "lemma": "следователь",
-   "options": [
-    "судебный следователь",
-    "судебного следователя",
-    "судебному следователю",
-    "судебным следователем"
-   ],
-   "correct": "судебный следователь",
-   "case": "Именительный (Nominative)",
-   "explain": "«судебный следователь» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
    "sentence": "Уездный врач и судебный следователь ехали в один хороший ___ на вскрытие.",
    "lemma": "полдень",
    "options": [
+    "весенним полуднем",
     "весеннему полудню",
-    "весенний полдень",
-    "весеннем полудне",
-    "весенним полуднем"
+    "весеннего полудня",
+    "весенний полдень"
    ],
    "correct": "весенний полдень",
    "case": "Винительный (Accusative)",
-   "explain": "«весенний полдень» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«весенний полдень» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c3"
   },
   {
@@ -53,50 +25,8 @@
    ],
    "correct": "видимой причины",
    "case": "Родительный (Genitive)",
-   "explain": "«видимой причины» — after the preposition «без», the genitive here marks possession, absence, or quantity.",
+   "explain": "«видимой причины» — «без» always takes the genitive.",
    "id": "c5"
-  },
-  {
-   "sentence": "___, здоровая, умница, без всяких предрассудков.",
-   "lemma": "женщина",
-   "options": [
-    "молодой женщине",
-    "молодой женщины",
-    "молодая женщина",
-    "молодой женщиной"
-   ],
-   "correct": "молодая женщина",
-   "case": "Именительный (Nominative)",
-   "explain": "«Молодая женщина» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
-  },
-  {
-   "sentence": "___ остановилась около колодца.",
-   "lemma": "бричка",
-   "options": [
-    "докторской бричке",
-    "докторской бричкой",
-    "докторская бричка",
-    "докторской брички"
-   ],
-   "correct": "докторская бричка",
-   "case": "Именительный (Nominative)",
-   "explain": "«Докторская бричка» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
-  },
-  {
-   "sentence": "Он не верит ни в какие предчувствия и к тому же отлично знает, что женщины в интересном положении любят капризничать и вообще предаваться ___.",
-   "lemma": "мысль",
-   "options": [
-    "мрачных мыслях",
-    "мрачными мыслями",
-    "мрачные мысли",
-    "мрачным мыслям"
-   ],
-   "correct": "мрачным мыслям",
-   "case": "Дательный (Dative)",
-   "explain": "«мрачным мыслям» — the dative marks the indirect object or recipient.",
-   "id": "c9"
   },
   {
    "sentence": "И имейте в виду, всё это творилось при ___, без малейших намеков на болезнь или какую-нибудь опасность.",
@@ -109,22 +39,8 @@
    ],
    "correct": "отличном здоровье",
    "case": "Предложный (Prepositional)",
-   "explain": "«отличном здоровье» — after the preposition «при», for location or topic.",
+   "explain": "«отличном здоровье» — «при» always takes the prepositional.",
    "id": "c12"
-  },
-  {
-   "sentence": "Роды — ___, иногда смертельная, но у той, про которую я вам говорю, всё обстояло благополучно и бояться было решительно нечего.",
-   "lemma": "штука",
-   "options": [
-    "трудная штука",
-    "трудной штуке",
-    "трудной штуки",
-    "трудной штукой"
-   ],
-   "correct": "трудная штука",
-   "case": "Именительный (Nominative)",
-   "explain": "«трудная штука» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
   },
   {
    "sentence": "До самой ___ она была в сознании.",
@@ -137,22 +53,8 @@
    ],
    "correct": "последней минуты",
    "case": "Родительный (Genitive)",
-   "explain": "«последней минуты» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«последней минуты» — «до» always takes the genitive.",
    "id": "c14"
-  },
-  {
-   "sentence": "Уверяю вас ___, это не выдумка, а факт.",
-   "lemma": "слово",
-   "options": [
-    "честное слово",
-    "честного слова",
-    "честным словом",
-    "честному слову"
-   ],
-   "correct": "честным словом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«честным словом» — the instrumental marks the means, company, or complement.",
-   "id": "c15"
   },
   {
    "sentence": "Было такое ___ обстоятельств.",
@@ -165,36 +67,8 @@
    ],
    "correct": "несчастное стечение",
    "case": "Именительный (Nominative)",
-   "explain": "«несчастное стечение» — the subject of the sentence stands in the nominative.",
+   "explain": "«несчастное стечение» is the subject of «Было» — who or what does it — so nominative.",
    "id": "c16"
-  },
-  {
-   "sentence": "Вот уж именно ___, жестокая, немилосердная логика.",
-   "lemma": "логика",
-   "options": [
-    "бабья логика",
-    "бабьей логики",
-    "бабьей логике",
-    "бабьей логикой"
-   ],
-   "correct": "бабья логика",
-   "case": "Именительный (Nominative)",
-   "explain": "«бабья логика» — the subject of the sentence stands in the nominative.",
-   "id": "c18"
-  },
-  {
-   "sentence": "Вот уж именно бабья логика, жестокая, ___.",
-   "lemma": "логика",
-   "options": [
-    "немилосердной логике",
-    "немилосердной логики",
-    "немилосердной логикой",
-    "немилосердная логика"
-   ],
-   "correct": "немилосердная логика",
-   "case": "Именительный (Nominative)",
-   "explain": "«немилосердная логика» — the subject of the sentence stands in the nominative.",
-   "id": "c19"
   }
  ]
 }

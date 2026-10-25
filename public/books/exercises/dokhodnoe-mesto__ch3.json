@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Направо окно, у окна стол, на ___ зеркало.",
-   "lemma": "сторона",
-   "options": [
-    "левая сторона",
-    "левой стороне",
-    "левой стороной",
-    "левой стороны"
-   ],
-   "correct": "левой стороне",
-   "case": "Предложный (Prepositional)",
-   "explain": "«левой стороне» — after the preposition «на», for location or topic.",
-   "id": "c1"
-  },
-  {
-   "sentence": "А вот загадаю я, будет ли у меня ___?",
-   "lemma": "шляпка",
-   "options": [
-    "новой шляпкой",
-    "новой шляпки",
-    "новая шляпка",
-    "новой шляпке"
-   ],
-   "correct": "новая шляпка",
-   "case": "Именительный (Nominative)",
-   "explain": "«новая шляпка» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
    "sentence": "Представляет из себя ___, а нынешнего тону не знает.",
    "lemma": "человек",
    "options": [
@@ -39,78 +11,8 @@
    ],
    "correct": "умного человека",
    "case": "Винительный (Accusative)",
-   "explain": "«умного человека» — the accusative marks the direct object of the verb.",
+   "explain": "«умного человека» is the direct object of «Представляет» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c3"
-  },
-  {
-   "sentence": "Надобно правду сказать, Онисим Панфилыч для дому ___, настоящий хозяин: чего, чего у нас нет, кабы ты посмотрела.",
-   "lemma": "человек",
-   "options": [
-    "отличному человеку",
-    "отличный человек",
-    "отличном человеке",
-    "отличного человека"
-   ],
-   "correct": "отличный человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«отличный человек» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
-  },
-  {
-   "sentence": "Надобно правду сказать, Онисим Панфилыч для дому отличный человек, ___: чего, чего у нас нет, кабы ты посмотрела.",
-   "lemma": "хозяин",
-   "options": [
-    "настоящем хозяине",
-    "настоящего хозяина",
-    "настоящим хозяином",
-    "настоящий хозяин"
-   ],
-   "correct": "настоящий хозяин",
-   "case": "Именительный (Nominative)",
-   "explain": "«настоящий хозяин» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
-  },
-  {
-   "sentence": "(Увидав картон.) ___! новая шляпка!",
-   "lemma": "шляпка",
-   "options": [
-    "новой шляпкой",
-    "новой шляпке",
-    "новой шляпки",
-    "новая шляпка"
-   ],
-   "correct": "новая шляпка",
-   "case": "Именительный (Nominative)",
-   "explain": "«Новая шляпка» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
-  },
-  {
-   "sentence": "(Увидав картон.) Новая шляпка! ___!",
-   "lemma": "шляпка",
-   "options": [
-    "новой шляпкой",
-    "новой шляпки",
-    "новая шляпка",
-    "новой шляпке"
-   ],
-   "correct": "новая шляпка",
-   "case": "Именительный (Nominative)",
-   "explain": "«новая шляпка» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
-  },
-  {
-   "sentence": "Маменька, мол, у меня ___, надо ее прилично принять.",
-   "lemma": "дама",
-   "options": [
-    "тонкой дамой",
-    "тонкая дама",
-    "тонкой дамы",
-    "тонкой даме"
-   ],
-   "correct": "тонкая дама",
-   "case": "Именительный (Nominative)",
-   "explain": "«тонкая дама» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
   },
   {
    "sentence": "Сами ж его выдумали, чтобы обижать ___.",
@@ -123,22 +25,8 @@
    ],
    "correct": "хороших людей",
    "case": "Винительный (Accusative)",
-   "explain": "«хороших людей» — the accusative marks the direct object of the verb.",
+   "explain": "«хороших людей» is the direct object of «обижать» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c9"
-  },
-  {
-   "sentence": "Коли ты ___, на тебя и суда нет, юродствуй, как знаешь.",
-   "lemma": "человек",
-   "options": [
-    "холостом человеке",
-    "холостого человека",
-    "холостым человеком",
-    "холостой человек"
-   ],
-   "correct": "холостой человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«холостой человек» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
   },
   {
    "sentence": "Для женщины нужно, чтобы она одета была всегда хорошо, чтобы прислуга была, а главное — нужно спокойствие, чтобы она могла быть отдалена от всего, по своему благородству, ни в какие ___ не входила.",
@@ -146,12 +34,12 @@
    "options": [
     "хозяйственные дрязги",
     "хозяйственными дрязгами",
-    "хозяйственных дрязгах",
+    "хозяйственных дрязгов",
     "хозяйственным дрязгам"
    ],
    "correct": "хозяйственные дрязги",
    "case": "Винительный (Accusative)",
-   "explain": "«хозяйственные дрязги» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«хозяйственные дрязги» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c11"
   },
   {
@@ -165,92 +53,22 @@
    ],
    "correct": "благородных людей",
    "case": "Винительный (Accusative)",
-   "explain": "«благородных людей» — after the preposition «за», the accusative marks the direct object of the verb.",
+   "explain": "«благородных людей» — «за» takes the accusative here (куда? за что? за кого?) — the instrumental would mean position behind or at (где? за чем?).",
    "id": "c13"
-  },
-  {
-   "sentence": "Мы с вами ___, Фелисата Герасимовна.",
-   "lemma": "мнение",
-   "options": [
-    "различные мнения",
-    "различным мнениям",
-    "различных мнений",
-    "различными мнениями"
-   ],
-   "correct": "различных мнений",
-   "case": "Родительный (Genitive)",
-   "explain": "«различных мнений» — the genitive here marks possession, absence, or quantity.",
-   "id": "c14"
-  },
-  {
-   "sentence": "Вы ей, пожалуйста, не втолковывайте, что она ___; я прошу вас.",
-   "lemma": "женщина",
-   "options": [
-    "несчастной женщины",
-    "несчастной женщине",
-    "несчастной женщиной",
-    "несчастная женщина"
-   ],
-   "correct": "несчастная женщина",
-   "case": "Именительный (Nominative)",
-   "explain": "«несчастная женщина» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
-  },
-  {
-   "sentence": "Разумеется, в самом ___ женщина.",
-   "lemma": "положение",
-   "options": [
-    "горьком положении",
-    "горькому положению",
-    "горькое положение",
-    "горьким положением"
-   ],
-   "correct": "горьком положении",
-   "case": "Предложный (Prepositional)",
-   "explain": "«горьком положении» — after the preposition «в», for location or topic.",
-   "id": "c17"
   },
   {
    "sentence": "Жадов достает из портфеля бумаги, раскладывает на столе и в продолжение ___ оглядывается на них.",
    "lemma": "разговор",
    "options": [
+    "следующий разговор",
+    "следующем разговоре",
     "следующего разговора",
-    "следующим разговором",
-    "следующему разговору",
-    "следующем разговоре"
+    "следующему разговору"
    ],
    "correct": "следующего разговора",
    "case": "Родительный (Genitive)",
-   "explain": "«следующего разговора» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«следующего разговора» depends on the noun «продолжение» (whose? of what?) — genitive.",
    "id": "c18"
-  },
-  {
-   "sentence": "Позвольте спросить, ___, за что она страдает?",
-   "lemma": "государь",
-   "options": [
-    "милостивому государю",
-    "милостивым государем",
-    "милостивый государь",
-    "милостивом государе"
-   ],
-   "correct": "милостивый государь",
-   "case": "Именительный (Nominative)",
-   "explain": "«милостивый государь» — the subject of the sentence stands in the nominative.",
-   "id": "c19"
-  },
-  {
-   "sentence": "Мы вот, ___, какие родители!",
-   "lemma": "государь",
-   "options": [
-    "милостивому государю",
-    "милостивым государем",
-    "милостивый государь",
-    "милостивом государе"
-   ],
-   "correct": "милостивый государь",
-   "case": "Именительный (Nominative)",
-   "explain": "«милостивый государь» — the subject of the sentence stands in the nominative.",
-   "id": "c20"
   },
   {
    "sentence": "Для того, чтобы они имели ___, не видали кругом себя бедности, не видали низких предметов, чтобы не отяготить дитя и с детства приучить их к хорошей жизни, благородству в словах и поступках.",
@@ -263,106 +81,8 @@
    ],
    "correct": "хорошие манеры",
    "case": "Винительный (Accusative)",
-   "explain": "«хорошие манеры» — the accusative marks the direct object of the verb.",
+   "explain": "«хорошие манеры» is the direct object of «имели» (кого? что?) — accusative.",
    "id": "c21"
-  },
-  {
-   "sentence": "Для того, чтобы они имели хорошие манеры, не видали кругом себя бедности, не видали ___, чтобы не отяготить дитя и с детства приучить их к хорошей жизни, благородству в словах и поступках.",
-   "lemma": "предмет",
-   "options": [
-    "низким предметам",
-    "низких предметов",
-    "низкими предметами",
-    "низких предметах"
-   ],
-   "correct": "низких предметов",
-   "case": "Родительный (Genitive)",
-   "explain": "«низких предметов» — the genitive here marks possession, absence, or quantity.",
-   "id": "c22"
-  },
-  {
-   "sentence": "Да, такого ___, как в вашем семействе, я не видывал.",
-   "lemma": "разврат",
-   "options": [
-    "глубокого разврата",
-    "глубоким развратом",
-    "глубокий разврат",
-    "глубоком разврате"
-   ],
-   "correct": "глубокого разврата",
-   "case": "Родительный (Genitive)",
-   "explain": "«глубокого разврата» — the genitive here marks possession, absence, or quantity.",
-   "id": "c23"
-  },
-  {
-   "sentence": "Выдь она за человека с ___ и с образованием, тот не знал бы, как благодарить меня за мое воспитание.",
-   "lemma": "чувство",
-   "options": [
-    "нежных чувствах",
-    "нежными чувствами",
-    "нежным чувствам",
-    "нежные чувства"
-   ],
-   "correct": "нежными чувствами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«нежными чувствами» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c24"
-  },
-  {
-   "sentence": "Вы ___, дожили до старости, вырастили дочерей и воспитывали их, а не знаете, для чего человеку дана жена.",
-   "lemma": "женщина",
-   "options": [
-    "пожилой женщиной",
-    "пожилой женщине",
-    "пожилой женщины",
-    "пожилая женщина"
-   ],
-   "correct": "пожилая женщина",
-   "case": "Именительный (Nominative)",
-   "explain": "«пожилая женщина» — the subject of the sentence stands in the nominative.",
-   "id": "c25"
-  },
-  {
-   "sentence": "Между мною и вами ___ быть не может.",
-   "lemma": "разговор",
-   "options": [
-    "другому разговору",
-    "другой разговор",
-    "другом разговоре",
-    "другого разговора"
-   ],
-   "correct": "другого разговора",
-   "case": "Родительный (Genitive)",
-   "explain": "«другого разговора» — the genitive here marks possession, absence, or quantity.",
-   "id": "c26"
-  },
-  {
-   "sentence": "Плачь, плачь, ___, оплакивай свою судьбу!",
-   "lemma": "жертва",
-   "options": [
-    "несчастная жертва",
-    "несчастной жертвой",
-    "несчастной жертвы",
-    "несчастной жертве"
-   ],
-   "correct": "несчастная жертва",
-   "case": "Именительный (Nominative)",
-   "explain": "«несчастная жертва» — the subject of the sentence stands in the nominative.",
-   "id": "c27"
-  },
-  {
-   "sentence": "У них у всех такие ___!",
-   "lemma": "понятие",
-   "options": [
-    "диких понятий",
-    "диким понятиям",
-    "диких понятиях",
-    "дикие понятия"
-   ],
-   "correct": "дикие понятия",
-   "case": "Винительный (Accusative)",
-   "explain": "«дикие понятия» — the accusative marks the direct object of the verb.",
-   "id": "c28"
   },
   {
    "sentence": "Я хочу жить, как Юлинька живет, как все ___ живут.",
@@ -375,22 +95,8 @@
    ],
    "correct": "благородные дамы",
    "case": "Именительный (Nominative)",
-   "explain": "«благородные дамы» — the subject of the sentence stands in the nominative.",
+   "explain": "«благородные дамы» is the subject of «живут» — who or what does it — so nominative.",
    "id": "c30"
-  },
-  {
-   "sentence": "Кабы ты богат был — ___, а то бедность-то терпеть.",
-   "lemma": "дело",
-   "options": [
-    "другом деле",
-    "другое дело",
-    "другого дела",
-    "другому делу"
-   ],
-   "correct": "другое дело",
-   "case": "Именительный (Nominative)",
-   "explain": "«другое дело» — the subject of the sentence stands in the nominative.",
-   "id": "c31"
   },
   {
    "sentence": "Да кто же из ___ не бывает пьян?",
@@ -403,22 +109,8 @@
    ],
    "correct": "молодых людей",
    "case": "Родительный (Genitive)",
-   "explain": "«молодых людей» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«молодых людей» — «из» always takes the genitive.",
    "id": "c32"
-  },
-  {
-   "sentence": "(Берет ее за руку.) Всегда, Полина, во все времена были люди, они и теперь есть, которые идут наперекор устаревшим ___ и условиям.",
-   "lemma": "привычка",
-   "options": [
-    "общественным привычкам",
-    "общественными привычками",
-    "общественные привычки",
-    "общественных привычек"
-   ],
-   "correct": "общественным привычкам",
-   "case": "Дательный (Dative)",
-   "explain": "«общественным привычкам» — the dative marks the indirect object or recipient.",
-   "id": "c36"
   },
   {
    "sentence": "И не сами они выдумали эти правила: они их слышали с пастырских и профессорских кафедр, они их вычитали в лучших ___ наших и иностранных.",
@@ -431,7 +123,7 @@
    ],
    "correct": "литературных произведениях",
    "case": "Предложный (Prepositional)",
-   "explain": "«литературных произведениях» — after the preposition «в», for location or topic.",
+   "explain": "«литературных произведениях» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c37"
   },
   {
@@ -445,7 +137,7 @@
    ],
    "correct": "умных людей",
    "case": "Винительный (Accusative)",
-   "explain": "«умных людей» — the accusative marks the direct object of the verb.",
+   "explain": "«умных людей» is the direct object of «слушать» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c38"
   },
   {
@@ -459,22 +151,8 @@
    ],
    "correct": "хорошенькая жена",
    "case": "Именительный (Nominative)",
-   "explain": "«хорошенькая жена» — the subject of the sentence stands in the nominative.",
+   "explain": "«хорошенькая жена» is the subject of «одета» — who or what does it — so nominative.",
    "id": "c39"
-  },
-  {
-   "sentence": "(С отчаянием.) Прощайте, ___ мои!",
-   "lemma": "мечта",
-   "options": [
-    "юношеских мечт",
-    "юношеским мечтам",
-    "юношеские мечты",
-    "юношеских мечтах"
-   ],
-   "correct": "юношеские мечты",
-   "case": "Именительный (Nominative)",
-   "explain": "«юношеские мечты» — the subject of the sentence stands in the nominative.",
-   "id": "c41"
   }
  ]
 }

@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Путь к Донцу, к ___ на Святых Горах, пролегает на юго-восток, на Азовские степи.",
-   "lemma": "монастырь",
-   "options": [
-    "древнему монастырю",
-    "древним монастырём",
-    "древнем монастыре",
-    "древнего монастыря"
-   ],
-   "correct": "древнему монастырю",
-   "case": "Дательный (Dative)",
-   "explain": "«древнему монастырю» — after the preposition «на», the dative marks the indirect object or recipient.",
-   "id": "c1"
-  },
-  {
-   "sentence": "___ великой субботы я был уже под Славянском.",
-   "lemma": "утро",
-   "options": [
-    "раннем утре",
-    "ранним утром",
-    "раннее утро",
-    "раннему утру"
-   ],
-   "correct": "ранним утром",
-   "case": "Творительный (Instrumental)",
-   "explain": "«Ранним утром» — the instrumental marks the means, company, or complement.",
-   "id": "c2"
-  },
-  {
    "sentence": "Ранним утром ___ я был уже под Славянском.",
    "lemma": "суббота",
    "options": [
@@ -39,7 +11,7 @@
    ],
    "correct": "великой субботы",
    "case": "Родительный (Genitive)",
-   "explain": "«великой субботы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«великой субботы» depends on the noun «утром» (whose? of what?) — genitive.",
    "id": "c3"
   },
   {
@@ -53,7 +25,7 @@
    ],
    "correct": "сторожевой курган",
    "case": "Именительный (Nominative)",
-   "explain": "«сторожевой курган» — the subject of the sentence stands in the nominative.",
+   "explain": "«сторожевой курган» is the subject of «стоял» — who or what does it — so nominative.",
    "id": "c4"
   },
   {
@@ -67,36 +39,8 @@
    ],
    "correct": "грязной дороги",
    "case": "Родительный (Genitive)",
-   "explain": "«грязной дороги» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«грязной дороги» depends on the noun «колеи» (whose? of what?) — genitive.",
    "id": "c5"
-  },
-  {
-   "sentence": "С утра в степи было по-весеннему холодно и ветрено; ветер просушивал колеи грязной дороги и шуршал ___.",
-   "lemma": "бурьян",
-   "options": [
-    "прошлогоднего бурьяна",
-    "прошлогоднему бурьяну",
-    "прошлогодний бурьян",
-    "прошлогодним бурьяном"
-   ],
-   "correct": "прошлогодним бурьяном",
-   "case": "Творительный (Instrumental)",
-   "explain": "«прошлогодним бурьяном» — the instrumental marks the means, company, or complement.",
-   "id": "c6"
-  },
-  {
-   "sentence": "Но за мной, на западе, картинно рисовалась на горизонте гряда ___.",
-   "lemma": "гора",
-   "options": [
-    "меловых горах",
-    "меловых гор",
-    "меловые горы",
-    "меловыми горами"
-   ],
-   "correct": "меловых гор",
-   "case": "Родительный (Genitive)",
-   "explain": "«меловых гор» — the genitive here marks possession, absence, or quantity.",
-   "id": "c7"
   },
   {
    "sentence": "За курганом блеснула ___, налитая весенней водой.",
@@ -109,7 +53,7 @@
    ],
    "correct": "круглая ложбина",
    "case": "Именительный (Nominative)",
-   "explain": "«круглая ложбина» — the subject of the sentence stands in the nominative.",
+   "explain": "«круглая ложбина» is the subject of «блеснула» — who or what does it — so nominative.",
    "id": "c9"
   },
   {
@@ -123,7 +67,7 @@
    ],
    "correct": "весенней водой",
    "case": "Творительный (Instrumental)",
-   "explain": "«весенней водой» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «налитая», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c10"
   },
   {
@@ -137,22 +81,8 @@
    ],
    "correct": "прошлогодней травой",
    "case": "Творительный (Instrumental)",
-   "explain": "«прошлогодней травой» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «покрыт», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c11"
-  },
-  {
-   "sentence": "Седой ковыль тихо покачивался на его склонах — ___ ковыля.",
-   "lemma": "остаток",
-   "options": [
-    "жалкие остатки",
-    "жалкими остатками",
-    "жалким остаткам",
-    "жалких остатков"
-   ],
-   "correct": "жалкие остатки",
-   "case": "Именительный (Nominative)",
-   "explain": "«жалкие остатки» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
   },
   {
    "sentence": "В ___ каждый курган кажется молчаливым памятником какой-нибудь поэтической были.",
@@ -165,22 +95,8 @@
    ],
    "correct": "южных степях",
    "case": "Предложный (Prepositional)",
-   "explain": "«южных степях» — after the preposition «в», for location or topic.",
+   "explain": "«южных степях» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c13"
-  },
-  {
-   "sentence": "А побывать на Донце, на Малом Танаисе, воспетом «Словом», — это была моя ___.",
-   "lemma": "мечта",
-   "options": [
-    "давнишней мечте",
-    "давнишней мечтой",
-    "давнишней мечты",
-    "давнишняя мечта"
-   ],
-   "correct": "давнишняя мечта",
-   "case": "Именительный (Nominative)",
-   "explain": "«давнишняя мечта» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
   },
   {
    "sentence": "Сколько претерпел он, стоя на татарских путях, в диких ___, когда иноки его были еще воинами, когда они переживали долгие осады от полчищ диких орд и воровских людей!",
@@ -193,36 +109,8 @@
    ],
    "correct": "степных равнинах",
    "case": "Предложный (Prepositional)",
-   "explain": "«степных равнинах» — after the preposition «в», for location or topic.",
+   "explain": "«степных равнинах» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c17"
-  },
-  {
-   "sentence": "Сколько претерпел он, стоя на татарских путях, в диких степных равнинах, когда иноки его были еще воинами, когда они переживали долгие осады от полчищ ___ и воровских людей!",
-   "lemma": "орда",
-   "options": [
-    "дикие орды",
-    "диких ордах",
-    "диких орд",
-    "дикими ордами"
-   ],
-   "correct": "диких орд",
-   "case": "Родительный (Genitive)",
-   "explain": "«диких орд» — the genitive here marks possession, absence, or quantity.",
-   "id": "c18"
-  },
-  {
-   "sentence": "Сколько претерпел он, стоя на татарских путях, в диких степных равнинах, когда иноки его были еще воинами, когда они переживали долгие осады от полчищ диких орд и ___!",
-   "lemma": "человек",
-   "options": [
-    "воровских людях",
-    "воровские люди",
-    "воровскими людьми",
-    "воровских людей"
-   ],
-   "correct": "воровских людей",
-   "case": "Родительный (Genitive)",
-   "explain": "«воровских людей» — the genitive here marks possession, absence, or quantity.",
-   "id": "c19"
   },
   {
    "sentence": "Меня поразила его ___, его корявые, иссохшие дебри.",
@@ -235,7 +123,7 @@
    ],
    "correct": "безжизненная тишина",
    "case": "Именительный (Nominative)",
-   "explain": "«безжизненная тишина» — the subject of the sentence stands in the nominative.",
+   "explain": "«безжизненная тишина» is the subject of «поразила» — who or what does it — so nominative.",
    "id": "c21"
   },
   {
@@ -249,7 +137,7 @@
    ],
    "correct": "весенней воды",
    "case": "Родительный (Genitive)",
-   "explain": "«весенней воды» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«весенней воды» depends on the noun «болото» (whose? of what?) — genitive.",
    "id": "c22"
   },
   {
@@ -263,7 +151,7 @@
    ],
    "correct": "сухие деревья",
    "case": "Именительный (Nominative)",
-   "explain": "«Сухие деревья» — the subject of the sentence stands in the nominative.",
+   "explain": "«сухие деревья» is the subject of «сквозили» — who or what does it — so nominative.",
    "id": "c23"
   },
   {
@@ -277,22 +165,8 @@
    ],
    "correct": "лесной дороги",
    "case": "Родительный (Genitive)",
-   "explain": "«лесной дороги» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«лесной дороги» depends on the noun «пролете» (whose? of what?) — genitive.",
    "id": "c24"
-  },
-  {
-   "sentence": "Сухой ___ все усиливался, разгоняя в ярком весеннем небе белые облака, делая даль бесконечной.",
-   "lemma": "ветер",
-   "options": [
-    "степном ветре",
-    "степным ветром",
-    "степной ветер",
-    "степному ветру"
-   ],
-   "correct": "степной ветер",
-   "case": "Именительный (Nominative)",
-   "explain": "«степной ветер» — the subject of the sentence stands in the nominative.",
-   "id": "c25"
   },
   {
    "sentence": "Сухой степной ветер все усиливался, разгоняя в ярком ___ белые облака, делая даль бесконечной.",
@@ -305,22 +179,8 @@
    ],
    "correct": "весеннем небе",
    "case": "Предложный (Prepositional)",
-   "explain": "«весеннем небе» — after the preposition «в», for location or topic.",
+   "explain": "«весеннем небе» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c26"
-  },
-  {
-   "sentence": "Хохол, к которому я подходил с расспросами о дороге, ___ с маленькой головой, одетый в короткую, словно из осиновой коры сшитую, свитку, не спеша шел за плугом.",
-   "lemma": "мужик",
-   "options": [
-    "рослом мужике",
-    "рослый мужик",
-    "рослым мужиком",
-    "рослому мужику"
-   ],
-   "correct": "рослый мужик",
-   "case": "Именительный (Nominative)",
-   "explain": "«рослый мужик» — the subject of the sentence stands in the nominative.",
-   "id": "c27"
   },
   {
    "sentence": "Хохол, к которому я подходил с расспросами о дороге, рослый мужик с маленькой головой, одетый в короткую, словно из ___ сшитую, свитку, не спеша шел за плугом.",
@@ -333,22 +193,8 @@
    ],
    "correct": "осиновой коры",
    "case": "Родительный (Genitive)",
-   "explain": "«осиновой коры» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«осиновой коры» — «из» always takes the genitive.",
    "id": "c29"
-  },
-  {
-   "sentence": "Вдалеке, налево, на самом горизонте, над чащей леса, сверкал ___ церкви.",
-   "lemma": "купол",
-   "options": [
-    "золотому куполу",
-    "золотом куполе",
-    "золотым куполом",
-    "золотой купол"
-   ],
-   "correct": "золотой купол",
-   "case": "Винительный (Accusative)",
-   "explain": "«золотой купол» — the accusative marks the direct object of the verb.",
-   "id": "c32"
   },
   {
    "sentence": "Долго простоял я неподвижно, глядя на мутную синеву этих ___.",
@@ -361,7 +207,7 @@
    ],
    "correct": "привольных лугов",
    "case": "Родительный (Genitive)",
-   "explain": "«привольных лугов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«привольных лугов» depends on the noun «синеву» (whose? of what?) — genitive.",
    "id": "c33"
   },
   {
@@ -375,36 +221,8 @@
    ],
    "correct": "стальные полосы",
    "case": "Именительный (Nominative)",
-   "explain": "«Стальные полосы» — the subject of the sentence stands in the nominative.",
+   "explain": "«стальные полосы» is the subject of «сверкали» — who or what does it — so nominative.",
    "id": "c34"
-  },
-  {
-   "sentence": "Стальные полосы реки сверкали в чащах коричневых камышей и залитых половодьем ___, а к югу разливались еще шире, совсем уже смутные у подножья далеких меловых гор.",
-   "lemma": "лес",
-   "options": [
-    "прибрежными лесами",
-    "прибрежные леса",
-    "прибрежным лесам",
-    "прибрежных лесов"
-   ],
-   "correct": "прибрежных лесов",
-   "case": "Родительный (Genitive)",
-   "explain": "«прибрежных лесов» — the genitive here marks possession, absence, or quantity.",
-   "id": "c35"
-  },
-  {
-   "sentence": "Стальные полосы реки сверкали в чащах коричневых камышей и залитых половодьем прибрежных лесов, а к югу разливались еще шире, совсем уже смутные у подножья далеких ___.",
-   "lemma": "гора",
-   "options": [
-    "меловых горах",
-    "меловых гор",
-    "меловые горы",
-    "меловыми горами"
-   ],
-   "correct": "меловых гор",
-   "case": "Родительный (Genitive)",
-   "explain": "«меловых гор» — the genitive here marks possession, absence, or quantity.",
-   "id": "c36"
   },
   {
    "sentence": "Все круче, отвеснее становилась ___, каменистая, узкая, живописная.",
@@ -417,7 +235,7 @@
    ],
    "correct": "горная дорога",
    "case": "Именительный (Nominative)",
-   "explain": "«горная дорога» — the subject of the sentence stands in the nominative.",
+   "explain": "«горная дорога» is the subject of «становилась» — who or what does it — so nominative.",
    "id": "c38"
   }
  ]

@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Из зала вышел со сложенной вчетверо газетой ___ в зеленом кителе, с погонами сотника.",
-   "lemma": "офицер",
-   "options": [
-    "молодом офицере",
-    "молодым офицером",
-    "молодой офицер",
-    "молодому офицеру"
-   ],
-   "correct": "молодой офицер",
-   "case": "Именительный (Nominative)",
-   "explain": "«молодой офицер» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Сквозь матовые стекла с террасы скупо сочился ___.",
-   "lemma": "свет",
-   "options": [
-    "розовым светом",
-    "розовый свет",
-    "розовом свете",
-    "розового света"
-   ],
-   "correct": "розовый свет",
-   "case": "Винительный (Accusative)",
-   "explain": "«розовый свет» — the accusative marks the direct object of the verb.",
-   "id": "c2"
-  },
-  {
    "sentence": "За домом серою стеною стояли оголенные тополя и вербы левады в ___ покинутых грачиных гнезд.",
    "lemma": "шапка",
    "options": [
@@ -39,36 +11,8 @@
    ],
    "correct": "коричневых шапках",
    "case": "Предложный (Prepositional)",
-   "explain": "«коричневых шапках» — after the preposition «в», for location or topic.",
+   "explain": "«коричневых шапках» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c3"
-  },
-  {
-   "sentence": "Старая хромая сука, со слезящимся ___, первая обнюхала Григория, пошла следом, понурив сухую голову.",
-   "lemma": "взгляд",
-   "options": [
-    "старушечьем взгляде",
-    "старушечьего взгляда",
-    "старушечьему взгляду",
-    "старушечьим взглядом"
-   ],
-   "correct": "старушечьим взглядом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«старушечьим взглядом» — after the preposition «со», the instrumental marks the means, company, or complement.",
-   "id": "c4"
-  },
-  {
-   "sentence": "В передней воняло псиной и неподсохшими ___.",
-   "lemma": "шкура",
-   "options": [
-    "звериных шкурах",
-    "звериным шкурам",
-    "звериных шкур",
-    "звериными шкурами"
-   ],
-   "correct": "звериными шкурами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«звериными шкурами» — the instrumental marks the means, company, or complement.",
-   "id": "c5"
   },
   {
    "sentence": "— ___ зовет к себе.",
@@ -81,7 +25,7 @@
    ],
    "correct": "молодой барин",
    "case": "Именительный (Nominative)",
-   "explain": "«Молодой барин» — the subject of the sentence stands in the nominative.",
+   "explain": "«молодой барин» is the subject of «зовет» — who or what does it — so nominative.",
    "id": "c6"
   },
   {
@@ -95,21 +39,21 @@
    ],
    "correct": "боковых дверей",
    "case": "Родительный (Genitive)",
-   "explain": "«боковых дверей» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«боковых дверей» — «из» always takes the genitive.",
    "id": "c7"
   },
   {
    "sentence": "Григорий опасливо оглядел свои ___, шагнул в дверь.",
    "lemma": "сапог",
    "options": [
-    "грязные сапоги",
-    "грязным сапогам",
     "грязными сапогами",
-    "грязных сапог"
+    "грязным сапогам",
+    "грязных сапогах",
+    "грязные сапоги"
    ],
    "correct": "грязные сапоги",
    "case": "Винительный (Accusative)",
-   "explain": "«грязные сапоги» — the accusative marks the direct object of the verb.",
+   "explain": "«грязные сапоги» is the direct object of «оглядел» (кого? что?) — accusative.",
    "id": "c8"
   },
   {
@@ -117,13 +61,13 @@
    "lemma": "бурка",
    "options": [
     "кавказских бурок",
+    "кавказским буркам",
     "кавказскими бурками",
-    "кавказских бурках",
-    "кавказские бурки"
+    "кавказских бурках"
    ],
    "correct": "кавказских бурках",
    "case": "Предложный (Prepositional)",
-   "explain": "«кавказских бурках» — after the preposition «в», for location or topic.",
+   "explain": "«кавказских бурках» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c10"
   },
   {
@@ -137,7 +81,7 @@
    ],
    "correct": "выцветшие глаза",
    "case": "Именительный (Nominative)",
-   "explain": "«выцветшие глаза» — the subject of the sentence stands in the nominative.",
+   "explain": "«выцветшие глаза» is the subject of «сидели» — who or what does it — so nominative.",
    "id": "c11"
   },
   {
@@ -151,7 +95,7 @@
    ],
    "correct": "прежний кучер",
    "case": "Именительный (Nominative)",
-   "explain": "«прежний кучер» — the subject of the sentence stands in the nominative.",
+   "explain": "«прежний кучер» is the subject of «жил» — who or what does it — so nominative.",
    "id": "c13"
   },
   {
@@ -165,22 +109,8 @@
    ],
    "correct": "заднего фасада",
    "case": "Родительный (Genitive)",
-   "explain": "«заднего фасада» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«заднего фасада» — «у» always takes the genitive.",
    "id": "c14"
-  },
-  {
-   "sentence": "___ со старушечьим взглядом затрусила к Григорию, обнюхала его сзади и провожала до первой балки, понуро опустив голову, ступая шаг в шаг.",
-   "lemma": "сука",
-   "options": [
-    "старой сукой",
-    "старой суки",
-    "старой суке",
-    "старая сука"
-   ],
-   "correct": "старая сука",
-   "case": "Именительный (Nominative)",
-   "explain": "«Старая сука» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
   },
   {
    "sentence": "Старая сука со старушечьим взглядом затрусила к Григорию, обнюхала его сзади и провожала до ___, понуро опустив голову, ступая шаг в шаг.",
@@ -193,7 +123,7 @@
    ],
    "correct": "первой балки",
    "case": "Родительный (Genitive)",
-   "explain": "«первой балки» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«первой балки» — «до» always takes the genitive.",
    "id": "c17"
   }
  ]

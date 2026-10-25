@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "На плечи мисс Адамс легла забота о больной матери и ___.",
-   "lemma": "сестра",
-   "options": [
-    "младшая сестра",
-    "младшей сестры",
-    "младшей сестре",
-    "младшей сестрой"
-   ],
-   "correct": "младшей сестре",
-   "case": "Дательный (Dative)",
-   "explain": "«младшей сестре» — the dative marks the indirect object or recipient.",
-   "id": "c1"
-  },
-  {
-   "sentence": "___, оставшихся после отца, не хватило даже на окончание высшего образования.",
-   "lemma": "средство",
-   "options": [
-    "небольших средств",
-    "небольших средствах",
-    "небольшие средства",
-    "небольшим средствам"
-   ],
-   "correct": "небольших средств",
-   "case": "Родительный (Genitive)",
-   "explain": "«Небольших средств» — the genitive here marks possession, absence, or quantity.",
-   "id": "c2"
-  },
-  {
    "sentence": "Указав на ___, от которого шла толстая трубка к горлу головы, Керн строжайше запретил ей открывать кран этого цилиндра.",
    "lemma": "цилиндр",
    "options": [
@@ -39,7 +11,7 @@
    ],
    "correct": "большой цилиндр",
    "case": "Винительный (Accusative)",
-   "explain": "«большой цилиндр» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«большой цилиндр» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c3"
   },
   {
@@ -53,7 +25,7 @@
    ],
    "correct": "толстая трубка",
    "case": "Именительный (Nominative)",
-   "explain": "«толстая трубка» — the subject of the sentence stands in the nominative.",
+   "explain": "«толстая трубка» is the subject of «шла» — who or what does it — so nominative.",
    "id": "c4"
   },
   {
@@ -67,7 +39,7 @@
    ],
    "correct": "маленький термометр",
    "case": "Именительный (Nominative)",
-   "explain": "«маленький термометр» — the subject of the sentence stands in the nominative.",
+   "explain": "«маленький термометр» is the subject of «вставлен» — who or what does it — so nominative.",
    "id": "c5"
   },
   {
@@ -81,7 +53,7 @@
    ],
    "correct": "часового механизма",
    "case": "Родительный (Genitive)",
-   "explain": "«часового механизма» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«часового механизма» depends on the noun «точностью» (whose? of what?) — genitive.",
    "id": "c6"
   },
   {
@@ -95,22 +67,8 @@
    ],
    "correct": "известные промежутки",
    "case": "Винительный (Accusative)",
-   "explain": "«известные промежутки» — after the preposition «через», the accusative marks the direct object of the verb.",
+   "explain": "«известные промежутки» — «через» always takes the accusative.",
    "id": "c7"
-  },
-  {
-   "sentence": "Когда она утром входила в лабораторию, с порозовевшими от ходьбы и ___ щеками, голова слабо улыбалась ей, и веки головы дрожали в знак приветствия.",
-   "lemma": "воздух",
-   "options": [
-    "свежим воздухом",
-    "свежего воздуха",
-    "свежем воздухе",
-    "свежий воздух"
-   ],
-   "correct": "свежего воздуха",
-   "case": "Родительный (Genitive)",
-   "explain": "«свежего воздуха» — the genitive here marks possession, absence, or quantity.",
-   "id": "c8"
   },
   {
    "sentence": "Но между ними скоро установился ___, хотя и очень ограниченный в мимической части лексикона.",
@@ -123,50 +81,8 @@
    ],
    "correct": "условный язык",
    "case": "Именительный (Nominative)",
-   "explain": "«условный язык» — the subject of the sentence stands in the nominative.",
+   "explain": "«условный язык» is the subject of «установился» — who or what does it — so nominative.",
    "id": "c9"
-  },
-  {
-   "sentence": "Мисс Адамс забрасывала голову вопросами и проворно исполняла ___.",
-   "lemma": "обязанность",
-   "options": [
-    "утренние обязанности",
-    "утренними обязанностями",
-    "утренним обязанностям",
-    "утренних обязанностей"
-   ],
-   "correct": "утренние обязанности",
-   "case": "Винительный (Accusative)",
-   "explain": "«утренние обязанности» — the accusative marks the direct object of the verb.",
-   "id": "c11"
-  },
-  {
-   "sentence": "Затем, с величайшей осторожностью, омыла водой со спиртом лицо головы при помощи ___, вытерла гигроскопической ватой.",
-   "lemma": "губка",
-   "options": [
-    "мягкой губкой",
-    "мягкая губка",
-    "мягкой губке",
-    "мягкой губки"
-   ],
-   "correct": "мягкой губки",
-   "case": "Родительный (Genitive)",
-   "explain": "«мягкой губки» — after the preposition «при», the genitive here marks possession, absence, or quantity.",
-   "id": "c12"
-  },
-  {
-   "sentence": "Затем, с величайшей осторожностью, омыла водой со спиртом лицо головы при помощи мягкой губки, вытерла ___.",
-   "lemma": "вата",
-   "options": [
-    "гигроскопической ватой",
-    "гигроскопической ваты",
-    "гигроскопической вате",
-    "гигроскопическая вата"
-   ],
-   "correct": "гигроскопической ватой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«гигроскопической ватой» — the instrumental marks the means, company, or complement.",
-   "id": "c13"
   },
   {
    "sentence": "В рот и нос для этого вводились ___.",
@@ -179,50 +95,22 @@
    ],
    "correct": "особые трубки",
    "case": "Именительный (Nominative)",
-   "explain": "«особые трубки» — the subject of the sentence stands in the nominative.",
+   "explain": "«особые трубки» is the subject of «вводились» — who or what does it — so nominative.",
    "id": "c14"
-  },
-  {
-   "sentence": "— Сегодня ___, — оживленно говорила мисс Адамс.",
-   "lemma": "день",
-   "options": [
-    "чудесном дне",
-    "чудесный день",
-    "чудесному дню",
-    "чудесным днём"
-   ],
-   "correct": "чудесный день",
-   "case": "Именительный (Nominative)",
-   "explain": "«чудесный день» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
   },
   {
    "sentence": "Она, с инстинктивной чуткостью женщины, избегала говорить обо всем, что было недостижимо для головы и могло лишний раз напомнить об убожестве ее ___.",
    "lemma": "существование",
    "options": [
+    "физическое существование",
     "физического существования",
     "физическом существовании",
-    "физическое существование",
-    "физическим существованием"
+    "физическому существованию"
    ],
    "correct": "физического существования",
    "case": "Родительный (Genitive)",
-   "explain": "«физического существования» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«физического существования» depends on the noun «убожестве» (whose? of what?) — genitive.",
    "id": "c16"
-  },
-  {
-   "sentence": "Мисс Адамс приносила ворох последних ___ и книг и показывала их голове.",
-   "lemma": "журнал",
-   "options": [
-    "медицинских журналов",
-    "медицинских журналах",
-    "медицинскими журналами",
-    "медицинским журналам"
-   ],
-   "correct": "медицинских журналов",
-   "case": "Родительный (Genitive)",
-   "explain": "«медицинских журналов» — the genitive here marks possession, absence, or quantity.",
-   "id": "c17"
   },
   {
    "sentence": "Голова просматривала; на ___ шевелила бровями.",
@@ -235,22 +123,8 @@
    ],
    "correct": "нужной статье",
    "case": "Предложный (Prepositional)",
-   "explain": "«нужной статье» — after the preposition «на», for location or topic.",
+   "explain": "«нужной статье» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c18"
-  },
-  {
-   "sentence": "Для чего голова заставляла делать на полях эти отметки, мисс Адамс не понимала; но при помощи их бедного ___ она не надеялась получить раз’яснения и потому не спрашивала.",
-   "lemma": "язык",
-   "options": [
-    "мимический язык",
-    "мимическим языком",
-    "мимического языка",
-    "мимическом языке"
-   ],
-   "correct": "мимического языка",
-   "case": "Родительный (Genitive)",
-   "explain": "«мимического языка» — after the preposition «при», the genitive here marks possession, absence, or quantity.",
-   "id": "c19"
   },
   {
    "sentence": "Но, однажды, проходя через кабинет профессора Керн в его отсутствие, она увидела на ___ журналы, со сделанными ею, по указанию головы, отметками.",
@@ -263,36 +137,22 @@
    ],
    "correct": "письменном столе",
    "case": "Предложный (Prepositional)",
-   "explain": "«письменном столе» — after the preposition «на», for location or topic.",
+   "explain": "«письменном столе» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c20"
   },
   {
    "sentence": "Мисс Адамс поняла, что голова хочет, чтобы мисс Адамс открыла этот ___.",
    "lemma": "кран",
    "options": [
-    "запретного крана",
-    "запретный кран",
+    "запретным краном",
     "запретном кране",
-    "запретным краном"
+    "запретному крану",
+    "запретный кран"
    ],
    "correct": "запретный кран",
    "case": "Винительный (Accusative)",
-   "explain": "«запретный кран» — the accusative marks the direct object of the verb.",
+   "explain": "«запретный кран» is the direct object of «открыла» (кого? что?) — accusative.",
    "id": "c22"
-  },
-  {
-   "sentence": "Но мисс Адамс об’ясняла желание головы по своему: голова, очевидно, хочет покончить со своим ___.",
-   "lemma": "существование",
-   "options": [
-    "безотрадное существование",
-    "безотрадному существованию",
-    "безотрадным существованием",
-    "безотрадном существовании"
-   ],
-   "correct": "безотрадным существованием",
-   "case": "Творительный (Instrumental)",
-   "explain": "«безотрадным существованием» — after the preposition «со», the instrumental marks the means, company, or complement.",
-   "id": "c24"
   },
   {
    "sentence": "___ пропускал сжатый в цилиндре воздух.",
@@ -305,7 +165,7 @@
    ],
    "correct": "запретный кран",
    "case": "Именительный (Nominative)",
-   "explain": "«Запретный кран» — the subject of the sentence stands in the nominative.",
+   "explain": "«запретный кран» is the subject of «пропускал» — who or what does it — so nominative.",
    "id": "c26"
   }
  ]

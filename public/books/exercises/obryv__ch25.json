@@ -1,31 +1,17 @@
 {
  "cases": [
   {
-   "sentence": "И лично для себя то же самое: кто ты: полководец, писатель, сенатор, консул, или невольник, или ___, или жрец?",
-   "lemma": "мастер",
-   "options": [
-    "школьного мастера",
-    "школьный мастер",
-    "школьным мастером",
-    "школьному мастеру"
-   ],
-   "correct": "школьный мастер",
-   "case": "Именительный (Nominative)",
-   "explain": "«школьный мастер» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Трудно вливаться в эти ___, как трудно надевать их латы, поднимать мечи, секиры!",
    "lemma": "форма",
    "options": [
-    "величавых формах",
-    "величавых форм",
+    "величавыми формами",
     "величавые формы",
-    "величавыми формами"
+    "величавым формам",
+    "величавых форм"
    ],
    "correct": "величавые формы",
    "case": "Винительный (Accusative)",
-   "explain": "«величавые формы» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«величавые формы» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c2"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "современный человек",
    "case": "Именительный (Nominative)",
-   "explain": "«современный человек» — the subject of the sentence stands in the nominative.",
+   "explain": "«современный человек» is the subject of «рассыпался» — who or what does it — so nominative.",
    "id": "c3"
   },
   {
@@ -53,7 +39,7 @@
    ],
    "correct": "неосмысленного материала",
    "case": "Родительный (Genitive)",
-   "explain": "«неосмысленного материала» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«неосмысленного материала» depends on the noun «смесь» (whose? of what?) — genitive.",
    "id": "c4"
   },
   {
@@ -67,49 +53,21 @@
    ],
    "correct": "великих образцов",
    "case": "Родительный (Genitive)",
-   "explain": "«великих образцов» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«великих образцов» — «от» always takes the genitive.",
    "id": "c5"
-  },
-  {
-   "sentence": "Мы потеряли дорогу, отстали от великих образцов, утратили ___ их бытия.",
-   "lemma": "секрет",
-   "options": [
-    "многих секретов",
-    "многими секретами",
-    "многие секреты",
-    "многим секретам"
-   ],
-   "correct": "многие секреты",
-   "case": "Винительный (Accusative)",
-   "explain": "«многие секреты» — the accusative marks the direct object of the verb.",
-   "id": "c6"
-  },
-  {
-   "sentence": "— Ты все тот же ___, Леонтий!",
-   "lemma": "студент",
-   "options": [
-    "старый студент",
-    "старым студентом",
-    "старого студента",
-    "старому студенту"
-   ],
-   "correct": "старый студент",
-   "case": "Именительный (Nominative)",
-   "explain": "«старый студент» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
   },
   {
    "sentence": "Я так же нянчусь с этими ___, как ты с своими никогда не жившими идеалами и образами.",
    "lemma": "человек",
    "options": [
+    "отжившим людям",
     "отживших людях",
-    "отжившие люди",
     "отжившими людьми",
-    "отживших людей"
+    "отжившие люди"
    ],
    "correct": "отжившими людьми",
    "case": "Творительный (Instrumental)",
-   "explain": "«отжившими людьми» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«отжившими людьми» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c8"
   },
   {
@@ -123,7 +81,7 @@
    ],
    "correct": "современного художника",
    "case": "Винительный (Accusative)",
-   "explain": "«современного художника» — the accusative marks the direct object of the verb.",
+   "explain": "«современного художника» is the direct object of «удовлетворить» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c10"
   },
   {
@@ -137,22 +95,8 @@
    ],
    "correct": "другой титан",
    "case": "Именительный (Nominative)",
-   "explain": "«другой титан» — the subject of the sentence stands in the nominative.",
+   "explain": "«другой титан» is the subject of «случился» — who or what does it — so nominative.",
    "id": "c12"
-  },
-  {
-   "sentence": "Будем превращать эти ___ в жилые места, встряхивать спящие умы от застоя!",
-   "lemma": "кладбище",
-   "options": [
-    "обширными кладбищами",
-    "обширным кладбищам",
-    "обширных кладбищ",
-    "обширные кладбища"
-   ],
-   "correct": "обширные кладбища",
-   "case": "Винительный (Accusative)",
-   "explain": "«обширные кладбища» — the accusative marks the direct object of the verb.",
-   "id": "c13"
   },
   {
    "sentence": "Я с ними рассматриваю рисунки ___, домов, утвари, — сам черчу, объясняю, как, бывало, тебе: что сам знаю, всем делюсь.",
@@ -165,7 +109,7 @@
    ],
    "correct": "древних зданий",
    "case": "Родительный (Genitive)",
-   "explain": "«древних зданий» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«древних зданий» depends on the noun «рисунки» (whose? of what?) — genitive.",
    "id": "c15"
   },
   {
@@ -179,50 +123,8 @@
    ],
    "correct": "образцовых поэтов",
    "case": "Винительный (Accusative)",
-   "explain": "«образцовых поэтов» — the accusative marks the direct object of the verb.",
+   "explain": "«образцовых поэтов» is the direct object of «толкуют» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c16"
-  },
-  {
-   "sentence": "— Жизнь «для себя и про себя» — не жизнь, а ___: нужно слово и дело, борьба.",
-   "lemma": "состояние",
-   "options": [
-    "пассивного состояния",
-    "пассивное состояние",
-    "пассивному состоянию",
-    "пассивном состоянии"
-   ],
-   "correct": "пассивное состояние",
-   "case": "Именительный (Nominative)",
-   "explain": "«пассивное состояние» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
-  },
-  {
-   "sentence": "— Ты напоминаешь мне Софью, кузину: та тоже не хочет знать жизни, зато она — ___!",
-   "lemma": "кукла",
-   "options": [
-    "великолепная кукла",
-    "великолепной кукле",
-    "великолепной куклой",
-    "великолепной куклы"
-   ],
-   "correct": "великолепная кукла",
-   "case": "Именительный (Nominative)",
-   "explain": "«великолепная кукла» — the subject of the sentence stands in the nominative.",
-   "id": "c18"
-  },
-  {
-   "sentence": "Я такой ___, что она и не заметит меня.",
-   "lemma": "человек",
-   "options": [
-    "маленьким человеком",
-    "маленькому человеку",
-    "маленьком человеке",
-    "маленький человек"
-   ],
-   "correct": "маленький человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«маленький человек» — the subject of the sentence stands in the nominative.",
-   "id": "c19"
   },
   {
    "sentence": "Но ты оставляешь их в моем ___.",
@@ -235,7 +137,7 @@
    ],
    "correct": "полном распоряжении",
    "case": "Предложный (Prepositional)",
-   "explain": "«полном распоряжении» — after the preposition «в», for location or topic.",
+   "explain": "«полном распоряжении» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c20"
   }
  ]

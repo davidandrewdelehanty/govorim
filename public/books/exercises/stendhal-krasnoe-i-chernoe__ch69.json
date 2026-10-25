@@ -1,62 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Глаз твой не способен наблюдать сокровенную работу незримых ___.",
-   "lemma": "страсть",
-   "options": [
-    "человеческими страстями",
-    "человеческих страстях",
-    "человеческих страстей",
-    "человеческим страстям"
-   ],
-   "correct": "человеческих страстей",
-   "case": "Родительный (Genitive)",
-   "explain": "«человеческих страстей» — the genitive here marks possession, absence, or quantity.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Эти минуты были единственно неприятными в жизни Жюльена, полной теперь ___ и беспечности.",
-   "lemma": "воспоминание",
-   "options": [
-    "нежным воспоминаниям",
-    "нежных воспоминаний",
-    "нежные воспоминания",
-    "нежных воспоминаниях"
-   ],
-   "correct": "нежных воспоминаний",
-   "case": "Родительный (Genitive)",
-   "explain": "«нежных воспоминаний» — the genitive here marks possession, absence, or quantity.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Адвокат, ___ и законник, считал Жюльена сумасшедшим и разделял общее мнение, что ревность побудила его схватиться за пистолет.",
-   "lemma": "формалист",
-   "options": [
-    "большой формалист",
-    "большим формалистом",
-    "большого формалиста",
-    "большому формалисту"
-   ],
-   "correct": "большой формалист",
-   "case": "Именительный (Nominative)",
-   "explain": "«большой формалист» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
-   "sentence": "Он осмелился однажды намекнуть Жюльену, что это показание, справедливое или ложное, послужило бы ___ для защиты.",
-   "lemma": "мотив",
-   "options": [
-    "прекрасный мотив",
-    "прекрасным мотивом",
-    "прекрасном мотиве",
-    "прекрасному мотиву"
-   ],
-   "correct": "прекрасным мотивом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«прекрасным мотивом» — the instrumental marks the means, company, or complement.",
-   "id": "c4"
-  },
-  {
    "sentence": "___ одну минуту опасался, что он его убьет.",
    "lemma": "адвокат",
    "options": [
@@ -67,7 +11,7 @@
    ],
    "correct": "робкий адвокат",
    "case": "Именительный (Nominative)",
-   "explain": "«Робкий адвокат» — the subject of the sentence stands in the nominative.",
+   "explain": "«робкий адвокат» is the subject of «опасался» — who or what does it — so nominative.",
    "id": "c5"
   },
   {
@@ -81,21 +25,21 @@
    ],
    "correct": "решительная минута",
    "case": "Именительный (Nominative)",
-   "explain": "«решительная минута» — the subject of the sentence stands in the nominative.",
+   "explain": "«решительная минута» is the subject of «приближалась» — who or what does it — so nominative.",
    "id": "c6"
   },
   {
    "sentence": "Весь Безансон и департамент только и говорили об этом ___.",
    "lemma": "процесс",
    "options": [
-    "громком процессе",
+    "громким процессом",
     "громкому процессу",
-    "громкий процесс",
-    "громким процессом"
+    "громком процессе",
+    "громкого процесса"
    ],
    "correct": "громком процессе",
    "case": "Предложный (Prepositional)",
-   "explain": "«громком процессе» — after the preposition «об», for location or topic.",
+   "explain": "«громком процессе» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c7"
   },
   {
@@ -109,50 +53,22 @@
    ],
    "correct": "подобных вещах",
    "case": "Предложный (Prepositional)",
-   "explain": "«подобных вещах» — after the preposition «о», for location or topic.",
+   "explain": "«подобных вещах» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c8"
-  },
-  {
-   "sentence": "Ваши ___, ваши сообщения о реальной жизни, более или менее для меня оскорбительные, заставят меня спуститься с небес.",
-   "lemma": "дрязг",
-   "options": [
-    "мелкие дрязги",
-    "мелких дрязгах",
-    "мелких дрязгов",
-    "мелкими дрязгами"
-   ],
-   "correct": "мелкие дрязги",
-   "case": "Именительный (Nominative)",
-   "explain": "«мелкие дрязги» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
   },
   {
    "sentence": "В ___ он много гулял по узкой террасе башни и курил восхитительные сигары, за которыми Матильда посылала нарочного в Голландию, не подозревая, что весь город ежедневно ожидает с нетерпением его появления.",
    "lemma": "день",
    "options": [
-    "последних днях",
+    "последние дни",
     "последними днями",
-    "последним дням",
-    "последние дни"
+    "последних дней",
+    "последним дням"
    ],
    "correct": "последние дни",
    "case": "Винительный (Accusative)",
-   "explain": "«последние дни» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«последние дни» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c10"
-  },
-  {
-   "sentence": "В последние дни он много гулял по узкой террасе башни и курил ___, за которыми Матильда посылала нарочного в Голландию, не подозревая, что весь город ежедневно ожидает с нетерпением его появления.",
-   "lemma": "сигара",
-   "options": [
-    "восхитительным сигарам",
-    "восхитительные сигары",
-    "восхитительных сигар",
-    "восхитительными сигарами"
-   ],
-   "correct": "восхитительные сигары",
-   "case": "Винительный (Accusative)",
-   "explain": "«восхитительные сигары» — the accusative marks the direct object of the verb.",
-   "id": "c11"
   },
   {
    "sentence": "___, заведующий списком бенефиции, приписал на письме своей племянницы: «Э_т_о_т б_е_д_н_я_г_а С_о_р_е_л_ь — с_у_м_а_с_б_р_о_д, н_а_д_е_ю_с_ь, ч_т_о е_г_о н_а_м в_о_з_в_р_а_т_я_т».",
@@ -165,35 +81,21 @@
    ],
    "correct": "почтенный прелат",
    "case": "Именительный (Nominative)",
-   "explain": "«Почтенный прелат» — the subject of the sentence stands in the nominative.",
+   "explain": "«почтенный прелат» is the subject of «приписал» — who or what does it — so nominative.",
    "id": "c12"
-  },
-  {
-   "sentence": "— Не будь этого ___, предписывающего составление бесконечного списка присяжных с целью лишить влияния людей знатных, — говорил он Матильде накануне открытия сессии, — я бы ручался за о_п_р_а_в_д_а_н_и_е.",
-   "lemma": "закон",
-   "options": [
-    "якобинского закона",
-    "якобинском законе",
-    "якобинский закон",
-    "якобинским законом"
-   ],
-   "correct": "якобинского закона",
-   "case": "Родительный (Genitive)",
-   "explain": "«якобинского закона» — the genitive here marks possession, absence, or quantity.",
-   "id": "c13"
   },
   {
    "sentence": "— Не будь этого якобинского закона, предписывающего составление ___ присяжных с целью лишить влияния людей знатных, — говорил он Матильде накануне открытия сессии, — я бы ручался за о_п_р_а_в_д_а_н_и_е.",
    "lemma": "список",
    "options": [
-    "бесконечным списком",
+    "бесконечному списку",
     "бесконечный список",
     "бесконечного списка",
-    "бесконечному списку"
+    "бесконечном списке"
    ],
    "correct": "бесконечного списка",
    "case": "Родительный (Genitive)",
-   "explain": "«бесконечного списка» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«бесконечного списка» depends on the noun «составление» (whose? of what?) — genitive.",
    "id": "c14"
   },
   {
@@ -207,7 +109,7 @@
    ],
    "correct": "другой день",
    "case": "Винительный (Accusative)",
-   "explain": "«другой день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«другой день» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c15"
   },
   {
@@ -221,7 +123,7 @@
    ],
    "correct": "великому удовольствию",
    "case": "Дательный (Dative)",
-   "explain": "«великому удовольствию» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«великому удовольствию» — «к» always takes the dative.",
    "id": "c16"
   },
   {
@@ -235,7 +137,7 @@
    ],
    "correct": "департаментской газете",
    "case": "Предложный (Prepositional)",
-   "explain": "«департаментской газете» — after the preposition «в», for location or topic.",
+   "explain": "«департаментской газете» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c17"
   },
   {
@@ -249,7 +151,7 @@
    ],
    "correct": "неизъяснимому ужасу",
    "case": "Дательный (Dative)",
-   "explain": "«неизъяснимому ужасу» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«неизъяснимому ужасу» — «к» always takes the dative.",
    "id": "c18"
   },
   {
@@ -263,7 +165,7 @@
    ],
    "correct": "бедного юноши",
    "case": "Родительный (Genitive)",
-   "explain": "«бедного юноши» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«бедного юноши» — «у» always takes the genitive.",
    "id": "c19"
   },
   {
@@ -277,22 +179,8 @@
    ],
    "correct": "могущественные враги",
    "case": "Именительный (Nominative)",
-   "explain": "«могущественные враги» — the subject of the sentence stands in the nominative.",
+   "explain": "«могущественные враги» is the subject of «есть» — who or what does it — so nominative.",
    "id": "c20"
-  },
-  {
-   "sentence": "У этого бедного юноши есть могущественные враги; но даже и ___ (а сколько их у него!) не сомневаются в его изумительных способностях и глубоких знаниях.",
-   "lemma": "враг",
-   "options": [
-    "самим врагам",
-    "сами враги",
-    "самих врагов",
-    "самими врагами"
-   ],
-   "correct": "сами враги",
-   "case": "Именительный (Nominative)",
-   "explain": "«сами враги» — the subject of the sentence stands in the nominative.",
-   "id": "c21"
   },
   {
    "sentence": "У этого бедного юноши есть могущественные враги; но даже и сами враги (а сколько их у него!) не сомневаются в его ___ и глубоких знаниях.",
@@ -305,64 +193,22 @@
    ],
    "correct": "изумительных способностях",
    "case": "Предложный (Prepositional)",
-   "explain": "«изумительных способностях» — after the preposition «в», for location or topic.",
+   "explain": "«изумительных способностях» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c22"
-  },
-  {
-   "sentence": "У этого бедного юноши есть могущественные враги; но даже и сами враги (а сколько их у него!) не сомневаются в его изумительных способностях и ___.",
-   "lemma": "знание",
-   "options": [
-    "глубоким знаниям",
-    "глубокими знаниями",
-    "глубоких знаниях",
-    "глубоких знаний"
-   ],
-   "correct": "глубоких знаниях",
-   "case": "Предложный (Prepositional)",
-   "explain": "«глубоких знаниях» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c23"
-  },
-  {
-   "sentence": "Весь Верьер, все наши соседи в Вержи, где мы проводим лето, вся моя семья, ___ супрсфект могут подтвердить его примерное благочестие; он знает наизусть почти всю Библию.",
-   "lemma": "господин",
-   "options": [
-    "самим господином",
-    "сам господин",
-    "самому господину",
-    "самого господина"
-   ],
-   "correct": "сам господин",
-   "case": "Именительный (Nominative)",
-   "explain": "«сам господин» — the subject of the sentence stands in the nominative.",
-   "id": "c24"
   },
   {
    "sentence": "Соблаговолите расспросить их, сударь, об этом ___, и вы убедитесь, как было бы жестоко приговорить его к смерти.",
    "lemma": "человек",
    "options": [
+    "молодой человек",
     "молодому человеку",
-    "молодом человеке",
     "молодым человеком",
-    "молодого человека"
+    "молодом человеке"
    ],
    "correct": "молодом человеке",
    "case": "Предложный (Prepositional)",
-   "explain": "«молодом человеке» — after the preposition «об», for location or topic.",
+   "explain": "«молодом человеке» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c25"
-  },
-  {
-   "sentence": "Если я узнаю, сударь, что вы хоть сколько-нибудь колебались спасти от варварства законов столь мало ___, я встану с постели, где меня удерживает только приказание моего мужа, прибегу и брошусь вам в ноги.",
-   "lemma": "человек",
-   "options": [
-    "виновный человек",
-    "виновном человеке",
-    "виновного человека",
-    "виновному человеку"
-   ],
-   "correct": "виновного человека",
-   "case": "Родительный (Genitive)",
-   "explain": "«виновного человека» — the genitive here marks possession, absence, or quantity.",
-   "id": "c26"
   }
  ]
 }

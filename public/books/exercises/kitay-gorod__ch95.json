@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "___ с выписной рыбой «barbue» затянулся.",
-   "lemma": "обед",
-   "options": [
-    "купеческого обеда",
-    "купеческом обеде",
-    "купеческому обеду",
-    "купеческий обед"
-   ],
-   "correct": "купеческий обед",
-   "case": "Именительный (Nominative)",
-   "explain": "«Купеческий обед» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Было выпито много ___ и ликеров.",
    "lemma": "крюшон",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "разных крюшонов",
    "case": "Родительный (Genitive)",
-   "explain": "«разных крюшонов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "After «много», a word of quantity — genitive.",
    "id": "c3"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "колоссальной машины",
    "case": "Родительный (Genitive)",
-   "explain": "«колоссальной машины» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«колоссальной машины» depends on the noun «нутро» (whose? of what?) — genitive.",
    "id": "c4"
   },
   {
@@ -53,7 +39,7 @@
    ],
    "correct": "художественные стороны",
    "case": "Именительный (Nominative)",
-   "explain": "«Художественные стороны» — the subject of the sentence stands in the nominative.",
+   "explain": "«художественные стороны» is the subject of «помогали» — who or what does it — so nominative.",
    "id": "c5"
   },
   {
@@ -67,7 +53,7 @@
    ],
    "correct": "новые связи",
    "case": "Именительный (Nominative)",
-   "explain": "«новые связи» — the subject of the sentence stands in the nominative.",
+   "explain": "«новые связи» is the subject of «заводились» — who or what does it — so nominative.",
    "id": "c6"
   },
   {
@@ -81,22 +67,8 @@
    ],
    "correct": "меблированных комнатах",
    "case": "Предложный (Prepositional)",
-   "explain": "«меблированных комнатах» — after the preposition «в», for location or topic.",
+   "explain": "«меблированных комнатах» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c7"
-  },
-  {
-   "sentence": "Обе нанимали помесячно ___.",
-   "lemma": "квартирка",
-   "options": [
-    "нарядные квартирки",
-    "нарядных квартирок",
-    "нарядным квартиркам",
-    "нарядных квартирках"
-   ],
-   "correct": "нарядные квартирки",
-   "case": "Именительный (Nominative)",
-   "explain": "«нарядные квартирки» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
   },
   {
    "sentence": "Жило три помещичьих семейства, водилась картежная игра, останавливались ___ из коммивояжеров.",
@@ -109,22 +81,8 @@
    ],
    "correct": "заграничные немцы",
    "case": "Именительный (Nominative)",
-   "explain": "«заграничные немцы» — the subject of the sentence stands in the nominative.",
+   "explain": "«заграничные немцы» is the subject of «останавливались» — who or what does it — so nominative.",
    "id": "c9"
-  },
-  {
-   "sentence": "То и дело Спиридон — так звали его — сообщал ему ___ о квартирантках.",
-   "lemma": "новость",
-   "options": [
-    "разными новостями",
-    "разные новости",
-    "разных новостей",
-    "разным новостям"
-   ],
-   "correct": "разные новости",
-   "case": "Винительный (Accusative)",
-   "explain": "«разные новости» — the accusative marks the direct object of the verb.",
-   "id": "c12"
   },
   {
    "sentence": "— Из Петербурга есть ___.",
@@ -137,21 +95,21 @@
    ],
    "correct": "приезжий товар",
    "case": "Именительный (Nominative)",
-   "explain": "«приезжий товар» — the subject of the sentence stands in the nominative.",
+   "explain": "«приезжий товар» is the subject of «есть» — who or what does it — so nominative.",
    "id": "c13"
   },
   {
    "sentence": "Палтусов подумал по уходе Спиридона о своем ___ с княжной Куратовой.",
    "lemma": "разговор",
    "options": [
-    "вчерашнему разговору",
-    "вчерашнем разговоре",
+    "вчерашним разговором",
     "вчерашнего разговора",
-    "вчерашний разговор"
+    "вчерашнем разговоре",
+    "вчерашнему разговору"
    ],
    "correct": "вчерашнем разговоре",
    "case": "Предложный (Prepositional)",
-   "explain": "«вчерашнем разговоре» — after the preposition «о», for location or topic.",
+   "explain": "«вчерашнем разговоре» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c14"
   },
   {
@@ -165,7 +123,7 @@
    ],
    "correct": "прошлой зимы",
    "case": "Родительный (Genitive)",
-   "explain": "«прошлой зимы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«прошлой зимы» depends on the noun «голове» (whose? of what?) — genitive.",
    "id": "c15"
   }
  ]

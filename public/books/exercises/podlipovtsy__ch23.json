@@ -1,60 +1,18 @@
 {
  "cases": [
   {
-   "sentence": "Можно бы много написать про то, как бурлаки плыли восемь дней, да не стоит, потому что ___ плавания походил на прочие: тот же крик лоцманов, те же песни бурлаков, та же возня их, те же думы бурлаков.",
-   "lemma": "день",
-   "options": [
-    "первого дня",
-    "первым днём",
-    "первый день",
-    "первому дню"
-   ],
-   "correct": "первый день",
-   "case": "Именительный (Nominative)",
-   "explain": "«первый день» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "___ не скоро отыщешь, надо ждать дня три, да еще привяжется.",
-   "lemma": "начальство",
-   "options": [
-    "сельскому начальству",
-    "сельского начальства",
-    "сельском начальстве",
-    "сельское начальство"
-   ],
-   "correct": "сельское начальство",
-   "case": "Именительный (Nominative)",
-   "explain": "«Сельское начальство» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
    "sentence": "Бурлаки запасаются хлебом, наполняют кабачки; жители навязывают им ___ — мясо, брюшину, яйца, лук, огурцы и т. п.",
    "lemma": "сласть",
    "options": [
-    "разных сластях",
     "разные сласти",
-    "разных сластей",
+    "разных сластях",
+    "разным сластям",
     "разными сластями"
    ],
    "correct": "разные сласти",
    "case": "Винительный (Accusative)",
-   "explain": "«разные сласти» — the accusative marks the direct object of the verb.",
+   "explain": "«разные сласти» is the direct object of «навязывают» (кого? что?) — accusative.",
    "id": "c3"
-  },
-  {
-   "sentence": "Когда не стало у них хлеба, они воровали из котомок ___.",
-   "lemma": "бурлак",
-   "options": [
-    "другими бурлаками",
-    "других бурлаков",
-    "другим бурлакам",
-    "другие бурлаки"
-   ],
-   "correct": "других бурлаков",
-   "case": "Родительный (Genitive)",
-   "explain": "«других бурлаков» — the genitive here marks possession, absence, or quantity.",
-   "id": "c4"
   },
   {
    "sentence": "К торговке или к торговцу приходят ___.",
@@ -67,78 +25,22 @@
    ],
    "correct": "другие покупатели",
    "case": "Именительный (Nominative)",
-   "explain": "«другие покупатели» — the subject of the sentence stands in the nominative.",
+   "explain": "«другие покупатели» is the subject of «приходят» — who or what does it — so nominative.",
    "id": "c5"
-  },
-  {
-   "sentence": "___ не доставало на толпу, и они, выхлебав щи, нальют чашку воды и опять хлебают с крошками.",
-   "lemma": "котёл",
-   "options": [
-    "целому котлу",
-    "целом котле",
-    "целого котла",
-    "целым котлом"
-   ],
-   "correct": "целого котла",
-   "case": "Родительный (Genitive)",
-   "explain": "«Целого котла» — the genitive here marks possession, absence, or quantity.",
-   "id": "c6"
   },
   {
    "sentence": "Зато все едят дружно, не сердятся, не завидуют, как будто все ___.",
    "lemma": "брат",
    "options": [
-    "родных братьев",
-    "родным братьям",
     "родных братьях",
-    "родные братья"
+    "родные братья",
+    "родными братьями",
+    "родным братьям"
    ],
    "correct": "родные братья",
    "case": "Именительный (Nominative)",
-   "explain": "«родные братья» — the subject of the sentence stands in the nominative.",
+   "explain": "«родные братья» is the subject of «завидуют» — who or what does it — so nominative.",
    "id": "c7"
-  },
-  {
-   "sentence": "Больно нравится бурлакам эта песня, — почему, они не дадут отчета, только чувствуют, что она ___ и лучше ее нет другой песни.",
-   "lemma": "песня",
-   "options": [
-    "хорошей песни",
-    "хорошей песней",
-    "хорошей песне",
-    "хорошая песня"
-   ],
-   "correct": "хорошая песня",
-   "case": "Именительный (Nominative)",
-   "explain": "«хорошая песня» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
-  },
-  {
-   "sentence": "Больно нравится бурлакам эта песня, — почему, они не дадут отчета, только чувствуют, что она хорошая песня и лучше ее нет ___.",
-   "lemma": "песня",
-   "options": [
-    "другая песня",
-    "другой песни",
-    "другой песней",
-    "другой песне"
-   ],
-   "correct": "другой песни",
-   "case": "Родительный (Genitive)",
-   "explain": "«другой песни» — the genitive here marks possession, absence, or quantity.",
-   "id": "c10"
-  },
-  {
-   "sentence": "— И ребята умываются ___, покрывшей на полторы четверти дно барки.",
-   "lemma": "вода",
-   "options": [
-    "грязной воде",
-    "грязная вода",
-    "грязной воды",
-    "грязной водой"
-   ],
-   "correct": "грязной водой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«грязной водой» — the instrumental marks the means, company, or complement.",
-   "id": "c11"
   },
   {
    "sentence": "Читатель, может быть, удивился: зачем ребята умывались грязною водою, накопившеюся в барке, когда они могли бы умыться в ___?",
@@ -151,7 +53,7 @@
    ],
    "correct": "самой реке",
    "case": "Предложный (Prepositional)",
-   "explain": "«самой реке» — after the preposition «в», for location or topic.",
+   "explain": "«самой реке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c12"
   },
   {
@@ -165,7 +67,7 @@
    ],
    "correct": "других заводов",
    "case": "Родительный (Genitive)",
-   "explain": "«других заводов» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«других заводов» — «из» always takes the genitive.",
    "id": "c13"
   }
  ]

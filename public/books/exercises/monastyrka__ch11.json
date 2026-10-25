@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "По совершенном окончании ___ Блистовскому нечего было делать в Ромнах, и потому он вознамерился выехать оттуда на другой день.",
-   "lemma": "ярмонка",
-   "options": [
-    "конная ярмонка",
-    "конной ярмонке",
-    "конной ярмонки",
-    "конной ярмонкой"
-   ],
-   "correct": "конной ярмонки",
-   "case": "Родительный (Genitive)",
-   "explain": "«конной ярмонки» — the genitive here marks possession, absence, or quantity.",
-   "id": "c2"
-  },
-  {
    "sentence": "По совершенном окончании конной ярмонки Блистовскому нечего было делать в Ромнах, и потому он вознамерился выехать оттуда на ___.",
    "lemma": "день",
    "options": [
@@ -25,22 +11,8 @@
    ],
    "correct": "другой день",
    "case": "Винительный (Accusative)",
-   "explain": "«другой день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«другой день» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c3"
-  },
-  {
-   "sentence": "Он нашел его столь же многолюдным, как накануне; но Дюндиковых там не было: они остались дома горевать о потерянном ___.",
-   "lemma": "язык",
-   "options": [
-    "французскому языку",
-    "французский язык",
-    "французского языка",
-    "французском языке"
-   ],
-   "correct": "французском языке",
-   "case": "Предложный (Prepositional)",
-   "explain": "«французском языке» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c4"
   },
   {
    "sentence": "Повертевшись немного в толпе веселящихся, Владимир уже намерен был идти домой, как вдруг услышал в ___ необычайный шум и крик.",
@@ -53,22 +25,8 @@
    ],
    "correct": "ближней комнате",
    "case": "Предложный (Prepositional)",
-   "explain": "«ближней комнате» — after the preposition «в», for location or topic.",
+   "explain": "«ближней комнате» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c5"
-  },
-  {
-   "sentence": "Повертевшись немного в толпе веселящихся, Владимир уже намерен был идти домой, как вдруг услышал в ближней комнате ___ и крик.",
-   "lemma": "шум",
-   "options": [
-    "необычайный шум",
-    "необычайному шуму",
-    "необычайном шуме",
-    "необычайным шумом"
-   ],
-   "correct": "необычайный шум",
-   "case": "Винительный (Accusative)",
-   "explain": "«необычайный шум» — the accusative marks the direct object of the verb.",
-   "id": "c6"
   },
   {
    "sentence": "Еще в прошлом году один подражатель французских проказников перепортил здесь множество ___ и перепугал до полусмерти многих дам.",
@@ -81,22 +39,8 @@
    ],
    "correct": "дамских уборов",
    "case": "Родительный (Genitive)",
-   "explain": "«дамских уборов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«дамских уборов» depends on the noun «множество» (whose? of what?) — genitive.",
    "id": "c8"
-  },
-  {
-   "sentence": "Несмотря на все старания, не могли его открыть, и ___ кончилась тем, что не удалось найти ни малейших к тому следов.",
-   "lemma": "ярмонка",
-   "options": [
-    "прошлогодняя ярмонка",
-    "прошлогодней ярмонке",
-    "прошлогодней ярмонкой",
-    "прошлогодней ярмонки"
-   ],
-   "correct": "прошлогодняя ярмонка",
-   "case": "Именительный (Nominative)",
-   "explain": "«прошлогодняя ярмонка» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
   },
   {
    "sentence": "К тому же для совершенного изобличения надлежало бы поймать его в минуту ___, что не так легко!",
@@ -109,22 +53,8 @@
    ],
    "correct": "самого преступления",
    "case": "Родительный (Genitive)",
-   "explain": "«самого преступления» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«самого преступления» depends on the noun «минуту» (whose? of what?) — genitive.",
    "id": "c10"
-  },
-  {
-   "sentence": "Труд его был напрасен; но при разборе этом попался ему на глаза один ___, лет двадцати пяти, одетый по последней моде.",
-   "lemma": "человек",
-   "options": [
-    "молодом человеке",
-    "молодому человеку",
-    "молодой человек",
-    "молодого человека"
-   ],
-   "correct": "молодой человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«молодой человек» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
   },
   {
    "sentence": "Труд его был напрасен; но при разборе этом попался ему на глаза один молодой человек, лет двадцати пяти, одетый по ___.",
@@ -137,22 +67,8 @@
    ],
    "correct": "последней моде",
    "case": "Дательный (Dative)",
-   "explain": "«последней моде» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«последней моде» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c12"
-  },
-  {
-   "sentence": "Блистовский долго его слушал, не говоря ни слова; наконец представилась их взорам ___, коей старомодный наряд особенно возбуждал грубую насмешливость Прыжкова.",
-   "lemma": "старушка",
-   "options": [
-    "почтенной старушкой",
-    "почтенной старушке",
-    "почтенная старушка",
-    "почтенной старушки"
-   ],
-   "correct": "почтенная старушка",
-   "case": "Именительный (Nominative)",
-   "explain": "«почтенная старушка» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
   },
   {
    "sentence": "Прыжкова взяли под стражу, не слушая его ___ и уверений.",
@@ -165,7 +81,7 @@
    ],
    "correct": "пустых извинений",
    "case": "Родительный (Genitive)",
-   "explain": "«пустых извинений» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«пустых извинений» is the object of a negated verb («не слушая») — genitive instead of the accusative.",
    "id": "c16"
   },
   {
@@ -179,36 +95,8 @@
    ],
    "correct": "другой день",
    "case": "Винительный (Accusative)",
-   "explain": "«другой день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«другой день» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c19"
-  },
-  {
-   "sentence": "Оставляя Ромны, он долго размышлял о странном сцеплении обстоятельств, которые против воли привели его в столь ___ с семейством Дюндика.",
-   "lemma": "сношение",
-   "options": [
-    "неприятные сношения",
-    "неприятными сношениями",
-    "неприятных сношений",
-    "неприятных сношениях"
-   ],
-   "correct": "неприятные сношения",
-   "case": "Винительный (Accusative)",
-   "explain": "«неприятные сношения» — after the preposition «в», the accusative marks the direct object of the verb.",
-   "id": "c21"
-  },
-  {
-   "sentence": "Блистовский скоро устал от ___, по которому шел, и, увидев в правой стороне тропинку, ведущую в сосновый лес, решился идти по ней, надеясь, что она выведет его опять на столбовую дорогу.",
-   "lemma": "песок",
-   "options": [
-    "глубокого песка",
-    "глубоким песком",
-    "глубоком песке",
-    "глубокий песок"
-   ],
-   "correct": "глубокого песка",
-   "case": "Родительный (Genitive)",
-   "explain": "«глубокого песка» — after the preposition «в», the genitive here marks possession, absence, or quantity.",
-   "id": "c22"
   },
   {
    "sentence": "Блистовский скоро устал от глубокого песка, по которому шел, и, увидев в ___ тропинку, ведущую в сосновый лес, решился идти по ней, надеясь, что она выведет его опять на столбовую дорогу.",
@@ -221,7 +109,7 @@
    ],
    "correct": "правой стороне",
    "case": "Предложный (Prepositional)",
-   "explain": "«правой стороне» — after the preposition «в», for location or topic.",
+   "explain": "«правой стороне» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c23"
   },
   {
@@ -235,78 +123,8 @@
    ],
    "correct": "бесполезного крика",
    "case": "Родительный (Genitive)",
-   "explain": "«бесполезного крика» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«бесполезного крика» — «от» always takes the genitive.",
    "id": "c25"
-  },
-  {
-   "sentence": "Наконец до слуха его достиг звук голоса человеческого, и в то же время запах горящих дров возвестил ему их близость, хотя ___ скрыт был чащею.",
-   "lemma": "огонь",
-   "options": [
-    "самый огонь",
-    "самого огня",
-    "самом огне",
-    "самому огню"
-   ],
-   "correct": "самый огонь",
-   "case": "Именительный (Nominative)",
-   "explain": "«самый огонь» — the subject of the sentence stands in the nominative.",
-   "id": "c27"
-  },
-  {
-   "sentence": "Бояться не боюсь, а жаль мне ___; он такой был добрый!",
-   "lemma": "борода",
-   "options": [
-    "бедной бороде",
-    "бедная борода",
-    "бедной бороды",
-    "бедной бородой"
-   ],
-   "correct": "бедной бороды",
-   "case": "Родительный (Genitive)",
-   "explain": "«бедной бороды» — the genitive here marks possession, absence, or quantity.",
-   "id": "c28"
-  },
-  {
-   "sentence": "Разговор этот казался ему довольно ясным; он не имел при себе никакого оружия, и потому не оставалось для него ___ к спасению, как попытаться уйти, пока не подоспеют другие.",
-   "lemma": "средство",
-   "options": [
-    "иного средства",
-    "ином средстве",
-    "иное средство",
-    "иным средством"
-   ],
-   "correct": "иного средства",
-   "case": "Родительный (Genitive)",
-   "explain": "«иного средства» — the genitive here marks possession, absence, or quantity.",
-   "id": "c30"
-  },
-  {
-   "sentence": "Блистовский был в самом ___.",
-   "lemma": "положение",
-   "options": [
-    "затруднительное положение",
-    "затруднительному положению",
-    "затруднительного положения",
-    "затруднительном положении"
-   ],
-   "correct": "затруднительном положении",
-   "case": "Предложный (Prepositional)",
-   "explain": "«затруднительном положении» — after the preposition «в», for location or topic.",
-   "id": "c31"
-  },
-  {
-   "sentence": "Подле них расставлена была домашняя утварь: небольшой котел и несколько ___.",
-   "lemma": "горшок",
-   "options": [
-    "глиняные горшки",
-    "глиняных горшках",
-    "глиняных горшков",
-    "глиняными горшками"
-   ],
-   "correct": "глиняных горшков",
-   "case": "Родительный (Genitive)",
-   "explain": "«глиняных горшков» — the genitive here marks possession, absence, or quantity.",
-   "id": "c34"
   },
   {
    "sentence": "Прямо перед ними стояла ___, и тощий малорослый вол спокойно отдыхал подле нее от дневных трудов.",
@@ -319,7 +137,7 @@
    ],
    "correct": "крытая телега",
    "case": "Именительный (Nominative)",
-   "explain": "«крытая телега» — the subject of the sentence stands in the nominative.",
+   "explain": "«крытая телега» is the subject of «стояла» — who or what does it — so nominative.",
    "id": "c35"
   },
   {
@@ -333,7 +151,7 @@
    ],
    "correct": "малорослый вол",
    "case": "Именительный (Nominative)",
-   "explain": "«малорослый вол» — the subject of the sentence stands in the nominative.",
+   "explain": "«малорослый вол» is the subject of «отдыхал» — who or what does it — so nominative.",
    "id": "c36"
   },
   {
@@ -347,7 +165,7 @@
    ],
    "correct": "дневных трудов",
    "case": "Родительный (Genitive)",
-   "explain": "«дневных трудов» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«дневных трудов» — «от» always takes the genitive.",
    "id": "c37"
   },
   {
@@ -361,7 +179,7 @@
    ],
    "correct": "дикая картина",
    "case": "Именительный (Nominative)",
-   "explain": "«дикая картина» — the subject of the sentence stands in the nominative.",
+   "explain": "«дикая картина» is the subject of «освещена» — who or what does it — so nominative.",
    "id": "c38"
   },
   {
@@ -375,50 +193,8 @@
    ],
    "correct": "молодой человек",
    "case": "Именительный (Nominative)",
-   "explain": "«молодой человек» — the subject of the sentence stands in the nominative.",
+   "explain": "«молодой человек» is the subject of «приблизился» — who or what does it — so nominative.",
    "id": "c39"
-  },
-  {
-   "sentence": "___ его положения так его поразила, что он в первую минуту не нашелся, что сказать и что делать.",
-   "lemma": "перемена",
-   "options": [
-    "неожиданной переменой",
-    "неожиданной перемене",
-    "неожиданная перемена",
-    "неожиданной перемены"
-   ],
-   "correct": "неожиданная перемена",
-   "case": "Именительный (Nominative)",
-   "explain": "«Неожиданная перемена» — the subject of the sentence stands in the nominative.",
-   "id": "c40"
-  },
-  {
-   "sentence": "— ___, которого вы видели на ярмонке, ваше благородие!",
-   "lemma": "атаман",
-   "options": [
-    "цыганского атамана",
-    "цыганским атаманом",
-    "цыганском атамане",
-    "цыганский атаман"
-   ],
-   "correct": "цыганский атаман",
-   "case": "Именительный (Nominative)",
-   "explain": "«Цыганский атаман» — the subject of the sentence stands in the nominative.",
-   "id": "c41"
-  },
-  {
-   "sentence": "Я думал, что это какой-нибудь ___, который хочет украсть нашего волика!",
-   "lemma": "солдат",
-   "options": [
-    "беглым солдатом",
-    "беглый солдат",
-    "беглом солдате",
-    "беглого солдата"
-   ],
-   "correct": "беглый солдат",
-   "case": "Именительный (Nominative)",
-   "explain": "«беглый солдат» — the subject of the sentence stands in the nominative.",
-   "id": "c42"
   },
   {
    "sentence": "Блистовский не очень доверял словам атамана; но, видя, что ему никакого нет средства без помощи его выпутаться из ___, в котором находится, он принял намерение скрывать свою недоверчивость.",
@@ -431,7 +207,7 @@
    ],
    "correct": "затруднительного положения",
    "case": "Родительный (Genitive)",
-   "explain": "«затруднительного положения» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«затруднительного положения» — «из» always takes the genitive.",
    "id": "c43"
   },
   {
@@ -445,36 +221,8 @@
    ],
    "correct": "большой дороги",
    "case": "Родительный (Genitive)",
-   "explain": "«большой дороги» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«большой дороги» — «до» always takes the genitive.",
    "id": "c44"
-  },
-  {
-   "sentence": "Владимир охотно принял это предложение, обеспечивавшее его от всякого ___, и таким образом продолжали они путь до самой столбовой дороги.",
-   "lemma": "нападение",
-   "options": [
-    "внезапном нападении",
-    "внезапного нападения",
-    "внезапным нападением",
-    "внезапному нападению"
-   ],
-   "correct": "внезапного нападения",
-   "case": "Родительный (Genitive)",
-   "explain": "«внезапного нападения» — the genitive here marks possession, absence, or quantity.",
-   "id": "c47"
-  },
-  {
-   "sentence": "Владимир охотно принял это предложение, обеспечивавшее его от всякого внезапного нападения, и таким образом продолжали они путь до самой ___.",
-   "lemma": "дорога",
-   "options": [
-    "столбовой дорогой",
-    "столбовой дороги",
-    "столбовой дороге",
-    "столбовая дорога"
-   ],
-   "correct": "столбовой дороги",
-   "case": "Родительный (Genitive)",
-   "explain": "«столбовой дороги» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
-   "id": "c48"
   },
   {
    "sentence": "Правду сказать, ваше благородие, он и не похож на ___: как пожил несколько годов на панском дворе форейтором, так совсем изнежился и ни на что не годится!",
@@ -487,7 +235,7 @@
    ],
    "correct": "настоящего цыгана",
    "case": "Винительный (Accusative)",
-   "explain": "«настоящего цыгана» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«настоящего цыгана» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c49"
   },
   {
@@ -501,7 +249,7 @@
    ],
    "correct": "панском дворе",
    "case": "Предложный (Prepositional)",
-   "explain": "«панском дворе» — after the preposition «на», for location or topic.",
+   "explain": "«панском дворе» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c50"
   },
   {
@@ -515,7 +263,7 @@
    ],
    "correct": "положенный срок",
    "case": "Винительный (Accusative)",
-   "explain": "«положенный срок» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«положенный срок» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c51"
   }
  ]

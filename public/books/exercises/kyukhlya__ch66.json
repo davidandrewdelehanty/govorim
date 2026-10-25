@@ -1,90 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Лейб-медик Тарасов вскрыл тело, опростал его, наполнил ___ и ароматическими спиртами, положил в свинцовый гроб в особых подушечках лед, натянул на труп парадный мундир, на руки белые перчатки.",
-   "lemma": "трава",
-   "options": [
-    "бальзамических травах",
-    "бальзамическим травам",
-    "бальзамическими травами",
-    "бальзамических трав"
-   ],
-   "correct": "бальзамическими травами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«бальзамическими травами» — the instrumental marks the means, company, or complement.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Лейб-медик Тарасов вскрыл тело, опростал его, наполнил бальзамическими травами и ___, положил в свинцовый гроб в особых подушечках лед, натянул на труп парадный мундир, на руки белые перчатки.",
-   "lemma": "спирт",
-   "options": [
-    "ароматическими спиртами",
-    "ароматическим спиртам",
-    "ароматические спирты",
-    "ароматических спиртах"
-   ],
-   "correct": "ароматическими спиртами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«ароматическими спиртами» — the instrumental marks the means, company, or complement.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Лейб-медик Тарасов вскрыл тело, опростал его, наполнил бальзамическими травами и ароматическими спиртами, положил в свинцовый гроб в особых подушечках лед, натянул на труп ___, на руки белые перчатки.",
-   "lemma": "мундир",
-   "options": [
-    "парадный мундир",
-    "парадном мундире",
-    "парадному мундиру",
-    "парадного мундира"
-   ],
-   "correct": "парадный мундир",
-   "case": "Винительный (Accusative)",
-   "explain": "«парадный мундир» — the accusative marks the direct object of the verb.",
-   "id": "c4"
-  },
-  {
-   "sentence": "Лейб-медик Тарасов вскрыл тело, опростал его, наполнил бальзамическими травами и ароматическими спиртами, положил в свинцовый гроб в особых подушечках лед, натянул на труп парадный мундир, на руки ___.",
-   "lemma": "перчатка",
-   "options": [
-    "белых перчаток",
-    "белым перчаткам",
-    "белыми перчатками",
-    "белые перчатки"
-   ],
-   "correct": "белые перчатки",
-   "case": "Винительный (Accusative)",
-   "explain": "«белые перчатки» — the accusative marks the direct object of the verb.",
-   "id": "c5"
-  },
-  {
-   "sentence": "В Варшаве сидели Константин и Михаил, в Петербурге — ___ и Николай.",
-   "lemma": "царица",
-   "options": [
-    "старой царицы",
-    "старой царицей",
-    "старой царице",
-    "старая царица"
-   ],
-   "correct": "старая царица",
-   "case": "Именительный (Nominative)",
-   "explain": "«старая царица» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
-  },
-  {
-   "sentence": "Чуть не на глазах у всех совершилось убийство одной ___.",
-   "lemma": "француженка",
-   "options": [
-    "красивой француженкой",
-    "красивая француженка",
-    "красивой француженки",
-    "красивой француженке"
-   ],
-   "correct": "красивой француженки",
-   "case": "Родительный (Genitive)",
-   "explain": "«красивой француженки» — the genitive here marks possession, absence, or quantity.",
-   "id": "c7"
-  },
-  {
    "sentence": "Француженка села в карету, и ее умчали в ___ — дворец Константина.",
    "lemma": "дворец",
    "options": [
@@ -95,22 +11,8 @@
    ],
    "correct": "мраморный дворец",
    "case": "Винительный (Accusative)",
-   "explain": "«Мраморный дворец» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«мраморный дворец» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c8"
-  },
-  {
-   "sentence": "Через три часа та же ___ примчала француженку к ее дому.",
-   "lemma": "карета",
-   "options": [
-    "глухой кареты",
-    "глухая карета",
-    "глухой карете",
-    "глухой каретой"
-   ],
-   "correct": "глухая карета",
-   "case": "Именительный (Nominative)",
-   "explain": "«глухая карета» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
   },
   {
    "sentence": "Назавтра ___ посетил министра иностранных дел.",
@@ -123,7 +25,7 @@
    ],
    "correct": "французский консул",
    "case": "Именительный (Nominative)",
-   "explain": "«французский консул» — the subject of the sentence stands in the nominative.",
+   "explain": "«французский консул» is the subject of «посетил» — who or what does it — so nominative.",
    "id": "c10"
   },
   {
@@ -137,22 +39,8 @@
    ],
    "correct": "иностранных дел",
    "case": "Родительный (Genitive)",
-   "explain": "«иностранных дел» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«иностранных дел» depends on the noun «министра» (whose? of what?) — genitive.",
    "id": "c11"
-  },
-  {
-   "sentence": "Этот мешковатый, согбенный, с широким ___, со вздернутым отцовским носом Константин, цесаревич, наследник императорского престола, был явным убийцей.",
-   "lemma": "лицо",
-   "options": [
-    "розовым лицом",
-    "розового лица",
-    "розовому лицу",
-    "розовое лицо"
-   ],
-   "correct": "розовым лицом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«розовым лицом» — after the preposition «со», the instrumental marks the means, company, or complement.",
-   "id": "c12"
   },
   {
    "sentence": "Этот мешковатый, согбенный, с широким розовым лицом, со вздернутым отцовским носом Константин, цесаревич, наследник ___, был явным убийцей.",
@@ -165,50 +53,8 @@
    ],
    "correct": "императорского престола",
    "case": "Родительный (Genitive)",
-   "explain": "«императорского престола» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«императорского престола» depends on the noun «наследник» (whose? of what?) — genitive.",
    "id": "c13"
-  },
-  {
-   "sentence": "Этот мешковатый, согбенный, с широким розовым лицом, со вздернутым отцовским носом Константин, цесаревич, наследник императорского престола, был ___.",
-   "lemma": "убийца",
-   "options": [
-    "явного убийцы",
-    "явном убийце",
-    "явным убийцей",
-    "явного убийцу"
-   ],
-   "correct": "явным убийцей",
-   "case": "Творительный (Instrumental)",
-   "explain": "«явным убийцей» — the instrumental marks the means, company, or complement.",
-   "id": "c14"
-  },
-  {
-   "sentence": "Однажды у окна дворца императрицы Елизаветы был найден зарезанный молодой ___: пронеслись глухие слухи, что полковник был любовником Елизаветы и что убил его тот же Константин.",
-   "lemma": "полковник",
-   "options": [
-    "гвардейский полковник",
-    "гвардейскому полковнику",
-    "гвардейском полковнике",
-    "гвардейским полковником"
-   ],
-   "correct": "гвардейский полковник",
-   "case": "Именительный (Nominative)",
-   "explain": "«гвардейский полковник» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
-  },
-  {
-   "sentence": "Однажды у окна дворца императрицы Елизаветы был найден зарезанный молодой гвардейский полковник: пронеслись ___, что полковник был любовником Елизаветы и что убил его тот же Константин.",
-   "lemma": "слух",
-   "options": [
-    "глухих слухов",
-    "глухие слухи",
-    "глухими слухами",
-    "глухим слухам"
-   ],
-   "correct": "глухие слухи",
-   "case": "Именительный (Nominative)",
-   "explain": "«глухие слухи» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
   },
   {
    "sentence": "Вскоре он начал дело о разводе — скандал, дотоле неслыханный в ___.",
@@ -221,7 +67,7 @@
    ],
    "correct": "императорском доме",
    "case": "Предложный (Prepositional)",
-   "explain": "«императорском доме» — after the preposition «в», for location or topic.",
+   "explain": "«императорском доме» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c17"
   },
   {
@@ -235,7 +81,7 @@
    ],
    "correct": "немецких принцесс",
    "case": "Родительный (Genitive)",
-   "explain": "«немецких принцесс» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«немецких принцесс» — «из» always takes the genitive.",
    "id": "c18"
   },
   {
@@ -249,22 +95,8 @@
    ],
    "correct": "страшного человека",
    "case": "Родительный (Genitive)",
-   "explain": "«страшного человека» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«страшного человека» — «у» always takes the genitive.",
    "id": "c20"
-  },
-  {
-   "sentence": "Он сел с ней в ___, взял вожжи в руки и, похлестывая бичом лошадей, проехал с ней сначала в православную церковь, а потом в костел.",
-   "lemma": "кабриолет",
-   "options": [
-    "открытым кабриолетом",
-    "открытому кабриолету",
-    "открытый кабриолет",
-    "открытого кабриолета"
-   ],
-   "correct": "открытый кабриолет",
-   "case": "Винительный (Accusative)",
-   "explain": "«открытый кабриолет» — after the preposition «в», the accusative marks the direct object of the verb.",
-   "id": "c21"
   },
   {
    "sentence": "Подлинник царь отдал митрополиту Филарету, Филарет положил его в ковчежец московского ___, а три копии, довольно небрежные, лежали в Государственном совете, Сенате и Синоде.",
@@ -277,7 +109,7 @@
    ],
    "correct": "успенского собора",
    "case": "Родительный (Genitive)",
-   "explain": "«Успенского собора» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«успенского собора» depends on the noun «ковчежец» (whose? of what?) — genitive.",
    "id": "c22"
   },
   {
@@ -291,78 +123,8 @@
    ],
    "correct": "государственном совете",
    "case": "Предложный (Prepositional)",
-   "explain": "«Государственном совете» — after the preposition «в», for location or topic.",
+   "explain": "«государственном совете» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c23"
-  },
-  {
-   "sentence": "Он завещал Россию младшему, Николаю, как всякий помещик мог завещать свое имение ___, минуя старшего.",
-   "lemma": "брат",
-   "options": [
-    "второму брату",
-    "вторым братом",
-    "второго брата",
-    "второй брат"
-   ],
-   "correct": "второму брату",
-   "case": "Дательный (Dative)",
-   "explain": "«второму брату» — the dative marks the indirect object or recipient.",
-   "id": "c24"
-  },
-  {
-   "sentence": "___ единственно был для него приятный строй жизни.",
-   "lemma": "строй",
-   "options": [
-    "военный строй",
-    "военном строе",
-    "военным строем",
-    "военному строю"
-   ],
-   "correct": "военный строй",
-   "case": "Именительный (Nominative)",
-   "explain": "«Военный строй» — the subject of the sentence stands in the nominative.",
-   "id": "c27"
-  },
-  {
-   "sentence": "Военный строй единственно был для него ___ жизни.",
-   "lemma": "строй",
-   "options": [
-    "приятным строем",
-    "приятного строя",
-    "приятном строе",
-    "приятный строй"
-   ],
-   "correct": "приятный строй",
-   "case": "Именительный (Nominative)",
-   "explain": "«приятный строй» — the subject of the sentence stands in the nominative.",
-   "id": "c28"
-  },
-  {
-   "sentence": "В ранней молодости задали ему написать сочинение: «Доказать, что ___ не есть единственная служба дворянина, но есть и другие занятия, для него столь же почтенные и полезные».",
-   "lemma": "служба",
-   "options": [
-    "военной службы",
-    "военной службе",
-    "военная служба",
-    "военной службой"
-   ],
-   "correct": "военная служба",
-   "case": "Именительный (Nominative)",
-   "explain": "«военная служба» — the subject of the sentence stands in the nominative.",
-   "id": "c29"
-  },
-  {
-   "sentence": "В ранней молодости задали ему написать сочинение: «Доказать, что военная служба не есть ___ дворянина, но есть и другие занятия, для него столь же почтенные и полезные».",
-   "lemma": "служба",
-   "options": [
-    "единственной службе",
-    "единственная служба",
-    "единственной службой",
-    "единственной службы"
-   ],
-   "correct": "единственная служба",
-   "case": "Именительный (Nominative)",
-   "explain": "«единственная служба» — the subject of the sentence stands in the nominative.",
-   "id": "c30"
   },
   {
    "sentence": "В ранней молодости задали ему написать сочинение: «Доказать, что военная служба не есть единственная служба дворянина, но есть и ___, для него столь же почтенные и полезные».",
@@ -375,22 +137,8 @@
    ],
    "correct": "другие занятия",
    "case": "Именительный (Nominative)",
-   "explain": "«другие занятия» — the subject of the sentence stands in the nominative.",
+   "explain": "«другие занятия» is the subject of «есть» — who or what does it — so nominative.",
    "id": "c31"
-  },
-  {
-   "sentence": "Николай ничего не написал и подал кавалеру ___.",
-   "lemma": "листок",
-   "options": [
-    "белым листком",
-    "белому листку",
-    "белый листок",
-    "белом листке"
-   ],
-   "correct": "белый листок",
-   "case": "Винительный (Accusative)",
-   "explain": "«белый листок» — the accusative marks the direct object of the verb.",
-   "id": "c32"
   },
   {
    "sentence": "На всю жизнь запомнилось ему, как однажды какой-то офицер попался ему в ___ под военным плащом, — это было для Николая поступком невероятным.",
@@ -403,7 +151,7 @@
    ],
    "correct": "статской одежде",
    "case": "Предложный (Prepositional)",
-   "explain": "«статской одежде» — after the preposition «в», for location or topic.",
+   "explain": "«статской одежде» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c33"
   },
   {
@@ -417,78 +165,36 @@
    ],
    "correct": "ровный фронт",
    "case": "Именительный (Nominative)",
-   "explain": "«Ровный фронт» — the subject of the sentence stands in the nominative.",
+   "explain": "«ровный фронт» is the subject of «приводил» — who or what does it — so nominative.",
    "id": "c35"
   },
   {
    "sentence": "При проездах Николая через Варшаву он оказывал ему ___.",
    "lemma": "почесть",
    "options": [
+    "царским почестям",
     "царские почести",
-    "царских почестях",
     "царскими почестями",
-    "царских почестей"
+    "царских почестях"
    ],
    "correct": "царские почести",
    "case": "Винительный (Accusative)",
-   "explain": "«царские почести» — the accusative marks the direct object of the verb.",
+   "explain": "«царские почести» is the direct object of «оказывал» (кого? что?) — accusative.",
    "id": "c37"
   },
   {
    "sentence": "— Царь утвердил награды, которые я выпросил разным тут ___.",
    "lemma": "чиновник",
    "options": [
-    "дворцовые чиновники",
-    "дворцовых чиновников",
     "дворцовым чиновникам",
-    "дворцовых чиновниках"
+    "дворцовыми чиновниками",
+    "дворцовых чиновниках",
+    "дворцовые чиновники"
    ],
    "correct": "дворцовым чиновникам",
    "case": "Дательный (Dative)",
-   "explain": "«дворцовым чиновникам» — the dative marks the indirect object or recipient.",
+   "explain": "«дворцовым чиновникам» is the indirect object of «выпросил» — to or for whom (кому?) — dative.",
    "id": "c38"
-  },
-  {
-   "sentence": "Тот стоял посреди комнаты сгорбившись, с ___.",
-   "lemma": "глаз",
-   "options": [
-    "мутными глазами",
-    "мутным глазам",
-    "мутных глазах",
-    "мутные глаза"
-   ],
-   "correct": "мутными глазами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«мутными глазами» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c39"
-  },
-  {
-   "sentence": "Два официальных и два простых, частных: матери длинное, Николаю ___.",
-   "lemma": "записка",
-   "options": [
-    "короткой запиской",
-    "короткая записка",
-    "короткой записки",
-    "короткой записке"
-   ],
-   "correct": "короткая записка",
-   "case": "Именительный (Nominative)",
-   "explain": "«короткая записка» — the subject of the sentence stands in the nominative.",
-   "id": "c41"
-  },
-  {
-   "sentence": "Он писал, зачеркивал, придумывая наиболее ___ и выражения.",
-   "lemma": "слово",
-   "options": [
-    "осторожными словами",
-    "осторожные слова",
-    "осторожных слов",
-    "осторожным словам"
-   ],
-   "correct": "осторожные слова",
-   "case": "Винительный (Accusative)",
-   "explain": "«осторожные слова» — the accusative marks the direct object of the verb.",
-   "id": "c42"
   },
   {
    "sentence": "Над ___ Николаю Константин надписал: «Его императорскому величеству».",
@@ -501,22 +207,8 @@
    ],
    "correct": "официальным письмом",
    "case": "Творительный (Instrumental)",
-   "explain": "«официальным письмом» — after the preposition «над», the instrumental marks the means, company, or complement.",
+   "explain": "«официальным письмом» — «над» always takes the instrumental.",
    "id": "c43"
-  },
-  {
-   "sentence": "Над официальным письмом Николаю Константин надписал: «Его ___».",
-   "lemma": "величество",
-   "options": [
-    "императорском величестве",
-    "императорского величества",
-    "императорским величеством",
-    "императорскому величеству"
-   ],
-   "correct": "императорскому величеству",
-   "case": "Дательный (Dative)",
-   "explain": "«императорскому величеству» — the dative marks the indirect object or recipient.",
-   "id": "c44"
   },
   {
    "sentence": "Один ___ задумал выслужиться.",
@@ -529,7 +221,7 @@
    ],
    "correct": "свитский генерал",
    "case": "Именительный (Nominative)",
-   "explain": "«свитский генерал» — the subject of the sentence stands in the nominative.",
+   "explain": "«свитский генерал» is the subject of «задумал» — who or what does it — so nominative.",
    "id": "c45"
   }
  ]

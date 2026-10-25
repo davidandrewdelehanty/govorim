@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Каждую субботу вечером гимназистка Саша Енякина, маленькая ___ в порванных башмаках, ходит со своей мамой в «N—ский приют для неизлечимо больных и престарелых».",
-   "lemma": "девочка",
-   "options": [
-    "золотушной девочки",
-    "золотушной девочкой",
-    "золотушная девочка",
-    "золотушной девочке"
-   ],
-   "correct": "золотушная девочка",
-   "case": "Именительный (Nominative)",
-   "explain": "«золотушная девочка» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "В ___ душно и пахнет деревянным маслом.",
    "lemma": "комната",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "дедушкиной комнате",
    "case": "Предложный (Prepositional)",
-   "explain": "«дедушкиной комнате» — after the preposition «в», for location or topic.",
+   "explain": "«дедушкиной комнате» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c2"
   },
   {
@@ -39,22 +25,8 @@
    ],
    "correct": "деревянным маслом",
    "case": "Творительный (Instrumental)",
-   "explain": "«деревянным маслом» — the instrumental marks the means, company, or complement.",
+   "explain": "«пахнет» takes the instrumental.",
    "id": "c3"
-  },
-  {
-   "sentence": "На стенах висят ___: вырезанная из «Нивы» купальщица, нимфы, греющиеся на солнце, мужчина с цилиндром на затылке, глядящий в щелку на нагую женщину, и проч.",
-   "lemma": "картина",
-   "options": [
-    "нехорошими картинами",
-    "нехороших картин",
-    "нехорошим картинам",
-    "нехорошие картины"
-   ],
-   "correct": "нехорошие картины",
-   "case": "Именительный (Nominative)",
-   "explain": "«нехорошие картины» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
   },
   {
    "sentence": "Да и ___ непривлекателен на вид.",
@@ -67,36 +39,22 @@
    ],
    "correct": "сам дедушка",
    "case": "Именительный (Nominative)",
-   "explain": "«сам дедушка» — the subject of the sentence stands in the nominative.",
+   "explain": "«сам дедушка» is the subject of «непривлекателен» — who or what does it — so nominative.",
    "id": "c5"
   },
   {
    "sentence": "Старичок с деревянной ногой вносит ___ из красной меди.",
    "lemma": "самоварчик",
    "options": [
+    "маленькому самоварчику",
     "маленьким самоварчиком",
     "маленький самоварчик",
-    "маленького самоварчика",
-    "маленькому самоварчику"
+    "маленьком самоварчике"
    ],
    "correct": "маленький самоварчик",
    "case": "Винительный (Accusative)",
-   "explain": "«маленький самоварчик» — the accusative marks the direct object of the verb.",
+   "explain": "«маленький самоварчик» is the direct object of «вносит» (кого? что?) — accusative.",
    "id": "c8"
-  },
-  {
-   "sentence": "— За очень ___, как, например, за поимку вора, жаловал я хорошо: стариков на молоденьких женил, молодых от рекрутчины освобождал и проч.",
-   "lemma": "поступок",
-   "options": [
-    "отважных поступков",
-    "отважным поступкам",
-    "отважные поступки",
-    "отважных поступках"
-   ],
-   "correct": "отважные поступки",
-   "case": "Винительный (Accusative)",
-   "explain": "«отважные поступки» — after the preposition «за», the accusative marks the direct object of the verb.",
-   "id": "c12"
   },
   {
    "sentence": "Вам благодетельствуешь, а от вас кроме ___ ничего не видишь.",
@@ -109,7 +67,7 @@
    ],
    "correct": "дерзких писем",
    "case": "Родительный (Genitive)",
-   "explain": "«дерзких писем» — after the preposition «кроме», the genitive here marks possession, absence, or quantity.",
+   "explain": "«дерзких писем» — «кроме» always takes the genitive.",
    "id": "c14"
   }
  ]

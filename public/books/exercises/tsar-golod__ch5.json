@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Все небо снизу доверху в молчаливом, бесшумном ___ — точно залито оно густою темнеющею кровью.",
-   "lemma": "огонь",
-   "options": [
-    "красный огонь",
-    "красного огня",
-    "красным огнём",
-    "красном огне"
-   ],
-   "correct": "красном огне",
-   "case": "Предложный (Prepositional)",
-   "explain": "«красном огне» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c1"
-  },
-  {
    "sentence": "Плоско — только посередине, ближе к ___, довольно высокий неровный бугорок и на нем большая, длинная, старая пушка на высоких колесах.",
    "lemma": "край",
    "options": [
@@ -25,36 +11,8 @@
    ],
    "correct": "левому краю",
    "case": "Дательный (Dative)",
-   "explain": "«левому краю» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«левому краю» — «к» always takes the dative.",
    "id": "c3"
-  },
-  {
-   "sentence": "Плоско — только посередине, ближе к левому краю, довольно высокий ___ и на нем большая, длинная, старая пушка на высоких колесах.",
-   "lemma": "бугорок",
-   "options": [
-    "неровным бугорком",
-    "неровный бугорок",
-    "неровному бугорку",
-    "неровном бугорке"
-   ],
-   "correct": "неровный бугорок",
-   "case": "Именительный (Nominative)",
-   "explain": "«неровный бугорок» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
-  },
-  {
-   "sentence": "И смутно рисуется над мертвым полем ___ Смерти.",
-   "lemma": "силуэт",
-   "options": [
-    "остром силуэте",
-    "острому силуэту",
-    "острый силуэт",
-    "острым силуэтом"
-   ],
-   "correct": "острый силуэт",
-   "case": "Именительный (Nominative)",
-   "explain": "«острый силуэт» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
   },
   {
    "sentence": "Позади пушки, на некотором расстоянии, Победители — это те, что в качестве Зрителей являются на суде и потом, в ночь ___, присутствовали в богатой зале.",
@@ -67,35 +25,21 @@
    ],
    "correct": "великого бунта",
    "case": "Родительный (Genitive)",
-   "explain": "«великого бунта» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«великого бунта» depends on the noun «ночь» (whose? of what?) — genitive.",
    "id": "c7"
-  },
-  {
-   "sentence": "В невольном почтении к Смерти разговаривают тихо, ___.",
-   "lemma": "голос",
-   "options": [
-    "сдержанных голосов",
-    "сдержанными голосами",
-    "сдержанные голоса",
-    "сдержанным голосам"
-   ],
-   "correct": "сдержанными голосами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«сдержанными голосами» — the instrumental marks the means, company, or complement.",
-   "id": "c8"
   },
   {
    "sentence": "Вы помните эти ___ и вой?",
    "lemma": "крик",
    "options": [
-    "ужасные крики",
     "ужасными криками",
-    "ужасных криков",
+    "ужасным крикам",
+    "ужасные крики",
     "ужасных криках"
    ],
    "correct": "ужасные крики",
    "case": "Винительный (Accusative)",
-   "explain": "«ужасные крики» — the accusative marks the direct object of the verb.",
+   "explain": "«ужасные крики» is the direct object of «помните» (кого? что?) — accusative.",
    "id": "c9"
   },
   {
@@ -109,36 +53,8 @@
    ],
    "correct": "сам народ",
    "case": "Именительный (Nominative)",
-   "explain": "«сам народ» — the subject of the sentence stands in the nominative.",
+   "explain": "«сам народ» is the subject of «сочинил» — who or what does it — so nominative.",
    "id": "c11"
-  },
-  {
-   "sentence": "Нежные ___, доверчиво обнимающие это медное чудовище, — как это трогательно!",
-   "lemma": "ручка",
-   "options": [
-    "детских ручках",
-    "детскими ручками",
-    "детских ручек",
-    "детские ручки"
-   ],
-   "correct": "детские ручки",
-   "case": "Именительный (Nominative)",
-   "explain": "«детские ручки» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
-  },
-  {
-   "sentence": "Нежные детские ручки, доверчиво обнимающие это ___, — как это трогательно!",
-   "lemma": "чудовище",
-   "options": [
-    "медным чудовищем",
-    "медном чудовище",
-    "медное чудовище",
-    "медному чудовищу"
-   ],
-   "correct": "медное чудовище",
-   "case": "Именительный (Nominative)",
-   "explain": "«медное чудовище» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
   },
   {
    "sentence": "Это место было бы так удобно для ___.",
@@ -151,21 +67,21 @@
    ],
    "correct": "вечерних прогулок",
    "case": "Родительный (Genitive)",
-   "explain": "«вечерних прогулок» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«вечерних прогулок» — «для» always takes the genitive.",
    "id": "c14"
   },
   {
    "sentence": "Мне всю ночь снилась бесконечная железная цепь, которая облегает ___.",
    "lemma": "шар",
    "options": [
-    "земной шар",
+    "земным шаром",
     "земном шаре",
-    "земного шара",
-    "земным шаром"
+    "земному шару",
+    "земной шар"
    ],
    "correct": "земной шар",
    "case": "Винительный (Accusative)",
-   "explain": "«земной шар» — the accusative marks the direct object of the verb.",
+   "explain": "«земной шар» is the direct object of «облегает» (кого? что?) — accusative.",
    "id": "c15"
   },
   {
@@ -179,36 +95,8 @@
    ],
    "correct": "молчаливая группа",
    "case": "Именительный (Nominative)",
-   "explain": "«молчаливая группа» — the subject of the sentence stands in the nominative.",
+   "explain": "«молчаливая группа» is the subject of «Показывается» — who or what does it — so nominative.",
    "id": "c16"
-  },
-  {
-   "sentence": "Да, Смерть — ___, и не вам разрушить ее узы!",
-   "lemma": "кузнец",
-   "options": [
-    "великому кузнецу",
-    "великом кузнеце",
-    "великого кузнеца",
-    "великий кузнец"
-   ],
-   "correct": "великий кузнец",
-   "case": "Именительный (Nominative)",
-   "explain": "«великий кузнец» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
-  },
-  {
-   "sentence": "Толкаясь, падая, сбивая с ног рыдающих женщин, с ___ убегают.",
-   "lemma": "вой",
-   "options": [
-    "диким воем",
-    "дикий вой",
-    "дикому вою",
-    "диком вое"
-   ],
-   "correct": "диким воем",
-   "case": "Творительный (Instrumental)",
-   "explain": "«диким воем» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c18"
   }
  ]
 }

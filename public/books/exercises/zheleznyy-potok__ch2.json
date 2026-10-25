@@ -1,130 +1,18 @@
 {
  "cases": [
   {
-   "sentence": "На полу фантастический ковер с бесчисленными знаками, линиями, зелеными, ___, черными извивами — громадная карта Кавказа.",
-   "lemma": "пятно",
-   "options": [
-    "синие пятна",
-    "синими пятнами",
-    "синим пятнам",
-    "синих пятнах"
-   ],
-   "correct": "синими пятнами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«синими пятнами» — the instrumental marks the means, company, or complement.",
-   "id": "c2"
-  },
-  {
-   "sentence": "На полу фантастический ковер с бесчисленными знаками, линиями, зелеными, синими пятнами, черными извивами — ___ Кавказа.",
-   "lemma": "карта",
-   "options": [
-    "громадной карте",
-    "громадная карта",
-    "громадной картой",
-    "громадной карты"
-   ],
-   "correct": "громадная карта",
-   "case": "Именительный (Nominative)",
-   "explain": "«громадная карта» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
-   "sentence": "В распоясанных рубахах, босые, осторожно ползают по ней на четвереньках — ___.",
-   "lemma": "состав",
-   "options": [
-    "командный состав",
-    "командного состава",
-    "командном составе",
-    "командным составом"
-   ],
-   "correct": "командный состав",
-   "case": "Именительный (Nominative)",
-   "explain": "«командный состав» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
-  },
-  {
-   "sentence": "Кожух с сжатыми челюстями сидит на корточках, смотрит мимо крохотными ___, а на лице — свое.",
-   "lemma": "глазок",
-   "options": [
-    "светло-колючими глазками",
-    "светло-колючие глазки",
-    "светло-колючих глазков",
-    "светло-колючих глазках"
-   ],
-   "correct": "светло-колючими глазками",
-   "case": "Творительный (Instrumental)",
-   "explain": "«светло-колючими глазками» — the instrumental marks the means, company, or complement.",
-   "id": "c6"
-  },
-  {
    "sentence": "— Мы все тут пропадем: ни один ___ не выполняется.",
    "lemma": "приказ",
    "options": [
-    "боевой приказ",
-    "боевом приказе",
+    "боевому приказу",
     "боевым приказом",
-    "боевого приказа"
+    "боевом приказе",
+    "боевой приказ"
    ],
    "correct": "боевой приказ",
    "case": "Именительный (Nominative)",
-   "explain": "«боевой приказ» — the subject of the sentence stands in the nominative.",
+   "explain": "«боевой приказ» is the subject of «выполняется» — who or what does it — so nominative.",
    "id": "c7"
-  },
-  {
-   "sentence": "___ стоят вот у этой черной извивающейся по карте реки, шум которой все время вкатывается в черные окошечки.",
-   "lemma": "табор",
-   "options": [
-    "огромный табор",
-    "огромному табору",
-    "огромным табором",
-    "огромного табора"
-   ],
-   "correct": "огромным табором",
-   "case": "Творительный (Instrumental)",
-   "explain": "«Огромным табором» — the instrumental marks the means, company, or complement.",
-   "id": "c9"
-  },
-  {
-   "sentence": "Снова зловеще, покрывая ___ реки, раздался далекий выстрел; немного погодя сдвоило, потом еще раз, да вдруг посыпало из решета — и смолкло.",
-   "lemma": "шум",
-   "options": [
-    "ночной шум",
-    "ночным шумом",
-    "ночному шуму",
-    "ночного шума"
-   ],
-   "correct": "ночной шум",
-   "case": "Винительный (Accusative)",
-   "explain": "«ночной шум» — the accusative marks the direct object of the verb.",
-   "id": "c10"
-  },
-  {
-   "sentence": "Молодой невысокий ___, с красивым, слегка прихваченным оспой лицом, в тонко перетянутом бешмете, вышел, осторожно ступая босыми ногами.",
-   "lemma": "казак",
-   "options": [
-    "кубанскому казаку",
-    "кубанским казаком",
-    "кубанский казак",
-    "кубанского казака"
-   ],
-   "correct": "кубанский казак",
-   "case": "Именительный (Nominative)",
-   "explain": "«кубанский казак» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
-  },
-  {
-   "sentence": "Молодой невысокий кубанский казак, с красивым, слегка прихваченным оспой лицом, в тонко перетянутом бешмете, вышел, осторожно ступая ___.",
-   "lemma": "нога",
-   "options": [
-    "босых ногах",
-    "босые ноги",
-    "босыми ногами",
-    "босым ногам"
-   ],
-   "correct": "босыми ногами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«босыми ногами» — the instrumental marks the means, company, or complement.",
-   "id": "c12"
   },
   {
    "sentence": "Кроме того, десятки тысяч ___ совершенно связывают по рукам и ногам.",
@@ -137,7 +25,7 @@
    ],
    "correct": "беженских повозок",
    "case": "Родительный (Genitive)",
-   "explain": "«беженских повозок» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«беженских повозок» depends on the noun «тысяч» (whose? of what?) — genitive.",
    "id": "c13"
   },
   {
@@ -151,7 +39,7 @@
    ],
    "correct": "кажного солдата",
    "case": "Родительный (Genitive)",
-   "explain": "«кажного солдата» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«кажного солдата» — «у» always takes the genitive.",
    "id": "c14"
   },
   {
@@ -165,7 +53,7 @@
    ],
    "correct": "главный хребет",
    "case": "Винительный (Accusative)",
-   "explain": "«главный хребет» — after the preposition «через», the accusative marks the direct object of the verb.",
+   "explain": "«главный хребет» — «через» always takes the accusative.",
    "id": "c15"
   }
  ]

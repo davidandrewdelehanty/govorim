@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Как могла бы такая женщина назначить свидание такому гнусному ___, каким был я? - вот что было с первого взгляда!",
-   "lemma": "мальчишка",
-   "options": [
-    "тогдашнему мальчишке",
-    "тогдашнего мальчишки",
-    "тогдашний мальчишка",
-    "тогдашнего мальчишку"
-   ],
-   "correct": "тогдашнему мальчишке",
-   "case": "Дательный (Dative)",
-   "explain": "«тогдашнему мальчишке» — the dative marks the indirect object or recipient.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Мелькали тоже ___, вроде таких: \"Что мне теперь лучше, смелость или робость?\".",
-   "lemma": "вопрос",
-   "options": [
-    "глупые вопросы",
-    "глупых вопросах",
-    "глупым вопросам",
-    "глупыми вопросами"
-   ],
-   "correct": "глупые вопросы",
-   "case": "Именительный (Nominative)",
-   "explain": "«глупые вопросы» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
    "sentence": "- То есть что я имею теперь ___?",
    "lemma": "вид",
    "options": [
@@ -39,7 +11,7 @@
    ],
    "correct": "сумасшедший вид",
    "case": "Винительный (Accusative)",
-   "explain": "«сумасшедший вид» — the accusative marks the direct object of the verb.",
+   "explain": "«сумасшедший вид» is the direct object of «имею» (кого? что?) — accusative.",
    "id": "c4"
   },
   {
@@ -53,7 +25,7 @@
    ],
    "correct": "сумасшедший вид",
    "case": "Винительный (Accusative)",
-   "explain": "«сумасшедший вид» — the accusative marks the direct object of the verb.",
+   "explain": "«сумасшедший вид» is the direct object of «имел» (кого? что?) — accusative.",
    "id": "c5"
   },
   {
@@ -67,22 +39,8 @@
    ],
    "correct": "пристальном взгляде",
    "case": "Предложный (Prepositional)",
-   "explain": "«пристальном взгляде» — after the preposition «в», for location or topic.",
+   "explain": "«пристальном взгляде» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c6"
-  },
-  {
-   "sentence": "- Я не могу больше выносить вашу улыбку! - вскричал я вдруг, - зачем я представлял вас грозной, великолепной и с ехидными ___ еще в Москве?",
-   "lemma": "слово",
-   "options": [
-    "светские слова",
-    "светскими словами",
-    "светских словах",
-    "светских слов"
-   ],
-   "correct": "светскими словами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«светскими словами» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c9"
   },
   {
    "sentence": "Я здесь до вашего приезда глядел ___ на ваш портрет у вашего отца в кабинете и ничего не угадал.",
@@ -95,7 +53,7 @@
    ],
    "correct": "целый месяц",
    "case": "Винительный (Accusative)",
-   "explain": "«целый месяц» — the accusative marks the direct object of the verb.",
+   "explain": "«целый месяц» tells how long or how often, with no preposition — accusative.",
    "id": "c10"
   },
   {
@@ -109,78 +67,8 @@
    ],
    "correct": "длинных ресниц",
    "case": "Родительный (Genitive)",
-   "explain": "«длинных ресниц» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«длинных ресниц» — «от» always takes the genitive.",
    "id": "c11"
-  },
-  {
-   "sentence": "Вы полны, вы ___, но у вас плотная полнота, легкая, полнота здоровой деревенской молодки.",
-   "lemma": "рост",
-   "options": [
-    "средний рост",
-    "среднего роста",
-    "средним ростом",
-    "среднем росте"
-   ],
-   "correct": "среднего роста",
-   "case": "Родительный (Genitive)",
-   "explain": "«среднего роста» — the genitive here marks possession, absence, or quantity.",
-   "id": "c12"
-  },
-  {
-   "sentence": "Вы полны, вы среднего роста, но у вас ___, легкая, полнота здоровой деревенской молодки.",
-   "lemma": "полнота",
-   "options": [
-    "плотной полноты",
-    "плотная полнота",
-    "плотной полноте",
-    "плотной полнотой"
-   ],
-   "correct": "плотная полнота",
-   "case": "Именительный (Nominative)",
-   "explain": "«плотная полнота» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
-  },
-  {
-   "sentence": "Вы полны, вы среднего роста, но у вас плотная полнота, легкая, полнота здоровой ___.",
-   "lemma": "молодка",
-   "options": [
-    "деревенская молодка",
-    "деревенской молодки",
-    "деревенской молодке",
-    "деревенской молодкой"
-   ],
-   "correct": "деревенской молодки",
-   "case": "Родительный (Genitive)",
-   "explain": "«деревенской молодки» — the genitive here marks possession, absence, or quantity.",
-   "id": "c14"
-  },
-  {
-   "sentence": "Она с большими ___ слушала всю эту дикую тираду; она видела, что я сам дрожу.",
-   "lemma": "глаз",
-   "options": [
-    "открытым глазам",
-    "открытых глазах",
-    "открытыми глазами",
-    "открытые глаза"
-   ],
-   "correct": "открытыми глазами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«открытыми глазами» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c18"
-  },
-  {
-   "sentence": "И вдруг поднялась с места, неторопливо захватывая свой ___ и свою соболью муфту.",
-   "lemma": "платок",
-   "options": [
-    "шейным платком",
-    "шейном платке",
-    "шейный платок",
-    "шейному платку"
-   ],
-   "correct": "шейный платок",
-   "case": "Винительный (Accusative)",
-   "explain": "«шейный платок» — the accusative marks the direct object of the verb.",
-   "id": "c20"
   },
   {
    "sentence": "Как могли вы так добровольно унизиться перед выскочкой, перед ___?",
@@ -193,35 +81,21 @@
    ],
    "correct": "жалким подростком",
    "case": "Творительный (Instrumental)",
-   "explain": "«жалким подростком» — after the preposition «перед», the instrumental marks the means, company, or complement.",
+   "explain": "«жалким подростком» — «перед» always takes the instrumental.",
    "id": "c23"
-  },
-  {
-   "sentence": "- Конечно нет, - улыбнулась она ___, - конечно нет!",
-   "lemma": "улыбка",
-   "options": [
-    "тонкой улыбки",
-    "тонкой улыбкой",
-    "тонкой улыбке",
-    "тонкая улыбка"
-   ],
-   "correct": "тонкой улыбкой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«тонкой улыбкой» — the instrumental marks the means, company, or complement.",
-   "id": "c25"
   },
   {
    "sentence": "Помните, вы смеялись, что я читаю ___, по две газеты в день?",
    "lemma": "газета",
    "options": [
     "русских газетах",
-    "русских газет",
-    "русские газеты",
-    "русским газетам"
+    "русским газетам",
+    "русскими газетами",
+    "русские газеты"
    ],
    "correct": "русские газеты",
    "case": "Винительный (Accusative)",
-   "explain": "«русские газеты» — the accusative marks the direct object of the verb.",
+   "explain": "«русские газеты» is the direct object of «читаю» (кого? что?) — accusative.",
    "id": "c27"
   },
   {
@@ -235,50 +109,8 @@
    ],
    "correct": "драгоценное слово",
    "case": "Именительный (Nominative)",
-   "explain": "«драгоценное слово» — the subject of the sentence stands in the nominative.",
+   "explain": "«драгоценное слово» is the subject of «вырвалось» — who or what does it — so nominative.",
    "id": "c33"
-  },
-  {
-   "sentence": "И кто, кто мог клеветать и говорить, что вы - ___?",
-   "lemma": "женщина",
-   "options": [
-    "страстная женщина",
-    "страстной женщины",
-    "страстной женщиной",
-    "страстной женщине"
-   ],
-   "correct": "страстная женщина",
-   "case": "Именительный (Nominative)",
-   "explain": "«страстная женщина» — the subject of the sentence stands in the nominative.",
-   "id": "c34"
-  },
-  {
-   "sentence": "О, простите: я вижу мучительное выражение на вашем лице; простите исступленному подростку его ___!",
-   "lemma": "слово",
-   "options": [
-    "неуклюжими словами",
-    "неуклюжих словах",
-    "неуклюжие слова",
-    "неуклюжих слов"
-   ],
-   "correct": "неуклюжие слова",
-   "case": "Винительный (Accusative)",
-   "explain": "«неуклюжие слова» — the accusative marks the direct object of the verb.",
-   "id": "c35"
-  },
-  {
-   "sentence": "Почему вы тогда узнали, что это было то ___ к Андроникову?",
-   "lemma": "письмо",
-   "options": [
-    "самого письма",
-    "самое письмо",
-    "самому письму",
-    "самом письме"
-   ],
-   "correct": "самое письмо",
-   "case": "Именительный (Nominative)",
-   "explain": "«самое письмо» — the subject of the sentence stands in the nominative.",
-   "id": "c38"
   }
  ]
 }

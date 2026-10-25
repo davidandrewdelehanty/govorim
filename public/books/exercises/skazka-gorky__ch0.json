@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Та девушка не была дочерью короля, она была просто ___, притом очень бедная.",
-   "lemma": "девушка",
-   "options": [
-    "хорошей девушкой",
-    "хорошей девушке",
-    "хорошей девушки",
-    "хорошая девушка"
-   ],
-   "correct": "хорошая девушка",
-   "case": "Именительный (Nominative)",
-   "explain": "«хорошая девушка» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Под деревом, у дороги, на ___ сидел старик, высокий, сухой, весь в морщинах, — старик, каких много в жизни; только глаза у него были очень глубоки и умны для обыкновенного старика.",
    "lemma": "земля",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "пыльной земле",
    "case": "Предложный (Prepositional)",
-   "explain": "«пыльной земле» — after the preposition «на», for location or topic.",
+   "explain": "«пыльной земле» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c2"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "обыкновенного старика",
    "case": "Родительный (Genitive)",
-   "explain": "«обыкновенного старика» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«обыкновенного старика» — «для» always takes the genitive.",
    "id": "c3"
   },
   {
@@ -53,7 +39,7 @@
    ],
    "correct": "прекрасное сердце",
    "case": "Именительный (Nominative)",
-   "explain": "«прекрасное сердце» — the subject of the sentence stands in the nominative.",
+   "explain": "«прекрасное сердце» is the subject of «есть» — who or what does it — so nominative.",
    "id": "c6"
   },
   {
@@ -67,22 +53,8 @@
    ],
    "correct": "горного ручья",
    "case": "Родительный (Genitive)",
-   "explain": "«горного ручья» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«горного ручья» depends on the noun «звон» (whose? of what?) — genitive.",
    "id": "c9"
-  },
-  {
-   "sentence": "Она слушала его, и ей самой хотелось говорить о том, чем живёт теперь её сердце — ___ пробуждённых любовью ощущений и дум.",
-   "lemma": "цветник",
-   "options": [
-    "роскошного цветника",
-    "роскошном цветнике",
-    "роскошный цветник",
-    "роскошному цветнику"
-   ],
-   "correct": "роскошный цветник",
-   "case": "Именительный (Nominative)",
-   "explain": "«роскошный цветник» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
   },
   {
    "sentence": "И она заговорила сбивчиво, волнуясь и ища ___ для выражения новых чувств.",
@@ -95,7 +67,7 @@
    ],
    "correct": "новых слов",
    "case": "Родительный (Genitive)",
-   "explain": "«новых слов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "With «ища», a verb of waiting, seeking, asking or wanting, the object can stand in the genitive — as here.",
    "id": "c13"
   },
   {
@@ -109,22 +81,8 @@
    ],
    "correct": "новых чувств",
    "case": "Родительный (Genitive)",
-   "explain": "«новых чувств» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«новых чувств» depends on the noun «выражения» (whose? of what?) — genitive.",
    "id": "c14"
-  },
-  {
-   "sentence": "Тогда ей показалось, что он относится к речам её сердца, как к бреду любви; это её укололо, и она ещё горячей заговорила о себе, а он назвал её ___.",
-   "lemma": "дурочка",
-   "options": [
-    "наивной дурочки",
-    "наивной дурочке",
-    "наивной дурочкой",
-    "наивная дурочка"
-   ],
-   "correct": "наивной дурочкой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«наивной дурочкой» — the instrumental marks the means, company, or complement.",
-   "id": "c15"
   },
   {
    "sentence": "Он же понял это молчание, как волнение и наплыв ___, стал целовать её, и когда привёл в опьянение, то сделал её женщиной раньше, чем она поняла, что произошло с ней.",
@@ -137,22 +95,8 @@
    ],
    "correct": "новых желаний",
    "case": "Родительный (Genitive)",
-   "explain": "«новых желаний» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«новых желаний» depends on the noun «наплыв» (whose? of what?) — genitive.",
    "id": "c16"
-  },
-  {
-   "sentence": "Это её обижает, ей скучно, и часто странные, фантастические и грешные мысли роятся в её голове, порождая и в сердце её ___ и острое желание новизны.",
-   "lemma": "чувство",
-   "options": [
-    "смутными чувствами",
-    "смутные чувства",
-    "смутных чувствах",
-    "смутным чувствам"
-   ],
-   "correct": "смутные чувства",
-   "case": "Винительный (Accusative)",
-   "explain": "«смутные чувства» — the accusative marks the direct object of the verb.",
-   "id": "c18"
   },
   {
    "sentence": "Это мирит её и с тем, что ___ её мужа стало только тёплым.",
@@ -165,7 +109,7 @@
    ],
    "correct": "горячее чувство",
    "case": "Именительный (Nominative)",
-   "explain": "«горячее чувство» — the subject of the sentence stands in the nominative.",
+   "explain": "«горячее чувство» is the subject of «стало» — who or what does it — so nominative.",
    "id": "c19"
   },
   {
@@ -179,106 +123,50 @@
    ],
    "correct": "новых мыслей",
    "case": "Родительный (Genitive)",
-   "explain": "«новых мыслей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«новых мыслей» depends on the noun «буря» (whose? of what?) — genitive.",
    "id": "c20"
-  },
-  {
-   "sentence": "А ___ её любви уходит всё глубже в прошлое, стираясь в её памяти быстрее, чем тонкие, изящные арабески мавров на стенах их дворцов стираются под рукой времени, не знающего ни любви, ни сострадания.",
-   "lemma": "день",
-   "options": [
-    "первому дню",
-    "первом дне",
-    "первым днём",
-    "первый день"
-   ],
-   "correct": "первый день",
-   "case": "Именительный (Nominative)",
-   "explain": "«первый день» — the subject of the sentence stands in the nominative.",
-   "id": "c22"
   },
   {
    "sentence": "Когда она сдерживает их ___, дети резво брыкаются, как молодые животные, и часто делают ей больно.",
    "lemma": "порыв",
    "options": [
-    "смелых порывов",
+    "смелых порывах",
     "смелые порывы",
     "смелыми порывами",
     "смелым порывам"
    ],
    "correct": "смелые порывы",
    "case": "Винительный (Accusative)",
-   "explain": "«смелые порывы» — the accusative marks the direct object of the verb.",
+   "explain": "«смелые порывы» is the direct object of «сдерживает» (кого? что?) — accusative.",
    "id": "c25"
-  },
-  {
-   "sentence": "Когда она сдерживает их смелые порывы, дети резво брыкаются, как ___, и часто делают ей больно.",
-   "lemma": "животное",
-   "options": [
-    "молодые животные",
-    "молодых животных",
-    "молодыми животными",
-    "молодым животным"
-   ],
-   "correct": "молодые животные",
-   "case": "Именительный (Nominative)",
-   "explain": "«молодые животные» — the subject of the sentence stands in the nominative.",
-   "id": "c26"
   },
   {
    "sentence": "И она, сначала оскорбляясь, постепенно всё с большим вниманием вслушивается в их почти всегда снисходительно насмешливые заявления о непонимании ею ___.",
    "lemma": "время",
    "options": [
-    "новом времени",
-    "новым временем",
+    "нового времени",
     "новому времени",
-    "нового времени"
+    "новом времени",
+    "новое время"
    ],
    "correct": "нового времени",
    "case": "Родительный (Genitive)",
-   "explain": "«нового времени» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«нового времени» depends on the noun «непонимании» (whose? of what?) — genitive.",
    "id": "c28"
   },
   {
    "sentence": "Да, оно изменилось, оставаясь по существу таким же всепожирающим ___, каким было и в её время, — во время её молодости.",
    "lemma": "чудовище",
    "options": [
-    "бесплодное чудовище",
+    "бесплодному чудовищу",
     "бесплодным чудовищем",
     "бесплодном чудовище",
-    "бесплодному чудовищу"
+    "бесплодного чудовища"
    ],
    "correct": "бесплодным чудовищем",
    "case": "Творительный (Instrumental)",
-   "explain": "«бесплодным чудовищем» — the instrumental marks the means, company, or complement.",
+   "explain": "After «оставаясь», what someone or something is or becomes stands in the instrumental.",
    "id": "c29"
-  },
-  {
-   "sentence": "Сущность та же, но ___, иные для выражения чувств и мысли, иные для любви, иные для обыденных отношений.",
-   "lemma": "форма",
-   "options": [
-    "иных форм",
-    "иным формам",
-    "иные формы",
-    "иными формами"
-   ],
-   "correct": "иные формы",
-   "case": "Именительный (Nominative)",
-   "explain": "«иные формы» — the subject of the sentence stands in the nominative.",
-   "id": "c30"
-  },
-  {
-   "sentence": "Сущность та же, но ___, иные для выражения чувств и мысли, иные для любви, иные для обыденных отношений.",
-   "lemma": "форма",
-   "options": [
-    "иных форм",
-    "иным формам",
-    "иные формы",
-    "иными формами"
-   ],
-   "correct": "иные формы",
-   "case": "Именительный (Nominative)",
-   "explain": "«иные формы» — the subject of the sentence stands in the nominative.",
-   "id": "c31"
   },
   {
    "sentence": "Сущность та же, но иные формы, иные для выражения чувств и мысли, иные для любви, иные для ___.",
@@ -291,7 +179,7 @@
    ],
    "correct": "обыденных отношений",
    "case": "Родительный (Genitive)",
-   "explain": "«обыденных отношений» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«обыденных отношений» — «для» always takes the genitive.",
    "id": "c32"
   },
   {
@@ -305,7 +193,7 @@
    ],
    "correct": "первого ребёнка",
    "case": "Родительный (Genitive)",
-   "explain": "«первого ребёнка» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«первого ребёнка» depends on the noun «рождения» (whose? of what?) — genitive.",
    "id": "c33"
   },
   {
@@ -319,7 +207,7 @@
    ],
    "correct": "собственных юношей",
    "case": "Родительный (Genitive)",
-   "explain": "«собственных юношей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«собственных юношей» depends on the noun «ногтей» (whose? of what?) — genitive.",
    "id": "c34"
   },
   {
@@ -333,7 +221,7 @@
    ],
    "correct": "тяжёлых камней",
    "case": "Родительный (Genitive)",
-   "explain": "«тяжёлых камней» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«тяжёлых камней» depends on the noun «груде» (whose? of what?) — genitive.",
    "id": "c36"
   }
  ]

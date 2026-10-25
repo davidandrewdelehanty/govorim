@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "___ была от бывшего товарища Нехлюдова, флигель-адъютанта Богатырева, которого Нехлюдов просил лично передать приготовленное им прошение от имени сектантов государю.",
-   "lemma": "записка",
-   "options": [
-    "другой записки",
-    "другая записка",
-    "другой запиской",
-    "другой записке"
-   ],
-   "correct": "другая записка",
-   "case": "Именительный (Nominative)",
-   "explain": "«Другая записка» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Другая записка была от ___ Нехлюдова, флигель-адъютанта Богатырева, которого Нехлюдов просил лично передать приготовленное им прошение от имени сектантов государю.",
    "lemma": "товарищ",
    "options": [
@@ -25,21 +11,21 @@
    ],
    "correct": "бывшего товарища",
    "case": "Родительный (Genitive)",
-   "explain": "«бывшего товарища» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«бывшего товарища» — «от» always takes the genitive.",
    "id": "c2"
   },
   {
    "sentence": "Нехлюдов после впечатлений ___ своего пребывания в Петербурге находился в состоянии полной безнадежности достигнуть чего-либо.",
    "lemma": "день",
    "options": [
-    "последними днями",
     "последние дни",
+    "последним дням",
     "последних дней",
-    "последним дням"
+    "последних днях"
    ],
    "correct": "последних дней",
    "case": "Родительный (Genitive)",
-   "explain": "«последних дней» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«последних дней» depends on the noun «впечатлений» (whose? of what?) — genitive.",
    "id": "c3"
   },
   {
@@ -53,22 +39,8 @@
    ],
    "correct": "юношеских мечтаний",
    "case": "Родительный (Genitive)",
-   "explain": "«юношеских мечтаний» — after the preposition «вроде», the genitive here marks possession, absence, or quantity.",
+   "explain": "«юношеских мечтаний» — «вроде» always takes the genitive.",
    "id": "c4"
-  },
-  {
-   "sentence": "— Он мне сказал, что все, что ты говорил, — я ему рассказала, — все это ___ и что ты непременно придешь ко Христу.",
-   "lemma": "признак",
-   "options": [
-    "хорошего признака",
-    "хорошим признаком",
-    "хороший признак",
-    "хорошем признаке"
-   ],
-   "correct": "хороший признак",
-   "case": "Именительный (Nominative)",
-   "explain": "«хороший признак» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
   },
   {
    "sentence": "Mariette подсказала имя знаменитой ___.",
@@ -81,7 +53,7 @@
    ],
    "correct": "французской актрисы",
    "case": "Родительный (Genitive)",
-   "explain": "«французской актрисы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«французской актрисы» depends on the noun «имя» (whose? of what?) — genitive.",
    "id": "c8"
   },
   {
@@ -95,78 +67,8 @@
    ],
    "correct": "благотворительного общества",
    "case": "Родительный (Genitive)",
-   "explain": "«благотворительного общества» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«благотворительного общества» depends on the noun «секретарь» (whose? of what?) — genitive.",
    "id": "c10"
-  },
-  {
-   "sentence": "Напоите его чаем, Mariette, — сказала графиня, уходя своим быстрым ___ в залу.",
-   "lemma": "шаг",
-   "options": [
-    "вертлявый шаг",
-    "вертлявом шаге",
-    "вертлявым шагом",
-    "вертлявого шага"
-   ],
-   "correct": "вертлявым шагом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«вертлявым шагом» — the instrumental marks the means, company, or complement.",
-   "id": "c12"
-  },
-  {
-   "sentence": "Она как будто готова была заплакать, говоря ___.",
-   "lemma": "слово",
-   "options": [
-    "последних слов",
-    "последние слова",
-    "последними словами",
-    "последних словах"
-   ],
-   "correct": "последние слова",
-   "case": "Винительный (Accusative)",
-   "explain": "«последние слова» — the accusative marks the direct object of the verb.",
-   "id": "c14"
-  },
-  {
-   "sentence": "Когда графиня вернулась, они разговаривали как не только старые, но ___, одни понимавшие друг друга среди толпы, не понимавшей их.",
-   "lemma": "друг",
-   "options": [
-    "исключительные друзья",
-    "исключительных друзей",
-    "исключительным друзьям",
-    "исключительных друзьях"
-   ],
-   "correct": "исключительные друзья",
-   "case": "Именительный (Nominative)",
-   "explain": "«исключительные друзья» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
-  },
-  {
-   "sentence": "Он вызвал в себе прежнее настроение и вспомнил ___ мыслей; но мысли эти уже не имели прежней силы убедительности.",
-   "lemma": "ход",
-   "options": [
-    "прежним ходом",
-    "прежний ход",
-    "прежнем ходе",
-    "прежнего хода"
-   ],
-   "correct": "прежний ход",
-   "case": "Винительный (Accusative)",
-   "explain": "«прежний ход» — the accusative marks the direct object of the verb.",
-   "id": "c16"
-  },
-  {
-   "sentence": "Он вызвал в себе прежнее настроение и вспомнил прежний ход мыслей; но мысли эти уже не имели ___ убедительности.",
-   "lemma": "сила",
-   "options": [
-    "прежней силой",
-    "прежней силе",
-    "прежняя сила",
-    "прежней силы"
-   ],
-   "correct": "прежней силы",
-   "case": "Родительный (Genitive)",
-   "explain": "«прежней силы» — the genitive here marks possession, absence, or quantity.",
-   "id": "c17"
   },
   {
    "sentence": "Не в силах разобраться в этих вопросах, он заснул тем тяжелым сном, которым он, бывало, засыпал после большого ___.",
@@ -179,7 +81,7 @@
    ],
    "correct": "карточного проигрыша",
    "case": "Родительный (Genitive)",
-   "explain": "«карточного проигрыша» — after the preposition «после», the genitive here marks possession, absence, or quantity.",
+   "explain": "«карточного проигрыша» — «после» always takes the genitive.",
    "id": "c18"
   }
  ]

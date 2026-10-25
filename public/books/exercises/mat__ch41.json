@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "___ осени светло смотрело в улицу, вымощенную круглыми серыми камнями, усеянную желтой листвой, и ветер, взметывая листья, бросал их под ноги людей.",
-   "lemma": "небо",
-   "options": [
-    "бледно-голубое небо",
-    "бледно-голубым небом",
-    "бледно-голубого неба",
-    "бледно-голубому небу"
-   ],
-   "correct": "бледно-голубое небо",
-   "case": "Именительный (Nominative)",
-   "explain": "«Бледно-голубое небо» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
-  },
-  {
-   "sentence": "Бледно-голубое небо осени светло смотрело в улицу, вымощенную круглыми ___, усеянную желтой листвой, и ветер, взметывая листья, бросал их под ноги людей.",
-   "lemma": "камень",
-   "options": [
-    "серые камни",
-    "серых камней",
-    "серыми камнями",
-    "серым камням"
-   ],
-   "correct": "серыми камнями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«серыми камнями» — the instrumental marks the means, company, or complement.",
-   "id": "c5"
-  },
-  {
    "sentence": "Высокий ___ с густыми черными усами на красном лице быстро шел в толпу, за ним, бесцеремонно расталкивая людей, шагали солдаты, громко стуча тяжелыми сапогами по камням.",
    "lemma": "офицер",
    "options": [
@@ -39,7 +11,7 @@
    ],
    "correct": "полицейский офицер",
    "case": "Именительный (Nominative)",
-   "explain": "«полицейский офицер» — the subject of the sentence stands in the nominative.",
+   "explain": "«полицейский офицер» is the subject of «шел» — who or what does it — so nominative.",
    "id": "c9"
   },
   {
@@ -53,22 +25,8 @@
    ],
    "correct": "красном лице",
    "case": "Предложный (Prepositional)",
-   "explain": "«красном лице» — after the preposition «на», for location or topic.",
+   "explain": "«красном лице» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c10"
-  },
-  {
-   "sentence": "Сзади толпы тоже возвышались ___ верховых, по бокам, держа руки на шашках, шагала пешая полиция, и всюду мелькали знакомые матери острые глаза шпионов, внимательно щупавшие лица людей.",
-   "lemma": "фигура",
-   "options": [
-    "серых фигур",
-    "серыми фигурами",
-    "серых фигурах",
-    "серые фигуры"
-   ],
-   "correct": "серые фигуры",
-   "case": "Винительный (Accusative)",
-   "explain": "«серые фигуры» — the accusative marks the direct object of the verb.",
-   "id": "c14"
   },
   {
    "sentence": "___ оборвалась, говор стал тише, и только твердые удары ног о камни наполняли улицу глухим, ровным звуком.",
@@ -81,7 +39,7 @@
    ],
    "correct": "печальная песня",
    "case": "Именительный (Nominative)",
-   "explain": "«Печальная песня» — the subject of the sentence stands in the nominative.",
+   "explain": "«печальная песня» is the subject of «оборвалась» — who or what does it — so nominative.",
    "id": "c15"
   },
   {
@@ -95,22 +53,8 @@
    ],
    "correct": "первого грома",
    "case": "Родительный (Genitive)",
-   "explain": "«первого грома» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«первого грома» depends on the noun «отзвуку» (whose? of what?) — genitive.",
    "id": "c16"
-  },
-  {
-   "sentence": "Эти ___ без попов и щемящего душу пения, задумчивые лица, нахмуренные брови вызывали у матери жуткое чувство, а мысль ее, медленно кружась, одевала впечатления в грустные слова.",
-   "lemma": "похороны",
-   "options": [
-    "молчаливые похороны",
-    "молчаливых похорон",
-    "молчаливых похоронах",
-    "молчаливым похоронам"
-   ],
-   "correct": "молчаливые похороны",
-   "case": "Именительный (Nominative)",
-   "explain": "«молчаливые похороны» — the subject of the sentence stands in the nominative.",
-   "id": "c19"
   },
   {
    "sentence": "Эти молчаливые похороны без попов и щемящего душу пения, задумчивые лица, нахмуренные брови вызывали у матери жуткое чувство, а мысль ее, медленно кружась, одевала впечатления в ___.",
@@ -123,36 +67,8 @@
    ],
    "correct": "грустные слова",
    "case": "Винительный (Accusative)",
-   "explain": "«грустные слова» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«грустные слова» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c20"
-  },
-  {
-   "sentence": "Сердце наполнялось шероховатым ___ несогласия с людьми, провожавшими Егора.",
-   "lemma": "чувство",
-   "options": [
-    "тревожном чувстве",
-    "тревожным чувством",
-    "тревожное чувство",
-    "тревожного чувства"
-   ],
-   "correct": "тревожным чувством",
-   "case": "Творительный (Instrumental)",
-   "explain": "«тревожным чувством» — the instrumental marks the means, company, or complement.",
-   "id": "c21"
-  },
-  {
-   "sentence": "Пришли на кладбище и долго кружились там по узким дорожкам среди могил, пока не вышли на открытое пространство, усеянное низенькими ___.",
-   "lemma": "крест",
-   "options": [
-    "белых крестах",
-    "белым крестам",
-    "белых крестов",
-    "белыми крестами"
-   ],
-   "correct": "белыми крестами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«белыми крестами» — the instrumental marks the means, company, or complement.",
-   "id": "c23"
   },
   {
    "sentence": "Над могилой встал высокий ___ без шапки, с длинными волосами, чернобровый, бледный.",
@@ -165,7 +81,7 @@
    ],
    "correct": "молодой человек",
    "case": "Именительный (Nominative)",
-   "explain": "«молодой человек» — the subject of the sentence stands in the nominative.",
+   "explain": "«молодой человек» is the subject of «встал» — who or what does it — so nominative.",
    "id": "c24"
   },
   {
@@ -179,7 +95,7 @@
    ],
    "correct": "молодой человек",
    "case": "Именительный (Nominative)",
-   "explain": "«молодой человек» — the subject of the sentence stands in the nominative.",
+   "explain": "«молодой человек» is the subject of «заявил» — who or what does it — so nominative.",
    "id": "c27"
   },
   {
@@ -193,22 +109,8 @@
    ],
    "correct": "сухой земле",
    "case": "Дательный (Dative)",
-   "explain": "«сухой земле» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«сухой земле» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c29"
-  },
-  {
-   "sentence": "Недалеко от нее, на ___, среди могил, полицейские, окружив длинноволосого человека, отбивались от толпы, нападавшей на них со всех сторон.",
-   "lemma": "дорожка",
-   "options": [
-    "узкая дорожка",
-    "узкой дорожке",
-    "узкой дорожки",
-    "узкой дорожкой"
-   ],
-   "correct": "узкой дорожке",
-   "case": "Предложный (Prepositional)",
-   "explain": "«узкой дорожке» — after the preposition «на», for location or topic.",
-   "id": "c31"
   },
   {
    "sentence": "Схватив ее за плечо, рядом с нею стояла Софья, без шляпы, с растрепанными волосами, поддерживая ___, почти мальчика.",
@@ -221,22 +123,8 @@
    ],
    "correct": "молодого парня",
    "case": "Винительный (Accusative)",
-   "explain": "«молодого парня» — the accusative marks the direct object of the verb.",
+   "explain": "«молодого парня» is the direct object of «поддерживая» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c36"
-  },
-  {
-   "sentence": "Мы вас раздавим без драки, когда мы встанем, весь ___!",
-   "lemma": "народ",
-   "options": [
-    "рабочему народу",
-    "рабочего народа",
-    "рабочий народ",
-    "рабочем народе"
-   ],
-   "correct": "рабочий народ",
-   "case": "Именительный (Nominative)",
-   "explain": "«рабочий народ» — the subject of the sentence stands in the nominative.",
-   "id": "c37"
   },
   {
    "sentence": "Но, когда, осторожно открыв дверку, она выглянула в поле, одетое ___ осенних сумерек, -- тишина и безлюдье сразу успокоили ее.",
@@ -249,7 +137,7 @@
    ],
    "correct": "серыми тканями",
    "case": "Творительный (Instrumental)",
-   "explain": "«серыми тканями» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «одетое», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c38"
   },
   {
@@ -263,7 +151,7 @@
    ],
    "correct": "осенних сумерек",
    "case": "Родительный (Genitive)",
-   "explain": "«осенних сумерек» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«осенних сумерек» depends on the noun «тканями» (whose? of what?) — genitive.",
    "id": "c39"
   }
  ]

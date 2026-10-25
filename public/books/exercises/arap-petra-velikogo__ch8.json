@@ -1,48 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "___ этого романа будет, -- как Пушкин говорит, -- неверность жены сего арапа, которая родила ему белого ребенка и за то была посажена в монастырь.",
-   "lemma": "завязка",
-   "options": [
-    "главная завязка",
-    "главной завязкой",
-    "главной завязки",
-    "главной завязке"
-   ],
-   "correct": "главная завязка",
-   "case": "Именительный (Nominative)",
-   "explain": "«Главная завязка» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Вот ___ этого сочинения\" (\"Пушкин в воспоминаниях современников\", М. 1950, стр. 324-325).",
-   "lemma": "основа",
-   "options": [
-    "исторической основой",
-    "исторической основе",
-    "историческая основа",
-    "исторической основы"
-   ],
-   "correct": "историческая основа",
-   "case": "Именительный (Nominative)",
-   "explain": "«историческая основа» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
-   "sentence": "Запись Вульфа подтверждается ___ Пушкиных о А.",
-   "lemma": "воспоминание",
-   "options": [
-    "семейных воспоминаний",
-    "семейным воспоминаниям",
-    "семейные воспоминания",
-    "семейными воспоминаниями"
-   ],
-   "correct": "семейными воспоминаниями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«семейными воспоминаниями» — the instrumental marks the means, company, or complement.",
-   "id": "c4"
-  },
-  {
    "sentence": "___ его, красавица, родом гречанка, родила ему белую дочь.",
    "lemma": "жена",
    "options": [
@@ -53,7 +11,7 @@
    ],
    "correct": "первая жена",
    "case": "Именительный (Nominative)",
-   "explain": "«Первая жена» — the subject of the sentence stands in the nominative.",
+   "explain": "«первая жена» is the subject of «родила» — who or what does it — so nominative.",
    "id": "c5"
   },
   {
@@ -67,7 +25,7 @@
    ],
    "correct": "арабская рожа",
    "case": "Именительный (Nominative)",
-   "explain": "«арабская рожа» — the subject of the sentence stands in the nominative.",
+   "explain": "«арабская рожа» is the subject of «произведет» — who or what does it — so nominative.",
    "id": "c8"
   },
   {
@@ -81,7 +39,7 @@
    ],
    "correct": "полтавской битвы",
    "case": "Родительный (Genitive)",
-   "explain": "«Полтавской битвы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«полтавской битвы» depends on the noun «картину» (whose? of what?) — genitive.",
    "id": "c9"
   },
   {
@@ -95,7 +53,7 @@
    ],
    "correct": "первой половины",
    "case": "Родительный (Genitive)",
-   "explain": "«первой половины» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«первой половины» — «от» always takes the genitive.",
    "id": "c10"
   },
   {
@@ -109,78 +67,22 @@
    ],
    "correct": "русской боярышне",
    "case": "Предложный (Prepositional)",
-   "explain": "«русской боярышне» — after the preposition «на», for location or topic.",
+   "explain": "«русской боярышне» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c12"
-  },
-  {
-   "sentence": "Любовь его к графине Д. -- ___.",
-   "lemma": "вымысел",
-   "options": [
-    "художественного вымысла",
-    "художественном вымысле",
-    "художественный вымысел",
-    "художественному вымыслу"
-   ],
-   "correct": "художественный вымысел",
-   "case": "Именительный (Nominative)",
-   "explain": "«художественный вымысел» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
-  },
-  {
-   "sentence": "Корниловича, напечатанные в альманахе \"___ на 1825 год\", в частности очерк \"О первых балах в России\".",
-   "lemma": "старина",
-   "options": [
-    "русская старина",
-    "русской старины",
-    "русской старине",
-    "русской стариной"
-   ],
-   "correct": "русская старина",
-   "case": "Именительный (Nominative)",
-   "explain": "«Русская старина» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
   },
   {
    "sentence": "Описание ___ и обеда в царствование Петра ярко и натурально\" (\"Русский архив\", 1866,. стб. 1716).",
    "lemma": "бал",
    "options": [
+    "петербургский бал",
     "петербургскому балу",
     "петербургском бале",
-    "петербургского бала",
-    "петербургским балом"
+    "петербургского бала"
    ],
    "correct": "петербургского бала",
    "case": "Родительный (Genitive)",
-   "explain": "«петербургского бала» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«петербургского бала» depends on the noun «Описание» (whose? of what?) — genitive.",
    "id": "c16"
-  },
-  {
-   "sentence": "Описание петербургского бала и обеда в царствование Петра ярко и натурально\" (\"___\", 1866,. стб. 1716).",
-   "lemma": "архив",
-   "options": [
-    "русском архиве",
-    "русский архив",
-    "русского архива",
-    "русским архивом"
-   ],
-   "correct": "русский архив",
-   "case": "Именительный (Nominative)",
-   "explain": "«Русский архив» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
-  },
-  {
-   "sentence": "Очевидно, то, что читал Пушкин своим друзьям, и было опубликовано в виде двух отрывков в альманахе \"Северные цветы\" на 1829 г. и в \"___\" в марте 1830 г.",
-   "lemma": "газета",
-   "options": [
-    "литературная газета",
-    "литературной газеты",
-    "литературной газете",
-    "литературной газетой"
-   ],
-   "correct": "литературной газете",
-   "case": "Предложный (Prepositional)",
-   "explain": "«Литературной газете» — after the preposition «в», for location or topic.",
-   "id": "c18"
   },
   {
    "sentence": "Эти отрывки были затем перепечатаны в сборнике \"Повести, изданные Александром Пушкиным\" (1834) под заголовком: \"Две главы из ___. 1.",
@@ -193,50 +95,8 @@
    ],
    "correct": "исторического романа",
    "case": "Родительный (Genitive)",
-   "explain": "«исторического романа» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«исторического романа» — «из» always takes the genitive.",
    "id": "c19"
-  },
-  {
-   "sentence": "___ -- война между Испанией -- с одной стороны, и Англией и Францией -- с другой, в 1719--1720 гг.",
-   "lemma": "война",
-   "options": [
-    "испанской войне",
-    "испанская война",
-    "испанской войной",
-    "испанской войны"
-   ],
-   "correct": "испанская война",
-   "case": "Именительный (Nominative)",
-   "explain": "«Испанская война» — the subject of the sentence stands in the nominative.",
-   "id": "c21"
-  },
-  {
-   "sentence": "Пале-Рояль -- ___ в Париже.",
-   "lemma": "дворец",
-   "options": [
-    "королевском дворце",
-    "королевский дворец",
-    "королевским дворцом",
-    "королевского дворца"
-   ],
-   "correct": "королевский дворец",
-   "case": "Именительный (Nominative)",
-   "explain": "«королевский дворец» — the subject of the sentence stands in the nominative.",
-   "id": "c22"
-  },
-  {
-   "sentence": "Law -- Джон Лоу (1671--1729), ___; организовал во Франции выпуск бумажных денег и дутых акций основанной им Индийской компании.",
-   "lemma": "делец",
-   "options": [
-    "финансовому дельцу",
-    "финансовым дельцом",
-    "финансового дельца",
-    "финансовый делец"
-   ],
-   "correct": "финансовый делец",
-   "case": "Именительный (Nominative)",
-   "explain": "«финансовый делец» — the subject of the sentence stands in the nominative.",
-   "id": "c23"
   },
   {
    "sentence": "Law -- Джон Лоу (1671--1729), финансовый делец; организовал во Франции выпуск ___ и дутых акций основанной им Индийской компании.",
@@ -249,50 +109,22 @@
    ],
    "correct": "бумажных денег",
    "case": "Родительный (Genitive)",
-   "explain": "«бумажных денег» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«бумажных денег» depends on the noun «выпуск» (whose? of what?) — genitive.",
    "id": "c24"
-  },
-  {
-   "sentence": "В 1720 г. ___ Лоу провалились, что повлекло за собой разорение многих владельцев акций и обесценение бумажных денег.",
-   "lemma": "операция",
-   "options": [
-    "финансовые операции",
-    "финансовых операциях",
-    "финансовых операций",
-    "финансовыми операциями"
-   ],
-   "correct": "финансовые операции",
-   "case": "Именительный (Nominative)",
-   "explain": "«финансовые операции» — the subject of the sentence stands in the nominative.",
-   "id": "c25"
   },
   {
    "sentence": "В 1720 г. финансовые операции Лоу провалились, что повлекло за собой разорение многих владельцев акций и обесценение ___.",
    "lemma": "деньга",
    "options": [
     "бумажные деньги",
-    "бумажными деньгами",
-    "бумажных денег",
-    "бумажным деньгам"
+    "бумажным деньгам",
+    "бумажных деньгах",
+    "бумажных денег"
    ],
    "correct": "бумажных денег",
    "case": "Родительный (Genitive)",
-   "explain": "«бумажных денег» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«бумажных денег» depends on the noun «обесценение» (whose? of what?) — genitive.",
    "id": "c26"
-  },
-  {
-   "sentence": "Герцог Ришелье, Луи Франсуа Арман дю Плесси (1696--1788) -- маршал Франции, известный своими ___.",
-   "lemma": "похождение",
-   "options": [
-    "легкомысленные похождения",
-    "легкомысленными похождениями",
-    "легкомысленным похождениям",
-    "легкомысленных похождениях"
-   ],
-   "correct": "легкомысленными похождениями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«легкомысленными похождениями» — the instrumental marks the means, company, or complement.",
-   "id": "c27"
   },
   {
    "sentence": "Пушкин сравнивает его с Алкивиадом, афинским военачальником (V в. до н. э.), человеком ___ и безнравственного поведения.",
@@ -305,36 +137,8 @@
    ],
    "correct": "блестящих способностей",
    "case": "Родительный (Genitive)",
-   "explain": "«блестящих способностей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«блестящих способностей» depends on the noun «человеком» (whose? of what?) — genitive.",
    "id": "c28"
-  },
-  {
-   "sentence": "Шолье (1639--1720) -- ___, аббат, воспевавший наслаждение жизнью; автор фривольных песенок.",
-   "lemma": "поэт",
-   "options": [
-    "французским поэтом",
-    "французский поэт",
-    "французского поэта",
-    "французскому поэту"
-   ],
-   "correct": "французский поэт",
-   "case": "Именительный (Nominative)",
-   "explain": "«французский поэт» — the subject of the sentence stands in the nominative.",
-   "id": "c29"
-  },
-  {
-   "sentence": "Долгорукий Яков Федорович (1659--1720) -- сенатор, президент ревизионной коллегии, ведавший ___, пользовался репутацией человека честного и прямого.",
-   "lemma": "контроль",
-   "options": [
-    "государственном контроле",
-    "государственному контролю",
-    "государственного контроля",
-    "государственным контролем"
-   ],
-   "correct": "государственным контролем",
-   "case": "Творительный (Instrumental)",
-   "explain": "«государственным контролем» — the instrumental marks the means, company, or complement.",
-   "id": "c30"
   },
   {
    "sentence": "Копиевич Илья Федорович (ум. после 1708 г.) -- переводчик, издатель ___ в Амстердаме.",
@@ -347,7 +151,7 @@
    ],
    "correct": "русских книг",
    "case": "Родительный (Genitive)",
-   "explain": "«русских книг» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«русских книг» depends on the noun «издатель» (whose? of what?) — genitive.",
    "id": "c31"
   }
  ]

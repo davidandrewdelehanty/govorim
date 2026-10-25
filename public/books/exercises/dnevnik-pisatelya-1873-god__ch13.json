@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Это именно потому, что у нас могут лгать даже совершенно ___.",
-   "lemma": "человек",
-   "options": [
-    "честным людям",
-    "честных людях",
-    "честные люди",
-    "честными людьми"
-   ],
-   "correct": "честные люди",
-   "case": "Именительный (Nominative)",
-   "explain": "«честные люди» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
    "sentence": "Я убежден, что в ___, в огромном большинстве, лгут только одни негодяи; лгут из практической выгоды, то есть прямо с преступными целями.",
    "lemma": "нация",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "других нациях",
    "case": "Предложный (Prepositional)",
-   "explain": "«других нациях» — after the preposition «в», for location or topic.",
+   "explain": "«других нациях» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c3"
   },
   {
@@ -39,64 +25,8 @@
    ],
    "correct": "практической выгоды",
    "case": "Родительный (Genitive)",
-   "explain": "«практической выгоды» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«практической выгоды» — «из» always takes the genitive.",
    "id": "c5"
-  },
-  {
-   "sentence": "Ну а у нас могут лгать совершенно даром самые ___ и с самыми почтенными целями.",
-   "lemma": "человек",
-   "options": [
-    "почтенными людьми",
-    "почтенные люди",
-    "почтенным людям",
-    "почтенных людей"
-   ],
-   "correct": "почтенные люди",
-   "case": "Именительный (Nominative)",
-   "explain": "«почтенные люди» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
-  },
-  {
-   "sentence": "Ну а у нас могут лгать совершенно даром самые почтенные люди и с самыми ___.",
-   "lemma": "цель",
-   "options": [
-    "почтенными целями",
-    "почтенным целям",
-    "почтенных целях",
-    "почтенных целей"
-   ],
-   "correct": "почтенными целями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«почтенными целями» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c8"
-  },
-  {
-   "sentence": "Ну а ___, или о том, как вам в Париже вставляли зубы, или о том, как вас вылечил здесь Боткин?",
-   "lemma": "собака",
-   "options": [
-    "охотничьи собаки",
-    "охотничьих собаках",
-    "охотничьих собак",
-    "охотничьим собакам"
-   ],
-   "correct": "охотничьи собаки",
-   "case": "Именительный (Nominative)",
-   "explain": "«охотничьи собаки» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
-  },
-  {
-   "sentence": "Позвольте, не передавали ли вы анекдота, будто бы с вами случившегося, тому же ___, которое вам же его про себя и рассказывало?",
-   "lemma": "лицо",
-   "options": [
-    "самому лицу",
-    "самом лице",
-    "самого лица",
-    "самим лицом"
-   ],
-   "correct": "самому лицу",
-   "case": "Дательный (Dative)",
-   "explain": "«самому лицу» — the dative marks the indirect object or recipient.",
-   "id": "c14"
   },
   {
    "sentence": "Я знаю, что ___ сплошь да рядом лжет совсем для себя неприметно, так что просто можно было совсем не приметить.",
@@ -109,22 +39,8 @@
    ],
    "correct": "русский лгун",
    "case": "Именительный (Nominative)",
-   "explain": "«русский лгун» — the subject of the sentence stands in the nominative.",
+   "explain": "«русский лгун» is the subject of «лжет» — who or what does it — so nominative.",
    "id": "c15"
-  },
-  {
-   "sentence": "Деликатная взаимность вранья есть почти ___ русского общества - всех русских собраний, вечеров, клубов, ученых обществ и проч.",
-   "lemma": "условие",
-   "options": [
-    "первом условии",
-    "первое условие",
-    "первым условием",
-    "первому условию"
-   ],
-   "correct": "первое условие",
-   "case": "Именительный (Nominative)",
-   "explain": "«первое условие» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
   },
   {
    "sentence": "Деликатная взаимность вранья есть почти первое условие ___ - всех русских собраний, вечеров, клубов, ученых обществ и проч.",
@@ -137,22 +53,8 @@
    ],
    "correct": "русского общества",
    "case": "Родительный (Genitive)",
-   "explain": "«русского общества» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«русского общества» depends on the noun «условие» (whose? of what?) — genitive.",
    "id": "c18"
-  },
-  {
-   "sentence": "Деликатная взаимность вранья есть почти первое условие русского общества - всех ___, вечеров, клубов, ученых обществ и проч.",
-   "lemma": "собрание",
-   "options": [
-    "русских собраний",
-    "русским собраниям",
-    "русских собраниях",
-    "русские собрания"
-   ],
-   "correct": "русских собраний",
-   "case": "Родительный (Genitive)",
-   "explain": "«русских собраний» — the genitive here marks possession, absence, or quantity.",
-   "id": "c19"
   },
   {
    "sentence": "Русский очень хорошо знает, что нет такого англичанина; а воспитанный русский знает и то, что не стыдиться своего лица, даже где бы то ни было, есть именно самый главный и существенный пункт ___.",
@@ -165,36 +67,8 @@
    ],
    "correct": "собственного достоинства",
    "case": "Родительный (Genitive)",
-   "explain": "«собственного достоинства» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«собственного достоинства» depends on the noun «пункт» (whose? of what?) — genitive.",
    "id": "c22"
-  },
-  {
-   "sentence": "Есть пункт, в котором всякий ___ разряда интеллигентного, являясь в общество или в публику, ужасно требователен и ни за что уступить не может.",
-   "lemma": "человек",
-   "options": [
-    "русского человека",
-    "русском человеке",
-    "русскому человеку",
-    "русский человек"
-   ],
-   "correct": "русский человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«русский человек» — the subject of the sentence stands in the nominative.",
-   "id": "c23"
-  },
-  {
-   "sentence": "Перед авторитетом европейским, например, ___, как известно, со счастьем и поспешностью преклоняется, даже не позволяя себе анализа; даже особенно не любит анализа в таких случаях.",
-   "lemma": "человек",
-   "options": [
-    "русского человека",
-    "русском человеке",
-    "русскому человеку",
-    "русский человек"
-   ],
-   "correct": "русский человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«русский человек» — the subject of the sentence stands in the nominative.",
-   "id": "c24"
   },
   {
    "sentence": "О, другое дело, если ___ сойдет с пьедестала или даже просто выйдет из моды: тогда нет строже русской интеллигенции к такому лицу, нет предела ее высокомерию, презрению, насмешке.",
@@ -207,22 +81,8 @@
    ],
    "correct": "гениальное лицо",
    "case": "Именительный (Nominative)",
-   "explain": "«гениальное лицо» — the subject of the sentence stands in the nominative.",
+   "explain": "«гениальное лицо» is the subject of «сойдет» — who or what does it — so nominative.",
    "id": "c25"
-  },
-  {
-   "sentence": "___ если б, например, он встретился с Либихом, не зная, что это вот Либих, хоть в вагоне железной дороги.",
-   "lemma": "дело",
-   "options": [
-    "другого дела",
-    "другом деле",
-    "другое дело",
-    "другому делу"
-   ],
-   "correct": "другое дело",
-   "case": "Именительный (Nominative)",
-   "explain": "«Другое дело» — the subject of the sentence stands in the nominative.",
-   "id": "c26"
   },
   {
    "sentence": "Другое дело если б, например, он встретился с Либихом, не зная, что это вот Либих, хоть в вагоне ___.",
@@ -235,64 +95,8 @@
    ],
    "correct": "железной дороги",
    "case": "Родительный (Genitive)",
-   "explain": "«железной дороги» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«железной дороги» depends on the noun «вагоне» (whose? of what?) — genitive.",
    "id": "c27"
-  },
-  {
-   "sentence": "Если же поставит, то вернее всего, что и дома решит его в свою пользу, хотя бы и имел самые ___ о своей учености.",
-   "lemma": "сведение",
-   "options": [
-    "полными сведениями",
-    "полным сведениям",
-    "полные сведения",
-    "полных сведений"
-   ],
-   "correct": "полные сведения",
-   "case": "Винительный (Accusative)",
-   "explain": "«полные сведения» — the accusative marks the direct object of the verb.",
-   "id": "c31"
-  },
-  {
-   "sentence": "Мне самому случилось выслушать недавно, сидя в вагоне, ___ о классических языках в продолжение двух часов дороги.",
-   "lemma": "трактат",
-   "options": [
-    "целый трактат",
-    "целому трактату",
-    "целого трактата",
-    "целым трактатом"
-   ],
-   "correct": "целый трактат",
-   "case": "Именительный (Nominative)",
-   "explain": "«целый трактат» — the subject of the sentence stands in the nominative.",
-   "id": "c32"
-  },
-  {
-   "sentence": "Это был никому из пассажиров не ___, осанистый, зрелых лет, сдержанного и барского вида, веско и неторопливо выпускавший слова.",
-   "lemma": "господин",
-   "options": [
-    "знакомом господине",
-    "знакомого господина",
-    "знакомый господин",
-    "знакомым господином"
-   ],
-   "correct": "знакомый господин",
-   "case": "Именительный (Nominative)",
-   "explain": "«знакомый господин» — the subject of the sentence stands in the nominative.",
-   "id": "c34"
-  },
-  {
-   "sentence": "Очевидно было с самых ___ его, что он не только в первый раз говорил, но даже, может быть, в первый раз и думал об этой теме, так что это была лишь блестящая импровизация.",
-   "lemma": "слово",
-   "options": [
-    "первых слов",
-    "первых словах",
-    "первым словам",
-    "первыми словами"
-   ],
-   "correct": "первых слов",
-   "case": "Родительный (Genitive)",
-   "explain": "«первых слов» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
-   "id": "c35"
   },
   {
    "sentence": "В нашем вагоне он произвел ___; многие, расставаясь с ним, благодарили его за доставленное удовольствие, особенно дамы.",
@@ -305,22 +109,8 @@
    ],
    "correct": "чрезвычайный эффект",
    "case": "Винительный (Accusative)",
-   "explain": "«чрезвычайный эффект» — the accusative marks the direct object of the verb.",
+   "explain": "«чрезвычайный эффект» is the direct object of «произвел» (кого? что?) — accusative.",
    "id": "c38"
-  },
-  {
-   "sentence": "Правда, разговоры в публике у нас ужасно туго завязываются; всех сначала долго коробит, пока решатся заговорить, ну а заговорят - в такой пафос ___ войдут, что почти надо за руки держать.",
-   "lemma": "раз",
-   "options": [
-    "иной раз",
-    "иному разу",
-    "ином разе",
-    "иным разом"
-   ],
-   "correct": "иной раз",
-   "case": "Винительный (Accusative)",
-   "explain": "«иной раз» — the accusative marks the direct object of the verb.",
-   "id": "c39"
   },
   {
    "sentence": "___ слушает смирно и почтительно, а говоруны выигрывают в своей осанке.",
@@ -333,49 +123,21 @@
    ],
    "correct": "обыкновенная публика",
    "case": "Именительный (Nominative)",
-   "explain": "«Обыкновенная публика» — the subject of the sentence stands in the nominative.",
+   "explain": "«обыкновенная публика» is the subject of «слушает» — who or what does it — so nominative.",
    "id": "c40"
-  },
-  {
-   "sentence": "В другой раз мне, тоже в вагоне и тоже недавно, случилось выслушать ___ об атеизме.",
-   "lemma": "трактат",
-   "options": [
-    "целый трактат",
-    "целому трактату",
-    "целого трактата",
-    "целым трактатом"
-   ],
-   "correct": "целый трактат",
-   "case": "Винительный (Accusative)",
-   "explain": "«целый трактат» — the accusative marks the direct object of the verb.",
-   "id": "c42"
-  },
-  {
-   "sentence": "Оратор, светского и ___ господин, вида, впрочем, угрюмого, но с болезненной жаждою слушателя, начал с монастырей.",
-   "lemma": "вид",
-   "options": [
-    "инженерный вид",
-    "инженерном виде",
-    "инженерного вида",
-    "инженерным видом"
-   ],
-   "correct": "инженерного вида",
-   "case": "Родительный (Genitive)",
-   "explain": "«инженерного вида» — the genitive here marks possession, absence, or quantity.",
-   "id": "c43"
   },
   {
    "sentence": "Он кончил совершенным и безбрежным атеизмом на основании ___ и математики.",
    "lemma": "наука",
    "options": [
-    "естественные науки",
     "естественных науках",
-    "естественных наук",
-    "естественными науками"
+    "естественные науки",
+    "естественным наукам",
+    "естественных наук"
    ],
    "correct": "естественных наук",
    "case": "Родительный (Genitive)",
-   "explain": "«естественных наук» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«естественных наук» depends on the noun «основании» (whose? of what?) — genitive.",
    "id": "c44"
   },
   {
@@ -389,78 +151,8 @@
    ],
    "correct": "необыкновенный успех",
    "case": "Винительный (Accusative)",
-   "explain": "«необыкновенный успех» — the accusative marks the direct object of the verb.",
+   "explain": "«необыкновенный успех» is the direct object of «имел» (кого? что?) — accusative.",
    "id": "c46"
-  },
-  {
-   "sentence": "Тут были офицеры, старцы, дамы и ___.",
-   "lemma": "ребёнок",
-   "options": [
-    "взрослых детей",
-    "взрослыми детьми",
-    "взрослым детям",
-    "взрослые дети"
-   ],
-   "correct": "взрослые дети",
-   "case": "Именительный (Nominative)",
-   "explain": "«взрослые дети» — the subject of the sentence stands in the nominative.",
-   "id": "c47"
-  },
-  {
-   "sentence": "Наверно тоже не негодяй, не мошенник; даже очень может быть, что ___ и хороший отец.",
-   "lemma": "человек",
-   "options": [
-    "честный человек",
-    "честном человеке",
-    "честным человеком",
-    "честного человека"
-   ],
-   "correct": "честный человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«честный человек» — the subject of the sentence stands in the nominative.",
-   "id": "c49"
-  },
-  {
-   "sentence": "Наверно тоже не негодяй, не мошенник; даже очень может быть, что честный человек и ___.",
-   "lemma": "отец",
-   "options": [
-    "хорошем отце",
-    "хороший отец",
-    "хорошим отцом",
-    "хорошему отцу"
-   ],
-   "correct": "хороший отец",
-   "case": "Именительный (Nominative)",
-   "explain": "«хороший отец» — the subject of the sentence stands in the nominative.",
-   "id": "c50"
-  },
-  {
-   "sentence": "Вот эта-то ___ бессовестность русского интеллигентного человека - решительный для меня феномен.",
-   "lemma": "род",
-   "options": [
-    "известного рода",
-    "известным родом",
-    "известный род",
-    "известном роде"
-   ],
-   "correct": "известного рода",
-   "case": "Родительный (Genitive)",
-   "explain": "«известного рода» — the genitive here marks possession, absence, or quantity.",
-   "id": "c52"
-  },
-  {
-   "sentence": "Вот эта-то известного рода бессовестность русского ___ - решительный для меня феномен.",
-   "lemma": "человек",
-   "options": [
-    "интеллигентным человеком",
-    "интеллигентного человека",
-    "интеллигентный человек",
-    "интеллигентному человеку"
-   ],
-   "correct": "интеллигентного человека",
-   "case": "Родительный (Genitive)",
-   "explain": "«интеллигентного человека» — the genitive here marks possession, absence, or quantity.",
-   "id": "c53"
   },
   {
    "sentence": "Вспомните, что поручик сейчас же после приключения съел слоеный пирожок и отличился в тот же вечер в мазурке на именинах у одного ___.",
@@ -473,7 +165,7 @@
    ],
    "correct": "видного чиновника",
    "case": "Родительный (Genitive)",
-   "explain": "«видного чиновника» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«видного чиновника» — «у» always takes the genitive.",
    "id": "c54"
   },
   {
@@ -487,7 +179,7 @@
    ],
    "correct": "очаровательном танце",
    "case": "Предложный (Prepositional)",
-   "explain": "«очаровательном танце» — after the preposition «в», for location or topic.",
+   "explain": "«очаровательном танце» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c55"
   },
   {
@@ -501,7 +193,7 @@
    ],
    "correct": "русской женщине",
    "case": "Предложный (Prepositional)",
-   "explain": "«русской женщине» — after the preposition «в», for location or topic.",
+   "explain": "«русской женщине» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c56"
   },
   {
@@ -515,7 +207,7 @@
    ],
    "correct": "теперешний момент",
    "case": "Винительный (Accusative)",
-   "explain": "«теперешний момент» — after the preposition «про», the accusative marks the direct object of the verb.",
+   "explain": "«теперешний момент» — «про» always takes the accusative.",
    "id": "c57"
   },
   {
@@ -529,7 +221,7 @@
    ],
    "correct": "самого дела",
    "case": "Родительный (Genitive)",
-   "explain": "«самого дела» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«самого дела» — «для» always takes the genitive.",
    "id": "c58"
   }
  ]

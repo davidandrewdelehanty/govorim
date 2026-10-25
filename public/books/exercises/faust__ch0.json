@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Четвертого дня прибыл я сюда, ___, и, по обещанию, берусь за перо и пишу к тебе.",
-   "lemma": "друг",
-   "options": [
-    "любезного друга",
-    "любезному другу",
-    "любезным другом",
-    "любезный друг"
-   ],
-   "correct": "любезный друг",
-   "case": "Именительный (Nominative)",
-   "explain": "«любезный друг» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "___ сеет с утра: выйти невозможно; да и мне же хочется поболтать с тобой.",
    "lemma": "дождь",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "мелкий дождь",
    "case": "Именительный (Nominative)",
-   "explain": "«Мелкий дождь» — the subject of the sentence stands in the nominative.",
+   "explain": "«мелкий дождь» is the subject of «сеет» — who or what does it — so nominative.",
    "id": "c2"
   },
   {
@@ -39,50 +25,8 @@
    ],
    "correct": "старом гнезде",
    "case": "Предложный (Prepositional)",
-   "explain": "«старом гнезде» — after the preposition «в», for location or topic.",
+   "explain": "«старом гнезде» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c3"
-  },
-  {
-   "sentence": "Право, как подумаешь, я точно ___ стал.",
-   "lemma": "человек",
-   "options": [
-    "другой человек",
-    "другом человеке",
-    "другому человеку",
-    "другим человеком"
-   ],
-   "correct": "другой человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«другой человек» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
-  },
-  {
-   "sentence": "Люблю я эти аллеи, люблю серо-зеленый ___ и тонкий запах воздуха под их сводами; люблю пестреющую сетку светлых кружков по темной земле — песку у меня, ты знаешь, нету.",
-   "lemma": "цвет",
-   "options": [
-    "нежном цвете",
-    "нежный цвет",
-    "нежному цвету",
-    "нежным цветом"
-   ],
-   "correct": "нежный цвет",
-   "case": "Винительный (Accusative)",
-   "explain": "«нежный цвет» — the accusative marks the direct object of the verb.",
-   "id": "c5"
-  },
-  {
-   "sentence": "Люблю я эти аллеи, люблю серо-зеленый нежный цвет и ___ воздуха под их сводами; люблю пестреющую сетку светлых кружков по темной земле — песку у меня, ты знаешь, нету.",
-   "lemma": "запах",
-   "options": [
-    "тонком запахе",
-    "тонкому запаху",
-    "тонким запахом",
-    "тонкий запах"
-   ],
-   "correct": "тонкий запах",
-   "case": "Именительный (Nominative)",
-   "explain": "«тонкий запах» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
   },
   {
    "sentence": "Люблю я эти аллеи, люблю серо-зеленый нежный цвет и тонкий запах воздуха под их сводами; люблю пестреющую сетку ___ по темной земле — песку у меня, ты знаешь, нету.",
@@ -95,7 +39,7 @@
    ],
    "correct": "светлых кружков",
    "case": "Родительный (Genitive)",
-   "explain": "«светлых кружков» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«светлых кружков» depends on the noun «сетку» (whose? of what?) — genitive.",
    "id": "c7"
   },
   {
@@ -109,7 +53,7 @@
    ],
    "correct": "любимый дубок",
    "case": "Именительный (Nominative)",
-   "explain": "«любимый дубок» — the subject of the sentence stands in the nominative.",
+   "explain": "«любимый дубок» is the subject of «стал» — who or what does it — so nominative.",
    "id": "c8"
   },
   {
@@ -117,13 +61,13 @@
    "lemma": "дуб",
    "options": [
     "молодого дуба",
+    "молодому дубу",
     "молодом дубе",
-    "молодым дубом",
-    "молодой дуб"
+    "молодым дубом"
    ],
    "correct": "молодым дубом",
    "case": "Творительный (Instrumental)",
-   "explain": "«молодым дубом» — the instrumental marks the means, company, or complement.",
+   "explain": "After «стал», what someone or something is or becomes stands in the instrumental.",
    "id": "c9"
   },
   {
@@ -137,21 +81,21 @@
    ],
    "correct": "бывшего хозяина",
    "case": "Винительный (Accusative)",
-   "explain": "«бывшего хозяина» — the accusative marks the direct object of the verb.",
+   "explain": "«бывшего хозяина» is the direct object of «увидеть» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c12"
   },
   {
    "sentence": "Правда, солнце в нее ударяет, и мух в ней много; зато меньше пахнет ___, чем в остальных комнатах.",
    "lemma": "дом",
    "options": [
+    "старого дома",
+    "старому дому",
     "старым домом",
-    "старый дом",
-    "старом доме",
-    "старого дома"
+    "старом доме"
    ],
    "correct": "старым домом",
    "case": "Творительный (Instrumental)",
-   "explain": "«старым домом» — the instrumental marks the means, company, or complement.",
+   "explain": "«пахнет» takes the instrumental.",
    "id": "c13"
   },
   {
@@ -165,78 +109,22 @@
    ],
    "correct": "тонких пальцев",
    "case": "Родительный (Genitive)",
-   "explain": "«тонких пальцев» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«тонких пальцев» — «из» always takes the genitive.",
    "id": "c16"
   },
   {
    "sentence": "Впрочем, опасаться этого, кажется, нечего; у меня же и нет ___.",
    "lemma": "сосед",
    "options": [
-    "близким соседям",
     "близких соседей",
-    "близких соседях",
-    "близкие соседи"
+    "близким соседям",
+    "близкими соседями",
+    "близких соседях"
    ],
    "correct": "близких соседей",
    "case": "Родительный (Genitive)",
-   "explain": "«близких соседей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "What is absent after «нет» — genitive.",
    "id": "c17"
-  },
-  {
-   "sentence": "Но ___ — другие сны, и в течение последних девяти лет мне едва ли пришлось взять Гете в руки.",
-   "lemma": "день",
-   "options": [
-    "других дней",
-    "других днях",
-    "другие дни",
-    "другими днями"
-   ],
-   "correct": "другие дни",
-   "case": "Именительный (Nominative)",
-   "explain": "«другие дни» — the subject of the sentence stands in the nominative.",
-   "id": "c20"
-  },
-  {
-   "sentence": "Но другие дни — ___, и в течение последних девяти лет мне едва ли пришлось взять Гете в руки.",
-   "lemma": "сон",
-   "options": [
-    "других снах",
-    "других снов",
-    "другие сны",
-    "другим снам"
-   ],
-   "correct": "другие сны",
-   "case": "Именительный (Nominative)",
-   "explain": "«другие сны» — the subject of the sentence stands in the nominative.",
-   "id": "c21"
-  },
-  {
-   "sentence": "С каким неизъяснимым чувством увидал я маленькую, слишком мне знакомую книжку (___ 1828 года).",
-   "lemma": "издание",
-   "options": [
-    "дурном издании",
-    "дурному изданию",
-    "дурное издание",
-    "дурного издания"
-   ],
-   "correct": "дурного издания",
-   "case": "Родительный (Genitive)",
-   "explain": "«дурного издания» — the genitive here marks possession, absence, or quantity.",
-   "id": "c22"
-  },
-  {
-   "sentence": "Как подействовала на меня вся великолепная ___!",
-   "lemma": "сцена",
-   "options": [
-    "первой сцене",
-    "первой сцены",
-    "первая сцена",
-    "первой сценой"
-   ],
-   "correct": "первая сцена",
-   "case": "Именительный (Nominative)",
-   "explain": "«первая сцена» — the subject of the sentence stands in the nominative.",
-   "id": "c23"
   },
   {
    "sentence": "Появление Духа Земли, его слова, помнишь: «На ___, в вихре творения», возбудили во мне давно не изведанный трепет и холод восторга.",
@@ -249,92 +137,8 @@
    ],
    "correct": "жизненных волнах",
    "case": "Предложный (Prepositional)",
-   "explain": "«жизненных волнах» — after the preposition «на», for location or topic.",
+   "explain": "«жизненных волнах» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c24"
-  },
-  {
-   "sentence": "Вот каким грезам предавался твой почти ___, сидя, одинокий, в своем одиноком домишке!",
-   "lemma": "друг",
-   "options": [
-    "сорокалетнем друге",
-    "сорокалетнего друга",
-    "сорокалетний друг",
-    "сорокалетнему другу"
-   ],
-   "correct": "сорокалетний друг",
-   "case": "Именительный (Nominative)",
-   "explain": "«сорокалетний друг» — the subject of the sentence stands in the nominative.",
-   "id": "c25"
-  },
-  {
-   "sentence": "Кстати: Савелий, мой ___, велит тебе кланяться.",
-   "lemma": "повар",
-   "options": [
-    "деревенском поваре",
-    "деревенский повар",
-    "деревенского повара",
-    "деревенским поваром"
-   ],
-   "correct": "деревенский повар",
-   "case": "Именительный (Nominative)",
-   "explain": "«деревенский повар» — the subject of the sentence stands in the nominative.",
-   "id": "c26"
-  },
-  {
-   "sentence": "Так же хорошо делает ___ с разварными луковицами, ватрушки с узорчатой каймой и пигус — знаменитое степное блюдо пигус, от которого у тебя язык побелел и стоял колом в течение целых суток.",
-   "lemma": "суп",
-   "options": [
-    "куриным супам",
-    "куриные супы",
-    "куриными супами",
-    "куриных супах"
-   ],
-   "correct": "куриные супы",
-   "case": "Винительный (Accusative)",
-   "explain": "«куриные супы» — the accusative marks the direct object of the verb.",
-   "id": "c27"
-  },
-  {
-   "sentence": "Так же хорошо делает куриные супы с разварными луковицами, ватрушки с узорчатой каймой и пигус — знаменитое ___ пигус, от которого у тебя язык побелел и стоял колом в течение целых суток.",
-   "lemma": "блюдо",
-   "options": [
-    "степному блюду",
-    "степным блюдом",
-    "степного блюда",
-    "степное блюдо"
-   ],
-   "correct": "степное блюдо",
-   "case": "Именительный (Nominative)",
-   "explain": "«степное блюдо» — the subject of the sentence stands in the nominative.",
-   "id": "c29"
-  },
-  {
-   "sentence": "Так же хорошо делает куриные супы с разварными луковицами, ватрушки с узорчатой каймой и пигус — знаменитое степное блюдо пигус, от которого у тебя язык побелел и стоял колом в течение ___.",
-   "lemma": "сутки",
-   "options": [
-    "целых сутках",
-    "целых суток",
-    "целые сутки",
-    "целым суткам"
-   ],
-   "correct": "целых суток",
-   "case": "Родительный (Genitive)",
-   "explain": "«целых суток» — after the preposition «в», the genitive here marks possession, absence, or quantity.",
-   "id": "c30"
-  },
-  {
-   "sentence": "Зато жареное он по-прежнему засушивает так, что хоть стучи им по тарелке — ___.",
-   "lemma": "картон",
-   "options": [
-    "настоящем картоне",
-    "настоящему картону",
-    "настоящим картоном",
-    "настоящий картон"
-   ],
-   "correct": "настоящий картон",
-   "case": "Именительный (Nominative)",
-   "explain": "«настоящий картон» — the subject of the sentence stands in the nominative.",
-   "id": "c31"
   }
  ]
 }

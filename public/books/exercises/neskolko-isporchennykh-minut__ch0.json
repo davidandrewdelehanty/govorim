@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Сад дремал чуткой ___, и на всём — на листве деревьев, на цветочных клумбах и дорожках сада — лежали узоры теней и призрачные пятна лунных лучей.",
-   "lemma": "дрёма",
-   "options": [
-    "весенней дрёмой",
-    "весенней дрёмы",
-    "весенняя дрёма",
-    "весенней дрёме"
-   ],
-   "correct": "весенней дрёмой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«весенней дрёмой» — the instrumental marks the means, company, or complement.",
-   "id": "c1"
-  },
-  {
    "sentence": "Сад дремал чуткой весенней дрёмой, и на всём — на листве деревьев, на цветочных клумбах и дорожках сада — лежали узоры теней и призрачные пятна ___.",
    "lemma": "луч",
    "options": [
@@ -25,63 +11,21 @@
    ],
    "correct": "лунных лучей",
    "case": "Родительный (Genitive)",
-   "explain": "«лунных лучей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«лунных лучей» depends on the noun «пятна» (whose? of what?) — genitive.",
    "id": "c3"
-  },
-  {
-   "sentence": "Свежий ___ был полон сочного аромата сирени, резеды и свежей листвы.",
-   "lemma": "воздух",
-   "options": [
-    "весенний воздух",
-    "весенним воздухом",
-    "весеннему воздуху",
-    "весеннем воздухе"
-   ],
-   "correct": "весенний воздух",
-   "case": "Именительный (Nominative)",
-   "explain": "«весенний воздух» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
-  },
-  {
-   "sentence": "Свежий весенний воздух был полон ___ сирени, резеды и свежей листвы.",
-   "lemma": "аромат",
-   "options": [
-    "сочный аромат",
-    "сочного аромата",
-    "сочным ароматом",
-    "сочном аромате"
-   ],
-   "correct": "сочного аромата",
-   "case": "Родительный (Genitive)",
-   "explain": "«сочного аромата» — the genitive here marks possession, absence, or quantity.",
-   "id": "c5"
-  },
-  {
-   "sentence": "Свежий весенний воздух был полон сочного аромата сирени, резеды и ___.",
-   "lemma": "листва",
-   "options": [
-    "свежая листва",
-    "свежей листве",
-    "свежей листвой",
-    "свежей листвы"
-   ],
-   "correct": "свежей листвы",
-   "case": "Родительный (Genitive)",
-   "explain": "«свежей листвы» — the genitive here marks possession, absence, or quantity.",
-   "id": "c6"
   },
   {
    "sentence": "___ рыдания почти не нарушали тишины, утопая в ней.",
    "lemma": "звук",
    "options": [
-    "коротких звуках",
     "короткие звуки",
     "короткими звуками",
-    "коротких звуков"
+    "коротких звуках",
+    "коротким звукам"
    ],
    "correct": "короткие звуки",
    "case": "Именительный (Nominative)",
-   "explain": "«Короткие звуки» — the subject of the sentence stands in the nominative.",
+   "explain": "«короткие звуки» is the subject of «нарушали» — who or what does it — so nominative.",
    "id": "c7"
   },
   {
@@ -95,7 +39,7 @@
    ],
    "correct": "сочный звук",
    "case": "Именительный (Nominative)",
-   "explain": "«сочный звук» — the subject of the sentence stands in the nominative.",
+   "explain": "«сочный звук» is the subject of «раздался» — who or what does it — so nominative.",
    "id": "c9"
   },
   {
@@ -109,64 +53,22 @@
    ],
    "correct": "здравого смысла",
    "case": "Родительный (Genitive)",
-   "explain": "«здравого смысла» — after the preposition «против», the genitive here marks possession, absence, or quantity.",
+   "explain": "«здравого смысла» — «против» always takes the genitive.",
    "id": "c11"
-  },
-  {
-   "sentence": "Я говорю, что не нужно рисовать себе фантастических страхов, разных там ___ и потому невозможных наказаний.",
-   "lemma": "преступление",
-   "options": [
-    "несуществующих преступлениях",
-    "несуществующих преступлений",
-    "несуществующие преступления",
-    "несуществующими преступлениями"
-   ],
-   "correct": "несуществующих преступлений",
-   "case": "Родительный (Genitive)",
-   "explain": "«несуществующих преступлений» — the genitive here marks possession, absence, or quantity.",
-   "id": "c13"
-  },
-  {
-   "sentence": "Я говорю, что не нужно рисовать себе фантастических страхов, разных там несуществующих преступлений и потому ___.",
-   "lemma": "наказание",
-   "options": [
-    "невозможным наказаниям",
-    "невозможных наказаниях",
-    "невозможные наказания",
-    "невозможных наказаний"
-   ],
-   "correct": "невозможных наказаний",
-   "case": "Родительный (Genitive)",
-   "explain": "«невозможных наказаний» — the genitive here marks possession, absence, or quantity.",
-   "id": "c14"
   },
   {
    "sentence": "Нынче не говорят уже абсурдов в таких ___.",
    "lemma": "вещь",
    "options": [
-    "важными вещами",
-    "важные вещи",
     "важных вещах",
+    "важными вещами",
+    "важных вещей",
     "важным вещам"
    ],
    "correct": "важных вещах",
    "case": "Предложный (Prepositional)",
-   "explain": "«важных вещах» — after the preposition «в», for location or topic.",
+   "explain": "«важных вещах» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c15"
-  },
-  {
-   "sentence": "Они стремительно вспыхивали один за другим и звучали так тихо и странно, как звучат лопающиеся ___.",
-   "lemma": "пузырь",
-   "options": [
-    "мыльными пузырями",
-    "мыльные пузыри",
-    "мыльных пузырей",
-    "мыльным пузырям"
-   ],
-   "correct": "мыльные пузыри",
-   "case": "Именительный (Nominative)",
-   "explain": "«мыльные пузыри» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
   },
   {
    "sentence": "Всё кругом росло и развивалось, окутанное ___ теней.",
@@ -179,7 +81,7 @@
    ],
    "correct": "тёплыми тканями",
    "case": "Творительный (Instrumental)",
-   "explain": "«тёплыми тканями» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «окутанное», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c17"
   }
  ]

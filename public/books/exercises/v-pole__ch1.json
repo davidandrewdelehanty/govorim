@@ -1,48 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Это ___ с низким потолком, с бревенчатыми, черными от времени стенами и почти пустая: под окном длинная лавка, около лавки простой деревянный стол, у стены комод, в верхнем ящике которого стоят тарелки.",
-   "lemma": "комнатка",
-   "options": [
-    "старинной комнатке",
-    "старинная комнатка",
-    "старинной комнатки",
-    "старинной комнаткой"
-   ],
-   "correct": "старинная комнатка",
-   "case": "Именительный (Nominative)",
-   "explain": "«старинная комнатка» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Это старинная комнатка с низким потолком, с бревенчатыми, черными от времени стенами и почти пустая: под окном ___, около лавки простой деревянный стол, у стены комод, в верхнем ящике которого стоят тарелки.",
-   "lemma": "лавка",
-   "options": [
-    "длинной лавки",
-    "длинной лавкой",
-    "длинная лавка",
-    "длинной лавке"
-   ],
-   "correct": "длинная лавка",
-   "case": "Именительный (Nominative)",
-   "explain": "«длинная лавка» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
-  },
-  {
-   "sentence": "Это старинная комнатка с низким потолком, с бревенчатыми, черными от времени стенами и почти пустая: под окном длинная лавка, около лавки простой ___, у стены комод, в верхнем ящике которого стоят тарелки.",
-   "lemma": "стол",
-   "options": [
-    "деревянным столом",
-    "деревянном столе",
-    "деревянного стола",
-    "деревянный стол"
-   ],
-   "correct": "деревянный стол",
-   "case": "Винительный (Accusative)",
-   "explain": "«деревянный стол» — the accusative marks the direct object of the verb.",
-   "id": "c5"
-  },
-  {
    "sentence": "Теперь девичья — одна из ___ самого Якова Петровича.",
    "lemma": "комната",
    "options": [
@@ -53,22 +11,8 @@
    ],
    "correct": "жилых комнат",
    "case": "Родительный (Genitive)",
-   "explain": "«жилых комнат» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«жилых комнат» — «из» always takes the genitive.",
    "id": "c7"
-  },
-  {
-   "sentence": "В этот непогожий ___ в девичьей особенно неуютно.",
-   "lemma": "вечер",
-   "options": [
-    "предпраздничном вечере",
-    "предпраздничный вечер",
-    "предпраздничного вечера",
-    "предпраздничным вечером"
-   ],
-   "correct": "предпраздничный вечер",
-   "case": "Винительный (Accusative)",
-   "explain": "«предпраздничный вечер» — the accusative marks the direct object of the verb.",
-   "id": "c8"
   },
   {
    "sentence": "Приезжал ___ из Калиновки с просьбой написать прошение к земскому начальнику (Яков Петрович славится в околотке как сочинитель прошений) и привез за это курицу, бутылку водки и рубль денег.",
@@ -81,7 +25,7 @@
    ],
    "correct": "богатый мужик",
    "case": "Именительный (Nominative)",
-   "explain": "«богатый мужик» — the subject of the sentence stands in the nominative.",
+   "explain": "«богатый мужик» is the subject of «Приезжал» — who or what does it — so nominative.",
    "id": "c10"
   },
   {
@@ -95,7 +39,7 @@
    ],
    "correct": "земскому начальнику",
    "case": "Дательный (Dative)",
-   "explain": "«земскому начальнику» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«земскому начальнику» — «к» always takes the dative.",
    "id": "c11"
   },
   {
@@ -109,7 +53,7 @@
    ],
    "correct": "предпраздничный вечер",
    "case": "Именительный (Nominative)",
-   "explain": "«предпраздничный вечер» — the subject of the sentence stands in the nominative.",
+   "explain": "«предпраздничный вечер» is the subject of «пройдет» — who or what does it — so nominative.",
    "id": "c15"
   },
   {
@@ -123,7 +67,7 @@
    ],
    "correct": "вчерашнего дня",
    "case": "Родительный (Genitive)",
-   "explain": "«вчерашнего дня» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«вчерашнего дня» — «от» always takes the genitive.",
    "id": "c16"
   },
   {
@@ -137,22 +81,8 @@
    ],
    "correct": "мрачных красках",
    "case": "Предложный (Prepositional)",
-   "explain": "«мрачных красках» — after the preposition «в», for location or topic.",
+   "explain": "«мрачных красках» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c17"
-  },
-  {
-   "sentence": "Правда, Флембо, ___, жалобно повизгивает в сенцах.",
-   "lemma": "сука",
-   "options": [
-    "старой суки",
-    "старой суке",
-    "старой сукой",
-    "старая сука"
-   ],
-   "correct": "старая сука",
-   "case": "Именительный (Nominative)",
-   "explain": "«старая сука» — the subject of the sentence stands in the nominative.",
-   "id": "c20"
   }
  ]
 }

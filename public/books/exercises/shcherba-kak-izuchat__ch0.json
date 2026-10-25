@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Может показаться странным ___, являющийся темой данной брошюры.",
-   "lemma": "вопрос",
-   "options": [
-    "самый вопрос",
-    "самом вопросе",
-    "самого вопроса",
-    "самым вопросом"
-   ],
-   "correct": "самый вопрос",
-   "case": "Именительный (Nominative)",
-   "explain": "«самый вопрос» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Может показаться странным самый вопрос, являющийся темой ___.",
    "lemma": "брошюра",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "данной брошюры",
    "case": "Родительный (Genitive)",
-   "explain": "«данной брошюры» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«данной брошюры» depends on the noun «темой» (whose? of what?) — genitive.",
    "id": "c2"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "данного языка",
    "case": "Родительный (Genitive)",
-   "explain": "«данного языка» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«данного языка» depends on the noun «преподавателю» (whose? of what?) — genitive.",
    "id": "c4"
   },
   {
@@ -53,36 +39,8 @@
    ],
    "correct": "самих преподавателей",
    "case": "Родительный (Genitive)",
-   "explain": "«самих преподавателей» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«самих преподавателей» — «для» always takes the genitive.",
    "id": "c5"
-  },
-  {
-   "sentence": "Прежде всего следует точно выяснить те ___, которые может ставить себе ищущий знания языка.",
-   "lemma": "цель",
-   "options": [
-    "различных целях",
-    "различных целей",
-    "различные цели",
-    "различными целями"
-   ],
-   "correct": "различные цели",
-   "case": "Винительный (Accusative)",
-   "explain": "«различные цели» — the accusative marks the direct object of the verb.",
-   "id": "c6"
-  },
-  {
-   "sentence": "Все это важно для указания ___ изучения иностранного языка в каждом отдельном случае.",
-   "lemma": "метод",
-   "options": [
-    "соответственному методу",
-    "соответственном методе",
-    "соответственным методом",
-    "соответственного метода"
-   ],
-   "correct": "соответственного метода",
-   "case": "Родительный (Genitive)",
-   "explain": "«соответственного метода» — the genitive here marks possession, absence, or quantity.",
-   "id": "c8"
   },
   {
    "sentence": "Все это важно для указания соответственного метода изучения ___ в каждом отдельном случае.",
@@ -95,21 +53,21 @@
    ],
    "correct": "иностранного языка",
    "case": "Родительный (Genitive)",
-   "explain": "«иностранного языка» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«иностранного языка» depends on the noun «изучения» (whose? of what?) — genitive.",
    "id": "c9"
   },
   {
    "sentence": "Все это важно для указания соответственного метода изучения иностранного языка в каждом ___.",
    "lemma": "случай",
    "options": [
+    "отдельному случаю",
     "отдельного случая",
-    "отдельный случай",
-    "отдельном случае",
-    "отдельному случаю"
+    "отдельным случаем",
+    "отдельном случае"
    ],
    "correct": "отдельном случае",
    "case": "Предложный (Prepositional)",
-   "explain": "«отдельном случае» — after the preposition «в», for location or topic.",
+   "explain": "«отдельном случае» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c10"
   },
   {
@@ -123,7 +81,7 @@
    ],
    "correct": "иных методов",
    "case": "Родительный (Genitive)",
-   "explain": "«иных методов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«иных методов» — «без» always takes the genitive.",
    "id": "c11"
   },
   {
@@ -137,36 +95,22 @@
    ],
    "correct": "особого труда",
    "case": "Родительный (Genitive)",
-   "explain": "«особого труда» — after the preposition «без», the genitive here marks possession, absence, or quantity.",
+   "explain": "«особого труда» — «без» always takes the genitive.",
    "id": "c12"
   },
   {
    "sentence": "Но это уменье, конечно, значительно облегчает достижение всех ___, которые, однако, в свою очередь, все и во всяких условиях достигаются лишь более или менее упорным трудом.",
    "lemma": "умение",
    "options": [
-    "остальными умениями",
     "остальных умениях",
-    "остальных умений",
-    "остальным умениям"
+    "остальные умения",
+    "остальным умениям",
+    "остальных умений"
    ],
    "correct": "остальных умений",
    "case": "Родительный (Genitive)",
-   "explain": "«остальных умений» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«остальных умений» depends on the noun «достижение» (whose? of what?) — genitive.",
    "id": "c13"
-  },
-  {
-   "sentence": "Но это уменье, конечно, значительно облегчает достижение всех остальных умений, которые, однако, в свою очередь, все и во всяких условиях достигаются лишь более или менее ___.",
-   "lemma": "труд",
-   "options": [
-    "упорный труд",
-    "упорному труду",
-    "упорным трудом",
-    "упорного труда"
-   ],
-   "correct": "упорным трудом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«упорным трудом» — the instrumental marks the means, company, or complement.",
-   "id": "c14"
   }
  ]
 }

@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Пантелей Прокофьевич до этого выходил за ворота, взглядывался вдоль улицы, но ___, промереженная зарослями игольчатой колючки, была наголо вылизана безлюдьем.",
-   "lemma": "дорога",
-   "options": [
-    "серой дороги",
-    "серой дороге",
-    "серой дорогой",
-    "серая дорога"
-   ],
-   "correct": "серая дорога",
-   "case": "Именительный (Nominative)",
-   "explain": "«серая дорога» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Там приметно желтел лес, вызревший ___ устало гнулся над задонским озерцом, над осокой.",
-   "lemma": "камыш",
-   "options": [
-    "махорчатого камыша",
-    "махорчатом камыше",
-    "махорчатый камыш",
-    "махорчатому камышу"
-   ],
-   "correct": "махорчатый камыш",
-   "case": "Именительный (Nominative)",
-   "explain": "«махорчатый камыш» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
    "sentence": "Там приметно желтел лес, вызревший махорчатый камыш устало гнулся над ___, над осокой.",
    "lemma": "озерцо",
    "options": [
@@ -39,7 +11,7 @@
    ],
    "correct": "задонским озерцом",
    "case": "Творительный (Instrumental)",
-   "explain": "«задонским озерцом» — after the preposition «над», the instrumental marks the means, company, or complement.",
+   "explain": "«задонским озерцом» — «над» always takes the instrumental.",
    "id": "c3"
   },
   {
@@ -53,35 +25,21 @@
    ],
    "correct": "остроугольная верхушка",
    "case": "Именительный (Nominative)",
-   "explain": "«остроугольная верхушка» — the subject of the sentence stands in the nominative.",
+   "explain": "«остроугольная верхушка» is the subject of «вырисовывалась» — who or what does it — so nominative.",
    "id": "c4"
-  },
-  {
-   "sentence": "Остренькое безбровое лицо Михея крылось ___, из-под треснувшего пополам козырька обильно сыпался пот.",
-   "lemma": "румянец",
-   "options": [
-    "фиолетовый румянец",
-    "фиолетовым румянцем",
-    "фиолетовом румянце",
-    "фиолетовому румянцу"
-   ],
-   "correct": "фиолетовым румянцем",
-   "case": "Творительный (Instrumental)",
-   "explain": "«фиолетовым румянцем» — the instrumental marks the means, company, or complement.",
-   "id": "c6"
   },
   {
    "sentence": "— И она гнула ___.",
    "lemma": "стан",
    "options": [
-    "дородного стана",
     "дородным станом",
+    "дородный стан",
     "дородному стану",
-    "дородный стан"
+    "дородном стане"
    ],
    "correct": "дородный стан",
    "case": "Винительный (Accusative)",
-   "explain": "«дородный стан» — the accusative marks the direct object of the verb.",
+   "explain": "«дородный стан» is the direct object of «гнула» (кого? что?) — accusative.",
    "id": "c7"
   },
   {
@@ -95,7 +53,7 @@
    ],
    "correct": "небывалой ездой",
    "case": "Творительный (Instrumental)",
-   "explain": "«небывалой ездой» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «растрясенный», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c8"
   },
   {
@@ -109,21 +67,21 @@
    ],
    "correct": "стоячий воротник",
    "case": "Винительный (Accusative)",
-   "explain": "«стоячий воротник» — after the preposition «за», the accusative marks the direct object of the verb.",
+   "explain": "«стоячий воротник» — «за» takes the accusative here (куда? за что? за кого?) — the instrumental would mean position behind or at (где? за чем?).",
    "id": "c9"
   },
   {
    "sentence": "Хмурясь, Григорий целовал ___ жены, водил по сторонам затравленным взглядом.",
    "lemma": "губа",
    "options": [
+    "пресные губы",
     "пресным губам",
     "пресных губах",
-    "пресные губы",
-    "пресных губ"
+    "пресными губами"
    ],
    "correct": "пресные губы",
    "case": "Винительный (Accusative)",
-   "explain": "«пресные губы» — the accusative marks the direct object of the verb.",
+   "explain": "«пресные губы» is the direct object of «целовал» (кого? что?) — accusative.",
    "id": "c10"
   },
   {
@@ -137,36 +95,8 @@
    ],
    "correct": "атаманского мундира",
    "case": "Родительный (Genitive)",
-   "explain": "«атаманского мундира» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«атаманского мундира» depends on the noun «рукаве» (whose? of what?) — genitive.",
    "id": "c11"
-  },
-  {
-   "sentence": "У того в порожнюю меж зубами скважину при слове «горько» трубочкой вылезал слизистый ___.",
-   "lemma": "язык",
-   "options": [
-    "багровому языку",
-    "багровый язык",
-    "багровом языке",
-    "багрового языка"
-   ],
-   "correct": "багровый язык",
-   "case": "Винительный (Accusative)",
-   "explain": "«багровый язык» — the accusative marks the direct object of the verb.",
-   "id": "c12"
-  },
-  {
-   "sentence": "Трясли полными задами (худых не было, на каждой по пять-семь юбок), махали ___, сучили в пляске локтями.",
-   "lemma": "утирка",
-   "options": [
-    "кружевными утирками",
-    "кружевных утирках",
-    "кружевных утирок",
-    "кружевным утиркам"
-   ],
-   "correct": "кружевными утирками",
-   "case": "Творительный (Instrumental)",
-   "explain": "«кружевными утирками» — the instrumental marks the means, company, or complement.",
-   "id": "c14"
   },
   {
    "sentence": "Он слышал лишь текучий треск ___, словно сосновая доска горела, да взвинчивающие крики пьяных гостей.",
@@ -179,22 +109,8 @@
    ],
    "correct": "кованых каблуков",
    "case": "Родительный (Genitive)",
-   "explain": "«кованых каблуков» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«кованых каблуков» depends on the noun «треск» (whose? of what?) — genitive.",
    "id": "c15"
-  },
-  {
-   "sentence": "Он слышал лишь текучий треск кованых каблуков, словно ___ горела, да взвинчивающие крики пьяных гостей.",
-   "lemma": "доска",
-   "options": [
-    "сосновой доской",
-    "сосновой доске",
-    "сосновой доски",
-    "сосновая доска"
-   ],
-   "correct": "сосновая доска",
-   "case": "Именительный (Nominative)",
-   "explain": "«сосновая доска» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
   },
   {
    "sentence": "Он слышал лишь текучий треск кованых каблуков, словно сосновая доска горела, да взвинчивающие крики ___.",
@@ -207,36 +123,8 @@
    ],
    "correct": "пьяных гостей",
    "case": "Родительный (Genitive)",
-   "explain": "«пьяных гостей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«пьяных гостей» depends on the noun «крики» (whose? of what?) — genitive.",
    "id": "c17"
-  },
-  {
-   "sentence": "Пантелей Прокофьевич стоял на табуретке, мотал ___, чмокал языком.",
-   "lemma": "нога",
-   "options": [
-    "хромой ноги",
-    "хромая нога",
-    "хромой ноге",
-    "хромой ногой"
-   ],
-   "correct": "хромой ногой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«хромой ногой» — after the preposition «на», the instrumental marks the means, company, or complement.",
-   "id": "c18"
-  },
-  {
-   "sentence": "— Службу при своем царе несут, и на головах у них ___.",
-   "lemma": "мешок",
-   "options": [
-    "белых мешков",
-    "белые мешки",
-    "белых мешках",
-    "белым мешкам"
-   ],
-   "correct": "белые мешки",
-   "case": "Именительный (Nominative)",
-   "explain": "«белые мешки» — the subject of the sentence stands in the nominative.",
-   "id": "c19"
   },
   {
    "sentence": "— Глаза деда с мертвой настойчивостью глядят на белые морщины скатерти, словно видит он не скатерть, залитую водкой и лапшой, а снеговые слепящие складки ___.",
@@ -249,7 +137,7 @@
    ],
    "correct": "кавказских гор",
    "case": "Родительный (Genitive)",
-   "explain": "«Кавказских гор» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«кавказских гор» depends on the noun «складки» (whose? of what?) — genitive.",
    "id": "c21"
   },
   {
@@ -263,22 +151,8 @@
    ],
    "correct": "заморских землях",
    "case": "Предложный (Prepositional)",
-   "explain": "«заморских землях» — after the preposition «в», for location or topic.",
+   "explain": "«заморских землях» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c22"
-  },
-  {
-   "sentence": "Завернули мы ___, перестроились — и на них.",
-   "lemma": "крыло",
-   "options": [
-    "правому крылу",
-    "правое крыло",
-    "правым крылом",
-    "правом крыле"
-   ],
-   "correct": "правым крылом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«правым крылом» — the instrumental marks the means, company, or complement.",
-   "id": "c23"
   },
   {
    "sentence": "Вижу я, скачет попереди меня ___, на караковом коне.",
@@ -291,22 +165,8 @@
    ],
    "correct": "ихний офицер",
    "case": "Именительный (Nominative)",
-   "explain": "«ихний офицер» — the subject of the sentence stands in the nominative.",
+   "explain": "«ихний офицер» is the subject of «скачет» — who or what does it — so nominative.",
    "id": "c24"
-  },
-  {
-   "sentence": "___ обхватил его поперек, так он, извольте видеть, так из седла и вылетел.",
-   "lemma": "рука",
-   "options": [
-    "правой руке",
-    "правой руки",
-    "правой рукой",
-    "правая рука"
-   ],
-   "correct": "правой рукой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«Правой рукой» — the instrumental marks the means, company, or complement.",
-   "id": "c26"
   }
  ]
 }

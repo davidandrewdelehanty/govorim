@@ -1,104 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "___ — самая большая и, кажется, самая безобразная дорога во всем свете.",
-   "lemma": "тракт",
-   "options": [
-    "сибирскому тракту",
-    "сибирского тракта",
-    "сибирский тракт",
-    "сибирском тракте"
-   ],
-   "correct": "сибирский тракт",
-   "case": "Именительный (Nominative)",
-   "explain": "«Сибирский тракт» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Сибирский тракт — самая большая и, кажется, самая ___ во всем свете.",
-   "lemma": "дорога",
-   "options": [
-    "безобразная дорога",
-    "безобразной дороге",
-    "безобразной дороги",
-    "безобразной дорогой"
-   ],
-   "correct": "безобразная дорога",
-   "case": "Именительный (Nominative)",
-   "explain": "«безобразная дорога» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
-   "sentence": "От Томска же начинаются тайга и холмы; сохнет почва здесь нескоро, выбирать ___ не из чего, поневоле приходится ехать по тракту.",
-   "lemma": "путь",
-   "options": [
-    "окольный путь",
-    "окольном пути",
-    "окольным путём",
-    "окольного пути"
-   ],
-   "correct": "окольный путь",
-   "case": "Винительный (Accusative)",
-   "explain": "«окольный путь» — the accusative marks the direct object of the verb.",
-   "id": "c3"
-  },
-  {
-   "sentence": "___ давно бы уж завели штемпель.",
-   "lemma": "чиновник",
-   "options": [
-    "китайские чиновники",
-    "китайскими чиновниками",
-    "китайских чиновников",
-    "китайских чиновниках"
-   ],
-   "correct": "китайские чиновники",
-   "case": "Именительный (Nominative)",
-   "explain": "«Китайские чиновники» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
-  },
-  {
-   "sentence": "Со мною от Томска до Иркутска едут два поручика и ___.",
-   "lemma": "доктор",
-   "options": [
-    "военный доктор",
-    "военного доктора",
-    "военным доктором",
-    "военному доктору"
-   ],
-   "correct": "военный доктор",
-   "case": "Именительный (Nominative)",
-   "explain": "«военный доктор» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
-  },
-  {
-   "sentence": "У самой станции Чернореченской ямщик вдруг объявляет мне, что у моей повозки согнулся курок (___, соединяющий передок с осевою частью; когда он гнется или ломается, то повозка ложится грудью на землю).",
-   "lemma": "болт",
-   "options": [
-    "железным болтом",
-    "железном болте",
-    "железный болт",
-    "железному болту"
-   ],
-   "correct": "железный болт",
-   "case": "Именительный (Nominative)",
-   "explain": "«железный болт» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
-  },
-  {
-   "sentence": "На одном диване лежит поручик в папахе и спит, на другом сидит какой-то ___ и лениво натягивает сапоги; он только что получил приказ ехать куда-то починять телеграф, а ему хочется спать, а не ехать.",
-   "lemma": "человек",
-   "options": [
-    "бородатый человек",
-    "бородатому человеку",
-    "бородатом человеке",
-    "бородатого человека"
-   ],
-   "correct": "бородатый человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«бородатый человек» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
-  },
-  {
    "sentence": "Все эти ___ везде по тракту ведутся на одну и ту же тему: критикуют местное начальство и бранят дорогу.",
    "lemma": "разговор",
    "options": [
@@ -109,7 +11,7 @@
    ],
    "correct": "станционные разговоры",
    "case": "Именительный (Nominative)",
-   "explain": "«станционные разговоры» — the subject of the sentence stands in the nominative.",
+   "explain": "«станционные разговоры» is the subject of «ведутся» — who or what does it — so nominative.",
    "id": "c11"
   },
   {
@@ -123,22 +25,8 @@
    ],
    "correct": "самого июня",
    "case": "Родительный (Genitive)",
-   "explain": "«самого июня» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«самого июня» — «до» always takes the genitive.",
    "id": "c14"
-  },
-  {
-   "sentence": "— Господа, не так страшен чёрт, как его малюют, — утешает ___.",
-   "lemma": "человек",
-   "options": [
-    "бородатый человек",
-    "бородатому человеку",
-    "бородатом человеке",
-    "бородатого человека"
-   ],
-   "correct": "бородатый человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«бородатый человек» — the subject of the sentence stands in the nominative.",
-   "id": "c19"
   },
   {
    "sentence": "На небе брезжит ___.",
@@ -151,7 +39,7 @@
    ],
    "correct": "утренняя заря",
    "case": "Именительный (Nominative)",
-   "explain": "«утренняя заря» — the subject of the sentence stands in the nominative.",
+   "explain": "«утренняя заря» is the subject of «брезжит» — who or what does it — so nominative.",
    "id": "c21"
   },
   {
@@ -165,7 +53,7 @@
    ],
    "correct": "музыкальной шкатулке",
    "case": "Предложный (Prepositional)",
-   "explain": "«музыкальной шкатулке» — after the preposition «в», for location or topic.",
+   "explain": "«музыкальной шкатулке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c25"
   },
   {
@@ -179,22 +67,8 @@
    ],
    "correct": "органный вал",
    "case": "Именительный (Nominative)",
-   "explain": "«органный вал» — the subject of the sentence stands in the nominative.",
+   "explain": "«органный вал» is the subject of «выдается» — who or what does it — so nominative.",
    "id": "c26"
-  },
-  {
-   "sentence": "Мы хотим держаться подальше от насыпи и едем по опушке, стараясь найти ___; но и тут колеи, кочки, ребра и мостки.",
-   "lemma": "путь",
-   "options": [
-    "окольный путь",
-    "окольном пути",
-    "окольным путём",
-    "окольного пути"
-   ],
-   "correct": "окольный путь",
-   "case": "Винительный (Accusative)",
-   "explain": "«окольный путь» — the accusative marks the direct object of the verb.",
-   "id": "c27"
   },
   {
    "sentence": "Чтобы поглумиться над замученными ямщиками, почтальонами, возчиками и лошадями, кто-то распорядился насыпать по сторонам дороги кучи ___ и камня.",
@@ -207,7 +81,7 @@
    ],
    "correct": "кирпичного мусора",
    "case": "Родительный (Genitive)",
-   "explain": "«кирпичного мусора» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«кирпичного мусора» depends on the noun «кучи» (whose? of what?) — genitive.",
    "id": "c29"
   },
   {
@@ -221,22 +95,8 @@
    ],
    "correct": "скором времени",
    "case": "Предложный (Prepositional)",
-   "explain": "«скором времени» — after the preposition «в», for location or topic.",
+   "explain": "«скором времени» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c30"
-  },
-  {
-   "sentence": "И что можно сделать в такой ___?",
-   "lemma": "срок",
-   "options": [
-    "коротким сроком",
-    "коротком сроке",
-    "короткому сроку",
-    "короткий срок"
-   ],
-   "correct": "короткий срок",
-   "case": "Винительный (Accusative)",
-   "explain": "«короткий срок» — after the preposition «в», the accusative marks the direct object of the verb.",
-   "id": "c37"
   },
   {
    "sentence": "Не знаю, к счастью или к несчастью для ___, заседатели недолго сидят на одном месте; их часто меняют.",
@@ -249,22 +109,8 @@
    ],
    "correct": "сибирского тракта",
    "case": "Родительный (Genitive)",
-   "explain": "«сибирского тракта» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«сибирского тракта» — «для» always takes the genitive.",
    "id": "c38"
-  },
-  {
-   "sentence": "Та ___, которая когда-то захватывала дух у Ф.",
-   "lemma": "езда",
-   "options": [
-    "быстрой езде",
-    "быстрой ездой",
-    "быстрой езды",
-    "быстрая езда"
-   ],
-   "correct": "быстрая езда",
-   "case": "Именительный (Nominative)",
-   "explain": "«быстрая езда» — the subject of the sentence stands in the nominative.",
-   "id": "c39"
   }
  ]
 }

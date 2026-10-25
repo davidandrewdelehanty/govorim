@@ -1,48 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Считаю себе, смотрю: ___ какой-то в дверь вошел, посмотрел, да и сел на диванчик.",
-   "lemma": "барин",
-   "options": [
-    "новому барину",
-    "новом барине",
-    "новым барином",
-    "новый барин"
-   ],
-   "correct": "новый барин",
-   "case": "Именительный (Nominative)",
-   "explain": "«новый барин» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "___ до двух часов играют с князем, денег в лузу не кладут, и уж знаю, денег нет ни у того, ни у другого, а все форсят.",
-   "lemma": "раз",
-   "options": [
-    "другом разе",
-    "другому разу",
-    "другим разом",
-    "другой раз"
-   ],
-   "correct": "другой раз",
-   "case": "Винительный (Accusative)",
-   "explain": "«Другой раз» — the accusative marks the direct object of the verb.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Зевни только али шара не так поставь — ведь не ___!",
-   "lemma": "человек",
-   "options": [
-    "каменного человека",
-    "каменный человек",
-    "каменном человеке",
-    "каменным человеком"
-   ],
-   "correct": "каменный человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«каменный человек» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
    "sentence": "Только шар его и придись как раз против ___: тесненько там, да и любит он размахнуться.",
    "lemma": "печка",
    "options": [
@@ -53,22 +11,8 @@
    ],
    "correct": "самой печки",
    "case": "Родительный (Genitive)",
-   "explain": "«самой печки» — after the preposition «против», the genitive here marks possession, absence, or quantity.",
+   "explain": "«самой печки» — «против» always takes the genitive.",
    "id": "c10"
-  },
-  {
-   "sentence": "— Ежели вы,— говорит,— не хотите драться, так вы не ___.",
-   "lemma": "человек",
-   "options": [
-    "благородным человеком",
-    "благородный человек",
-    "благородного человека",
-    "благородном человеке"
-   ],
-   "correct": "благородный человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«благородный человек» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
   },
   {
    "sentence": "И заливается-хохочет, и ___ тоже хохочет.",
@@ -81,22 +25,8 @@
    ],
    "correct": "усатый барин",
    "case": "Именительный (Nominative)",
-   "explain": "«усатый барин» — the subject of the sentence stands in the nominative.",
+   "explain": "«усатый барин» is the subject of «хохочет» — who or what does it — so nominative.",
    "id": "c13"
-  },
-  {
-   "sentence": "___ езжал он к нам часто.",
-   "lemma": "род",
-   "options": [
-    "такой-то род",
-    "таким-то родом",
-    "таком-то роде",
-    "такому-то роду"
-   ],
-   "correct": "таким-то родом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«Таким-то родом» — the instrumental marks the means, company, or complement.",
-   "id": "c14"
   },
   {
    "sentence": "Приезжают раз с князем и с ___, который все с князем ходил.",
@@ -109,35 +39,21 @@
    ],
    "correct": "усатым господином",
    "case": "Творительный (Instrumental)",
-   "explain": "«усатым господином» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«усатым господином» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c15"
-  },
-  {
-   "sentence": "Нехлюдов-то бьет, чтоб пофорсить; ___ на партии стоит: нет, говорит, не хочу, легко, мол, слишком; а Федотка свое дело не забывает, знай себе подбирает.",
-   "lemma": "раз",
-   "options": [
-    "другой раз",
-    "другим разом",
-    "другого раза",
-    "другом разе"
-   ],
-   "correct": "другой раз",
-   "case": "Винительный (Accusative)",
-   "explain": "«другой раз» — the accusative marks the direct object of the verb.",
-   "id": "c16"
   },
   {
    "sentence": "Вот с того ___ так его Федотка окрутил, что начал он к нам каждый день ездить.",
    "lemma": "число",
    "options": [
+    "самом числе",
     "само число",
     "самого числа",
-    "самим числом",
-    "самом числе"
+    "самому числу"
    ],
    "correct": "самого числа",
    "case": "Родительный (Genitive)",
-   "explain": "«самого числа» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
+   "explain": "«самого числа» — «с» takes the genitive here (с чего? откуда? с каких пор?): from, off, since — with the instrumental it would mean 'with'.",
    "id": "c17"
   },
   {
@@ -151,7 +67,7 @@
    ],
    "correct": "другой человек",
    "case": "Именительный (Nominative)",
-   "explain": "«другой человек» — the subject of the sentence stands in the nominative.",
+   "explain": "«другой человек» is the subject of «стал» — who or what does it — so nominative.",
    "id": "c18"
   },
   {
@@ -165,120 +81,22 @@
    ],
    "correct": "сам шар",
    "case": "Именительный (Nominative)",
-   "explain": "«сам шар» — the subject of the sentence stands in the nominative.",
+   "explain": "«сам шар» is the subject of «поднял» — who or what does it — so nominative.",
    "id": "c20"
-  },
-  {
-   "sentence": "Уж ___ и то смеются мне: что, мол, ваш барин-то, видно, не в папеньку пошел.",
-   "lemma": "человек",
-   "options": [
-    "ихних людей",
-    "ихними людьми",
-    "ихние люди",
-    "ихним людям"
-   ],
-   "correct": "ихние люди",
-   "case": "Именительный (Nominative)",
-   "explain": "«ихние люди» — the subject of the sentence stands in the nominative.",
-   "id": "c23"
-  },
-  {
-   "sentence": "Уж такой ___, что и сказать нельзя.",
-   "lemma": "барин",
-   "options": [
-    "простом барине",
-    "простой барин",
-    "простым барином",
-    "простому барину"
-   ],
-   "correct": "простой барин",
-   "case": "Именительный (Nominative)",
-   "explain": "«простой барин» — the subject of the sentence stands in the nominative.",
-   "id": "c24"
-  },
-  {
-   "sentence": "А он дрыгнет, дрыгнет ногой, да и потянется, захрапел потом, да и растянулся вот ___.",
-   "lemma": "род",
-   "options": [
-    "этакого рода",
-    "этаким родом",
-    "этакий род",
-    "этакому роду"
-   ],
-   "correct": "этаким родом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«этаким родом» — the instrumental marks the means, company, or complement.",
-   "id": "c27"
-  },
-  {
-   "sentence": "Семерка, туз, шампанское, желтый в середину, мел, серенькие, ___, папиросы, продажные женщины — вот мои воспоминания!",
-   "lemma": "бумажка",
-   "options": [
-    "радужным бумажкам",
-    "радужными бумажками",
-    "радужные бумажки",
-    "радужных бумажках"
-   ],
-   "correct": "радужные бумажки",
-   "case": "Именительный (Nominative)",
-   "explain": "«радужные бумажки» — the subject of the sentence stands in the nominative.",
-   "id": "c28"
-  },
-  {
-   "sentence": "Одна ___ забвения, низости, которой я никогда не забуду, заставила меня опомниться.",
-   "lemma": "минута",
-   "options": [
-    "ужасная минута",
-    "ужасной минуты",
-    "ужасной минуте",
-    "ужасной минутой"
-   ],
-   "correct": "ужасная минута",
-   "case": "Именительный (Nominative)",
-   "explain": "«ужасная минута» — the subject of the sentence stands in the nominative.",
-   "id": "c29"
-  },
-  {
-   "sentence": "Где те ___ о жизни, о вечности, о боге, которые с такою ясностию и силой наполняли мою душу?",
-   "lemma": "мысль",
-   "options": [
-    "светлых мыслей",
-    "светлых мыслях",
-    "светлые мысли",
-    "светлыми мыслями"
-   ],
-   "correct": "светлые мысли",
-   "case": "Именительный (Nominative)",
-   "explain": "«светлые мысли» — the subject of the sentence stands in the nominative.",
-   "id": "c30"
   },
   {
    "sentence": "Мне нужны были деньги для удовлетворения своих пороков и тщеславия — я разорил тысячи семейств, вверенных мне богом, и сделал это без стыда,— я, который так хорошо понимал эти ___.",
    "lemma": "обязанность",
    "options": [
+    "священными обязанностями",
     "священные обязанности",
-    "священным обязанностям",
     "священных обязанностях",
-    "священных обязанностей"
+    "священным обязанностям"
    ],
    "correct": "священные обязанности",
    "case": "Винительный (Accusative)",
-   "explain": "«священные обязанности» — the accusative marks the direct object of the verb.",
+   "explain": "«священные обязанности» is the direct object of «понимал» (кого? что?) — accusative.",
    "id": "c31"
-  },
-  {
-   "sentence": "А как я мог быть хорош и счастлив, ежели бы шел по той дороге, которую, вступая в жизнь, открыли мой ___ и детское, истинное чувство!",
-   "lemma": "ум",
-   "options": [
-    "свежем уме",
-    "свежий ум",
-    "свежему уму",
-    "свежим умом"
-   ],
-   "correct": "свежий ум",
-   "case": "Винительный (Accusative)",
-   "explain": "«свежий ум» — the accusative marks the direct object of the verb.",
-   "id": "c33"
   },
   {
    "sentence": "Не раз пробовал я выйти из ___, по которой шла моя жизнь, на эту светлую дорогу.",
@@ -291,7 +109,7 @@
    ],
    "correct": "грязной колеи",
    "case": "Родительный (Genitive)",
-   "explain": "«грязной колеи» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«грязной колеи» — «из» always takes the genitive.",
    "id": "c34"
   },
   {
@@ -305,21 +123,21 @@
    ],
    "correct": "страшного убеждения",
    "case": "Родительный (Genitive)",
-   "explain": "«страшного убеждения» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«страшного убеждения» — «до» always takes the genitive.",
    "id": "c36"
   },
   {
    "sentence": "Во мне не осталось ничего благородного — одно тщеславие, и из тщеславия я делаю единственный ___ в моей жизни.",
    "lemma": "поступок",
    "options": [
-    "хорошему поступку",
     "хорошим поступком",
-    "хорошего поступка",
-    "хороший поступок"
+    "хороший поступок",
+    "хорошему поступку",
+    "хорошем поступке"
    ],
    "correct": "хороший поступок",
    "case": "Винительный (Accusative)",
-   "explain": "«хороший поступок» — the accusative marks the direct object of the verb.",
+   "explain": "«хороший поступок» is the direct object of «делаю» (кого? что?) — accusative.",
    "id": "c38"
   }
  ]

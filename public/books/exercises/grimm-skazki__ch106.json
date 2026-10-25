@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Шел он сколько-то времени и повстречал на дороге ___, который его спросил: «Что у тебя в корзине?» А тот ему в насмешку и ответил: «Маленькие лягушата».",
-   "lemma": "человечек",
-   "options": [
-    "небольшого человечка",
-    "небольшим человечком",
-    "небольшой человечек",
-    "небольшом человечке"
-   ],
-   "correct": "небольшого человечка",
-   "case": "Винительный (Accusative)",
-   "explain": "«небольшого человечка» — the accusative marks the direct object of the verb.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Шел он сколько-то времени и повстречал на дороге небольшого человечка, который его спросил: «Что у тебя в корзине?» А тот ему в насмешку и ответил: «___».",
-   "lemma": "лягушонок",
-   "options": [
-    "маленькие лягушата",
-    "маленьких лягушат",
-    "маленьких лягушатах",
-    "маленьким лягушатам"
-   ],
-   "correct": "маленькие лягушата",
-   "case": "Именительный (Nominative)",
-   "explain": "«Маленькие лягушата» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
    "sentence": "А малый явился в ___ и приказал о себе доложить, что принес он яблоки, от которых королевна должна выздороветь, если поест их.",
    "lemma": "замок",
    "options": [
@@ -39,7 +11,7 @@
    ],
    "correct": "королевский замок",
    "case": "Винительный (Accusative)",
-   "explain": "«королевский замок» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«королевский замок» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c3"
   },
   {
@@ -53,7 +25,7 @@
    ],
    "correct": "старший сын",
    "case": "Именительный (Nominative)",
-   "explain": "«старший сын» — the subject of the sentence stands in the nominative.",
+   "explain": "«старший сын» is the subject of «рассказал» — who or what does it — so nominative.",
    "id": "c4"
   },
   {
@@ -67,50 +39,8 @@
    ],
    "correct": "второго сына",
    "case": "Винительный (Accusative)",
-   "explain": "«второго сына» — the accusative marks the direct object of the verb.",
+   "explain": "«второго сына» is the direct object of «послал» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c5"
-  },
-  {
-   "sentence": "Услышал это ___ старика, которого звали глупым Гансом, и спросил у отца, позволит ли он и ему снести яблоки в замок.",
-   "lemma": "сын",
-   "options": [
-    "младшем сыне",
-    "младшего сына",
-    "младшему сыну",
-    "младший сын"
-   ],
-   "correct": "младший сын",
-   "case": "Именительный (Nominative)",
-   "explain": "«младший сын» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
-  },
-  {
-   "sentence": "Но при дворе его совсем не хотели было пускать: рассказали ему, что уже двое каких-то приходили и говорили, что с яблоками, а оказалось, что у одного в корзине были лягушата, а у другого — ___.",
-   "lemma": "щетина",
-   "options": [
-    "свиной щетины",
-    "свиная щетина",
-    "свиной щетине",
-    "свиной щетиной"
-   ],
-   "correct": "свиная щетина",
-   "case": "Именительный (Nominative)",
-   "explain": "«свиная щетина» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
-  },
-  {
-   "sentence": "Но Ганс утверждал, что у него точно в корзине ___, лучшие во всем королевстве!",
-   "lemma": "яблоко",
-   "options": [
-    "превосходные яблоки",
-    "превосходным яблокам",
-    "превосходных яблок",
-    "превосходными яблоками"
-   ],
-   "correct": "превосходные яблоки",
-   "case": "Именительный (Nominative)",
-   "explain": "«превосходные яблоки» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
   },
   {
    "sentence": "Немного спустя пришла к нему ___: как она поела этих яблок, так и выздоровела и из постели выскочила.",
@@ -123,7 +53,7 @@
    ],
    "correct": "сама дочка",
    "case": "Именительный (Nominative)",
-   "explain": "«сама дочка» — the subject of the sentence stands in the nominative.",
+   "explain": "«сама дочка» is the subject of «пришла» — who or what does it — so nominative.",
    "id": "c9"
   },
   {
@@ -137,7 +67,7 @@
    ],
    "correct": "старшего сына",
    "case": "Винительный (Accusative)",
-   "explain": "«старшего сына» — the accusative marks the direct object of the verb.",
+   "explain": "«старшего сына» is the direct object of «послал» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c10"
   },
   {
@@ -151,7 +81,7 @@
    ],
    "correct": "другой день",
    "case": "Винительный (Accusative)",
-   "explain": "«другой день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«другой день» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c11"
   },
   {
@@ -165,21 +95,21 @@
    ],
    "correct": "второй брат",
    "case": "Именительный (Nominative)",
-   "explain": "«второй брат» — the subject of the sentence stands in the nominative.",
+   "explain": "«второй брат» is the subject of «пошел» — who or what does it — so nominative.",
    "id": "c12"
   },
   {
    "sentence": "На ___ пошел глупый Ганс.",
    "lemma": "день",
    "options": [
-    "третьего дня",
     "третий день",
-    "третьем дне",
+    "третьему дню",
+    "третьего дня",
     "третьим днём"
    ],
    "correct": "третий день",
    "case": "Винительный (Accusative)",
-   "explain": "«третий день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«третий день» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c13"
   },
   {
@@ -193,7 +123,7 @@
    ],
    "correct": "приезжих гостей",
    "case": "Родительный (Genitive)",
-   "explain": "«приезжих гостей» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«приезжих гостей» — «для» always takes the genitive.",
    "id": "c14"
   },
   {
@@ -207,35 +137,21 @@
    ],
    "correct": "другому замку",
    "case": "Дательный (Dative)",
-   "explain": "«другому замку» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«другому замку» — «к» always takes the dative.",
    "id": "c15"
-  },
-  {
-   "sentence": "Ганс всем этим был очень доволен и полез под кровать ___.",
-   "lemma": "жена",
-   "options": [
-    "грифовой жены",
-    "грифовой женой",
-    "грифовой жене",
-    "грифовая жена"
-   ],
-   "correct": "грифовой жены",
-   "case": "Родительный (Genitive)",
-   "explain": "«грифовой жены» — the genitive here marks possession, absence, or quantity.",
-   "id": "c16"
   },
   {
    "sentence": "— «А в ___, — продолжала жена, — дочь больна лежит, и не знают средства, которым бы ей можно было помочь».",
    "lemma": "замок",
    "options": [
+    "другому замку",
+    "другом замке",
     "другого замка",
-    "другой замок",
-    "другим замком",
-    "другом замке"
+    "другим замком"
    ],
    "correct": "другом замке",
    "case": "Предложный (Prepositional)",
-   "explain": "«другом замке» — after the preposition «в», for location or topic.",
+   "explain": "«другом замке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c17"
   },
   {
@@ -249,35 +165,35 @@
    ],
    "correct": "больной девушке",
    "case": "Предложный (Prepositional)",
-   "explain": "«больной девушке» — after the preposition «о», for location or topic.",
+   "explain": "«больной девушке» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c18"
   },
   {
    "sentence": "Переправившись на ___, Ганс сказал ему, что стоит ему только одного среди воды с себя сбросить, и никого больше переносить он не будет.",
    "lemma": "берег",
    "options": [
-    "другом береге",
-    "другому берегу",
+    "другой берег",
+    "другого берега",
     "другим берегом",
-    "другой берег"
+    "другому берегу"
    ],
    "correct": "другой берег",
    "case": "Винительный (Accusative)",
-   "explain": "«другой берег» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«другой берег» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c19"
   },
   {
    "sentence": "Придя в ___, Ганс тотчас пошел в деревянный дом и, действительно, за дверью под порогом нашел ключи и передал их хозяину замка.",
    "lemma": "замок",
    "options": [
+    "другому замку",
     "другой замок",
-    "другом замке",
     "другого замка",
-    "другому замку"
+    "другим замком"
    ],
    "correct": "другой замок",
    "case": "Винительный (Accusative)",
-   "explain": "«другой замок» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«другой замок» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c20"
   },
   {
@@ -291,7 +207,7 @@
    ],
    "correct": "деревянный дом",
    "case": "Винительный (Accusative)",
-   "explain": "«деревянный дом» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«деревянный дом» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c21"
   }
  ]

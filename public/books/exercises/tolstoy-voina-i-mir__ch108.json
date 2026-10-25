@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Года два тому назад, в 1808 году, вернувшись в Петербург из своей поездки по имениям, Пьер невольно стал во главе ___.",
-   "lemma": "масонство",
-   "options": [
-    "петербургское масонство",
-    "петербургском масонстве",
-    "петербургского масонства",
-    "петербургскому масонству"
-   ],
-   "correct": "петербургского масонства",
-   "case": "Родительный (Genitive)",
-   "explain": "«петербургского масонства» — after the preposition «во», the genitive here marks possession, absence, or quantity.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Он устраивал столовые и ___, вербовал новых членов, заботился о соединении различных лож и о приобретении подлинных актов.",
-   "lemma": "ложа",
-   "options": [
-    "надгробным ложам",
-    "надгробные ложи",
-    "надгробных ложах",
-    "надгробными ложами"
-   ],
-   "correct": "надгробные ложи",
-   "case": "Винительный (Accusative)",
-   "explain": "«надгробные ложи» — the accusative marks the direct object of the verb.",
-   "id": "c2"
-  },
-  {
    "sentence": "Он устраивал столовые и надгробные ложи, вербовал ___, заботился о соединении различных лож и о приобретении подлинных актов.",
    "lemma": "член",
    "options": [
@@ -39,21 +11,21 @@
    ],
    "correct": "новых членов",
    "case": "Винительный (Accusative)",
-   "explain": "«новых членов» — the accusative marks the direct object of the verb.",
+   "explain": "«новых членов» is the direct object of «вербовал» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c3"
   },
   {
    "sentence": "Он устраивал столовые и надгробные ложи, вербовал новых членов, заботился о соединении ___ и о приобретении подлинных актов.",
    "lemma": "ложа",
    "options": [
-    "различных лож",
-    "различными ложами",
     "различные ложи",
-    "различных ложах"
+    "различных ложах",
+    "различным ложам",
+    "различных лож"
    ],
    "correct": "различных лож",
    "case": "Родительный (Genitive)",
-   "explain": "«различных лож» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«различных лож» depends on the noun «соединении» (whose? of what?) — genitive.",
    "id": "c4"
   },
   {
@@ -67,7 +39,7 @@
    ],
    "correct": "подлинных актов",
    "case": "Родительный (Genitive)",
-   "explain": "«подлинных актов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«подлинных актов» depends on the noun «приобретении» (whose? of what?) — genitive.",
    "id": "c5"
   },
   {
@@ -81,22 +53,8 @@
    ],
    "correct": "холостых обществ",
    "case": "Родительный (Genitive)",
-   "explain": "«холостых обществ» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«холостых обществ» — «от» always takes the genitive.",
    "id": "c6"
-  },
-  {
-   "sentence": "Из под ___ и знаков он видел на них мундиры и кресты, которых они добивались в жизни.",
-   "lemma": "фартук",
-   "options": [
-    "масонские фартуки",
-    "масонских фартуков",
-    "масонским фартукам",
-    "масонскими фартуками"
-   ],
-   "correct": "масонских фартуков",
-   "case": "Родительный (Genitive)",
-   "explain": "«масонских фартуков» — after the preposition «под», the genitive here marks possession, absence, or quantity.",
-   "id": "c7"
   },
   {
    "sentence": "Пьер уважал этот разряд братьев масонов, к которому принадлежали преимущественно ___, и сам Иосиф Алексеевич, по мнению Пьера, но не разделял их интересов.",
@@ -109,7 +67,7 @@
    ],
    "correct": "старые братья",
    "case": "Именительный (Nominative)",
-   "explain": "«старые братья» — the subject of the sentence stands in the nominative.",
+   "explain": "«старые братья» is the subject of «принадлежали» — who or what does it — so nominative.",
    "id": "c8"
   },
   {
@@ -123,7 +81,7 @@
    ],
    "correct": "мистической стороне",
    "case": "Дательный (Dative)",
-   "explain": "«мистической стороне» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«мистической стороне» — «к» always takes the dative.",
    "id": "c9"
   },
   {
@@ -137,7 +95,7 @@
    ],
    "correct": "второму разряду",
    "case": "Дательный (Dative)",
-   "explain": "«второму разряду» — after the preposition «ко», the dative marks the indirect object or recipient.",
+   "explain": "«второму разряду» — «к» always takes the dative.",
    "id": "c10"
   },
   {
@@ -151,22 +109,8 @@
    ],
    "correct": "подобных братьев",
    "case": "Винительный (Accusative)",
-   "explain": "«подобных братьев» — the accusative marks the direct object of the verb.",
+   "explain": "«подобных братьев» is the direct object of «причислял» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c11"
-  },
-  {
-   "sentence": "Таковы были Вилларский и даже ___ главной ложи.",
-   "lemma": "мастер",
-   "options": [
-    "великом мастере",
-    "великого мастера",
-    "великим мастером",
-    "великий мастер"
-   ],
-   "correct": "великий мастер",
-   "case": "Именительный (Nominative)",
-   "explain": "«великий мастер» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
   },
   {
    "sentence": "Таковы были Вилларский и даже великий мастер ___.",
@@ -179,22 +123,8 @@
    ],
    "correct": "главной ложи",
    "case": "Родительный (Genitive)",
-   "explain": "«главной ложи» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«главной ложи» depends on the noun «мастер» (whose? of what?) — genitive.",
    "id": "c13"
-  },
-  {
-   "sentence": "К четвертому разряду, наконец, причислялось тоже ___ братьев, в особенности в последнее время вступивших в братство.",
-   "lemma": "количество",
-   "options": [
-    "большим количеством",
-    "большое количество",
-    "большому количеству",
-    "большого количества"
-   ],
-   "correct": "большое количество",
-   "case": "Именительный (Nominative)",
-   "explain": "«большое количество» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
   },
   {
    "sentence": "Он и не думал сомневаться в самом масонстве, но подозревал, что ___ пошло по ложному пути и отклонилось от своего источника.",
@@ -207,21 +137,21 @@
    ],
    "correct": "русское масонство",
    "case": "Именительный (Nominative)",
-   "explain": "«русское масонство» — the subject of the sentence stands in the nominative.",
+   "explain": "«русское масонство» is the subject of «пошло» — who or what does it — so nominative.",
    "id": "c16"
   },
   {
    "sentence": "Назначено было торжественное заседание ложи 2-го градуса, в которой Пьер обещал сообщить то, что́ он имеет передать ___ от высших руководителей ордена.",
    "lemma": "брат",
    "options": [
-    "петербургских братьях",
-    "петербургским братьям",
     "петербургские братья",
-    "петербургских братьев"
+    "петербургскими братьями",
+    "петербургским братьям",
+    "петербургских братьях"
    ],
    "correct": "петербургским братьям",
    "case": "Дательный (Dative)",
-   "explain": "«петербургским братьям» — the dative marks the indirect object or recipient.",
+   "explain": "«петербургским братьям» is the indirect object of «передать» — to or for whom (кому?) — dative.",
    "id": "c19"
   },
   {
@@ -235,36 +165,8 @@
    ],
    "correct": "обыкновенных обрядов",
    "case": "Родительный (Genitive)",
-   "explain": "«обыкновенных обрядов» — after the preposition «после», the genitive here marks possession, absence, or quantity.",
+   "explain": "«обыкновенных обрядов» — «после» always takes the genitive.",
    "id": "c20"
-  },
-  {
-   "sentence": "Но в сих ___ препятствуют нам весьма много — нынешние политические учреждения.",
-   "lemma": "намерение",
-   "options": [
-    "великие намерения",
-    "великих намерений",
-    "великими намерениями",
-    "великих намерениях"
-   ],
-   "correct": "великих намерениях",
-   "case": "Предложный (Prepositional)",
-   "explain": "«великих намерениях» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c22"
-  },
-  {
-   "sentence": "Но в сих великих намерениях препятствуют нам весьма много — нынешние ___.",
-   "lemma": "учреждение",
-   "options": [
-    "политическими учреждениями",
-    "политические учреждения",
-    "политическим учреждениям",
-    "политических учреждений"
-   ],
-   "correct": "политические учреждения",
-   "case": "Именительный (Nominative)",
-   "explain": "«политические учреждения» — the subject of the sentence stands in the nominative.",
-   "id": "c23"
   },
   {
    "sentence": "Всякая ___ достойна порицания, потому что ни мало не исправит зла, пока люди остаются таковы, каковы они есть, и потому что мудрость не имеет нужды в насилии.",
@@ -277,7 +179,7 @@
    ],
    "correct": "насильственная реформа",
    "case": "Именительный (Nominative)",
-   "explain": "«насильственная реформа» — the subject of the sentence stands in the nominative.",
+   "explain": "«насильственная реформа» is the subject of «достойна» — who or what does it — so nominative.",
    "id": "c24"
   },
   {
@@ -291,21 +193,21 @@
    ],
    "correct": "само христианство",
    "case": "Именительный (Nominative)",
-   "explain": "«само христианство» — the subject of the sentence stands in the nominative.",
+   "explain": "«само христианство» is the subject of «предполагало» — who or what does it — so nominative.",
    "id": "c25"
   },
   {
    "sentence": "Теперь нужно, чтобы человек, управляемый своими чувствами, находил в добродетели ___.",
    "lemma": "прелесть",
    "options": [
+    "чувственными прелестями",
     "чувственным прелестям",
-    "чувственные прелести",
     "чувственных прелестях",
-    "чувственных прелестей"
+    "чувственные прелести"
    ],
    "correct": "чувственные прелести",
    "case": "Винительный (Accusative)",
-   "explain": "«чувственные прелести» — the accusative marks the direct object of the verb.",
+   "explain": "«чувственные прелести» is the direct object of «находил» (кого? что?) — accusative.",
    "id": "c26"
   },
   {
@@ -319,22 +221,8 @@
    ],
    "correct": "великий мастер",
    "case": "Именительный (Nominative)",
-   "explain": "«Великий мастер» — the subject of the sentence stands in the nominative.",
+   "explain": "«великий мастер» is the subject of «стал» — who or what does it — so nominative.",
    "id": "c27"
-  },
-  {
-   "sentence": "По окончании заседания ___ с недоброжелательством и иронией сделал Безухову замечание о его горячности и о том, что не одна любовь к добродетели, но и увлечение борьбы руководило им в споре.",
-   "lemma": "мастер",
-   "options": [
-    "великом мастере",
-    "великого мастера",
-    "великим мастером",
-    "великий мастер"
-   ],
-   "correct": "великий мастер",
-   "case": "Именительный (Nominative)",
-   "explain": "«великий мастер» — the subject of the sentence stands in the nominative.",
-   "id": "c30"
   }
  ]
 }

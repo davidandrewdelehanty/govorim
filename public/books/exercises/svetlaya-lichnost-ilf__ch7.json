@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Оставим и Евсея Львовича, сидящего в кабинете Доброгласова и вычерчивающего ___ многословные резолюции на деловых бумагах.",
-   "lemma": "чернила",
-   "options": [
-    "красными чернилами",
-    "красных чернилах",
-    "красные чернила",
-    "красным чернилам"
-   ],
-   "correct": "красными чернилами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«красными чернилами» — the instrumental marks the means, company, or complement.",
-   "id": "c1"
-  },
-  {
    "sentence": "Выйдя за ворота допра, Петр Каллистратович Иванопольский очутился на Сенной площади и зажмурился от режущего ___.",
    "lemma": "свет",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "солнечного света",
    "case": "Родительный (Genitive)",
-   "explain": "«солнечного света» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«солнечного света» — «от» always takes the genitive.",
    "id": "c3"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "толстыми колоннами",
    "case": "Творительный (Instrumental)",
-   "explain": "«толстыми колоннами» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «груженные», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c4"
   },
   {
@@ -53,7 +39,7 @@
    ],
    "correct": "дружеских векселях",
    "case": "Предложный (Prepositional)",
-   "explain": "«дружеских векселях» — after the preposition «о», for location or topic.",
+   "explain": "«дружеских векселях» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c6"
   },
   {
@@ -67,7 +53,7 @@
    ],
    "correct": "кредитного товарищества",
    "case": "Родительный (Genitive)",
-   "explain": "«кредитного товарищества» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«кредитного товарищества» depends on the noun «векселях» (whose? of what?) — genitive.",
    "id": "c7"
   },
   {
@@ -75,28 +61,14 @@
    "lemma": "вакансия",
    "options": [
     "свободными вакансиями",
-    "свободные вакансии",
+    "свободным вакансиям",
     "свободных вакансий",
-    "свободным вакансиям"
+    "свободных вакансиях"
    ],
    "correct": "свободных вакансий",
    "case": "Родительный (Genitive)",
-   "explain": "«свободных вакансий» — the genitive here marks possession, absence, or quantity.",
+   "explain": "What is absent after «нет» — genitive.",
    "id": "c10"
-  },
-  {
-   "sentence": "___ магазина были опущены.",
-   "lemma": "штора",
-   "options": [
-    "железные шторы",
-    "железным шторам",
-    "железных штор",
-    "железных шторах"
-   ],
-   "correct": "железные шторы",
-   "case": "Именительный (Nominative)",
-   "explain": "«Железные шторы» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
   },
   {
    "sentence": "— Придется в ___ переезжать, — бормотал Иванопольский, — ну и дела!",
@@ -109,7 +81,7 @@
    ],
    "correct": "другой город",
    "case": "Винительный (Accusative)",
-   "explain": "«другой город» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«другой город» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c12"
   },
   {
@@ -123,64 +95,8 @@
    ],
    "correct": "молодые люди",
    "case": "Именительный (Nominative)",
-   "explain": "«молодые люди» — the subject of the sentence stands in the nominative.",
+   "explain": "«молодые люди» is the subject of «посещали» — who or what does it — so nominative.",
    "id": "c13"
-  },
-  {
-   "sentence": "Его усердно посещали молодые люди с подстриженными по-боксерски волосами, в ___, продернутых шелковой ниткой, в шерстяных жилетах, туфлях мастичного цвета и мягких шляпах.",
-   "lemma": "костюм",
-   "options": [
-    "аккуратных костюмах",
-    "аккуратных костюмов",
-    "аккуратными костюмами",
-    "аккуратным костюмам"
-   ],
-   "correct": "аккуратных костюмах",
-   "case": "Предложный (Prepositional)",
-   "explain": "«аккуратных костюмах» — after the preposition «в», for location or topic.",
-   "id": "c14"
-  },
-  {
-   "sentence": "Его усердно посещали молодые люди с подстриженными по-боксерски волосами, в аккуратных костюмах, продернутых шелковой ниткой, в шерстяных жилетах, туфлях ___ и мягких шляпах.",
-   "lemma": "цвет",
-   "options": [
-    "мастичному цвету",
-    "мастичного цвета",
-    "мастичным цветом",
-    "мастичный цвет"
-   ],
-   "correct": "мастичного цвета",
-   "case": "Родительный (Genitive)",
-   "explain": "«мастичного цвета» — the genitive here marks possession, absence, or quantity.",
-   "id": "c15"
-  },
-  {
-   "sentence": "Его усердно посещали молодые люди с подстриженными по-боксерски волосами, в аккуратных костюмах, продернутых шелковой ниткой, в шерстяных жилетах, туфлях мастичного цвета и ___.",
-   "lemma": "шляпа",
-   "options": [
-    "мягкие шляпы",
-    "мягкими шляпами",
-    "мягких шляпах",
-    "мягких шляп"
-   ],
-   "correct": "мягких шляпах",
-   "case": "Предложный (Prepositional)",
-   "explain": "«мягких шляпах» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c16"
-  },
-  {
-   "sentence": "В передней с ___ горничная снимала пальто и брала на чай.",
-   "lemma": "человек",
-   "options": [
-    "молодые люди",
-    "молодым людям",
-    "молодых людей",
-    "молодых людях"
-   ],
-   "correct": "молодых людей",
-   "case": "Родительный (Genitive)",
-   "explain": "«молодых людей» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
-   "id": "c17"
   },
   {
    "sentence": "Говорили преимущественно о разнице в ценах на вещи между Берлином и Пищеславом, клеймили монополию ___, из-за которой ходишь «голая, босая», и о новой заграничной моде — пудриться не пудрой, а тальком.",
@@ -193,7 +109,7 @@
    ],
    "correct": "внешней торговли",
    "case": "Родительный (Genitive)",
-   "explain": "«внешней торговли» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«внешней торговли» depends on the noun «монополию» (whose? of what?) — genitive.",
    "id": "c19"
   },
   {
@@ -207,7 +123,7 @@
    ],
    "correct": "заграничной моде",
    "case": "Предложный (Prepositional)",
-   "explain": "«заграничной моде» — after the preposition «о», for location or topic.",
+   "explain": "«заграничной моде» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c20"
   },
   {
@@ -221,35 +137,21 @@
    ],
    "correct": "молодое поколение",
    "case": "Именительный (Nominative)",
-   "explain": "«молодое поколение» — the subject of the sentence stands in the nominative.",
+   "explain": "«молодое поколение» is the subject of «придавало» — who or what does it — so nominative.",
    "id": "c21"
-  },
-  {
-   "sentence": "Горилла могла похвастаться тем, что, кроме нее, ни одна ___ в Пищеславе не ест редкостных плодов.",
-   "lemma": "душа",
-   "options": [
-    "живой душе",
-    "живой души",
-    "живой душой",
-    "живая душа"
-   ],
-   "correct": "живая душа",
-   "case": "Именительный (Nominative)",
-   "explain": "«живая душа» — the subject of the sentence stands in the nominative.",
-   "id": "c22"
   },
   {
    "sentence": "___ не устоял перед посулами Брака.",
    "lemma": "сторож",
    "options": [
+    "выставочному сторожу",
     "выставочном стороже",
-    "выставочный сторож",
-    "выставочного сторожа",
-    "выставочному сторожу"
+    "выставочным сторожем",
+    "выставочный сторож"
    ],
    "correct": "выставочный сторож",
    "case": "Именительный (Nominative)",
-   "explain": "«Выставочный сторож» — the subject of the sentence stands in the nominative.",
+   "explain": "«выставочный сторож» is the subject of «устоял» — who or what does it — so nominative.",
    "id": "c24"
   },
   {
@@ -263,106 +165,50 @@
    ],
    "correct": "молодые люди",
    "case": "Именительный (Nominative)",
-   "explain": "«Молодые люди» — the subject of the sentence stands in the nominative.",
+   "explain": "«молодые люди» is the subject of «перестали» — who or what does it — so nominative.",
    "id": "c26"
-  },
-  {
-   "sentence": "___ был опечатан за неплатеж налогов.",
-   "lemma": "магазин",
-   "options": [
-    "оптического магазина",
-    "оптическому магазину",
-    "оптическом магазине",
-    "оптический магазин"
-   ],
-   "correct": "оптический магазин",
-   "case": "Именительный (Nominative)",
-   "explain": "«Оптический магазин» — the subject of the sentence stands in the nominative.",
-   "id": "c27"
   },
   {
    "sentence": "___ не давали больше выгодных подрядов.",
    "lemma": "учреждение",
    "options": [
-    "государственных учреждений",
     "государственных учреждениях",
     "государственным учреждениям",
+    "государственными учреждениями",
     "государственные учреждения"
    ],
    "correct": "государственные учреждения",
    "case": "Именительный (Nominative)",
-   "explain": "«Государственные учреждения» — the subject of the sentence stands in the nominative.",
+   "explain": "«государственные учреждения» is the subject of «давали» — who or what does it — so nominative.",
    "id": "c28"
-  },
-  {
-   "sentence": "«Пыщей» Николай Самойлович называл все, имеющее отношение к деньгам, карьере, поставкам и тому подобным ___.",
-   "lemma": "вещь",
-   "options": [
-    "приятным вещам",
-    "приятные вещи",
-    "приятных вещей",
-    "приятными вещами"
-   ],
-   "correct": "приятным вещам",
-   "case": "Дательный (Dative)",
-   "explain": "«приятным вещам» — the dative marks the indirect object or recipient.",
-   "id": "c30"
   },
   {
    "sentence": "— Не вы ли это забросите свои ___ и займетесь изобретенческими вопросами?",
    "lemma": "дело",
    "options": [
     "коммерческим делам",
-    "коммерческими делами",
-    "коммерческих дел",
-    "коммерческие дела"
+    "коммерческие дела",
+    "коммерческих делах",
+    "коммерческими делами"
    ],
    "correct": "коммерческие дела",
    "case": "Винительный (Accusative)",
-   "explain": "«коммерческие дела» — the accusative marks the direct object of the verb.",
+   "explain": "«коммерческие дела» is the direct object of «забросите» (кого? что?) — accusative.",
    "id": "c31"
   },
   {
    "sentence": "— Не вы ли это забросите свои коммерческие дела и займетесь ___?",
    "lemma": "вопрос",
    "options": [
-    "изобретенческим вопросам",
-    "изобретенческими вопросами",
     "изобретенческих вопросах",
-    "изобретенческие вопросы"
+    "изобретенческими вопросами",
+    "изобретенческим вопросам",
+    "изобретенческих вопросов"
    ],
    "correct": "изобретенческими вопросами",
    "case": "Творительный (Instrumental)",
-   "explain": "«изобретенческими вопросами» — the instrumental marks the means, company, or complement.",
+   "explain": "«займетесь» takes the instrumental.",
    "id": "c32"
-  },
-  {
-   "sentence": "— А ___ Прозрачного — это не сумасшествие?",
-   "lemma": "существование",
-   "options": [
-    "самым существованием",
-    "самому существованию",
-    "самого существования",
-    "самое существование"
-   ],
-   "correct": "самое существование",
-   "case": "Именительный (Nominative)",
-   "explain": "«самое существование» — the subject of the sentence stands in the nominative.",
-   "id": "c33"
-  },
-  {
-   "sentence": "Надежда залила их ___.",
-   "lemma": "свет",
-   "options": [
-    "зеркальным светом",
-    "зеркального света",
-    "зеркальный свет",
-    "зеркальному свету"
-   ],
-   "correct": "зеркальным светом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«зеркальным светом» — the instrumental marks the means, company, or complement.",
-   "id": "c34"
   },
   {
    "sentence": "И союзники поспешно двинулись на Косвенную улицу, прибавляя шагу по мере приближения к ___ изобретателя.",
@@ -375,7 +221,7 @@
    ],
    "correct": "затхлому жилью",
    "case": "Дательный (Dative)",
-   "explain": "«затхлому жилью» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«затхлому жилью» — «к» always takes the dative.",
    "id": "c36"
   },
   {
@@ -389,21 +235,21 @@
    ],
    "correct": "голубой человек",
    "case": "Именительный (Nominative)",
-   "explain": "«Голубой человек» — the subject of the sentence stands in the nominative.",
+   "explain": "«голубой человек» is the subject of «делал» — who or what does it — so nominative.",
    "id": "c38"
   },
   {
    "sentence": "Голубой человек с грязными подтеками на спине делал ___.",
    "lemma": "прыжок",
    "options": [
+    "уморительные прыжки",
     "уморительными прыжками",
-    "уморительных прыжках",
-    "уморительных прыжков",
-    "уморительные прыжки"
+    "уморительным прыжкам",
+    "уморительных прыжках"
    ],
    "correct": "уморительные прыжки",
    "case": "Винительный (Accusative)",
-   "explain": "«уморительные прыжки» — the accusative marks the direct object of the verb.",
+   "explain": "«уморительные прыжки» is the direct object of «делал» (кого? что?) — accusative.",
    "id": "c39"
   },
   {
@@ -417,7 +263,7 @@
    ],
    "correct": "аквамариновой краски",
    "case": "Родительный (Genitive)",
-   "explain": "«аквамариновой краски» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«аквамариновой краски» depends on the noun «фунта» (whose? of what?) — genitive.",
    "id": "c41"
   },
   {
@@ -431,7 +277,7 @@
    ],
    "correct": "косвенной улице",
    "case": "Дательный (Dative)",
-   "explain": "«Косвенной улице» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«косвенной улице» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c42"
   },
   {
@@ -445,7 +291,7 @@
    ],
    "correct": "самого поворота",
    "case": "Родительный (Genitive)",
-   "explain": "«самого поворота» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«самого поворота» — «до» always takes the genitive.",
    "id": "c43"
   },
   {
@@ -459,22 +305,8 @@
    ],
    "correct": "целый месяц",
    "case": "Винительный (Accusative)",
-   "explain": "«Целый месяц» — the accusative marks the direct object of the verb.",
+   "explain": "«целый месяц» tells how long or how often, with no preposition — accusative.",
    "id": "c45"
-  },
-  {
-   "sentence": "Опечаленные друзья, обмениваясь ___, повернули домой.",
-   "lemma": "фраза",
-   "options": [
-    "коротким фразам",
-    "коротких фраз",
-    "короткие фразы",
-    "короткими фразами"
-   ],
-   "correct": "короткими фразами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«короткими фразами» — the instrumental marks the means, company, or complement.",
-   "id": "c46"
   }
  ]
 }

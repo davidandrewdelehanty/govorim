@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Ярослав повиновался; но Мстислав, боясь обмана, не ехал: Георгий послал к нему крестную грамоту, в доказательство ___.",
-   "lemma": "дружба",
-   "options": [
-    "искренней дружбой",
-    "искренняя дружба",
-    "искренней дружбе",
-    "искренней дружбы"
-   ],
-   "correct": "искренней дружбы",
-   "case": "Родительный (Genitive)",
-   "explain": "«искренней дружбы» — the genitive here marks possession, absence, or quantity.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Узнав о сем союзе и прибытии в Киев Галицкой ___, Князь Черниговский, недовольный Георгием, также смирился и выдал дочь свою за его сына, Глеба.",
-   "lemma": "дружина",
-   "options": [
-    "вспомогательная дружина",
-    "вспомогательной дружине",
-    "вспомогательной дружины",
-    "вспомогательной дружиной"
-   ],
-   "correct": "вспомогательной дружины",
-   "case": "Родительный (Genitive)",
-   "explain": "«вспомогательной дружины» — the genitive here marks possession, absence, or quantity.",
-   "id": "c2"
-  },
-  {
    "sentence": "Великий Князь щадил ___ своих, Половцев.",
    "lemma": "друг",
    "options": [
@@ -39,7 +11,7 @@
    ],
    "correct": "старинных друзей",
    "case": "Винительный (Accusative)",
-   "explain": "«старинных друзей» — the accusative marks the direct object of the verb.",
+   "explain": "«старинных друзей» is the direct object of «щадил» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c3"
   },
   {
@@ -53,7 +25,7 @@
    ],
    "correct": "сие происшествие",
    "case": "Именительный (Nominative)",
-   "explain": "«Сие происшествие» — the subject of the sentence stands in the nominative.",
+   "explain": "«сие происшествие» is the subject of «долженствовало» — who or what does it — so nominative.",
    "id": "c4"
   },
   {
@@ -67,35 +39,21 @@
    ],
    "correct": "другие враги",
    "case": "Именительный (Nominative)",
-   "explain": "«другие враги» — the subject of the sentence stands in the nominative.",
+   "explain": "«другие враги» is the subject of «были» — who or what does it — so nominative.",
    "id": "c5"
-  },
-  {
-   "sentence": "Георгий властолюбивый, но беспечный, прозванный Долгоруким, знаменит в нашей истории ___ восточного края древней России, в коем он провел все цветущие лета своей жизни.",
-   "lemma": "образование",
-   "options": [
-    "гражданским образованием",
-    "гражданском образовании",
-    "гражданского образования",
-    "гражданскому образованию"
-   ],
-   "correct": "гражданским образованием",
-   "case": "Творительный (Instrumental)",
-   "explain": "«гражданским образованием» — the instrumental marks the means, company, or complement.",
-   "id": "c6"
   },
   {
    "sentence": "Георгий властолюбивый, но беспечный, прозванный Долгоруким, знаменит в нашей истории гражданским образованием ___ древней России, в коем он провел все цветущие лета своей жизни.",
    "lemma": "край",
    "options": [
-    "восточным краем",
-    "восточный край",
+    "восточного края",
     "восточном крае",
-    "восточного края"
+    "восточному краю",
+    "восточный край"
    ],
    "correct": "восточного края",
    "case": "Родительный (Genitive)",
-   "explain": "«восточного края» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«восточного края» depends on the noun «образованием» (whose? of what?) — genitive.",
    "id": "c7"
   },
   {
@@ -109,49 +67,21 @@
    ],
    "correct": "великого отца",
    "case": "Родительный (Genitive)",
-   "explain": "«великого отца» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«великого отца» depends on the noun «добродетелей» (whose? of what?) — genitive.",
    "id": "c8"
-  },
-  {
-   "sentence": "Мы видели, что он играл святостию клятв и волновал изнуренную внутренними несогласиями Россию для выгод своего честолюбия: к бесславию его нам известно также ___.",
-   "lemma": "происшествие",
-   "options": [
-    "следующее происшествие",
-    "следующему происшествию",
-    "следующем происшествии",
-    "следующего происшествия"
-   ],
-   "correct": "следующее происшествие",
-   "case": "Именительный (Nominative)",
-   "explain": "«следующее происшествие» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
-  },
-  {
-   "sentence": "___ сего времени достойны замечания.",
-   "lemma": "дело",
-   "options": [
-    "церковным делам",
-    "церковные дела",
-    "церковных дел",
-    "церковных делах"
-   ],
-   "correct": "церковные дела",
-   "case": "Именительный (Nominative)",
-   "explain": "«Церковные дела» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
   },
   {
    "sentence": "Ревностный Нифонт не имел удовольствия видеть свое полное торжество: он спешил встретить Константина, но еще до его прибытия скончался в Киеве, названный ___ поборника всей земли Русской.",
    "lemma": "имя",
    "options": [
-    "славное имя",
+    "славном имени",
     "славным именем",
-    "славного имени",
-    "славном имени"
+    "славному имени",
+    "славного имени"
    ],
    "correct": "славным именем",
    "case": "Творительный (Instrumental)",
-   "explain": "«славным именем» — the instrumental marks the means, company, or complement.",
+   "explain": "After «названный» (to call, consider or make someone something), that something is in the instrumental.",
    "id": "c12"
   }
  ]

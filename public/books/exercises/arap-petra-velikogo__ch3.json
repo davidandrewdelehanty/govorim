@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "На другой день Петр по своему обещанию разбудил Ибрагима и поздравил его капитан-лейтенантом ___ Преображенского полка, в коей он сам был капитаном.",
-   "lemma": "рота",
-   "options": [
-    "бомбардирской роты",
-    "бомбардирская рота",
-    "бомбардирской роте",
-    "бомбардирской ротой"
-   ],
-   "correct": "бомбардирской роты",
-   "case": "Родительный (Genitive)",
-   "explain": "«бомбардирской роты» — the genitive here marks possession, absence, or quantity.",
-   "id": "c2"
-  },
-  {
    "sentence": "Придворные окружили Ибрагима, всякий по-своему старался обласкать ___.",
    "lemma": "любимец",
    "options": [
@@ -25,22 +11,8 @@
    ],
    "correct": "нового любимца",
    "case": "Винительный (Accusative)",
-   "explain": "«нового любимца» — the accusative marks the direct object of the verb.",
+   "explain": "«нового любимца» is the direct object of «обласкать» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c3"
-  },
-  {
-   "sentence": "___ Меншиков дружески пожал ему руку.",
-   "lemma": "князь",
-   "options": [
-    "надменном князе",
-    "надменному князю",
-    "надменный князь",
-    "надменным князем"
-   ],
-   "correct": "надменный князь",
-   "case": "Именительный (Nominative)",
-   "explain": "«Надменный князь» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
   },
   {
    "sentence": "Следовать за мыслями ___ есть наука самая занимательная.",
@@ -53,7 +25,7 @@
    ],
    "correct": "великого человека",
    "case": "Родительный (Genitive)",
-   "explain": "«великого человека» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«великого человека» depends on the noun «мыслями» (whose? of what?) — genitive.",
    "id": "c6"
   },
   {
@@ -67,120 +39,8 @@
    ],
    "correct": "собственного станка",
    "case": "Родительный (Genitive)",
-   "explain": "«собственного станка» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«собственного станка» — «у» always takes the genitive.",
    "id": "c7"
-  },
-  {
-   "sentence": "Ибрагим двадцать раз перечел это письмо, с восторгом целуя ___.",
-   "lemma": "строка",
-   "options": [
-    "бесценными строками",
-    "бесценные строки",
-    "бесценных строк",
-    "бесценным строкам"
-   ],
-   "correct": "бесценные строки",
-   "case": "Винительный (Accusative)",
-   "explain": "«бесценные строки» — the accusative marks the direct object of the verb.",
-   "id": "c8"
-  },
-  {
-   "sentence": "Я стоял на веревочной лестнице и не имел довольно места, чтоб сделать ___, и совершенно замешался, что отроду со мной не случалось.",
-   "lemma": "реверанс",
-   "options": [
-    "приличном реверансе",
-    "приличный реверанс",
-    "приличного реверанса",
-    "приличным реверансом"
-   ],
-   "correct": "приличный реверанс",
-   "case": "Винительный (Accusative)",
-   "explain": "«приличный реверанс» — the accusative marks the direct object of the verb.",
-   "id": "c9"
-  },
-  {
-   "sentence": "Но я в Петербурге совершенный чужестранец, во время ___ я вовсе позабыл здешние обыкновения, пожалуйста будь моим ментором, заезжай за мной и представь меня\".",
-   "lemma": "отсутствие",
-   "options": [
-    "шестилетнее отсутствие",
-    "шестилетнем отсутствии",
-    "шестилетним отсутствием",
-    "шестилетнего отсутствия"
-   ],
-   "correct": "шестилетнего отсутствия",
-   "case": "Родительный (Genitive)",
-   "explain": "«шестилетнего отсутствия» — after the preposition «во», the genitive here marks possession, absence, or quantity.",
-   "id": "c10"
-  },
-  {
-   "sentence": "Француз-камердинер подал ему башмаки с ___, голубые бархатные штаны, розовый кафтан, шитый блестками; в передней наскоро пудрили парик, его принесли.",
-   "lemma": "каблук",
-   "options": [
-    "красными каблуками",
-    "красным каблукам",
-    "красные каблуки",
-    "красных каблуках"
-   ],
-   "correct": "красными каблуками",
-   "case": "Творительный (Instrumental)",
-   "explain": "«красными каблуками» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c11"
-  },
-  {
-   "sentence": "Француз-камердинер подал ему башмаки с красными каблуками, голубые ___, розовый кафтан, шитый блестками; в передней наскоро пудрили парик, его принесли.",
-   "lemma": "штаны",
-   "options": [
-    "бархатным штанам",
-    "бархатных штанах",
-    "бархатные штаны",
-    "бархатных штанов"
-   ],
-   "correct": "бархатные штаны",
-   "case": "Именительный (Nominative)",
-   "explain": "«бархатные штаны» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
-  },
-  {
-   "sentence": "Француз-камердинер подал ему башмаки с красными каблуками, голубые бархатные штаны, ___, шитый блестками; в передней наскоро пудрили парик, его принесли.",
-   "lemma": "кафтан",
-   "options": [
-    "розовом кафтане",
-    "розовый кафтан",
-    "розовым кафтаном",
-    "розового кафтана"
-   ],
-   "correct": "розовый кафтан",
-   "case": "Именительный (Nominative)",
-   "explain": "«розовый кафтан» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
-  },
-  {
-   "sentence": "Корсаков осыпал Ибрагима вопросами, кто в Петербурге ___? кто славится первым танцовщиком? какой танец нынче в моде?",
-   "lemma": "красавица",
-   "options": [
-    "первая красавица",
-    "первой красавице",
-    "первой красавицы",
-    "первой красавицей"
-   ],
-   "correct": "первая красавица",
-   "case": "Именительный (Nominative)",
-   "explain": "«первая красавица» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
-  },
-  {
-   "sentence": "Корсаков осыпал Ибрагима вопросами, кто в Петербурге первая красавица? кто славится ___? какой танец нынче в моде?",
-   "lemma": "танцовщик",
-   "options": [
-    "первого танцовщика",
-    "первым танцовщиком",
-    "первому танцовщику",
-    "первый танцовщик"
-   ],
-   "correct": "первым танцовщиком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«первым танцовщиком» — the instrumental marks the means, company, or complement.",
-   "id": "c16"
   },
   {
    "sentence": "Множество ___, старых колымаг и раззолоченных карет стояло уже на лугу.",
@@ -193,64 +53,8 @@
    ],
    "correct": "длинных саней",
    "case": "Родительный (Genitive)",
-   "explain": "«длинных саней» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«длинных саней» depends on the noun «Множество» (whose? of what?) — genitive.",
    "id": "c17"
-  },
-  {
-   "sentence": "Множество длинных саней, ___ и раззолоченных карет стояло уже на лугу.",
-   "lemma": "колымага",
-   "options": [
-    "старые колымаги",
-    "старых колымагах",
-    "старых колымаг",
-    "старым колымагам"
-   ],
-   "correct": "старых колымаг",
-   "case": "Родительный (Genitive)",
-   "explain": "«старых колымаг» — the genitive here marks possession, absence, or quantity.",
-   "id": "c18"
-  },
-  {
-   "sentence": "При виде Ибрагима поднялся между ними общий шепот: \"Арап, арап, ___!\" Он поскорее провел Корсакова сквозь эту пеструю челядь.",
-   "lemma": "арап",
-   "options": [
-    "царский арап",
-    "царским арапом",
-    "царском арапе",
-    "царского арапа"
-   ],
-   "correct": "царский арап",
-   "case": "Именительный (Nominative)",
-   "explain": "«царский арап» — the subject of the sentence stands in the nominative.",
-   "id": "c19"
-  },
-  {
-   "sentence": "Барыни пожилые старались хитро сочетать ___ одежды с гонимою стариною: чепцы сбивались на соболью шапочку царицы Натальи Кириловны, а робронды и мантильи как-то напоминали сарафан и душегрейку.",
-   "lemma": "образ",
-   "options": [
-    "новый образ",
-    "новым образом",
-    "новому образу",
-    "новом образе"
-   ],
-   "correct": "новый образ",
-   "case": "Винительный (Accusative)",
-   "explain": "«новый образ» — the accusative marks the direct object of the verb.",
-   "id": "c21"
-  },
-  {
-   "sentence": "Императрица и ___, блистая красотою и нарядами, прохаживались между рядами гостей, приветливо с ними разговаривая.",
-   "lemma": "княжна",
-   "options": [
-    "великие княжны",
-    "великих княжон",
-    "великих княжнах",
-    "великим княжнам"
-   ],
-   "correct": "великие княжны",
-   "case": "Именительный (Nominative)",
-   "explain": "«великие княжны» — the subject of the sentence stands in the nominative.",
-   "id": "c23"
   },
   {
    "sentence": "Государь был в ___.",
@@ -263,77 +67,21 @@
    ],
    "correct": "другой комнате",
    "case": "Предложный (Prepositional)",
-   "explain": "«другой комнате» — after the preposition «в», for location or topic.",
+   "explain": "«другой комнате» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c24"
-  },
-  {
-   "sentence": "Там сидели большею частию иностранцы, важно покуривая свои ___ и опорожнивая глиняные кружки.",
-   "lemma": "трубка",
-   "options": [
-    "глиняным трубкам",
-    "глиняными трубками",
-    "глиняные трубки",
-    "глиняных трубок"
-   ],
-   "correct": "глиняные трубки",
-   "case": "Винительный (Accusative)",
-   "explain": "«глиняные трубки» — the accusative marks the direct object of the verb.",
-   "id": "c25"
-  },
-  {
-   "sentence": "Там сидели большею частию иностранцы, важно покуривая свои глиняные трубки и опорожнивая ___.",
-   "lemma": "кружка",
-   "options": [
-    "глиняным кружкам",
-    "глиняных кружках",
-    "глиняные кружки",
-    "глиняными кружками"
-   ],
-   "correct": "глиняные кружки",
-   "case": "Винительный (Accusative)",
-   "explain": "«глиняные кружки» — the accusative marks the direct object of the verb.",
-   "id": "c26"
-  },
-  {
-   "sentence": "На столах расставлены были бутылки пива и вина, ___ с табаком, стаканы с пуншем и шахматные доски.",
-   "lemma": "мешок",
-   "options": [
-    "кожаных мешков",
-    "кожаным мешкам",
-    "кожаные мешки",
-    "кожаными мешками"
-   ],
-   "correct": "кожаные мешки",
-   "case": "Именительный (Nominative)",
-   "explain": "«кожаные мешки» — the subject of the sentence stands in the nominative.",
-   "id": "c27"
-  },
-  {
-   "sentence": "На столах расставлены были бутылки пива и вина, кожаные мешки с табаком, стаканы с пуншем и ___.",
-   "lemma": "доска",
-   "options": [
-    "шахматных досок",
-    "шахматным доскам",
-    "шахматными досками",
-    "шахматные доски"
-   ],
-   "correct": "шахматные доски",
-   "case": "Винительный (Accusative)",
-   "explain": "«шахматные доски» — the accusative marks the direct object of the verb.",
-   "id": "c28"
   },
   {
    "sentence": "За одним из сих столов Петр играл в шашки с одним широкоплечим ___.",
    "lemma": "шкипер",
    "options": [
+    "английский шкипер",
     "английском шкипере",
-    "английского шкипера",
-    "английскому шкиперу",
-    "английским шкипером"
+    "английским шкипером",
+    "английскому шкиперу"
    ],
    "correct": "английским шкипером",
    "case": "Творительный (Instrumental)",
-   "explain": "«английским шкипером» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«английским шкипером» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c29"
   },
   {
@@ -347,50 +95,8 @@
    ],
    "correct": "табачного дыма",
    "case": "Родительный (Genitive)",
-   "explain": "«табачного дыма» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«табачного дыма» depends on the noun «залпами» (whose? of what?) — genitive.",
    "id": "c30"
-  },
-  {
-   "sentence": "Они усердно салютовали друг друга залпами табачного дыма, и государь так был озадачен ___ своего противника, что не заметил Корсакова, как он около их ни вертелся.",
-   "lemma": "ход",
-   "options": [
-    "нечаянном ходе",
-    "нечаянному ходу",
-    "нечаянным ходом",
-    "нечаянного хода"
-   ],
-   "correct": "нечаянным ходом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«нечаянным ходом» — the instrumental marks the means, company, or complement.",
-   "id": "c31"
-  },
-  {
-   "sentence": "В это время ___, с толстым букетом на груди, суетливо вошел, объявил громогласно, что танцы начались,-- и тотчас ушел; за ним последовало множество гостей, в том числе и Корсаков.",
-   "lemma": "господин",
-   "options": [
-    "толстый господин",
-    "толстом господине",
-    "толстым господином",
-    "толстого господина"
-   ],
-   "correct": "толстый господин",
-   "case": "Именительный (Nominative)",
-   "explain": "«толстый господин» — the subject of the sentence stands in the nominative.",
-   "id": "c32"
-  },
-  {
-   "sentence": "Приседания и поклоны продолжались около получаса; наконец они прекратились, и ___ с букетом провозгласил, что церемониальные танцы кончились, и приказал музыкантам играть менуэт.",
-   "lemma": "господин",
-   "options": [
-    "толстый господин",
-    "толстом господине",
-    "толстым господином",
-    "толстого господина"
-   ],
-   "correct": "толстый господин",
-   "case": "Именительный (Nominative)",
-   "explain": "«толстый господин» — the subject of the sentence stands in the nominative.",
-   "id": "c35"
   },
   {
    "sentence": "Приседания и поклоны продолжались около получаса; наконец они прекратились, и толстый господин с букетом провозгласил, что ___ кончились, и приказал музыкантам играть менуэт.",
@@ -403,7 +109,7 @@
    ],
    "correct": "церемониальные танцы",
    "case": "Именительный (Nominative)",
-   "explain": "«церемониальные танцы» — the subject of the sentence stands in the nominative.",
+   "explain": "«церемониальные танцы» is the subject of «кончились» — who or what does it — so nominative.",
    "id": "c36"
   },
   {
@@ -417,7 +123,7 @@
    ],
    "correct": "молодая красавица",
    "case": "Именительный (Nominative)",
-   "explain": "«Молодая красавица» — the subject of the sentence stands in the nominative.",
+   "explain": "«молодая красавица» is the subject of «смотрела» — who or what does it — so nominative.",
    "id": "c37"
   },
   {
@@ -431,7 +137,7 @@
    ],
    "correct": "немедленного исполнения",
    "case": "Родительный (Genitive)",
-   "explain": "«немедленного исполнения» — the genitive here marks possession, absence, or quantity.",
+   "explain": "With «требуя», a verb of waiting, seeking, asking or wanting, the object can stand in the genitive — as here.",
    "id": "c38"
   },
   {
@@ -445,7 +151,7 @@
    ],
    "correct": "другой комнаты",
    "case": "Родительный (Genitive)",
-   "explain": "«другой комнаты» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«другой комнаты» — «из» always takes the genitive.",
    "id": "c39"
   },
   {
@@ -459,7 +165,7 @@
    ],
    "correct": "таковых наказаниях",
    "case": "Предложный (Prepositional)",
-   "explain": "«таковых наказаниях» — after the preposition «при», for location or topic.",
+   "explain": "«таковых наказаниях» — «при» always takes the prepositional.",
    "id": "c41"
   },
   {
@@ -473,7 +179,7 @@
    ],
    "correct": "неописанному удовольствию",
    "case": "Дательный (Dative)",
-   "explain": "«неописанному удовольствию» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«неописанному удовольствию» — «к» always takes the dative.",
    "id": "c43"
   },
   {
@@ -487,7 +193,7 @@
    ],
    "correct": "главного действия",
    "case": "Родительный (Genitive)",
-   "explain": "«главного действия» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«главного действия» depends on the noun «занимательности» (whose? of what?) — genitive.",
    "id": "c44"
   },
   {
@@ -501,22 +207,8 @@
    ],
    "correct": "общем веселии",
    "case": "Предложный (Prepositional)",
-   "explain": "«общем веселии» — after the preposition «в», for location or topic.",
+   "explain": "«общем веселии» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c46"
-  },
-  {
-   "sentence": "Дама, им выбранная, по повелению отца своего, Гаврилы Афанасьевича, подошла к Ибрагиму и, потупя ___, робко подала ему руку.",
-   "lemma": "глаз",
-   "options": [
-    "голубых глазах",
-    "голубыми глазами",
-    "голубых глаз",
-    "голубые глаза"
-   ],
-   "correct": "голубые глаза",
-   "case": "Винительный (Accusative)",
-   "explain": "«голубые глаза» — the accusative marks the direct object of the verb.",
-   "id": "c47"
   }
  ]
 }

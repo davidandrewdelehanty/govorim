@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "А Ратазяев отвечал мне, что я ___, что я конкетами разными занимаюсь; говорит, — вы скрывались от нас, вы, дескать, Ловелас; и теперь все меня Ловеласом зовут, и имени другого нет у меня!",
-   "lemma": "предатель",
-   "options": [
-    "самом предателе",
-    "самого предателя",
-    "сам предатель",
-    "самому предателю"
-   ],
-   "correct": "сам предатель",
-   "case": "Именительный (Nominative)",
-   "explain": "«сам предатель» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Я не вытерпел от него, от ___, оскорбления, да и сказал ему дурака; а он мне — «от дурака слышал».",
    "lemma": "мужик",
    "options": [
@@ -25,22 +11,8 @@
    ],
    "correct": "необразованного мужика",
    "case": "Родительный (Genitive)",
-   "explain": "«необразованного мужика» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«необразованного мужика» — «от» always takes the genitive.",
    "id": "c2"
-  },
-  {
-   "sentence": "Работать никак нельзя, а Федора уж ___ хворает.",
-   "lemma": "день",
-   "options": [
-    "третьем дне",
-    "третьим днём",
-    "третьего дня",
-    "третий день"
-   ],
-   "correct": "третий день",
-   "case": "Именительный (Nominative)",
-   "explain": "«третий день» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
   },
   {
    "sentence": "Мне по нашей лестнице и пройти нельзя: все на меня смотрят, пальцем на меня указывают и такие ___ говорят; да, прямо говорят, что связалась я с пьяницей.",
@@ -53,7 +25,7 @@
    ],
    "correct": "страшные вещи",
    "case": "Именительный (Nominative)",
-   "explain": "«страшные вещи» — the subject of the sentence stands in the nominative.",
+   "explain": "«страшные вещи» is the subject of «указывают» — who or what does it — so nominative.",
    "id": "c6"
   },
   {
@@ -67,49 +39,21 @@
    ],
    "correct": "богомольных странствиях",
    "case": "Предложный (Prepositional)",
-   "explain": "«богомольных странствиях» — after the preposition «о», for location or topic.",
+   "explain": "«богомольных странствиях» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c7"
-  },
-  {
-   "sentence": "Будьте ___, твердым в несчастиях; помните, что бедность не порок.",
-   "lemma": "человек",
-   "options": [
-    "благородном человеке",
-    "благородный человек",
-    "благородному человеку",
-    "благородным человеком"
-   ],
-   "correct": "благородным человеком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«благородным человеком» — the instrumental marks the means, company, or complement.",
-   "id": "c8"
-  },
-  {
-   "sentence": "Вам, может быть, как и прежде, стыдно будет, но вы не стыдитесь: это ___.",
-   "lemma": "стыд",
-   "options": [
-    "ложный стыд",
-    "ложному стыду",
-    "ложного стыда",
-    "ложном стыде"
-   ],
-   "correct": "ложный стыд",
-   "case": "Именительный (Nominative)",
-   "explain": "«ложный стыд» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
   },
   {
    "sentence": "Тридцать копеек серебром мне прислали, а потом прислали двугривенничек; у меня сердце и заныло, глядя на ваши ___.",
    "lemma": "денежка",
    "options": [
     "сиротским денежкам",
-    "сиротских денежек",
+    "сиротскими денежками",
     "сиротские денежки",
-    "сиротских денежках"
+    "сиротских денежек"
    ],
    "correct": "сиротские денежки",
    "case": "Винительный (Accusative)",
-   "explain": "«сиротские денежки» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«сиротские денежки» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c11"
   },
   {
@@ -123,36 +67,8 @@
    ],
    "correct": "добрых качеств",
    "case": "Родительный (Genitive)",
-   "explain": "«добрых качеств» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«добрых качеств» depends on the noun «отрицанию» (whose? of what?) — genitive.",
    "id": "c12"
-  },
-  {
-   "sentence": "Он предобрый, он очень ___, и весьма чувствительный человек.",
-   "lemma": "человек",
-   "options": [
-    "добром человеке",
-    "доброму человеку",
-    "доброго человека",
-    "добрый человек"
-   ],
-   "correct": "добрый человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«добрый человек» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
-  },
-  {
-   "sentence": "Он предобрый, он очень добрый человек, и весьма ___.",
-   "lemma": "человек",
-   "options": [
-    "чувствительный человек",
-    "чувствительному человеку",
-    "чувствительным человеком",
-    "чувствительного человека"
-   ],
-   "correct": "чувствительный человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«чувствительный человек» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
   }
  ]
 }

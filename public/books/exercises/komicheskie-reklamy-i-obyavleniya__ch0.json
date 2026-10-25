@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "___ при зверинце Винклера — Гвалтер.",
-   "lemma": "врач",
-   "options": [
-    "зубном враче",
-    "зубного врача",
-    "зубным врачом",
-    "зубной врач"
-   ],
-   "correct": "зубной врач",
-   "case": "Именительный (Nominative)",
-   "explain": "«Зубной врач» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
-   "sentence": "___ таинственной любви, или Портфель любовных наслаждений, ц. 5 р.",
-   "lemma": "тайна",
-   "options": [
-    "таинственные тайны",
-    "таинственными тайнами",
-    "таинственным тайнам",
-    "таинственных тайн"
-   ],
-   "correct": "таинственные тайны",
-   "case": "Именительный (Nominative)",
-   "explain": "«Таинственные тайны» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
-  },
-  {
    "sentence": "Таинственные тайны таинственной любви, или Портфель ___, ц. 5 р.",
    "lemma": "наслаждение",
    "options": [
@@ -39,7 +11,7 @@
    ],
    "correct": "любовных наслаждений",
    "case": "Родительный (Genitive)",
-   "explain": "«любовных наслаждений» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«любовных наслаждений» depends on the noun «Портфель» (whose? of what?) — genitive.",
    "id": "c5"
   },
   {
@@ -53,7 +25,7 @@
    ],
    "correct": "неприличных слов",
    "case": "Родительный (Genitive)",
-   "explain": "«неприличных слов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«неприличных слов» depends on the noun «Словарь» (whose? of what?) — genitive.",
    "id": "c6"
   },
   {
@@ -67,22 +39,8 @@
    ],
    "correct": "женского чулка",
    "case": "Родительный (Genitive)",
-   "explain": "«женского чулка» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«женского чулка» depends on the noun «Записки» (whose? of what?) — genitive.",
    "id": "c7"
-  },
-  {
-   "sentence": "___ для молодых людей.",
-   "lemma": "книга",
-   "options": [
-    "настольная книга",
-    "настольной книгой",
-    "настольной книги",
-    "настольной книге"
-   ],
-   "correct": "настольная книга",
-   "case": "Именительный (Nominative)",
-   "explain": "«Настольная книга» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
   },
   {
    "sentence": "Настольная книга для ___.",
@@ -95,7 +53,7 @@
    ],
    "correct": "молодых людей",
    "case": "Родительный (Genitive)",
-   "explain": "«молодых людей» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«молодых людей» — «для» always takes the genitive.",
    "id": "c9"
   },
   {
@@ -109,64 +67,8 @@
    ],
    "correct": "младшего возраста",
    "case": "Родительный (Genitive)",
-   "explain": "«младшего возраста» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«младшего возраста» depends on the noun «детей» (whose? of what?) — genitive.",
    "id": "c10"
-  },
-  {
-   "sentence": "Покупающие более чем на 50 р. получают бесплатно 50 ___ и часовой ключик с панорамой.",
-   "lemma": "карточка",
-   "options": [
-    "фотографических карточек",
-    "фотографическим карточкам",
-    "фотографических карточках",
-    "фотографические карточки"
-   ],
-   "correct": "фотографических карточек",
-   "case": "Родительный (Genitive)",
-   "explain": "«фотографических карточек» — the genitive here marks possession, absence, or quantity.",
-   "id": "c11"
-  },
-  {
-   "sentence": "Покупающие более чем на 50 р. получают бесплатно 50 фотографических карточек и ___ с панорамой.",
-   "lemma": "ключик",
-   "options": [
-    "часового ключика",
-    "часовой ключик",
-    "часовом ключике",
-    "часовым ключиком"
-   ],
-   "correct": "часовой ключик",
-   "case": "Именительный (Nominative)",
-   "explain": "«часовой ключик» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
-  },
-  {
-   "sentence": "___, собственную конюшню для собственных ослов, собственный дом для умалишенных, собственное долговое отделение и собственную портерную.",
-   "lemma": "дом",
-   "options": [
-    "собственном доме",
-    "собственный дом",
-    "собственному дому",
-    "собственного дома"
-   ],
-   "correct": "собственный дом",
-   "case": "Винительный (Accusative)",
-   "explain": "«собственный дом» — the accusative marks the direct object of the verb.",
-   "id": "c16"
-  },
-  {
-   "sentence": "___, собственную конюшню для собственных ослов, собственный дом для умалишенных, собственное долговое отделение и собственную портерную.",
-   "lemma": "дом",
-   "options": [
-    "собственном доме",
-    "собственный дом",
-    "собственному дому",
-    "собственного дома"
-   ],
-   "correct": "собственный дом",
-   "case": "Именительный (Nominative)",
-   "explain": "«собственный дом» — the subject of the sentence stands in the nominative.",
-   "id": "c18"
   },
   {
    "sentence": "Газета печатается на акциях ___.",
@@ -179,22 +81,8 @@
    ],
    "correct": "вышеупомянутого товарищества",
    "case": "Родительный (Genitive)",
-   "explain": "«вышеупомянутого товарищества» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«вышеупомянутого товарищества» depends on the noun «акциях» (whose? of what?) — genitive.",
    "id": "c19"
-  },
-  {
-   "sentence": "На случай обмороков от духоты (45° R) имеется врач и даровой ___.",
-   "lemma": "спирт",
-   "options": [
-    "нашатырный спирт",
-    "нашатырным спиртом",
-    "нашатырном спирте",
-    "нашатырному спирту"
-   ],
-   "correct": "нашатырный спирт",
-   "case": "Винительный (Accusative)",
-   "explain": "«нашатырный спирт» — the accusative marks the direct object of the verb.",
-   "id": "c25"
   }
  ]
 }

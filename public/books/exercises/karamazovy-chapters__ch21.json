@@ -1,62 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Спор кончился, но ___, столь развеселившийся Федор Павлович под конец вдруг нахмурился.",
-   "lemma": "дело",
-   "options": [
-    "странного дела",
-    "странному делу",
-    "странным делом",
-    "странное дело"
-   ],
-   "correct": "странное дело",
-   "case": "Именительный (Nominative)",
-   "explain": "«странное дело» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Нахмурился и хлопнул коньячку, и это уже была совсем ___.",
-   "lemma": "рюмка",
-   "options": [
-    "лишней рюмке",
-    "лишняя рюмка",
-    "лишней рюмки",
-    "лишней рюмкой"
-   ],
-   "correct": "лишняя рюмка",
-   "case": "Именительный (Nominative)",
-   "explain": "«лишняя рюмка» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
-   "sentence": "— А что до того, что он там про себя надумает, то ___, вообще говоря, надо пороть.",
-   "lemma": "мужик",
-   "options": [
-    "русскому мужику",
-    "русским мужиком",
-    "русском мужике",
-    "русского мужика"
-   ],
-   "correct": "русского мужика",
-   "case": "Винительный (Accusative)",
-   "explain": "«русского мужика» — the accusative marks the direct object of the verb.",
-   "id": "c3"
-  },
-  {
-   "sentence": "Мужик наш мошенник, его жалеть не стоит, и хорошо еще, что дерут его ___ и теперь.",
-   "lemma": "раз",
-   "options": [
-    "ином разе",
-    "иному разу",
-    "иной раз",
-    "иным разом"
-   ],
-   "correct": "иной раз",
-   "case": "Винительный (Accusative)",
-   "explain": "«иной раз» — the accusative marks the direct object of the verb.",
-   "id": "c4"
-  },
-  {
    "sentence": "Жаль, что давеча я у игумена за обед не сел да монахам про ___ не рассказал.",
    "lemma": "девка",
    "options": [
@@ -67,7 +11,7 @@
    ],
    "correct": "мокрых девок",
    "case": "Винительный (Accusative)",
-   "explain": "«Мокрых девок» — after the preposition «про», the accusative marks the direct object of the verb.",
+   "explain": "«мокрых девок» — «про» always takes the accusative.",
    "id": "c7"
   },
   {
@@ -81,36 +25,8 @@
    ],
    "correct": "русской земле",
    "case": "Дательный (Dative)",
-   "explain": "«русской земле» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«русской земле» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c8"
-  },
-  {
-   "sentence": "А мы, ___, будем в тепле сидеть да коньячком пользоваться.",
-   "lemma": "человек",
-   "options": [
-    "умным людям",
-    "умных людях",
-    "умные люди",
-    "умными людьми"
-   ],
-   "correct": "умные люди",
-   "case": "Именительный (Nominative)",
-   "explain": "«умные люди» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
-  },
-  {
-   "sentence": "— Ну так, значит, и я ___, и у меня русская черта, и тебя, философа, можно тоже на своей черте поймать в этом же роде.",
-   "lemma": "человек",
-   "options": [
-    "русским человеком",
-    "русский человек",
-    "русского человека",
-    "русском человеке"
-   ],
-   "correct": "русский человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«русский человек» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
   },
   {
    "sentence": "Повесить его мало на ___.",
@@ -123,36 +39,8 @@
    ],
    "correct": "горькой осине",
    "case": "Предложный (Prepositional)",
-   "explain": "«горькой осине» — after the preposition «на», for location or topic.",
+   "explain": "«горькой осине» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c13"
-  },
-  {
-   "sentence": "Да он всем говорит это сам, то есть не всем, а всем ___, которые приезжают.",
-   "lemma": "человек",
-   "options": [
-    "умными людьми",
-    "умным людям",
-    "умных людей",
-    "умные люди"
-   ],
-   "correct": "умным людям",
-   "case": "Дательный (Dative)",
-   "explain": "«умным людям» — the dative marks the indirect object or recipient.",
-   "id": "c15"
-  },
-  {
-   "sentence": "— Тот ему как ___ привез: «Сохрани, брат, у меня назавтра обыск».",
-   "lemma": "человек",
-   "options": [
-    "добром человеке",
-    "добрым человеком",
-    "доброму человеку",
-    "добрый человек"
-   ],
-   "correct": "доброму человеку",
-   "case": "Дательный (Dative)",
-   "explain": "«доброму человеку» — the dative marks the indirect object or recipient.",
-   "id": "c17"
   },
   {
    "sentence": "— Врешь, это ты по злобе на меня, по ___.",
@@ -165,7 +53,7 @@
    ],
    "correct": "единственной злобе",
    "case": "Дательный (Dative)",
-   "explain": "«единственной злобе» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«единственной злобе» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c18"
   },
   {
@@ -179,7 +67,7 @@
    ],
    "correct": "злая душа",
    "case": "Именительный (Nominative)",
-   "explain": "«злая душа» — the subject of the sentence stands in the nominative.",
+   "explain": "«злая душа» is the subject of «хочется» — who or what does it — so nominative.",
    "id": "c19"
   },
   {
@@ -193,7 +81,7 @@
    ],
    "correct": "третий раз",
    "case": "Винительный (Accusative)",
-   "explain": "«третий раз» — the accusative marks the direct object of the verb.",
+   "explain": "«третий раз» tells how long or how often, with no preposition — accusative.",
    "id": "c20"
   },
   {
@@ -207,7 +95,7 @@
    ],
    "correct": "прочих дураков",
    "case": "Винительный (Accusative)",
-   "explain": "«прочих дураков» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«прочих дураков» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c23"
   },
   {
@@ -221,7 +109,7 @@
    ],
    "correct": "первый год",
    "case": "Винительный (Accusative)",
-   "explain": "«первый год» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«первый год» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c25"
   }
  ]

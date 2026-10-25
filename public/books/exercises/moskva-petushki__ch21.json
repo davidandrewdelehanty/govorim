@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Последние, ___ Антона Чехова какие были?",
-   "lemma": "слово",
-   "options": [
-    "предсмертным словам",
-    "предсмертные слова",
-    "предсмертных слов",
-    "предсмертными словами"
-   ],
-   "correct": "предсмертные слова",
-   "case": "Именительный (Nominative)",
-   "explain": "«предсмертные слова» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
    "sentence": "– И пил из ___?",
    "lemma": "бокал",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "розового бокала",
    "case": "Родительный (Genitive)",
-   "explain": "«розового бокала» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«розового бокала» — «из» always takes the genitive.",
    "id": "c3"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "розового бокала",
    "case": "Родительный (Genitive)",
-   "explain": "«розового бокала» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«розового бокала» — «из» always takes the genitive.",
    "id": "c4"
   },
   {
@@ -53,232 +39,36 @@
    ],
    "correct": "розового бокала",
    "case": "Родительный (Genitive)",
-   "explain": "«розового бокала» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«розового бокала» — «из» always takes the genitive.",
    "id": "c5"
-  },
-  {
-   "sentence": "Все ___ России, все нужные ей люди – все пили, как свиньи.",
-   "lemma": "человек",
-   "options": [
-    "ценными людьми",
-    "ценные люди",
-    "ценным людям",
-    "ценных людей"
-   ],
-   "correct": "ценные люди",
-   "case": "Именительный (Nominative)",
-   "explain": "«ценные люди» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
-  },
-  {
-   "sentence": "Евгений Онегин в гостях у Лариных и выпил-то всего-навсего ___, и то его понос пробрал.",
-   "lemma": "вода",
-   "options": [
-    "брусничной воде",
-    "брусничной водой",
-    "брусничная вода",
-    "брусничной воды"
-   ],
-   "correct": "брусничной воды",
-   "case": "Родительный (Genitive)",
-   "explain": "«брусничной воды» — the genitive here marks possession, absence, or quantity.",
-   "id": "c9"
-  },
-  {
-   "sentence": "Отчаянно пили! все ___ России! а отчего они пили? – с отчаяния пили! пили оттого, что честны, оттого, что не в силах были облегчить участь народа!",
-   "lemma": "человек",
-   "options": [
-    "честных людей",
-    "честным людям",
-    "честные люди",
-    "честных людях"
-   ],
-   "correct": "честные люди",
-   "case": "Именительный (Nominative)",
-   "explain": "«честные люди» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
-  },
-  {
-   "sentence": "___, пьют все больше и больше!",
-   "lemma": "слово",
-   "options": [
-    "других слов",
-    "другие слова",
-    "другими словами",
-    "другим словам"
-   ],
-   "correct": "другими словами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«Другими словами» — the instrumental marks the means, company, or complement.",
-   "id": "c15"
   },
   {
    "sentence": "Вот ___ Гёте, например, совсем не пил.",
    "lemma": "советник",
    "options": [
     "тайный советник",
-    "тайного советника",
     "тайному советнику",
+    "тайном советнике",
     "тайным советником"
    ],
    "correct": "тайный советник",
    "case": "Именительный (Nominative)",
-   "explain": "«тайный советник» — the subject of the sentence stands in the nominative.",
+   "explain": "«тайный советник» is the subject of «пил» — who or what does it — so nominative.",
    "id": "c16"
-  },
-  {
-   "sentence": "На глазах у публики рушилась вся его система, такая ___, сотканная из пылких и блестящих натяжек.",
-   "lemma": "система",
-   "options": [
-    "стройной системы",
-    "стройной системе",
-    "стройная система",
-    "стройной системой"
-   ],
-   "correct": "стройная система",
-   "case": "Именительный (Nominative)",
-   "explain": "«стройная система» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
-  },
-  {
-   "sentence": "На глазах у публики рушилась вся его система, такая стройная система, сотканная из пылких и ___.",
-   "lemma": "натяжка",
-   "options": [
-    "блестящим натяжкам",
-    "блестящими натяжками",
-    "блестящих натяжках",
-    "блестящих натяжек"
-   ],
-   "correct": "блестящих натяжек",
-   "case": "Родительный (Genitive)",
-   "explain": "«блестящих натяжек» — the genitive here marks possession, absence, or quantity.",
-   "id": "c18"
   },
   {
    "sentence": "– Так вы говорите: ___ Гёте не пил ни грамма? – я повернулся к декабристу. – А почему он не пил, вы знаете?",
    "lemma": "советник",
    "options": [
-    "тайный советник",
-    "тайного советника",
-    "тайному советнику",
-    "тайным советником"
-   ],
-   "correct": "тайный советник",
-   "case": "Именительный (Nominative)",
-   "explain": "«тайный советник» — the subject of the sentence stands in the nominative.",
-   "id": "c19"
-  },
-  {
-   "sentence": "Все ___ пили, а он – не пил?",
-   "lemma": "ум",
-   "options": [
-    "честных умов",
-    "честными умами",
-    "честных умах",
-    "честные умы"
-   ],
-   "correct": "честные умы",
-   "case": "Именительный (Nominative)",
-   "explain": "«честные умы» — the subject of the sentence stands in the nominative.",
-   "id": "c20"
-  },
-  {
-   "sentence": "Вот так поступал и Иоганн фон Гёте, ___.",
-   "lemma": "дурак",
-   "options": [
-    "старым дураком",
-    "старого дурака",
-    "старый дурак",
-    "старому дураку"
-   ],
-   "correct": "старый дурак",
-   "case": "Именительный (Nominative)",
-   "explain": "«старый дурак» — the subject of the sentence stands in the nominative.",
-   "id": "c21"
-  },
-  {
-   "sentence": "Вы спросите: для чего это нужно было ___ Гёте?",
-   "lemma": "советник",
-   "options": [
-    "тайному советнику",
-    "тайный советник",
+    "тайном советнике",
     "тайным советником",
-    "тайного советника"
-   ],
-   "correct": "тайному советнику",
-   "case": "Дательный (Dative)",
-   "explain": "«тайному советнику» — the dative marks the indirect object or recipient.",
-   "id": "c22"
-  },
-  {
-   "sentence": "Вот так же он и пил, как стрелялся, ваш ___.",
-   "lemma": "советник",
-   "options": [
     "тайный советник",
-    "тайного советника",
-    "тайному советнику",
-    "тайным советником"
+    "тайному советнику"
    ],
    "correct": "тайный советник",
    "case": "Именительный (Nominative)",
-   "explain": "«тайный советник» — the subject of the sentence stands in the nominative.",
-   "id": "c24"
-  },
-  {
-   "sentence": "Мефистофель выпьет – а ему хорошо, ___.",
-   "lemma": "пёс",
-   "options": [
-    "старым псом",
-    "старом псе",
-    "старого пса",
-    "старому псу"
-   ],
-   "correct": "старому псу",
-   "case": "Дательный (Dative)",
-   "explain": "«старому псу» — the dative marks the indirect object or recipient.",
-   "id": "c25"
-  },
-  {
-   "sentence": "Фауст добавит – а он, ___, уже лыка не вяжет.",
-   "lemma": "хрен",
-   "options": [
-    "старым хреном",
-    "старого хрена",
-    "старом хрене",
-    "старый хрен"
-   ],
-   "correct": "старый хрен",
-   "case": "Именительный (Nominative)",
-   "explain": "«старый хрен» — the subject of the sentence stands in the nominative.",
-   "id": "c26"
-  },
-  {
-   "sentence": "Алкоголик он был, алкаш он был, ваш ___ Иоганн фон Гёте!",
-   "lemma": "советник",
-   "options": [
-    "тайный советник",
-    "тайного советника",
-    "тайному советнику",
-    "тайным советником"
-   ],
-   "correct": "тайный советник",
-   "case": "Именительный (Nominative)",
-   "explain": "«тайный советник» — the subject of the sentence stands in the nominative.",
-   "id": "c27"
-  },
-  {
-   "sentence": "___ была восстановлена, и вместе с ней восстановилось веселье.",
-   "lemma": "система",
-   "options": [
-    "стройной системой",
-    "стройной системы",
-    "стройная система",
-    "стройной системе"
-   ],
-   "correct": "стройная система",
-   "case": "Именительный (Nominative)",
-   "explain": "«Стройная система» — the subject of the sentence stands in the nominative.",
-   "id": "c28"
+   "explain": "«тайный советник» is the subject of «пил» — who or what does it — so nominative.",
+   "id": "c19"
   },
   {
    "sentence": "Декабрист – широким жестом – вытащил из ___ бутылку перцовой и поставил ее у ног черноусого.",
@@ -291,7 +81,7 @@
    ],
    "correct": "коверкотового пальто",
    "case": "Родительный (Genitive)",
-   "explain": "«коверкотового пальто» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«коверкотового пальто» — «из» always takes the genitive.",
    "id": "c30"
   },
   {
@@ -305,7 +95,7 @@
    ],
    "correct": "тайного советника",
    "case": "Родительный (Genitive)",
-   "explain": "«тайного советника» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«тайного советника» depends on the noun «здоровье» (whose? of what?) — genitive.",
    "id": "c32"
   }
  ]

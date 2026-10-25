@@ -1,46 +1,18 @@
 {
  "cases": [
   {
-   "sentence": "Лазутчик доносил, что французы в огромных силах, перейдя ___, направились на путь сообщения Кутузова с войсками, шедшими из России.",
-   "lemma": "мост",
-   "options": [
-    "венском мосте",
-    "венский мост",
-    "венского моста",
-    "венскому мосту"
-   ],
-   "correct": "венский мост",
-   "case": "Винительный (Accusative)",
-   "explain": "«венский мост» — the accusative marks the direct object of the verb.",
-   "id": "c2"
-  },
-  {
    "sentence": "Кутузов избрал этот ___.",
    "lemma": "выход",
    "options": [
-    "последнем выходе",
-    "последнего выхода",
     "последним выходом",
-    "последний выход"
+    "последний выход",
+    "последнему выходу",
+    "последнем выходе"
    ],
    "correct": "последний выход",
    "case": "Винительный (Accusative)",
-   "explain": "«последний выход» — the accusative marks the direct object of the verb.",
+   "explain": "«последний выход» is the direct object of «избрал» (кого? что?) — accusative.",
    "id": "c3"
-  },
-  {
-   "sentence": "Французы, как доносил лазутчик, перейдя мост в Вене, ___ шли на Цнайм, лежавший на пути отступления Кутузова, впереди его более чем на сто верст.",
-   "lemma": "марш",
-   "options": [
-    "усиленном марше",
-    "усиленного марша",
-    "усиленный марш",
-    "усиленным маршем"
-   ],
-   "correct": "усиленным маршем",
-   "case": "Творительный (Instrumental)",
-   "explain": "«усиленным маршем» — the instrumental marks the means, company, or complement.",
-   "id": "c4"
   },
   {
    "sentence": "Но ___ сделала невозможное возможным.",
@@ -53,36 +25,22 @@
    ],
    "correct": "странная судьба",
    "case": "Именительный (Nominative)",
-   "explain": "«странная судьба» — the subject of the sentence stands in the nominative.",
+   "explain": "«странная судьба» is the subject of «сделала» — who or what does it — so nominative.",
    "id": "c6"
   },
   {
    "sentence": "Успех того обмана, который без боя отдал ___ в руки французов, побудил Мюрата попытаться обмануть так же и Кутузова.",
    "lemma": "мост",
    "options": [
-    "венском мосте",
+    "венским мостом",
     "венский мост",
-    "венского моста",
+    "венском мосте",
     "венскому мосту"
    ],
    "correct": "венский мост",
    "case": "Винительный (Accusative)",
-   "explain": "«венский мост» — the accusative marks the direct object of the verb.",
+   "explain": "«венский мост» is the direct object of «отдал» (кого? что?) — accusative.",
    "id": "c7"
-  },
-  {
-   "sentence": "Мюрат, встретив ___ Багратиона на цнаймской дороге, подумал, что это была вся армия Кутузова.",
-   "lemma": "отряд",
-   "options": [
-    "слабого отряда",
-    "слабый отряд",
-    "слабом отряде",
-    "слабым отрядом"
-   ],
-   "correct": "слабый отряд",
-   "case": "Винительный (Accusative)",
-   "explain": "«слабый отряд» — the accusative marks the direct object of the verb.",
-   "id": "c8"
   },
   {
    "sentence": "Мюрат, встретив слабый отряд Багратиона на ___, подумал, что это была вся армия Кутузова.",
@@ -95,36 +53,22 @@
    ],
    "correct": "цнаймской дороге",
    "case": "Предложный (Prepositional)",
-   "explain": "«цнаймской дороге» — after the preposition «на», for location or topic.",
+   "explain": "«цнаймской дороге» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c9"
   },
   {
    "sentence": "Чтобы несомненно раздавить эту армию, он поджидал отставшие по дороге из Вены войска и с этою целью предложил перемирие на три дня, с условием, чтобы те и ___ не изменяли своих положений и не трогались с места.",
    "lemma": "войско",
    "options": [
-    "другими войсками",
     "другие войска",
-    "другим войскам",
-    "других войск"
+    "других войсках",
+    "другими войсками",
+    "другим войскам"
    ],
    "correct": "другие войска",
    "case": "Именительный (Nominative)",
-   "explain": "«другие войска» — the subject of the sentence stands in the nominative.",
+   "explain": "«другие войска» is the subject of «изменяли» — who or what does it — so nominative.",
    "id": "c10"
-  },
-  {
-   "sentence": "___ граф Ностиц, стоявший на аванпостах, поверил словам парламентера Мюрата и отступил, открыв отряд Багратиона.",
-   "lemma": "генерал",
-   "options": [
-    "австрийским генералом",
-    "австрийский генерал",
-    "австрийском генерале",
-    "австрийского генерала"
-   ],
-   "correct": "австрийский генерал",
-   "case": "Именительный (Nominative)",
-   "explain": "«Австрийский генерал» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
   },
   {
    "sentence": "Другой парламентер поехал в русскую цепь объявить то же известие о ___ и предложить перемирие русским войскам на три дня.",
@@ -137,7 +81,7 @@
    ],
    "correct": "мирных переговорах",
    "case": "Предложный (Prepositional)",
-   "explain": "«мирных переговорах» — after the preposition «о», for location or topic.",
+   "explain": "«мирных переговорах» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c12"
   },
   {
@@ -151,7 +95,7 @@
    ],
    "correct": "кремско-цнаймской дороге",
    "case": "Дательный (Dative)",
-   "explain": "«кремско-цнаймской дороге» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«кремско-цнаймской дороге» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c15"
   },
   {
@@ -165,7 +109,7 @@
    ],
    "correct": "грозным письмом",
    "case": "Творительный (Instrumental)",
-   "explain": "«грозным письмом» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«грозным письмом» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c16"
   }
  ]

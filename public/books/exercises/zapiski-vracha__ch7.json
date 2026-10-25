@@ -1,48 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Существует, как известно, три венерических болезни: гоноррея, ___ и сифилис.",
-   "lemma": "язва",
-   "options": [
-    "мягкая язва",
-    "мягкой язве",
-    "мягкой язвой",
-    "мягкой язвы"
-   ],
-   "correct": "мягкая язва",
-   "case": "Именительный (Nominative)",
-   "explain": "«мягкая язва» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
-  },
-  {
-   "sentence": "___, обусловливающий гоноррею, был открыт Нейсером в 1879 году.",
-   "lemma": "микроорганизм",
-   "options": [
-    "специфическим микроорганизмом",
-    "специфическому микроорганизму",
-    "специфический микроорганизм",
-    "специфического микроорганизма"
-   ],
-   "correct": "специфический микроорганизм",
-   "case": "Именительный (Nominative)",
-   "explain": "«Специфический микроорганизм» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
-  },
-  {
-   "sentence": "Его образцово поставленные опыты доказывали с большою вероятностью, что открытый им «гонококк» и есть ___ гонорреи.",
-   "lemma": "возбудитель",
-   "options": [
-    "специфический возбудитель",
-    "специфическому возбудителю",
-    "специфическим возбудителем",
-    "специфического возбудителя"
-   ],
-   "correct": "специфический возбудитель",
-   "case": "Именительный (Nominative)",
-   "explain": "«специфический возбудитель» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
-  },
-  {
    "sentence": "Способ ___, употребленный Бокгартом, был очень несовершенный, и его опыт большого научного значения не имел.",
    "lemma": "разводка",
    "options": [
@@ -53,7 +11,7 @@
    ],
    "correct": "чистой разводки",
    "case": "Родительный (Genitive)",
-   "explain": "«чистой разводки» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«чистой разводки» depends on the noun «Способ» (whose? of what?) — genitive.",
    "id": "c8"
   },
   {
@@ -67,22 +25,8 @@
    ],
    "correct": "научного значения",
    "case": "Родительный (Genitive)",
-   "explain": "«научного значения» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«научного значения» depends on the noun «опыт» (whose? of what?) — genitive.",
    "id": "c9"
-  },
-  {
-   "sentence": "Чтобы доказать ее специфичность, Бумм ушком ___ привил культуру на мочевой канал женщины, мочеполовые пути которой при повторном исследовании были найдены нормальными.",
-   "lemma": "проволока",
-   "options": [
-    "платиновая проволока",
-    "платиновой проволокой",
-    "платиновой проволоки",
-    "платиновой проволоке"
-   ],
-   "correct": "платиновой проволоки",
-   "case": "Родительный (Genitive)",
-   "explain": "«платиновой проволоки» — the genitive here marks possession, absence, or quantity.",
-   "id": "c10"
   },
   {
    "sentence": "Чтобы доказать ее специфичность, Бумм ушком платиновой проволоки привил культуру на мочевой канал женщины, мочеполовые пути которой при ___ были найдены нормальными.",
@@ -95,7 +39,7 @@
    ],
    "correct": "повторном исследовании",
    "case": "Предложный (Prepositional)",
-   "explain": "«повторном исследовании» — after the preposition «при», for location or topic.",
+   "explain": "«повторном исследовании» — «при» always takes the prepositional.",
    "id": "c11"
   },
   {
@@ -109,78 +53,22 @@
    ],
    "correct": "типический уретрит",
    "case": "Именительный (Nominative)",
-   "explain": "«типический уретрит» — the subject of the sentence stands in the nominative.",
+   "explain": "«типический уретрит» is the subject of «Развился» — who or what does it — so nominative.",
    "id": "c12"
-  },
-  {
-   "sentence": "Исследуя ___ своих разводок, Бумм таким же образом привил гонококка еще другой женщине.",
-   "lemma": "особенность",
-   "options": [
-    "различных особенностях",
-    "различными особенностями",
-    "различные особенности",
-    "различным особенностям"
-   ],
-   "correct": "различные особенности",
-   "case": "Винительный (Accusative)",
-   "explain": "«различные особенности» — the accusative marks the direct object of the verb.",
-   "id": "c13"
-  },
-  {
-   "sentence": "Исследуя различные особенности своих разводок, Бумм таким же образом привил гонококка еще ___.",
-   "lemma": "женщина",
-   "options": [
-    "другая женщина",
-    "другой женщины",
-    "другой женщиной",
-    "другой женщине"
-   ],
-   "correct": "другой женщине",
-   "case": "Дательный (Dative)",
-   "explain": "«другой женщине» — the dative marks the indirect object or recipient.",
-   "id": "c14"
   },
   {
    "sentence": "Правда, по словам Бумма, в его опытах «были приняты все (?) меры предосторожности против заражения ___», но дело в том, что эти «все» меры крайне ненадежны.",
    "lemma": "орган",
    "options": [
-    "половыми органами",
-    "половые органы",
+    "половых органов",
     "половым органам",
-    "половых органов"
+    "половые органы",
+    "половых органах"
    ],
    "correct": "половых органов",
    "case": "Родительный (Genitive)",
-   "explain": "«половых органов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«половых органов» depends on the noun «заражения» (whose? of what?) — genitive.",
    "id": "c16"
-  },
-  {
-   "sentence": "Притом к очень тяжелым последствиям может повести гоноррейное заболевание и одних ___.",
-   "lemma": "путь",
-   "options": [
-    "мочевых путей",
-    "мочевые пути",
-    "мочевыми путями",
-    "мочевым путям"
-   ],
-   "correct": "мочевых путей",
-   "case": "Родительный (Genitive)",
-   "explain": "«мочевых путей» — the genitive here marks possession, absence, or quantity.",
-   "id": "c17"
-  },
-  {
-   "sentence": "___ вперед в культивировке гонококка был сделан д-ром Эрнстом.",
-   "lemma": "шаг",
-   "options": [
-    "дальнейшего шага",
-    "дальнейшем шаге",
-    "дальнейшему шагу",
-    "дальнейший шаг"
-   ],
-   "correct": "дальнейший шаг",
-   "case": "Именительный (Nominative)",
-   "explain": "«Дальнейший шаг» — the subject of the sentence stands in the nominative.",
-   "id": "c18"
   },
   {
    "sentence": "Вертгейм не делал «за недостатком в ___» (Замечу, что этот же Вертгейм два раза впрыснул себе под кожу чистые разводки гонококков, — оба раза с положительным результатом).",
@@ -193,36 +81,22 @@
    ],
    "correct": "соответственном материале",
    "case": "Предложный (Prepositional)",
-   "explain": "«соответственном материале» — after the preposition «в», for location or topic.",
+   "explain": "«соответственном материале» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c19"
   },
   {
    "sentence": "Вертгейм не делал «за недостатком в соответственном материале» (Замечу, что этот же Вертгейм два раза впрыснул себе под кожу ___ гонококков, — оба раза с положительным результатом).",
    "lemma": "разводка",
    "options": [
+    "чистых разводках",
     "чистым разводкам",
-    "чистых разводок",
-    "чистыми разводками",
-    "чистые разводки"
+    "чистые разводки",
+    "чистыми разводками"
    ],
    "correct": "чистые разводки",
    "case": "Винительный (Accusative)",
-   "explain": "«чистые разводки» — the accusative marks the direct object of the verb.",
+   "explain": "«чистые разводки» is the direct object of «впрыснул» (кого? что?) — accusative.",
    "id": "c20"
-  },
-  {
-   "sentence": "Вертгейм не делал «за недостатком в соответственном материале» (Замечу, что этот же Вертгейм два раза впрыснул себе под кожу чистые разводки гонококков, — оба раза с ___).",
-   "lemma": "результат",
-   "options": [
-    "положительный результат",
-    "положительному результату",
-    "положительном результате",
-    "положительным результатом"
-   ],
-   "correct": "положительным результатом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«положительным результатом» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c21"
   },
   {
    "sentence": "Не заходя далеко в старину, я изложу его историю лишь со времени знаменитого ___.",
@@ -235,36 +109,8 @@
    ],
    "correct": "французского сифилидолога",
    "case": "Родительный (Genitive)",
-   "explain": "«французского сифилидолога» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«французского сифилидолога» depends on the noun «времени» (whose? of what?) — genitive.",
    "id": "c22"
-  },
-  {
-   "sentence": "Одной из таких весьма ___ было утверждение Рикора, что сифилис в своей вторичной стадии незаразителен.",
-   "lemma": "ошибка",
-   "options": [
-    "прискорбных ошибках",
-    "прискорбные ошибки",
-    "прискорбными ошибками",
-    "прискорбных ошибок"
-   ],
-   "correct": "прискорбных ошибок",
-   "case": "Родительный (Genitive)",
-   "explain": "«прискорбных ошибок» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
-   "id": "c23"
-  },
-  {
-   "sentence": "Одним из первых высказался за заразительность ___ сифилиса дублинский врач Вильям Уоллес в своих замечательных «Клинических лекциях о венерических болезнях».",
-   "lemma": "явление",
-   "options": [
-    "вторичных явлениях",
-    "вторичные явления",
-    "вторичных явлений",
-    "вторичными явлениями"
-   ],
-   "correct": "вторичных явлений",
-   "case": "Родительный (Genitive)",
-   "explain": "«вторичных явлений» — after the preposition «в», the genitive here marks possession, absence, or quantity.",
-   "id": "c24"
   },
   {
    "sentence": "Одним из первых высказался за заразительность вторичных явлений сифилиса ___ Вильям Уоллес в своих замечательных «Клинических лекциях о венерических болезнях».",
@@ -277,64 +123,8 @@
    ],
    "correct": "дублинский врач",
    "case": "Именительный (Nominative)",
-   "explain": "«дублинский врач» — the subject of the sentence stands in the nominative.",
+   "explain": "«дублинский врач» is the subject of «высказался» — who or what does it — so nominative.",
    "id": "c25"
-  },
-  {
-   "sentence": "Одним из первых высказался за заразительность вторичных явлений сифилиса дублинский врач Вильям Уоллес в своих замечательных «___ о венерических болезнях».",
-   "lemma": "лекция",
-   "options": [
-    "клинических лекциях",
-    "клиническим лекциям",
-    "клинических лекций",
-    "клинические лекции"
-   ],
-   "correct": "клинических лекциях",
-   "case": "Предложный (Prepositional)",
-   "explain": "«Клинических лекциях» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c26"
-  },
-  {
-   "sentence": "Лекции эти замечательны по тому ___, с каким Уоллес рассказывает о своих разбойничьих опытах прививки сифилиса здоровым людям.",
-   "lemma": "бесстыдство",
-   "options": [
-    "классического бесстыдства",
-    "классическом бесстыдстве",
-    "классическому бесстыдству",
-    "классическое бесстыдство"
-   ],
-   "correct": "классическому бесстыдству",
-   "case": "Дательный (Dative)",
-   "explain": "«классическому бесстыдству» — the dative marks the indirect object or recipient.",
-   "id": "c28"
-  },
-  {
-   "sentence": "Лекции эти замечательны по тому классическому бесстыдству, с каким Уоллес рассказывает о своих ___ прививки сифилиса здоровым людям.",
-   "lemma": "опыт",
-   "options": [
-    "разбойничьих опытах",
-    "разбойничьими опытами",
-    "разбойничьих опытов",
-    "разбойничьи опыты"
-   ],
-   "correct": "разбойничьих опытах",
-   "case": "Предложный (Prepositional)",
-   "explain": "«разбойничьих опытах» — after the preposition «о», for location or topic.",
-   "id": "c29"
-  },
-  {
-   "sentence": "В дальнейших лекциях Уоллес подробно рассказывает о прививках, сделанных им пяти ___ в возрасте от 19 до 35 лет.",
-   "lemma": "человек",
-   "options": [
-    "здоровых людях",
-    "здоровых людей",
-    "здоровым людям",
-    "здоровыми людьми"
-   ],
-   "correct": "здоровым людям",
-   "case": "Дательный (Dative)",
-   "explain": "«здоровым людям» — the dative marks the indirect object or recipient.",
-   "id": "c32"
   },
   {
    "sentence": "У всех развился ___ (Clinical leslures on venereal diseases. The Lancet for 1836 — 37. Vol. II, pp. 535, 536, 538, 620, 621).",
@@ -347,7 +137,7 @@
    ],
    "correct": "характерный сифилис",
    "case": "Именительный (Nominative)",
-   "explain": "«характерный сифилис» — the subject of the sentence stands in the nominative.",
+   "explain": "«характерный сифилис» is the subject of «развился» — who or what does it — so nominative.",
    "id": "c33"
   },
   {
@@ -361,7 +151,7 @@
    ],
    "correct": "правого бедра",
    "case": "Родительный (Genitive)",
-   "explain": "«правого бедра» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«правого бедра» depends on the noun «коже» (whose? of what?) — genitive.",
    "id": "c36"
   },
   {
@@ -375,7 +165,7 @@
    ],
    "correct": "правой щеки",
    "case": "Родительный (Genitive)",
-   "explain": "«правой щеки» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«правой щеки» depends on the noun «волчанкою» (whose? of what?) — genitive.",
    "id": "c37"
   },
   {
@@ -389,7 +179,7 @@
    ],
    "correct": "повсеместной проверки",
    "case": "Родительный (Genitive)",
-   "explain": "«повсеместной проверки» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«повсеместной проверки» — «для» always takes the genitive.",
    "id": "c38"
   },
   {
@@ -403,7 +193,7 @@
    ],
    "correct": "вторичного сифилиса",
    "case": "Родительный (Genitive)",
-   "explain": "«вторичного сифилиса» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«вторичного сифилиса» depends on the noun «заразительности» (whose? of what?) — genitive.",
    "id": "c39"
   },
   {
@@ -417,7 +207,7 @@
    ],
    "correct": "особое стечение",
    "case": "Именительный (Nominative)",
-   "explain": "«Особое стечение» — the subject of the sentence stands in the nominative.",
+   "explain": "«особое стечение» is the subject of «доставило» — who or what does it — so nominative.",
    "id": "c40"
   },
   {
@@ -431,7 +221,7 @@
    ],
    "correct": "вторичного сифилиса",
    "case": "Родительный (Genitive)",
-   "explain": "«вторичного сифилиса» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«вторичного сифилиса» depends on the noun «заразительности» (whose? of what?) — genitive.",
    "id": "c41"
   },
   {
@@ -445,7 +235,7 @@
    ],
    "correct": "вторичного сифилиса",
    "case": "Родительный (Genitive)",
-   "explain": "«вторичного сифилиса» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«вторичного сифилиса» depends on the noun «заразительности» (whose? of what?) — genitive.",
    "id": "c42"
   },
   {
@@ -459,7 +249,7 @@
    ],
    "correct": "киевского профессора",
    "case": "Родительный (Genitive)",
-   "explain": "«киевского профессора» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«киевского профессора» depends on the noun «исследования» (whose? of what?) — genitive.",
    "id": "c43"
   },
   {
@@ -473,7 +263,7 @@
    ],
    "correct": "следующие опыты",
    "case": "Именительный (Nominative)",
-   "explain": "«следующие опыты» — the subject of the sentence stands in the nominative.",
+   "explain": "«следующие опыты» is the subject of «произведены» — who or what does it — so nominative.",
    "id": "c44"
   },
   {
@@ -487,7 +277,7 @@
    ],
    "correct": "пятой неделе",
    "case": "Предложный (Prepositional)",
-   "explain": "«пятой неделе» — after the preposition «на», for location or topic.",
+   "explain": "«пятой неделе» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c46"
   },
   {
@@ -501,50 +291,8 @@
    ],
    "correct": "сифилитическое страдание",
    "case": "Именительный (Nominative)",
-   "explain": "«сифилитическое страдание» — the subject of the sentence stands in the nominative.",
+   "explain": "«сифилитическое страдание» is the subject of «стало» — who or what does it — so nominative.",
    "id": "c47"
-  },
-  {
-   "sentence": "Я продержал больного в этом положении еще целую неделю для того, чтобы показать его по возможности ___ врачей и дать им возможность удостовериться в действительности факта.",
-   "lemma": "число",
-   "options": [
-    "большим числом",
-    "большему числу",
-    "большем числе",
-    "большего числа"
-   ],
-   "correct": "большему числу",
-   "case": "Дательный (Dative)",
-   "explain": "«большему числу» — the dative marks the indirect object or recipient.",
-   "id": "c48"
-  },
-  {
-   "sentence": "Марта 14 привита материя, взятая с покрытых ___ и изъязвленных миндалей солдата Нестерова.",
-   "lemma": "прыщ",
-   "options": [
-    "слизистыми прыщами",
-    "слизистых прыщах",
-    "слизистые прыщи",
-    "слизистых прыщей"
-   ],
-   "correct": "слизистыми прыщами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«слизистыми прыщами» — the instrumental marks the means, company, or complement.",
-   "id": "c49"
-  },
-  {
-   "sentence": "Гюббенетом первая ___ была произведена в 1852 году, последняя же в 1858.",
-   "lemma": "прививка",
-   "options": [
-    "удачной прививки",
-    "удачная прививка",
-    "удачной прививкой",
-    "удачной прививке"
-   ],
-   "correct": "удачная прививка",
-   "case": "Именительный (Nominative)",
-   "explain": "«удачная прививка» — the subject of the sentence stands in the nominative.",
-   "id": "c50"
   },
   {
    "sentence": "Я бы еще несколько успокоился относительно судьбы жертв, если бы опыты эти распространили в публике убеждение в заразительности ___.",
@@ -557,7 +305,7 @@
    ],
    "correct": "вторичных припадков",
    "case": "Родительный (Genitive)",
-   "explain": "«вторичных припадков» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«вторичных припадков» depends on the noun «заразительности» (whose? of what?) — genitive.",
    "id": "c51"
   },
   {
@@ -571,22 +319,8 @@
    ],
    "correct": "французское правительство",
    "case": "Именительный (Nominative)",
-   "explain": "«французское правительство» — the subject of the sentence stands in the nominative.",
+   "explain": "«французское правительство» is the subject of «обратилось» — who or what does it — so nominative.",
    "id": "c52"
-  },
-  {
-   "sentence": "В 1858 году французское правительство обратилось к Парижской медицинской академии за разрешением все еще остававшегося спорным вопроса, заразителен ли ___.",
-   "lemma": "сифилис",
-   "options": [
-    "вторичному сифилису",
-    "вторичный сифилис",
-    "вторичным сифилисом",
-    "вторичном сифилисе"
-   ],
-   "correct": "вторичный сифилис",
-   "case": "Именительный (Nominative)",
-   "explain": "«вторичный сифилис» — the subject of the sentence stands in the nominative.",
-   "id": "c53"
   },
   {
    "sentence": "___ сделал прививки двум другим больным, также страдавшим волчанкою, и также в обоих случаях получил сифилис.",
@@ -599,7 +333,7 @@
    ],
    "correct": "сам докладчик",
    "case": "Именительный (Nominative)",
-   "explain": "«Сам докладчик» — the subject of the sentence stands in the nominative.",
+   "explain": "«сам докладчик» is the subject of «сделал» — who or what does it — so nominative.",
    "id": "c54"
   },
   {
@@ -613,22 +347,8 @@
    ],
    "correct": "новых взглядов",
    "case": "Родительный (Genitive)",
-   "explain": "«новых взглядов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«новых взглядов» depends on the noun «противник» (whose? of what?) — genitive.",
    "id": "c55"
-  },
-  {
-   "sentence": "___ опытов был произведен различными исследователями по вопросу о том, заразительны ли во вторичной стадии сифилиса всевозможные нормальные и патологические, но не специфические отделения больного.",
-   "lemma": "ряд",
-   "options": [
-    "целым рядом",
-    "целому ряду",
-    "целый ряд",
-    "целом ряде"
-   ],
-   "correct": "целый ряд",
-   "case": "Именительный (Nominative)",
-   "explain": "«Целый ряд» — the subject of the sentence stands in the nominative.",
-   "id": "c58"
   },
   {
    "sentence": "Целый ряд опытов был произведен ___ по вопросу о том, заразительны ли во вторичной стадии сифилиса всевозможные нормальные и патологические, но не специфические отделения больного.",
@@ -641,22 +361,8 @@
    ],
    "correct": "различными исследователями",
    "case": "Творительный (Instrumental)",
-   "explain": "«различными исследователями» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «произведен», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c59"
-  },
-  {
-   "sentence": "Так, Бассэ прививал ___, взятый с сифилитика, на кожу здорового человека и получил отрицательный результат.",
-   "lemma": "гной",
-   "options": [
-    "гоноррейному гною",
-    "гоноррейного гноя",
-    "гоноррейным гноем",
-    "гоноррейный гной"
-   ],
-   "correct": "гоноррейный гной",
-   "case": "Винительный (Accusative)",
-   "explain": "«гоноррейный гной» — the accusative marks the direct object of the verb.",
-   "id": "c60"
   },
   {
    "sentence": "Так, Бассэ прививал гоноррейный гной, взятый с сифилитика, на кожу ___ и получил отрицательный результат.",
@@ -669,50 +375,8 @@
    ],
    "correct": "здорового человека",
    "case": "Родительный (Genitive)",
-   "explain": "«здорового человека» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«здорового человека» depends on the noun «кожу» (whose? of what?) — genitive.",
    "id": "c61"
-  },
-  {
-   "sentence": "Так, Бассэ прививал гоноррейный гной, взятый с сифилитика, на кожу здорового человека и получил ___.",
-   "lemma": "результат",
-   "options": [
-    "отрицательный результат",
-    "отрицательному результату",
-    "отрицательном результате",
-    "отрицательным результатом"
-   ],
-   "correct": "отрицательный результат",
-   "case": "Винительный (Accusative)",
-   "explain": "«отрицательный результат» — the accusative marks the direct object of the verb.",
-   "id": "c62"
-  },
-  {
-   "sentence": "В той же ___ проф.",
-   "lemma": "больница",
-   "options": [
-    "калинкинская больница",
-    "калинкинской больницей",
-    "калинкинской больнице",
-    "калинкинской больницы"
-   ],
-   "correct": "калинкинской больнице",
-   "case": "Предложный (Prepositional)",
-   "explain": "«Калинкинской больнице» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c63"
-  },
-  {
-   "sentence": "Тарновский сделал ряд опытов для проверки утверждения Кюллерье, что на цельную оболочку ___ не прививается.",
-   "lemma": "язва",
-   "options": [
-    "мягкая язва",
-    "мягкой язве",
-    "мягкой язвой",
-    "мягкой язвы"
-   ],
-   "correct": "мягкая язва",
-   "case": "Именительный (Nominative)",
-   "explain": "«мягкая язва» — the subject of the sentence stands in the nominative.",
-   "id": "c64"
   },
   {
    "sentence": "Ролле на ___ 1864 г. Caz. hebdomad. 1864, р. 706.",
@@ -725,50 +389,8 @@
    ],
    "correct": "лионском конгрессе",
    "case": "Предложный (Prepositional)",
-   "explain": "«Лионском конгрессе» — after the preposition «на», for location or topic.",
+   "explain": "«лионском конгрессе» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c65"
-  },
-  {
-   "sentence": "Можно ли передать сифилис отделяемым ___ сифилитика?",
-   "lemma": "язва",
-   "options": [
-    "мягкой язве",
-    "мягкая язва",
-    "мягкой язвой",
-    "мягкой язвы"
-   ],
-   "correct": "мягкой язвы",
-   "case": "Родительный (Genitive)",
-   "explain": "«мягкой язвы» — the genitive here marks possession, absence, or quantity.",
-   "id": "c66"
-  },
-  {
-   "sentence": "___ дали также четыре прививки Ригера, произведенные им в клинике Ринекера.",
-   "lemma": "результат",
-   "options": [
-    "отрицательный результат",
-    "отрицательном результате",
-    "отрицательного результата",
-    "отрицательному результату"
-   ],
-   "correct": "отрицательный результат",
-   "case": "Винительный (Accusative)",
-   "explain": "«Отрицательный результат» — the accusative marks the direct object of the verb.",
-   "id": "c67"
-  },
-  {
-   "sentence": "___ врачей. 1881, стр. 12.",
-   "lemma": "общество",
-   "options": [
-    "казанскому обществу",
-    "казанского общества",
-    "казанским обществом",
-    "казанском обществе"
-   ],
-   "correct": "казанского общества",
-   "case": "Родительный (Genitive)",
-   "explain": "«Казанского общества» — the genitive here marks possession, absence, or quantity.",
-   "id": "c68"
   },
   {
    "sentence": "Фосс; он привил в ___ молоко сифилитической женщины трем проституткам, «давшим на опыт свое согласие».",
@@ -781,78 +403,22 @@
    ],
    "correct": "калинкинской больнице",
    "case": "Предложный (Prepositional)",
-   "explain": "«Калинкинской больнице» — after the preposition «в», for location or topic.",
+   "explain": "«калинкинской больнице» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c69"
-  },
-  {
-   "sentence": "Любовь Ю-н, 16 лет, проститутка; поступила в больницу с уретритом; сифилиса никогда не имела, 27-го сентября ей впрыснут под левую лопатку полный ___ молока сифилитички.",
-   "lemma": "шприц",
-   "options": [
-    "правацовскому шприцу",
-    "правацовского шприца",
-    "правацовский шприц",
-    "правацовском шприце"
-   ],
-   "correct": "правацовский шприц",
-   "case": "Винительный (Accusative)",
-   "explain": "«правацовский шприц» — the accusative marks the direct object of the verb.",
-   "id": "c70"
   },
   {
    "sentence": "В оригинале все три девушки названы ___.",
    "lemma": "фамилия",
    "options": [
     "полных фамилиях",
-    "полными фамилиями",
+    "полных фамилий",
     "полным фамилиям",
-    "полные фамилии"
+    "полными фамилиями"
    ],
    "correct": "полными фамилиями",
    "case": "Творительный (Instrumental)",
-   "explain": "«полными фамилиями» — the instrumental marks the means, company, or complement.",
+   "explain": "After «названы» (to call, consider or make someone something), that something is in the instrumental.",
    "id": "c71"
-  },
-  {
-   "sentence": "«По удалении стилета в трубке троакара оказывалось несколько капель крови, обыкновенно с печеночными клетками, иногда же и более значительный ___ печени».",
-   "lemma": "кусок",
-   "options": [
-    "колбасообразном куске",
-    "колбасообразным куском",
-    "колбасообразного куска",
-    "колбасообразный кусок"
-   ],
-   "correct": "колбасообразный кусок",
-   "case": "Винительный (Accusative)",
-   "explain": "«колбасообразный кусок» — the accusative marks the direct object of the verb.",
-   "id": "c72"
-  },
-  {
-   "sentence": "Но вот история одного из больных, которым Фелейзен привил рожу: «___ последние двенадцать лет страдает волчанкою и много раз перенес рожу».",
-   "lemma": "мужчина",
-   "options": [
-    "двадцатилетний мужчина",
-    "двадцатилетнему мужчине",
-    "двадцатилетнего мужчины",
-    "двадцатилетнем мужчине"
-   ],
-   "correct": "двадцатилетний мужчина",
-   "case": "Именительный (Nominative)",
-   "explain": "«Двадцатилетний мужчина» — the subject of the sentence stands in the nominative.",
-   "id": "c75"
-  },
-  {
-   "sentence": "___ с саркомою глаза, после удавшейся прививки, Фелейзен вторично привил рожу «с целью узнать, остается ли соответственный индивидуум после перенесенной рожи на некоторое время невосприимчивым к роже».",
-   "lemma": "девочка",
-   "options": [
-    "восьмилетней девочке",
-    "восьмилетней девочки",
-    "восьмилетней девочкой",
-    "восьмилетняя девочка"
-   ],
-   "correct": "восьмилетней девочке",
-   "case": "Дательный (Dative)",
-   "explain": "«Восьмилетней девочке» — the dative marks the indirect object or recipient.",
-   "id": "c76"
   },
   {
    "sentence": "В марте 1887 года к ___ Евг.",
@@ -865,7 +431,7 @@
    ],
    "correct": "берлинскому хирургу",
    "case": "Дательный (Dative)",
-   "explain": "«берлинскому хирургу» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«берлинскому хирургу» — «к» always takes the dative.",
    "id": "c77"
   },
   {
@@ -879,92 +445,22 @@
    ],
    "correct": "важный факт",
    "case": "Именительный (Nominative)",
-   "explain": "«важный факт» — the subject of the sentence stands in the nominative.",
+   "explain": "«важный факт» is the subject of «установлен» — who or what does it — so nominative.",
    "id": "c78"
-  },
-  {
-   "sentence": "Бергманом и ___, анонимно приславшим свое сообщение парижскому профессору Корнилю.",
-   "lemma": "хирург",
-   "options": [
-    "неизвестного хирурга",
-    "неизвестном хирурге",
-    "неизвестному хирургу",
-    "неизвестным хирургом"
-   ],
-   "correct": "неизвестным хирургом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«неизвестным хирургом» — the instrumental marks the means, company, or complement.",
-   "id": "c79"
-  },
-  {
-   "sentence": "Финн исследовал в одном из кавказских ___ вопрос о заразительности пятнистого тифа.",
-   "lemma": "госпиталь",
-   "options": [
-    "военными госпиталями",
-    "военных госпиталях",
-    "военных госпиталей",
-    "военные госпитали"
-   ],
-   "correct": "военных госпиталей",
-   "case": "Родительный (Genitive)",
-   "explain": "«военных госпиталей» — the genitive here marks possession, absence, or quantity.",
-   "id": "c81"
-  },
-  {
-   "sentence": "Финн исследовал в одном из кавказских военных госпиталей вопрос о заразительности ___.",
-   "lemma": "тиф",
-   "options": [
-    "пятнистый тиф",
-    "пятнистым тифом",
-    "пятнистого тифа",
-    "пятнистому тифу"
-   ],
-   "correct": "пятнистого тифа",
-   "case": "Родительный (Genitive)",
-   "explain": "«пятнистого тифа» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
-   "id": "c82"
   },
   {
    "sentence": "По его предложению ординатор Артемович впрыснул под кожу семнадцати ___ кровь больных пятнистым тифом.",
    "lemma": "солдат",
    "options": [
-    "здоровых солдатах",
     "здоровым солдатам",
-    "здоровые солдаты",
-    "здоровых солдат"
+    "здоровых солдатах",
+    "здоровыми солдатами",
+    "здоровые солдаты"
    ],
    "correct": "здоровым солдатам",
    "case": "Дательный (Dative)",
-   "explain": "«здоровым солдатам» — the dative marks the indirect object or recipient.",
+   "explain": "«здоровым солдатам» is the indirect object of «впрыснул» — to or for whom (кому?) — dative.",
    "id": "c83"
-  },
-  {
-   "sentence": "По его предложению ординатор Артемович впрыснул под кожу семнадцати здоровым солдатам кровь больных ___.",
-   "lemma": "тиф",
-   "options": [
-    "пятнистому тифу",
-    "пятнистого тифа",
-    "пятнистом тифе",
-    "пятнистым тифом"
-   ],
-   "correct": "пятнистым тифом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«пятнистым тифом» — the instrumental marks the means, company, or complement.",
-   "id": "c84"
-  },
-  {
-   "sentence": "Кроме того, двадцать восемь здоровых ___ было положено д-ром Финном в одну палату с пятнисто-тифозными больными.",
-   "lemma": "солдат",
-   "options": [
-    "молодые солдаты",
-    "молодых солдат",
-    "молодыми солдатами",
-    "молодым солдатам"
-   ],
-   "correct": "молодых солдат",
-   "case": "Родительный (Genitive)",
-   "explain": "«молодых солдат» — the genitive here marks possession, absence, or quantity.",
-   "id": "c85"
   },
   {
    "sentence": "«Вот как относятся врачи к больным, вверяющим в их руки свое здоровье!» — скажет ___, прочитав эту главу.",
@@ -977,7 +473,7 @@
    ],
    "correct": "иной читатель",
    "case": "Именительный (Nominative)",
-   "explain": "«иной читатель» — the subject of the sentence stands in the nominative.",
+   "explain": "«иной читатель» is the subject of «скажет» — who or what does it — so nominative.",
    "id": "c86"
   },
   {
@@ -991,78 +487,8 @@
    ],
    "correct": "больных людях",
    "case": "Предложный (Prepositional)",
-   "explain": "«больных людях» — after the preposition «в», for location or topic.",
+   "explain": "«больных людях» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c87"
-  },
-  {
-   "sentence": "Параллельно можно привести ничуть не меньшее количество фактов, где врачи производили самые ___ над самими собою.",
-   "lemma": "опыт",
-   "options": [
-    "опасные опыты",
-    "опасных опытов",
-    "опасными опытами",
-    "опасным опытам"
-   ],
-   "correct": "опасные опыты",
-   "case": "Винительный (Accusative)",
-   "explain": "«опасные опыты» — the accusative marks the direct object of the verb.",
-   "id": "c88"
-  },
-  {
-   "sentence": "Так, у всех еще в памяти опыты Петтенкофера и Эммериха, принявших внутрь чистые разводки холерных бацилл, причем ___ желудка была предварительно нейтрализована содою.",
-   "lemma": "кислота",
-   "options": [
-    "соляной кислотой",
-    "соляная кислота",
-    "соляной кислоте",
-    "соляной кислоты"
-   ],
-   "correct": "соляная кислота",
-   "case": "Именительный (Nominative)",
-   "explain": "«соляная кислота» — the subject of the sentence stands in the nominative.",
-   "id": "c89"
-  },
-  {
-   "sentence": "От сотни-другой этих героев заключать о геройстве ___ вообще столь же несправедливо, как из вышеприведенных опытов над больными делать заключение, что так относятся к своим больным врачи вообще.",
-   "lemma": "сословие",
-   "options": [
-    "врачебного сословия",
-    "врачебным сословием",
-    "врачебное сословие",
-    "врачебном сословии"
-   ],
-   "correct": "врачебного сословия",
-   "case": "Родительный (Genitive)",
-   "explain": "«врачебного сословия» — the genitive here marks possession, absence, or quantity.",
-   "id": "c90"
-  },
-  {
-   "sentence": "Борджиони прививка удалась: через два месяца после прививки появились ночные ___, общая сыпь, опухание желез; десять дней спустя первичная язва на руке стала заживать; лишь тогда д-р.",
-   "lemma": "боль",
-   "options": [
-    "головных болей",
-    "головных болях",
-    "головные боли",
-    "головными болями"
-   ],
-   "correct": "головные боли",
-   "case": "Именительный (Nominative)",
-   "explain": "«головные боли» — the subject of the sentence stands in the nominative.",
-   "id": "c91"
-  },
-  {
-   "sentence": "Борджиони прививка удалась: через два месяца после прививки появились ночные головные боли, общая сыпь, опухание желез; десять дней спустя ___ на руке стала заживать; лишь тогда д-р.",
-   "lemma": "язва",
-   "options": [
-    "первичной язвой",
-    "первичной язве",
-    "первичная язва",
-    "первичной язвы"
-   ],
-   "correct": "первичная язва",
-   "case": "Именительный (Nominative)",
-   "explain": "«первичная язва» — the subject of the sentence stands in the nominative.",
-   "id": "c92"
   },
   {
    "sentence": "Борджиони приступил к ___.",
@@ -1075,64 +501,50 @@
    ],
    "correct": "ртутному лечению",
    "case": "Дательный (Dative)",
-   "explain": "«ртутному лечению» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«ртутному лечению» — «к» always takes the dative.",
    "id": "c93"
   },
   {
    "sentence": "Интересуясь ___ сифилидологии, д-р.",
    "lemma": "вопрос",
    "options": [
-    "различных вопросах",
+    "различных вопросов",
+    "различными вопросами",
     "различным вопросам",
-    "различные вопросы",
-    "различными вопросами"
+    "различных вопросах"
    ],
    "correct": "различными вопросами",
    "case": "Творительный (Instrumental)",
-   "explain": "«различными вопросами» — the instrumental marks the means, company, or complement.",
+   "explain": "«Интересуясь» takes the instrumental.",
    "id": "c94"
   },
   {
    "sentence": "Линдеман произвел над собою ___.",
    "lemma": "опыт",
    "options": [
-    "следующих опытов",
+    "следующими опытами",
     "следующих опытах",
     "следующим опытам",
     "следующие опыты"
    ],
    "correct": "следующие опыты",
    "case": "Винительный (Accusative)",
-   "explain": "«следующие опыты» — the accusative marks the direct object of the verb.",
+   "explain": "«следующие опыты» is the direct object of «произвел» (кого? что?) — accusative.",
    "id": "c95"
   },
   {
    "sentence": "В течение двух месяцев через каждые пять дней он прививал себе на руки ___, через три месяца после этого он привил себе отделение сифилитика и получил сифилис.",
    "lemma": "язва",
    "options": [
-    "мягкие язвы",
+    "мягких язвах",
     "мягким язвам",
     "мягкими язвами",
-    "мягких язв"
+    "мягкие язвы"
    ],
    "correct": "мягкие язвы",
    "case": "Винительный (Accusative)",
-   "explain": "«мягкие язвы» — the accusative marks the direct object of the verb.",
+   "explain": "«мягкие язвы» is the direct object of «прививал» (кого? что?) — accusative.",
    "id": "c96"
-  },
-  {
-   "sentence": "Но что безусловно вытекает из приведенных опытов и чему не может быть оправдания, — это то ___, какое встречают описанные зверства во врачебной среде.",
-   "lemma": "равнодушие",
-   "options": [
-    "позорном равнодушии",
-    "позорному равнодушию",
-    "позорное равнодушие",
-    "позорным равнодушием"
-   ],
-   "correct": "позорное равнодушие",
-   "case": "Именительный (Nominative)",
-   "explain": "«позорное равнодушие» — the subject of the sentence stands in the nominative.",
-   "id": "c97"
   },
   {
    "sentence": "Но что безусловно вытекает из приведенных опытов и чему не может быть оправдания, — это то позорное равнодушие, какое встречают описанные зверства во ___.",
@@ -1145,22 +557,8 @@
    ],
    "correct": "врачебной среде",
    "case": "Предложный (Prepositional)",
-   "explain": "«врачебной среде» — after the preposition «во», for location or topic.",
+   "explain": "«врачебной среде» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c98"
-  },
-  {
-   "sentence": "Ведь приведенный мною мартиролог — больных, принесенных в жертву науке, добыт мною не путем каких-нибудь тайных розысков, — ___ этих опытов печатно, во всеуслышание, сообщают о них!",
-   "lemma": "виновник",
-   "options": [
-    "самих виновников",
-    "сами виновники",
-    "самим виновникам",
-    "самими виновниками"
-   ],
-   "correct": "сами виновники",
-   "case": "Именительный (Nominative)",
-   "explain": "«сами виновники» — the subject of the sentence stands in the nominative.",
-   "id": "c100"
   },
   {
    "sentence": "Казалось бы, опубликование первого же такого опыта должно бы сделать совершенно невозможным их повторение; первый же такой экспериментатор должен бы быть с позором выброшен навсегда из ___.",
@@ -1173,36 +571,8 @@
    ],
    "correct": "врачебной среды",
    "case": "Родительный (Genitive)",
-   "explain": "«врачебной среды» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«врачебной среды» — «из» always takes the genitive.",
    "id": "c101"
-  },
-  {
-   "sentence": "Но пора уже и обществу перестать ждать, когда врачи, наконец, выйдут из своего бездействия, и принять ___ к ограждению своих членов от ревнителей науки, забывших о различии между людьми и морскими свинками.",
-   "lemma": "мера",
-   "options": [
-    "собственные меры",
-    "собственным мерам",
-    "собственными мерами",
-    "собственных мер"
-   ],
-   "correct": "собственные меры",
-   "case": "Винительный (Accusative)",
-   "explain": "«собственные меры» — the accusative marks the direct object of the verb.",
-   "id": "c102"
-  },
-  {
-   "sentence": "Но пора уже и обществу перестать ждать, когда врачи, наконец, выйдут из своего бездействия, и принять собственные меры к ограждению своих членов от ревнителей науки, забывших о различии между людьми и ___.",
-   "lemma": "свинка",
-   "options": [
-    "морским свинкам",
-    "морские свинки",
-    "морскими свинками",
-    "морских свинок"
-   ],
-   "correct": "морскими свинками",
-   "case": "Творительный (Instrumental)",
-   "explain": "«морскими свинками» — the instrumental marks the means, company, or complement.",
-   "id": "c103"
   }
  ]
 }

@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Критский ___ близок к лакедемонскому.",
-   "lemma": "строй",
-   "options": [
-    "государственному строю",
-    "государственном строе",
-    "государственный строй",
-    "государственного строя"
-   ],
-   "correct": "государственный строй",
-   "case": "Именительный (Nominative)",
-   "explain": "«государственный строй» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "По преданию, Ликург, отправившись в путешествие, после того как он отказался от опеки над царем Хариллом, значительную часть времени провел тогда на Крите из-за ___.",
    "lemma": "родство",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "племенного родства",
    "case": "Родительный (Genitive)",
-   "explain": "«племенного родства» — after the preposition «из-за», the genitive here marks possession, absence, or quantity.",
+   "explain": "«племенного родства» — «из-за» always takes the genitive.",
    "id": "c2"
   },
   {
@@ -39,50 +25,8 @@
    ],
    "correct": "тамошних жителей",
    "case": "Родительный (Genitive)",
-   "explain": "«тамошних жителей» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«тамошних жителей» — «у» always takes the genitive.",
    "id": "c3"
-  },
-  {
-   "sentence": "Далее, ___: эфоры имеют ту же власть, какая на Крите принадлежит так называемым космам; разница лишь в том, что число эфоров — пять, число космов — десять.",
-   "lemma": "строй",
-   "options": [
-    "политический строй",
-    "политическому строю",
-    "политического строя",
-    "политическим строем"
-   ],
-   "correct": "политический строй",
-   "case": "Именительный (Nominative)",
-   "explain": "«политический строй» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
-  },
-  {
-   "sentence": "___, присущие институту эфоров, свойственны и космам, так как в их число попадают случайные люди.",
-   "lemma": "сторона",
-   "options": [
-    "отрицательные стороны",
-    "отрицательным сторонам",
-    "отрицательных сторонах",
-    "отрицательных сторон"
-   ],
-   "correct": "отрицательные стороны",
-   "case": "Именительный (Nominative)",
-   "explain": "«Отрицательные стороны» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
-  },
-  {
-   "sentence": "Отрицательные стороны, присущие институту эфоров, свойственны и космам, так как в их число попадают ___.",
-   "lemma": "человек",
-   "options": [
-    "случайные люди",
-    "случайным людям",
-    "случайных людей",
-    "случайными людьми"
-   ],
-   "correct": "случайные люди",
-   "case": "Именительный (Nominative)",
-   "explain": "«случайные люди» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
   },
   {
    "sentence": "Средство же, которым критяне стараются исправить ошибку, нелепо и пригодно не для строя политии, а для ___.",
@@ -95,22 +39,8 @@
    ],
    "correct": "династического строя",
    "case": "Родительный (Genitive)",
-   "explain": "«династического строя» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«династического строя» — «для» always takes the genitive.",
    "id": "c7"
-  },
-  {
-   "sentence": "Именно часто против космов соединяются некоторые из их сотоварищей или из ___ и изгоняют их; разрешается также и самим космам во время отправления ими должности отказаться от нее.",
-   "lemma": "лицо",
-   "options": [
-    "частных лиц",
-    "частным лицам",
-    "частные лица",
-    "частных лицах"
-   ],
-   "correct": "частных лиц",
-   "case": "Родительный (Genitive)",
-   "explain": "«частных лиц» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
-   "id": "c8"
   },
   {
    "sentence": "Было бы, конечно, лучше, если бы все это совершалось на ___, а не по человеческому усмотрению, так как эти последнее мерило небезопасно.",
@@ -123,7 +53,7 @@
    ],
    "correct": "законном основании",
    "case": "Предложный (Prepositional)",
-   "explain": "«законном основании» — after the preposition «на», for location or topic.",
+   "explain": "«законном основании» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c9"
   },
   {
@@ -137,22 +67,8 @@
    ],
    "correct": "человеческому усмотрению",
    "case": "Дательный (Dative)",
-   "explain": "«человеческому усмотрению» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«человеческому усмотрению» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c10"
-  },
-  {
-   "sentence": "Было бы, конечно, лучше, если бы все это совершалось на законном основании, а не по человеческому усмотрению, так как эти ___ небезопасно.",
-   "lemma": "мерило",
-   "options": [
-    "последнему мерилу",
-    "последнего мерила",
-    "последнее мерило",
-    "последним мерилом"
-   ],
-   "correct": "последнее мерило",
-   "case": "Именительный (Nominative)",
-   "explain": "«последнее мерило» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
   },
   {
    "sentence": "Самое же печальное — возможность ___ порядка; это часто устраивается теми могущественными лицами, которые не желают подчиниться грозящему им суду.",
@@ -165,36 +81,8 @@
    ],
    "correct": "полной отмены",
    "case": "Родительный (Genitive)",
-   "explain": "«полной отмены» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«полной отмены» depends on the noun «возможность» (whose? of what?) — genitive.",
    "id": "c12"
-  },
-  {
-   "sentence": "Самое же печальное — возможность полной отмены порядка; это часто устраивается теми ___, которые не желают подчиниться грозящему им суду.",
-   "lemma": "лицо",
-   "options": [
-    "могущественные лица",
-    "могущественных лицах",
-    "могущественным лицам",
-    "могущественными лицами"
-   ],
-   "correct": "могущественными лицами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«могущественными лицами» — the instrumental marks the means, company, or complement.",
-   "id": "c13"
-  },
-  {
-   "sentence": "В порядке вещей и то, что знать, присоединяя к себе народ и друзей, создает анархию, ___ и междоусобную борьбу.",
-   "lemma": "распря",
-   "options": [
-    "взаимные распри",
-    "взаимным распрям",
-    "взаимных распрей",
-    "взаимными распрями"
-   ],
-   "correct": "взаимные распри",
-   "case": "Винительный (Accusative)",
-   "explain": "«взаимные распри» — the accusative marks the direct object of the verb.",
-   "id": "c14"
   },
   {
    "sentence": "Чем отличается такое состояние от ___ государственной жизни вообще?",
@@ -207,21 +95,21 @@
    ],
    "correct": "временного прекращения",
    "case": "Родительный (Genitive)",
-   "explain": "«временного прекращения» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«временного прекращения» — «от» always takes the genitive.",
    "id": "c15"
   },
   {
    "sentence": "И разве не рушится при этом ___?",
    "lemma": "общение",
    "options": [
-    "государственному общению",
     "государственное общение",
+    "государственном общении",
     "государственным общением",
-    "государственного общения"
+    "государственному общению"
    ],
    "correct": "государственное общение",
    "case": "Именительный (Nominative)",
-   "explain": "«государственное общение» — the subject of the sentence stands in the nominative.",
+   "explain": "«государственное общение» is the subject of «рушится» — who or what does it — so nominative.",
    "id": "c16"
   },
   {
@@ -235,7 +123,7 @@
    ],
    "correct": "географическому положению",
    "case": "Дательный (Dative)",
-   "explain": "«географическому положению» — after the preposition «благодаря», the dative marks the indirect object or recipient.",
+   "explain": "«географическому положению» — «благодаря» always takes the dative.",
    "id": "c17"
   },
   {
@@ -249,7 +137,7 @@
    ],
    "correct": "чужеземная война",
    "case": "Именительный (Nominative)",
-   "explain": "«чужеземная война» — the subject of the sentence stands in the nominative.",
+   "explain": "«чужеземная война» is the subject of «дошла» — who or what does it — so nominative.",
    "id": "c18"
   },
   {
@@ -263,36 +151,8 @@
    ],
    "correct": "государственном устройстве",
    "case": "Предложный (Prepositional)",
-   "explain": "«государственном устройстве» — after the preposition «о», for location or topic.",
+   "explain": "«государственном устройстве» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c19"
-  },
-  {
-   "sentence": "И карфагеняне, как полагают, пользуются прекрасным ___, которое во многих отношениях отличается от остальных; в некоторых частях оно сходно главным образом с лакедемонским.",
-   "lemma": "устройство",
-   "options": [
-    "государственном устройстве",
-    "государственное устройство",
-    "государственным устройством",
-    "государственному устройству"
-   ],
-   "correct": "государственным устройством",
-   "case": "Творительный (Instrumental)",
-   "explain": "«государственным устройством» — the instrumental marks the means, company, or complement.",
-   "id": "c20"
-  },
-  {
-   "sentence": "И карфагеняне, как полагают, пользуются прекрасным государственным устройством, которое во многих отношениях отличается от остальных; в некоторых частях оно сходно ___ с лакедемонским.",
-   "lemma": "образ",
-   "options": [
-    "главном образе",
-    "главному образу",
-    "главного образа",
-    "главным образом"
-   ],
-   "correct": "главным образом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«главным образом» — the instrumental marks the means, company, or complement.",
-   "id": "c21"
   },
   {
    "sentence": "Действительно, ___ государственной жизни устроены у карфагенян прекрасно.",
@@ -305,7 +165,7 @@
    ],
    "correct": "многие стороны",
    "case": "Именительный (Nominative)",
-   "explain": "«многие стороны» — the subject of the sentence stands in the nominative.",
+   "explain": "«многие стороны» is the subject of «устроены» — who or what does it — so nominative.",
    "id": "c22"
   },
   {
@@ -319,7 +179,7 @@
    ],
    "correct": "государственного устройства",
    "case": "Родительный (Genitive)",
-   "explain": "«государственного устройства» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«государственного устройства» depends on the noun «слаженности» (whose? of what?) — genitive.",
    "id": "c23"
   },
   {
@@ -333,7 +193,7 @@
    ],
    "correct": "сам народ",
    "case": "Именительный (Nominative)",
-   "explain": "«сам народ» — the subject of the sentence stands in the nominative.",
+   "explain": "«сам народ» is the subject of «поддерживает» — who or what does it — so nominative.",
    "id": "c24"
   },
   {
@@ -347,36 +207,8 @@
    ],
    "correct": "самом деле",
    "case": "Предложный (Prepositional)",
-   "explain": "«самом деле» — after the preposition «в», for location or topic.",
+   "explain": "«самом деле» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c25"
-  },
-  {
-   "sentence": "В самом деле, геронты, захватив ___, могут принести большой вред, если они окажутся людьми ничтожными, и уже принесли вред в Лакедемонском государстве.",
-   "lemma": "должность",
-   "options": [
-    "главными должностями",
-    "главные должности",
-    "главным должностям",
-    "главных должностях"
-   ],
-   "correct": "главные должности",
-   "case": "Винительный (Accusative)",
-   "explain": "«главные должности» — the accusative marks the direct object of the verb.",
-   "id": "c26"
-  },
-  {
-   "sentence": "В самом деле, геронты, захватив главные должности, могут принести ___, если они окажутся людьми ничтожными, и уже принесли вред в Лакедемонском государстве.",
-   "lemma": "вред",
-   "options": [
-    "большой вред",
-    "большом вреде",
-    "большому вреду",
-    "большого вреда"
-   ],
-   "correct": "большой вред",
-   "case": "Винительный (Accusative)",
-   "explain": "«большой вред» — the accusative marks the direct object of the verb.",
-   "id": "c27"
   },
   {
    "sentence": "В самом деле, геронты, захватив главные должности, могут принести большой вред, если они окажутся людьми ничтожными, и уже принесли вред в ___.",
@@ -389,22 +221,8 @@
    ],
    "correct": "лакедемонском государстве",
    "case": "Предложный (Prepositional)",
-   "explain": "«Лакедемонском государстве» — after the preposition «в», for location or topic.",
+   "explain": "«лакедемонском государстве» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c28"
-  },
-  {
-   "sentence": "Главное, в чем можно было бы упрекнуть этот ___ с точки зрения отклонения от безукоризненного строя, присуще в одинаковой мере всем указанным выше трем государствам.",
-   "lemma": "строй",
-   "options": [
-    "государственному строю",
-    "государственном строе",
-    "государственный строй",
-    "государственного строя"
-   ],
-   "correct": "государственный строй",
-   "case": "Винительный (Accusative)",
-   "explain": "«государственный строй» — the accusative marks the direct object of the verb.",
-   "id": "c29"
   },
   {
    "sentence": "Главное, в чем можно было бы упрекнуть этот государственный строй с точки зрения отклонения от ___, присуще в одинаковой мере всем указанным выше трем государствам.",
@@ -417,7 +235,7 @@
    ],
    "correct": "безукоризненного строя",
    "case": "Родительный (Genitive)",
-   "explain": "«безукоризненного строя» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«безукоризненного строя» — «от» always takes the genitive.",
    "id": "c30"
   },
   {
@@ -431,7 +249,7 @@
    ],
    "correct": "одинаковой мере",
    "case": "Предложный (Prepositional)",
-   "explain": "«одинаковой мере» — after the preposition «в», for location or topic.",
+   "explain": "«одинаковой мере» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c31"
   },
   {
@@ -445,7 +263,7 @@
    ],
    "correct": "полного согласия",
    "case": "Родительный (Genitive)",
-   "explain": "«полного согласия» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«полного согласия» depends on the noun «случае» (whose? of what?) — genitive.",
    "id": "c32"
   },
   {
@@ -459,22 +277,8 @@
    ],
    "correct": "народного собрания",
    "case": "Родительный (Genitive)",
-   "explain": "«народного собрания» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«народного собрания» depends on the noun «решение» (whose? of what?) — genitive.",
    "id": "c33"
-  },
-  {
-   "sentence": "Цари вместе с геронтами в случае полного согласия между ними уполномочены вносить или не вносить дела на решение народного собрания; если же согласия нет, то ___ принадлежит народному собранию.",
-   "lemma": "голос",
-   "options": [
-    "решающий голос",
-    "решающем голосе",
-    "решающему голосу",
-    "решающим голосом"
-   ],
-   "correct": "решающий голос",
-   "case": "Именительный (Nominative)",
-   "explain": "«решающий голос» — the subject of the sentence stands in the nominative.",
-   "id": "c34"
   },
   {
    "sentence": "Цари вместе с геронтами в случае полного согласия между ними уполномочены вносить или не вносить дела на решение народного собрания; если же согласия нет, то решающий голос принадлежит ___.",
@@ -487,7 +291,7 @@
    ],
    "correct": "народному собранию",
    "case": "Дательный (Dative)",
-   "explain": "«народному собранию» — the dative marks the indirect object or recipient.",
+   "explain": "«принадлежит» takes the dative (кому? чему?).",
    "id": "c35"
   },
   {
@@ -501,119 +305,49 @@
    ],
    "correct": "аристократического строя",
    "case": "Родительный (Genitive)",
-   "explain": "«аристократического строя» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«аристократического строя» — «от» always takes the genitive.",
    "id": "c36"
-  },
-  {
-   "sentence": "Хотя должно считаться и с тем, что богатство способствует досугу, однако плохо, когда высшие из должностей, именно ___ и стратегия, могут покупаться за деньги.",
-   "lemma": "достоинство",
-   "options": [
-    "царского достоинства",
-    "царскому достоинству",
-    "царское достоинство",
-    "царском достоинстве"
-   ],
-   "correct": "царское достоинство",
-   "case": "Именительный (Nominative)",
-   "explain": "«царское достоинство» — the subject of the sentence stands in the nominative.",
-   "id": "c37"
   },
   {
    "sentence": "Ведь то, что почитается ценным у власть имущих, неизбежно явится таковым и в представлении ___.",
    "lemma": "гражданин",
    "options": [
     "остальных граждан",
-    "остальными гражданами",
     "остальных гражданах",
+    "остальные граждане",
     "остальным гражданам"
    ],
    "correct": "остальных граждан",
    "case": "Родительный (Genitive)",
-   "explain": "«остальных граждан» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«остальных граждан» depends on the noun «представлении» (whose? of what?) — genitive.",
    "id": "c38"
-  },
-  {
-   "sentence": "А где добродетель не ценится выше всего, там не может быть прочного аристократического ___.",
-   "lemma": "устройство",
-   "options": [
-    "государственным устройством",
-    "государственное устройство",
-    "государственному устройству",
-    "государственного устройства"
-   ],
-   "correct": "государственного устройства",
-   "case": "Родительный (Genitive)",
-   "explain": "«государственного устройства» — the genitive here marks possession, absence, or quantity.",
-   "id": "c39"
   },
   {
    "sentence": "Если законодатель не приложил старания к тому, чтобы ___ дать возможность жить в достатке, то он должен был по крайней мере позаботиться о том, чтобы должностные лица имели необходимый досуг.",
    "lemma": "человек",
    "options": [
-    "порядочным людям",
     "порядочными людьми",
-    "порядочные люди",
-    "порядочных людей"
+    "порядочным людям",
+    "порядочных людях",
+    "порядочные люди"
    ],
    "correct": "порядочным людям",
    "case": "Дательный (Dative)",
-   "explain": "«порядочным людям» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«порядочным людям» is the indirect object of «дать» — to or for whom (кому?) — dative.",
    "id": "c40"
-  },
-  {
-   "sentence": "Если законодатель не приложил старания к тому, чтобы порядочным людям дать возможность жить в достатке, то он должен был по крайней мере позаботиться о том, чтобы ___ имели необходимый досуг.",
-   "lemma": "лицо",
-   "options": [
-    "должностным лицам",
-    "должностными лицами",
-    "должностные лица",
-    "должностных лицах"
-   ],
-   "correct": "должностные лица",
-   "case": "Именительный (Nominative)",
-   "explain": "«должностные лица» — the subject of the sentence stands in the nominative.",
-   "id": "c41"
-  },
-  {
-   "sentence": "Если законодатель не приложил старания к тому, чтобы порядочным людям дать возможность жить в достатке, то он должен был по крайней мере позаботиться о том, чтобы должностные лица имели ___.",
-   "lemma": "досуг",
-   "options": [
-    "необходимому досугу",
-    "необходимый досуг",
-    "необходимом досуге",
-    "необходимым досугом"
-   ],
-   "correct": "необходимый досуг",
-   "case": "Винительный (Accusative)",
-   "explain": "«необходимый досуг» — the accusative marks the direct object of the verb.",
-   "id": "c42"
-  },
-  {
-   "sentence": "___ можно считать и то, что одному человеку предоставлена возможность занимать одновременно несколько должностей; между тем в Карфагене такой порядок процветает.",
-   "lemma": "сторона",
-   "options": [
-    "отрицательной стороной",
-    "отрицательная сторона",
-    "отрицательной стороны",
-    "отрицательной стороне"
-   ],
-   "correct": "отрицательной стороной",
-   "case": "Творительный (Instrumental)",
-   "explain": "«Отрицательной стороной» — the instrumental marks the means, company, or complement.",
-   "id": "c43"
   },
   {
    "sentence": "Этим они врачуют свой ___ и придают ему стойкость.",
    "lemma": "строй",
    "options": [
     "государственному строю",
-    "государственном строе",
+    "государственным строем",
     "государственный строй",
-    "государственного строя"
+    "государственном строе"
    ],
    "correct": "государственный строй",
    "case": "Винительный (Accusative)",
-   "explain": "«государственный строй» — the accusative marks the direct object of the verb.",
+   "explain": "«государственный строй» is the direct object of «врачуют» (кого? что?) — accusative.",
    "id": "c44"
   },
   {
@@ -627,7 +361,7 @@
    ],
    "correct": "государственным устройством",
    "case": "Творительный (Instrumental)",
-   "explain": "«государственным устройством» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«государственным устройством» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c45"
   },
   {
@@ -641,7 +375,7 @@
    ],
    "correct": "хорошей славой",
    "case": "Творительный (Instrumental)",
-   "explain": "«хорошей славой» — the instrumental marks the means, company, or complement.",
+   "explain": "«пользуются» takes the instrumental.",
    "id": "c46"
   },
   {
@@ -655,22 +389,8 @@
    ],
    "correct": "государственного строя",
    "case": "Родительный (Genitive)",
-   "explain": "«государственного строя» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«государственного строя» depends on the noun «создателями» (whose? of what?) — genitive.",
    "id": "c47"
-  },
-  {
-   "sentence": "Из этих законодателей одни были только создателями законов, другие, как, например, Ликург и Солон, также создателями государственного строя; они создали и законы, и ___.",
-   "lemma": "устройство",
-   "options": [
-    "государственному устройству",
-    "государственного устройства",
-    "государственное устройство",
-    "государственном устройстве"
-   ],
-   "correct": "государственное устройство",
-   "case": "Именительный (Nominative)",
-   "explain": "«государственное устройство» — the subject of the sentence stands in the nominative.",
-   "id": "c48"
   },
   {
    "sentence": "О лакедемонском ___ было сказано выше.",
@@ -683,7 +403,7 @@
    ],
    "correct": "государственном устройстве",
    "case": "Предложный (Prepositional)",
-   "explain": "«государственном устройстве» — after the preposition «о», for location or topic.",
+   "explain": "«государственном устройстве» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c49"
   },
   {
@@ -697,7 +417,7 @@
    ],
    "correct": "должностных лиц",
    "case": "Родительный (Genitive)",
-   "explain": "«должностных лиц» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«должностных лиц» depends on the noun «выборность» (whose? of what?) — genitive.",
    "id": "c50"
   },
   {
@@ -711,21 +431,21 @@
    ],
    "correct": "народный суд",
    "case": "Именительный (Nominative)",
-   "explain": "«народный суд» — the subject of the sentence stands in the nominative.",
+   "explain": "«народный суд» is the subject of «ввел» — who or what does it — so nominative.",
    "id": "c51"
   },
   {
    "sentence": "Некоторые упрекают Солона за это, указывая, что он свел на нет ___ государственного строя, передав всякую власть суду, члены которого назначаются по жребию.",
    "lemma": "элемент",
    "options": [
+    "других элементах",
+    "другие элементы",
     "другими элементами",
-    "других элементов",
-    "другим элементам",
-    "другие элементы"
+    "другим элементам"
    ],
    "correct": "другие элементы",
    "case": "Винительный (Accusative)",
-   "explain": "«другие элементы» — the accusative marks the direct object of the verb.",
+   "explain": "«другие элементы» is the direct object of «свел» (кого? что?) — accusative.",
    "id": "c52"
   },
   {
@@ -739,7 +459,7 @@
    ],
    "correct": "государственного строя",
    "case": "Родительный (Genitive)",
-   "explain": "«государственного строя» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«государственного строя» depends on the noun «элементы» (whose? of what?) — genitive.",
    "id": "c53"
   },
   {
@@ -753,22 +473,8 @@
    ],
    "correct": "народный суд",
    "case": "Именительный (Nominative)",
-   "explain": "«народный суд» — the subject of the sentence stands in the nominative.",
+   "explain": "«народный суд» is the subject of «усилился» — who or what does it — so nominative.",
    "id": "c54"
-  },
-  {
-   "sentence": "Когда народный суд усилился, то пред ___ стали заискивать, как перед тираном, и государственный строй обратился в нынешнюю демократию.",
-   "lemma": "народ",
-   "options": [
-    "простым народом",
-    "простом народе",
-    "простой народ",
-    "простому народу"
-   ],
-   "correct": "простым народом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«простым народом» — the instrumental marks the means, company, or complement.",
-   "id": "c55"
   },
   {
    "sentence": "Когда народный суд усилился, то пред простым народом стали заискивать, как перед тираном, и ___ обратился в нынешнюю демократию.",
@@ -781,22 +487,8 @@
    ],
    "correct": "государственный строй",
    "case": "Именительный (Nominative)",
-   "explain": "«государственный строй» — the subject of the sentence stands in the nominative.",
+   "explain": "«государственный строй» is the subject of «обратился» — who or what does it — so nominative.",
    "id": "c56"
-  },
-  {
-   "sentence": "Значение ареопага уменьшил Эфиальт вместе с Периклом; Перикл ввел плату за участие в суде, и таким способом каждый из демагогов вел демократию все дальше — вплоть до ___.",
-   "lemma": "положение",
-   "options": [
-    "нынешнему положению",
-    "нынешним положением",
-    "нынешнего положения",
-    "нынешнее положение"
-   ],
-   "correct": "нынешнего положения",
-   "case": "Родительный (Genitive)",
-   "explain": "«нынешнего положения» — the genitive here marks possession, absence, or quantity.",
-   "id": "c57"
   },
   {
    "sentence": "Законодателями были также Залевк из Локров Эпизефирских и Харонд из Катаны для своих сограждан, а также для ___ городов в Италии и Сицилии.",
@@ -809,7 +501,7 @@
    ],
    "correct": "остальных халкидских",
    "case": "Родительный (Genitive)",
-   "explain": "«остальных халкидских» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«остальных халкидских» — «для» always takes the genitive.",
    "id": "c58"
   },
   {
@@ -817,13 +509,13 @@
    "lemma": "число",
    "options": [
     "одинакового числа",
-    "одинаковым числом",
     "одинаковое число",
+    "одинаковом числе",
     "одинаковому числу"
    ],
    "correct": "одинакового числа",
    "case": "Родительный (Genitive)",
-   "explain": "«одинакового числа» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«одинакового числа» depends on the noun «сохранения» (whose? of what?) — genitive.",
    "id": "c59"
   },
   {
@@ -837,7 +529,7 @@
    ],
    "correct": "земельных наделов",
    "case": "Родительный (Genitive)",
-   "explain": "«земельных наделов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«земельных наделов» depends on the noun «числа» (whose? of what?) — genitive.",
    "id": "c60"
   },
   {
@@ -851,7 +543,7 @@
    ],
    "correct": "судебном преследовании",
    "case": "Предложный (Prepositional)",
-   "explain": "«судебном преследовании» — after the preposition «о», for location or topic.",
+   "explain": "«судебном преследовании» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c61"
   },
   {
@@ -865,49 +557,21 @@
    ],
    "correct": "нынешних законодателей",
    "case": "Родительный (Genitive)",
-   "explain": "«нынешних законодателей» — after the preposition «среди», the genitive here marks possession, absence, or quantity.",
+   "explain": "«нынешних законодателей» — «среди» always takes the genitive.",
    "id": "c62"
-  },
-  {
-   "sentence": "Есть законы Драконта, но он дал их для уже существовавшего ___.",
-   "lemma": "устройство",
-   "options": [
-    "государственным устройством",
-    "государственное устройство",
-    "государственному устройству",
-    "государственного устройства"
-   ],
-   "correct": "государственного устройства",
-   "case": "Родительный (Genitive)",
-   "explain": "«государственного устройства» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
-   "id": "c63"
-  },
-  {
-   "sentence": "И Питтак был творцом законов, но не ___.",
-   "lemma": "устройство",
-   "options": [
-    "государственным устройством",
-    "государственное устройство",
-    "государственному устройству",
-    "государственного устройства"
-   ],
-   "correct": "государственного устройства",
-   "case": "Родительный (Genitive)",
-   "explain": "«государственного устройства» — the genitive here marks possession, absence, or quantity.",
-   "id": "c64"
   },
   {
    "sentence": "Вот наши рассуждения о ___, как существующих в действительности, так и оставшихся только в проектах.",
    "lemma": "устройство",
    "options": [
-    "государственные устройства",
-    "государственными устройствами",
     "государственных устройств",
+    "государственным устройствам",
+    "государственными устройствами",
     "государственных устройствах"
    ],
    "correct": "государственных устройствах",
    "case": "Предложный (Prepositional)",
-   "explain": "«государственных устройствах» — after the preposition «о», for location or topic.",
+   "explain": "«государственных устройствах» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c65"
   }
  ]

@@ -1,48 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Впрочем, он и без того был чрезвычайно ___.",
-   "lemma": "человек",
-   "options": [
-    "добром человеке",
-    "доброго человека",
-    "добрый человек",
-    "доброму человеку"
-   ],
-   "correct": "добрый человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«добрый человек» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
-   "sentence": "В ресторацию надо было попасть, поднявшись по деревянной ___ с крылечком во второй этаж.",
-   "lemma": "лестница",
-   "options": [
-    "двухколенчатая лестница",
-    "двухколенчатой лестнице",
-    "двухколенчатой лестницей",
-    "двухколенчатой лестницы"
-   ],
-   "correct": "двухколенчатой лестнице",
-   "case": "Дательный (Dative)",
-   "explain": "«двухколенчатой лестнице» — after the preposition «с», the dative marks the indirect object or recipient.",
-   "id": "c5"
-  },
-  {
-   "sentence": "— Молодой — это ___ Сизобрюхов, сын известного лабазника, получил полмиллиона после отца и теперь кутит.",
-   "lemma": "сын",
-   "options": [
-    "купеческом сыне",
-    "купеческий сын",
-    "купеческому сыну",
-    "купеческого сына"
-   ],
-   "correct": "купеческий сын",
-   "case": "Именительный (Nominative)",
-   "explain": "«купеческий сын» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
-  },
-  {
    "sentence": "— Молодой — это купеческий сын Сизобрюхов, сын ___, получил полмиллиона после отца и теперь кутит.",
    "lemma": "лабазник",
    "options": [
@@ -53,36 +11,8 @@
    ],
    "correct": "известного лабазника",
    "case": "Родительный (Genitive)",
-   "explain": "«известного лабазника» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«известного лабазника» depends on the noun «сын» (whose? of what?) — genitive.",
    "id": "c14"
-  },
-  {
-   "sentence": "Много ___ знает, тем и драгоценен для этаких вьюношей.",
-   "lemma": "закоулок",
-   "options": [
-    "разным закоулкам",
-    "разные закоулки",
-    "разных закоулков",
-    "разными закоулками"
-   ],
-   "correct": "разных закоулков",
-   "case": "Родительный (Genitive)",
-   "explain": "«разных закоулков» — the genitive here marks possession, absence, or quantity.",
-   "id": "c15"
-  },
-  {
-   "sentence": "Точит на него зубы и Митрошка, вот тот ___, в богатой поддевке, — там, у окна стоит, цыганское лицо.",
-   "lemma": "парень",
-   "options": [
-    "молодцеватым парнем",
-    "молодцеватый парень",
-    "молодцеватому парню",
-    "молодцеватого парня"
-   ],
-   "correct": "молодцеватый парень",
-   "case": "Именительный (Nominative)",
-   "explain": "«молодцеватый парень» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
   },
   {
    "sentence": "Так вот этот Митрошка на пузана крепко зубы точит, потому у Митрошки теперь тонко, а пузан у него Сизобрюхова отбил, ___, с которого он не успел еще шерсточку обстричь.",
@@ -95,7 +25,7 @@
    ],
    "correct": "прежнего приятеля",
    "case": "Винительный (Accusative)",
-   "explain": "«прежнего приятеля» — the accusative marks the direct object of the verb.",
+   "explain": "«прежнего приятеля» is the direct object of «отбил» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c17"
   },
   {
@@ -109,35 +39,21 @@
    ],
    "correct": "скверным делом",
    "case": "Творительный (Instrumental)",
-   "explain": "«скверным делом» — after the preposition «за», the instrumental marks the means, company, or complement.",
+   "explain": "«скверным делом» — «за» takes the instrumental here (где? за чем? за кем?) — the accusative would mean motion behind or 'for' (куда? за что?).",
    "id": "c18"
-  },
-  {
-   "sentence": "Она за учителя вышла, а я стал в конторе служить, то есть не в ___, а так, просто в конторе.",
-   "lemma": "контора",
-   "options": [
-    "коммерческая контора",
-    "коммерческой конторы",
-    "коммерческой конторе",
-    "коммерческой конторой"
-   ],
-   "correct": "коммерческой конторе",
-   "case": "Предложный (Prepositional)",
-   "explain": "«коммерческой конторе» — after the preposition «в», for location or topic.",
-   "id": "c19"
   },
   {
    "sentence": "Как прочел — я, брат, чуть ___ не сделался!",
    "lemma": "человек",
    "options": [
-    "порядочный человек",
     "порядочного человека",
-    "порядочном человеке",
-    "порядочным человеком"
+    "порядочному человеку",
+    "порядочным человеком",
+    "порядочном человеке"
    ],
    "correct": "порядочным человеком",
    "case": "Творительный (Instrumental)",
-   "explain": "«порядочным человеком» — the instrumental marks the means, company, or complement.",
+   "explain": "After «сделался», what someone or something is or becomes stands in the instrumental.",
    "id": "c21"
   },
   {
@@ -151,64 +67,22 @@
    ],
    "correct": "непорядочным человеком",
    "case": "Творительный (Instrumental)",
-   "explain": "«непорядочным человеком» — the instrumental marks the means, company, or complement.",
+   "explain": "After «остаться», what someone or something is or becomes stands in the instrumental.",
    "id": "c22"
   },
   {
    "sentence": "Таких людей между ___ много.",
    "lemma": "человек",
    "options": [
+    "русским людям",
     "русскими людьми",
     "русские люди",
-    "русских людей",
-    "русским людям"
+    "русских людях"
    ],
    "correct": "русскими людьми",
    "case": "Творительный (Instrumental)",
-   "explain": "«русскими людьми» — after the preposition «между», the instrumental marks the means, company, or complement.",
+   "explain": "«русскими людьми» — «между» + instrumental: between.",
    "id": "c24"
-  },
-  {
-   "sentence": "Ну, а тебе нельзя представлять себе, что ты Дант или Фридрих Барбаруса, во-первых, потому что ты хочешь быть сам по себе, а во-вторых, потому что тебе всякое хотение запрещено, ибо ты ___.",
-   "lemma": "кляча",
-   "options": [
-    "почтовая кляча",
-    "почтовой клячей",
-    "почтовой клячи",
-    "почтовой кляче"
-   ],
-   "correct": "почтовая кляча",
-   "case": "Именительный (Nominative)",
-   "explain": "«почтовая кляча» — the subject of the sentence stands in the nominative.",
-   "id": "c25"
-  },
-  {
-   "sentence": "Деньги возьми, расплатись с антрепренерами, скинь хомут, потом обеспечь себе ___ жизни и садись за любимую мысль; пиши великое произведение!",
-   "lemma": "год",
-   "options": [
-    "целому году",
-    "целый год",
-    "целым годом",
-    "целого года"
-   ],
-   "correct": "целый год",
-   "case": "Винительный (Accusative)",
-   "explain": "«целый год» — the accusative marks the direct object of the verb.",
-   "id": "c26"
-  },
-  {
-   "sentence": "— Вот видишь, ___, наведывайся сколько хочешь.",
-   "lemma": "приятель",
-   "options": [
-    "старым приятелем",
-    "старому приятелю",
-    "старый приятель",
-    "старого приятеля"
-   ],
-   "correct": "старый приятель",
-   "case": "Именительный (Nominative)",
-   "explain": "«старый приятель» — the subject of the sentence stands in the nominative.",
-   "id": "c28"
   },
   {
    "sentence": "Сказки я умею рассказывать, но ведь до ___, — понимаешь?",
@@ -221,7 +95,7 @@
    ],
    "correct": "известных пределов",
    "case": "Родительный (Genitive)",
-   "explain": "«известных пределов» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«известных пределов» — «до» always takes the genitive.",
    "id": "c29"
   },
   {
@@ -235,7 +109,7 @@
    ],
    "correct": "первый раз",
    "case": "Винительный (Accusative)",
-   "explain": "«первый раз» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«первый раз» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c30"
   },
   {
@@ -249,22 +123,8 @@
    ],
    "correct": "красной рубашке",
    "case": "Предложный (Prepositional)",
-   "explain": "«красной рубашке» — after the preposition «в», for location or topic.",
+   "explain": "«красной рубашке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c31"
-  },
-  {
-   "sentence": "В своей поддевке, в шелковой красной рубашке, с резкими, но благообразными чертами лица, еще довольно моложавый, смуглый, с смелым ___, он производил и любопытное и не отталкивающее впечатление.",
-   "lemma": "взгляд",
-   "options": [
-    "сверкающий взгляд",
-    "сверкающему взгляду",
-    "сверкающего взгляда",
-    "сверкающим взглядом"
-   ],
-   "correct": "сверкающим взглядом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«сверкающим взглядом» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c32"
   }
  ]
 }

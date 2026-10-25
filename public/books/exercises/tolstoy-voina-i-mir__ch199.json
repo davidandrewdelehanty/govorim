@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Ростов злобно оглянулся на Ильина и, не отвечая ему, ___ направился к деревне.",
-   "lemma": "шаг",
-   "options": [
-    "быстрых шагов",
-    "быстрыми шагами",
-    "быстрым шагам",
-    "быстрые шаги"
-   ],
-   "correct": "быстрыми шагами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«быстрыми шагами» — the instrumental marks the means, company, or complement.",
-   "id": "c2"
-  },
-  {
    "sentence": "Он говорил, что мужики находились в закоснелости, что в настоящую минуту было неблагоразумно противуборствовать им, не имея ___, что не лучше ли бы было послать прежде за командой.",
    "lemma": "команда",
    "options": [
@@ -25,22 +11,8 @@
    ],
    "correct": "военной команды",
    "case": "Родительный (Genitive)",
-   "explain": "«военной команды» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«военной команды» is the object of a negated verb («не имея») — genitive instead of the accusative.",
    "id": "c3"
-  },
-  {
-   "sentence": "Дрон был того же мнения; но как только он выразил его, так Карп и ___ напали на бывшего старосту.",
-   "lemma": "мужик",
-   "options": [
-    "другими мужиками",
-    "другие мужики",
-    "других мужиках",
-    "другим мужикам"
-   ],
-   "correct": "другие мужики",
-   "case": "Именительный (Nominative)",
-   "explain": "«другие мужики» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
   },
   {
    "sentence": "— Очередь на твоего сына была, а ты небось гладуха своего пожалел, — вдруг быстро заговорил ___, нападая на Дрона, — а моего Ваньку забрил.",
@@ -53,7 +25,7 @@
    ],
    "correct": "маленький старичок",
    "case": "Именительный (Nominative)",
-   "explain": "«маленький старичок» — the subject of the sentence stands in the nominative.",
+   "explain": "«маленький старичок» is the subject of «заговорил» — who or what does it — so nominative.",
    "id": "c6"
   },
   {
@@ -67,22 +39,8 @@
    ],
    "correct": "сильного удара",
    "case": "Родительный (Genitive)",
-   "explain": "«сильного удара» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«сильного удара» — «от» always takes the genitive.",
    "id": "c9"
-  },
-  {
-   "sentence": "Дрон Захарыч, вас, — послышались кое-где ___, и шапки стали сниматься с голов.",
-   "lemma": "голос",
-   "options": [
-    "торопливо-покорным голосам",
-    "торопливо-покорных голосов",
-    "торопливо-покорными голосами",
-    "торопливо-покорные голоса"
-   ],
-   "correct": "торопливо-покорные голоса",
-   "case": "Именительный (Nominative)",
-   "explain": "«торопливо-покорные голоса» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
   },
   {
    "sentence": "Через два часа подводы стояли на дворе ___.",
@@ -95,7 +53,7 @@
    ],
    "correct": "богучаровского дома",
    "case": "Родительный (Genitive)",
-   "explain": "«богучаровского дома» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«богучаровского дома» depends on the noun «дворе» (whose? of what?) — genitive.",
    "id": "c14"
   },
   {
@@ -109,22 +67,8 @@
    ],
    "correct": "господские вещи",
    "case": "Винительный (Accusative)",
-   "explain": "«господские вещи» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«господские вещи» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c15"
-  },
-  {
-   "sentence": "— Ты ее так дурно не клади, — говорил один из мужиков, ___ с круглым, улыбающимся лицом, принимая из рук горничной шкатулку.",
-   "lemma": "человек",
-   "options": [
-    "высокий человек",
-    "высоком человеке",
-    "высокому человеку",
-    "высоким человеком"
-   ],
-   "correct": "высокий человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«высокий человек» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
   },
   {
    "sentence": "— Ишь книг-то, книг, — сказал ___, выносивший библиотечные шкапы князя Андрея.",
@@ -137,36 +81,8 @@
    ],
    "correct": "другой мужик",
    "case": "Именительный (Nominative)",
-   "explain": "«другой мужик» — the subject of the sentence stands in the nominative.",
+   "explain": "«другой мужик» is the subject of «сказал» — who or what does it — so nominative.",
    "id": "c17"
-  },
-  {
-   "sentence": "Прощайте, княжна, желаю вам счастия и утешения, и желаю встретиться с вами при более ___.",
-   "lemma": "условие",
-   "options": [
-    "счастливых условий",
-    "счастливыми условиями",
-    "счастливых условиях",
-    "счастливые условия"
-   ],
-   "correct": "счастливых условиях",
-   "case": "Предложный (Prepositional)",
-   "explain": "«счастливых условиях» — after the preposition «при», for location or topic.",
-   "id": "c20"
-  },
-  {
-   "sentence": "Когда он вспоминал про нее, ему становилось весело, и когда товарищи, узнав о бывшем с ним приключении в Богучарове, шутили ему, что он, поехав за сеном, подцепил одну из самых ___ в России, Ростов сердился.",
-   "lemma": "невеста",
-   "options": [
-    "богатыми невестами",
-    "богатых невест",
-    "богатым невестам",
-    "богатых невестах"
-   ],
-   "correct": "богатых невест",
-   "case": "Родительный (Genitive)",
-   "explain": "«богатых невест» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
-   "id": "c22"
   }
  ]
 }

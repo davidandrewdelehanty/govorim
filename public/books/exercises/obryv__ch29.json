@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "До Райского и Марфеньки долетал ___, грубый смех, смешанные голоса, внезапно приутихшие, как скоро люди из окон заметили барина и барышню.",
-   "lemma": "говор",
-   "options": [
-    "грубому говору",
-    "грубом говоре",
-    "грубый говор",
-    "грубым говором"
-   ],
-   "correct": "грубый говор",
-   "case": "Винительный (Accusative)",
-   "explain": "«грубый говор» — the accusative marks the direct object of the verb.",
-   "id": "c3"
-  },
-  {
-   "sentence": "До Райского и Марфеньки долетал грубый говор, ___, смешанные голоса, внезапно приутихшие, как скоро люди из окон заметили барина и барышню.",
-   "lemma": "смех",
-   "options": [
-    "грубого смеха",
-    "грубом смехе",
-    "грубым смехом",
-    "грубый смех"
-   ],
-   "correct": "грубый смех",
-   "case": "Винительный (Accusative)",
-   "explain": "«грубый смех» — the accusative marks the direct object of the verb.",
-   "id": "c4"
-  },
-  {
    "sentence": "Однако до них успел долететь маленький отрывок из ___.",
    "lemma": "беседа",
    "options": [
@@ -39,7 +11,7 @@
    ],
    "correct": "дружелюбной беседы",
    "case": "Родительный (Genitive)",
-   "explain": "«дружелюбной беседы» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«дружелюбной беседы» — «из» always takes the genitive.",
    "id": "c5"
   },
   {
@@ -53,22 +25,8 @@
    ],
    "correct": "блестящих зубов",
    "case": "Родительный (Genitive)",
-   "explain": "«блестящих зубов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«блестящих зубов» depends on the noun «ряд» (whose? of what?) — genitive.",
    "id": "c8"
-  },
-  {
-   "sentence": "Тут же, увидев выглядывавшие на нее из кухни лица дворни, она вдруг сквозь слезы засмеялась и показала ряд белых блестящих зубов, потом опять быстро смех сменился ___.",
-   "lemma": "мина",
-   "options": [
-    "плачущей мине",
-    "плачущей мины",
-    "плачущей миной",
-    "плачущая мина"
-   ],
-   "correct": "плачущей миной",
-   "case": "Творительный (Instrumental)",
-   "explain": "«плачущей миной» — the instrumental marks the means, company, or complement.",
-   "id": "c9"
   },
   {
    "sentence": "Егорка скалил зубы, у ___ был тоже смех на лице, прочие опустили головы и молчали.",
@@ -81,7 +39,7 @@
    ],
    "correct": "иных женщин",
    "case": "Родительный (Genitive)",
-   "explain": "«иных женщин» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«иных женщин» — «у» always takes the genitive.",
    "id": "c10"
   },
   {
@@ -95,7 +53,7 @@
    ],
    "correct": "глухого удара",
    "case": "Родительный (Genitive)",
-   "explain": "«глухого удара» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«глухого удара» depends on the noun «звук» (whose? of what?) — genitive.",
    "id": "c11"
   },
   {
@@ -109,78 +67,22 @@
    ],
    "correct": "крупные складки",
    "case": "Именительный (Nominative)",
-   "explain": "«крупные складки» — the subject of the sentence stands in the nominative.",
+   "explain": "«крупные складки» is the subject of «собрались» — who or what does it — so nominative.",
    "id": "c12"
-  },
-  {
-   "sentence": "Только ради ее проворства и способностей она оставлена была при ___ и продолжала пользоваться доверенностью Веры, и та употребляла ее по своим особым поручениям.",
-   "lemma": "дом",
-   "options": [
-    "старого дома",
-    "старом доме",
-    "старым домом",
-    "старому дому"
-   ],
-   "correct": "старом доме",
-   "case": "Предложный (Prepositional)",
-   "explain": "«старом доме» — after the preposition «при», for location or topic.",
-   "id": "c15"
   },
   {
    "sentence": "Только ради ее проворства и способностей она оставлена была при старом доме и продолжала пользоваться доверенностью Веры, и та употребляла ее по своим ___.",
    "lemma": "поручение",
    "options": [
-    "особым поручениям",
-    "особыми поручениями",
+    "особых поручений",
     "особых поручениях",
-    "особые поручения"
+    "особым поручениям",
+    "особыми поручениями"
    ],
    "correct": "особым поручениям",
    "case": "Дательный (Dative)",
-   "explain": "«особым поручениям» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«особым поручениям» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c16"
-  },
-  {
-   "sentence": "Но в ее обеспеченном состоянии крепостной ___ узды не существовало.",
-   "lemma": "девка",
-   "options": [
-    "дворовой девки",
-    "дворовой девке",
-    "дворовой девкой",
-    "дворовая девка"
-   ],
-   "correct": "дворовой девки",
-   "case": "Родительный (Genitive)",
-   "explain": "«дворовой девки» — the genitive here marks possession, absence, or quantity.",
-   "id": "c18"
-  },
-  {
-   "sentence": "Ее не прогонят, куска хлеба не лишат, а к стыду можно притерпеться, как скоро однажды навсегда узнает все ___ лиц, с которыми она более или менее состояла в родстве, кумовстве или нежных отношениях.",
-   "lemma": "кружок",
-   "options": [
-    "тесному кружку",
-    "тесном кружке",
-    "тесный кружок",
-    "тесным кружком"
-   ],
-   "correct": "тесный кружок",
-   "case": "Винительный (Accusative)",
-   "explain": "«тесный кружок» — the accusative marks the direct object of the verb.",
-   "id": "c19"
-  },
-  {
-   "sentence": "Ее не прогонят, куска хлеба не лишат, а к стыду можно притерпеться, как скоро однажды навсегда узнает все тесный кружок лиц, с которыми она более или менее состояла в родстве, кумовстве или ___.",
-   "lemma": "отношение",
-   "options": [
-    "нежным отношениям",
-    "нежными отношениями",
-    "нежных отношений",
-    "нежных отношениях"
-   ],
-   "correct": "нежных отношениях",
-   "case": "Предложный (Prepositional)",
-   "explain": "«нежных отношениях» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c20"
   },
   {
    "sentence": "Сложена она была хорошо: талия ее, без корсета и кринолина, тонко и стройно покачивалась над ___, когда она неслась по двору, будто летела.",
@@ -193,22 +95,8 @@
    ],
    "correct": "грязной юбкой",
    "case": "Творительный (Instrumental)",
-   "explain": "«грязной юбкой» — after the preposition «над», the instrumental marks the means, company, or complement.",
+   "explain": "«грязной юбкой» — «над» always takes the instrumental.",
    "id": "c21"
-  },
-  {
-   "sentence": "С Савельем случилось то же, что с другими: то есть он поглядел на нее раза два исподлобья, и хотя был некрасив, но удостоился ее ___, ни более не менее, как прочие.",
-   "lemma": "внимание",
-   "options": [
-    "благосклонное внимание",
-    "благосклонным вниманием",
-    "благосклонного внимания",
-    "благосклонном внимании"
-   ],
-   "correct": "благосклонного внимания",
-   "case": "Родительный (Genitive)",
-   "explain": "«благосклонного внимания» — the genitive here marks possession, absence, or quantity.",
-   "id": "c22"
   },
   {
    "sentence": "Не прошло двух недель, как Савелий застал у себя в гостях ___, который быстро ускользнул из дверей и перелез через забор.",
@@ -221,7 +109,7 @@
    ],
    "correct": "гарнизонного унтер-офицера",
    "case": "Родительный (Genitive)",
-   "explain": "«гарнизонного унтер-офицера» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«гарнизонного унтер-офицера» depends on the noun «гостях» (whose? of what?) — genitive.",
    "id": "c23"
   },
   {
@@ -235,7 +123,7 @@
    ],
    "correct": "супружеского гнева",
    "case": "Родительный (Genitive)",
-   "explain": "«супружеского гнева» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«супружеского гнева» depends on the noun «жертва» (whose? of what?) — genitive.",
    "id": "c24"
   },
   {
@@ -249,22 +137,8 @@
    ],
    "correct": "народной драмы",
    "case": "Родительный (Genitive)",
-   "explain": "«народной драмы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«народной драмы» depends on the noun «очерк» (whose? of what?) — genitive.",
    "id": "c25"
-  },
-  {
-   "sentence": "В городе ее уже знают, и она теперь старается заманивать новичков, заезжих студентов, прапорщиков, ___.",
-   "lemma": "чиновник",
-   "options": [
-    "молодых чиновников",
-    "молодыми чиновниками",
-    "молодые чиновники",
-    "молодым чиновникам"
-   ],
-   "correct": "молодых чиновников",
-   "case": "Винительный (Accusative)",
-   "explain": "«молодых чиновников» — the accusative marks the direct object of the verb.",
-   "id": "c30"
   },
   {
    "sentence": "Теперь при ней состоял ___, Michel Рамин, приехавший прямо с школьной скамьи в отпуск.",
@@ -277,7 +151,7 @@
    ],
    "correct": "заезжий юноша",
    "case": "Именительный (Nominative)",
-   "explain": "«заезжий юноша» — the subject of the sentence stands in the nominative.",
+   "explain": "«заезжий юноша» is the subject of «состоял» — who or what does it — so nominative.",
    "id": "c31"
   },
   {
@@ -291,36 +165,8 @@
    ],
    "correct": "большие руки",
    "case": "Именительный (Nominative)",
-   "explain": "«большие руки» — the subject of the sentence stands in the nominative.",
+   "explain": "«большие руки» is the subject of «были» — who or what does it — so nominative.",
    "id": "c33"
-  },
-  {
-   "sentence": "У него были такие большие руки, с такими длинными и ___, что ни в какие перчатки, кроме замшевых, не входили.",
-   "lemma": "палец",
-   "options": [
-    "красных пальцах",
-    "красные пальцы",
-    "красными пальцами",
-    "красных пальцев"
-   ],
-   "correct": "красными пальцами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«красными пальцами» — the instrumental marks the means, company, or complement.",
-   "id": "c34"
-  },
-  {
-   "sentence": "Он был одержим ___ и институтскою робостью.",
-   "lemma": "аппетит",
-   "options": [
-    "кадетскому аппетиту",
-    "кадетского аппетита",
-    "кадетском аппетите",
-    "кадетским аппетитом"
-   ],
-   "correct": "кадетским аппетитом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«кадетским аппетитом» — the instrumental marks the means, company, or complement.",
-   "id": "c35"
   },
   {
    "sentence": "Бабушка пошептала ей на ухо, что приготовить для ___ к обеду, и Марфенька вышла.",
@@ -333,7 +179,7 @@
    ],
    "correct": "неожиданных гостей",
    "case": "Родительный (Genitive)",
-   "explain": "«неожиданных гостей» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«неожиданных гостей» — «для» always takes the genitive.",
    "id": "c36"
   }
  ]

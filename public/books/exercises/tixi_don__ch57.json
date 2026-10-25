@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Вас, по всей вероятности, удивит принятое мною решение, но я объясняю его ___: меня тяготила та обстановка, в которой приходилось вращаться.",
-   "lemma": "образ",
-   "options": [
-    "следующего образа",
-    "следующему образу",
-    "следующий образ",
-    "следующим образом"
-   ],
-   "correct": "следующим образом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«следующим образом» — the instrumental marks the means, company, or complement.",
-   "id": "c2"
-  },
-  {
    "sentence": "Парады, встречи, караулы — вся эта ___ набила мне оскомину.",
    "lemma": "служба",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "дворцовая служба",
    "case": "Именительный (Nominative)",
-   "explain": "«дворцовая служба» — the subject of the sentence stands in the nominative.",
+   "explain": "«дворцовая служба» is the subject of «набила» — who or what does it — so nominative.",
    "id": "c3"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "русского оружия",
    "case": "Родительный (Genitive)",
-   "explain": "«русского оружия» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«русского оружия» depends on the noun «венок» (whose? of what?) — genitive.",
    "id": "c5"
   },
   {
@@ -53,7 +39,7 @@
    ],
    "correct": "императорском величестве",
    "case": "Предложный (Prepositional)",
-   "explain": "«императорском величестве» — after the preposition «об», for location or topic.",
+   "explain": "«императорском величестве» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c7"
   },
   {
@@ -67,77 +53,35 @@
    ],
    "correct": "грязной сплетни",
    "case": "Родительный (Genitive)",
-   "explain": "«грязной сплетни» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«грязной сплетни» — «до» always takes the genitive.",
    "id": "c8"
-  },
-  {
-   "sentence": "Носильщик уложил чемодан Листницкого и, получив мелочь, пожелал их благородию ___.",
-   "lemma": "путь",
-   "options": [
-    "счастливого пути",
-    "счастливому пути",
-    "счастливый путь",
-    "счастливом пути"
-   ],
-   "correct": "счастливого пути",
-   "case": "Родительный (Genitive)",
-   "explain": "«счастливого пути» — the genitive here marks possession, absence, or quantity.",
-   "id": "c11"
   },
   {
    "sentence": "Отряхивая с волокнистой бороды ___, он угощал сидевшую против него смуглую москлявенькую девушку в форме гимназистки.",
    "lemma": "крошка",
    "options": [
+    "хлебным крошкам",
     "хлебными крошками",
     "хлебных крошках",
-    "хлебных крошек",
     "хлебные крошки"
    ],
    "correct": "хлебные крошки",
    "case": "Винительный (Accusative)",
-   "explain": "«хлебные крошки» — the accusative marks the direct object of the verb.",
+   "explain": "«хлебные крошки» is the direct object of «угощал» (кого? что?) — accusative.",
    "id": "c12"
-  },
-  {
-   "sentence": "— Священник буравил его угрюмыми глазами и улыбался одними ___ под невеселой порослью волокнистых, в проталинках усов.",
-   "lemma": "глаз",
-   "options": [
-    "тонкие глаза",
-    "тонких глаз",
-    "тонкими глазами",
-    "тонким глазам"
-   ],
-   "correct": "тонкими глазами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«тонкими глазами» — the instrumental marks the means, company, or complement.",
-   "id": "c13"
-  },
-  {
-   "sentence": "Листницкий сквозь пленку дремы ощущал будто издалека добиравшийся до слуха ___ священника, и мнилось уже, что это не священник говорит жалующимся басом, а есаул Громов.",
-   "lemma": "голос",
-   "options": [
-    "густого голоса",
-    "густым голосом",
-    "густой голос",
-    "густом голосе"
-   ],
-   "correct": "густой голос",
-   "case": "Именительный (Nominative)",
-   "explain": "«густой голос» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
   },
   {
    "sentence": "___ не может без веры.",
    "lemma": "народ",
    "options": [
-    "русского народа",
-    "русским народом",
     "русскому народу",
-    "русский народ"
+    "русским народом",
+    "русский народ",
+    "русском народе"
    ],
    "correct": "русский народ",
    "case": "Именительный (Nominative)",
-   "explain": "«Русский народ» — the subject of the sentence stands in the nominative.",
+   "explain": "«русский народ» is the subject of «может» — who or what does it — so nominative.",
    "id": "c15"
   },
   {
@@ -151,50 +95,8 @@
    ],
    "correct": "бессонных ночей",
    "case": "Родительный (Genitive)",
-   "explain": "«бессонных ночей» — after the preposition «после», the genitive here marks possession, absence, or quantity.",
+   "explain": "«бессонных ночей» — «после» always takes the genitive.",
    "id": "c16"
-  },
-  {
-   "sentence": "Ритмично татакали колеса, вагон качался, волнуемый рывками паровоза, где-то в соседнем купе вполголоса пели, лиловые ___ бросал фонарь.",
-   "lemma": "тень",
-   "options": [
-    "косым теням",
-    "косые тени",
-    "косых теней",
-    "косых тенях"
-   ],
-   "correct": "косые тени",
-   "case": "Винительный (Accusative)",
-   "explain": "«косые тени» — the accusative marks the direct object of the verb.",
-   "id": "c18"
-  },
-  {
-   "sentence": "Полк, в который получил назначение сотник Листницкий, понес ___ в последних боях, был выведен из сферы боев и спешно ремонтировался конским составом, пополнялся людьми.",
-   "lemma": "урон",
-   "options": [
-    "крупном уроне",
-    "крупного урона",
-    "крупным уроном",
-    "крупный урон"
-   ],
-   "correct": "крупный урон",
-   "case": "Винительный (Accusative)",
-   "explain": "«крупный урон» — the accusative marks the direct object of the verb.",
-   "id": "c19"
-  },
-  {
-   "sentence": "Полк, в который получил назначение сотник Листницкий, понес крупный урон в последних боях, был выведен из сферы боев и спешно ремонтировался ___, пополнялся людьми.",
-   "lemma": "состав",
-   "options": [
-    "конский состав",
-    "конским составом",
-    "конского состава",
-    "конскому составу"
-   ],
-   "correct": "конским составом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«конским составом» — the instrumental marks the means, company, or complement.",
-   "id": "c21"
   },
   {
    "sentence": "Штаб полка находился в большой ___ Березняги.",
@@ -207,7 +109,7 @@
    ],
    "correct": "торговой деревне",
    "case": "Предложный (Prepositional)",
-   "explain": "«торговой деревне» — after the preposition «в», for location or topic.",
+   "explain": "«торговой деревне» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c22"
   },
   {
@@ -221,7 +123,7 @@
    ],
    "correct": "безымянном полустанке",
    "case": "Предложный (Prepositional)",
-   "explain": "«безымянном полустанке» — after the preposition «на», for location or topic.",
+   "explain": "«безымянном полустанке» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c23"
   },
   {
@@ -235,7 +137,7 @@
    ],
    "correct": "злым сладострастием",
    "case": "Творительный (Instrumental)",
-   "explain": "«злым сладострастием» — after the preposition «со», the instrumental marks the means, company, or complement.",
+   "explain": "«злым сладострастием» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c25"
   },
   {
@@ -249,22 +151,8 @@
    ],
    "correct": "начальствующего состава",
    "case": "Родительный (Genitive)",
-   "explain": "«начальствующего состава» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«начальствующего состава» depends on the noun «глупостью» (whose? of what?) — genitive.",
    "id": "c26"
-  },
-  {
-   "sentence": "Он расходился ___, преломляясь и пылясь, вонзался отвесно, а ниже пролома неописуемо сплетался в вакханальный спектр красок.",
-   "lemma": "веер",
-   "options": [
-    "брызжущего веера",
-    "брызжущий веер",
-    "брызжущим веером",
-    "брызжущем веере"
-   ],
-   "correct": "брызжущим веером",
-   "case": "Творительный (Instrumental)",
-   "explain": "«брызжущим веером» — the instrumental marks the means, company, or complement.",
-   "id": "c27"
   },
   {
    "sentence": "У ___ лежала пристреленная рыжая лошадь.",
@@ -277,50 +165,8 @@
    ],
    "correct": "придорожной канавы",
    "case": "Родительный (Genitive)",
-   "explain": "«придорожной канавы» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«придорожной канавы» — «у» always takes the genitive.",
    "id": "c29"
-  },
-  {
-   "sentence": "___ ее, дико задранная кверху, блестела полустертой подковой.",
-   "lemma": "нога",
-   "options": [
-    "задняя нога",
-    "задней ногой",
-    "задней ноге",
-    "задней ноги"
-   ],
-   "correct": "задняя нога",
-   "case": "Именительный (Nominative)",
-   "explain": "«Задняя нога» — the subject of the sentence stands in the nominative.",
-   "id": "c30"
-  },
-  {
-   "sentence": "Листницкий, подпрыгивая на двуколке, разглядывал ___.",
-   "lemma": "труп",
-   "options": [
-    "лошадиному трупу",
-    "лошадиного трупа",
-    "лошадиный труп",
-    "лошадиным трупом"
-   ],
-   "correct": "лошадиный труп",
-   "case": "Винительный (Accusative)",
-   "explain": "«лошадиный труп» — the accusative marks the direct object of the verb.",
-   "id": "c31"
-  },
-  {
-   "sentence": "Оно было серовато, скучно, как ___ в жнивье; ничем не отличалось от тысячи других мужицко-солдатских лиц, тех, которые встречал и догонял сотник на пути от Петрограда к фронту.",
-   "lemma": "поле",
-   "options": [
-    "сентябрьскому полю",
-    "сентябрьском поле",
-    "сентябрьское поле",
-    "сентябрьского поля"
-   ],
-   "correct": "сентябрьское поле",
-   "case": "Именительный (Nominative)",
-   "explain": "«сентябрьское поле» — the subject of the sentence stands in the nominative.",
-   "id": "c32"
   },
   {
    "sentence": "Оно было серовато, скучно, как сентябрьское поле в жнивье; ничем не отличалось от тысячи других ___, тех, которые встречал и догонял сотник на пути от Петрограда к фронту.",
@@ -333,22 +179,8 @@
    ],
    "correct": "мужицко-солдатских лиц",
    "case": "Родительный (Genitive)",
-   "explain": "«мужицко-солдатских лиц» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«мужицко-солдатских лиц» — «от» always takes the genitive.",
    "id": "c33"
-  },
-  {
-   "sentence": "Все они казались какими-то вылинявшими, тупое застыло в серых, голубых, зеленоватых и иных глазах, и крепко напоминали хожалые, давнишнего чекана ___.",
-   "lemma": "монета",
-   "options": [
-    "медными монетами",
-    "медных монет",
-    "медные монеты",
-    "медным монетам"
-   ],
-   "correct": "медные монеты",
-   "case": "Винительный (Accusative)",
-   "explain": "«медные монеты» — the accusative marks the direct object of the verb.",
-   "id": "c34"
   },
   {
    "sentence": "— Я в Кенисберге на ___ работал, — скучающе ронял санитар, погоняя маштака узлом ременной вожжи.",
@@ -361,22 +193,8 @@
    ],
    "correct": "сигарной фабрике",
    "case": "Предложный (Prepositional)",
-   "explain": "«сигарной фабрике» — after the preposition «на», for location or topic.",
+   "explain": "«сигарной фабрике» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c35"
-  },
-  {
-   "sentence": "Нога мертвой лошади чернела сзади ___.",
-   "lemma": "часовня",
-   "options": [
-    "безголовой часовней",
-    "безголовая часовня",
-    "безголовой часовне",
-    "безголовой часовни"
-   ],
-   "correct": "безголовой часовней",
-   "case": "Творительный (Instrumental)",
-   "explain": "«безголовой часовней» — the instrumental marks the means, company, or complement.",
-   "id": "c36"
   },
   {
    "sentence": "Листницкий все смотрел на нее, и вдруг на лошадь круговиной упал снопик лучей, и нога с плотно прилегшей рыжей шерстью неотразимо зацвела, как некая чудесная безлистая ветвь, окрашенная ___.",
@@ -389,120 +207,8 @@
    ],
    "correct": "апельсинным цветом",
    "case": "Творительный (Instrumental)",
-   "explain": "«апельсинным цветом» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «окрашенная», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c37"
-  },
-  {
-   "sentence": "Главное — ___; в надеже я — он не сбрешет.",
-   "lemma": "человек",
-   "options": [
-    "верный человек",
-    "верного человека",
-    "верным человеком",
-    "верному человеку"
-   ],
-   "correct": "верный человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«верный человек» — the subject of the sentence stands in the nominative.",
-   "id": "c38"
-  },
-  {
-   "sentence": "— Навряд, — сомневался второй, качая ___ со следами давнишней золотухи.",
-   "lemma": "голова",
-   "options": [
-    "круглая голова",
-    "круглой головой",
-    "круглой голове",
-    "круглой головы"
-   ],
-   "correct": "круглой головой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«круглой головой» — the instrumental marks the means, company, or complement.",
-   "id": "c39"
-  },
-  {
-   "sentence": "— Подожди, Филипп, могет быть, что и правда, приезжал, — мягким ___ отзывался третий, сидевший к встречным спиной.",
-   "lemma": "говорок",
-   "options": [
-    "волжским говорком",
-    "волжского говорка",
-    "волжский говорок",
-    "волжском говорке"
-   ],
-   "correct": "волжским говорком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«волжским говорком» — the instrumental marks the means, company, or complement.",
-   "id": "c40"
-  },
-  {
-   "sentence": "На пятой подводе краснели околыши ___.",
-   "lemma": "фуражка",
-   "options": [
-    "казачьими фуражками",
-    "казачьим фуражкам",
-    "казачьи фуражки",
-    "казачьих фуражек"
-   ],
-   "correct": "казачьих фуражек",
-   "case": "Родительный (Genitive)",
-   "explain": "«казачьих фуражек» — the genitive here marks possession, absence, or quantity.",
-   "id": "c41"
-  },
-  {
-   "sentence": "Трое казаков удобно разместились на широком возу, молча глядели на Листницкого, и на их запыленных ___ не было и тени той почтительности, которую видишь в строю.",
-   "lemma": "лицо",
-   "options": [
-    "суровых лиц",
-    "суровыми лицами",
-    "суровым лицам",
-    "суровых лицах"
-   ],
-   "correct": "суровых лицах",
-   "case": "Предложный (Prepositional)",
-   "explain": "«суровых лицах» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c42"
-  },
-  {
-   "sentence": "Казаки о чем-то пошептались, и один из них, придерживая ___ раненую, завязанную холстинным лоскутом, соскочил с повозки.",
-   "lemma": "рука",
-   "options": [
-    "здоровой руки",
-    "здоровая рука",
-    "здоровой руке",
-    "здоровой рукой"
-   ],
-   "correct": "здоровой рукой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«здоровой рукой» — the instrumental marks the means, company, or complement.",
-   "id": "c43"
-  },
-  {
-   "sentence": "Казаки о чем-то пошептались, и один из них, придерживая здоровой рукой раненую, завязанную ___, соскочил с повозки.",
-   "lemma": "лоскут",
-   "options": [
-    "холстинному лоскуту",
-    "холстинном лоскуте",
-    "холстинного лоскута",
-    "холстинным лоскутом"
-   ],
-   "correct": "холстинным лоскутом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«холстинным лоскутом» — the instrumental marks the means, company, or complement.",
-   "id": "c44"
-  },
-  {
-   "sentence": "— Он бережно нес простреленную, тронутую воспалением руку, шел по дороге, улыбаясь Листницкому и увалисто переставляя ___.",
-   "lemma": "нога",
-   "options": [
-    "босых ног",
-    "босые ноги",
-    "босых ногах",
-    "босым ногам"
-   ],
-   "correct": "босые ноги",
-   "case": "Винительный (Accusative)",
-   "explain": "«босые ноги» — the accusative marks the direct object of the verb.",
-   "id": "c45"
   },
   {
    "sentence": "Сотник распрощался на площади с врачом, гостеприимно предоставившим ему место на ___, и пошел, на ходу отряхивая мундир от пыли, расспрашивая встречных о местопребывании штаба полка.",
@@ -515,7 +221,7 @@
    ],
    "correct": "санитарной двуколке",
    "case": "Предложный (Prepositional)",
-   "explain": "«санитарной двуколке» — after the preposition «на», for location or topic.",
+   "explain": "«санитарной двуколке» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c47"
   },
   {
@@ -529,7 +235,7 @@
    ],
    "correct": "передовых позиций",
    "case": "Родительный (Genitive)",
-   "explain": "«передовых позиций» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«передовых позиций» — «от» always takes the genitive.",
    "id": "c48"
   },
   {
@@ -543,7 +249,7 @@
    ],
    "correct": "большим столом",
    "case": "Творительный (Instrumental)",
-   "explain": "«большим столом» — after the preposition «над», the instrumental marks the means, company, or complement.",
+   "explain": "«большим столом» — «над» always takes the instrumental.",
    "id": "c49"
   },
   {
@@ -557,7 +263,7 @@
    ],
    "correct": "полевого телефона",
    "case": "Родительный (Genitive)",
-   "explain": "«полевого телефона» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«полевого телефона» depends on the noun «трубки» (whose? of what?) — genitive.",
    "id": "c50"
   },
   {
@@ -571,36 +277,8 @@
    ],
    "correct": "просторной хаты",
    "case": "Родительный (Genitive)",
-   "explain": "«просторной хаты» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«просторной хаты» depends on the noun «окнах» (whose? of what?) — genitive.",
    "id": "c52"
-  },
-  {
-   "sentence": "На окнах просторной хаты брунжали мухи, и по-комариному ныли далекие ___.",
-   "lemma": "звонок",
-   "options": [
-    "телефонные звонки",
-    "телефонных звонках",
-    "телефонным звонкам",
-    "телефонных звонков"
-   ],
-   "correct": "телефонные звонки",
-   "case": "Именительный (Nominative)",
-   "explain": "«телефонные звонки» — the subject of the sentence stands in the nominative.",
-   "id": "c53"
-  },
-  {
-   "sentence": "Уж закрывая дверь за собой, он поправил волосы жестом беспредельной усталости, сказал мягким ___: — Мне вчера передали об этом из штаба бригады.",
-   "lemma": "голос",
-   "options": [
-    "монотонному голосу",
-    "монотонном голосе",
-    "монотонный голос",
-    "монотонным голосом"
-   ],
-   "correct": "монотонным голосом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«монотонным голосом» — the instrumental marks the means, company, or complement.",
-   "id": "c55"
   },
   {
    "sentence": "Он расспрашивал Листницкого о ___, о столичных новостях, о дороге; и за все время короткого их разговора ни разу не поднял на собеседника отягощенных какой-то большою усталостью глаз.",
@@ -613,7 +291,7 @@
    ],
    "correct": "прежней службе",
    "case": "Предложный (Prepositional)",
-   "explain": "«прежней службе» — after the preposition «о», for location or topic.",
+   "explain": "«прежней службе» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c56"
   },
   {
@@ -627,22 +305,8 @@
    ],
    "correct": "столичных новостях",
    "case": "Предложный (Prepositional)",
-   "explain": "«столичных новостях» — after the preposition «о», for location or topic.",
+   "explain": "«столичных новостях» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c57"
-  },
-  {
-   "sentence": "Он ушел, неприязненно вспоминая встречу, иронизируя над тем уважением, которое невольно внушили ему ___ и шрам на широком подбородке полковника.",
-   "lemma": "вид",
-   "options": [
-    "усталому виду",
-    "усталый вид",
-    "усталого вида",
-    "усталым видом"
-   ],
-   "correct": "усталый вид",
-   "case": "Винительный (Accusative)",
-   "explain": "«усталый вид» — the accusative marks the direct object of the verb.",
-   "id": "c58"
   },
   {
    "sentence": "Он ушел, неприязненно вспоминая встречу, иронизируя над тем уважением, которое невольно внушили ему усталый вид и шрам на ___ полковника.",
@@ -655,7 +319,7 @@
    ],
    "correct": "широком подбородке",
    "case": "Предложный (Prepositional)",
-   "explain": "«широком подбородке» — after the preposition «на», for location or topic.",
+   "explain": "«широком подбородке» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c59"
   }
  ]

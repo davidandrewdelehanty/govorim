@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "___, может быть, и добрый человек, да бог с ним!",
-   "lemma": "сосед",
-   "options": [
-    "молодом соседе",
-    "молодой сосед",
-    "молодому соседу",
-    "молодого соседа"
-   ],
-   "correct": "молодой сосед",
-   "case": "Именительный (Nominative)",
-   "explain": "«Молодой сосед» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Молодой сосед, может быть, и ___, да бог с ним!",
-   "lemma": "человек",
-   "options": [
-    "доброму человеку",
-    "добрым человеком",
-    "добрый человек",
-    "добром человеке"
-   ],
-   "correct": "добрый человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«добрый человек» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
    "sentence": "А сознайтесь, приятно вам было увидеть у ног своих ___?..",
    "lemma": "клеветник",
    "options": [
@@ -39,7 +11,7 @@
    ],
    "correct": "старого клеветника",
    "case": "Родительный (Genitive)",
-   "explain": "«старого клеветника» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«старого клеветника» depends on the noun «ног» (whose? of what?) — genitive.",
    "id": "c3"
   },
   {
@@ -53,22 +25,8 @@
    ],
    "correct": "давнишним приятелем",
    "case": "Творительный (Instrumental)",
-   "explain": "«давнишним приятелем» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «написано», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c4"
-  },
-  {
-   "sentence": "Письмо это написано одним моим давнишним приятелем и сослуживцем, добрым, но довольно ___.",
-   "lemma": "человек",
-   "options": [
-    "ограниченного человека",
-    "ограниченному человеку",
-    "ограниченным человеком",
-    "ограниченном человеке"
-   ],
-   "correct": "ограниченным человеком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«ограниченным человеком» — the instrumental marks the means, company, or complement.",
-   "id": "c5"
   },
   {
    "sentence": "Я жду одну женщину; мы вместе с нею едем в Баию есть устрицы и апельсины, смотреть, как тёмно-бурые пастухи, в ___, пляшут тарантеллу, жариться на солнце не хуже ящериц — словом, наслаждаться жизнью вполне.",
@@ -81,64 +39,8 @@
    ],
    "correct": "красных колпаках",
    "case": "Предложный (Prepositional)",
-   "explain": "«красных колпаках» — after the preposition «в», for location or topic.",
+   "explain": "«красных колпаках» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c7"
-  },
-  {
-   "sentence": "___ мой, я так счастлив, что сказать невозможно.",
-   "lemma": "друг",
-   "options": [
-    "милый друг",
-    "милого друга",
-    "милом друге",
-    "милому другу"
-   ],
-   "correct": "милый друг",
-   "case": "Именительный (Nominative)",
-   "explain": "«Милый друг» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
-  },
-  {
-   "sentence": "Я шучу, но в ___ моя привязанность к этой женщине — это что-то необыкновенное, сверхъестественное.",
-   "lemma": "дело",
-   "options": [
-    "самом деле",
-    "самому делу",
-    "самим делом",
-    "самого дела"
-   ],
-   "correct": "самом деле",
-   "case": "Предложный (Prepositional)",
-   "explain": "«самом деле» — after the preposition «в», for location or topic.",
-   "id": "c9"
-  },
-  {
-   "sentence": "Зовут её Ниной, Нинеттой — как хочешь; она дочь одного здешнего ___.",
-   "lemma": "купец",
-   "options": [
-    "богатом купце",
-    "богатого купца",
-    "богатому купцу",
-    "богатый купец"
-   ],
-   "correct": "богатого купца",
-   "case": "Родительный (Genitive)",
-   "explain": "«богатого купца» — the genitive here marks possession, absence, or quantity.",
-   "id": "c10"
-  },
-  {
-   "sentence": "Извини — это она всё письмо забрызгала: ударила ___ по бумаге.",
-   "lemma": "букет",
-   "options": [
-    "мокрый букет",
-    "мокрого букета",
-    "мокрым букетом",
-    "мокром букете"
-   ],
-   "correct": "мокрым букетом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«мокрым букетом» — the instrumental marks the means, company, or complement.",
-   "id": "c11"
   },
   {
    "sentence": "На рейде стоял французский ___.",
@@ -151,22 +53,8 @@
    ],
    "correct": "линейный корабль",
    "case": "Именительный (Nominative)",
-   "explain": "«линейный корабль» — the subject of the sentence stands in the nominative.",
+   "explain": "«линейный корабль» is the subject of «стоял» — who or what does it — so nominative.",
    "id": "c13"
-  },
-  {
-   "sentence": "Он весь смутно рдел огнями; ___ красного цвета, отраженье озарённых окон, тянулись, чуть зыблясь, по тёмному морю.",
-   "lemma": "полоса",
-   "options": [
-    "длинным полосам",
-    "длинных полосах",
-    "длинных полос",
-    "длинные полосы"
-   ],
-   "correct": "длинные полосы",
-   "case": "Именительный (Nominative)",
-   "explain": "«длинные полосы» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
   },
   {
    "sentence": "Он весь смутно рдел огнями; длинные полосы ___, отраженье озарённых окон, тянулись, чуть зыблясь, по тёмному морю.",
@@ -179,7 +67,7 @@
    ],
    "correct": "красного цвета",
    "case": "Родительный (Genitive)",
-   "explain": "«красного цвета» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«красного цвета» depends on the noun «полосы» (whose? of what?) — genitive.",
    "id": "c15"
   },
   {
@@ -193,49 +81,21 @@
    ],
    "correct": "весёлая музыка",
    "case": "Именительный (Nominative)",
-   "explain": "«Весёлая музыка» — the subject of the sentence stands in the nominative.",
+   "explain": "«весёлая музыка» is the subject of «долетала» — who or what does it — so nominative.",
    "id": "c17"
-  },
-  {
-   "sentence": "Весёлая музыка долетала до меня ___; особенно помню я трель маленькой флейты среди глухих возгласов труб; она, казалось, порхала, как бабочка, вокруг моей лодки.",
-   "lemma": "прилив",
-   "options": [
-    "редкими приливами",
-    "редких приливов",
-    "редким приливам",
-    "редкие приливы"
-   ],
-   "correct": "редкими приливами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«редкими приливами» — the instrumental marks the means, company, or complement.",
-   "id": "c18"
-  },
-  {
-   "sentence": "Весёлая музыка долетала до меня редкими приливами; особенно помню я трель ___ среди глухих возгласов труб; она, казалось, порхала, как бабочка, вокруг моей лодки.",
-   "lemma": "флейта",
-   "options": [
-    "маленькой флейты",
-    "маленькая флейта",
-    "маленькой флейте",
-    "маленькой флейтой"
-   ],
-   "correct": "маленькой флейты",
-   "case": "Родительный (Genitive)",
-   "explain": "«маленькой флейты» — the genitive here marks possession, absence, or quantity.",
-   "id": "c19"
   },
   {
    "sentence": "С каким ___ на душе я бросился ниц на дно лодки, и, как Репетилов, попросил, чтобы везли меня куда-нибудь!",
    "lemma": "чувство",
    "options": [
-    "горькому чувству",
-    "горьким чувством",
     "горькое чувство",
-    "горького чувства"
+    "горьким чувством",
+    "горьком чувстве",
+    "горькому чувству"
    ],
    "correct": "горьким чувством",
    "case": "Творительный (Instrumental)",
-   "explain": "«горьким чувством» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«горьким чувством» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c21"
   },
   {
@@ -249,7 +109,7 @@
    ],
    "correct": "самом деле",
    "case": "Предложный (Prepositional)",
-   "explain": "«самом деле» — after the preposition «в», for location or topic.",
+   "explain": "«самом деле» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c22"
   }
  ]

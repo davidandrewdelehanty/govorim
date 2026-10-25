@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Невидимо быстро вырос городок, белокрыший и аккуратный, с прямыми улочками и ___ в центре, по которой похаживал часовой.",
-   "lemma": "площадка",
-   "options": [
-    "небольшой площадке",
-    "небольшой площадкой",
-    "небольшая площадка",
-    "небольшой площадки"
-   ],
-   "correct": "небольшой площадкой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«небольшой площадкой» — the instrumental marks the means, company, or complement.",
-   "id": "c3"
-  },
-  {
-   "sentence": "Зычно покрикивал заведующий лагерями штаб-офицер, шумоватый ___ Попов, горланили, муштруя молодых казаков, обучавшие их урядники.",
-   "lemma": "старшина",
-   "options": [
-    "войсковой старшина",
-    "войсковому старшине",
-    "войсковым старшиной",
-    "войсковом старшине"
-   ],
-   "correct": "войсковой старшина",
-   "case": "Именительный (Nominative)",
-   "explain": "«войсковой старшина» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
-  },
-  {
    "sentence": "Зычно покрикивал заведующий лагерями штаб-офицер, шумоватый войсковой старшина Попов, горланили, муштруя ___, обучавшие их урядники.",
    "lemma": "казак",
    "options": [
@@ -39,7 +11,7 @@
    ],
    "correct": "молодых казаков",
    "case": "Винительный (Accusative)",
-   "explain": "«молодых казаков» — the accusative marks the direct object of the verb.",
+   "explain": "«молодых казаков» is the direct object of «муштруя» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c5"
   },
   {
@@ -53,7 +25,7 @@
    ],
    "correct": "длинными шеренгами",
    "case": "Творительный (Instrumental)",
-   "explain": "«длинными шеренгами» — after the preposition «над», the instrumental marks the means, company, or complement.",
+   "explain": "«длинными шеренгами» — «над» always takes the instrumental.",
    "id": "c6"
   },
   {
@@ -67,36 +39,8 @@
    ],
    "correct": "крытых повозок",
    "case": "Родительный (Genitive)",
-   "explain": "«крытых повозок» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«крытых повозок» depends on the noun «шеренгами» (whose? of what?) — genitive.",
    "id": "c7"
-  },
-  {
-   "sentence": "За неделю до выхода из лагерей к Андрею Томилину, ___ батарейца Ивана, приехала жена.",
-   "lemma": "брат",
-   "options": [
-    "родным братом",
-    "родному брату",
-    "родного брата",
-    "родном брате"
-   ],
-   "correct": "родному брату",
-   "case": "Дательный (Dative)",
-   "explain": "«родному брату» — the dative marks the indirect object or recipient.",
-   "id": "c8"
-  },
-  {
-   "sentence": "Привезла домашних сдобных бурсаков, всякого угощения и ворох ___.",
-   "lemma": "новость",
-   "options": [
-    "хуторскими новостями",
-    "хуторских новостей",
-    "хуторских новостях",
-    "хуторским новостям"
-   ],
-   "correct": "хуторских новостей",
-   "case": "Родительный (Genitive)",
-   "explain": "«хуторских новостей» — the genitive here marks possession, absence, or quantity.",
-   "id": "c9"
   },
   {
    "sentence": "На ___ спозаранку уехала.",
@@ -109,22 +53,8 @@
    ],
    "correct": "другой день",
    "case": "Винительный (Accusative)",
-   "explain": "«другой день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«другой день» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c10"
-  },
-  {
-   "sentence": "Накануне заболел он, лечился водкой и не видел не только жены Томилина, но и всего ___.",
-   "lemma": "свет",
-   "options": [
-    "белый свет",
-    "белым светом",
-    "белому свету",
-    "белого света"
-   ],
-   "correct": "белого света",
-   "case": "Родительный (Genitive)",
-   "explain": "«белого света» — the genitive here marks possession, absence, or quantity.",
-   "id": "c11"
   },
   {
    "sentence": "Возле стоял ___, курил, процеживая сквозь редкие зубы табачный дым.",
@@ -137,22 +67,8 @@
    ],
    "correct": "полковый фельдшер",
    "case": "Именительный (Nominative)",
-   "explain": "«полковый фельдшер» — the subject of the sentence stands in the nominative.",
+   "explain": "«полковый фельдшер» is the subject of «стоял» — who or what does it — so nominative.",
    "id": "c12"
-  },
-  {
-   "sentence": "Возле стоял полковый фельдшер, курил, процеживая сквозь ___ табачный дым.",
-   "lemma": "зуб",
-   "options": [
-    "редким зубам",
-    "редких зубов",
-    "редкие зубы",
-    "редких зубах"
-   ],
-   "correct": "редкие зубы",
-   "case": "Винительный (Accusative)",
-   "explain": "«редкие зубы» — the accusative marks the direct object of the verb.",
-   "id": "c13"
   }
  ]
 }

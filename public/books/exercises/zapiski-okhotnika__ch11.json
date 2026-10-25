@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Я ехал с охоты вечером один, на ___.",
-   "lemma": "дрожки",
-   "options": [
-    "беговыми дрожками",
-    "беговых дрожках",
-    "беговым дрожкам",
-    "беговых дрожек"
-   ],
-   "correct": "беговых дрожках",
-   "case": "Предложный (Prepositional)",
-   "explain": "«беговых дрожках» — after the preposition «на», for location or topic.",
-   "id": "c1"
-  },
-  {
    "sentence": "До дому еще было верст восемь; моя добрая ___ бодро бежала по пыльной дороге, изредка похрапывая и шевеля ушами; усталая собака, словно привязанная, ни на шаг не отставала от задних колес.",
    "lemma": "кобыла",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "рысистая кобыла",
    "case": "Именительный (Nominative)",
-   "explain": "«рысистая кобыла» — the subject of the sentence stands in the nominative.",
+   "explain": "«рысистая кобыла» is the subject of «бежала» — who or what does it — so nominative.",
    "id": "c2"
   },
   {
@@ -39,22 +25,8 @@
    ],
    "correct": "пыльной дороге",
    "case": "Дательный (Dative)",
-   "explain": "«пыльной дороге» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«пыльной дороге» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c3"
-  },
-  {
-   "sentence": "До дому еще было верст восемь; моя добрая рысистая кобыла бодро бежала по пыльной дороге, изредка похрапывая и шевеля ушами; ___, словно привязанная, ни на шаг не отставала от задних колес.",
-   "lemma": "собака",
-   "options": [
-    "усталой собаке",
-    "усталой собакой",
-    "усталой собаки",
-    "усталая собака"
-   ],
-   "correct": "усталая собака",
-   "case": "Именительный (Nominative)",
-   "explain": "«усталая собака» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
   },
   {
    "sentence": "Впереди огромная ___ медленно поднималась из-за леса; надо мною и мне навстречу неслись длинные серые облака; ракиты тревожно шевелились и лепетали.",
@@ -67,7 +39,7 @@
    ],
    "correct": "лиловая туча",
    "case": "Именительный (Nominative)",
-   "explain": "«лиловая туча» — the subject of the sentence stands in the nominative.",
+   "explain": "«лиловая туча» is the subject of «поднималась» — who or what does it — so nominative.",
    "id": "c5"
   },
   {
@@ -81,7 +53,7 @@
    ],
    "correct": "серые облака",
    "case": "Именительный (Nominative)",
-   "explain": "«серые облака» — the subject of the sentence stands in the nominative.",
+   "explain": "«серые облака» is the subject of «неслись» — who or what does it — so nominative.",
    "id": "c6"
   },
   {
@@ -95,22 +67,8 @@
    ],
    "correct": "душный жар",
    "case": "Именительный (Nominative)",
-   "explain": "«Душный жар» — the subject of the sentence stands in the nominative.",
+   "explain": "«душный жар» is the subject of «сменился» — who or what does it — so nominative.",
    "id": "c7"
-  },
-  {
-   "sentence": "Душный жар внезапно сменился ___; тени быстро густели.",
-   "lemma": "холод",
-   "options": [
-    "влажном холоде",
-    "влажным холодом",
-    "влажного холода",
-    "влажному холоду"
-   ],
-   "correct": "влажным холодом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«влажным холодом» — the instrumental marks the means, company, or complement.",
-   "id": "c8"
   },
   {
    "sentence": "Я ударил вожжой по лошади, спустился в овраг, перебрался через ___, весь заросший лозниками, поднялся в гору и въехал в лес.",
@@ -123,21 +81,21 @@
    ],
    "correct": "сухой ручей",
    "case": "Винительный (Accusative)",
-   "explain": "«сухой ручей» — after the preposition «через», the accusative marks the direct object of the verb.",
+   "explain": "«сухой ручей» — «через» always takes the accusative.",
    "id": "c9"
   },
   {
    "sentence": "Дорога вилась передо мною между ___ орешника, уже залитыми мраком; я подвигался вперед с трудом.",
    "lemma": "куст",
    "options": [
-    "густых кустов",
+    "густыми кустами",
+    "густые кусты",
     "густых кустах",
-    "густым кустам",
-    "густыми кустами"
+    "густым кустам"
    ],
    "correct": "густыми кустами",
    "case": "Творительный (Instrumental)",
-   "explain": "«густыми кустами» — after the preposition «между», the instrumental marks the means, company, or complement.",
+   "explain": "«густыми кустами» — «между» + instrumental: between.",
    "id": "c10"
   },
   {
@@ -151,36 +109,8 @@
    ],
    "correct": "столетних дубов",
    "case": "Родительный (Genitive)",
-   "explain": "«столетних дубов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«столетних дубов» depends on the noun «корням» (whose? of what?) — genitive.",
    "id": "c11"
-  },
-  {
-   "sentence": "Дрожки прыгали по твердым корням столетних дубов и лип, беспрестанно пересекавшим глубокие ___ — следы тележных колес; лошадь моя начала спотыкаться.",
-   "lemma": "рытвина",
-   "options": [
-    "продольных рытвин",
-    "продольными рытвинами",
-    "продольных рытвинах",
-    "продольные рытвины"
-   ],
-   "correct": "продольные рытвины",
-   "case": "Винительный (Accusative)",
-   "explain": "«продольные рытвины» — the accusative marks the direct object of the verb.",
-   "id": "c12"
-  },
-  {
-   "sentence": "___ внезапно загудел в вышине, деревья забушевали, крупные капли дождя резко застучали, зашлепали по листьям, сверкнула молния, и гроза разразилась.",
-   "lemma": "ветер",
-   "options": [
-    "сильным ветром",
-    "сильному ветру",
-    "сильном ветре",
-    "сильный ветер"
-   ],
-   "correct": "сильный ветер",
-   "case": "Именительный (Nominative)",
-   "explain": "«Сильный ветер» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
   },
   {
    "sentence": "Сильный ветер внезапно загудел в вышине, деревья забушевали, ___ дождя резко застучали, зашлепали по листьям, сверкнула молния, и гроза разразилась.",
@@ -193,7 +123,7 @@
    ],
    "correct": "крупные капли",
    "case": "Именительный (Nominative)",
-   "explain": "«крупные капли» — the subject of the sentence stands in the nominative.",
+   "explain": "«крупные капли» is the subject of «застучали» — who or what does it — so nominative.",
    "id": "c14"
   },
   {
@@ -207,7 +137,7 @@
    ],
    "correct": "широкому кусту",
    "case": "Дательный (Dative)",
-   "explain": "«широкому кусту» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«широкому кусту» — «к» always takes the dative.",
    "id": "c15"
   },
   {
@@ -221,22 +151,8 @@
    ],
    "correct": "высокая фигура",
    "case": "Именительный (Nominative)",
-   "explain": "«высокая фигура» — the subject of the sentence stands in the nominative.",
+   "explain": "«высокая фигура» is the subject of «почудилась» — who or what does it — so nominative.",
    "id": "c16"
-  },
-  {
-   "sentence": "«Вот мы и дома, барин», — промолвил он ___.",
-   "lemma": "голос",
-   "options": [
-    "спокойным голосом",
-    "спокойному голосу",
-    "спокойного голоса",
-    "спокойном голосе"
-   ],
-   "correct": "спокойным голосом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«спокойным голосом» — the instrumental marks the means, company, or complement.",
-   "id": "c17"
   },
   {
    "sentence": "Я поднял голову и, при свете молнии, увидал небольшую избушку посреди ___, обнесенного плетнем.",
@@ -249,22 +165,8 @@
    ],
    "correct": "обширного двора",
    "case": "Родительный (Genitive)",
-   "explain": "«обширного двора» — after the preposition «посреди», the genitive here marks possession, absence, or quantity.",
+   "explain": "«обширного двора» — «посреди» always takes the genitive.",
    "id": "c18"
-  },
-  {
-   "sentence": "«Сичас, сичас!» — раздался ___, послышался топот босых ног, засов заскрипел, и девочка, лет двенадцати, в рубашонке, подпоясанная покромкой, с фонарем в руке, показалась на пороге.",
-   "lemma": "голосок",
-   "options": [
-    "тоненького голоска",
-    "тоненький голосок",
-    "тоненьком голоске",
-    "тоненькому голоску"
-   ],
-   "correct": "тоненький голосок",
-   "case": "Именительный (Nominative)",
-   "explain": "«тоненький голосок» — the subject of the sentence stands in the nominative.",
-   "id": "c19"
   },
   {
    "sentence": "На ___ избы висела люлька, привязанная к концу длинного шеста.",
@@ -277,64 +179,22 @@
    ],
    "correct": "самой середине",
    "case": "Предложный (Prepositional)",
-   "explain": "«самой середине» — after the preposition «на», for location or topic.",
+   "explain": "«самой середине» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c20"
   },
   {
    "sentence": "На самой середине избы висела люлька, привязанная к концу ___.",
    "lemma": "шест",
    "options": [
-    "длинном шесте",
     "длинный шест",
-    "длинному шесту",
+    "длинном шесте",
+    "длинным шестом",
     "длинного шеста"
    ],
    "correct": "длинного шеста",
    "case": "Родительный (Genitive)",
-   "explain": "«длинного шеста» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«длинного шеста» depends on the noun «концу» (whose? of what?) — genitive.",
    "id": "c21"
-  },
-  {
-   "sentence": "Он был ___, плечист и сложен на славу.",
-   "lemma": "рост",
-   "options": [
-    "высокого роста",
-    "высокому росту",
-    "высокий рост",
-    "высоким ростом"
-   ],
-   "correct": "высокого роста",
-   "case": "Родительный (Genitive)",
-   "explain": "«высокого роста» — the genitive here marks possession, absence, or quantity.",
-   "id": "c23"
-  },
-  {
-   "sentence": "Из-под мокрой ___ выпукло выставлялись его могучие мышцы.",
-   "lemma": "рубашка",
-   "options": [
-    "замашная рубашка",
-    "замашной рубашкой",
-    "замашной рубашки",
-    "замашной рубашке"
-   ],
-   "correct": "замашной рубашки",
-   "case": "Родительный (Genitive)",
-   "explain": "«замашной рубашки» — the genitive here marks possession, absence, or quantity.",
-   "id": "c24"
-  },
-  {
-   "sentence": "Из-под мокрой замашной рубашки выпукло выставлялись его ___.",
-   "lemma": "мышца",
-   "options": [
-    "могучим мышцам",
-    "могучие мышцы",
-    "могучих мышцах",
-    "могучих мышц"
-   ],
-   "correct": "могучие мышцы",
-   "case": "Именительный (Nominative)",
-   "explain": "«могучие мышцы» — the subject of the sentence stands in the nominative.",
-   "id": "c25"
   },
   {
    "sentence": "Черная ___ закрывала до половины его суровое и мужественное лицо; из-под сросшихся широких бровей смело глядели небольшие карие глаза.",
@@ -347,7 +207,7 @@
    ],
    "correct": "курчавая борода",
    "case": "Именительный (Nominative)",
-   "explain": "«курчавая борода» — the subject of the sentence stands in the nominative.",
+   "explain": "«курчавая борода» is the subject of «закрывала» — who or what does it — so nominative.",
    "id": "c26"
   },
   {
@@ -361,22 +221,8 @@
    ],
    "correct": "широких бровей",
    "case": "Родительный (Genitive)",
-   "explain": "«широких бровей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«широких бровей» depends on the noun «сросшихся» (whose? of what?) — genitive.",
    "id": "c27"
-  },
-  {
-   "sentence": "Черная курчавая борода закрывала до половины его суровое и мужественное лицо; из-под сросшихся широких бровей смело глядели небольшие ___.",
-   "lemma": "глаз",
-   "options": [
-    "карими глазами",
-    "карие глаза",
-    "карим глазам",
-    "карих глаз"
-   ],
-   "correct": "карие глаза",
-   "case": "Винительный (Accusative)",
-   "explain": "«карие глаза» — the accusative marks the direct object of the verb.",
-   "id": "c28"
   },
   {
    "sentence": "Вот как отзывались ___ о Бирюке.",
@@ -389,22 +235,8 @@
    ],
    "correct": "соседние мужики",
    "case": "Именительный (Nominative)",
-   "explain": "«соседние мужики» — the subject of the sentence stands in the nominative.",
+   "explain": "«соседние мужики» is the subject of «отзывались» — who or what does it — so nominative.",
    "id": "c31"
-  },
-  {
-   "sentence": "— Должность свою справляю, — отвечал он угрюмо, — даром ___ есть не приходится.",
-   "lemma": "хлеб",
-   "options": [
-    "господским хлебом",
-    "господского хлеба",
-    "господском хлебе",
-    "господский хлеб"
-   ],
-   "correct": "господский хлеб",
-   "case": "Именительный (Nominative)",
-   "explain": "«господский хлеб» — the subject of the sentence stands in the nominative.",
-   "id": "c32"
   },
   {
    "sentence": "Я в ___ осмотрелся.",
@@ -417,78 +249,8 @@
    ],
    "correct": "другой раз",
    "case": "Винительный (Accusative)",
-   "explain": "«другой раз» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«другой раз» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c34"
-  },
-  {
-   "sentence": "___ остывшего дыма неприятно стеснял мне дыхание.",
-   "lemma": "запах",
-   "options": [
-    "горьком запахе",
-    "горький запах",
-    "горького запаха",
-    "горькому запаху"
-   ],
-   "correct": "горький запах",
-   "case": "Именительный (Nominative)",
-   "explain": "«Горький запах» — the subject of the sentence stands in the nominative.",
-   "id": "c35"
-  },
-  {
-   "sentence": "Девочка не трогалась с места и не поднимала глаз; изредка поталкивала она люльку, робко наводила на плечо спускавшуюся рубашку; ее ___ висели, не шевелясь.",
-   "lemma": "нога",
-   "options": [
-    "голые ноги",
-    "голых ногах",
-    "голым ногам",
-    "голыми ногами"
-   ],
-   "correct": "голые ноги",
-   "case": "Именительный (Nominative)",
-   "explain": "«голые ноги» — the subject of the sentence stands in the nominative.",
-   "id": "c36"
-  },
-  {
-   "sentence": "В отдалении еще толпились тяжелые громады туч, изредка вспыхивали ___, но над нашими головами уже виднелось кое-где темносинее небо, звездочки мерцали сквозь жидкие, быстро летевшие облака.",
-   "lemma": "молния",
-   "options": [
-    "длинные молнии",
-    "длинных молний",
-    "длинным молниям",
-    "длинных молниях"
-   ],
-   "correct": "длинные молнии",
-   "case": "Именительный (Nominative)",
-   "explain": "«длинные молнии» — the subject of the sentence stands in the nominative.",
-   "id": "c37"
-  },
-  {
-   "sentence": "«Куда? стой!» — загремел вдруг ___ Бирюка.",
-   "lemma": "голос",
-   "options": [
-    "железного голоса",
-    "железном голосе",
-    "железный голос",
-    "железному голосу"
-   ],
-   "correct": "железный голос",
-   "case": "Именительный (Nominative)",
-   "explain": "«железный голос» — the subject of the sentence stands in the nominative.",
-   "id": "c41"
-  },
-  {
-   "sentence": "Дрянная лошаденка, до половины закрытая угловатой рогожкой, стояла тут же вместе с ___.",
-   "lemma": "ход",
-   "options": [
-    "тележном ходе",
-    "тележному ходу",
-    "тележным ходом",
-    "тележный ход"
-   ],
-   "correct": "тележным ходом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«тележным ходом» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c43"
   },
   {
    "sentence": "На дворе застучали колеса ___.",
@@ -501,7 +263,7 @@
    ],
    "correct": "мужицкой телеги",
    "case": "Родительный (Genitive)",
-   "explain": "«мужицкой телеги» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«мужицкой телеги» depends on the noun «колеса» (whose? of what?) — genitive.",
    "id": "c50"
   }
  ]

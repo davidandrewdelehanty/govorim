@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Солона эта ___, а всё ж таки надо взяться, потому что этак-то, не ровен час, и с голоду подохнешь.",
-   "lemma": "работа",
-   "options": [
-    "проклятущей работой",
-    "проклятущей работы",
-    "проклятущая работа",
-    "проклятущей работе"
-   ],
-   "correct": "проклятущая работа",
-   "case": "Именительный (Nominative)",
-   "explain": "«проклятущая работа» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Я взглянул в сторону гавани, где возвышался лес мачт, окутанных клубами тяжёлого чёрно-сизого дыма, оттуда плыл ___ якорных цепей, свист локомотивов.",
-   "lemma": "шум",
-   "options": [
-    "глухой шум",
-    "глухим шумом",
-    "глухом шуме",
-    "глухого шума"
-   ],
-   "correct": "глухой шум",
-   "case": "Именительный (Nominative)",
-   "explain": "«глухой шум» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
-  },
-  {
    "sentence": "Я взглянул в сторону гавани, где возвышался лес мачт, окутанных клубами тяжёлого чёрно-сизого дыма, оттуда плыл глухой шум ___, свист локомотивов.",
    "lemma": "цепь",
    "options": [
@@ -39,7 +11,7 @@
    ],
    "correct": "якорных цепей",
    "case": "Родительный (Genitive)",
-   "explain": "«якорных цепей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«якорных цепей» depends on the noun «шум» (whose? of what?) — genitive.",
    "id": "c5"
   },
   {
@@ -53,7 +25,7 @@
    ],
    "correct": "рыбацким заводам",
    "case": "Дательный (Dative)",
-   "explain": "«рыбацким заводам» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«рыбацким заводам» — «к» always takes the dative.",
    "id": "c7"
   },
   {
@@ -67,22 +39,8 @@
    ],
    "correct": "мучных мешков",
    "case": "Родительный (Genitive)",
-   "explain": "«мучных мешков» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«мучных мешков» — «из» always takes the genitive.",
    "id": "c8"
-  },
-  {
-   "sentence": "Он встал, весь мокрый, потянулся и, засунув руки в карманы штанов, сшитых им из двух мучных мешков, пошарил там и юмористически оглядел ___, вынув их и поднеся к лицу.",
-   "lemma": "рука",
-   "options": [
-    "пустым рукам",
-    "пустыми руками",
-    "пустые руки",
-    "пустых рук"
-   ],
-   "correct": "пустые руки",
-   "case": "Винительный (Accusative)",
-   "explain": "«пустые руки» — the accusative marks the direct object of the verb.",
-   "id": "c9"
   },
   {
    "sentence": "___ ищу, и всё — ничего!",
@@ -95,7 +53,7 @@
    ],
    "correct": "четвёртый день",
    "case": "Винительный (Accusative)",
-   "explain": "«Четвёртый день» — the accusative marks the direct object of the verb.",
+   "explain": "«четвёртый день» is the direct object of «ищу» (кого? что?) — accusative.",
    "id": "c10"
   },
   {
@@ -109,63 +67,21 @@
    ],
    "correct": "мягких ударов",
    "case": "Родительный (Genitive)",
-   "explain": "«мягких ударов» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«мягких ударов» — «от» always takes the genitive.",
    "id": "c12"
-  },
-  {
-   "sentence": "С моря набегал славный ___, опахивал нас прохладой и летел в степь, вздымая маленькие вихри песчаной пыли.",
-   "lemma": "ветерок",
-   "options": [
-    "свежему ветерку",
-    "свежего ветерка",
-    "свежим ветерком",
-    "свежий ветерок"
-   ],
-   "correct": "свежий ветерок",
-   "case": "Именительный (Nominative)",
-   "explain": "«свежий ветерок» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
-  },
-  {
-   "sentence": "С моря набегал славный свежий ветерок, опахивал нас прохладой и летел в степь, вздымая ___ песчаной пыли.",
-   "lemma": "вихрь",
-   "options": [
-    "маленькими вихрями",
-    "маленькие вихри",
-    "маленьких вихрей",
-    "маленьким вихрям"
-   ],
-   "correct": "маленькие вихри",
-   "case": "Винительный (Accusative)",
-   "explain": "«маленькие вихри» — the accusative marks the direct object of the verb.",
-   "id": "c15"
-  },
-  {
-   "sentence": "Брюхо в человеке — ___, и какого хочешь урода найди — а без брюха не найдёшь, дудки!",
-   "lemma": "дело",
-   "options": [
-    "главному делу",
-    "главного дела",
-    "главном деле",
-    "главное дело"
-   ],
-   "correct": "главное дело",
-   "case": "Именительный (Nominative)",
-   "explain": "«главное дело» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
   },
   {
    "sentence": "Волна подхватила ___, понесла было его от берега, но, рассмотрев этот дар, негодующе выбросила снова на берег.",
    "lemma": "мешочек",
    "options": [
+    "грязным мешочком",
     "грязный мешочек",
-    "грязному мешочку",
-    "грязного мешочка",
-    "грязным мешочком"
+    "грязном мешочке",
+    "грязному мешочку"
    ],
    "correct": "грязный мешочек",
    "case": "Винительный (Accusative)",
-   "explain": "«грязный мешочек» — the accusative marks the direct object of the verb.",
+   "explain": "«грязный мешочек» is the direct object of «подхватила» (кого? что?) — accusative.",
    "id": "c18"
   },
   {
@@ -179,7 +95,7 @@
    ],
    "correct": "заграничных империях",
    "case": "Предложный (Prepositional)",
-   "explain": "«заграничных империях» — after the preposition «о», for location or topic.",
+   "explain": "«заграничных империях» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c19"
   },
   {
@@ -193,50 +109,22 @@
    ],
    "correct": "другого человека",
    "case": "Родительный (Genitive)",
-   "explain": "«другого человека» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«другого человека» depends on the noun «жизни» (whose? of what?) — genitive.",
    "id": "c21"
-  },
-  {
-   "sentence": "— И всяк человек — только ___ — всегда этим правом руководствуется.",
-   "lemma": "способ",
-   "options": [
-    "разному способу",
-    "разного способа",
-    "разным способом",
-    "разном способе"
-   ],
-   "correct": "разным способом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«разным способом» — the instrumental marks the means, company, or complement.",
-   "id": "c22"
   },
   {
    "sentence": "Чабаны дрогнули и вскочили, взявшись за свои ___ и став плотно друг к другу.",
    "lemma": "палка",
    "options": [
+    "длинных палках",
     "длинные палки",
     "длинных палок",
-    "длинными палками",
-    "длинных палках"
+    "длинным палкам"
    ],
    "correct": "длинные палки",
    "case": "Винительный (Accusative)",
-   "explain": "«длинные палки» — after the preposition «за», the accusative marks the direct object of the verb.",
+   "explain": "«длинные палки» — «за» takes the accusative here (куда? за что? за кого?) — the instrumental would mean position behind or at (где? за чем?).",
    "id": "c23"
-  },
-  {
-   "sentence": "Хохлы пошли в глубь степи тяжёлым ___, поминутно оглядываясь на нас.",
-   "lemma": "шаг",
-   "options": [
-    "развалистому шагу",
-    "развалистый шаг",
-    "развалистом шаге",
-    "развалистым шагом"
-   ],
-   "correct": "развалистым шагом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«развалистым шагом» — the instrumental marks the means, company, or complement.",
-   "id": "c25"
   },
   {
    "sentence": "На краю моря поднялась гряда жёлто-лиловых облаков, окаймлённых ___, и, ещё более сгущая мрак, плыла на степь.",
@@ -249,49 +137,21 @@
    ],
    "correct": "розовым золотом",
    "case": "Творительный (Instrumental)",
-   "explain": "«розовым золотом» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «окаймлённых», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c27"
-  },
-  {
-   "sentence": "— А клюнуть ___ по башке — что ни говори — приятно; особенно ежели умеючи дело обставить, — неожиданно проговорил Емельян.",
-   "lemma": "человек",
-   "options": [
-    "денежного человека",
-    "денежном человеке",
-    "денежному человеку",
-    "денежным человеком"
-   ],
-   "correct": "денежного человека",
-   "case": "Винительный (Accusative)",
-   "explain": "«денежного человека» — the accusative marks the direct object of the verb.",
-   "id": "c28"
-  },
-  {
-   "sentence": "Пошёл к одному знакомому ___; кабак он держал и воровские дела завершал, укрывая разных молодчиков и их делишки.",
-   "lemma": "человечек",
-   "options": [
-    "тёмным человечком",
-    "тёмному человечку",
-    "тёмный человечек",
-    "тёмного человечка"
-   ],
-   "correct": "тёмному человечку",
-   "case": "Дательный (Dative)",
-   "explain": "«тёмному человечку» — the dative marks the indirect object or recipient.",
-   "id": "c29"
   },
   {
    "sentence": "Пошёл к одному знакомому тёмному человечку; кабак он держал и ___ завершал, укрывая разных молодчиков и их делишки.",
    "lemma": "дело",
    "options": [
-    "воровских дел",
-    "воровских делах",
     "воровским делам",
-    "воровские дела"
+    "воровскими делами",
+    "воровские дела",
+    "воровских делах"
    ],
    "correct": "воровские дела",
    "case": "Винительный (Accusative)",
-   "explain": "«воровские дела» — the accusative marks the direct object of the verb.",
+   "explain": "«воровские дела» is the direct object of «держал» (кого? что?) — accusative.",
    "id": "c30"
   },
   {
@@ -305,7 +165,7 @@
    ],
    "correct": "разных молодчиков",
    "case": "Винительный (Accusative)",
-   "explain": "«разных молодчиков» — the accusative marks the direct object of the verb.",
+   "explain": "«разных молодчиков» is the direct object of «укрывая» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c31"
   },
   {
@@ -319,78 +179,8 @@
    ],
    "correct": "хорошей души",
    "case": "Родительный (Genitive)",
-   "explain": "«хорошей души» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«хорошей души» depends on the noun «Малый» (whose? of what?) — genitive.",
    "id": "c32"
-  },
-  {
-   "sentence": "___, братец ты мой, этот Павел Петров!",
-   "lemma": "башка",
-   "options": [
-    "умной башкой",
-    "умной башке",
-    "умная башка",
-    "умной башки"
-   ],
-   "correct": "умная башка",
-   "case": "Именительный (Nominative)",
-   "explain": "«Умная башка» — the subject of the sentence stands in the nominative.",
-   "id": "c34"
-  },
-  {
-   "sentence": "И смотрю — ходят тёмные молодчики, носят ___: часики, браслеты и прочее такое, и вижу — толку на грош нет во всех их операциях.",
-   "lemma": "вещичка",
-   "options": [
-    "светлых вещичек",
-    "светлым вещичкам",
-    "светлыми вещичками",
-    "светлые вещички"
-   ],
-   "correct": "светлые вещички",
-   "case": "Винительный (Accusative)",
-   "explain": "«светлые вещички» — the accusative marks the direct object of the verb.",
-   "id": "c36"
-  },
-  {
-   "sentence": "Из-за каких таких ___?",
-   "lemma": "причина",
-   "options": [
-    "важных причин",
-    "важным причинам",
-    "важные причины",
-    "важных причинах"
-   ],
-   "correct": "важных причин",
-   "case": "Родительный (Genitive)",
-   "explain": "«важных причин» — after the preposition «из-за», the genitive here marks possession, absence, or quantity.",
-   "id": "c37"
-  },
-  {
-   "sentence": "Закат почти угас, только маленькая ___, с каждой секундой всё более бледнея, чуть окрашивала край пухового облака, точно в истоме неподвижно застывшего в потемневшем небе.",
-   "lemma": "лента",
-   "options": [
-    "розовой ленты",
-    "розовой лентой",
-    "розовой ленте",
-    "розовая лента"
-   ],
-   "correct": "розовая лента",
-   "case": "Именительный (Nominative)",
-   "explain": "«розовая лента» — the subject of the sentence stands in the nominative.",
-   "id": "c41"
-  },
-  {
-   "sentence": "В степи было так тихо, грустно, и непрерывно лившийся с моря ласковый плеск волн как-то ещё более оттенял своим монотонным и ___ эту грусть и тишину.",
-   "lemma": "звук",
-   "options": [
-    "мягкого звука",
-    "мягким звуком",
-    "мягкому звуку",
-    "мягкий звук"
-   ],
-   "correct": "мягким звуком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«мягким звуком» — the instrumental marks the means, company, or complement.",
-   "id": "c42"
   },
   {
    "sentence": "Над морем, одна за другой, ярко вспыхивали звёздочки, такие чистенькие, новенькие, точно вчера только сделанные для украшения бархатного ___.",
@@ -403,7 +193,7 @@
    ],
    "correct": "южного неба",
    "case": "Родительный (Genitive)",
-   "explain": "«южного неба» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«южного неба» depends on the noun «украшения» (whose? of what?) — genitive.",
    "id": "c43"
   },
   {
@@ -417,7 +207,7 @@
    ],
    "correct": "ночной сторож",
    "case": "Именительный (Nominative)",
-   "explain": "«Ночной сторож» — the subject of the sentence stands in the nominative.",
+   "explain": "«ночной сторож» is the subject of «идёт» — who or what does it — so nominative.",
    "id": "c50"
   }
  ]

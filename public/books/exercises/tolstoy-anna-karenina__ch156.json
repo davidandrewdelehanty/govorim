@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Нахмуренный вернулся он в свой номер и, подсев к Яшвину, вытянувшему свои ___ на стул и пившему коньяк с сельтерской водой, велел себе подать того же.",
-   "lemma": "нога",
-   "options": [
-    "длинные ноги",
-    "длинными ногами",
-    "длинным ногам",
-    "длинных ног"
-   ],
-   "correct": "длинные ноги",
-   "case": "Винительный (Accusative)",
-   "explain": "«длинные ноги» — the accusative marks the direct object of the verb.",
-   "id": "c2"
-  },
-  {
    "sentence": "Этим движением он зацепил столик, на котором стояла ___ и графин с коньяком, и чуть не столкнул его.",
    "lemma": "вода",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "сельтерская вода",
    "case": "Именительный (Nominative)",
-   "explain": "«сельтерская вода» — the subject of the sentence stands in the nominative.",
+   "explain": "«сельтерская вода» is the subject of «стояла» — who or what does it — so nominative.",
    "id": "c4"
   },
   {
@@ -39,78 +25,22 @@
    ],
    "correct": "светлом коридоре",
    "case": "Предложный (Prepositional)",
-   "explain": "«светлом коридоре» — after the preposition «в», for location or topic.",
+   "explain": "«светлом коридоре» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c5"
-  },
-  {
-   "sentence": "Из-за притворенной двери слышались звук осторожного аккомпанемента ___ и одного женского голоса, который отчетливо выговаривал музыкальную фразу.",
-   "lemma": "оркестр",
-   "options": [
-    "стаккато оркестр",
-    "стаккато оркестра",
-    "стаккато оркестре",
-    "стаккато оркестром"
-   ],
-   "correct": "стаккато оркестра",
-   "case": "Родительный (Genitive)",
-   "explain": "«стаккато оркестра» — the genitive here marks possession, absence, or quantity.",
-   "id": "c6"
-  },
-  {
-   "sentence": "Из-за притворенной двери слышались звук осторожного аккомпанемента стаккато оркестра и одного ___, который отчетливо выговаривал музыкальную фразу.",
-   "lemma": "голос",
-   "options": [
-    "женского голоса",
-    "женскому голосу",
-    "женском голосе",
-    "женский голос"
-   ],
-   "correct": "женского голоса",
-   "case": "Родительный (Genitive)",
-   "explain": "«женского голоса» — the genitive here marks possession, absence, or quantity.",
-   "id": "c7"
-  },
-  {
-   "sentence": "Капельмейстер на своем возвышении помогал в передаче и оправлял свой ___.",
-   "lemma": "галстук",
-   "options": [
-    "белого галстука",
-    "белый галстук",
-    "белым галстуком",
-    "белом галстуке"
-   ],
-   "correct": "белый галстук",
-   "case": "Винительный (Accusative)",
-   "explain": "«белый галстук» — the accusative marks the direct object of the verb.",
-   "id": "c8"
   },
   {
    "sentence": "Нынче менее, чем когда-нибудь, обратил он внимание на знакомую, привычную обстановку, на сцену, на этот шум, на все это знакомое, неинтересное, пестрое стадо зрителей в битком ___.",
    "lemma": "театр",
    "options": [
-    "набитый театр",
     "набитого театра",
     "набитому театру",
-    "набитом театре"
+    "набитом театре",
+    "набитым театром"
    ],
    "correct": "набитом театре",
    "case": "Предложный (Prepositional)",
-   "explain": "«набитом театре» — after the preposition «в», for location or topic.",
+   "explain": "«набитом театре» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c9"
-  },
-  {
-   "sentence": "На его счастие, Алексея Александровича ___ не было в театре.",
-   "lemma": "раз",
-   "options": [
-    "нынешнего раза",
-    "нынешнему разу",
-    "нынешний раз",
-    "нынешним разом"
-   ],
-   "correct": "нынешний раз",
-   "case": "Винительный (Accusative)",
-   "explain": "«нынешний раз» — the accusative marks the direct object of the verb.",
-   "id": "c10"
   },
   {
    "sentence": "– Жалко, ты опоздал к ___.",
@@ -123,63 +53,35 @@
    ],
    "correct": "первому акту",
    "case": "Дательный (Dative)",
-   "explain": "«первому акту» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«первому акту» — «к» always takes the dative.",
    "id": "c11"
   },
   {
    "sentence": "Он, насупившись, засовывал все глубже и глубже в рот свой ___ и косился на ту же соседнюю ложу.",
    "lemma": "ус",
    "options": [
-    "левого уса",
-    "левом усе",
     "левый ус",
-    "левому усу"
+    "левым усом",
+    "левому усу",
+    "левом усе"
    ],
    "correct": "левый ус",
    "case": "Винительный (Accusative)",
-   "explain": "«левый ус» — the accusative marks the direct object of the verb.",
+   "explain": "«левый ус» is the direct object of «засовывал» (кого? что?) — accusative.",
    "id": "c13"
-  },
-  {
-   "sentence": "Картасова, худая, ___, стояла в своей ложе и, спиной оборотившись к Анне, надевала накидку, подаваемую ей мужем.",
-   "lemma": "женщина",
-   "options": [
-    "маленькой женщины",
-    "маленькой женщине",
-    "маленькая женщина",
-    "маленькой женщиной"
-   ],
-   "correct": "маленькая женщина",
-   "case": "Именительный (Nominative)",
-   "explain": "«маленькая женщина» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
-  },
-  {
-   "sentence": "Картасов, толстый ___, беспрестанно оглядываясь на Анну, старался успокоить жену.",
-   "lemma": "господин",
-   "options": [
-    "плешивый господин",
-    "плешивым господином",
-    "плешивого господина",
-    "плешивому господину"
-   ],
-   "correct": "плешивый господин",
-   "case": "Именительный (Nominative)",
-   "explain": "«плешивый господин» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
   },
   {
    "sentence": "Он понял это и по тому, что видел, и более всего по лицу Анны, которая, он знал, собрала свои ___, чтобы выдерживать взятую на себя роль.",
    "lemma": "сила",
    "options": [
-    "последними силами",
-    "последних сил",
+    "последние силы",
+    "последних силах",
     "последним силам",
-    "последние силы"
+    "последними силами"
    ],
    "correct": "последние силы",
    "case": "Винительный (Accusative)",
-   "explain": "«последние силы» — the accusative marks the direct object of the verb.",
+   "explain": "«последние силы» is the direct object of «собрала» (кого? что?) — accusative.",
    "id": "c16"
   },
   {
@@ -193,7 +95,7 @@
    ],
    "correct": "внешнего спокойствия",
    "case": "Родительный (Genitive)",
-   "explain": "«внешнего спокойствия» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«внешнего спокойствия» depends on the noun «роль» (whose? of what?) — genitive.",
    "id": "c17"
   },
   {
@@ -207,7 +109,7 @@
    ],
    "correct": "полковой командир",
    "case": "Именительный (Nominative)",
-   "explain": "«полковой командир» — the subject of the sentence stands in the nominative.",
+   "explain": "«полковой командир» is the subject of «поспешил» — who or what does it — so nominative.",
    "id": "c18"
   },
   {
@@ -221,7 +123,7 @@
    ],
    "correct": "полковой командир",
    "case": "Именительный (Nominative)",
-   "explain": "«полковой командир» — the subject of the sentence stands in the nominative.",
+   "explain": "«полковой командир» is the subject of «сказал» — who or what does it — so nominative.",
    "id": "c19"
   },
   {
@@ -235,64 +137,8 @@
    ],
    "correct": "другого раза",
    "case": "Родительный (Genitive)",
-   "explain": "«другого раза» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«другого раза» — «до» always takes the genitive.",
    "id": "c20"
-  },
-  {
-   "sentence": "___, мать Вронского, со своими стальными букольками, была в ложе брата.",
-   "lemma": "графиня",
-   "options": [
-    "старой графине",
-    "старая графиня",
-    "старой графини",
-    "старой графиней"
-   ],
-   "correct": "старая графиня",
-   "case": "Именительный (Nominative)",
-   "explain": "«Старая графиня» — the subject of the sentence stands in the nominative.",
-   "id": "c21"
-  },
-  {
-   "sentence": "Старая графиня, мать Вронского, со своими ___, была в ложе брата.",
-   "lemma": "буколька",
-   "options": [
-    "стальным буколькам",
-    "стальные букольки",
-    "стальными букольками",
-    "стальных буколек"
-   ],
-   "correct": "стальными букольками",
-   "case": "Творительный (Instrumental)",
-   "explain": "«стальными букольками» — after the preposition «со», the instrumental marks the means, company, or complement.",
-   "id": "c22"
-  },
-  {
-   "sentence": "Он ___ пошел вниз: – он чувствовал, что ему надо что-то сделать, но не знал что.",
-   "lemma": "шаг",
-   "options": [
-    "быстрым шагам",
-    "быстрыми шагами",
-    "быстрые шаги",
-    "быстрых шагов"
-   ],
-   "correct": "быстрыми шагами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«быстрыми шагами» — the instrumental marks the means, company, or complement.",
-   "id": "c23"
-  },
-  {
-   "sentence": "– Я ___, – сказал он, строго глядя на нее.",
-   "lemma": "ценитель",
-   "options": [
-    "плохим ценителем",
-    "плохому ценителю",
-    "плохой ценитель",
-    "плохом ценителе"
-   ],
-   "correct": "плохой ценитель",
-   "case": "Именительный (Nominative)",
-   "explain": "«плохой ценитель» — the subject of the sentence stands in the nominative.",
-   "id": "c24"
   },
   {
    "sentence": "– Благодарю вас, – сказала она, взяв в маленькую руку в ___ поднятую Вронским афишу, и вдруг в это мгновение красивое лицо ее вздрогнуло.",
@@ -305,35 +151,21 @@
    ],
    "correct": "длинной перчатке",
    "case": "Предложный (Prepositional)",
-   "explain": "«длинной перчатке» — after the preposition «в», for location or topic.",
+   "explain": "«длинной перчатке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c25"
-  },
-  {
-   "sentence": "– Благодарю вас, – сказала она, взяв в маленькую руку в длинной перчатке поднятую Вронским афишу, и вдруг в это мгновение ___ ее вздрогнуло.",
-   "lemma": "лицо",
-   "options": [
-    "красивого лица",
-    "красивом лице",
-    "красивому лицу",
-    "красивое лицо"
-   ],
-   "correct": "красивое лицо",
-   "case": "Именительный (Nominative)",
-   "explain": "«красивое лицо» — after the preposition «в», the subject of the sentence stands in the nominative.",
-   "id": "c26"
   },
   {
    "sentence": "Когда Вронский вошел к ней, она была одна в том ___, в котором она была в театре.",
    "lemma": "наряд",
    "options": [
-    "самим нарядом",
-    "сам наряд",
+    "самому наряду",
     "самом наряде",
-    "самому наряду"
+    "самого наряда",
+    "самим нарядом"
    ],
    "correct": "самом наряде",
    "case": "Предложный (Prepositional)",
-   "explain": "«самом наряде» — after the preposition «в», for location or topic.",
+   "explain": "«самом наряде» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c28"
   }
  ]

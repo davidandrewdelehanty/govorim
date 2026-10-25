@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Николай Петрович прихрамывал, черты имел маленькие, приятные, но несколько грустные, небольшие черные глаза и мягкие ___; он охотно ленился, но и читал охотно, и боялся общества.",
-   "lemma": "волос",
-   "options": [
-    "жидких волос",
-    "жидкими волосами",
-    "жидкие волосы",
-    "жидким волосам"
-   ],
-   "correct": "жидкие волосы",
-   "case": "Винительный (Accusative)",
-   "explain": "«жидкие волосы» — the accusative marks the direct object of the verb.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Павел Петрович ни одного вечера не проводил дома, славился смелостию и ловкостию (он ввел было гимнастику в моду между светскою молодежью) и прочел всего пять-шесть ___.",
-   "lemma": "книга",
-   "options": [
-    "французским книгам",
-    "французскими книгами",
-    "французских книг",
-    "французских книгах"
-   ],
-   "correct": "французских книг",
-   "case": "Родительный (Genitive)",
-   "explain": "«французских книг» — the genitive here marks possession, absence, or quantity.",
-   "id": "c2"
-  },
-  {
    "sentence": "На двадцать восьмом году от роду он уже был капитаном; ___ ожидала его.",
    "lemma": "карьера",
    "options": [
@@ -39,7 +11,7 @@
    ],
    "correct": "блестящая карьера",
    "case": "Именительный (Nominative)",
-   "explain": "«блестящая карьера» — the subject of the sentence stands in the nominative.",
+   "explain": "«блестящая карьера» is the subject of «ожидала» — who or what does it — so nominative.",
    "id": "c3"
   },
   {
@@ -53,35 +25,21 @@
    ],
    "correct": "глуповатый муж",
    "case": "Именительный (Nominative)",
-   "explain": "«глуповатый муж» — the subject of the sentence stands in the nominative.",
+   "explain": "«глуповатый муж» is the subject of «благовоспитанный» — who or what does it — so nominative.",
    "id": "c5"
-  },
-  {
-   "sentence": "Казалось, она находилась во власти каких-то тайных, для нее самой ___; они играли ею, как хотели; ее небольшой ум не мог сладить с их прихотью.",
-   "lemma": "сила",
-   "options": [
-    "неведомых силах",
-    "неведомыми силами",
-    "неведомых сил",
-    "неведомым силам"
-   ],
-   "correct": "неведомых сил",
-   "case": "Родительный (Genitive)",
-   "explain": "«неведомых сил» — the genitive here marks possession, absence, or quantity.",
-   "id": "c6"
   },
   {
    "sentence": "Казалось, она находилась во власти каких-то тайных, для нее самой неведомых сил; они играли ею, как хотели; ее ___ не мог сладить с их прихотью.",
    "lemma": "ум",
    "options": [
-    "небольшому уму",
+    "небольшой ум",
     "небольшом уме",
-    "небольшого ума",
-    "небольшой ум"
+    "небольшим умом",
+    "небольшому уму"
    ],
    "correct": "небольшой ум",
    "case": "Именительный (Nominative)",
-   "explain": "«небольшой ум» — the subject of the sentence stands in the nominative.",
+   "explain": "«небольшой ум» is the subject of «мог» — who or what does it — so nominative.",
    "id": "c7"
   },
   {
@@ -95,7 +53,7 @@
    ],
    "correct": "нежного свидания",
    "case": "Родительный (Genitive)",
-   "explain": "«нежного свидания» — after the preposition «после», the genitive here marks possession, absence, or quantity.",
+   "explain": "«нежного свидания» — «после» always takes the genitive.",
    "id": "c8"
   },
   {
@@ -109,22 +67,8 @@
    ],
    "correct": "окончательной неудачи",
    "case": "Родительный (Genitive)",
-   "explain": "«окончательной неудачи» — after the preposition «после», the genitive here marks possession, absence, or quantity.",
+   "explain": "«окончательной неудачи» — «после» always takes the genitive.",
    "id": "c9"
-  },
-  {
-   "sentence": "– Я? – спросила она и медленно подняла на него свой ___. – Знаете ли, что это очень лестно? – прибавила она с незначительною усмешкой, а глаза глядели все так же странно.",
-   "lemma": "взгляд",
-   "options": [
-    "загадочном взгляде",
-    "загадочному взгляду",
-    "загадочного взгляда",
-    "загадочный взгляд"
-   ],
-   "correct": "загадочный взгляд",
-   "case": "Винительный (Accusative)",
-   "explain": "«загадочный взгляд» — the accusative marks the direct object of the verb.",
-   "id": "c10"
   },
   {
    "sentence": "Он терзался и ревновал, не давал ей покою, таскался за ней повсюду; ей надоело его ___, и она уехала за границу.",
@@ -137,7 +81,7 @@
    ],
    "correct": "неотвязное преследование",
    "case": "Именительный (Nominative)",
-   "explain": "«неотвязное преследование» — the subject of the sentence stands in the nominative.",
+   "explain": "«неотвязное преследование» is the subject of «надоело» — who or what does it — so nominative.",
    "id": "c11"
   },
   {
@@ -151,7 +95,7 @@
    ],
    "correct": "холостом обществе",
    "case": "Предложный (Prepositional)",
-   "explain": "«холостом обществе» — after the preposition «в», for location or topic.",
+   "explain": "«холостом обществе» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c13"
   },
   {
@@ -165,63 +109,21 @@
    ],
    "correct": "карточных игроков",
    "case": "Родительный (Genitive)",
-   "explain": "«карточных игроков» — after the preposition «близ», the genitive here marks possession, absence, or quantity.",
+   "explain": "«карточных игроков» — «близ» always takes the genitive.",
    "id": "c14"
-  },
-  {
-   "sentence": "Павел Петрович почти не видался с братом с тех пор, как тот поселился в деревне: свадьба Николая Петровича совпала с самыми ___ знакомства Павла Петровича с княгиней.",
-   "lemma": "день",
-   "options": [
-    "первых дней",
-    "первым дням",
-    "первыми днями",
-    "первые дни"
-   ],
-   "correct": "первыми днями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«первыми днями» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c15"
-  },
-  {
-   "sentence": "– ___: нервы, – перебил Базаров.",
-   "lemma": "дело",
-   "options": [
-    "известному делу",
-    "известного дела",
-    "известное дело",
-    "известном деле"
-   ],
-   "correct": "известное дело",
-   "case": "Именительный (Nominative)",
-   "explain": "«Известное дело» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
-  },
-  {
-   "sentence": "Я уверен, что он не шутя воображает себя ___, потому что читает Галиньяшку и раз в месяц избавит мужика от экзекуции.",
-   "lemma": "человек",
-   "options": [
-    "дельный человек",
-    "дельному человеку",
-    "дельном человеке",
-    "дельным человеком"
-   ],
-   "correct": "дельным человеком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«дельным человеком» — the instrumental marks the means, company, or complement.",
-   "id": "c19"
   },
   {
    "sentence": "Ты проштудируй-ка анатомию глаза: откуда тут взяться, как ты говоришь, ___?",
    "lemma": "взгляд",
    "options": [
-    "загадочному взгляду",
     "загадочным взглядом",
-    "загадочный взгляд",
-    "загадочном взгляде"
+    "загадочном взгляде",
+    "загадочному взгляду",
+    "загадочного взгляда"
    ],
    "correct": "загадочному взгляду",
    "case": "Дательный (Dative)",
-   "explain": "«загадочному взгляду» — the dative marks the indirect object or recipient.",
+   "explain": "«загадочному взгляду» is the indirect object of «говоришь» — to or for whom (кому?) — dative.",
    "id": "c21"
   }
  ]

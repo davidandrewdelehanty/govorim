@@ -1,62 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "___ Лизы шли очень худо: всегдашние плохие лады в семье Бахаревых, по возвращении их в Москву от Богатыревых, сменились сплошным разладом.",
-   "lemma": "дело",
-   "options": [
-    "собственных дел",
-    "собственным делам",
-    "собственные дела",
-    "собственными делами"
-   ],
-   "correct": "собственные дела",
-   "case": "Именительный (Nominative)",
-   "explain": "«Собственные дела» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Собственные дела Лизы шли очень худо: всегдашние ___ в семье Бахаревых, по возвращении их в Москву от Богатыревых, сменились сплошным разладом.",
-   "lemma": "лада",
-   "options": [
-    "плохими ладами",
-    "плохих ладах",
-    "плохие лады",
-    "плохим ладам"
-   ],
-   "correct": "плохие лады",
-   "case": "Именительный (Nominative)",
-   "explain": "«плохие лады» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Собственные дела Лизы шли очень худо: всегдашние плохие лады в семье Бахаревых, по возвращении их в Москву от Богатыревых, сменились ___.",
-   "lemma": "разлад",
-   "options": [
-    "сплошным разладом",
-    "сплошного разлада",
-    "сплошному разладу",
-    "сплошной разлад"
-   ],
-   "correct": "сплошным разладом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«сплошным разладом» — the instrumental marks the means, company, or complement.",
-   "id": "c3"
-  },
-  {
-   "sentence": "___ к этому разладу подала Лиза, не перебиравшаяся из Богородицкого до самого приезда своей семьи в Москву.",
-   "lemma": "повод",
-   "options": [
-    "первом поводе",
-    "первого повода",
-    "первый повод",
-    "первому поводу"
-   ],
-   "correct": "первый повод",
-   "case": "Именительный (Nominative)",
-   "explain": "«Первый повод» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
-  },
-  {
    "sentence": "Первый повод к этому разладу подала Лиза, не перебиравшаяся из Богородицкого до ___ своей семьи в Москву.",
    "lemma": "приезд",
    "options": [
@@ -67,35 +11,21 @@
    ],
    "correct": "самого приезда",
    "case": "Родительный (Genitive)",
-   "explain": "«самого приезда» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«самого приезда» — «до» always takes the genitive.",
    "id": "c5"
-  },
-  {
-   "sentence": "Однако, несмотря на первую уступчивость Лизы, трудно было надеяться, что в семье Бахаревых удержится хоть какой-нибудь худой мир, который был бы лучше ___.",
-   "lemma": "ссора",
-   "options": [
-    "добрая ссора",
-    "доброй ссоре",
-    "доброй ссоры",
-    "доброй ссорой"
-   ],
-   "correct": "доброй ссоры",
-   "case": "Родительный (Genitive)",
-   "explain": "«доброй ссоры» — the genitive here marks possession, absence, or quantity.",
-   "id": "c6"
   },
   {
    "sentence": "В один ___ в передней Бахаревых показалась Бертольди: она спросила Лизу, и ее проводили к Лизе.",
    "lemma": "день",
    "options": [
     "прекрасного дня",
+    "прекрасным днём",
     "прекрасному дню",
-    "прекрасный день",
-    "прекрасном дне"
+    "прекрасный день"
    ],
    "correct": "прекрасный день",
    "case": "Винительный (Accusative)",
-   "explain": "«прекрасный день» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«прекрасный день» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c7"
   },
   {
@@ -109,36 +39,8 @@
    ],
    "correct": "жарких баталиях",
    "case": "Предложный (Prepositional)",
-   "explain": "«жарких баталиях» — after the preposition «в», for location or topic.",
+   "explain": "«жарких баталиях» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c9"
-  },
-  {
-   "sentence": "Абрамовна отстаивала Лизину репутацию даже в глазах самых ничтожных людей, каковы для нее были дворник, кучер, ___ и богатыревский поваренок.",
-   "lemma": "девушка",
-   "options": [
-    "соседским девушкам",
-    "соседские девушки",
-    "соседских девушек",
-    "соседскими девушками"
-   ],
-   "correct": "соседские девушки",
-   "case": "Именительный (Nominative)",
-   "explain": "«соседские девушки» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
-  },
-  {
-   "sentence": "Полиньке Калистратовой Лиза никаких подробностей не рассказывала, а сказала только, что у нее дома опять ___.",
-   "lemma": "неприятность",
-   "options": [
-    "большими неприятностями",
-    "большим неприятностям",
-    "больших неприятностях",
-    "большие неприятности"
-   ],
-   "correct": "большие неприятности",
-   "case": "Именительный (Nominative)",
-   "explain": "«большие неприятности» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
   },
   {
    "sentence": "Маркиза вспомнила ___ и разыграла, что она ничего не понимает.",
@@ -151,50 +53,8 @@
    ],
    "correct": "аристократический такт",
    "case": "Винительный (Accusative)",
-   "explain": "«аристократический такт» — the accusative marks the direct object of the verb.",
+   "explain": "«аристократический такт» is the direct object of «вспомнила» (кого? что?) — accusative.",
    "id": "c12"
-  },
-  {
-   "sentence": "— Она очень ___, — говорила Варвара Ивановна о маркизе, — но у нее уж ум за разум зашел; а мое правило просто: ты девушка, и повинуйся.",
-   "lemma": "женщина",
-   "options": [
-    "умная женщина",
-    "умной женщины",
-    "умной женщине",
-    "умной женщиной"
-   ],
-   "correct": "умная женщина",
-   "case": "Именительный (Nominative)",
-   "explain": "«умная женщина» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
-  },
-  {
-   "sentence": "— Сын ___, ma chére, а дочь вся в зависимости от матери, и мать несет за нее ответственность перед обществом.",
-   "lemma": "дело",
-   "options": [
-    "другое дело",
-    "другом деле",
-    "другим делом",
-    "другому делу"
-   ],
-   "correct": "другое дело",
-   "case": "Именительный (Nominative)",
-   "explain": "«другое дело» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
-  },
-  {
-   "sentence": "Пуще всего Ольге Сергеевне понравилось это ___, что она несет за дочерей ответственность перед обществом: так она и стала смотреть на себя, как на лицо весьма ответственное.",
-   "lemma": "открытие",
-   "options": [
-    "новое открытие",
-    "новом открытии",
-    "новым открытием",
-    "нового открытия"
-   ],
-   "correct": "новое открытие",
-   "case": "Именительный (Nominative)",
-   "explain": "«новое открытие» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
   },
   {
    "sentence": "Егор Николаевич, ко ___, во всей этой передряге не принимал ровно никакого участия.",
@@ -207,22 +67,8 @@
    ],
    "correct": "всеобщему удивлению",
    "case": "Дательный (Dative)",
-   "explain": "«всеобщему удивлению» — after the preposition «ко», the dative marks the indirect object or recipient.",
+   "explain": "«всеобщему удивлению» — «к» always takes the dative.",
    "id": "c16"
-  },
-  {
-   "sentence": "С отъездом Полиньки Калистратовой круг Лизиных посетителей сократился решительно до одного Помады, через которого шла у Лизы ___ и делались кое-какие дела.",
-   "lemma": "переписка",
-   "options": [
-    "жаркая переписка",
-    "жаркой переписки",
-    "жаркой перепиской",
-    "жаркой переписке"
-   ],
-   "correct": "жаркая переписка",
-   "case": "Именительный (Nominative)",
-   "explain": "«жаркая переписка» — the subject of the sentence stands in the nominative.",
-   "id": "c19"
   },
   {
    "sentence": "С отъездом Полиньки Калистратовой круг Лизиных посетителей сократился решительно до одного Помады, через которого шла у Лизы жаркая переписка и делались ___.",
@@ -235,36 +81,22 @@
    ],
    "correct": "кое-какие дела",
    "case": "Именительный (Nominative)",
-   "explain": "«кое-какие дела» — the subject of the sentence stands in the nominative.",
+   "explain": "«кое-какие дела» is the subject of «делались» — who or what does it — so nominative.",
    "id": "c20"
   },
   {
    "sentence": "Шло обыкновенно так, как всегда шло все в семье Бахаревых и как многое идет в других ___.",
    "lemma": "семья",
    "options": [
-    "русские семьи",
-    "русскими семьями",
     "русских семьях",
-    "русских семей"
+    "русским семьям",
+    "русских семей",
+    "русскими семьями"
    ],
    "correct": "русских семьях",
    "case": "Предложный (Prepositional)",
-   "explain": "«русских семьях» — after the preposition «в», for location or topic.",
+   "explain": "«русских семьях» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c21"
-  },
-  {
-   "sentence": "Бесповодная или весьма малопричинная злоба сменялась столь же беспричинною снисходительностью и уступчивостью, готовою доходить до самых ___.",
-   "lemma": "размер",
-   "options": [
-    "непонятные размеры",
-    "непонятным размерам",
-    "непонятными размерами",
-    "непонятных размеров"
-   ],
-   "correct": "непонятных размеров",
-   "case": "Родительный (Genitive)",
-   "explain": "«непонятных размеров» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
-   "id": "c22"
   },
   {
    "sentence": "— Да что это, однако, за вздор в ___, — сказал со слезами на глазах старик.",
@@ -277,36 +109,8 @@
    ],
    "correct": "самом деле",
    "case": "Предложный (Prepositional)",
-   "explain": "«самом деле» — after the preposition «в», for location or topic.",
+   "explain": "«самом деле» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c24"
-  },
-  {
-   "sentence": "— Боже мой! фермуар, такой ___!",
-   "lemma": "фермуар",
-   "options": [
-    "прелестным фермуаром",
-    "прелестном фермуаре",
-    "прелестного фермуара",
-    "прелестный фермуар"
-   ],
-   "correct": "прелестный фермуар",
-   "case": "Именительный (Nominative)",
-   "explain": "«прелестный фермуар» — the subject of the sentence stands in the nominative.",
-   "id": "c25"
-  },
-  {
-   "sentence": "Лизе становилось все тяжелее, а ___ безучастно заползала за половину двенадцатого.",
-   "lemma": "стрелка",
-   "options": [
-    "часовой стрелкой",
-    "часовой стрелке",
-    "часовая стрелка",
-    "часовой стрелки"
-   ],
-   "correct": "часовая стрелка",
-   "case": "Именительный (Nominative)",
-   "explain": "«часовая стрелка» — the subject of the sentence stands in the nominative.",
-   "id": "c26"
   },
   {
    "sentence": "Старуха вынула из-под шейного платка припасенный ею на этот случай небольшой, образочек в ___ и подняла его над Лизой.",
@@ -319,7 +123,7 @@
    ],
    "correct": "серебряной ризе",
    "case": "Предложный (Prepositional)",
-   "explain": "«серебряной ризе» — after the preposition «в», for location or topic.",
+   "explain": "«серебряной ризе» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c27"
   },
   {
@@ -333,7 +137,7 @@
    ],
    "correct": "живой картины",
    "case": "Родительный (Genitive)",
-   "explain": "«живой картины» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«живой картины» depends on the noun «лица» (whose? of what?) — genitive.",
    "id": "c29"
   },
   {
@@ -347,22 +151,8 @@
    ],
    "correct": "железной дороге",
    "case": "Дательный (Dative)",
-   "explain": "«железной дороге» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«железной дороге» — «к» always takes the dative.",
    "id": "c30"
-  },
-  {
-   "sentence": "В эту же минуту раздалось мерное пыхтенье локомотива, и из дебаркадера выскочило и понеслось ___ серого пара.",
-   "lemma": "облако",
-   "options": [
-    "густым облаком",
-    "густом облаке",
-    "густому облаку",
-    "густое облако"
-   ],
-   "correct": "густое облако",
-   "case": "Именительный (Nominative)",
-   "explain": "«густое облако» — the subject of the sentence stands in the nominative.",
-   "id": "c31"
   }
  ]
 }

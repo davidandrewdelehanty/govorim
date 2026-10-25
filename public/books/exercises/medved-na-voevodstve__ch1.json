@@ -1,45 +1,17 @@
 {
  "cases": [
   {
-   "sentence": "Но бывает и так, что даже ___ впрок не идут.",
-   "lemma": "злодеяние",
-   "options": [
-    "блестящих злодеяниях",
-    "блестящих злодеяний",
-    "блестящим злодеяниям",
-    "блестящие злодеяния"
-   ],
-   "correct": "блестящие злодеяния",
-   "case": "Именительный (Nominative)",
-   "explain": "«блестящие злодеяния» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "___ этому суждено было представить другому Топтыгину.",
-   "lemma": "пример",
-   "options": [
-    "плачевным примером",
-    "плачевного примера",
-    "плачевный пример",
-    "плачевному примеру"
-   ],
-   "correct": "плачевный пример",
-   "case": "Именительный (Nominative)",
-   "explain": "«Плачевный пример» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
    "sentence": "В то самое время, когда Топтыгин 1-й отличался в своей трущобе, в другую такую же трущобу послал Лев ___, тоже майора и тоже Топтыгина.",
    "lemma": "воевода",
    "options": [
-    "другим воеводой",
     "другого воеводу",
+    "другим воеводой",
     "другому воеводе",
-    "другого воеводы"
+    "другой воевода"
    ],
    "correct": "другого воеводу",
    "case": "Винительный (Accusative)",
-   "explain": "«другого воеводу» — the accusative marks the direct object of the verb.",
+   "explain": "«другого воеводу» is the direct object of «послал» (кого? что?) — accusative.",
    "id": "c3"
   },
   {
@@ -53,50 +25,22 @@
    ],
    "correct": "первого шага",
    "case": "Родительный (Genitive)",
-   "explain": "«первого шага» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«первого шага» — «от» always takes the genitive.",
    "id": "c4"
   },
   {
    "sentence": "Поэтому, еще до получения ___, он зрело обдумал свой план кампании и тогда только побежал на воеводство.",
    "lemma": "деньга",
    "options": [
-    "прогонные деньги",
     "прогонных денег",
-    "прогонных деньгах",
-    "прогонными деньгами"
+    "прогонные деньги",
+    "прогонным деньгам",
+    "прогонных деньгах"
    ],
    "correct": "прогонных денег",
    "case": "Родительный (Genitive)",
-   "explain": "«прогонных денег» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«прогонных денег» depends on the noun «получения» (whose? of what?) — genitive.",
    "id": "c5"
-  },
-  {
-   "sentence": "___, он рассчитывал на то, что как приедет на место, так сейчас же разорит типографию: это и Осел ему советовал.",
-   "lemma": "образ",
-   "options": [
-    "главном образе",
-    "главному образу",
-    "главного образа",
-    "главным образом"
-   ],
-   "correct": "главным образом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«Главным образом» — the instrumental marks the means, company, or complement.",
-   "id": "c6"
-  },
-  {
-   "sentence": "Последние каждое утро, летая по лесу, разносили ___ дня, и никто от того никаких неудобств не ощущал.",
-   "lemma": "новость",
-   "options": [
-    "политические новости",
-    "политических новостях",
-    "политическими новостями",
-    "политическим новостям"
-   ],
-   "correct": "политические новости",
-   "case": "Винительный (Accusative)",
-   "explain": "«политические новости» — the accusative marks the direct object of the verb.",
-   "id": "c7"
   },
   {
    "sentence": "Затем известно было еще, что дятел на ___, не переставаючи, пишет «Историю лесной трущобы», но и эту кору, по мере начертания на ней письмен, точили и растаскивали воры-муравьи.",
@@ -109,7 +53,7 @@
    ],
    "correct": "древесной коре",
    "case": "Предложный (Prepositional)",
-   "explain": "«древесной коре» — after the preposition «на», for location or topic.",
+   "explain": "«древесной коре» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c8"
   },
   {
@@ -123,7 +67,7 @@
    ],
    "correct": "лесной трущобы",
    "case": "Родительный (Genitive)",
-   "explain": "«лесной трущобы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«лесной трущобы» depends on the noun «Историю» (whose? of what?) — genitive.",
    "id": "c9"
   },
   {
@@ -137,22 +81,8 @@
    ],
    "correct": "лесные мужики",
    "case": "Именительный (Nominative)",
-   "explain": "«лесные мужики» — the subject of the sentence stands in the nominative.",
+   "explain": "«лесные мужики» is the subject of «жили» — who or what does it — so nominative.",
    "id": "c10"
-  },
-  {
-   "sentence": "Или, ___, слонялись из угла в угол, окутанные мраком времен.",
-   "lemma": "слово",
-   "options": [
-    "других словах",
-    "другими словами",
-    "других слов",
-    "другие слова"
-   ],
-   "correct": "другими словами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«другими словами» — the instrumental marks the means, company, or complement.",
-   "id": "c11"
   },
   {
    "sentence": "Выбрал он ночку потемнее и забрался во двор к ___.",
@@ -165,22 +95,8 @@
    ],
    "correct": "соседнему мужику",
    "case": "Дательный (Dative)",
-   "explain": "«соседнему мужику» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«соседнему мужику» — «к» always takes the dative.",
    "id": "c12"
-  },
-  {
-   "sentence": "Затем содрали с него шкуру, а стерво вывезли в болото, где к утру его расклевали ___.",
-   "lemma": "птица",
-   "options": [
-    "хищные птицы",
-    "хищными птицами",
-    "хищных птицах",
-    "хищных птиц"
-   ],
-   "correct": "хищные птицы",
-   "case": "Именительный (Nominative)",
-   "explain": "«хищные птицы» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
   },
   {
    "sentence": "Таким образом, явилась новая ___, которая установила, что и блестящие злодейства могут иметь последствия не менее плачевные, как и злодейства срамные.",
@@ -193,7 +109,7 @@
    ],
    "correct": "лесная практика",
    "case": "Именительный (Nominative)",
-   "explain": "«лесная практика» — the subject of the sentence stands in the nominative.",
+   "explain": "«лесная практика» is the subject of «явилась» — who or what does it — so nominative.",
    "id": "c14"
   },
   {
@@ -207,7 +123,7 @@
    ],
    "correct": "блестящие злодейства",
    "case": "Именительный (Nominative)",
-   "explain": "«блестящие злодейства» — the subject of the sentence stands in the nominative.",
+   "explain": "«блестящие злодейства» is the subject of «могут» — who or what does it — so nominative.",
    "id": "c15"
   }
  ]

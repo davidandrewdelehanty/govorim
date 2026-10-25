@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Фабрикант Фролов, ___ с круглой бородкой и с мягким, бархатным выражением глаз, и его поверенный, адвокат Альмер, пожилой мужчина, с большой жесткой головой, кутили в одной из общих зал загородного ресторана.",
-   "lemma": "брюнет",
-   "options": [
-    "красивого брюнета",
-    "красивому брюнету",
-    "красивом брюнете",
-    "красивый брюнет"
-   ],
-   "correct": "красивый брюнет",
-   "case": "Именительный (Nominative)",
-   "explain": "«красивый брюнет» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Фабрикант Фролов, красивый брюнет с круглой бородкой и с мягким, бархатным выражением глаз, и его поверенный, адвокат Альмер, ___, с большой жесткой головой, кутили в одной из общих зал загородного ресторана.",
-   "lemma": "мужчина",
-   "options": [
-    "пожилому мужчине",
-    "пожилого мужчину",
-    "пожилого мужчины",
-    "пожилой мужчина"
-   ],
-   "correct": "пожилой мужчина",
-   "case": "Именительный (Nominative)",
-   "explain": "«пожилой мужчина» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
    "sentence": "Фабрикант Фролов, красивый брюнет с круглой бородкой и с мягким, бархатным выражением глаз, и его поверенный, адвокат Альмер, пожилой мужчина, с большой жесткой головой, кутили в одной из общих зал ___.",
    "lemma": "ресторан",
    "options": [
@@ -39,7 +11,7 @@
    ],
    "correct": "загородного ресторана",
    "case": "Родительный (Genitive)",
-   "explain": "«загородного ресторана» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«загородного ресторана» depends on the noun «зал» (whose? of what?) — genitive.",
    "id": "c4"
   },
   {
@@ -53,22 +25,8 @@
    ],
    "correct": "большой рюмке",
    "case": "Дательный (Dative)",
-   "explain": "«большой рюмке» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«большой рюмке» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c6"
-  },
-  {
-   "sentence": "___ с бритыми усами и с седыми бакенами поставил на стол соусник.",
-   "lemma": "лакей",
-   "options": [
-    "солидным лакеем",
-    "солидный лакей",
-    "солидном лакее",
-    "солидному лакею"
-   ],
-   "correct": "солидный лакей",
-   "case": "Именительный (Nominative)",
-   "explain": "«Солидный лакей» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
   },
   {
    "sentence": "Лакеи, давно уже привыкшие к ___, подбежали к столу и серьезно, хладнокровно, как хирурги во время операции, стали подбирать осколки.",
@@ -81,64 +39,8 @@
    ],
    "correct": "кабацким катастрофам",
    "case": "Дательный (Dative)",
-   "explain": "«кабацким катастрофам» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«кабацким катастрофам» — «к» always takes the dative.",
    "id": "c10"
-  },
-  {
-   "sentence": "Инженер поклонился, попятился назад, всё в наклонном положении, и исчез за дверью, сверкнув в последний раз своими ___ на сорочке и пальцах.",
-   "lemma": "брильянт",
-   "options": [
-    "фальшивым брильянтам",
-    "фальшивыми брильянтами",
-    "фальшивых брильянтов",
-    "фальшивых брильянтах"
-   ],
-   "correct": "фальшивыми брильянтами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«фальшивыми брильянтами» — the instrumental marks the means, company, or complement.",
-   "id": "c13"
-  },
-  {
-   "sentence": "___ опять был накрыт.",
-   "lemma": "стол",
-   "options": [
-    "закусочный стол",
-    "закусочного стола",
-    "закусочным столом",
-    "закусочном столе"
-   ],
-   "correct": "закусочный стол",
-   "case": "Именительный (Nominative)",
-   "explain": "«Закусочный стол» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
-  },
-  {
-   "sentence": "Другие веселеют от водки, а у меня злоба, ___, бессонница.",
-   "lemma": "мысль",
-   "options": [
-    "противных мыслях",
-    "противные мысли",
-    "противных мыслей",
-    "противным мыслям"
-   ],
-   "correct": "противные мысли",
-   "case": "Именительный (Nominative)",
-   "explain": "«противные мысли» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
-  },
-  {
-   "sentence": "___, если б хоть один обиделся, я бы ему тысячу рублей подарил!",
-   "lemma": "слово",
-   "options": [
-    "честное слово",
-    "честного слова",
-    "честному слову",
-    "честном слове"
-   ],
-   "correct": "честное слово",
-   "case": "Именительный (Nominative)",
-   "explain": "«Честное слово» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
   },
   {
    "sentence": "— Он привык бурду пить, так что его от ___ мутит, — сказал Фролов.",
@@ -151,7 +53,7 @@
    ],
    "correct": "чистого вина",
    "case": "Родительный (Genitive)",
-   "explain": "«чистого вина» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«чистого вина» — «от» always takes the genitive.",
    "id": "c18"
   },
   {
@@ -165,7 +67,7 @@
    ],
    "correct": "маленький татарчонок",
    "case": "Именительный (Nominative)",
-   "explain": "«маленький татарчонок» — the subject of the sentence stands in the nominative.",
+   "explain": "«маленький татарчонок» is the subject of «вошел» — who or what does it — so nominative.",
    "id": "c21"
   },
   {
@@ -179,7 +81,7 @@
    ],
    "correct": "богатого человека",
    "case": "Родительный (Genitive)",
-   "explain": "«богатого человека» — after the preposition «около», the genitive here marks possession, absence, or quantity.",
+   "explain": "«богатого человека» — «около» always takes the genitive.",
    "id": "c24"
   },
   {
@@ -193,22 +95,8 @@
    ],
    "correct": "дикий разгул",
    "case": "Именительный (Nominative)",
-   "explain": "«дикий разгул» — the subject of the sentence stands in the nominative.",
+   "explain": "«дикий разгул» is the subject of «начался» — who or what does it — so nominative.",
    "id": "c25"
-  },
-  {
-   "sentence": "В исступлении, которое иногда овладевает очень богатыми, избалованными «___», Фролов стал дурить.",
-   "lemma": "натура",
-   "options": [
-    "широких натур",
-    "широких натурах",
-    "широким натурам",
-    "широкими натурами"
-   ],
-   "correct": "широкими натурами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«широкими натурами» — the instrumental marks the means, company, or complement.",
-   "id": "c26"
   },
   {
    "sentence": "У подъезда своего дома он потянулся к Альмеру и, пошатываясь, поцеловал его в губы, по старой ___ — целоваться без разбора, при всяком случае.",
@@ -221,7 +109,7 @@
    ],
    "correct": "московской привычке",
    "case": "Дательный (Dative)",
-   "explain": "«московской привычке» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«московской привычке» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c27"
   }
  ]

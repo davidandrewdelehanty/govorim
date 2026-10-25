@@ -1,157 +1,73 @@
 {
  "cases": [
   {
-   "sentence": "___, щечки как розаны — и все-таки румянится.",
-   "lemma": "девушка",
-   "options": [
-    "шестнадцатилетняя девушка",
-    "шестнадцатилетней девушке",
-    "шестнадцатилетней девушкой",
-    "шестнадцатилетней девушки"
-   ],
-   "correct": "шестнадцатилетняя девушка",
-   "case": "Именительный (Nominative)",
-   "explain": "«Шестнадцатилетняя девушка» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Быть может, у меня не хватает характера; я был бы ___ у Наполеона.",
-   "lemma": "воин",
-   "options": [
-    "плохим воином",
-    "плохой воин",
-    "плохому воину",
-    "плохого воина"
-   ],
-   "correct": "плохим воином",
-   "case": "Творительный (Instrumental)",
-   "explain": "«плохим воином» — the instrumental marks the means, company, or complement.",
-   "id": "c2"
-  },
-  {
    "sentence": "К счастью для него, даже в этом ___ состояние его души мало соответствовало его развязной манере говорить.",
    "lemma": "инцидент",
    "options": [
-    "незначительном инциденте",
+    "незначительному инциденту",
     "незначительного инцидента",
     "незначительным инцидентом",
-    "незначительный инцидент"
+    "незначительном инциденте"
    ],
    "correct": "незначительном инциденте",
    "case": "Предложный (Prepositional)",
-   "explain": "«незначительном инциденте» — after the preposition «в», for location or topic.",
+   "explain": "«незначительном инциденте» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c3"
-  },
-  {
-   "sentence": "Госпожа де Реналь напугала его своим ___.",
-   "lemma": "платье",
-   "options": [
-    "прекрасному платью",
-    "прекрасным платьем",
-    "прекрасном платье",
-    "прекрасного платья"
-   ],
-   "correct": "прекрасным платьем",
-   "case": "Творительный (Instrumental)",
-   "explain": "«прекрасным платьем» — the instrumental marks the means, company, or complement.",
-   "id": "c4"
   },
   {
    "sentence": "Основываясь на признаниях Фуке и тому немногому, что он читал о любви в Библии, он составил себе весьма ___ кампании.",
    "lemma": "план",
    "options": [
-    "подробный план",
     "подробным планом",
-    "подробного плана",
-    "подробному плану"
+    "подробном плане",
+    "подробному плану",
+    "подробный план"
    ],
    "correct": "подробный план",
    "case": "Винительный (Accusative)",
-   "explain": "«подробный план» — the accusative marks the direct object of the verb.",
+   "explain": "«подробный план» is the direct object of «составил» (кого? что?) — accusative.",
    "id": "c5"
   },
   {
    "sentence": "На ___ утром госпожа де Реналь на минуту очутилась с ним в гостиной наедине.",
    "lemma": "день",
    "options": [
-    "другом дне",
     "другого дня",
+    "другим днём",
     "другой день",
-    "другим днём"
+    "другому дню"
    ],
    "correct": "другой день",
    "case": "Винительный (Accusative)",
-   "explain": "«другой день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«другой день» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c6"
   },
   {
    "sentence": "— У вас нет никакого ___, кроме Жюльена?",
    "lemma": "имя",
    "options": [
+    "другому имени",
     "другим именем",
-    "другое имя",
-    "другого имени",
-    "другом имени"
+    "другом имени",
+    "другого имени"
    ],
    "correct": "другого имени",
    "case": "Родительный (Genitive)",
-   "explain": "«другого имени» — the genitive here marks possession, absence, or quantity.",
+   "explain": "What is absent after «нет» — genitive.",
    "id": "c7"
-  },
-  {
-   "sentence": "На этот столь ___ наш герой не знал, что ответить.",
-   "lemma": "вопрос",
-   "options": [
-    "соблазнительным вопросом",
-    "соблазнительный вопрос",
-    "соблазнительного вопроса",
-    "соблазнительному вопросу"
-   ],
-   "correct": "соблазнительный вопрос",
-   "case": "Именительный (Nominative)",
-   "explain": "«соблазнительный вопрос» — after the preposition «на», the subject of the sentence stands in the nominative.",
-   "id": "c8"
-  },
-  {
-   "sentence": "Не будь у него этого ___, живой ум Жюльена выручил бы его, — неожиданность только увеличивала его остроумие.",
-   "lemma": "план",
-   "options": [
-    "дурацкому плану",
-    "дурацкий план",
-    "дурацкого плана",
-    "дурацком плане"
-   ],
-   "correct": "дурацкого плана",
-   "case": "Родительный (Genitive)",
-   "explain": "«дурацкого плана» — the genitive here marks possession, absence, or quantity.",
-   "id": "c9"
-  },
-  {
-   "sentence": "Не будь у него этого дурацкого плана, ___ Жюльена выручил бы его, — неожиданность только увеличивала его остроумие.",
-   "lemma": "ум",
-   "options": [
-    "живой ум",
-    "живого ума",
-    "живым умом",
-    "живому уму"
-   ],
-   "correct": "живой ум",
-   "case": "Винительный (Accusative)",
-   "explain": "«живой ум» — the accusative marks the direct object of the verb.",
-   "id": "c10"
   },
   {
    "sentence": "Она увидела в этом проявление ___.",
    "lemma": "простодушие",
    "options": [
-    "очаровательному простодушию",
-    "очаровательном простодушии",
     "очаровательного простодушия",
-    "очаровательным простодушием"
+    "очаровательное простодушие",
+    "очаровательном простодушии",
+    "очаровательному простодушию"
    ],
    "correct": "очаровательного простодушия",
    "case": "Родительный (Genitive)",
-   "explain": "«очаровательного простодушия» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«очаровательного простодушия» depends on the noun «проявление» (whose? of what?) — genitive.",
    "id": "c11"
   },
   {
@@ -165,7 +81,7 @@
    ],
    "correct": "юный наставник",
    "case": "Именительный (Nominative)",
-   "explain": "«юный наставник» — the subject of the sentence stands in the nominative.",
+   "explain": "«юный наставник» is the subject of «внушает» — who or what does it — so nominative.",
    "id": "c12"
   },
   {
@@ -179,7 +95,7 @@
    ],
    "correct": "глупая выходка",
    "case": "Именительный (Nominative)",
-   "explain": "«глупая выходка» — the subject of the sentence stands in the nominative.",
+   "explain": "«глупая выходка» is the subject of «напомнила» — who or what does it — so nominative.",
    "id": "c13"
   },
   {
@@ -193,7 +109,7 @@
    ],
    "correct": "стальные ножницы",
    "case": "Именительный (Nominative)",
-   "explain": "«стальные ножницы» — the subject of the sentence stands in the nominative.",
+   "explain": "«стальные ножницы» is the subject of «сломались» — who or what does it — so nominative.",
    "id": "c14"
   },
   {
@@ -207,63 +123,35 @@
    ],
    "correct": "милого юноши",
    "case": "Родительный (Genitive)",
-   "explain": "«милого юноши» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«милого юноши» — «у» always takes the genitive.",
    "id": "c15"
   },
   {
    "sentence": "Провинциальная мораль не прощает ___.",
    "lemma": "промах",
    "options": [
+    "подобным промахам",
     "подобными промахами",
-    "подобных промахов",
-    "подобные промахи",
-    "подобным промахам"
+    "подобных промахах",
+    "подобных промахов"
    ],
    "correct": "подобных промахов",
    "case": "Родительный (Genitive)",
-   "explain": "«подобных промахов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«подобных промахов» is the object of a negated verb («не прощает») — genitive instead of the accusative.",
    "id": "c16"
-  },
-  {
-   "sentence": "Любить нельзя без равенства; и он напрягал весь свой ум, стараясь припомнить ___ о равенстве.",
-   "lemma": "место",
-   "options": [
-    "общим местам",
-    "общие места",
-    "общими местами",
-    "общих местах"
-   ],
-   "correct": "общие места",
-   "case": "Винительный (Accusative)",
-   "explain": "«общие места» — the accusative marks the direct object of the verb.",
-   "id": "c17"
-  },
-  {
-   "sentence": "В Верьере Жюльен застал господина Шелана ___: его наконец сместили, викарий Малон занял его место.",
-   "lemma": "переезд",
-   "options": [
-    "занятом переезде",
-    "занятому переезду",
-    "занятым переездом",
-    "занятой переезд"
-   ],
-   "correct": "занятым переездом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«занятым переездом» — the instrumental marks the means, company, or complement.",
-   "id": "c18"
   },
   {
    "sentence": "Жюльен пришел в восторг от своей хитрости — извлечь пользу из смещения ___ для того, чтобы оставить себе лазейку и заняться торговлей, если прискорбное благоразумие одержит в нем верх над героизмом.",
    "lemma": "священник",
    "options": [
-    "верьерский священник",
     "верьерском священнике",
-    "верьерского священника",
-    "верьерским священником"
+    "верьерскому священнику",
+    "верьерский священник",
+    "верьерского священника"
    ],
    "correct": "верьерского священника",
    "case": "Родительный (Genitive)",
-   "explain": "«верьерского священника» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«верьерского священника» depends on the noun «смещения» (whose? of what?) — genitive.",
    "id": "c19"
   }
  ]

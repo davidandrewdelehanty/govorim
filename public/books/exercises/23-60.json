@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "id": "c1",
-   "sentence": "Встань, воссияй, так как ___ твой пришел.",
-   "lemma": "свет",
-   "options": [
-    "свет",
-    "света",
-    "свету",
-    "светом"
-   ],
-   "correct": "свет",
-   "case": "Именительный (Nominative)",
-   "explain": "Nominative subject of the verb 'пришел' (has come)."
-  },
-  {
-   "id": "c2",
-   "sentence": "Слава Господня уже восходит над ___.",
-   "lemma": "ты",
-   "options": [
-    "ты",
-    "тебе",
-    "тебя",
-    "тобой"
-   ],
-   "correct": "тобой",
-   "case": "Творительный (Instrumental)",
-   "explain": "The preposition над (over/upon) takes instrumental case."
-  },
-  {
    "id": "c3",
    "sentence": "Народы придут к твоему ___ и цари к сиянию твоей зари.",
    "lemma": "свет",
@@ -40,21 +12,7 @@
    ],
    "correct": "свету",
    "case": "Дательный (Dative)",
-   "explain": "The preposition к (to) takes dative case."
-  },
-  {
-   "id": "c4",
-   "sentence": "Подними взгляд и оглянись вокруг. Все они собираются и идут к ___.",
-   "lemma": "ты",
-   "options": [
-    "ты",
-    "тебе",
-    "тебя",
-    "тобой"
-   ],
-   "correct": "тебе",
-   "case": "Дательный (Dative)",
-   "explain": "The preposition к (to) takes dative case."
+   "explain": "«свету» — «к» always takes the dative."
   },
   {
    "id": "c5",
@@ -68,115 +26,7 @@
    ],
    "correct": "моря",
    "case": "Родительный (Genitive)",
-   "explain": "Possessive genitive: 'treasures of the sea'."
-  },
-  {
-   "id": "c6",
-   "sentence": "___ отстроят твои стены, и цари их будут тебе служить.",
-   "lemma": "чужеземец",
-   "options": [
-    "чужеземец",
-    "чужеземца",
-    "чужеземцу",
-    "чужеземцы"
-   ],
-   "correct": "чужеземцы",
-   "case": "Именительный (Nominative)",
-   "explain": "Subject of the sentence in nominative plural case."
-  },
-  {
-   "id": "c7",
-   "sentence": "Твои ворота будут всегда открыты день и ___, закрываться не будут.",
-   "lemma": "ночь",
-   "options": [
-    "ночь",
-    "ночи",
-    "ночью",
-    "ночей"
-   ],
-   "correct": "ночь",
-   "case": "Винительный (Accusative)",
-   "explain": "The accusative in the time expression 'день и ночь' (day and night)."
-  }
- ],
- "reading": [
-  {
-   "id": "r1",
-   "ru": "Встань, воссияй, так как свет твой пришел, и слава Господня уже восходит над тобою.",
-   "question": "What is the main message of this verse?",
-   "options": [
-    "Darkness will cover the earth",
-    "The time to shine has come",
-    "God's judgment approaches",
-    "Sorrow and suffering increase"
-   ],
-   "correct": "The time to shine has come",
-   "explain": "The text commands to 'встань, воссияй' (arise, shine) because 'свет твой пришел' (your light has come)."
-  },
-  {
-   "id": "r2",
-   "ru": "Народы придут к твоему свету и цари к сиянию твоей зари.",
-   "question": "What will the nations and kings do?",
-   "options": [
-    "Wage war against you",
-    "Flee from you",
-    "Come to your light",
-    "Ignore you completely"
-   ],
-   "correct": "Come to your light",
-   "explain": "The text states 'Народы придут к твоему свету' (Nations will come to your light) and 'цари к сиянию твоей зари' (kings to the brightness of your rising)."
-  },
-  {
-   "id": "r3",
-   "ru": "Твои сыновья придут издалека. Твоих дочерей будут нести к тебе на руках.",
-   "question": "What will happen to the Zion's children?",
-   "options": [
-    "They will be scattered",
-    "They will return from far away",
-    "They will be enslaved",
-    "They will remain dispersed"
-   ],
-   "correct": "They will return from far away",
-   "explain": "The text promises 'Твои сыновья придут издалека' (your sons will come from far away) and 'Твоих дочерей будут нести к тебе' (your daughters will be carried to you)."
-  },
-  {
-   "id": "r4",
-   "ru": "Чужеземцы отстроят твои стены, и цари их будут тебе служить.",
-   "question": "Who will build Zion's walls and serve her?",
-   "options": [
-    "Her own people",
-    "Foreigners and their kings",
-    "The enemies",
-    "Priests and Levites"
-   ],
-   "correct": "Foreigners and their kings",
-   "explain": "The text says 'Чужеземцы отстроят твои стены' (Foreigners will build up your walls) and 'цари их будут тебе служить' (their kings will serve you)."
-  },
-  {
-   "id": "r5",
-   "ru": "Солнце уже не будет твоим светом дневным, и сияние луны не будет светить тебе.",
-   "question": "What will change regarding the sun and moon?",
-   "options": [
-    "They will brighten",
-    "They will no longer be needed as light sources",
-    "They will shine brighter",
-    "They will disappear completely"
-   ],
-   "correct": "They will no longer be needed as light sources",
-   "explain": "The text says 'Солнце уже не будет твоим светом' (The sun will be no more your light) because God will be the light."
-  },
-  {
-   "id": "r6",
-   "ru": "Но Господь станет твоим светом навсегда. Бог твой будет славой твоей.",
-   "question": "Who will become the eternal light and glory?",
-   "options": [
-    "The nation itself",
-    "The sun and moon",
-    "The Lord God",
-    "Human leaders"
-   ],
-   "correct": "The Lord God",
-   "explain": "The text states 'Господь станет твоим светом навсегда' (The Lord will be your everlasting light) and 'Бог твой будет славой твоей' (your God will be your glory)."
+   "explain": "«моря» depends on the noun «Сокровища» (whose? of what?) — genitive."
   }
  ]
 }

@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "На Никиту свалилось четырнадцать его ___, — делай, что хочешь.",
-   "lemma": "день",
-   "options": [
-    "собственными днями",
-    "собственных днях",
-    "собственных дней",
-    "собственные дни"
-   ],
-   "correct": "собственных дней",
-   "case": "Родительный (Genitive)",
-   "explain": "«собственных дней» — the genitive here marks possession, absence, or quantity.",
-   "id": "c1"
-  },
-  {
    "sentence": "За ___ он устроил из чая, молока, хлеба и варенья тюрю и так наелся, что пришлось некоторое время посидеть молча.",
    "lemma": "чай",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "утренним чаем",
    "case": "Творительный (Instrumental)",
-   "explain": "«утренним чаем» — after the preposition «за», the instrumental marks the means, company, or complement.",
+   "explain": "«утренним чаем» — «за» takes the instrumental here (где? за чем? за кем?) — the accusative would mean motion behind or 'for' (куда? за что?).",
    "id": "c2"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "самом деле",
    "case": "Предложный (Prepositional)",
-   "explain": "«самом деле» — after the preposition «в», for location or topic.",
+   "explain": "«самом деле» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c3"
   },
   {
@@ -53,50 +39,8 @@
    ],
    "correct": "южной стороне",
    "case": "Предложный (Prepositional)",
-   "explain": "«южной стороне» — after the preposition «на», for location or topic.",
+   "explain": "«южной стороне» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c5"
-  },
-  {
-   "sentence": "Налево от этого коридора, на южной стороне дома, были расположены ___, натопленные и жилые.",
-   "lemma": "комната",
-   "options": [
-    "зимние комнаты",
-    "зимних комнат",
-    "зимним комнатам",
-    "зимних комнатах"
-   ],
-   "correct": "зимние комнаты",
-   "case": "Именительный (Nominative)",
-   "explain": "«зимние комнаты» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
-  },
-  {
-   "sentence": "Направо, с северной стороны, было пять летних, наполовину ___, с залом посредине.",
-   "lemma": "комната",
-   "options": [
-    "пустыми комнатами",
-    "пустых комнат",
-    "пустым комнатам",
-    "пустые комнаты"
-   ],
-   "correct": "пустых комнат",
-   "case": "Родительный (Genitive)",
-   "explain": "«пустых комнат» — the genitive here marks possession, absence, or quantity.",
-   "id": "c8"
-  },
-  {
-   "sentence": "Здесь огромные ___ протапливались только раз в неделю, хрустальные люстры висели, окутанные марлей, на полу в зале лежала куча яблок, — гниловатый сладкий запах их наполнял всю летнюю половину.",
-   "lemma": "печь",
-   "options": [
-    "изразцовых печей",
-    "изразцовых печах",
-    "изразцовыми печами",
-    "изразцовые печи"
-   ],
-   "correct": "изразцовые печи",
-   "case": "Именительный (Nominative)",
-   "explain": "«изразцовые печи» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
   },
   {
    "sentence": "Здесь огромные изразцовые печи протапливались только раз в неделю, ___ висели, окутанные марлей, на полу в зале лежала куча яблок, — гниловатый сладкий запах их наполнял всю летнюю половину.",
@@ -109,50 +53,8 @@
    ],
    "correct": "хрустальные люстры",
    "case": "Именительный (Nominative)",
-   "explain": "«хрустальные люстры» — the subject of the sentence stands in the nominative.",
+   "explain": "«хрустальные люстры» is the subject of «висели» — who or what does it — so nominative.",
    "id": "c10"
-  },
-  {
-   "sentence": "Здесь огромные изразцовые печи протапливались только раз в неделю, хрустальные люстры висели, окутанные марлей, на полу в зале лежала куча яблок, — гниловатый ___ их наполнял всю летнюю половину.",
-   "lemma": "запах",
-   "options": [
-    "сладкому запаху",
-    "сладкий запах",
-    "сладким запахом",
-    "сладкого запаха"
-   ],
-   "correct": "сладкий запах",
-   "case": "Именительный (Nominative)",
-   "explain": "«сладкий запах» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
-  },
-  {
-   "sentence": "Деревья стояли неподвижно, опустив ___, заросли сирени с двух сторон балконной лестницы пригнулись под снегом.",
-   "lemma": "ветвь",
-   "options": [
-    "белые ветви",
-    "белыми ветвями",
-    "белых ветвей",
-    "белым ветвям"
-   ],
-   "correct": "белые ветви",
-   "case": "Винительный (Accusative)",
-   "explain": "«белые ветви» — the accusative marks the direct object of the verb.",
-   "id": "c13"
-  },
-  {
-   "sentence": "На поляне синели ___.",
-   "lemma": "след",
-   "options": [
-    "заячьими следами",
-    "заячьи следы",
-    "заячьим следам",
-    "заячьих следов"
-   ],
-   "correct": "заячьи следы",
-   "case": "Винительный (Accusative)",
-   "explain": "«заячьи следы» — the accusative marks the direct object of the verb.",
-   "id": "c14"
   },
   {
    "sentence": "У ___ на ветке сидела черная головастая ворона, похожая на черта.",
@@ -165,7 +67,7 @@
    ],
    "correct": "самого окна",
    "case": "Родительный (Genitive)",
-   "explain": "«самого окна» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«самого окна» — «у» always takes the genitive.",
    "id": "c15"
   },
   {
@@ -179,7 +81,7 @@
    ],
    "correct": "головастая ворона",
    "case": "Именительный (Nominative)",
-   "explain": "«головастая ворона» — the subject of the sentence stands in the nominative.",
+   "explain": "«головастая ворона» is the subject of «сидела» — who or what does it — so nominative.",
    "id": "c16"
   },
   {
@@ -193,7 +95,7 @@
    ],
    "correct": "угловой комнаты",
    "case": "Родительный (Genitive)",
-   "explain": "«угловой комнаты» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«угловой комнаты» — «до» always takes the genitive.",
    "id": "c17"
   },
   {
@@ -207,7 +109,7 @@
    ],
    "correct": "старинных книг",
    "case": "Родительный (Genitive)",
-   "explain": "«старинных книг» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«старинных книг» depends on the noun «переплеты» (whose? of what?) — genitive.",
    "id": "c18"
   },
   {
@@ -221,7 +123,7 @@
    ],
    "correct": "изразцовым очагом",
    "case": "Творительный (Instrumental)",
-   "explain": "«изразцовым очагом» — after the preposition «над», the instrumental marks the means, company, or complement.",
+   "explain": "«изразцовым очагом» — «над» always takes the instrumental.",
    "id": "c19"
   },
   {
@@ -235,7 +137,7 @@
    ],
    "correct": "удивительной красоты",
    "case": "Родительный (Genitive)",
-   "explain": "«удивительной красоты» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«удивительной красоты» depends on the noun «дамы» (whose? of what?) — genitive.",
    "id": "c20"
   },
   {
@@ -249,22 +151,8 @@
    ],
    "correct": "бархатной амазонке",
    "case": "Предложный (Prepositional)",
-   "explain": "«бархатной амазонке» — after the preposition «в», for location or topic.",
+   "explain": "«бархатной амазонке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c21"
-  },
-  {
-   "sentence": "Казалось, она шла и обернулась и глядит на Никиту с лукавой улыбкой пристальными ___.",
-   "lemma": "глаз",
-   "options": [
-    "длинных глаз",
-    "длинным глазам",
-    "длинных глазах",
-    "длинными глазами"
-   ],
-   "correct": "длинными глазами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«длинными глазами» — the instrumental marks the means, company, or complement.",
-   "id": "c23"
   },
   {
    "sentence": "Из-за нее, — он не раз это слышал от матери, — с его прадедом произошли ___.",
@@ -277,7 +165,7 @@
    ],
    "correct": "большие беды",
    "case": "Именительный (Nominative)",
-   "explain": "«большие беды» — the subject of the sentence stands in the nominative.",
+   "explain": "«большие беды» is the subject of «произошли» — who or what does it — so nominative.",
    "id": "c24"
   },
   {
@@ -291,36 +179,8 @@
    ],
    "correct": "книжным шкафом",
    "case": "Творительный (Instrumental)",
-   "explain": "«книжным шкафом» — after the preposition «над», the instrumental marks the means, company, or complement.",
+   "explain": "«книжным шкафом» — «над» always takes the instrumental.",
    "id": "c25"
-  },
-  {
-   "sentence": "По ночам вокруг дома бродили караульщики и трещали в трещотки, чтобы ___ не летали под окнами, не пугали прадедушку.",
-   "lemma": "птица",
-   "options": [
-    "ночные птицы",
-    "ночными птицами",
-    "ночным птицам",
-    "ночных птицах"
-   ],
-   "correct": "ночные птицы",
-   "case": "Именительный (Nominative)",
-   "explain": "«ночные птицы» — the subject of the sentence stands in the nominative.",
-   "id": "c26"
-  },
-  {
-   "sentence": "Сад в то время, говорят, зарос высокой ___.",
-   "lemma": "трава",
-   "options": [
-    "густой травой",
-    "густой траве",
-    "густой травы",
-    "густая трава"
-   ],
-   "correct": "густой травой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«густой травой» — the instrumental marks the means, company, or complement.",
-   "id": "c27"
   },
   {
    "sentence": "Причиною всех этих ___ была дама в амазонке.",
@@ -333,7 +193,7 @@
    ],
    "correct": "странных явлений",
    "case": "Родительный (Genitive)",
-   "explain": "«странных явлений» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«странных явлений» depends on the noun «Причиною» (whose? of what?) — genitive.",
    "id": "c28"
   },
   {
@@ -347,7 +207,7 @@
    ],
    "correct": "пустых комнат",
    "case": "Родительный (Genitive)",
-   "explain": "«пустых комнат» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«пустых комнат» — «из» always takes the genitive.",
    "id": "c29"
   }
  ]

@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "— Я не из любопытства упомянул вам об этом, государь мой, но по более ___.",
-   "lemma": "причина",
-   "options": [
-    "важных причин",
-    "важным причинам",
-    "важными причинами",
-    "важные причины"
-   ],
-   "correct": "важным причинам",
-   "case": "Дательный (Dative)",
-   "explain": "«важным причинам» — after the preposition «по», the dative marks the indirect object or recipient.",
-   "id": "c1"
-  },
-  {
    "sentence": "— Ах нет, совсем нет, напротив, я очень рад познакомиться с вами, — сказал Пьер, и, взглянув еще раз на руки ___, ближе рассмотрел перстень.",
    "lemma": "знакомец",
    "options": [
@@ -25,21 +11,21 @@
    ],
    "correct": "нового знакомца",
    "case": "Родительный (Genitive)",
-   "explain": "«нового знакомца» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«нового знакомца» depends on the noun «руки» (whose? of what?) — genitive.",
    "id": "c2"
   },
   {
    "sentence": "— Да, я принадлежу к братству ___, сказал проезжий, все глубже и глубже вглядываясь в глаза Пьеру.",
    "lemma": "каменьщик",
    "options": [
+    "свободных каменьщиках",
     "свободных каменьщиков",
     "свободные каменьщики",
-    "свободными каменьщиками",
     "свободным каменьщикам"
    ],
    "correct": "свободных каменьщиков",
    "case": "Родительный (Genitive)",
-   "explain": "«свободных каменьщиков» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«свободных каменьщиков» depends on the noun «братству» (whose? of what?) — genitive.",
    "id": "c3"
   },
   {
@@ -53,22 +39,8 @@
    ],
    "correct": "непонятное существо",
    "case": "Именительный (Nominative)",
-   "explain": "«непонятное существо» — the subject of the sentence stands in the nominative.",
+   "explain": "«непонятное существо» is the subject of «есть» — who or what does it — so nominative.",
    "id": "c4"
-  },
-  {
-   "sentence": "— Он есть, но понять Его трудно, — заговорил опять масон. глядя не на лицо Пьера, а перед собою, своими ___, которые от внутреннего волнения не могли оставаться спокойными, перебирая листы книги.",
-   "lemma": "рука",
-   "options": [
-    "старческим рукам",
-    "старческих руках",
-    "старческие руки",
-    "старческими руками"
-   ],
-   "correct": "старческими руками",
-   "case": "Творительный (Instrumental)",
-   "explain": "«старческими руками» — the instrumental marks the means, company, or complement.",
-   "id": "c6"
   },
   {
    "sentence": "— Он есть, но понять Его трудно, — заговорил опять масон. глядя не на лицо Пьера, а перед собою, своими старческими руками, которые от ___ не могли оставаться спокойными, перебирая листы книги.",
@@ -81,36 +53,8 @@
    ],
    "correct": "внутреннего волнения",
    "case": "Родительный (Genitive)",
-   "explain": "«внутреннего волнения» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«внутреннего волнения» — «от» always takes the genitive.",
    "id": "c7"
-  },
-  {
-   "sentence": "Пьер, с замиранием сердца, блестящими глазами глядя в лицо масона, слушал его, не перебивал, не спрашивал его, а всею душой верил тому, что́ говорил ему этот ___.",
-   "lemma": "человек",
-   "options": [
-    "чужой человек",
-    "чужого человека",
-    "чужом человеке",
-    "чужому человеку"
-   ],
-   "correct": "чужой человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«чужой человек» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
-  },
-  {
-   "sentence": "Только ___ самого себя я могу до известной чистоты довести воспринимаемую влагу.",
-   "lemma": "очищение",
-   "options": [
-    "внутреннее очищение",
-    "внутреннему очищению",
-    "внутренним очищением",
-    "внутреннего очищения"
-   ],
-   "correct": "внутренним очищением",
-   "case": "Творительный (Instrumental)",
-   "explain": "«внутренним очищением» — the instrumental marks the means, company, or complement.",
-   "id": "c11"
   },
   {
    "sentence": "Только внутренним очищением самого себя я могу до ___ довести воспринимаемую влагу.",
@@ -123,7 +67,7 @@
    ],
    "correct": "известной чистоты",
    "case": "Родительный (Genitive)",
-   "explain": "«известной чистоты» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«известной чистоты» — «до» always takes the genitive.",
    "id": "c12"
   },
   {
@@ -137,7 +81,7 @@
    ],
    "correct": "светских науках",
    "case": "Предложный (Prepositional)",
-   "explain": "«светских науках» — after the preposition «на», for location or topic.",
+   "explain": "«светских науках» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c13"
   },
   {
@@ -151,50 +95,22 @@
    ],
    "correct": "внутреннего человека",
    "case": "Винительный (Accusative)",
-   "explain": "«внутреннего человека» — the accusative marks the direct object of the verb.",
+   "explain": "«внутреннего человека» is the direct object of «обновить» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c14"
-  },
-  {
-   "sentence": "— Погляди ___ на своего внутреннего человека и спроси у самого себя, доволен ли ты собой.",
-   "lemma": "глаз",
-   "options": [
-    "духовным глазам",
-    "духовных глазах",
-    "духовными глазами",
-    "духовных глаз"
-   ],
-   "correct": "духовными глазами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«духовными глазами» — the instrumental marks the means, company, or complement.",
-   "id": "c15"
   },
   {
    "sentence": "— Погляди духовными глазами на своего ___ и спроси у самого себя, доволен ли ты собой.",
    "lemma": "человек",
    "options": [
+    "внутреннему человеку",
+    "внутренним человеком",
     "внутреннего человека",
-    "внутреннем человеке",
-    "внутренний человек",
-    "внутренним человеком"
+    "внутренний человек"
    ],
    "correct": "внутреннего человека",
    "case": "Винительный (Accusative)",
-   "explain": "«внутреннего человека» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«внутреннего человека» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c16"
-  },
-  {
-   "sentence": "Потом вы женились, государь мой, взяли на себя ответственность в руководстве ___, и что́ же вы сделали?",
-   "lemma": "женщина",
-   "options": [
-    "молодой женщине",
-    "молодая женщина",
-    "молодой женщиной",
-    "молодой женщины"
-   ],
-   "correct": "молодой женщины",
-   "case": "Родительный (Genitive)",
-   "explain": "«молодой женщины» — the genitive here marks possession, absence, or quantity.",
-   "id": "c18"
   },
   {
    "sentence": "После этих слов, масон, как бы устав от ___, опять облокотился на спинку дивана и закрыл глаза.",
@@ -207,22 +123,8 @@
    ],
    "correct": "продолжительного разговора",
    "case": "Родительный (Genitive)",
-   "explain": "«продолжительного разговора» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«продолжительного разговора» — «от» always takes the genitive.",
    "id": "c19"
-  },
-  {
-   "sentence": "Вы едете в Петербург, передайте это графу Вилларскому (он достал бумажник и на сложенном вчетверо ___ бумаги написал несколько слов).",
-   "lemma": "лист",
-   "options": [
-    "большом листе",
-    "большого листа",
-    "большим листом",
-    "большой лист"
-   ],
-   "correct": "большом листе",
-   "case": "Предложный (Prepositional)",
-   "explain": "«большом листе» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c20"
   }
  ]
 }

@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Единственное, что по пути напоминает о человеке, это ___, завывающие под ветер, да верстовые столбы.",
-   "lemma": "проволока",
-   "options": [
-    "телеграфных проволок",
-    "телеграфными проволоками",
-    "телеграфных проволоках",
-    "телеграфные проволоки"
-   ],
-   "correct": "телеграфные проволоки",
-   "case": "Именительный (Nominative)",
-   "explain": "«телеграфные проволоки» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Часов в пять утра, после морозной ночи и ___, я сижу в избе вольного ямщика, в горнице, и пью чай.",
-   "lemma": "езда",
-   "options": [
-    "утомительной ездой",
-    "утомительной езде",
-    "утомительная езда",
-    "утомительной езды"
-   ],
-   "correct": "утомительной езды",
-   "case": "Родительный (Genitive)",
-   "explain": "«утомительной езды» — the genitive here marks possession, absence, or quantity.",
-   "id": "c3"
-  },
-  {
    "sentence": "Часов в пять утра, после морозной ночи и утомительной езды, я сижу в избе ___, в горнице, и пью чай.",
    "lemma": "ямщик",
    "options": [
@@ -39,7 +11,7 @@
    ],
    "correct": "вольного ямщика",
    "case": "Родительный (Genitive)",
-   "explain": "«вольного ямщика» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«вольного ямщика» depends on the noun «избе» (whose? of what?) — genitive.",
    "id": "c4"
   },
   {
@@ -53,50 +25,8 @@
    ],
    "correct": "холщовыми постилками",
    "case": "Творительный (Instrumental)",
-   "explain": "«холщовыми постилками» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «покрытые», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c5"
-  },
-  {
-   "sentence": "В углу стоит кровать, на ней ___ из пуховиков и подушек в красных наволочках; чтобы взобраться на эту гору, надо подставлять стул, а ляжешь — утонешь.",
-   "lemma": "гора",
-   "options": [
-    "целой горой",
-    "целой горе",
-    "целая гора",
-    "целой горы"
-   ],
-   "correct": "целая гора",
-   "case": "Именительный (Nominative)",
-   "explain": "«целая гора» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
-  },
-  {
-   "sentence": "На украшение стен идут и конфектные бумажки, и водочные ярлыки, и этикеты из-под папирос, и эта бедность совсем не вяжется с солидной постелью и ___.",
-   "lemma": "пол",
-   "options": [
-    "крашеных полах",
-    "крашеных полов",
-    "крашеными полами",
-    "крашеным полам"
-   ],
-   "correct": "крашеными полами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«крашеными полами» — the instrumental marks the means, company, or complement.",
-   "id": "c8"
-  },
-  {
-   "sentence": "Немудрая живопись, но ___ и она не под силу.",
-   "lemma": "крестьянин",
-   "options": [
-    "здешнему крестьянину",
-    "здешним крестьянином",
-    "здешнего крестьянина",
-    "здешний крестьянин"
-   ],
-   "correct": "здешнему крестьянину",
-   "case": "Дательный (Dative)",
-   "explain": "«здешнему крестьянину» — the dative marks the indirect object or recipient.",
-   "id": "c9"
   },
   {
    "sentence": "Девять месяцев не снимает он рукавиц и не распрямляет пальцев; то мороз в сорок градусов, то луга на двадцать верст затопило, а придет ___ — спина болит от работы и тянутся жилы.",
@@ -109,7 +39,7 @@
    ],
    "correct": "короткое лето",
    "case": "Именительный (Nominative)",
-   "explain": "«короткое лето» — the subject of the sentence stands in the nominative.",
+   "explain": "«короткое лето» is the subject of «придет» — who or what does it — so nominative.",
    "id": "c10"
   },
   {
@@ -123,22 +53,8 @@
    ],
    "correct": "круглый год",
    "case": "Винительный (Accusative)",
-   "explain": "«круглый год» — the accusative marks the direct object of the verb.",
+   "explain": "«круглый год» tells how long or how often, with no preposition — accusative.",
    "id": "c11"
-  },
-  {
-   "sentence": "Дверь отворена, и сквозь сени видна ___, светлая и с деревянными полами.",
-   "lemma": "комната",
-   "options": [
-    "другой комнате",
-    "другая комната",
-    "другой комнаты",
-    "другой комнатой"
-   ],
-   "correct": "другая комната",
-   "case": "Именительный (Nominative)",
-   "explain": "«другая комната» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
   },
   {
    "sentence": "Теперь только я замечаю, что между кроватью и печью висит ___.",
@@ -151,36 +67,8 @@
    ],
    "correct": "маленькая люлька",
    "case": "Именительный (Nominative)",
-   "explain": "«маленькая люлька» — the subject of the sentence stands in the nominative.",
+   "explain": "«маленькая люлька» is the subject of «висит» — who or what does it — so nominative.",
    "id": "c14"
-  },
-  {
-   "sentence": "Я глубоко убежден, что если бы я обронил в возке деньги, то нашедший их ___ возвратил бы мне их, не заглянув даже в бумажник.",
-   "lemma": "ямщик",
-   "options": [
-    "вольному ямщику",
-    "вольного ямщика",
-    "вольный ямщик",
-    "вольном ямщике"
-   ],
-   "correct": "вольный ямщик",
-   "case": "Именительный (Nominative)",
-   "explain": "«вольный ямщик» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
-  },
-  {
-   "sentence": "А ___, которыми меня так пугали, когда я ехал сюда, здесь так же страшны для проезжего, как зайцы и утки.",
-   "lemma": "бродяга",
-   "options": [
-    "встречные бродяги",
-    "встречных бродяг",
-    "встречных бродягах",
-    "встречными бродягами"
-   ],
-   "correct": "встречные бродяги",
-   "case": "Именительный (Nominative)",
-   "explain": "«встречные бродяги» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
   },
   {
    "sentence": "К чаю мне подают блинов из ___, пирогов с творогом и яйцами, оладий, сдобных калачей.",
@@ -193,22 +81,8 @@
    ],
    "correct": "пшеничной муки",
    "case": "Родительный (Genitive)",
-   "explain": "«пшеничной муки» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«пшеничной муки» — «из» always takes the genitive.",
    "id": "c18"
-  },
-  {
-   "sentence": "___ здесь дешевая: 30—40 коп. за пуд.",
-   "lemma": "мука",
-   "options": [
-    "пшеничной муки",
-    "пшеничная мука",
-    "пшеничной мукой",
-    "пшеничной муке"
-   ],
-   "correct": "пшеничная мука",
-   "case": "Именительный (Nominative)",
-   "explain": "«Пшеничная мука» — the subject of the sentence stands in the nominative.",
-   "id": "c21"
   },
   {
    "sentence": "А эту похлебку есть нельзя: мутная жидкость, в которой плавают кусочки ___ и потроха, не совсем очищенные от содержимого.",
@@ -221,7 +95,7 @@
    ],
    "correct": "дикой утки",
    "case": "Родительный (Genitive)",
-   "explain": "«дикой утки» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«дикой утки» depends on the noun «кусочки» (whose? of what?) — genitive.",
    "id": "c22"
   },
   {
@@ -235,7 +109,7 @@
    ],
    "correct": "охотничьих законов",
    "case": "Родительный (Genitive)",
-   "explain": "«охотничьих законов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«охотничьих законов» is the object of a negated verb («не знают») — genitive instead of the accusative.",
    "id": "c23"
   }
  ]

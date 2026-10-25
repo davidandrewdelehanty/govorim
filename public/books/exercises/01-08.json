@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Вода медленно уходила с земли, и к сто ___ она сильно убыла.",
-   "lemma": "день",
-   "options": [
-    "пятидесятому дню",
-    "пятидесятым днём",
-    "пятидесятом дне",
-    "пятидесятого дня"
-   ],
-   "correct": "пятидесятому дню",
-   "case": "Дательный (Dative)",
-   "explain": "«пятидесятому дню» — after the preposition «к», the dative marks the indirect object or recipient.",
-   "id": "c1"
-  },
-  {
    "sentence": "На семнадцатый день ___ ковчег остановился на Араратских горах.",
    "lemma": "месяц",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "седьмого месяца",
    "case": "Родительный (Genitive)",
-   "explain": "«седьмого месяца» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«седьмого месяца» depends on the noun «день» (whose? of what?) — genitive.",
    "id": "c3"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "араратских горах",
    "case": "Предложный (Prepositional)",
-   "explain": "«Араратских горах» — after the preposition «на», for location or topic.",
+   "explain": "«араратских горах» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c4"
   },
   {
@@ -53,22 +39,8 @@
    ],
    "correct": "десятого месяца",
    "case": "Родительный (Genitive)",
-   "explain": "«десятого месяца» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«десятого месяца» — «до» always takes the genitive.",
    "id": "c5"
-  },
-  {
-   "sentence": "Воды продолжали убывать до ___, и в первый день десятого месяца стали видны вершины гор.",
-   "lemma": "месяц",
-   "options": [
-    "десятым месяцем",
-    "десятому месяцу",
-    "десятый месяц",
-    "десятого месяца"
-   ],
-   "correct": "десятого месяца",
-   "case": "Родительный (Genitive)",
-   "explain": "«десятого месяца» — the genitive here marks possession, absence, or quantity.",
-   "id": "c7"
   },
   {
    "sentence": "Когда вечером голубь вернулся, в клюве у него был свежесорванный ___.",
@@ -81,7 +53,7 @@
    ],
    "correct": "масличный лист",
    "case": "Именительный (Nominative)",
-   "explain": "«масличный лист» — the subject of the sentence stands in the nominative.",
+   "explain": "«масличный лист» is the subject of «свежесорванный» — who or what does it — so nominative.",
    "id": "c9"
   },
   {
@@ -95,50 +67,8 @@
    ],
    "correct": "первому дню",
    "case": "Дательный (Dative)",
-   "explain": "«первому дню» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«первому дню» — «к» always takes the dative.",
    "id": "c10"
-  },
-  {
-   "sentence": "К первому дню первого месяца шестьсот ___ жизни Ноя земля высохла от воды.",
-   "lemma": "год",
-   "options": [
-    "первым годом",
-    "первого года",
-    "первому году",
-    "первом годе"
-   ],
-   "correct": "первого года",
-   "case": "Родительный (Genitive)",
-   "explain": "«первого года» — the genitive here marks possession, absence, or quantity.",
-   "id": "c11"
-  },
-  {
-   "sentence": "К первому дню первого месяца шестьсот ___ жизни Ноя земля высохла от воды.",
-   "lemma": "год",
-   "options": [
-    "первым годом",
-    "первого года",
-    "первому году",
-    "первом годе"
-   ],
-   "correct": "первого года",
-   "case": "Родительный (Genitive)",
-   "explain": "«первого года» — the genitive here marks possession, absence, or quantity.",
-   "id": "c12"
-  },
-  {
-   "sentence": "К двадцать ___ второго месяца земля стала совершенно сухой.",
-   "lemma": "день",
-   "options": [
-    "седьмом дне",
-    "седьмой день",
-    "седьмому дню",
-    "седьмым днём"
-   ],
-   "correct": "седьмому дню",
-   "case": "Дательный (Dative)",
-   "explain": "«седьмому дню» — after the preposition «к», the dative marks the indirect object or recipient.",
-   "id": "c13"
   },
   {
    "sentence": "К двадцать седьмому дню ___ земля стала совершенно сухой.",
@@ -151,22 +81,8 @@
    ],
    "correct": "второго месяца",
    "case": "Родительный (Genitive)",
-   "explain": "«второго месяца» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«второго месяца» depends on the noun «дню» (whose? of what?) — genitive.",
    "id": "c14"
-  },
-  {
-   "sentence": "Выведи наружу все ___, которые с тобой — птиц, зверей и всех пресмыкающихся, чтобы они могли расти числом, и плодиться, и размножаться на земле.",
-   "lemma": "существо",
-   "options": [
-    "живыми существами",
-    "живых существах",
-    "живые существа",
-    "живым существам"
-   ],
-   "correct": "живые существа",
-   "case": "Именительный (Nominative)",
-   "explain": "«живые существа» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
   },
   {
    "sentence": "Ной построил Господу жертвенник и принес на нем жертву всесожжения из всех видов ___ и птиц.",
@@ -179,7 +95,7 @@
    ],
    "correct": "чистых животных",
    "case": "Родительный (Genitive)",
-   "explain": "«чистых животных» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«чистых животных» depends on the noun «видов» (whose? of what?) — genitive.",
    "id": "c16"
   }
  ]

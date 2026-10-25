@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "«___» произвел огромные опустошения.",
-   "lemma": "взрыв",
-   "options": [
-    "показательным взрывом",
-    "показательному взрыву",
-    "показательный взрыв",
-    "показательном взрыве"
-   ],
-   "correct": "показательный взрыв",
-   "case": "Именительный (Nominative)",
-   "explain": "«Показательный взрыв» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "«Показательный взрыв» произвел ___.",
    "lemma": "опустошение",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "огромные опустошения",
    "case": "Винительный (Accusative)",
-   "explain": "«огромные опустошения» — the accusative marks the direct object of the verb.",
+   "explain": "«огромные опустошения» is the direct object of «произвел» (кого? что?) — accusative.",
    "id": "c2"
   },
   {
@@ -39,22 +25,8 @@
    ],
    "correct": "главная сила",
    "case": "Именительный (Nominative)",
-   "explain": "«главная сила» — the subject of the sentence stands in the nominative.",
+   "explain": "«главная сила» is the subject of «направлена» — who or what does it — so nominative.",
    "id": "c3"
-  },
-  {
-   "sentence": "Трупы людей и животных были раскиданы повсюду, ___ заносило на вершину гор или в озера, иногда за сотни километров.",
-   "lemma": "дом",
-   "options": [
-    "целыми домами",
-    "целых домах",
-    "целые дома",
-    "целых домов"
-   ],
-   "correct": "целые дома",
-   "case": "Именительный (Nominative)",
-   "explain": "«целые дома» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
   },
   {
    "sentence": "Полоса между шестидесятыми и семидесятыми градусами ___ особенно пострадала.",
@@ -67,7 +39,7 @@
    ],
    "correct": "северной широты",
    "case": "Родительный (Genitive)",
-   "explain": "«северной широты» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«северной широты» depends on the noun «градусами» (whose? of what?) — genitive.",
    "id": "c5"
   },
   {
@@ -81,35 +53,21 @@
    ],
    "correct": "воздушного взрыва",
    "case": "Родительный (Genitive)",
-   "explain": "«воздушного взрыва» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«воздушного взрыва» depends on the noun «очаг» (whose? of what?) — genitive.",
    "id": "c6"
-  },
-  {
-   "sentence": "Уральский ___ также несколько задержал ураган.",
-   "lemma": "хребет",
-   "options": [
-    "горном хребте",
-    "горным хребтом",
-    "горного хребта",
-    "горный хребет"
-   ],
-   "correct": "горный хребет",
-   "case": "Именительный (Nominative)",
-   "explain": "«горный хребет» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
   },
   {
    "sentence": "Пролетев пустынями Азии, ветер сделал ___.",
    "lemma": "круг",
    "options": [
-    "полном круге",
-    "полного круга",
+    "полным кругом",
     "полный круг",
-    "полному кругу"
+    "полному кругу",
+    "полном круге"
    ],
    "correct": "полный круг",
    "case": "Винительный (Accusative)",
-   "explain": "«полный круг» — the accusative marks the direct object of the verb.",
+   "explain": "«полный круг» is the direct object of «сделал» (кого? что?) — accusative.",
    "id": "c8"
   },
   {
@@ -123,7 +81,7 @@
    ],
    "correct": "восточного ветра",
    "case": "Родительный (Genitive)",
-   "explain": "«восточного ветра» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«восточного ветра» depends on the noun «напором» (whose? of what?) — genitive.",
    "id": "c9"
   },
   {
@@ -137,7 +95,7 @@
    ],
    "correct": "земного шара",
    "case": "Родительный (Genitive)",
-   "explain": "«земного шара» — after the preposition «вокруг», the genitive here marks possession, absence, or quantity.",
+   "explain": "«земного шара» — «вокруг» always takes the genitive.",
    "id": "c10"
   },
   {
@@ -151,7 +109,7 @@
    ],
    "correct": "периодические порывы",
    "case": "Именительный (Nominative)",
-   "explain": "«периодические порывы» — the subject of the sentence stands in the nominative.",
+   "explain": "«периодические порывы» is the subject of «продолжали» — who or what does it — so nominative.",
    "id": "c11"
   },
   {
@@ -165,7 +123,7 @@
    ],
    "correct": "европейские державы",
    "case": "Именительный (Nominative)",
-   "explain": "«европейские державы» — the subject of the sentence stands in the nominative.",
+   "explain": "«европейские державы» is the subject of «могут» — who or what does it — so nominative.",
    "id": "c12"
   },
   {
@@ -179,22 +137,8 @@
    ],
    "correct": "крупного капитала",
    "case": "Родительный (Genitive)",
-   "explain": "«крупного капитала» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«крупного капитала» depends on the noun «диктатуры» (whose? of what?) — genitive.",
    "id": "c13"
-  },
-  {
-   "sentence": "Монополия продажи воздуха остается за мистером Бэйли, как гарантия, обеспечивающая незыблемость устанавливаемой им ___.",
-   "lemma": "система",
-   "options": [
-    "политической системе",
-    "политической системы",
-    "политической системой",
-    "политическая система"
-   ],
-   "correct": "политической системы",
-   "case": "Родительный (Genitive)",
-   "explain": "«политической системы» — the genitive here marks possession, absence, or quantity.",
-   "id": "c14"
   },
   {
    "sentence": "Бэйли преследовал ___: он хотел на вечные времена закрепостить рабочий класс, предоставляя ему возможность работать за право дышать, дышать в буквальном смысле слова!",
@@ -207,22 +151,8 @@
    ],
    "correct": "социально-политические задачи",
    "case": "Винительный (Accusative)",
-   "explain": "«социально-политические задачи» — the accusative marks the direct object of the verb.",
+   "explain": "«социально-политические задачи» is the direct object of «преследовал» (кого? что?) — accusative.",
    "id": "c15"
-  },
-  {
-   "sentence": "Бэйли преследовал социально-политические задачи: он хотел на вечные времена закрепостить ___, предоставляя ему возможность работать за право дышать, дышать в буквальном смысле слова!",
-   "lemma": "класс",
-   "options": [
-    "рабочем классе",
-    "рабочий класс",
-    "рабочему классу",
-    "рабочего класса"
-   ],
-   "correct": "рабочий класс",
-   "case": "Винительный (Accusative)",
-   "explain": "«рабочий класс» — the accusative marks the direct object of the verb.",
-   "id": "c17"
   },
   {
    "sentence": "___ нашли условия мистера Бэйли более чем приемлемыми для себя.",
@@ -235,7 +165,7 @@
    ],
    "correct": "буржуазные правительства",
    "case": "Именительный (Nominative)",
-   "explain": "«Буржуазные правительства» — the subject of the sentence stands in the nominative.",
+   "explain": "«буржуазные правительства» is the subject of «нашли» — who or what does it — so nominative.",
    "id": "c19"
   },
   {
@@ -249,22 +179,8 @@
    ],
    "correct": "международного капитала",
    "case": "Родительный (Genitive)",
-   "explain": "«международного капитала» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«международного капитала» depends on the noun «силы» (whose? of what?) — genitive.",
    "id": "c22"
-  },
-  {
-   "sentence": "Недаром ___ так спешат заключить мир с мистером Бэйли.",
-   "lemma": "государство",
-   "options": [
-    "иностранных государств",
-    "иностранным государствам",
-    "иностранные государства",
-    "иностранных государствах"
-   ],
-   "correct": "иностранные государства",
-   "case": "Именительный (Nominative)",
-   "explain": "«иностранные государства» — the subject of the sentence stands in the nominative.",
-   "id": "c24"
   }
  ]
 }

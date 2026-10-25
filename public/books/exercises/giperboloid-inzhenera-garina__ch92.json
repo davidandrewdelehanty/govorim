@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Весь этот день дул ___, ползли тучи низко над лесом.",
-   "lemma": "ветер",
-   "options": [
-    "северным ветром",
-    "северному ветру",
-    "северный ветер",
-    "северного ветра"
-   ],
-   "correct": "северный ветер",
-   "case": "Именительный (Nominative)",
-   "explain": "«северный ветер» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Печально шумели ___, гнулись темные вершины кедров, облетали лиственницы.",
    "lemma": "сосна",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "высокие сосны",
    "case": "Именительный (Nominative)",
-   "explain": "«высокие сосны» — the subject of the sentence stands in the nominative.",
+   "explain": "«высокие сосны» is the subject of «шумели» — who or what does it — so nominative.",
    "id": "c2"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "важного шума",
    "case": "Родительный (Genitive)",
-   "explain": "«важного шума» — after the preposition «кроме», the genitive here marks possession, absence, or quantity.",
+   "explain": "«важного шума» — «кроме» always takes the genitive.",
    "id": "c3"
   },
   {
@@ -53,22 +39,8 @@
    ],
    "correct": "рваной дохе",
    "case": "Предложный (Prepositional)",
-   "explain": "«рваной дохе» — after the preposition «в», for location or topic.",
+   "explain": "«рваной дохе» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c4"
-  },
-  {
-   "sentence": "Лицо заросло космами не чесанной уже несколько лет бороды, ___ падали на плечи.",
-   "lemma": "волос",
-   "options": [
-    "седые волосы",
-    "седых волос",
-    "седых волосах",
-    "седым волосам"
-   ],
-   "correct": "седые волосы",
-   "case": "Именительный (Nominative)",
-   "explain": "«седые волосы» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
   },
   {
    "sentence": "Из бурьяна поднялась голова ___ с обрывком веревки на вытертой шее.",
@@ -81,7 +53,7 @@
    ],
    "correct": "лесного козла",
    "case": "Родительный (Genitive)",
-   "explain": "«лесного козла» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«лесного козла» depends on the noun «голова» (whose? of what?) — genitive.",
    "id": "c6"
   },
   {
@@ -95,50 +67,8 @@
    ],
    "correct": "вытертой шее",
    "case": "Предложный (Prepositional)",
-   "explain": "«вытертой шее» — after the preposition «на», for location or topic.",
+   "explain": "«вытертой шее» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c7"
-  },
-  {
-   "sentence": "Мутные глаза его искали среди бурьяна эту единственную надежду — ___: убить его последним оставшимся зарядом, высушить мясо и протянуть еще несколько месяцев, быть может, даже до весны.",
-   "lemma": "козёл",
-   "options": [
-    "ручного козла",
-    "ручной козёл",
-    "ручном козле",
-    "ручным козлом"
-   ],
-   "correct": "ручного козла",
-   "case": "Винительный (Accusative)",
-   "explain": "«ручного козла» — the accusative marks the direct object of the verb.",
-   "id": "c8"
-  },
-  {
-   "sentence": "Семь лет тому назад он искал применения своим ___.",
-   "lemma": "замысел",
-   "options": [
-    "гениальными замыслами",
-    "гениальных замыслов",
-    "гениальных замыслах",
-    "гениальным замыслам"
-   ],
-   "correct": "гениальным замыслам",
-   "case": "Дательный (Dative)",
-   "explain": "«гениальным замыслам» — the dative marks the indirect object or recipient.",
-   "id": "c9"
-  },
-  {
-   "sentence": "В роковой день он встретил Гарина, развернувшего перед ним такие ___, что он, бросив все, очутился здесь, у подножия вулкана.",
-   "lemma": "план",
-   "options": [
-    "грандиозные планы",
-    "грандиозным планам",
-    "грандиозных планах",
-    "грандиозных планов"
-   ],
-   "correct": "грандиозные планы",
-   "case": "Именительный (Nominative)",
-   "explain": "«грандиозные планы» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
   },
   {
    "sentence": "___ поселка, просевшие и провалившиеся, виднелись среди огромных камней, некогда выброшенных вулканом, у стены шумящего вершинами мачтового леса.",
@@ -151,7 +81,7 @@
    ],
    "correct": "земляные крыши",
    "case": "Именительный (Nominative)",
-   "explain": "«Земляные крыши» — the subject of the sentence stands in the nominative.",
+   "explain": "«земляные крыши» is the subject of «виднелись» — who or what does it — so nominative.",
    "id": "c12"
   },
   {
@@ -165,7 +95,7 @@
    ],
    "correct": "огромных камней",
    "case": "Родительный (Genitive)",
-   "explain": "«огромных камней» — after the preposition «среди», the genitive here marks possession, absence, or quantity.",
+   "explain": "«огромных камней» — «среди» always takes the genitive.",
    "id": "c13"
   },
   {
@@ -179,22 +109,8 @@
    ],
    "correct": "мачтового леса",
    "case": "Родительный (Genitive)",
-   "explain": "«мачтового леса» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«мачтового леса» depends on the noun «вершинами» (whose? of what?) — genitive.",
    "id": "c14"
-  },
-  {
-   "sentence": "Постройки пришли в негодность, плотину маленькой гидростанции снесло ___.",
-   "lemma": "вода",
-   "options": [
-    "весенней воде",
-    "весенняя вода",
-    "весенней водой",
-    "весенней воды"
-   ],
-   "correct": "весенней водой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«весенней водой» — the instrumental marks the means, company, or complement.",
-   "id": "c15"
   },
   {
    "sentence": "Прежде шуткой бы показалось — пройти в тайге километров триста до ___.",
@@ -207,22 +123,8 @@
    ],
    "correct": "человеческого поселения",
    "case": "Родительный (Genitive)",
-   "explain": "«человеческого поселения» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«человеческого поселения» — «до» always takes the genitive.",
    "id": "c16"
-  },
-  {
-   "sentence": "___ был ручной козел, — старик готовил его на зиму.",
-   "lemma": "надежда",
-   "options": [
-    "последней надежде",
-    "последней надеждой",
-    "последней надежды",
-    "последняя надежда"
-   ],
-   "correct": "последней надеждой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«Последней надеждой» — the instrumental marks the means, company, or complement.",
-   "id": "c17"
   },
   {
    "sentence": "___ перетерло веревку и удрало из клетки.",
@@ -235,36 +137,8 @@
    ],
    "correct": "проклятое животное",
    "case": "Именительный (Nominative)",
-   "explain": "«Проклятое животное» — the subject of the sentence stands in the nominative.",
+   "explain": "«проклятое животное» is the subject of «перетерло» — who or what does it — so nominative.",
    "id": "c18"
-  },
-  {
-   "sentence": "Близился вечер, темнели гряды туч, злее шумел ветер, раскачивая ___.",
-   "lemma": "сосна",
-   "options": [
-    "огромные сосны",
-    "огромных сосен",
-    "огромным соснам",
-    "огромных соснах"
-   ],
-   "correct": "огромные сосны",
-   "case": "Винительный (Accusative)",
-   "explain": "«огромные сосны» — the accusative marks the direct object of the verb.",
-   "id": "c20"
-  },
-  {
-   "sentence": "— Э-э-э-эй, — слабо долетел ___ со стороны Шайтан-камня.",
-   "lemma": "голос",
-   "options": [
-    "человеческому голосу",
-    "человеческий голос",
-    "человеческим голосом",
-    "человеческом голосе"
-   ],
-   "correct": "человеческий голос",
-   "case": "Именительный (Nominative)",
-   "explain": "«человеческий голос» — the subject of the sentence stands in the nominative.",
-   "id": "c21"
   },
   {
    "sentence": "В очаге, сложенном из ___, пылал огонь, в котелках кипела вода.",
@@ -277,7 +151,7 @@
    ],
    "correct": "вулканических камней",
    "case": "Родительный (Genitive)",
-   "explain": "«вулканических камней» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«вулканических камней» — «из» always takes the genitive.",
    "id": "c22"
   },
   {
@@ -291,7 +165,7 @@
    ],
    "correct": "громкогласные люди",
    "case": "Именительный (Nominative)",
-   "explain": "«громкогласные люди» — the subject of the sentence stands in the nominative.",
+   "explain": "«громкогласные люди» is the subject of «выходили» — who or what does it — so nominative.",
    "id": "c23"
   },
   {
@@ -305,22 +179,8 @@
    ],
    "correct": "косматой бороде",
    "case": "Дательный (Dative)",
-   "explain": "«косматой бороде» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«косматой бороде» — «к» always takes the dative.",
    "id": "c24"
-  },
-  {
-   "sentence": "Манцев ничего не помнил, только таращился на озаренные пламенем ___.",
-   "lemma": "лицо",
-   "options": [
-    "незнакомых лиц",
-    "незнакомым лицам",
-    "незнакомые лица",
-    "незнакомых лицах"
-   ],
-   "correct": "незнакомые лица",
-   "case": "Именительный (Nominative)",
-   "explain": "«незнакомые лица» — the subject of the sentence stands in the nominative.",
-   "id": "c25"
   },
   {
    "sentence": "___ подхватил его седые космы.",
@@ -333,7 +193,7 @@
    ],
    "correct": "ночной ветер",
    "case": "Именительный (Nominative)",
-   "explain": "«Ночной ветер» — the subject of the sentence stands in the nominative.",
+   "explain": "«ночной ветер» is the subject of «подхватил» — who or what does it — so nominative.",
    "id": "c27"
   },
   {
@@ -347,7 +207,7 @@
    ],
    "correct": "мокрый снег",
    "case": "Именительный (Nominative)",
-   "explain": "«мокрый снег» — the subject of the sentence stands in the nominative.",
+   "explain": "«мокрый снег» is the subject of «крутился» — who or what does it — so nominative.",
    "id": "c28"
   },
   {
@@ -361,7 +221,7 @@
    ],
    "correct": "бревенчатой стене",
    "case": "Дательный (Dative)",
-   "explain": "«бревенчатой стене» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«бревенчатой стене» — «к» always takes the dative.",
    "id": "c29"
   },
   {
@@ -375,22 +235,8 @@
    ],
    "correct": "большим делам",
    "case": "Дательный (Dative)",
-   "explain": "«большим делам» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«большим делам» — «к» always takes the dative.",
    "id": "c31"
-  },
-  {
-   "sentence": "Он ждет только ваших исследований ___.",
-   "lemma": "кора",
-   "options": [
-    "земной коре",
-    "земной коры",
-    "земной корой",
-    "земная кора"
-   ],
-   "correct": "земной коры",
-   "case": "Родительный (Genitive)",
-   "explain": "«земной коры» — the genitive here marks possession, absence, or quantity.",
-   "id": "c32"
   }
  ]
 }

@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Уехала девушка, которую я любил, которой я ничего не сказал о своей любви, и так как мне шел тогда двадцать ___, то казалось, что я остался один во всем свете.",
-   "lemma": "год",
-   "options": [
-    "второй год",
-    "втором годе",
-    "вторым годом",
-    "второму году"
-   ],
-   "correct": "второй год",
-   "case": "Винительный (Accusative)",
-   "explain": "«второй год» — the accusative marks the direct object of the verb.",
-   "id": "c1"
-  },
-  {
    "sentence": "Был конец августа; в ___, где я жил, стояло знойное затишье.",
    "lemma": "город",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "малорусском городе",
    "case": "Предложный (Prepositional)",
-   "explain": "«малорусском городе» — after the preposition «в», for location or topic.",
+   "explain": "«малорусском городе» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c2"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "знойное затишье",
    "case": "Именительный (Nominative)",
-   "explain": "«знойное затишье» — the subject of the sentence stands in the nominative.",
+   "explain": "«знойное затишье» is the subject of «стояло» — who or what does it — so nominative.",
    "id": "c3"
   },
   {
@@ -53,7 +39,7 @@
    ],
    "correct": "большая хохлушка",
    "case": "Именительный (Nominative)",
-   "explain": "«большая хохлушка» — the subject of the sentence stands in the nominative.",
+   "explain": "«большая хохлушка» is the subject of «стояла» — who or what does it — so nominative.",
    "id": "c6"
   },
   {
@@ -67,22 +53,8 @@
    ],
    "correct": "вечернего солнца",
    "case": "Родительный (Genitive)",
-   "explain": "«вечернего солнца» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«вечернего солнца» — «от» always takes the genitive.",
    "id": "c15"
-  },
-  {
-   "sentence": "Прошел черный от загара, ___ в тяжелых сапогах, в бараньей шапке и толстой свитке цвета ржаного хлеба, и палка, которой он попирался, блестела на солнце, как стеклян­ная.",
-   "lemma": "хохол",
-   "options": [
-    "пожилого хохла",
-    "пожилому хохлу",
-    "пожилой хохол",
-    "пожилым хохлом"
-   ],
-   "correct": "пожилой хохол",
-   "case": "Именительный (Nominative)",
-   "explain": "«пожилой хохол» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
   },
   {
    "sentence": "Прошел черный от загара, пожилой хохол в тяжелых сапогах, в ___ и толстой свитке цвета ржаного хлеба, и палка, которой он попирался, блестела на солнце, как стеклян­ная.",
@@ -95,7 +67,7 @@
    ],
    "correct": "бараньей шапке",
    "case": "Предложный (Prepositional)",
-   "explain": "«бараньей шапке» — after the preposition «в», for location or topic.",
+   "explain": "«бараньей шапке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c17"
   },
   {
@@ -109,7 +81,7 @@
    ],
    "correct": "ржаного хлеба",
    "case": "Родительный (Genitive)",
-   "explain": "«ржаного хлеба» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«ржаного хлеба» depends on the noun «цвета» (whose? of what?) — genitive.",
    "id": "c18"
   },
   {
@@ -123,22 +95,8 @@
    ],
    "correct": "жаркой шляпы",
    "case": "Родительный (Genitive)",
-   "explain": "«жаркой шляпы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«жаркой шляпы» depends on the noun «полями» (whose? of what?) — genitive.",
    "id": "c19"
-  },
-  {
-   "sentence": "В полуверсте от дороги, над долиной, краснела ___ маленького хутора, — поместье толстовцев, братьев Павла и Виктора Тимченков.",
-   "lemma": "кровля",
-   "options": [
-    "черепичная кровля",
-    "черепичной кровлей",
-    "черепичной кровли",
-    "черепичной кровле"
-   ],
-   "correct": "черепичная кровля",
-   "case": "Именительный (Nominative)",
-   "explain": "«черепичная кровля» — the subject of the sentence stands in the nominative.",
-   "id": "c20"
   },
   {
    "sentence": "В полуверсте от дороги, над долиной, краснела черепичная кровля ___, — поместье толстовцев, братьев Павла и Виктора Тимченков.",
@@ -151,7 +109,7 @@
    ],
    "correct": "маленького хутора",
    "case": "Родительный (Genitive)",
-   "explain": "«маленького хутора» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«маленького хутора» depends on the noun «кровля» (whose? of what?) — genitive.",
    "id": "c21"
   },
   {
@@ -165,7 +123,7 @@
    ],
    "correct": "босые ноги",
    "case": "Винительный (Accusative)",
-   "explain": "«босые ноги» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«босые ноги» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c23"
   },
   {
@@ -179,22 +137,8 @@
    ],
    "correct": "грязной рубахе",
    "case": "Предложный (Prepositional)",
-   "explain": "«грязной рубахе» — after the preposition «в», for location or topic.",
+   "explain": "«грязной рубахе» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c24"
-  },
-  {
-   "sentence": "Маленькая, загорелая, в грязной рубахе и старенькой плахте, она была похожа на девоч­ку, которую послали стеречь баштаны и которая грустно проводи­ ла долгий ___.",
-   "lemma": "день",
-   "options": [
-    "солнечного дня",
-    "солнечный день",
-    "солнечному дню",
-    "солнечным днём"
-   ],
-   "correct": "солнечный день",
-   "case": "Именительный (Nominative)",
-   "explain": "«солнечный день» — the subject of the sentence stands in the nominative.",
-   "id": "c25"
   },
   {
    "sentence": "И лицом она была похожа на девочку-подростка из ___.",
@@ -207,7 +151,7 @@
    ],
    "correct": "русского села",
    "case": "Родительный (Genitive)",
-   "explain": "«русского села» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«русского села» — «из» always takes the genitive.",
    "id": "c26"
   }
  ]

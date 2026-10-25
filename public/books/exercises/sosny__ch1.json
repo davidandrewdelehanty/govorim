@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Над глубокими, свежими снегами, завалившими чащи елей, синее, огромное и удивительно ___.",
-   "lemma": "небо",
-   "options": [
-    "нежное небо",
-    "нежном небе",
-    "нежным небом",
-    "нежного неба"
-   ],
-   "correct": "нежное небо",
-   "case": "Именительный (Nominative)",
-   "explain": "«нежное небо» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "И особенно хороши они сегодня, над ___ и зеленым бором.",
    "lemma": "снег",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "свежим снегом",
    "case": "Творительный (Instrumental)",
-   "explain": "«свежим снегом» — after the preposition «над», the instrumental marks the means, company, or complement.",
+   "explain": "«свежим снегом» — «над» always takes the instrumental.",
    "id": "c2"
   },
   {
@@ -39,22 +25,8 @@
    ],
    "correct": "утренним морозом",
    "case": "Творительный (Instrumental)",
-   "explain": "«утренним морозом» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «сжат», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c6"
-  },
-  {
-   "sentence": "___ подкинув и поправив ее на плече, он говорит: «Ну, покорнейше благодарим вас!» — и осторожно выходит из сарая.",
-   "lemma": "движение",
-   "options": [
-    "сильным движением",
-    "сильном движении",
-    "сильному движению",
-    "сильного движения"
-   ],
-   "correct": "сильным движением",
-   "case": "Творительный (Instrumental)",
-   "explain": "«Сильным движением» — the instrumental marks the means, company, or complement.",
-   "id": "c8"
   },
   {
    "sentence": "Снежные, белые избушки расположились вокруг ровной ___, и на этой ярко сверкающей под солнцем поляне очень уютно и пригревает.",
@@ -67,7 +39,7 @@
    ],
    "correct": "белой поляны",
    "case": "Родительный (Genitive)",
-   "explain": "«белой поляны» — after the preposition «вокруг», the genitive here marks possession, absence, or quantity.",
+   "explain": "«белой поляны» — «вокруг» always takes the genitive.",
    "id": "c9"
   },
   {
@@ -81,92 +53,22 @@
    ],
    "correct": "дедовской шапке",
    "case": "Предложный (Prepositional)",
-   "explain": "«дедовской шапке» — after the preposition «в», for location or topic.",
+   "explain": "«дедовской шапке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c13"
-  },
-  {
-   "sentence": "В сенцах дремлет и жует жвачку корова, Стена избы, выходящая в сенцы, сильно подалась от них, и поэтому дверь надо отворять с ___.",
-   "lemma": "усилие",
-   "options": [
-    "больших усилиях",
-    "большими усилиями",
-    "большим усилиям",
-    "большие усилия"
-   ],
-   "correct": "большими усилиями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«большими усилиями» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c14"
   },
   {
    "sentence": "Она отлипает наконец, и в лицо пахнуло теплым ___.",
    "lemma": "запах",
    "options": [
-    "избяной запах",
-    "избяному запаху",
+    "избяного запаха",
+    "избяном запахе",
     "избяным запахом",
-    "избяного запаха"
+    "избяному запаху"
    ],
    "correct": "избяным запахом",
    "case": "Творительный (Instrumental)",
-   "explain": "«избяным запахом» — the instrumental marks the means, company, or complement.",
+   "explain": "«пахнуло» takes the instrumental.",
    "id": "c15"
-  },
-  {
-   "sentence": "___ красиво оттеняет худобу и желтизну.",
-   "lemma": "рубаха",
-   "options": [
-    "чистой рубахой",
-    "чистая рубаха",
-    "чистой рубахе",
-    "чистой рубахи"
-   ],
-   "correct": "чистая рубаха",
-   "case": "Именительный (Nominative)",
-   "explain": "«Чистая рубаха» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
-  },
-  {
-   "sentence": "Баба тихо взяла одну руку, — видно, как тяжела эта ___, — подняла и опять положила.",
-   "lemma": "рука",
-   "options": [
-    "ледяной рукой",
-    "ледяной руки",
-    "ледяной руке",
-    "ледяная рука"
-   ],
-   "correct": "ледяная рука",
-   "case": "Именительный (Nominative)",
-   "explain": "«ледяная рука» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
-  },
-  {
-   "sentence": "Может, он знает даже и то, как ясен и торжественен ___, — его последний день в родной деревне?",
-   "lemma": "день",
-   "options": [
-    "сегодняшнему дню",
-    "сегодняшним днём",
-    "сегодняшний день",
-    "сегодняшнем дне"
-   ],
-   "correct": "сегодняшний день",
-   "case": "Винительный (Accusative)",
-   "explain": "«сегодняшний день» — the accusative marks the direct object of the verb.",
-   "id": "c18"
-  },
-  {
-   "sentence": "Может, он знает даже и то, как ясен и торжественен сегодняшний день, — его ___ в родной деревне?",
-   "lemma": "день",
-   "options": [
-    "последним днём",
-    "последнем дне",
-    "последний день",
-    "последнему дню"
-   ],
-   "correct": "последний день",
-   "case": "Именительный (Nominative)",
-   "explain": "«последний день» — the subject of the sentence stands in the nominative.",
-   "id": "c19"
   },
   {
    "sentence": "Может, он знает даже и то, как ясен и торжественен сегодняшний день, — его последний день в ___?",
@@ -179,7 +81,7 @@
    ],
    "correct": "родной деревне",
    "case": "Предложный (Prepositional)",
-   "explain": "«родной деревне» — after the preposition «в», for location or topic.",
+   "explain": "«родной деревне» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c20"
   },
   {
@@ -193,22 +95,8 @@
    ],
    "correct": "зеленоватого неба",
    "case": "Родительный (Genitive)",
-   "explain": "«зеленоватого неба» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«зеленоватого неба» depends on the noun «краски» (whose? of what?) — genitive.",
    "id": "c21"
-  },
-  {
-   "sentence": "Еще чище и нежней стали краски зеленоватого неба к северу, еще тоньше рисуется мачтовый ___ на его фоне.",
-   "lemma": "лес",
-   "options": [
-    "сосновом лесе",
-    "сосновому лесу",
-    "сосновый лес",
-    "соснового леса"
-   ],
-   "correct": "сосновый лес",
-   "case": "Именительный (Nominative)",
-   "explain": "«сосновый лес» — the subject of the sentence stands in the nominative.",
-   "id": "c22"
   }
  ]
 }

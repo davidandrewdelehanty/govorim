@@ -1,62 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Нужно было сломать ___, чтобы на месте его построить новый.",
-   "lemma": "дом",
-   "options": [
-    "старому дому",
-    "старый дом",
-    "старым домом",
-    "старом доме"
-   ],
-   "correct": "старый дом",
-   "case": "Винительный (Accusative)",
-   "explain": "«старый дом» — the accusative marks the direct object of the verb.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Я водил архитектора по пустым комнатам и между делом рассказывал ему ___.",
-   "lemma": "история",
-   "options": [
-    "разных историй",
-    "разные истории",
-    "разными историями",
-    "разных историях"
-   ],
-   "correct": "разные истории",
-   "case": "Винительный (Accusative)",
-   "explain": "«разные истории» — the accusative marks the direct object of the verb.",
-   "id": "c3"
-  },
-  {
-   "sentence": "___, тусклые окна, темные печи — всё это носило следы недавней жизни и вызывало воспоминания.",
-   "lemma": "обои",
-   "options": [
-    "рваными обоями",
-    "рваным обоям",
-    "рваные обои",
-    "рваных обоях"
-   ],
-   "correct": "рваные обои",
-   "case": "Именительный (Nominative)",
-   "explain": "«Рваные обои» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
-  },
-  {
-   "sentence": "Рваные обои, ___, темные печи — всё это носило следы недавней жизни и вызывало воспоминания.",
-   "lemma": "окно",
-   "options": [
-    "тусклых окон",
-    "тусклых окнах",
-    "тусклые окна",
-    "тусклым окнам"
-   ],
-   "correct": "тусклые окна",
-   "case": "Именительный (Nominative)",
-   "explain": "«тусклые окна» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
-  },
-  {
    "sentence": "В этой ___ помещались четверо ребят и их бабушка; тут варили, спали, принимали гостей и даже танцевали.",
    "lemma": "комната",
    "options": [
@@ -67,50 +11,22 @@
    ],
    "correct": "средней комнате",
    "case": "Предложный (Prepositional)",
-   "explain": "«средней комнате» — after the preposition «в», for location or topic.",
+   "explain": "«средней комнате» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c6"
   },
   {
    "sentence": "В этой комнатке жил сам Путохин; у него был стол, за которым он исполнял ___: переписывал роли, доклады и т. п.",
    "lemma": "заказ",
    "options": [
-    "частными заказами",
-    "частных заказах",
     "частные заказы",
-    "частных заказов"
+    "частных заказах",
+    "частными заказами",
+    "частным заказам"
    ],
    "correct": "частные заказы",
    "case": "Винительный (Accusative)",
-   "explain": "«частные заказы» — the accusative marks the direct object of the verb.",
+   "explain": "«частные заказы» is the direct object of «исполнял» (кого? что?) — accusative.",
    "id": "c7"
-  },
-  {
-   "sentence": "Егорыч починял замки, пистолеты, ___, не отказывался чинить дешевые стенные часы, делал за четвертак коньки, но эту работу он презирал и считал себя специалистом по части музыкальных инструментов.",
-   "lemma": "велосипед",
-   "options": [
-    "детским велосипедам",
-    "детские велосипеды",
-    "детских велосипедов",
-    "детскими велосипедами"
-   ],
-   "correct": "детские велосипеды",
-   "case": "Именительный (Nominative)",
-   "explain": "«детские велосипеды» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
-  },
-  {
-   "sentence": "Егорыч починял замки, пистолеты, детские велосипеды, не отказывался чинить дешевые ___, делал за четвертак коньки, но эту работу он презирал и считал себя специалистом по части музыкальных инструментов.",
-   "lemma": "часы",
-   "options": [
-    "стенных часов",
-    "стенными часами",
-    "стенным часам",
-    "стенные часы"
-   ],
-   "correct": "стенные часы",
-   "case": "Винительный (Accusative)",
-   "explain": "«стенные часы» — the accusative marks the direct object of the verb.",
-   "id": "c9"
   },
   {
    "sentence": "Егорыч починял замки, пистолеты, детские велосипеды, не отказывался чинить дешевые стенные часы, делал за четвертак коньки, но эту работу он презирал и считал себя специалистом по части ___.",
@@ -123,22 +39,8 @@
    ],
    "correct": "музыкальных инструментов",
    "case": "Родительный (Genitive)",
-   "explain": "«музыкальных инструментов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«музыкальных инструментов» depends on the noun «части» (whose? of what?) — genitive.",
    "id": "c10"
-  },
-  {
-   "sentence": "Теперь представьте себе, что посреди этой ___, в двух шагах от печки, стоит гроб, в котором лежит жена Путохина.",
-   "lemma": "комната",
-   "options": [
-    "самой комнатой",
-    "самой комнаты",
-    "сама комната",
-    "самой комнате"
-   ],
-   "correct": "самой комнаты",
-   "case": "Родительный (Genitive)",
-   "explain": "«самой комнаты» — the genitive here marks possession, absence, or quantity.",
-   "id": "c13"
   },
   {
    "sentence": "Мне казалось, что он сам, его дети, бабушка, Егорыч уже намечены тем ___, которое жило с ними в этой квартире.",
@@ -151,35 +53,21 @@
    ],
    "correct": "невидимым существом",
    "case": "Творительный (Instrumental)",
-   "explain": "«невидимым существом» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «намечены», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c15"
-  },
-  {
-   "sentence": "Я глубоко ___, быть может, оттого, что я домовладелец, и сорок лет имел дело с жильцами.",
-   "lemma": "человек",
-   "options": [
-    "суеверного человека",
-    "суеверном человеке",
-    "суеверный человек",
-    "суеверным человеком"
-   ],
-   "correct": "суеверный человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«суеверный человек» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
   },
   {
    "sentence": "Хмурое петербургское утро глядит в эти ___.",
    "lemma": "окно",
    "options": [
+    "тусклым окнам",
     "тусклых окон",
-    "тусклых окнах",
-    "тусклые окна",
-    "тусклым окнам"
+    "тусклыми окнами",
+    "тусклые окна"
    ],
    "correct": "тусклые окна",
    "case": "Винительный (Accusative)",
-   "explain": "«тусклые окна» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«тусклые окна» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c21"
   },
   {
@@ -193,7 +81,7 @@
    ],
    "correct": "старший внук",
    "case": "Именительный (Nominative)",
-   "explain": "«старший внук» — the subject of the sentence stands in the nominative.",
+   "explain": "«старший внук» is the subject of «пьет» — who or what does it — so nominative.",
    "id": "c22"
   },
   {
@@ -207,7 +95,7 @@
    ],
    "correct": "вчерашнего пьянства",
    "case": "Родительный (Genitive)",
-   "explain": "«вчерашнего пьянства» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«вчерашнего пьянства» — «от» always takes the genitive.",
    "id": "c23"
   },
   {
@@ -221,7 +109,7 @@
    ],
    "correct": "ссудной кассе",
    "case": "Предложный (Prepositional)",
-   "explain": "«ссудной кассе» — after the preposition «в», for location or topic.",
+   "explain": "«ссудной кассе» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c24"
   },
   {
@@ -235,78 +123,8 @@
    ],
    "correct": "крепких старух",
    "case": "Родительный (Genitive)",
-   "explain": "«крепких старух» — the genitive here marks possession, absence, or quantity.",
+   "explain": "After «много», a word of quantity — genitive.",
    "id": "c26"
-  },
-  {
-   "sentence": "Бабушка и ___ начинают вместе искать пальто, ищут долго, но пальто как в воду кануло.",
-   "lemma": "ребятишки",
-   "options": [
-    "остальным ребятишкам",
-    "остальных ребятишках",
-    "остальные ребятишки",
-    "остальными ребятишками"
-   ],
-   "correct": "остальные ребятишки",
-   "case": "Именительный (Nominative)",
-   "explain": "«остальные ребятишки» — the subject of the sentence stands in the nominative.",
-   "id": "c27"
-  },
-  {
-   "sentence": "Его пальто, ___, сшитое из суконного платья покойной матери, пальто на прекрасной коленкоровой подкладке, пропито в кабаке!",
-   "lemma": "пальто",
-   "options": [
-    "прекрасном пальто",
-    "прекрасного пальто",
-    "прекрасным пальто",
-    "прекрасное пальто"
-   ],
-   "correct": "прекрасное пальто",
-   "case": "Именительный (Nominative)",
-   "explain": "«прекрасное пальто» — the subject of the sentence stands in the nominative.",
-   "id": "c28"
-  },
-  {
-   "sentence": "Его пальто, прекрасное пальто, сшитое из суконного платья покойной матери, пальто на прекрасной ___, пропито в кабаке!",
-   "lemma": "подкладка",
-   "options": [
-    "коленкоровой подкладкой",
-    "коленкоровая подкладка",
-    "коленкоровой подкладке",
-    "коленкоровой подкладки"
-   ],
-   "correct": "коленкоровой подкладке",
-   "case": "Предложный (Prepositional)",
-   "explain": "«коленкоровой подкладке» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c29"
-  },
-  {
-   "sentence": "А вместе с пальто, значит, пропит и синий карандаш, лежавший в боковом кармане, и ___ с золотыми буквами «Nota bene»!",
-   "lemma": "книжка",
-   "options": [
-    "записной книжкой",
-    "записной книжки",
-    "записной книжке",
-    "записная книжка"
-   ],
-   "correct": "записная книжка",
-   "case": "Именительный (Nominative)",
-   "explain": "«записная книжка» — the subject of the sentence stands in the nominative.",
-   "id": "c31"
-  },
-  {
-   "sentence": "А вместе с пальто, значит, пропит и синий карандаш, лежавший в боковом кармане, и записная книжка с ___ «Nota bene»!",
-   "lemma": "буква",
-   "options": [
-    "золотые буквы",
-    "золотых буквах",
-    "золотым буквам",
-    "золотыми буквами"
-   ],
-   "correct": "золотыми буквами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«золотыми буквами» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c32"
   },
   {
    "sentence": "В книжке засунут другой карандаш с резинкой, и, кроме того, в ней лежат ___.",
@@ -319,7 +137,7 @@
    ],
    "correct": "переводные картинки",
    "case": "Именительный (Nominative)",
-   "explain": "«переводные картинки» — the subject of the sentence stands in the nominative.",
+   "explain": "«переводные картинки» is the subject of «лежат» — who or what does it — so nominative.",
    "id": "c33"
   },
   {
@@ -333,22 +151,8 @@
    ],
    "correct": "городского училища",
    "case": "Родительный (Genitive)",
-   "explain": "«городского училища» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«городского училища» — «до» always takes the genitive.",
    "id": "c35"
-  },
-  {
-   "sentence": "А вернувшись домой, Путохин рыдает, бормочет какие-то ___, кланяется в ноги и матери, и Егорычу, и его верстаку.",
-   "lemma": "слово",
-   "options": [
-    "несвязными словами",
-    "несвязным словам",
-    "несвязных слов",
-    "несвязные слова"
-   ],
-   "correct": "несвязные слова",
-   "case": "Винительный (Accusative)",
-   "explain": "«несвязные слова» — the accusative marks the direct object of the verb.",
-   "id": "c36"
   },
   {
    "sentence": "От меня Путохин бежит к ___.",
@@ -361,7 +165,7 @@
    ],
    "correct": "городскому училищу",
    "case": "Дательный (Dative)",
-   "explain": "«городскому училищу» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«городскому училищу» — «к» always takes the dative.",
    "id": "c37"
   },
   {
@@ -375,7 +179,7 @@
    ],
    "correct": "детского белья",
    "case": "Родительный (Genitive)",
-   "explain": "«детского белья» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«детского белья» depends on the noun «стирку» (whose? of what?) — genitive.",
    "id": "c38"
   },
   {
@@ -389,7 +193,7 @@
    ],
    "correct": "младших ребят",
    "case": "Винительный (Accusative)",
-   "explain": "«младших ребят» — the accusative marks the direct object of the verb.",
+   "explain": "«младших ребят» is the direct object of «взяла» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c39"
   }
  ]

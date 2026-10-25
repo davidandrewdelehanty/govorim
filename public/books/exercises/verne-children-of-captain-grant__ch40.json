@@ -1,102 +1,32 @@
 {
  "cases": [
   {
-   "sentence": "А так как ___ золотоносен, то геолог, естественно, предположил, что этот драгоценный металл должен встречаться и в австралийских горах.",
-   "lemma": "хребет",
-   "options": [
-    "уральским хребтом",
-    "уральскому хребту",
-    "уральском хребте",
-    "уральский хребет"
-   ],
-   "correct": "уральский хребет",
-   "case": "Именительный (Nominative)",
-   "explain": "«Уральский хребет» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "А так как Уральский хребет золотоносен, то геолог, естественно, предположил, что этот ___ должен встречаться и в австралийских горах.",
-   "lemma": "металл",
-   "options": [
-    "драгоценным металлом",
-    "драгоценному металлу",
-    "драгоценного металла",
-    "драгоценный металл"
-   ],
-   "correct": "драгоценный металл",
-   "case": "Именительный (Nominative)",
-   "explain": "«драгоценный металл» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
    "sentence": "А так как Уральский хребет золотоносен, то геолог, естественно, предположил, что этот драгоценный металл должен встречаться и в ___.",
    "lemma": "гора",
    "options": [
-    "австралийскими горами",
     "австралийских горах",
-    "австралийские горы",
+    "австралийских гор",
+    "австралийскими горами",
     "австралийским горам"
    ],
    "correct": "австралийских горах",
    "case": "Предложный (Prepositional)",
-   "explain": "«австралийских горах» — after the preposition «в», for location or topic.",
+   "explain": "«австралийских горах» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c3"
-  },
-  {
-   "sentence": "Действительно, два года спустя Мерчисону были присланы из Нового Южного Уэльса образцы золота, и геолог побудил многих ___ отправиться в золотоносные районы Новой Голландии.",
-   "lemma": "рабочий",
-   "options": [
-    "корнуэльскими рабочими",
-    "корнуэльским рабочим",
-    "корнуэльских рабочих",
-    "корнуэльские рабочие"
-   ],
-   "correct": "корнуэльских рабочих",
-   "case": "Винительный (Accusative)",
-   "explain": "«корнуэльских рабочих» — the accusative marks the direct object of the verb.",
-   "id": "c4"
   },
   {
    "sentence": "Действительно, два года спустя Мерчисону были присланы из Нового Южного Уэльса образцы золота, и геолог побудил многих корнуэльских рабочих отправиться в ___ Новой Голландии.",
    "lemma": "район",
    "options": [
+    "золотоносными районами",
+    "золотоносных районов",
     "золотоносные районы",
-    "золотоносным районам",
-    "золотоносных районах",
-    "золотоносными районами"
+    "золотоносным районам"
    ],
    "correct": "золотоносные районы",
    "case": "Винительный (Accusative)",
-   "explain": "«золотоносные районы» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«золотоносные районы» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c5"
-  },
-  {
-   "sentence": "Первым нашел в Южной Австралии ___ Френсис Даттон.",
-   "lemma": "самородок",
-   "options": [
-    "золотым самородкам",
-    "золотых самородках",
-    "золотые самородки",
-    "золотыми самородками"
-   ],
-   "correct": "золотые самородки",
-   "case": "Винительный (Accusative)",
-   "explain": "«золотые самородки» — the accusative marks the direct object of the verb.",
-   "id": "c6"
-  },
-  {
-   "sentence": "До тех пор никто не интересовался провинцией Виктория, а между тем ей суждено было превзойти все ___ богатством своих залежей.",
-   "lemma": "провинция",
-   "options": [
-    "других провинций",
-    "других провинциях",
-    "другие провинции",
-    "другими провинциями"
-   ],
-   "correct": "другие провинции",
-   "case": "Винительный (Accusative)",
-   "explain": "«другие провинции» — the accusative marks the direct object of the verb.",
-   "id": "c7"
   },
   {
    "sentence": "Несколько месяцев спустя, в августе 1851 года, в провинции Виктория были найдены ___ золота, а затем вскоре открылись и обширные прииски в ее четырех округах: Балларат, Оуэнс, Бендиго и горы Александра.",
@@ -109,7 +39,7 @@
    ],
    "correct": "первые самородки",
    "case": "Именительный (Nominative)",
-   "explain": "«первые самородки» — the subject of the sentence stands in the nominative.",
+   "explain": "«первые самородки» is the subject of «найдены» — who or what does it — so nominative.",
    "id": "c8"
   },
   {
@@ -117,13 +47,13 @@
    "lemma": "шар",
    "options": [
     "земном шаре",
+    "земного шара",
     "земным шаром",
-    "земной шар",
-    "земного шара"
+    "земному шару"
    ],
    "correct": "земном шаре",
    "case": "Предложный (Prepositional)",
-   "explain": "«земном шаре» — after the preposition «на», for location or topic.",
+   "explain": "«земном шаре» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c9"
   },
   {
@@ -137,7 +67,7 @@
    ],
    "correct": "округлые вершины",
    "case": "Именительный (Nominative)",
-   "explain": "«округлые вершины» — the subject of the sentence stands in the nominative.",
+   "explain": "«округлые вершины» is the subject of «показались» — who or what does it — so nominative.",
    "id": "c10"
   },
   {
@@ -151,7 +81,7 @@
    ],
    "correct": "золотые россыпи",
    "case": "Именительный (Nominative)",
-   "explain": "«золотые россыпи» — the subject of the sentence stands in the nominative.",
+   "explain": "«золотые россыпи» is the subject of «разрабатывались» — who or what does it — so nominative.",
    "id": "c11"
   },
   {
@@ -165,35 +95,21 @@
    ],
    "correct": "следующий день",
    "case": "Винительный (Accusative)",
-   "explain": "«следующий день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«следующий день» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c12"
-  },
-  {
-   "sentence": "Только на следующий день, ___ нового, 1865 года, тяжелые колеса повозки заскрипели по дорогам этого богатейшего края.",
-   "lemma": "день",
-   "options": [
-    "первым днём",
-    "первого дня",
-    "первый день",
-    "первому дню"
-   ],
-   "correct": "первый день",
-   "case": "Именительный (Nominative)",
-   "explain": "«первый день» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
   },
   {
    "sentence": "Жак Паганель и его спутники были довольны, что им удалось увидеть на своем пути знаменитую гору, носившую на ___ название «Джебур».",
    "lemma": "язык",
    "options": [
-    "австралийскому языку",
-    "австралийского языка",
     "австралийском языке",
-    "австралийский язык"
+    "австралийскому языку",
+    "австралийским языком",
+    "австралийского языка"
    ],
    "correct": "австралийском языке",
    "case": "Предложный (Prepositional)",
-   "explain": "«австралийском языке» — after the preposition «на», for location or topic.",
+   "explain": "«австралийском языке» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c14"
   },
   {
@@ -207,22 +123,8 @@
    ],
    "correct": "первых слухах",
    "case": "Предложный (Prepositional)",
-   "explain": "«первых слухах» — after the preposition «при», for location or topic.",
+   "explain": "«первых слухах» — «при» always takes the prepositional.",
    "id": "c15"
-  },
-  {
-   "sentence": "При первых слухах о «___» в «золотом» 1851 году горожане, крестьяне, матросы покинули свои дома, поля и корабли.",
-   "lemma": "открытие",
-   "options": [
-    "великое открытие",
-    "великому открытию",
-    "великим открытием",
-    "великом открытии"
-   ],
-   "correct": "великом открытии",
-   "case": "Предложный (Prepositional)",
-   "explain": "«великом открытии» — after the preposition «в», for location or topic.",
-   "id": "c16"
   },
   {
    "sentence": "___ стала эпидемией, заразной, как чума, и сколько от нее поумирало людей, уже видевших себя богачами!",
@@ -235,7 +137,7 @@
    ],
    "correct": "золотая горячка",
    "case": "Именительный (Nominative)",
-   "explain": "«Золотая горячка» — the subject of the sentence stands in the nominative.",
+   "explain": "«золотая горячка» is the subject of «стала» — who or what does it — so nominative.",
    "id": "c17"
   },
   {
@@ -249,7 +151,7 @@
    ],
    "correct": "целые потоки",
    "case": "Именительный (Nominative)",
-   "explain": "«целые потоки» — the subject of the sentence stands in the nominative.",
+   "explain": "«целые потоки» is the subject of «хлынули» — who or what does it — so nominative.",
    "id": "c18"
   },
   {
@@ -263,22 +165,8 @@
    ],
    "correct": "разных сословий",
    "case": "Родительный (Genitive)",
-   "explain": "«разных сословий» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«разных сословий» depends on the noun «авантюристов» (whose? of what?) — genitive.",
    "id": "c19"
-  },
-  {
-   "sentence": "Словом, понаехало пятьдесят четыре тысячи самых ___.",
-   "lemma": "хищник",
-   "options": [
-    "зловредным хищникам",
-    "зловредных хищников",
-    "зловредными хищниками",
-    "зловредные хищники"
-   ],
-   "correct": "зловредных хищников",
-   "case": "Родительный (Genitive)",
-   "explain": "«зловредных хищников» — the genitive here marks possession, absence, or quantity.",
-   "id": "c20"
   },
   {
    "sentence": "В ___ этого безумного опьянения повсюду царил неописуемый беспорядок.",
@@ -291,7 +179,7 @@
    ],
    "correct": "первые годы",
    "case": "Винительный (Accusative)",
-   "explain": "«первые годы» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«первые годы» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c21"
   },
   {
@@ -305,7 +193,7 @@
    ],
    "correct": "безумного опьянения",
    "case": "Родительный (Genitive)",
-   "explain": "«безумного опьянения» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«безумного опьянения» depends on the noun «годы» (whose? of what?) — genitive.",
    "id": "c22"
   },
   {
@@ -319,7 +207,7 @@
    ],
    "correct": "неописуемый беспорядок",
    "case": "Именительный (Nominative)",
-   "explain": "«неописуемый беспорядок» — the subject of the sentence stands in the nominative.",
+   "explain": "«неописуемый беспорядок» is the subject of «царил» — who or what does it — so nominative.",
    "id": "c23"
   },
   {
@@ -333,7 +221,7 @@
    ],
    "correct": "местных жителей",
    "case": "Родительный (Genitive)",
-   "explain": "«местных жителей» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«местных жителей» — «из» always takes the genitive.",
    "id": "c24"
   },
   {
@@ -347,21 +235,21 @@
    ],
    "correct": "недавних воров",
    "case": "Родительный (Genitive)",
-   "explain": "«недавних воров» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«недавних воров» — «из» always takes the genitive.",
    "id": "c25"
   },
   {
    "sentence": "Поэтому Гленарван уже не застал ___, которые разыгрывались здесь в 1852 году.",
    "lemma": "сцена",
    "options": [
-    "жуткие сцены",
     "жуткими сценами",
+    "жутким сценам",
     "жутких сценах",
     "жутких сцен"
    ],
    "correct": "жутких сцен",
    "case": "Родительный (Genitive)",
-   "explain": "«жутких сцен» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«жутких сцен» is the object of a negated verb («не застал») — genitive instead of the accusative.",
    "id": "c26"
   },
   {
@@ -375,7 +263,7 @@
    ],
    "correct": "золотые россыпи",
    "case": "Именительный (Nominative)",
-   "explain": "«золотые россыпи» — the subject of the sentence stands in the nominative.",
+   "explain": "«золотые россыпи» is the subject of «начали» — who or what does it — so nominative.",
    "id": "c27"
   },
   {
@@ -389,36 +277,8 @@
    ],
    "correct": "последним сообщениям",
    "case": "Дательный (Dative)",
-   "explain": "«последним сообщениям» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«последним сообщениям» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c28"
-  },
-  {
-   "sentence": "По последним сообщениям из Австралии, площадь ___ в Виктории и Новом Южном Уэльсе — пять миллионов гектаров, а приблизительный общий вес золотоносного кварца — 20,650 миллиарда килограммов.",
-   "lemma": "россыпь",
-   "options": [
-    "золотых россыпях",
-    "золотыми россыпями",
-    "золотым россыпям",
-    "золотых россыпей"
-   ],
-   "correct": "золотых россыпей",
-   "case": "Родительный (Genitive)",
-   "explain": "«золотых россыпей» — the genitive here marks possession, absence, or quantity.",
-   "id": "c29"
-  },
-  {
-   "sentence": "По последним сообщениям из Австралии, площадь золотых россыпей в Виктории и Новом Южном Уэльсе — пять миллионов гектаров, а приблизительный ___ золотоносного кварца — 20,650 миллиарда килограммов.",
-   "lemma": "вес",
-   "options": [
-    "общем весе",
-    "общим весом",
-    "общего веса",
-    "общий вес"
-   ],
-   "correct": "общий вес",
-   "case": "Именительный (Nominative)",
-   "explain": "«общий вес» — the subject of the sentence stands in the nominative.",
-   "id": "c30"
   },
   {
    "sentence": "По последним сообщениям из Австралии, площадь золотых россыпей в Виктории и Новом Южном Уэльсе — пять миллионов гектаров, а приблизительный общий вес ___ — 20,650 миллиарда килограммов.",
@@ -431,7 +291,7 @@
    ],
    "correct": "золотоносного кварца",
    "case": "Родительный (Genitive)",
-   "explain": "«золотоносного кварца» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«золотоносного кварца» depends on the noun «вес» (whose? of what?) — genitive.",
    "id": "c31"
   },
   {
@@ -445,7 +305,7 @@
    ],
    "correct": "современных способах",
    "case": "Предложный (Prepositional)",
-   "explain": "«современных способах» — after the preposition «при», for location or topic.",
+   "explain": "«современных способах» — «при» always takes the prepositional.",
    "id": "c32"
   },
   {
@@ -459,7 +319,7 @@
    ],
    "correct": "золотые запасы",
    "case": "Именительный (Nominative)",
-   "explain": "«золотые запасы» — the subject of the sentence stands in the nominative.",
+   "explain": "«золотые запасы» is the subject of «оцениваются» — who or what does it — so nominative.",
    "id": "c33"
   },
   {
@@ -473,36 +333,8 @@
    ],
    "correct": "настоящий город",
    "case": "Именительный (Nominative)",
-   "explain": "«настоящий город» — the subject of the sentence stands in the nominative.",
+   "explain": "«настоящий город» is the subject of «поднимался» — who or what does it — so nominative.",
    "id": "c34"
-  },
-  {
-   "sentence": "Здесь поднимался настоящий город с заводами, банками, церковью, казармой и ___.",
-   "lemma": "лавка",
-   "options": [
-    "газетные лавки",
-    "газетных лавках",
-    "газетными лавками",
-    "газетных лавок"
-   ],
-   "correct": "газетными лавками",
-   "case": "Творительный (Instrumental)",
-   "explain": "«газетными лавками» — the instrumental marks the means, company, or complement.",
-   "id": "c35"
-  },
-  {
-   "sentence": "Там с ___ шла пьеса местного драматурга под названием «Френсис Обадия, или Счастливый золотоискатель».",
-   "lemma": "успех",
-   "options": [
-    "большим успехом",
-    "большему успеху",
-    "большем успехе",
-    "больший успех"
-   ],
-   "correct": "большим успехом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«большим успехом» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c36"
   },
   {
    "sentence": "Там с большим успехом шла пьеса ___ под названием «Френсис Обадия, или Счастливый золотоискатель».",
@@ -515,22 +347,8 @@
    ],
    "correct": "местного драматурга",
    "case": "Родительный (Genitive)",
-   "explain": "«местного драматурга» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«местного драматурга» depends on the noun «пьеса» (whose? of what?) — genitive.",
    "id": "c37"
-  },
-  {
-   "sentence": "Там с большим успехом шла пьеса местного драматурга под названием «Френсис Обадия, или ___».",
-   "lemma": "золотоискатель",
-   "options": [
-    "счастливом золотоискателе",
-    "счастливым золотоискателем",
-    "счастливого золотоискателя",
-    "счастливый золотоискатель"
-   ],
-   "correct": "счастливый золотоискатель",
-   "case": "Именительный (Nominative)",
-   "explain": "«Счастливый золотоискатель» — the subject of the sentence stands in the nominative.",
-   "id": "c38"
   },
   {
    "sentence": "В ___ герой, уже отчаявшись в успехе, вдруг находит самородок невероятных размеров.",
@@ -543,7 +361,7 @@
    ],
    "correct": "последней сцене",
    "case": "Предложный (Prepositional)",
-   "explain": "«последней сцене» — after the preposition «в», for location or topic.",
+   "explain": "«последней сцене» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c39"
   },
   {
@@ -557,22 +375,8 @@
    ],
    "correct": "невероятных размеров",
    "case": "Родительный (Genitive)",
-   "explain": "«невероятных размеров» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«невероятных размеров» depends on the noun «самородок» (whose? of what?) — genitive.",
    "id": "c40"
-  },
-  {
-   "sentence": "По его совету ___ отправились в банк.",
-   "lemma": "дело",
-   "options": [
-    "первому делу",
-    "первом деле",
-    "первого дела",
-    "первым делом"
-   ],
-   "correct": "первым делом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«первым делом» — the instrumental marks the means, company, or complement.",
-   "id": "c41"
   },
   {
    "sentence": "Внимание привлекали ___ различных золотопромышленных компаний.",
@@ -585,7 +389,7 @@
    ],
    "correct": "гигантские рекламы",
    "case": "Именительный (Nominative)",
-   "explain": "«гигантские рекламы» — the subject of the sentence stands in the nominative.",
+   "explain": "«гигантские рекламы» is the subject of «привлекали» — who or what does it — so nominative.",
    "id": "c42"
   },
   {
@@ -599,120 +403,22 @@
    ],
    "correct": "золотопромышленных компаний",
    "case": "Родительный (Genitive)",
-   "explain": "«золотопромышленных компаний» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«золотопромышленных компаний» depends on the noun «рекламы» (whose? of what?) — genitive.",
    "id": "c43"
   },
   {
    "sentence": "Эти объединения ___ и капитала пришли на смену одиноким старателям.",
    "lemma": "рука",
    "options": [
-    "рабочим рукам",
-    "рабочими руками",
     "рабочих рук",
-    "рабочие руки"
+    "рабочие руки",
+    "рабочим рукам",
+    "рабочих руках"
    ],
    "correct": "рабочих рук",
    "case": "Родительный (Genitive)",
-   "explain": "«рабочих рук» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«рабочих рук» depends on the noun «объединения» (whose? of what?) — genitive.",
    "id": "c44"
-  },
-  {
-   "sentence": "Эти объединения рабочих рук и капитала пришли на смену ___.",
-   "lemma": "старатель",
-   "options": [
-    "одиноких старателей",
-    "одиноким старателям",
-    "одиноких старателях",
-    "одинокими старателями"
-   ],
-   "correct": "одиноким старателям",
-   "case": "Дательный (Dative)",
-   "explain": "«одиноким старателям» — the dative marks the indirect object or recipient.",
-   "id": "c45"
-  },
-  {
-   "sentence": "Слышался шум машин, промывавших песок и измельчавших ___.",
-   "lemma": "кварц",
-   "options": [
-    "драгоценном кварце",
-    "драгоценный кварц",
-    "драгоценным кварцем",
-    "драгоценного кварца"
-   ],
-   "correct": "драгоценный кварц",
-   "case": "Винительный (Accusative)",
-   "explain": "«драгоценный кварц» — the accusative marks the direct object of the verb.",
-   "id": "c46"
-  },
-  {
-   "sentence": "За постройками простирались золотые россыпи, ___ — обширные земельные пространства, откуда добывалось золото.",
-   "lemma": "слово",
-   "options": [
-    "иными словами",
-    "иным словам",
-    "иных слов",
-    "иных словах"
-   ],
-   "correct": "иными словами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«иными словами» — the instrumental marks the means, company, or complement.",
-   "id": "c47"
-  },
-  {
-   "sentence": "За постройками простирались золотые россыпи, иными словами — обширные ___, откуда добывалось золото.",
-   "lemma": "пространство",
-   "options": [
-    "земельных пространствах",
-    "земельными пространствами",
-    "земельным пространствам",
-    "земельные пространства"
-   ],
-   "correct": "земельные пространства",
-   "case": "Именительный (Nominative)",
-   "explain": "«земельные пространства» — the subject of the sentence stands in the nominative.",
-   "id": "c48"
-  },
-  {
-   "sentence": "Здесь работали рудокопы, нанятые и хорошо оплачиваемые ___.",
-   "lemma": "компания",
-   "options": [
-    "золотопромышленных компаниях",
-    "золотопромышленными компаниями",
-    "золотопромышленные компании",
-    "золотопромышленных компаний"
-   ],
-   "correct": "золотопромышленными компаниями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«золотопромышленными компаниями» — the instrumental marks the means, company, or complement.",
-   "id": "c49"
-  },
-  {
-   "sentence": "___ вспыхивали на солнце, точно молнии.",
-   "lemma": "заступ",
-   "options": [
-    "железным заступам",
-    "железные заступы",
-    "железными заступами",
-    "железных заступов"
-   ],
-   "correct": "железные заступы",
-   "case": "Именительный (Nominative)",
-   "explain": "«Железные заступы» — the subject of the sentence stands in the nominative.",
-   "id": "c50"
-  },
-  {
-   "sentence": "Среди рудокопов были люди самых ___.",
-   "lemma": "национальность",
-   "options": [
-    "различных национальностях",
-    "различных национальностей",
-    "различным национальностям",
-    "различные национальности"
-   ],
-   "correct": "различных национальностей",
-   "case": "Родительный (Genitive)",
-   "explain": "«различных национальностей» — the genitive here marks possession, absence, or quantity.",
-   "id": "c51"
   },
   {
    "sentence": "— Не следует, однако, думать, — сказал Паганель, — что на ___ совершенно перевелись искатели, охваченные страстной жаждой найти золото.",
@@ -725,7 +431,7 @@
    ],
    "correct": "австралийской земле",
    "case": "Предложный (Prepositional)",
-   "explain": "«австралийской земле» — after the preposition «на», for location or topic.",
+   "explain": "«австралийской земле» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c52"
   },
   {
@@ -739,21 +445,21 @@
    ],
    "correct": "страстной жаждой",
    "case": "Творительный (Instrumental)",
-   "explain": "«страстной жаждой» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «охваченные», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c53"
   },
   {
    "sentence": "Конечно, большинство продает свой труд ___.",
    "lemma": "компания",
    "options": [
+    "разными компаниями",
     "разных компаниях",
-    "разные компании",
     "разным компаниям",
-    "разными компаниями"
+    "разных компаний"
    ],
    "correct": "разным компаниям",
    "case": "Дательный (Dative)",
-   "explain": "«разным компаниям» — the dative marks the indirect object or recipient.",
+   "explain": "«разным компаниям» is the indirect object of «продает» — to or for whom (кому?) — dative.",
    "id": "c54"
   },
   {
@@ -762,83 +468,41 @@
    "options": [
     "золотоносные земли",
     "золотоносных земель",
-    "золотоносных землях",
-    "золотоносным землям"
+    "золотоносным землям",
+    "золотоносными землями"
    ],
    "correct": "золотоносные земли",
    "case": "Винительный (Accusative)",
-   "explain": "«золотоносные земли» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«золотоносные земли» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c55"
   },
   {
    "sentence": "В силу этого соглашения любой участок в центре приисков, где в течение суток не производится работа (за исключением праздников), делается ___.",
    "lemma": "достояние",
    "options": [
-    "общее достояние",
-    "общим достоянием",
+    "общем достоянии",
     "общего достояния",
-    "общем достоянии"
+    "общему достоянию",
+    "общим достоянием"
    ],
    "correct": "общим достоянием",
    "case": "Творительный (Instrumental)",
-   "explain": "«общим достоянием» — the instrumental marks the means, company, or complement.",
+   "explain": "After «делается», what someone or something is or becomes stands in the instrumental.",
    "id": "c56"
-  },
-  {
-   "sentence": "Но рыться в земле, наподобие крота, вслепую, стремясь вырвать оттуда крохи золота, — это ___, и только отверженные и небом и людьми могут им заниматься.",
-   "lemma": "ремесло",
-   "options": [
-    "жалкого ремесла",
-    "жалкое ремесло",
-    "жалким ремеслом",
-    "жалком ремесле"
-   ],
-   "correct": "жалкое ремесло",
-   "case": "Именительный (Nominative)",
-   "explain": "«жалкое ремесло» — the subject of the sentence stands in the nominative.",
-   "id": "c57"
   },
   {
    "sentence": "Побывав в ___ приисков и пройдя по земле, состоявшей главным образом из кварца, глинистого сланца и песка, когда-то содержавших в себе золото, путешественники подошли к банку.",
    "lemma": "центр",
    "options": [
-    "сам центр",
-    "самим центром",
+    "самого центра",
+    "самому центру",
     "самом центре",
-    "самого центра"
+    "самим центром"
    ],
    "correct": "самом центре",
    "case": "Предложный (Prepositional)",
-   "explain": "«самом центре» — after the preposition «в», for location or topic.",
+   "explain": "«самом центре» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c58"
-  },
-  {
-   "sentence": "Побывав в самом центре приисков и пройдя по земле, состоявшей ___ из кварца, глинистого сланца и песка, когда-то содержавших в себе золото, путешественники подошли к банку.",
-   "lemma": "образ",
-   "options": [
-    "главный образ",
-    "главном образе",
-    "главного образа",
-    "главным образом"
-   ],
-   "correct": "главным образом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«главным образом» — the instrumental marks the means, company, or complement.",
-   "id": "c59"
-  },
-  {
-   "sentence": "Это было ___, на крыше которого развевался английский флаг.",
-   "lemma": "здание",
-   "options": [
-    "большим зданием",
-    "большом здании",
-    "большому зданию",
-    "большое здание"
-   ],
-   "correct": "большое здание",
-   "case": "Именительный (Nominative)",
-   "explain": "«большое здание» — the subject of the sentence stands in the nominative.",
-   "id": "c60"
   },
   {
    "sentence": "Это было большое здание, на крыше которого развевался ___.",
@@ -851,7 +515,7 @@
    ],
    "correct": "английский флаг",
    "case": "Именительный (Nominative)",
-   "explain": "«английский флаг» — the subject of the sentence stands in the nominative.",
+   "explain": "«английский флаг» is the subject of «развевался» — who or what does it — so nominative.",
    "id": "c61"
   },
   {
@@ -865,49 +529,35 @@
    ],
    "correct": "главному инспектору",
    "case": "Дательный (Dative)",
-   "explain": "«главному инспектору» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«главному инспектору» — «к» always takes the dative.",
    "id": "c62"
   },
   {
    "sentence": "Правда, в дороге скупщики подвергались опасности, и даже эскорт не всегда спасал от нападений ___ с большой дороги.",
    "lemma": "грабитель",
    "options": [
-    "многочисленных грабителях",
+    "многочисленных грабителей",
     "многочисленные грабители",
-    "многочисленными грабителями",
-    "многочисленных грабителей"
+    "многочисленных грабителях",
+    "многочисленным грабителям"
    ],
    "correct": "многочисленных грабителей",
    "case": "Родительный (Genitive)",
-   "explain": "«многочисленных грабителей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«многочисленных грабителей» depends on the noun «нападений» (whose? of what?) — genitive.",
    "id": "c63"
-  },
-  {
-   "sentence": "Правда, в дороге скупщики подвергались опасности, и даже эскорт не всегда спасал от нападений многочисленных грабителей с ___.",
-   "lemma": "дорога",
-   "options": [
-    "большой дороги",
-    "большой дорогой",
-    "большой дороге",
-    "большая дорога"
-   ],
-   "correct": "большой дороги",
-   "case": "Родительный (Genitive)",
-   "explain": "«большой дороги» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
-   "id": "c64"
   },
   {
    "sentence": "Инспектор показал посетителям ___ золота и сообщил им ряд интересных подробностей о различных способах добывания этого металла.",
    "lemma": "образец",
    "options": [
-    "любопытным образцам",
-    "любопытных образцов",
+    "любопытные образцы",
     "любопытных образцах",
-    "любопытные образцы"
+    "любопытными образцами",
+    "любопытным образцам"
    ],
    "correct": "любопытные образцы",
    "case": "Винительный (Accusative)",
-   "explain": "«любопытные образцы» — the accusative marks the direct object of the verb.",
+   "explain": "«любопытные образцы» is the direct object of «показал» (кого? что?) — accusative.",
    "id": "c65"
   },
   {
@@ -921,50 +571,22 @@
    ],
    "correct": "интересных подробностей",
    "case": "Родительный (Genitive)",
-   "explain": "«интересных подробностей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«интересных подробностей» depends on the noun «ряд» (whose? of what?) — genitive.",
    "id": "c66"
   },
   {
    "sentence": "Инспектор показал посетителям любопытные образцы золота и сообщил им ряд интересных подробностей о ___ добывания этого металла.",
    "lemma": "способ",
    "options": [
-    "различные способы",
+    "различных способах",
     "различных способов",
-    "различными способами",
-    "различных способах"
+    "различным способам",
+    "различными способами"
    ],
    "correct": "различных способах",
    "case": "Предложный (Prepositional)",
-   "explain": "«различных способах» — after the preposition «о», for location or topic.",
+   "explain": "«различных способах» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c67"
-  },
-  {
-   "sentence": "___ обычно встречается на дне рек и ручьев, долин и оврагов и располагается соответственно величине: сверху песчинки, затем крупинки, в самом низу кусочки побольше.",
-   "lemma": "золото",
-   "options": [
-    "рассыпному золоту",
-    "рассыпным золотом",
-    "рассыпного золота",
-    "рассыпное золото"
-   ],
-   "correct": "рассыпное золото",
-   "case": "Именительный (Nominative)",
-   "explain": "«Рассыпное золото» — the subject of the sentence stands in the nominative.",
-   "id": "c68"
-  },
-  {
-   "sentence": "А ___ из жил, обнаженных выветриванием, залегает в больших количествах на одном месте, в так называемых «карманах».",
-   "lemma": "золото",
-   "options": [
-    "коренным золотом",
-    "коренного золота",
-    "коренному золоту",
-    "коренное золото"
-   ],
-   "correct": "коренное золото",
-   "case": "Именительный (Nominative)",
-   "explain": "«коренное золото» — the subject of the sentence stands in the nominative.",
-   "id": "c69"
   },
   {
    "sentence": "А коренное золото из жил, обнаженных выветриванием, залегает в ___ на одном месте, в так называемых «карманах».",
@@ -977,7 +599,7 @@
    ],
    "correct": "больших количествах",
    "case": "Предложный (Prepositional)",
-   "explain": "«больших количествах» — after the preposition «в», for location or topic.",
+   "explain": "«больших количествах» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c70"
   },
   {
@@ -991,7 +613,7 @@
    ],
    "correct": "целое состояние",
    "case": "Именительный (Nominative)",
-   "explain": "«целое состояние» — the subject of the sentence stands in the nominative.",
+   "explain": "«целое состояние» is the subject of «лежит» — who or what does it — so nominative.",
    "id": "c71"
   },
   {
@@ -999,13 +621,13 @@
    "lemma": "пласт",
    "options": [
     "глинистым пластам",
+    "глинистыми пластами",
     "глинистых пластов",
-    "глинистых пластах",
-    "глинистые пласты"
+    "глинистых пластах"
    ],
    "correct": "глинистых пластах",
    "case": "Предложный (Prepositional)",
-   "explain": "«глинистых пластах» — after the preposition «в», for location or topic.",
+   "explain": "«глинистых пластах» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c72"
   },
   {
@@ -1019,50 +641,22 @@
    ],
    "correct": "сланцевых скал",
    "case": "Родительный (Genitive)",
-   "explain": "«сланцевых скал» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«сланцевых скал» depends on the noun «расщелинах» (whose? of what?) — genitive.",
    "id": "c73"
-  },
-  {
-   "sentence": "Осмотрев ___ золота, посетители прошлись затем по минералогическому музею банка.",
-   "lemma": "образец",
-   "options": [
-    "различными образцами",
-    "различным образцам",
-    "различные образцы",
-    "различных образцах"
-   ],
-   "correct": "различные образцы",
-   "case": "Винительный (Accusative)",
-   "explain": "«различные образцы» — the accusative marks the direct object of the verb.",
-   "id": "c74"
   },
   {
    "sentence": "Осмотрев различные образцы золота, посетители прошлись затем по ___ банка.",
    "lemma": "музей",
    "options": [
-    "минералогическом музее",
+    "минералогическим музеем",
     "минералогического музея",
     "минералогическому музею",
-    "минералогический музей"
+    "минералогическом музее"
    ],
    "correct": "минералогическому музею",
    "case": "Дательный (Dative)",
-   "explain": "«минералогическому музею» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«минералогическому музею» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c75"
-  },
-  {
-   "sentence": "Золото не ___ этой страны: она по справедливости может быть названа обширным ларцом, в котором природа хранит свои драгоценности.",
-   "lemma": "богатство",
-   "options": [
-    "единственного богатства",
-    "единственному богатству",
-    "единственное богатство",
-    "единственном богатстве"
-   ],
-   "correct": "единственное богатство",
-   "case": "Именительный (Nominative)",
-   "explain": "«единственное богатство» — the subject of the sentence stands in the nominative.",
-   "id": "c76"
   },
   {
    "sentence": "Золото не единственное богатство этой страны: она по справедливости может быть названа ___, в котором природа хранит свои драгоценности.",
@@ -1075,22 +669,8 @@
    ],
    "correct": "обширным ларцом",
    "case": "Творительный (Instrumental)",
-   "explain": "«обширным ларцом» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «названа», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c77"
-  },
-  {
-   "sentence": "В этой сияющей коллекции были представлены все ___, не было недостатка и в золоте для оправ, даже если бы понадобилось оправить их все.",
-   "lemma": "камень",
-   "options": [
-    "драгоценным камням",
-    "драгоценных камней",
-    "драгоценными камнями",
-    "драгоценные камни"
-   ],
-   "correct": "драгоценные камни",
-   "case": "Именительный (Nominative)",
-   "explain": "«драгоценные камни» — the subject of the sentence stands in the nominative.",
-   "id": "c78"
   },
   {
    "sentence": "Поблагодарив инспектора за любезность, Гленарван простился с ним, а затем продолжал со своими спутниками осмотр ___.",
@@ -1103,7 +683,7 @@
    ],
    "correct": "золотых россыпей",
    "case": "Родительный (Genitive)",
-   "explain": "«золотых россыпей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«золотых россыпей» depends on the noun «осмотр» (whose? of what?) — genitive.",
    "id": "c79"
   },
   {
@@ -1117,36 +697,8 @@
    ],
    "correct": "жильной породы",
    "case": "Родительный (Genitive)",
-   "explain": "«жильной породы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«жильной породы» depends on the noun «кусок» (whose? of what?) — genitive.",
    "id": "c80"
-  },
-  {
-   "sentence": "— Конечно, потерял, — ответил ученый, — в этой стране золота и ___ если вы ничего не нашли, то, значит, потеряли.",
-   "lemma": "камень",
-   "options": [
-    "драгоценных камнях",
-    "драгоценными камнями",
-    "драгоценных камней",
-    "драгоценным камням"
-   ],
-   "correct": "драгоценных камней",
-   "case": "Родительный (Genitive)",
-   "explain": "«драгоценных камней» — the genitive here marks possession, absence, or quantity.",
-   "id": "c81"
-  },
-  {
-   "sentence": "— А что бы вы стали делать с ним, мой ___?",
-   "lemma": "друг",
-   "options": [
-    "почтенным другом",
-    "почтенном друге",
-    "почтенного друга",
-    "почтенный друг"
-   ],
-   "correct": "почтенный друг",
-   "case": "Именительный (Nominative)",
-   "explain": "«почтенный друг» — the subject of the sentence stands in the nominative.",
-   "id": "c82"
   },
   {
    "sentence": "Я поднес бы его в дар моей родине, — ответил Паганель, — положил бы его в ___ Франции.",
@@ -1159,22 +711,8 @@
    ],
    "correct": "государственный банк",
    "case": "Винительный (Accusative)",
-   "explain": "«государственный банк» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«государственный банк» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c83"
-  },
-  {
-   "sentence": "Леди Элен пожелала ему найти самый ___ в мире.",
-   "lemma": "самородок",
-   "options": [
-    "крупного самородка",
-    "крупному самородку",
-    "крупный самородок",
-    "крупном самородке"
-   ],
-   "correct": "крупный самородок",
-   "case": "Винительный (Accusative)",
-   "explain": "«крупный самородок» — the accusative marks the direct object of the verb.",
-   "id": "c84"
   },
   {
    "sentence": "После ___ Паганель заметил приличный трактир и предложил своим спутникам посидеть там, пока не придет время догонять повозку.",
@@ -1187,7 +725,7 @@
    ],
    "correct": "двухчасовой прогулки",
    "case": "Родительный (Genitive)",
-   "explain": "«двухчасовой прогулки» — after the preposition «после», the genitive here marks possession, absence, or quantity.",
+   "explain": "«двухчасовой прогулки» — «после» always takes the genitive.",
    "id": "c85"
   },
   {
@@ -1201,63 +739,35 @@
    ],
    "correct": "приличный трактир",
    "case": "Винительный (Accusative)",
-   "explain": "«приличный трактир» — the accusative marks the direct object of the verb.",
+   "explain": "«приличный трактир» is the direct object of «заметил» (кого? что?) — accusative.",
    "id": "c86"
   },
   {
-   "sentence": "И так как в трактире приятно освежиться, Паганель попросил трактирщика принести какой-нибудь ___.",
-   "lemma": "напиток",
-   "options": [
-    "местный напиток",
-    "местному напитку",
-    "местного напитка",
-    "местном напитке"
-   ],
-   "correct": "местный напиток",
-   "case": "Винительный (Accusative)",
-   "explain": "«местный напиток» — the accusative marks the direct object of the verb.",
-   "id": "c87"
-  },
-  {
    "sentence": "Вместо того чтобы в ___ воды влить маленькую рюмку водки, здесь в большой стакан водки вливают маленькую рюмку воды, затем кладут туда сахар и пьют.",
    "lemma": "стакан",
    "options": [
     "большому стакану",
     "большим стаканом",
-    "большом стакане",
+    "большого стакана",
     "большой стакан"
    ],
    "correct": "большой стакан",
    "case": "Винительный (Accusative)",
-   "explain": "«большой стакан» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«большой стакан» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c88"
-  },
-  {
-   "sentence": "Вместо того чтобы в ___ воды влить маленькую рюмку водки, здесь в большой стакан водки вливают маленькую рюмку воды, затем кладут туда сахар и пьют.",
-   "lemma": "стакан",
-   "options": [
-    "большому стакану",
-    "большим стаканом",
-    "большом стакане",
-    "большой стакан"
-   ],
-   "correct": "большой стакан",
-   "case": "Винительный (Accusative)",
-   "explain": "«большой стакан» — after the preposition «в», the accusative marks the direct object of the verb.",
-   "id": "c89"
   },
   {
    "sentence": "Это было уж слишком по-австралийски, поэтому, к удивлению трактирщика, его посетители потребовали графин воды, и коблер, разбавленный водой, превратился в ___.",
    "lemma": "грог",
    "options": [
-    "британский грог",
-    "британском гроге",
+    "британским грогом",
+    "британского грога",
     "британскому грогу",
-    "британским грогом"
+    "британский грог"
    ],
    "correct": "британский грог",
    "case": "Винительный (Accusative)",
-   "explain": "«британский грог» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«британский грог» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c90"
   },
   {
@@ -1271,7 +781,7 @@
    ],
    "correct": "первые годы",
    "case": "Винительный (Accusative)",
-   "explain": "«первые годы» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«первые годы» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c91"
   },
   {
@@ -1285,50 +795,22 @@
    ],
    "correct": "золотых приисков",
    "case": "Родительный (Genitive)",
-   "explain": "«золотых приисков» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«золотых приисков» depends on the noun «разработки» (whose? of what?) — genitive.",
    "id": "c92"
   },
   {
    "sentence": "Все же ему удалось образумить их: он, хотя и не без труда, заставил уважать право патента и, в общем, на ___ было меньше буйств и беспорядка, чем в Калифорнии.",
    "lemma": "прииск",
    "options": [
+    "здешних приисков",
     "здешним приискам",
-    "здешних приисках",
-    "здешние прииски",
-    "здешних приисков"
+    "здешними приисками",
+    "здешних приисках"
    ],
    "correct": "здешних приисках",
    "case": "Предложный (Prepositional)",
-   "explain": "«здешних приисках» — after the preposition «на», for location or topic.",
+   "explain": "«здешних приисках» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c93"
-  },
-  {
-   "sentence": "Для этого нет необходимости кончать колледж, довольно двух ___.",
-   "lemma": "рука",
-   "options": [
-    "крепкие руки",
-    "крепких рук",
-    "крепких руках",
-    "крепкими руками"
-   ],
-   "correct": "крепких рук",
-   "case": "Родительный (Genitive)",
-   "explain": "«крепких рук» — the genitive here marks possession, absence, or quantity.",
-   "id": "c94"
-  },
-  {
-   "sentence": "А как выглядели в ту пору эти ___!",
-   "lemma": "земля",
-   "options": [
-    "золотоносные земли",
-    "золотоносных земель",
-    "золотоносных землях",
-    "золотоносным землям"
-   ],
-   "correct": "золотоносные земли",
-   "case": "Винительный (Accusative)",
-   "explain": "«золотоносные земли» — the accusative marks the direct object of the verb.",
-   "id": "c95"
   },
   {
    "sentence": "Вокруг нее располагались синие ___ военных, а дальше — лавки менял, скупщиков золота, торговцев — всех, кто спекулировал на этом смешении богатства и бедности.",
@@ -1341,22 +823,8 @@
    ],
    "correct": "тиковые палатки",
    "case": "Именительный (Nominative)",
-   "explain": "«тиковые палатки» — the subject of the sentence stands in the nominative.",
+   "explain": "«тиковые палатки» is the subject of «располагались» — who or what does it — so nominative.",
    "id": "c96"
-  },
-  {
-   "sentence": "Посмотрели бы вы на длиннобородых золотоискателей в красных ___, живших здесь в грязи и сырости!",
-   "lemma": "рубашка",
-   "options": [
-    "шерстяных рубашках",
-    "шерстяными рубашками",
-    "шерстяные рубашки",
-    "шерстяным рубашкам"
-   ],
-   "correct": "шерстяных рубашках",
-   "case": "Предложный (Prepositional)",
-   "explain": "«шерстяных рубашках» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c97"
   },
   {
    "sentence": "В воздухе стоял ___ от ударов заступов и разносились зловонные испарения от валявшихся кругом трупов животных.",
@@ -1369,22 +837,8 @@
    ],
    "correct": "несмолкаемый гул",
    "case": "Именительный (Nominative)",
-   "explain": "«несмолкаемый гул» — the subject of the sentence stands in the nominative.",
+   "explain": "«несмолкаемый гул» is the subject of «стоял» — who or what does it — so nominative.",
    "id": "c98"
-  },
-  {
-   "sentence": "— ___ промывали золото почти так же, как это и теперь проделывается в некоторых местах в Севеннах, во Франции.",
-   "lemma": "старатель",
-   "options": [
-    "первых старателей",
-    "первых старателях",
-    "первые старатели",
-    "первым старателям"
-   ],
-   "correct": "первые старатели",
-   "case": "Именительный (Nominative)",
-   "explain": "«Первые старатели» — the subject of the sentence stands in the nominative.",
-   "id": "c99"
   },
   {
    "sentence": "В настоящее время золотопромышленные компании действуют иначе: они добираются до ___ золота, до золотоносных жил, откуда происходят все самородки, чешуйки и песчинки.",
@@ -1397,7 +851,7 @@
    ],
    "correct": "самых истоков",
    "case": "Родительный (Genitive)",
-   "explain": "«самых истоков» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«самых истоков» — «до» always takes the genitive.",
    "id": "c100"
   },
   {
@@ -1411,36 +865,8 @@
    ],
    "correct": "первые золотоискатели",
    "case": "Именительный (Nominative)",
-   "explain": "«первые золотоискатели» — the subject of the sentence stands in the nominative.",
+   "explain": "«первые золотоискатели» is the subject of «довольствовались» — who or what does it — so nominative.",
    "id": "c101"
-  },
-  {
-   "sentence": "Но первые золотоискатели довольствовались всего — навсего промывкой ___.",
-   "lemma": "песок",
-   "options": [
-    "золотоносным пескам",
-    "золотоносными песками",
-    "золотоносных песков",
-    "золотоносных песках"
-   ],
-   "correct": "золотоносных песков",
-   "case": "Родительный (Genitive)",
-   "explain": "«золотоносных песков» — the genitive here marks possession, absence, or quantity.",
-   "id": "c102"
-  },
-  {
-   "sentence": "Они рыли землю, брали те ее пласты, которые им казались наиболее богатыми золотом, а затем, промывая их, добывали ___.",
-   "lemma": "металл",
-   "options": [
-    "драгоценным металлом",
-    "драгоценному металлу",
-    "драгоценного металла",
-    "драгоценный металл"
-   ],
-   "correct": "драгоценный металл",
-   "case": "Винительный (Accusative)",
-   "explain": "«драгоценный металл» — the accusative marks the direct object of the verb.",
-   "id": "c103"
   },
   {
    "sentence": "Это ящик длиной от пяти до шести футов, нечто вроде ___, разделенного на два отделения.",
@@ -1453,119 +879,49 @@
    ],
    "correct": "открытого гроба",
    "case": "Родительный (Genitive)",
-   "explain": "«открытого гроба» — after the preposition «вроде», the genitive here marks possession, absence, or quantity.",
+   "explain": "«открытого гроба» — «вроде» always takes the genitive.",
    "id": "c104"
-  },
-  {
-   "sentence": "И вот на верхнее сито сыпали ___, лили на него воду, а затем начинали качать люльку.",
-   "lemma": "песок",
-   "options": [
-    "золотоносном песке",
-    "золотоносному песку",
-    "золотоносный песок",
-    "золотоносным песком"
-   ],
-   "correct": "золотоносный песок",
-   "case": "Винительный (Accusative)",
-   "explain": "«золотоносный песок» — the accusative marks the direct object of the verb.",
-   "id": "c105"
   },
   {
    "sentence": "При этом на ___ оставались камни, на следующих — руда и песок.",
    "lemma": "сит",
    "options": [
+    "первым ситом",
+    "первый сит",
     "первом сите",
-    "первому ситу",
-    "первого сита",
-    "первый сит"
+    "первому ситу"
    ],
    "correct": "первом сите",
    "case": "Предложный (Prepositional)",
-   "explain": "«первом сите» — after the preposition «на», for location or topic.",
+   "explain": "«первом сите» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c106"
-  },
-  {
-   "sentence": "— ___, дорогая Мери, простым железным листом.",
-   "lemma": "лист",
-   "options": [
-    "железному листу",
-    "железным листом",
-    "железном листе",
-    "железный лист"
-   ],
-   "correct": "железным листом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«Железным листом» — the instrumental marks the means, company, or complement.",
-   "id": "c107"
-  },
-  {
-   "sentence": "— Железным листом, дорогая Мери, простым ___.",
-   "lemma": "лист",
-   "options": [
-    "железный лист",
-    "железного листа",
-    "железном листе",
-    "железным листом"
-   ],
-   "correct": "железным листом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«железным листом» — the instrumental marks the means, company, or complement.",
-   "id": "c108"
   },
   {
    "sentence": "В ___ золотой лихорадки многие старатели разбогатели, не тратясь ни на какое оборудование.",
    "lemma": "год",
    "options": [
-    "первом годе",
     "первый год",
-    "первому году",
-    "первым годом"
+    "первого года",
+    "первым годом",
+    "первому году"
    ],
    "correct": "первый год",
    "case": "Винительный (Accusative)",
-   "explain": "«первый год» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«первый год» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c109"
-  },
-  {
-   "sentence": "В первый год ___ многие старатели разбогатели, не тратясь ни на какое оборудование.",
-   "lemma": "лихорадка",
-   "options": [
-    "золотой лихорадкой",
-    "золотой лихорадке",
-    "золотая лихорадка",
-    "золотой лихорадки"
-   ],
-   "correct": "золотой лихорадки",
-   "case": "Родительный (Genitive)",
-   "explain": "«золотой лихорадки» — the genitive here marks possession, absence, or quantity.",
-   "id": "c110"
-  },
-  {
-   "sentence": "Видите, друзья мои, то было ___, хотя за сапоги и платили сто пятьдесят франков, а стакан лимонада стоил десять шиллингов.",
-   "lemma": "время",
-   "options": [
-    "прибыльным временем",
-    "прибыльное время",
-    "прибыльному времени",
-    "прибыльном времени"
-   ],
-   "correct": "прибыльное время",
-   "case": "Именительный (Nominative)",
-   "explain": "«прибыльное время» — the subject of the sentence stands in the nominative.",
-   "id": "c111"
   },
   {
    "sentence": "— Почти столько, сколько расходует в год на ___ российский император!",
    "lemma": "нужда",
    "options": [
     "личные нужды",
-    "личных нуждах",
     "личным нуждам",
-    "личных нужд"
+    "личных нужд",
+    "личными нуждами"
    ],
    "correct": "личные нужды",
    "case": "Винительный (Accusative)",
-   "explain": "«личные нужды» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«личные нужды» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c112"
   },
   {
@@ -1579,7 +935,7 @@
    ],
    "correct": "российский император",
    "case": "Именительный (Nominative)",
-   "explain": "«российский император» — the subject of the sentence stands in the nominative.",
+   "explain": "«российский император» is the subject of «расходует» — who or what does it — so nominative.",
    "id": "c113"
   },
   {
@@ -1593,7 +949,7 @@
    ],
    "correct": "внезапного обогащения",
    "case": "Родительный (Genitive)",
-   "explain": "«внезапного обогащения» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«внезапного обогащения» depends on the noun «случаи» (whose? of what?) — genitive.",
    "id": "c114"
   },
   {
@@ -1607,7 +963,7 @@
    ],
    "correct": "мировая добыча",
    "case": "Именительный (Nominative)",
-   "explain": "«мировая добыча» — the subject of the sentence stands in the nominative.",
+   "explain": "«мировая добыча» is the subject of «увеличилась» — who or what does it — so nominative.",
    "id": "c115"
   },
   {
@@ -1621,35 +977,21 @@
    ],
    "correct": "годовая добыча",
    "case": "Именительный (Nominative)",
-   "explain": "«годовая добыча» — the subject of the sentence stands in the nominative.",
+   "explain": "«годовая добыча» is the subject of «выражалась» — who or what does it — so nominative.",
    "id": "c116"
-  },
-  {
-   "sentence": "— Значит, возможно, господин Паганель, на том ___, где мы стоим с вами, прямо у нас под ногами скрыто много золота?",
-   "lemma": "место",
-   "options": [
-    "самом месте",
-    "само место",
-    "самого места",
-    "самим местом"
-   ],
-   "correct": "самом месте",
-   "case": "Предложный (Prepositional)",
-   "explain": "«самом месте» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c117"
   },
   {
    "sentence": "Что представляют они собой в ___?",
    "lemma": "век",
    "options": [
-    "девятнадцатый век",
-    "девятнадцатом веке",
     "девятнадцатого века",
-    "девятнадцатым веком"
+    "девятнадцатым веком",
+    "девятнадцатом веке",
+    "девятнадцатому веку"
    ],
    "correct": "девятнадцатом веке",
    "case": "Предложный (Prepositional)",
-   "explain": "«девятнадцатом веке» — after the preposition «в», for location or topic.",
+   "explain": "«девятнадцатом веке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c118"
   }
  ]

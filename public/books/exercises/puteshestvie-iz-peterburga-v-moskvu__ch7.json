@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "— Курится ли таинственно ___ нетленная жертва во славных храмах древнего Египта?",
-   "lemma": "существо",
-   "options": [
-    "единого существа",
-    "единым существом",
-    "единому существу",
-    "едином существе"
-   ],
-   "correct": "единому существу",
-   "case": "Дательный (Dative)",
-   "explain": "«единому существу» — the dative marks the indirect object or recipient.",
-   "id": "c2"
-  },
-  {
-   "sentence": "— Курится ли таинственно единому существу ___ во славных храмах древнего Египта?",
-   "lemma": "жертва",
-   "options": [
-    "нетленная жертва",
-    "нетленной жертве",
-    "нетленной жертвой",
-    "нетленной жертвы"
-   ],
-   "correct": "нетленная жертва",
-   "case": "Именительный (Nominative)",
-   "explain": "«нетленная жертва» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
    "sentence": "Великолепные оных остатки служат убежищем блеющему скоту во время ___.",
    "lemma": "зной",
    "options": [
@@ -39,22 +11,8 @@
    ],
    "correct": "средиденного зноя",
    "case": "Родительный (Genitive)",
-   "explain": "«средиденного зноя» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«средиденного зноя» depends on the noun «убежищем» (whose? of what?) — genitive.",
    "id": "c5"
-  },
-  {
-   "sentence": "Область ___ на севере даже за Волгу.",
-   "lemma": "простиралася",
-   "options": [
-    "новгородской простираласи",
-    "новгородская простиралася",
-    "новгородской простираласе",
-    "новгородской простираласей"
-   ],
-   "correct": "новгородская простиралася",
-   "case": "Именительный (Nominative)",
-   "explain": "«Новгородская простиралася» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
   },
   {
    "sentence": "Сие ___ стояло в Ганзейском союзе .",
@@ -67,36 +25,8 @@
    ],
    "correct": "вольное государство",
    "case": "Именительный (Nominative)",
-   "explain": "«вольное государство» — the subject of the sentence stands in the nominative.",
+   "explain": "«вольное государство» is the subject of «стояло» — who or what does it — so nominative.",
    "id": "c9"
-  },
-  {
-   "sentence": "Внутренние несогласия и ___ совершили его падение.",
-   "lemma": "сосед",
-   "options": [
-    "хищный сосед",
-    "хищным соседом",
-    "хищном соседе",
-    "хищного соседа"
-   ],
-   "correct": "хищный сосед",
-   "case": "Именительный (Nominative)",
-   "explain": "«хищный сосед» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
-  },
-  {
-   "sentence": "Кто пал мертв или обезоружен, тот и виновен; повинуется непрекословно ___, и апеллации на оное нет.",
-   "lemma": "решение",
-   "options": [
-    "сего решения",
-    "сему решению",
-    "сие решение",
-    "сём решении"
-   ],
-   "correct": "сему решению",
-   "case": "Дательный (Dative)",
-   "explain": "«сему решению» — the dative marks the indirect object or recipient.",
-   "id": "c12"
   },
   {
    "sentence": "Примеры всех времен свидетельствуют, что право без силы было всегда в исполнении почитаемо ___.",
@@ -109,7 +39,7 @@
    ],
    "correct": "пустым словом",
    "case": "Творительный (Instrumental)",
-   "explain": "«пустым словом» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «почитаемо», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c15"
   },
   {
@@ -123,7 +53,7 @@
    ],
    "correct": "великим князем",
    "case": "Творительный (Instrumental)",
-   "explain": "«великим князем» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«великим князем» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c16"
   },
   {
@@ -137,22 +67,8 @@
    ],
    "correct": "завтрашнем дне",
    "case": "Предложный (Prepositional)",
-   "explain": "«завтрашнем дне» — after the preposition «о», for location or topic.",
+   "explain": "«завтрашнем дне» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c19"
-  },
-  {
-   "sentence": "Добро пожаловать, откуды бог принес, — говорил мне приятель мой Карп Дементьич, прежде сего купец третьей гильдии , а ныне ___ .",
-   "lemma": "гражданин",
-   "options": [
-    "именитого гражданина",
-    "именитым гражданином",
-    "именитый гражданин",
-    "именитом гражданине"
-   ],
-   "correct": "именитый гражданин",
-   "case": "Именительный (Nominative)",
-   "explain": "«именитый гражданин» — the subject of the sentence stands in the nominative.",
-   "id": "c20"
   },
   {
    "sentence": "Явился он ко мне с ___, и в то время взяли они с меня милостиво одни только проценты за 50 лет, а занятый капитал мне весь подарили.",
@@ -165,22 +81,8 @@
    ],
    "correct": "искусным стряпчим",
    "case": "Творительный (Instrumental)",
-   "explain": "«искусным стряпчим» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«искусным стряпчим» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c21"
-  },
-  {
-   "sentence": "Карп Дементьич — ___, в восемь вершков от нижней губы.",
-   "lemma": "борода",
-   "options": [
-    "седой бороде",
-    "седой бороды",
-    "седая борода",
-    "седой бородой"
-   ],
-   "correct": "седая борода",
-   "case": "Именительный (Nominative)",
-   "explain": "«седая борода» — the subject of the sentence stands in the nominative.",
-   "id": "c23"
   },
   {
    "sentence": "Карп Дементьич — седая борода, в восемь вершков от ___.",
@@ -193,50 +95,8 @@
    ],
    "correct": "нижней губы",
    "case": "Родительный (Genitive)",
-   "explain": "«нижней губы» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«нижней губы» — «от» always takes the genitive.",
    "id": "c24"
-  },
-  {
-   "sentence": "Но, ___, ты уже зеваешь.",
-   "lemma": "читатель",
-   "options": [
-    "любезным читателем",
-    "любезного читателя",
-    "любезному читателю",
-    "любезный читатель"
-   ],
-   "correct": "любезный читатель",
-   "case": "Именительный (Nominative)",
-   "explain": "«любезный читатель» — the subject of the sentence stands in the nominative.",
-   "id": "c25"
-  },
-  {
-   "sentence": "Получив одним годом ___, я жене построил здесь дом.",
-   "lemma": "барышок",
-   "options": [
-    "изрядному барышоку",
-    "изрядный барышок",
-    "изрядного барышока",
-    "изрядным барышоком"
-   ],
-   "correct": "изрядный барышок",
-   "case": "Именительный (Nominative)",
-   "explain": "«изрядный барышок» — the subject of the sentence stands in the nominative.",
-   "id": "c26"
-  },
-  {
-   "sentence": "___, слава богу, поставил льну на двадцать тысяч.",
-   "lemma": "лето",
-   "options": [
-    "нынешнего лета",
-    "нынешнему лету",
-    "нынешнее лето",
-    "нынешним летом"
-   ],
-   "correct": "нынешним летом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«Нынешним летом» — the instrumental marks the means, company, or complement.",
-   "id": "c29"
   },
   {
    "sentence": "И по той ___, по которой я иногда дурачусь и брежу, на свадебном пиру я был трезв.",
@@ -249,22 +109,8 @@
    ],
    "correct": "самой причине",
    "case": "Дательный (Dative)",
-   "explain": "«самой причине» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«самой причине» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c31"
-  },
-  {
-   "sentence": "Если бы ___ по векселям не существовало, ужели бы торговля исчезла?",
-   "lemma": "взыскание",
-   "options": [
-    "строгого взыскания",
-    "строгое взыскание",
-    "строгом взыскании",
-    "строгому взысканию"
-   ],
-   "correct": "строгого взыскания",
-   "case": "Родительный (Genitive)",
-   "explain": "«строгого взыскания» — the genitive here marks possession, absence, or quantity.",
-   "id": "c32"
   },
   {
    "sentence": "Я начал опять думать, ___ пошла к черту, и я лег спать с пустою головою.",
@@ -277,7 +123,7 @@
    ],
    "correct": "прежняя система",
    "case": "Именительный (Nominative)",
-   "explain": "«прежняя система» — the subject of the sentence stands in the nominative.",
+   "explain": "«прежняя система» is the subject of «пошла» — who or what does it — so nominative.",
    "id": "c34"
   }
  ]

@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "— Сын Неба, Сын Неба, — позвал ___.",
-   "lemma": "голос",
-   "options": [
-    "тоненькому голосу",
-    "тоненький голос",
-    "тоненького голоса",
-    "тоненьком голосе"
-   ],
-   "correct": "тоненький голос",
-   "case": "Винительный (Accusative)",
-   "explain": "«тоненький голос» — the accusative marks the direct object of the verb.",
-   "id": "c1"
-  },
-  {
    "sentence": "Из ___ высунулось востроносое личико.",
    "lemma": "заросль",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "лазурных зарослей",
    "case": "Родительный (Genitive)",
-   "explain": "«лазурных зарослей» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«лазурных зарослей» — «из» always takes the genitive.",
    "id": "c2"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "серой шубке",
    "case": "Предложный (Prepositional)",
-   "explain": "«серой шубке» — after the preposition «в», for location or topic.",
+   "explain": "«серой шубке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c3"
   },
   {
@@ -53,7 +39,7 @@
    ],
    "correct": "крепкого дерева",
    "case": "Родительный (Genitive)",
-   "explain": "«крепкого дерева» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«крепкого дерева» — «из» always takes the genitive.",
    "id": "c4"
   },
   {
@@ -67,22 +53,8 @@
    ],
    "correct": "узкие переходы",
    "case": "Винительный (Accusative)",
-   "explain": "«узкие переходы» — after the preposition «через», the accusative marks the direct object of the verb.",
+   "explain": "«узкие переходы» — «через» always takes the accusative.",
    "id": "c6"
-  },
-  {
-   "sentence": "Стремительно перебежав в облаках пара ___ над пещерным озером, Лось, как и в прошлый раз, увидел по ту сторону низких колонн лунную перспективу гор.",
-   "lemma": "мост",
-   "options": [
-    "горбатым мостом",
-    "горбатом мосте",
-    "горбатому мосту",
-    "горбатый мост"
-   ],
-   "correct": "горбатый мост",
-   "case": "Именительный (Nominative)",
-   "explain": "«горбатый мост» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
   },
   {
    "sentence": "Стремительно перебежав в облаках пара горбатый мост над ___, Лось, как и в прошлый раз, увидел по ту сторону низких колонн лунную перспективу гор.",
@@ -95,7 +67,7 @@
    ],
    "correct": "пещерным озером",
    "case": "Творительный (Instrumental)",
-   "explain": "«пещерным озером» — after the preposition «над», the instrumental marks the means, company, or complement.",
+   "explain": "«пещерным озером» — «над» always takes the instrumental.",
    "id": "c8"
   },
   {
@@ -109,36 +81,8 @@
    ],
    "correct": "низких колонн",
    "case": "Родительный (Genitive)",
-   "explain": "«низких колонн» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«низких колонн» depends on the noun «сторону» (whose? of what?) — genitive.",
    "id": "c10"
-  },
-  {
-   "sentence": "Поблескивал тусклым золотом ___.",
-   "lemma": "порог",
-   "options": [
-    "священном пороге",
-    "священный порог",
-    "священным порогом",
-    "священному порогу"
-   ],
-   "correct": "священный порог",
-   "case": "Винительный (Accusative)",
-   "explain": "«Священный Порог» — the accusative marks the direct object of the verb.",
-   "id": "c11"
-  },
-  {
-   "sentence": "Лосю хотелось с умилением, с нежностью поцеловать ___, следы ног на этом последнем прибежище любви.",
-   "lemma": "мох",
-   "options": [
-    "рыжем мхе",
-    "рыжему мху",
-    "рыжий мох",
-    "рыжим мхом"
-   ],
-   "correct": "рыжий мох",
-   "case": "Винительный (Accusative)",
-   "explain": "«рыжий мох» — the accusative marks the direct object of the verb.",
-   "id": "c12"
   },
   {
    "sentence": "Лосю хотелось с умилением, с нежностью поцеловать рыжий мох, следы ног на этом ___ любви.",
@@ -151,22 +95,8 @@
    ],
    "correct": "последнем прибежище",
    "case": "Предложный (Prepositional)",
-   "explain": "«последнем прибежище» — after the preposition «на», for location or topic.",
+   "explain": "«последнем прибежище» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c13"
-  },
-  {
-   "sentence": "___, зашипев, побежала по камням и застыла, обернув голову.",
-   "lemma": "ящерица",
-   "options": [
-    "хребтатая ящерица",
-    "хребтатой ящерице",
-    "хребтатой ящерицей",
-    "хребтатой ящерицы"
-   ],
-   "correct": "хребтатая ящерица",
-   "case": "Именительный (Nominative)",
-   "explain": "«Хребтатая ящерица» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
   },
   {
    "sentence": "Лось подошел к скале, к ___, приоткрыл ее и, нагнувшись, вошел в пещеру.",
@@ -179,7 +109,7 @@
    ],
    "correct": "треугольной дверце",
    "case": "Дательный (Dative)",
-   "explain": "«треугольной дверце» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«треугольной дверце» — «к» always takes the dative.",
    "id": "c15"
   },
   {
@@ -193,78 +123,8 @@
    ],
    "correct": "белых подушек",
    "case": "Родительный (Genitive)",
-   "explain": "«белых подушек» — after the preposition «среди», the genitive here marks possession, absence, or quantity.",
+   "explain": "«белых подушек» — «среди» always takes the genitive.",
    "id": "c16"
-  },
-  {
-   "sentence": "Она лежала навзничь, закинув ___ за голову.",
-   "lemma": "локоть",
-   "options": [
-    "голом локте",
-    "голому локтю",
-    "голый локоть",
-    "голого локтя"
-   ],
-   "correct": "голый локоть",
-   "case": "Именительный (Nominative)",
-   "explain": "«голый локоть» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
-  },
-  {
-   "sentence": "___ ее было печальное и кроткое.",
-   "lemma": "лицо",
-   "options": [
-    "худенькое лицо",
-    "худеньким лицом",
-    "худенького лица",
-    "худенькому лицу"
-   ],
-   "correct": "худенькое лицо",
-   "case": "Именительный (Nominative)",
-   "explain": "«Худенькое лицо» — the subject of the sentence stands in the nominative.",
-   "id": "c18"
-  },
-  {
-   "sentence": "___ вздрагивали, — должно быть, она видела сон.",
-   "lemma": "ресница",
-   "options": [
-    "сжатым ресницам",
-    "сжатых ресниц",
-    "сжатые ресницы",
-    "сжатыми ресницами"
-   ],
-   "correct": "сжатые ресницы",
-   "case": "Именительный (Nominative)",
-   "explain": "«Сжатые ресницы» — the subject of the sentence stands in the nominative.",
-   "id": "c19"
-  },
-  {
-   "sentence": "Какие бы муки он вынес сейчас, чтобы никогда не омрачилось это ___, чтобы остановить гибель прелести, юности, невинного дыхания, — она дышала, и прядь пепельных волос, лежавшая на щеке, поднималась и опускалась.",
-   "lemma": "лицо",
-   "options": [
-    "дивном лице",
-    "дивное лицо",
-    "дивного лица",
-    "дивным лицом"
-   ],
-   "correct": "дивное лицо",
-   "case": "Именительный (Nominative)",
-   "explain": "«дивное лицо» — the subject of the sentence stands in the nominative.",
-   "id": "c20"
-  },
-  {
-   "sentence": "Какие бы муки он вынес сейчас, чтобы никогда не омрачилось это дивное лицо, чтобы остановить гибель прелести, юности, ___, — она дышала, и прядь пепельных волос, лежавшая на щеке, поднималась и опускалась.",
-   "lemma": "дыхание",
-   "options": [
-    "невинным дыханием",
-    "невинного дыхания",
-    "невинное дыхание",
-    "невинному дыханию"
-   ],
-   "correct": "невинного дыхания",
-   "case": "Родительный (Genitive)",
-   "explain": "«невинного дыхания» — the genitive here marks possession, absence, or quantity.",
-   "id": "c21"
   },
   {
    "sentence": "Какие бы муки он вынес сейчас, чтобы никогда не омрачилось это дивное лицо, чтобы остановить гибель прелести, юности, невинного дыхания, — она дышала, и прядь ___, лежавшая на щеке, поднималась и опускалась.",
@@ -277,7 +137,7 @@
    ],
    "correct": "пепельных волос",
    "case": "Родительный (Genitive)",
-   "explain": "«пепельных волос» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«пепельных волос» depends on the noun «прядь» (whose? of what?) — genitive.",
    "id": "c22"
   },
   {
@@ -291,36 +151,8 @@
    ],
    "correct": "горьковато-сладкий запах",
    "case": "Именительный (Nominative)",
-   "explain": "«Горьковато-сладкий запах» — the subject of the sentence stands in the nominative.",
+   "explain": "«горьковато-сладкий запах» is the subject of «шел» — who or what does it — so nominative.",
    "id": "c24"
-  },
-  {
-   "sentence": "Аэлита неслышно вздохнула, ресницы ее опустились, ___ осунулось.",
-   "lemma": "личико",
-   "options": [
-    "внимательному личику",
-    "внимательном личике",
-    "внимательного личика",
-    "внимательное личико"
-   ],
-   "correct": "внимательное личико",
-   "case": "Именительный (Nominative)",
-   "explain": "«внимательное личико» — the subject of the sentence stands in the nominative.",
-   "id": "c27"
-  },
-  {
-   "sentence": "И вот — из пропасти медленно, как ___, поднялся военный корабль, царапая носом о скалы.",
-   "lemma": "оса",
-   "options": [
-    "чудовищной осе",
-    "чудовищной осой",
-    "чудовищной осы",
-    "чудовищная оса"
-   ],
-   "correct": "чудовищная оса",
-   "case": "Именительный (Nominative)",
-   "explain": "«чудовищная оса» — the subject of the sentence stands in the nominative.",
-   "id": "c28"
   },
   {
    "sentence": "И вот — из пропасти медленно, как чудовищная оса, поднялся ___, царапая носом о скалы.",
@@ -333,36 +165,22 @@
    ],
    "correct": "военный корабль",
    "case": "Именительный (Nominative)",
-   "explain": "«военный корабль» — the subject of the sentence stands in the nominative.",
+   "explain": "«военный корабль» is the subject of «поднялся» — who or what does it — so nominative.",
    "id": "c29"
   },
   {
    "sentence": "По ней сошли Тускуб и отряд солдат в панцирях, в металлических ___.",
    "lemma": "шапка",
    "options": [
-    "ребристые шапки",
-    "ребристых шапках",
+    "ребристых шапок",
     "ребристыми шапками",
-    "ребристым шапкам"
+    "ребристым шапкам",
+    "ребристых шапках"
    ],
    "correct": "ребристых шапках",
    "case": "Предложный (Prepositional)",
-   "explain": "«ребристых шапках» — after the preposition «в», for location or topic.",
+   "explain": "«ребристых шапках» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c30"
-  },
-  {
-   "sentence": "Лось и Аэлита спали ___.",
-   "lemma": "сон",
-   "options": [
-    "глубокого сна",
-    "глубоком сне",
-    "глубоким сном",
-    "глубокому сну"
-   ],
-   "correct": "глубоким сном",
-   "case": "Творительный (Instrumental)",
-   "explain": "«глубоким сном» — the instrumental marks the means, company, or complement.",
-   "id": "c31"
   }
  ]
 }

@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Вот вам и ___, а лучше сказать, последняя!",
-   "lemma": "книжка",
-   "options": [
-    "другой книжкой",
-    "другой книжки",
-    "другая книжка",
-    "другой книжке"
-   ],
-   "correct": "другая книжка",
-   "case": "Именительный (Nominative)",
-   "explain": "«другая книжка» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Я вам скажу, что на хуторе уже начинают смеяться надо мною: вот, говорят, одурел ___: на старости лет тешится ребяческими игрушками!",
    "lemma": "дед",
    "options": [
@@ -25,36 +11,8 @@
    ],
    "correct": "старый дед",
    "case": "Именительный (Nominative)",
-   "explain": "«старый дед» — the subject of the sentence stands in the nominative.",
+   "explain": "«старый дед» is the subject of «одурел» — who or what does it — so nominative.",
    "id": "c2"
-  },
-  {
-   "sentence": "Я вам скажу, что на хуторе уже начинают смеяться надо мною: вот, говорят, одурел старый дед: на старости лет тешится ___!",
-   "lemma": "игрушка",
-   "options": [
-    "ребяческим игрушкам",
-    "ребяческие игрушки",
-    "ребяческими игрушками",
-    "ребяческих игрушках"
-   ],
-   "correct": "ребяческими игрушками",
-   "case": "Творительный (Instrumental)",
-   "explain": "«ребяческими игрушками» — the instrumental marks the means, company, or complement.",
-   "id": "c3"
-  },
-  {
-   "sentence": "А того горохового панича, что рассказывал таким ___, которого много остряков и из московского народу не могло понять, уже давно нет.",
-   "lemma": "язык",
-   "options": [
-    "вычурным языком",
-    "вычурном языке",
-    "вычурного языка",
-    "вычурному языку"
-   ],
-   "correct": "вычурным языком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«вычурным языком» — the instrumental marks the means, company, or complement.",
-   "id": "c4"
   },
   {
    "sentence": "Уже есть ___, как я зачал помнить свои именины.",
@@ -67,22 +25,8 @@
    ],
    "correct": "пятидесятый год",
    "case": "Именительный (Nominative)",
-   "explain": "«пятидесятый год» — the subject of the sentence stands in the nominative.",
+   "explain": "«пятидесятый год» is the subject of «есть» — who or what does it — so nominative.",
    "id": "c7"
-  },
-  {
-   "sentence": "Вот вам в пример Фома Григорьевич; кажется, и не ___, а посмотреть на него: в лице какая-то важность сияет, даже когда станет нюхать табак, и тогда чувствуешь невольное почтение.",
-   "lemma": "человек",
-   "options": [
-    "знатный человек",
-    "знатном человеке",
-    "знатным человеком",
-    "знатного человека"
-   ],
-   "correct": "знатный человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«знатный человек» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
   },
   {
    "sentence": "Гречаник, хлеб из ___.",
@@ -95,22 +39,8 @@
    ],
    "correct": "гречневой муки",
    "case": "Родительный (Genitive)",
-   "explain": "«гречневой муки» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«гречневой муки» — «из» always takes the genitive.",
    "id": "c17"
-  },
-  {
-   "sentence": "Кацап, ___ с бородою.",
-   "lemma": "человек",
-   "options": [
-    "русскому человеку",
-    "русского человека",
-    "русский человек",
-    "русском человеке"
-   ],
-   "correct": "русский человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«русский человек» — the subject of the sentence stands in the nominative.",
-   "id": "c18"
   },
   {
    "sentence": "Книш, спеченный из ___ хлеб, обыкновенно едомый горячим с маслом.",
@@ -123,22 +53,8 @@
    ],
    "correct": "пшеничной муки",
    "case": "Родительный (Genitive)",
-   "explain": "«пшеничной муки» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«пшеничной муки» — «из» always takes the genitive.",
    "id": "c19"
-  },
-  {
-   "sentence": "Кобеняк, род ___ с пришитою назади видлогою.",
-   "lemma": "плащ",
-   "options": [
-    "суконного плаща",
-    "суконному плащу",
-    "суконном плаще",
-    "суконный плащ"
-   ],
-   "correct": "суконного плаща",
-   "case": "Родительный (Genitive)",
-   "explain": "«суконного плаща» — the genitive here marks possession, absence, or quantity.",
-   "id": "c20"
   },
   {
    "sentence": "Корж, сухая лепешка из ___, часто с салом.",
@@ -151,7 +67,7 @@
    ],
    "correct": "пшеничной муки",
    "case": "Родительный (Genitive)",
-   "explain": "«пшеничной муки» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«пшеничной муки» — «из» always takes the genitive.",
    "id": "c21"
   },
   {
@@ -165,64 +81,8 @@
    ],
    "correct": "жидкого полотна",
    "case": "Родительный (Genitive)",
-   "explain": "«жидкого полотна» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«жидкого полотна» — «из» always takes the genitive.",
    "id": "c22"
-  },
-  {
-   "sentence": "Паляница, ___, несколько плоской.",
-   "lemma": "хлеб",
-   "options": [
-    "небольшого хлеба",
-    "небольшим хлебом",
-    "небольшой хлеб",
-    "небольшому хлебу"
-   ],
-   "correct": "небольшой хлеб",
-   "case": "Именительный (Nominative)",
-   "explain": "«небольшой хлеб» — the subject of the sentence stands in the nominative.",
-   "id": "c23"
-  },
-  {
-   "sentence": "Плахта, ___ женщин, из шерстяной, клетчатой материи.",
-   "lemma": "одежда",
-   "options": [
-    "нижняя одежда",
-    "нижней одежде",
-    "нижней одежды",
-    "нижней одеждой"
-   ],
-   "correct": "нижняя одежда",
-   "case": "Именительный (Nominative)",
-   "explain": "«нижняя одежда» — the subject of the sentence stands in the nominative.",
-   "id": "c24"
-  },
-  {
-   "sentence": "Сукня, ___ женщин из сукна.",
-   "lemma": "одежда",
-   "options": [
-    "старинная одежда",
-    "старинной одежде",
-    "старинной одежды",
-    "старинной одеждой"
-   ],
-   "correct": "старинная одежда",
-   "case": "Именительный (Nominative)",
-   "explain": "«старинная одежда» — the subject of the sentence stands in the nominative.",
-   "id": "c25"
-  },
-  {
-   "sentence": "___, игра, в которую играют школьники в классе: жмутся тесно на скамье, покаместь одна половина не вытеснит другую.",
-   "lemma": "баба",
-   "options": [
-    "тесной бабы",
-    "тесная баба",
-    "тесной бабой",
-    "тесной бабе"
-   ],
-   "correct": "тесная баба",
-   "case": "Именительный (Nominative)",
-   "explain": "«Тесная баба» — the subject of the sentence stands in the nominative.",
-   "id": "c26"
   }
  ]
 }

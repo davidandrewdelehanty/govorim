@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Их ___, которого все называли дурачком, пустился в путь, чтобы разыскать своих братьев.",
-   "lemma": "брат",
-   "options": [
-    "младшим братом",
-    "младшего брата",
-    "младшему брату",
-    "младший брат"
-   ],
-   "correct": "младший брат",
-   "case": "Именительный (Nominative)",
-   "explain": "«младший брат» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Вот и пошли они втроем далее и пришли к ___.",
    "lemma": "муравейник",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "большому муравейнику",
    "case": "Дательный (Dative)",
-   "explain": "«большому муравейнику» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«большому муравейнику» — «к» always takes the dative.",
    "id": "c2"
   },
   {
@@ -39,49 +25,35 @@
    ],
    "correct": "каменные кони",
    "case": "Именительный (Nominative)",
-   "explain": "«каменные кони» — the subject of the sentence stands in the nominative.",
+   "explain": "«каменные кони» is the subject of «стояли» — who or what does it — so nominative.",
    "id": "c3"
-  },
-  {
-   "sentence": "Наконец пришли они путем-дорогою к замку, где в конюшне стояли только каменные кони и нигде не видать было ни единой ___.",
-   "lemma": "душа",
-   "options": [
-    "живая душа",
-    "живой душе",
-    "живой души",
-    "живой душой"
-   ],
-   "correct": "живой души",
-   "case": "Родительный (Genitive)",
-   "explain": "«живой души» — the genitive here marks possession, absence, or quantity.",
-   "id": "c4"
   },
   {
    "sentence": "Они перешли через все залы и затем в ___ замка нашли дверь, на которой висе- ли три замка.",
    "lemma": "конец",
    "options": [
-    "самом конце",
-    "сам конец",
     "самого конца",
-    "самим концом"
+    "самому концу",
+    "самим концом",
+    "самом конце"
    ],
    "correct": "самом конце",
    "case": "Предложный (Prepositional)",
-   "explain": "«самом конце» — after the preposition «в», for location or topic.",
+   "explain": "«самом конце» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c5"
   },
   {
    "sentence": "Они окликнули его раз и другой, но он не слышал; наконец они окликнули его и в ___, и он поднялся из-за стола, отомкнул все три замка и вышел к ним.",
    "lemma": "раз",
    "options": [
-    "третьем разе",
+    "третьим разом",
+    "третьего раза",
     "третий раз",
-    "третьему разу",
-    "третьего раза"
+    "третьему разу"
    ],
    "correct": "третий раз",
    "case": "Винительный (Accusative)",
-   "explain": "«третий раз» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«третий раз» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c6"
   },
   {
@@ -95,7 +67,7 @@
    ],
    "correct": "старшему брату",
    "case": "Дательный (Dative)",
-   "explain": "«старшему брату» — the dative marks the indirect object or recipient.",
+   "explain": "«старшему брату» — «к» always takes the dative.",
    "id": "c7"
   },
   {
@@ -109,22 +81,8 @@
    ],
    "correct": "каменному столу",
    "case": "Дательный (Dative)",
-   "explain": "«каменному столу» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«каменному столу» — «к» always takes the dative.",
    "id": "c8"
-  },
-  {
-   "sentence": "Старший разыскивал жемчуг ___ и всего-то разыскал с сотню жемчужин, и с ним случилось то, что было написано на мраморной доске стола - он обратился в камень.",
-   "lemma": "день",
-   "options": [
-    "целый день",
-    "целому дню",
-    "целого дня",
-    "целом дне"
-   ],
-   "correct": "целый день",
-   "case": "Винительный (Accusative)",
-   "explain": "«целый день» — the accusative marks the direct object of the verb.",
-   "id": "c9"
   },
   {
    "sentence": "Старший разыскивал жемчуг целый день и всего-то разыскал с сотню жемчужин, и с ним случилось то, что было написано на ___ стола - он обратился в камень.",
@@ -137,7 +95,7 @@
    ],
    "correct": "мраморной доске",
    "case": "Предложный (Prepositional)",
-   "explain": "«мраморной доске» — after the preposition «на», for location or topic.",
+   "explain": "«мраморной доске» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c10"
   },
   {
@@ -151,7 +109,7 @@
    ],
    "correct": "второй брат",
    "case": "Именительный (Nominative)",
-   "explain": "«второй брат» — the subject of the sentence stands in the nominative.",
+   "explain": "«второй брат» is the subject of «принялся» — who or what does it — so nominative.",
    "id": "c11"
   },
   {
@@ -165,36 +123,8 @@
    ],
    "correct": "вторая задача",
    "case": "Именительный (Nominative)",
-   "explain": "«Вторая задача» — the subject of the sentence stands in the nominative.",
+   "explain": "«вторая задача» is the subject of «состояла» — who or what does it — so nominative.",
    "id": "c12"
-  },
-  {
-   "sentence": "___ была самою трудною из всех: предстояло из трех короле- вен, спавших в опочивальне, выбрать младшую и красивейшую.",
-   "lemma": "задача",
-   "options": [
-    "третьей задаче",
-    "третьей задачей",
-    "третьей задачи",
-    "третья задача"
-   ],
-   "correct": "третья задача",
-   "case": "Именительный (Nominative)",
-   "explain": "«Третья задача» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
-  },
-  {
-   "sentence": "Когда эта ___ была разрешена, чары рассеялись, все в замке очнулись от глубокого сна, и все окаменелые вновь получили свой прежний человеческий образ.",
-   "lemma": "задача",
-   "options": [
-    "третья задача",
-    "третьей задачей",
-    "третьей задачи",
-    "третьей задаче"
-   ],
-   "correct": "третья задача",
-   "case": "Именительный (Nominative)",
-   "explain": "«третья задача» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
   },
   {
    "sentence": "Когда эта третья задача была разрешена, чары рассеялись, все в замке очнулись от ___, и все окаменелые вновь получили свой прежний человеческий образ.",
@@ -207,21 +137,21 @@
    ],
    "correct": "глубокого сна",
    "case": "Родительный (Genitive)",
-   "explain": "«глубокого сна» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«глубокого сна» — «от» always takes the genitive.",
    "id": "c15"
   },
   {
    "sentence": "Когда эта третья задача была разрешена, чары рассеялись, все в замке очнулись от глубокого сна, и все окаменелые вновь получили свой прежний ___.",
    "lemma": "образ",
    "options": [
+    "человеческому образу",
     "человеческий образ",
     "человеческом образе",
-    "человеческого образа",
     "человеческим образом"
    ],
    "correct": "человеческий образ",
    "case": "Винительный (Accusative)",
-   "explain": "«человеческий образ» — the accusative marks the direct object of the verb.",
+   "explain": "«человеческий образ» is the direct object of «получили» (кого? что?) — accusative.",
    "id": "c16"
   }
  ]

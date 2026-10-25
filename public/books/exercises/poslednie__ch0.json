@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "___; в левой стене — камин.",
-   "lemma": "комната",
-   "options": [
-    "уютная комната",
-    "уютной комнате",
-    "уютной комнатой",
-    "уютной комнаты"
-   ],
-   "correct": "уютная комната",
-   "case": "Именительный (Nominative)",
-   "explain": "«Уютная комната» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
    "sentence": "Уютная комната; в ___ — камин.",
    "lemma": "стена",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "левой стене",
    "case": "Предложный (Prepositional)",
-   "explain": "«левой стене» — after the preposition «в», for location or topic.",
+   "explain": "«левой стене» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c3"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "задней стены",
    "case": "Родительный (Genitive)",
-   "explain": "«задней стены» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«задней стены» — «у» always takes the genitive.",
    "id": "c4"
   },
   {
@@ -53,7 +39,7 @@
    ],
    "correct": "красным одеялом",
    "case": "Творительный (Instrumental)",
-   "explain": "«красным одеялом» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «покрытая», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c5"
   },
   {
@@ -67,36 +53,8 @@
    ],
    "correct": "книжный шкаф",
    "case": "Именительный (Nominative)",
-   "explain": "«книжный шкаф» — the subject of the sentence stands in the nominative.",
+   "explain": "«книжный шкаф» is the subject of «делит» — who or what does it — so nominative.",
    "id": "c6"
-  },
-  {
-   "sentence": "Шкаф обращён дверьми направо, спинка его завешена ковром, к ней прислонилось пианино; напротив — широкий ___ и маленькое окно; в глубине этой комнаты дверь в столовую.",
-   "lemma": "диван",
-   "options": [
-    "тёмного дивана",
-    "тёмному дивану",
-    "тёмным диваном",
-    "тёмный диван"
-   ],
-   "correct": "тёмный диван",
-   "case": "Именительный (Nominative)",
-   "explain": "«тёмный диван» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
-  },
-  {
-   "sentence": "Сзади кресла на письменном столе ___ под абажуром из зелёной бумаги.",
-   "lemma": "лампа",
-   "options": [
-    "высокая лампа",
-    "высокой лампе",
-    "высокой лампы",
-    "высокой лампой"
-   ],
-   "correct": "высокая лампа",
-   "case": "Именительный (Nominative)",
-   "explain": "«высокая лампа» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
   },
   {
    "sentence": "Сзади кресла на письменном столе высокая лампа под абажуром из ___.",
@@ -109,7 +67,7 @@
    ],
    "correct": "зелёной бумаги",
    "case": "Родительный (Genitive)",
-   "explain": "«зелёной бумаги» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«зелёной бумаги» — «из» always takes the genitive.",
    "id": "c11"
   },
   {
@@ -123,7 +81,7 @@
    ],
    "correct": "колыбельной песни",
    "case": "Родительный (Genitive)",
-   "explain": "«колыбельной песни» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«колыбельной песни» depends on the noun «мотив» (whose? of what?) — genitive.",
    "id": "c14"
   },
   {
@@ -137,7 +95,7 @@
    ],
    "correct": "красивый металл",
    "case": "Винительный (Accusative)",
-   "explain": "«красивый металл» — the accusative marks the direct object of the verb.",
+   "explain": "«красивый металл» is the direct object of «получили» (кого? что?) — accusative.",
    "id": "c16"
   },
   {
@@ -151,7 +109,7 @@
    ],
    "correct": "тёмном лице",
    "case": "Предложный (Prepositional)",
-   "explain": "«тёмном лице» — after the preposition «на», for location or topic.",
+   "explain": "«тёмном лице» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c20"
   },
   {
@@ -165,36 +123,8 @@
    ],
    "correct": "интересным человеком",
    "case": "Творительный (Instrumental)",
-   "explain": "«интересным человеком» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«интересным человеком» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c21"
-  },
-  {
-   "sentence": "___, чтобы не попала пуля.",
-   "lemma": "линия",
-   "options": [
-    "ломаным линиям",
-    "ломаными линиями",
-    "ломаные линии",
-    "ломаных линий"
-   ],
-   "correct": "ломаными линиями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«Ломаными линиями» — the instrumental marks the means, company, or complement.",
-   "id": "c24"
-  },
-  {
-   "sentence": "По вопросу о финансах, или — ___, а?",
-   "lemma": "политика",
-   "options": [
-    "внутренней политикой",
-    "внутренней политике",
-    "внутренняя политика",
-    "внутренней политики"
-   ],
-   "correct": "внутренняя политика",
-   "case": "Именительный (Nominative)",
-   "explain": "«внутренняя политика» — the subject of the sentence stands in the nominative.",
-   "id": "c28"
   },
   {
    "sentence": "В ___, Александр, иди в столовую.",
@@ -207,7 +137,7 @@
    ],
    "correct": "самом деле",
    "case": "Предложный (Prepositional)",
-   "explain": "«самом деле» — after the preposition «в», for location or topic.",
+   "explain": "«самом деле» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c29"
   },
   {
@@ -221,22 +151,8 @@
    ],
    "correct": "неудачной игре",
    "case": "Дательный (Dative)",
-   "explain": "«неудачной игре» — after the preposition «благодаря», the dative marks the indirect object or recipient.",
+   "explain": "«неудачной игре» — «благодаря» always takes the dative.",
    "id": "c33"
-  },
-  {
-   "sentence": "А кто пожалеет распутного ___ — кандидата в помощники полицейского пристава?",
-   "lemma": "человек",
-   "options": [
-    "молодым человеком",
-    "молодой человек",
-    "молодого человека",
-    "молодом человеке"
-   ],
-   "correct": "молодого человека",
-   "case": "Винительный (Accusative)",
-   "explain": "«молодого человека» — the accusative marks the direct object of the verb.",
-   "id": "c35"
   },
   {
    "sentence": "Как вам нравится эта ___?",
@@ -249,22 +165,8 @@
    ],
    "correct": "блестящая карьера",
    "case": "Именительный (Nominative)",
-   "explain": "«блестящая карьера» — the subject of the sentence stands in the nominative.",
+   "explain": "«блестящая карьера» is the subject of «нравится» — who or what does it — so nominative.",
    "id": "c36"
-  },
-  {
-   "sentence": "Это ___ на жизнь Ивана и затем его отставка ошеломили тебя, ты растерялась — понятно!",
-   "lemma": "покушение",
-   "options": [
-    "глупому покушению",
-    "глупое покушение",
-    "глупым покушением",
-    "глупого покушения"
-   ],
-   "correct": "глупое покушение",
-   "case": "Именительный (Nominative)",
-   "explain": "«глупое покушение» — the subject of the sentence stands in the nominative.",
-   "id": "c38"
   },
   {
    "sentence": "Нам известно, что этот человек кутила и развратник; он устроил ___ рядом с комнатами, где спали его дети.",
@@ -277,36 +179,8 @@
    ],
    "correct": "игорный дом",
    "case": "Винительный (Accusative)",
-   "explain": "«игорный дом» — the accusative marks the direct object of the verb.",
+   "explain": "«игорный дом» is the direct object of «устроил» (кого? что?) — accusative.",
    "id": "c39"
-  },
-  {
-   "sentence": "И — ___ — как будто эту взятку требую у вас я сам!",
-   "lemma": "тон",
-   "options": [
-    "странный тон",
-    "странному тону",
-    "странным тоном",
-    "странном тоне"
-   ],
-   "correct": "странный тон",
-   "case": "Именительный (Nominative)",
-   "explain": "«странный тон» — the subject of the sentence stands in the nominative.",
-   "id": "c41"
-  },
-  {
-   "sentence": "Я, как вам известно, человек правдивый, и скажу прямо: полиция — это ___, где ваш сын может служить.",
-   "lemma": "учреждение",
-   "options": [
-    "единственного учреждения",
-    "единственному учреждению",
-    "единственным учреждением",
-    "единственное учреждение"
-   ],
-   "correct": "единственное учреждение",
-   "case": "Именительный (Nominative)",
-   "explain": "«единственное учреждение» — the subject of the sentence stands in the nominative.",
-   "id": "c42"
   },
   {
    "sentence": "У него есть некоторая ___, он был вольноопределяющимся, имеет какой-то чин.",
@@ -319,22 +193,8 @@
    ],
    "correct": "военная выправка",
    "case": "Именительный (Nominative)",
-   "explain": "«военная выправка» — the subject of the sentence stands in the nominative.",
+   "explain": "«военная выправка» is the subject of «есть» — who or what does it — so nominative.",
    "id": "c45"
-  },
-  {
-   "sentence": "Откуда мог явиться в моей семье этот ___ вражды?",
-   "lemma": "дух",
-   "options": [
-    "злом духе",
-    "злой дух",
-    "злого духа",
-    "злым духом"
-   ],
-   "correct": "злой дух",
-   "case": "Именительный (Nominative)",
-   "explain": "«злой дух» — the subject of the sentence stands in the nominative.",
-   "id": "c49"
   }
  ]
 }

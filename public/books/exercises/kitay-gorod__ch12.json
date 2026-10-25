@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Даже красный ___, обитый жестью, стоял все на том же месте.",
-   "lemma": "сундук",
-   "options": [
-    "полинялым сундуком",
-    "полинялом сундуке",
-    "полинялому сундуку",
-    "полинялый сундук"
-   ],
-   "correct": "полинялый сундук",
-   "case": "Именительный (Nominative)",
-   "explain": "«полинялый сундук» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "За несколько шагов до ___ обдаст вас сырой свежестью погреба, и ягодные газы начинают вас щекотать в ноздрях.",
    "lemma": "лавка",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "квасной лавки",
    "case": "Родительный (Genitive)",
-   "explain": "«квасной лавки» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«квасной лавки» — «до» always takes the genitive.",
    "id": "c3"
   },
   {
@@ -39,21 +25,21 @@
    ],
    "correct": "ягодные газы",
    "case": "Именительный (Nominative)",
-   "explain": "«ягодные газы» — the subject of the sentence stands in the nominative.",
+   "explain": "«ягодные газы» is the subject of «начинают» — who or what does it — so nominative.",
    "id": "c4"
   },
   {
    "sentence": "Третий предлагал ветчину в большом ___ с нежным жиром и жареные мозги.",
    "lemma": "кусок",
    "options": [
-    "розового куска",
-    "розовый кусок",
     "розовым куском",
-    "розовом куске"
+    "розовом куске",
+    "розового куска",
+    "розовому куску"
    ],
    "correct": "розовом куске",
    "case": "Предложный (Prepositional)",
-   "explain": "«розовом куске» — after the preposition «в», for location or topic.",
+   "explain": "«розовом куске» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c5"
   },
   {
@@ -67,7 +53,7 @@
    ],
    "correct": "постной еды",
    "case": "Родительный (Genitive)",
-   "explain": "«постной еды» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«постной еды» depends on the noun «любителей» (whose? of what?) — genitive.",
    "id": "c7"
   },
   {
@@ -81,7 +67,7 @@
    ],
    "correct": "скоромный день",
    "case": "Винительный (Accusative)",
-   "explain": "«скоромный день» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«скоромный день» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c8"
   },
   {
@@ -95,7 +81,7 @@
    ],
    "correct": "свободное место",
    "case": "Именительный (Nominative)",
-   "explain": "«Свободное место» — the subject of the sentence stands in the nominative.",
+   "explain": "«свободное место» is the subject of «нашлось» — who or what does it — so nominative.",
    "id": "c10"
   },
   {
@@ -109,22 +95,8 @@
    ],
    "correct": "квасной лавке",
    "case": "Предложный (Prepositional)",
-   "explain": "«квасной лавке» — after the preposition «в», for location or topic.",
+   "explain": "«квасной лавке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c11"
-  },
-  {
-   "sentence": "Выйдя на Никольскую, Иван Алексеич придавил себя ___ по животу, под правым ребром.",
-   "lemma": "ручка",
-   "options": [
-    "пухлой ручки",
-    "пухлая ручка",
-    "пухлой ручке",
-    "пухлой ручкой"
-   ],
-   "correct": "пухлой ручкой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«пухлой ручкой» — the instrumental marks the means, company, or complement.",
-   "id": "c12"
   },
   {
    "sentence": "Выйдя на Никольскую, Иван Алексеич придавил себя пухлой ручкой по животу, под ___.",
@@ -137,7 +109,7 @@
    ],
    "correct": "правым ребром",
    "case": "Творительный (Instrumental)",
-   "explain": "«правым ребром» — after the preposition «под», the instrumental marks the means, company, or complement.",
+   "explain": "«правым ребром» — «под» takes the instrumental here (где? под чем?) — the accusative would mean movement under (куда? под что?).",
    "id": "c13"
   }
  ]

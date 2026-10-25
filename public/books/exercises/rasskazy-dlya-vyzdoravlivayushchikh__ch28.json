@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "По расследовании, ___ с законом «Об охране слепцов от внешних сил» разъяснился.",
-   "lemma": "случай",
-   "options": [
-    "загадочный случай",
-    "загадочном случае",
-    "загадочному случаю",
-    "загадочного случая"
-   ],
-   "correct": "загадочный случай",
-   "case": "Именительный (Nominative)",
-   "explain": "«загадочный случай» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "По расследовании, загадочный случай с законом «Об охране слепцов от ___» разъяснился.",
    "lemma": "сила",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "внешних сил",
    "case": "Родительный (Genitive)",
-   "explain": "«внешних сил» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«внешних сил» — «от» always takes the genitive.",
    "id": "c2"
   },
   {
@@ -39,22 +25,8 @@
    ],
    "correct": "внешних сил",
    "case": "Родительный (Genitive)",
-   "explain": "«внешних сил» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«внешних сил» depends on the noun «действия» (whose? of what?) — genitive.",
    "id": "c4"
-  },
-  {
-   "sentence": "Разъясните полисменам ___: «Всякого слепца, который шатается без толку по улице, мешая экипажному и пешему движению, — хватать и тащить куда следует».",
-   "lemma": "закон",
-   "options": [
-    "новому закону",
-    "новый закон",
-    "новым законом",
-    "новом законе"
-   ],
-   "correct": "новый закон",
-   "case": "Винительный (Accusative)",
-   "explain": "«новый закон» — the accusative marks the direct object of the verb.",
-   "id": "c6"
   },
   {
    "sentence": "Разъясните полисменам новый закон: «Всякого слепца, который шатается без толку по улице, мешая экипажному и ___, — хватать и тащить куда следует».",
@@ -67,7 +39,7 @@
    ],
    "correct": "пешему движению",
    "case": "Дательный (Dative)",
-   "explain": "«пешему движению» — the dative marks the indirect object or recipient.",
+   "explain": "«мешая» takes the dative (кому? чему?).",
    "id": "c7"
   },
   {
@@ -81,7 +53,7 @@
    ],
    "correct": "хороших подзатыльников",
    "case": "Родительный (Genitive)",
-   "explain": "«хороших подзатыльников» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«хороших подзатыльников» depends on the noun «Пара» (whose? of what?) — genitive.",
    "id": "c8"
   },
   {
@@ -95,36 +67,22 @@
    ],
    "correct": "внешних влияний",
    "case": "Родительный (Genitive)",
-   "explain": "«внешних влияний» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«внешних влияний» — «от» always takes the genitive.",
    "id": "c9"
   },
   {
    "sentence": "Выяснив дело «Об охране слепцов от внешних влияний», Ave сел за свой роскошный ___ и заплакал.",
    "lemma": "стол",
    "options": [
-    "королевском столе",
-    "королевским столом",
     "королевскому столу",
-    "королевский стол"
+    "королевском столе",
+    "королевский стол",
+    "королевского стола"
    ],
    "correct": "королевский стол",
    "case": "Винительный (Accusative)",
-   "explain": "«королевский стол» — after the preposition «за», the accusative marks the direct object of the verb.",
+   "explain": "«королевский стол» — «за» takes the accusative here (куда? за что? за кого?) — the instrumental would mean position behind or at (где? за чем?).",
    "id": "c10"
-  },
-  {
-   "sentence": "Не сказал ли я, узнав впервые о законе «охранения слепцов» — «___!».",
-   "lemma": "слепец",
-   "options": [
-    "бедных слепцов",
-    "бедным слепцам",
-    "бедных слепцах",
-    "бедные слепцы"
-   ],
-   "correct": "бедные слепцы",
-   "case": "Именительный (Nominative)",
-   "explain": "«бедные слепцы» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
   },
   {
    "sentence": "«Дожидайся!» — подумал Ave и, перепрыгивая через десять ступенек роскошной ___, убежал.",
@@ -137,7 +95,7 @@
    ],
    "correct": "королевской лестницы",
    "case": "Родительный (Genitive)",
-   "explain": "«королевской лестницы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«королевской лестницы» depends on the noun «ступенек» (whose? of what?) — genitive.",
    "id": "c12"
   }
  ]

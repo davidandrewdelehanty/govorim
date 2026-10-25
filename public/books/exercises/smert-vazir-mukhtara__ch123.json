@@ -1,62 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Только в Риме, вероятно, были такие ___ и живые ноздри.",
-   "lemma": "лицо",
-   "options": [
-    "смугло-бледных лиц",
-    "смугло-бледными лицами",
-    "смугло-бледным лицам",
-    "смугло-бледные лица"
-   ],
-   "correct": "смугло-бледные лица",
-   "case": "Именительный (Nominative)",
-   "explain": "«смугло-бледные лица» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Только в Риме, вероятно, были такие смугло-бледные лица и ___.",
-   "lemma": "ноздря",
-   "options": [
-    "живые ноздри",
-    "живым ноздрям",
-    "живыми ноздрями",
-    "живых ноздрей"
-   ],
-   "correct": "живые ноздри",
-   "case": "Именительный (Nominative)",
-   "explain": "«живые ноздри» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
-   "sentence": "— Я рад, что со мной говорите вы, ___.",
-   "lemma": "человек",
-   "options": [
-    "счастливом человеке",
-    "счастливый человек",
-    "счастливого человека",
-    "счастливым человеком"
-   ],
-   "correct": "счастливый человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«счастливый человек» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
-  },
-  {
-   "sentence": "Так трудно разгадать ___.",
-   "lemma": "вкус",
-   "options": [
-    "женских вкусов",
-    "женскими вкусами",
-    "женских вкусах",
-    "женские вкусы"
-   ],
-   "correct": "женские вкусы",
-   "case": "Винительный (Accusative)",
-   "explain": "«женские вкусы» — the accusative marks the direct object of the verb.",
-   "id": "c5"
-  },
-  {
    "sentence": "Ибо ___ может повести к несчастью.",
    "lemma": "оттяжка",
    "options": [
@@ -67,36 +11,22 @@
    ],
    "correct": "дальнейшая оттяжка",
    "case": "Именительный (Nominative)",
-   "explain": "«дальнейшая оттяжка» — the subject of the sentence stands in the nominative.",
+   "explain": "«дальнейшая оттяжка» is the subject of «может» — who or what does it — so nominative.",
    "id": "c6"
   },
   {
    "sentence": "Пальцы прекращают свой ___, и Аббас смотрит с недоумением: наконец-то, наконец-то он заговорил.",
    "lemma": "танец",
    "options": [
-    "плавного танца",
-    "плавному танцу",
     "плавном танце",
+    "плавному танцу",
+    "плавным танцем",
     "плавный танец"
    ],
    "correct": "плавный танец",
    "case": "Винительный (Accusative)",
-   "explain": "«плавный танец» — the accusative marks the direct object of the verb.",
+   "explain": "«плавный танец» is the direct object of «прекращают» (кого? что?) — accusative.",
    "id": "c7"
-  },
-  {
-   "sentence": "— Да, но ведь шеф, ___ мне это обещал.",
-   "lemma": "шеф",
-   "options": [
-    "великом шефе",
-    "великий шеф",
-    "великого шефа",
-    "великим шефом"
-   ],
-   "correct": "великий шеф",
-   "case": "Именительный (Nominative)",
-   "explain": "«великий шеф» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
   },
   {
    "sentence": "— Боюсь, ваше высочество, что я все же буду поставлен в необходимость потребовать ___.",
@@ -109,7 +39,7 @@
    ],
    "correct": "немедленной уплаты",
    "case": "Родительный (Genitive)",
-   "explain": "«немедленной уплаты» — the genitive here marks possession, absence, or quantity.",
+   "explain": "With «потребовать», a verb of waiting, seeking, asking or wanting, the object can stand in the genitive — as here.",
    "id": "c9"
   },
   {
@@ -123,7 +53,7 @@
    ],
    "correct": "великого визиря",
    "case": "Винительный (Accusative)",
-   "explain": "«великого визиря» — the accusative marks the direct object of the verb.",
+   "explain": "«великого визиря» is the direct object of «повидаю» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c10"
   },
   {
@@ -137,36 +67,8 @@
    ],
    "correct": "индийская завитушка",
    "case": "Именительный (Nominative)",
-   "explain": "«индийская завитушка» — the subject of the sentence stands in the nominative.",
+   "explain": "«индийская завитушка» is the subject of «Оживает» — who or what does it — so nominative.",
    "id": "c11"
-  },
-  {
-   "sentence": "— Я полагаю, и император будет счастлив увидеть ваше высочество, несмотря на неусыпные ___ свои.",
-   "lemma": "труд",
-   "options": [
-    "военных трудов",
-    "военных трудах",
-    "военными трудами",
-    "военные труды"
-   ],
-   "correct": "военные труды",
-   "case": "Винительный (Accusative)",
-   "explain": "«военные труды» — the accusative marks the direct object of the verb.",
-   "id": "c12"
-  },
-  {
-   "sentence": "— Я сказал бы дяде своему, императору: пусть вспомнит он ___ своей династии.",
-   "lemma": "день",
-   "options": [
-    "решительному дню",
-    "решительный день",
-    "решительного дня",
-    "решительным днём"
-   ],
-   "correct": "решительный день",
-   "case": "Винительный (Accusative)",
-   "explain": "«решительный день» — the accusative marks the direct object of the verb.",
-   "id": "c13"
   },
   {
    "sentence": "___ ждет меня, и, если я появлюсь, бунт испепелит оттоманов.",
@@ -179,7 +81,7 @@
    ],
    "correct": "кербелайский шейх",
    "case": "Именительный (Nominative)",
-   "explain": "«Кербелайский шейх» — the subject of the sentence stands in the nominative.",
+   "explain": "«кербелайский шейх» is the subject of «ждет» — who or what does it — so nominative.",
    "id": "c14"
   },
   {
@@ -193,22 +95,8 @@
    ],
    "correct": "лишние черты",
    "case": "Именительный (Nominative)",
-   "explain": "«лишние черты» — the subject of the sentence stands in the nominative.",
+   "explain": "«лишние черты» is the subject of «есть» — who or what does it — so nominative.",
    "id": "c16"
-  },
-  {
-   "sentence": "Грибоедов едет домой, и ферраши бьют ___ по мокрым привычным спинам прохожих.",
-   "lemma": "палка",
-   "options": [
-    "мокрым палкам",
-    "мокрыми палками",
-    "мокрых палок",
-    "мокрые палки"
-   ],
-   "correct": "мокрыми палками",
-   "case": "Творительный (Instrumental)",
-   "explain": "«мокрыми палками» — the instrumental marks the means, company, or complement.",
-   "id": "c17"
   }
  ]
 }

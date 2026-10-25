@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Василий Петрович являлся к нам аккуратно всякий день часов в двенадцать, снимал свой ___, подтяжки и, сказав обоим нам «здравствуйте», усаживался за своих классиков.",
-   "lemma": "галстук",
-   "options": [
-    "коленкоровым галстуком",
-    "коленкоровый галстук",
-    "коленкорового галстука",
-    "коленкоровом галстуке"
-   ],
-   "correct": "коленкоровый галстук",
-   "case": "Винительный (Accusative)",
-   "explain": "«коленкоровый галстук» — the accusative marks the direct object of the verb.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Она происходила от двух совершенно ___.",
-   "lemma": "обстоятельство",
-   "options": [
-    "сторонним обстоятельствам",
-    "сторонних обстоятельств",
-    "сторонние обстоятельства",
-    "сторонними обстоятельствами"
-   ],
-   "correct": "сторонних обстоятельств",
-   "case": "Родительный (Genitive)",
-   "explain": "«сторонних обстоятельств» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
-   "id": "c3"
-  },
-  {
    "sentence": "Василий Петрович вспомнил, что делопроизводитель в ___ был его товарищем по семинарии, сходил к нему рано утром и возвратился необыкновенно расстроенным.",
    "lemma": "присутствие",
    "options": [
@@ -39,7 +11,7 @@
    ],
    "correct": "рекрутском присутствии",
    "case": "Предложный (Prepositional)",
-   "explain": "«рекрутском присутствии» — after the preposition «в», for location or topic.",
+   "explain": "«рекрутском присутствии» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c4"
   },
   {
@@ -53,22 +25,8 @@
    ],
    "correct": "солдатского сукна",
    "case": "Родительный (Genitive)",
-   "explain": "«солдатского сукна» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«солдатского сукна» — «из» always takes the genitive.",
    "id": "c7"
-  },
-  {
-   "sentence": "— Тоже, чай, матери где-нибудь есть?— сказала, поровнявшись с нашим окном, одна рослая ___.",
-   "lemma": "кухарка",
-   "options": [
-    "рябая кухарка",
-    "рябой кухарке",
-    "рябой кухарки",
-    "рябой кухаркой"
-   ],
-   "correct": "рябая кухарка",
-   "case": "Именительный (Nominative)",
-   "explain": "«рябая кухарка» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
   },
   {
    "sentence": "Мне захотелось пойти посмотреть, как будут ссаживать этих ___ у гарнизонной казармы.",
@@ -81,7 +39,7 @@
    ],
    "correct": "несчастных детей",
    "case": "Винительный (Accusative)",
-   "explain": "«несчастных детей» — the accusative marks the direct object of the verb.",
+   "explain": "«несчастных детей» is the direct object of «ссаживать» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c9"
   },
   {
@@ -95,50 +53,8 @@
    ],
    "correct": "гарнизонной казармы",
    "case": "Родительный (Genitive)",
-   "explain": "«гарнизонной казармы» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«гарнизонной казармы» — «у» always takes the genitive.",
    "id": "c10"
-  },
-  {
-   "sentence": "___, куда привезли переходящую партию еврейских рекрутиков, были от нас довольно далеко.",
-   "lemma": "казарма",
-   "options": [
-    "гарнизонными казармами",
-    "гарнизонных казармах",
-    "гарнизонных казарм",
-    "гарнизонные казармы"
-   ],
-   "correct": "гарнизонные казармы",
-   "case": "Винительный (Accusative)",
-   "explain": "«Гарнизонные казармы» — the accusative marks the direct object of the verb.",
-   "id": "c11"
-  },
-  {
-   "sentence": "___ с унтер-офицером делал им проверку.",
-   "lemma": "офицер",
-   "options": [
-    "партионный офицер",
-    "партионном офицере",
-    "партионному офицеру",
-    "партионного офицера"
-   ],
-   "correct": "партионный офицер",
-   "case": "Именительный (Nominative)",
-   "explain": "«Партионный офицер» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
-  },
-  {
-   "sentence": "Около одной телеги тоже стояло несколько дам и священник с ___ на владимирской ленте.",
-   "lemma": "крест",
-   "options": [
-    "бронзовом кресте",
-    "бронзовый крест",
-    "бронзовым крестом",
-    "бронзовому кресту"
-   ],
-   "correct": "бронзовым крестом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«бронзовым крестом» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c13"
   },
   {
    "sentence": "Около одной телеги тоже стояло несколько дам и священник с бронзовым крестом на ___.",
@@ -151,50 +67,22 @@
    ],
    "correct": "владимирской ленте",
    "case": "Предложный (Prepositional)",
-   "explain": "«владимирской ленте» — after the preposition «на», for location or topic.",
+   "explain": "«владимирской ленте» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c14"
   },
   {
    "sentence": "Дитя сделало едва заметный ___.",
    "lemma": "знак",
    "options": [
-    "отрицательный знак",
+    "отрицательном знаке",
     "отрицательному знаку",
-    "отрицательного знака",
-    "отрицательным знаком"
+    "отрицательным знаком",
+    "отрицательный знак"
    ],
    "correct": "отрицательный знак",
    "case": "Винительный (Accusative)",
-   "explain": "«отрицательный знак» — the accusative marks the direct object of the verb.",
+   "explain": "«отрицательный знак» is the direct object of «сделало» (кого? что?) — accusative.",
    "id": "c15"
-  },
-  {
-   "sentence": "___, с которыми жил Овцебык, давно привыкли не видать Василия Петровича по целым неделям и не обращали никакого внимания на его исчезновение.",
-   "lemma": "семинаристика",
-   "options": [
-    "маленьких семинаристиках",
-    "маленькими семинаристиками",
-    "маленьких семинаристик",
-    "маленькие семинаристики"
-   ],
-   "correct": "маленькие семинаристики",
-   "case": "Именительный (Nominative)",
-   "explain": "«Маленькие семинаристики» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
-  },
-  {
-   "sentence": "Кровать с ___, стоявшая на его квартире, никогда долго не покоила его тела.",
-   "lemma": "доска",
-   "options": [
-    "голых досках",
-    "голыми досками",
-    "голым доскам",
-    "голые доски"
-   ],
-   "correct": "голыми досками",
-   "case": "Творительный (Instrumental)",
-   "explain": "«голыми досками» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c19"
   },
   {
    "sentence": "Только изредка, заходя домой, он улаживался на нее, делал мальчикам ___ с каким-нибудь курьезным вопросом в конце каждого испытания, и затем кровать эта опять стояла пустою.",
@@ -207,36 +95,8 @@
    ],
    "correct": "неожиданный экзамен",
    "case": "Винительный (Accusative)",
-   "explain": "«неожиданный экзамен» — the accusative marks the direct object of the verb.",
+   "explain": "«неожиданный экзамен» is the direct object of «делал» (кого? что?) — accusative.",
    "id": "c20"
-  },
-  {
-   "sentence": "Придет, бывало, уляжется на зеленой могиле, разложит перед собою книгу какого-нибудь ___ и читает, а то свернет книгу, подложит ее под голову да смотрит на небо.",
-   "lemma": "писатель",
-   "options": [
-    "латинскому писателю",
-    "латинском писателе",
-    "латинским писателем",
-    "латинского писателя"
-   ],
-   "correct": "латинского писателя",
-   "case": "Родительный (Genitive)",
-   "explain": "«латинского писателя» — the genitive here marks possession, absence, or quantity.",
-   "id": "c21"
-  },
-  {
-   "sentence": "— Вы — упырь,— говорил ему бледный ___, прослывший за литератора с тех пор, как в губернских ведомостях напечатали его ученую статью.",
-   "lemma": "учитель",
-   "options": [
-    "уездного учителя",
-    "уездным учителем",
-    "уездном учителе",
-    "уездный учитель"
-   ],
-   "correct": "уездный учитель",
-   "case": "Именительный (Nominative)",
-   "explain": "«уездный учитель» — the subject of the sentence stands in the nominative.",
-   "id": "c22"
   }
  ]
 }

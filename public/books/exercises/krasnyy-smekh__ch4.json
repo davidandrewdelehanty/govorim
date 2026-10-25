@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Но десять или двенадцать ___ проволоки и борьба с нею, целый лабиринт волчьих ям, с набитыми на дне кольями так закружили головы, что положительно нельзя было определить направления.",
-   "lemma": "ряд",
-   "options": [
-    "непрерывным рядам",
-    "непрерывных рядах",
-    "непрерывных рядов",
-    "непрерывные ряды"
-   ],
-   "correct": "непрерывных рядов",
-   "case": "Родительный (Genitive)",
-   "explain": "«непрерывных рядов» — the genitive here marks possession, absence, or quantity.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Но десять или двенадцать непрерывных рядов проволоки и борьба с нею, ___ волчьих ям, с набитыми на дне кольями так закружили головы, что положительно нельзя было определить направления.",
-   "lemma": "лабиринт",
-   "options": [
-    "целым лабиринтом",
-    "целый лабиринт",
-    "целому лабиринту",
-    "целом лабиринте"
-   ],
-   "correct": "целый лабиринт",
-   "case": "Именительный (Nominative)",
-   "explain": "«целый лабиринт» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
    "sentence": "Но десять или двенадцать непрерывных рядов проволоки и борьба с нею, целый лабиринт ___, с набитыми на дне кольями так закружили головы, что положительно нельзя было определить направления.",
    "lemma": "яма",
    "options": [
@@ -39,50 +11,8 @@
    ],
    "correct": "волчьих ям",
    "case": "Родительный (Genitive)",
-   "explain": "«волчьих ям» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«волчьих ям» depends on the noun «лабиринт» (whose? of what?) — genitive.",
    "id": "c3"
-  },
-  {
-   "sentence": "Он сам, хотя с утра ничего не пил и не ел, чувствовал себя очень странно: голова кружилась, и страх минутами сменялся ___ -- восторгом страха.",
-   "lemma": "восторг",
-   "options": [
-    "диким восторгом",
-    "дикий восторг",
-    "дикого восторга",
-    "диком восторге"
-   ],
-   "correct": "диким восторгом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«диким восторгом» — the instrumental marks the means, company, or complement.",
-   "id": "c4"
-  },
-  {
-   "sentence": "-- ___, -- сказал я.",
-   "lemma": "смех",
-   "options": [
-    "красному смеху",
-    "красным смехом",
-    "красного смеха",
-    "красный смех"
-   ],
-   "correct": "красный смех",
-   "case": "Именительный (Nominative)",
-   "explain": "«Красный смех» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
-  },
-  {
-   "sentence": "-- ___, -- ответил я.",
-   "lemma": "смех",
-   "options": [
-    "красному смеху",
-    "красным смехом",
-    "красного смеха",
-    "красный смех"
-   ],
-   "correct": "красный смех",
-   "case": "Именительный (Nominative)",
-   "explain": "«Красный смех» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
   },
   {
    "sentence": "Я чувствую, как из головы идут ___.",
@@ -95,35 +25,21 @@
    ],
    "correct": "белые волосы",
    "case": "Именительный (Nominative)",
-   "explain": "«белые волосы» — the subject of the sentence stands in the nominative.",
+   "explain": "«белые волосы» is the subject of «идут» — who or what does it — so nominative.",
    "id": "c9"
-  },
-  {
-   "sentence": "Я тщетно искал в этой толпе растерянных людей ___ и не мог найти.",
-   "lemma": "лицо",
-   "options": [
-    "знакомым лицам",
-    "знакомых лицах",
-    "знакомые лица",
-    "знакомых лиц"
-   ],
-   "correct": "знакомые лица",
-   "case": "Именительный (Nominative)",
-   "explain": "«знакомые лица» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
   },
   {
    "sentence": "Дерево было чужое, и закат чужой, и вода чужая, с особым запахом и вкусом, как будто вместе с умершими мы оставили землю и перешли в какой-то ___ -- мир таинственных явлений и зловещих пасмурных теней.",
    "lemma": "мир",
    "options": [
-    "другой мир",
-    "другом мире",
     "другого мира",
-    "другому миру"
+    "другому миру",
+    "другим миром",
+    "другой мир"
    ],
    "correct": "другой мир",
    "case": "Винительный (Accusative)",
-   "explain": "«другой мир» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«другой мир» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c13"
   },
   {
@@ -137,77 +53,21 @@
    ],
    "correct": "таинственных явлений",
    "case": "Родительный (Genitive)",
-   "explain": "«таинственных явлений» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«таинственных явлений» depends on the noun «мир» (whose? of what?) — genitive.",
    "id": "c14"
-  },
-  {
-   "sentence": "Дерево было чужое, и закат чужой, и вода чужая, с особым запахом и вкусом, как будто вместе с умершими мы оставили землю и перешли в какой-то другой мир -- мир таинственных явлений и зловещих ___.",
-   "lemma": "тень",
-   "options": [
-    "пасмурных теней",
-    "пасмурным теням",
-    "пасмурными тенями",
-    "пасмурных тенях"
-   ],
-   "correct": "пасмурных теней",
-   "case": "Родительный (Genitive)",
-   "explain": "«пасмурных теней» — the genitive here marks possession, absence, or quantity.",
-   "id": "c15"
-  },
-  {
-   "sentence": "Закат был желтый, холодный; над ним тяжело висели черные, ничем не освещенные, неподвижные тучи, и земля под ним была черна, и наши лица в этом ___ были желты, как лица мертвецов.",
-   "lemma": "свет",
-   "options": [
-    "зловещем свете",
-    "зловещий свет",
-    "зловещего света",
-    "зловещим светом"
-   ],
-   "correct": "зловещем свете",
-   "case": "Предложный (Prepositional)",
-   "explain": "«зловещем свете» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c16"
-  },
-  {
-   "sentence": "-- На войне, -- ответил тот, что смеялся, и снова захохотал глухим, ___, точно он давился чем-то.",
-   "lemma": "смех",
-   "options": [
-    "длительному смеху",
-    "длительным смехом",
-    "длительном смехе",
-    "длительного смеха"
-   ],
-   "correct": "длительным смехом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«длительным смехом» — the instrumental marks the means, company, or complement.",
-   "id": "c17"
-  },
-  {
-   "sentence": "\"Ботик\" -- так звали мы товарища, ___ в больших непромокаемых сапогах.",
-   "lemma": "офицер",
-   "options": [
-    "маленьком офицере",
-    "маленьким офицером",
-    "маленького офицера",
-    "маленькому офицеру"
-   ],
-   "correct": "маленького офицера",
-   "case": "Винительный (Accusative)",
-   "explain": "«маленького офицера» — the accusative marks the direct object of the verb.",
-   "id": "c18"
   },
   {
    "sentence": "\"Ботик\" -- так звали мы товарища, маленького офицера в больших ___.",
    "lemma": "сапог",
    "options": [
-    "непромокаемых сапог",
-    "непромокаемые сапоги",
     "непромокаемыми сапогами",
-    "непромокаемых сапогах"
+    "непромокаемым сапогам",
+    "непромокаемых сапогах",
+    "непромокаемых сапог"
    ],
    "correct": "непромокаемых сапогах",
    "case": "Предложный (Prepositional)",
-   "explain": "«непромокаемых сапогах» — after the preposition «в», for location or topic.",
+   "explain": "«непромокаемых сапогах» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c19"
   },
   {
@@ -221,22 +81,8 @@
    ],
    "correct": "общий смех",
    "case": "Именительный (Nominative)",
-   "explain": "«общий смех» — the subject of the sentence stands in the nominative.",
+   "explain": "«общий смех» is the subject of «Поднялся» — who or what does it — so nominative.",
    "id": "c22"
-  },
-  {
-   "sentence": "Поднялся общий смех и ___ -- и снова все замолчали, уступая непонятному.",
-   "lemma": "крик",
-   "options": [
-    "жуткий крик",
-    "жуткому крику",
-    "жуткого крика",
-    "жутким криком"
-   ],
-   "correct": "жуткий крик",
-   "case": "Именительный (Nominative)",
-   "explain": "«жуткий крик» — the subject of the sentence stands in the nominative.",
-   "id": "c23"
   },
   {
    "sentence": "Молча, теряя сознание от ужаса, стояли мы вокруг ___, а с неба на нас пристально и молча глядела огромная бесформенная тень, поднявшаяся над миром.",
@@ -249,7 +95,7 @@
    ],
    "correct": "потухшего самовара",
    "case": "Родительный (Genitive)",
-   "explain": "«потухшего самовара» — after the preposition «вокруг», the genitive here marks possession, absence, or quantity.",
+   "explain": "«потухшего самовара» — «вокруг» always takes the genitive.",
    "id": "c24"
   },
   {
@@ -263,22 +109,8 @@
    ],
    "correct": "полкового командира",
    "case": "Родительный (Genitive)",
-   "explain": "«полкового командира» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«полкового командира» — «у» always takes the genitive.",
    "id": "c25"
-  },
-  {
-   "sentence": "Внезапно, совсем близко от нас, вероятно, у полкового командира, заиграла музыка, и бешено-веселые, ___ точно вспыхнули среди ночи и тишины.",
-   "lemma": "звук",
-   "options": [
-    "громкие звуки",
-    "громким звукам",
-    "громкими звуками",
-    "громких звуков"
-   ],
-   "correct": "громкие звуки",
-   "case": "Именительный (Nominative)",
-   "explain": "«громкие звуки» — the subject of the sentence stands in the nominative.",
-   "id": "c26"
   },
   {
    "sentence": "И долго стояли мы вокруг ___ и молчали.",
@@ -291,7 +123,7 @@
    ],
    "correct": "потухшего самовара",
    "case": "Родительный (Genitive)",
-   "explain": "«потухшего самовара» — after the preposition «вокруг», the genitive here marks possession, absence, or quantity.",
+   "explain": "«потухшего самовара» — «вокруг» always takes the genitive.",
    "id": "c27"
   }
  ]

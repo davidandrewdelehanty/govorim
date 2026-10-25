@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "___ прыгал маленький офицерик, светилось бронзовое лицо Павла, улыбались глаза Андрея.",
-   "lemma": "пятно",
-   "options": [
-    "серого пятна",
-    "серому пятну",
-    "серое пятно",
-    "серым пятном"
-   ],
-   "correct": "серым пятном",
-   "case": "Творительный (Instrumental)",
-   "explain": "«Серым пятном» — the instrumental marks the means, company, or complement.",
-   "id": "c1"
-  },
-  {
    "sentence": "Серым пятном прыгал ___, светилось бронзовое лицо Павла, улыбались глаза Андрея.",
    "lemma": "офицерик",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "маленький офицерик",
    "case": "Именительный (Nominative)",
-   "explain": "«маленький офицерик» — the subject of the sentence stands in the nominative.",
+   "explain": "«маленький офицерик» is the subject of «прыгал» — who or what does it — so nominative.",
    "id": "c2"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "жгучего тления",
    "case": "Родительный (Genitive)",
-   "explain": "«жгучего тления» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«жгучего тления» depends on the noun «груди» (whose? of what?) — genitive.",
    "id": "c3"
   },
   {
@@ -53,22 +39,8 @@
    ],
    "correct": "третий раз",
    "case": "Винительный (Accusative)",
-   "explain": "«Третий раз» — the accusative marks the direct object of the verb.",
+   "explain": "«третий раз» tells how long or how often, with no preposition — accusative.",
    "id": "c4"
-  },
-  {
-   "sentence": "Она молчала, проводя по губам ___.",
-   "lemma": "язык",
-   "options": [
-    "сухим языком",
-    "сухом языке",
-    "сухой язык",
-    "сухому языку"
-   ],
-   "correct": "сухим языком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«сухим языком» — the instrumental marks the means, company, or complement.",
-   "id": "c5"
   },
   {
    "sentence": "\"Вдова ___ Пелагея Власова\".",
@@ -81,7 +53,7 @@
    ],
    "correct": "рабочего человека",
    "case": "Родительный (Genitive)",
-   "explain": "«рабочего человека» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«рабочего человека» depends on the noun «Вдова» (whose? of what?) — genitive.",
    "id": "c7"
   },
   {
@@ -95,50 +67,8 @@
    ],
    "correct": "голубого неба",
    "case": "Родительный (Genitive)",
-   "explain": "«голубого неба» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«голубого неба» depends on the noun «фоне» (whose? of what?) — genitive.",
    "id": "c11"
-  },
-  {
-   "sentence": "Сверху, из купола, падали широкие, как полотенца, ___.",
-   "lemma": "луч",
-   "options": [
-    "солнечных лучей",
-    "солнечных лучах",
-    "солнечными лучами",
-    "солнечные лучи"
-   ],
-   "correct": "солнечные лучи",
-   "case": "Именительный (Nominative)",
-   "explain": "«солнечные лучи» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
-  },
-  {
-   "sentence": "Риза исчезла с него, на лице появились седые, ___.",
-   "lemma": "ус",
-   "options": [
-    "строгих усов",
-    "строгих усах",
-    "строгим усам",
-    "строгие усы"
-   ],
-   "correct": "строгие усы",
-   "case": "Именительный (Nominative)",
-   "explain": "«строгие усы» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
-  },
-  {
-   "sentence": "Потом вымыла окна и пол ___, поставила самовар, оделась.",
-   "lemma": "вода",
-   "options": [
-    "холодной воде",
-    "холодной водой",
-    "холодная вода",
-    "холодной воды"
-   ],
-   "correct": "холодной водой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«холодной водой» — the instrumental marks the means, company, or complement.",
-   "id": "c15"
   },
   {
    "sentence": "В ___ осени она шла мимо пруда и посреди него увидала лодку.",
@@ -151,63 +81,21 @@
    ],
    "correct": "серый день",
    "case": "Винительный (Accusative)",
-   "explain": "«серый день» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«серый день» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c19"
-  },
-  {
-   "sentence": "Глубокой печалью, неведомым горем веяло от этой лодки без гребца и весел, одинокой, неподвижной на ___ среди умерших листьев.",
-   "lemma": "вода",
-   "options": [
-    "матовой воде",
-    "матовой водой",
-    "матовая вода",
-    "матовой воды"
-   ],
-   "correct": "матовой воде",
-   "case": "Предложный (Prepositional)",
-   "explain": "«матовой воде» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c20"
-  },
-  {
-   "sentence": "Вечером того дня узнали, что в пруде утопилась жена приказчика Заусайловых, ___ с черными, всегда растрепанными волосами и быстрой походкой.",
-   "lemma": "женщина",
-   "options": [
-    "маленькая женщина",
-    "маленькой женщине",
-    "маленькой женщиной",
-    "маленькой женщины"
-   ],
-   "correct": "маленькая женщина",
-   "case": "Именительный (Nominative)",
-   "explain": "«маленькая женщина» — the subject of the sentence stands in the nominative.",
-   "id": "c21"
-  },
-  {
-   "sentence": "Вечером того дня узнали, что в пруде утопилась жена приказчика Заусайловых, маленькая женщина с черными, всегда растрепанными волосами и ___.",
-   "lemma": "походка",
-   "options": [
-    "быстрой походкой",
-    "быстрая походка",
-    "быстрой походки",
-    "быстрой походке"
-   ],
-   "correct": "быстрой походкой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«быстрой походкой» — the instrumental marks the means, company, or complement.",
-   "id": "c22"
   },
   {
    "sentence": "Мать провела рукой по лицу, и мысль ее трепетно поплыла над впечатлениями ___.",
    "lemma": "день",
    "options": [
-    "вчерашним днём",
+    "вчерашнем дне",
     "вчерашнему дню",
     "вчерашнего дня",
-    "вчерашнем дне"
+    "вчерашний день"
    ],
    "correct": "вчерашнего дня",
    "case": "Родительный (Genitive)",
-   "explain": "«вчерашнего дня» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«вчерашнего дня» depends on the noun «впечатлениями» (whose? of what?) — genitive.",
    "id": "c23"
   },
   {
@@ -221,22 +109,8 @@
    ],
    "correct": "заботливый голос",
    "case": "Винительный (Accusative)",
-   "explain": "«заботливый голос» — the accusative marks the direct object of the verb.",
+   "explain": "«заботливый голос» is the direct object of «слушала» (кого? что?) — accusative.",
    "id": "c24"
-  },
-  {
-   "sentence": "Ей стало грустно, когда она увидела себя ___, просящей милостыню Христа ради под окнами деревенских изб.",
-   "lemma": "странница",
-   "options": [
-    "бездомной странницы",
-    "бездомной страннице",
-    "бездомная странница",
-    "бездомной странницей"
-   ],
-   "correct": "бездомной странницей",
-   "case": "Творительный (Instrumental)",
-   "explain": "«бездомной странницей» — the instrumental marks the means, company, or complement.",
-   "id": "c26"
   },
   {
    "sentence": "Ей стало грустно, когда она увидела себя бездомной странницей, просящей милостыню Христа ради под окнами ___.",
@@ -249,22 +123,8 @@
    ],
    "correct": "деревенских изб",
    "case": "Родительный (Genitive)",
-   "explain": "«деревенских изб» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«деревенских изб» depends on the noun «окнами» (whose? of what?) — genitive.",
    "id": "c27"
-  },
-  {
-   "sentence": "Встала, приподнятая силой, которая росла в ее груди и охмеляла голову горячим натиском ___.",
-   "lemma": "слово",
-   "options": [
-    "негодующих слов",
-    "негодующих словах",
-    "негодующим словам",
-    "негодующие слова"
-   ],
-   "correct": "негодующих слов",
-   "case": "Родительный (Genitive)",
-   "explain": "«негодующих слов» — the genitive here marks possession, absence, or quantity.",
-   "id": "c31"
   }
  ]
 }

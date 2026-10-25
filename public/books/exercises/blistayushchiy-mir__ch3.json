@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Агассиц знал, что к вершине горы ведут ___.",
-   "lemma": "тропинка",
-   "options": [
-    "крутые тропинки",
-    "крутым тропинкам",
-    "крутыми тропинками",
-    "крутых тропинках"
-   ],
-   "correct": "крутые тропинки",
-   "case": "Именительный (Nominative)",
-   "explain": "«крутые тропинки» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Задумчивое остолбенение клоунов в момент ___ по затылку гуттаперчевой колбасой вызвало не одну мигрень слабых голов, заболевших от хохота.",
    "lemma": "удар",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "неизбежного удара",
    "case": "Родительный (Genitive)",
-   "explain": "«неизбежного удара» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«неизбежного удара» depends on the noun «момент» (whose? of what?) — genitive.",
    "id": "c3"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "слабых голов",
    "case": "Родительный (Genitive)",
-   "explain": "«слабых голов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«слабых голов» depends on the noun «мигрень» (whose? of what?) — genitive.",
    "id": "c5"
   },
   {
@@ -47,69 +33,27 @@
    "lemma": "конь",
    "options": [
     "астурийскими конями",
-    "астурийских конях",
     "астурийским коням",
-    "астурийских коней"
+    "астурийские кони",
+    "астурийских конях"
    ],
    "correct": "астурийских конях",
    "case": "Предложный (Prepositional)",
-   "explain": "«астурийских конях» — after the preposition «на», for location or topic.",
+   "explain": "«астурийских конях» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c6"
-  },
-  {
-   "sentence": "Четыре гимнаста, раскачиваясь под куполом, перебрасывались с одной трапеции на другую ___.",
-   "lemma": "вольт",
-   "options": [
-    "жуткими вольтами",
-    "жутких вольт",
-    "жутким вольтам",
-    "жуткие вольты"
-   ],
-   "correct": "жуткими вольтами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«жуткими вольтами» — after the preposition «на», the instrumental marks the means, company, or complement.",
-   "id": "c7"
-  },
-  {
-   "sentence": "Японец-фокусник вытащил из-за ворота трико тяжеловесную стеклянную вазу, полную воды и ___.",
-   "lemma": "рыба",
-   "options": [
-    "живым рыбам",
-    "живыми рыбами",
-    "живых рыб",
-    "живые рыбы"
-   ],
-   "correct": "живых рыб",
-   "case": "Родительный (Genitive)",
-   "explain": "«живых рыб» — the genitive here marks possession, absence, or quantity.",
-   "id": "c8"
-  },
-  {
-   "sentence": "Жонглер доказал, что нет предметов, которыми нельзя было бы играть, подбрасывая их на воздух и ловя, как ласточка мух, без ушибов и промаха; семь зажженных ламп взлетали из его рук с легкостью ___.",
-   "lemma": "струя",
-   "options": [
-    "фонтанная струя",
-    "фонтанной струёй",
-    "фонтанной струи",
-    "фонтанной струе"
-   ],
-   "correct": "фонтанной струи",
-   "case": "Родительный (Genitive)",
-   "explain": "«фонтанной струи» — the genitive here marks possession, absence, or quantity.",
-   "id": "c9"
   },
   {
    "sentence": "Концом ___ был наездник Ришлей, скакавший на пяти рыжих белогривых лошадях и переходя, стоя, с одной на другую так просто, как мы пересаживаемся на стульях.",
    "lemma": "отделение",
    "options": [
+    "второе отделение",
     "вторым отделением",
-    "второго отделения",
-    "второму отделению",
-    "второе отделение"
+    "втором отделении",
+    "второго отделения"
    ],
    "correct": "второго отделения",
    "case": "Родительный (Genitive)",
-   "explain": "«второго отделения» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«второго отделения» depends on the noun «Концом» (whose? of what?) — genitive.",
    "id": "c10"
   },
   {
@@ -123,7 +67,7 @@
    ],
    "correct": "левое веко",
    "case": "Именительный (Nominative)",
-   "explain": "«левое веко» — the subject of the sentence stands in the nominative.",
+   "explain": "«левое веко» is the subject of «подергивалось» — who or what does it — so nominative.",
    "id": "c12"
   },
   {
@@ -137,22 +81,8 @@
    ],
    "correct": "бесподобной улыбке",
    "case": "Предложный (Prepositional)",
-   "explain": "«бесподобной улыбке» — after the preposition «в», for location or topic.",
+   "explain": "«бесподобной улыбке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c13"
-  },
-  {
-   "sentence": "— Конечно, я вам не пара, — сказал он с искренней обидой и с не менее ___.",
-   "lemma": "восторг",
-   "options": [
-    "искреннем восторге",
-    "искреннего восторга",
-    "искренним восторгом",
-    "искреннему восторгу"
-   ],
-   "correct": "искренним восторгом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«искренним восторгом» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c15"
   },
   {
    "sentence": "Так ___ любят, посетовав нищему о его горькой доле, заняться анализом своих ощущений на тему: «Добрый ли я человек?» А нищему все равно.",
@@ -165,7 +95,7 @@
    ],
    "correct": "добрые люди",
    "case": "Именительный (Nominative)",
-   "explain": "«добрые люди» — the subject of the sentence stands in the nominative.",
+   "explain": "«добрые люди» is the subject of «любят» — who or what does it — so nominative.",
    "id": "c16"
   },
   {
@@ -179,36 +109,8 @@
    ],
    "correct": "горькой доле",
    "case": "Предложный (Prepositional)",
-   "explain": "«горькой доле» — after the preposition «о», for location or topic.",
+   "explain": "«горькой доле» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c17"
-  },
-  {
-   "sentence": "Я хочу, чтобы внутреннее ___ было осмыслено властью, не знающей ни предела, ни колебаний.",
-   "lemma": "блаженство",
-   "options": [
-    "волнующим блаженством",
-    "волнующему блаженству",
-    "волнующее блаженство",
-    "волнующем блаженстве"
-   ],
-   "correct": "волнующее блаженство",
-   "case": "Именительный (Nominative)",
-   "explain": "«волнующее блаженство» — the subject of the sentence stands in the nominative.",
-   "id": "c18"
-  },
-  {
-   "sentence": "Десяти лет она написала ___.",
-   "lemma": "стих",
-   "options": [
-    "замечательным стихам",
-    "замечательные стихи",
-    "замечательных стихов",
-    "замечательными стихами"
-   ],
-   "correct": "замечательные стихи",
-   "case": "Винительный (Accusative)",
-   "explain": "«замечательные стихи» — the accusative marks the direct object of the verb.",
-   "id": "c19"
   },
   {
    "sentence": "Семнадцатый и восемнадцатый годы она провела в ___, и ее экзотические рисунки были проданы с большой выставки по дорогой цене, в пользу слепых.",
@@ -221,22 +123,8 @@
    ],
    "correct": "кругосветном плавании",
    "case": "Предложный (Prepositional)",
-   "explain": "«кругосветном плавании» — after the preposition «в», for location or topic.",
+   "explain": "«кругосветном плавании» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c20"
-  },
-  {
-   "sentence": "Семнадцатый и восемнадцатый годы она провела в кругосветном плавании, и ее ___ были проданы с большой выставки по дорогой цене, в пользу слепых.",
-   "lemma": "рисунок",
-   "options": [
-    "экзотических рисунках",
-    "экзотическими рисунками",
-    "экзотические рисунки",
-    "экзотическим рисункам"
-   ],
-   "correct": "экзотические рисунки",
-   "case": "Именительный (Nominative)",
-   "explain": "«экзотические рисунки» — the subject of the sentence stands in the nominative.",
-   "id": "c21"
   },
   {
    "sentence": "Семнадцатый и восемнадцатый годы она провела в кругосветном плавании, и ее экзотические рисунки были проданы с большой выставки по ___, в пользу слепых.",
@@ -249,21 +137,21 @@
    ],
    "correct": "дорогой цене",
    "case": "Дательный (Dative)",
-   "explain": "«дорогой цене» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«дорогой цене» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c23"
   },
   {
    "sentence": "В ее ___ можно было переходить из помещения в помещение с нарастающим чувством власти денег, одухотворенной художественной и разносторонней душой.",
    "lemma": "дом",
    "options": [
-    "огромным домом",
-    "огромный дом",
+    "огромного дома",
     "огромном доме",
-    "огромного дома"
+    "огромному дому",
+    "огромным домом"
    ],
    "correct": "огромном доме",
    "case": "Предложный (Prepositional)",
-   "explain": "«огромном доме» — after the preposition «в», for location or topic.",
+   "explain": "«огромном доме» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c24"
   },
   {
@@ -277,7 +165,7 @@
    ],
    "correct": "душевном молчании",
    "case": "Предложный (Prepositional)",
-   "explain": "«душевном молчании» — after the preposition «в», for location or topic.",
+   "explain": "«душевном молчании» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c25"
   },
   {
@@ -291,22 +179,8 @@
    ],
    "correct": "европейские языки",
    "case": "Винительный (Accusative)",
-   "explain": "«европейские языки» — the accusative marks the direct object of the verb.",
+   "explain": "«европейские языки» is the direct object of «знала» (кого? что?) — accusative.",
    "id": "c26"
-  },
-  {
-   "sentence": "Она была чуть пониже Галля; он же, при ___, казался выше благодаря эполетам.",
-   "lemma": "рост",
-   "options": [
-    "среднего роста",
-    "среднему росту",
-    "средним ростом",
-    "среднем росте"
-   ],
-   "correct": "среднем росте",
-   "case": "Предложный (Prepositional)",
-   "explain": "«среднем росте» — after the preposition «при», for location or topic.",
-   "id": "c27"
   }
  ]
 }

@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Однажды вечером, на закате солнца, он сидел возле своей возлюбленной посреди ___ в глубокой задумчивости.",
-   "lemma": "сад",
-   "options": [
-    "фруктового сада",
-    "фруктовом саде",
-    "фруктовому саду",
-    "фруктовый сад"
-   ],
-   "correct": "фруктового сада",
-   "case": "Родительный (Genitive)",
-   "explain": "«фруктового сада» — the genitive here marks possession, absence, or quantity.",
-   "id": "c1"
-  },
-  {
    "sentence": "Что станется без него с несчастными, даже более богатыми, чем я, у которых ровно столько средств, чтобы получить образование, но недостаточно, чтобы в двадцать лет подкупить ___ и пробить себе дорогу!",
    "lemma": "человек",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "нужного человека",
    "case": "Винительный (Accusative)",
-   "explain": "«нужного человека» — the accusative marks the direct object of the verb.",
+   "explain": "«нужного человека» is the direct object of «подкупить» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c2"
   },
   {
@@ -39,78 +25,22 @@
    ],
    "correct": "роковое воспоминание",
    "case": "Именительный (Nominative)",
-   "explain": "«роковое воспоминание» — the subject of the sentence stands in the nominative.",
+   "explain": "«роковое воспоминание» is the subject of «помешает» — who or what does it — so nominative.",
    "id": "c3"
-  },
-  {
-   "sentence": "Вдруг он заметил, что госпожа де Реналь нахмурила брови и приняла холодный и презрительный вид; ___ мыслей казался ей приличествующим лакею.",
-   "lemma": "образ",
-   "options": [
-    "подобному образу",
-    "подобного образа",
-    "подобный образ",
-    "подобным образом"
-   ],
-   "correct": "подобный образ",
-   "case": "Именительный (Nominative)",
-   "explain": "«подобный образ» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
   },
   {
    "sentence": "Ей, воспитанной в сознании своего ___, казалось, будто Жюльен тоже богат.",
    "lemma": "богатство",
    "options": [
     "крупного богатства",
-    "крупном богатстве",
+    "крупное богатство",
     "крупному богатству",
-    "крупным богатством"
+    "крупном богатстве"
    ],
    "correct": "крупного богатства",
    "case": "Родительный (Genitive)",
-   "explain": "«крупного богатства» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«крупного богатства» depends on the noun «сознании» (whose? of what?) — genitive.",
    "id": "c5"
-  },
-  {
-   "sentence": "У него хватило находчивости перетолковать свою фразу и дать понять ___, сидящей так близко от него на дерновой скамье, что сказанные слова он услыхал во время своего путешествия к приятелю лесотоорговцу.",
-   "lemma": "дама",
-   "options": [
-    "знатной дамой",
-    "знатной дамы",
-    "знатная дама",
-    "знатной даме"
-   ],
-   "correct": "знатной даме",
-   "case": "Дательный (Dative)",
-   "explain": "«знатной даме» — the dative marks the indirect object or recipient.",
-   "id": "c6"
-  },
-  {
-   "sentence": "— Ну! и не водитесь больше с этими людьми, — сказала госпожа де Реналь, все еще сохраняя свой ___, внезапно сменивший выражение самой пылкой нежности.",
-   "lemma": "вид",
-   "options": [
-    "холодного вида",
-    "холодном виде",
-    "холодному виду",
-    "холодный вид"
-   ],
-   "correct": "холодный вид",
-   "case": "Винительный (Accusative)",
-   "explain": "«холодный вид» — the accusative marks the direct object of the verb.",
-   "id": "c7"
-  },
-  {
-   "sentence": "Эти нахмуренные брови или, вернее, раскаяние в своей неосторожности нанесли ___ иллюзиям Жюльена.",
-   "lemma": "удар",
-   "options": [
-    "первом ударе",
-    "первого удара",
-    "первым ударом",
-    "первый удар"
-   ],
-   "correct": "первый удар",
-   "case": "Винительный (Accusative)",
-   "explain": "«первый удар» — the accusative marks the direct object of the verb.",
-   "id": "c8"
   },
   {
    "sentence": "Они особенно боятся того класса людей, которые, получив хорошее воспитание, не обладают ___ для начала карьеры.",
@@ -123,36 +53,8 @@
    ],
    "correct": "достаточными средствами",
    "case": "Творительный (Instrumental)",
-   "explain": "«достаточными средствами» — the instrumental marks the means, company, or complement.",
+   "explain": "«обладают» takes the instrumental.",
    "id": "c9"
-  },
-  {
-   "sentence": "Что сталось бы с этими дворянами, если бы нам привелось сражаться ___!",
-   "lemma": "оружие",
-   "options": [
-    "равному оружию",
-    "равным оружием",
-    "равное оружие",
-    "равного оружия"
-   ],
-   "correct": "равным оружием",
-   "case": "Творительный (Instrumental)",
-   "explain": "«равным оружием» — the instrumental marks the means, company, or complement.",
-   "id": "c10"
-  },
-  {
-   "sentence": "Например, я, будь я мэром Верьера, с ___, честным, каков в сущности господин де Реналь, как бы я разоблачил викария, господина Вально и все их плутни!",
-   "lemma": "намерение",
-   "options": [
-    "добрыми намерениями",
-    "добрым намерениям",
-    "добрых намерениях",
-    "добрых намерений"
-   ],
-   "correct": "добрыми намерениями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«добрыми намерениями» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c11"
   },
   {
    "sentence": "Дело же объяснялось тем, что за отвращением к ___, сказанным им, последовала боязнь — не сказала ли она косвенно ему чего-либо неприятного.",
@@ -165,91 +67,49 @@
    ],
    "correct": "дурным словам",
    "case": "Дательный (Dative)",
-   "explain": "«дурным словам» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«дурным словам» — «к» always takes the dative.",
    "id": "c12"
-  },
-  {
-   "sentence": "Лучше было бы, если бы она приходила к нему; если кто-нибудь из слуг увидит ее расхаживающей по дому, двадцать ___ послужат объяснением этого обхода.",
-   "lemma": "причина",
-   "options": [
-    "различным причинам",
-    "различных причин",
-    "различные причины",
-    "различными причинами"
-   ],
-   "correct": "различных причин",
-   "case": "Родительный (Genitive)",
-   "explain": "«различных причин» — the genitive here marks possession, absence, or quantity.",
-   "id": "c13"
   },
   {
    "sentence": "Он осмеливался задавать ей вопросы о множестве ___, незнание которых препятствует развитию молодого человека, родившегося вне общества, какой бы великий ум в нем не предполагали.",
    "lemma": "вещь",
    "options": [
-    "различных вещей",
-    "различными вещами",
+    "различные вещи",
     "различных вещах",
+    "различных вещей",
     "различным вещам"
    ],
    "correct": "различных вещей",
    "case": "Родительный (Genitive)",
-   "explain": "«различных вещей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«различных вещей» depends on the noun «множестве» (whose? of what?) — genitive.",
    "id": "c14"
   },
   {
    "sentence": "Он осмеливался задавать ей вопросы о множестве различных вещей, незнание которых препятствует развитию ___, родившегося вне общества, какой бы великий ум в нем не предполагали.",
    "lemma": "человек",
    "options": [
-    "молодому человеку",
     "молодом человеке",
-    "молодого человека",
-    "молодым человеком"
+    "молодой человек",
+    "молодому человеку",
+    "молодого человека"
    ],
    "correct": "молодого человека",
    "case": "Родительный (Genitive)",
-   "explain": "«молодого человека» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«молодого человека» depends on the noun «развитию» (whose? of what?) — genitive.",
    "id": "c15"
-  },
-  {
-   "sentence": "Он осмеливался задавать ей вопросы о множестве различных вещей, незнание которых препятствует развитию молодого человека, родившегося вне общества, какой бы ___ в нем не предполагали.",
-   "lemma": "ум",
-   "options": [
-    "великом уме",
-    "великому уму",
-    "великим умом",
-    "великий ум"
-   ],
-   "correct": "великий ум",
-   "case": "Именительный (Nominative)",
-   "explain": "«великий ум» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
-  },
-  {
-   "sentence": "Для него было счастьем это ___, исходившее от абсолютно невежественной женщины.",
-   "lemma": "воспитание",
-   "options": [
-    "любовном воспитании",
-    "любовное воспитание",
-    "любовного воспитания",
-    "любовным воспитанием"
-   ],
-   "correct": "любовное воспитание",
-   "case": "Именительный (Nominative)",
-   "explain": "«любовное воспитание» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
   },
   {
    "sentence": "На ___ выдвинулись чрезвычайно сложные интриги, завязавшиеся два года тому назад вокруг безансонского префекта.",
    "lemma": "план",
    "options": [
-    "первый план",
     "первого плана",
-    "первом плане",
-    "первому плану"
+    "первый план",
+    "первому плану",
+    "первым планом"
    ],
    "correct": "первый план",
    "case": "Винительный (Accusative)",
-   "explain": "«первый план» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«первый план» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c18"
   },
   {
@@ -263,7 +123,7 @@
    ],
    "correct": "сложные интриги",
    "case": "Именительный (Nominative)",
-   "explain": "«сложные интриги» — the subject of the sentence stands in the nominative.",
+   "explain": "«сложные интриги» is the subject of «выдвинулись» — who or what does it — so nominative.",
    "id": "c19"
   },
   {
@@ -277,7 +137,7 @@
    ],
    "correct": "знаменитыми людьми",
    "case": "Творительный (Instrumental)",
-   "explain": "«знаменитыми людьми» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «написанные», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c20"
   },
   {
@@ -291,7 +151,7 @@
    ],
    "correct": "богатый фабрикант",
    "case": "Именительный (Nominative)",
-   "explain": "«богатый фабрикант» — the subject of the sentence stands in the nominative.",
+   "explain": "«богатый фабрикант» is the subject of «являлся» — who or what does it — so nominative.",
    "id": "c21"
   },
   {
@@ -305,7 +165,7 @@
    ],
    "correct": "второго помощника",
    "case": "Родительный (Genitive)",
-   "explain": "«второго помощника» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«второго помощника» depends on the noun «место» (whose? of what?) — genitive.",
    "id": "c22"
   },
   {
@@ -319,22 +179,8 @@
    ],
    "correct": "местное общество",
    "case": "Именительный (Nominative)",
-   "explain": "«местное общество» — the subject of the sentence stands in the nominative.",
+   "explain": "«местное общество» is the subject of «собиралось» — who or what does it — so nominative.",
    "id": "c23"
-  },
-  {
-   "sentence": "Это ___ было чрезвычайно занято выбором первого помощника, о возможности появления которого даже не подозревали остальные горожане, и в особенности либералы.",
-   "lemma": "общество",
-   "options": [
-    "привилегированного общества",
-    "привилегированном обществе",
-    "привилегированное общество",
-    "привилегированному обществу"
-   ],
-   "correct": "привилегированное общество",
-   "case": "Именительный (Nominative)",
-   "explain": "«привилегированное общество» — the subject of the sentence stands in the nominative.",
-   "id": "c24"
   },
   {
    "sentence": "Это привилегированное общество было чрезвычайно занято выбором ___, о возможности появления которого даже не подозревали остальные горожане, и в особенности либералы.",
@@ -347,21 +193,21 @@
    ],
    "correct": "первого помощника",
    "case": "Родительный (Genitive)",
-   "explain": "«первого помощника» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«первого помощника» depends on the noun «выбором» (whose? of what?) — genitive.",
    "id": "c25"
   },
   {
    "sentence": "Это привилегированное общество было чрезвычайно занято выбором первого помощника, о возможности появления которого даже не подозревали ___, и в особенности либералы.",
    "lemma": "горожанин",
    "options": [
-    "остальных горожанах",
-    "остальным горожанам",
+    "остальными горожанами",
     "остальные горожане",
-    "остальных горожан"
+    "остальных горожанах",
+    "остальным горожанам"
    ],
    "correct": "остальные горожане",
    "case": "Именительный (Nominative)",
-   "explain": "«остальные горожане» — the subject of the sentence stands in the nominative.",
+   "explain": "«остальные горожане» is the subject of «подозревали» — who or what does it — so nominative.",
    "id": "c26"
   },
   {
@@ -375,21 +221,21 @@
    ],
    "correct": "верьерской улицы",
    "case": "Родительный (Genitive)",
-   "explain": "«верьерской улицы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«верьерской улицы» depends on the noun «часть» (whose? of what?) — genitive.",
    "id": "c27"
   },
   {
    "sentence": "Среди домов, подлежащих сноске, девять принадлежали ___ в Верьере.",
    "lemma": "лицо",
    "options": [
-    "важные лица",
     "важным лицам",
+    "важных лицах",
     "важными лицами",
-    "важных лицах"
+    "важных лиц"
    ],
    "correct": "важным лицам",
    "case": "Дательный (Dative)",
-   "explain": "«важным лицам» — the dative marks the indirect object or recipient.",
+   "explain": "«принадлежали» takes the dative (кому? чему?).",
    "id": "c28"
   },
   {
@@ -403,7 +249,7 @@
    ],
    "correct": "многие вещи",
    "case": "Именительный (Nominative)",
-   "explain": "«Многие вещи» — the subject of the sentence stands in the nominative.",
+   "explain": "«многие вещи» is the subject of «изумляли» — who or what does it — so nominative.",
    "id": "c29"
   },
   {
@@ -412,41 +258,13 @@
    "options": [
     "первых свойствах",
     "первых свойств",
-    "первыми свойствами",
-    "первые свойства"
+    "первым свойствам",
+    "первыми свойствами"
    ],
    "correct": "первыми свойствами",
    "case": "Творительный (Instrumental)",
-   "explain": "«первыми свойствами» — the instrumental marks the means, company, or complement.",
+   "explain": "After «считались», what someone or something is or becomes stands in the instrumental.",
    "id": "c30"
-  },
-  {
-   "sentence": "— Но, сударыня, ведь сегодня ___ месяца, — отвечал тот многозначительно.",
-   "lemma": "пятница",
-   "options": [
-    "последней пятницы",
-    "последней пятницей",
-    "последней пятнице",
-    "последняя пятница"
-   ],
-   "correct": "последняя пятница",
-   "case": "Именительный (Nominative)",
-   "explain": "«последняя пятница» — the subject of the sentence stands in the nominative.",
-   "id": "c31"
-  },
-  {
-   "sentence": "— Это очень полезное, но очень ___, — сказала госпожа де Реналь.",
-   "lemma": "учреждение",
-   "options": [
-    "странное учреждение",
-    "странным учреждением",
-    "странном учреждении",
-    "странного учреждения"
-   ],
-   "correct": "странное учреждение",
-   "case": "Именительный (Nominative)",
-   "explain": "«странное учреждение» — the subject of the sentence stands in the nominative.",
-   "id": "c32"
   },
   {
    "sentence": "Воспоминание о прелестях возлюбленной отвлекало Жюльена от его ___.",
@@ -459,7 +277,7 @@
    ],
    "correct": "мрачного честолюбия",
    "case": "Родительный (Genitive)",
-   "explain": "«мрачного честолюбия» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«мрачного честолюбия» — «от» always takes the genitive.",
    "id": "c33"
   },
   {
@@ -473,7 +291,7 @@
    ],
    "correct": "глубокомысленных разговоров",
    "case": "Родительный (Genitive)",
-   "explain": "«глубокомысленных разговоров» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«глубокомысленных разговоров» — «от» always takes the genitive.",
    "id": "c34"
   },
   {
@@ -487,7 +305,7 @@
    ],
    "correct": "противным партиям",
    "case": "Дательный (Dative)",
-   "explain": "«противным партиям» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«противным партиям» — «к» always takes the dative.",
    "id": "c35"
   },
   {
@@ -501,36 +319,22 @@
    ],
    "correct": "холодного разума",
    "case": "Родительный (Genitive)",
-   "explain": "«холодного разума» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«холодного разума» depends on the noun «языке» (whose? of what?) — genitive.",
    "id": "c36"
   },
   {
    "sentence": "В минуты, когда присутствие слишком развитых детей заставляло их говорить лишь на языке холодного разума, Жюльен чрезвычайно внимательно слушал ее ___, глядя на нее глазами, горящими любовью.",
    "lemma": "рассказ",
    "options": [
-    "житейским рассказам",
     "житейских рассказах",
-    "житейских рассказов",
-    "житейские рассказы"
+    "житейские рассказы",
+    "житейским рассказам",
+    "житейскими рассказами"
    ],
    "correct": "житейские рассказы",
    "case": "Винительный (Accusative)",
-   "explain": "«житейские рассказы» — the accusative marks the direct object of the verb.",
+   "explain": "«житейские рассказы» is the direct object of «слушал» (кого? что?) — accusative.",
    "id": "c37"
-  },
-  {
-   "sentence": "Да разве ей не приходилось беспрестанно отвечать на его ___ о тысяче простейших вещей, известных каждому ребенку из порядочной семьи в пятнадцать лет?",
-   "lemma": "вопрос",
-   "options": [
-    "наивных вопросов",
-    "наивные вопросы",
-    "наивных вопросах",
-    "наивными вопросами"
-   ],
-   "correct": "наивные вопросы",
-   "case": "Винительный (Accusative)",
-   "explain": "«наивные вопросы» — the accusative marks the direct object of the verb.",
-   "id": "c38"
   },
   {
    "sentence": "Да разве ей не приходилось беспрестанно отвечать на его наивные вопросы о тысяче простейших вещей, известных каждому ребенку из ___ в пятнадцать лет?",
@@ -543,7 +347,7 @@
    ],
    "correct": "порядочной семьи",
    "case": "Родительный (Genitive)",
-   "explain": "«порядочной семьи» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«порядочной семьи» — «из» always takes the genitive.",
    "id": "c39"
   },
   {
@@ -557,36 +361,22 @@
    ],
    "correct": "великого человека",
    "case": "Винительный (Accusative)",
-   "explain": "«великого человека» — the accusative marks the direct object of the verb.",
+   "explain": "«великого человека» is the direct object of «видит» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c40"
   },
   {
    "sentence": "Его ум иногда даже пугал ее; с каждым днем ей казалось, что она все яснее видит будущего великого человека в этом ___.",
    "lemma": "аббат",
    "options": [
-    "юного аббата",
+    "юному аббату",
     "юный аббат",
-    "юном аббате",
-    "юным аббатом"
+    "юным аббатом",
+    "юном аббате"
    ],
    "correct": "юном аббате",
    "case": "Предложный (Prepositional)",
-   "explain": "«юном аббате» — after the preposition «в», for location or topic.",
+   "explain": "«юном аббате» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c41"
-  },
-  {
-   "sentence": "Она воображала его Папой, ___, подобно Ришелье.",
-   "lemma": "министр",
-   "options": [
-    "первого министра",
-    "первый министр",
-    "первым министром",
-    "первому министру"
-   ],
-   "correct": "первым министром",
-   "case": "Творительный (Instrumental)",
-   "explain": "«первым министром» — the instrumental marks the means, company, or complement.",
-   "id": "c42"
   }
  ]
 }

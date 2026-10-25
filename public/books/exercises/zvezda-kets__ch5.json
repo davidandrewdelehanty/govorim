@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Я тоскливо посмотрел в окно — светило ___.",
-   "lemma": "солнце",
-   "options": [
-    "яркое солнце",
-    "яркому солнцу",
-    "ярким солнцем",
-    "яркого солнца"
-   ],
-   "correct": "яркое солнце",
-   "case": "Именительный (Nominative)",
-   "explain": "«яркое солнце» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Есть не хотелось, но я заставил себя позавтракать и отправился «очищаться» от ___.",
    "lemma": "микроб",
    "options": [
@@ -25,21 +11,21 @@
    ],
    "correct": "земных микробов",
    "case": "Родительный (Genitive)",
-   "explain": "«земных микробов» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«земных микробов» — «от» always takes the genitive.",
    "id": "c2"
   },
   {
    "sentence": "Врач-бактериолог говорил мне о каких-то ___ — миллиардах микробов, гнездившихся на моей земной одежде.",
    "lemma": "цифра",
    "options": [
+    "головокружительными цифрами",
     "головокружительным цифрам",
-    "головокружительных цифрах",
-    "головокружительные цифры",
-    "головокружительных цифр"
+    "головокружительных цифр",
+    "головокружительных цифрах"
    ],
    "correct": "головокружительных цифрах",
    "case": "Предложный (Prepositional)",
-   "explain": "«головокружительных цифрах» — after the preposition «о», for location or topic.",
+   "explain": "«головокружительных цифрах» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c3"
   },
   {
@@ -53,7 +39,7 @@
    ],
    "correct": "земной одежде",
    "case": "Предложный (Prepositional)",
-   "explain": "«земной одежде» — after the preposition «на», for location or topic.",
+   "explain": "«земной одежде» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c4"
   },
   {
@@ -67,50 +53,8 @@
    ],
    "correct": "синегнойные палочки",
    "case": "Именительный (Nominative)",
-   "explain": "«синегнойные палочки» — the subject of the sentence stands in the nominative.",
+   "explain": "«синегнойные палочки» is the subject of «обнаружены» — who or what does it — so nominative.",
    "id": "c5"
-  },
-  {
-   "sentence": "В складках пальто — ___, ящур.",
-   "lemma": "лихорадка",
-   "options": [
-    "возвратной лихорадке",
-    "возвратной лихорадки",
-    "возвратная лихорадка",
-    "возвратной лихорадкой"
-   ],
-   "correct": "возвратная лихорадка",
-   "case": "Именительный (Nominative)",
-   "explain": "«возвратная лихорадка» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
-  },
-  {
-   "sentence": "Сколько ___ ожидало случая, чтобы наброситься на меня и свалить с ног!",
-   "lemma": "враг",
-   "options": [
-    "невидимым врагам",
-    "невидимые враги",
-    "невидимых врагах",
-    "невидимых врагов"
-   ],
-   "correct": "невидимых врагов",
-   "case": "Родительный (Genitive)",
-   "explain": "«невидимых врагов» — the genitive here marks possession, absence, or quantity.",
-   "id": "c7"
-  },
-  {
-   "sentence": "Мне пришлось перенести промывание желудка, кишок и подвергнуться новым для меня процедурам облучения ___.",
-   "lemma": "аппарат",
-   "options": [
-    "неизвестным аппаратам",
-    "неизвестных аппаратов",
-    "неизвестными аппаратами",
-    "неизвестных аппаратах"
-   ],
-   "correct": "неизвестными аппаратами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«неизвестными аппаратами» — the instrumental marks the means, company, or complement.",
-   "id": "c8"
   },
   {
    "sentence": "— Это верно, но вы, по крайней мере, избавились от тех микробов, которые привезли из ___.",
@@ -123,49 +67,21 @@
    ],
    "correct": "большого города",
    "case": "Родительный (Genitive)",
-   "explain": "«большого города» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«большого города» — «из» always takes the genitive.",
    "id": "c9"
-  },
-  {
-   "sentence": "Холод и палящее солнце, отсутствие пыли, сухость — ___.",
-   "lemma": "дезинфектор",
-   "options": [
-    "прекрасным дезинфекторам",
-    "прекрасными дезинфекторами",
-    "прекрасные дезинфекторы",
-    "прекрасных дезинфекторов"
-   ],
-   "correct": "прекрасные дезинфекторы",
-   "case": "Именительный (Nominative)",
-   "explain": "«прекрасные дезинфекторы» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
-  },
-  {
-   "sentence": "А там вас подвергнут ___.",
-   "lemma": "чистка",
-   "options": [
-    "основательной чистки",
-    "основательной чистке",
-    "основательной чисткой",
-    "основательная чистка"
-   ],
-   "correct": "основательной чистке",
-   "case": "Дательный (Dative)",
-   "explain": "«основательной чистке» — the dative marks the indirect object or recipient.",
-   "id": "c12"
   },
   {
    "sentence": "Зато вы будете совершенно спокойны за то, что не заболеете никакими ___.",
    "lemma": "болезнь",
    "options": [
-    "инфекционными болезнями",
+    "инфекционных болезней",
     "инфекционным болезням",
-    "инфекционных болезнях",
-    "инфекционные болезни"
+    "инфекционными болезнями",
+    "инфекционных болезнях"
    ],
    "correct": "инфекционными болезнями",
    "case": "Творительный (Instrumental)",
-   "explain": "«инфекционными болезнями» — the instrumental marks the means, company, or complement.",
+   "explain": "«заболеете» takes the instrumental.",
    "id": "c13"
   },
   {
@@ -179,50 +95,8 @@
    ],
    "correct": "женского отделения",
    "case": "Родительный (Genitive)",
-   "explain": "«женского отделения» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«женского отделения» — «из» always takes the genitive.",
    "id": "c14"
-  },
-  {
-   "sentence": "Скоро и Тоня вышла из женского отделения ___.",
-   "lemma": "камера",
-   "options": [
-    "дезинфекционной камеры",
-    "дезинфекционной камерой",
-    "дезинфекционная камера",
-    "дезинфекционной камере"
-   ],
-   "correct": "дезинфекционной камеры",
-   "case": "Родительный (Genitive)",
-   "explain": "«дезинфекционной камеры» — the genitive here marks possession, absence, or quantity.",
-   "id": "c15"
-  },
-  {
-   "sentence": "Небо синее, прозрачное, как ___.",
-   "lemma": "хрусталь",
-   "options": [
-    "горный хрусталь",
-    "горным хрусталём",
-    "горном хрустале",
-    "горного хрусталя"
-   ],
-   "correct": "горный хрусталь",
-   "case": "Именительный (Nominative)",
-   "explain": "«горный хрусталь» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
-  },
-  {
-   "sentence": "Блестит на горах снег, синеют застывшие ледяные реки ледников, внизу весело шумят горные ручьи и водопады, еще ниже зеленеют поля, и на них, словно ___, видны стада пасущихся овец.",
-   "lemma": "ком",
-   "options": [
-    "снежных комьях",
-    "снежным комьям",
-    "снежными комьями",
-    "снежные комья"
-   ],
-   "correct": "снежные комья",
-   "case": "Именительный (Nominative)",
-   "explain": "«снежные комья» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
   },
   {
    "sentence": "— Она похожа на ___.",
@@ -235,22 +109,8 @@
    ],
    "correct": "рыбий пузырь",
    "case": "Винительный (Accusative)",
-   "explain": "«рыбий пузырь» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«рыбий пузырь» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c18"
-  },
-  {
-   "sentence": "Смотрите, ___ уже ждет нас.",
-   "lemma": "доктор",
-   "options": [
-    "толстенького доктора",
-    "толстенький доктор",
-    "толстеньким доктором",
-    "толстеньком докторе"
-   ],
-   "correct": "толстенький доктор",
-   "case": "Именительный (Nominative)",
-   "explain": "«толстенький доктор» — the subject of the sentence stands in the nominative.",
-   "id": "c19"
   },
   {
    "sentence": "В корпусе ракеты есть ___ для шаров, и она скользит на этих шарах.",
@@ -263,22 +123,8 @@
    ],
    "correct": "небольшие углубления",
    "case": "Именительный (Nominative)",
-   "explain": "«небольшие углубления» — the subject of the sentence stands in the nominative.",
+   "explain": "«небольшие углубления» is the subject of «есть» — who or what does it — so nominative.",
    "id": "c21"
-  },
-  {
-   "sentence": "А у вас уже ___ лица.",
-   "lemma": "цвет",
-   "options": [
-    "нормальном цвете",
-    "нормальный цвет",
-    "нормальному цвету",
-    "нормального цвета"
-   ],
-   "correct": "нормальный цвет",
-   "case": "Винительный (Accusative)",
-   "explain": "«нормальный цвет» — the accusative marks the direct object of the verb.",
-   "id": "c22"
   },
   {
    "sentence": "Мы с трудом разместились в ___, освещенной электрической лампой.",
@@ -291,22 +137,8 @@
    ],
    "correct": "узкой камере",
    "case": "Предложный (Prepositional)",
-   "explain": "«узкой камере» — after the preposition «в», for location or topic.",
+   "explain": "«узкой камере» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c23"
-  },
-  {
-   "sentence": "Мы с трудом разместились в узкой камере, освещенной ___.",
-   "lemma": "лампа",
-   "options": [
-    "электрической лампы",
-    "электрической лампой",
-    "электрическая лампа",
-    "электрической лампе"
-   ],
-   "correct": "электрической лампой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«электрической лампой» — the instrumental marks the means, company, or complement.",
-   "id": "c24"
   },
   {
    "sentence": "Камера была похожа на кабину ___.",
@@ -319,7 +151,7 @@
    ],
    "correct": "маленького лифта",
    "case": "Родительный (Genitive)",
-   "explain": "«маленького лифта» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«маленького лифта» depends on the noun «кабину» (whose? of what?) — genitive.",
    "id": "c25"
   }
  ]

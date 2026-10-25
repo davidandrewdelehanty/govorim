@@ -1,62 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Название завода сохранилось здесь от стародавних времен, когда в Нагорной стоял казенный ___, на котором все работы производились каторжными.",
-   "lemma": "завод",
-   "options": [
-    "винокуренному заводу",
-    "винокуренный завод",
-    "винокуренным заводом",
-    "винокуренном заводе"
-   ],
-   "correct": "винокуренный завод",
-   "case": "Именительный (Nominative)",
-   "explain": "«винокуренный завод» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Впоследствии, когда открылось золото, Балчуговка была запружена, а при запруде поставлена так называемая ___, в течение времени превратившаяся в фабрику.",
-   "lemma": "мельница",
-   "options": [
-    "золотопромывальной мельницы",
-    "золотопромывальной мельнице",
-    "золотопромывальной мельницей",
-    "золотопромывальная мельница"
-   ],
-   "correct": "золотопромывальная мельница",
-   "case": "Именительный (Nominative)",
-   "explain": "«золотопромывальная мельница» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Другая ___ была устроена в Фотьянке — месте поселения отбывших каторжные работы.",
-   "lemma": "мельница",
-   "options": [
-    "золотопромывальной мельницы",
-    "золотопромывальной мельнице",
-    "золотопромывальной мельницей",
-    "золотопромывальная мельница"
-   ],
-   "correct": "золотопромывальная мельница",
-   "case": "Именительный (Nominative)",
-   "explain": "«золотопромывальная мельница» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
-   "sentence": "Самое селение поэтому долгое время было известно под именем ___.",
-   "lemma": "мельница",
-   "options": [
-    "фотьянская мельница",
-    "фотьянской мельницей",
-    "фотьянской мельнице",
-    "фотьянской мельницы"
-   ],
-   "correct": "фотьянской мельницы",
-   "case": "Родительный (Genitive)",
-   "explain": "«Фотьянской мельницы» — the genitive here marks possession, absence, or quantity.",
-   "id": "c4"
-  },
-  {
    "sentence": "___ Балчуговского завода служила настоящим каторжным гнездом и всегда сторонилась Низов, где с открытием золота были посажены три рекрутских набора.",
    "lemma": "сторона",
    "options": [
@@ -67,7 +11,7 @@
    ],
    "correct": "нагорная сторона",
    "case": "Именительный (Nominative)",
-   "explain": "«Нагорная сторона» — the subject of the sentence stands in the nominative.",
+   "explain": "«нагорная сторона» is the subject of «служила» — who or what does it — so nominative.",
    "id": "c5"
   },
   {
@@ -81,106 +25,8 @@
    ],
    "correct": "балчуговского завода",
    "case": "Родительный (Genitive)",
-   "explain": "«Балчуговского завода» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«балчуговского завода» depends on the noun «сторона» (whose? of what?) — genitive.",
    "id": "c6"
-  },
-  {
-   "sentence": "Нагорная сторона Балчуговского завода служила настоящим ___ и всегда сторонилась Низов, где с открытием золота были посажены три рекрутских набора.",
-   "lemma": "гнездо",
-   "options": [
-    "каторжному гнезду",
-    "каторжным гнездом",
-    "каторжное гнездо",
-    "каторжного гнезда"
-   ],
-   "correct": "каторжным гнездом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«каторжным гнездом» — the instrumental marks the means, company, or complement.",
-   "id": "c7"
-  },
-  {
-   "sentence": "___, как и каторжное винокурение, велись военной рукой — с выслугой лет, палочьем и солдатской муштрой.",
-   "lemma": "работа",
-   "options": [
-    "промысловые работы",
-    "промысловыми работами",
-    "промысловым работам",
-    "промысловых работ"
-   ],
-   "correct": "промысловые работы",
-   "case": "Винительный (Accusative)",
-   "explain": "«Промысловые работы» — the accusative marks the direct object of the verb.",
-   "id": "c8"
-  },
-  {
-   "sentence": "Промысловые работы, как и каторжное винокурение, велись ___ — с выслугой лет, палочьем и солдатской муштрой.",
-   "lemma": "рука",
-   "options": [
-    "военной рукой",
-    "военной руке",
-    "военной руки",
-    "военная рука"
-   ],
-   "correct": "военной рукой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«военной рукой» — the instrumental marks the means, company, or complement.",
-   "id": "c9"
-  },
-  {
-   "sentence": "Промысловые работы, как и каторжное винокурение, велись военной рукой — с выслугой лет, палочьем и ___.",
-   "lemma": "муштра",
-   "options": [
-    "солдатской муштре",
-    "солдатской муштры",
-    "солдатская муштра",
-    "солдатской муштрой"
-   ],
-   "correct": "солдатской муштрой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«солдатской муштрой» — the instrumental marks the means, company, or complement.",
-   "id": "c10"
-  },
-  {
-   "sentence": "Тогда все ___ было поставлено на военную ногу.",
-   "lemma": "ведомство",
-   "options": [
-    "горному ведомству",
-    "горном ведомстве",
-    "горное ведомство",
-    "горного ведомства"
-   ],
-   "correct": "горное ведомство",
-   "case": "Именительный (Nominative)",
-   "explain": "«горное ведомство» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
-  },
-  {
-   "sentence": "Поселившиеся в Нагорной каторжане, согнанные сюда со всех концов крепостной России, долго чуждались «некрутов», набранных из трех ___.",
-   "lemma": "губерния",
-   "options": [
-    "уральские губернии",
-    "уральскими губерниями",
-    "уральским губерниям",
-    "уральских губерний"
-   ],
-   "correct": "уральских губерний",
-   "case": "Родительный (Genitive)",
-   "explain": "«уральских губерний» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
-   "id": "c12"
-  },
-  {
-   "sentence": "Эта рознь сохранилась ___ в кличках: нагорные «варнаки», а низовые «строгали» и «швали».",
-   "lemma": "образ",
-   "options": [
-    "главным образом",
-    "главный образ",
-    "главному образу",
-    "главном образе"
-   ],
-   "correct": "главным образом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«главным образом» — the instrumental marks the means, company, or complement.",
-   "id": "c13"
   },
   {
    "sentence": "От прежних времен на месте ___ остались еще «пьяный двор», где был завод, развалины каменного острога, «пьяная контора» и каменная церковь, выстроенная каторжными во вкусе Растрелли.",
@@ -193,22 +39,8 @@
    ],
    "correct": "бывшей каторги",
    "case": "Родительный (Genitive)",
-   "explain": "«бывшей каторги» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«бывшей каторги» depends on the noun «месте» (whose? of what?) — genitive.",
    "id": "c14"
-  },
-  {
-   "sentence": "От прежних времен на месте бывшей каторги остались еще «___», где был завод, развалины каменного острога, «пьяная контора» и каменная церковь, выстроенная каторжными во вкусе Растрелли.",
-   "lemma": "двор",
-   "options": [
-    "пьяным двором",
-    "пьяному двору",
-    "пьяный двор",
-    "пьяном дворе"
-   ],
-   "correct": "пьяный двор",
-   "case": "Именительный (Nominative)",
-   "explain": "«пьяный двор» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
   },
   {
    "sentence": "От прежних времен на месте бывшей каторги остались еще «пьяный двор», где был завод, развалины ___, «пьяная контора» и каменная церковь, выстроенная каторжными во вкусе Растрелли.",
@@ -221,22 +53,8 @@
    ],
    "correct": "каменного острога",
    "case": "Родительный (Genitive)",
-   "explain": "«каменного острога» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«каменного острога» depends on the noun «развалины» (whose? of what?) — genitive.",
    "id": "c16"
-  },
-  {
-   "sentence": "От прежних времен на месте бывшей каторги остались еще «пьяный двор», где был завод, развалины каменного острога, «___» и каменная церковь, выстроенная каторжными во вкусе Растрелли.",
-   "lemma": "контора",
-   "options": [
-    "пьяная контора",
-    "пьяной конторе",
-    "пьяной конторы",
-    "пьяной конторой"
-   ],
-   "correct": "пьяная контора",
-   "case": "Именительный (Nominative)",
-   "explain": "«пьяная контора» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
   },
   {
    "sentence": "___ стоял недалеко от церкви.",
@@ -249,64 +67,8 @@
    ],
    "correct": "зыковский дом",
    "case": "Именительный (Nominative)",
-   "explain": "«Зыковский дом» — the subject of the sentence stands in the nominative.",
+   "explain": "«зыковский дом» is the subject of «стоял» — who or what does it — so nominative.",
    "id": "c19"
-  },
-  {
-   "sentence": "Это была большая ___ с высоким коньком, тремя небольшими оконцами, до которых от земли не достанешь рукой, и старинными шатровыми воротами с вычурной резьбой.",
-   "lemma": "изба",
-   "options": [
-    "деревянной избе",
-    "деревянной избой",
-    "деревянная изба",
-    "деревянной избы"
-   ],
-   "correct": "деревянная изба",
-   "case": "Именительный (Nominative)",
-   "explain": "«деревянная изба» — the subject of the sentence stands in the nominative.",
-   "id": "c20"
-  },
-  {
-   "sentence": "Это была большая деревянная изба с высоким коньком, тремя ___, до которых от земли не достанешь рукой, и старинными шатровыми воротами с вычурной резьбой.",
-   "lemma": "оконце",
-   "options": [
-    "небольшими оконцами",
-    "небольших оконцев",
-    "небольшим оконцам",
-    "небольшие оконца"
-   ],
-   "correct": "небольшими оконцами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«небольшими оконцами» — the instrumental marks the means, company, or complement.",
-   "id": "c22"
-  },
-  {
-   "sentence": "Это была большая деревянная изба с высоким коньком, тремя небольшими оконцами, до которых от земли не достанешь рукой, и старинными ___ с вычурной резьбой.",
-   "lemma": "ворота",
-   "options": [
-    "шатровые ворота",
-    "шатровыми воротами",
-    "шатровым воротам",
-    "шатровых ворот"
-   ],
-   "correct": "шатровыми воротами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«шатровыми воротами» — the instrumental marks the means, company, or complement.",
-   "id": "c23"
-  },
-  {
-   "sentence": "Ставилась эта изба на расейскую руку, потому что и ___ Зыков был расейский выходец.",
-   "lemma": "старик",
-   "options": [
-    "самим стариком",
-    "самом старике",
-    "самому старику",
-    "сам старик"
-   ],
-   "correct": "сам старик",
-   "case": "Именительный (Nominative)",
-   "explain": "«сам старик» — the subject of the sentence stands in the nominative.",
-   "id": "c25"
   },
   {
    "sentence": "Когда и за что попал он на каторгу — никто не знал, а ___ не любил разговаривать о прошлом, как и другие старики-каторжане.",
@@ -319,64 +81,8 @@
    ],
    "correct": "сам старик",
    "case": "Именительный (Nominative)",
-   "explain": "«сам старик» — the subject of the sentence stands in the nominative.",
+   "explain": "«сам старик» is the subject of «любил» — who or what does it — so nominative.",
    "id": "c26"
-  },
-  {
-   "sentence": "Когда и за что попал он на каторгу — никто не знал, а сам старик не любил разговаривать о прошлом, как и ___.",
-   "lemma": "старик-каторжанин",
-   "options": [
-    "другим старикам-каторжанам",
-    "других стариков-каторжан",
-    "другие старики-каторжане",
-    "других стариках-каторжанах"
-   ],
-   "correct": "другие старики-каторжане",
-   "case": "Именительный (Nominative)",
-   "explain": "«другие старики-каторжане» — the subject of the sentence stands in the nominative.",
-   "id": "c27"
-  },
-  {
-   "sentence": "Гораздо живучее оказывались женщины-каторжанки, которых насчитывалось в Нагорной до полусотни, — все это были, конечно, уже старухи и все до одной ___.",
-   "lemma": "женщина",
-   "options": [
-    "семейные женщины",
-    "семейных женщинах",
-    "семейным женщинам",
-    "семейными женщинами"
-   ],
-   "correct": "семейные женщины",
-   "case": "Именительный (Nominative)",
-   "explain": "«семейные женщины» — after the preposition «до», the subject of the sentence stands in the nominative.",
-   "id": "c29"
-  },
-  {
-   "sentence": "Мужчинам каторга давалась тяжелее, да и попадали они в нее редко молодыми, — а бабы ___ были молодые.",
-   "lemma": "образ",
-   "options": [
-    "главным образом",
-    "главный образ",
-    "главному образу",
-    "главном образе"
-   ],
-   "correct": "главным образом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«главным образом» — after the preposition «в», the instrumental marks the means, company, or complement.",
-   "id": "c30"
-  },
-  {
-   "sentence": "___ Зыкова тоже была каторжанка.",
-   "lemma": "жена",
-   "options": [
-    "первая жена",
-    "первой жены",
-    "первой женой",
-    "первой жене"
-   ],
-   "correct": "первая жена",
-   "case": "Именительный (Nominative)",
-   "explain": "«Первая жена» — the subject of the sentence stands in the nominative.",
-   "id": "c31"
   },
   {
    "sentence": "Свою избу Зыков ставил при ___, которую вспоминал с особенным уважением.",
@@ -389,36 +95,8 @@
    ],
    "correct": "первой жене",
    "case": "Предложный (Prepositional)",
-   "explain": "«первой жене» — after the preposition «при», for location or topic.",
+   "explain": "«первой жене» — «при» always takes the prepositional.",
    "id": "c32"
-  },
-  {
-   "sentence": "___ была взята в своей же Нагорной стороне; она была уже дочерью каторжанки.",
-   "lemma": "жена",
-   "options": [
-    "вторая жена",
-    "второй женой",
-    "второй жены",
-    "второй жене"
-   ],
-   "correct": "вторая жена",
-   "case": "Именительный (Nominative)",
-   "explain": "«Вторая жена» — the subject of the sentence stands in the nominative.",
-   "id": "c34"
-  },
-  {
-   "sentence": "Старик почему-то недолюбливал этой ___ и при каждом удобном случае вспоминал про первую: «это еще при Марфе Тимофеевне было», или «покойница Марфа Тимофеевна была большая охотница до заказных блинов».",
-   "lemma": "жена",
-   "options": [
-    "второй женой",
-    "вторая жена",
-    "второй жены",
-    "второй жене"
-   ],
-   "correct": "второй жены",
-   "case": "Родительный (Genitive)",
-   "explain": "«второй жены» — the genitive here marks possession, absence, or quantity.",
-   "id": "c35"
   },
   {
    "sentence": "Старик почему-то недолюбливал этой второй жены и при каждом ___ вспоминал про первую: «это еще при Марфе Тимофеевне было», или «покойница Марфа Тимофеевна была большая охотница до заказных блинов».",
@@ -431,7 +109,7 @@
    ],
    "correct": "удобном случае",
    "case": "Предложный (Prepositional)",
-   "explain": "«удобном случае» — after the preposition «при», for location or topic.",
+   "explain": "«удобном случае» — «при» always takes the prepositional.",
    "id": "c36"
   },
   {
@@ -445,7 +123,7 @@
    ],
    "correct": "заказных блинов",
    "case": "Родительный (Genitive)",
-   "explain": "«заказных блинов» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«заказных блинов» — «до» always takes the genitive.",
    "id": "c38"
   },
   {
@@ -459,7 +137,7 @@
    ],
    "correct": "деревянный шкаф",
    "case": "Именительный (Nominative)",
-   "explain": "«деревянный шкаф» — the subject of the sentence stands in the nominative.",
+   "explain": "«деревянный шкаф» is the subject of «стоял» — who or what does it — so nominative.",
    "id": "c40"
   },
   {
@@ -473,36 +151,22 @@
    ],
    "correct": "несметные сокровища",
    "case": "Именительный (Nominative)",
-   "explain": "«несметные сокровища» — the subject of the sentence stands in the nominative.",
+   "explain": "«несметные сокровища» is the subject of «заключались» — who or what does it — so nominative.",
    "id": "c42"
   },
   {
    "sentence": "Собственно ___ в семье являлись Устинья Марковна и старший сын Яков.",
    "lemma": "лицо",
    "options": [
-    "ответственные лица",
-    "ответственных лиц",
     "ответственным лицам",
+    "ответственных лиц",
+    "ответственных лицах",
     "ответственными лицами"
    ],
    "correct": "ответственными лицами",
    "case": "Творительный (Instrumental)",
-   "explain": "«ответственными лицами» — the instrumental marks the means, company, or complement.",
+   "explain": "After «являлись», what someone or something is or becomes stands in the instrumental.",
    "id": "c43"
-  },
-  {
-   "sentence": "Собственно ответственными лицами в семье являлись Устинья Марковна и ___ Яков.",
-   "lemma": "сын",
-   "options": [
-    "старшим сыном",
-    "старшем сыне",
-    "старшего сына",
-    "старший сын"
-   ],
-   "correct": "старший сын",
-   "case": "Именительный (Nominative)",
-   "explain": "«старший сын» — the subject of the sentence stands in the nominative.",
-   "id": "c44"
   },
   {
    "sentence": "Это был настоящий mesalliance, навсегда выкинувший непокорную дочь из ___.",
@@ -515,22 +179,8 @@
    ],
    "correct": "родной семьи",
    "case": "Родительный (Genitive)",
-   "explain": "«родной семьи» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«родной семьи» — «из» always takes the genitive.",
    "id": "c47"
-  },
-  {
-   "sentence": "Взятый в дом зять Прокопий был смирный и ___, который умел оставаться в тестевом доме совершенно незаметным.",
-   "lemma": "мужик",
-   "options": [
-    "работящем мужике",
-    "работящим мужиком",
-    "работящему мужику",
-    "работящий мужик"
-   ],
-   "correct": "работящий мужик",
-   "case": "Именительный (Nominative)",
-   "explain": "«работящий мужик» — the subject of the sentence stands in the nominative.",
-   "id": "c48"
   },
   {
    "sentence": "Взятый в дом зять Прокопий был смирный и работящий мужик, который умел оставаться в ___ совершенно незаметным.",
@@ -543,7 +193,7 @@
    ],
    "correct": "тестевом доме",
    "case": "Предложный (Prepositional)",
-   "explain": "«тестевом доме» — after the preposition «в», for location or topic.",
+   "explain": "«тестевом доме» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c49"
   },
   {
@@ -557,22 +207,8 @@
    ],
    "correct": "золотопромывальной фабрике",
    "case": "Предложный (Prepositional)",
-   "explain": "«золотопромывальной фабрике» — after the preposition «на», for location or topic.",
+   "explain": "«золотопромывальной фабрике» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c50"
-  },
-  {
-   "sentence": "Родион Потапыч почему-то делал такой вид, что совсем не замечает этого ___, а тот в свою очередь всячески старался не попадаться старику на глаза.",
-   "lemma": "зять",
-   "options": [
-    "покорном зяте",
-    "покорный зять",
-    "покорного зятя",
-    "покорным зятем"
-   ],
-   "correct": "покорного зятя",
-   "case": "Винительный (Accusative)",
-   "explain": "«покорного зятя» — the accusative marks the direct object of the verb.",
-   "id": "c51"
   },
   {
    "sentence": "Собственно, вся семья Родиона Потапыча жалась в одной ___, походившей на муравьище.",
@@ -585,7 +221,7 @@
    ],
    "correct": "задней избе",
    "case": "Предложный (Prepositional)",
-   "explain": "«задней избе» — after the preposition «в», for location or topic.",
+   "explain": "«задней избе» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c52"
   },
   {
@@ -599,7 +235,7 @@
    ],
    "correct": "зыковской семье",
    "case": "Предложный (Prepositional)",
-   "explain": "«зыковской семье» — after the preposition «в», for location or topic.",
+   "explain": "«зыковской семье» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c53"
   },
   {
@@ -613,50 +249,8 @@
    ],
    "correct": "балчуговского завода",
    "case": "Родительный (Genitive)",
-   "explain": "«Балчуговского завода» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«балчуговского завода» — «от» always takes the genitive.",
    "id": "c54"
-  },
-  {
-   "sentence": "Верстах в шести от Балчуговского завода разлилось довольно ___ Тайбола, а на нем осело раскольничье селение, одноименное с озером.",
-   "lemma": "озеро",
-   "options": [
-    "большое озеро",
-    "большому озеру",
-    "большим озером",
-    "большом озере"
-   ],
-   "correct": "большое озеро",
-   "case": "Именительный (Nominative)",
-   "explain": "«большое озеро» — the subject of the sentence stands in the nominative.",
-   "id": "c55"
-  },
-  {
-   "sentence": "Верстах в шести от Балчуговского завода разлилось довольно большое озеро Тайбола, а на нем осело ___, одноименное с озером.",
-   "lemma": "селение",
-   "options": [
-    "раскольничьему селению",
-    "раскольничьего селения",
-    "раскольничье селение",
-    "раскольничьим селением"
-   ],
-   "correct": "раскольничье селение",
-   "case": "Именительный (Nominative)",
-   "explain": "«раскольничье селение» — the subject of the sentence stands in the nominative.",
-   "id": "c56"
-  },
-  {
-   "sentence": "По соседству балчуговцы и тайболовцы хотя и дружили, но в более ___ не вступали, а число браков было наперечет.",
-   "lemma": "отношение",
-   "options": [
-    "близких отношений",
-    "близким отношениям",
-    "близких отношениях",
-    "близкие отношения"
-   ],
-   "correct": "близкие отношения",
-   "case": "Именительный (Nominative)",
-   "explain": "«близкие отношения» — after the preposition «в», the subject of the sentence stands in the nominative.",
-   "id": "c57"
   },
   {
    "sentence": "Замечательной особенностью тайболовцев было еще и то, что, живя в ___, они совсем не «занимались золотом».",
@@ -669,36 +263,8 @@
    ],
    "correct": "золотоносной полосе",
    "case": "Предложный (Prepositional)",
-   "explain": "«золотоносной полосе» — after the preposition «в», for location or topic.",
+   "explain": "«золотоносной полосе» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c58"
-  },
-  {
-   "sentence": "Все это так поразило Устинью Марковну, что она вместо того, чтобы дать сейчас же знать мужу на Фотьянку, задумала вернуть Федосью ___, чтобы не делать лишней огласки и чтобы не огорчить старика вконец.",
-   "lemma": "средство",
-   "options": [
-    "домашним средствам",
-    "домашних средствах",
-    "домашние средства",
-    "домашними средствами"
-   ],
-   "correct": "домашними средствами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«домашними средствами» — the instrumental marks the means, company, or complement.",
-   "id": "c59"
-  },
-  {
-   "sentence": "Все это так поразило Устинью Марковну, что она вместо того, чтобы дать сейчас же знать мужу на Фотьянку, задумала вернуть Федосью домашними средствами, чтобы не делать ___ и чтобы не огорчить старика вконец.",
-   "lemma": "огласка",
-   "options": [
-    "лишней оглаской",
-    "лишней огласки",
-    "лишняя огласка",
-    "лишней огласке"
-   ],
-   "correct": "лишней огласки",
-   "case": "Родительный (Genitive)",
-   "explain": "«лишней огласки» — the genitive here marks possession, absence, or quantity.",
-   "id": "c60"
   },
   {
    "sentence": "В пятницу был собран экстренный ___.",
@@ -711,7 +277,7 @@
    ],
    "correct": "семейный совет",
    "case": "Именительный (Nominative)",
-   "explain": "«семейный совет» — the subject of the sentence stands in the nominative.",
+   "explain": "«семейный совет» is the subject of «собран» — who or what does it — so nominative.",
    "id": "c61"
   },
   {
@@ -725,64 +291,8 @@
    ],
    "correct": "самом-то деле",
    "case": "Предложный (Prepositional)",
-   "explain": "«самом-то деле» — after the preposition «в», for location or topic.",
+   "explain": "«самом-то деле» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c62"
-  },
-  {
-   "sentence": "И Федосьино дело тоже надо рассудить: один жених не жених, ___ не жених, — ну, и не стерпела девка.",
-   "lemma": "жених",
-   "options": [
-    "другим женихом",
-    "другому жениху",
-    "другом женихе",
-    "другой жених"
-   ],
-   "correct": "другой жених",
-   "case": "Именительный (Nominative)",
-   "explain": "«другой жених» — the subject of the sentence stands in the nominative.",
-   "id": "c64"
-  },
-  {
-   "sentence": "Вон Марья из-за родителя в перестарки попала, а Феня это и обмозговала: ___ о живом и думает.",
-   "lemma": "человек",
-   "options": [
-    "живому человеку",
-    "живого человека",
-    "живой человек",
-    "живом человеке"
-   ],
-   "correct": "живой человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«живой человек» — the subject of the sentence stands in the nominative.",
-   "id": "c65"
-  },
-  {
-   "sentence": "Не чужая тебе Феня-то: ___ по отцу-то.",
-   "lemma": "сестра",
-   "options": [
-    "родной сестре",
-    "родной сестрой",
-    "родной сестры",
-    "родная сестра"
-   ],
-   "correct": "родная сестра",
-   "case": "Именительный (Nominative)",
-   "explain": "«родная сестра» — the subject of the sentence stands in the nominative.",
-   "id": "c66"
-  },
-  {
-   "sentence": "В критических случаях Яша принимал самый ___, а сейчас трудность миссии сопряжена была с вопросом о собственной безопасности.",
-   "lemma": "вид",
-   "options": [
-    "торжественном виде",
-    "торжественного вида",
-    "торжественный вид",
-    "торжественным видом"
-   ],
-   "correct": "торжественный вид",
-   "case": "Винительный (Accusative)",
-   "explain": "«торжественный вид» — the accusative marks the direct object of the verb.",
-   "id": "c68"
   },
   {
    "sentence": "Было еще ___, но Мыльников стоял за воротами и смотрел, как ехал Яша.",
@@ -795,22 +305,8 @@
    ],
    "correct": "раннее утро",
    "case": "Именительный (Nominative)",
-   "explain": "«раннее утро» — the subject of the sentence stands in the nominative.",
+   "explain": "«раннее утро» is the subject of «Было» — who or what does it — so nominative.",
    "id": "c69"
-  },
-  {
-   "sentence": "Это был ___ мужик с растрепанными волосами, клочковатой рыжей бороденкой и какими-то «ядовитыми» глазами.",
-   "lemma": "рост",
-   "options": [
-    "среднего роста",
-    "среднему росту",
-    "средним ростом",
-    "среднем росте"
-   ],
-   "correct": "среднего роста",
-   "case": "Родительный (Genitive)",
-   "explain": "«среднего роста» — the genitive here marks possession, absence, or quantity.",
-   "id": "c70"
   },
   {
    "sentence": "— Небось, в гости к ___ поехал?..",
@@ -823,22 +319,8 @@
    ],
    "correct": "богоданному зятю",
    "case": "Дательный (Dative)",
-   "explain": "«богоданному зятю» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«богоданному зятю» — «к» always takes the dative.",
    "id": "c71"
-  },
-  {
-   "sentence": "На этот крик показалась ___ девка с рябым скуластым лицом.",
-   "lemma": "рост",
-   "options": [
-    "среднего роста",
-    "среднему росту",
-    "средним ростом",
-    "среднем росте"
-   ],
-   "correct": "среднего роста",
-   "case": "Родительный (Genitive)",
-   "explain": "«среднего роста» — the genitive here marks possession, absence, or quantity.",
-   "id": "c72"
   },
   {
    "sentence": "На этот крик показалась среднего роста девка с рябым ___.",
@@ -851,7 +333,7 @@
    ],
    "correct": "скуластым лицом",
    "case": "Творительный (Instrumental)",
-   "explain": "«скуластым лицом» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«скуластым лицом» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c73"
   },
   {
@@ -865,7 +347,7 @@
    ],
    "correct": "белых зубов",
    "case": "Родительный (Genitive)",
-   "explain": "«белых зубов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«белых зубов» depends on the noun «ряда» (whose? of what?) — genitive.",
    "id": "c74"
   }
  ]

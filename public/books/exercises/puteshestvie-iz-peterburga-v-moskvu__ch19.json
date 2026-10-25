@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Подав ___ новых стихов, надел на последователей своих узду великого примера, и никто доселе отшатнуться от него не дерзнул.",
-   "lemma": "пример",
-   "options": [
-    "хорошими примерами",
-    "хороших примеров",
-    "хороших примерах",
-    "хорошие примеры"
-   ],
-   "correct": "хорошие примеры",
-   "case": "Винительный (Accusative)",
-   "explain": "«хорошие примеры» — the accusative marks the direct object of the verb.",
-   "id": "c3"
-  },
-  {
    "sentence": "Подав хорошие примеры ___, надел на последователей своих узду великого примера, и никто доселе отшатнуться от него не дерзнул.",
    "lemma": "стих",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "новых стихов",
    "case": "Родительный (Genitive)",
-   "explain": "«новых стихов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«новых стихов» depends on the noun «примеры» (whose? of what?) — genitive.",
    "id": "c4"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "великого примера",
    "case": "Родительный (Genitive)",
-   "explain": "«великого примера» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«великого примера» depends on the noun «узду» (whose? of what?) — genitive.",
    "id": "c5"
   },
   {
@@ -47,13 +33,13 @@
    "lemma": "стих",
    "options": [
     "другие стихи",
-    "других стихов",
+    "другими стихами",
     "другим стихам",
-    "другими стихами"
+    "других стихах"
    ],
    "correct": "другие стихи",
    "case": "Именительный (Nominative)",
-   "explain": "«другие стихи» — the subject of the sentence stands in the nominative.",
+   "explain": "«другие стихи» is the subject of «воображают» — who or what does it — so nominative.",
    "id": "c7"
   },
   {
@@ -67,22 +53,8 @@
    ],
    "correct": "других стихосложений",
    "case": "Родительный (Genitive)",
-   "explain": "«других стихосложений» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«других стихосложений» depends on the noun «правила» (whose? of what?) — genitive.",
    "id": "c8"
-  },
-  {
-   "sentence": "___ Тредиаковский немало к тому способствовал своею «Тилемахидою» .",
-   "lemma": "возовик",
-   "options": [
-    "неутомимого возовика",
-    "неутомимому возовику",
-    "неутомимый возовик",
-    "неутомимым возовиком"
-   ],
-   "correct": "неутомимый возовик",
-   "case": "Именительный (Nominative)",
-   "explain": "«Неутомимый возовик» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
   },
   {
    "sentence": "Теперь дать пример ___ очень трудно, ибо примеры в добром и худом стихосложении глубокий пустили корень.",
@@ -95,7 +67,7 @@
    ],
    "correct": "нового стихосложения",
    "case": "Родительный (Genitive)",
-   "explain": "«нового стихосложения» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«нового стихосложения» depends on the noun «пример» (whose? of what?) — genitive.",
    "id": "c10"
   },
   {
@@ -109,50 +81,8 @@
    ],
    "correct": "добрые стихи",
    "case": "Именительный (Nominative)",
-   "explain": "«добрые стихи» — the subject of the sentence stands in the nominative.",
+   "explain": "«добрые стихи» is the subject of «найдутся» — who or what does it — so nominative.",
    "id": "c11"
-  },
-  {
-   "sentence": "Таково оно и будет, доколе ___ будет в России больше других языков в употреблении.",
-   "lemma": "язык",
-   "options": [
-    "французскому языку",
-    "французским языком",
-    "французском языке",
-    "французский язык"
-   ],
-   "correct": "французский язык",
-   "case": "Именительный (Nominative)",
-   "explain": "«французский язык» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
-  },
-  {
-   "sentence": "Таково оно и будет, доколе французский язык будет в России больше ___ в употреблении.",
-   "lemma": "язык",
-   "options": [
-    "другие языки",
-    "другим языкам",
-    "других языков",
-    "других языках"
-   ],
-   "correct": "других языков",
-   "case": "Родительный (Genitive)",
-   "explain": "«других языков» — the genitive here marks possession, absence, or quantity.",
-   "id": "c13"
-  },
-  {
-   "sentence": "Блеск наружный может заржаветь, но ___ не поблекнет никогда.",
-   "lemma": "красота",
-   "options": [
-    "истинной красоте",
-    "истинной красоты",
-    "истинная красота",
-    "истинной красотой"
-   ],
-   "correct": "истинная красота",
-   "case": "Именительный (Nominative)",
-   "explain": "«истинная красота» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
   },
   {
    "sentence": "Излишним почитаю я беседовать с вами о ___, российскому языку свойственных.",
@@ -165,7 +95,7 @@
    ],
    "correct": "разных стихах",
    "case": "Предложный (Prepositional)",
-   "explain": "«разных стихах» — after the preposition «о», for location or topic.",
+   "explain": "«разных стихах» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c15"
   },
   {
@@ -179,22 +109,8 @@
    ],
    "correct": "разных родах",
    "case": "Предложный (Prepositional)",
-   "explain": "«разных родах» — after the preposition «в», for location or topic.",
+   "explain": "«разных родах» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c17"
-  },
-  {
-   "sentence": "Если совет мой может что-либо сделать, то я бы сказал, что ___, да и сам российский язык гораздо обогатились бы, если бы переводы стихотворных сочинений делали не всегда ямбами.",
-   "lemma": "стихотворство",
-   "options": [
-    "российском стихотворстве",
-    "российскому стихотворству",
-    "российское стихотворство",
-    "российским стихотворством"
-   ],
-   "correct": "российское стихотворство",
-   "case": "Именительный (Nominative)",
-   "explain": "«российское стихотворство» — the subject of the sentence stands in the nominative.",
-   "id": "c18"
   },
   {
    "sentence": "Если совет мой может что-либо сделать, то я бы сказал, что российское стихотворство, да и сам российский язык гораздо обогатились бы, если бы переводы ___ делали не всегда ямбами.",
@@ -207,36 +123,8 @@
    ],
    "correct": "стихотворных сочинений",
    "case": "Родительный (Genitive)",
-   "explain": "«стихотворных сочинений» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«стихотворных сочинений» depends on the noun «переводы» (whose? of what?) — genitive.",
    "id": "c19"
-  },
-  {
-   "sentence": "В Москве не хотели ее напечатать по двум причинам: первая, что смысл в стихах неясен и много стихов ___, другая, что предмет стихов несвойствен нашей земле.",
-   "lemma": "работа",
-   "options": [
-    "топорной работой",
-    "топорная работа",
-    "топорной работы",
-    "топорной работе"
-   ],
-   "correct": "топорной работы",
-   "case": "Родительный (Genitive)",
-   "explain": "«топорной работы» — the genitive here marks possession, absence, or quantity.",
-   "id": "c20"
-  },
-  {
-   "sentence": "Я еду теперь в Петербург просить о издании ее в свет, ласкаяся, яко ___ своего дитяти, что ради последней причины, для коей ее в Москве печатать не хотели, снисходительно воззрят на первую.",
-   "lemma": "отец",
-   "options": [
-    "нежном отце",
-    "нежного отца",
-    "нежный отец",
-    "нежному отцу"
-   ],
-   "correct": "нежный отец",
-   "case": "Именительный (Nominative)",
-   "explain": "«нежный отец» — the subject of the sentence stands in the nominative.",
-   "id": "c21"
   },
   {
    "sentence": "Я еду теперь в Петербург просить о издании ее в свет, ласкаяся, яко нежный отец своего дитяти, что ради ___, для коей ее в Москве печатать не хотели, снисходительно воззрят на первую.",
@@ -249,50 +137,36 @@
    ],
    "correct": "последней причины",
    "case": "Родительный (Genitive)",
-   "explain": "«последней причины» — after the preposition «ради», the genitive here marks possession, absence, or quantity.",
+   "explain": "«последней причины» — «ради» always takes the genitive.",
    "id": "c22"
   },
   {
    "sentence": "Но я очень помню, что в Наказе о сочинении ___, говоря о вольности, сказано: «Вольностию называть должно то, что все одинаковым повинуются законам».",
    "lemma": "уложение",
    "options": [
+    "нового уложения",
     "новому уложению",
-    "новом уложении",
-    "новым уложением",
-    "нового уложения"
+    "новое уложение",
+    "новом уложении"
    ],
    "correct": "нового уложения",
    "case": "Родительный (Genitive)",
-   "explain": "«нового уложения» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«нового уложения» depends on the noun «сочинении» (whose? of what?) — genitive.",
    "id": "c23"
   },
   {
    "sentence": "Изображение ___, отъемлющего у человека чувствительность, влекущее его в ярем порабощения и заблуждения, во броню его облекшее!",
    "lemma": "суеверие",
    "options": [
-    "священным суеверием",
     "священному суеверию",
+    "священного суеверия",
     "священное суеверие",
-    "священного суеверия"
+    "священном суеверии"
    ],
    "correct": "священного суеверия",
    "case": "Родительный (Genitive)",
-   "explain": "«священного суеверия» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«священного суеверия» depends on the noun «Изображение» (whose? of what?) — genitive.",
    "id": "c27"
-  },
-  {
-   "sentence": "И все ___ рабства, как-то: беспечность, леность, коварство, голод и пр.",
-   "lemma": "следствие",
-   "options": [
-    "злыми следствиями",
-    "злые следствия",
-    "злых следствий",
-    "злым следствиям"
-   ],
-   "correct": "злые следствия",
-   "case": "Именительный (Nominative)",
-   "explain": "«злые следствия» — the subject of the sentence stands in the nominative.",
-   "id": "c29"
   }
  ]
 }

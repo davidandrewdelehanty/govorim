@@ -1,45 +1,17 @@
 {
  "cases": [
   {
-   "sentence": "Где-то далеко-далеко, в полосе Обдонья, вилась молния, крылом недобитой птицы трепыхалась ___.",
-   "lemma": "зарница",
-   "options": [
-    "оранжевой зарницей",
-    "оранжевой зарнице",
-    "оранжевой зарницы",
-    "оранжевая зарница"
-   ],
-   "correct": "оранжевая зарница",
-   "case": "Именительный (Nominative)",
-   "explain": "«оранжевая зарница» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Изредка он останавливался, счищая с каблуков комья приставшей грязи, выпрямляясь, тяжко и устало нес свое грузное тело, скрипел ___ распахнутой куртки.",
-   "lemma": "кожа",
-   "options": [
-    "мокрой кожи",
-    "мокрой кожей",
-    "мокрой коже",
-    "мокрая кожа"
-   ],
-   "correct": "мокрой кожей",
-   "case": "Творительный (Instrumental)",
-   "explain": "«мокрой кожей» — the instrumental marks the means, company, or complement.",
-   "id": "c2"
-  },
-  {
    "sentence": "За невыполнение ___ — расстрелять!",
    "lemma": "приказ",
    "options": [
-    "боевым приказом",
     "боевой приказ",
     "боевом приказе",
-    "боевого приказа"
+    "боевого приказа",
+    "боевому приказу"
    ],
    "correct": "боевого приказа",
    "case": "Родительный (Genitive)",
-   "explain": "«боевого приказа» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«боевого приказа» depends on the noun «невыполнение» (whose? of what?) — genitive.",
    "id": "c3"
   },
   {
@@ -53,7 +25,7 @@
    ],
    "correct": "соседнего двора",
    "case": "Родительный (Genitive)",
-   "explain": "«соседнего двора» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«соседнего двора» — «из» always takes the genitive.",
    "id": "c4"
   },
   {
@@ -67,22 +39,8 @@
    ],
    "correct": "многочисленные отряды",
    "case": "Именительный (Nominative)",
-   "explain": "«многочисленные отряды» — the subject of the sentence stands in the nominative.",
+   "explain": "«многочисленные отряды» is the subject of «виднелись» — who or what does it — so nominative.",
    "id": "c6"
-  },
-  {
-   "sentence": "Пришел мигулинец Василий Мирошников — плотный ___.",
-   "lemma": "казак",
-   "options": [
-    "чубатый казак",
-    "чубатого казака",
-    "чубатым казаком",
-    "чубатому казаку"
-   ],
-   "correct": "чубатый казак",
-   "case": "Именительный (Nominative)",
-   "explain": "«чубатый казак» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
   },
   {
    "sentence": "У ___ догнал задыхавшегося Подтелкова член комиссии Мрыхин.",
@@ -95,21 +53,21 @@
    ],
    "correct": "последних дворов",
    "case": "Родительный (Genitive)",
-   "explain": "«последних дворов» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«последних дворов» — «у» always takes the genitive.",
    "id": "c8"
   },
   {
    "sentence": "Собрались всем отрядом в трех ___.",
    "lemma": "двор",
    "options": [
-    "смежными дворами",
-    "смежных дворов",
     "смежных дворах",
-    "смежные дворы"
+    "смежных дворов",
+    "смежным дворам",
+    "смежными дворами"
    ],
    "correct": "смежных дворах",
    "case": "Предложный (Prepositional)",
-   "explain": "«смежных дворах» — after the preposition «в», for location or topic.",
+   "explain": "«смежных дворах» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c9"
   },
   {
@@ -123,21 +81,21 @@
    ],
    "correct": "милютинских стариков",
    "case": "Родительный (Genitive)",
-   "explain": "«милютинских стариков» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«милютинских стариков» depends on the noun «приглашению» (whose? of what?) — genitive.",
    "id": "c10"
   },
   {
    "sentence": "___ противника, обложившего хутор, не покидали позиций.",
    "lemma": "сила",
    "options": [
-    "основных силах",
+    "основными силами",
     "основным силам",
     "основные силы",
-    "основных сил"
+    "основных силах"
    ],
    "correct": "основные силы",
    "case": "Именительный (Nominative)",
-   "explain": "«Основные силы» — the subject of the sentence stands in the nominative.",
+   "explain": "«основные силы» is the subject of «покидали» — who or what does it — so nominative.",
    "id": "c11"
   },
   {
@@ -151,36 +109,8 @@
    ],
    "correct": "железной дороге",
    "case": "Дательный (Dative)",
-   "explain": "«железной дороге» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«железной дороге» — «к» always takes the dative.",
    "id": "c12"
-  },
-  {
-   "sentence": "— ___ — а мы будем кровь лить?",
-   "lemma": "пасха",
-   "options": [
-    "святой пасхе",
-    "святая пасха",
-    "святой пасхой",
-    "святой пасхи"
-   ],
-   "correct": "святая пасха",
-   "case": "Именительный (Nominative)",
-   "explain": "«Святая пасха» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
-  },
-  {
-   "sentence": "Бунчук подошел к своей бричке, стоявшей возле амбара, кинул под нее шинель, лег, не выпуская из ладони рубчатой ___.",
-   "lemma": "рукоятка",
-   "options": [
-    "револьверной рукоятке",
-    "револьверной рукояткой",
-    "револьверной рукоятки",
-    "револьверная рукоятка"
-   ],
-   "correct": "револьверной рукоятки",
-   "case": "Родительный (Genitive)",
-   "explain": "«револьверной рукоятки» — the genitive here marks possession, absence, or quantity.",
-   "id": "c14"
   },
   {
    "sentence": "___ чужих казаков проникла с ним в хутор.",
@@ -193,7 +123,7 @@
    ],
    "correct": "огромная толпа",
    "case": "Именительный (Nominative)",
-   "explain": "«Огромная толпа» — the subject of the sentence stands in the nominative.",
+   "explain": "«огромная толпа» is the subject of «проникла» — who or what does it — so nominative.",
    "id": "c15"
   },
   {
@@ -207,22 +137,8 @@
    ],
    "correct": "чужих казаков",
    "case": "Родительный (Genitive)",
-   "explain": "«чужих казаков» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«чужих казаков» depends on the noun «толпа» (whose? of what?) — genitive.",
    "id": "c16"
-  },
-  {
-   "sentence": "А за ним ехал ___, прижимая к груди небрежно выструганное древко просторного белого флага.",
-   "lemma": "казак",
-   "options": [
-    "верховому казаку",
-    "верховым казаком",
-    "верхового казака",
-    "верховой казак"
-   ],
-   "correct": "верховой казак",
-   "case": "Именительный (Nominative)",
-   "explain": "«верховой казак» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
   },
   {
    "sentence": "А за ним ехал верховой казак, прижимая к груди небрежно выструганное древко просторного ___.",
@@ -235,7 +151,7 @@
    ],
    "correct": "белого флага",
    "case": "Родительный (Genitive)",
-   "explain": "«белого флага» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«белого флага» depends on the noun «древко» (whose? of what?) — genitive.",
    "id": "c18"
   },
   {
@@ -249,64 +165,8 @@
    ],
    "correct": "подтелковской команды",
    "case": "Родительный (Genitive)",
-   "explain": "«подтелковской команды» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«подтелковской команды» depends on the noun «казаков» (whose? of what?) — genitive.",
    "id": "c19"
-  },
-  {
-   "sentence": "— И здоровый ___, топыря губы, расстегивал ворот гимнастерки, доставал висевший на бронзово-волосатой груди позеленевший медный крест.",
-   "lemma": "красногвардеец-казак",
-   "options": [
-    "широколицего красногвардейца-казака",
-    "широколицый красногвардеец-казак",
-    "широколицем красногвардейце-казаке",
-    "широколицым красногвардейцем-казаком"
-   ],
-   "correct": "широколицый красногвардеец-казак",
-   "case": "Именительный (Nominative)",
-   "explain": "«широколицый красногвардеец-казак» — the subject of the sentence stands in the nominative.",
-   "id": "c20"
-  },
-  {
-   "sentence": "— И здоровый широколицый красногвардеец-казак, топыря губы, расстегивал ворот гимнастерки, доставал висевший на бронзово-волосатой груди позеленевший ___.",
-   "lemma": "крест",
-   "options": [
-    "медный крест",
-    "медного креста",
-    "медном кресте",
-    "медным крестом"
-   ],
-   "correct": "медный крест",
-   "case": "Винительный (Accusative)",
-   "explain": "«медный крест» — the accusative marks the direct object of the verb.",
-   "id": "c21"
-  },
-  {
-   "sentence": "— Какой-то ___, вооруженный пикой с отпиленным наполовину древком, обрадованно хлопал руками.",
-   "lemma": "старичишка",
-   "options": [
-    "мозглявенькому старичишке",
-    "мозглявенький старичишка",
-    "мозглявеньким старичишкой",
-    "мозглявеньком старичишке"
-   ],
-   "correct": "мозглявенький старичишка",
-   "case": "Именительный (Nominative)",
-   "explain": "«мозглявенький старичишка» — the subject of the sentence stands in the nominative.",
-   "id": "c22"
-  },
-  {
-   "sentence": "Но через полчаса несколько казаков, из них один вахмистр ___, расталкивая сбитые в плотный массив толпы, пошли по улице.",
-   "lemma": "станица",
-   "options": [
-    "боковской станицей",
-    "боковская станица",
-    "боковской станице",
-    "боковской станицы"
-   ],
-   "correct": "боковской станицы",
-   "case": "Родительный (Genitive)",
-   "explain": "«Боковской станицы» — the genitive here marks possession, absence, or quantity.",
-   "id": "c23"
   },
   {
    "sentence": "Но через полчаса несколько казаков, из них один вахмистр Боковской станицы, расталкивая сбитые в ___ толпы, пошли по улице.",
@@ -319,7 +179,7 @@
    ],
    "correct": "плотный массив",
    "case": "Винительный (Accusative)",
-   "explain": "«плотный массив» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«плотный массив» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c24"
   },
   {
@@ -333,7 +193,7 @@
    ],
    "correct": "пришлые казаки",
    "case": "Именительный (Nominative)",
-   "explain": "«Пришлые казаки» — the subject of the sentence stands in the nominative.",
+   "explain": "«пришлые казаки» is the subject of «хлынули» — who or what does it — so nominative.",
    "id": "c25"
   },
   {
@@ -341,28 +201,14 @@
    "lemma": "исход",
    "options": [
     "счастливым исходом",
+    "счастливому исходу",
     "счастливый исход",
-    "счастливого исхода",
-    "счастливом исходе"
+    "счастливого исхода"
    ],
    "correct": "счастливый исход",
    "case": "Винительный (Accusative)",
-   "explain": "«счастливый исход» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«счастливый исход» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c26"
-  },
-  {
-   "sentence": "Бунчука, шагавшего слева, старик казак, с пламенно ___ и почерневшей от старости серьгой в ухе, без причины ударил плетью.",
-   "lemma": "борода",
-   "options": [
-    "рыжей бороде",
-    "рыжей бородой",
-    "рыжей бороды",
-    "рыжая борода"
-   ],
-   "correct": "рыжей бородой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«рыжей бородой» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c27"
   },
   {
    "sentence": "Бунчук повернулся, сжав кулаки, однако вторичный, еще более ___ заставил его шарахнуться в глубь толпы.",
@@ -375,22 +221,8 @@
    ],
    "correct": "сильный удар",
    "case": "Именительный (Nominative)",
-   "explain": "«сильный удар» — the subject of the sentence stands in the nominative.",
+   "explain": "«сильный удар» is the subject of «заставил» — who or what does it — so nominative.",
    "id": "c28"
-  },
-  {
-   "sentence": "Старики, озверевшие при виде ___, гнали на них лошадей, свешивались с седел, били плетями, тупяками шашек.",
-   "lemma": "враг",
-   "options": [
-    "безоружными врагами",
-    "безоружным врагам",
-    "безоружных врагов",
-    "безоружных врагах"
-   ],
-   "correct": "безоружных врагов",
-   "case": "Родительный (Genitive)",
-   "explain": "«безоружных врагов» — after the preposition «при», the genitive here marks possession, absence, or quantity.",
-   "id": "c29"
   },
   {
    "sentence": "Пока возле лавки шел дележ продуктов и оружия, взятых с подвод экспедиции, в одном из ___ заседал организованный наспех военно-полевой суд из представителей хуторов, участвовавших в поимке Подтелкова.",
@@ -403,78 +235,8 @@
    ],
    "correct": "соседних домов",
    "case": "Родительный (Genitive)",
-   "explain": "«соседних домов» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«соседних домов» — «из» always takes the genitive.",
    "id": "c30"
-  },
-  {
-   "sentence": "Пока возле лавки шел дележ продуктов и оружия, взятых с подвод экспедиции, в одном из соседних домов заседал организованный наспех ___ из представителей хуторов, участвовавших в поимке Подтелкова.",
-   "lemma": "суд",
-   "options": [
-    "военно-полевом суде",
-    "военно-полевым судом",
-    "военно-полевой суд",
-    "военно-полевого суда"
-   ],
-   "correct": "военно-полевой суд",
-   "case": "Именительный (Nominative)",
-   "explain": "«военно-полевой суд» — the subject of the sentence stands in the nominative.",
-   "id": "c31"
-  },
-  {
-   "sentence": "Председательствовал коренастый ___, уроженец Боковской станицы, Василий Попов.",
-   "lemma": "есаул",
-   "options": [
-    "желтобрового есаула",
-    "желтобровым есаулом",
-    "желтобровом есауле",
-    "желтобровый есаул"
-   ],
-   "correct": "желтобровый есаул",
-   "case": "Именительный (Nominative)",
-   "explain": "«желтобровый есаул» — the subject of the sentence stands in the nominative.",
-   "id": "c32"
-  },
-  {
-   "sentence": "Председательствовал коренастый желтобровый есаул, уроженец ___, Василий Попов.",
-   "lemma": "станица",
-   "options": [
-    "боковской станицей",
-    "боковская станица",
-    "боковской станице",
-    "боковской станицы"
-   ],
-   "correct": "боковской станицы",
-   "case": "Родительный (Genitive)",
-   "explain": "«Боковской станицы» — the genitive here marks possession, absence, or quantity.",
-   "id": "c33"
-  },
-  {
-   "sentence": "У Попова зрачки сузились, стерлись в углах глаз веселые лучики, и глаза, иные, блестящие похолодевшим ___, чуть прикрылись негустыми ресницами.",
-   "lemma": "блеск",
-   "options": [
-    "суровом блеске",
-    "суровым блеском",
-    "суровый блеск",
-    "сурового блеска"
-   ],
-   "correct": "суровым блеском",
-   "case": "Творительный (Instrumental)",
-   "explain": "«суровым блеском» — the instrumental marks the means, company, or complement.",
-   "id": "c34"
-  },
-  {
-   "sentence": "У Попова зрачки сузились, стерлись в углах глаз веселые лучики, и глаза, иные, блестящие похолодевшим суровым блеском, чуть прикрылись ___.",
-   "lemma": "ресница",
-   "options": [
-    "негустым ресницам",
-    "негустыми ресницами",
-    "негустых ресницах",
-    "негустых ресниц"
-   ],
-   "correct": "негустыми ресницами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«негустыми ресницами» — the instrumental marks the means, company, or complement.",
-   "id": "c35"
   },
   {
    "sentence": "— Что мы сделаем с теми предателями ___, которые шли грабить наши курени и уничтожать казачество?",
@@ -487,22 +249,8 @@
    ],
    "correct": "родного края",
    "case": "Родительный (Genitive)",
-   "explain": "«родного края» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«родного края» depends on the noun «предателями» (whose? of what?) — genitive.",
    "id": "c36"
-  },
-  {
-   "sentence": "Секретарь — тоже Попов, ___ есаула, склонив белобрысую, гладко причесанную голову, заскрипел пером.",
-   "lemma": "родственник",
-   "options": [
-    "дальним родственником",
-    "дальнего родственника",
-    "дальний родственник",
-    "дальнем родственнике"
-   ],
-   "correct": "дальний родственник",
-   "case": "Именительный (Nominative)",
-   "explain": "«дальний родственник» — the subject of the sentence stands in the nominative.",
-   "id": "c38"
   }
  ]
 }

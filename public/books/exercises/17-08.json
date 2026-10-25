@@ -1,31 +1,17 @@
 {
  "cases": [
   {
-   "sentence": "Она молила его пресечь ___ агагитянина Амана, который тот замыслил против иудеев.",
-   "lemma": "план",
-   "options": [
-    "злой план",
-    "злому плану",
-    "злым планом",
-    "злом плане"
-   ],
-   "correct": "злой план",
-   "case": "Винительный (Accusative)",
-   "explain": "«злой план» — the accusative marks the direct object of the verb.",
-   "id": "c1"
-  },
-  {
    "sentence": "Царь протянул к Есфири ___, и она поднялась и встала перед ним.",
    "lemma": "скипетр",
    "options": [
     "золотому скипетру",
+    "золотом скипетре",
     "золотой скипетр",
-    "золотого скипетра",
     "золотым скипетром"
    ],
    "correct": "золотой скипетр",
    "case": "Винительный (Accusative)",
-   "explain": "«золотой скипетр» — the accusative marks the direct object of the verb.",
+   "explain": "«золотой скипетр» is the direct object of «протянул» (кого? что?) — accusative.",
    "id": "c2"
   },
   {
@@ -39,36 +25,8 @@
    ],
    "correct": "царского имени",
    "case": "Родительный (Genitive)",
-   "explain": "«царского имени» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«царского имени» — «от» always takes the genitive.",
    "id": "c3"
-  },
-  {
-   "sentence": "А вы напишите от царского имени ___, в пользу иудеев, как вам будет угодно, и скрепите его царским перстнем, потому что никакого письма, написанного от лица царя и скрепленного его перстнем, отменить нельзя.",
-   "lemma": "указ",
-   "options": [
-    "другого указа",
-    "другой указ",
-    "другому указу",
-    "другом указе"
-   ],
-   "correct": "другой указ",
-   "case": "Именительный (Nominative)",
-   "explain": "«другой указ» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
-  },
-  {
-   "sentence": "И созваны были в то время — в двадцать ___ третьего месяца, месяца сивана — царские писари.",
-   "lemma": "день",
-   "options": [
-    "третьим днём",
-    "третий день",
-    "третьем дне",
-    "третьему дню"
-   ],
-   "correct": "третий день",
-   "case": "Винительный (Accusative)",
-   "explain": "«третий день» — the accusative marks the direct object of the verb.",
-   "id": "c5"
   },
   {
    "sentence": "И созваны были в то время — в двадцать третий день ___, месяца сивана — царские писари.",
@@ -81,22 +39,8 @@
    ],
    "correct": "третьего месяца",
    "case": "Родительный (Genitive)",
-   "explain": "«третьего месяца» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«третьего месяца» depends on the noun «день» (whose? of what?) — genitive.",
    "id": "c6"
-  },
-  {
-   "sentence": "И созваны были в то время — в двадцать третий день третьего месяца, месяца сивана — ___.",
-   "lemma": "писарь",
-   "options": [
-    "царских писарях",
-    "царских писарей",
-    "царские писари",
-    "царским писарям"
-   ],
-   "correct": "царские писари",
-   "case": "Именительный (Nominative)",
-   "explain": "«царские писари» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
   },
   {
    "sentence": "Мардохей написал от имени царя Ксеркса, скрепил письма царским перстнем и разослал их через ___, которые ездили на быстрых конях, специально выведенных для царя.",
@@ -109,7 +53,7 @@
    ],
    "correct": "конных гонцов",
    "case": "Винительный (Accusative)",
-   "explain": "«конных гонцов» — after the preposition «через», the accusative marks the direct object of the verb.",
+   "explain": "«конных гонцов» — «через» always takes the accusative.",
    "id": "c8"
   },
   {
@@ -123,7 +67,7 @@
    ],
    "correct": "тринадцатый день",
    "case": "Именительный (Nominative)",
-   "explain": "«тринадцатый день» — the subject of the sentence stands in the nominative.",
+   "explain": "«тринадцатый день» is the subject of «был» — who or what does it — so nominative.",
    "id": "c10"
   },
   {
@@ -137,7 +81,7 @@
    ],
    "correct": "двенадцатого месяца",
    "case": "Родительный (Genitive)",
-   "explain": "«двенадцатого месяца» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«двенадцатого месяца» depends on the noun «день» (whose? of what?) — genitive.",
    "id": "c11"
   },
   {
@@ -151,22 +95,8 @@
    ],
    "correct": "царским повелением",
    "case": "Творительный (Instrumental)",
-   "explain": "«царским повелением» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «подгоняемые», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c13"
-  },
-  {
-   "sentence": "Мардохей ушел от царя, облаченный в голубые и белые царские одежды, большой ___ и пурпурную мантию из тонкого льна.",
-   "lemma": "венец",
-   "options": [
-    "золотом венце",
-    "золотому венцу",
-    "золотой венец",
-    "золотого венца"
-   ],
-   "correct": "золотой венец",
-   "case": "Именительный (Nominative)",
-   "explain": "«золотой венец» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
   },
   {
    "sentence": "Мардохей ушел от царя, облаченный в голубые и белые царские одежды, большой золотой венец и пурпурную мантию из ___.",
@@ -179,22 +109,8 @@
    ],
    "correct": "тонкого льна",
    "case": "Родительный (Genitive)",
-   "explain": "«тонкого льна» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«тонкого льна» — «из» always takes the genitive.",
    "id": "c15"
-  },
-  {
-   "sentence": "В каждой провинции и в каждом городе, куда бы ни доходил ___, у иудеев было веселье и радость, пиршества и праздники.",
-   "lemma": "указ",
-   "options": [
-    "царского указа",
-    "царскому указу",
-    "царским указом",
-    "царский указ"
-   ],
-   "correct": "царский указ",
-   "case": "Именительный (Nominative)",
-   "explain": "«царский указ» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
   },
   {
    "sentence": "И многие из ___ сделались иудеями, потому что их объял страх перед ними.",
@@ -207,7 +123,7 @@
    ],
    "correct": "других народов",
    "case": "Родительный (Genitive)",
-   "explain": "«других народов» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«других народов» — «из» always takes the genitive.",
    "id": "c17"
   }
  ]

@@ -1,48 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "___, новые пробуждения, новые здравые мысли.",
-   "lemma": "сон",
-   "options": [
-    "новый сон",
-    "нового сна",
-    "новом сне",
-    "новому сну"
-   ],
-   "correct": "новый сон",
-   "case": "Именительный (Nominative)",
-   "explain": "«Новый сон» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Новый сон, ___, новые здравые мысли.",
-   "lemma": "пробуждение",
-   "options": [
-    "новые пробуждения",
-    "новых пробуждений",
-    "новых пробуждениях",
-    "новым пробуждениям"
-   ],
-   "correct": "новые пробуждения",
-   "case": "Именительный (Nominative)",
-   "explain": "«новые пробуждения» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Новый сон, новые пробуждения, новые ___.",
-   "lemma": "мысль",
-   "options": [
-    "здравые мысли",
-    "здравых мыслях",
-    "здравых мыслей",
-    "здравыми мыслями"
-   ],
-   "correct": "здравые мысли",
-   "case": "Именительный (Nominative)",
-   "explain": "«здравые мысли» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
    "sentence": "Мы и свадьбы справляем, и хороводы водим, и пиво в ___ варим.",
    "lemma": "праздник",
    "options": [
@@ -53,7 +11,7 @@
    ],
    "correct": "престольные праздники",
    "case": "Винительный (Accusative)",
-   "explain": "«престольные праздники» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«престольные праздники» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c5"
   },
   {
@@ -67,63 +25,21 @@
    ],
    "correct": "десятым мужем",
    "case": "Творительный (Instrumental)",
-   "explain": "«десятым мужем» — after the preposition «за», the instrumental marks the means, company, or complement.",
+   "explain": "«десятым мужем» — «за» takes the instrumental here (где? за чем? за кем?) — the accusative would mean motion behind or 'for' (куда? за что?).",
    "id": "c7"
-  },
-  {
-   "sentence": "— ___ эти волки — это правду надо сказать.",
-   "lemma": "народ",
-   "options": [
-    "подлому народу",
-    "подлый народ",
-    "подлым народом",
-    "подлого народа"
-   ],
-   "correct": "подлый народ",
-   "case": "Именительный (Nominative)",
-   "explain": "«Подлый народ» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
-  },
-  {
-   "sentence": "Заяц, хошь он и плодущ, однако, ежели сегодня ___ вырезать, да завтра другой косяк — глядь, ан на базаре-то, вместо двугривенного, заяц уж в полтину вскочил!",
-   "lemma": "косяк",
-   "options": [
-    "целого косяка",
-    "целом косяке",
-    "целым косяком",
-    "целый косяк"
-   ],
-   "correct": "целый косяк",
-   "case": "Именительный (Nominative)",
-   "explain": "«целый косяк» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
-  },
-  {
-   "sentence": "Заяц, хошь он и плодущ, однако, ежели сегодня целый косяк вырезать, да завтра ___ — глядь, ан на базаре-то, вместо двугривенного, заяц уж в полтину вскочил!",
-   "lemma": "косяк",
-   "options": [
-    "другой косяк",
-    "другому косяку",
-    "другим косяком",
-    "другом косяке"
-   ],
-   "correct": "другой косяк",
-   "case": "Именительный (Nominative)",
-   "explain": "«другой косяк» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
   },
   {
    "sentence": "А лисица точно читает в его ___, сидит, да, знай, заиньку похваливает.",
    "lemma": "мысль",
    "options": [
-    "сокровенных мыслях",
-    "сокровенные мысли",
     "сокровенных мыслей",
+    "сокровенными мыслями",
+    "сокровенных мыслях",
     "сокровенным мыслям"
    ],
    "correct": "сокровенных мыслях",
    "case": "Предложный (Prepositional)",
-   "explain": "«сокровенных мыслях» — after the preposition «в», for location or topic.",
+   "explain": "«сокровенных мыслях» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c11"
   },
   {
@@ -137,7 +53,7 @@
    ],
    "correct": "скотном дворе",
    "case": "Предложный (Prepositional)",
-   "explain": "«скотном дворе» — after the preposition «на», for location or topic.",
+   "explain": "«скотном дворе» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c12"
   },
   {
@@ -151,64 +67,8 @@
    ],
    "correct": "иной раз",
    "case": "Винительный (Accusative)",
-   "explain": "«иной раз» — the accusative marks the direct object of the verb.",
+   "explain": "«иной раз» tells how long or how often, with no preposition — accusative.",
    "id": "c13"
-  },
-  {
-   "sentence": "— И я тоже думаю, потому что какие же вы солдаты! хуже старинной гарнизы, которую ___ Бибиков «негодницей» звал.",
-   "lemma": "генерал",
-   "options": [
-    "славном генерале",
-    "славным генералом",
-    "славного генерала",
-    "славный генерал"
-   ],
-   "correct": "славный генерал",
-   "case": "Именительный (Nominative)",
-   "explain": "«славный генерал» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
-  },
-  {
-   "sentence": "— Я его съела, я — та ___ и есть, о которой ты слышал.",
-   "lemma": "лисица",
-   "options": [
-    "самой лисице",
-    "самой лисицы",
-    "самая лисица",
-    "самой лисицей"
-   ],
-   "correct": "самая лисица",
-   "case": "Именительный (Nominative)",
-   "explain": "«самая лисица» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
-  },
-  {
-   "sentence": "— Слушай, ___, — сказала она, — я ведь думала, что ты в самом деле филозо́ф, а тебя между тем, вишь, как от одной мысли о смерти коробит.",
-   "lemma": "зайчишко",
-   "options": [
-    "подлому зайчишку",
-    "подлым зайчишком",
-    "подлого зайчишка",
-    "подлый зайчишко"
-   ],
-   "correct": "подлый зайчишко",
-   "case": "Именительный (Nominative)",
-   "explain": "«подлый зайчишко» — the subject of the sentence stands in the nominative.",
-   "id": "c18"
-  },
-  {
-   "sentence": "Тем не менее лиса все-таки была, по-своему, права: у зайца, действительно, нашлось ___, которое в значительной мере агонию его смягчило.",
-   "lemma": "дело",
-   "options": [
-    "заячьим делом",
-    "заячьего дела",
-    "заячьем деле",
-    "заячье дело"
-   ],
-   "correct": "заячье дело",
-   "case": "Именительный (Nominative)",
-   "explain": "«заячье дело» — the subject of the sentence stands in the nominative.",
-   "id": "c21"
   },
   {
    "sentence": "Наконец урочные пять минут истекли, застав зайца неподвижным на ___ и всецело погруженным в созерцание своего заячьего дела.",
@@ -221,22 +81,8 @@
    ],
    "correct": "прежнем месте",
    "case": "Предложный (Prepositional)",
-   "explain": "«прежнем месте» — after the preposition «на», for location or topic.",
+   "explain": "«прежнем месте» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c22"
-  },
-  {
-   "sentence": "Наконец урочные пять минут истекли, застав зайца неподвижным на прежнем месте и всецело погруженным в созерцание своего ___.",
-   "lemma": "дело",
-   "options": [
-    "заячьем деле",
-    "заячьему делу",
-    "заячьего дела",
-    "заячьим делом"
-   ],
-   "correct": "заячьего дела",
-   "case": "Родительный (Genitive)",
-   "explain": "«заячьего дела» — the genitive here marks possession, absence, or quantity.",
-   "id": "c23"
   }
  ]
 }

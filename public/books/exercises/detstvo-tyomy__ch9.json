@@ -1,48 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Он не мог выносить ___ — этой свидетельницы его былого счастья и падения, хотя между товарищами Тёма и встретил неожиданную для него поддержку.",
-   "lemma": "комната",
-   "options": [
-    "классной комнате",
-    "классной комнатой",
-    "классная комната",
-    "классной комнаты"
-   ],
-   "correct": "классной комнаты",
-   "case": "Родительный (Genitive)",
-   "explain": "«классной комнаты» — the genitive here marks possession, absence, or quantity.",
-   "id": "c1"
-  },
-  {
-   "sentence": "— Ну вот, теперь ___!",
-   "lemma": "тройка",
-   "options": [
-    "настоящей тройки",
-    "настоящей тройкой",
-    "настоящей тройке",
-    "настоящая тройка"
-   ],
-   "correct": "настоящая тройка",
-   "case": "Именительный (Nominative)",
-   "explain": "«настоящая тройка» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Он, сколько помнил себя, всё помнил то же безбрежное море, их дом, стоявший на самом берегу, всегда вдыхал в себя ___ этого моря, перемешанный с запахом пеньки смоляных канатов и каменноугольного дыма пристани.",
-   "lemma": "запах",
-   "options": [
-    "свежему запаху",
-    "свежем запахе",
-    "свежего запаха",
-    "свежий запах"
-   ],
-   "correct": "свежий запах",
-   "case": "Винительный (Accusative)",
-   "explain": "«свежий запах» — the accusative marks the direct object of the verb.",
-   "id": "c4"
-  },
-  {
    "sentence": "Он, сколько помнил себя, всё помнил то же безбрежное море, их дом, стоявший на самом берегу, всегда вдыхал в себя свежий запах этого моря, перемешанный с запахом пеньки ___ и каменноугольного дыма пристани.",
    "lemma": "канат",
    "options": [
@@ -53,7 +11,7 @@
    ],
    "correct": "смоляных канатов",
    "case": "Родительный (Genitive)",
-   "explain": "«смоляных канатов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«смоляных канатов» depends on the noun «пеньки» (whose? of what?) — genitive.",
    "id": "c5"
   },
   {
@@ -67,7 +25,7 @@
    ],
    "correct": "молодые моряки",
    "case": "Именительный (Nominative)",
-   "explain": "«молодые моряки» — the subject of the sentence stands in the nominative.",
+   "explain": "«молодые моряки» is the subject of «бывавшие» — who or what does it — so nominative.",
    "id": "c6"
   },
   {
@@ -81,7 +39,7 @@
    ],
    "correct": "хорошеньких детей",
    "case": "Винительный (Accusative)",
-   "explain": "«хорошеньких детей» — the accusative marks the direct object of the verb.",
+   "explain": "«хорошеньких детей» is the direct object of «любят» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c7"
   },
   {
@@ -95,22 +53,8 @@
    ],
    "correct": "утлой лодке",
    "case": "Предложный (Prepositional)",
-   "explain": "«утлой лодке» — after the preposition «в», for location or topic.",
+   "explain": "«утлой лодке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c8"
-  },
-  {
-   "sentence": "Его разжигала буря, в нём подымалась неизведанная страсть в утлой лодке помериться силами с рассвирепевшим морем, когда оно, взбешённое, как титан, швыряло далеко на берег свои ___.",
-   "lemma": "волна",
-   "options": [
-    "бешеными волнами",
-    "бешеных волн",
-    "бешеным волнам",
-    "бешеные волны"
-   ],
-   "correct": "бешеные волны",
-   "case": "Винительный (Accusative)",
-   "explain": "«бешеные волны» — the accusative marks the direct object of the verb.",
-   "id": "c9"
   },
   {
    "sentence": "Прогулки по морю стали ___ друзей в 3-м классе.",
@@ -123,36 +67,8 @@
    ],
    "correct": "излюбленным занятием",
    "case": "Творительный (Instrumental)",
-   "explain": "«излюбленным занятием» — the instrumental marks the means, company, or complement.",
+   "explain": "After «стали», what someone or something is or becomes stands in the instrumental.",
    "id": "c11"
-  },
-  {
-   "sentence": "___ говорил Данилов; Тёма с раскрытым ртом слушал, а Касицкий и слушал, и возражал, и развлекался.",
-   "lemma": "образ",
-   "options": [
-    "главному образу",
-    "главным образом",
-    "главного образа",
-    "главный образ"
-   ],
-   "correct": "главным образом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«Главным образом» — the instrumental marks the means, company, or complement.",
-   "id": "c12"
-  },
-  {
-   "sentence": "Чего они не видали, где не бывали: и пустыни, и львы, и тигры, и ___.",
-   "lemma": "индеец",
-   "options": [
-    "американских индейцах",
-    "американскими индейцами",
-    "американские индейцы",
-    "американским индейцам"
-   ],
-   "correct": "американские индейцы",
-   "case": "Именительный (Nominative)",
-   "explain": "«американские индейцы» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
   },
   {
    "sentence": "Никогда не жалели: все они всегда вырастали без этих ___ и экзаменов, женились всегда на ком хотели, стариками делались, и все им завидовали.",
@@ -165,64 +81,22 @@
    ],
    "correct": "дурацких единиц",
    "case": "Родительный (Genitive)",
-   "explain": "«дурацких единиц» — after the preposition «без», the genitive here marks possession, absence, or quantity.",
+   "explain": "«дурацких единиц» — «без» always takes the genitive.",
    "id": "c15"
-  },
-  {
-   "sentence": "И вот понемногу план созрел: попытать счастья и с первым ___ удрать в Америку на первом отходящем пароходе.",
-   "lemma": "день",
-   "options": [
-    "весеннему дню",
-    "весеннем дне",
-    "весенним днём",
-    "весеннего дня"
-   ],
-   "correct": "весенним днём",
-   "case": "Творительный (Instrumental)",
-   "explain": "«весенним днём» — the instrumental marks the means, company, or complement.",
-   "id": "c16"
-  },
-  {
-   "sentence": "Тёма дал согласие, не думая, ___, ввиду далёкой ещё весны.",
-   "lemma": "образ",
-   "options": [
-    "главный образ",
-    "главному образу",
-    "главном образе",
-    "главным образом"
-   ],
-   "correct": "главным образом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«главным образом» — the instrumental marks the means, company, or complement.",
-   "id": "c17"
   },
   {
    "sentence": "А потому необходимо было пользоваться каждым ___, чтобы откладывать всё, что можно.",
    "lemma": "момент",
    "options": [
-    "удобный момент",
-    "удобном моменте",
     "удобным моментом",
-    "удобного момента"
+    "удобному моменту",
+    "удобного момента",
+    "удобном моменте"
    ],
    "correct": "удобным моментом",
    "case": "Творительный (Instrumental)",
-   "explain": "«удобным моментом» — the instrumental marks the means, company, or complement.",
+   "explain": "«пользоваться» takes the instrumental.",
    "id": "c18"
-  },
-  {
-   "sentence": "Было, конечно, довольно ___ избавить себя от таких ежедневных мук — это брать с собой из дому хоть запасный кусок хлеба.",
-   "lemma": "средство",
-   "options": [
-    "простого средства",
-    "простом средстве",
-    "простое средство",
-    "простым средством"
-   ],
-   "correct": "простое средство",
-   "case": "Именительный (Nominative)",
-   "explain": "«простое средство» — the subject of the sentence stands in the nominative.",
-   "id": "c20"
   },
   {
    "sentence": "Было, конечно, довольно простое средство избавить себя от таких ___ — это брать с собой из дому хоть запасный кусок хлеба.",
@@ -235,22 +109,8 @@
    ],
    "correct": "ежедневных мук",
    "case": "Родительный (Genitive)",
-   "explain": "«ежедневных мук» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«ежедневных мук» — «от» always takes the genitive.",
    "id": "c21"
-  },
-  {
-   "sentence": "Обдумывая в подробностях свой план, Данилов пришёл к заключению, что прямо в гавани сесть на корабль не удастся, потому что, во-первых, узнают и не пустят, а во-вторых потребуют ___.",
-   "lemma": "паспорт",
-   "options": [
-    "заграничные паспорта",
-    "заграничным паспортам",
-    "заграничных паспортов",
-    "заграничных паспортах"
-   ],
-   "correct": "заграничные паспорта",
-   "case": "Именительный (Nominative)",
-   "explain": "«заграничные паспорта» — the subject of the sentence stands in the nominative.",
-   "id": "c22"
   },
   {
    "sentence": "Поэтому Данилов решил так: узнав, когда отходит ___, заблаговременно выбраться в открытое море на лодке и там, пристав к кораблю, объяснить, в чём дело, и уехать на нём.",
@@ -263,22 +123,8 @@
    ],
    "correct": "подходящий корабль",
    "case": "Именительный (Nominative)",
-   "explain": "«подходящий корабль» — the subject of the sentence stands in the nominative.",
+   "explain": "«подходящий корабль» is the subject of «отходит» — who or what does it — so nominative.",
    "id": "c23"
-  },
-  {
-   "sentence": "Вопрос о дальнейшем был решён в утвердительном смысле на том ___, что кому же даровых работников не надо?",
-   "lemma": "основание",
-   "options": [
-    "простым основанием",
-    "простому основанию",
-    "простом основании",
-    "простого основания"
-   ],
-   "correct": "простом основании",
-   "case": "Предложный (Prepositional)",
-   "explain": "«простом основании» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c25"
   },
   {
    "sentence": "Если пустить лодку на произвол судьбы — пропажа ___ — отец подводился.",
@@ -291,36 +137,8 @@
    ],
    "correct": "казённого имущества",
    "case": "Родительный (Genitive)",
-   "explain": "«казённого имущества» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«казённого имущества» depends on the noun «пропажа» (whose? of what?) — genitive.",
    "id": "c26"
-  },
-  {
-   "sentence": "Выбор типа лодки подвергся ___.",
-   "lemma": "обсуждение",
-   "options": [
-    "всестороннее обсуждение",
-    "всестороннего обсуждения",
-    "всестороннем обсуждении",
-    "всестороннему обсуждению"
-   ],
-   "correct": "всестороннему обсуждению",
-   "case": "Дательный (Dative)",
-   "explain": "«всестороннему обсуждению» — the dative marks the indirect object or recipient.",
-   "id": "c27"
-  },
-  {
-   "sentence": "Дома, на вопрос матери об отметках, он отделывался ___, произносимым каким-то слишком уж равнодушным и беспечным голосом.",
-   "lemma": "ответ",
-   "options": [
-    "обычным ответом",
-    "обычный ответ",
-    "обычному ответу",
-    "обычного ответа"
-   ],
-   "correct": "обычным ответом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«обычным ответом» — the instrumental marks the means, company, or complement.",
-   "id": "c30"
   },
   {
    "sentence": "Дома, на вопрос матери об отметках, он отделывался обычным ответом, произносимым каким-то слишком уж равнодушным и ___.",
@@ -333,7 +151,7 @@
    ],
    "correct": "беспечным голосом",
    "case": "Творительный (Instrumental)",
-   "explain": "«беспечным голосом» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «произносимым», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c31"
   },
   {
@@ -347,7 +165,7 @@
    ],
    "correct": "четвёртый день",
    "case": "Винительный (Accusative)",
-   "explain": "«четвёртый день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«четвёртый день» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c32"
   },
   {
@@ -361,36 +179,8 @@
    ],
    "correct": "заграничный пароход",
    "case": "Именительный (Nominative)",
-   "explain": "«Заграничный пароход» — the subject of the sentence stands in the nominative.",
+   "explain": "«заграничный пароход» is the subject of «отходил» — who or what does it — so nominative.",
    "id": "c33"
-  },
-  {
-   "sentence": "Тёма, стараясь соблюдать ___, бросая украдкой растроганные взгляды кругом, незаметно юркнул в калитку и пустился к гавани.",
-   "lemma": "вид",
-   "options": [
-    "равнодушный вид",
-    "равнодушного вида",
-    "равнодушным видом",
-    "равнодушному виду"
-   ],
-   "correct": "равнодушный вид",
-   "case": "Винительный (Accusative)",
-   "explain": "«равнодушный вид» — the accusative marks the direct object of the verb.",
-   "id": "c34"
-  },
-  {
-   "sentence": "Тёма заглянул внутрь их ___ — белой с синей каёмкой лодки, с девизом «Вперёд», и увидел там всякие кульки.",
-   "lemma": "красавица",
-   "options": [
-    "общей красавицей",
-    "общей красавице",
-    "общей красавицы",
-    "общая красавица"
-   ],
-   "correct": "общей красавицы",
-   "case": "Родительный (Genitive)",
-   "explain": "«общей красавицы» — the genitive here marks possession, absence, or quantity.",
-   "id": "c35"
   },
   {
    "sentence": "У выхода она ловко вильнула под носом входившего парохода и, выскочив на зыбкую, неровную поверхность ___, точно затанцевала по мелким волнам.",
@@ -403,7 +193,7 @@
    ],
    "correct": "открытого моря",
    "case": "Родительный (Genitive)",
-   "explain": "«открытого моря» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«открытого моря» depends on the noun «поверхность» (whose? of what?) — genitive.",
    "id": "c36"
   },
   {
@@ -417,22 +207,8 @@
    ],
    "correct": "холодный ветер",
    "case": "Именительный (Nominative)",
-   "explain": "«холодный ветер» — the subject of the sentence stands in the nominative.",
+   "explain": "«холодный ветер» is the subject of «срывал» — who or what does it — so nominative.",
    "id": "c38"
-  },
-  {
-   "sentence": "Вёсла, ровно и мерно стуча в уключинах, на несколько мгновений погружались в воду и снова сверкали на солнце, ___ гребцов обращённые параллельно к воде.",
-   "lemma": "движение",
-   "options": [
-    "ловкое движение",
-    "ловкому движению",
-    "ловким движением",
-    "ловком движении"
-   ],
-   "correct": "ловким движением",
-   "case": "Творительный (Instrumental)",
-   "explain": "«ловким движением» — the instrumental marks the means, company, or complement.",
-   "id": "c39"
   },
   {
    "sentence": "— Чёрт, пить хочется, — сказал Касицкий и, перегнувшись, зачерпнул двумя руками ___ и хлебнул глоток.",
@@ -445,7 +221,7 @@
    ],
    "correct": "морской воды",
    "case": "Родительный (Genitive)",
-   "explain": "«морской воды» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«морской воды» depends on the noun «руками» (whose? of what?) — genitive.",
    "id": "c40"
   },
   {
@@ -459,7 +235,7 @@
    ],
    "correct": "тяжёлого сна",
    "case": "Родительный (Genitive)",
-   "explain": "«тяжёлого сна» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«тяжёлого сна» — «от» always takes the genitive.",
    "id": "c41"
   },
   {
@@ -473,35 +249,21 @@
    ],
    "correct": "чёрного дыма",
    "case": "Родительный (Genitive)",
-   "explain": "«чёрного дыма» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«чёрного дыма» depends on the noun «клубы» (whose? of what?) — genitive.",
    "id": "c42"
-  },
-  {
-   "sentence": "Из гавани, выпуская клубы чёрного дыма, показался громадный ___.",
-   "lemma": "пароход",
-   "options": [
-    "заграничного парохода",
-    "заграничном пароходе",
-    "заграничному пароходу",
-    "заграничный пароход"
-   ],
-   "correct": "заграничный пароход",
-   "case": "Именительный (Nominative)",
-   "explain": "«заграничный пароход» — the subject of the sentence stands in the nominative.",
-   "id": "c43"
   },
   {
    "sentence": "Лодка сделала ___ и медленно пошла навстречу.",
    "lemma": "полукруг",
    "options": [
-    "красивого полукруга",
-    "красивым полукругом",
     "красивый полукруг",
-    "красивому полукругу"
+    "красивым полукругом",
+    "красивому полукругу",
+    "красивом полукруге"
    ],
    "correct": "красивый полукруг",
    "case": "Винительный (Accusative)",
-   "explain": "«красивый полукруг» — the accusative marks the direct object of the verb.",
+   "explain": "«красивый полукруг» is the direct object of «сделала» (кого? что?) — accusative.",
    "id": "c44"
   },
   {
@@ -515,50 +277,8 @@
    ],
    "correct": "тяжёлое чудовище",
    "case": "Именительный (Nominative)",
-   "explain": "«Тяжёлое чудовище» — the subject of the sentence stands in the nominative.",
+   "explain": "«тяжёлое чудовище» is the subject of «летело» — who or what does it — so nominative.",
    "id": "c46"
-  },
-  {
-   "sentence": "Тяжёлое чудовище летело совсем близко, высоко задрав свои ___, и гул машины явственно отдался в ушах беглецов, обдав их запахом пара и перегорелого масла.",
-   "lemma": "борт",
-   "options": [
-    "могучими бортами",
-    "могучим бортам",
-    "могучие борта",
-    "могучих бортов"
-   ],
-   "correct": "могучие борта",
-   "case": "Винительный (Accusative)",
-   "explain": "«могучие борта» — the accusative marks the direct object of the verb.",
-   "id": "c47"
-  },
-  {
-   "sentence": "Тяжёлое чудовище летело совсем близко, высоко задрав свои могучие борта, и гул машины явственно отдался в ушах беглецов, обдав их запахом пара и ___.",
-   "lemma": "масло",
-   "options": [
-    "перегорелым маслом",
-    "перегорелое масло",
-    "перегорелого масла",
-    "перегорелом масле"
-   ],
-   "correct": "перегорелого масла",
-   "case": "Родительный (Genitive)",
-   "explain": "«перегорелого масла» — the genitive here marks possession, absence, or quantity.",
-   "id": "c48"
-  },
-  {
-   "sentence": "Целый ворох ___ замахал им с палубы.",
-   "lemma": "платок",
-   "options": [
-    "белым платкам",
-    "белых платков",
-    "белых платках",
-    "белые платки"
-   ],
-   "correct": "белых платков",
-   "case": "Родительный (Genitive)",
-   "explain": "«белых платков» — the genitive here marks possession, absence, or quantity.",
-   "id": "c49"
   },
   {
    "sentence": "— Они думали, — проговорил огорчённо Тёма, — что мы им ___ желаем.",
@@ -571,7 +291,7 @@
    ],
    "correct": "хорошей дороги",
    "case": "Родительный (Genitive)",
-   "explain": "«хорошей дороги» — the genitive here marks possession, absence, or quantity.",
+   "explain": "With «желаем», a verb of waiting, seeking, asking or wanting, the object can stand in the genitive — as here.",
    "id": "c50"
   },
   {
@@ -585,7 +305,7 @@
    ],
    "correct": "весёлых красках",
    "case": "Предложный (Prepositional)",
-   "explain": "«весёлых красках» — after the preposition «в», for location or topic.",
+   "explain": "«весёлых красках» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c53"
   },
   {
@@ -599,7 +319,7 @@
    ],
    "correct": "неудавшейся затее",
    "case": "Предложный (Prepositional)",
-   "explain": "«неудавшейся затее» — after the preposition «о», for location or topic.",
+   "explain": "«неудавшейся затее» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c54"
   }
  ]

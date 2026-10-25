@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Порфирий Платоныч приехал, рассказал ___; он только что вернулся из города.",
-   "lemma": "анекдот",
-   "options": [
-    "разных анекдотах",
-    "разные анекдоты",
-    "разными анекдотами",
-    "разным анекдотам"
-   ],
-   "correct": "разные анекдоты",
-   "case": "Винительный (Accusative)",
-   "explain": "«разные анекдоты» — the accusative marks the direct object of the verb.",
-   "id": "c1"
-  },
-  {
    "sentence": "___ вывел ее из затруднения: дворецкий доложил о приезде Ситникова.",
    "lemma": "случай",
    "options": [
@@ -25,21 +11,21 @@
    ],
    "correct": "неожиданный случай",
    "case": "Именительный (Nominative)",
-   "explain": "«Неожиданный случай» — the subject of the sentence stands in the nominative.",
+   "explain": "«неожиданный случай» is the subject of «вывел» — who or what does it — so nominative.",
    "id": "c3"
   },
   {
    "sentence": "Между обоими ___ с некоторых пор установилось какое-то лжеразвязное подтрунивание, что всегда служит признаком тайного неудовольствия или невысказанных подозрений.",
    "lemma": "человек",
    "options": [
+    "молодые люди",
+    "молодыми людьми",
     "молодым людям",
-    "молодых людях",
-    "молодых людей",
-    "молодыми людьми"
+    "молодых людях"
    ],
    "correct": "молодыми людьми",
    "case": "Творительный (Instrumental)",
-   "explain": "«молодыми людьми» — after the preposition «между», the instrumental marks the means, company, or complement.",
+   "explain": "«молодыми людьми» — «между» + instrumental: between.",
    "id": "c5"
   },
   {
@@ -53,7 +39,7 @@
    ],
    "correct": "лжеразвязное подтрунивание",
    "case": "Именительный (Nominative)",
-   "explain": "«лжеразвязное подтрунивание» — the subject of the sentence stands in the nominative.",
+   "explain": "«лжеразвязное подтрунивание» is the subject of «установилось» — who or what does it — so nominative.",
    "id": "c6"
   },
   {
@@ -67,7 +53,7 @@
    ],
    "correct": "тайного неудовольствия",
    "case": "Родительный (Genitive)",
-   "explain": "«тайного неудовольствия» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«тайного неудовольствия» depends on the noun «признаком» (whose? of what?) — genitive.",
    "id": "c7"
   },
   {
@@ -81,7 +67,7 @@
    ],
    "correct": "собственный вопрос",
    "case": "Винительный (Accusative)",
-   "explain": "«собственный вопрос» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«собственный вопрос» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c9"
   },
   {
@@ -95,7 +81,7 @@
    ],
    "correct": "другие черты",
    "case": "Именительный (Nominative)",
-   "explain": "«другие черты» — the subject of the sentence stands in the nominative.",
+   "explain": "«другие черты» is the subject of «проступили» — who or what does it — so nominative.",
    "id": "c10"
   },
   {
@@ -109,7 +95,7 @@
    ],
    "correct": "красивый облик",
    "case": "Винительный (Accusative)",
-   "explain": "«красивый облик» — after the preposition «сквозь», the accusative marks the direct object of the verb.",
+   "explain": "«красивый облик» — «сквозь» always takes the accusative.",
    "id": "c11"
   },
   {
@@ -123,64 +109,8 @@
    ],
    "correct": "молодой вдовы",
    "case": "Родительный (Genitive)",
-   "explain": "«молодой вдовы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«молодой вдовы» depends on the noun «облик» (whose? of what?) — genitive.",
    "id": "c12"
-  },
-  {
-   "sentence": "Мне, пойми ты это, мне нужны ___.",
-   "lemma": "олух",
-   "options": [
-    "подобных олухов",
-    "подобные олухи",
-    "подобными олухами",
-    "подобным олухам"
-   ],
-   "correct": "подобные олухи",
-   "case": "Именительный (Nominative)",
-   "explain": "«подобные олухи» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
-  },
-  {
-   "sentence": "«Эге-ге!.. – подумал про себя Аркадий, и тут только открылась ему на миг вся бездонная пропасть ___. – Мы, стало быть, с тобою боги? то есть – ты бог, а олух уж не я ли?»",
-   "lemma": "самолюбие",
-   "options": [
-    "базаровское самолюбие",
-    "базаровскому самолюбию",
-    "базаровским самолюбием",
-    "базаровского самолюбия"
-   ],
-   "correct": "базаровского самолюбия",
-   "case": "Родительный (Genitive)",
-   "explain": "«базаровского самолюбия» — the genitive here marks possession, absence, or quantity.",
-   "id": "c15"
-  },
-  {
-   "sentence": "Он немножко посеменил ногами, пометался, как ___ на опушке леса, – и внезапно, почти с испугом, почти с криком объявил, что и он намерен уехать.",
-   "lemma": "заяц",
-   "options": [
-    "гонного зайца",
-    "гонный заяц",
-    "гонном зайце",
-    "гонному зайцу"
-   ],
-   "correct": "гонный заяц",
-   "case": "Именительный (Nominative)",
-   "explain": "«гонный заяц» — the subject of the sentence stands in the nominative.",
-   "id": "c18"
-  },
-  {
-   "sentence": "– У меня очень ___, – прибавил несчастный молодой человек, обращаясь к Аркадию, – я могу вас подвезти, а Евгений Васильич может взять ваш тарантас, так оно даже удобнее будет.",
-   "lemma": "коляска",
-   "options": [
-    "покойной коляске",
-    "покойной коляски",
-    "покойная коляска",
-    "покойной коляской"
-   ],
-   "correct": "покойная коляска",
-   "case": "Именительный (Nominative)",
-   "explain": "«покойная коляска» — the subject of the sentence stands in the nominative.",
-   "id": "c19"
   },
   {
    "sentence": "– У меня очень покойная коляска, – прибавил несчастный ___, обращаясь к Аркадию, – я могу вас подвезти, а Евгений Васильич может взять ваш тарантас, так оно даже удобнее будет.",
@@ -193,36 +123,8 @@
    ],
    "correct": "молодой человек",
    "case": "Именительный (Nominative)",
-   "explain": "«молодой человек» — the subject of the sentence stands in the nominative.",
+   "explain": "«молодой человек» is the subject of «прибавил» — who or what does it — so nominative.",
    "id": "c20"
-  },
-  {
-   "sentence": "Сумрачно и резко выдавался его ___ из-под нахлобученной фуражки.",
-   "lemma": "профиль",
-   "options": [
-    "похудалом профиле",
-    "похудалого профиля",
-    "похудалым профилем",
-    "похудалый профиль"
-   ],
-   "correct": "похудалый профиль",
-   "case": "Именительный (Nominative)",
-   "explain": "«похудалый профиль» — the subject of the sentence stands in the nominative.",
-   "id": "c22"
-  },
-  {
-   "sentence": "– Да, да, – заговорил Базаров, – урок вам, ___ мой, поучительный некий пример.",
-   "lemma": "друг",
-   "options": [
-    "юного друга",
-    "юный друг",
-    "юному другу",
-    "юным другом"
-   ],
-   "correct": "юный друг",
-   "case": "Именительный (Nominative)",
-   "explain": "«юный друг» — the subject of the sentence stands in the nominative.",
-   "id": "c23"
   },
   {
    "sentence": "Мужчине некогда заниматься такими пустяками; мужчина должен быть свиреп, гласит отличная ___.",
@@ -235,22 +137,8 @@
    ],
    "correct": "испанская поговорка",
    "case": "Именительный (Nominative)",
-   "explain": "«испанская поговорка» — the subject of the sentence stands in the nominative.",
+   "explain": "«испанская поговорка» is the subject of «гласит» — who or what does it — so nominative.",
    "id": "c26"
-  },
-  {
-   "sentence": "Но вот на скате ___ открылась наконец небольшая деревушка, где жили родители Базарова.",
-   "lemma": "холм",
-   "options": [
-    "пологого холма",
-    "пологом холме",
-    "пологим холмом",
-    "пологому холму"
-   ],
-   "correct": "пологого холма",
-   "case": "Родительный (Genitive)",
-   "explain": "«пологого холма» — after the preposition «на», the genitive here marks possession, absence, or quantity.",
-   "id": "c28"
   },
   {
    "sentence": "Но вот на скате пологого холма открылась наконец ___, где жили родители Базарова.",
@@ -263,22 +151,8 @@
    ],
    "correct": "небольшая деревушка",
    "case": "Именительный (Nominative)",
-   "explain": "«небольшая деревушка» — the subject of the sentence stands in the nominative.",
+   "explain": "«небольшая деревушка» is the subject of «открылась» — who or what does it — so nominative.",
    "id": "c29"
-  },
-  {
-   "sentence": "Рядом с нею, в молодой березовой рощице, виднелся ___ под соломенною крышей.",
-   "lemma": "домик",
-   "options": [
-    "дворянскому домику",
-    "дворянским домиком",
-    "дворянский домик",
-    "дворянского домика"
-   ],
-   "correct": "дворянский домик",
-   "case": "Винительный (Accusative)",
-   "explain": "«дворянский домик» — the accusative marks the direct object of the verb.",
-   "id": "c30"
   },
   {
    "sentence": "У ___ стояли два мужика в шапках и бранились.",
@@ -291,7 +165,7 @@
    ],
    "correct": "первой избы",
    "case": "Родительный (Genitive)",
-   "explain": "«первой избы» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«первой избы» — «у» always takes the genitive.",
    "id": "c31"
   }
  ]

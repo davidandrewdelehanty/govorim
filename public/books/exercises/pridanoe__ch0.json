@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Он мал, в один ___ и в три окна, и ужасно похож на маленькую, горбатую старушку в чепце.",
-   "lemma": "этаж",
-   "options": [
-    "маленького этажа",
-    "маленьком этаже",
-    "маленьким этажом",
-    "маленький этаж"
-   ],
-   "correct": "маленький этаж",
-   "case": "Винительный (Accusative)",
-   "explain": "«маленький этаж» — after the preposition «на», the accusative marks the direct object of the verb.",
-   "id": "c1"
-  },
-  {
    "sentence": "Оштукатуренный в белый цвет, с черепичной крышей и ободранной трубой, он весь утонул в зелени шелковиц, акаций и тополей, посаженных дедами и прадедами ___.",
    "lemma": "хозяин",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "теперешних хозяев",
    "case": "Родительный (Genitive)",
-   "explain": "«теперешних хозяев» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«теперешних хозяев» depends on the noun «прадедами» (whose? of what?) — genitive.",
    "id": "c4"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "широкий двор",
    "case": "Именительный (Nominative)",
-   "explain": "«широкий двор» — the subject of the sentence stands in the nominative.",
+   "explain": "«широкий двор» is the subject of «стоит» — who or what does it — so nominative.",
    "id": "c6"
   },
   {
@@ -53,7 +39,7 @@
    ],
    "correct": "московской улицы",
    "case": "Родительный (Genitive)",
-   "explain": "«Московской улицы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«московской улицы» depends on the noun «состав» (whose? of what?) — genitive.",
    "id": "c7"
   },
   {
@@ -67,50 +53,8 @@
    ],
    "correct": "глубоком невежестве",
    "case": "Предложный (Prepositional)",
-   "explain": "«глубоком невежестве» — after the preposition «в», for location or topic.",
+   "explain": "«глубоком невежестве» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c9"
-  },
-  {
-   "sentence": "Вы «чужой», гость, «___» — и этого уже достаточно, чтобы повергнуть в изумление и ужас.",
-   "lemma": "человек",
-   "options": [
-    "молодом человеке",
-    "молодому человеку",
-    "молодой человек",
-    "молодым человеком"
-   ],
-   "correct": "молодой человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«молодой человек» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
-  },
-  {
-   "sentence": "Минут через пять вы сидите в гостиной, на большом, мягком, горячем диване, и слышите, как ахает уж вся ___.",
-   "lemma": "улица",
-   "options": [
-    "московской улицей",
-    "московская улица",
-    "московской улицы",
-    "московской улице"
-   ],
-   "correct": "московская улица",
-   "case": "Именительный (Nominative)",
-   "explain": "«Московская улица» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
-  },
-  {
-   "sentence": "Пахло порошком от моли и новыми ___, которые, завернутые в платочек, лежали возле меня на стуле.",
-   "lemma": "башмак",
-   "options": [
-    "козловые башмаки",
-    "козловых башмаков",
-    "козловых башмаках",
-    "козловыми башмаками"
-   ],
-   "correct": "козловыми башмаками",
-   "case": "Творительный (Instrumental)",
-   "explain": "«козловыми башмаками» — the instrumental marks the means, company, or complement.",
-   "id": "c15"
   },
   {
    "sentence": "На стене портрет какого-то архиерея, написанный ___ и прикрытый стеклом с разбитым уголышком.",
@@ -123,22 +67,8 @@
    ],
    "correct": "масляными красками",
    "case": "Творительный (Instrumental)",
-   "explain": "«масляными красками» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «написанный», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c16"
-  },
-  {
-   "sentence": "— У нас, извините, ___!",
-   "lemma": "беспорядок",
-   "options": [
-    "ужасному беспорядку",
-    "ужасным беспорядком",
-    "ужасного беспорядка",
-    "ужасный беспорядок"
-   ],
-   "correct": "ужасный беспорядок",
-   "case": "Именительный (Nominative)",
-   "explain": "«ужасный беспорядок» — the subject of the sentence stands in the nominative.",
-   "id": "c19"
   },
   {
    "sentence": "Скоро отворилась дверь, и я увидел высокую худую девицу, лет девятнадцати, в длинном ___ и золотом поясе, на котором, помню, висел перламутровый веер.",
@@ -151,22 +81,8 @@
    ],
    "correct": "кисейном платье",
    "case": "Предложный (Prepositional)",
-   "explain": "«кисейном платье» — after the preposition «в», for location or topic.",
+   "explain": "«кисейном платье» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c21"
-  },
-  {
-   "sentence": "Скоро отворилась дверь, и я увидел высокую худую девицу, лет девятнадцати, в длинном кисейном платье и ___, на котором, помню, висел перламутровый веер.",
-   "lemma": "пояс",
-   "options": [
-    "золотым поясом",
-    "золотом поясе",
-    "золотого пояса",
-    "золотой пояс"
-   ],
-   "correct": "золотом поясе",
-   "case": "Предложный (Prepositional)",
-   "explain": "«золотом поясе» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c22"
   },
   {
    "sentence": "— На ярмарке мы всегда накупаем материй и шьем потом ___ до следующей ярмарки.",
@@ -179,7 +95,7 @@
    ],
    "correct": "целый год",
    "case": "Винительный (Accusative)",
-   "explain": "«целый год» — the accusative marks the direct object of the verb.",
+   "explain": "«целый год» tells how long or how often, with no preposition — accusative.",
    "id": "c24"
   },
   {
@@ -193,21 +109,21 @@
    ],
    "correct": "следующей ярмарки",
    "case": "Родительный (Genitive)",
-   "explain": "«следующей ярмарки» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«следующей ярмарки» — «до» always takes the genitive.",
    "id": "c25"
   },
   {
    "sentence": "В семь часов вечера был ужин из шести блюд, и во время этого ужина я услышал ___; кто-то громко зевнул в соседней комнате.",
    "lemma": "зевок",
    "options": [
-    "громкого зевка",
+    "громкий зевок",
     "громким зевком",
-    "громком зевке",
-    "громкий зевок"
+    "громкому зевку",
+    "громком зевке"
    ],
    "correct": "громкий зевок",
    "case": "Винительный (Accusative)",
-   "explain": "«громкий зевок» — the accusative marks the direct object of the verb.",
+   "explain": "«громкий зевок» is the direct object of «услышал» (кого? что?) — accusative.",
    "id": "c26"
   },
   {
@@ -221,64 +137,22 @@
    ],
    "correct": "соседней комнате",
    "case": "Предложный (Prepositional)",
-   "explain": "«соседней комнате» — after the preposition «в», for location or topic.",
+   "explain": "«соседней комнате» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c27"
-  },
-  {
-   "sentence": "В кладовой я увидел штук пять ___ и множество сундучков и ящичков.",
-   "lemma": "сундук",
-   "options": [
-    "больших сундуках",
-    "большие сундуки",
-    "больших сундуков",
-    "большим сундукам"
-   ],
-   "correct": "больших сундуков",
-   "case": "Родительный (Genitive)",
-   "explain": "«больших сундуков» — the genitive here marks possession, absence, or quantity.",
-   "id": "c29"
   },
   {
    "sentence": "Поглядев на эти ___, я стал прощаться с хлебосольными хозяевами.",
    "lemma": "сундук",
    "options": [
-    "угрюмых сундуков",
-    "угрюмых сундуках",
+    "угрюмыми сундуками",
     "угрюмые сундуки",
-    "угрюмыми сундуками"
+    "угрюмых сундуков",
+    "угрюмым сундукам"
    ],
    "correct": "угрюмые сундуки",
    "case": "Винительный (Accusative)",
-   "explain": "«угрюмые сундуки» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«угрюмые сундуки» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c30"
-  },
-  {
-   "sentence": "Это слово пришлось мне сдержать лет через семь после первого моего посещения, когда я послан был в городок в качестве эксперта по одному ___.",
-   "lemma": "дело",
-   "options": [
-    "судебным делом",
-    "судебному делу",
-    "судебное дело",
-    "судебном деле"
-   ],
-   "correct": "судебному делу",
-   "case": "Дательный (Dative)",
-   "explain": "«судебному делу» — after the preposition «по», the dative marks the indirect object or recipient.",
-   "id": "c32"
-  },
-  {
-   "sentence": "Мое ___ в жизни их было целым событием, а события там, где их мало, помнятся долго.",
-   "lemma": "посещение",
-   "options": [
-    "первому посещению",
-    "первого посещения",
-    "первом посещении",
-    "первое посещение"
-   ],
-   "correct": "первое посещение",
-   "case": "Именительный (Nominative)",
-   "explain": "«первое посещение» — the subject of the sentence stands in the nominative.",
-   "id": "c34"
   },
   {
    "sentence": "Возле ___ висел портрет Петра Семеныча, и дамы были в трауре.",
@@ -291,22 +165,8 @@
    ],
    "correct": "архиерейского портрета",
    "case": "Родительный (Genitive)",
-   "explain": "«архиерейского портрета» — after the preposition «возле», the genitive here marks possession, absence, or quantity.",
+   "explain": "«архиерейского портрета» — «возле» always takes the genitive.",
    "id": "c36"
-  },
-  {
-   "sentence": "В передней юркнула маленькая ___ с большой лысиной и в коричневом сюртуке, в калошах вместо сапог, и прошуршала, как мышь.",
-   "lemma": "фигурка",
-   "options": [
-    "мужской фигурки",
-    "мужской фигуркой",
-    "мужской фигурке",
-    "мужская фигурка"
-   ],
-   "correct": "мужская фигурка",
-   "case": "Именительный (Nominative)",
-   "explain": "«мужская фигурка» — the subject of the sentence stands in the nominative.",
-   "id": "c38"
   }
  ]
 }

@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Вильгельм рассеянно огляделся и заметил, что в комнате действительно ___: книги валялись на полу, на софе, рукописи лежали грудами, табачный пепел покрывал стол.",
-   "lemma": "беспорядок",
-   "options": [
-    "страшном беспорядке",
-    "страшный беспорядок",
-    "страшным беспорядком",
-    "страшного беспорядка"
-   ],
-   "correct": "страшный беспорядок",
-   "case": "Именительный (Nominative)",
-   "explain": "«страшный беспорядок» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Вильгельм рассеянно огляделся и заметил, что в комнате действительно страшный беспорядок: книги валялись на полу, на софе, рукописи лежали грудами, ___ покрывал стол.",
    "lemma": "пепел",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "табачный пепел",
    "case": "Именительный (Nominative)",
-   "explain": "«табачный пепел» — the subject of the sentence stands in the nominative.",
+   "explain": "«табачный пепел» is the subject of «покрывал» — who or what does it — so nominative.",
    "id": "c2"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "белокурые волосы",
    "case": "Именительный (Nominative)",
-   "explain": "«белокурые волосы» — the subject of the sentence stands in the nominative.",
+   "explain": "«белокурые волосы» is the subject of «были» — who or what does it — so nominative.",
    "id": "c3"
   },
   {
@@ -53,22 +39,8 @@
    ],
    "correct": "серых глаз",
    "case": "Родительный (Genitive)",
-   "explain": "«серых глаз» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«серых глаз» depends on the noun «взгляд» (whose? of what?) — genitive.",
    "id": "c4"
-  },
-  {
-   "sentence": "Маленькое ___ Федора Глинки, с добрыми глазками, приветливо Вильгельму улыбалось.",
-   "lemma": "лицо",
-   "options": [
-    "худым лицом",
-    "худого лица",
-    "худое лицо",
-    "худом лице"
-   ],
-   "correct": "худое лицо",
-   "case": "Именительный (Nominative)",
-   "explain": "«худое лицо» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
   },
   {
    "sentence": "Тургенев начал с жестом ___.",
@@ -81,50 +53,22 @@
    ],
    "correct": "привычного оратора",
    "case": "Родительный (Genitive)",
-   "explain": "«привычного оратора» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«привычного оратора» depends on the noun «жестом» (whose? of what?) — genitive.",
    "id": "c7"
   },
   {
    "sentence": "— Вряд ли я ошибусь, господа, — говорил Тургенев, — если скажу, что все мы, здесь находящиеся, связаны одним: желанием ___.",
    "lemma": "перемена",
    "options": [
-    "немедленных переменах",
-    "немедленным переменам",
     "немедленных перемен",
-    "немедленными переменами"
+    "немедленным переменам",
+    "немедленные перемены",
+    "немедленных переменах"
    ],
    "correct": "немедленных перемен",
    "case": "Родительный (Genitive)",
-   "explain": "«немедленных перемен» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«немедленных перемен» depends on the noun «желанием» (whose? of what?) — genitive.",
    "id": "c8"
-  },
-  {
-   "sentence": "Общество погружено в частные, мелкие заботы; бостон лучший опиум для него, он действует вернее всех ___.",
-   "lemma": "мера",
-   "options": [
-    "другими мерами",
-    "других мер",
-    "другие меры",
-    "других мерах"
-   ],
-   "correct": "других мер",
-   "case": "Родительный (Genitive)",
-   "explain": "«других мер» — after the preposition «в», the genitive here marks possession, absence, or quantity.",
-   "id": "c9"
-  },
-  {
-   "sentence": "И вот ___, которое отделяет нас от людей, прибегающих к бостону: мы надеемся изменить общество.",
-   "lemma": "различие",
-   "options": [
-    "основного различия",
-    "основное различие",
-    "основным различием",
-    "основном различии"
-   ],
-   "correct": "основное различие",
-   "case": "Именительный (Nominative)",
-   "explain": "«основное различие» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
   },
   {
    "sentence": "— Он обязан стремиться к благу своих ближних, и более, нежели к своему ___.",
@@ -137,36 +81,8 @@
    ],
    "correct": "собственному благу",
    "case": "Дательный (Dative)",
-   "explain": "«собственному благу» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«собственному благу» — «к» always takes the dative.",
    "id": "c11"
-  },
-  {
-   "sentence": "Европа своими правителями отодвигается на задворки варварства, в котором она долго блуждала и из которого ___ будет тем труднее.",
-   "lemma": "исход",
-   "options": [
-    "нового исхода",
-    "новом исходе",
-    "новому исходу",
-    "новый исход"
-   ],
-   "correct": "новый исход",
-   "case": "Именительный (Nominative)",
-   "explain": "«новый исход» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
-  },
-  {
-   "sentence": "Тираны всюду и везде уподобились пастухам ___.",
-   "lemma": "басня",
-   "options": [
-    "старые басни",
-    "старых басен",
-    "старых баснях",
-    "старыми баснями"
-   ],
-   "correct": "старых басен",
-   "case": "Родительный (Genitive)",
-   "explain": "«старых басен» — the genitive here marks possession, absence, or quantity.",
-   "id": "c13"
   },
   {
    "sentence": "___ Тургенева потемнели, а лицо побледнело.",
@@ -179,7 +95,7 @@
    ],
    "correct": "серые глаза",
    "case": "Именительный (Nominative)",
-   "explain": "«Серые глаза» — the subject of the sentence stands in the nominative.",
+   "explain": "«серые глаза» is the subject of «потемнели» — who or what does it — so nominative.",
    "id": "c14"
   },
   {
@@ -193,7 +109,7 @@
    ],
    "correct": "русский крестьянин",
    "case": "Именительный (Nominative)",
-   "explain": "«Русский крестьянин» — the subject of the sentence stands in the nominative.",
+   "explain": "«русский крестьянин» is the subject of «продается» — who or what does it — so nominative.",
    "id": "c15"
   },
   {
@@ -207,63 +123,21 @@
    ],
    "correct": "монархическом правлении",
    "case": "Предложный (Prepositional)",
-   "explain": "«монархическом правлении» — after the preposition «в», for location or topic.",
+   "explain": "«монархическом правлении» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c16"
-  },
-  {
-   "sentence": "— И все же не могу согласиться с Николаем Ивановичем, — заговорил тогда Куницын, как бы продолжая какой-то ___.",
-   "lemma": "спор",
-   "options": [
-    "давнишним спором",
-    "давнишний спор",
-    "давнишнему спору",
-    "давнишнем споре"
-   ],
-   "correct": "давнишний спор",
-   "case": "Винительный (Accusative)",
-   "explain": "«давнишний спор» — the accusative marks the direct object of the verb.",
-   "id": "c18"
-  },
-  {
-   "sentence": "— Во всяком случае, все мы, кажется, согласны, что ___, иначе бесправие, должно быть искоренено.",
-   "lemma": "право",
-   "options": [
-    "крепостного права",
-    "крепостном праве",
-    "крепостное право",
-    "крепостному праву"
-   ],
-   "correct": "крепостное право",
-   "case": "Именительный (Nominative)",
-   "explain": "«крепостное право» — the subject of the sentence stands in the nominative.",
-   "id": "c19"
-  },
-  {
-   "sentence": "И нахожу одно средство для сего — ___.",
-   "lemma": "книгопечатание",
-   "options": [
-    "вольному книгопечатанию",
-    "вольного книгопечатания",
-    "вольное книгопечатание",
-    "вольном книгопечатании"
-   ],
-   "correct": "вольное книгопечатание",
-   "case": "Именительный (Nominative)",
-   "explain": "«вольное книгопечатание» — the subject of the sentence stands in the nominative.",
-   "id": "c20"
   },
   {
    "sentence": "Я предлагаю издавать журнал без одобрения нашего ___.",
    "lemma": "комитет",
    "options": [
-    "цензурного комитета",
+    "цензурному комитету",
     "цензурный комитет",
-    "цензурным комитетом",
-    "цензурном комитете"
+    "цензурном комитете",
+    "цензурного комитета"
    ],
    "correct": "цензурного комитета",
    "case": "Родительный (Genitive)",
-   "explain": "«цензурного комитета» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«цензурного комитета» depends on the noun «одобрения» (whose? of what?) — genitive.",
    "id": "c21"
   },
   {
@@ -277,7 +151,7 @@
    ],
    "correct": "крепостного права",
    "case": "Родительный (Genitive)",
-   "explain": "«крепостного права» — after the preposition «против», the genitive here marks possession, absence, or quantity.",
+   "explain": "«крепостного права» — «против» always takes the genitive.",
    "id": "c22"
   }
  ]

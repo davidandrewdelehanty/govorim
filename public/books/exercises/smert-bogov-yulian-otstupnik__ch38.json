@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Вдруг, очнувшись, вспомнил Юлиан, что он – в глубине Персии, что он – ___, что на руках его – шестьдесят тысяч солдат, что богов нет, что он опрокинул жертвенник, кощунствуя.",
-   "lemma": "император",
-   "options": [
-    "римскому императору",
-    "римский император",
-    "римского императора",
-    "римским императором"
-   ],
-   "correct": "римский император",
-   "case": "Именительный (Nominative)",
-   "explain": "«римский император» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Он не мог бы сказать, пролежал ли он в этой полудремоте час или ___.",
-   "lemma": "сутки",
-   "options": [
-    "целым суткам",
-    "целыми сутками",
-    "целые сутки",
-    "целых суток"
-   ],
-   "correct": "целые сутки",
-   "case": "Винительный (Accusative)",
-   "explain": "«целые сутки» — the accusative marks the direct object of the verb.",
-   "id": "c3"
-  },
-  {
    "sentence": "Юлиан давно ожидал этой помощи: от нее зависела участь ___.",
    "lemma": "войско",
    "options": [
@@ -39,36 +11,8 @@
    ],
    "correct": "главного войска",
    "case": "Родительный (Genitive)",
-   "explain": "«главного войска» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«главного войска» depends on the noun «участь» (whose? of what?) — genitive.",
    "id": "c4"
-  },
-  {
-   "sentence": "___ засуетился, проворно нацедил кубок и подал императору.",
-   "lemma": "слуга",
-   "options": [
-    "старого слугу",
-    "старого слуги",
-    "старым слугой",
-    "старый слуга"
-   ],
-   "correct": "старый слуга",
-   "case": "Именительный (Nominative)",
-   "explain": "«Старый слуга» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
-  },
-  {
-   "sentence": "Тот выпил ___ все, до последней капли, и вздохнул с облегчением.",
-   "lemma": "глотка",
-   "options": [
-    "медленными глотками",
-    "медленных глотках",
-    "медленных глоток",
-    "медленным глоткам"
-   ],
-   "correct": "медленными глотками",
-   "case": "Творительный (Instrumental)",
-   "explain": "«медленными глотками» — the instrumental marks the means, company, or complement.",
-   "id": "c6"
   },
   {
    "sentence": "Тот выпил медленными глотками все, до ___, и вздохнул с облегчением.",
@@ -81,50 +25,8 @@
    ],
    "correct": "последней капли",
    "case": "Родительный (Genitive)",
-   "explain": "«последней капли» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«последней капли» — «до» always takes the genitive.",
    "id": "c7"
-  },
-  {
-   "sentence": "___ приносил свежую сырость – запах дождя.",
-   "lemma": "ветер",
-   "options": [
-    "бурному ветру",
-    "бурном ветре",
-    "бурный ветер",
-    "бурным ветром"
-   ],
-   "correct": "бурный ветер",
-   "case": "Именительный (Nominative)",
-   "explain": "«Бурный ветер» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
-  },
-  {
-   "sentence": "Среди черных туч редкие крупные звезды сильно дрожали, как ___, задуваемые ветром.",
-   "lemma": "огонь",
-   "options": [
-    "лампадных огней",
-    "лампадных огнях",
-    "лампадным огням",
-    "лампадные огни"
-   ],
-   "correct": "лампадные огни",
-   "case": "Именительный (Nominative)",
-   "explain": "«лампадные огни» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
-  },
-  {
-   "sentence": "Возвращалось ___ сил душевных, подобное опьянению.",
-   "lemma": "напряжение",
-   "options": [
-    "приятного напряжения",
-    "приятное напряжение",
-    "приятном напряжении",
-    "приятным напряжением"
-   ],
-   "correct": "приятное напряжение",
-   "case": "Именительный (Nominative)",
-   "explain": "«приятное напряжение» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
   },
   {
    "sentence": "Вести были плачевные: не было больше надежды на помощь Прокопия и Себастиана; император покинут был союзниками в ___ Азии.",
@@ -137,7 +39,7 @@
    ],
    "correct": "неведомой глубине",
    "case": "Предложный (Prepositional)",
-   "explain": "«неведомой глубине» — after the preposition «в», for location or topic.",
+   "explain": "«неведомой глубине» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c11"
   },
   {
@@ -151,7 +53,7 @@
    ],
    "correct": "тревожные слухи",
    "case": "Именительный (Nominative)",
-   "explain": "«тревожные слухи» — the subject of the sentence stands in the nominative.",
+   "explain": "«тревожные слухи» is the subject of «Носились» — who or what does it — so nominative.",
    "id": "c12"
   },
   {
@@ -165,50 +67,8 @@
    ],
    "correct": "персидском перебежчике",
    "case": "Предложный (Prepositional)",
-   "explain": "«персидском перебежчике» — after the preposition «о», for location or topic.",
+   "explain": "«персидском перебежчике» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c13"
-  },
-  {
-   "sentence": "Перс распростерся перед Юлианом и поцеловал землю; это был урод: ___ с отрезанными ушами, с вырванными ноздрями, напоминала мертвый череп; но глаза сверкали умом и решимостью.",
-   "lemma": "голова",
-   "options": [
-    "бритая голова",
-    "бритой головы",
-    "бритой голове",
-    "бритой головой"
-   ],
-   "correct": "бритая голова",
-   "case": "Именительный (Nominative)",
-   "explain": "«бритая голова» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
-  },
-  {
-   "sentence": "Он был в ___ из огненного согдианского шелка и говорил на ломаном греческом языке; двое рабов сопровождали его.",
-   "lemma": "одежда",
-   "options": [
-    "драгоценная одежда",
-    "драгоценной одежды",
-    "драгоценной одеждой",
-    "драгоценной одежде"
-   ],
-   "correct": "драгоценной одежде",
-   "case": "Предложный (Prepositional)",
-   "explain": "«драгоценной одежде» — after the preposition «на», for location or topic.",
-   "id": "c15"
-  },
-  {
-   "sentence": "Он был в драгоценной одежде из огненного согдианского шелка и говорил на ломаном ___; двое рабов сопровождали его.",
-   "lemma": "язык",
-   "options": [
-    "греческий язык",
-    "греческого языка",
-    "греческим языком",
-    "греческом языке"
-   ],
-   "correct": "греческом языке",
-   "case": "Предложный (Prepositional)",
-   "explain": "«греческом языке» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c16"
   },
   {
    "sentence": "Я приведу тебя ночью к лагерю, и ты тихонько, тихонько накроешь царя рукою, возьмешь его, как ___ берут птенцов в ладонь.",
@@ -221,7 +81,7 @@
    ],
    "correct": "маленькие дети",
    "case": "Именительный (Nominative)",
-   "explain": "«маленькие дети» — the subject of the sentence stands in the nominative.",
+   "explain": "«маленькие дети» is the subject of «берут» — who or what does it — so nominative.",
    "id": "c17"
   },
   {
@@ -235,50 +95,22 @@
    ],
    "correct": "знойного океана",
    "case": "Родительный (Genitive)",
-   "explain": "«знойного океана» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«знойного океана» — «до» always takes the genitive.",
    "id": "c18"
-  },
-  {
-   "sentence": "Озноб все еще пробегал по спине, и голова немного болела, как будто он весь день провел на слишком ___.",
-   "lemma": "солнце",
-   "options": [
-    "ярким солнцем",
-    "яркое солнце",
-    "ярком солнце",
-    "яркого солнца"
-   ],
-   "correct": "ярком солнце",
-   "case": "Предложный (Prepositional)",
-   "explain": "«ярком солнце» — after the preposition «на», for location or topic.",
-   "id": "c19"
   },
   {
    "sentence": "Призвав к себе в шатер полководца Виктора, старика, слепо преданного, вручил он ему ___ с императорской печатью.",
    "lemma": "перстень",
    "options": [
     "золотой перстень",
-    "золотом перстне",
-    "золотого перстня",
-    "золотым перстнем"
+    "золотому перстню",
+    "золотым перстнем",
+    "золотом перстне"
    ],
    "correct": "золотой перстень",
    "case": "Винительный (Accusative)",
-   "explain": "«золотой перстень» — the accusative marks the direct object of the verb.",
+   "explain": "«золотой перстень» is the direct object of «вручил» (кого? что?) — accusative.",
    "id": "c20"
-  },
-  {
-   "sentence": "– К начальникам флота, комесам Константину и Люциллиану, – приказал Юлиан. – До рассвета сжечь корабли, кроме пяти больших с хлебом и двенадцати малых для ___.",
-   "lemma": "мост",
-   "options": [
-    "переправочных мостов",
-    "переправочными мостами",
-    "переправочным мостам",
-    "переправочных мостах"
-   ],
-   "correct": "переправочных мостов",
-   "case": "Родительный (Genitive)",
-   "explain": "«переправочных мостов» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
-   "id": "c21"
   },
   {
    "sentence": "Виктор, по своему обыкновению, ничему не удивляясь и не возражая, молча, с видом ___ поцеловал край императорской одежды и пошел исполнять приказание.",
@@ -291,7 +123,7 @@
    ],
    "correct": "бесстрастного послушания",
    "case": "Родительный (Genitive)",
-   "explain": "«бесстрастного послушания» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«бесстрастного послушания» depends on the noun «видом» (whose? of what?) — genitive.",
    "id": "c22"
   },
   {
@@ -305,7 +137,7 @@
    ],
    "correct": "императорской одежды",
    "case": "Родительный (Genitive)",
-   "explain": "«императорской одежды» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«императорской одежды» depends on the noun «край» (whose? of what?) — genitive.",
    "id": "c23"
   },
   {
@@ -313,13 +145,13 @@
    "lemma": "совет",
    "options": [
     "военном совете",
-    "военным советом",
-    "военного совета",
-    "военный совет"
+    "военный совет",
+    "военному совету",
+    "военным советом"
    ],
    "correct": "военный совет",
    "case": "Винительный (Accusative)",
-   "explain": "«военный совет» — the accusative marks the direct object of the verb.",
+   "explain": "«военный совет» is the direct object of «созвал» (кого? что?) — accusative.",
    "id": "c24"
   },
   {
@@ -333,22 +165,8 @@
    ],
    "correct": "умных вождей",
    "case": "Родительный (Genitive)",
-   "explain": "«умных вождей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«умных вождей» depends on the noun «лицах» (whose? of what?) — genitive.",
    "id": "c28"
-  },
-  {
-   "sentence": "– ___, – произнес Саллюстий спокойно и почтительно, но слегка дрогнувшим голосом, – я не уйду, не сказав тебе того, что должен сказать.",
-   "lemma": "август",
-   "options": [
-    "блаженным августом",
-    "блаженному августу",
-    "блаженный август",
-    "блаженном августе"
-   ],
-   "correct": "блаженный август",
-   "case": "Именительный (Nominative)",
-   "explain": "«Блаженный август» — the subject of the sentence stands in the nominative.",
-   "id": "c29"
   },
   {
    "sentence": "– Ну, что ж, – воскликнул Юлиан, усмехаясь и бледнея от ___, – тем хуже для вас, друзья мои: значит, вы – в руках безумца!",
@@ -361,63 +179,21 @@
    ],
    "correct": "сдержанной злобы",
    "case": "Родительный (Genitive)",
-   "explain": "«сдержанной злобы» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«сдержанной злобы» — «от» always takes the genitive.",
    "id": "c30"
-  },
-  {
-   "sentence": "Я предвидел ваше благоразумие и отрезал ___ к отступлению.",
-   "lemma": "путь",
-   "options": [
-    "последнем пути",
-    "последний путь",
-    "последнего пути",
-    "последним путём"
-   ],
-   "correct": "последний путь",
-   "case": "Винительный (Accusative)",
-   "explain": "«последний путь» — the accusative marks the direct object of the verb.",
-   "id": "c31"
-  },
-  {
-   "sentence": "Крики воинов за полотняною стеною палатки становились все громче и громче; ___ их приближался, как будто летела буря по верхушкам леса.",
-   "lemma": "гул",
-   "options": [
-    "мятежным гулом",
-    "мятежного гула",
-    "мятежный гул",
-    "мятежному гулу"
-   ],
-   "correct": "мятежный гул",
-   "case": "Именительный (Nominative)",
-   "explain": "«мятежный гул» — the subject of the sentence stands in the nominative.",
-   "id": "c32"
-  },
-  {
-   "sentence": "– Пусть покричат, – произнес Юлиан спокойно. – Бедные, ___!",
-   "lemma": "ребёнок",
-   "options": [
-    "глупых детях",
-    "глупых детей",
-    "глупые дети",
-    "глупыми детьми"
-   ],
-   "correct": "глупые дети",
-   "case": "Именительный (Nominative)",
-   "explain": "«глупые дети» — the subject of the sentence stands in the nominative.",
-   "id": "c33"
   },
   {
    "sentence": "Но голос его замер, и, взглянув на пылающий флот, он понял, что уже никакие ___ не могут остановить огня, раздуваемого сильным ветром.",
    "lemma": "сила",
    "options": [
-    "человеческих сил",
-    "человеческими силами",
+    "человеческим силам",
+    "человеческих силах",
     "человеческие силы",
-    "человеческим силам"
+    "человеческими силами"
    ],
    "correct": "человеческие силы",
    "case": "Именительный (Nominative)",
-   "explain": "«человеческие силы» — the subject of the sentence stands in the nominative.",
+   "explain": "«человеческие силы» is the subject of «могут» — who or what does it — so nominative.",
    "id": "c34"
   },
   {
@@ -431,36 +207,8 @@
    ],
    "correct": "сильным ветром",
    "case": "Творительный (Instrumental)",
-   "explain": "«сильным ветром» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «раздуваемого», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c35"
-  },
-  {
-   "sentence": "– Персы подожгли! – вопили одни, простирая руки к пылавшим кораблям – своей ___.",
-   "lemma": "надежда",
-   "options": [
-    "последняя надежда",
-    "последней надеждой",
-    "последней надежде",
-    "последней надежды"
-   ],
-   "correct": "последней надежде",
-   "case": "Дательный (Dative)",
-   "explain": "«последней надежде» — the dative marks the indirect object or recipient.",
-   "id": "c36"
-  },
-  {
-   "sentence": "– Слава августу Юлиану Победителю! – восклицали ___ и кельты. – Молчите, изменники!",
-   "lemma": "галл",
-   "options": [
-    "верными галлами",
-    "верные галлы",
-    "верных галлах",
-    "верным галлам"
-   ],
-   "correct": "верные галлы",
-   "case": "Именительный (Nominative)",
-   "explain": "«верные галлы» — the subject of the sentence stands in the nominative.",
-   "id": "c37"
   }
  ]
 }

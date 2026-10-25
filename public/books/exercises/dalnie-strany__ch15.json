@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Еще с раннего утра приехали музыканты, немного позже должны были прибыть делегация от заводов из города, ___ и докладчики.",
-   "lemma": "отряд",
-   "options": [
-    "пионерском отряде",
-    "пионерского отряда",
-    "пионерским отрядом",
-    "пионерский отряд"
-   ],
-   "correct": "пионерский отряд",
-   "case": "Винительный (Accusative)",
-   "explain": "«пионерский отряд» — the accusative marks the direct object of the verb.",
-   "id": "c2"
-  },
-  {
    "sentence": "В этот день производилась ___ главного корпуса.",
    "lemma": "закладка",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "торжественная закладка",
    "case": "Именительный (Nominative)",
-   "explain": "«торжественная закладка» — the subject of the sentence stands in the nominative.",
+   "explain": "«торжественная закладка» is the subject of «производилась» — who or what does it — so nominative.",
    "id": "c3"
   },
   {
@@ -39,22 +25,8 @@
    ],
    "correct": "главного корпуса",
    "case": "Родительный (Genitive)",
-   "explain": "«главного корпуса» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«главного корпуса» depends on the noun «закладка» (whose? of what?) — genitive.",
    "id": "c4"
-  },
-  {
-   "sentence": "В этот день закладывали ___ алюминиевого завода.",
-   "lemma": "корпус",
-   "options": [
-    "главном корпусе",
-    "главным корпусом",
-    "главного корпуса",
-    "главный корпус"
-   ],
-   "correct": "главный корпус",
-   "case": "Винительный (Accusative)",
-   "explain": "«главный корпус» — the accusative marks the direct object of the verb.",
-   "id": "c5"
   },
   {
    "sentence": "В этот день закладывали главный корпус ___.",
@@ -67,7 +39,7 @@
    ],
    "correct": "алюминиевого завода",
    "case": "Родительный (Genitive)",
-   "explain": "«алюминиевого завода» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«алюминиевого завода» depends on the noun «корпус» (whose? of what?) — genitive.",
    "id": "c6"
   },
   {
@@ -81,7 +53,7 @@
    ],
    "correct": "самому краю",
    "case": "Дательный (Dative)",
-   "explain": "«самому краю» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«самому краю» — «к» always takes the dative.",
    "id": "c7"
   },
   {
@@ -95,7 +67,7 @@
    ],
    "correct": "тихой речки",
    "case": "Родительный (Genitive)",
-   "explain": "«Тихой речки» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«тихой речки» depends on the noun «берегу» (whose? of what?) — genitive.",
    "id": "c8"
   },
   {
@@ -109,50 +81,8 @@
    ],
    "correct": "поповского сада",
    "case": "Родительный (Genitive)",
-   "explain": "«поповского сада» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«поповского сада» — «из» always takes the genitive.",
    "id": "c9"
-  },
-  {
-   "sentence": "Из поповского сада вырыли бабы еще с вечера самый большой, самый ___ махрового шиповника, такого, что горит весною ярко-алыми бесчисленными лепестками, и посадили его у изголовья, возле глубокой сырой ямы.",
-   "lemma": "куст",
-   "options": [
-    "раскидистого куста",
-    "раскидистый куст",
-    "раскидистым кустом",
-    "раскидистом кусте"
-   ],
-   "correct": "раскидистый куст",
-   "case": "Именительный (Nominative)",
-   "explain": "«раскидистый куст» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
-  },
-  {
-   "sentence": "Из поповского сада вырыли бабы еще с вечера самый большой, самый раскидистый куст ___, такого, что горит весною ярко-алыми бесчисленными лепестками, и посадили его у изголовья, возле глубокой сырой ямы.",
-   "lemma": "шиповник",
-   "options": [
-    "махрового шиповника",
-    "махровому шиповнику",
-    "махровым шиповником",
-    "махровый шиповник"
-   ],
-   "correct": "махрового шиповника",
-   "case": "Родительный (Genitive)",
-   "explain": "«махрового шиповника» — the genitive here marks possession, absence, or quantity.",
-   "id": "c11"
-  },
-  {
-   "sentence": "Из поповского сада вырыли бабы еще с вечера самый большой, самый раскидистый куст махрового шиповника, такого, что горит весною ярко-алыми ___, и посадили его у изголовья, возле глубокой сырой ямы.",
-   "lemma": "лепесток",
-   "options": [
-    "бесчисленные лепестки",
-    "бесчисленных лепестков",
-    "бесчисленными лепестками",
-    "бесчисленных лепестках"
-   ],
-   "correct": "бесчисленными лепестками",
-   "case": "Творительный (Instrumental)",
-   "explain": "«бесчисленными лепестками» — the instrumental marks the means, company, or complement.",
-   "id": "c12"
   },
   {
    "sentence": "Из поповского сада вырыли бабы еще с вечера самый большой, самый раскидистый куст махрового шиповника, такого, что горит весною ярко-алыми бесчисленными лепестками, и посадили его у изголовья, возле глубокой ___.",
@@ -165,7 +95,7 @@
    ],
    "correct": "сырой ямы",
    "case": "Родительный (Genitive)",
-   "explain": "«сырой ямы» — after the preposition «возле», the genitive here marks possession, absence, or quantity.",
+   "explain": "«сырой ямы» — «возле» always takes the genitive.",
    "id": "c13"
   },
   {
@@ -179,36 +109,8 @@
    ],
    "correct": "полевых цветов",
    "case": "Родительный (Genitive)",
-   "explain": "«полевых цветов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«полевых цветов» depends on the noun «ребята» (whose? of what?) — genitive.",
    "id": "c14"
-  },
-  {
-   "sentence": "Набрали ребята полевых цветов и тяжелые ___ положили на крышку сырого соснового гроба.",
-   "lemma": "венок",
-   "options": [
-    "простыми венками",
-    "простые венки",
-    "простым венкам",
-    "простых венков"
-   ],
-   "correct": "простые венки",
-   "case": "Винительный (Accusative)",
-   "explain": "«простые венки» — the accusative marks the direct object of the verb.",
-   "id": "c15"
-  },
-  {
-   "sentence": "Старик Иван Михайлович, ___ бронированного поезда, который пришел на похороны еще с вечера, провожал в последний путь своего молодого кочегара.",
-   "lemma": "машинист",
-   "options": [
-    "бывшему машинисту",
-    "бывший машинист",
-    "бывшего машиниста",
-    "бывшем машинисте"
-   ],
-   "correct": "бывший машинист",
-   "case": "Именительный (Nominative)",
-   "explain": "«бывший машинист» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
   },
   {
    "sentence": "Старик Иван Михайлович, бывший машинист ___, который пришел на похороны еще с вечера, провожал в последний путь своего молодого кочегара.",
@@ -221,36 +123,8 @@
    ],
    "correct": "бронированного поезда",
    "case": "Родительный (Genitive)",
-   "explain": "«бронированного поезда» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«бронированного поезда» depends on the noun «машинист» (whose? of what?) — genitive.",
    "id": "c17"
-  },
-  {
-   "sentence": "Старик Иван Михайлович, бывший машинист бронированного поезда, который пришел на похороны еще с вечера, провожал в последний путь своего ___.",
-   "lemma": "кочегар",
-   "options": [
-    "молодого кочегара",
-    "молодым кочегаром",
-    "молодому кочегару",
-    "молодом кочегаре"
-   ],
-   "correct": "молодого кочегара",
-   "case": "Родительный (Genitive)",
-   "explain": "«молодого кочегара» — the genitive here marks possession, absence, or quantity.",
-   "id": "c19"
-  },
-  {
-   "sentence": "Но он говорил о том, что так просто, без тяжелых, настойчивых усилий, без упорной, непримиримой борьбы, в которой могут быть и ___ и жертвы, новую жизнь не создашь и не построишь.",
-   "lemma": "поражение",
-   "options": [
-    "отдельным поражениям",
-    "отдельные поражения",
-    "отдельных поражений",
-    "отдельными поражениями"
-   ],
-   "correct": "отдельные поражения",
-   "case": "Именительный (Nominative)",
-   "explain": "«отдельные поражения» — the subject of the sentence stands in the nominative.",
-   "id": "c21"
   },
   {
    "sentence": "И хотя здесь, в Алешине, были похороны, но голос докладчика звучал бодро и твердо, когда он говорил о том, что сегодня праздник, потому что рядом закладывается корпус нового ___.",
@@ -263,7 +137,7 @@
    ],
    "correct": "гигантского завода",
    "case": "Родительный (Genitive)",
-   "explain": "«гигантского завода» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«гигантского завода» depends on the noun «корпус» (whose? of what?) — genitive.",
    "id": "c22"
   },
   {
@@ -277,35 +151,21 @@
    ],
    "correct": "соседнего колхоза",
    "case": "Родительный (Genitive)",
-   "explain": "«соседнего колхоза» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«соседнего колхоза» depends on the noun «председателе» (whose? of what?) — genitive.",
    "id": "c23"
-  },
-  {
-   "sentence": "И при упоминании об убитом председателе соседнего колхоза все встали, сняли шапки, а музыка на празднике заиграла ___.",
-   "lemma": "марш",
-   "options": [
-    "траурном марше",
-    "траурному маршу",
-    "траурным маршем",
-    "траурный марш"
-   ],
-   "correct": "траурный марш",
-   "case": "Винительный (Accusative)",
-   "explain": "«траурный марш» — the accusative marks the direct object of the verb.",
-   "id": "c24"
   },
   {
    "sentence": "И ребятишки приветливо замахали ему руками и крикнули «счастливого пути» его ___.",
    "lemma": "пассажир",
    "options": [
-    "незнакомыми пассажирами",
-    "незнакомых пассажиров",
+    "незнакомым пассажирам",
     "незнакомых пассажирах",
-    "незнакомым пассажирам"
+    "незнакомыми пассажирами",
+    "незнакомые пассажиры"
    ],
    "correct": "незнакомым пассажирам",
    "case": "Дательный (Dative)",
-   "explain": "«незнакомым пассажирам» — the dative marks the indirect object or recipient.",
+   "explain": "«незнакомым пассажирам» is the indirect object of «крикнули» — to or for whom (кому?) — dative.",
    "id": "c26"
   }
  ]

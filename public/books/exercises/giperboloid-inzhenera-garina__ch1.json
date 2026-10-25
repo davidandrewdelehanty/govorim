@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "К подъезду гостиницы бесшумно подкатил рольс-ройс — ___ с кузовом из красного дерева.",
-   "lemma": "машина",
-   "options": [
-    "длинной машиной",
-    "длинной машине",
-    "длинной машины",
-    "длинная машина"
-   ],
-   "correct": "длинная машина",
-   "case": "Именительный (Nominative)",
-   "explain": "«длинная машина» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "К подъезду гостиницы бесшумно подкатил рольс-ройс — длинная машина с кузовом из ___.",
    "lemma": "дерево",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "красного дерева",
    "case": "Родительный (Genitive)",
-   "explain": "«красного дерева» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«красного дерева» — «из» always takes the genitive.",
    "id": "c2"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "желтовато-бледный человек",
    "case": "Именительный (Nominative)",
-   "explain": "«желтовато-бледный человек» — the subject of the sentence stands in the nominative.",
+   "explain": "«желтовато-бледный человек» is the subject of «вошел» — who or what does it — so nominative.",
    "id": "c3"
   },
   {
@@ -53,7 +39,7 @@
    ],
    "correct": "небольшого роста",
    "case": "Родительный (Genitive)",
-   "explain": "«небольшого роста» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«небольшого роста» depends on the noun «человек» (whose? of what?) — genitive.",
    "id": "c4"
   },
   {
@@ -67,7 +53,7 @@
    ],
    "correct": "длинном пальто",
    "case": "Предложный (Prepositional)",
-   "explain": "«длинном пальто» — after the preposition «в», for location or topic.",
+   "explain": "«длинном пальто» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c5"
   },
   {
@@ -81,92 +67,22 @@
    ],
    "correct": "молодым человеком",
    "case": "Творительный (Instrumental)",
-   "explain": "«молодым человеком» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«молодым человеком» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c6"
-  },
-  {
-   "sentence": "Это была знаменитая Зоя Монроз, одна из самых ___ Парижа.",
-   "lemma": "женщина",
-   "options": [
-    "шикарных женщин",
-    "шикарным женщинам",
-    "шикарных женщинах",
-    "шикарные женщины"
-   ],
-   "correct": "шикарных женщин",
-   "case": "Родительный (Genitive)",
-   "explain": "«шикарных женщин» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
-   "id": "c7"
   },
   {
    "sentence": "Она была в белом ___, обшитом на рукавах, от кисти до локтя, длинным мехом черной обезьяны.",
    "lemma": "костюм",
    "options": [
-    "суконным костюмом",
-    "суконный костюм",
+    "суконному костюму",
     "суконного костюма",
+    "суконным костюмом",
     "суконном костюме"
    ],
    "correct": "суконном костюме",
    "case": "Предложный (Prepositional)",
-   "explain": "«суконном костюме» — after the preposition «в», for location or topic.",
+   "explain": "«суконном костюме» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c8"
-  },
-  {
-   "sentence": "Ее фетровая ___ была создана великим Колло.",
-   "lemma": "шапочка",
-   "options": [
-    "маленькой шапочкой",
-    "маленькой шапочки",
-    "маленькая шапочка",
-    "маленькой шапочке"
-   ],
-   "correct": "маленькая шапочка",
-   "case": "Именительный (Nominative)",
-   "explain": "«маленькая шапочка» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
-  },
-  {
-   "sentence": "Она была красива, тонкая, высокая, с длинной шеей, с немного ___, с немного приподнятым носом.",
-   "lemma": "рот",
-   "options": [
-    "большим ртом",
-    "большем рте",
-    "большему рту",
-    "больший рот"
-   ],
-   "correct": "большим ртом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«большим ртом» — the instrumental marks the means, company, or complement.",
-   "id": "c12"
-  },
-  {
-   "sentence": "___ ее казались холодными и страстными.",
-   "lemma": "глаз",
-   "options": [
-    "синевато-серых глазах",
-    "синевато-серыми глазами",
-    "синевато-серым глазам",
-    "синевато-серые глаза"
-   ],
-   "correct": "синевато-серые глаза",
-   "case": "Именительный (Nominative)",
-   "explain": "«Синевато-серые глаза» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
-  },
-  {
-   "sentence": "Зоя Монроз усмехнулась, как бы снисходительно извиняя ___ ответа.",
-   "lemma": "тон",
-   "options": [
-    "резким тоном",
-    "резкого тона",
-    "резкому тону",
-    "резкий тон"
-   ],
-   "correct": "резкий тон",
-   "case": "Винительный (Accusative)",
-   "explain": "«резкий тон» — the accusative marks the direct object of the verb.",
-   "id": "c14"
   },
   {
    "sentence": "В это время в дверь проскочил ___, говоривший с Зоей Монроз у автомобиля.",
@@ -179,7 +95,7 @@
    ],
    "correct": "молодой человек",
    "case": "Именительный (Nominative)",
-   "explain": "«молодой человек» — the subject of the sentence stands in the nominative.",
+   "explain": "«молодой человек» is the subject of «проскочил» — who or what does it — so nominative.",
    "id": "c15"
   },
   {
@@ -193,36 +109,8 @@
    ],
    "correct": "стареньком пальто",
    "case": "Предложный (Prepositional)",
-   "explain": "«стареньком пальто» — after the preposition «в», for location or topic.",
+   "explain": "«стареньком пальто» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c16"
-  },
-  {
-   "sentence": "Он был в распахнутом стареньком пальто, с тростью и ___ в руке.",
-   "lemma": "шляпа",
-   "options": [
-    "мягкой шляпы",
-    "мягкой шляпой",
-    "мягкая шляпа",
-    "мягкой шляпе"
-   ],
-   "correct": "мягкой шляпой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«мягкой шляпой» — the instrumental marks the means, company, or complement.",
-   "id": "c17"
-  },
-  {
-   "sentence": "— Если вы будете орать на всю гостиницу, вас выведут, — сказал Роллинг, уставившись на него ___, не обещающими ничего доброго.",
-   "lemma": "глаз",
-   "options": [
-    "мутноватых глаз",
-    "мутноватыми глазами",
-    "мутноватым глазам",
-    "мутноватые глаза"
-   ],
-   "correct": "мутноватыми глазами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«мутноватыми глазами» — the instrumental marks the means, company, or complement.",
-   "id": "c18"
   }
  ]
 }

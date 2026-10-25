@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "___ отмахивала по тротуарам, по мостовой, по набережной, не смотрела по сторонам и не видела четко людей перед собою.",
-   "lemma": "шаг",
-   "options": [
-    "широкими шагами",
-    "широких шагах",
-    "широким шагам",
-    "широкие шаги"
-   ],
-   "correct": "широкими шагами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«Широкими шагами» — the instrumental marks the means, company, or complement.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Пищали, захлебывались, надрывались от плача ___.",
-   "lemma": "младенец",
-   "options": [
-    "грудные младенцы",
-    "грудных младенцев",
-    "грудных младенцах",
-    "грудными младенцами"
-   ],
-   "correct": "грудные младенцы",
-   "case": "Именительный (Nominative)",
-   "explain": "«грудные младенцы» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
-  },
-  {
    "sentence": "Прохожие ___ с любопытством и строгим изумлением останавливались и нюхали воздух.",
    "lemma": "человек",
    "options": [
@@ -39,35 +11,21 @@
    ],
    "correct": "деловые люди",
    "case": "Именительный (Nominative)",
-   "explain": "«деловые люди» — the subject of the sentence stands in the nominative.",
+   "explain": "«деловые люди» is the subject of «останавливались» — who or what does it — so nominative.",
    "id": "c9"
-  },
-  {
-   "sentence": "Прохожие деловые люди с любопытством и ___ останавливались и нюхали воздух.",
-   "lemma": "изумление",
-   "options": [
-    "строгом изумлении",
-    "строгому изумлению",
-    "строгого изумления",
-    "строгим изумлением"
-   ],
-   "correct": "строгим изумлением",
-   "case": "Творительный (Instrumental)",
-   "explain": "«строгим изумлением» — the instrumental marks the means, company, or complement.",
-   "id": "c10"
   },
   {
    "sentence": "И до самого Парткома Поля больно, до ужаса, несла в себе этот дрожащий ___, затерянный в стоне, в смердящих телах, этот жалобный писк грудного младенца.",
    "lemma": "голос",
    "options": [
-    "сиплый голос",
-    "сиплого голоса",
     "сиплом голосе",
-    "сиплым голосом"
+    "сиплому голосу",
+    "сиплым голосом",
+    "сиплый голос"
    ],
    "correct": "сиплый голос",
    "case": "Винительный (Accusative)",
-   "explain": "«сиплый голос» — the accusative marks the direct object of the verb.",
+   "explain": "«сиплый голос» is the direct object of «несла» (кого? что?) — accusative.",
    "id": "c11"
   },
   {
@@ -81,64 +39,8 @@
    ],
    "correct": "грудного младенца",
    "case": "Винительный (Accusative)",
-   "explain": "«грудного младенца» — the accusative marks the direct object of the verb.",
+   "explain": "«грудного младенца» is the direct object of «писк» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c12"
-  },
-  {
-   "sentence": "Тишина, ___ и безлюдье.",
-   "lemma": "мрак",
-   "options": [
-    "пустом мраке",
-    "пустой мрак",
-    "пустому мраку",
-    "пустого мрака"
-   ],
-   "correct": "пустой мрак",
-   "case": "Именительный (Nominative)",
-   "explain": "«пустой мрак» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
-  },
-  {
-   "sentence": "Поняла: это пели за окном ___ телефонные провода.",
-   "lemma": "песня",
-   "options": [
-    "унылые песни",
-    "унылым песням",
-    "унылых песнях",
-    "унылыми песнями"
-   ],
-   "correct": "унылые песни",
-   "case": "Винительный (Accusative)",
-   "explain": "«унылые песни» — the accusative marks the direct object of the verb.",
-   "id": "c17"
-  },
-  {
-   "sentence": "И ничего не осталось в памяти, только эта ___, белый оскал зубов и морщины на щеках.",
-   "lemma": "рука",
-   "options": [
-    "призывной руке",
-    "призывной рукой",
-    "призывная рука",
-    "призывной руки"
-   ],
-   "correct": "призывная рука",
-   "case": "Именительный (Nominative)",
-   "explain": "«призывная рука» — the subject of the sentence stands in the nominative.",
-   "id": "c21"
-  },
-  {
-   "sentence": "И ничего не осталось в памяти, только эта призывная рука, ___ зубов и морщины на щеках.",
-   "lemma": "оскал",
-   "options": [
-    "белому оскалу",
-    "белом оскале",
-    "белый оскал",
-    "белым оскалом"
-   ],
-   "correct": "белый оскал",
-   "case": "Именительный (Nominative)",
-   "explain": "«белый оскал» — the subject of the sentence stands in the nominative.",
-   "id": "c22"
   },
   {
    "sentence": "Будто сон, будто образы ___.",
@@ -151,22 +53,8 @@
    ],
    "correct": "раннего детства",
    "case": "Родительный (Genitive)",
-   "explain": "«раннего детства» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«раннего детства» depends on the noun «образы» (whose? of what?) — genitive.",
    "id": "c23"
-  },
-  {
-   "sentence": "___ в дверь, в какую — не поймешь.",
-   "lemma": "стук",
-   "options": [
-    "тихому стуку",
-    "тихий стук",
-    "тихого стука",
-    "тихом стуке"
-   ],
-   "correct": "тихий стук",
-   "case": "Именительный (Nominative)",
-   "explain": "«Тихий стук» — the subject of the sentence stands in the nominative.",
-   "id": "c24"
   },
   {
    "sentence": "Мельком увидела, что Бадьин ___: половина — белый, половина — черный.",
@@ -179,7 +67,7 @@
    ],
    "correct": "необычного вида",
    "case": "Родительный (Genitive)",
-   "explain": "«необычного вида» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«необычного вида» depends on the noun «Бадьин» (whose? of what?) — genitive.",
    "id": "c25"
   },
   {
@@ -193,50 +81,8 @@
    ],
    "correct": "большая толпа",
    "case": "Именительный (Nominative)",
-   "explain": "«большая толпа» — the subject of the sentence stands in the nominative.",
+   "explain": "«большая толпа» is the subject of «выла» — who or what does it — so nominative.",
    "id": "c26"
-  },
-  {
-   "sentence": "Теперь небо — сухое и прозрачное, и звезды ярко и четко переливаются ___ радуг.",
-   "lemma": "пучок",
-   "options": [
-    "ослепительных пучках",
-    "ослепительные пучки",
-    "ослепительных пучков",
-    "ослепительными пучками"
-   ],
-   "correct": "ослепительными пучками",
-   "case": "Творительный (Instrumental)",
-   "explain": "«ослепительными пучками» — the instrumental marks the means, company, or complement.",
-   "id": "c27"
-  },
-  {
-   "sentence": "Может быть, это — ___?",
-   "lemma": "кошмар",
-   "options": [
-    "обычным кошмаром",
-    "обычному кошмару",
-    "обычного кошмара",
-    "обычный кошмар"
-   ],
-   "correct": "обычный кошмар",
-   "case": "Именительный (Nominative)",
-   "explain": "«обычный кошмар» — the subject of the sentence stands in the nominative.",
-   "id": "c28"
-  },
-  {
-   "sentence": "Рубашка смята в мокрый комок выше груди и смердила потом и еще каким-то ___, которого раньше не знала.",
-   "lemma": "запах",
-   "options": [
-    "тошнотному запаху",
-    "тошнотным запахом",
-    "тошнотного запаха",
-    "тошнотный запах"
-   ],
-   "correct": "тошнотным запахом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«тошнотным запахом» — the instrumental marks the means, company, or complement.",
-   "id": "c30"
   },
   {
    "sentence": "Она закорчилась на кровати, сползла на пол и вдруг онемела от ___.",
@@ -249,22 +95,8 @@
    ],
    "correct": "смертельного страха",
    "case": "Родительный (Genitive)",
-   "explain": "«смертельного страха» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«смертельного страха» — «от» always takes the genitive.",
    "id": "c33"
-  },
-  {
-   "sentence": "Она уснула рука в руку с ним, а он сидел около иее, не шевелился и смотрел на нее пристально, с печальной любовно, до ___.",
-   "lemma": "рассвет",
-   "options": [
-    "самим рассветом",
-    "сам рассвет",
-    "самого рассвета",
-    "самому рассвету"
-   ],
-   "correct": "самого рассвета",
-   "case": "Родительный (Genitive)",
-   "explain": "«самого рассвета» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
-   "id": "c36"
   }
  ]
 }

@@ -1,48 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Был белый ___; в огромном лесу стоял тонкий пар, полный странных видений.",
-   "lemma": "час",
-   "options": [
-    "утренний час",
-    "утреннем часе",
-    "утренним часом",
-    "утреннему часу"
-   ],
-   "correct": "утренний час",
-   "case": "Именительный (Nominative)",
-   "explain": "«утренний час» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Был белый утренний час; в огромном лесу стоял тонкий пар, полный ___.",
-   "lemma": "видение",
-   "options": [
-    "странными видениями",
-    "странных видениях",
-    "странных видений",
-    "странные видения"
-   ],
-   "correct": "странных видений",
-   "case": "Родительный (Genitive)",
-   "explain": "«странных видений» — the genitive here marks possession, absence, or quantity.",
-   "id": "c2"
-  },
-  {
-   "sentence": "___ пронёсся среди деревьев с неожиданностью тревожной погони; это запел кларнет.",
-   "lemma": "звук",
-   "options": [
-    "внезапном звуке",
-    "внезапным звуком",
-    "внезапный звук",
-    "внезапному звуку"
-   ],
-   "correct": "внезапный звук",
-   "case": "Именительный (Nominative)",
-   "explain": "«Внезапный звук» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
    "sentence": "Внезапный звук пронёсся среди деревьев с неожиданностью ___; это запел кларнет.",
    "lemma": "погоня",
    "options": [
@@ -53,64 +11,22 @@
    ],
    "correct": "тревожной погони",
    "case": "Родительный (Genitive)",
-   "explain": "«тревожной погони» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«тревожной погони» depends on the noun «неожиданностью» (whose? of what?) — genitive.",
    "id": "c4"
-  },
-  {
-   "sentence": "Звук дрожал, как голос, скрывающий горе; усилился, улыбнулся ___ и оборвался.",
-   "lemma": "перелив",
-   "options": [
-    "грустного перелива",
-    "грустном переливе",
-    "грустному переливу",
-    "грустным переливом"
-   ],
-   "correct": "грустным переливом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«грустным переливом» — the instrumental marks the means, company, or complement.",
-   "id": "c5"
   },
   {
    "sentence": "Туман ещё не рассеялся; в нём гасли очертания ___, медленно повертывающегося к устью реки.",
    "lemma": "корабль",
    "options": [
     "огромному кораблю",
-    "огромным кораблём",
-    "огромном корабле",
-    "огромного корабля"
+    "огромного корабля",
+    "огромный корабль",
+    "огромном корабле"
    ],
    "correct": "огромного корабля",
    "case": "Родительный (Genitive)",
-   "explain": "«огромного корабля» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«огромного корабля» depends on the noun «очертания» (whose? of what?) — genitive.",
    "id": "c6"
-  },
-  {
-   "sentence": "Его ___ ожили, свисая фестонами, расправляясь и покрывая мачты бессильными щитами огромных складок; слышались голоса и шаги.",
-   "lemma": "парус",
-   "options": [
-    "свёрнутых парусах",
-    "свёрнутые паруса",
-    "свёрнутым парусам",
-    "свёрнутыми парусами"
-   ],
-   "correct": "свёрнутые паруса",
-   "case": "Именительный (Nominative)",
-   "explain": "«свёрнутые паруса» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
-  },
-  {
-   "sentence": "Его свёрнутые паруса ожили, свисая фестонами, расправляясь и покрывая мачты ___ огромных складок; слышались голоса и шаги.",
-   "lemma": "щит",
-   "options": [
-    "бессильными щитами",
-    "бессильные щиты",
-    "бессильных щитах",
-    "бессильных щитов"
-   ],
-   "correct": "бессильными щитами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«бессильными щитами» — the instrumental marks the means, company, or complement.",
-   "id": "c8"
   },
   {
    "sentence": "Его свёрнутые паруса ожили, свисая фестонами, расправляясь и покрывая мачты бессильными щитами ___; слышались голоса и шаги.",
@@ -123,7 +39,7 @@
    ],
    "correct": "огромных складок",
    "case": "Родительный (Genitive)",
-   "explain": "«огромных складок» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«огромных складок» depends on the noun «щитами» (whose? of what?) — genitive.",
    "id": "c9"
   },
   {
@@ -131,13 +47,13 @@
    "lemma": "эффект",
    "options": [
     "нужным эффектом",
-    "нужный эффект",
-    "нужного эффекта",
-    "нужном эффекте"
+    "нужному эффекту",
+    "нужном эффекте",
+    "нужный эффект"
    ],
    "correct": "нужный эффект",
    "case": "Винительный (Accusative)",
-   "explain": "«нужный эффект» — the accusative marks the direct object of the verb.",
+   "explain": "«нужный эффект» is the direct object of «произвело» (кого? что?) — accusative.",
    "id": "c10"
   },
   {
@@ -151,7 +67,7 @@
    ],
    "correct": "воздушный напор",
    "case": "Именительный (Nominative)",
-   "explain": "«воздушный напор» — the subject of the sentence stands in the nominative.",
+   "explain": "«воздушный напор» is the subject of «усилился» — who or what does it — so nominative.",
    "id": "c11"
   },
   {
@@ -165,22 +81,8 @@
    ],
    "correct": "алые формы",
    "case": "Винительный (Accusative)",
-   "explain": "«алые формы» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«алые формы» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c12"
-  },
-  {
-   "sentence": "___ скользили по белизне мачт и снастей, всё было белым, кроме раскинутых, плавно двинутых парусов цвета глубокой радости.",
-   "lemma": "тень",
-   "options": [
-    "розовых теней",
-    "розовых тенях",
-    "розовым теням",
-    "розовые тени"
-   ],
-   "correct": "розовые тени",
-   "case": "Именительный (Nominative)",
-   "explain": "«Розовые тени» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
   },
   {
    "sentence": "Пантен сидел рядом, в новой ___, в новой блестящей фуражке, бритый и смиренно надутый.",
@@ -193,7 +95,7 @@
    ],
    "correct": "суконной паре",
    "case": "Предложный (Prepositional)",
-   "explain": "«суконной паре» — after the preposition «в», for location or topic.",
+   "explain": "«суконной паре» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c14"
   },
   {
@@ -207,50 +109,22 @@
    ],
    "correct": "блестящей фуражке",
    "case": "Предложный (Prepositional)",
-   "explain": "«блестящей фуражке» — after the preposition «в», for location or topic.",
+   "explain": "«блестящей фуражке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c15"
   },
   {
    "sentence": "Он по-прежнему не чувствовал никакой связи между ___ и прямой целью Грэя.",
    "lemma": "убранство",
    "options": [
+    "алое убранство",
     "алом убранстве",
-    "алого убранства",
     "алым убранством",
     "алому убранству"
    ],
    "correct": "алым убранством",
    "case": "Творительный (Instrumental)",
-   "explain": "«алым убранством» — after the preposition «между», the instrumental marks the means, company, or complement.",
+   "explain": "«алым убранством» — «между» + instrumental: between.",
    "id": "c16"
-  },
-  {
-   "sentence": "— Теперь, — сказал Грэй, — когда мои паруса рдеют, ветер хорош, а в сердце моём больше счастья, чем у слона при виде ___, я попытаюсь настроить вас своими мыслями, как обещал в Лиссе.",
-   "lemma": "булочка",
-   "options": [
-    "небольшой булочки",
-    "небольшой булочкой",
-    "небольшой булочке",
-    "небольшая булочка"
-   ],
-   "correct": "небольшой булочки",
-   "case": "Родительный (Genitive)",
-   "explain": "«небольшой булочки» — the genitive here marks possession, absence, or quantity.",
-   "id": "c17"
-  },
-  {
-   "sentence": "Заметьте — я не считаю вас глупым или упрямым, нет; вы ___, а это много стоит.",
-   "lemma": "моряк",
-   "options": [
-    "образцового моряка",
-    "образцовом моряке",
-    "образцовым моряком",
-    "образцовый моряк"
-   ],
-   "correct": "образцовый моряк",
-   "case": "Именительный (Nominative)",
-   "explain": "«образцовый моряк» — the subject of the sentence stands in the nominative.",
-   "id": "c18"
   },
   {
    "sentence": "Но вы, как и большинство, слушаете голоса всех ___ сквозь толстое стекло жизни; они кричат, но, вы не услышите.",
@@ -263,64 +137,8 @@
    ],
    "correct": "нехитрых истин",
    "case": "Родительный (Genitive)",
-   "explain": "«нехитрых истин» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«нехитрых истин» depends on the noun «голоса» (whose? of what?) — genitive.",
    "id": "c19"
-  },
-  {
-   "sentence": "Я делаю то, что существует, как ___ о прекрасном-несбыточном, и что, по существу, так же сбыточно и возможно, как загородная прогулка.",
-   "lemma": "представление",
-   "options": [
-    "старинном представлении",
-    "старинного представления",
-    "старинным представлением",
-    "старинное представление"
-   ],
-   "correct": "старинное представление",
-   "case": "Именительный (Nominative)",
-   "explain": "«старинное представление» — the subject of the sentence stands in the nominative.",
-   "id": "c20"
-  },
-  {
-   "sentence": "Я делаю то, что существует, как старинное представление о прекрасном-несбыточном, и что, по существу, так же сбыточно и возможно, как ___.",
-   "lemma": "прогулка",
-   "options": [
-    "загородная прогулка",
-    "загородной прогулкой",
-    "загородной прогулке",
-    "загородной прогулки"
-   ],
-   "correct": "загородная прогулка",
-   "case": "Именительный (Nominative)",
-   "explain": "«загородная прогулка» — the subject of the sentence stands in the nominative.",
-   "id": "c21"
-  },
-  {
-   "sentence": "Когда для человека главное — получать ___, легко дать этот пятак, но, когда душа таит зерно пламенного растения — чуда, сделай ему это чудо, если ты в состоянии.",
-   "lemma": "пятак",
-   "options": [
-    "дражайшим пятаком",
-    "дражайшего пятака",
-    "дражайшем пятаке",
-    "дражайший пятак"
-   ],
-   "correct": "дражайший пятак",
-   "case": "Винительный (Accusative)",
-   "explain": "«дражайший пятак» — the accusative marks the direct object of the verb.",
-   "id": "c22"
-  },
-  {
-   "sentence": "___ будет у него и новая у тебя.",
-   "lemma": "душа",
-   "options": [
-    "новой душе",
-    "новой душой",
-    "новая душа",
-    "новой души"
-   ],
-   "correct": "новая душа",
-   "case": "Именительный (Nominative)",
-   "explain": "«Новая душа» — the subject of the sentence stands in the nominative.",
-   "id": "c23"
   },
   {
    "sentence": "— Пантен крякнул, вытерев усы аккуратно сложенным ___.",
@@ -333,50 +151,8 @@
    ],
    "correct": "чистым платочком",
    "case": "Творительный (Instrumental)",
-   "explain": "«чистым платочком» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «сложенным», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c25"
-  },
-  {
-   "sentence": "Прежде чем Грэй, несколько удивлённый таким быстрым ___ своих слов, успел что-либо сказать, Пантен уже загремел вниз по трапу и где-то отдалённо вздохнул.",
-   "lemma": "результат",
-   "options": [
-    "практическом результате",
-    "практического результата",
-    "практический результат",
-    "практическим результатом"
-   ],
-   "correct": "практическим результатом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«практическим результатом» — the instrumental marks the means, company, or complement.",
-   "id": "c26"
-  },
-  {
-   "sentence": "Грэй оглянулся, посмотрев вверх; над ним молча рвались ___; солнце в их швах сияло пурпурным дымом.",
-   "lemma": "парус",
-   "options": [
-    "алым парусам",
-    "алыми парусами",
-    "алых парусах",
-    "алые паруса"
-   ],
-   "correct": "алые паруса",
-   "case": "Именительный (Nominative)",
-   "explain": "«алые паруса» — the subject of the sentence stands in the nominative.",
-   "id": "c27"
-  },
-  {
-   "sentence": "Грэй оглянулся, посмотрев вверх; над ним молча рвались алые паруса; солнце в их швах сияло ___.",
-   "lemma": "дым",
-   "options": [
-    "пурпурном дыме",
-    "пурпурному дыму",
-    "пурпурный дым",
-    "пурпурным дымом"
-   ],
-   "correct": "пурпурным дымом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«пурпурным дымом» — the instrumental marks the means, company, or complement.",
-   "id": "c28"
   },
   {
    "sentence": "К полудню на горизонте показался дымок ___, крейсер изменил курс и с расстояния полумили поднял сигнал — «лечь в дрейф!».",
@@ -389,22 +165,8 @@
    ],
    "correct": "военного крейсера",
    "case": "Родительный (Genitive)",
-   "explain": "«военного крейсера» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«военного крейсера» depends on the noun «дымок» (whose? of what?) — genitive.",
    "id": "c30"
-  },
-  {
-   "sentence": "Некоторое время «Секрет» шёл ___, без берегов; к полудню открылся далёкий берег.",
-   "lemma": "море",
-   "options": [
-    "пустое море",
-    "пустом море",
-    "пустому морю",
-    "пустым морем"
-   ],
-   "correct": "пустым морем",
-   "case": "Творительный (Instrumental)",
-   "explain": "«пустым морем» — the instrumental marks the means, company, or complement.",
-   "id": "c31"
   },
   {
    "sentence": "Некоторое время «Секрет» шёл пустым морем, без берегов; к полудню открылся ___.",
@@ -417,50 +179,8 @@
    ],
    "correct": "далёкий берег",
    "case": "Именительный (Nominative)",
-   "explain": "«далёкий берег» — the subject of the sentence stands in the nominative.",
+   "explain": "«далёкий берег» is the subject of «открылся» — who or what does it — so nominative.",
    "id": "c32"
-  },
-  {
-   "sentence": "Тем временем в Каперне произошло такое замешательство, такое волнение, такая ___, какие не уступят аффекту знаменитых землетрясений.",
-   "lemma": "смута",
-   "options": [
-    "поголовной смутой",
-    "поголовной смуте",
-    "поголовной смуты",
-    "поголовная смута"
-   ],
-   "correct": "поголовная смута",
-   "case": "Именительный (Nominative)",
-   "explain": "«поголовная смута» — the subject of the sentence stands in the nominative.",
-   "id": "c34"
-  },
-  {
-   "sentence": "Пока её не было, её имя перелетало среди людей с нервной и ___, с злобным испугом.",
-   "lemma": "тревога",
-   "options": [
-    "угрюмой тревогой",
-    "угрюмой тревоги",
-    "угрюмой тревоге",
-    "угрюмая тревога"
-   ],
-   "correct": "угрюмой тревогой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«угрюмой тревогой» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c36"
-  },
-  {
-   "sentence": "Пока её не было, её имя перелетало среди людей с нервной и угрюмой тревогой, с ___.",
-   "lemma": "испуг",
-   "options": [
-    "злобном испуге",
-    "злобному испугу",
-    "злобный испуг",
-    "злобным испугом"
-   ],
-   "correct": "злобным испугом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«злобным испугом» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c37"
   },
   {
    "sentence": "Но тысячи последних ___ одолели Ассоль; смертельно боясь всего — ошибки, недоразумений, таинственной и вредной помехи — она вбежала по пояс в тёплое колыхание волн, крича: — Я здесь, я здесь!",
@@ -473,36 +193,8 @@
    ],
    "correct": "смешных страхов",
    "case": "Родительный (Genitive)",
-   "explain": "«смешных страхов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«смешных страхов» depends on the noun «тысячи» (whose? of what?) — genitive.",
    "id": "c38"
-  },
-  {
-   "sentence": "Счастье сидело в ней ___.",
-   "lemma": "котёнок",
-   "options": [
-    "пушистому котёнку",
-    "пушистым котёнком",
-    "пушистый котёнок",
-    "пушистого котёнка"
-   ],
-   "correct": "пушистым котёнком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«пушистым котёнком» — the instrumental marks the means, company, or complement.",
-   "id": "c40"
-  },
-  {
-   "sentence": "Палуба, крытая и увешанная коврами, в алых выплесках парусов, была как ___.",
-   "lemma": "сад",
-   "options": [
-    "небесном саде",
-    "небесному саду",
-    "небесного сада",
-    "небесный сад"
-   ],
-   "correct": "небесный сад",
-   "case": "Именительный (Nominative)",
-   "explain": "«небесный сад» — the subject of the sentence stands in the nominative.",
-   "id": "c41"
   },
   {
    "sentence": "Тогда сверху, сотрясая и зарывая сердце в свой торжествующий крик, вновь кинулась ___.",
@@ -515,64 +207,22 @@
    ],
    "correct": "огромная музыка",
    "case": "Именительный (Nominative)",
-   "explain": "«огромная музыка» — the subject of the sentence stands in the nominative.",
+   "explain": "«огромная музыка» is the subject of «кинулась» — who or what does it — so nominative.",
    "id": "c42"
-  },
-  {
-   "sentence": "Много на свете слов на разных языках и ___, но всеми ими, даже и отдалённо, не передашь того, что сказали они в день этот друг другу.",
-   "lemma": "наречие",
-   "options": [
-    "разным наречиям",
-    "разных наречиях",
-    "разных наречий",
-    "разные наречия"
-   ],
-   "correct": "разных наречиях",
-   "case": "Предложный (Prepositional)",
-   "explain": "«разных наречиях» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c44"
-  },
-  {
-   "sentence": "Грэй поднялся вверх, дал знак оркестру и, сняв фуражку, первый зачерпнул ___, в песне золотых труб, святое вино.",
-   "lemma": "стакан",
-   "options": [
-    "гранёным стаканом",
-    "гранёном стакане",
-    "гранёный стакан",
-    "гранёному стакану"
-   ],
-   "correct": "гранёным стаканом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«гранёным стаканом» — the instrumental marks the means, company, or complement.",
-   "id": "c45"
   },
   {
    "sentence": "Грэй поднялся вверх, дал знак оркестру и, сняв фуражку, первый зачерпнул гранёным стаканом, в песне ___, святое вино.",
    "lemma": "труба",
    "options": [
     "золотыми трубами",
-    "золотых труб",
     "золотых трубах",
-    "золотым трубам"
+    "золотые трубы",
+    "золотых труб"
    ],
    "correct": "золотых труб",
    "case": "Родительный (Genitive)",
-   "explain": "«золотых труб» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«золотых труб» depends on the noun «песне» (whose? of what?) — genitive.",
    "id": "c46"
-  },
-  {
-   "sentence": "В то время, как ___, под всеми парусами уходил от ужаснувшейся навсегда Каперны «Секрет», давка вокруг бочонка превзошла всё, что в этом роде происходит на великих праздниках.",
-   "lemma": "ход",
-   "options": [
-    "полном ходе",
-    "полного хода",
-    "полным ходом",
-    "полному ходу"
-   ],
-   "correct": "полным ходом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«полным ходом» — the instrumental marks the means, company, or complement.",
-   "id": "c47"
   },
   {
    "sentence": "Когда на ___ стало светать, корабль был далеко от Каперны.",
@@ -585,7 +235,7 @@
    ],
    "correct": "другой день",
    "case": "Винительный (Accusative)",
-   "explain": "«другой день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«другой день» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c49"
   }
  ]

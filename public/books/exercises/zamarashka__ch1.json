@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Жил-был один дворянин, и женился он ___ на самой гордой и самой высокомерной даме в свете.",
-   "lemma": "брак",
-   "options": [
-    "второго брака",
-    "вторым браком",
-    "второму браку",
-    "втором браке"
-   ],
-   "correct": "вторым браком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«вторым браком» — the instrumental marks the means, company, or complement.",
-   "id": "c1"
-  },
-  {
    "sentence": "Она имела от ___ двух дочерей, которые во всем на нее походили.",
    "lemma": "муж",
    "options": [
@@ -25,64 +11,8 @@
    ],
    "correct": "первого мужа",
    "case": "Родительный (Genitive)",
-   "explain": "«первого мужа» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«первого мужа» — «от» always takes the genitive.",
    "id": "c2"
-  },
-  {
-   "sentence": "Дворянин тоже имел уже дочь — доброты и кротости беспримерной, характером далась она в свою покойную мать, которая была ___.",
-   "lemma": "качество",
-   "options": [
-    "редким качествам",
-    "редких качествах",
-    "редкими качествами",
-    "редких качеств"
-   ],
-   "correct": "редких качеств",
-   "case": "Родительный (Genitive)",
-   "explain": "«редких качеств» — the genitive here marks possession, absence, or quantity.",
-   "id": "c3"
-  },
-  {
-   "sentence": "Едва успели отпраздновать свадьбу, как мачеха уже показала свой нрав: стала гнать падчерицу, ___ которой выказывали недостатки ее дочерей в еще более гнусном виде.",
-   "lemma": "свойство",
-   "options": [
-    "добрым свойствам",
-    "добрыми свойствами",
-    "добрых свойствах",
-    "добрые свойства"
-   ],
-   "correct": "добрые свойства",
-   "case": "Винительный (Accusative)",
-   "explain": "«добрые свойства» — the accusative marks the direct object of the verb.",
-   "id": "c4"
-  },
-  {
-   "sentence": "Едва успели отпраздновать свадьбу, как мачеха уже показала свой нрав: стала гнать падчерицу, добрые свойства которой выказывали недостатки ее дочерей в еще более ___.",
-   "lemma": "вид",
-   "options": [
-    "гнусному виду",
-    "гнусный вид",
-    "гнусном виде",
-    "гнусного вида"
-   ],
-   "correct": "гнусном виде",
-   "case": "Предложный (Prepositional)",
-   "explain": "«гнусном виде» — after the preposition «в», for location or topic.",
-   "id": "c5"
-  },
-  {
-   "sentence": "Спала она под крышей, на чердаке, на соломенном тюфяке, тогда как сестры ее жили в комнатах с паркетными полами, где стояли самые ___ и венецианские зеркала, которые отражали их от головы до пяток.",
-   "lemma": "кровать",
-   "options": [
-    "модными кроватями",
-    "модных кроватей",
-    "модные кровати",
-    "модным кроватям"
-   ],
-   "correct": "модные кровати",
-   "case": "Именительный (Nominative)",
-   "explain": "«модные кровати» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
   },
   {
    "sentence": "___ сносила все терпеливо и не смела жаловаться отцу, который ее же разбранил бы, ибо жена вертела им на все стороны.",
@@ -95,7 +25,7 @@
    ],
    "correct": "бедная девушка",
    "case": "Именительный (Nominative)",
-   "explain": "«Бедная девушка» — the subject of the sentence stands in the nominative.",
+   "explain": "«бедная девушка» is the subject of «сносила» — who or what does it — so nominative.",
    "id": "c9"
   },
   {
@@ -109,7 +39,7 @@
    ],
    "correct": "младшая сестра",
    "case": "Именительный (Nominative)",
-   "explain": "«младшая сестра» — the subject of the sentence stands in the nominative.",
+   "explain": "«младшая сестра» is the subject of «называла» — who or what does it — so nominative.",
    "id": "c10"
   },
   {
@@ -123,7 +53,7 @@
    ],
    "correct": "тамошнего короля",
    "case": "Родительный (Genitive)",
-   "explain": "«тамошнего короля» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«тамошнего короля» depends on the noun «сын» (whose? of what?) — genitive.",
    "id": "c11"
   },
   {
@@ -137,22 +67,8 @@
    ],
    "correct": "знатных особ",
    "case": "Винительный (Accusative)",
-   "explain": "«знатных особ» — the accusative marks the direct object of the verb.",
+   "explain": "«знатных особ» is the direct object of «пригласил» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c12"
-  },
-  {
-   "sentence": "___ для Замарашки, потому что никому как ей пришлось гладить воротнички сестер и крахмалить рукавчики.",
-   "lemma": "хлопоты",
-   "options": [
-    "новых хлопот",
-    "новым хлопотам",
-    "новыми хлопотами",
-    "новые хлопоты"
-   ],
-   "correct": "новые хлопоты",
-   "case": "Именительный (Nominative)",
-   "explain": "«Новые хлопоты» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
   },
   {
    "sentence": "— А я, — говорит младшая, — буду в своём ___, зато надену мантилью с золотыми цветами и брильянтовую наколку — этак будет лучше.",
@@ -165,7 +81,7 @@
    ],
    "correct": "простом платье",
    "case": "Предложный (Prepositional)",
-   "explain": "«простом платье» — after the preposition «в», for location or topic.",
+   "explain": "«простом платье» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c14"
   },
   {
@@ -179,22 +95,8 @@
    ],
    "correct": "отличные советы",
    "case": "Винительный (Accusative)",
-   "explain": "«отличные советы» — the accusative marks the direct object of the verb.",
+   "explain": "«отличные советы» is the direct object of «подала» (кого? что?) — accusative.",
    "id": "c17"
-  },
-  {
-   "sentence": "Потом крестная пошла посмотреть в мышеловку, где нашла шесть ___.",
-   "lemma": "мышь",
-   "options": [
-    "живыми мышами",
-    "живые мыши",
-    "живых мышах",
-    "живых мышей"
-   ],
-   "correct": "живых мышей",
-   "case": "Родительный (Genitive)",
-   "explain": "«живых мышей» — the genitive here marks possession, absence, or quantity.",
-   "id": "c19"
   },
   {
    "sentence": "Мышка сейчас обращалась в отличную лошадь, так что через минуту у них явилась ___ в шесть лошадей цвета мышиной шкурки с яблоками.",
@@ -207,7 +109,7 @@
    ],
    "correct": "прекрасная упряжка",
    "case": "Именительный (Nominative)",
-   "explain": "«прекрасная упряжка» — the subject of the sentence stands in the nominative.",
+   "explain": "«прекрасная упряжка» is the subject of «явилась» — who or what does it — so nominative.",
    "id": "c20"
   },
   {
@@ -221,22 +123,8 @@
    ],
    "correct": "мышиной шкурки",
    "case": "Родительный (Genitive)",
-   "explain": "«мышиной шкурки» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«мышиной шкурки» depends on the noun «цвета» (whose? of what?) — genitive.",
    "id": "c21"
-  },
-  {
-   "sentence": "Крестная только тронула ее палочкой, и в ту же минуту платье сделалось матерчатым, вытканным из золота и серебра, и украсилось ___.",
-   "lemma": "камень",
-   "options": [
-    "драгоценные камни",
-    "драгоценных камней",
-    "драгоценным камням",
-    "драгоценными камнями"
-   ],
-   "correct": "драгоценными камнями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«драгоценными камнями» — the instrumental marks the means, company, or complement.",
-   "id": "c22"
   },
   {
    "sentence": "Потом крестная дала ей пару ___, самых красивых в свете.",
@@ -249,22 +137,8 @@
    ],
    "correct": "хрустальных башмачков",
    "case": "Родительный (Genitive)",
-   "explain": "«хрустальных башмачков» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«хрустальных башмачков» depends on the noun «пару» (whose? of what?) — genitive.",
    "id": "c23"
-  },
-  {
-   "sentence": "___, которому доложили, что приехала никому не известная знатная принцесса, побежал ей навстречу, высадил ее под руку из кареты и ввел в залу, где находились гости.",
-   "lemma": "сын",
-   "options": [
-    "королевскому сыну",
-    "королевским сыном",
-    "королевского сына",
-    "королевский сын"
-   ],
-   "correct": "королевский сын",
-   "case": "Именительный (Nominative)",
-   "explain": "«Королевский сын» — the subject of the sentence stands in the nominative.",
-   "id": "c24"
   },
   {
    "sentence": "Королевский сын, которому доложили, что приехала никому не известная ___, побежал ей навстречу, высадил ее под руку из кареты и ввел в залу, где находились гости.",
@@ -277,7 +151,7 @@
    ],
    "correct": "знатная принцесса",
    "case": "Именительный (Nominative)",
-   "explain": "«знатная принцесса» — the subject of the sentence stands in the nominative.",
+   "explain": "«знатная принцесса» is the subject of «приехала» — who or what does it — so nominative.",
    "id": "c25"
   },
   {
@@ -291,7 +165,7 @@
    ],
    "correct": "глубокое молчание",
    "case": "Именительный (Nominative)",
-   "explain": "«глубокое молчание» — the subject of the sentence stands in the nominative.",
+   "explain": "«глубокое молчание» is the subject of «наступило» — who or what does it — so nominative.",
    "id": "c26"
   },
   {
@@ -305,78 +179,22 @@
    ],
    "correct": "неизвестной красавицы",
    "case": "Родительный (Genitive)",
-   "explain": "«неизвестной красавицы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«неизвестной красавицы» depends on the noun «прелести» (whose? of what?) — genitive.",
    "id": "c27"
-  },
-  {
-   "sentence": "___, несмотря на свои дряхлые лета, не переставал любоваться ею и все шептал королеве, что давно уже не случалось ему видеть такой милой, такой любезной особы.",
-   "lemma": "король",
-   "options": [
-    "самом короле",
-    "самим королём",
-    "сам король",
-    "самого короля"
-   ],
-   "correct": "сам король",
-   "case": "Именительный (Nominative)",
-   "explain": "«Сам король» — the subject of the sentence stands in the nominative.",
-   "id": "c28"
-  },
-  {
-   "sentence": "Сам король, несмотря на свои дряхлые лета, не переставал любоваться ею и все шептал королеве, что давно уже не случалось ему видеть такой милой, такой ___.",
-   "lemma": "особа",
-   "options": [
-    "любезной особой",
-    "любезная особа",
-    "любезной особе",
-    "любезной особы"
-   ],
-   "correct": "любезной особы",
-   "case": "Родительный (Genitive)",
-   "explain": "«любезной особы» — the genitive here marks possession, absence, or quantity.",
-   "id": "c29"
   },
   {
    "sentence": "Все дамы внимательно разглядывали ее ___ и платье, для того чтобы завтра же заказать подобные наряды и себе, если только найдется такая богатая материя и попадутся такие искусные мастера.",
    "lemma": "убор",
    "options": [
     "головному убору",
-    "головного убора",
     "головной убор",
+    "головном уборе",
     "головным убором"
    ],
    "correct": "головной убор",
    "case": "Винительный (Accusative)",
-   "explain": "«головной убор» — the accusative marks the direct object of the verb.",
+   "explain": "«головной убор» is the direct object of «разглядывали» (кого? что?) — accusative.",
    "id": "c30"
-  },
-  {
-   "sentence": "Все дамы внимательно разглядывали ее головной убор и платье, для того чтобы завтра же заказать ___ и себе, если только найдется такая богатая материя и попадутся такие искусные мастера.",
-   "lemma": "наряд",
-   "options": [
-    "подобных нарядах",
-    "подобным нарядам",
-    "подобными нарядами",
-    "подобные наряды"
-   ],
-   "correct": "подобные наряды",
-   "case": "Винительный (Accusative)",
-   "explain": "«подобные наряды» — the accusative marks the direct object of the verb.",
-   "id": "c31"
-  },
-  {
-   "sentence": "Все дамы внимательно разглядывали ее головной убор и платье, для того чтобы завтра же заказать подобные наряды и себе, если только найдется такая богатая материя и попадутся такие ___.",
-   "lemma": "мастер",
-   "options": [
-    "искусным мастерам",
-    "искусных мастерах",
-    "искусными мастерами",
-    "искусные мастера"
-   ],
-   "correct": "искусные мастера",
-   "case": "Именительный (Nominative)",
-   "explain": "«искусные мастера» — the subject of the sentence stands in the nominative.",
-   "id": "c32"
   },
   {
    "sentence": "___ посадил Замарашку на самое почетное место и потом пригласил ее танцевать.",
@@ -389,7 +207,7 @@
    ],
    "correct": "королевский сын",
    "case": "Именительный (Nominative)",
-   "explain": "«Королевский сын» — the subject of the sentence stands in the nominative.",
+   "explain": "«королевский сын» is the subject of «посадил» — who or what does it — so nominative.",
    "id": "c33"
   },
   {
@@ -403,36 +221,22 @@
    ],
    "correct": "неизвестной красавицей",
    "case": "Творительный (Instrumental)",
-   "explain": "«неизвестной красавицей» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «занят», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c34"
   },
   {
    "sentence": "Она спросила сестер об имени принцессы, но те отвечали, что никто ее не знает, что ___ очень огорчен этим и что он не пожалел бы ничего на свете, лишь бы узнать, кто она такая.",
    "lemma": "сын",
    "options": [
-    "королевскому сыну",
     "королевским сыном",
     "королевский сын",
-    "королевского сына"
+    "королевскому сыну",
+    "королевском сыне"
    ],
    "correct": "королевский сын",
    "case": "Именительный (Nominative)",
-   "explain": "«королевский сын» — the subject of the sentence stands in the nominative.",
+   "explain": "«королевский сын» is the subject of «знает» — who or what does it — so nominative.",
    "id": "c35"
-  },
-  {
-   "sentence": "Ах, ___, дайте мне ваше желтое платье, что вы носите по будням.",
-   "lemma": "барышня",
-   "options": [
-    "старшей барышней",
-    "старшей барышне",
-    "старшей барышни",
-    "старшая барышня"
-   ],
-   "correct": "старшая барышня",
-   "case": "Именительный (Nominative)",
-   "explain": "«старшая барышня» — the subject of the sentence stands in the nominative.",
-   "id": "c36"
   },
   {
    "sentence": "Замарашка ожидала отказа и была ему очень рада, потому что она очутилась бы в ___, если бы сестра согласилась одолжить ей свое платье.",
@@ -445,7 +249,7 @@
    ],
    "correct": "большом затруднении",
    "case": "Предложный (Prepositional)",
-   "explain": "«большом затруднении» — after the preposition «в», for location or topic.",
+   "explain": "«большом затруднении» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c38"
   },
   {
@@ -459,22 +263,8 @@
    ],
    "correct": "королевский сын",
    "case": "Именительный (Nominative)",
-   "explain": "«Королевский сын» — the subject of the sentence stands in the nominative.",
+   "explain": "«королевский сын» is the subject of «ухаживал» — who or what does it — so nominative.",
    "id": "c41"
-  },
-  {
-   "sentence": "___ не скучала и совсем позабыла приказание крестной, так что уже начало бить полночь, когда, по ее расчету, еще не должно бы быть и одиннадцати часов.",
-   "lemma": "девушка",
-   "options": [
-    "молодой девушкой",
-    "молодой девушки",
-    "молодая девушка",
-    "молодой девушке"
-   ],
-   "correct": "молодая девушка",
-   "case": "Именительный (Nominative)",
-   "explain": "«Молодая девушка» — the subject of the sentence stands in the nominative.",
-   "id": "c42"
   },
   {
    "sentence": "На бегу Замарашка сронила с ноги один из своих ___: принц старательно его поднял.",
@@ -487,7 +277,7 @@
    ],
    "correct": "хрустальных башмачков",
    "case": "Родительный (Genitive)",
-   "explain": "«хрустальных башмачков» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«хрустальных башмачков» — «из» always takes the genitive.",
    "id": "c43"
   },
   {
@@ -501,7 +291,7 @@
    ],
    "correct": "хрустальный башмачок",
    "case": "Именительный (Nominative)",
-   "explain": "«хрустальный башмачок» — the subject of the sentence stands in the nominative.",
+   "explain": "«хрустальный башмачок» is the subject of «остался» — who or what does it — so nominative.",
    "id": "c44"
   },
   {
@@ -515,36 +305,8 @@
    ],
    "correct": "дворцовых воротах",
    "case": "Предложный (Prepositional)",
-   "explain": "«дворцовых воротах» — after the preposition «при», for location or topic.",
+   "explain": "«дворцовых воротах» — «при» always takes the prepositional.",
    "id": "c45"
-  },
-  {
-   "sentence": "Когда сестры возвратились с бала, Замарашка спросила их, хорошо ли они веселились и приезжала ли опять ___?",
-   "lemma": "красавица",
-   "options": [
-    "неизвестной красавицы",
-    "неизвестная красавица",
-    "неизвестной красавицей",
-    "неизвестной красавице"
-   ],
-   "correct": "неизвестная красавица",
-   "case": "Именительный (Nominative)",
-   "explain": "«неизвестная красавица» — the subject of the sentence stands in the nominative.",
-   "id": "c46"
-  },
-  {
-   "sentence": "Сестры говорили правду, ибо немного дней спустя ___ приказал оповестить при трубных звуках, что он возьмет за себя ту девушку, чья ножка придется по башмачку.",
-   "lemma": "сын",
-   "options": [
-    "королевскому сыну",
-    "королевским сыном",
-    "королевский сын",
-    "королевского сына"
-   ],
-   "correct": "королевский сын",
-   "case": "Именительный (Nominative)",
-   "explain": "«королевский сын» — the subject of the sentence stands in the nominative.",
-   "id": "c47"
   },
   {
    "sentence": "Сестры говорили правду, ибо немного дней спустя королевский сын приказал оповестить при ___, что он возьмет за себя ту девушку, чья ножка придется по башмачку.",
@@ -557,22 +319,8 @@
    ],
    "correct": "трубных звуках",
    "case": "Предложный (Prepositional)",
-   "explain": "«трубных звуках» — after the preposition «при», for location or topic.",
+   "explain": "«трубных звуках» — «при» always takes the prepositional.",
    "id": "c48"
-  },
-  {
-   "sentence": "Начали его примерять: сперва принцессам, потом герцогиням и остальным ___, но все напрасно.",
-   "lemma": "дама",
-   "options": [
-    "придворных дам",
-    "придворных дамах",
-    "придворные дамы",
-    "придворным дамам"
-   ],
-   "correct": "придворным дамам",
-   "case": "Дательный (Dative)",
-   "explain": "«придворным дамам» — the dative marks the indirect object or recipient.",
-   "id": "c49"
   },
   {
    "sentence": "После того ее повели во всем наряде к ___.",
@@ -585,21 +333,21 @@
    ],
    "correct": "молодому принцу",
    "case": "Дательный (Dative)",
-   "explain": "«молодому принцу» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«молодому принцу» — «к» always takes the dative.",
    "id": "c51"
   },
   {
    "sentence": "Замарашка, которая была столько же добра, сколько красива, поместила своих обеих сестер во дворец и в тот же ___ выдала их за двух знатных царедворцев.",
    "lemma": "день",
    "options": [
+    "самом дне",
+    "самым днём",
     "самому дню",
-    "самого дня",
-    "самый день",
-    "самом дне"
+    "самый день"
    ],
    "correct": "самый день",
    "case": "Винительный (Accusative)",
-   "explain": "«самый день» — the accusative marks the direct object of the verb.",
+   "explain": "«самый день» is the direct object of «выдала» (кого? что?) — accusative.",
    "id": "c52"
   }
  ]

@@ -1,48 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Тут Шебалов выругал ___, которые ни черта не смыслят в деле, а только горазды приказы писать, и велел скликать ротных командиров.",
-   "lemma": "начальник",
-   "options": [
-    "штабных начальников",
-    "штабным начальникам",
-    "штабными начальниками",
-    "штабных начальниках"
-   ],
-   "correct": "штабных начальников",
-   "case": "Родительный (Genitive)",
-   "explain": "«штабных начальников» — the genitive here marks possession, absence, or quantity.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Однако, несмотря на ругань по адресу штабников, Шебалов был доволен тем, что получил самостоятельную задачу и не был подчинен какому-нибудь другому, более ___.",
-   "lemma": "отряд",
-   "options": [
-    "многочисленного отряда",
-    "многочисленному отряду",
-    "многочисленный отряд",
-    "многочисленном отряде"
-   ],
-   "correct": "многочисленному отряду",
-   "case": "Дательный (Dative)",
-   "explain": "«многочисленному отряду» — the dative marks the indirect object or recipient.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Командиров было трое: бритый и спокойный чех Галда, хмурый унтер Сухарев и двадцатитрехлетний весельчак, гармонист и плясун, ___ Федя Сырцов.",
-   "lemma": "пастух",
-   "options": [
-    "бывшем пастухе",
-    "бывшим пастухом",
-    "бывшему пастуху",
-    "бывший пастух"
-   ],
-   "correct": "бывший пастух",
-   "case": "Именительный (Nominative)",
-   "explain": "«бывший пастух» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
    "sentence": "Все они расположились на полянке вокруг карты, посреди ___ обступивших красноармейцев.",
    "lemma": "кольцо",
    "options": [
@@ -53,7 +11,7 @@
    ],
    "correct": "плотного кольца",
    "case": "Родительный (Genitive)",
-   "explain": "«плотного кольца» — after the preposition «посреди», the genitive here marks possession, absence, or quantity.",
+   "explain": "«плотного кольца» — «посреди» always takes the genitive.",
    "id": "c4"
   },
   {
@@ -67,22 +25,8 @@
    ],
    "correct": "голодные собаки",
    "case": "Именительный (Nominative)",
-   "explain": "«голодные собаки» — the subject of the sentence stands in the nominative.",
+   "explain": "«голодные собаки» is the subject of «падали» — who or what does it — so nominative.",
    "id": "c7"
-  },
-  {
-   "sentence": "Мы в разведку ходили, к казаку попали; ___.",
-   "lemma": "казак",
-   "options": [
-    "богатом казаке",
-    "богатый казак",
-    "богатому казаку",
-    "богатым казаком"
-   ],
-   "correct": "богатый казак",
-   "case": "Именительный (Nominative)",
-   "explain": "«богатый казак» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
   },
   {
    "sentence": "Перед ___ ребята варили в котелках кашу с салом, пекли в углях картошку, валялись на траве, чистили винтовки и отдыхали.",
@@ -95,7 +39,7 @@
    ],
    "correct": "ночным походом",
    "case": "Творительный (Instrumental)",
-   "explain": "«ночным походом» — after the preposition «перед», the instrumental marks the means, company, or complement.",
+   "explain": "«ночным походом» — «перед» always takes the instrumental.",
    "id": "c9"
   },
   {
@@ -109,7 +53,7 @@
    ],
    "correct": "самом деле",
    "case": "Предложный (Prepositional)",
-   "explain": "«самом деле» — after the preposition «на», for location or topic.",
+   "explain": "«самом деле» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c10"
   },
   {
@@ -123,21 +67,21 @@
    ],
    "correct": "западный ветер",
    "case": "Именительный (Nominative)",
-   "explain": "«западный ветер» — the subject of the sentence stands in the nominative.",
+   "explain": "«западный ветер» is the subject of «донес» — who or what does it — so nominative.",
    "id": "c11"
   },
   {
    "sentence": "Возле дороги, в гуще малинника, оставили секрет, а к полудню западный ветер донес ___ артиллерийской перестрелки.",
    "lemma": "раскат",
    "options": [
-    "густыми раскатами",
-    "густых раскатов",
     "густых раскатах",
+    "густыми раскатами",
+    "густым раскатам",
     "густые раскаты"
    ],
    "correct": "густые раскаты",
    "case": "Винительный (Accusative)",
-   "explain": "«густые раскаты» — the accusative marks the direct object of the verb.",
+   "explain": "«густые раскаты» is the direct object of «донес» (кого? что?) — accusative.",
    "id": "c12"
   },
   {
@@ -151,7 +95,7 @@
    ],
    "correct": "артиллерийской перестрелки",
    "case": "Родительный (Genitive)",
-   "explain": "«артиллерийской перестрелки» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«артиллерийской перестрелки» depends on the noun «раскаты» (whose? of what?) — genitive.",
    "id": "c13"
   },
   {
@@ -165,22 +109,8 @@
    ],
    "correct": "самой деревни",
    "case": "Родительный (Genitive)",
-   "explain": "«самой деревни» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«самой деревни» — «до» always takes the genitive.",
    "id": "c14"
-  },
-  {
-   "sentence": "Эх, ты, — добавил он уже мягче, — ___!",
-   "lemma": "горячка",
-   "options": [
-    "белой горячке",
-    "белой горячкой",
-    "белой горячки",
-    "белая горячка"
-   ],
-   "correct": "белая горячка",
-   "case": "Именительный (Nominative)",
-   "explain": "«белая горячка» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
   }
  ]
 }

@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Меня несколько раз вызывали написать мои ___.",
-   "lemma": "воспоминание",
-   "options": [
-    "литературным воспоминаниям",
-    "литературных воспоминаниях",
-    "литературные воспоминания",
-    "литературными воспоминаниями"
-   ],
-   "correct": "литературные воспоминания",
-   "case": "Винительный (Accusative)",
-   "explain": "«литературные воспоминания» — the accusative marks the direct object of the verb.",
-   "id": "c1"
-  },
-  {
    "sentence": "Но некоторые эпизоды моего ___ мне поневоле представляются с чрезвычайною отчетливостью, несмотря на слабую память.",
    "lemma": "поприще",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "литературного поприща",
    "case": "Родительный (Genitive)",
-   "explain": "«литературного поприща» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«литературного поприща» depends on the noun «поприща» (whose? of what?) — genitive.",
    "id": "c2"
   },
   {
@@ -39,36 +25,8 @@
    ],
    "correct": "ежемесячных изданий",
    "case": "Родительный (Genitive)",
-   "explain": "«ежемесячных изданий» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«ежемесячных изданий» — «из» always takes the genitive.",
    "id": "c4"
-  },
-  {
-   "sentence": "Не называя его имени, скажу лишь, что ___ моя с ним в жизни была чрезвычайно горячая, из необыкновенных, для меня вечно памятная.",
-   "lemma": "встреча",
-   "options": [
-    "первой встречей",
-    "первой встречи",
-    "первая встреча",
-    "первой встрече"
-   ],
-   "correct": "первая встреча",
-   "case": "Именительный (Nominative)",
-   "explain": "«первая встреча» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
-  },
-  {
-   "sentence": "— Так это всё та же ___ о «Крокодиле»?",
-   "lemma": "сплетня",
-   "options": [
-    "глупой сплетней",
-    "глупой сплетни",
-    "глупой сплетне",
-    "глупая сплетня"
-   ],
-   "correct": "глупая сплетня",
-   "case": "Именительный (Nominative)",
-   "explain": "«глупая сплетня» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
   },
   {
    "sentence": "Никогда, впрочем, не прощу себе, что два года назад не протестовал против этой ___, когда только что ее выпустили!",
@@ -81,64 +39,22 @@
    ],
    "correct": "подлой клеветы",
    "case": "Родительный (Genitive)",
-   "explain": "«подлой клеветы» — after the preposition «против», the genitive here marks possession, absence, or quantity.",
+   "explain": "«подлой клеветы» — «против» always takes the genitive.",
    "id": "c9"
   },
   {
    "sentence": "Между тем эта низость, мне приписываемая, так и осталась в воспоминаниях ___ несомненным фактом, имела ход в литературных кружках, проникла и в публику и уже не раз приносила мне неприятности.",
    "lemma": "особа",
    "options": [
-    "иных особах",
     "иным особам",
     "иных особ",
-    "иными особами"
+    "иных особах",
+    "иные особы"
    ],
    "correct": "иных особ",
    "case": "Родительный (Genitive)",
-   "explain": "«иных особ» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«иных особ» depends on the noun «воспоминаниях» (whose? of what?) — genitive.",
    "id": "c10"
-  },
-  {
-   "sentence": "Между тем эта низость, мне приписываемая, так и осталась в воспоминаниях иных особ ___, имела ход в литературных кружках, проникла и в публику и уже не раз приносила мне неприятности.",
-   "lemma": "факт",
-   "options": [
-    "несомненный факт",
-    "несомненным фактом",
-    "несомненного факта",
-    "несомненному факту"
-   ],
-   "correct": "несомненным фактом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«несомненным фактом» — the instrumental marks the means, company, or complement.",
-   "id": "c11"
-  },
-  {
-   "sentence": "___ моим и небрежностью я до сих пор как бы подтверждал ее.",
-   "lemma": "молчание",
-   "options": [
-    "долгим молчанием",
-    "долгого молчания",
-    "долгом молчании",
-    "долгому молчанию"
-   ],
-   "correct": "долгим молчанием",
-   "case": "Творительный (Instrumental)",
-   "explain": "«Долгим молчанием» — the instrumental marks the means, company, or complement.",
-   "id": "c13"
-  },
-  {
-   "sentence": "Однажды утром я нашел у дверей моей квартиры, на ручке замка, одну из самых ___ изо всех, которые тогда появлялись; а появлялось их тогда довольно.",
-   "lemma": "прокламация",
-   "options": [
-    "замечательных прокламаций",
-    "замечательными прокламациями",
-    "замечательных прокламациях",
-    "замечательным прокламациям"
-   ],
-   "correct": "замечательных прокламаций",
-   "case": "Родительный (Genitive)",
-   "explain": "«замечательных прокламаций» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
-   "id": "c15"
   },
   {
    "sentence": "Она называлась «К ___».",
@@ -151,36 +67,8 @@
    ],
    "correct": "молодому поколению",
    "case": "Дательный (Dative)",
-   "explain": "«молодому поколению» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«молодому поколению» — «к» always takes the dative.",
    "id": "c16"
-  },
-  {
-   "sentence": "Содержания возмутительного, в самой ___, какую только их злодей мог бы им выдумать, чтобы их же зарезать.",
-   "lemma": "форма",
-   "options": [
-    "смешной формой",
-    "смешной форме",
-    "смешная форма",
-    "смешной формы"
-   ],
-   "correct": "смешной форме",
-   "case": "Предложный (Prepositional)",
-   "explain": "«смешной форме» — after the preposition «в», for location or topic.",
-   "id": "c17"
-  },
-  {
-   "sentence": "Да и явления эти, как ___, неизбежны.",
-   "lemma": "факт",
-   "options": [
-    "сторонние факты",
-    "сторонним фактам",
-    "сторонних фактов",
-    "сторонними фактами"
-   ],
-   "correct": "сторонние факты",
-   "case": "Именительный (Nominative)",
-   "explain": "«сторонние факты» — the subject of the sentence stands in the nominative.",
-   "id": "c19"
   },
   {
    "sentence": "Тут позвонил ___, не помню кто.",
@@ -193,7 +81,7 @@
    ],
    "correct": "другой гость",
    "case": "Именительный (Nominative)",
-   "explain": "«другой гость» — the subject of the sentence stands in the nominative.",
+   "explain": "«другой гость» is the subject of «позвонил» — who or what does it — so nominative.",
    "id": "c20"
   },
   {
@@ -207,22 +95,8 @@
    ],
    "correct": "фантастическом роде",
    "case": "Предложный (Prepositional)",
-   "explain": "«фантастическом роде» — after the preposition «в», for location or topic.",
+   "explain": "«фантастическом роде» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c21"
-  },
-  {
-   "sentence": "Представилось, действительно, несколько ___, которые мне захотелось развить.",
-   "lemma": "положение",
-   "options": [
-    "комических положений",
-    "комическими положениями",
-    "комических положениях",
-    "комическим положениям"
-   ],
-   "correct": "комических положений",
-   "case": "Родительный (Genitive)",
-   "explain": "«комических положений» — the genitive here marks possession, absence, or quantity.",
-   "id": "c22"
   },
   {
    "sentence": "Один ___, пред поездкой за границу, отправляется с своей молодой женой и с неотлучным другом своим в Пассаж, и между прочим все заходят посмотреть крокодила.",
@@ -235,64 +109,22 @@
    ],
    "correct": "петербургский чиновник",
    "case": "Именительный (Nominative)",
-   "explain": "«петербургский чиновник» — the subject of the sentence stands in the nominative.",
+   "explain": "«петербургский чиновник» is the subject of «отправляется» — who or what does it — so nominative.",
    "id": "c23"
-  },
-  {
-   "sentence": "Один петербургский чиновник, пред поездкой за границу, отправляется с своей ___ и с неотлучным другом своим в Пассаж, и между прочим все заходят посмотреть крокодила.",
-   "lemma": "жена",
-   "options": [
-    "молодой жене",
-    "молодая жена",
-    "молодой жены",
-    "молодой женой"
-   ],
-   "correct": "молодой женой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«молодой женой» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c24"
-  },
-  {
-   "sentence": "Чиновник этот — ___, но из тех, которые имеют некоторое независимое состояние, еще молодой, но заеденный самолюбием; прежде всего дурак, как и незабвенный майор Ковалев, потерявший свой нос.",
-   "lemma": "круг",
-   "options": [
-    "среднему кругу",
-    "средний круг",
-    "средним кругом",
-    "среднего круга"
-   ],
-   "correct": "среднего круга",
-   "case": "Родительный (Genitive)",
-   "explain": "«среднего круга» — the genitive here marks possession, absence, or quantity.",
-   "id": "c26"
   },
   {
    "sentence": "Он комически уверен в своих ___; полуобразован, но считает себя чуть не за гения, почитается в своем департаменте за человека пустейшего и постоянно обижен всеобщим к нему невниманием.",
    "lemma": "достоинство",
    "options": [
-    "великие достоинства",
-    "великим достоинствам",
     "великих достоинствах",
-    "великими достоинствами"
+    "великими достоинствами",
+    "великим достоинствам",
+    "великих достоинств"
    ],
    "correct": "великих достоинствах",
    "case": "Предложный (Prepositional)",
-   "explain": "«великих достоинствах» — after the preposition «в», for location or topic.",
+   "explain": "«великих достоинствах» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c27"
-  },
-  {
-   "sentence": "Вскоре оказывается, что ___ не потерпел от того ни малейшего повреждения; напротив, по свойственному ему упрямству объявил из крокодила, что ему очень хорошо в нем сидеть.",
-   "lemma": "человек",
-   "options": [
-    "великий человек",
-    "великом человеке",
-    "великому человеку",
-    "великого человека"
-   ],
-   "correct": "великий человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«великий человек» — the subject of the sentence stands in the nominative.",
-   "id": "c28"
   },
   {
    "sentence": "Для этого представлялось совершенно необходимым убить крокодила, взрезать его и освободить ___; но притом, конечно, следовало вознаградить за крокодила немца-хозяина и его неразлучную муттер.",
@@ -305,7 +137,7 @@
    ],
    "correct": "великого человека",
    "case": "Винительный (Accusative)",
-   "explain": "«великого человека» — the accusative marks the direct object of the verb.",
+   "explain": "«великого человека» is the direct object of «освободить» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c29"
   },
   {
@@ -319,50 +151,8 @@
    ],
    "correct": "русского полковника",
    "case": "Родительный (Genitive)",
-   "explain": "«русского полковника» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«русского полковника» depends on the noun «чин» (whose? of what?) — genitive.",
    "id": "c30"
-  },
-  {
-   "sentence": "С другой стороны, начальство приходит в немалое затруднение, что слишком уж новый по министерству случай и что ___ до сих пор не бывало.",
-   "lemma": "пример",
-   "options": [
-    "подобные примеры",
-    "подобных примерах",
-    "подобных примеров",
-    "подобными примерами"
-   ],
-   "correct": "подобных примеров",
-   "case": "Родительный (Genitive)",
-   "explain": "«подобных примеров» — the genitive here marks possession, absence, or quantity.",
-   "id": "c32"
-  },
-  {
-   "sentence": "«Если бы нам хоть какой-нибудь ___ прежде, то можно бы действовать, а то затруднительно».",
-   "lemma": "примерчик",
-   "options": [
-    "подобному примерчику",
-    "подобного примерчика",
-    "подобный примерчик",
-    "подобным примерчиком"
-   ],
-   "correct": "подобный примерчик",
-   "case": "Винительный (Accusative)",
-   "explain": "«подобный примерчик» — the accusative marks the direct object of the verb.",
-   "id": "c33"
-  },
-  {
-   "sentence": "Он уверен, что на вечера эти бросится весь Петербург и все государственные сановники — смотреть ___.",
-   "lemma": "феномен",
-   "options": [
-    "нового феномена",
-    "новому феномену",
-    "новый феномен",
-    "новым феноменом"
-   ],
-   "correct": "новый феномен",
-   "case": "Винительный (Accusative)",
-   "explain": "«новый феномен» — the accusative marks the direct object of the verb.",
-   "id": "c35"
   },
   {
    "sentence": "Вот первая часть этого ___ — он недокончен.",
@@ -375,7 +165,7 @@
    ],
    "correct": "шутовского рассказа",
    "case": "Родительный (Genitive)",
-   "explain": "«шутовского рассказа» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«шутовского рассказа» depends on the noun «часть» (whose? of what?) — genitive.",
    "id": "c36"
   },
   {
@@ -389,7 +179,7 @@
    ],
    "correct": "маленькой вещицы",
    "case": "Родительный (Genitive)",
-   "explain": "«маленькой вещицы» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«маленькой вещицы» — «из» always takes the genitive.",
    "id": "c37"
   },
   {
@@ -403,7 +193,7 @@
    ],
    "correct": "фельетонный отзыв",
    "case": "Именительный (Nominative)",
-   "explain": "«фельетонный отзыв» — the subject of the sentence stands in the nominative.",
+   "explain": "«фельетонный отзыв» is the subject of «мог» — who or what does it — so nominative.",
    "id": "c38"
   },
   {
@@ -417,22 +207,8 @@
    ],
    "correct": "второй раз",
    "case": "Винительный (Accusative)",
-   "explain": "«второй раз» — after the preposition «во», the accusative marks the direct object of the verb.",
+   "explain": "«второй раз» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c39"
-  },
-  {
-   "sentence": "Бесхарактерный друг его, которого он деспотирует, это всё ___ Чернышевского.",
-   "lemma": "друг",
-   "options": [
-    "здешние друзья",
-    "здешними друзьями",
-    "здешним друзьям",
-    "здешних друзей"
-   ],
-   "correct": "здешние друзья",
-   "case": "Именительный (Nominative)",
-   "explain": "«здешние друзья» — the subject of the sentence stands in the nominative.",
-   "id": "c42"
   },
   {
    "sentence": "(А между тем ведь она укрепилась, и именно, может быть, последний-то намек и укрепился; я имею ___.)",
@@ -445,7 +221,7 @@
    ],
    "correct": "несомненные доказательства",
    "case": "Винительный (Accusative)",
-   "explain": "«несомненные доказательства» — the accusative marks the direct object of the verb.",
+   "explain": "«несомненные доказательства» is the direct object of «имею» (кого? что?) — accusative.",
    "id": "c44"
   },
   {
@@ -459,22 +235,8 @@
    ],
    "correct": "сороковых годов",
    "case": "Родительный (Genitive)",
-   "explain": "«сороковых годов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«сороковых годов» depends on the noun «конце» (whose? of what?) — genitive.",
    "id": "c47"
-  },
-  {
-   "sentence": "Именно поспешность и торопливость подобных ___ и свидетельствует, напротив, о некоторой низменности духа самих обвинителей, о грубости и негуманности взгляда их.",
-   "lemma": "вывод",
-   "options": [
-    "бездоказательных выводов",
-    "бездоказательными выводами",
-    "бездоказательных выводах",
-    "бездоказательные выводы"
-   ],
-   "correct": "бездоказательных выводов",
-   "case": "Родительный (Genitive)",
-   "explain": "«бездоказательных выводов» — the genitive here marks possession, absence, or quantity.",
-   "id": "c48"
   },
   {
    "sentence": "Именно поспешность и торопливость подобных бездоказательных выводов и свидетельствует, напротив, о некоторой низменности духа ___, о грубости и негуманности взгляда их.",
@@ -487,7 +249,7 @@
    ],
    "correct": "самих обвинителей",
    "case": "Родительный (Genitive)",
-   "explain": "«самих обвинителей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«самих обвинителей» depends on the noun «духа» (whose? of what?) — genitive.",
    "id": "c49"
   },
   {
@@ -501,7 +263,7 @@
    ],
    "correct": "критическая статья",
    "case": "Именительный (Nominative)",
-   "explain": "«критическая статья» — the subject of the sentence stands in the nominative.",
+   "explain": "«критическая статья» is the subject of «помещена» — who or what does it — so nominative.",
    "id": "c51"
   },
   {
@@ -515,7 +277,7 @@
    ],
    "correct": "известному перу",
    "case": "Дательный (Dative)",
-   "explain": "«известному перу» — the dative marks the indirect object or recipient.",
+   "explain": "«принадлежит» takes the dative (кому? чему?).",
    "id": "c52"
   },
   {
@@ -523,28 +285,14 @@
    "lemma": "автор",
    "options": [
     "сам автор",
-    "самого автора",
     "самим автором",
-    "самом авторе"
+    "самом авторе",
+    "самому автору"
    ],
    "correct": "сам автор",
    "case": "Именительный (Nominative)",
-   "explain": "«сам автор» — the subject of the sentence stands in the nominative.",
+   "explain": "«сам автор» is the subject of «имел» — who or what does it — so nominative.",
    "id": "c54"
-  },
-  {
-   "sentence": "Вот что значит писать ___; никогда не напишу их.",
-   "lemma": "воспоминание",
-   "options": [
-    "литературным воспоминаниям",
-    "литературных воспоминаниях",
-    "литературные воспоминания",
-    "литературными воспоминаниями"
-   ],
-   "correct": "литературные воспоминания",
-   "case": "Винительный (Accusative)",
-   "explain": "«литературные воспоминания» — the accusative marks the direct object of the verb.",
-   "id": "c56"
   },
   {
    "sentence": "Это был голос человека в высшей степени беспристрастного и стоящего вне всяких ___ и «аллегорий».",
@@ -557,7 +305,7 @@
    ],
    "correct": "литературных партий",
    "case": "Родительный (Genitive)",
-   "explain": "«литературных партий» — after the preposition «вне», the genitive here marks possession, absence, or quantity.",
+   "explain": "«литературных партий» — «вне» always takes the genitive.",
    "id": "c58"
   },
   {
@@ -571,22 +319,8 @@
    ],
    "correct": "крепостного ига",
    "case": "Родительный (Genitive)",
-   "explain": "«крепостного ига» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«крепостного ига» — «от» always takes the genitive.",
    "id": "c59"
-  },
-  {
-   "sentence": "Падение нравственности, дешевка, жиды-кабатчики, воровство и дневной разбой — всё это ___, и всё растет, растет.",
-   "lemma": "факт",
-   "options": [
-    "несомненных фактов",
-    "несомненные факты",
-    "несомненных фактах",
-    "несомненными фактами"
-   ],
-   "correct": "несомненные факты",
-   "case": "Именительный (Nominative)",
-   "explain": "«несомненные факты» — the subject of the sentence stands in the nominative.",
-   "id": "c60"
   }
  ]
 }

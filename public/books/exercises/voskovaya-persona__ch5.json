@@ -1,62 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Один раз зажгли ___, плясали, били в ладоши и пели.",
-   "lemma": "огонь",
-   "options": [
-    "большой огонь",
-    "большому огню",
-    "большого огня",
-    "большим огнём"
-   ],
-   "correct": "большой огонь",
-   "case": "Винительный (Accusative)",
-   "explain": "«большой огонь» — the accusative marks the direct object of the verb.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Стояли болваны, которых ископал Гагарин, ___.",
-   "lemma": "провинциал",
-   "options": [
-    "сибирского провинциала",
-    "сибирским провинциалом",
-    "сибирском провинциале",
-    "сибирский провинциал"
-   ],
-   "correct": "сибирский провинциал",
-   "case": "Именительный (Nominative)",
-   "explain": "«сибирский провинциал» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Хотел достать из земли минералов, а ископал в Самарканде ___: портреты минотавроса, гуся, старика и толстой девки.",
-   "lemma": "фигура",
-   "options": [
-    "медными фигурами",
-    "медные фигуры",
-    "медных фигур",
-    "медным фигурам"
-   ],
-   "correct": "медные фигуры",
-   "case": "Винительный (Accusative)",
-   "explain": "«медные фигуры» — the accusative marks the direct object of the verb.",
-   "id": "c3"
-  },
-  {
-   "sentence": "Хотел достать из земли минералов, а ископал в Самарканде медные фигуры: портреты минотавроса, гуся, старика и ___.",
-   "lemma": "девка",
-   "options": [
-    "толстой девки",
-    "толстая девка",
-    "толстой девке",
-    "толстой девкой"
-   ],
-   "correct": "толстой девки",
-   "case": "Родительный (Genitive)",
-   "explain": "«толстой девки» — the genitive here marks possession, absence, or quantity.",
-   "id": "c4"
-  },
-  {
    "sentence": "Хвост не более десяти вершков длиною, седло ___.",
    "lemma": "величина",
    "options": [
@@ -67,50 +11,8 @@
    ],
    "correct": "обыкновенной величины",
    "case": "Родительный (Genitive)",
-   "explain": "«обыкновенной величины» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«обыкновенной величины» depends on the noun «седло» (whose? of what?) — genitive.",
    "id": "c5"
-  },
-  {
-   "sentence": "Первый — ___, Тиран, шерсть бурая, шея белая.",
-   "lemma": "порода",
-   "options": [
-    "датской породой",
-    "датской породы",
-    "датской породе",
-    "датская порода"
-   ],
-   "correct": "датской породы",
-   "case": "Родительный (Genitive)",
-   "explain": "«датской породы» — the genitive here marks possession, absence, or quantity.",
-   "id": "c6"
-  },
-  {
-   "sentence": "А он такой и был, и даже в самой ___, когда со всех сторон были ему большие дачи, когда он с хозяйкой леживал, — он всегда был печальный.",
-   "lemma": "сила",
-   "options": [
-    "большая сила",
-    "большой силе",
-    "большой силой",
-    "большой силы"
-   ],
-   "correct": "большой силе",
-   "case": "Предложный (Prepositional)",
-   "explain": "«большой силе» — after the preposition «в», for location or topic.",
-   "id": "c8"
-  },
-  {
-   "sentence": "А он такой и был, и даже в самой большой силе, когда со всех сторон были ему ___, когда он с хозяйкой леживал, — он всегда был печальный.",
-   "lemma": "дача",
-   "options": [
-    "большими дачами",
-    "больших дач",
-    "большие дачи",
-    "больших дачах"
-   ],
-   "correct": "большие дачи",
-   "case": "Именительный (Nominative)",
-   "explain": "«большие дачи» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
   },
   {
    "sentence": "А только для ___ и для будущей фортуны с нею лежал?",
@@ -123,7 +25,7 @@
    ],
    "correct": "больших дач",
    "case": "Родительный (Genitive)",
-   "explain": "«больших дач» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«больших дач» — «для» always takes the genitive.",
    "id": "c10"
   },
   {
@@ -137,36 +39,8 @@
    ],
    "correct": "будущей фортуны",
    "case": "Родительный (Genitive)",
-   "explain": "«будущей фортуны» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«будущей фортуны» — «для» always takes the genitive.",
    "id": "c11"
-  },
-  {
-   "sentence": "А ___ была Гамильтон — Марья Даниловна Хаментова.",
-   "lemma": "голова",
-   "options": [
-    "вторая голова",
-    "второй голове",
-    "второй головой",
-    "второй головы"
-   ],
-   "correct": "вторая голова",
-   "case": "Именительный (Nominative)",
-   "explain": "«вторая голова» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
-  },
-  {
-   "sentence": "Та голова, на которой было столь ясно строение жилок, где какая жилка проходит, — что ___, на помосте, сперва эту голову поцеловал, потом объяснил тут же стоящим, как много жил проходит от головы к шее и обратно.",
-   "lemma": "хозяин",
-   "options": [
-    "самим хозяином",
-    "сам хозяин",
-    "самом хозяине",
-    "самого хозяина"
-   ],
-   "correct": "сам хозяин",
-   "case": "Именительный (Nominative)",
-   "explain": "«сам хозяин» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
   },
   {
    "sentence": "И она имела много нарядов, соболей, каталась в ___.",
@@ -179,22 +53,8 @@
    ],
    "correct": "аглицкой карете",
    "case": "Предложный (Prepositional)",
-   "explain": "«аглицкой карете» — after the preposition «в», for location or topic.",
+   "explain": "«аглицкой карете» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c14"
-  },
-  {
-   "sentence": "Потому что хотя были ясны все жилки в головах, но это было домашнее дело, нельзя было каждому — и даже ___ — выказывать свою домашность.",
-   "lemma": "персона",
-   "options": [
-    "больших персон",
-    "больших персонах",
-    "большим персонам",
-    "большие персоны"
-   ],
-   "correct": "большим персонам",
-   "case": "Дательный (Dative)",
-   "explain": "«большим персонам» — the dative marks the indirect object or recipient.",
-   "id": "c16"
   },
   {
    "sentence": "А в ___ были еще птицы — белые, красные, голубые и желтые.",
@@ -207,22 +67,8 @@
    ],
    "correct": "малой комнате",
    "case": "Предложный (Prepositional)",
-   "explain": "«малой комнате» — after the preposition «в», for location or topic.",
+   "explain": "«малой комнате» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c17"
-  },
-  {
-   "sentence": "Чтобы в каждом городе приносили или приводили к коменданту всех человечьих, скотских, звериных и ___.",
-   "lemma": "урод",
-   "options": [
-    "птичьих уродов",
-    "птичьим уродам",
-    "птичьи уроды",
-    "птичьими уродами"
-   ],
-   "correct": "птичьих уродов",
-   "case": "Родительный (Genitive)",
-   "explain": "«птичьих уродов» — the genitive here marks possession, absence, or quantity.",
-   "id": "c18"
   },
   {
    "sentence": "___ принесла двух младенцев, у каждого по две головы, а спинами срослись.",
@@ -235,7 +81,7 @@
    ],
    "correct": "драгунская вдова",
    "case": "Именительный (Nominative)",
-   "explain": "«Драгунская вдова» — the subject of the sentence stands in the nominative.",
+   "explain": "«драгунская вдова» is the subject of «принесла» — who or what does it — so nominative.",
    "id": "c19"
   },
   {
@@ -249,7 +95,7 @@
    ],
    "correct": "великом государстве",
    "case": "Предложный (Prepositional)",
-   "explain": "«великом государстве» — after the preposition «в», for location or topic.",
+   "explain": "«великом государстве» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c20"
   },
   {
@@ -263,36 +109,8 @@
    ],
    "correct": "уфимский комендант",
    "case": "Именительный (Nominative)",
-   "explain": "«уфимский комендант» — the subject of the sentence stands in the nominative.",
+   "explain": "«уфимский комендант» is the subject of «узнал» — who or what does it — so nominative.",
    "id": "c21"
-  },
-  {
-   "sentence": "___ прислал человечьего урода: один младенец, глаза под носом, уши под шеей, а сам нос невесть где.",
-   "lemma": "комендант",
-   "options": [
-    "нежинского коменданта",
-    "нежинскому коменданту",
-    "нежинским комендантом",
-    "нежинский комендант"
-   ],
-   "correct": "нежинский комендант",
-   "case": "Именительный (Nominative)",
-   "explain": "«Нежинский комендант» — the subject of the sentence stands in the nominative.",
-   "id": "c22"
-  },
-  {
-   "sentence": "Нежинский комендант прислал человечьего урода: один младенец, глаза под носом, уши под шеей, а ___ невесть где.",
-   "lemma": "нос",
-   "options": [
-    "самому носу",
-    "самом носе",
-    "сам нос",
-    "самим носом"
-   ],
-   "correct": "сам нос",
-   "case": "Именительный (Nominative)",
-   "explain": "«сам нос» — the subject of the sentence stands in the nominative.",
-   "id": "c23"
   },
   {
    "sentence": "Тогда ___ из Москвы, с Тверской улицы, представила младенца, у которого рыбий хвост.",
@@ -305,36 +123,8 @@
    ],
    "correct": "пушкарская вдова",
    "case": "Именительный (Nominative)",
-   "explain": "«пушкарская вдова» — the subject of the sentence stands in the nominative.",
+   "explain": "«пушкарская вдова» is the subject of «представила» — who or what does it — so nominative.",
    "id": "c24"
-  },
-  {
-   "sentence": "Тогда пушкарская вдова из Москвы, с Тверской улицы, представила младенца, у которого ___.",
-   "lemma": "хвост",
-   "options": [
-    "рыбий хвост",
-    "рыбьего хвоста",
-    "рыбьем хвосте",
-    "рыбьему хвосту"
-   ],
-   "correct": "рыбий хвост",
-   "case": "Именительный (Nominative)",
-   "explain": "«рыбий хвост» — the subject of the sentence stands in the nominative.",
-   "id": "c26"
-  },
-  {
-   "sentence": "___ было трое: Яков, Фома и Степан.",
-   "lemma": "урод",
-   "options": [
-    "живые уроды",
-    "живыми уродами",
-    "живым уродам",
-    "живых уродов"
-   ],
-   "correct": "живых уродов",
-   "case": "Родительный (Genitive)",
-   "explain": "«Живых уродов» — the genitive here marks possession, absence, or quantity.",
-   "id": "c28"
   },
   {
    "sentence": "Их привел ___, а они не могли себя назвать, кто такие, потому что были дураки.",
@@ -347,36 +137,8 @@
    ],
    "correct": "рогаточный караульщик",
    "case": "Именительный (Nominative)",
-   "explain": "«рогаточный караульщик» — the subject of the sentence stands in the nominative.",
+   "explain": "«рогаточный караульщик» is the subject of «привел» — who or what does it — so nominative.",
    "id": "c30"
-  },
-  {
-   "sentence": "Брат же его, Михалко, был в солдатах, его взяли еще перед ___, когда Якова не было еще в тягле, он еще не родился.",
-   "lemma": "поход",
-   "options": [
-    "нарвском походе",
-    "нарвского похода",
-    "нарвскому походу",
-    "нарвским походом"
-   ],
-   "correct": "нарвским походом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«Нарвским походом» — after the preposition «в», the instrumental marks the means, company, or complement.",
-   "id": "c32"
-  },
-  {
-   "sentence": "И вдруг теперь, через двадцать два года, пришла на погост какая-то команда, стала постоем, а к Якову явился ___ и сказался Михалкою.",
-   "lemma": "солдат",
-   "options": [
-    "старый солдат",
-    "старым солдатом",
-    "старому солдату",
-    "старом солдате"
-   ],
-   "correct": "старый солдат",
-   "case": "Именительный (Nominative)",
-   "explain": "«старый солдат» — the subject of the sentence stands in the nominative.",
-   "id": "c33"
   },
   {
    "sentence": "И в малое время команда расползлась и ударила во все стороны; хоть чинила обиды и часто являлось ___, но все-таки с шумными людьми можно жить.",
@@ -389,7 +151,7 @@
    ],
    "correct": "солдатское воровство",
    "case": "Именительный (Nominative)",
-   "explain": "«солдатское воровство» — the subject of the sentence stands in the nominative.",
+   "explain": "«солдатское воровство» is the subject of «являлось» — who or what does it — so nominative.",
    "id": "c36"
   },
   {
@@ -403,7 +165,7 @@
    ],
    "correct": "шумными людьми",
    "case": "Творительный (Instrumental)",
-   "explain": "«шумными людьми» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«шумными людьми» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c37"
   },
   {
@@ -417,7 +179,7 @@
    ],
    "correct": "полковой двор",
    "case": "Именительный (Nominative)",
-   "explain": "«полковой двор» — the subject of the sentence stands in the nominative.",
+   "explain": "«полковой двор» is the subject of «опустел» — who or what does it — so nominative.",
    "id": "c38"
   },
   {
@@ -431,7 +193,7 @@
    ],
    "correct": "жирная трава",
    "case": "Именительный (Nominative)",
-   "explain": "«жирная трава» — the subject of the sentence stands in the nominative.",
+   "explain": "«жирная трава» is the subject of «выросла» — who or what does it — so nominative.",
    "id": "c39"
   },
   {
@@ -445,7 +207,7 @@
    ],
    "correct": "братним взглядом",
    "case": "Творительный (Instrumental)",
-   "explain": "«братним взглядом» — after the preposition «под», the instrumental marks the means, company, or complement.",
+   "explain": "«братним взглядом» — «под» takes the instrumental here (где? под чем?) — the accusative would mean movement under (куда? под что?).",
    "id": "c41"
   },
   {
@@ -459,7 +221,7 @@
    ],
    "correct": "малого места",
    "case": "Родительный (Genitive)",
-   "explain": "«малого места» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«малого места» — «из» always takes the genitive.",
    "id": "c42"
   },
   {
@@ -473,7 +235,7 @@
    ],
    "correct": "зельный двор",
    "case": "Винительный (Accusative)",
-   "explain": "«зельный двор» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«зельный двор» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c46"
   },
   {
@@ -487,36 +249,8 @@
    ],
    "correct": "большие лягушки",
    "case": "Именительный (Nominative)",
-   "explain": "«Большие лягушки» — the subject of the sentence stands in the nominative.",
+   "explain": "«большие лягушки» is the subject of «звали» — who or what does it — so nominative.",
    "id": "c47"
-  },
-  {
-   "sentence": "Раз подьячий ___, которому не дали калача, ухватил слона за хобот, что было настрого запрещено, потому что один, другой хватится за хобот, потом могут и вовсе его оторвать.",
-   "lemma": "статья",
-   "options": [
-    "средней статьи",
-    "средней статьёй",
-    "средняя статья",
-    "средней статье"
-   ],
-   "correct": "средней статьи",
-   "case": "Родительный (Genitive)",
-   "explain": "«средней статьи» — the genitive here marks possession, absence, or quantity.",
-   "id": "c48"
-  },
-  {
-   "sentence": "___, как пришел, он увязал в тряпицу и сунул в опечье, между камнями.",
-   "lemma": "деньга",
-   "options": [
-    "братскими деньгами",
-    "братские деньги",
-    "братских деньгах",
-    "братским деньгам"
-   ],
-   "correct": "братские деньги",
-   "case": "Винительный (Accusative)",
-   "explain": "«Братские деньги» — the accusative marks the direct object of the verb.",
-   "id": "c49"
   },
   {
    "sentence": "Проходили ___ через повост.",
@@ -529,7 +263,7 @@
    ],
    "correct": "разные люди",
    "case": "Именительный (Nominative)",
-   "explain": "«разные люди» — the subject of the sentence stands in the nominative.",
+   "explain": "«разные люди» is the subject of «Проходили» — who or what does it — so nominative.",
    "id": "c50"
   },
   {
@@ -543,22 +277,8 @@
    ],
    "correct": "большая перемена",
    "case": "Именительный (Nominative)",
-   "explain": "«большая перемена» — the subject of the sentence stands in the nominative.",
+   "explain": "«большая перемена» is the subject of «пошла» — who or what does it — so nominative.",
    "id": "c53"
-  },
-  {
-   "sentence": "Они шли ___ и слабели.",
-   "lemma": "дорога",
-   "options": [
-    "разные дороги",
-    "разных дорог",
-    "разным дорогам",
-    "разными дорогами"
-   ],
-   "correct": "разными дорогами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«разными дорогами» — the instrumental marks the means, company, or complement.",
-   "id": "c54"
   },
   {
    "sentence": "___ стояло на чем?",
@@ -571,22 +291,8 @@
    ],
    "correct": "нищее дело",
    "case": "Именительный (Nominative)",
-   "explain": "«Нищее дело» — the subject of the sentence stands in the nominative.",
+   "explain": "«нищее дело» is the subject of «стояло» — who or what does it — so nominative.",
    "id": "c55"
-  },
-  {
-   "sentence": "___ было похоже на торговое дело, все равно как воск продавать на сторону.",
-   "lemma": "дело",
-   "options": [
-    "нищем деле",
-    "нищим делом",
-    "нищее дело",
-    "нищего дела"
-   ],
-   "correct": "нищее дело",
-   "case": "Именительный (Nominative)",
-   "explain": "«Нищее дело» — the subject of the sentence stands in the nominative.",
-   "id": "c56"
   },
   {
    "sentence": "Они продавали по дворам ___, и им за него подешеву давали.",
@@ -599,22 +305,8 @@
    ],
    "correct": "нищий товар",
    "case": "Винительный (Accusative)",
-   "explain": "«нищий товар» — the accusative marks the direct object of the verb.",
+   "explain": "«нищий товар» is the direct object of «продавали» (кого? что?) — accusative.",
    "id": "c57"
-  },
-  {
-   "sentence": "И он ушел ___ туда, откуда пришел.",
-   "lemma": "шаг",
-   "options": [
-    "военном шаге",
-    "военным шагом",
-    "военному шагу",
-    "военного шага"
-   ],
-   "correct": "военным шагом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«военным шагом» — the instrumental marks the means, company, or complement.",
-   "id": "c58"
   },
   {
    "sentence": "За слоном, у ___ без черепа, они сговорились.",
@@ -627,7 +319,7 @@
    ],
    "correct": "самого мальчишки",
    "case": "Родительный (Genitive)",
-   "explain": "«самого мальчишки» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«самого мальчишки» — «у» always takes the genitive.",
    "id": "c59"
   },
   {
@@ -641,7 +333,7 @@
    ],
    "correct": "старым манером",
    "case": "Творительный (Instrumental)",
-   "explain": "«старым манером» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «написанную», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c60"
   }
  ]

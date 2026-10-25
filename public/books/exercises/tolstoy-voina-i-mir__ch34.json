@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Князь Андрей остановился в Брюнне у своего знакомого, ___ Билибина.",
-   "lemma": "дипломат",
-   "options": [
-    "русский дипломат",
-    "русским дипломатом",
-    "русского дипломата",
-    "русском дипломате"
-   ],
-   "correct": "русского дипломата",
-   "case": "Винительный (Accusative)",
-   "explain": "«русского дипломата» — the accusative marks the direct object of the verb.",
-   "id": "c1"
-  },
-  {
    "sentence": "— А, ___, нет приятнее гостя, — сказал Билибин, выходя навстречу князю Андрею.",
    "lemma": "князь",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "милый князь",
    "case": "Именительный (Nominative)",
-   "explain": "«милый князь» — the subject of the sentence stands in the nominative.",
+   "explain": "«милый князь» is the subject of «нет» — who or what does it — so nominative.",
    "id": "c2"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "последний приезд",
    "case": "Винительный (Accusative)",
-   "explain": "«последний приезд» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«последний приезд» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c4"
   },
   {
@@ -53,22 +39,8 @@
    ],
    "correct": "военном поприще",
    "case": "Предложный (Prepositional)",
-   "explain": "«военном поприще» — after the preposition «на», for location or topic.",
+   "explain": "«военном поприще» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c6"
-  },
-  {
-   "sentence": "Он был еще ___, но уже немолодой дипломат, так как он начал служить с шестнадцати лет, был в Париже, в Копенгагене и теперь в Вене занимал довольно значительное место.",
-   "lemma": "человек",
-   "options": [
-    "молодым человеком",
-    "молодого человека",
-    "молодом человеке",
-    "молодой человек"
-   ],
-   "correct": "молодой человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«молодой человек» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
   },
   {
    "sentence": "В чем состояло ___, ему было всё равно; но составить искусно, метко и изящно циркуляр, меморандум или донесение — в этом он находил большое удовольствие.",
@@ -81,7 +53,7 @@
    ],
    "correct": "дипломатическое дело",
    "case": "Именительный (Nominative)",
-   "explain": "«дипломатическое дело» — the subject of the sentence stands in the nominative.",
+   "explain": "«дипломатическое дело» is the subject of «состояло» — who or what does it — so nominative.",
    "id": "c8"
   },
   {
@@ -95,50 +67,8 @@
    ],
    "correct": "письменных работ",
    "case": "Родительный (Genitive)",
-   "explain": "«письменных работ» — after the preposition «кроме», the genitive here marks possession, absence, or quantity.",
+   "explain": "«письменных работ» — «кроме» always takes the genitive.",
    "id": "c9"
-  },
-  {
-   "sentence": "Разговор Билибина постоянно пересыпался оригинально-остроумными, законченными фразами, имеющими ___.",
-   "lemma": "интерес",
-   "options": [
-    "общий интерес",
-    "общему интересу",
-    "общим интересом",
-    "общем интересе"
-   ],
-   "correct": "общий интерес",
-   "case": "Винительный (Accusative)",
-   "explain": "«общий интерес» — the accusative marks the direct object of the verb.",
-   "id": "c10"
-  },
-  {
-   "sentence": "Эти фразы изготовлялись во внутренней лаборатории Билибина, как будто нарочно, ___, для того, чтобы ничтожные светские люди удобно могли запоминать их и переносить из гостиных в гостиные.",
-   "lemma": "свойство",
-   "options": [
-    "портативное свойство",
-    "портативного свойства",
-    "портативным свойством",
-    "портативном свойстве"
-   ],
-   "correct": "портативного свойства",
-   "case": "Родительный (Genitive)",
-   "explain": "«портативного свойства» — the genitive here marks possession, absence, or quantity.",
-   "id": "c11"
-  },
-  {
-   "sentence": "Эти фразы изготовлялись во внутренней лаборатории Билибина, как будто нарочно, портативного свойства, для того, чтобы ничтожные ___ удобно могли запоминать их и переносить из гостиных в гостиные.",
-   "lemma": "человек",
-   "options": [
-    "светскими людьми",
-    "светских людей",
-    "светские люди",
-    "светским людям"
-   ],
-   "correct": "светские люди",
-   "case": "Именительный (Nominative)",
-   "explain": "«светские люди» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
   },
   {
    "sentence": "Худое, истощенное, желтоватое лицо его было всё покрыто ___, которые всегда казались так чистоплотно и старательно промыты, как кончики пальцев после бани.",
@@ -151,7 +81,7 @@
    ],
    "correct": "крупными морщинами",
    "case": "Творительный (Instrumental)",
-   "explain": "«крупными морщинами» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «покрыто», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c13"
   },
   {
@@ -165,36 +95,8 @@
    ],
    "correct": "крупные морщины",
    "case": "Именительный (Nominative)",
-   "explain": "«крупные морщины» — the subject of the sentence stands in the nominative.",
+   "explain": "«крупные морщины» is the subject of «образовывались» — who or what does it — so nominative.",
    "id": "c15"
-  },
-  {
-   "sentence": "Глубоко поставленные, ___ всегда смотрели прямо и весело.",
-   "lemma": "глаз",
-   "options": [
-    "небольшими глазами",
-    "небольших глазах",
-    "небольших глаз",
-    "небольшие глаза"
-   ],
-   "correct": "небольшие глаза",
-   "case": "Винительный (Accusative)",
-   "explain": "«небольшие глаза» — the accusative marks the direct object of the verb.",
-   "id": "c16"
-  },
-  {
-   "sentence": "Болконский самым ___, ни разу не упоминая о себе, рассказал дело и прием военного министра.",
-   "lemma": "образ",
-   "options": [
-    "скромным образом",
-    "скромный образ",
-    "скромному образу",
-    "скромном образе"
-   ],
-   "correct": "скромным образом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«скромным образом» — the instrumental marks the means, company, or complement.",
-   "id": "c17"
   },
   {
    "sentence": "Болконский самым скромным образом, ни разу не упоминая о себе, рассказал дело и прием ___.",
@@ -207,7 +109,7 @@
    ],
    "correct": "военного министра",
    "case": "Родительный (Genitive)",
-   "explain": "«военного министра» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«военного министра» depends on the noun «прием» (whose? of what?) — genitive.",
    "id": "c18"
   },
   {
@@ -221,22 +123,8 @@
    ],
    "correct": "французскими войсками",
    "case": "Творительный (Instrumental)",
-   "explain": "«французскими войсками» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «занята», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c23"
-  },
-  {
-   "sentence": "— Не только занята, но Бонапарте в Шенбрунне, а граф, наш ___ Врбна отправляется к нему за приказаниями.",
-   "lemma": "граф",
-   "options": [
-    "милом графе",
-    "милым графом",
-    "милый граф",
-    "милому графу"
-   ],
-   "correct": "милый граф",
-   "case": "Именительный (Nominative)",
-   "explain": "«милый граф» — the subject of the sentence stands in the nominative.",
-   "id": "c24"
   },
   {
    "sentence": "И так думают ___ здесь, но не смеют сказать этого.",
@@ -249,22 +137,8 @@
    ],
    "correct": "большие колпаки",
    "case": "Именительный (Nominative)",
-   "explain": "«большие колпаки» — the subject of the sentence stands in the nominative.",
+   "explain": "«большие колпаки» is the subject of «думают» — who or what does it — so nominative.",
    "id": "c25"
-  },
-  {
-   "sentence": "Прусский союз, измена Австрии, ___ Бонапарта, выход и парад, и прием императора Франца на завтра занимали его.",
-   "lemma": "торжество",
-   "options": [
-    "новом торжестве",
-    "новому торжеству",
-    "новое торжество",
-    "нового торжества"
-   ],
-   "correct": "новое торжество",
-   "case": "Именительный (Nominative)",
-   "explain": "«новое торжество» — the subject of the sentence stands in the nominative.",
-   "id": "c29"
   }
  ]
 }

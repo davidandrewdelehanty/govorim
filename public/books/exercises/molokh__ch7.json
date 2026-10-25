@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Про Квашнина еще до его приезда ходило на заводе так много ___, что теперь никто не сомневался в настоящей причине его внезапного сближения с семейством Зиненок.",
-   "lemma": "анекдот",
-   "options": [
-    "пикантными анекдотами",
-    "пикантные анекдоты",
-    "пикантных анекдотов",
-    "пикантных анекдотах"
-   ],
-   "correct": "пикантных анекдотов",
-   "case": "Родительный (Genitive)",
-   "explain": "«пикантных анекдотов» — the genitive here marks possession, absence, or quantity.",
-   "id": "c1"
-  },
-  {
    "sentence": "Про Квашнина еще до его приезда ходило на заводе так много пикантных анекдотов, что теперь никто не сомневался в ___ его внезапного сближения с семейством Зиненок.",
    "lemma": "причина",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "настоящей причине",
    "case": "Предложный (Prepositional)",
-   "explain": "«настоящей причине» — after the preposition «в», for location or topic.",
+   "explain": "«настоящей причине» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c2"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "внезапного сближения",
    "case": "Родительный (Genitive)",
-   "explain": "«внезапного сближения» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«внезапного сближения» depends on the noun «причине» (whose? of what?) — genitive.",
    "id": "c3"
   },
   {
@@ -53,21 +39,21 @@
    ],
    "correct": "прекрасная тройка",
    "case": "Именительный (Nominative)",
-   "explain": "«прекрасная тройка» — the subject of the sentence stands in the nominative.",
+   "explain": "«прекрасная тройка» is the subject of «приезжала» — who or what does it — so nominative.",
    "id": "c6"
   },
   {
    "sentence": "Кушанье готовил повар-француз, которого Василий Терентьевич всюду возил за собою в своих ___, даже и за границу.",
    "lemma": "разъезд",
    "options": [
-    "частых разъездов",
+    "частым разъездам",
     "частых разъездах",
     "частыми разъездами",
-    "частые разъезды"
+    "частых разъездов"
    ],
    "correct": "частых разъездах",
    "case": "Предложный (Prepositional)",
-   "explain": "«частых разъездах» — after the preposition «в», for location or topic.",
+   "explain": "«частых разъездах» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c7"
   },
   {
@@ -81,36 +67,8 @@
    ],
    "correct": "хорошей семьи",
    "case": "Родительный (Genitive)",
-   "explain": "«хорошей семьи» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«хорошей семьи» — «для» always takes the genitive.",
    "id": "c8"
-  },
-  {
-   "sentence": "___, посещавшие раньше дом Зиненок, предупредительно и бесследно исчезли.",
-   "lemma": "человек",
-   "options": [
-    "молодыми людьми",
-    "молодые люди",
-    "молодых людей",
-    "молодым людям"
-   ],
-   "correct": "молодые люди",
-   "case": "Именительный (Nominative)",
-   "explain": "«Молодые люди» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
-  },
-  {
-   "sentence": "Зато ___ сделался Свежевский, бывший у них до того всего-навсего раза два или три.",
-   "lemma": "гость",
-   "options": [
-    "постоянный гость",
-    "постоянного гостя",
-    "постоянным гостем",
-    "постоянному гостю"
-   ],
-   "correct": "постоянным гостем",
-   "case": "Творительный (Instrumental)",
-   "explain": "«постоянным гостем» — the instrumental marks the means, company, or complement.",
-   "id": "c10"
   },
   {
    "sentence": "Его никто не звал; он явился сам, точно по чьему-то ___, и сразу сумел сделаться необходимым для всех членов семьи.",
@@ -123,7 +81,7 @@
    ],
    "correct": "таинственному приглашению",
    "case": "Дательный (Dative)",
-   "explain": "«таинственному приглашению» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«таинственному приглашению» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c11"
   },
   {
@@ -137,7 +95,7 @@
    ],
    "correct": "маленький анекдот",
    "case": "Именительный (Nominative)",
-   "explain": "«маленький анекдот» — the subject of the sentence stands in the nominative.",
+   "explain": "«маленький анекдот» is the subject of «предшествовал» — who or what does it — so nominative.",
    "id": "c12"
   },
   {
@@ -151,35 +109,21 @@
    ],
    "correct": "будущей карьеры",
    "case": "Родительный (Genitive)",
-   "explain": "«будущей карьеры» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«будущей карьеры» — «для» always takes the genitive.",
    "id": "c13"
-  },
-  {
-   "sentence": "Так или иначе, он мог пригодиться ___.",
-   "lemma": "патрон",
-   "options": [
-    "всемогущего патрона",
-    "всемогущем патроне",
-    "всемогущий патрон",
-    "всемогущему патрону"
-   ],
-   "correct": "всемогущему патрону",
-   "case": "Дательный (Dative)",
-   "explain": "«всемогущему патрону» — the dative marks the indirect object or recipient.",
-   "id": "c14"
   },
   {
    "sentence": "И Свежевский, ставя все на карту, смело лез Квашнину на глаза со своим ___.",
    "lemma": "хихиканье",
    "options": [
-    "угодливое хихиканье",
+    "угодливому хихиканью",
     "угодливом хихиканье",
-    "угодливого хихиканья",
+    "угодливое хихиканье",
     "угодливым хихиканьем"
    ],
    "correct": "угодливым хихиканьем",
    "case": "Творительный (Instrumental)",
-   "explain": "«угодливым хихиканьем» — after the preposition «со», the instrumental marks the means, company, or complement.",
+   "explain": "«угодливым хихиканьем» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c15"
   },
   {
@@ -193,7 +137,7 @@
    ],
    "correct": "важной услугой",
    "case": "Творительный (Instrumental)",
-   "explain": "«важной услугой» — the instrumental marks the means, company, or complement.",
+   "explain": "«пахло» takes the instrumental.",
    "id": "c16"
   },
   {
@@ -207,36 +151,8 @@
    ],
    "correct": "будущий миллионер",
    "case": "Именительный (Nominative)",
-   "explain": "«будущий миллионер» — the subject of the sentence stands in the nominative.",
+   "explain": "«будущий миллионер» is the subject of «ждал» — who or what does it — so nominative.",
    "id": "c17"
-  },
-  {
-   "sentence": "Ревность же с ее ___, вечно раздраженным самолюбием, с ее мелочностью и грубостью была чужда доверчивой и нежной натуре Боброва.",
-   "lemma": "сомнение",
-   "options": [
-    "циничными сомнениями",
-    "циничным сомнениям",
-    "циничных сомнений",
-    "циничных сомнениях"
-   ],
-   "correct": "циничными сомнениями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«циничными сомнениями» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c18"
-  },
-  {
-   "sentence": "Его неудержимо тянуло к Зиненкам: хотелось еще раз убедиться в своем счастье, еще раз слышать от Нины то робкие, то наивно ___.",
-   "lemma": "полупризнание",
-   "options": [
-    "смелые полупризнания",
-    "смелых полупризнаний",
-    "смелыми полупризнаниями",
-    "смелым полупризнаниям"
-   ],
-   "correct": "смелые полупризнания",
-   "case": "Винительный (Accusative)",
-   "explain": "«смелые полупризнания» — the accusative marks the direct object of the verb.",
-   "id": "c20"
   },
   {
    "sentence": "Это произошло в воскресенье, через три дня после ___ кампании доменной печи.",
@@ -249,7 +165,7 @@
    ],
    "correct": "торжественного открытия",
    "case": "Родительный (Genitive)",
-   "explain": "«торжественного открытия» — after the preposition «после», the genitive here marks possession, absence, or quantity.",
+   "explain": "«торжественного открытия» — «после» always takes the genitive.",
    "id": "c21"
   },
   {
@@ -263,50 +179,8 @@
    ],
    "correct": "безоблачного дня",
    "case": "Родительный (Genitive)",
-   "explain": "«безоблачного дня» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«безоблачного дня» depends on the noun «часа» (whose? of what?) — genitive.",
    "id": "c22"
-  },
-  {
-   "sentence": "Фарватер шел бойкой ходой, прядая ушами и мотая ___.",
-   "lemma": "голова",
-   "options": [
-    "косматой головой",
-    "косматой головы",
-    "косматая голова",
-    "косматой голове"
-   ],
-   "correct": "косматой головой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«косматой головой» — the instrumental marks the means, company, or complement.",
-   "id": "c23"
-  },
-  {
-   "sentence": "На повороте около склада Бобров заметил даму в амазонке, спускавшуюся с горы на крупной гнедой лошади, и следом за нею — всадника на маленьком ___.",
-   "lemma": "киргиз",
-   "options": [
-    "белому киргизу",
-    "белом киргизе",
-    "белый киргиз",
-    "белым киргизом"
-   ],
-   "correct": "белом киргизе",
-   "case": "Предложный (Prepositional)",
-   "explain": "«белом киргизе» — after the preposition «на», for location or topic.",
-   "id": "c24"
-  },
-  {
-   "sentence": "Скоро он убедился, что это была Нина в темно-зеленой длинной развевающейся юбке, в желтых перчатках с крагами, с низеньким ___ на голове.",
-   "lemma": "цилиндр",
-   "options": [
-    "блестящем цилиндре",
-    "блестящего цилиндра",
-    "блестящий цилиндр",
-    "блестящим цилиндром"
-   ],
-   "correct": "блестящим цилиндром",
-   "case": "Творительный (Instrumental)",
-   "explain": "«блестящим цилиндром» — the instrumental marks the means, company, or complement.",
-   "id": "c25"
   },
   {
    "sentence": "Стройная ___ шла под нею эластической широкой рысью, круто собрав шею и высоко подымая тонкие, сухие ноги.",
@@ -319,50 +193,8 @@
    ],
    "correct": "английская кобыла",
    "case": "Именительный (Nominative)",
-   "explain": "«английская кобыла» — the subject of the sentence stands in the nominative.",
+   "explain": "«английская кобыла» is the subject of «шла» — who or what does it — so nominative.",
    "id": "c26"
-  },
-  {
-   "sentence": "___ заставлял ее придерживать правой рукой перед шляпы и наклонять вниз голову.",
-   "lemma": "ветер",
-   "options": [
-    "встречного ветра",
-    "встречный ветер",
-    "встречному ветру",
-    "встречным ветром"
-   ],
-   "correct": "встречный ветер",
-   "case": "Именительный (Nominative)",
-   "explain": "«Встречный ветер» — the subject of the sentence stands in the nominative.",
-   "id": "c27"
-  },
-  {
-   "sentence": "Встречный ветер заставлял ее придерживать ___ перед шляпы и наклонять вниз голову.",
-   "lemma": "рука",
-   "options": [
-    "правая рука",
-    "правой рукой",
-    "правой руки",
-    "правой руке"
-   ],
-   "correct": "правой рукой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«правой рукой» — the instrumental marks the means, company, or complement.",
-   "id": "c28"
-  },
-  {
-   "sentence": "От езды у Нины раскраснелось лицо, и волосы, выбившиеся на висках из-под шляпы, откинулись назад длинными ___.",
-   "lemma": "завиток",
-   "options": [
-    "тонкие завитки",
-    "тонких завитках",
-    "тонких завитков",
-    "тонкими завитками"
-   ],
-   "correct": "тонкими завитками",
-   "case": "Творительный (Instrumental)",
-   "explain": "«тонкими завитками» — the instrumental marks the means, company, or complement.",
-   "id": "c29"
   },
   {
    "sentence": "И опять ___ произошла в душе Боброва.",
@@ -375,7 +207,7 @@
    ],
    "correct": "мгновенная перемена",
    "case": "Именительный (Nominative)",
-   "explain": "«мгновенная перемена» — the subject of the sentence stands in the nominative.",
+   "explain": "«мгновенная перемена» is the subject of «произошла» — who or what does it — so nominative.",
    "id": "c31"
   },
   {
@@ -389,7 +221,7 @@
    ],
    "correct": "внезапного признания",
    "case": "Родительный (Genitive)",
-   "explain": "«внезапного признания» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«внезапного признания» is the object of a negated verb («не слыхала») — genitive instead of the accusative.",
    "id": "c32"
   }
  ]

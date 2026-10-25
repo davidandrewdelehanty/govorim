@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Пришла старуха капитанша с медальоном — ___ подарок, ну, известно, сувенир.",
-   "lemma": "муж",
-   "options": [
-    "покойный муж",
-    "покойным мужем",
-    "покойном муже",
-    "покойного мужа"
-   ],
-   "correct": "покойного мужа",
-   "case": "Родительный (Genitive)",
-   "explain": "«покойного мужа» — the genitive here marks possession, absence, or quantity.",
-   "id": "c1"
-  },
-  {
    "sentence": "Она сидела на постели, смотрела в землю, щелкая правым носком по коврику (ее жест); ___ стояла на ее губах.",
    "lemma": "улыбка",
    "options": [
@@ -25,36 +11,22 @@
    ],
    "correct": "дурная улыбка",
    "case": "Именительный (Nominative)",
-   "explain": "«дурная улыбка» — the subject of the sentence stands in the nominative.",
+   "explain": "«дурная улыбка» is the subject of «стояла» — who or what does it — so nominative.",
    "id": "c2"
   },
   {
    "sentence": "Но не потерялся, я даже не сделал движения и опять прежним ___ прямо объявил, что с сих пор лишаю ее участия в моих занятиях.",
    "lemma": "голос",
    "options": [
-    "спокойный голос",
     "спокойному голосу",
-    "спокойном голосе",
-    "спокойным голосом"
+    "спокойным голосом",
+    "спокойного голоса",
+    "спокойном голосе"
    ],
    "correct": "спокойным голосом",
    "case": "Творительный (Instrumental)",
-   "explain": "«спокойным голосом» — the instrumental marks the means, company, or complement.",
+   "explain": "After «сделал» (to call, consider or make someone something), that something is in the instrumental.",
    "id": "c3"
-  },
-  {
-   "sentence": "Через два дня она приходит ко мне: «Тут, говорит, офицер, Ефимович, поручик, бывший ваш ___ в полку, замешан».",
-   "lemma": "товарищ",
-   "options": [
-    "прежнем товарище",
-    "прежнего товарища",
-    "прежнему товарищу",
-    "прежний товарищ"
-   ],
-   "correct": "прежний товарищ",
-   "case": "Именительный (Nominative)",
-   "explain": "«прежний товарищ» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
   },
   {
    "sentence": "Всего мне стоило это дело рублей до трехсот, но в двое суток устроено было так, что я буду стоять в ___, за притворенными дверями, и слышать первый rendez-vous наедине моей жены с Ефимовичем.",
@@ -67,7 +39,7 @@
    ],
    "correct": "соседней комнате",
    "case": "Предложный (Prepositional)",
-   "explain": "«соседней комнате» — after the preposition «в», for location or topic.",
+   "explain": "«соседней комнате» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c6"
   },
   {
@@ -81,50 +53,22 @@
    ],
    "correct": "тираническому приговору",
    "case": "Дательный (Dative)",
-   "explain": "«тираническому приговору» — the dative marks the indirect object or recipient.",
+   "explain": "«подчиниться» takes the dative (кому? чему?).",
    "id": "c7"
   },
   {
    "sentence": "Я слушал ___ и целый час присутствовал при поединке женщины благороднейшей и возвышенной с светской развратной, тупой тварью, с пресмыкающеюся душой.",
    "lemma": "час",
    "options": [
-    "целого часа",
-    "целым часом",
     "целый час",
+    "целому часу",
+    "целым часом",
     "целом часе"
    ],
    "correct": "целый час",
    "case": "Винительный (Accusative)",
-   "explain": "«целый час» — the accusative marks the direct object of the verb.",
+   "explain": "«целый час» is the direct object of «слушал» (кого? что?) — accusative.",
    "id": "c9"
-  },
-  {
-   "sentence": "Остроумнейший автор великосветской комедии не мог бы создать этой сцены насмешек, наивнейшего хохота и ___ добродетели к пороку.",
-   "lemma": "презрение",
-   "options": [
-    "святым презрением",
-    "святом презрении",
-    "святого презрения",
-    "святому презрению"
-   ],
-   "correct": "святого презрения",
-   "case": "Родительный (Genitive)",
-   "explain": "«святого презрения» — the genitive here marks possession, absence, or quantity.",
-   "id": "c10"
-  },
-  {
-   "sentence": "И сколько было блеска в ее словах и ___; какая острота в быстрых ответах, какая правда в ее осуждении!",
-   "lemma": "словечко",
-   "options": [
-    "маленьких словечек",
-    "маленьким словечкам",
-    "маленькими словечками",
-    "маленьких словечках"
-   ],
-   "correct": "маленьких словечках",
-   "case": "Предложный (Prepositional)",
-   "explain": "«маленьких словечках» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c11"
   },
   {
    "sentence": "И сколько было блеска в ее словах и маленьких словечках; какая острота в ___, какая правда в ее осуждении!",
@@ -137,7 +81,7 @@
    ],
    "correct": "быстрых ответах",
    "case": "Предложный (Prepositional)",
-   "explain": "«быстрых ответах» — after the preposition «в», for location or topic.",
+   "explain": "«быстрых ответах» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c12"
   },
   {
@@ -151,7 +95,7 @@
    ],
    "correct": "низкого мщения",
    "case": "Родительный (Genitive)",
-   "explain": "«низкого мщения» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«низкого мщения» — «из» always takes the genitive.",
    "id": "c14"
   },
   {
@@ -165,35 +109,21 @@
    ],
    "correct": "супружеских прав",
    "case": "Родительный (Genitive)",
-   "explain": "«супружеских прав» — after the preposition «против», the genitive here marks possession, absence, or quantity.",
+   "explain": "«супружеских прав» — «против» always takes the genitive.",
    "id": "c15"
-  },
-  {
-   "sentence": "Открывая кассу, я порешил не держать ни огромных собак, ни ___, как, например, держит Мозер.",
-   "lemma": "лакей",
-   "options": [
-    "сильный лакей",
-    "сильному лакею",
-    "сильным лакеем",
-    "сильного лакея"
-   ],
-   "correct": "сильного лакея",
-   "case": "Родительный (Genitive)",
-   "explain": "«сильного лакея» — the genitive here marks possession, absence, or quantity.",
-   "id": "c18"
   },
   {
    "sentence": "Не обращая внимания на ее ___, я, полураздетый, лег на постель.",
    "lemma": "взгляд",
    "options": [
-    "испуганного взгляда",
-    "испуганном взгляде",
     "испуганному взгляду",
-    "испуганный взгляд"
+    "испуганный взгляд",
+    "испуганного взгляда",
+    "испуганным взглядом"
    ],
    "correct": "испуганный взгляд",
    "case": "Винительный (Accusative)",
-   "explain": "«испуганный взгляд» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«испуганный взгляд» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c20"
   }
  ]

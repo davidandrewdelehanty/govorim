@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Дома пожилые, закопченные, но ___ порогов сверкали, как вставные зубы воскресных джентльменов.",
-   "lemma": "полоска",
-   "options": [
-    "белых полосках",
-    "белыми полосками",
-    "белым полоскам",
-    "белые полоски"
-   ],
-   "correct": "белые полоски",
-   "case": "Именительный (Nominative)",
-   "explain": "«белые полоски» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
    "sentence": "Дома пожилые, закопченные, но белые полоски порогов сверкали, как вставные зубы ___.",
    "lemma": "джентльмен",
    "options": [
@@ -25,22 +11,8 @@
    ],
    "correct": "воскресных джентльменов",
    "case": "Родительный (Genitive)",
-   "explain": "«воскресных джентльменов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«воскресных джентльменов» depends on the noun «зубы» (whose? of what?) — genitive.",
    "id": "c3"
-  },
-  {
-   "sentence": "___, как известно, изготовлялись на одной из джесмондских фабрик и в воскресенье утром появлялись на улицах в тысячах экземпляров — вместе с воскресным нумером «Журнала Прихода Сент-Инох».",
-   "lemma": "джентльмен",
-   "options": [
-    "воскресные джентльмены",
-    "воскресных джентльменов",
-    "воскресным джентльменам",
-    "воскресными джентльменами"
-   ],
-   "correct": "воскресные джентльмены",
-   "case": "Именительный (Nominative)",
-   "explain": "«Воскресные джентльмены» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
   },
   {
    "sentence": "Воскресные джентльмены, как известно, изготовлялись на одной из ___ и в воскресенье утром появлялись на улицах в тысячах экземпляров — вместе с воскресным нумером «Журнала Прихода Сент-Инох».",
@@ -53,50 +25,8 @@
    ],
    "correct": "джесмондских фабрик",
    "case": "Родительный (Genitive)",
-   "explain": "«джесмондских фабрик» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«джесмондских фабрик» — «из» always takes the genitive.",
    "id": "c5"
-  },
-  {
-   "sentence": "Все с ___ и в одинаковых цилиндрах, воскресные джентльмены со вставными зубами почтенно гуляли по улицам и приветствовали двойников.",
-   "lemma": "трость",
-   "options": [
-    "одинаковых тростях",
-    "одинаковые трости",
-    "одинаковым тростям",
-    "одинаковыми тростями"
-   ],
-   "correct": "одинаковыми тростями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«одинаковыми тростями» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c6"
-  },
-  {
-   "sentence": "Все с одинаковыми тростями и в одинаковых цилиндрах, ___ со вставными зубами почтенно гуляли по улицам и приветствовали двойников.",
-   "lemma": "джентльмен",
-   "options": [
-    "воскресным джентльменам",
-    "воскресные джентльмены",
-    "воскресных джентльменах",
-    "воскресными джентльменами"
-   ],
-   "correct": "воскресные джентльмены",
-   "case": "Именительный (Nominative)",
-   "explain": "«воскресные джентльмены» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
-  },
-  {
-   "sentence": "И механически кивала в ответ чья-то круглая, как ___, голова.",
-   "lemma": "шар",
-   "options": [
-    "футбольный шар",
-    "футбольному шару",
-    "футбольным шаром",
-    "футбольного шара"
-   ],
-   "correct": "футбольный шар",
-   "case": "Именительный (Nominative)",
-   "explain": "«футбольный шар» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
   },
   {
    "sentence": "___ принадлежала мистеру Мак-Интошу, а мистер Мак-Интош, как известно, знал все.",
@@ -109,7 +39,7 @@
    ],
    "correct": "футбольная голова",
    "case": "Именительный (Nominative)",
-   "explain": "«Футбольная голова» — the subject of the sentence stands in the nominative.",
+   "explain": "«футбольная голова» is the subject of «принадлежала» — who or what does it — so nominative.",
    "id": "c12"
   },
   {
@@ -123,7 +53,7 @@
    ],
    "correct": "надувной чемоданчик",
    "case": "Винительный (Accusative)",
-   "explain": "«надувной чемоданчик» — after the preposition «про», the accusative marks the direct object of the verb.",
+   "explain": "«надувной чемоданчик» — «про» always takes the accusative.",
    "id": "c13"
   },
   {
@@ -137,22 +67,8 @@
    ],
    "correct": "английских законов",
    "case": "Родительный (Genitive)",
-   "explain": "«английских законов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«английских законов» depends on the noun «надувания» (whose? of what?) — genitive.",
    "id": "c14"
-  },
-  {
-   "sentence": "И вот вы вытаскиваете из кармана, надуваете — пффф — и ___.",
-   "lemma": "чемодан",
-   "options": [
-    "великолепного чемодана",
-    "великолепный чемодан",
-    "великолепному чемодану",
-    "великолепным чемоданом"
-   ],
-   "correct": "великолепный чемодан",
-   "case": "Именительный (Nominative)",
-   "explain": "«великолепный чемодан» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
   },
   {
    "sentence": "___ с супругами торопились по домам.",
@@ -165,7 +81,7 @@
    ],
    "correct": "воскресные джентльмены",
    "case": "Именительный (Nominative)",
-   "explain": "«Воскресные джентльмены» — the subject of the sentence stands in the nominative.",
+   "explain": "«воскресные джентльмены» is the subject of «торопились» — who or what does it — so nominative.",
    "id": "c16"
   },
   {
@@ -173,28 +89,14 @@
    "lemma": "подбородок",
    "options": [
     "квадратный подбородок",
-    "квадратном подбородке",
-    "квадратного подбородка",
-    "квадратным подбородком"
+    "квадратным подбородком",
+    "квадратному подбородку",
+    "квадратном подбородке"
    ],
    "correct": "квадратный подбородок",
    "case": "Винительный (Accusative)",
-   "explain": "«квадратный подбородок» — the accusative marks the direct object of the verb.",
+   "explain": "«квадратный подбородок» is the direct object of «освещала» (кого? что?) — accusative.",
    "id": "c17"
-  },
-  {
-   "sentence": "Викарий уже спал, в белом ___, крестообразно сложив руки на груди.",
-   "lemma": "колпак",
-   "options": [
-    "фланелевым колпаком",
-    "фланелевый колпак",
-    "фланелевом колпаке",
-    "фланелевому колпаку"
-   ],
-   "correct": "фланелевом колпаке",
-   "case": "Предложный (Prepositional)",
-   "explain": "«фланелевом колпаке» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c18"
   }
  ]
 }

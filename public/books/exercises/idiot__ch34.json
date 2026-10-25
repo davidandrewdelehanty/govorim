@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Прошу князя сохранить экземпляр у себя и сообщить ___ Аглае Ивановне Епанчиной.",
-   "lemma": "экземпляр",
-   "options": [
-    "другой экземпляр",
-    "другого экземпляра",
-    "другом экземпляре",
-    "другому экземпляру"
-   ],
-   "correct": "другой экземпляр",
-   "case": "Винительный (Accusative)",
-   "explain": "«другой экземпляр» — the accusative marks the direct object of the verb.",
-   "id": "c1"
-  },
-  {
    "sentence": "Завещаю мой скелет в Медицинскую Академию для ___.",
    "lemma": "польза",
    "options": [
@@ -25,36 +11,8 @@
    ],
    "correct": "научной пользы",
    "case": "Родительный (Genitive)",
-   "explain": "«научной пользы» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«научной пользы» — «для» always takes the genitive.",
    "id": "c2"
-  },
-  {
-   "sentence": "(Такие как он христиане всегда доходят до этой идеи: это их любимый конек.) И чего им хочется с их смешными \"___\"?",
-   "lemma": "дерево",
-   "options": [
-    "павловским деревьям",
-    "павловские деревья",
-    "павловских деревьев",
-    "павловскими деревьями"
-   ],
-   "correct": "павловскими деревьями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«павловскими деревьями» — the instrumental marks the means, company, or complement.",
-   "id": "c5"
-  },
-  {
-   "sentence": "Усладить ___ моей жизни?",
-   "lemma": "часы",
-   "options": [
-    "последние часы",
-    "последних часах",
-    "последних часов",
-    "последним часам"
-   ],
-   "correct": "последние часы",
-   "case": "Винительный (Accusative)",
-   "explain": "«последние часы» — the accusative marks the direct object of the verb.",
-   "id": "c6"
   },
   {
    "sentence": "Ну, конечно, смирение есть ___ в этом смысле, я это допускаю, — хотя и не в том смысле, в каком религия принимает смирение за силу.",
@@ -67,63 +25,35 @@
    ],
    "correct": "громадная сила",
    "case": "Именительный (Nominative)",
-   "explain": "«громадная сила» — the subject of the sentence stands in the nominative.",
+   "explain": "«громадная сила» is the subject of «есть» — who or what does it — so nominative.",
    "id": "c8"
-  },
-  {
-   "sentence": "А если так, то как же будут судить меня за то, что я не мог понять ___ и законов провидения?",
-   "lemma": "воля",
-   "options": [
-    "настоящей воли",
-    "настоящая воля",
-    "настоящей воле",
-    "настоящей волей"
-   ],
-   "correct": "настоящей воли",
-   "case": "Родительный (Genitive)",
-   "explain": "«настоящей воли» — the genitive here marks possession, absence, or quantity.",
-   "id": "c10"
-  },
-  {
-   "sentence": "Когда я дойду до этих строк, то наверно уж взойдет солнце и \"зазвучит на небе\", и польется громадная, ___ по всей подсолнечной.",
-   "lemma": "сила",
-   "options": [
-    "неисчислимой силе",
-    "неисчислимая сила",
-    "неисчислимой силы",
-    "неисчислимой силой"
-   ],
-   "correct": "неисчислимая сила",
-   "case": "Именительный (Nominative)",
-   "explain": "«неисчислимая сила» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
   },
   {
    "sentence": "Если б я имел власть не родиться, то наверно не принял бы существования на таких ___.",
    "lemma": "условие",
    "options": [
     "насмешливых условиях",
+    "насмешливым условиям",
     "насмешливыми условиями",
-    "насмешливые условия",
-    "насмешливым условиям"
+    "насмешливых условий"
    ],
    "correct": "насмешливых условиях",
    "case": "Предложный (Prepositional)",
-   "explain": "«насмешливых условиях» — after the preposition «на», for location or topic.",
+   "explain": "«насмешливых условиях» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c12"
   },
   {
    "sentence": "Признаком этого состояния обыкновенно бывает и приближающееся истощение ___.",
    "lemma": "сила",
    "options": [
-    "физическими силами",
     "физическим силам",
-    "физических силах",
-    "физических сил"
+    "физических сил",
+    "физические силы",
+    "физических силах"
    ],
    "correct": "физических сил",
    "case": "Родительный (Genitive)",
-   "explain": "«физических сил» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«физических сил» depends on the noun «истощение» (whose? of what?) — genitive.",
    "id": "c13"
   },
   {
@@ -137,7 +67,7 @@
    ],
    "correct": "полном негодовании",
    "case": "Предложный (Prepositional)",
-   "explain": "«полном негодовании» — after the preposition «в», for location or topic.",
+   "explain": "«полном негодовании» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c14"
   },
   {
@@ -151,36 +81,8 @@
    ],
    "correct": "эдакой засухи",
    "case": "Родительный (Genitive)",
-   "explain": "«эдакой засухи» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«эдакой засухи» depends on the noun «месяц» (whose? of what?) — genitive.",
    "id": "c16"
-  },
-  {
-   "sentence": "Если выдаст, то я согласен на то, чтобы допустить его переночевать эту ночь в этом доме, в виду ___ его, с тем, конечно, что под надзором с моей стороны.",
-   "lemma": "состояние",
-   "options": [
-    "болезненным состоянием",
-    "болезненном состоянии",
-    "болезненного состояния",
-    "болезненное состояние"
-   ],
-   "correct": "болезненного состояния",
-   "case": "Родительный (Genitive)",
-   "explain": "«болезненного состояния» — after the preposition «в», the genitive here marks possession, absence, or quantity.",
-   "id": "c21"
-  },
-  {
-   "sentence": "Князь заметил, что зубы его стучат, как в самом ___.",
-   "lemma": "озноб",
-   "options": [
-    "сильным ознобом",
-    "сильного озноба",
-    "сильном ознобе",
-    "сильному ознобу"
-   ],
-   "correct": "сильном ознобе",
-   "case": "Предложный (Prepositional)",
-   "explain": "«сильном ознобе» — after the preposition «в», for location or topic.",
-   "id": "c22"
   },
   {
    "sentence": "Прошла одна секунда, и вдруг ___ раздался на террасе.",
@@ -193,7 +95,7 @@
    ],
    "correct": "всеобщий крик",
    "case": "Именительный (Nominative)",
-   "explain": "«всеобщий крик» — the subject of the sentence stands in the nominative.",
+   "explain": "«всеобщий крик» is the subject of «раздался» — who or what does it — so nominative.",
    "id": "c23"
   },
   {
@@ -207,7 +109,7 @@
    ],
    "correct": "чрезвычайного смятения",
    "case": "Родительный (Genitive)",
-   "explain": "«чрезвычайного смятения» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«чрезвычайного смятения» depends on the noun «минута» (whose? of what?) — genitive.",
    "id": "c24"
   },
   {
@@ -221,7 +123,7 @@
    ],
    "correct": "левой руке",
    "case": "Предложный (Prepositional)",
-   "explain": "«левой руке» — after the preposition «в», for location or topic.",
+   "explain": "«левой руке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c25"
   },
   {
@@ -230,12 +132,12 @@
    "options": [
     "боковому карману",
     "боковой карман",
-    "боковом кармане",
-    "бокового кармана"
+    "бокового кармана",
+    "боковым карманом"
    ],
    "correct": "боковой карман",
    "case": "Винительный (Accusative)",
-   "explain": "«боковой карман» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«боковой карман» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c26"
   },
   {
@@ -249,50 +151,8 @@
    ],
    "correct": "правой руке",
    "case": "Предложный (Prepositional)",
-   "explain": "«правой руке» — after the preposition «в», for location or topic.",
+   "explain": "«правой руке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c27"
-  },
-  {
-   "sentence": "Он видел только, как вдруг в правой руке Ипполита что-то блеснуло, и как в ту же секунду маленький ___ очутился вплоть у его виска.",
-   "lemma": "пистолет",
-   "options": [
-    "карманном пистолете",
-    "карманный пистолет",
-    "карманным пистолетом",
-    "карманного пистолета"
-   ],
-   "correct": "карманный пистолет",
-   "case": "Именительный (Nominative)",
-   "explain": "«карманный пистолет» — the subject of the sentence stands in the nominative.",
-   "id": "c28"
-  },
-  {
-   "sentence": "Сам Ипполит сидел, не понимая, что происходит, и обводил всех кругом ___.",
-   "lemma": "взгляд",
-   "options": [
-    "бессмысленным взглядом",
-    "бессмысленному взгляду",
-    "бессмысленном взгляде",
-    "бессмысленного взгляда"
-   ],
-   "correct": "бессмысленным взглядом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«бессмысленным взглядом» — the instrumental marks the means, company, or complement.",
-   "id": "c29"
-  },
-  {
-   "sentence": "— Господа, если кто из вас еще раз, вслух, при мне, усомнится в том, что капсюль забыт нарочно, и станет утверждать, что несчастный ___ играл только комедию, — то таковой из вас будет иметь дело со мной.",
-   "lemma": "человек",
-   "options": [
-    "молодой человек",
-    "молодым человеком",
-    "молодому человеку",
-    "молодого человека"
-   ],
-   "correct": "молодой человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«молодой человек» — the subject of the sentence stands in the nominative.",
-   "id": "c32"
   },
   {
    "sentence": "Он бродил по парку, рассеянно смотря кругом себя, и с удивлением остановился, когда дошел до площадки пред воксалом и увидал ряд ___ и пюпитров для оркестра.",
@@ -305,7 +165,7 @@
    ],
    "correct": "пустых скамеек",
    "case": "Родительный (Genitive)",
-   "explain": "«пустых скамеек» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«пустых скамеек» depends on the noun «ряд» (whose? of what?) — genitive.",
    "id": "c34"
   },
   {
@@ -319,50 +179,8 @@
    ],
    "correct": "первый год",
    "case": "Винительный (Accusative)",
-   "explain": "«первый год» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«первый год» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c35"
-  },
-  {
-   "sentence": "Что же это за пир, что ж это за всегдашний ___, которому нет конца и к которому тянет его давно, всегда, с самого детства, и к которому он никак не может пристать.",
-   "lemma": "праздник",
-   "options": [
-    "великий праздник",
-    "великом празднике",
-    "великим праздником",
-    "великого праздника"
-   ],
-   "correct": "великий праздник",
-   "case": "Винительный (Accusative)",
-   "explain": "«великий праздник» — after the preposition «за», the accusative marks the direct object of the verb.",
-   "id": "c38"
-  },
-  {
-   "sentence": "Пред ___ он вспомнил, что Ипполит убьет десять человек, и усмехнулся нелепости предположения.",
-   "lemma": "сон",
-   "options": [
-    "самым сном",
-    "самый сон",
-    "самого сна",
-    "самому сну"
-   ],
-   "correct": "самым сном",
-   "case": "Творительный (Instrumental)",
-   "explain": "«самым сном» — the instrumental marks the means, company, or complement.",
-   "id": "c40"
-  },
-  {
-   "sentence": "Вокруг него стояла прекрасная, ___, с одним только шелестом листьев, от которого, кажется, становится еще тише и уединеннее кругом.",
-   "lemma": "тишина",
-   "options": [
-    "ясной тишины",
-    "ясная тишина",
-    "ясной тишине",
-    "ясной тишиной"
-   ],
-   "correct": "ясная тишина",
-   "case": "Именительный (Nominative)",
-   "explain": "«ясная тишина» — the subject of the sentence stands in the nominative.",
-   "id": "c41"
   },
   {
    "sentence": "Слеза дрожала на ее ___; она поманила его рукой и приложила палец к губам, как бы предупреждая его идти за ней тише.",
@@ -375,7 +193,7 @@
    ],
    "correct": "бледной щеке",
    "case": "Предложный (Prepositional)",
-   "explain": "«бледной щеке» — after the preposition «на», for location or topic.",
+   "explain": "«бледной щеке» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c43"
   }
  ]

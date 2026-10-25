@@ -1,59 +1,17 @@
 {
  "cases": [
   {
-   "sentence": "Посредине комнаты круглый ___.",
-   "lemma": "стол",
-   "options": [
-    "свадебного стола",
-    "свадебный стол",
-    "свадебном столе",
-    "свадебным столом"
-   ],
-   "correct": "свадебный стол",
-   "case": "Именительный (Nominative)",
-   "explain": "«свадебный стол» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "___ — бухгалтер и такая же мать.",
-   "lemma": "отец",
-   "options": [
-    "посажёному отцу",
-    "посажёный отец",
-    "посажёном отце",
-    "посажёного отца"
-   ],
-   "correct": "посажёный отец",
-   "case": "Именительный (Nominative)",
-   "explain": "«Посажёный отец» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Уважаемые новобрачные, простите великодушно за опоздание, но я уполномочен передать вам ___ нашего уважаемого вождя, товарища Лассальченко.",
-   "lemma": "пожелание",
-   "options": [
-    "брачные пожелания",
-    "брачных пожеланиях",
-    "брачным пожеланиям",
-    "брачных пожеланий"
-   ],
-   "correct": "брачные пожелания",
-   "case": "Винительный (Accusative)",
-   "explain": "«брачные пожелания» — the accusative marks the direct object of the verb.",
-   "id": "c3"
-  },
-  {
    "sentence": "Уважаемые новобрачные, простите великодушно за опоздание, но я уполномочен передать вам брачные пожелания нашего ___, товарища Лассальченко.",
    "lemma": "вождь",
    "options": [
     "уважаемого вождя",
     "уважаемый вождь",
-    "уважаемым вождём",
-    "уважаемом вожде"
+    "уважаемом вожде",
+    "уважаемому вождю"
    ],
    "correct": "уважаемого вождя",
    "case": "Родительный (Genitive)",
-   "explain": "«уважаемого вождя» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«уважаемого вождя» depends on the noun «пожелания» (whose? of what?) — genitive.",
    "id": "c4"
   },
   {
@@ -67,35 +25,35 @@
    ],
    "correct": "очередным делам",
    "case": "Дательный (Dative)",
-   "explain": "«очередным делам» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«очередным делам» — «к» always takes the dative.",
    "id": "c5"
   },
   {
    "sentence": "Пьер целует степенно и с чувством ___.",
    "lemma": "достоинство",
    "options": [
-    "классовым достоинством",
-    "классовом достоинстве",
     "классового достоинства",
-    "классовое достоинство"
+    "классовому достоинству",
+    "классовое достоинство",
+    "классовом достоинстве"
    ],
    "correct": "классового достоинства",
    "case": "Родительный (Genitive)",
-   "explain": "«классового достоинства» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«классового достоинства» depends on the noun «чувством» (whose? of what?) — genitive.",
    "id": "c6"
   },
   {
    "sentence": "Правда, он потерял на этом пути один частный ___, но зато приобрёл много билетов государственного займа.",
    "lemma": "билет",
    "options": [
-    "партийным билетом",
     "партийном билете",
-    "партийного билета",
-    "партийный билет"
+    "партийным билетом",
+    "партийный билет",
+    "партийному билету"
    ],
    "correct": "партийный билет",
    "case": "Винительный (Accusative)",
-   "explain": "«партийный билет» — the accusative marks the direct object of the verb.",
+   "explain": "«партийный билет» is the direct object of «потерял» (кого? что?) — accusative.",
    "id": "c8"
   },
   {
@@ -109,22 +67,8 @@
    ],
    "correct": "государственного займа",
    "case": "Родительный (Genitive)",
-   "explain": "«государственного займа» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«государственного займа» depends on the noun «билетов» (whose? of what?) — genitive.",
    "id": "c9"
-  },
-  {
-   "sentence": "Какими ___ мы идём вперёд по пути нашего семейного строительства!",
-   "lemma": "шаг",
-   "options": [
-    "капитальными шагами",
-    "капитальным шагам",
-    "капитальных шагах",
-    "капитальных шагов"
-   ],
-   "correct": "капитальными шагами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«капитальными шагами» — the instrumental marks the means, company, or complement.",
-   "id": "c10"
   },
   {
    "sentence": "Какими капитальными шагами мы идём вперёд по пути нашего ___!",
@@ -137,7 +81,7 @@
    ],
    "correct": "семейного строительства",
    "case": "Родительный (Genitive)",
-   "explain": "«семейного строительства» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«семейного строительства» depends on the noun «пути» (whose? of what?) — genitive.",
    "id": "c11"
   },
   {
@@ -151,7 +95,7 @@
    ],
    "correct": "посажёной маме",
    "case": "Дательный (Dative)",
-   "explain": "«посажёной маме» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«посажёной маме» — «к» always takes the dative.",
    "id": "c13"
   },
   {
@@ -165,7 +109,7 @@
    ],
    "correct": "кассового счётчика",
    "case": "Родительный (Genitive)",
-   "explain": "«кассового счётчика» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«кассового счётчика» depends on the noun «ручку» (whose? of what?) — genitive.",
    "id": "c15"
   }
  ]

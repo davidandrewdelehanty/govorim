@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Доезжачий, прозывавшийся Турка, на голубой, горбоносой лошади, в ___, с огромным рогом за плечами и ножом на поясе, ехал впереди всех.",
-   "lemma": "шапка",
-   "options": [
-    "мохнатой шапки",
-    "мохнатой шапке",
-    "мохнатая шапка",
-    "мохнатой шапкой"
-   ],
-   "correct": "мохнатой шапке",
-   "case": "Предложный (Prepositional)",
-   "explain": "«мохнатой шапке» — after the preposition «в», for location or topic.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Доезжачий, прозывавшийся Турка, на голубой, горбоносой лошади, в мохнатой шапке, с ___ за плечами и ножом на поясе, ехал впереди всех.",
-   "lemma": "рог",
-   "options": [
-    "огромном роге",
-    "огромным рогом",
-    "огромному рогу",
-    "огромный рог"
-   ],
-   "correct": "огромным рогом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«огромным рогом» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c2"
-  },
-  {
    "sentence": "По мрачной и свирепой наружности этого человека скорее можно было подумать, что он едет на ___, чем на охоту.",
    "lemma": "бой",
    "options": [
@@ -39,7 +11,7 @@
    ],
    "correct": "смертный бой",
    "case": "Винительный (Accusative)",
-   "explain": "«смертный бой» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«смертный бой» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c3"
   },
   {
@@ -53,22 +25,8 @@
    ],
    "correct": "задних ног",
    "case": "Родительный (Genitive)",
-   "explain": "«задних ног» — after the preposition «около», the genitive here marks possession, absence, or quantity.",
+   "explain": "«задних ног» — «около» always takes the genitive.",
    "id": "c4"
-  },
-  {
-   "sentence": "___ была во всем разгаре.",
-   "lemma": "уборка",
-   "options": [
-    "хлебной уборкой",
-    "хлебной уборке",
-    "хлебной уборки",
-    "хлебная уборка"
-   ],
-   "correct": "хлебная уборка",
-   "case": "Именительный (Nominative)",
-   "explain": "«Хлебная уборка» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
   },
   {
    "sentence": "В ___ мужики в одних рубахах, стоя на телегах, накладывали копны и пылили по сухому, раскаленному полю.",
@@ -81,78 +39,22 @@
    ],
    "correct": "другой стороне",
    "case": "Предложный (Prepositional)",
-   "explain": "«другой стороне» — after the preposition «в», for location or topic.",
+   "explain": "«другой стороне» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c6"
-  },
-  {
-   "sentence": "___, на которой ехал папа, шла легкой, игривой ходой, изредка опуская голову к груди, вытягивая поводья и смахивая густым хвостом оводов и мух, которые жадно лепились на нее.",
-   "lemma": "лошадка",
-   "options": [
-    "рыженькой лошадки",
-    "рыженькой лошадке",
-    "рыженькая лошадка",
-    "рыженькой лошадкой"
-   ],
-   "correct": "рыженькая лошадка",
-   "case": "Именительный (Nominative)",
-   "explain": "«Рыженькая лошадка» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
-  },
-  {
-   "sentence": "Рыженькая лошадка, на которой ехал папа, шла легкой, игривой ходой, изредка опуская голову к груди, вытягивая поводья и смахивая ___ оводов и мух, которые жадно лепились на нее.",
-   "lemma": "хвост",
-   "options": [
-    "густому хвосту",
-    "густом хвосте",
-    "густой хвост",
-    "густым хвостом"
-   ],
-   "correct": "густым хвостом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«густым хвостом» — the instrumental marks the means, company, or complement.",
-   "id": "c8"
-  },
-  {
-   "sentence": "Из-под сена виднелись: самовар, кадка с мороженой формой и еще кой-какие ___ и коробочки.",
-   "lemma": "узелок",
-   "options": [
-    "привлекательных узелков",
-    "привлекательными узелками",
-    "привлекательных узелках",
-    "привлекательные узелки"
-   ],
-   "correct": "привлекательные узелки",
-   "case": "Винительный (Accusative)",
-   "explain": "«привлекательные узелки» — the accusative marks the direct object of the verb.",
-   "id": "c11"
   },
   {
    "sentence": "При виде телеги, мы изъявили шумную радость, потому что пить чай в лесу на траве и вообще на таком месте, на котором никто и никогда не пивал чаю, считалось ___.",
    "lemma": "наслаждение",
    "options": [
-    "большим наслаждением",
-    "большего наслаждения",
     "большему наслаждению",
-    "большее наслаждение"
+    "большем наслаждении",
+    "большего наслаждения",
+    "большим наслаждением"
    ],
    "correct": "большим наслаждением",
    "case": "Творительный (Instrumental)",
-   "explain": "«большим наслаждением» — the instrumental marks the means, company, or complement.",
+   "explain": "After «считалось», what someone or something is or becomes stands in the instrumental.",
    "id": "c12"
-  },
-  {
-   "sentence": "Избрав у корня ___ тенистое и ровное место, я лег на траву, усадил подле себя Жирана и начал ожидать.",
-   "lemma": "дуб",
-   "options": [
-    "высоким дубом",
-    "высокого дуба",
-    "высокому дубу",
-    "высокий дуб"
-   ],
-   "correct": "высокого дуба",
-   "case": "Родительный (Genitive)",
-   "explain": "«высокого дуба» — the genitive here marks possession, absence, or quantity.",
-   "id": "c14"
   },
   {
    "sentence": "Гончие то заливались около ___, то постепенно отдалялись от меня; зайца не было.",
@@ -165,7 +67,7 @@
    ],
    "correct": "самой опушки",
    "case": "Родительный (Genitive)",
-   "explain": "«самой опушки» — after the preposition «около», the genitive here marks possession, absence, or quantity.",
+   "explain": "«самой опушки» — «около» always takes the genitive.",
    "id": "c16"
   },
   {
@@ -179,22 +81,8 @@
    ],
    "correct": "интересных наблюдений",
    "case": "Родительный (Genitive)",
-   "explain": "«интересных наблюдений» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«интересных наблюдений» — «от» always takes the genitive.",
    "id": "c17"
-  },
-  {
-   "sentence": "Как только я обратил на нее внимание, она отлетела от меня шага на два, повилась над почти увядшим ___ дикого клевера и села на него.",
-   "lemma": "цветок",
-   "options": [
-    "белом цветке",
-    "белому цветку",
-    "белого цветка",
-    "белым цветком"
-   ],
-   "correct": "белым цветком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«белым цветком» — after the preposition «над», the instrumental marks the means, company, or complement.",
-   "id": "c18"
   },
   {
    "sentence": "Как только я обратил на нее внимание, она отлетела от меня шага на два, повилась над почти увядшим белым цветком ___ и села на него.",
@@ -207,22 +95,8 @@
    ],
    "correct": "дикого клевера",
    "case": "Родительный (Genitive)",
-   "explain": "«дикого клевера» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«дикого клевера» depends on the noun «цветком» (whose? of what?) — genitive.",
    "id": "c19"
-  },
-  {
-   "sentence": "Кровь ударила мне в голову и я всё забыл в эту минуту: закричал что-то ___, пустил собаку и бросился бежать.",
-   "lemma": "голос",
-   "options": [
-    "неистовым голосом",
-    "неистовый голос",
-    "неистового голоса",
-    "неистовом голосе"
-   ],
-   "correct": "неистовым голосом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«неистовым голосом» — the instrumental marks the means, company, or complement.",
-   "id": "c20"
   },
   {
    "sentence": "В ___ первого тома Полного собрания сочинений Л.",
@@ -235,7 +109,7 @@
    ],
    "correct": "седьмой главе",
    "case": "Предложный (Prepositional)",
-   "explain": "«седьмой главе» — after the preposition «в», for location or topic.",
+   "explain": "«седьмой главе» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c24"
   },
   {
@@ -249,7 +123,7 @@
    ],
    "correct": "первого тома",
    "case": "Родительный (Genitive)",
-   "explain": "«первого тома» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«первого тома» depends on the noun «главе» (whose? of what?) — genitive.",
    "id": "c25"
   },
   {
@@ -263,22 +137,8 @@
    ],
    "correct": "полного собрания",
    "case": "Родительный (Genitive)",
-   "explain": "«Полного собрания» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«полного собрания» depends on the noun «тома» (whose? of what?) — genitive.",
    "id": "c26"
-  },
-  {
-   "sentence": "Толстого (стр. 26, строка 1 сверху) напечатано согласно тексту „Современника\" и всех прочих ___: „застукали на другой стороне“.",
-   "lemma": "издание",
-   "options": [
-    "печатными изданиями",
-    "печатных изданий",
-    "печатные издания",
-    "печатным изданиям"
-   ],
-   "correct": "печатных изданий",
-   "case": "Родительный (Genitive)",
-   "explain": "«печатных изданий» — the genitive here marks possession, absence, or quantity.",
-   "id": "c27"
   },
   {
    "sentence": "Толстого (стр. 26, строка 1 сверху) напечатано согласно тексту „Современника\" и всех прочих печатных изданий: „застукали на ___“.",
@@ -291,22 +151,8 @@
    ],
    "correct": "другой стороне",
    "case": "Предложный (Prepositional)",
-   "explain": "«другой стороне» — after the preposition «на», for location or topic.",
+   "explain": "«другой стороне» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c28"
-  },
-  {
-   "sentence": "Некрасовым, как известно, ___.",
-   "lemma": "охотник",
-   "options": [
-    "опытном охотнике",
-    "опытному охотнику",
-    "опытным охотником",
-    "опытный охотник"
-   ],
-   "correct": "опытным охотником",
-   "case": "Творительный (Instrumental)",
-   "explain": "«опытным охотником» — the instrumental marks the means, company, or complement.",
-   "id": "c30"
   },
   {
    "sentence": "Вследствие этого в ___, а за ним и во все издания, вкралась ошибка.",
@@ -319,22 +165,8 @@
    ],
    "correct": "журнальный текст",
    "case": "Винительный (Accusative)",
-   "explain": "«журнальный текст» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«журнальный текст» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c31"
-  },
-  {
-   "sentence": "Вместо ___ „заатукать“ или „заотукать“, как писал Толстой, употребивший этот термин в черновой редакции „Детства“ — „Четыре эпохи развития“ (см. стр. 129, отрока 32), ошибочно напечатано: „застукали“.",
-   "lemma": "термин",
-   "options": [
-    "охотничьего термина",
-    "охотничьему термину",
-    "охотничьем термине",
-    "охотничий термин"
-   ],
-   "correct": "охотничьего термина",
-   "case": "Родительный (Genitive)",
-   "explain": "«охотничьего термина» — after the preposition «в», the genitive here marks possession, absence, or quantity.",
-   "id": "c32"
   }
  ]
 }

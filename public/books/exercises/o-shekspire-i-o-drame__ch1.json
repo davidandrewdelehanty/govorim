@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Кент, указывая на присутствующего ___, спрашивает Глостера, не сын ли это его.",
-   "lemma": "человек",
-   "options": [
-    "молодого человека",
-    "молодой человек",
-    "молодым человеком",
-    "молодому человеку"
-   ],
-   "correct": "молодого человека",
-   "case": "Винительный (Accusative)",
-   "explain": "«молодого человека» — the accusative marks the direct object of the verb.",
-   "id": "c1"
-  },
-  {
    "sentence": "Глостер говорит, что он много раз уже краснел, признавая ___ сыном, теперь же перестал.",
    "lemma": "человек",
    "options": [
@@ -25,50 +11,8 @@
    ],
    "correct": "молодого человека",
    "case": "Винительный (Accusative)",
-   "explain": "«молодого человека» — the accusative marks the direct object of the verb.",
+   "explain": "«молодого человека» is the direct object of «признавая» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c2"
-  },
-  {
-   "sentence": "Не говоря о пошлости этих речей Глостера, они, кроме того, и неуместны в устах лица, долженствующего изображать ___.",
-   "lemma": "характер",
-   "options": [
-    "благородным характером",
-    "благородного характера",
-    "благородный характер",
-    "благородном характере"
-   ],
-   "correct": "благородный характер",
-   "case": "Винительный (Accusative)",
-   "explain": "«благородный характер» — the accusative marks the direct object of the verb.",
-   "id": "c3"
-  },
-  {
-   "sentence": "И потому эти слова Глостера в самом начале пьесы, очевидно, имеют целью только сообщение в забавном виде зрителю того, что у Глостера есть законный и не___.",
-   "lemma": "сын",
-   "options": [
-    "законном сыне",
-    "законного сына",
-    "законный сын",
-    "законному сыну"
-   ],
-   "correct": "законный сын",
-   "case": "Именительный (Nominative)",
-   "explain": "«законный сын» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
-  },
-  {
-   "sentence": "Придворный Кент заступается за Корделию и, желая образумить короля, укоряет его за его несправедливость и говорит ___ о вреде лести.",
-   "lemma": "речь",
-   "options": [
-    "разумных речах",
-    "разумные речи",
-    "разумными речами",
-    "разумных речей"
-   ],
-   "correct": "разумные речи",
-   "case": "Винительный (Accusative)",
-   "explain": "«разумные речи» — the accusative marks the direct object of the verb.",
-   "id": "c7"
   },
   {
    "sentence": "На этом кончается ___.",
@@ -81,7 +25,7 @@
    ],
    "correct": "первая сцена",
    "case": "Именительный (Nominative)",
-   "explain": "«первая сцена» — the subject of the sentence stands in the nominative.",
+   "explain": "«первая сцена» is the subject of «кончается» — who or what does it — so nominative.",
    "id": "c8"
   },
   {
@@ -95,36 +39,8 @@
    ],
    "correct": "продолжительные разговоры",
    "case": "Именительный (Nominative)",
-   "explain": "«продолжительные разговоры» — the subject of the sentence stands in the nominative.",
+   "explain": "«продолжительные разговоры» is the subject of «идут» — who or what does it — so nominative.",
    "id": "c9"
-  },
-  {
-   "sentence": "В таком роде идут продолжительные разговоры, вызывающие в зрителе и читателе ту тяжелую неловкость, которую испытываешь при слушании ___.",
-   "lemma": "шутка",
-   "options": [
-    "несмешных шуток",
-    "несмешные шутки",
-    "несмешным шуткам",
-    "несмешных шутках"
-   ],
-   "correct": "несмешных шуток",
-   "case": "Родительный (Genitive)",
-   "explain": "«несмешных шуток» — the genitive here marks possession, absence, or quantity.",
-   "id": "c10"
-  },
-  {
-   "sentence": "При этом шут не перестает вставлять свои ___.",
-   "lemma": "шутка",
-   "options": [
-    "несмешных шуток",
-    "несмешные шутки",
-    "несмешным шуткам",
-    "несмешных шутках"
-   ],
-   "correct": "несмешные шутки",
-   "case": "Винительный (Accusative)",
-   "explain": "«несмешные шутки» — the accusative marks the direct object of the verb.",
-   "id": "c11"
   },
   {
    "sentence": "Слова эти, выражающие верное чувство, могли бы быть трогательны, если бы сказано было только это; но слова эти теряются среди длинных ___, которые, не переставая, совершенно некстати произносит Лир.",
@@ -137,7 +53,7 @@
    ],
    "correct": "высокопарных речей",
    "case": "Родительный (Genitive)",
-   "explain": "«высокопарных речей» — after the preposition «среди», the genitive here marks possession, absence, or quantity.",
+   "explain": "«высокопарных речей» — «среди» always takes the genitive.",
    "id": "c12"
   },
   {
@@ -151,7 +67,7 @@
    ],
    "correct": "неприятного чувства",
    "case": "Родительный (Genitive)",
-   "explain": "«неприятного чувства» — after the preposition «кроме», the genitive here marks possession, absence, or quantity.",
+   "explain": "«неприятного чувства» — «кроме» always takes the genitive.",
    "id": "c13"
   },
   {
@@ -165,22 +81,8 @@
    ],
    "correct": "неудачных острот",
    "case": "Родительный (Genitive)",
-   "explain": "«неудачных острот» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«неудачных острот» — «от» always takes the genitive.",
    "id": "c14"
-  },
-  {
-   "sentence": "— Из тебя вышел бы ___,— говорит шут и т. д.",
-   "lemma": "шут",
-   "options": [
-    "славного шута",
-    "славным шутом",
-    "славному шуту",
-    "славный шут"
-   ],
-   "correct": "славный шут",
-   "case": "Именительный (Nominative)",
-   "explain": "«славный шут» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
   },
   {
    "sentence": "После этой ___ приходит джентльмен и объявляет, что лошади готовы.",
@@ -193,7 +95,7 @@
    ],
    "correct": "длинной сцены",
    "case": "Родительный (Genitive)",
-   "explain": "«длинной сцены» — after the preposition «после», the genitive here marks possession, absence, or quantity.",
+   "explain": "«длинной сцены» — «после» always takes the genitive.",
    "id": "c16"
   },
   {
@@ -207,7 +109,7 @@
    ],
    "correct": "вторая сцена",
    "case": "Именительный (Nominative)",
-   "explain": "«Вторая сцена» — the subject of the sentence stands in the nominative.",
+   "explain": "«вторая сцена» is the subject of «начинается» — who or what does it — so nominative.",
    "id": "c17"
   },
   {
@@ -221,7 +123,7 @@
    ],
    "correct": "второго действия",
    "case": "Родительный (Genitive)",
-   "explain": "«второго действия» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«второго действия» depends on the noun «сцена» (whose? of what?) — genitive.",
    "id": "c18"
   },
   {
@@ -235,7 +137,7 @@
    ],
    "correct": "третья сцена",
    "case": "Именительный (Nominative)",
-   "explain": "«Третья сцена» — the subject of the sentence stands in the nominative.",
+   "explain": "«третья сцена» is the subject of «происходит» — who or what does it — so nominative.",
    "id": "c19"
   },
   {
@@ -249,7 +151,7 @@
    ],
    "correct": "нарядной даме",
    "case": "Дательный (Dative)",
-   "explain": "«нарядной даме» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«нарядной даме» — «к» always takes the dative.",
    "id": "c20"
   },
   {
@@ -263,36 +165,8 @@
    ],
    "correct": "третье действие",
    "case": "Именительный (Nominative)",
-   "explain": "«Третье действие» — the subject of the sentence stands in the nominative.",
+   "explain": "«третье действие» is the subject of «начинается» — who or what does it — so nominative.",
    "id": "c22"
-  },
-  {
-   "sentence": "Третье действие начинается громом, молнией, бурей, какой-то ___, которой никогда не бывало, по словам действующих лиц.",
-   "lemma": "буря",
-   "options": [
-    "особенной бурей",
-    "особенной бури",
-    "особенная буря",
-    "особенной буре"
-   ],
-   "correct": "особенной бурей",
-   "case": "Творительный (Instrumental)",
-   "explain": "«особенной бурей» — the instrumental marks the means, company, or complement.",
-   "id": "c23"
-  },
-  {
-   "sentence": "Кент же рассказывает джентльмену, что герцоги поссорились между собою и что ___ высадилось в Дувре, и, рассказав это, посылает джентльмена в Дувр к Корделии.",
-   "lemma": "войско",
-   "options": [
-    "французским войском",
-    "французское войско",
-    "французского войска",
-    "французскому войску"
-   ],
-   "correct": "французское войско",
-   "case": "Именительный (Nominative)",
-   "explain": "«французское войско» — the subject of the sentence stands in the nominative.",
-   "id": "c24"
   },
   {
    "sentence": "___ третьего действия происходит в степи же, но не в том месте, где встретился Кент с джентльменом, а в другом.",
@@ -305,7 +179,7 @@
    ],
    "correct": "вторая сцена",
    "case": "Именительный (Nominative)",
-   "explain": "«Вторая сцена» — the subject of the sentence stands in the nominative.",
+   "explain": "«вторая сцена» is the subject of «происходит» — who or what does it — so nominative.",
    "id": "c25"
   },
   {
@@ -319,7 +193,7 @@
    ],
    "correct": "третьего действия",
    "case": "Родительный (Genitive)",
-   "explain": "«третьего действия» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«третьего действия» depends on the noun «сцена» (whose? of what?) — genitive.",
    "id": "c26"
   },
   {
@@ -333,7 +207,7 @@
    ],
    "correct": "бессмысленные слова",
    "case": "Винительный (Accusative)",
-   "explain": "«бессмысленные слова» — the accusative marks the direct object of the verb.",
+   "explain": "«бессмысленные слова» is the direct object of «подговаривает» (кого? что?) — accusative.",
    "id": "c27"
   },
   {
@@ -347,7 +221,7 @@
    ],
    "correct": "третья сцена",
    "case": "Именительный (Nominative)",
-   "explain": "«Третья сцена» — the subject of the sentence stands in the nominative.",
+   "explain": "«третья сцена» is the subject of «переносится» — who or what does it — so nominative.",
    "id": "c28"
   },
   {
@@ -361,7 +235,7 @@
    ],
    "correct": "французский король",
    "case": "Именительный (Nominative)",
-   "explain": "«французский король» — the subject of the sentence stands in the nominative.",
+   "explain": "«французский король» is the subject of «высадился» — who or what does it — so nominative.",
    "id": "c29"
   },
   {
@@ -375,22 +249,8 @@
    ],
    "correct": "простыми словами",
    "case": "Творительный (Instrumental)",
-   "explain": "«простыми словами» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «выраженное», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c30"
-  },
-  {
-   "sentence": "Эдгар выходит из хижины, и, хотя все знают его, никто не узнает его, так же как не узнают Кента, и Эдгар, Лир и шут начинают говорить ___, продолжающиеся с перерывами на шести страницах.",
-   "lemma": "речь",
-   "options": [
-    "бессмысленных речей",
-    "бессмысленным речам",
-    "бессмысленные речи",
-    "бессмысленных речах"
-   ],
-   "correct": "бессмысленные речи",
-   "case": "Винительный (Accusative)",
-   "explain": "«бессмысленные речи» — the accusative marks the direct object of the verb.",
-   "id": "c31"
   },
   {
    "sentence": "Лир кричит: «Чтоб тысячи ___ вонзились в их тело».",
@@ -403,7 +263,7 @@
    ],
    "correct": "горячих копий",
    "case": "Родительный (Genitive)",
-   "explain": "«горячих копий» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«горячих копий» depends on the noun «копий» (whose? of what?) — genitive.",
    "id": "c32"
   },
   {
@@ -417,7 +277,7 @@
    ],
    "correct": "злой дух",
    "case": "Именительный (Nominative)",
-   "explain": "«злой дух» — the subject of the sentence stands in the nominative.",
+   "explain": "«злой дух» is the subject of «кусает» — who or what does it — so nominative.",
    "id": "c33"
   },
   {
@@ -431,22 +291,8 @@
    ],
    "correct": "высоким собранием",
    "case": "Творительный (Instrumental)",
-   "explain": "«высоким собранием» — after the preposition «перед», the instrumental marks the means, company, or complement.",
+   "explain": "«высоким собранием» — «перед» always takes the instrumental.",
    "id": "c35"
-  },
-  {
-   "sentence": "Регана говорит, что еще один глаз цел и что этот ___ смеется над другим глазом.",
-   "lemma": "глаз",
-   "options": [
-    "целому глазу",
-    "целый глаз",
-    "целым глазом",
-    "целом глазе"
-   ],
-   "correct": "целый глаз",
-   "case": "Именительный (Nominative)",
-   "explain": "«целый глаз» — the subject of the sentence stands in the nominative.",
-   "id": "c36"
   },
   {
    "sentence": "Регана говорит, что еще один глаз цел и что этот целый глаз смеется над ___.",
@@ -459,22 +305,8 @@
    ],
    "correct": "другим глазом",
    "case": "Творительный (Instrumental)",
-   "explain": "«другим глазом» — after the preposition «над», the instrumental marks the means, company, or complement.",
+   "explain": "«другим глазом» — «над» always takes the instrumental.",
    "id": "c37"
-  },
-  {
-   "sentence": "Эдгар все в виде юродивого говорит ___ о превратностях судьбы, о выгодах низкой доли.",
-   "lemma": "язык",
-   "options": [
-    "искусственного языка",
-    "искусственный язык",
-    "искусственным языком",
-    "искусственном языке"
-   ],
-   "correct": "искусственным языком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«искусственным языком» — the instrumental marks the means, company, or complement.",
-   "id": "c39"
   },
   {
    "sentence": "Эдгар все в виде юродивого говорит искусственным языком о превратностях судьбы, о выгодах ___.",
@@ -487,64 +319,8 @@
    ],
    "correct": "низкой доли",
    "case": "Родительный (Genitive)",
-   "explain": "«низкой доли» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«низкой доли» depends on the noun «выгодах» (whose? of what?) — genitive.",
    "id": "c40"
-  },
-  {
-   "sentence": "Теперь они все сидят в горничных и ___.",
-   "lemma": "служанка",
-   "options": [
-    "разным служанкам",
-    "разных служанках",
-    "разные служанки",
-    "разными служанками"
-   ],
-   "correct": "разных служанках",
-   "case": "Предложный (Prepositional)",
-   "explain": "«разных служанках» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c41"
-  },
-  {
-   "sentence": "___ четвертого действия перед дворцом Альбанского герцога.",
-   "lemma": "сцена",
-   "options": [
-    "второй сцены",
-    "второй сцене",
-    "вторая сцена",
-    "второй сценой"
-   ],
-   "correct": "вторая сцена",
-   "case": "Именительный (Nominative)",
-   "explain": "«Вторая сцена» — the subject of the sentence stands in the nominative.",
-   "id": "c42"
-  },
-  {
-   "sentence": "Он говорит, что медведь стал бы лизать почтительность Лира, что если небеса не пошлют своих видимых духов, чтобы укротить эти ___, то люди будут пожирать друг друга, как морские чудовища, и т. п.",
-   "lemma": "обида",
-   "options": [
-    "подлых обид",
-    "подлых обидах",
-    "подлые обиды",
-    "подлым обидам"
-   ],
-   "correct": "подлые обиды",
-   "case": "Винительный (Accusative)",
-   "explain": "«подлые обиды» — the accusative marks the direct object of the verb.",
-   "id": "c43"
-  },
-  {
-   "sentence": "Он говорит, что медведь стал бы лизать почтительность Лира, что если небеса не пошлют своих видимых духов, чтобы укротить эти подлые обиды, то люди будут пожирать друг друга, как ___, и т. п.",
-   "lemma": "чудовище",
-   "options": [
-    "морскими чудовищами",
-    "морских чудовищах",
-    "морские чудовища",
-    "морских чудовищ"
-   ],
-   "correct": "морские чудовища",
-   "case": "Именительный (Nominative)",
-   "explain": "«морские чудовища» — the subject of the sentence stands in the nominative.",
-   "id": "c44"
   },
   {
    "sentence": "___ четвертого действия представляет лагерь французов.",
@@ -557,7 +333,7 @@
    ],
    "correct": "третья сцена",
    "case": "Именительный (Nominative)",
-   "explain": "«Третья сцена» — the subject of the sentence stands in the nominative.",
+   "explain": "«третья сцена» is the subject of «представляет» — who or what does it — so nominative.",
    "id": "c47"
   },
   {
@@ -571,7 +347,7 @@
    ],
    "correct": "шестой сцене",
    "case": "Предложный (Prepositional)",
-   "explain": "«шестой сцене» — after the preposition «в», for location or topic.",
+   "explain": "«шестой сцене» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c48"
   },
   {
@@ -585,22 +361,8 @@
    ],
    "correct": "слепого отца",
    "case": "Винительный (Accusative)",
-   "explain": "«слепого отца» — the accusative marks the direct object of the verb.",
+   "explain": "«слепого отца» is the direct object of «ведет» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c49"
-  },
-  {
-   "sentence": "Эдгар останавливается на ровном месте и уверяет отца, что он взошел на утес и что под ним ___, и оставляет его одного.",
-   "lemma": "обрыв",
-   "options": [
-    "страшным обрывом",
-    "страшный обрыв",
-    "страшном обрыве",
-    "страшного обрыва"
-   ],
-   "correct": "страшный обрыв",
-   "case": "Винительный (Accusative)",
-   "explain": "«страшный обрыв» — the accusative marks the direct object of the verb.",
-   "id": "c51"
   },
   {
    "sentence": "В это время приходит Лир, для чего-то весь покрытый ___.",
@@ -613,7 +375,7 @@
    ],
    "correct": "дикими цветами",
    "case": "Творительный (Instrumental)",
-   "explain": "«дикими цветами» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «покрытый», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c53"
   },
   {
@@ -627,7 +389,7 @@
    ],
    "correct": "нравственной даме",
    "case": "Дательный (Dative)",
-   "explain": "«нравственной даме» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«нравственной даме» — «к» always takes the dative.",
    "id": "c54"
   },
   {
@@ -641,7 +403,7 @@
    ],
    "correct": "седьмая сцена",
    "case": "Именительный (Nominative)",
-   "explain": "«Седьмая сцена» — the subject of the sentence stands in the nominative.",
+   "explain": "«седьмая сцена» is the subject of «происходит» — who or what does it — so nominative.",
    "id": "c55"
   },
   {
@@ -655,7 +417,7 @@
    ],
    "correct": "французского лагеря",
    "case": "Родительный (Genitive)",
-   "explain": "«французского лагеря» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«французского лагеря» depends on the noun «палатке» (whose? of what?) — genitive.",
    "id": "c56"
   },
   {
@@ -669,7 +431,7 @@
    ],
    "correct": "первая сцена",
    "case": "Именительный (Nominative)",
-   "explain": "«Первая сцена» — the subject of the sentence stands in the nominative.",
+   "explain": "«первая сцена» is the subject of «представляет» — who or what does it — so nominative.",
    "id": "c58"
   },
   {
@@ -683,7 +445,7 @@
    ],
    "correct": "пятого действия",
    "case": "Родительный (Genitive)",
-   "explain": "«пятого действия» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«пятого действия» depends on the noun «сцена» (whose? of what?) — genitive.",
    "id": "c59"
   },
   {
@@ -697,7 +459,7 @@
    ],
    "correct": "второй сцене",
    "case": "Предложный (Prepositional)",
-   "explain": "«второй сцене» — after the preposition «во», for location or topic.",
+   "explain": "«второй сцене» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c60"
   },
   {
@@ -711,35 +473,21 @@
    ],
    "correct": "третья сцена",
    "case": "Именительный (Nominative)",
-   "explain": "«Третья сцена» — the subject of the sentence stands in the nominative.",
+   "explain": "«третья сцена» is the subject of «открывается» — who or what does it — so nominative.",
    "id": "c61"
-  },
-  {
-   "sentence": "Третья сцена открывается ___ победителя Эдмунда.",
-   "lemma": "шествие",
-   "options": [
-    "торжественного шествия",
-    "торжественным шествием",
-    "торжественному шествию",
-    "торжественное шествие"
-   ],
-   "correct": "торжественным шествием",
-   "case": "Творительный (Instrumental)",
-   "explain": "«торжественным шествием» — the instrumental marks the means, company, or complement.",
-   "id": "c62"
   },
   {
    "sentence": "Эдгар поднимает забрало и говорит нравоучение о том, что за зачатие ___ Эдмунда отец заплатил своим зрением.",
    "lemma": "сын",
    "options": [
-    "незаконном сыне",
     "незаконному сыну",
-    "незаконным сыном",
+    "незаконном сыне",
+    "незаконный сын",
     "незаконного сына"
    ],
    "correct": "незаконного сына",
    "case": "Родительный (Genitive)",
-   "explain": "«незаконного сына» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«незаконного сына» depends on the noun «зачатие» (whose? of what?) — genitive.",
    "id": "c63"
   },
   {
@@ -753,7 +501,7 @@
    ],
    "correct": "ужасный бред",
    "case": "Именительный (Nominative)",
-   "explain": "«ужасный бред» — the subject of the sentence stands in the nominative.",
+   "explain": "«ужасный бред» is the subject of «начинается» — who or what does it — so nominative.",
    "id": "c64"
   },
   {
@@ -767,21 +515,21 @@
    ],
    "correct": "неудачных острот",
    "case": "Родительный (Genitive)",
-   "explain": "«неудачных острот» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«неудачных острот» — «от» always takes the genitive.",
    "id": "c65"
   },
   {
    "sentence": "Конец ___ и драмы.",
    "lemma": "действие",
    "options": [
+    "пятое действие",
     "пятого действия",
-    "пятом действии",
-    "пятому действию",
-    "пятым действием"
+    "пятым действием",
+    "пятом действии"
    ],
    "correct": "пятого действия",
    "case": "Родительный (Genitive)",
-   "explain": "«пятого действия» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«пятого действия» depends on the noun «Конец» (whose? of what?) — genitive.",
    "id": "c68"
   }
  ]

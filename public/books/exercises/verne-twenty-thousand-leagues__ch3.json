@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Капитан Фаррагут был ___, вполне достойным «Авраама Линкольна».",
-   "lemma": "моряк",
-   "options": [
-    "опытном моряке",
-    "опытному моряку",
-    "опытным моряком",
-    "опытного моряка"
-   ],
-   "correct": "опытным моряком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«опытным моряком» — the instrumental marks the means, company, or complement.",
-   "id": "c1"
-  },
-  {
    "sentence": "Капитан Фаррагут верил в чудовище, как ___ верят в библейского Левиафана, — не разумом, а сердцем.",
    "lemma": "старушка",
    "options": [
@@ -25,36 +11,22 @@
    ],
    "correct": "иные старушки",
    "case": "Именительный (Nominative)",
-   "explain": "«иные старушки» — the subject of the sentence stands in the nominative.",
+   "explain": "«иные старушки» is the subject of «верят» — who or what does it — so nominative.",
    "id": "c2"
   },
   {
    "sentence": "Это был своего рода ___, который шел на борьбу с драконом, разорявшим его остров.",
    "lemma": "рыцарь",
    "options": [
-    "родосским рыцарем",
     "родосский рыцарь",
-    "родосскому рыцарю",
-    "родосском рыцаре"
+    "родосского рыцаря",
+    "родосском рыцаре",
+    "родосскому рыцарю"
    ],
    "correct": "родосский рыцарь",
    "case": "Именительный (Nominative)",
-   "explain": "«родосский рыцарь» — the subject of the sentence stands in the nominative.",
+   "explain": "«родосский рыцарь» is the predicate after «был» — what someone or something is: the nominative of the predicate (the instrumental is also possible after быть, so it is not offered).",
    "id": "c3"
-  },
-  {
-   "sentence": "Офицеры совершенно разделяли мнение своего начальника; надо было послушать, как они разговаривали, толковали, судили, спорили, взвешивали ___ и как наблюдали необозримую ширь океана.",
-   "lemma": "шанс",
-   "options": [
-    "возможным шансам",
-    "возможными шансами",
-    "возможных шансах",
-    "возможные шансы"
-   ],
-   "correct": "возможные шансы",
-   "case": "Винительный (Accusative)",
-   "explain": "«возможные шансы» — the accusative marks the direct object of the verb.",
-   "id": "c4"
   },
   {
    "sentence": "То тот, то другой добровольно отправлялся на вахту, тогда как при ___ каждый из них жаловался бы и проклинал такую каторгу.",
@@ -67,7 +39,7 @@
    ],
    "correct": "других обстоятельствах",
    "case": "Предложный (Prepositional)",
-   "explain": "«других обстоятельствах» — after the preposition «при», for location or topic.",
+   "explain": "«других обстоятельствах» — «при» always takes the prepositional.",
    "id": "c5"
   },
   {
@@ -81,7 +53,7 @@
    ],
    "correct": "подозрительные воды",
    "case": "Винительный (Accusative)",
-   "explain": "«подозрительные воды» — the accusative marks the direct object of the verb.",
+   "explain": "«подозрительные воды» is the direct object of «рассекал» (кого? что?) — accusative.",
    "id": "c6"
   },
   {
@@ -95,22 +67,8 @@
    ],
    "correct": "тихого океана",
    "case": "Родительный (Genitive)",
-   "explain": "«Тихого океана» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«тихого океана» depends on the noun «воды» (whose? of what?) — genitive.",
    "id": "c7"
-  },
-  {
-   "sentence": "Надо сказать, что капитан Фаррагут пообещал премию в две тысячи долларов, назначавшуюся тому ___, матросу, боцману или офицеру, который первым заметит чудовище.",
-   "lemma": "юнга",
-   "options": [
-    "зоркий юнга",
-    "зоркого юнгу",
-    "зорким юнгой",
-    "зоркому юнге"
-   ],
-   "correct": "зоркому юнге",
-   "case": "Дательный (Dative)",
-   "explain": "«зоркому юнге» — the dative marks the indirect object or recipient.",
-   "id": "c8"
   },
   {
    "sentence": "Я тоже не отставал от других, никому не уступал своей доли ___.",
@@ -123,35 +81,35 @@
    ],
    "correct": "ежедневных наблюдений",
    "case": "Родительный (Genitive)",
-   "explain": "«ежедневных наблюдений» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«ежедневных наблюдений» depends on the noun «доли» (whose? of what?) — genitive.",
    "id": "c9"
   },
   {
    "sentence": "Только один мой Консейль относился довольно равнодушно к воспламенявшему нас вопросу и не разделял ___.",
    "lemma": "энтузиазм",
    "options": [
+    "общего энтузиазма",
     "общем энтузиазме",
-    "общий энтузиазм",
-    "общим энтузиазмом",
-    "общего энтузиазма"
+    "общему энтузиазму",
+    "общим энтузиазмом"
    ],
    "correct": "общего энтузиазма",
    "case": "Родительный (Genitive)",
-   "explain": "«общего энтузиазма» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«общего энтузиазма» is the object of a negated verb («не разделял») — genitive instead of the accusative.",
    "id": "c10"
   },
   {
    "sentence": "Настоящее ___ не могло быть вооружено лучше.",
    "lemma": "судно",
    "options": [
+    "китобойным судном",
     "китобойное судно",
-    "китобойном судне",
-    "китобойного судна",
-    "китобойному судну"
+    "китобойному судну",
+    "китобойном судне"
    ],
    "correct": "китобойное судно",
    "case": "Именительный (Nominative)",
-   "explain": "«китобойное судно» — the subject of the sentence stands in the nominative.",
+   "explain": "«китобойное судно» is the subject of «могло» — who or what does it — so nominative.",
    "id": "c11"
   },
   {
@@ -165,50 +123,8 @@
    ],
    "correct": "известные снаряды",
    "case": "Именительный (Nominative)",
-   "explain": "«известные снаряды» — the subject of the sentence stands in the nominative.",
+   "explain": "«известные снаряды» is the subject of «были» — who or what does it — so nominative.",
    "id": "c12"
-  },
-  {
-   "sentence": "У нас были все известные снаряды, начиная с ___ до ружей с разрывными пулями.",
-   "lemma": "гарпун",
-   "options": [
-    "ручной гарпун",
-    "ручного гарпуна",
-    "ручному гарпуну",
-    "ручным гарпуном"
-   ],
-   "correct": "ручного гарпуна",
-   "case": "Родительный (Genitive)",
-   "explain": "«ручного гарпуна» — the genitive here marks possession, absence, or quantity.",
-   "id": "c13"
-  },
-  {
-   "sentence": "У нас были все известные снаряды, начиная с ручного гарпуна до ружей с ___.",
-   "lemma": "пуля",
-   "options": [
-    "разрывным пулям",
-    "разрывными пулями",
-    "разрывных пулях",
-    "разрывные пули"
-   ],
-   "correct": "разрывными пулями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«разрывными пулями» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c14"
-  },
-  {
-   "sentence": "На баке у нас стояла усовершенствованная пушка, заряжавшаяся с казенной части, с очень ___ и с очень узким жерлом.",
-   "lemma": "стенка",
-   "options": [
-    "толстых стенках",
-    "толстые стенки",
-    "толстыми стенками",
-    "толстых стенок"
-   ],
-   "correct": "толстыми стенками",
-   "case": "Творительный (Instrumental)",
-   "explain": "«толстыми стенками» — the instrumental marks the means, company, or complement.",
-   "id": "c15"
   },
   {
    "sentence": "Модель этой пушки была представлена на ___ 1867 года.",
@@ -221,7 +137,7 @@
    ],
    "correct": "всемирной выставке",
    "case": "Предложный (Prepositional)",
-   "explain": "«Всемирной выставке» — after the preposition «на», for location or topic.",
+   "explain": "«всемирной выставке» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c16"
   },
   {
@@ -235,7 +151,7 @@
    ],
    "correct": "американского происхождения",
    "case": "Родительный (Genitive)",
-   "explain": "«американского происхождения» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«американского происхождения» depends on the noun «орудие» (whose? of what?) — genitive.",
    "id": "c17"
   },
   {
@@ -249,105 +165,49 @@
    ],
    "correct": "верной рукой",
    "case": "Творительный (Instrumental)",
-   "explain": "«верной рукой» — the instrumental marks the means, company, or complement.",
+   "explain": "«обладал» takes the instrumental.",
    "id": "c18"
   },
   {
    "sentence": "Он обладал необычайно верной рукой и не знал себе равных в своем ___.",
    "lemma": "промысл",
    "options": [
+    "опасным промыслом",
     "опасного промысла",
-    "опасном промысле",
-    "опасный промысл",
-    "опасным промыслом"
+    "опасному промыслу",
+    "опасном промысле"
    ],
    "correct": "опасном промысле",
    "case": "Предложный (Prepositional)",
-   "explain": "«опасном промысле» — after the preposition «в», for location or topic.",
+   "explain": "«опасном промысле» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c19"
-  },
-  {
-   "sentence": "Его ловкость и хладнокровие, смелость и сообразительность достигали самой высшей степени: надо было быть очень ___ или чересчур коварным кашалотом, чтобы увернуться от его гарпуна.",
-   "lemma": "кит",
-   "options": [
-    "хитрому киту",
-    "хитрым китом",
-    "хитрый кит",
-    "хитрого кита"
-   ],
-   "correct": "хитрым китом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«хитрым китом» — the instrumental marks the means, company, or complement.",
-   "id": "c20"
-  },
-  {
-   "sentence": "Мне кажется, его можно было сравнить с точным ___, который в то же время был бы и пушкой, всегда готовой выстрелить.",
-   "lemma": "телескоп",
-   "options": [
-    "превосходном телескопе",
-    "превосходный телескоп",
-    "превосходного телескопа",
-    "превосходным телескопом"
-   ],
-   "correct": "превосходным телескопом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«превосходным телескопом» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c21"
-  },
-  {
-   "sentence": "Ему предоставлялся случай поговорить, а мне послушать старый ___, которым писал Рабле и который до сих пор еще сохранился в некоторых канадских провинциях.",
-   "lemma": "язык",
-   "options": [
-    "французском языке",
-    "французскому языку",
-    "французский язык",
-    "французского языка"
-   ],
-   "correct": "французский язык",
-   "case": "Винительный (Accusative)",
-   "explain": "«французский язык» — the accusative marks the direct object of the verb.",
-   "id": "c22"
   },
   {
    "sentence": "Ему предоставлялся случай поговорить, а мне послушать старый французский язык, которым писал Рабле и который до сих пор еще сохранился в некоторых ___.",
    "lemma": "провинция",
    "options": [
+    "канадскими провинциями",
+    "канадских провинций",
     "канадским провинциям",
-    "канадских провинциях",
-    "канадские провинции",
-    "канадских провинций"
+    "канадских провинциях"
    ],
    "correct": "канадских провинциях",
    "case": "Предложный (Prepositional)",
-   "explain": "«канадских провинциях» — after the preposition «в», for location or topic.",
+   "explain": "«канадских провинциях» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c23"
-  },
-  {
-   "sentence": "Семья Неда жила в Квебеке, в его роду было много ___ еще в те времена, когда этот город принадлежал Франции.",
-   "lemma": "рыбак",
-   "options": [
-    "отважных рыбаков",
-    "отважным рыбакам",
-    "отважными рыбаками",
-    "отважные рыбаки"
-   ],
-   "correct": "отважных рыбаков",
-   "case": "Родительный (Genitive)",
-   "explain": "«отважных рыбаков» — the genitive here marks possession, absence, or quantity.",
-   "id": "c24"
   },
   {
    "sentence": "Мало-помалу Нед разговорился, и я с наслаждением слушал рассказы о его приключениях в ___.",
    "lemma": "море",
    "options": [
-    "полярных морей",
     "полярными морями",
-    "полярных морях",
-    "полярные моря"
+    "полярных морей",
+    "полярным морям",
+    "полярных морях"
    ],
    "correct": "полярных морях",
    "case": "Предложный (Prepositional)",
-   "explain": "«полярных морях» — after the preposition «в», for location or topic.",
+   "explain": "«полярных морях» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c25"
   },
   {
@@ -361,7 +221,7 @@
    ],
    "correct": "рыбной ловле",
    "case": "Предложный (Prepositional)",
-   "explain": "«рыбной ловле» — after the preposition «о», for location or topic.",
+   "explain": "«рыбной ловле» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c26"
   },
   {
@@ -375,36 +235,8 @@
    ],
    "correct": "северных стран",
    "case": "Родительный (Genitive)",
-   "explain": "«северных стран» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«северных стран» depends on the noun «Илиаду» (whose? of what?) — genitive.",
    "id": "c27"
-  },
-  {
-   "sentence": "Мы стали с ним друзьями и связаны той ___, которая зарождается и крепнет в страшных и тяжелых жизненных испытаниях.",
-   "lemma": "дружба",
-   "options": [
-    "неразрывной дружбы",
-    "неразрывная дружба",
-    "неразрывной дружбой",
-    "неразрывной дружбе"
-   ],
-   "correct": "неразрывной дружбой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«неразрывной дружбой» — the instrumental marks the means, company, or complement.",
-   "id": "c28"
-  },
-  {
-   "sentence": "Мы стали с ним друзьями и связаны той неразрывной дружбой, которая зарождается и крепнет в страшных и тяжелых ___.",
-   "lemma": "испытание",
-   "options": [
-    "жизненными испытаниями",
-    "жизненные испытания",
-    "жизненным испытаниям",
-    "жизненных испытаниях"
-   ],
-   "correct": "жизненных испытаниях",
-   "case": "Предложный (Prepositional)",
-   "explain": "«жизненных испытаниях» — after the preposition «в», for location or topic.",
-   "id": "c29"
   },
   {
    "sentence": "Что же думал Нед Ленд о ___?",
@@ -417,7 +249,7 @@
    ],
    "correct": "морском чудовище",
    "case": "Предложный (Prepositional)",
-   "explain": "«морском чудовище» — after the preposition «о», for location or topic.",
+   "explain": "«морском чудовище» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c30"
   },
   {
@@ -431,22 +263,8 @@
    ],
    "correct": "общего убеждения",
    "case": "Родительный (Genitive)",
-   "explain": "«общего убеждения» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«общего убеждения» is the object of a negated verb («не разделял») — genitive instead of the accusative.",
    "id": "c31"
-  },
-  {
-   "sentence": "___ 30 июня, через три недели после нашего отплытия из Нью-Йорка, фрегат находился в тридцати милях под ветром от патагонских берегов.",
-   "lemma": "вечер",
-   "options": [
-    "великолепный вечер",
-    "великолепного вечера",
-    "великолепном вечере",
-    "великолепным вечером"
-   ],
-   "correct": "великолепным вечером",
-   "case": "Творительный (Instrumental)",
-   "explain": "«Великолепным вечером» — the instrumental marks the means, company, or complement.",
-   "id": "c32"
   },
   {
    "sentence": "Великолепным вечером 30 июня, через три недели после нашего отплытия из Нью-Йорка, фрегат находился в тридцати милях под ветром от ___.",
@@ -459,7 +277,7 @@
    ],
    "correct": "патагонских берегов",
    "case": "Родительный (Genitive)",
-   "explain": "«патагонских берегов» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«патагонских берегов» — «от» always takes the genitive.",
    "id": "c33"
   },
   {
@@ -473,7 +291,7 @@
    ],
    "correct": "магелланов пролив",
    "case": "Именительный (Nominative)",
-   "explain": "«Магелланов пролив» — the subject of the sentence stands in the nominative.",
+   "explain": "«магелланов пролив» is the subject of «открывался» — who or what does it — so nominative.",
    "id": "c34"
   },
   {
@@ -487,7 +305,7 @@
    ],
    "correct": "тихого океана",
    "case": "Родительный (Genitive)",
-   "explain": "«Тихого океана» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«тихого океана» depends on the noun «воды» (whose? of what?) — genitive.",
    "id": "c35"
   },
   {
@@ -501,7 +319,7 @@
    ],
    "correct": "гигантского единорога",
    "case": "Винительный (Accusative)",
-   "explain": "«гигантского единорога» — after the preposition «про», the accusative marks the direct object of the verb.",
+   "explain": "«гигантского единорога» — «про» always takes the accusative.",
    "id": "c36"
   },
   {
@@ -510,26 +328,26 @@
    "options": [
     "различными шансами",
     "различных шансах",
-    "различные шансы",
+    "различных шансов",
     "различным шансам"
    ],
    "correct": "различных шансах",
    "case": "Предложный (Prepositional)",
-   "explain": "«различных шансах» — after the preposition «о», for location or topic.",
+   "explain": "«различных шансах» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c37"
   },
   {
    "sentence": "— Если темные люди верят в ___ да в допотопных чудовищ, что будто бы сидят в земных недрах, так это им простительно, на то они и темные люди, но ведь астрономы и геологи смеются над этими баснями.",
    "lemma": "комета",
    "options": [
-    "необыкновенным кометам",
-    "необыкновенных кометах",
     "необыкновенными кометами",
+    "необыкновенным кометам",
+    "необыкновенных комет",
     "необыкновенные кометы"
    ],
    "correct": "необыкновенные кометы",
    "case": "Винительный (Accusative)",
-   "explain": "«необыкновенные кометы» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«необыкновенные кометы» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c38"
   },
   {
@@ -543,22 +361,8 @@
    ],
    "correct": "земных недрах",
    "case": "Предложный (Prepositional)",
-   "explain": "«земных недрах» — after the preposition «в», for location or topic.",
+   "explain": "«земных недрах» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c39"
-  },
-  {
-   "sentence": "— Да и то я этого никогда не видел ___.",
-   "lemma": "глаз",
-   "options": [
-    "собственными глазами",
-    "собственных глазах",
-    "собственных глаз",
-    "собственным глазам"
-   ],
-   "correct": "собственными глазами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«собственными глазами» — the instrumental marks the means, company, or complement.",
-   "id": "c40"
   },
   {
    "sentence": "И пока не увижу, буду стоять на том, что такие ___ водятся не в морях, а в сказках.",
@@ -571,63 +375,35 @@
    ],
    "correct": "зубастые чудовища",
    "case": "Именительный (Nominative)",
-   "explain": "«зубастые чудовища» — the subject of the sentence stands in the nominative.",
+   "explain": "«зубастые чудовища» is the subject of «водятся» — who or what does it — so nominative.",
    "id": "c41"
-  },
-  {
-   "sentence": "Вот это уж ___!",
-   "lemma": "сказка",
-   "options": [
-    "чистых сказок",
-    "чистыми сказками",
-    "чистым сказкам",
-    "чистые сказки"
-   ],
-   "correct": "чистые сказки",
-   "case": "Именительный (Nominative)",
-   "explain": "«чистые сказки» — the subject of the sentence stands in the nominative.",
-   "id": "c42"
-  },
-  {
-   "sentence": "— Затем, что нужна ___, чтобы жить в глубине океана и выдерживать давление верхних слоев.",
-   "lemma": "сила",
-   "options": [
-    "неизмеримая сила",
-    "неизмеримой силы",
-    "неизмеримой силе",
-    "неизмеримой силой"
-   ],
-   "correct": "неизмеримая сила",
-   "case": "Именительный (Nominative)",
-   "explain": "«неизмеримая сила» — the subject of the sentence stands in the nominative.",
-   "id": "c43"
   },
   {
    "sentence": "— В ___ — да, Нед, но в математике — нет.",
    "lemma": "дело",
    "options": [
-    "торговые дела",
-    "торговым делам",
     "торговых делах",
-    "торговых дел"
+    "торговыми делами",
+    "торговых дел",
+    "торговым делам"
    ],
    "correct": "торговых делах",
    "case": "Предложный (Prepositional)",
-   "explain": "«торговых делах» — after the preposition «в», for location or topic.",
+   "explain": "«торговых делах» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c44"
   },
   {
    "sentence": "Представим мы себе давление в одну атмосферу в виде давления ___ высотой тридцать два фута.",
    "lemma": "столб",
    "options": [
-    "водяным столбом",
-    "водяного столба",
+    "водяному столбу",
     "водяной столб",
-    "водяном столбе"
+    "водяном столбе",
+    "водяного столба"
    ],
    "correct": "водяного столба",
    "case": "Родительный (Genitive)",
-   "explain": "«водяного столба» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«водяного столба» depends on the noun «давления» (whose? of what?) — genitive.",
    "id": "c45"
   },
   {
@@ -641,22 +417,8 @@
    ],
    "correct": "морской воде",
    "case": "Предложный (Prepositional)",
-   "explain": "«морской воде» — after the preposition «о», for location or topic.",
+   "explain": "«морской воде» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c46"
-  },
-  {
-   "sentence": "Когда вы ныряете, Нед, и над вами тридцать два фута воды, то всякий раз тело ваше выдерживает давление, равное одной атмосфере, то есть по стольку же килограммов на каждый ___ его поверхности.",
-   "lemma": "сантиметр",
-   "options": [
-    "квадратном сантиметре",
-    "квадратным сантиметром",
-    "квадратному сантиметру",
-    "квадратный сантиметр"
-   ],
-   "correct": "квадратный сантиметр",
-   "case": "Винительный (Accusative)",
-   "explain": "«квадратный сантиметр» — after the preposition «по», the accusative marks the direct object of the verb.",
-   "id": "c47"
   },
   {
    "sentence": "Значит, если бы вам удалось достигнуть такой глубины в океане, каждый ___ вашего тела подвергся бы давлению тысячи килограммов.",
@@ -669,49 +431,21 @@
    ],
    "correct": "квадратный сантиметр",
    "case": "Именительный (Nominative)",
-   "explain": "«квадратный сантиметр» — the subject of the sentence stands in the nominative.",
+   "explain": "«квадратный сантиметр» is the subject of «подвергся» — who or what does it — so nominative.",
    "id": "c48"
-  },
-  {
-   "sentence": "А вы знаете, почтеннейший, сколько ___ имеет поверхность вашего тела?",
-   "lemma": "сантиметр",
-   "options": [
-    "кубическим сантиметрам",
-    "кубических сантиметров",
-    "кубических сантиметрах",
-    "кубическими сантиметрами"
-   ],
-   "correct": "кубических сантиметров",
-   "case": "Родительный (Genitive)",
-   "explain": "«кубических сантиметров» — the genitive here marks possession, absence, or quantity.",
-   "id": "c49"
-  },
-  {
-   "sentence": "Но в воде совсем ___.",
-   "lemma": "дело",
-   "options": [
-    "другого дела",
-    "другом деле",
-    "другим делом",
-    "другое дело"
-   ],
-   "correct": "другое дело",
-   "case": "Именительный (Nominative)",
-   "explain": "«другое дело» — the subject of the sentence stands in the nominative.",
-   "id": "c50"
   },
   {
    "sentence": "— Да, понимаю, — ответил Нед, начинавший слушать с ___, — вода меня окружает, но внутрь не проникает.",
    "lemma": "внимание",
    "options": [
-    "большее внимание",
     "большем внимании",
     "большим вниманием",
-    "большего внимания"
+    "большее внимание",
+    "большему вниманию"
    ],
    "correct": "большим вниманием",
    "case": "Творительный (Instrumental)",
-   "explain": "«большим вниманием» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«большим вниманием» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c51"
   },
   {
@@ -725,36 +459,8 @@
    ],
    "correct": "листового железа",
    "case": "Родительный (Genitive)",
-   "explain": "«листового железа» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«листового железа» — «из» always takes the genitive.",
    "id": "c52"
-  },
-  {
-   "sentence": "— Они, надо полагать, сбиты из листового железа в восемь дюймов толщиной, как ___, — отвечал Нед.",
-   "lemma": "фрегат",
-   "options": [
-    "броненосные фрегаты",
-    "броненосных фрегатов",
-    "броненосным фрегатам",
-    "броненосными фрегатами"
-   ],
-   "correct": "броненосные фрегаты",
-   "case": "Именительный (Nominative)",
-   "explain": "«броненосные фрегаты» — the subject of the sentence stands in the nominative.",
-   "id": "c53"
-  },
-  {
-   "sentence": "Ну вы и подумайте после этого, какое разрушение может сотворить ___, когда устремится со скоростью экстренного поезда на корпус корабля!",
-   "lemma": "масса",
-   "options": [
-    "подобная масса",
-    "подобной массой",
-    "подобной массы",
-    "подобной массе"
-   ],
-   "correct": "подобная масса",
-   "case": "Именительный (Nominative)",
-   "explain": "«подобная масса» — the subject of the sentence stands in the nominative.",
-   "id": "c54"
   },
   {
    "sentence": "Ну вы и подумайте после этого, какое разрушение может сотворить подобная масса, когда устремится со скоростью ___ на корпус корабля!",
@@ -767,36 +473,8 @@
    ],
    "correct": "экстренного поезда",
    "case": "Родительный (Genitive)",
-   "explain": "«экстренного поезда» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«экстренного поезда» depends on the noun «скоростью» (whose? of what?) — genitive.",
    "id": "c55"
-  },
-  {
-   "sentence": "Она не могла возникнуть сама собой, она не могла быть сделана ___ или подводной машиной — значит, по всей вероятности, борт «Шотландии» пробил просверливающий орган огромного животного.",
-   "lemma": "скала",
-   "options": [
-    "подводной скалой",
-    "подводной скале",
-    "подводная скала",
-    "подводной скалы"
-   ],
-   "correct": "подводной скалой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«подводной скалой» — the instrumental marks the means, company, or complement.",
-   "id": "c56"
-  },
-  {
-   "sentence": "Она не могла возникнуть сама собой, она не могла быть сделана подводной скалой или ___ — значит, по всей вероятности, борт «Шотландии» пробил просверливающий орган огромного животного.",
-   "lemma": "машина",
-   "options": [
-    "подводной машины",
-    "подводная машина",
-    "подводной машиной",
-    "подводной машине"
-   ],
-   "correct": "подводной машиной",
-   "case": "Творительный (Instrumental)",
-   "explain": "«подводной машиной» — the instrumental marks the means, company, or complement.",
-   "id": "c57"
   },
   {
    "sentence": "Она не могла возникнуть сама собой, она не могла быть сделана подводной скалой или подводной машиной — значит, по всей вероятности, борт «Шотландии» пробил просверливающий орган ___.",
@@ -809,7 +487,7 @@
    ],
    "correct": "огромного животного",
    "case": "Родительный (Genitive)",
-   "explain": "«огромного животного» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«огромного животного» depends on the noun «орган» (whose? of what?) — genitive.",
    "id": "c58"
   }
  ]

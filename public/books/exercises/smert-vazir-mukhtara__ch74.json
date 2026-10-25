@@ -1,76 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Перед полком караваном стояли дроги, запряженные четверками, покрытые парчой, и между ними ___.",
-   "lemma": "пушка",
-   "options": [
-    "длинные пушки",
-    "длинными пушками",
-    "длинных пушках",
-    "длинным пушкам"
-   ],
-   "correct": "длинные пушки",
-   "case": "Именительный (Nominative)",
-   "explain": "«длинные пушки» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
-  },
-  {
-   "sentence": "Только передние дроги были не покрыты, и на них желтый, тусклый стоял ___.",
-   "lemma": "трон",
-   "options": [
-    "золотом троне",
-    "золотым троном",
-    "золотого трона",
-    "золотой трон"
-   ],
-   "correct": "золотой трон",
-   "case": "Именительный (Nominative)",
-   "explain": "«золотой трон» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
-  },
-  {
-   "sentence": "Сверху, с террасы, парад был подобен ___, остановившимся в движении, трон — опочившему полководцу, остальные повозки — безымянным мертвецам.",
-   "lemma": "похороны",
-   "options": [
-    "военным похоронам",
-    "военных похоронах",
-    "военных похорон",
-    "военными похоронами"
-   ],
-   "correct": "военным похоронам",
-   "case": "Дательный (Dative)",
-   "explain": "«военным похоронам» — the dative marks the indirect object or recipient.",
-   "id": "c6"
-  },
-  {
-   "sentence": "Сверху, с террасы, парад был подобен военным похоронам, остановившимся в движении, трон — опочившему полководцу, ___ — безымянным мертвецам.",
-   "lemma": "повозка",
-   "options": [
-    "остальные повозки",
-    "остальных повозках",
-    "остальных повозок",
-    "остальными повозками"
-   ],
-   "correct": "остальные повозки",
-   "case": "Именительный (Nominative)",
-   "explain": "«остальные повозки» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
-  },
-  {
-   "sentence": "Сверху, с террасы, парад был подобен военным похоронам, остановившимся в движении, трон — опочившему полководцу, остальные повозки — ___.",
-   "lemma": "мертвец",
-   "options": [
-    "безымянным мертвецам",
-    "безымянные мертвецы",
-    "безымянных мертвецов",
-    "безымянными мертвецами"
-   ],
-   "correct": "безымянным мертвецам",
-   "case": "Дательный (Dative)",
-   "explain": "«безымянным мертвецам» — the dative marks the indirect object or recipient.",
-   "id": "c8"
-  },
-  {
    "sentence": "Это проходил мимо дома ___ сводный гвардейский полк, возвращавшийся из Персии и везший куруры и трофеи.",
    "lemma": "генерал-губернатор",
    "options": [
@@ -81,36 +11,8 @@
    ],
    "correct": "военного генерал-губернатора",
    "case": "Родительный (Genitive)",
-   "explain": "«военного генерал-губернатора» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«военного генерал-губернатора» depends on the noun «дома» (whose? of what?) — genitive.",
    "id": "c9"
-  },
-  {
-   "sentence": "Это проходил мимо дома военного генерал-губернатора сводный ___, возвращавшийся из Персии и везший куруры и трофеи.",
-   "lemma": "полк",
-   "options": [
-    "гвардейскому полку",
-    "гвардейским полком",
-    "гвардейский полк",
-    "гвардейского полка"
-   ],
-   "correct": "гвардейский полк",
-   "case": "Именительный (Nominative)",
-   "explain": "«гвардейский полк» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
-  },
-  {
-   "sentence": "Командир был тоже не простой — это был тот ___, которого в декабре столкнули младшие офицеры с каменной казарменной лестницы.",
-   "lemma": "командир",
-   "options": [
-    "гвардейский командир",
-    "гвардейского командира",
-    "гвардейскому командиру",
-    "гвардейском командире"
-   ],
-   "correct": "гвардейский командир",
-   "case": "Именительный (Nominative)",
-   "explain": "«гвардейский командир» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
   },
   {
    "sentence": "Командир был тоже не простой — это был тот гвардейский командир, которого в декабре столкнули ___ с каменной казарменной лестницы.",
@@ -123,50 +25,8 @@
    ],
    "correct": "младшие офицеры",
    "case": "Именительный (Nominative)",
-   "explain": "«младшие офицеры» — the subject of the sentence stands in the nominative.",
+   "explain": "«младшие офицеры» is the subject of «столкнули» — who or what does it — so nominative.",
    "id": "c13"
-  },
-  {
-   "sentence": "Командир был тоже не простой — это был тот гвардейский командир, которого в декабре столкнули младшие офицеры с каменной ___.",
-   "lemma": "лестница",
-   "options": [
-    "казарменной лестницей",
-    "казарменной лестнице",
-    "казарменной лестницы",
-    "казарменная лестница"
-   ],
-   "correct": "казарменной лестницы",
-   "case": "Родительный (Genitive)",
-   "explain": "«казарменной лестницы» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
-   "id": "c14"
-  },
-  {
-   "sentence": "Трофеи, которые привез полк, были: трон Аббаса-Мирзы, семь пушек ___, Ардебильская библиотека старых свитков и две картины, изображавшие победы Аббаса-Мирзы.",
-   "lemma": "мастерство",
-   "options": [
-    "персидским мастерством",
-    "персидском мастерстве",
-    "персидского мастерства",
-    "персидскому мастерству"
-   ],
-   "correct": "персидского мастерства",
-   "case": "Родительный (Genitive)",
-   "explain": "«персидского мастерства» — the genitive here marks possession, absence, or quantity.",
-   "id": "c15"
-  },
-  {
-   "sentence": "Трофеи, которые привез полк, были: трон Аббаса-Мирзы, семь пушек персидского мастерства, ___ старых свитков и две картины, изображавшие победы Аббаса-Мирзы.",
-   "lemma": "библиотека",
-   "options": [
-    "ардебильской библиотеки",
-    "ардебильской библиотеке",
-    "ардебильской библиотекой",
-    "ардебильская библиотека"
-   ],
-   "correct": "ардебильская библиотека",
-   "case": "Именительный (Nominative)",
-   "explain": "«Ардебильская библиотека» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
   },
   {
    "sentence": "Трофеи, которые привез полк, были: трон Аббаса-Мирзы, семь пушек персидского мастерства, Ардебильская библиотека ___ и две картины, изображавшие победы Аббаса-Мирзы.",
@@ -179,7 +39,7 @@
    ],
    "correct": "старых свитков",
    "case": "Родительный (Genitive)",
-   "explain": "«старых свитков» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«старых свитков» depends on the noun «библиотека» (whose? of what?) — genitive.",
    "id": "c17"
   },
   {
@@ -193,7 +53,7 @@
    ],
    "correct": "военном действии",
    "case": "Предложный (Prepositional)",
-   "explain": "«военном действии» — after the preposition «при», for location or topic.",
+   "explain": "«военном действии» — «при» always takes the prepositional.",
    "id": "c19"
   },
   {
@@ -207,7 +67,7 @@
    ],
    "correct": "разным нациям",
    "case": "Дательный (Dative)",
-   "explain": "«разным нациям» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«разным нациям» — «к» always takes the dative.",
    "id": "c20"
   },
   {
@@ -221,21 +81,21 @@
    ],
    "correct": "тифлисское население",
    "case": "Именительный (Nominative)",
-   "explain": "«тифлисское население» — the subject of the sentence stands in the nominative.",
+   "explain": "«тифлисское население» is the subject of «высыпало» — who or what does it — so nominative.",
    "id": "c21"
   },
   {
    "sentence": "Все тифлисское население высыпало на широкие ___ и смотрело на парад.",
    "lemma": "кровля",
    "options": [
+    "плоским кровлям",
     "плоских кровель",
-    "плоские кровли",
     "плоскими кровлями",
-    "плоских кровлях"
+    "плоские кровли"
    ],
    "correct": "плоские кровли",
    "case": "Винительный (Accusative)",
-   "explain": "«плоские кровли» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«плоские кровли» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c22"
   },
   {
@@ -249,50 +109,8 @@
    ],
    "correct": "высокого архиерея",
    "case": "Винительный (Accusative)",
-   "explain": "«высокого архиерея» — the accusative marks the direct object of the verb.",
+   "explain": "«высокого архиерея» is the direct object of «толкнул» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c23"
-  },
-  {
-   "sentence": "Панагия сияла на нем, как ___; было так жарко, что капли медленно падали с архиерейского носа.",
-   "lemma": "нагрудник",
-   "options": [
-    "детскому нагруднику",
-    "детского нагрудника",
-    "детском нагруднике",
-    "детский нагрудник"
-   ],
-   "correct": "детский нагрудник",
-   "case": "Именительный (Nominative)",
-   "explain": "«детский нагрудник» — the subject of the sentence stands in the nominative.",
-   "id": "c24"
-  },
-  {
-   "sentence": "Панагия сияла на нем, как детский нагрудник; было так жарко, что капли медленно падали с ___.",
-   "lemma": "нос",
-   "options": [
-    "архиерейском носе",
-    "архиерейского носа",
-    "архиерейскому носу",
-    "архиерейский нос"
-   ],
-   "correct": "архиерейского носа",
-   "case": "Родительный (Genitive)",
-   "explain": "«архиерейского носа» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
-   "id": "c25"
-  },
-  {
-   "sentence": "Становилось ясно: ___ народа персидского были куруры, и его от них освободили.",
-   "lemma": "бедствие",
-   "options": [
-    "единственным бедствием",
-    "единственном бедствии",
-    "единственного бедствия",
-    "единственное бедствие"
-   ],
-   "correct": "единственным бедствием",
-   "case": "Творительный (Instrumental)",
-   "explain": "«единственным бедствием» — the instrumental marks the means, company, or complement.",
-   "id": "c26"
   },
   {
    "sentence": "Рты у солдат были раскрыты ___, словно лекарь, обходя фронт, дергал зубы.",
@@ -305,36 +123,8 @@
    ],
    "correct": "ровным строем",
    "case": "Творительный (Instrumental)",
-   "explain": "«ровным строем» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «раскрыты», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c27"
-  },
-  {
-   "sentence": "Рядом оперлись на перила ___ архиерея.",
-   "lemma": "палец",
-   "options": [
-    "белых пальцах",
-    "белых пальцев",
-    "белые пальцы",
-    "белыми пальцами"
-   ],
-   "correct": "белые пальцы",
-   "case": "Винительный (Accusative)",
-   "explain": "«белые пальцы» — the accusative marks the direct object of the verb.",
-   "id": "c28"
-  },
-  {
-   "sentence": "Дамы зашевелились на террасе, как одушевленные ___.",
-   "lemma": "куст",
-   "options": [
-    "розовых кустах",
-    "розовым кустам",
-    "розовые кусты",
-    "розовыми кустами"
-   ],
-   "correct": "розовые кусты",
-   "case": "Именительный (Nominative)",
-   "explain": "«розовые кусты» — the subject of the sentence stands in the nominative.",
-   "id": "c30"
   }
  ]
 }

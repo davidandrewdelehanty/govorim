@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "— Плохо здоровье, Андрей, — говорил Обломов, обнимая его, — ___ что-то все немеет.",
-   "lemma": "нога",
-   "options": [
-    "левой ногой",
-    "левой ноги",
-    "левой ноге",
-    "левая нога"
-   ],
-   "correct": "левая нога",
-   "case": "Именительный (Nominative)",
-   "explain": "«левая нога» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "— До тебя ведь здесь не доходят вести из ___?",
    "lemma": "мир",
    "options": [
@@ -25,22 +11,8 @@
    ],
    "correct": "живого мира",
    "case": "Родительный (Genitive)",
-   "explain": "«живого мира» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«живого мира» — «из» always takes the genitive.",
    "id": "c2"
-  },
-  {
-   "sentence": "___ я женат на Ольге.",
-   "lemma": "год",
-   "options": [
-    "другим годом",
-    "другом годе",
-    "другой год",
-    "другому году"
-   ],
-   "correct": "другой год",
-   "case": "Винительный (Accusative)",
-   "explain": "«Другой год» — the accusative marks the direct object of the verb.",
-   "id": "c3"
   },
   {
    "sentence": "— Нет, скажи, напомни, что я встретился ей затем, чтоб вывести ее на путь, и что я благословляю эту встречу, благословляю ее и на ___!",
@@ -53,22 +25,8 @@
    ],
    "correct": "новом пути",
    "case": "Предложный (Prepositional)",
-   "explain": "«новом пути» — after the preposition «на», for location or topic.",
+   "explain": "«новом пути» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c5"
-  },
-  {
-   "sentence": "Поделом бранили меня тогда Илья Ильич, ___!",
-   "lemma": "пёс",
-   "options": [
-    "старый пёс",
-    "старом псе",
-    "старому псу",
-    "старого пса"
-   ],
-   "correct": "старого пса",
-   "case": "Винительный (Accusative)",
-   "explain": "«старого пса» — the accusative marks the direct object of the verb.",
-   "id": "c6"
   },
   {
    "sentence": "Илья Ильич выпил две рюмки ___, одну за другой, и с жадностью принялся за баранину.",
@@ -81,22 +39,8 @@
    ],
    "correct": "смородинной водки",
    "case": "Родительный (Genitive)",
-   "explain": "«смородинной водки» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«смородинной водки» depends on the noun «рюмки» (whose? of what?) — genitive.",
    "id": "c9"
-  },
-  {
-   "sentence": "— Агафья Матвеевна сама настаивает: ___!",
-   "lemma": "женщина",
-   "options": [
-    "славной женщины",
-    "славной женщине",
-    "славная женщина",
-    "славной женщиной"
-   ],
-   "correct": "славная женщина",
-   "case": "Именительный (Nominative)",
-   "explain": "«славная женщина» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
   },
   {
    "sentence": "Знаешь, я тебе скажу, — плохо владея языком, заключил Обломов, — дай мне тысячи две-три, так я бы тебя не стал потчевать языком да бараниной; целого бы осетра подал, форелей, филе ___.",
@@ -109,36 +53,8 @@
    ],
    "correct": "первого сорта",
    "case": "Родительный (Genitive)",
-   "explain": "«первого сорта» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«первого сорта» depends on the noun «филе» (whose? of what?) — genitive.",
    "id": "c13"
-  },
-  {
-   "sentence": "— Да выпей, Андрей, право выпей: ___!",
-   "lemma": "водка",
-   "options": [
-    "славной водки",
-    "славной водкой",
-    "славная водка",
-    "славной водке"
-   ],
-   "correct": "славная водка",
-   "case": "Именительный (Nominative)",
-   "explain": "«славная водка» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
-  },
-  {
-   "sentence": "Так вот что значит баранина, ___!",
-   "lemma": "вино",
-   "options": [
-    "кислое вино",
-    "кислым вином",
-    "кислом вине",
-    "кислого вина"
-   ],
-   "correct": "кислое вино",
-   "case": "Именительный (Nominative)",
-   "explain": "«кислое вино» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
   },
   {
    "sentence": "Были должны постом мяснику двенадцать с полтиной, так еще на ___ отдали; за сливки молочнице тоже заплатили — они ничего не должны.",
@@ -151,7 +67,7 @@
    ],
    "correct": "третьей неделе",
    "case": "Предложный (Prepositional)",
-   "explain": "«третьей неделе» — after the preposition «на», for location or topic.",
+   "explain": "«третьей неделе» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c18"
   },
   {
@@ -165,7 +81,7 @@
    ],
    "correct": "зеленные лавки",
    "case": "Винительный (Accusative)",
-   "explain": "«зеленные лавки» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«зеленные лавки» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c19"
   },
   {
@@ -179,7 +95,7 @@
    ],
    "correct": "будущих благ",
    "case": "Родительный (Genitive)",
-   "explain": "«будущих благ» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«будущих благ» depends on the noun «надежде» (whose? of what?) — genitive.",
    "id": "c20"
   }
  ]

@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Это был тот ___, который крикнул «караул» под окном императора, был наказан и сослан в Сибирь, а потом помилован и сделан поручиком.",
-   "lemma": "поручик",
-   "options": [
-    "самый поручик",
-    "самым поручиком",
-    "самому поручику",
-    "самого поручика"
-   ],
-   "correct": "самый поручик",
-   "case": "Именительный (Nominative)",
-   "explain": "«самый поручик» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Фрейлина, ___ которой спас его, сначала обрадовалась, думая, что ее соединяют с внезапным любовником.",
    "lemma": "обморок",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "краткий обморок",
    "case": "Именительный (Nominative)",
-   "explain": "«краткий обморок» — the subject of the sentence stands in the nominative.",
+   "explain": "«краткий обморок» is the subject of «спас» — who or what does it — so nominative.",
    "id": "c2"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "пустым местом",
    "case": "Творительный (Instrumental)",
-   "explain": "«пустым местом» — after the preposition «над», the instrumental marks the means, company, or complement.",
+   "explain": "«пустым местом» — «над» always takes the instrumental.",
    "id": "c4"
   },
   {
@@ -53,50 +39,8 @@
    ],
    "correct": "деревенском уединении",
    "case": "Предложный (Prepositional)",
-   "explain": "«деревенском уединении» — after the preposition «в», for location or topic.",
+   "explain": "«деревенском уединении» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c5"
-  },
-  {
-   "sentence": "Лицо его стало ___.",
-   "lemma": "цвет",
-   "options": [
-    "кирпичный цвет",
-    "кирпичного цвета",
-    "кирпичном цвете",
-    "кирпичному цвету"
-   ],
-   "correct": "кирпичного цвета",
-   "case": "Родительный (Genitive)",
-   "explain": "«кирпичного цвета» — the genitive here marks possession, absence, or quantity.",
-   "id": "c6"
-  },
-  {
-   "sentence": "Перебирая ___, он наткнулся раз на имя поручика Киже и назначил его капитаном, а в другой раз полковником.",
-   "lemma": "список",
-   "options": [
-    "полковыми списками",
-    "полковые списки",
-    "полковых списках",
-    "полковых списков"
-   ],
-   "correct": "полковые списки",
-   "case": "Винительный (Accusative)",
-   "explain": "«полковые списки» — the accusative marks the direct object of the verb.",
-   "id": "c7"
-  },
-  {
-   "sentence": "Иногда супружеское место полковника согревалось каким-либо поручиком, капитаном или же ___.",
-   "lemma": "лицо",
-   "options": [
-    "статское лицо",
-    "статском лице",
-    "статским лицом",
-    "статского лица"
-   ],
-   "correct": "статским лицом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«статским лицом» — the instrumental marks the means, company, or complement.",
-   "id": "c8"
   },
   {
    "sentence": "Так, впрочем, бывало во многих ___ С.-Петербурга, хозяева которых были в походе.",
@@ -109,7 +53,7 @@
    ],
    "correct": "полковничьих постелях",
    "case": "Предложный (Prepositional)",
-   "explain": "«полковничьих постелях» — after the preposition «во», for location or topic.",
+   "explain": "«полковничьих постелях» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c9"
   },
   {
@@ -123,21 +67,21 @@
    ],
    "correct": "соседней комнате",
    "case": "Предложный (Prepositional)",
-   "explain": "«соседней комнате» — after the preposition «в», for location or topic.",
+   "explain": "«соседней комнате» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c10"
   },
   {
    "sentence": "Но и это случалось во многих ___.",
    "lemma": "дом",
    "options": [
-    "полковничьих домах",
-    "полковничьи дома",
     "полковничьим домам",
-    "полковничьими домами"
+    "полковничьими домами",
+    "полковничьих домов",
+    "полковничьих домах"
    ],
    "correct": "полковничьих домах",
    "case": "Предложный (Prepositional)",
-   "explain": "«полковничьих домах» — after the preposition «во», for location or topic.",
+   "explain": "«полковничьих домах» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c11"
   }
  ]

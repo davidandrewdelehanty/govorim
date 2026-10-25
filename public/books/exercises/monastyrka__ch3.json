@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "___ здесь вовсе не знают.",
-   "lemma": "кадриль",
-   "options": [
-    "французскими кадрилями",
-    "французских кадрилях",
-    "французских кадрилей",
-    "французским кадрилям"
-   ],
-   "correct": "французских кадрилей",
-   "case": "Родительный (Genitive)",
-   "explain": "«Французских кадрилей» — the genitive here marks possession, absence, or quantity.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Польские, экосезы, ___ — вот, кажется, всё, да и то совсем не так, как учила нас мадам Дидело!",
-   "lemma": "кадриль",
-   "options": [
-    "простые кадрили",
-    "простых кадрилях",
-    "простым кадрилям",
-    "простыми кадрилями"
-   ],
-   "correct": "простые кадрили",
-   "case": "Именительный (Nominative)",
-   "explain": "«простые кадрили» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
    "sentence": "Учитель этот из ___ считается лучшим, и он сам, кажется, в том уверен.",
    "lemma": "танцор",
    "options": [
@@ -39,7 +11,7 @@
    ],
    "correct": "здешних танцоров",
    "case": "Родительный (Genitive)",
-   "explain": "«здешних танцоров» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«здешних танцоров» — «из» always takes the genitive.",
    "id": "c3"
   },
   {
@@ -53,22 +25,8 @@
    ],
    "correct": "голубой ленте",
    "case": "Предложный (Prepositional)",
-   "explain": "«голубой ленте» — after the preposition «на», for location or topic.",
+   "explain": "«голубой ленте» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c4"
-  },
-  {
-   "sentence": "Нрав у него тихий и скромный, и очень ___.",
-   "lemma": "сердце",
-   "options": [
-    "доброго сердца",
-    "добром сердце",
-    "доброе сердце",
-    "доброму сердцу"
-   ],
-   "correct": "доброе сердце",
-   "case": "Именительный (Nominative)",
-   "explain": "«доброе сердце» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
   },
   {
    "sentence": "Он говорит, что видал тебя часто на ___ и один раз на бале, не помню у кого-то.",
@@ -81,7 +39,7 @@
    ],
    "correct": "невском проспекте",
    "case": "Предложный (Prepositional)",
-   "explain": "«Невском проспекте» — after the preposition «на», for location or topic.",
+   "explain": "«невском проспекте» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c6"
   },
   {
@@ -95,22 +53,8 @@
    ],
    "correct": "итальянская музыка",
    "case": "Именительный (Nominative)",
-   "explain": "«Итальянская музыка» — the subject of the sentence stands in the nominative.",
+   "explain": "«итальянская музыка» is the subject of «нравится» — who or what does it — so nominative.",
    "id": "c9"
-  },
-  {
-   "sentence": "Вместо их здесь в ___ «Кто мог любить так страстно, как я любил тебя» — и еще «Всех цветочков боле розу я любил».",
-   "lemma": "мода",
-   "options": [
-    "большой моды",
-    "большой моде",
-    "большой модой",
-    "большая мода"
-   ],
-   "correct": "большой моде",
-   "case": "Предложный (Prepositional)",
-   "explain": "«большой моде» — after the preposition «в», for location or topic.",
-   "id": "c10"
   },
   {
    "sentence": "Тетенька только ___ узнала, что я пою.",
@@ -123,106 +67,36 @@
    ],
    "correct": "третьего дня",
    "case": "Родительный (Genitive)",
-   "explain": "«третьего дня» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«третьего дня» depends on the noun «Тетенька» (whose? of what?) — genitive.",
    "id": "c11"
   },
   {
    "sentence": "Постараюсь достать от Лизаветы Филипповны эту песню и спишу ее для тебя, буква в букву, с сохранением ___.",
    "lemma": "выговор",
    "options": [
-    "малороссийским выговором",
-    "малороссийскому выговору",
+    "малороссийского выговора",
     "малороссийском выговоре",
-    "малороссийского выговора"
+    "малороссийскому выговору",
+    "малороссийский выговор"
    ],
    "correct": "малороссийского выговора",
    "case": "Родительный (Genitive)",
-   "explain": "«малороссийского выговора» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«малороссийского выговора» depends on the noun «сохранением» (whose? of what?) — genitive.",
    "id": "c12"
-  },
-  {
-   "sentence": "Песня эта, должно быть, русская; но здесь так странно выговаривают ___, что часто их понять нельзя.",
-   "lemma": "слово",
-   "options": [
-    "русские слова",
-    "русских слов",
-    "русскими словами",
-    "русским словам"
-   ],
-   "correct": "русские слова",
-   "case": "Винительный (Accusative)",
-   "explain": "«русские слова» — the accusative marks the direct object of the verb.",
-   "id": "c13"
-  },
-  {
-   "sentence": "Ты, может быть, не догадаешься, например, что велыть тебья забить должно значить то же, что велит тебя забыть, но здесь все уверены, что это чистое ___.",
-   "lemma": "наречие",
-   "options": [
-    "русскому наречию",
-    "русское наречие",
-    "русского наречия",
-    "русским наречием"
-   ],
-   "correct": "русское наречие",
-   "case": "Именительный (Nominative)",
-   "explain": "«русское наречие» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
-  },
-  {
-   "sentence": "Это ___ в здешних обществах.",
-   "lemma": "песня",
-   "options": [
-    "любимой песне",
-    "любимая песня",
-    "любимой песней",
-    "любимой песни"
-   ],
-   "correct": "любимая песня",
-   "case": "Именительный (Nominative)",
-   "explain": "«любимая песня» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
   },
   {
    "sentence": "Приехав в село Н**, я тотчас по окончании ___ и взаимных поздравлений начал осведомляться о сочинительнице писем.",
    "lemma": "обряд",
    "options": [
-    "священному обряду",
     "священного обряда",
-    "священным обрядом",
-    "священный обряд"
+    "священный обряд",
+    "священном обряде",
+    "священному обряду"
    ],
    "correct": "священного обряда",
    "case": "Родительный (Genitive)",
-   "explain": "«священного обряда» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«священного обряда» depends on the noun «окончании» (whose? of what?) — genitive.",
    "id": "c17"
-  },
-  {
-   "sentence": "Приехав в село Н**, я тотчас по окончании священного обряда и ___ начал осведомляться о сочинительнице писем.",
-   "lemma": "поздравление",
-   "options": [
-    "взаимных поздравлениях",
-    "взаимными поздравлениями",
-    "взаимные поздравления",
-    "взаимных поздравлений"
-   ],
-   "correct": "взаимных поздравлений",
-   "case": "Родительный (Genitive)",
-   "explain": "«взаимных поздравлений» — the genitive here marks possession, absence, or quantity.",
-   "id": "c18"
-  },
-  {
-   "sentence": "— Это моя родственница, — сказал он с ___, — прекрасная и прелюбезная женщина, которая, к сожалению, теперь немного нездорова и потому не могла приехать на крестины.",
-   "lemma": "вид",
-   "options": [
-    "довольный вид",
-    "довольном виде",
-    "довольным видом",
-    "довольному виду"
-   ],
-   "correct": "довольным видом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«довольным видом» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c19"
   },
   {
    "sentence": "Вам надобно с нею познакомиться; она воспитана в ___, очень умна, добра и в целой губернии пользуется общим уважением.",
@@ -235,7 +109,7 @@
    ],
    "correct": "смольном монастыре",
    "case": "Предложный (Prepositional)",
-   "explain": "«Смольном монастыре» — after the preposition «в», for location or topic.",
+   "explain": "«смольном монастыре» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c20"
   },
   {
@@ -249,7 +123,7 @@
    ],
    "correct": "общим уважением",
    "case": "Творительный (Instrumental)",
-   "explain": "«общим уважением» — the instrumental marks the means, company, or complement.",
+   "explain": "«пользуется» takes the instrumental.",
    "id": "c21"
   },
   {
@@ -263,7 +137,7 @@
    ],
    "correct": "другого раза",
    "case": "Родительный (Genitive)",
-   "explain": "«другого раза» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«другого раза» — «до» always takes the genitive.",
    "id": "c24"
   },
   {
@@ -277,22 +151,8 @@
    ],
    "correct": "третьем письме",
    "case": "Предложный (Prepositional)",
-   "explain": "«третьем письме» — after the preposition «в», for location or topic.",
+   "explain": "«третьем письме» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c25"
-  },
-  {
-   "sentence": "Некоторые ___, также игравшие роли в сих приключениях, пополнили то, чего недоставало в ее рассказах, и таким образом составилась книга, которая ныне представляется публике.",
-   "lemma": "особа",
-   "options": [
-    "другими особами",
-    "других особах",
-    "других особ",
-    "другие особы"
-   ],
-   "correct": "другие особы",
-   "case": "Именительный (Nominative)",
-   "explain": "«другие особы» — the subject of the sentence stands in the nominative.",
-   "id": "c26"
   }
  ]
 }

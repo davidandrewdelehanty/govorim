@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Вот изволите видеть: думал я о нашел ___.",
-   "lemma": "разговор",
-   "options": [
-    "последнему разговору",
-    "последнем разговоре",
-    "последнего разговора",
-    "последний разговор"
-   ],
-   "correct": "последнем разговоре",
-   "case": "Предложный (Prepositional)",
-   "explain": "«последнем разговоре» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c1"
-  },
-  {
    "sentence": "О женщине думал я, что одно из ___ нашего века – это освобождение женщины из варварского рабства, в котором она подавляется.",
    "lemma": "призвание",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "главных призваний",
    "case": "Родительный (Genitive)",
-   "explain": "«главных призваний» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«главных призваний» — «из» always takes the genitive.",
    "id": "c2"
   },
   {
@@ -39,36 +25,8 @@
    ],
    "correct": "варварского рабства",
    "case": "Родительный (Genitive)",
-   "explain": "«варварского рабства» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«варварского рабства» — «из» always takes the genitive.",
    "id": "c3"
-  },
-  {
-   "sentence": "Да-с, вот так-то в устах толпы и компрометируется ___ эманципации женщин!",
-   "lemma": "доктрина",
-   "options": [
-    "великой доктриной",
-    "великой доктрины",
-    "великая доктрина",
-    "великой доктрине"
-   ],
-   "correct": "великая доктрина",
-   "case": "Именительный (Nominative)",
-   "explain": "«великая доктрина» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
-  },
-  {
-   "sentence": "А еще я знаю – ___.",
-   "lemma": "путь",
-   "options": [
-    "гносеологического пути",
-    "гносеологический путь",
-    "гносеологическом пути",
-    "гносеологическому пути"
-   ],
-   "correct": "гносеологический путь",
-   "case": "Именительный (Nominative)",
-   "explain": "«гносеологический путь» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
   },
   {
    "sentence": "Да, я хочу примером вам сказать, в чем состоит ___ женщины.",
@@ -81,7 +39,7 @@
    ],
    "correct": "истинная свобода",
    "case": "Именительный (Nominative)",
-   "explain": "«истинная свобода» — the subject of the sentence stands in the nominative.",
+   "explain": "«истинная свобода» is the subject of «состоит» — who or what does it — so nominative.",
    "id": "c7"
   },
   {
@@ -95,7 +53,7 @@
    ],
    "correct": "отсталых господ",
    "case": "Родительный (Genitive)",
-   "explain": "«отсталых господ» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«отсталых господ» — «из» always takes the genitive.",
    "id": "c8"
   },
   {
@@ -109,63 +67,21 @@
    ],
    "correct": "швейной машины",
    "case": "Родительный (Genitive)",
-   "explain": "«швейной машины» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«швейной машины» depends on the noun «покупку» (whose? of what?) — genitive.",
    "id": "c9"
-  },
-  {
-   "sentence": "У нас с вами все будет особенное, с ___.",
-   "lemma": "идея",
-   "options": [
-    "новых идеях",
-    "новым идеям",
-    "новые идеи",
-    "новыми идеями"
-   ],
-   "correct": "новыми идеями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«новыми идеями» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c10"
-  },
-  {
-   "sentence": "Вы понимаете, что ___ для развития индивидуальности вообще – это семья, в особенности для вас.",
-   "lemma": "преграда",
-   "options": [
-    "главной преградой",
-    "главной преграды",
-    "главной преграде",
-    "главная преграда"
-   ],
-   "correct": "главная преграда",
-   "case": "Именительный (Nominative)",
-   "explain": "«главная преграда» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
-  },
-  {
-   "sentence": "В вас все задатки хорошие, но окружающие вас ниже самого ___.",
-   "lemma": "уровень",
-   "options": [
-    "низком уровне",
-    "низким уровнем",
-    "низкий уровень",
-    "низкого уровня"
-   ],
-   "correct": "низкого уровня",
-   "case": "Родительный (Genitive)",
-   "explain": "«низкого уровня» — the genitive here marks possession, absence, or quantity.",
-   "id": "c12"
   },
   {
    "sentence": "Ежели вы еще мне это скажете, я совсем разлюблю ___ и, как выйду за вас, так стану жить по-моему, а не по-вашему.",
    "lemma": "идея",
    "options": [
-    "новые идеи",
-    "новыми идеями",
     "новых идеях",
-    "новых идей"
+    "новым идеям",
+    "новыми идеями",
+    "новые идеи"
    ],
    "correct": "новые идеи",
    "case": "Винительный (Accusative)",
-   "explain": "«новые идеи» — the accusative marks the direct object of the verb.",
+   "explain": "«новые идеи» is the direct object of «разлюблю» (кого? что?) — accusative.",
    "id": "c14"
   },
   {
@@ -179,7 +95,7 @@
    ],
    "correct": "крестному отцу",
    "case": "Дательный (Dative)",
-   "explain": "«крестному отцу» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«крестному отцу» — «к» always takes the dative.",
    "id": "c15"
   }
  ]

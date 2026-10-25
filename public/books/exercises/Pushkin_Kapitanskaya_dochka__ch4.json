@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Я лежал на кровате, в ___, и чувствовал большую слабость.",
-   "lemma": "горница",
-   "options": [
-    "незнакомой горницей",
-    "незнакомой горницы",
-    "незнакомая горница",
-    "незнакомой горнице"
-   ],
-   "correct": "незнакомой горнице",
-   "case": "Предложный (Prepositional)",
-   "explain": "«незнакомой горнице» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c1"
-  },
-  {
    "sentence": "Меня лечил полковой цырюльник, ибо в крепости ___ не было, и, слава богу, не умничал.",
    "lemma": "лекарь",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "другого лекаря",
    "case": "Родительный (Genitive)",
-   "explain": "«другого лекаря» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«другого лекаря» depends on the noun «крепости» (whose? of what?) — genitive.",
    "id": "c3"
   },
   {
@@ -39,22 +25,8 @@
    ],
    "correct": "удобном случае",
    "case": "Предложный (Prepositional)",
-   "explain": "«удобном случае» — after the preposition «при», for location or topic.",
+   "explain": "«удобном случае» — «при» always takes the prepositional.",
    "id": "c4"
-  },
-  {
-   "sentence": "В нежности матушкиной я не сумневался; но, зная нрав и образ мыслей отца, я чувствовал, что любовь моя не слишком его тронет, и что он будет на нее смотреть, как на блажь ___.",
-   "lemma": "человек",
-   "options": [
-    "молодого человека",
-    "молодой человек",
-    "молодом человеке",
-    "молодому человеку"
-   ],
-   "correct": "молодого человека",
-   "case": "Винительный (Accusative)",
-   "explain": "«молодого человека» — the accusative marks the direct object of the verb.",
-   "id": "c5"
   },
   {
    "sentence": "Я чистосердечно признался в том Марье Ивановне, и решился однако писать к батюшке как можно красноречивее, прося ___.",
@@ -67,7 +39,7 @@
    ],
    "correct": "родительского благословения",
    "case": "Родительный (Genitive)",
-   "explain": "«родительского благословения» — the genitive here marks possession, absence, or quantity.",
+   "explain": "With «прося», a verb of waiting, seeking, asking or wanting, the object can stand in the genitive — as here.",
    "id": "c6"
   },
   {
@@ -81,22 +53,8 @@
    ],
    "correct": "добрый комендант",
    "case": "Именительный (Nominative)",
-   "explain": "«добрый комендант» — the subject of the sentence stands in the nominative.",
+   "explain": "«добрый комендант» is the subject of «решился» — who or what does it — so nominative.",
    "id": "c9"
-  },
-  {
-   "sentence": "С нетерпением ожидал я ответа на посланное письмо, не смея надеяться, и стараясь заглушить ___.",
-   "lemma": "предчувствие",
-   "options": [
-    "печальным предчувствиям",
-    "печальных предчувствиях",
-    "печальные предчувствия",
-    "печальных предчувствий"
-   ],
-   "correct": "печальные предчувствия",
-   "case": "Винительный (Accusative)",
-   "explain": "«печальные предчувствия» — the accusative marks the direct object of the verb.",
-   "id": "c10"
   },
   {
    "sentence": "Чтение сего письма возбудило во мне ___.",
@@ -109,22 +67,8 @@
    ],
    "correct": "разные чувствования",
    "case": "Винительный (Accusative)",
-   "explain": "«разные чувствования» — the accusative marks the direct object of the verb.",
+   "explain": "«разные чувствования» is the direct object of «возбудило» (кого? что?) — accusative.",
    "id": "c12"
-  },
-  {
-   "sentence": "Я тебя, ___! пошлю свиней пасти за утайку правды и потворство к молодому человеку.",
-   "lemma": "пёс",
-   "options": [
-    "старого пса",
-    "старом псе",
-    "старый пёс",
-    "старым псом"
-   ],
-   "correct": "старого пса",
-   "case": "Винительный (Accusative)",
-   "explain": "«старого пса» — the accusative marks the direct object of the verb.",
-   "id": "c14"
   },
   {
    "sentence": "Я тебя, старого пса! пошлю свиней пасти за утайку правды и потворство к ___.",
@@ -137,22 +81,8 @@
    ],
    "correct": "молодому человеку",
    "case": "Дательный (Dative)",
-   "explain": "«молодому человеку» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«молодому человеку» — «к» always takes the dative.",
    "id": "c15"
-  },
-  {
-   "sentence": "Нет, батюшка Петр Андреич! не я, проклятый мусье всему виноват: он научил тебя тыкаться ___, да притопывать, как будто тыканием да топанием убережешься от злого человека!",
-   "lemma": "вертел",
-   "options": [
-    "железным вертелам",
-    "железные вертела",
-    "железными вертелами",
-    "железных вертелов"
-   ],
-   "correct": "железными вертелами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«железными вертелами» — the instrumental marks the means, company, or complement.",
-   "id": "c16"
   },
   {
    "sentence": "Нет, батюшка Петр Андреич! не я, проклятый мусье всему виноват: он научил тебя тыкаться железными вертелами, да притопывать, как будто тыканием да топанием убережешься от ___!",
@@ -165,7 +95,7 @@
    ],
    "correct": "злого человека",
    "case": "Родительный (Genitive)",
-   "explain": "«злого человека» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«злого человека» — «от» always takes the genitive.",
    "id": "c17"
   },
   {
@@ -179,22 +109,8 @@
    ],
    "correct": "доброго старика",
    "case": "Родительный (Genitive)",
-   "explain": "«доброго старика» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«доброго старика» depends on the noun «грамоту» (whose? of what?) — genitive.",
    "id": "c20"
-  },
-  {
-   "sentence": "___, имевшие важное влияние на всю мою жизнь, дали вдруг моей душе сильное и благое потрясение.",
-   "lemma": "происшедствие",
-   "options": [
-    "неожиданным происшедствиям",
-    "неожиданных происшедствиях",
-    "неожиданными происшедствиями",
-    "неожиданные происшедствия"
-   ],
-   "correct": "неожиданные происшедствия",
-   "case": "Именительный (Nominative)",
-   "explain": "«Неожиданные происшедствия» — the subject of the sentence stands in the nominative.",
-   "id": "c21"
   }
  ]
 }

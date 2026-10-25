@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "___ Егор Алексеич Свойкин, чтобы не терять попусту времени, от доктора отправился прямо в аптеку.",
-   "lemma": "учитель",
-   "options": [
-    "домашний учитель",
-    "домашнем учителе",
-    "домашнему учителю",
-    "домашним учителем"
-   ],
-   "correct": "домашний учитель",
-   "case": "Именительный (Nominative)",
-   "explain": "«Домашний учитель» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Наука и лекарства с годами меняются, но ___ вечен, как материя.",
    "lemma": "запах",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "аптечный запах",
    "case": "Именительный (Nominative)",
-   "explain": "«аптечный запах» — the subject of the sentence stands in the nominative.",
+   "explain": "«аптечный запах» is the subject of «вечен» — who or what does it — so nominative.",
    "id": "c5"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "позднему часу",
    "case": "Дательный (Dative)",
-   "explain": "«позднему часу» — after the preposition «благодаря», the dative marks the indirect object or recipient.",
+   "explain": "«позднему часу» — «благодаря» always takes the dative.",
    "id": "c6"
   },
   {
@@ -53,36 +39,8 @@
    ],
    "correct": "высокий господин",
    "case": "Именительный (Nominative)",
-   "explain": "«высокий господин» — the subject of the sentence stands in the nominative.",
+   "explain": "«высокий господин» is the subject of «стоял» — who or what does it — so nominative.",
    "id": "c7"
-  },
-  {
-   "sentence": "За желтой, лоснящейся конторкой, уставленной вазочками с сигнатурами, стоял высокий господин с солидно закинутой назад головой, ___ и с выхоленными бакенами — по всем видимостям, провизор.",
-   "lemma": "лицо",
-   "options": [
-    "строгому лицу",
-    "строгом лице",
-    "строгим лицом",
-    "строгое лицо"
-   ],
-   "correct": "строгим лицом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«строгим лицом» — the instrumental marks the means, company, or complement.",
-   "id": "c8"
-  },
-  {
-   "sentence": "Начиная с маленькой плеши на голове и кончая длинными ___, всё на этом человеке было старательно выутюжено, вычищено и словно вылизано, хоть под венец ступай.",
-   "lemma": "ноготь",
-   "options": [
-    "розовые ногти",
-    "розовых ногтей",
-    "розовых ногтях",
-    "розовыми ногтями"
-   ],
-   "correct": "розовыми ногтями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«розовыми ногтями» — the instrumental marks the means, company, or complement.",
-   "id": "c9"
   },
   {
    "sentence": "В глубине одна из темных фигур завозилась около ___.",
@@ -95,22 +53,8 @@
    ],
    "correct": "мраморной ступки",
    "case": "Родительный (Genitive)",
-   "explain": "«мраморной ступки» — after the preposition «около», the genitive here marks possession, absence, or quantity.",
+   "explain": "«мраморной ступки» — «около» always takes the genitive.",
    "id": "c11"
-  },
-  {
-   "sentence": "___ что-то болтала в синей склянке.",
-   "lemma": "фигура",
-   "options": [
-    "другой фигурой",
-    "другая фигура",
-    "другой фигуры",
-    "другой фигуре"
-   ],
-   "correct": "другая фигура",
-   "case": "Именительный (Nominative)",
-   "explain": "«Другая фигура» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
   },
   {
    "sentence": "Другая фигура что-то болтала в ___.",
@@ -123,22 +67,8 @@
    ],
    "correct": "синей склянке",
    "case": "Предложный (Prepositional)",
-   "explain": "«синей склянке» — after the preposition «в», for location or topic.",
+   "explain": "«синей склянке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c13"
-  },
-  {
-   "sentence": "Во рту у него горело, в ногах и руках стояли тянущие боли, в отяжелевшей голове бродили туманные образы, похожие на облака и закутанные ___.",
-   "lemma": "фигура",
-   "options": [
-    "человеческим фигурам",
-    "человеческие фигуры",
-    "человеческих фигур",
-    "человеческими фигурами"
-   ],
-   "correct": "человеческие фигуры",
-   "case": "Винительный (Accusative)",
-   "explain": "«человеческие фигуры» — the accusative marks the direct object of the verb.",
-   "id": "c14"
   },
   {
    "sentence": "Стук ___ становился всё громче и звонче.",
@@ -151,7 +81,7 @@
    ],
    "correct": "мраморной ступки",
    "case": "Родительный (Genitive)",
-   "explain": "«мраморной ступки» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«мраморной ступки» depends on the noun «Стук» (whose? of what?) — genitive.",
    "id": "c19"
   }
  ]

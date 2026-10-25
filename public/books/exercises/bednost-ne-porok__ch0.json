@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Гордей Карпыч Торцов, ___.",
-   "lemma": "купец",
-   "options": [
-    "богатый купец",
-    "богатом купце",
-    "богатым купцом",
-    "богатого купца"
-   ],
-   "correct": "богатый купец",
-   "case": "Именительный (Nominative)",
-   "explain": "«богатый купец» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Гриша Разлюляев, ___, сын богатого отца.",
-   "lemma": "купчик",
-   "options": [
-    "молодой купчик",
-    "молодом купчике",
-    "молодым купчиком",
-    "молодого купчика"
-   ],
-   "correct": "молодой купчик",
-   "case": "Именительный (Nominative)",
-   "explain": "«молодой купчик» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
    "sentence": "Гриша Разлюляев, молодой купчик, сын ___.",
    "lemma": "отец",
    "options": [
@@ -39,64 +11,8 @@
    ],
    "correct": "богатого отца",
    "case": "Родительный (Genitive)",
-   "explain": "«богатого отца» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«богатого отца» depends on the noun «сын» (whose? of what?) — genitive.",
    "id": "c3"
-  },
-  {
-   "sentence": "Егорушка, мальчик, ___ Торцова.",
-   "lemma": "родственник",
-   "options": [
-    "дальнем родственнике",
-    "дальнему родственнику",
-    "дальнего родственника",
-    "дальний родственник"
-   ],
-   "correct": "дальний родственник",
-   "case": "Именительный (Nominative)",
-   "explain": "«дальний родственник» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
-  },
-  {
-   "sentence": "На второй-то праздник дяденька Любим Карпыч обедал у нас, за обедом-то захмелел, да и начал ___ выкидывать, да смешно таково.",
-   "lemma": "колено",
-   "options": [
-    "разных колен",
-    "разных коленах",
-    "разные колена",
-    "разным коленам"
-   ],
-   "correct": "разные колена",
-   "case": "Винительный (Accusative)",
-   "explain": "«разные колена» — the accusative marks the direct object of the verb.",
-   "id": "c7"
-  },
-  {
-   "sentence": "Прельщать, что ли, мне кого на старости, говорю, ___ делать!",
-   "lemma": "прелесть",
-   "options": [
-    "разных прелестей",
-    "разными прелестями",
-    "разные прелести",
-    "разным прелестям"
-   ],
-   "correct": "разные прелести",
-   "case": "Винительный (Accusative)",
-   "explain": "«разные прелести» — the accusative marks the direct object of the verb.",
-   "id": "c8"
-  },
-  {
-   "sentence": "Поискал бы ___, да где его найдешь без знакомства-то.",
-   "lemma": "место",
-   "options": [
-    "другом месте",
-    "другим местом",
-    "другому месту",
-    "другого места"
-   ],
-   "correct": "другого места",
-   "case": "Родительный (Genitive)",
-   "explain": "«другого места» — the genitive here marks possession, absence, or quantity.",
-   "id": "c9"
   },
   {
    "sentence": "Да, признаться сказать, я к ___ и не пойду.",
@@ -109,22 +25,8 @@
    ],
    "correct": "другому-то месту",
    "case": "Дательный (Dative)",
-   "explain": "«другому-то месту» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«другому-то месту» — «к» always takes the dative.",
    "id": "c10"
-  },
-  {
-   "sentence": "Разве в этом образование-то состоит, что ___ петь?",
-   "lemma": "песня",
-   "options": [
-    "дурацкими песнями",
-    "дурацких песен",
-    "дурацкие песни",
-    "дурацких песнях"
-   ],
-   "correct": "дурацкие песни",
-   "case": "Винительный (Accusative)",
-   "explain": "«дурацкие песни» — the accusative marks the direct object of the verb.",
-   "id": "c11"
   },
   {
    "sentence": "Зашел к девкам да ___.",
@@ -137,7 +39,7 @@
    ],
    "correct": "незваный гость",
    "case": "Именительный (Nominative)",
-   "explain": "«незваный гость» — the subject of the sentence stands in the nominative.",
+   "explain": "«незваный гость» is the subject of «Зашел» — who or what does it — so nominative.",
    "id": "c12"
   },
   {
@@ -151,50 +53,8 @@
    ],
    "correct": "купеческого брата",
    "case": "Винительный (Accusative)",
-   "explain": "«купеческого брата» — the accusative marks the direct object of the verb.",
+   "explain": "«купеческого брата» is the direct object of «прими» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c13"
-  },
-  {
-   "sentence": "А вот слушай ты, ___, какая это линия.",
-   "lemma": "душа",
-   "options": [
-    "живая душа",
-    "живой душе",
-    "живой душой",
-    "живой души"
-   ],
-   "correct": "живая душа",
-   "case": "Именительный (Nominative)",
-   "explain": "«живая душа» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
-  },
-  {
-   "sentence": "Опять же я такой прекрасный ___, а еще свету не видывал, в частном доме не ночевывал.",
-   "lemma": "человек",
-   "options": [
-    "молодым человеком",
-    "молодого человека",
-    "молодой человек",
-    "молодом человеке"
-   ],
-   "correct": "молодой человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«молодой человек» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
-  },
-  {
-   "sentence": "Продал платье, все свои ___, взял бумажками, разменял на серебро, серебро на медные, а там только пшик, да и все тут!",
-   "lemma": "штука",
-   "options": [
-    "модные штуки",
-    "модными штуками",
-    "модных штук",
-    "модным штукам"
-   ],
-   "correct": "модные штуки",
-   "case": "Винительный (Accusative)",
-   "explain": "«модные штуки» — the accusative marks the direct object of the verb.",
-   "id": "c18"
   },
   {
    "sentence": "Жил в ___, между небом и землей, ни с боков ни сверху нет ничего.",
@@ -207,64 +67,22 @@
    ],
    "correct": "просторной квартире",
    "case": "Предложный (Prepositional)",
-   "explain": "«просторной квартире» — after the preposition «в», for location or topic.",
+   "explain": "«просторной квартире» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c19"
-  },
-  {
-   "sentence": "Говорят, в других землях за это по талеру плотят, а у нас ___ по шеям колотят.",
-   "lemma": "человек",
-   "options": [
-    "добрыми людьми",
-    "добрые люди",
-    "добрых людях",
-    "добрых людей"
-   ],
-   "correct": "добрые люди",
-   "case": "Именительный (Nominative)",
-   "explain": "«добрые люди» — the subject of the sentence stands in the nominative.",
-   "id": "c21"
-  },
-  {
-   "sentence": "Свезли меня ___ в больницу.",
-   "lemma": "человек",
-   "options": [
-    "добрыми людьми",
-    "добрые люди",
-    "добрых людях",
-    "добрых людей"
-   ],
-   "correct": "добрые люди",
-   "case": "Именительный (Nominative)",
-   "explain": "«добрые люди» — the subject of the sentence stands in the nominative.",
-   "id": "c22"
   },
   {
    "sentence": "Дай ___ деньги, он дело сделает.",
    "lemma": "человек",
    "options": [
-    "умный человек",
-    "умного человека",
+    "умному человеку",
     "умным человеком",
-    "умному человеку"
+    "умном человеке",
+    "умный человек"
    ],
    "correct": "умному человеку",
    "case": "Дательный (Dative)",
-   "explain": "«умному человеку» — the dative marks the indirect object or recipient.",
+   "explain": "«умному человеку» is the indirect object of «Дай» — to or for whom (кому?) — dative.",
    "id": "c24"
-  },
-  {
-   "sentence": "(___.) Митя, я ночевать к тебе приду.",
-   "lemma": "голос",
-   "options": [
-    "полусонному голосу",
-    "полусонный голос",
-    "полусонного голоса",
-    "полусонным голосом"
-   ],
-   "correct": "полусонным голосом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«Полусонным голосом» — the instrumental marks the means, company, or complement.",
-   "id": "c25"
   }
  ]
 }

@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Поговорив с начальником штаба, бывшим ___, хмурым и издерганным человеком, и с политкомом — московским рабочим с завода Михельсона, Штокман решил остаться в Усть-Хоперской, влившись во 2-й батальон полка.",
-   "lemma": "офицер",
-   "options": [
-    "кадровом офицере",
-    "кадровому офицеру",
-    "кадрового офицера",
-    "кадровым офицером"
-   ],
-   "correct": "кадровым офицером",
-   "case": "Творительный (Instrumental)",
-   "explain": "«кадровым офицером» — the instrumental marks the means, company, or complement.",
-   "id": "c2"
-  },
-  {
    "sentence": "Поговорив с начальником штаба, бывшим кадровым офицером, хмурым и издерганным человеком, и с политкомом — московским рабочим с завода Михельсона, Штокман решил остаться в Усть-Хоперской, влившись во ___ полка.",
    "lemma": "батальон",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "2-й батальон",
    "case": "Винительный (Accusative)",
-   "explain": "«2-й батальон» — after the preposition «во», the accusative marks the direct object of the verb.",
+   "explain": "«2-й батальон» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c3"
   },
   {
@@ -39,36 +25,8 @@
    ],
    "correct": "чистенькой комнатушке",
    "case": "Предложный (Prepositional)",
-   "explain": "«чистенькой комнатушке» — after the preposition «катушками», for location or topic.",
+   "explain": "«чистенькой комнатушке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c4"
-  },
-  {
-   "sentence": "В чистенькой комнатушке, заваленной мотками обмоток, катушками ___ и прочим военным имуществом, Штокман долго говорил с политкомом.",
-   "lemma": "проволока",
-   "options": [
-    "телефонной проволоке",
-    "телефонной проволокой",
-    "телефонной проволоки",
-    "телефонная проволока"
-   ],
-   "correct": "телефонной проволоки",
-   "case": "Родительный (Genitive)",
-   "explain": "«телефонной проволоки» — the genitive here marks possession, absence, or quantity.",
-   "id": "c5"
-  },
-  {
-   "sentence": "В чистенькой комнатушке, заваленной мотками обмоток, катушками телефонной проволоки и прочим ___, Штокман долго говорил с политкомом.",
-   "lemma": "имущество",
-   "options": [
-    "военном имуществе",
-    "военным имуществом",
-    "военного имущества",
-    "военному имуществу"
-   ],
-   "correct": "военным имуществом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«военным имуществом» — the instrumental marks the means, company, or complement.",
-   "id": "c6"
   },
   {
    "sentence": "— Видишь ли, товарищ, — не спеша говорил приземистый ___, страдавший от припадков острого аппендицита, — тут сложная механика.",
@@ -81,7 +39,7 @@
    ],
    "correct": "желтолицый комиссар",
    "case": "Именительный (Nominative)",
-   "explain": "«желтолицый комиссар» — the subject of the sentence stands in the nominative.",
+   "explain": "«желтолицый комиссар» is the subject of «говорил» — who or what does it — so nominative.",
    "id": "c7"
   },
   {
@@ -95,50 +53,8 @@
    ],
    "correct": "острого аппендицита",
    "case": "Родительный (Genitive)",
-   "explain": "«острого аппендицита» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«острого аппендицита» depends on the noun «припадков» (whose? of what?) — genitive.",
    "id": "c8"
-  },
-  {
-   "sentence": "— Видишь ли, товарищ, — не спеша говорил приземистый желтолицый комиссар, страдавший от припадков острого аппендицита, — тут ___.",
-   "lemma": "механика",
-   "options": [
-    "сложной механикой",
-    "сложная механика",
-    "сложной механике",
-    "сложной механики"
-   ],
-   "correct": "сложная механика",
-   "case": "Именительный (Nominative)",
-   "explain": "«сложная механика» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
-  },
-  {
-   "sentence": "___, рабочие в большинстве.",
-   "lemma": "ребята",
-   "options": [
-    "крепкими ребятами",
-    "крепких ребят",
-    "крепким ребятам",
-    "крепкие ребята"
-   ],
-   "correct": "крепкие ребята",
-   "case": "Именительный (Nominative)",
-   "explain": "«Крепкие ребята» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
-  },
-  {
-   "sentence": "Комиссар гладил серую щеточку подстриженных усов, вяло отвечал, изредка поднимая синеватые ___.",
-   "lemma": "веко",
-   "options": [
-    "прозрачных веках",
-    "прозрачные веки",
-    "прозрачными веками",
-    "прозрачных век"
-   ],
-   "correct": "прозрачные веки",
-   "case": "Винительный (Accusative)",
-   "explain": "«прозрачные веки» — the accusative marks the direct object of the verb.",
-   "id": "c11"
   },
   {
    "sentence": "Парень-то он хороший, но не особенно разбирается в ___.",
@@ -151,22 +67,8 @@
    ],
    "correct": "политической обстановке",
    "case": "Предложный (Prepositional)",
-   "explain": "«политической обстановке» — after the preposition «в», for location or topic.",
+   "explain": "«политической обстановке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c12"
-  },
-  {
-   "sentence": "Зайди к завхозу, он вас на кошт зачислит, — говорил комиссар, мучительно морщась, придерживая ладонью засаленные ___.",
-   "lemma": "штаны",
-   "options": [
-    "ватными штанами",
-    "ватных штанах",
-    "ватные штаны",
-    "ватным штанам"
-   ],
-   "correct": "ватные штаны",
-   "case": "Винительный (Accusative)",
-   "explain": "«ватные штаны» — the accusative marks the direct object of the verb.",
-   "id": "c13"
   },
   {
    "sentence": "___ переходили по плетням.",
@@ -179,22 +81,8 @@
    ],
    "correct": "небольшие окраинцы",
    "case": "Именительный (Nominative)",
-   "explain": "«Небольшие окраинцы» — the subject of the sentence stands in the nominative.",
+   "explain": "«небольшие окраинцы» is the subject of «переходили» — who or what does it — so nominative.",
    "id": "c15"
-  },
-  {
-   "sentence": "___ вскоре донесла, что на Безбородовом противника не обнаружено, а правее хутора, верстах в четырех, идет частая ружейная перестрелка.",
-   "lemma": "разведка",
-   "options": [
-    "конной разведке",
-    "конной разведкой",
-    "конная разведка",
-    "конной разведки"
-   ],
-   "correct": "конная разведка",
-   "case": "Именительный (Nominative)",
-   "explain": "«Конная разведка» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
   },
   {
    "sentence": "Конная разведка вскоре донесла, что на Безбородовом противника не обнаружено, а правее хутора, верстах в четырех, идет частая ___.",
@@ -207,22 +95,8 @@
    ],
    "correct": "ружейная перестрелка",
    "case": "Именительный (Nominative)",
-   "explain": "«ружейная перестрелка» — the subject of the sentence stands in the nominative.",
+   "explain": "«ружейная перестрелка» is the subject of «идет» — who or what does it — so nominative.",
    "id": "c17"
-  },
-  {
-   "sentence": "— ___ в это время переходить Дон.",
-   "lemma": "дело",
-   "options": [
-    "пустяковом деле",
-    "пустяковому делу",
-    "пустяковое дело",
-    "пустяковым делом"
-   ],
-   "correct": "пустяковое дело",
-   "case": "Именительный (Nominative)",
-   "explain": "«Пустяковое дело» — the subject of the sentence stands in the nominative.",
-   "id": "c18"
   },
   {
    "sentence": "И опять ___ прошлись по лицу Штокмана, по его чуть седоватой бороде.",
@@ -235,22 +109,8 @@
    ],
    "correct": "коричневые глаза",
    "case": "Именительный (Nominative)",
-   "explain": "«коричневые глаза» — the subject of the sentence stands in the nominative.",
+   "explain": "«коричневые глаза» is the subject of «прошлись» — who or what does it — so nominative.",
    "id": "c19"
-  },
-  {
-   "sentence": "И опять коричневые глаза прошлись по лицу Штокмана, по его чуть ___.",
-   "lemma": "борода",
-   "options": [
-    "седоватой бородой",
-    "седоватой бороды",
-    "седоватой бороде",
-    "седоватая борода"
-   ],
-   "correct": "седоватой бороде",
-   "case": "Дательный (Dative)",
-   "explain": "«седоватой бороде» — after the preposition «по», the dative marks the indirect object or recipient.",
-   "id": "c20"
   },
   {
    "sentence": "— И словно потеплело в углах строгих ___.",
@@ -263,7 +123,7 @@
    ],
    "correct": "коричневых глаз",
    "case": "Родительный (Genitive)",
-   "explain": "«коричневых глаз» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«коричневых глаз» depends on the noun «углах» (whose? of what?) — genitive.",
    "id": "c21"
   },
   {
@@ -277,7 +137,7 @@
    ],
    "correct": "железной дороги",
    "case": "Родительный (Genitive)",
-   "explain": "«железной дороги» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«железной дороги» depends on the noun «линию» (whose? of what?) — genitive.",
    "id": "c22"
   },
   {
@@ -291,22 +151,8 @@
    ],
    "correct": "сторожевого охранения",
    "case": "Родительный (Genitive)",
-   "explain": "«сторожевого охранения» — after the preposition «мимо», the genitive here marks possession, absence, or quantity.",
+   "explain": "«сторожевого охранения» — «мимо» always takes the genitive.",
    "id": "c23"
-  },
-  {
-   "sentence": "— И оживился, странно потеплели и похорошели горячечно заблестевшие ___.",
-   "lemma": "глаз",
-   "options": [
-    "коричневые глаза",
-    "коричневым глазам",
-    "коричневых глазах",
-    "коричневыми глазами"
-   ],
-   "correct": "коричневые глаза",
-   "case": "Винительный (Accusative)",
-   "explain": "«коричневые глаза» — the accusative marks the direct object of the verb.",
-   "id": "c24"
   },
   {
    "sentence": "От ___ тополей, гонимые ветром, высоко и стремительно неслись два ворона.",
@@ -319,22 +165,8 @@
    ],
    "correct": "дальнего острова",
    "case": "Родительный (Genitive)",
-   "explain": "«дальнего острова» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«дальнего острова» — «от» always takes the genitive.",
    "id": "c26"
-  },
-  {
-   "sentence": "От головы колонны на высокой караковой кобылице скакал, разбрызгивая ___, ротный.",
-   "lemma": "снег",
-   "options": [
-    "талым снегом",
-    "талого снега",
-    "талом снеге",
-    "талый снег"
-   ],
-   "correct": "талый снег",
-   "case": "Винительный (Accusative)",
-   "explain": "«талый снег» — the accusative marks the direct object of the verb.",
-   "id": "c27"
   }
  ]
 }

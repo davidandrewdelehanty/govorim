@@ -1,31 +1,17 @@
 {
  "cases": [
   {
-   "sentence": "Варвара и Грушина сочинили и послали Хрипачу безыменное письмо о том, что гимназист Пыльников увлечен девицею Рутиловою, проводит у нее ___ и предается разврату.",
-   "lemma": "вечер",
-   "options": [
-    "целым вечерам",
-    "целых вечерах",
-    "целые вечера",
-    "целыми вечерами"
-   ],
-   "correct": "целые вечера",
-   "case": "Винительный (Accusative)",
-   "explain": "«целые вечера» — the accusative marks the direct object of the verb.",
-   "id": "c1"
-  },
-  {
    "sentence": "Хрипач припомнил один ___.",
    "lemma": "разговор",
    "options": [
-    "недавнем разговоре",
     "недавнему разговору",
     "недавний разговор",
-    "недавнего разговора"
+    "недавним разговором",
+    "недавнем разговоре"
    ],
    "correct": "недавний разговор",
    "case": "Винительный (Accusative)",
-   "explain": "«недавний разговор» — the accusative marks the direct object of the verb.",
+   "explain": "«недавний разговор» is the direct object of «припомнил» (кого? что?) — accusative.",
    "id": "c2"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "нежелательные слухи",
    "case": "Именительный (Nominative)",
-   "explain": "«нежелательные слухи» — the subject of the sentence stands in the nominative.",
+   "explain": "«нежелательные слухи» is the subject of «ходят» — who or what does it — so nominative.",
    "id": "c3"
   },
   {
@@ -47,56 +33,14 @@
    "lemma": "толк",
    "options": [
     "нежелательных толках",
+    "нежелательные толки",
     "нежелательных толков",
-    "нежелательным толкам",
-    "нежелательными толками"
+    "нежелательным толкам"
    ],
    "correct": "нежелательных толков",
    "case": "Родительный (Genitive)",
-   "explain": "«нежелательных толков» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«нежелательных толков» depends on the noun «возникновению» (whose? of what?) — genitive.",
    "id": "c4"
-  },
-  {
-   "sentence": "Он выспрашивал Коковкину, что же говорят, и боялся услышать какие-нибудь ___.",
-   "lemma": "слово",
-   "options": [
-    "грубыми словами",
-    "грубые слова",
-    "грубым словам",
-    "грубых слов"
-   ],
-   "correct": "грубые слова",
-   "case": "Винительный (Accusative)",
-   "explain": "«грубые слова» — the accusative marks the direct object of the verb.",
-   "id": "c5"
-  },
-  {
-   "sentence": "-- Ничего особенного, так, -- с тем же ___ ответил Саша, -- главным образом мы читаем.",
-   "lemma": "вид",
-   "options": [
-    "невинным видом",
-    "невинный вид",
-    "невинному виду",
-    "невинном виде"
-   ],
-   "correct": "невинным видом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«невинным видом» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c9"
-  },
-  {
-   "sentence": "-- Ничего особенного, так, -- с тем же невинным видом ответил Саша, -- ___ мы читаем.",
-   "lemma": "образ",
-   "options": [
-    "главным образом",
-    "главному образу",
-    "главном образе",
-    "главный образ"
-   ],
-   "correct": "главным образом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«главным образом» — the instrumental marks the means, company, or complement.",
-   "id": "c10"
   },
   {
    "sentence": "Хрипач подумал, что дело педагога -- трудное и ответственное дело, особенно если имеешь честь начальствовать над ___.",
@@ -109,35 +53,21 @@
    ],
    "correct": "учебным заведением",
    "case": "Творительный (Instrumental)",
-   "explain": "«учебным заведением» — after the preposition «над», the instrumental marks the means, company, or complement.",
+   "explain": "«учебным заведением» — «над» always takes the instrumental.",
    "id": "c11"
-  },
-  {
-   "sentence": "Это ___ окрылило застывшие было мысли у Хрипача.",
-   "lemma": "определение",
-   "options": [
-    "банальное определение",
-    "банального определения",
-    "банальному определению",
-    "банальным определением"
-   ],
-   "correct": "банальное определение",
-   "case": "Именительный (Nominative)",
-   "explain": "«банальное определение» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
   },
   {
    "sentence": "-- Я вам верю, что ничего худого не было, но все-таки вы лучше прекратите эти ___.",
    "lemma": "посещение",
    "options": [
-    "частых посещений",
     "частые посещения",
-    "частым посещениям",
-    "частыми посещениями"
+    "частых посещениях",
+    "частыми посещениями",
+    "частым посещениям"
    ],
    "correct": "частые посещения",
    "case": "Винительный (Accusative)",
-   "explain": "«частые посещения» — the accusative marks the direct object of the verb.",
+   "explain": "«частые посещения» is the direct object of «прекратите» (кого? что?) — accusative.",
    "id": "c15"
   },
   {
@@ -151,7 +81,7 @@
    ],
    "correct": "здешнего театра",
    "case": "Родительный (Genitive)",
-   "explain": "«здешнего театра» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«здешнего театра» depends on the noun «актеры» (whose? of what?) — genitive.",
    "id": "c16"
   },
   {
@@ -165,7 +95,7 @@
    ],
    "correct": "общественном собрании",
    "case": "Предложный (Prepositional)",
-   "explain": "«общественном собрании» — after the preposition «в», for location or topic.",
+   "explain": "«общественном собрании» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c17"
   },
   {
@@ -179,36 +109,8 @@
    ],
    "correct": "печатное объявление",
    "case": "Именительный (Nominative)",
-   "explain": "«печатное объявление» — the subject of the sentence stands in the nominative.",
+   "explain": "«печатное объявление» is the subject of «появилось» — who or what does it — so nominative.",
    "id": "c18"
-  },
-  {
-   "sentence": "Когда появилось печатное объявление о маскараде, -- ___, расклеенные на заборах и разосланные именитым гражданам, -- оказалось, что дадут вовсе не корову и не велосипед, а только веер даме и альбом мужчине.",
-   "lemma": "афиша",
-   "options": [
-    "громадными афишами",
-    "громадных афиш",
-    "громадные афиши",
-    "громадных афишах"
-   ],
-   "correct": "громадные афиши",
-   "case": "Именительный (Nominative)",
-   "explain": "«громадные афиши» — the subject of the sentence stands in the nominative.",
-   "id": "c19"
-  },
-  {
-   "sentence": "Когда появилось печатное объявление о маскараде, -- громадные афиши, расклеенные на заборах и разосланные ___, -- оказалось, что дадут вовсе не корову и не велосипед, а только веер даме и альбом мужчине.",
-   "lemma": "гражданин",
-   "options": [
-    "именитые граждане",
-    "именитых граждан",
-    "именитым гражданам",
-    "именитыми гражданами"
-   ],
-   "correct": "именитым гражданам",
-   "case": "Дательный (Dative)",
-   "explain": "«именитым гражданам» — the dative marks the indirect object or recipient.",
-   "id": "c20"
   },
   {
    "sentence": "Костюм для гейши Людмила смастерила сама по ярлыку от корилопсиса: платье желтого шелка на красном атласе, длинное и широкое; на платье шитый пестрый узор, крупные цветы ___.",
@@ -221,50 +123,8 @@
    ],
    "correct": "причудливых очертаний",
    "case": "Родительный (Genitive)",
-   "explain": "«причудливых очертаний» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«причудливых очертаний» depends on the noun «цветы» (whose? of what?) — genitive.",
    "id": "c23"
-  },
-  {
-   "sentence": "Сами же девицы смастерили веер из тонкой ___ с рисунками, на бамбуковых палочках, и зонтик из тонкого розового шелка на бамбуковой же ручке.",
-   "lemma": "бумага",
-   "options": [
-    "японская бумага",
-    "японской бумагой",
-    "японской бумаге",
-    "японской бумаги"
-   ],
-   "correct": "японской бумаги",
-   "case": "Родительный (Genitive)",
-   "explain": "«японской бумаги» — the genitive here marks possession, absence, or quantity.",
-   "id": "c24"
-  },
-  {
-   "sentence": "На ноги -- ___ и деревянные башмачки скамеечками.",
-   "lemma": "чулок",
-   "options": [
-    "розовые чулки",
-    "розовыми чулками",
-    "розовым чулкам",
-    "розовых чулок"
-   ],
-   "correct": "розовые чулки",
-   "case": "Именительный (Nominative)",
-   "explain": "«розовые чулки» — the subject of the sentence stands in the nominative.",
-   "id": "c26"
-  },
-  {
-   "sentence": "И маску для гейши раскрасила искусница Людмила: желтоватое, но милое ___ с неподвижною, легкою улыбкою, косо-прорезанные глаза, узкий и маленький рот.",
-   "lemma": "лицо",
-   "options": [
-    "худенького лица",
-    "худенькому лицу",
-    "худенькое лицо",
-    "худеньком лице"
-   ],
-   "correct": "худенькое лицо",
-   "case": "Именительный (Nominative)",
-   "explain": "«худенькое лицо» — the subject of the sentence stands in the nominative.",
-   "id": "c27"
   }
  ]
 }

@@ -1,48 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Так, как подсказывают наше настроение, наши ___, сложившиеся навыки, внешние обстоятельства.",
-   "lemma": "свойство",
-   "options": [
-    "психическим свойствам",
-    "психические свойства",
-    "психических свойств",
-    "психических свойствах"
-   ],
-   "correct": "психические свойства",
-   "case": "Именительный (Nominative)",
-   "explain": "«психические свойства» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Так, как подсказывают наше настроение, наши психические свойства, сложившиеся навыки, ___.",
-   "lemma": "обстоятельство",
-   "options": [
-    "внешних обстоятельствах",
-    "внешним обстоятельствам",
-    "внешними обстоятельствами",
-    "внешние обстоятельства"
-   ],
-   "correct": "внешние обстоятельства",
-   "case": "Винительный (Accusative)",
-   "explain": "«внешние обстоятельства» — the accusative marks the direct object of the verb.",
-   "id": "c2"
-  },
-  {
-   "sentence": "___ вредно уже, прежде всего, потому, что лишает той огромной пользы, которую дает хорошее чтение.",
-   "lemma": "чтение",
-   "options": [
-    "плохого чтения",
-    "плохому чтению",
-    "плохое чтение",
-    "плохим чтением"
-   ],
-   "correct": "плохое чтение",
-   "case": "Именительный (Nominative)",
-   "explain": "«Плохое чтение» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
    "sentence": "Плохое чтение вредно уже, прежде всего, потому, что лишает той ___, которую дает хорошее чтение.",
    "lemma": "польза",
    "options": [
@@ -53,22 +11,8 @@
    ],
    "correct": "огромной пользы",
    "case": "Родительный (Genitive)",
-   "explain": "«огромной пользы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«лишает» takes its object in the genitive.",
    "id": "c4"
-  },
-  {
-   "sentence": "Но оно может принести и ___.",
-   "lemma": "вред",
-   "options": [
-    "другому вреду",
-    "другом вреде",
-    "другого вреда",
-    "другой вред"
-   ],
-   "correct": "другой вред",
-   "case": "Винительный (Accusative)",
-   "explain": "«другой вред» — the accusative marks the direct object of the verb.",
-   "id": "c5"
   },
   {
    "sentence": "Несомненно, есть ___, приносящие огромный вред.",
@@ -81,64 +25,8 @@
    ],
    "correct": "дрянные книги",
    "case": "Именительный (Nominative)",
-   "explain": "«дрянные книги» — the subject of the sentence stands in the nominative.",
+   "explain": "«дрянные книги» is the subject of «есть» — who or what does it — so nominative.",
    "id": "c6"
-  },
-  {
-   "sentence": "Несомненно, есть дрянные книги, приносящие ___.",
-   "lemma": "вред",
-   "options": [
-    "огромного вреда",
-    "огромным вредом",
-    "огромный вред",
-    "огромному вреду"
-   ],
-   "correct": "огромный вред",
-   "case": "Винительный (Accusative)",
-   "explain": "«огромный вред» — the accusative marks the direct object of the verb.",
-   "id": "c7"
-  },
-  {
-   "sentence": "Но и ___ чтения тоже может принести вред, – вред и телесный и душевный.",
-   "lemma": "способ",
-   "options": [
-    "самом способе",
-    "самым способом",
-    "самый способ",
-    "самому способу"
-   ],
-   "correct": "самый способ",
-   "case": "Именительный (Nominative)",
-   "explain": "«самый способ» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
-  },
-  {
-   "sentence": "Привычка «глотать» книги может вызвать ___.",
-   "lemma": "боль",
-   "options": [
-    "головных болей",
-    "головными болями",
-    "головные боли",
-    "головным болям"
-   ],
-   "correct": "головные боли",
-   "case": "Винительный (Accusative)",
-   "explain": "«головные боли» — the accusative marks the direct object of the verb.",
-   "id": "c9"
-  },
-  {
-   "sentence": "Может способствовать развитию неврозов, неврастении и ___ нервной системы, а также быть одной из причин различных телесных заболеваний, производных от нарушения нормальной деятельности нервной системы.",
-   "lemma": "болезнь",
-   "options": [
-    "других болезнях",
-    "других болезней",
-    "другие болезни",
-    "другими болезнями"
-   ],
-   "correct": "других болезней",
-   "case": "Родительный (Genitive)",
-   "explain": "«других болезней» — the genitive here marks possession, absence, or quantity.",
-   "id": "c10"
   },
   {
    "sentence": "Может способствовать развитию неврозов, неврастении и других болезней ___, а также быть одной из причин различных телесных заболеваний, производных от нарушения нормальной деятельности нервной системы.",
@@ -151,7 +39,7 @@
    ],
    "correct": "нервной системы",
    "case": "Родительный (Genitive)",
-   "explain": "«нервной системы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«нервной системы» depends on the noun «болезней» (whose? of what?) — genitive.",
    "id": "c11"
   },
   {
@@ -165,22 +53,8 @@
    ],
    "correct": "телесных заболеваний",
    "case": "Родительный (Genitive)",
-   "explain": "«телесных заболеваний» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«телесных заболеваний» depends on the noun «причин» (whose? of what?) — genitive.",
    "id": "c12"
-  },
-  {
-   "sentence": "Может способствовать развитию неврозов, неврастении и других болезней ___, а также быть одной из причин различных телесных заболеваний, производных от нарушения нормальной деятельности нервной системы.",
-   "lemma": "система",
-   "options": [
-    "нервной системе",
-    "нервной системы",
-    "нервной системой",
-    "нервная система"
-   ],
-   "correct": "нервной системы",
-   "case": "Родительный (Genitive)",
-   "explain": "«нервной системы» — the genitive here marks possession, absence, or quantity.",
-   "id": "c13"
   },
   {
    "sentence": "___ препятствует иногда нормальному развитию способностей и нередко портит их, например, ослабляет способность к сосредоточению внимания, память и т. д.",
@@ -193,7 +67,7 @@
    ],
    "correct": "плохое чтение",
    "case": "Именительный (Nominative)",
-   "explain": "«Плохое чтение» — the subject of the sentence stands in the nominative.",
+   "explain": "«плохое чтение» is the subject of «препятствует» — who or what does it — so nominative.",
    "id": "c14"
   },
   {
@@ -207,22 +81,8 @@
    ],
    "correct": "нормальному развитию",
    "case": "Дательный (Dative)",
-   "explain": "«нормальному развитию» — the dative marks the indirect object or recipient.",
+   "explain": "«препятствует» takes the dative (кому? чему?).",
    "id": "c15"
-  },
-  {
-   "sentence": "Не менее важно и то обстоятельство, что ___ очень способствует выработке двух нежелательных типов людей: фразера и «человека с кашей в голове».",
-   "lemma": "чтение",
-   "options": [
-    "плохом чтении",
-    "плохим чтением",
-    "плохое чтение",
-    "плохого чтения"
-   ],
-   "correct": "плохое чтение",
-   "case": "Именительный (Nominative)",
-   "explain": "«плохое чтение» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
   },
   {
    "sentence": "Не менее важно и то обстоятельство, что плохое чтение очень способствует выработке двух ___ людей: фразера и «человека с кашей в голове».",
@@ -235,63 +95,21 @@
    ],
    "correct": "нежелательных типов",
    "case": "Родительный (Genitive)",
-   "explain": "«нежелательных типов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«нежелательных типов» depends on the noun «выработке» (whose? of what?) — genitive.",
    "id": "c17"
-  },
-  {
-   "sentence": "У человека с «кашей в голове» надерганы отовсюду ___ знаний.",
-   "lemma": "отрывок",
-   "options": [
-    "разными отрывками",
-    "разных отрывков",
-    "разные отрывки",
-    "разным отрывкам"
-   ],
-   "correct": "разные отрывки",
-   "case": "Именительный (Nominative)",
-   "explain": "«разные отрывки» — the subject of the sentence stands in the nominative.",
-   "id": "c19"
-  },
-  {
-   "sentence": "У такого человека, конечно, отсутствует сколь-нибудь ___, и говорить с таким человеком – мука.",
-   "lemma": "мировоззрение",
-   "options": [
-    "стройным мировоззрением",
-    "стройном мировоззрении",
-    "стройное мировоззрение",
-    "стройному мировоззрению"
-   ],
-   "correct": "стройное мировоззрение",
-   "case": "Именительный (Nominative)",
-   "explain": "«стройное мировоззрение» — the subject of the sentence stands in the nominative.",
-   "id": "c20"
-  },
-  {
-   "sentence": "Цитаты и ссылки так и гремят, так и летят из уст его, но тщетно стараешься уловить ___ и дивишься тем поразительным выводам, которые из этого материала делаются.",
-   "lemma": "смысл",
-   "options": [
-    "общий смысл",
-    "общего смысла",
-    "общим смыслом",
-    "общему смыслу"
-   ],
-   "correct": "общий смысл",
-   "case": "Винительный (Accusative)",
-   "explain": "«общий смысл» — the accusative marks the direct object of the verb.",
-   "id": "c21"
   },
   {
    "sentence": "Цитаты и ссылки так и гремят, так и летят из уст его, но тщетно стараешься уловить общий смысл и дивишься тем ___, которые из этого материала делаются.",
    "lemma": "вывод",
    "options": [
-    "поразительными выводами",
-    "поразительных выводах",
     "поразительным выводам",
-    "поразительные выводы"
+    "поразительными выводами",
+    "поразительных выводов",
+    "поразительных выводах"
    ],
    "correct": "поразительным выводам",
    "case": "Дательный (Dative)",
-   "explain": "«поразительным выводам» — the dative marks the indirect object or recipient.",
+   "explain": "«дивишься» takes the dative (кому? чему?).",
    "id": "c22"
   },
   {
@@ -305,7 +123,7 @@
    ],
    "correct": "плохого чтения",
    "case": "Родительный (Genitive)",
-   "explain": "«плохого чтения» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«плохого чтения» depends on the noun «результат» (whose? of what?) — genitive.",
    "id": "c23"
   },
   {
@@ -319,7 +137,7 @@
    ],
    "correct": "логической выучки",
    "case": "Родительный (Genitive)",
-   "explain": "«логической выучки» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«логической выучки» depends on the noun «отсутствия» (whose? of what?) — genitive.",
    "id": "c24"
   },
   {
@@ -333,7 +151,7 @@
    ],
    "correct": "вредных следствий",
    "case": "Родительный (Genitive)",
-   "explain": "«вредных следствий» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«вредных следствий» depends on the noun «обзор» (whose? of what?) — genitive.",
    "id": "c25"
   },
   {
@@ -347,22 +165,8 @@
    ],
    "correct": "неправильного чтения",
    "case": "Родительный (Genitive)",
-   "explain": "«неправильного чтения» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«неправильного чтения» depends on the noun «следствий» (whose? of what?) — genitive.",
    "id": "c26"
-  },
-  {
-   "sentence": "Речь идет об отношении книги и жизни, теории и практики, разрыв между которыми был столь ___ у дореволюционной интеллигенции и порождал такие плевелы, как типы людей «книжно мыслящих» и «праздно болтающих».",
-   "lemma": "явление",
-   "options": [
-    "частым явлением",
-    "частому явлению",
-    "частое явление",
-    "частом явлении"
-   ],
-   "correct": "частым явлением",
-   "case": "Творительный (Instrumental)",
-   "explain": "«частым явлением» — the instrumental marks the means, company, or complement.",
-   "id": "c28"
   },
   {
    "sentence": "Особенно это распространено было в области ___ и в области морали.",
@@ -375,7 +179,7 @@
    ],
    "correct": "общественных наук",
    "case": "Родительный (Genitive)",
-   "explain": "«общественных наук» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«общественных наук» depends on the noun «области» (whose? of what?) — genitive.",
    "id": "c29"
   },
   {
@@ -389,21 +193,21 @@
    ],
    "correct": "нового общества",
    "case": "Родительный (Genitive)",
-   "explain": "«нового общества» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«нового общества» depends on the noun «строители» (whose? of what?) — genitive.",
    "id": "c30"
   },
   {
    "sentence": "Пусть строители нового общества всегда помнят ___ В.",
    "lemma": "завет",
    "options": [
-    "хорошем завете",
-    "хорошего завета",
     "хороший завет",
-    "хорошим заветом"
+    "хорошим заветом",
+    "хорошему завету",
+    "хорошем завете"
    ],
    "correct": "хороший завет",
    "case": "Винительный (Accusative)",
-   "explain": "«хороший завет» — the accusative marks the direct object of the verb.",
+   "explain": "«хороший завет» is the direct object of «помнят» (кого? что?) — accusative.",
    "id": "c31"
   },
   {
@@ -417,7 +221,7 @@
    ],
    "correct": "сам человек",
    "case": "Именительный (Nominative)",
-   "explain": "«Сам человек» — the subject of the sentence stands in the nominative.",
+   "explain": "«сам человек» is the subject of «замечает» — who or what does it — so nominative.",
    "id": "c32"
   },
   {
@@ -431,7 +235,7 @@
    ],
    "correct": "подобные недостатки",
    "case": "Винительный (Accusative)",
-   "explain": "«подобные недостатки» — the accusative marks the direct object of the verb.",
+   "explain": "«подобные недостатки» is the direct object of «замечает» (кого? что?) — accusative.",
    "id": "c33"
   },
   {
@@ -445,7 +249,7 @@
    ],
    "correct": "главных недостатков",
    "case": "Родительный (Genitive)",
-   "explain": "«главных недостатков» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«главных недостатков» — «из» always takes the genitive.",
    "id": "c35"
   },
   {
@@ -459,7 +263,7 @@
    ],
    "correct": "безыскусственного чтения",
    "case": "Родительный (Genitive)",
-   "explain": "«безыскусственного чтения» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«безыскусственного чтения» depends on the noun «недостатков» (whose? of what?) — genitive.",
    "id": "c36"
   },
   {
@@ -473,36 +277,8 @@
    ],
    "correct": "сходных целей",
    "case": "Родительный (Genitive)",
-   "explain": "«сходных целей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«сходных целей» depends on the noun «ряд» (whose? of what?) — genitive.",
    "id": "c37"
-  },
-  {
-   "sentence": "Но и одну и ту же книгу можно читать с ___.",
-   "lemma": "цель",
-   "options": [
-    "различных целях",
-    "различным целям",
-    "различные цели",
-    "различными целями"
-   ],
-   "correct": "различными целями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«различными целями» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c38"
-  },
-  {
-   "sentence": "Кто читает «Илиаду», как ___, очевидно, должен читать ее иначе, чем ученый или чем Александр Македонский.",
-   "lemma": "произведение",
-   "options": [
-    "поэтическое произведение",
-    "поэтическом произведении",
-    "поэтического произведения",
-    "поэтическому произведению"
-   ],
-   "correct": "поэтическое произведение",
-   "case": "Именительный (Nominative)",
-   "explain": "«поэтическое произведение» — the subject of the sentence stands in the nominative.",
-   "id": "c39"
   },
   {
    "sentence": "При этом ___ схватывает только наиболее существенное вообще или наиболее важное для него: главные мысли, факты и т. д.",
@@ -515,36 +291,8 @@
    ],
    "correct": "умелый читатель",
    "case": "Именительный (Nominative)",
-   "explain": "«умелый читатель» — the subject of the sentence stands in the nominative.",
+   "explain": "«умелый читатель» is the subject of «схватывает» — who or what does it — so nominative.",
    "id": "c40"
-  },
-  {
-   "sentence": "При этом умелый читатель схватывает только наиболее существенное вообще или наиболее важное для него: ___, факты и т. д.",
-   "lemma": "мысль",
-   "options": [
-    "главными мыслями",
-    "главных мыслей",
-    "главные мысли",
-    "главных мыслях"
-   ],
-   "correct": "главные мысли",
-   "case": "Именительный (Nominative)",
-   "explain": "«главные мысли» — the subject of the sentence stands in the nominative.",
-   "id": "c41"
-  },
-  {
-   "sentence": "Есть чтение полное, без пропусков, но и без ___ над материалом.",
-   "lemma": "работа",
-   "options": [
-    "особая работа",
-    "особой работе",
-    "особой работы",
-    "особой работой"
-   ],
-   "correct": "особой работы",
-   "case": "Родительный (Genitive)",
-   "explain": "«особой работы» — after the preposition «без», the genitive here marks possession, absence, or quantity.",
-   "id": "c43"
   },
   {
    "sentence": "При ___ мы совсем как бы отдаемся на волю автора.",
@@ -557,21 +305,21 @@
    ],
    "correct": "пассивном чтении",
    "case": "Предложный (Prepositional)",
-   "explain": "«пассивном чтении» — after the preposition «при», for location or topic.",
+   "explain": "«пассивном чтении» — «при» always takes the prepositional.",
    "id": "c44"
   },
   {
    "sentence": "Кто любит стихи, тот пусть вспомнит, как он читает любимое стихотворение ___.",
    "lemma": "автор",
    "options": [
+    "любимого автора",
     "любимому автору",
-    "любимым автором",
     "любимый автор",
-    "любимого автора"
+    "любимом авторе"
    ],
    "correct": "любимого автора",
    "case": "Родительный (Genitive)",
-   "explain": "«любимого автора» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«любимого автора» depends on the noun «стихотворение» (whose? of what?) — genitive.",
    "id": "c45"
   },
   {
@@ -585,36 +333,8 @@
    ],
    "correct": "активном чтении",
    "case": "Предложный (Prepositional)",
-   "explain": "«активном чтении» — after the preposition «при», for location or topic.",
+   "explain": "«активном чтении» — «при» always takes the prepositional.",
    "id": "c46"
-  },
-  {
-   "sentence": "___ – чтение статьи, противоречащей нашим взглядам.",
-   "lemma": "случай",
-   "options": [
-    "типичном случае",
-    "типичного случая",
-    "типичный случай",
-    "типичному случаю"
-   ],
-   "correct": "типичный случай",
-   "case": "Именительный (Nominative)",
-   "explain": "«Типичный случай» — the subject of the sentence stands in the nominative.",
-   "id": "c47"
-  },
-  {
-   "sentence": "Это ___ несколько иллюстрирует разницу между поверхностным и углубленным чтением.",
-   "lemma": "сравнение",
-   "options": [
-    "грубого сравнения",
-    "грубому сравнению",
-    "грубое сравнение",
-    "грубым сравнением"
-   ],
-   "correct": "грубое сравнение",
-   "case": "Именительный (Nominative)",
-   "explain": "«грубое сравнение» — the subject of the sentence stands in the nominative.",
-   "id": "c49"
   },
   {
    "sentence": "В результате ___ содержание книги должно «усвоиться» нами, стать «своим», стать составной частью в содержании нашей личности, поскольку мы с ним согласны.",
@@ -627,64 +347,8 @@
    ],
    "correct": "глубокого чтения",
    "case": "Родительный (Genitive)",
-   "explain": "«глубокого чтения» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«глубокого чтения» depends on the noun «результате» (whose? of what?) — genitive.",
    "id": "c50"
-  },
-  {
-   "sentence": "Поверхностное же чтение сопровождается минимальной ___, – часто ровно настолько, сколько требуется, чтобы кое-как понять, о чем идет речь.",
-   "lemma": "работа",
-   "options": [
-    "душевной работе",
-    "душевной работы",
-    "душевной работой",
-    "душевная работа"
-   ],
-   "correct": "душевной работой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«душевной работой» — the instrumental marks the means, company, or complement.",
-   "id": "c51"
-  },
-  {
-   "sentence": "___ должен одинаково совершенно владеть всеми способами чтения и легко приспособляться к любой цели чтения.",
-   "lemma": "читатель",
-   "options": [
-    "идеальном читателе",
-    "идеального читателя",
-    "идеальному читателю",
-    "идеальный читатель"
-   ],
-   "correct": "идеальный читатель",
-   "case": "Именительный (Nominative)",
-   "explain": "«Идеальный читатель» — the subject of the sentence stands in the nominative.",
-   "id": "c52"
-  },
-  {
-   "sentence": "Для изучения какой-нибудь книги он станет читать ее ___, активным, углубленным, с проработкой.",
-   "lemma": "чтение",
-   "options": [
-    "полном чтении",
-    "полному чтению",
-    "полного чтения",
-    "полным чтением"
-   ],
-   "correct": "полным чтением",
-   "case": "Творительный (Instrumental)",
-   "explain": "«полным чтением» — the instrumental marks the means, company, or complement.",
-   "id": "c53"
-  },
-  {
-   "sentence": "Отчетливое чтение – ___ хорошего чтения.",
-   "lemma": "условие",
-   "options": [
-    "обязательным условием",
-    "обязательному условию",
-    "обязательное условие",
-    "обязательном условии"
-   ],
-   "correct": "обязательное условие",
-   "case": "Именительный (Nominative)",
-   "explain": "«обязательное условие» — the subject of the sentence stands in the nominative.",
-   "id": "c55"
   },
   {
    "sentence": "Отчетливое чтение – обязательное условие ___.",
@@ -697,7 +361,7 @@
    ],
    "correct": "хорошего чтения",
    "case": "Родительный (Genitive)",
-   "explain": "«хорошего чтения» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«хорошего чтения» depends on the noun «условие» (whose? of what?) — genitive.",
    "id": "c56"
   }
  ]

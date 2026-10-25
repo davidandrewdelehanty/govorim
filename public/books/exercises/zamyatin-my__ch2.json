@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Быть может, вы не знаете даже таких азов, как Часовая Скрижаль, ___, Материнская Норма, Зеленая Стена, Благодетель.",
-   "lemma": "часы",
-   "options": [
-    "личными часами",
-    "личных часов",
-    "личные часы",
-    "личным часам"
-   ],
-   "correct": "личные часы",
-   "case": "Именительный (Nominative)",
-   "explain": "«Личные Часы» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Ведь ясно: вся человеческая история, сколько мы ее знаем, это история перехода от ___ ко все более оседлым.",
    "lemma": "форма",
    "options": [
@@ -25,36 +11,8 @@
    ],
    "correct": "кочевых форм",
    "case": "Родительный (Genitive)",
-   "explain": "«кочевых форм» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«кочевых форм» — «от» always takes the genitive.",
    "id": "c2"
-  },
-  {
-   "sentence": "Разве не следует отсюда, что наиболее ___ жизни (наша) — есть вместе с тем и наиболее совершенная (наша).",
-   "lemma": "форма",
-   "options": [
-    "оседлой форме",
-    "оседлой формой",
-    "оседлой формы",
-    "оседлая форма"
-   ],
-   "correct": "оседлая форма",
-   "case": "Именительный (Nominative)",
-   "explain": "«оседлая форма» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
-   "sentence": "Все мы (а может быть, и вы) еще детьми, в школе, читали этот величайший из дошедших до нас памятников ___ — «Расписание железных дорог».",
-   "lemma": "литература",
-   "options": [
-    "древней литературе",
-    "древняя литература",
-    "древней литературы",
-    "древней литературой"
-   ],
-   "correct": "древней литературы",
-   "case": "Родительный (Genitive)",
-   "explain": "«древней литературы» — the genitive here marks possession, absence, or quantity.",
-   "id": "c6"
   },
   {
    "sentence": "Все мы (а может быть, и вы) еще детьми, в школе, читали этот величайший из дошедших до нас памятников древней литературы — «Расписание ___».",
@@ -67,7 +25,7 @@
    ],
    "correct": "железных дорог",
    "case": "Родительный (Genitive)",
-   "explain": "«железных дорог» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«железных дорог» depends on the noun «Расписание» (whose? of what?) — genitive.",
    "id": "c7"
   },
   {
@@ -81,7 +39,7 @@
    ],
    "correct": "великой поэмы",
    "case": "Родительный (Genitive)",
-   "explain": "«великой поэмы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«великой поэмы» depends on the noun «героя» (whose? of what?) — genitive.",
    "id": "c8"
   },
   {
@@ -95,7 +53,7 @@
    ],
    "correct": "письменным столом",
    "case": "Творительный (Instrumental)",
-   "explain": "«письменным столом» — after the preposition «за», the instrumental marks the means, company, or complement.",
+   "explain": "«письменным столом» — «за» takes the instrumental here (где? за чем? за кем?) — the accusative would mean motion behind or 'for' (куда? за что?).",
    "id": "c10"
   },
   {
@@ -109,24 +67,10 @@
    ],
    "correct": "общей формуле",
    "case": "Предложный (Prepositional)",
-   "explain": "«общей формуле» — after the preposition «в», for location or topic.",
+   "explain": "«общей формуле» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c11"
   },
   {
-   "sentence": "Ведь как бы ни был ограничен их разум, но все-таки должны же они были понимать, что такая жизнь была самым настоящим ___ — только медленным, изо дня в день.",
-   "lemma": "убийство",
-   "options": [
-    "поголовного убийства",
-    "поголовному убийству",
-    "поголовным убийством",
-    "поголовном убийстве"
-   ],
-   "correct": "поголовным убийством",
-   "case": "Творительный (Instrumental)",
-   "explain": "«поголовным убийством» — the instrumental marks the means, company, or complement.",
-   "id": "c12"
-  },
-  {
    "sentence": "Убить одного, т. е. уменьшить сумму ___ на 50 лет, — это преступно, а уменьшить сумму человеческих жизней на 50 миллионов лет — это не преступно.",
    "lemma": "жизнь",
    "options": [
@@ -137,36 +81,8 @@
    ],
    "correct": "человеческих жизней",
    "case": "Родительный (Genitive)",
-   "explain": "«человеческих жизней» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«человеческих жизней» depends on the noun «сумму» (whose? of what?) — genitive.",
    "id": "c13"
-  },
-  {
-   "sentence": "Убить одного, т. е. уменьшить сумму ___ на 50 лет, — это преступно, а уменьшить сумму человеческих жизней на 50 миллионов лет — это не преступно.",
-   "lemma": "жизнь",
-   "options": [
-    "человеческим жизням",
-    "человеческими жизнями",
-    "человеческих жизней",
-    "человеческие жизни"
-   ],
-   "correct": "человеческих жизней",
-   "case": "Родительный (Genitive)",
-   "explain": "«человеческих жизней» — the genitive here marks possession, absence, or quantity.",
-   "id": "c14"
-  },
-  {
-   "sentence": "Не смешно ли: знать садоводство, куроводство, рыбоводство (у нас есть ___, что они знали все это) и не суметь дойти до последней ступени этой логической лестницы: детоводства.",
-   "lemma": "данные",
-   "options": [
-    "точным данным",
-    "точные данные",
-    "точными данными",
-    "точных данных"
-   ],
-   "correct": "точные данные",
-   "case": "Именительный (Nominative)",
-   "explain": "«точные данные» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
   },
   {
    "sentence": "Не смешно ли: знать садоводство, куроводство, рыбоводство (у нас есть точные данные, что они знали все это) и не суметь дойти до последней ступени этой ___: детоводства.",
@@ -179,36 +95,8 @@
    ],
    "correct": "логической лестницы",
    "case": "Родительный (Genitive)",
-   "explain": "«логической лестницы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«логической лестницы» depends on the noun «ступени» (whose? of what?) — genitive.",
    "id": "c16"
-  },
-  {
-   "sentence": "Так смешно, так неправдоподобно, что вот я написал и боюсь: а вдруг вы, ___, сочтете меня за злого шутника.",
-   "lemma": "читатель",
-   "options": [
-    "неведомые читатели",
-    "неведомым читателям",
-    "неведомыми читателями",
-    "неведомых читателей"
-   ],
-   "correct": "неведомые читатели",
-   "case": "Именительный (Nominative)",
-   "explain": "«неведомые читатели» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
-  },
-  {
-   "sentence": "Да и откуда тогда было бы взяться ___, когда люди жили в состоянии свободы, т. е. зверей, обезьян, стада.",
-   "lemma": "логика",
-   "options": [
-    "государственной логики",
-    "государственной логике",
-    "государственная логика",
-    "государственной логикой"
-   ],
-   "correct": "государственной логике",
-   "case": "Дательный (Dative)",
-   "explain": "«государственной логике» — the dative marks the indirect object or recipient.",
-   "id": "c19"
   },
   {
    "sentence": "Чего можно требовать от них, если даже и в наше время — откуда-то со дна, из ___ — еще изредка слышно дикое, обезьянье эхо.",
@@ -221,22 +109,8 @@
    ],
    "correct": "мохнатых глубин",
    "case": "Родительный (Genitive)",
-   "explain": "«мохнатых глубин» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«мохнатых глубин» — «из» always takes the genitive.",
    "id": "c20"
-  },
-  {
-   "sentence": "К счастью — это только ___ деталей: их легко ремонтировать, не останавливая вечного, великого хода всей Машины.",
-   "lemma": "авария",
-   "options": [
-    "мелких авариях",
-    "мелким авариям",
-    "мелкими авариями",
-    "мелкие аварии"
-   ],
-   "correct": "мелкие аварии",
-   "case": "Именительный (Nominative)",
-   "explain": "«мелкие аварии» — the subject of the sentence stands in the nominative.",
-   "id": "c21"
   }
  ]
 }

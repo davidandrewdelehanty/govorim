@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "___ в рясе, с тяжелым крестом на шее угрожающе посмотрел на учеников.",
-   "lemma": "человек",
-   "options": [
-    "обрюзглом человеке",
-    "обрюзглым человеком",
-    "обрюзглого человека",
-    "обрюзглый человек"
-   ],
-   "correct": "обрюзглый человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«Обрюзглый человек» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Маленькие ___ точно прокалывали всех шестерых, поднявшихся со скамеек, — четырех мальчиков, и двух девочек.",
    "lemma": "глазок",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "злые глазки",
    "case": "Именительный (Nominative)",
-   "explain": "«злые глазки» — the subject of the sentence stands in the nominative.",
+   "explain": "«злые глазки» is the subject of «прокалывали» — who or what does it — so nominative.",
    "id": "c2"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "последней ступеньке",
    "case": "Предложный (Prepositional)",
-   "explain": "«последней ступеньке» — after the preposition «на», for location or topic.",
+   "explain": "«последней ступеньке» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c6"
   },
   {
@@ -53,50 +39,8 @@
    ],
    "correct": "проклятого попа",
    "case": "Родительный (Genitive)",
-   "explain": "«проклятого попа» — after the preposition «из-за», the genitive here marks possession, absence, or quantity.",
+   "explain": "«проклятого попа» — «из-за» always takes the genitive.",
    "id": "c7"
-  },
-  {
-   "sentence": "Никому не прощал он своих ___: не забывал и попу незаслуженную порку, озлобился, затаился.",
-   "lemma": "обида",
-   "options": [
-    "маленькие обиды",
-    "маленькими обидами",
-    "маленьких обид",
-    "маленьких обидах"
-   ],
-   "correct": "маленьких обид",
-   "case": "Родительный (Genitive)",
-   "explain": "«маленьких обид» — the genitive here marks possession, absence, or quantity.",
-   "id": "c13"
-  },
-  {
-   "sentence": "И, проводив сына ___, пошла к выходу.",
-   "lemma": "взгляд",
-   "options": [
-    "грустному взгляду",
-    "грустный взгляд",
-    "грустным взглядом",
-    "грустном взгляде"
-   ],
-   "correct": "грустным взглядом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«грустным взглядом» — the instrumental marks the means, company, or complement.",
-   "id": "c15"
-  },
-  {
-   "sentence": "— Вот, Фросенька, ___ вам сюда вместо Гришки.",
-   "lemma": "мальчик",
-   "options": [
-    "новый мальчик",
-    "новому мальчику",
-    "нового мальчика",
-    "новом мальчике"
-   ],
-   "correct": "новый мальчик",
-   "case": "Именительный (Nominative)",
-   "explain": "«новый мальчик» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
   },
   {
    "sentence": "Дверь в судомойню открылась, и в нее вошли трое официантов, неся груды ___.",
@@ -109,21 +53,21 @@
    ],
    "correct": "грязной посуды",
    "case": "Родительный (Genitive)",
-   "explain": "«грязной посуды» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«грязной посуды» depends on the noun «груды» (whose? of what?) — genitive.",
    "id": "c20"
   },
   {
    "sentence": "Никогда Павка не старался так, как в свой первый ___.",
    "lemma": "день",
    "options": [
+    "рабочим днём",
     "рабочему дню",
-    "рабочем дне",
     "рабочий день",
-    "рабочим днём"
+    "рабочего дня"
    ],
    "correct": "рабочий день",
    "case": "Винительный (Accusative)",
-   "explain": "«рабочий день» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«рабочий день» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c22"
   },
   {
@@ -137,7 +81,7 @@
    ],
    "correct": "четырехведерных самоваров",
    "case": "Родительный (Genitive)",
-   "explain": "«четырехведерных самоваров» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«четырехведерных самоваров» — «из» always takes the genitive.",
    "id": "c23"
   },
   {
@@ -151,64 +95,8 @@
    ],
    "correct": "сливной яме",
    "case": "Дательный (Dative)",
-   "explain": "«сливной яме» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«сливной яме» — «к» always takes the dative.",
    "id": "c24"
-  },
-  {
-   "sentence": "В семь часов утра, измученный бессонной ночью и бесконечной беготней, Павка передал кипящие самовары своей смене — ___ с нахальными глазками.",
-   "lemma": "мальчишка",
-   "options": [
-    "толстоморденьким мальчишкой",
-    "толстоморденького мальчишку",
-    "толстоморденькому мальчишке",
-    "толстоморденьком мальчишке"
-   ],
-   "correct": "толстоморденькому мальчишке",
-   "case": "Дательный (Dative)",
-   "explain": "«толстоморденькому мальчишке» — the dative marks the indirect object or recipient.",
-   "id": "c26"
-  },
-  {
-   "sentence": "Нахальный тон и ___ мальчишки разозлили Павку.",
-   "lemma": "поведение",
-   "options": [
-    "вызывающее поведение",
-    "вызывающего поведения",
-    "вызывающим поведением",
-    "вызывающем поведении"
-   ],
-   "correct": "вызывающее поведение",
-   "case": "Именительный (Nominative)",
-   "explain": "«вызывающее поведение» — the subject of the sentence stands in the nominative.",
-   "id": "c28"
-  },
-  {
-   "sentence": "Он подвинулся на шаг к своей смене, приготовясь влепить мальчишке ___, но боязнь быть прогнанным в первый же день работы остановила его.",
-   "lemma": "лещ",
-   "options": [
-    "хорошему лещу",
-    "хорошего леща",
-    "хороший лещ",
-    "хорошим лещом"
-   ],
-   "correct": "хорошего леща",
-   "case": "Родительный (Genitive)",
-   "explain": "«хорошего леща» — the genitive here marks possession, absence, or quantity.",
-   "id": "c29"
-  },
-  {
-   "sentence": "___ прошел благополучно, и Павка шагал домой с чувством человека, честно заработавшего свой отдых.",
-   "lemma": "день",
-   "options": [
-    "первым днём",
-    "первом дне",
-    "первого дня",
-    "первый день"
-   ],
-   "correct": "первый день",
-   "case": "Именительный (Nominative)",
-   "explain": "«Первый день» — the subject of the sentence stands in the nominative.",
-   "id": "c30"
   },
   {
    "sentence": "Утреннее солнце лениво подымалось из-за громады ___.",
@@ -221,7 +109,7 @@
    ],
    "correct": "лесопильного завода",
    "case": "Родительный (Genitive)",
-   "explain": "«лесопильного завода» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«лесопильного завода» depends on the noun «громады» (whose? of what?) — genitive.",
    "id": "c31"
   },
   {
@@ -235,36 +123,8 @@
    ],
    "correct": "широкая спина",
    "case": "Именительный (Nominative)",
-   "explain": "«широкая спина» — the subject of the sentence stands in the nominative.",
+   "explain": "«широкая спина» is the subject of «виднелась» — who or what does it — so nominative.",
    "id": "c33"
-  },
-  {
-   "sentence": "___, сидевшая за столом спиной к нему, повернулась, и на Павку глянули из-под густых черных бровей суровые глаза брата.",
-   "lemma": "фигура",
-   "options": [
-    "громадной фигурой",
-    "громадная фигура",
-    "громадной фигуре",
-    "громадной фигуры"
-   ],
-   "correct": "громадная фигура",
-   "case": "Именительный (Nominative)",
-   "explain": "«Громадная фигура» — the subject of the sentence stands in the nominative.",
-   "id": "c34"
-  },
-  {
-   "sentence": "Но Артем, видно, драться не собирался; он сидел на табурете, опершись локтями о стол, и смотрел на Павку ___ — не то насмешливо, не то презрительно.",
-   "lemma": "взгляд",
-   "options": [
-    "неотрывающимся взглядом",
-    "неотрывающемся взгляде",
-    "неотрывающемуся взгляду",
-    "неотрывающийся взгляд"
-   ],
-   "correct": "неотрывающимся взглядом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«неотрывающимся взглядом» — after the preposition «на», the instrumental marks the means, company, or complement.",
-   "id": "c35"
   },
   {
    "sentence": "Буфет вокзала торговал беспрерывно ___.",
@@ -277,7 +137,7 @@
    ],
    "correct": "целые сутки",
    "case": "Винительный (Accusative)",
-   "explain": "«целые сутки» — the accusative marks the direct object of the verb.",
+   "explain": "«целые сутки» tells how long or how often, with no preposition — accusative.",
    "id": "c37"
   },
   {
@@ -291,7 +151,7 @@
    ],
    "correct": "железнодорожный узел",
    "case": "Именительный (Nominative)",
-   "explain": "«Железнодорожный узел» — the subject of the sentence stands in the nominative.",
+   "explain": "«железнодорожный узел» is the subject of «соединял» — who or what does it — so nominative.",
    "id": "c38"
   },
   {
@@ -305,7 +165,7 @@
    ],
    "correct": "новых людей",
    "case": "Родительный (Genitive)",
-   "explain": "«новых людей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«новых людей» depends on the noun «потоком» (whose? of what?) — genitive.",
    "id": "c40"
   },
   {
@@ -319,22 +179,8 @@
    ],
    "correct": "подвальной кухне",
    "case": "Предложный (Prepositional)",
-   "explain": "«подвальной кухне» — after the preposition «в», for location or topic.",
+   "explain": "«подвальной кухне» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c41"
-  },
-  {
-   "sentence": "В громадной подвальной кухне — ___.",
-   "lemma": "работа",
-   "options": [
-    "лихорадочной работе",
-    "лихорадочной работой",
-    "лихорадочной работы",
-    "лихорадочная работа"
-   ],
-   "correct": "лихорадочная работа",
-   "case": "Именительный (Nominative)",
-   "explain": "«лихорадочная работа» — the subject of the sentence stands in the nominative.",
-   "id": "c42"
   },
   {
    "sentence": "Начиналась бесшабашная ___: в «очко», в «девятку».",
@@ -347,7 +193,7 @@
    ],
    "correct": "азартная игра",
    "case": "Именительный (Nominative)",
-   "explain": "«азартная игра» — the subject of the sentence stands in the nominative.",
+   "explain": "«азартная игра» is the subject of «Начиналась» — who or what does it — so nominative.",
    "id": "c43"
   },
   {
@@ -361,7 +207,7 @@
    ],
    "correct": "первой руки",
    "case": "Родительный (Genitive)",
-   "explain": "«первой руки» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«первой руки» depends on the noun «слесарь» (whose? of what?) — genitive.",
    "id": "c44"
   },
   {
@@ -375,50 +221,22 @@
    ],
    "correct": "открытой дверцей",
    "case": "Творительный (Instrumental)",
-   "explain": "«открытой дверцей» — after the preposition «перед», the instrumental marks the means, company, or complement.",
+   "explain": "«открытой дверцей» — «перед» always takes the instrumental.",
    "id": "c47"
-  },
-  {
-   "sentence": "— И, бросив ___, Прохошка повернулся и пошел в кухню.",
-   "lemma": "слово",
-   "options": [
-    "последние слова",
-    "последних слов",
-    "последними словами",
-    "последних словах"
-   ],
-   "correct": "последние слова",
-   "case": "Винительный (Accusative)",
-   "explain": "«последние слова» — the accusative marks the direct object of the verb.",
-   "id": "c51"
   },
   {
    "sentence": "Огоньки в печке вспыхивали и гасли, дрожали их красные языки, сплетаясь в длинный ___; казалось Павке, что кто-то насмешливый, издевающийся показывает ему свой язык.",
    "lemma": "виток",
    "options": [
-    "голубоватом витке",
+    "голубоватым витком",
+    "голубоватого витка",
     "голубоватый виток",
-    "голубоватому витку",
-    "голубоватым витком"
+    "голубоватому витку"
    ],
    "correct": "голубоватый виток",
    "case": "Винительный (Accusative)",
-   "explain": "«голубоватый виток» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«голубоватый виток» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c53"
-  },
-  {
-   "sentence": "___ и кухонщицы спали в раздевалке.",
-   "lemma": "повар",
-   "options": [
-    "дежурному повару",
-    "дежурного повара",
-    "дежурным поваром",
-    "дежурный повар"
-   ],
-   "correct": "дежурный повар",
-   "case": "Именительный (Nominative)",
-   "explain": "«Дежурный повар» — the subject of the sentence stands in the nominative.",
-   "id": "c54"
   },
   {
    "sentence": "Павка с трудом оторвал глаза от ___.",
@@ -431,36 +249,8 @@
    ],
    "correct": "огненных языков",
    "case": "Родительный (Genitive)",
-   "explain": "«огненных языков» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«огненных языков» — «от» always takes the genitive.",
    "id": "c56"
-  },
-  {
-   "sentence": "___ увидел Климка эту грусть в глазах товарища.",
-   "lemma": "раз",
-   "options": [
-    "первого раза",
-    "первый раз",
-    "первым разом",
-    "первом разе"
-   ],
-   "correct": "первый раз",
-   "case": "Винительный (Accusative)",
-   "explain": "«Первый раз» — the accusative marks the direct object of the verb.",
-   "id": "c57"
-  },
-  {
-   "sentence": "Кончилась ___ раньше, чем он ожидал, и так кончилась, как он и не предвидел.",
-   "lemma": "служба",
-   "options": [
-    "павкиной службы",
-    "павкиной службой",
-    "павкиной службе",
-    "павкина служба"
-   ],
-   "correct": "павкина служба",
-   "case": "Именительный (Nominative)",
-   "explain": "«Павкина служба» — the subject of the sentence stands in the nominative.",
-   "id": "c58"
   },
   {
    "sentence": "В один из морозных ___ дорабатывал Павка свою смену и собирался уходить домой, но сменявшего его парня не было.",
@@ -473,22 +263,8 @@
    ],
    "correct": "январских дней",
    "case": "Родительный (Genitive)",
-   "explain": "«январских дней» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«январских дней» — «из» always takes the genitive.",
    "id": "c59"
-  },
-  {
-   "sentence": "Пришлось усталому Павке отстукивать ___, и к ночи он совсем выбился из сил.",
-   "lemma": "сутки",
-   "options": [
-    "вторым суткам",
-    "вторые сутки",
-    "вторых сутках",
-    "вторых суток"
-   ],
-   "correct": "вторые сутки",
-   "case": "Винительный (Accusative)",
-   "explain": "«вторые сутки» — the accusative marks the direct object of the verb.",
-   "id": "c60"
   },
   {
    "sentence": "В перерыв надо было наливать кубы и кипятить их к ___.",
@@ -501,7 +277,7 @@
    ],
    "correct": "трехчасовому поезду",
    "case": "Дательный (Dative)",
-   "explain": "«трехчасовому поезду» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«трехчасовому поезду» — «к» always takes the dative.",
    "id": "c61"
   },
   {
@@ -515,7 +291,7 @@
    ],
    "correct": "дежурные официанты",
    "case": "Именительный (Nominative)",
-   "explain": "«дежурные официанты» — the subject of the sentence stands in the nominative.",
+   "explain": "«дежурные официанты» is the subject of «вбежали» — who or what does it — so nominative.",
    "id": "c63"
   },
   {
@@ -529,7 +305,7 @@
    ],
    "correct": "яркие молнии",
    "case": "Именительный (Nominative)",
-   "explain": "«яркие молнии» — the subject of the sentence stands in the nominative.",
+   "explain": "«яркие молнии» is the subject of «вспыхивали» — who or what does it — so nominative.",
    "id": "c64"
   },
   {
@@ -543,50 +319,8 @@
    ],
    "correct": "громадная фигура",
    "case": "Именительный (Nominative)",
-   "explain": "«Громадная фигура» — the subject of the sentence stands in the nominative.",
+   "explain": "«громадная фигура» is the subject of «прислонилась» — who or what does it — so nominative.",
    "id": "c65"
-  },
-  {
-   "sentence": "Прохор, тащивший на подносе ___ посуды, толкнув ногой дверь, вошел в судомойню.",
-   "lemma": "ворох",
-   "options": [
-    "целым ворохом",
-    "целому вороху",
-    "целый ворох",
-    "целом ворохе"
-   ],
-   "correct": "целый ворох",
-   "case": "Винительный (Accusative)",
-   "explain": "«целый ворох» — the accusative marks the direct object of the verb.",
-   "id": "c66"
-  },
-  {
-   "sentence": "Прохор хотел освободить плечо, но ___ кулака свалил его на пол; он пытался подняться, но второй удар, страшнее первого, пригвоздил его к полу.",
-   "lemma": "удар",
-   "options": [
-    "страшный удар",
-    "страшным ударом",
-    "страшном ударе",
-    "страшному удару"
-   ],
-   "correct": "страшный удар",
-   "case": "Именительный (Nominative)",
-   "explain": "«страшный удар» — the subject of the sentence stands in the nominative.",
-   "id": "c67"
-  },
-  {
-   "sentence": "Прохор хотел освободить плечо, но страшный удар кулака свалил его на пол; он пытался подняться, но ___, страшнее первого, пригвоздил его к полу.",
-   "lemma": "удар",
-   "options": [
-    "второго удара",
-    "второму удару",
-    "вторым ударом",
-    "второй удар"
-   ],
-   "correct": "второй удар",
-   "case": "Именительный (Nominative)",
-   "explain": "«второй удар» — the subject of the sentence stands in the nominative.",
-   "id": "c68"
   }
  ]
 }

@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Заправлял всем делом ___.",
-   "lemma": "человек",
-   "options": [
-    "пожилом человеке",
-    "пожилым человеком",
-    "пожилого человека",
-    "пожилой человек"
-   ],
-   "correct": "пожилой человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«пожилой человек» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "В горнице сидели возле ___ двое сыновей; они были ещё малы, но развиты умственно не по летам.",
    "lemma": "хозяйка",
    "options": [
@@ -25,105 +11,35 @@
    ],
    "correct": "доброй хозяйки",
    "case": "Родительный (Genitive)",
-   "explain": "«доброй хозяйки» — after the preposition «возле», the genitive here marks possession, absence, or quantity.",
+   "explain": "«доброй хозяйки» — «возле» always takes the genitive.",
    "id": "c2"
   },
   {
    "sentence": "Ах, какое счастье пуститься в ___ по белу свету, совершать открытия, изобрести крылья, подобные птичьим, на которых бы можно было летать!",
    "lemma": "странствование",
    "options": [
-    "далёких странствованиях",
     "далёкие странствования",
-    "далёких странствований",
-    "далёким странствованиям"
+    "далёкими странствованиями",
+    "далёким странствованиям",
+    "далёких странствований"
    ],
    "correct": "далёкие странствования",
    "case": "Винительный (Accusative)",
-   "explain": "«далёкие странствования» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«далёкие странствования» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c3"
-  },
-  {
-   "sentence": "___ был тише, замкнутее, весь зарывался в книги.",
-   "lemma": "брат",
-   "options": [
-    "младшим братом",
-    "младшего брата",
-    "младшем брате",
-    "младший брат"
-   ],
-   "correct": "младший брат",
-   "case": "Именительный (Nominative)",
-   "explain": "«Младший брат» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
-  },
-  {
-   "sentence": "Читая о тиранах, о несправедливостях и ___, что творятся на свете, он готов был заплакать.",
-   "lemma": "деяние",
-   "options": [
-    "злые деяния",
-    "злых деяниях",
-    "злым деяниям",
-    "злых деяний"
-   ],
-   "correct": "злых деяниях",
-   "case": "Предложный (Prepositional)",
-   "explain": "«злых деяниях» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c5"
-  },
-  {
-   "sentence": "Его всецело поглощала мысль, что торжествовать в мире должно одно «настоящее», ___.",
-   "lemma": "истина",
-   "options": [
-    "самой истине",
-    "самой истиной",
-    "самой истины",
-    "сама истина"
-   ],
-   "correct": "сама истина",
-   "case": "Именительный (Nominative)",
-   "explain": "«сама истина» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
-  },
-  {
-   "sentence": "Корабль скользил по волнам, по ___ времени, и мальчик явственно услышал голос Солона; понятно, хотя и на чужом языке, прозвучал девиз Дании: «Законом строится государство!»",
-   "lemma": "волна",
-   "options": [
-    "могучими волнами",
-    "могучим волнам",
-    "могучих волнах",
-    "могучие волны"
-   ],
-   "correct": "могучим волнам",
-   "case": "Дательный (Dative)",
-   "explain": "«могучим волнам» — after the preposition «на», the dative marks the indirect object or recipient.",
-   "id": "c7"
-  },
-  {
-   "sentence": "Корабль скользил по волнам, по могучим волнам времени, и мальчик явственно услышал голос Солона; понятно, хотя и на ___, прозвучал девиз Дании: «Законом строится государство!»",
-   "lemma": "язык",
-   "options": [
-    "чужом языке",
-    "чужому языку",
-    "чужого языка",
-    "чужим языком"
-   ],
-   "correct": "чужом языке",
-   "case": "Предложный (Prepositional)",
-   "explain": "«чужом языке» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c8"
   },
   {
    "sentence": "___ ещё не ложился, а стоял у окна и смотрел на туман, подымавшийся с лугов.",
    "lemma": "брат",
    "options": [
-    "старшего брата",
-    "старшему брату",
+    "старшим братом",
+    "старший брат",
     "старшем брате",
-    "старший брат"
+    "старшему брату"
    ],
    "correct": "старший брат",
    "case": "Именительный (Nominative)",
-   "explain": "«Старший брат» — the subject of the sentence stands in the nominative.",
+   "explain": "«старший брат» is the subject of «ложился» — who or what does it — so nominative.",
    "id": "c9"
   },
   {
@@ -137,7 +53,7 @@
    ],
    "correct": "честная служанка",
    "case": "Именительный (Nominative)",
-   "explain": "«честная служанка» — the subject of the sentence stands in the nominative.",
+   "explain": "«честная служанка» is the subject of «говорила» — who or what does it — so nominative.",
    "id": "c10"
   },
   {
@@ -151,7 +67,7 @@
    ],
    "correct": "светлая звёздочка",
    "case": "Именительный (Nominative)",
-   "explain": "«светлая звёздочка» — the subject of the sentence stands in the nominative.",
+   "explain": "«светлая звёздочка» is the subject of «скатилась» — who or what does it — so nominative.",
    "id": "c11"
   },
   {
@@ -165,7 +81,7 @@
    ],
    "correct": "земных испарений",
    "case": "Родительный (Genitive)",
-   "explain": "«земных испарений» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«земных испарений» — «от» always takes the genitive.",
    "id": "c12"
   },
   {
@@ -179,7 +95,7 @@
    ],
    "correct": "блестящему метеору",
    "case": "Дательный (Dative)",
-   "explain": "«блестящему метеору» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«блестящему метеору» — «к» always takes the dative.",
    "id": "c13"
   },
   {
@@ -193,36 +109,8 @@
    ],
    "correct": "могучий гений",
    "case": "Именительный (Nominative)",
-   "explain": "«могучий гений» — the subject of the sentence stands in the nominative.",
+   "explain": "«могучий гений» is the subject of «унёс» — who or what does it — so nominative.",
    "id": "c14"
-  },
-  {
-   "sentence": "«Летим со мною!» зазвучало в сердце мальчика, и могучий гений человечества унёс его в бесконечное пространство, где вращаются связанные между собою ___ планеты.",
-   "lemma": "луч",
-   "options": [
-    "световые лучи",
-    "световыми лучами",
-    "световых лучах",
-    "световым лучам"
-   ],
-   "correct": "световыми лучами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«световыми лучами» — the instrumental marks the means, company, or complement.",
-   "id": "c15"
-  },
-  {
-   "sentence": "Они унеслись туда быстрее птицы, быстрее стрелы, быстрее всякого ___.",
-   "lemma": "существо",
-   "options": [
-    "земным существом",
-    "земного существа",
-    "земному существу",
-    "земном существе"
-   ],
-   "correct": "земного существа",
-   "case": "Родительный (Genitive)",
-   "explain": "«земного существа» — the genitive here marks possession, absence, or quantity.",
-   "id": "c16"
   },
   {
    "sentence": "Наша земля двигалась, окружённая слоем ___; города как будто жались один к другому.",
@@ -235,22 +123,8 @@
    ],
    "correct": "тонкой атмосферы",
    "case": "Родительный (Genitive)",
-   "explain": "«тонкой атмосферы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«тонкой атмосферы» depends on the noun «слоем» (whose? of what?) — genitive.",
    "id": "c17"
-  },
-  {
-   "sentence": "И вот, прозвучало: «Что значит „близко“, что значит „далеко“, если тебя поднимает на своих крылах ___ духа!»",
-   "lemma": "гений",
-   "options": [
-    "могучем гении",
-    "могучего гения",
-    "могучий гений",
-    "могучим гением"
-   ],
-   "correct": "могучий гений",
-   "case": "Именительный (Nominative)",
-   "explain": "«могучий гений» — the subject of the sentence stands in the nominative.",
-   "id": "c18"
   },
   {
    "sentence": "И ребёнок опять очутился у окна, где стоял и смотрел на туман; ___ лежал в постели; мать окликнула обоих: «Андерс, Ганс-Христиан!»",
@@ -263,7 +137,7 @@
    ],
    "correct": "младший брат",
    "case": "Именительный (Nominative)",
-   "explain": "«младший брат» — the subject of the sentence stands in the nominative.",
+   "explain": "«младший брат» is the subject of «лежал» — who or what does it — so nominative.",
    "id": "c19"
   }
  ]

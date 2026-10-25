@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "___ биографические и историки отдельных народов понимают эту силу, как власть, присущую героям и владыкам.",
-   "lemma": "историк",
-   "options": [
-    "частные историки",
-    "частных историках",
-    "частными историками",
-    "частным историкам"
-   ],
-   "correct": "частные историки",
-   "case": "Именительный (Nominative)",
-   "explain": "«Частные историки» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Частные историки биографические и историки ___ понимают эту силу, как власть, присущую героям и владыкам.",
    "lemma": "народ",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "отдельных народов",
    "case": "Родительный (Genitive)",
-   "explain": "«отдельных народов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«отдельных народов» depends on the noun «историки» (whose? of what?) — genitive.",
    "id": "c2"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "частный историк",
    "case": "Именительный (Nominative)",
-   "explain": "«частный историк» — the subject of the sentence stands in the nominative.",
+   "explain": "«частный историк» is the subject of «описывает» — who or what does it — so nominative.",
    "id": "c3"
   },
   {
@@ -53,22 +39,8 @@
    ],
    "correct": "третьего лица",
    "case": "Родительный (Genitive)",
-   "explain": "«третьего лица» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«третьего лица» depends on the noun «властью» (whose? of what?) — genitive.",
    "id": "c4"
-  },
-  {
-   "sentence": "___, имеющие дело со всеми народами, как будто признают несправедливость воззрения частных историков на силу, производящую события.",
-   "lemma": "историк",
-   "options": [
-    "общими историками",
-    "общие историки",
-    "общих историков",
-    "общим историкам"
-   ],
-   "correct": "общие историки",
-   "case": "Именительный (Nominative)",
-   "explain": "«Общие историки» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
   },
   {
    "sentence": "Общие историки, имеющие дело со всеми народами, как будто признают несправедливость воззрения ___ на силу, производящую события.",
@@ -76,27 +48,13 @@
    "options": [
     "частных историках",
     "частных историков",
-    "частные историки",
-    "частными историками"
+    "частным историкам",
+    "частные историки"
    ],
    "correct": "частных историков",
    "case": "Родительный (Genitive)",
-   "explain": "«частных историков» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«частных историков» depends on the noun «воззрения» (whose? of what?) — genitive.",
    "id": "c7"
-  },
-  {
-   "sentence": "Описывая войну или покорение народа, ___ отыскивает причину события не во власти одного лица, но во взаимодействии друг на друга многих лиц, связанных с событием.",
-   "lemma": "историк",
-   "options": [
-    "общим историком",
-    "общего историка",
-    "общий историк",
-    "общем историке"
-   ],
-   "correct": "общий историк",
-   "case": "Именительный (Nominative)",
-   "explain": "«общий историк» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
   },
   {
    "sentence": "По этому воззрению власть ___, представляясь произведением многих сил, казалось бы, не может уже быть рассматриваема, как сила, сама по себе производящая события.",
@@ -109,7 +67,7 @@
    ],
    "correct": "исторических лиц",
    "case": "Родительный (Genitive)",
-   "explain": "«исторических лиц» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«исторических лиц» depends on the noun «власть» (whose? of what?) — genitive.",
    "id": "c9"
   },
   {
@@ -123,64 +81,22 @@
    ],
    "correct": "общие историки",
    "case": "Именительный (Nominative)",
-   "explain": "«общие историки» — the subject of the sentence stands in the nominative.",
+   "explain": "«общие историки» is the subject of «употребляют» — who or what does it — so nominative.",
    "id": "c10"
-  },
-  {
-   "sentence": "По их изложению то ___ есть произведение своего времени, и власть его есть только произведение различных сил; то власть его есть сила, производящая события.",
-   "lemma": "лицо",
-   "options": [
-    "историческим лицом",
-    "историческое лицо",
-    "историческом лице",
-    "исторического лица"
-   ],
-   "correct": "историческое лицо",
-   "case": "Именительный (Nominative)",
-   "explain": "«историческое лицо» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
   },
   {
    "sentence": "По их изложению то историческое лицо есть произведение своего времени, и власть его есть только произведение ___; то власть его есть сила, производящая события.",
    "lemma": "сила",
    "options": [
-    "различным силам",
+    "различных силах",
     "различные силы",
-    "различными силами",
+    "различным силам",
     "различных сил"
    ],
    "correct": "различных сил",
    "case": "Родительный (Genitive)",
-   "explain": "«различных сил» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«различных сил» depends on the noun «произведение» (whose? of what?) — genitive.",
    "id": "c12"
-  },
-  {
-   "sentence": "Идеи революции, ___ произвело власть Наполеона.",
-   "lemma": "настроение",
-   "options": [
-    "общем настроении",
-    "общее настроение",
-    "общего настроения",
-    "общим настроением"
-   ],
-   "correct": "общее настроение",
-   "case": "Именительный (Nominative)",
-   "explain": "«общее настроение» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
-  },
-  {
-   "sentence": "___ это не случайно.",
-   "lemma": "противоречие",
-   "options": [
-    "странном противоречии",
-    "странного противоречия",
-    "странному противоречию",
-    "странное противоречие"
-   ],
-   "correct": "странное противоречие",
-   "case": "Именительный (Nominative)",
-   "explain": "«Странное противоречие» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
   },
   {
    "sentence": "Оно не только встречается на каждом шагу, но из ___ таких противоречий составлены все описания общих историков.",
@@ -193,7 +109,7 @@
    ],
    "correct": "последовательного ряда",
    "case": "Родительный (Genitive)",
-   "explain": "«последовательного ряда» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«последовательного ряда» — «из» always takes the genitive.",
    "id": "c15"
   },
   {
@@ -203,11 +119,11 @@
     "общих историков",
     "общим историкам",
     "общих историках",
-    "общими историками"
+    "общие историки"
    ],
    "correct": "общих историков",
    "case": "Родительный (Genitive)",
-   "explain": "«общих историков» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«общих историков» depends on the noun «описания» (whose? of what?) — genitive.",
    "id": "c16"
   },
   {
@@ -221,36 +137,8 @@
    ],
    "correct": "общие историки",
    "case": "Именительный (Nominative)",
-   "explain": "«общие историки» — the subject of the sentence stands in the nominative.",
+   "explain": "«общие историки» is the subject of «останавливаются» — who or what does it — so nominative.",
    "id": "c17"
-  },
-  {
-   "sentence": "___, описывая поход ли 13-го года, или восстановление Бурбонов, прямо говорит, что события эти произведены волей Александра.",
-   "lemma": "историк",
-   "options": [
-    "частному историку",
-    "частным историком",
-    "частном историке",
-    "частный историк"
-   ],
-   "correct": "частный историк",
-   "case": "Именительный (Nominative)",
-   "explain": "«Частный историк» — the subject of the sentence stands in the nominative.",
-   "id": "c18"
-  },
-  {
-   "sentence": "Это самое и делают ___.",
-   "lemma": "историк",
-   "options": [
-    "общим историкам",
-    "общими историками",
-    "общих историков",
-    "общие историки"
-   ],
-   "correct": "общие историки",
-   "case": "Именительный (Nominative)",
-   "explain": "«общие историки» — the subject of the sentence stands in the nominative.",
-   "id": "c19"
   },
   {
    "sentence": "И вследствие того не только противоречат ___, но и сами себе.",
@@ -263,22 +151,8 @@
    ],
    "correct": "частным историкам",
    "case": "Дательный (Dative)",
-   "explain": "«частным историкам» — the dative marks the indirect object or recipient.",
+   "explain": "«противоречат» takes the dative (кому? чему?).",
    "id": "c20"
-  },
-  {
-   "sentence": "___, не имея ясного понятия о причинах дождя, говорят, смотря по тому, хочется ли им дождя или вёдра: ветер разогнал тучи и ветер нагнал тучи.",
-   "lemma": "житель",
-   "options": [
-    "деревенских жителях",
-    "деревенские жители",
-    "деревенских жителей",
-    "деревенским жителям"
-   ],
-   "correct": "деревенские жители",
-   "case": "Именительный (Nominative)",
-   "explain": "«Деревенские жители» — the subject of the sentence stands in the nominative.",
-   "id": "c21"
   },
   {
    "sentence": "Деревенские жители, не имея ___ о причинах дождя, говорят, смотря по тому, хочется ли им дождя или вёдра: ветер разогнал тучи и ветер нагнал тучи.",
@@ -291,22 +165,8 @@
    ],
    "correct": "ясного понятия",
    "case": "Родительный (Genitive)",
-   "explain": "«ясного понятия» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«ясного понятия» is the object of a negated verb («не имея») — genitive instead of the accusative.",
    "id": "c22"
-  },
-  {
-   "sentence": "___, называющиеся историками культуры, следуя по пути, проложенному общими историками, признающими иногда писателей и дам силами, производящими события, еще совершенно иначе понимают эту силу.",
-   "lemma": "историк",
-   "options": [
-    "третьих историках",
-    "третьих историков",
-    "третьи историки",
-    "третьим историкам"
-   ],
-   "correct": "третьи историки",
-   "case": "Именительный (Nominative)",
-   "explain": "«Третьи историки» — the subject of the sentence stands in the nominative.",
-   "id": "c23"
   },
   {
    "sentence": "Третьи историки, называющиеся историками культуры, следуя по пути, проложенному ___, признающими иногда писателей и дам силами, производящими события, еще совершенно иначе понимают эту силу.",
@@ -319,7 +179,7 @@
    ],
    "correct": "общими историками",
    "case": "Творительный (Instrumental)",
-   "explain": "«общими историками» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «проложенному», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c24"
   },
   {
@@ -333,35 +193,21 @@
    ],
    "correct": "огромного числа",
    "case": "Родительный (Genitive)",
-   "explain": "«огромного числа» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«огромного числа» — «из» always takes the genitive.",
    "id": "c25"
-  },
-  {
-   "sentence": "Эти историки из всего огромного числа признаков, сопровождающих всякое ___, выбирают признак умственной деятельности и говорят, что этот признак есть причина.",
-   "lemma": "явление",
-   "options": [
-    "живого явления",
-    "живому явлению",
-    "живом явлении",
-    "живое явление"
-   ],
-   "correct": "живое явление",
-   "case": "Именительный (Nominative)",
-   "explain": "«живое явление» — the subject of the sentence stands in the nominative.",
-   "id": "c26"
   },
   {
    "sentence": "Но почему умственная деятельность людей представляется историками культуры причиной или выражением всего ___, — это понять трудно.",
    "lemma": "движение",
    "options": [
+    "историческому движению",
     "историческом движении",
-    "историческим движением",
-    "историческое движение",
-    "исторического движения"
+    "исторического движения",
+    "историческое движение"
    ],
    "correct": "исторического движения",
    "case": "Родительный (Genitive)",
-   "explain": "«исторического движения» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«исторического движения» depends on the noun «выражением» (whose? of what?) — genitive.",
    "id": "c27"
   }
  ]

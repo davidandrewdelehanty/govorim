@@ -1,76 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Хохотал он тоже как ребенок, раскрыв рот, показывая ___, — и на щеках появлялись у него при смехе ямки.",
-   "lemma": "зуб",
-   "options": [
-    "белых зубах",
-    "белых зубов",
-    "белые зубы",
-    "белыми зубами"
-   ],
-   "correct": "белые зубы",
-   "case": "Винительный (Accusative)",
-   "explain": "«белые зубы» — the accusative marks the direct object of the verb.",
-   "id": "c4"
-  },
-  {
-   "sentence": "Он любовался решительно всем: ___, хорошими стихами (и сам их писал), красивыми женщинами и благородными мыслями.",
-   "lemma": "погода",
-   "options": [
-    "хорошей погоде",
-    "хорошая погода",
-    "хорошей погодой",
-    "хорошей погоды"
-   ],
-   "correct": "хорошей погодой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«хорошей погодой» — the instrumental marks the means, company, or complement.",
-   "id": "c5"
-  },
-  {
-   "sentence": "Он любовался решительно всем: хорошей погодой, ___ (и сам их писал), красивыми женщинами и благородными мыслями.",
-   "lemma": "стих",
-   "options": [
-    "хорошим стихам",
-    "хороших стихов",
-    "хорошие стихи",
-    "хорошими стихами"
-   ],
-   "correct": "хорошими стихами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«хорошими стихами» — the instrumental marks the means, company, or complement.",
-   "id": "c6"
-  },
-  {
-   "sentence": "Он любовался решительно всем: хорошей погодой, хорошими стихами (и сам их писал), ___ и благородными мыслями.",
-   "lemma": "женщина",
-   "options": [
-    "красивые женщины",
-    "красивыми женщинами",
-    "красивых женщинах",
-    "красивым женщинам"
-   ],
-   "correct": "красивыми женщинами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«красивыми женщинами» — the instrumental marks the means, company, or complement.",
-   "id": "c7"
-  },
-  {
-   "sentence": "Он любовался решительно всем: хорошей погодой, хорошими стихами (и сам их писал), красивыми женщинами и ___.",
-   "lemma": "мысль",
-   "options": [
-    "благородных мыслях",
-    "благородными мыслями",
-    "благородным мыслям",
-    "благородные мысли"
-   ],
-   "correct": "благородными мыслями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«благородными мыслями» — the instrumental marks the means, company, or complement.",
-   "id": "c8"
-  },
-  {
    "sentence": "Вильгельму он приносил с собой в комнату несколько охапок ___.",
    "lemma": "воздух",
    "options": [
@@ -81,7 +11,7 @@
    ],
    "correct": "свежего воздуха",
    "case": "Родительный (Genitive)",
-   "explain": "«свежего воздуха» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«свежего воздуха» depends on the noun «охапок» (whose? of what?) — genitive.",
    "id": "c10"
   },
   {
@@ -95,64 +25,8 @@
    ],
    "correct": "синего моста",
    "case": "Родительный (Genitive)",
-   "explain": "«Синего моста» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«синего моста» — «у» always takes the genitive.",
    "id": "c11"
-  },
-  {
-   "sentence": "Альманахи его имели ___.",
-   "lemma": "успех",
-   "options": [
-    "большим успехом",
-    "большого успеха",
-    "большой успех",
-    "большом успехе"
-   ],
-   "correct": "большой успех",
-   "case": "Винительный (Accusative)",
-   "explain": "«большой успех» — the accusative marks the direct object of the verb.",
-   "id": "c14"
-  },
-  {
-   "sentence": "Издал он его неуклюже, картинки приложил варварские, наполнил ___, а публика любила карманные форматы, стихи легкие и занимательные, повести с быстрыми интригами.",
-   "lemma": "статья",
-   "options": [
-    "философскими статьями",
-    "философским статьям",
-    "философских статей",
-    "философских статьях"
-   ],
-   "correct": "философскими статьями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«философскими статьями» — the instrumental marks the means, company, or complement.",
-   "id": "c15"
-  },
-  {
-   "sentence": "Издал он его неуклюже, картинки приложил варварские, наполнил философскими статьями, а публика любила ___, стихи легкие и занимательные, повести с быстрыми интригами.",
-   "lemma": "формат",
-   "options": [
-    "карманные форматы",
-    "карманных форматах",
-    "карманных форматов",
-    "карманным форматам"
-   ],
-   "correct": "карманные форматы",
-   "case": "Винительный (Accusative)",
-   "explain": "«карманные форматы» — the accusative marks the direct object of the verb.",
-   "id": "c16"
-  },
-  {
-   "sentence": "Издал он его неуклюже, картинки приложил варварские, наполнил философскими статьями, а публика любила карманные форматы, стихи легкие и занимательные, повести с ___.",
-   "lemma": "интрига",
-   "options": [
-    "быстрыми интригами",
-    "быстрым интригам",
-    "быстрые интриги",
-    "быстрых интригах"
-   ],
-   "correct": "быстрыми интригами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«быстрыми интригами» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c17"
   },
   {
    "sentence": "У Рылеева бывали ___.",
@@ -165,22 +39,8 @@
    ],
    "correct": "разные люди",
    "case": "Именительный (Nominative)",
-   "explain": "«разные люди» — the subject of the sentence stands in the nominative.",
+   "explain": "«разные люди» is the subject of «бывали» — who or what does it — so nominative.",
    "id": "c18"
-  },
-  {
-   "sentence": "Приходил Александр Бестужев, черноусый, с тяжелыми ___ офицер и писатель; он был адъютант герцога Вюртембергского.",
-   "lemma": "глаз",
-   "options": [
-    "пламенными глазами",
-    "пламенных глазах",
-    "пламенные глаза",
-    "пламенных глаз"
-   ],
-   "correct": "пламенными глазами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«пламенными глазами» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c19"
   },
   {
    "sentence": "Щегольской форменный сюртук сидел на нем особенно небрежно, он расстегивал его, сидя в ___.",
@@ -193,36 +53,8 @@
    ],
    "correct": "дружеском обществе",
    "case": "Предложный (Prepositional)",
-   "explain": "«дружеском обществе» — after the preposition «в», for location or topic.",
+   "explain": "«дружеском обществе» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c20"
-  },
-  {
-   "sentence": "Но рядом сходство исчезало, разве что отрывистый хохот, да ___, да курчавые волосы были те же у обоих братьев.",
-   "lemma": "зуб",
-   "options": [
-    "белых зубах",
-    "белых зубов",
-    "белые зубы",
-    "белыми зубами"
-   ],
-   "correct": "белые зубы",
-   "case": "Именительный (Nominative)",
-   "explain": "«белые зубы» — the subject of the sentence stands in the nominative.",
-   "id": "c21"
-  },
-  {
-   "sentence": "Но рядом сходство исчезало, разве что отрывистый хохот, да белые зубы, да ___ были те же у обоих братьев.",
-   "lemma": "волос",
-   "options": [
-    "курчавых волосах",
-    "курчавыми волосами",
-    "курчавых волос",
-    "курчавые волосы"
-   ],
-   "correct": "курчавые волосы",
-   "case": "Именительный (Nominative)",
-   "explain": "«курчавые волосы» — the subject of the sentence stands in the nominative.",
-   "id": "c22"
   },
   {
    "sentence": "Перед ___ Левушка еще попил шампанского.",
@@ -235,36 +67,8 @@
    ],
    "correct": "второй главой",
    "case": "Творительный (Instrumental)",
-   "explain": "«второй главой» — after the preposition «перед», the instrumental marks the means, company, or complement.",
+   "explain": "«второй главой» — «перед» always takes the instrumental.",
    "id": "c23"
-  },
-  {
-   "sentence": "Но почему Пушкин такого ___, как Алеко, заставил водить медведя и денег за это просить, ума не приложу.",
-   "lemma": "герой",
-   "options": [
-    "высокому герою",
-    "высокий герой",
-    "высоком герое",
-    "высокого героя"
-   ],
-   "correct": "высокого героя",
-   "case": "Родительный (Genitive)",
-   "explain": "«высокого героя» — the genitive here marks possession, absence, or quantity.",
-   "id": "c24"
-  },
-  {
-   "sentence": "Самое простое и самое ___, которое Александр когда-либо написал.",
-   "lemma": "создание",
-   "options": [
-    "высоком создании",
-    "высокое создание",
-    "высокого создания",
-    "высоким созданием"
-   ],
-   "correct": "высокое создание",
-   "case": "Именительный (Nominative)",
-   "explain": "«высокое создание» — the subject of the sentence stands in the nominative.",
-   "id": "c25"
   }
  ]
 }

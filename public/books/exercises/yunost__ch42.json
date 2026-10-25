@@ -1,48 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Странно, как такой ___: как же держать экзамен? -- ни разу мне не представился.",
-   "lemma": "вопрос",
-   "options": [
-    "ясный вопрос",
-    "ясным вопросом",
-    "ясном вопросе",
-    "ясному вопросу"
-   ],
-   "correct": "ясный вопрос",
-   "case": "Именительный (Nominative)",
-   "explain": "«ясный вопрос» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Оперов, с которым мы продолжали кланяться, но были в самых ___, как я говорил уже, предложил мне не только тетрадки, но и пригласил готовиться по ним вместе с ним и другими студентами.",
-   "lemma": "отношение",
-   "options": [
-    "холодных отношениях",
-    "холодных отношений",
-    "холодными отношениями",
-    "холодным отношениям"
-   ],
-   "correct": "холодных отношениях",
-   "case": "Предложный (Prepositional)",
-   "explain": "«холодных отношениях» — after the preposition «в», for location or topic.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Оперов, с которым мы продолжали кланяться, но были в самых холодных отношениях, как я говорил уже, предложил мне не только тетрадки, но и пригласил готовиться по ним вместе с ним и ___.",
-   "lemma": "студент",
-   "options": [
-    "другие студенты",
-    "другим студентам",
-    "другими студентами",
-    "других студентов"
-   ],
-   "correct": "другими студентами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«другими студентами» — the instrumental marks the means, company, or complement.",
-   "id": "c3"
-  },
-  {
    "sentence": "В ___ собрались у Зухина.",
    "lemma": "раз",
    "options": [
@@ -53,7 +11,7 @@
    ],
    "correct": "первый раз",
    "case": "Винительный (Accusative)",
-   "explain": "«первый раз» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«первый раз» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c4"
   },
   {
@@ -67,7 +25,7 @@
    ],
    "correct": "большом доме",
    "case": "Предложный (Prepositional)",
-   "explain": "«большом доме» — after the preposition «в», for location or topic.",
+   "explain": "«большом доме» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c6"
   },
   {
@@ -81,35 +39,21 @@
    ],
    "correct": "трубном бульваре",
    "case": "Предложный (Prepositional)",
-   "explain": "«Трубном бульваре» — after the preposition «на», for location or topic.",
+   "explain": "«трубном бульваре» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c7"
-  },
-  {
-   "sentence": "___ была вся закурена, даже не вакштафом, а махоркой, которую курил Зухин.",
-   "lemma": "комнатка",
-   "options": [
-    "маленькой комнатки",
-    "маленькой комнатке",
-    "маленькой комнаткой",
-    "маленькая комнатка"
-   ],
-   "correct": "маленькая комнатка",
-   "case": "Именительный (Nominative)",
-   "explain": "«Маленькая комнатка» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
   },
   {
    "sentence": "Все были в грязных ___ и нагрудниках.",
    "lemma": "рубашка",
    "options": [
     "ситцевых рубашках",
-    "ситцевых рубашек",
     "ситцевыми рубашками",
-    "ситцевые рубашки"
+    "ситцевых рубашек",
+    "ситцевым рубашкам"
    ],
    "correct": "ситцевых рубашках",
    "case": "Предложный (Prepositional)",
-   "explain": "«ситцевых рубашках» — after the preposition «в», for location or topic.",
+   "explain": "«ситцевых рубашках» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c9"
   },
   {
@@ -123,36 +67,22 @@
    ],
    "correct": "новыми товарищами",
    "case": "Творительный (Instrumental)",
-   "explain": "«новыми товарищами» — after the preposition «над», the instrumental marks the means, company, or complement.",
+   "explain": "«новыми товарищами» — «над» always takes the instrumental.",
    "id": "c10"
   },
   {
    "sentence": "Это был маленький ___ с несколько оплывшим и всегда глянцевитым, но чрезвычайно умным, живым и независимым лицом.",
    "lemma": "брюнет",
    "options": [
-    "плотному брюнету",
-    "плотным брюнетом",
+    "плотного брюнета",
+    "плотном брюнете",
     "плотный брюнет",
-    "плотном брюнете"
+    "плотному брюнету"
    ],
    "correct": "плотный брюнет",
    "case": "Именительный (Nominative)",
-   "explain": "«плотный брюнет» — the subject of the sentence stands in the nominative.",
+   "explain": "«плотный брюнет» is the predicate after «был» — what someone or something is: the nominative of the predicate (the instrumental is also possible after быть, so it is not offered).",
    "id": "c11"
-  },
-  {
-   "sentence": "У него было одно из тех ___, которые несколько часов после того, как вы их увидите в первый раз, вдруг совершенно изменяются в ваших глазах.",
-   "lemma": "лицо",
-   "options": [
-    "выразительными лицами",
-    "выразительных лицах",
-    "выразительных лиц",
-    "выразительные лица"
-   ],
-   "correct": "выразительных лиц",
-   "case": "Родительный (Genitive)",
-   "explain": "«выразительных лиц» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
-   "id": "c12"
   },
   {
    "sentence": "У него было одно из тех выразительных лиц, которые несколько часов после того, как вы их увидите в ___, вдруг совершенно изменяются в ваших глазах.",
@@ -165,92 +95,8 @@
    ],
    "correct": "первый раз",
    "case": "Винительный (Accusative)",
-   "explain": "«первый раз» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«первый раз» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c13"
-  },
-  {
-   "sentence": "Вдруг на его лице показались ___, глаза ушли глубже, улыбка стала другая, и все лицо так изменилось, что я с трудом бы узнал его.",
-   "lemma": "морщина",
-   "options": [
-    "новые морщины",
-    "новых морщин",
-    "новым морщинам",
-    "новых морщинах"
-   ],
-   "correct": "новые морщины",
-   "case": "Именительный (Nominative)",
-   "explain": "«новые морщины» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
-  },
-  {
-   "sentence": "Когда кончили читать, Зухин, ___ и я, чтоб доказать свое желание быть товарищем, выпили по рюмке водки, и в штофе почти ничего не осталось.",
-   "lemma": "студент",
-   "options": [
-    "другие студенты",
-    "другим студентам",
-    "другими студентами",
-    "других студентов"
-   ],
-   "correct": "другие студенты",
-   "case": "Именительный (Nominative)",
-   "explain": "«другие студенты» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
-  },
-  {
-   "sentence": "Но главною причиною невозможности сближения были мое двадцатирублевое сукно на сюртуке, дрожки и ___.",
-   "lemma": "рубашка",
-   "options": [
-    "голландской рубашке",
-    "голландской рубашки",
-    "голландская рубашка",
-    "голландской рубашкой"
-   ],
-   "correct": "голландская рубашка",
-   "case": "Именительный (Nominative)",
-   "explain": "«голландская рубашка» — the subject of the sentence stands in the nominative.",
-   "id": "c19"
-  },
-  {
-   "sentence": "Я чувствовал себя перед ними виноватым и, то смиряясь, то возмущаясь против своего ___ и переходя к самонадеянности, никак не мог войти с ними в ровные, искренние отношения.",
-   "lemma": "смирение",
-   "options": [
-    "незаслуженное смирение",
-    "незаслуженного смирения",
-    "незаслуженному смирению",
-    "незаслуженным смирением"
-   ],
-   "correct": "незаслуженного смирения",
-   "case": "Родительный (Genitive)",
-   "explain": "«незаслуженного смирения» — after the preposition «в», the genitive here marks possession, absence, or quantity.",
-   "id": "c20"
-  },
-  {
-   "sentence": "Грубая же, ___ в характере Зухина до такой степени заглушалась в то время для меня той сильной поэзией удальства, которую я предчувствовал в нем, что она нисколько не неприятно действовала на меня.",
-   "lemma": "сторона",
-   "options": [
-    "порочной стороны",
-    "порочной стороне",
-    "порочной стороной",
-    "порочная сторона"
-   ],
-   "correct": "порочная сторона",
-   "case": "Именительный (Nominative)",
-   "explain": "«порочная сторона» — the subject of the sentence stands in the nominative.",
-   "id": "c21"
-  },
-  {
-   "sentence": "Только одно ___, данное мною Дмитрию, не ездить никуда кутить с ними, удержало меня от желания разделять их удовольствия.",
-   "lemma": "слово",
-   "options": [
-    "честному слову",
-    "честном слове",
-    "честного слова",
-    "честное слово"
-   ],
-   "correct": "честное слово",
-   "case": "Именительный (Nominative)",
-   "explain": "«честное слово» — the subject of the sentence stands in the nominative.",
-   "id": "c22"
   },
   {
    "sentence": "Мое знакомство с князем Иваном Иванычем? выговор ___? дрожки? голландская рубашка ? ногти?",
@@ -263,36 +109,8 @@
    ],
    "correct": "французского языка",
    "case": "Родительный (Genitive)",
-   "explain": "«французского языка» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«французского языка» depends on the noun «выговор» (whose? of what?) — genitive.",
    "id": "c24"
-  },
-  {
-   "sentence": "Мое знакомство с князем Иваном Иванычем? выговор французского языка? дрожки? ___ ? ногти?",
-   "lemma": "рубашка",
-   "options": [
-    "голландской рубашке",
-    "голландской рубашки",
-    "голландская рубашка",
-    "голландской рубашкой"
-   ],
-   "correct": "голландская рубашка",
-   "case": "Именительный (Nominative)",
-   "explain": "«голландская рубашка» — the subject of the sentence stands in the nominative.",
-   "id": "c25"
-  },
-  {
-   "sentence": "В обращении между собой они были так осторожны и деликатны, как только бывают очень бедные и очень ___.",
-   "lemma": "человек",
-   "options": [
-    "молодых людей",
-    "молодым людям",
-    "молодые люди",
-    "молодыми людьми"
-   ],
-   "correct": "молодые люди",
-   "case": "Именительный (Nominative)",
-   "explain": "«молодые люди» — the subject of the sentence stands in the nominative.",
-   "id": "c26"
   }
  ]
 }

@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Жил-был королевич, которому не полюбилось житье в ___, и так как он ничего на свете не боялся, то и подумал: «Дай-ка я пойду побродить по белу свету, душеньку свою потешу, диковинок всяких повидаю».",
-   "lemma": "дом",
-   "options": [
-    "отеческий дом",
-    "отеческого дома",
-    "отеческому дому",
-    "отеческом доме"
-   ],
-   "correct": "отеческом доме",
-   "case": "Предложный (Prepositional)",
-   "explain": "«отеческом доме» — after the preposition «по», for location or topic.",
-   "id": "c1"
-  },
-  {
    "sentence": "Оглядевшись кругом себя, королевич увидел во дворе игрушки великана: пару ___ и кегли величиной в рост человека.",
    "lemma": "шар",
    "options": [
@@ -25,22 +11,8 @@
    ],
    "correct": "громадных шаров",
    "case": "Родительный (Genitive)",
-   "explain": "«громадных шаров» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«громадных шаров» depends on the noun «пару» (whose? of what?) — genitive.",
    "id": "c2"
-  },
-  {
-   "sentence": "Великан услышал шум, выглянул в окошко и увидел человека, который был ничуть не больше ___, а между тем играл его кеглями.",
-   "lemma": "человек",
-   "options": [
-    "других людях",
-    "другие люди",
-    "другими людьми",
-    "других людей"
-   ],
-   "correct": "других людей",
-   "case": "Родительный (Genitive)",
-   "explain": "«других людей» — the genitive here marks possession, absence, or quantity.",
-   "id": "c3"
   },
   {
    "sentence": "Простился он с великаном, пошел по горам, по долам, по полям и долам и дошел наконец до ___.",
@@ -53,22 +25,8 @@
    ],
    "correct": "волшебного сада",
    "case": "Родительный (Genitive)",
-   "explain": "«волшебного сада» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«волшебного сада» — «до» always takes the genitive.",
    "id": "c4"
-  },
-  {
-   "sentence": "Посреди того сада стояло дерево жизни, и ___ его так и рдели на ветвях!",
-   "lemma": "яблоко",
-   "options": [
-    "красными яблоками",
-    "красным яблокам",
-    "красные яблоки",
-    "красных яблок"
-   ],
-   "correct": "красные яблоки",
-   "case": "Именительный (Nominative)",
-   "explain": "«красные яблоки» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
   },
   {
    "sentence": "Когда королевич слез с яблоком с дерева, он уже не захотел перелезать через решетку, а ухватился за большие ___, встряхнул их разок — и ворота с треском распахнулись.",
@@ -81,7 +39,7 @@
    ],
    "correct": "садовые ворота",
    "case": "Винительный (Accusative)",
-   "explain": "«садовые ворота» — after the preposition «за», the accusative marks the direct object of the verb.",
+   "explain": "«садовые ворота» — «за» takes the accusative here (куда? за что? за кого?) — the instrumental would mean position behind or at (где? за чем?).",
    "id": "c6"
   },
   {
@@ -95,22 +53,8 @@
    ],
    "correct": "слабого человека",
    "case": "Родительный (Genitive)",
-   "explain": "«слабого человека» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«слабого человека» — «у» always takes the genitive.",
    "id": "c7"
-  },
-  {
-   "sentence": "Вот бедный королевич и оказался слепым и беспомощным; а великан вновь подошел к нему, взял его за руку, словно хотел помочь ему, а сам отвел его на край ___.",
-   "lemma": "скала",
-   "options": [
-    "высокой скалой",
-    "высокой скалы",
-    "высокая скала",
-    "высокой скале"
-   ],
-   "correct": "высокой скалы",
-   "case": "Родительный (Genitive)",
-   "explain": "«высокой скалы» — the genitive here marks possession, absence, or quantity.",
-   "id": "c8"
   },
   {
    "sentence": "Но ___ не оставил своего господина, крепко ухватил его за одежду и полегоньку стянул его обратно со скалы.",
@@ -123,7 +67,7 @@
    ],
    "correct": "верный лев",
    "case": "Именительный (Nominative)",
-   "explain": "«верный лев» — the subject of the sentence stands in the nominative.",
+   "explain": "«верный лев» is the subject of «оставил» — who or what does it — so nominative.",
    "id": "c9"
   },
   {
@@ -137,7 +81,7 @@
    ],
    "correct": "самому краю",
    "case": "Дательный (Dative)",
-   "explain": "«самому краю» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«самому краю» — «к» always takes the dative.",
    "id": "c10"
   },
   {
@@ -151,7 +95,7 @@
    ],
    "correct": "верное животное",
    "case": "Именительный (Nominative)",
-   "explain": "«Верное животное» — the subject of the sentence stands in the nominative.",
+   "explain": "«верное животное» is the subject of «сумело» — who or what does it — so nominative.",
    "id": "c11"
   },
   {
@@ -165,63 +109,35 @@
    ],
    "correct": "заколдованному замку",
    "case": "Дательный (Dative)",
-   "explain": "«заколдованному замку» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«заколдованному замку» — «к» always takes the dative.",
    "id": "c12"
   },
   {
    "sentence": "И он весело направился в замок; а когда стемнело, сел он в ___ и стал ожидать.",
    "lemma": "зал",
    "options": [
-    "большого зала",
+    "большому залу",
     "большом зале",
     "большим залом",
-    "большой зал"
+    "большого зала"
    ],
    "correct": "большом зале",
    "case": "Предложный (Prepositional)",
-   "explain": "«большом зале» — after the preposition «в», for location or topic.",
+   "explain": "«большом зале» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c13"
-  },
-  {
-   "sentence": "До полуночи все было тихо; а в полночь поднялся в замке страшный шум, и изо всех углов явились во множестве ___.",
-   "lemma": "чертёнок",
-   "options": [
-    "маленькие чертенята",
-    "маленькими чертенятами",
-    "маленьких чертенят",
-    "маленьким чертенятам"
-   ],
-   "correct": "маленькие чертенята",
-   "case": "Именительный (Nominative)",
-   "explain": "«маленькие чертенята» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
-  },
-  {
-   "sentence": "Но так как он все выносил молча, они наконец должны были от него отстать, а на заре явилась к нему черная девушка и исцелила его ___.",
-   "lemma": "вода",
-   "options": [
-    "живой воды",
-    "живой водой",
-    "живая вода",
-    "живой воде"
-   ],
-   "correct": "живой водой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«живой водой» — the instrumental marks the means, company, or complement.",
-   "id": "c15"
   },
   {
    "sentence": "Явились к ним и слуги, и заявили, что в ___ стол уже накрыт и кушанья поданы.",
    "lemma": "зал",
    "options": [
-    "большого зала",
     "большом зале",
     "большим залом",
-    "большой зал"
+    "большого зала",
+    "большому залу"
    ],
    "correct": "большом зале",
    "case": "Предложный (Prepositional)",
-   "explain": "«большом зале» — after the preposition «в», for location or topic.",
+   "explain": "«большом зале» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c16"
   }
  ]

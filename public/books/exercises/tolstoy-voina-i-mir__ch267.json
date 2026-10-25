@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Еще чувствовалось в их отношениях к нему и сомнение о том, кто он такой (не очень ли ___), и враждебность вследствие еще свежей их личной борьбы с ним.",
-   "lemma": "человек",
-   "options": [
-    "важном человеке",
-    "важный человек",
-    "важным человеком",
-    "важному человеку"
-   ],
-   "correct": "важный человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«важный человек» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Еще чувствовалось в их отношениях к нему и сомнение о том, кто он такой (не очень ли важный человек), и враждебность вследствие еще свежей их ___ с ним.",
-   "lemma": "борьба",
-   "options": [
-    "личной борьбы",
-    "личной борьбе",
-    "личной борьбой",
-    "личная борьба"
-   ],
-   "correct": "личной борьбы",
-   "case": "Родительный (Genitive)",
-   "explain": "«личной борьбы» — after the preposition «вследствие», the genitive here marks possession, absence, or quantity.",
-   "id": "c2"
-  },
-  {
    "sentence": "Но когда, в утро ___, пришла смена, то Пьер почувствовал, что для нового караула — для офицеров и солдат — он уже не имел того смысла, который имел для тех, которые его взяли.",
    "lemma": "день",
    "options": [
@@ -39,7 +11,7 @@
    ],
    "correct": "другого дня",
    "case": "Родительный (Genitive)",
-   "explain": "«другого дня» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«другого дня» depends on the noun «утро» (whose? of what?) — genitive.",
    "id": "c3"
   },
   {
@@ -53,106 +25,22 @@
    ],
    "correct": "нового караула",
    "case": "Родительный (Genitive)",
-   "explain": "«нового караула» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«нового караула» — «для» always takes the genitive.",
    "id": "c4"
   },
   {
    "sentence": "Несмотря на то, в тот же день Пьера соединили с другими взятыми ___, так как отдельная комната, которую он занимал, понадобилась офицеру.",
    "lemma": "человек",
    "options": [
-    "подозрительных людей",
+    "подозрительными людьми",
     "подозрительные люди",
     "подозрительных людях",
-    "подозрительными людьми"
+    "подозрительным людям"
    ],
    "correct": "подозрительными людьми",
    "case": "Творительный (Instrumental)",
-   "explain": "«подозрительными людьми» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«подозрительными людьми» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c5"
-  },
-  {
-   "sentence": "Несмотря на то, в тот же день Пьера соединили с другими взятыми подозрительными людьми, так как ___, которую он занимал, понадобилась офицеру.",
-   "lemma": "комната",
-   "options": [
-    "отдельная комната",
-    "отдельной комнаты",
-    "отдельной комнатой",
-    "отдельной комнате"
-   ],
-   "correct": "отдельная комната",
-   "case": "Именительный (Nominative)",
-   "explain": "«отдельная комната» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
-  },
-  {
-   "sentence": "Все русские, содержавшиеся с Пьером, были люди самого ___.",
-   "lemma": "звание",
-   "options": [
-    "низким званием",
-    "низкого звания",
-    "низком звании",
-    "низкому званию"
-   ],
-   "correct": "низкого звания",
-   "case": "Родительный (Genitive)",
-   "explain": "«низкого звания» — the genitive here marks possession, absence, or quantity.",
-   "id": "c7"
-  },
-  {
-   "sentence": "На третий день Пьера водили с другими в какой-то дом, где сидели ___ с белыми усами, два полковника и другие французы с шарфами на руках.",
-   "lemma": "генерал",
-   "options": [
-    "французский генерал",
-    "французском генерале",
-    "французскому генералу",
-    "французским генералом"
-   ],
-   "correct": "французский генерал",
-   "case": "Именительный (Nominative)",
-   "explain": "«французский генерал» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
-  },
-  {
-   "sentence": "На третий день Пьера водили с другими в какой-то дом, где сидели французский генерал с ___, два полковника и другие французы с шарфами на руках.",
-   "lemma": "ус",
-   "options": [
-    "белых усах",
-    "белые усы",
-    "белым усам",
-    "белыми усами"
-   ],
-   "correct": "белыми усами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«белыми усами» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c11"
-  },
-  {
-   "sentence": "На третий день Пьера водили с другими в какой-то дом, где сидели французский генерал с белыми усами, два полковника и ___ с шарфами на руках.",
-   "lemma": "француз",
-   "options": [
-    "других французов",
-    "другими французами",
-    "другие французы",
-    "других французах"
-   ],
-   "correct": "другие французы",
-   "case": "Именительный (Nominative)",
-   "explain": "«другие французы» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
-  },
-  {
-   "sentence": "Пьеру, наравне с другими, делали с той, мнимо-превышающею ___, точностью и определительностью, с которою обыкновенно обращаются с подсудимыми, вопросы о том, кто он? где он был? с какою целью? и т. п.",
-   "lemma": "слабость",
-   "options": [
-    "человеческим слабостям",
-    "человеческие слабости",
-    "человеческих слабостях",
-    "человеческими слабостями"
-   ],
-   "correct": "человеческие слабости",
-   "case": "Винительный (Accusative)",
-   "explain": "«человеческие слабости» — the accusative marks the direct object of the verb.",
-   "id": "c13"
   },
   {
    "sentence": "Кто он? повторили ему ___, на который он сказал, что не хочет отвечать.",
@@ -165,36 +53,8 @@
    ],
    "correct": "первый вопрос",
    "case": "Винительный (Accusative)",
-   "explain": "«первый вопрос» — the accusative marks the direct object of the verb.",
+   "explain": "«первый вопрос» is the direct object of «повторили» (кого? что?) — accusative.",
    "id": "c14"
-  },
-  {
-   "sentence": "Очень нехорошо, — строго сказал ему генерал с ___ и красным румяным лицом.",
-   "lemma": "ус",
-   "options": [
-    "белых усах",
-    "белые усы",
-    "белым усам",
-    "белыми усами"
-   ],
-   "correct": "белыми усами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«белыми усами» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c15"
-  },
-  {
-   "sentence": "Очень нехорошо, — строго сказал ему генерал с белыми усами и красным ___.",
-   "lemma": "лицо",
-   "options": [
-    "румяным лицом",
-    "румяному лицу",
-    "румяном лице",
-    "румяное лицо"
-   ],
-   "correct": "румяным лицом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«румяным лицом» — the instrumental marks the means, company, or complement.",
-   "id": "c16"
   },
   {
    "sentence": "Пьера с 13-ю другими отвели на Крымский Брод в каретный сарай ___.",
@@ -207,22 +67,8 @@
    ],
    "correct": "купеческого дома",
    "case": "Родительный (Genitive)",
-   "explain": "«купеческого дома» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«купеческого дома» depends on the noun «сарай» (whose? of what?) — genitive.",
    "id": "c18"
-  },
-  {
-   "sentence": "С ___ виднелись пожары.",
-   "lemma": "сторона",
-   "options": [
-    "разные стороны",
-    "разных сторон",
-    "разных сторонах",
-    "разным сторонам"
-   ],
-   "correct": "разных сторон",
-   "case": "Родительный (Genitive)",
-   "explain": "«разных сторон» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
-   "id": "c19"
   },
   {
    "sentence": "В каретном сарае дома у Крымского Брода Пьер пробыл еще четыре дня и во время этих дней из разговора ___ узнал, что все, содержавшиеся здесь, ожидали с каждым днем решения маршала.",
@@ -235,7 +81,7 @@
    ],
    "correct": "французских солдат",
    "case": "Родительный (Genitive)",
-   "explain": "«французских солдат» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«французских солдат» depends on the noun «разговора» (whose? of what?) — genitive.",
    "id": "c21"
   },
   {
@@ -249,22 +95,8 @@
    ],
    "correct": "таинственным звеном",
    "case": "Творительный (Instrumental)",
-   "explain": "«таинственным звеном» — the instrumental marks the means, company, or complement.",
+   "explain": "After «представлялся», what someone or something is or becomes stands in the instrumental.",
    "id": "c22"
-  },
-  {
-   "sentence": "Эти ___ до 8-го сентября, дня, в который пленных повели на вторичный допрос, были самые тяжёлые для Пьера.",
-   "lemma": "день",
-   "options": [
-    "первыми днями",
-    "первые дни",
-    "первых дней",
-    "первых днях"
-   ],
-   "correct": "первые дни",
-   "case": "Именительный (Nominative)",
-   "explain": "«первые дни» — the subject of the sentence stands in the nominative.",
-   "id": "c23"
   }
  ]
 }

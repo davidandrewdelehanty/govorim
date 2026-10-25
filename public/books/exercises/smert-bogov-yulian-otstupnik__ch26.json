@@ -1,48 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "___, придворный учитель красноречия, Гэкеболий начал с низких ступеней восхождение свое по лестнице государственных чинов.",
-   "lemma": "софист",
-   "options": [
-    "знаменитом софисте",
-    "знаменитому софисту",
-    "знаменитого софиста",
-    "знаменитый софист"
-   ],
-   "correct": "знаменитый софист",
-   "case": "Именительный (Nominative)",
-   "explain": "«Знаменитый софист» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Знаменитый софист, ___ красноречия, Гэкеболий начал с низких ступеней восхождение свое по лестнице государственных чинов.",
-   "lemma": "учитель",
-   "options": [
-    "придворный учитель",
-    "придворным учителем",
-    "придворном учителе",
-    "придворному учителю"
-   ],
-   "correct": "придворный учитель",
-   "case": "Именительный (Nominative)",
-   "explain": "«придворный учитель» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Знаменитый софист, придворный учитель красноречия, Гэкеболий начал с ___ восхождение свое по лестнице государственных чинов.",
-   "lemma": "ступень",
-   "options": [
-    "низких ступеней",
-    "низких ступенях",
-    "низким ступеням",
-    "низкие ступени"
-   ],
-   "correct": "низких ступеней",
-   "case": "Родительный (Genitive)",
-   "explain": "«низких ступеней» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
-   "id": "c3"
-  },
-  {
    "sentence": "Знаменитый софист, придворный учитель красноречия, Гэкеболий начал с низких ступеней восхождение свое по лестнице ___.",
    "lemma": "чин",
    "options": [
@@ -53,7 +11,7 @@
    ],
    "correct": "государственных чинов",
    "case": "Родительный (Genitive)",
-   "explain": "«государственных чинов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«государственных чинов» depends on the noun «лестнице» (whose? of what?) — genitive.",
    "id": "c4"
   },
   {
@@ -67,7 +25,7 @@
    ],
    "correct": "гиеропольском храме",
    "case": "Предложный (Prepositional)",
-   "explain": "«гиеропольском храме» — after the preposition «при», for location or topic.",
+   "explain": "«гиеропольском храме» — «при» always takes the prepositional.",
    "id": "c5"
   },
   {
@@ -81,7 +39,7 @@
    ],
    "correct": "христианская вера",
    "case": "Именительный (Nominative)",
-   "explain": "«христианская вера» — the subject of the sentence stands in the nominative.",
+   "explain": "«христианская вера» is the subject of «стала» — who or what does it — so nominative.",
    "id": "c7"
   },
   {
@@ -95,7 +53,7 @@
    ],
    "correct": "духовного звания",
    "case": "Родительный (Genitive)",
-   "explain": "«духовного звания» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«духовного звания» depends on the noun «Люди» (whose? of what?) — genitive.",
    "id": "c9"
   },
   {
@@ -109,22 +67,8 @@
    ],
    "correct": "духовного звания",
    "case": "Родительный (Genitive)",
-   "explain": "«духовного звания» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«духовного звания» depends on the noun «Лица» (whose? of what?) — genitive.",
    "id": "c10"
-  },
-  {
-   "sentence": "Голова его умащалась сединами; дородность делалась все более приятной; ___ все более вкрадчивыми и уветливыми, а щеки украшались старческой свежестью.",
-   "lemma": "речь",
-   "options": [
-    "умных речах",
-    "умным речам",
-    "умные речи",
-    "умными речами"
-   ],
-   "correct": "умные речи",
-   "case": "Именительный (Nominative)",
-   "explain": "«умные речи» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
   },
   {
    "sentence": "Вся наружность ___ приобрела оттенок церковного благолепия.",
@@ -137,7 +81,7 @@
    ],
    "correct": "знаменитого софиста",
    "case": "Родительный (Genitive)",
-   "explain": "«знаменитого софиста» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«знаменитого софиста» depends on the noun «наружность» (whose? of what?) — genitive.",
    "id": "c12"
   },
   {
@@ -151,64 +95,8 @@
    ],
    "correct": "церковного благолепия",
    "case": "Родительный (Genitive)",
-   "explain": "«церковного благолепия» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«церковного благолепия» depends on the noun «оттенок» (whose? of what?) — genitive.",
    "id": "c13"
-  },
-  {
-   "sentence": "Он был строгим постником и вместе с тем ___: лакомые постные блюда стола его были изысканнее самых роскошных скоромных, так же как монашеские шутки Гэкеболия были острее самых откровенных языческих.",
-   "lemma": "гастроном",
-   "options": [
-    "тонкому гастроному",
-    "тонкого гастронома",
-    "тонким гастрономом",
-    "тонкий гастроном"
-   ],
-   "correct": "тонким гастрономом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«тонким гастрономом» — the instrumental marks the means, company, or complement.",
-   "id": "c14"
-  },
-  {
-   "sentence": "Он был строгим постником и вместе с тем тонким гастрономом: лакомые ___ стола его были изысканнее самых роскошных скоромных, так же как монашеские шутки Гэкеболия были острее самых откровенных языческих.",
-   "lemma": "блюдо",
-   "options": [
-    "постных блюдах",
-    "постные блюда",
-    "постных блюд",
-    "постными блюдами"
-   ],
-   "correct": "постные блюда",
-   "case": "Именительный (Nominative)",
-   "explain": "«постные блюда» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
-  },
-  {
-   "sentence": "Он был строгим постником и вместе с тем тонким гастрономом: лакомые постные блюда стола его были изысканнее самых ___, так же как монашеские шутки Гэкеболия были острее самых откровенных языческих.",
-   "lemma": "скоромное",
-   "options": [
-    "роскошных скоромных",
-    "роскошными скоромными",
-    "роскошным скоромным",
-    "роскошные скоромные"
-   ],
-   "correct": "роскошных скоромных",
-   "case": "Родительный (Genitive)",
-   "explain": "«роскошных скоромных» — the genitive here marks possession, absence, or quantity.",
-   "id": "c16"
-  },
-  {
-   "sentence": "Он был строгим постником и вместе с тем тонким гастрономом: лакомые постные блюда стола его были изысканнее самых роскошных скоромных, так же как ___ Гэкеболия были острее самых откровенных языческих.",
-   "lemma": "шутка",
-   "options": [
-    "монашеских шуток",
-    "монашескими шутками",
-    "монашеским шуткам",
-    "монашеские шутки"
-   ],
-   "correct": "монашеские шутки",
-   "case": "Именительный (Nominative)",
-   "explain": "«монашеские шутки» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
   },
   {
    "sentence": "___ утверждали, что Гэкеболий – женолюбец.",
@@ -221,21 +109,21 @@
    ],
    "correct": "злые языки",
    "case": "Именительный (Nominative)",
-   "explain": "«Злые языки» — the subject of the sentence stands in the nominative.",
+   "explain": "«злые языки» is the subject of «утверждали» — who or what does it — so nominative.",
    "id": "c18"
   },
   {
    "sentence": "Но как раз в то мгновение, когда приготовлялся он сделать ___, разразился неожиданный удар: Констанций умер; на престол вступил Юлиан, ненавистник церкви.",
    "lemma": "шаг",
    "options": [
-    "последнего шага",
-    "последним шагом",
+    "последнем шаге",
     "последнему шагу",
-    "последний шаг"
+    "последний шаг",
+    "последним шагом"
    ],
    "correct": "последний шаг",
    "case": "Винительный (Accusative)",
-   "explain": "«последний шаг» — the accusative marks the direct object of the verb.",
+   "explain": "«последний шаг» is the direct object of «сделать» (кого? что?) — accusative.",
    "id": "c19"
   },
   {
@@ -249,22 +137,8 @@
    ],
    "correct": "неожиданный удар",
    "case": "Именительный (Nominative)",
-   "explain": "«неожиданный удар» — the subject of the sentence stands in the nominative.",
+   "explain": "«неожиданный удар» is the subject of «разразился» — who or what does it — so nominative.",
    "id": "c20"
-  },
-  {
-   "sentence": "___ и врач, человек, всеми чтимый за свою прямоту и благородство, Цезарий Каппадокийский, брат знаменитого учителя церкви, Василия Великого, выступил защитником христианской веры против императора.",
-   "lemma": "философ",
-   "options": [
-    "молодой философ",
-    "молодом философе",
-    "молодого философа",
-    "молодому философу"
-   ],
-   "correct": "молодой философ",
-   "case": "Именительный (Nominative)",
-   "explain": "«Молодой философ» — the subject of the sentence stands in the nominative.",
-   "id": "c22"
   },
   {
    "sentence": "Молодой философ и врач, человек, всеми чтимый за свою прямоту и благородство, Цезарий Каппадокийский, брат ___ церкви, Василия Великого, выступил защитником христианской веры против императора.",
@@ -277,7 +151,7 @@
    ],
    "correct": "знаменитого учителя",
    "case": "Родительный (Genitive)",
-   "explain": "«знаменитого учителя» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«знаменитого учителя» depends on the noun «брат» (whose? of what?) — genitive.",
    "id": "c23"
   },
   {
@@ -291,36 +165,8 @@
    ],
    "correct": "христианской веры",
    "case": "Родительный (Genitive)",
-   "explain": "«христианской веры» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«христианской веры» depends on the noun «защитником» (whose? of what?) — genitive.",
    "id": "c24"
-  },
-  {
-   "sentence": "Спорящий поддавался, обыкновенно, если не доводам ___, то величию римского кесаря, Юлиана, – и уступал.",
-   "lemma": "философ",
-   "options": [
-    "эллинском философе",
-    "эллинского философа",
-    "эллинскому философу",
-    "эллинский философ"
-   ],
-   "correct": "эллинского философа",
-   "case": "Родительный (Genitive)",
-   "explain": "«эллинского философа» — the genitive here marks possession, absence, or quantity.",
-   "id": "c25"
-  },
-  {
-   "sentence": "Спорящий поддавался, обыкновенно, если не доводам эллинского философа, то величию ___, Юлиана, – и уступал.",
-   "lemma": "кесарь",
-   "options": [
-    "римского кесаря",
-    "римскому кесарю",
-    "римский кесарь",
-    "римском кесаре"
-   ],
-   "correct": "римского кесаря",
-   "case": "Родительный (Genitive)",
-   "explain": "«римского кесаря» — the genitive here marks possession, absence, or quantity.",
-   "id": "c26"
   },
   {
    "sentence": "Это был юноша с девичьей прелестью в движениях с шелковистыми кудрями, с невозмутимой ясностью ___.",
@@ -333,64 +179,22 @@
    ],
    "correct": "невинных глаз",
    "case": "Родительный (Genitive)",
-   "explain": "«невинных глаз» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«невинных глаз» depends on the noun «ясностью» (whose? of what?) — genitive.",
    "id": "c27"
-  },
-  {
-   "sentence": "Спор, как все ___, кончился ничем.",
-   "lemma": "спор",
-   "options": [
-    "искренние споры",
-    "искренним спорам",
-    "искренних споров",
-    "искренних спорах"
-   ],
-   "correct": "искренние споры",
-   "case": "Именительный (Nominative)",
-   "explain": "«искренние споры» — the subject of the sentence stands in the nominative.",
-   "id": "c28"
-  },
-  {
-   "sentence": "Император вышел из собрания, с философскою шуткою, приняв ___, как бы с легким оттенком всепрощающей грусти, – на самом деле, с жалом в сердце.",
-   "lemma": "вид",
-   "options": [
-    "ласковый вид",
-    "ласковом виде",
-    "ласковому виду",
-    "ласкового вида"
-   ],
-   "correct": "ласковый вид",
-   "case": "Винительный (Accusative)",
-   "explain": "«ласковый вид» — the accusative marks the direct object of the verb.",
-   "id": "c29"
   },
   {
    "sentence": "Император поднял старика, не мог от волнения говорить, только изо всей силы прижал его к своей груди и поцеловал в бритые мягкие щеки, в сочные ___.",
    "lemma": "губа",
    "options": [
-    "красных губах",
+    "красным губам",
     "красными губами",
-    "красных губ",
-    "красные губы"
+    "красные губы",
+    "красных губ"
    ],
    "correct": "красные губы",
    "case": "Винительный (Accusative)",
-   "explain": "«красные губы» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«красные губы» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c31"
-  },
-  {
-   "sentence": "Архиерей Гэкеболий управлял двумя многолюдными ___ и шел по новому пути с таким же успехом, как по старому.",
-   "lemma": "провинция",
-   "options": [
-    "азиатские провинции",
-    "азиатскими провинциями",
-    "азиатских провинций",
-    "азиатских провинциях"
-   ],
-   "correct": "азиатскими провинциями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«азиатскими провинциями» — the instrumental marks the means, company, or complement.",
-   "id": "c35"
   },
   {
    "sentence": "Он сделался главным жрецом ___ финикийской богини Астарты-Атагартис, той самой, которой служил в детстве.",
@@ -403,7 +207,7 @@
    ],
    "correct": "знаменитого храма",
    "case": "Родительный (Genitive)",
-   "explain": "«знаменитого храма» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«знаменитого храма» depends on the noun «жрецом» (whose? of what?) — genitive.",
    "id": "c38"
   },
   {
@@ -417,7 +221,7 @@
    ],
    "correct": "финикийской богини",
    "case": "Родительный (Genitive)",
-   "explain": "«финикийской богини» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«финикийской богини» depends on the noun «храма» (whose? of what?) — genitive.",
    "id": "c39"
   }
  ]

@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Давно, очень давно жил да был на свете король, а у того короля была жена с ___, и была она так прекрасна, что подобную ей красавицу на всей земле не сыскать было.",
-   "lemma": "волос",
-   "options": [
-    "золотых волос",
-    "золотым волосам",
-    "золотые волосы",
-    "золотыми волосами"
-   ],
-   "correct": "золотыми волосами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«золотыми волосами» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c1"
-  },
-  {
    "sentence": "Король долгое время был неутешен и даже не думал о ___.",
    "lemma": "женитьба",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "второй женитьбе",
    "case": "Предложный (Prepositional)",
-   "explain": "«второй женитьбе» — after the preposition «о», for location or topic.",
+   "explain": "«второй женитьбе» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c2"
   },
   {
@@ -33,42 +19,14 @@
    "lemma": "волос",
    "options": [
     "золотистым волосам",
+    "золотистых волосах",
     "золотистыми волосами",
-    "золотистых волос",
-    "золотистые волосы"
+    "золотистых волос"
    ],
    "correct": "золотистых волос",
    "case": "Родительный (Genitive)",
-   "explain": "«золотистых волос» — the genitive here marks possession, absence, or quantity.",
+   "explain": "What is absent after «не было» — genitive.",
    "id": "c3"
-  },
-  {
-   "sentence": "И сказал он своим советникам: «Я думаю жениться на моей падчерице, потому что она как две капли воды похожа на свою мать, а ___, которая так же походила бы на покойную жену, я во всем свете сыскать не могу».",
-   "lemma": "невеста",
-   "options": [
-    "другой невесты",
-    "другой невесте",
-    "другая невеста",
-    "другой невестой"
-   ],
-   "correct": "другой невесты",
-   "case": "Родительный (Genitive)",
-   "explain": "«другой невесты» — the genitive here marks possession, absence, or quantity.",
-   "id": "c4"
-  },
-  {
-   "sentence": "Так говорила она и сама про себя думала: «Этого сделать никак нельзя, и этой ___ мне, может быть, удастся отговорить отчима от его дурных намерений».",
-   "lemma": "задача",
-   "options": [
-    "невозможной задачи",
-    "невозможная задача",
-    "невозможной задачей",
-    "невозможной задаче"
-   ],
-   "correct": "невозможной задачей",
-   "case": "Творительный (Instrumental)",
-   "explain": "«невозможной задачей» — the instrumental marks the means, company, or complement.",
-   "id": "c5"
   },
   {
    "sentence": "Так говорила она и сама про себя думала: «Этого сделать никак нельзя, и этой невозможной задачей мне, может быть, удастся отговорить отчима от его ___».",
@@ -81,7 +39,7 @@
    ],
    "correct": "дурных намерений",
    "case": "Родительный (Genitive)",
-   "explain": "«дурных намерений» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«дурных намерений» — «от» always takes the genitive.",
    "id": "c6"
   },
   {
@@ -95,21 +53,21 @@
    ],
    "correct": "отцовского дома",
    "case": "Родительный (Genitive)",
-   "explain": "«отцовского дома» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«отцовского дома» — «из» always takes the genitive.",
    "id": "c7"
   },
   {
    "sentence": "Затем помолилась и ушла из дома, и шла целую ночь, и наконец пришла в ___.",
    "lemma": "лес",
    "options": [
-    "большой лес",
     "большим лесом",
-    "большом лесе",
-    "большому лесу"
+    "большому лесу",
+    "большого леса",
+    "большой лес"
    ],
    "correct": "большой лес",
    "case": "Винительный (Accusative)",
-   "explain": "«большой лес» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«большой лес» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c8"
   },
   {
@@ -123,7 +81,7 @@
    ],
    "correct": "долгого пути",
    "case": "Родительный (Genitive)",
-   "explain": "«долгого пути» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«долгого пути» — «от» always takes the genitive.",
    "id": "c9"
   },
   {
@@ -137,64 +95,22 @@
    ],
    "correct": "большого дерева",
    "case": "Родительный (Genitive)",
-   "explain": "«большого дерева» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«большого дерева» depends on the noun «дупло» (whose? of what?) — genitive.",
    "id": "c10"
-  },
-  {
-   "sentence": "А тут как раз и приключилось, что тот ___, которому этот лес принадлежал, выехал в него на охоту.",
-   "lemma": "король",
-   "options": [
-    "соседним королём",
-    "соседнему королю",
-    "соседнем короле",
-    "соседний король"
-   ],
-   "correct": "соседний король",
-   "case": "Именительный (Nominative)",
-   "explain": "«соседний король» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
-  },
-  {
-   "sentence": "Но чуть только ___ прикоснулись к королевне, она проснулась в перепуге и крикнула им: «Я бедная, отцом и матерью покинутая сирота, сжальтесь вы надо мной и возьмите меня с собою».",
-   "lemma": "егерь",
-   "options": [
-    "королевских егерях",
-    "королевские егеря",
-    "королевскими егерями",
-    "королевским егерям"
-   ],
-   "correct": "королевские егеря",
-   "case": "Именительный (Nominative)",
-   "explain": "«королевские егеря» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
   },
   {
    "sentence": "Посадили ее на повозку и поехали домой, в ___.",
    "lemma": "замок",
    "options": [
     "королевский замок",
-    "королевском замке",
     "королевским замком",
-    "королевского замка"
+    "королевского замка",
+    "королевскому замку"
    ],
    "correct": "королевский замок",
    "case": "Винительный (Accusative)",
-   "explain": "«королевский замок» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«королевский замок» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c13"
-  },
-  {
-   "sentence": "И стали ее посылать на кухню, заставили носить дрова и воду, разводить огонь, щипать перья с ___, овощи выбирать, золу выгребать и всякие черные работы справлять.",
-   "lemma": "птица",
-   "options": [
-    "битой птице",
-    "битая птица",
-    "битой птицей",
-    "битой птицы"
-   ],
-   "correct": "битой птицы",
-   "case": "Родительный (Genitive)",
-   "explain": "«битой птицы» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
-   "id": "c14"
   },
   {
    "sentence": "Так и жила долгое время Пестрая Шкурка в ___ при дворе соседнего короля.",
@@ -207,7 +123,7 @@
    ],
    "correct": "великой нужде",
    "case": "Предложный (Prepositional)",
-   "explain": "«великой нужде» — after the preposition «в», for location or topic.",
+   "explain": "«великой нужде» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c15"
   },
   {
@@ -221,7 +137,7 @@
    ],
    "correct": "соседнего короля",
    "case": "Родительный (Genitive)",
-   "explain": "«соседнего короля» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«соседнего короля» depends on the noun «дворе» (whose? of what?) — genitive.",
    "id": "c16"
   },
   {
@@ -235,35 +151,35 @@
    ],
    "correct": "сам король",
    "case": "Именительный (Nominative)",
-   "explain": "«Сам король» — the subject of the sentence stands in the nominative.",
+   "explain": "«сам король» is the subject of «вышел» — who or what does it — so nominative.",
    "id": "c17"
   },
   {
    "sentence": "Несколько времени спустя в ___ был опять праздник, и Пестрая Шкурка, как и в тот раз, отпросилась у повара сходить наверх и посмотреть на танцующих.",
    "lemma": "замок",
    "options": [
-    "королевский замок",
+    "королевским замком",
     "королевского замка",
     "королевском замке",
     "королевскому замку"
    ],
    "correct": "королевском замке",
    "case": "Предложный (Prepositional)",
-   "explain": "«королевском замке» — after the preposition «в», for location or topic.",
+   "explain": "«королевском замке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c18"
   },
   {
    "sentence": "Когда же король в ___ устроил праздник в своем замке, и на этом празднике все происходило, как на двух предшествовавших.",
    "lemma": "раз",
    "options": [
-    "третьим разом",
+    "третьего раза",
     "третьему разу",
-    "третьем разе",
+    "третьим разом",
     "третий раз"
    ],
    "correct": "третий раз",
    "case": "Винительный (Accusative)",
-   "explain": "«третий раз» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«третий раз» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c19"
   },
   {
@@ -277,22 +193,8 @@
    ],
    "correct": "золотистые волосы",
    "case": "Именительный (Nominative)",
-   "explain": "«золотистые волосы» — the subject of the sentence stands in the nominative.",
+   "explain": "«золотистые волосы» is the subject of «рассыпались» — who or what does it — so nominative.",
    "id": "c20"
-  },
-  {
-   "sentence": "Король тут и сказал ей: «Ты моя ___, и мы никогда более с тобою не расстанемся».",
-   "lemma": "невеста",
-   "options": [
-    "дорогой невесте",
-    "дорогой невестой",
-    "дорогой невесты",
-    "дорогая невеста"
-   ],
-   "correct": "дорогая невеста",
-   "case": "Именительный (Nominative)",
-   "explain": "«дорогая невеста» — the subject of the sentence stands in the nominative.",
-   "id": "c21"
   }
  ]
 }

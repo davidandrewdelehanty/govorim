@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Во всяком случае, после нашего с ним путешествия мне была предоставлена ___.",
-   "lemma": "свобода",
-   "options": [
-    "большая свобода",
-    "большей свободой",
-    "большей свободе",
-    "большей свободы"
-   ],
-   "correct": "большая свобода",
-   "case": "Именительный (Nominative)",
-   "explain": "«большая свобода» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Это был довольно ___, сносно говоривший по-немецки.",
-   "lemma": "шотландец",
-   "options": [
-    "пожилым шотландцем",
-    "пожилому шотландцу",
-    "пожилого шотландца",
-    "пожилой шотландец"
-   ],
-   "correct": "пожилой шотландец",
-   "case": "Именительный (Nominative)",
-   "explain": "«пожилой шотландец» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
    "sentence": "Мистер Люк вопреки ___ об англичанах был очень разговорчив, и это было мне на руку.",
    "lemma": "представление",
    "options": [
@@ -39,7 +11,7 @@
    ],
    "correct": "общему представлению",
    "case": "Дательный (Dative)",
-   "explain": "«общему представлению» — after the preposition «вопреки», the dative marks the indirect object or recipient.",
+   "explain": "«общему представлению» — «вопреки» always takes the dative.",
    "id": "c3"
   },
   {
@@ -53,7 +25,7 @@
    ],
    "correct": "деревянной доске",
    "case": "Дательный (Dative)",
-   "explain": "«деревянной доске» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«деревянной доске» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c4"
   },
   {
@@ -67,7 +39,7 @@
    ],
    "correct": "настоящие ландскнехты",
    "case": "Именительный (Nominative)",
-   "explain": "«настоящие ландскнехты» — the subject of the sentence stands in the nominative.",
+   "explain": "«настоящие ландскнехты» is the subject of «шли» — who or what does it — so nominative.",
    "id": "c5"
   },
   {
@@ -75,13 +47,13 @@
    "lemma": "соображение",
    "options": [
     "коммерческими соображениями",
+    "коммерческим соображениям",
     "коммерческих соображений",
-    "коммерческие соображения",
-    "коммерческим соображениям"
+    "коммерческих соображениях"
    ],
    "correct": "коммерческим соображениям",
    "case": "Дательный (Dative)",
-   "explain": "«коммерческим соображениям» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«коммерческим соображениям» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c6"
   },
   {
@@ -95,7 +67,7 @@
    ],
    "correct": "главным вопросам",
    "case": "Дательный (Dative)",
-   "explain": "«главным вопросам» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«главным вопросам» — «к» always takes the dative.",
    "id": "c7"
   },
   {
@@ -109,7 +81,7 @@
    ],
    "correct": "приятельских отношений",
    "case": "Родительный (Genitive)",
-   "explain": "«приятельских отношений» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«приятельских отношений» depends on the noun «этика» (whose? of what?) — genitive.",
    "id": "c9"
   },
   {
@@ -123,50 +95,22 @@
    ],
    "correct": "подземным владениям",
    "case": "Дательный (Dative)",
-   "explain": "«подземным владениям» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«подземным владениям» — «к» always takes the dative.",
    "id": "c11"
   },
   {
    "sentence": "Однажды я сказал ему, что очень интересуюсь радио, но, к сожалению, не имел возможности ближе познакомиться с этим ___.",
    "lemma": "изобретение",
    "options": [
-    "замечательном изобретении",
-    "замечательным изобретением",
     "замечательному изобретению",
-    "замечательного изобретения"
+    "замечательным изобретением",
+    "замечательное изобретение",
+    "замечательном изобретении"
    ],
    "correct": "замечательным изобретением",
    "case": "Творительный (Instrumental)",
-   "explain": "«замечательным изобретением» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«замечательным изобретением» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c14"
-  },
-  {
-   "sentence": "— Приходите ко мне на станцию, лучше во время ___, и я вам покажу.",
-   "lemma": "дежурство",
-   "options": [
-    "ночного дежурства",
-    "ночное дежурство",
-    "ночным дежурством",
-    "ночному дежурству"
-   ],
-   "correct": "ночного дежурства",
-   "case": "Родительный (Genitive)",
-   "explain": "«ночного дежурства» — after the preposition «во», the genitive here marks possession, absence, or quantity.",
-   "id": "c15"
-  },
-  {
-   "sentence": "С каким волнением услышал я после перерыва в несколько месяцев ___ диктора «Коминтерна»!",
-   "lemma": "голос",
-   "options": [
-    "знакомого голоса",
-    "знакомый голос",
-    "знакомому голосу",
-    "знакомом голосе"
-   ],
-   "correct": "знакомый голос",
-   "case": "Именительный (Nominative)",
-   "explain": "«знакомый голос» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
   },
   {
    "sentence": "Мы можем обрадовать дачников-„зимников“: им не придется мерзнуть в своих ___.",
@@ -179,35 +123,21 @@
    ],
    "correct": "сквозных дачках",
    "case": "Предложный (Prepositional)",
-   "explain": "«сквозных дачках» — after the preposition «в», for location or topic.",
+   "explain": "«сквозных дачках» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c17"
-  },
-  {
-   "sentence": "Эта станция работает на таких ___, что обычные станции не могут принимать ее.",
-   "lemma": "волна",
-   "options": [
-    "коротких волн",
-    "коротких волнах",
-    "короткие волны",
-    "короткими волнами"
-   ],
-   "correct": "коротких волнах",
-   "case": "Предложный (Prepositional)",
-   "explain": "«коротких волнах» — after the preposition «на», for location or topic.",
-   "id": "c18"
   },
   {
    "sentence": "Эта станция работает на таких коротких волнах, что ___ не могут принимать ее.",
    "lemma": "станция",
    "options": [
-    "обычных станций",
+    "обычными станциями",
     "обычных станциях",
     "обычные станции",
-    "обычными станциями"
+    "обычным станциям"
    ],
    "correct": "обычные станции",
    "case": "Именительный (Nominative)",
-   "explain": "«обычные станции» — the subject of the sentence stands in the nominative.",
+   "explain": "«обычные станции» is the subject of «могут» — who or what does it — so nominative.",
    "id": "c19"
   },
   {
@@ -221,7 +151,7 @@
    ],
    "correct": "последнее открытие",
    "case": "Именительный (Nominative)",
-   "explain": "«Последнее открытие» — the subject of the sentence stands in the nominative.",
+   "explain": "«последнее открытие» is the subject of «убедило» — who or what does it — so nominative.",
    "id": "c20"
   }
  ]

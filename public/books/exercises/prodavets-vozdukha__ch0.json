@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "«___!» — так писатель В.",
-   "lemma": "край",
-   "options": [
-    "окаянный край",
-    "окаянным краем",
-    "окаянного края",
-    "окаянному краю"
-   ],
-   "correct": "окаянный край",
-   "case": "Именительный (Nominative)",
-   "explain": "«Окаянный край» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Эти несколько ___ невольно приходили мне в голову, когда я пробирался со своим проводником и помощником, якутом Николой, вдоль берега реки Яны.",
    "lemma": "мысль",
    "options": [
@@ -25,35 +11,21 @@
    ],
    "correct": "мрачные мысли",
    "case": "Именительный (Nominative)",
-   "explain": "«мрачные мысли» — the subject of the sentence stands in the nominative.",
+   "explain": "«мрачные мысли» is the subject of «приходили» — who or what does it — so nominative.",
    "id": "c2"
-  },
-  {
-   "sentence": "База нашей экспедиции находилась в «столице» Якутии Верхоянске — ___ с населением, которое могло бы вместиться в одном московском доме средней величины.",
-   "lemma": "городок",
-   "options": [
-    "маленьком городке",
-    "маленьким городком",
-    "маленького городка",
-    "маленькому городку"
-   ],
-   "correct": "маленьком городке",
-   "case": "Предложный (Prepositional)",
-   "explain": "«маленьком городке» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c3"
   },
   {
    "sentence": "База нашей экспедиции находилась в «столице» Якутии Верхоянске — маленьком городке с населением, которое могло бы вместиться в одном ___ средней величины.",
    "lemma": "дом",
    "options": [
+    "московскому дому",
     "московском доме",
     "московского дома",
-    "московский дом",
     "московским домом"
    ],
    "correct": "московском доме",
    "case": "Предложный (Prepositional)",
-   "explain": "«московском доме» — after the preposition «в», for location or topic.",
+   "explain": "«московском доме» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c4"
   },
   {
@@ -67,7 +39,7 @@
    ],
    "correct": "средней величины",
    "case": "Родительный (Genitive)",
-   "explain": "«средней величины» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«средней величины» depends on the noun «доме» (whose? of what?) — genitive.",
    "id": "c5"
   },
   {
@@ -81,7 +53,7 @@
    ],
    "correct": "круглый год",
    "case": "Винительный (Accusative)",
-   "explain": "«круглый год» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«круглый год» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c6"
   },
   {
@@ -95,7 +67,7 @@
    ],
    "correct": "правительственных учреждений",
    "case": "Родительный (Genitive)",
-   "explain": "«правительственных учреждений» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«правительственных учреждений» depends on the noun «вывески» (whose? of what?) — genitive.",
    "id": "c7"
   },
   {
@@ -109,50 +81,8 @@
    ],
    "correct": "первом ознакомлении",
    "case": "Предложный (Prepositional)",
-   "explain": "«первом ознакомлении» — after the preposition «при», for location or topic.",
+   "explain": "«первом ознакомлении» — «при» always takes the prepositional.",
    "id": "c8"
-  },
-  {
-   "sentence": "Со мною были только ___, термометр и довольно примитивный флюгер, доставляющий немалое удовольствие Николе.",
-   "lemma": "барометр",
-   "options": [
-    "небольшому барометру",
-    "небольшой барометр",
-    "небольшом барометре",
-    "небольшого барометра"
-   ],
-   "correct": "небольшой барометр",
-   "case": "Именительный (Nominative)",
-   "explain": "«небольшой барометр» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
-  },
-  {
-   "sentence": "Для него это была такая же ___, как детская ветряная мельница.",
-   "lemma": "игрушка",
-   "options": [
-    "занятной игрушке",
-    "занятная игрушка",
-    "занятной игрушки",
-    "занятной игрушкой"
-   ],
-   "correct": "занятная игрушка",
-   "case": "Именительный (Nominative)",
-   "explain": "«занятная игрушка» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
-  },
-  {
-   "sentence": "Для него это была такая же занятная игрушка, как детская ___.",
-   "lemma": "мельница",
-   "options": [
-    "ветряной мельницей",
-    "ветряной мельнице",
-    "ветряная мельница",
-    "ветряной мельницы"
-   ],
-   "correct": "ветряная мельница",
-   "case": "Именительный (Nominative)",
-   "explain": "«ветряная мельница» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
   },
   {
    "sentence": "В ___ ветры, дующие обычно от востока и к экватору, начали отклоняться на север, и чем далее к северу, тем это отклонение замечалось сильнее.",
@@ -165,22 +95,8 @@
    ],
    "correct": "экваториальной зоне",
    "case": "Предложный (Prepositional)",
-   "explain": "«экваториальной зоне» — after the preposition «в», for location or topic.",
+   "explain": "«экваториальной зоне» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c12"
-  },
-  {
-   "sentence": "Это повлекло за собою (правда, еще малозаметное) изменение ___: на экваторе она несколько понизилась, на севере повысилась.",
-   "lemma": "температура",
-   "options": [
-    "средней температуры",
-    "средняя температура",
-    "средней температуре",
-    "средней температурой"
-   ],
-   "correct": "средней температуры",
-   "case": "Родительный (Genitive)",
-   "explain": "«средней температуры» — the genitive here marks possession, absence, or quantity.",
-   "id": "c13"
   },
   {
    "sentence": "Такое явление вполне понятно, если иметь в виду, что ___ с Южного полюса начали направляться к экватору, а экваториальные теплые — на север.",
@@ -193,7 +109,7 @@
    ],
    "correct": "холодные ветры",
    "case": "Именительный (Nominative)",
-   "explain": "«холодные ветры» — the subject of the sentence stands in the nominative.",
+   "explain": "«холодные ветры» is the subject of «начали» — who or what does it — so nominative.",
    "id": "c14"
   },
   {
@@ -207,7 +123,7 @@
    ],
    "correct": "физическими инструментами",
    "case": "Творительный (Instrumental)",
-   "explain": "«физическими инструментами» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «обнаруженные», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c16"
   },
   {
@@ -221,92 +137,8 @@
    ],
    "correct": "пневматических машин",
    "case": "Родительный (Genitive)",
-   "explain": "«пневматических машин» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«пневматических машин» depends on the noun «работой» (whose? of what?) — genitive.",
    "id": "c17"
-  },
-  {
-   "sentence": "Эти наблюдения говорили о том, что ___ несколько понижено.",
-   "lemma": "давление",
-   "options": [
-    "атмосферном давлении",
-    "атмосферного давления",
-    "атмосферному давлению",
-    "атмосферное давление"
-   ],
-   "correct": "атмосферное давление",
-   "case": "Именительный (Nominative)",
-   "explain": "«атмосферное давление» — the subject of the sentence stands in the nominative.",
-   "id": "c18"
-  },
-  {
-   "sentence": "В этих широтах ветер дул с запада на восток сильно и равномерно, так что даже с моими ___ можно было довольно точно ориентироваться.",
-   "lemma": "инструмент",
-   "options": [
-    "несложным инструментам",
-    "несложные инструменты",
-    "несложными инструментами",
-    "несложных инструментов"
-   ],
-   "correct": "несложными инструментами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«несложными инструментами» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c19"
-  },
-  {
-   "sentence": "Наш путь лежал к отрогу ___.",
-   "lemma": "хребет",
-   "options": [
-    "верхоянский хребет",
-    "верхоянского хребта",
-    "верхоянским хребтом",
-    "верхоянском хребте"
-   ],
-   "correct": "верхоянского хребта",
-   "case": "Родительный (Genitive)",
-   "explain": "«Верхоянского хребта» — the genitive here marks possession, absence, or quantity.",
-   "id": "c20"
-  },
-  {
-   "sentence": "Мой спутник и проводник Никола был типичным якутом: у него были длинные ___, маленькие кривые ноги, медлительные и тяжеловатые движения.",
-   "lemma": "рука",
-   "options": [
-    "тонких рук",
-    "тонкие руки",
-    "тонкими руками",
-    "тонких руках"
-   ],
-   "correct": "тонкие руки",
-   "case": "Именительный (Nominative)",
-   "explain": "«тонкие руки» — the subject of the sentence stands in the nominative.",
-   "id": "c22"
-  },
-  {
-   "sentence": "Но, несмотря на этот «идеал», он был отличный, ___ и неутомимый ходок.",
-   "lemma": "работник",
-   "options": [
-    "исполнительным работником",
-    "исполнительный работник",
-    "исполнительном работнике",
-    "исполнительному работнику"
-   ],
-   "correct": "исполнительный работник",
-   "case": "Именительный (Nominative)",
-   "explain": "«исполнительный работник» — the subject of the sentence stands in the nominative.",
-   "id": "c23"
-  },
-  {
-   "sentence": "Но, несмотря на этот «идеал», он был отличный, исполнительный работник и ___.",
-   "lemma": "ходок",
-   "options": [
-    "неутомимому ходоку",
-    "неутомимом ходоке",
-    "неутомимым ходоком",
-    "неутомимый ходок"
-   ],
-   "correct": "неутомимый ходок",
-   "case": "Именительный (Nominative)",
-   "explain": "«неутомимый ходок» — the subject of the sentence stands in the nominative.",
-   "id": "c24"
   },
   {
    "sentence": "Даже ночью (при ___) температура не опускалась ниже нуля, а днем поднималась до 30 RC, иногда и выше.",
@@ -319,36 +151,8 @@
    ],
    "correct": "незаходящем солнце",
    "case": "Предложный (Prepositional)",
-   "explain": "«незаходящем солнце» — after the preposition «при», for location or topic.",
+   "explain": "«незаходящем солнце» — «при» always takes the prepositional.",
    "id": "c27"
-  },
-  {
-   "sentence": "Несмотря на очень теплую погоду, нам время от времени случалось переходить наледи, или «тарыны», — ___ еще не растаявшего льда.",
-   "lemma": "островок",
-   "options": [
-    "целыми островками",
-    "целым островкам",
-    "целые островки",
-    "целых островках"
-   ],
-   "correct": "целые островки",
-   "case": "Именительный (Nominative)",
-   "explain": "«целые островки» — the subject of the sentence stands in the nominative.",
-   "id": "c29"
-  },
-  {
-   "sentence": "___ — работа лютого холода — покрывали землю густою сетью, похожею на сеть морщин, украшавших лицо Николы.",
-   "lemma": "трещина",
-   "options": [
-    "огромные трещины",
-    "огромных трещин",
-    "огромных трещинах",
-    "огромными трещинами"
-   ],
-   "correct": "огромные трещины",
-   "case": "Именительный (Nominative)",
-   "explain": "«Огромные трещины» — the subject of the sentence stands in the nominative.",
-   "id": "c30"
   },
   {
    "sentence": "Огромные трещины — работа ___ — покрывали землю густою сетью, похожею на сеть морщин, украшавших лицо Николы.",
@@ -361,36 +165,8 @@
    ],
    "correct": "лютого холода",
    "case": "Родительный (Genitive)",
-   "explain": "«лютого холода» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«лютого холода» depends on the noun «работа» (whose? of what?) — genitive.",
    "id": "c31"
-  },
-  {
-   "sentence": "Стояла «красная ночь»: ___ медленно катилось на севере, окрашивая в красный цвет вершины холмов, покрытые снегом.",
-   "lemma": "солнце",
-   "options": [
-    "багрового солнца",
-    "багровое солнце",
-    "багровому солнцу",
-    "багровом солнце"
-   ],
-   "correct": "багровое солнце",
-   "case": "Именительный (Nominative)",
-   "explain": "«багровое солнце» — the subject of the sentence stands in the nominative.",
-   "id": "c32"
-  },
-  {
-   "sentence": "Его довольно полное бритое лицо было совершенно ___.",
-   "lemma": "тип",
-   "options": [
-    "европейского типа",
-    "европейским типом",
-    "европейский тип",
-    "европейском типе"
-   ],
-   "correct": "европейского типа",
-   "case": "Родительный (Genitive)",
-   "explain": "«европейского типа» — the genitive here marks possession, absence, or quantity.",
-   "id": "c37"
   },
   {
    "sentence": "На нем был измазанный грязью, но ___ альпийского туриста, на голове — серое кепи.",
@@ -403,7 +179,7 @@
    ],
    "correct": "хороший костюм",
    "case": "Именительный (Nominative)",
-   "explain": "«хороший костюм» — the subject of the sentence stands in the nominative.",
+   "explain": "«хороший костюм» is the subject of «измазанный» — who or what does it — so nominative.",
    "id": "c38"
   },
   {
@@ -417,22 +193,8 @@
    ],
    "correct": "альпийского туриста",
    "case": "Родительный (Genitive)",
-   "explain": "«альпийского туриста» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«альпийского туриста» depends on the noun «костюм» (whose? of what?) — genitive.",
    "id": "c39"
-  },
-  {
-   "sentence": "Цилиндр, отсвечивавший сквозь грязь ртутью, заканчивался вверху ___ и, судя по натяжению руки, державшей его, был довольно тяжелым.",
-   "lemma": "горлышко",
-   "options": [
-    "узким горлышком",
-    "узкое горлышко",
-    "узкому горлышку",
-    "узкого горлышка"
-   ],
-   "correct": "узким горлышком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«узким горлышком» — the instrumental marks the means, company, or complement.",
-   "id": "c40"
   },
   {
    "sentence": "Я должен был исследовать тот «фокус» — куда направлялись ветры со всех сторон ___.",
@@ -445,7 +207,7 @@
    ],
    "correct": "земного шара",
    "case": "Родительный (Genitive)",
-   "explain": "«земного шара» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«земного шара» depends on the noun «сторон» (whose? of what?) — genitive.",
    "id": "c41"
   }
  ]

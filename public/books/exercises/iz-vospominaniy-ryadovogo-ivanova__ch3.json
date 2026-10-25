@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Поздно вечером мы добрались до Фокшан, прошли через неосвещенный безмолвный и ___ и вышли куда-то в поле.",
-   "lemma": "городок",
-   "options": [
-    "пыльного городка",
-    "пыльному городку",
-    "пыльным городком",
-    "пыльный городок"
-   ],
-   "correct": "пыльный городок",
-   "case": "Винительный (Accusative)",
-   "explain": "«пыльный городок» — the accusative marks the direct object of the verb.",
-   "id": "c1"
-  },
-  {
-   "sentence": "___ всегда \"обед\", случится ли она ранним утром, днем или ночью.",
-   "lemma": "еда",
-   "options": [
-    "солдатская еда",
-    "солдатской еды",
-    "солдатской еде",
-    "солдатской едой"
-   ],
-   "correct": "солдатская еда",
-   "case": "Именительный (Nominative)",
-   "explain": "«Солдатская еда» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
    "sentence": "Солдатская еда всегда \"обед\", случится ли она ___, днем или ночью.",
    "lemma": "утро",
    "options": [
@@ -39,21 +11,21 @@
    ],
    "correct": "ранним утром",
    "case": "Творительный (Instrumental)",
-   "explain": "«ранним утром» — the instrumental marks the means, company, or complement.",
+   "explain": "A time of day or season (when?), without a preposition — instrumental, like утром, весной.",
    "id": "c3"
   },
   {
    "sentence": "___ не может уничтожить усталости вчерашнего дня, и люди шагают совсем сонные.",
    "lemma": "сон",
    "options": [
-    "короткий сон",
-    "короткого сна",
     "короткому сну",
-    "коротким сном"
+    "коротким сном",
+    "коротком сне",
+    "короткий сон"
    ],
    "correct": "короткий сон",
    "case": "Именительный (Nominative)",
-   "explain": "«Короткий сон» — the subject of the sentence stands in the nominative.",
+   "explain": "«короткий сон» is the subject of «может» — who or what does it — so nominative.",
    "id": "c4"
   },
   {
@@ -67,22 +39,8 @@
    ],
    "correct": "вчерашнего дня",
    "case": "Родительный (Genitive)",
-   "explain": "«вчерашнего дня» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«вчерашнего дня» depends on the noun «усталости» (whose? of what?) — genitive.",
    "id": "c5"
-  },
-  {
-   "sentence": "Как только ружья поставлены и ранцы сняты, большая часть людей принимается собирать топливо - почти всегда ___ прошлогодней кукурузы.",
-   "lemma": "стебель",
-   "options": [
-    "сухих стеблях",
-    "сухих стеблей",
-    "сухие стебли",
-    "сухим стеблям"
-   ],
-   "correct": "сухие стебли",
-   "case": "Именительный (Nominative)",
-   "explain": "«сухие стебли» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
   },
   {
    "sentence": "Как только ружья поставлены и ранцы сняты, большая часть людей принимается собирать топливо - почти всегда сухие стебли ___.",
@@ -95,22 +53,8 @@
    ],
    "correct": "прошлогодней кукурузы",
    "case": "Родительный (Genitive)",
-   "explain": "«прошлогодней кукурузы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«прошлогодней кукурузы» depends on the noun «стебли» (whose? of what?) — genitive.",
    "id": "c7"
-  },
-  {
-   "sentence": "Сухие ___ горят ясно и весело; раскладывают их всегда с надветренной стороны; пламя лижет закопченные котелки, и через десять минут вода бьет ключом.",
-   "lemma": "стебель",
-   "options": [
-    "рыхлые стебли",
-    "рыхлых стеблей",
-    "рыхлым стеблям",
-    "рыхлых стеблях"
-   ],
-   "correct": "рыхлые стебли",
-   "case": "Именительный (Nominative)",
-   "explain": "«рыхлые стебли» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
   },
   {
    "sentence": "Но солдатская походная жизнь так тяжела, в ней столько лишений и мучений, впереди так мало надежды на ___, что и какой-нибудь чай или тому подобная маленькая роскошь составляли огромную радость.",
@@ -123,7 +67,7 @@
    ],
    "correct": "хороший исход",
    "case": "Винительный (Accusative)",
-   "explain": "«хороший исход» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«хороший исход» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c10"
   },
   {
@@ -137,7 +81,7 @@
    ],
    "correct": "набитая трубка",
    "case": "Именительный (Nominative)",
-   "explain": "«набитая трубка» — the subject of the sentence stands in the nominative.",
+   "explain": "«набитая трубка» is the subject of «обходила» — who or what does it — so nominative.",
    "id": "c11"
   },
   {
@@ -151,35 +95,21 @@
    ],
    "correct": "большом привале",
    "case": "Предложный (Prepositional)",
-   "explain": "«большом привале» — after the preposition «на», for location or topic.",
+   "explain": "«большом привале» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c13"
-  },
-  {
-   "sentence": "Лежишь на земле, положив ранец под голову, и не то спишь, не то бодрствуешь; ___ палит лицо и шею, мухи надоедливо кусают и не дают уснуть как следует.",
-   "lemma": "солнце",
-   "options": [
-    "горячего солнца",
-    "горячее солнце",
-    "горячему солнцу",
-    "горячем солнце"
-   ],
-   "correct": "горячее солнце",
-   "case": "Именительный (Nominative)",
-   "explain": "«горячее солнце» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
   },
   {
    "sentence": "- Встава-а-ть! - протяжно и сурово командует ___ наш маленький бородатый батальонный командир, майор Черноглазов.",
    "lemma": "голос",
    "options": [
-    "сильному голосу",
+    "сильным голосом",
     "сильного голоса",
-    "сильный голос",
-    "сильным голосом"
+    "сильном голосе",
+    "сильному голосу"
    ],
    "correct": "сильным голосом",
    "case": "Творительный (Instrumental)",
-   "explain": "«сильным голосом» — the instrumental marks the means, company, or complement.",
+   "explain": "«командует» takes the instrumental.",
    "id": "c15"
   },
   {
@@ -193,64 +123,8 @@
    ],
    "correct": "батальонный командир",
    "case": "Именительный (Nominative)",
-   "explain": "«батальонный командир» — the subject of the sentence stands in the nominative.",
+   "explain": "«батальонный командир» is the subject of «командует» — who or what does it — so nominative.",
    "id": "c16"
-  },
-  {
-   "sentence": "И лежащая толпа ___ шевелится; кряхтя и потягиваясь, подымаются люди, надевают сумки и ранцы и выстраиваются в ряды.",
-   "lemma": "рубаха",
-   "options": [
-    "белые рубахи",
-    "белыми рубахами",
-    "белых рубах",
-    "белым рубахам"
-   ],
-   "correct": "белых рубах",
-   "case": "Родительный (Genitive)",
-   "explain": "«белых рубах» — the genitive here marks possession, absence, or quantity.",
-   "id": "c17"
-  },
-  {
-   "sentence": "Пыли нет; набегают тучи: нет-нет - да и капнет редкая ___.",
-   "lemma": "капля",
-   "options": [
-    "крупной каплей",
-    "крупной капле",
-    "крупная капля",
-    "крупной капли"
-   ],
-   "correct": "крупная капля",
-   "case": "Именительный (Nominative)",
-   "explain": "«крупная капля» — the subject of the sentence stands in the nominative.",
-   "id": "c19"
-  },
-  {
-   "sentence": "Даже вчерашние отсталые приободрились; идти уже недалеко, каких-нибудь десять верст, а там отдых, вожделенный отдых, в котором пройдет не одна короткая ночь, а ночь, ___ и еще ночь.",
-   "lemma": "день",
-   "options": [
-    "целый день",
-    "целому дню",
-    "целым днём",
-    "целом дне"
-   ],
-   "correct": "целый день",
-   "case": "Винительный (Accusative)",
-   "explain": "«целый день» — the accusative marks the direct object of the verb.",
-   "id": "c20"
-  },
-  {
-   "sentence": "Затем еще ___ про Петра, как его требуют в сенат.",
-   "lemma": "песня",
-   "options": [
-    "исторической песни",
-    "исторической песне",
-    "историческая песня",
-    "исторической песней"
-   ],
-   "correct": "историческая песня",
-   "case": "Именительный (Nominative)",
-   "explain": "«историческая песня» — the subject of the sentence stands in the nominative.",
-   "id": "c21"
   },
   {
    "sentence": "Как приехал ___, Александра государь, Вы, ребята, подтянитесь, пред царем подбодритесь!",
@@ -263,22 +137,8 @@
    ],
    "correct": "белый царь",
    "case": "Именительный (Nominative)",
-   "explain": "«белый царь» — the subject of the sentence stands in the nominative.",
+   "explain": "«белый царь» is the subject of «приехал» — who or what does it — so nominative.",
    "id": "c22"
-  },
-  {
-   "sentence": "___, Черноглазов господин, Он не спал, не дремал, батальон свой обучал, Он на лошади сидел, никого знать не хотел.",
-   "lemma": "командир",
-   "options": [
-    "батальонному командиру",
-    "батальонном командире",
-    "батальонный командир",
-    "батальонным командиром"
-   ],
-   "correct": "батальонный командир",
-   "case": "Именительный (Nominative)",
-   "explain": "«Батальонный командир» — the subject of the sentence stands in the nominative.",
-   "id": "c23"
   },
   {
    "sentence": "Мы шли долиною какой-то речки; с одной стороны были горы, с другой - узкая и довольно высокая насыпь ___.",
@@ -291,7 +151,7 @@
    ],
    "correct": "железной дороги",
    "case": "Родительный (Genitive)",
-   "explain": "«железной дороги» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«железной дороги» depends on the noun «насыпь» (whose? of what?) — genitive.",
    "id": "c24"
   },
   {
@@ -305,36 +165,8 @@
    ],
    "correct": "железной дороги",
    "case": "Родительный (Genitive)",
-   "explain": "«железной дороги» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«железной дороги» depends on the noun «Полотно» (whose? of what?) — genitive.",
    "id": "c25"
-  },
-  {
-   "sentence": "Будочник ___ пропустил первый батальон, который благополучно перебрался на ту сторону лужи, но затем объявил, что через пять минут пройдет поезд и что нам нужно ждать.",
-   "lemma": "дорога",
-   "options": [
-    "железной дорогой",
-    "железной дороге",
-    "железной дороги",
-    "железная дорога"
-   ],
-   "correct": "железной дороги",
-   "case": "Родительный (Genitive)",
-   "explain": "«железной дороги» — the genitive here marks possession, absence, or quantity.",
-   "id": "c26"
-  },
-  {
-   "sentence": "Будочник железной дороги пропустил ___, который благополучно перебрался на ту сторону лужи, но затем объявил, что через пять минут пройдет поезд и что нам нужно ждать.",
-   "lemma": "батальон",
-   "options": [
-    "первого батальона",
-    "первому батальону",
-    "первый батальон",
-    "первым батальоном"
-   ],
-   "correct": "первый батальон",
-   "case": "Винительный (Accusative)",
-   "explain": "«первый батальон» — the accusative marks the direct object of the verb.",
-   "id": "c27"
   },
   {
    "sentence": "Мы остановились и только что составили ружья, как на повороте дороги показалась ___ бригадного генерала.",
@@ -347,7 +179,7 @@
    ],
    "correct": "знакомая коляска",
    "case": "Именительный (Nominative)",
-   "explain": "«знакомая коляска» — the subject of the sentence stands in the nominative.",
+   "explain": "«знакомая коляска» is the subject of «показалась» — who or what does it — so nominative.",
    "id": "c28"
   },
   {
@@ -361,22 +193,8 @@
    ],
    "correct": "бригадного генерала",
    "case": "Родительный (Genitive)",
-   "explain": "«бригадного генерала» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«бригадного генерала» depends on the noun «коляска» (whose? of what?) — genitive.",
    "id": "c29"
-  },
-  {
-   "sentence": "Наш ___ был человек бравый.",
-   "lemma": "генерал",
-   "options": [
-    "бригадный генерал",
-    "бригадного генерала",
-    "бригадным генералом",
-    "бригадному генералу"
-   ],
-   "correct": "бригадный генерал",
-   "case": "Именительный (Nominative)",
-   "explain": "«бригадный генерал» — the subject of the sentence stands in the nominative.",
-   "id": "c30"
   },
   {
    "sentence": "Горла, подобного тому, которым он владел, мне никогда не случалось встречать ни на ___, ни в архиерейских хорах.",
@@ -389,22 +207,8 @@
    ],
    "correct": "оперных сценах",
    "case": "Предложный (Prepositional)",
-   "explain": "«оперных сценах» — after the preposition «на», for location or topic.",
+   "explain": "«оперных сценах» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c31"
-  },
-  {
-   "sentence": "___ его с офицерами была критика наполеоновских кампаний.",
-   "lemma": "разговор",
-   "options": [
-    "любимый разговор",
-    "любимому разговору",
-    "любимым разговором",
-    "любимого разговора"
-   ],
-   "correct": "любимым разговором",
-   "case": "Творительный (Instrumental)",
-   "explain": "«Любимым разговором» — the instrumental marks the means, company, or complement.",
-   "id": "c32"
   },
   {
    "sentence": "Любимым разговором его с офицерами была критика ___.",
@@ -417,22 +221,8 @@
    ],
    "correct": "наполеоновских кампаний",
    "case": "Родительный (Genitive)",
-   "explain": "«наполеоновских кампаний» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«наполеоновских кампаний» depends on the noun «критика» (whose? of what?) — genitive.",
    "id": "c33"
-  },
-  {
-   "sentence": "И генерал проезжал дальше, иногда без всяких последствий, а иногда задав громоподобную головомойку какому-нибудь ___.",
-   "lemma": "командир",
-   "options": [
-    "ротным командиром",
-    "ротного командира",
-    "ротный командир",
-    "ротному командиру"
-   ],
-   "correct": "ротному командиру",
-   "case": "Дательный (Dative)",
-   "explain": "«ротному командиру» — the dative marks the indirect object or recipient.",
-   "id": "c34"
   },
   {
    "sentence": "Почему командир второй ___ не на месте?",
@@ -445,7 +235,7 @@
    ],
    "correct": "стрелковой роты",
    "case": "Родительный (Genitive)",
-   "explain": "«стрелковой роты» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«стрелковой роты» depends on the noun «командир» (whose? of what?) — genitive.",
    "id": "c35"
   },
   {
@@ -459,7 +249,7 @@
    ],
    "correct": "генеральского гнева",
    "case": "Родительный (Genitive)",
-   "explain": "«Генеральского гнева» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«генеральского гнева» depends on the noun «поток» (whose? of what?) — genitive.",
    "id": "c36"
   },
   {
@@ -473,7 +263,7 @@
    ],
    "correct": "денежному ящику",
    "case": "Дательный (Dative)",
-   "explain": "«денежному ящику» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«денежному ящику» — «к» always takes the dative.",
    "id": "c37"
   },
   {
@@ -481,28 +271,14 @@
    "lemma": "ботфорт",
    "options": [
     "лакированными ботфортами",
+    "лакированным ботфортам",
     "лакированных ботфортов",
-    "лакированных ботфортах",
-    "лакированные ботфорты"
+    "лакированных ботфортах"
    ],
    "correct": "лакированных ботфортах",
    "case": "Предложный (Prepositional)",
-   "explain": "«лакированных ботфортах» — after the preposition «в», for location or topic.",
+   "explain": "«лакированных ботфортах» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c38"
-  },
-  {
-   "sentence": "Воды сначала было по колено, потом по пояс, потом еще выше, ___ шел свободно, но маленький майор уже барахтался руками.",
-   "lemma": "генерал",
-   "options": [
-    "высоком генерале",
-    "высокого генерала",
-    "высоким генералом",
-    "высокий генерал"
-   ],
-   "correct": "высокий генерал",
-   "case": "Именительный (Nominative)",
-   "explain": "«высокий генерал» — the subject of the sentence stands in the nominative.",
-   "id": "c40"
   },
   {
    "sentence": "У нас многие смеялись; солдатам ___ было не до смеха: лица у многих посинели не от одного холода.",
@@ -515,7 +291,7 @@
    ],
    "correct": "восьмой роты",
    "case": "Родительный (Genitive)",
-   "explain": "«восьмой роты» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«восьмой роты» depends on the noun «солдатам» (whose? of what?) — genitive.",
    "id": "c41"
   },
   {
@@ -529,7 +305,7 @@
    ],
    "correct": "восьмой роте",
    "case": "Предложный (Prepositional)",
-   "explain": "«восьмой роте» — after the preposition «в», for location or topic.",
+   "explain": "«восьмой роте» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c42"
   },
   {
@@ -543,7 +319,7 @@
    ],
    "correct": "маленький солдатик",
    "case": "Именительный (Nominative)",
-   "explain": "«маленький солдатик» — the subject of the sentence stands in the nominative.",
+   "explain": "«маленький солдатик» is the subject of «отвечал» — who or what does it — so nominative.",
    "id": "c43"
   },
   {
@@ -557,7 +333,7 @@
    ],
    "correct": "вязкого дна",
    "case": "Родительный (Genitive)",
-   "explain": "«вязкого дна» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«вязкого дна» — «из» always takes the genitive.",
    "id": "c44"
   },
   {
@@ -571,7 +347,7 @@
    ],
    "correct": "последней нитки",
    "case": "Родительный (Genitive)",
-   "explain": "«последней нитки» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«последней нитки» — «до» always takes the genitive.",
    "id": "c45"
   },
   {
@@ -585,36 +361,8 @@
    ],
    "correct": "мокрые офицеры",
    "case": "Именительный (Nominative)",
-   "explain": "«Мокрые офицеры» — the subject of the sentence stands in the nominative.",
+   "explain": "«мокрые офицеры» is the subject of «толпились» — who or what does it — so nominative.",
    "id": "c46"
-  },
-  {
-   "sentence": "Мокрые офицеры с ___ толпились вокруг него.",
-   "lemma": "лицо",
-   "options": [
-    "мрачных лицах",
-    "мрачными лицами",
-    "мрачные лица",
-    "мрачным лицам"
-   ],
-   "correct": "мрачными лицами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«мрачными лицами» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c47"
-  },
-  {
-   "sentence": "Между тем ___, походив у берега и посовав в воду кнутовищем, сел на козлы и благополучно переехал через воду немного в стороне от того места, где перешли мы; воды едва хватало по оси коляски.",
-   "lemma": "кучер",
-   "options": [
-    "генеральским кучером",
-    "генеральского кучера",
-    "генеральском кучере",
-    "генеральский кучер"
-   ],
-   "correct": "генеральский кучер",
-   "case": "Именительный (Nominative)",
-   "explain": "«генеральский кучер» — the subject of the sentence stands in the nominative.",
-   "id": "c48"
   },
   {
    "sentence": "___ охладила его пыл.",
@@ -627,7 +375,7 @@
    ],
    "correct": "холодная вода",
    "case": "Именительный (Nominative)",
-   "explain": "«Холодная вода» — the subject of the sentence stands in the nominative.",
+   "explain": "«холодная вода» is the subject of «охладила» — who or what does it — so nominative.",
    "id": "c49"
   },
   {
@@ -641,21 +389,21 @@
    ],
    "correct": "мокрый генерал",
    "case": "Именительный (Nominative)",
-   "explain": "«мокрый генерал» — the subject of the sentence stands in the nominative.",
+   "explain": "«мокрый генерал» is the subject of «уехал» — who or what does it — so nominative.",
    "id": "c50"
   },
   {
    "sentence": "Солнце стояло еще высоко: идти оставалось только пять верст; майор сделал ___.",
    "lemma": "привал",
    "options": [
-    "большого привала",
     "большому привалу",
+    "большим привалом",
     "большой привал",
     "большом привале"
    ],
    "correct": "большой привал",
    "case": "Винительный (Accusative)",
-   "explain": "«большой привал» — the accusative marks the direct object of the verb.",
+   "explain": "«большой привал» is the direct object of «сделал» (кого? что?) — accusative.",
    "id": "c51"
   },
   {
@@ -669,22 +417,8 @@
    ],
    "correct": "стрелковой роты",
    "case": "Родительный (Genitive)",
-   "explain": "«стрелковой роты» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«стрелковой роты» — «из» always takes the genitive.",
    "id": "c53"
-  },
-  {
-   "sentence": "- Терпеть надо, а атаманами-то уж разве на том свете будем, - проговорил Житков по обыкновению ___. - Ежели турка подстрелит.",
-   "lemma": "голос",
-   "options": [
-    "мрачным голосом",
-    "мрачный голос",
-    "мрачному голосу",
-    "мрачном голосе"
-   ],
-   "correct": "мрачным голосом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«мрачным голосом» — the instrumental marks the means, company, or complement.",
-   "id": "c54"
   }
  ]
 }

@@ -1,59 +1,45 @@
 {
  "cases": [
   {
-   "sentence": "___ смотрел на другой день Жюльен на госпожу де Реналь; он изучал ее, словно врага, с которым ему придется сразиться.",
-   "lemma": "взгляд",
-   "options": [
-    "странном взгляде",
-    "странного взгляда",
-    "странным взглядом",
-    "странному взгляду"
-   ],
-   "correct": "странным взглядом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«Странным взглядом» — the instrumental marks the means, company, or complement.",
-   "id": "c1"
-  },
-  {
    "sentence": "Странным взглядом смотрел на ___ Жюльен на госпожу де Реналь; он изучал ее, словно врага, с которым ему придется сразиться.",
    "lemma": "день",
    "options": [
-    "другому дню",
-    "другом дне",
+    "другого дня",
     "другой день",
-    "другого дня"
+    "другому дню",
+    "другим днём"
    ],
    "correct": "другой день",
    "case": "Винительный (Accusative)",
-   "explain": "«другой день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«другой день» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c2"
   },
   {
    "sentence": "Он сократил занятия детей и затем, встретившись с госпожою де Реналь, напомнившей ему о его ___, решил, что сегодня вечером он безусловно добьется того, чтобы она не отнимала своей руки у него.",
    "lemma": "замысел",
    "options": [
-    "честолюбивыми замыслами",
-    "честолюбивые замыслы",
+    "честолюбивым замыслам",
     "честолюбивых замыслов",
-    "честолюбивых замыслах"
+    "честолюбивых замыслах",
+    "честолюбивыми замыслами"
    ],
    "correct": "честолюбивых замыслах",
    "case": "Предложный (Prepositional)",
-   "explain": "«честолюбивых замыслах» — after the preposition «о», for location or topic.",
+   "explain": "«честолюбивых замыслах» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c3"
   },
   {
    "sentence": "На закате солнца, с приближением ___ сердце Жюльена странно забилось.",
    "lemma": "момент",
    "options": [
-    "решительным моментом",
-    "решительного момента",
     "решительный момент",
-    "решительному моменту"
+    "решительному моменту",
+    "решительного момента",
+    "решительном моменте"
    ],
    "correct": "решительного момента",
    "case": "Родительный (Genitive)",
-   "explain": "«решительного момента» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«решительного момента» depends on the noun «приближением» (whose? of what?) — genitive.",
    "id": "c4"
   },
   {
@@ -61,13 +47,13 @@
    "lemma": "облако",
    "options": [
     "большие облака",
-    "больших облаков",
-    "больших облаках",
-    "большими облаками"
+    "большим облакам",
+    "большими облаками",
+    "больших облаках"
    ],
    "correct": "большие облака",
    "case": "Винительный (Accusative)",
-   "explain": "«большие облака» — the accusative marks the direct object of the verb.",
+   "explain": "«большие облака» is the direct object of «заволокли» (кого? что?) — accusative.",
    "id": "c5"
   },
   {
@@ -81,7 +67,7 @@
    ],
    "correct": "нежных душ",
    "case": "Родительный (Genitive)",
-   "explain": "«нежных душ» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«нежных душ» — «для» always takes the genitive.",
    "id": "c6"
   },
   {
@@ -95,36 +81,8 @@
    ],
    "correct": "душевного состояния",
    "case": "Родительный (Genitive)",
-   "explain": "«душевного состояния» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«душевного состояния» is the object of a negated verb («не сознавать») — genitive instead of the accusative.",
    "id": "c7"
-  },
-  {
-   "sentence": "Он предпочел бы ___ этой мучительной тоске.",
-   "lemma": "опасность",
-   "options": [
-    "всевозможных опасностях",
-    "всевозможным опасностям",
-    "всевозможные опасности",
-    "всевозможными опасностями"
-   ],
-   "correct": "всевозможные опасности",
-   "case": "Винительный (Accusative)",
-   "explain": "«всевозможные опасности» — the accusative marks the direct object of the verb.",
-   "id": "c8"
-  },
-  {
-   "sentence": "Он предпочел бы всевозможные опасности этой ___.",
-   "lemma": "тоска",
-   "options": [
-    "мучительной тоской",
-    "мучительная тоска",
-    "мучительной тоски",
-    "мучительной тоске"
-   ],
-   "correct": "мучительной тоске",
-   "case": "Дательный (Dative)",
-   "explain": "«мучительной тоске» — the dative marks the indirect object or recipient.",
-   "id": "c9"
   },
   {
    "sentence": "___ между «долгом» и застенчивостью слишком поглощала его, чтобы он мог заметить что-либо другое.",
@@ -137,36 +95,8 @@
    ],
    "correct": "ужасная борьба",
    "case": "Именительный (Nominative)",
-   "explain": "«Ужасная борьба» — the subject of the sentence stands in the nominative.",
+   "explain": "«ужасная борьба» is the subject of «поглощала» — who or what does it — so nominative.",
    "id": "c10"
-  },
-  {
-   "sentence": "Возмущенный своею трусостью, Жюльен сказал себе: «Как только часы пробьют десять, я исполню то, что в течение ___ обещал себе сделать вечером, или же пойду к себе и пущу себе пулю в лоб».",
-   "lemma": "день",
-   "options": [
-    "целом дне",
-    "целого дня",
-    "целому дню",
-    "целый день"
-   ],
-   "correct": "целого дня",
-   "case": "Родительный (Genitive)",
-   "explain": "«целого дня» — after the preposition «в», the genitive here marks possession, absence, or quantity.",
-   "id": "c11"
-  },
-  {
-   "sentence": "В тот момент, когда ___, ожидание и боязнь довели Жюльена до невменяемости, десять часов пробило на часах над его головою.",
-   "lemma": "волнение",
-   "options": [
-    "чрезмерного волнения",
-    "чрезмерным волнением",
-    "чрезмерному волнению",
-    "чрезмерное волнение"
-   ],
-   "correct": "чрезмерное волнение",
-   "case": "Именительный (Nominative)",
-   "explain": "«чрезмерное волнение» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
   },
   {
    "sentence": "Каждый удар этого ___ отдавался в его груди, причиняя физическое страдание.",
@@ -179,36 +109,8 @@
    ],
    "correct": "рокового колокола",
    "case": "Родительный (Genitive)",
-   "explain": "«рокового колокола» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«рокового колокола» depends on the noun «удар» (whose? of what?) — genitive.",
    "id": "c13"
-  },
-  {
-   "sentence": "Наконец, когда замирал последний ___, он протянул руку и взял руку госпожи де Реналь, которая ее тотчас отдернула.",
-   "lemma": "удар",
-   "options": [
-    "десятого удара",
-    "десятым ударом",
-    "десятый удар",
-    "десятом ударе"
-   ],
-   "correct": "десятый удар",
-   "case": "Винительный (Accusative)",
-   "explain": "«десятый удар» — the accusative marks the direct object of the verb.",
-   "id": "c14"
-  },
-  {
-   "sentence": "Несмотря на свое волнение, он был поражен ледяной холодностью взятой им руки; он сжал ее конвульсивно; ___ попытались вновь отнять ее у него, но в конце концов он удержал ее.",
-   "lemma": "усилие",
-   "options": [
-    "слабое усилие",
-    "слабом усилии",
-    "слабому усилию",
-    "слабым усилием"
-   ],
-   "correct": "слабым усилием",
-   "case": "Творительный (Instrumental)",
-   "explain": "«слабым усилием» — the instrumental marks the means, company, or complement.",
-   "id": "c15"
   },
   {
    "sentence": "Душа его утопала в блаженстве не потому, чтобы он любил госпожу де Реналь, а потому, что прекратились ___.",
@@ -221,7 +123,7 @@
    ],
    "correct": "ужасные мучения",
    "case": "Именительный (Nominative)",
-   "explain": "«ужасные мучения» — the subject of the sentence stands in the nominative.",
+   "explain": "«ужасные мучения» is the subject of «прекратились» — who or what does it — so nominative.",
    "id": "c16"
   },
   {
@@ -235,22 +137,8 @@
    ],
    "correct": "самом деле",
    "case": "Предложный (Prepositional)",
-   "explain": "«самом деле» — after the preposition «в», for location or topic.",
+   "explain": "«самом деле» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c17"
-  },
-  {
-   "sentence": "Эти слова закрепили блаженство Жюльена, совершенно утопавшего в нем: он начал говорить, позабыл о притворстве, показался слушавшим его обеим приятельницам самым ___ в мире.",
-   "lemma": "человек",
-   "options": [
-    "любезный человек",
-    "любезным человеком",
-    "любезного человека",
-    "любезном человеке"
-   ],
-   "correct": "любезным человеком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«любезным человеком» — the instrumental marks the means, company, or complement.",
-   "id": "c18"
   },
   {
    "sentence": "Часы, проведенные под этой большой липой, посаженной, по ___, Карлом Смелым, составили для нее целую эпоху блаженства.",
@@ -263,7 +151,7 @@
    ],
    "correct": "местной легенде",
    "case": "Дательный (Dative)",
-   "explain": "«местной легенде» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«местной легенде» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c19"
   },
   {
@@ -277,21 +165,21 @@
    ],
    "correct": "любовного восторга",
    "case": "Родительный (Genitive)",
-   "explain": "«любовного восторга» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«любовного восторга» depends on the noun «упоении» (whose? of what?) — genitive.",
    "id": "c20"
   },
   {
    "sentence": "На ___ его разбудили в пять часов; госпожа де Реналь ужаснулась бы, если бы узнала, что он едва вспомнил о ней.",
    "lemma": "день",
    "options": [
+    "следующий день",
+    "следующему дню",
     "следующего дня",
-    "следующим днём",
-    "следующем дне",
-    "следующий день"
+    "следующим днём"
    ],
    "correct": "следующий день",
    "case": "Винительный (Accusative)",
-   "explain": "«следующий день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«следующий день» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c21"
   },
   {
@@ -305,21 +193,21 @@
    ],
    "correct": "новым удовольствием",
    "case": "Творительный (Instrumental)",
-   "explain": "«новым удовольствием» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«новым удовольствием» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c22"
   },
   {
    "sentence": "Когда раздался звонок к завтраку, он уже забыл за чтением записок о великой армии свои завоевания ___.",
    "lemma": "день",
    "options": [
-    "вчерашнего дня",
-    "вчерашним днём",
+    "вчерашнем дне",
     "вчерашний день",
-    "вчерашнем дне"
+    "вчерашнего дня",
+    "вчерашнему дню"
    ],
    "correct": "вчерашнего дня",
    "case": "Родительный (Genitive)",
-   "explain": "«вчерашнего дня» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«вчерашнего дня» depends on the noun «завоевания» (whose? of what?) — genitive.",
    "id": "c23"
   },
   {
@@ -333,36 +221,8 @@
    ],
    "correct": "наглого человека",
    "case": "Винительный (Accusative)",
-   "explain": "«наглого человека» — the accusative marks the direct object of the verb.",
+   "explain": "«наглого человека» is the direct object of «отвратительнее» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c24"
-  },
-  {
-   "sentence": "Каждое ___ мужа вонзалось, как нож, в сердце госпожи де Реналь.",
-   "lemma": "слово",
-   "options": [
-    "колкое слово",
-    "колкого слова",
-    "колким словом",
-    "колком слове"
-   ],
-   "correct": "колкое слово",
-   "case": "Именительный (Nominative)",
-   "explain": "«колкое слово» — the subject of the sentence stands in the nominative.",
-   "id": "c25"
-  },
-  {
-   "sentence": "«Этот ___, — сказал он себе, — создал себе некоторую репутацию в моем доме; Вально тотчас возьмет его к себе, или он женится на Элизе, и в обоих случаях в глубине души может надо мною посмеяться».",
-   "lemma": "болван",
-   "options": [
-    "юного болвана",
-    "юным болваном",
-    "юном болване",
-    "юный болван"
-   ],
-   "correct": "юный болван",
-   "case": "Именительный (Nominative)",
-   "explain": "«юный болван» — the subject of the sentence stands in the nominative.",
-   "id": "c26"
   },
   {
    "sentence": "Несмотря на благоразумие этих размышлений, недовольство господина де Реналя выразилось в ряде ___, наконец озливших Жюльена.",
@@ -375,22 +235,8 @@
    ],
    "correct": "грубых замечаний",
    "case": "Родительный (Genitive)",
-   "explain": "«грубых замечаний» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«грубых замечаний» depends on the noun «ряде» (whose? of what?) — genitive.",
    "id": "c27"
-  },
-  {
-   "sentence": "В этот момент господин де Реналь начал бросать камни в молодую крестьянку, которая шла по запрещенной дорожке, пересекая ___.",
-   "lemma": "сад",
-   "options": [
-    "фруктовый сад",
-    "фруктовому саду",
-    "фруктовом саде",
-    "фруктового сада"
-   ],
-   "correct": "фруктовый сад",
-   "case": "Винительный (Accusative)",
-   "explain": "«фруктовый сад» — the accusative marks the direct object of the verb.",
-   "id": "c28"
   },
   {
    "sentence": "— После ___, сделанных благодаря ему детьми, какое значение может иметь одно пропущенное утро; надо сознаться, что мужчины очень грубы.",
@@ -403,7 +249,7 @@
    ],
    "correct": "поразительных успехов",
    "case": "Родительный (Genitive)",
-   "explain": "«поразительных успехов» — after the preposition «после», the genitive here marks possession, absence, or quantity.",
+   "explain": "«поразительных успехов» — «после» always takes the genitive.",
    "id": "c29"
   },
   {
@@ -412,55 +258,27 @@
    "options": [
     "первый раз",
     "первым разом",
-    "первом разе",
+    "первому разу",
     "первого раза"
    ],
    "correct": "первый раз",
    "case": "Винительный (Accusative)",
-   "explain": "«первый раз» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«первый раз» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c30"
   },
   {
    "sentence": "___ представлял Жюльен, мрачный, решительный, надменно-бледный, и эти две женщины, взволнованные и раскрасневшиеся.",
    "lemma": "контраст",
    "options": [
-    "странного контраста",
+    "странном контрасте",
     "странному контрасту",
-    "странный контраст",
-    "странным контрастом"
+    "странным контрастом",
+    "странный контраст"
    ],
    "correct": "странный контраст",
    "case": "Винительный (Accusative)",
-   "explain": "«Странный контраст» — the accusative marks the direct object of the verb.",
+   "explain": "«странный контраст» is the direct object of «представлял» (кого? что?) — accusative.",
    "id": "c31"
-  },
-  {
-   "sentence": "Он презирал этих женщин со всеми их ___.",
-   "lemma": "чувство",
-   "options": [
-    "нежными чувствами",
-    "нежным чувствам",
-    "нежных чувствах",
-    "нежных чувств"
-   ],
-   "correct": "нежными чувствами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«нежными чувствами» — after the preposition «со», the instrumental marks the means, company, or complement.",
-   "id": "c32"
-  },
-  {
-   "sentence": "Поглощенный своими ___, он едва удостаивал внимания комплименты двух подруг, казавшиеся ему пустыми, бессмысленными, ничтожными, — словом, — б_а_б_ь_и_м_и.",
-   "lemma": "мысль",
-   "options": [
-    "мрачных мыслей",
-    "мрачными мыслями",
-    "мрачным мыслям",
-    "мрачные мысли"
-   ],
-   "correct": "мрачными мыслями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«мрачными мыслями» — the instrumental marks the means, company, or complement.",
-   "id": "c33"
   },
   {
    "sentence": "Говоря все, что ей придет в голову, стараясь поддержать разговор, госпожа де Реналь сказала, между прочим, что муж приехал из Верьера для покупки ___ у одного фермера.",
@@ -473,7 +291,7 @@
    ],
    "correct": "маисовой соломы",
    "case": "Родительный (Genitive)",
-   "explain": "«маисовой соломы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«маисовой соломы» depends on the noun «покупки» (whose? of what?) — genitive.",
    "id": "c34"
   },
   {
@@ -482,12 +300,12 @@
    "options": [
     "первом этаже",
     "первого этажа",
-    "первым этажом",
-    "первый этаж"
+    "первому этажу",
+    "первым этажом"
    ],
    "correct": "первом этаже",
    "case": "Предложный (Prepositional)",
-   "explain": "«первом этаже» — after the preposition «на», for location or topic.",
+   "explain": "«первом этаже» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c35"
   },
   {
@@ -496,12 +314,12 @@
    "options": [
     "второго этажа",
     "второй этаж",
-    "втором этаже",
-    "второму этажу"
+    "второму этажу",
+    "вторым этажом"
    ],
    "correct": "второй этаж",
    "case": "Винительный (Accusative)",
-   "explain": "«второй этаж» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«второй этаж» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c36"
   },
   {
@@ -515,22 +333,8 @@
    ],
    "correct": "денежным интересам",
    "case": "Дательный (Dative)",
-   "explain": "«денежным интересам» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«денежным интересам» — «к» always takes the dative.",
    "id": "c37"
-  },
-  {
-   "sentence": "Жестоко оскорбленная, госпожа де Реналь с самым ___ задала Жюльену несколько вопросов, необходимых для успешного выполнения его поручения.",
-   "lemma": "вид",
-   "options": [
-    "преданному виду",
-    "преданном виде",
-    "преданным видом",
-    "преданного вида"
-   ],
-   "correct": "преданным видом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«преданным видом» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c38"
   },
   {
    "sentence": "Жестоко оскорбленная, госпожа де Реналь с самым преданным видом задала Жюльену несколько вопросов, необходимых для ___ его поручения.",
@@ -543,35 +347,21 @@
    ],
    "correct": "успешного выполнения",
    "case": "Родительный (Genitive)",
-   "explain": "«успешного выполнения» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«успешного выполнения» — «для» always takes the genitive.",
    "id": "c39"
-  },
-  {
-   "sentence": "— Итак, — сказала она, удаляясь, — маленькая ___, черная и глянцевитая?",
-   "lemma": "коробка",
-   "options": [
-    "круглой коробкой",
-    "круглая коробка",
-    "круглой коробке",
-    "круглой коробки"
-   ],
-   "correct": "круглая коробка",
-   "case": "Именительный (Nominative)",
-   "explain": "«круглая коробка» — the subject of the sentence stands in the nominative.",
-   "id": "c40"
   },
   {
    "sentence": "Она поднялась на ___, бледная, словно шла на смерть.",
    "lemma": "этаж",
    "options": [
-    "второго этажа",
+    "вторым этажом",
+    "второму этажу",
     "второй этаж",
-    "втором этаже",
-    "второму этажу"
+    "второго этажа"
    ],
    "correct": "второй этаж",
    "case": "Винительный (Accusative)",
-   "explain": "«второй этаж» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«второй этаж» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c41"
   },
   {
@@ -585,22 +375,8 @@
    ],
    "correct": "полное неведение",
    "case": "Именительный (Nominative)",
-   "explain": "«полное неведение» — the subject of the sentence stands in the nominative.",
+   "explain": "«полное неведение» is the subject of «пригодилось» — who or what does it — so nominative.",
    "id": "c42"
-  },
-  {
-   "sentence": "Час спустя утомление и жалость к самому себе настроили его на более ___.",
-   "lemma": "лад",
-   "options": [
-    "нежном ладе",
-    "нежный лад",
-    "нежному ладу",
-    "нежного лада"
-   ],
-   "correct": "нежный лад",
-   "case": "Винительный (Accusative)",
-   "explain": "«нежный лад» — after the preposition «на», the accusative marks the direct object of the verb.",
-   "id": "c43"
   },
   {
    "sentence": "В задумчивости направился он в сад; вскоре на губах его появилась ___.",
@@ -613,7 +389,7 @@
    ],
    "correct": "горькая усмешка",
    "case": "Именительный (Nominative)",
-   "explain": "«горькая усмешка» — the subject of the sentence stands in the nominative.",
+   "explain": "«горькая усмешка» is the subject of «появилась» — who or what does it — so nominative.",
    "id": "c44"
   }
  ]

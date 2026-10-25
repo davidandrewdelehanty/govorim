@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Две дамы эти были ___ избранного нового петербургского кружка, называвшиеся, в подражание подражанию чему-то, les sept merveilles du monde.",
-   "lemma": "представительница",
-   "options": [
-    "главные представительницы",
-    "главных представительниц",
-    "главных представительницах",
-    "главным представительницам"
-   ],
-   "correct": "главные представительницы",
-   "case": "Именительный (Nominative)",
-   "explain": "«главные представительницы» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Две дамы эти были главные представительницы избранного нового ___, называвшиеся, в подражание подражанию чему-то, les sept merveilles du monde.",
-   "lemma": "кружок",
-   "options": [
-    "петербургским кружком",
-    "петербургскому кружку",
-    "петербургского кружка",
-    "петербургский кружок"
-   ],
-   "correct": "петербургского кружка",
-   "case": "Родительный (Genitive)",
-   "explain": "«петербургского кружка» — the genitive here marks possession, absence, or quantity.",
-   "id": "c2"
-  },
-  {
    "sentence": "Кроме того, старый Стремов, один из ___ Петербурга, поклонник Лизы Меркаловой, был по службе враг Алексея Александровича.",
    "lemma": "человек",
    "options": [
@@ -39,22 +11,8 @@
    ],
    "correct": "влиятельных людей",
    "case": "Родительный (Genitive)",
-   "explain": "«влиятельных людей» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«влиятельных людей» — «из» always takes the genitive.",
    "id": "c3"
-  },
-  {
-   "sentence": "Не угодно ли пожаловать в сад? – доложил ___ в другой комнате.",
-   "lemma": "лакей",
-   "options": [
-    "другому лакею",
-    "другим лакеем",
-    "другого лакея",
-    "другой лакей"
-   ],
-   "correct": "другой лакей",
-   "case": "Именительный (Nominative)",
-   "explain": "«другой лакей» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
   },
   {
    "sentence": "Не угодно ли пожаловать в сад? – доложил другой лакей в ___.",
@@ -67,7 +25,7 @@
    ],
    "correct": "другой комнате",
    "case": "Предложный (Prepositional)",
-   "explain": "«другой комнате» — after the preposition «в», for location or topic.",
+   "explain": "«другой комнате» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c5"
   },
   {
@@ -81,21 +39,21 @@
    ],
    "correct": "великому счастию",
    "case": "Дательный (Dative)",
-   "explain": "«великому счастию» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«великому счастию» — «к» always takes the dative.",
    "id": "c6"
   },
   {
    "sentence": "Княгиня Тверская шла с Тушкевичем и родственницей барышней, к великому счастию ___ проводившей лето у знаменитой княгини.",
    "lemma": "родитель",
    "options": [
-    "провинциальным родителям",
     "провинциальных родителях",
     "провинциальных родителей",
-    "провинциальными родителями"
+    "провинциальные родители",
+    "провинциальным родителям"
    ],
    "correct": "провинциальных родителей",
    "case": "Родительный (Genitive)",
-   "explain": "«провинциальных родителей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«провинциальных родителей» depends on the noun «счастию» (whose? of what?) — genitive.",
    "id": "c7"
   },
   {
@@ -109,36 +67,8 @@
    ],
    "correct": "знаменитой княгини",
    "case": "Родительный (Genitive)",
-   "explain": "«знаменитой княгини» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«знаменитой княгини» — «у» always takes the genitive.",
    "id": "c8"
-  },
-  {
-   "sentence": "Но в свете это самый ___, какого только я знаю, страстный игрок в крокет.",
-   "lemma": "человек",
-   "options": [
-    "любезным человеком",
-    "любезный человек",
-    "любезном человеке",
-    "любезному человеку"
-   ],
-   "correct": "любезный человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«любезный человек» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
-  },
-  {
-   "sentence": "Но в свете это самый любезный человек, какого только я знаю, ___ в крокет.",
-   "lemma": "игрок",
-   "options": [
-    "страстный игрок",
-    "страстного игрока",
-    "страстному игроку",
-    "страстном игроке"
-   ],
-   "correct": "страстный игрок",
-   "case": "Именительный (Nominative)",
-   "explain": "«страстный игрок» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
   },
   {
    "sentence": "И, несмотря на смешное его положение старого влюбленного в Лизу, надо видеть, как он выпутывается из этого ___!",
@@ -151,64 +81,22 @@
    ],
    "correct": "смешного положения",
    "case": "Родительный (Genitive)",
-   "explain": "«смешного положения» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«смешного положения» — «из» always takes the genitive.",
    "id": "c11"
   },
   {
    "sentence": "Бетси говорила все это, а между тем по веселому ___ ее Анна чувствовала, что она понимает отчасти ее положение и что-то затевает.",
    "lemma": "взгляд",
    "options": [
-    "умный взгляд",
-    "умному взгляду",
     "умным взглядом",
-    "умного взгляда"
+    "умному взгляду",
+    "умного взгляда",
+    "умном взгляде"
    ],
    "correct": "умному взгляду",
    "case": "Дательный (Dative)",
-   "explain": "«умному взгляду» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«умному взгляду» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c12"
-  },
-  {
-   "sentence": "Она говорит, что вы ___ романа и что, если б она была мужчиною, она бы наделала за вас тысячу глупостей.",
-   "lemma": "героиня",
-   "options": [
-    "настоящая героиня",
-    "настоящей героиней",
-    "настоящей героини",
-    "настоящей героине"
-   ],
-   "correct": "настоящая героиня",
-   "case": "Именительный (Nominative)",
-   "explain": "«настоящая героиня» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
-  },
-  {
-   "sentence": "– ___, – сказала она. – Они все избрали эту манеру.",
-   "lemma": "манера",
-   "options": [
-    "новой манеры",
-    "новой манере",
-    "новой манерой",
-    "новая манера"
-   ],
-   "correct": "новая манера",
-   "case": "Именительный (Nominative)",
-   "explain": "«Новая манера» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
-  },
-  {
-   "sentence": "Это вопрос ужасного ребенка, – и Бетти, видимо, хотела, но не могла удержаться и разразилась тем ___, каким смеются редко смеющиеся люди. – Надо у них спросить, – проговорила она сквозь слезы смеха.",
-   "lemma": "смех",
-   "options": [
-    "заразительный смех",
-    "заразительном смехе",
-    "заразительному смеху",
-    "заразительным смехом"
-   ],
-   "correct": "заразительным смехом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«заразительным смехом» — the instrumental marks the means, company, or complement.",
-   "id": "c16"
   },
   {
    "sentence": "Знаете, в ___ не говорят и не думают даже о некоторых подробностях туалета.",
@@ -221,50 +109,8 @@
    ],
    "correct": "хорошем обществе",
    "case": "Предложный (Prepositional)",
-   "explain": "«хорошем обществе» — after the preposition «в», for location or topic.",
+   "explain": "«хорошем обществе» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c18"
-  },
-  {
-   "sentence": "– Не думаю, – отвечала Бетси и, не глядя на свою приятельницу, осторожно стала наливать маленькие ___ душистым чаем.",
-   "lemma": "чашка",
-   "options": [
-    "прозрачным чашкам",
-    "прозрачных чашек",
-    "прозрачные чашки",
-    "прозрачными чашками"
-   ],
-   "correct": "прозрачные чашки",
-   "case": "Винительный (Accusative)",
-   "explain": "«прозрачные чашки» — the accusative marks the direct object of the verb.",
-   "id": "c19"
-  },
-  {
-   "sentence": "– Не думаю, – отвечала Бетси и, не глядя на свою приятельницу, осторожно стала наливать маленькие прозрачные чашки ___.",
-   "lemma": "чай",
-   "options": [
-    "душистого чая",
-    "душистому чаю",
-    "душистым чаем",
-    "душистом чае"
-   ],
-   "correct": "душистым чаем",
-   "case": "Творительный (Instrumental)",
-   "explain": "«душистым чаем» — the instrumental marks the means, company, or complement.",
-   "id": "c20"
-  },
-  {
-   "sentence": "Лиза – это одна из тех ___, которые, как дети, не понимают, что хорошо и что дурно.",
-   "lemma": "натура",
-   "options": [
-    "наивных натур",
-    "наивными натурами",
-    "наивным натурам",
-    "наивных натурах"
-   ],
-   "correct": "наивных натур",
-   "case": "Родительный (Genitive)",
-   "explain": "«наивных натур» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
-   "id": "c22"
   }
  ]
 }

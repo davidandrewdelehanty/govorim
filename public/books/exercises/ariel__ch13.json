@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Низмат полюбил его, как сына, «дарованного ему небом», Лолита баловала, как ___.",
-   "lemma": "брат",
-   "options": [
-    "младшему брату",
-    "младшего брата",
-    "младшим братом",
-    "младший брат"
-   ],
-   "correct": "младшего брата",
-   "case": "Винительный (Accusative)",
-   "explain": "«младшего брата» — the accusative marks the direct object of the verb.",
-   "id": "c1"
-  },
-  {
    "sentence": "Ариэль задумался о судьбе Шарада и о своей ___.",
    "lemma": "судьба",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "собственной судьбе",
    "case": "Предложный (Prepositional)",
-   "explain": "«собственной судьбе» — after the preposition «о», for location or topic.",
+   "explain": "«собственной судьбе» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c2"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "любящих людей",
    "case": "Родительный (Genitive)",
-   "explain": "«любящих людей» — after the preposition «среди», the genitive here marks possession, absence, or quantity.",
+   "explain": "«любящих людей» — «среди» always takes the genitive.",
    "id": "c3"
   },
   {
@@ -53,22 +39,8 @@
    ],
    "correct": "открытой книге",
    "case": "Предложный (Prepositional)",
-   "explain": "«открытой книге» — after the preposition «в», for location or topic.",
+   "explain": "«открытой книге» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c4"
-  },
-  {
-   "sentence": "Ариэль пытался шутить с нею, показывал всем своим видом и поведением, что он ___, но лицо Лолиты оставалось серьезным, строгим, почтительным, и это огорчало Ариэля.",
-   "lemma": "человек",
-   "options": [
-    "обыкновенном человеке",
-    "обыкновенного человека",
-    "обыкновенному человеку",
-    "обыкновенный человек"
-   ],
-   "correct": "обыкновенный человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«обыкновенный человек» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
   },
   {
    "sentence": "Он не знал родителей, не видел ни любви, ни дружбы, ни ласки, не имел настоящего детства, ничему не учился, кроме нескольких языков, зубрежки текстов ___.",
@@ -81,7 +53,7 @@
    ],
    "correct": "священных книг",
    "case": "Родительный (Genitive)",
-   "explain": "«священных книг» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«священных книг» depends on the noun «текстов» (whose? of what?) — genitive.",
    "id": "c7"
   },
   {
@@ -95,64 +67,8 @@
    ],
    "correct": "охотничьим соколом",
    "case": "Творительный (Instrumental)",
-   "explain": "«охотничьим соколом» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«охотничьим соколом» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c8"
-  },
-  {
-   "sentence": "Здесь ___ — Низмат, Лолита — принимают его за божество.",
-   "lemma": "человек",
-   "options": [
-    "простых людей",
-    "простым людям",
-    "простыми людьми",
-    "простые люди"
-   ],
-   "correct": "простые люди",
-   "case": "Именительный (Nominative)",
-   "explain": "«простые люди» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
-  },
-  {
-   "sentence": "Быть может, и ___ будут так же относиться к нему?",
-   "lemma": "человек",
-   "options": [
-    "остальными людьми",
-    "остальным людям",
-    "остальные люди",
-    "остальных людей"
-   ],
-   "correct": "остальные люди",
-   "case": "Именительный (Nominative)",
-   "explain": "«остальные люди» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
-  },
-  {
-   "sentence": "Он ___, улетевшая из клетки.",
-   "lemma": "птица",
-   "options": [
-    "редкой птицы",
-    "редкой птице",
-    "редкая птица",
-    "редкой птицей"
-   ],
-   "correct": "редкая птица",
-   "case": "Именительный (Nominative)",
-   "explain": "«редкая птица» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
-  },
-  {
-   "sentence": "На его несчастье, у него ___, хотя и загоревшая под жгучими лучами солнца Индии.",
-   "lemma": "кожа",
-   "options": [
-    "белая кожа",
-    "белой кожи",
-    "белой коже",
-    "белой кожей"
-   ],
-   "correct": "белая кожа",
-   "case": "Именительный (Nominative)",
-   "explain": "«белая кожа» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
   },
   {
    "sentence": "Красить кожу глиной неприятно и ненадежно: ___ смывает такую окраску.",
@@ -165,22 +81,8 @@
    ],
    "correct": "первый дождь",
    "case": "Именительный (Nominative)",
-   "explain": "«первый дождь» — the subject of the sentence stands in the nominative.",
+   "explain": "«первый дождь» is the subject of «смывает» — who or what does it — so nominative.",
    "id": "c15"
-  },
-  {
-   "sentence": "Выдать себя за сагиба, разыскать ___?",
-   "lemma": "костюм",
-   "options": [
-    "европейского костюма",
-    "европейским костюмом",
-    "европейскому костюму",
-    "европейский костюм"
-   ],
-   "correct": "европейский костюм",
-   "case": "Винительный (Accusative)",
-   "explain": "«европейский костюм» — the accusative marks the direct object of the verb.",
-   "id": "c16"
   },
   {
    "sentence": "Пусть она найдет возможное для нее счастье и почти невероятное, редкое счастье для ___, — пусть выходит замуж за Ишвара.",
@@ -193,22 +95,8 @@
    ],
    "correct": "индийской вдовы",
    "case": "Родительный (Genitive)",
-   "explain": "«индийской вдовы» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«индийской вдовы» — «для» always takes the genitive.",
    "id": "c17"
-  },
-  {
-   "sentence": "Он ___, и она будет с ним счастлива.",
-   "lemma": "юноша",
-   "options": [
-    "доброго юноши",
-    "доброму юноше",
-    "добрый юноша",
-    "добрым юношей"
-   ],
-   "correct": "добрый юноша",
-   "case": "Именительный (Nominative)",
-   "explain": "«добрый юноша» — the subject of the sentence stands in the nominative.",
-   "id": "c18"
   },
   {
    "sentence": "Над головой Ариэля раздался ___.",
@@ -221,7 +109,7 @@
    ],
    "correct": "пронзительный крик",
    "case": "Именительный (Nominative)",
-   "explain": "«пронзительный крик» — the subject of the sentence stands in the nominative.",
+   "explain": "«пронзительный крик» is the subject of «раздался» — who or what does it — so nominative.",
    "id": "c19"
   },
   {
@@ -235,7 +123,7 @@
    ],
    "correct": "белобородых обезьян",
    "case": "Родительный (Genitive)",
-   "explain": "«белобородых обезьян» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«белобородых обезьян» depends on the noun «деревьев» (whose? of what?) — genitive.",
    "id": "c21"
   },
   {
@@ -249,7 +137,7 @@
    ],
    "correct": "другие обезьяны",
    "case": "Именительный (Nominative)",
-   "explain": "«другие обезьяны» — the subject of the sentence stands in the nominative.",
+   "explain": "«другие обезьяны» is the subject of «отозвались» — who or what does it — so nominative.",
    "id": "c23"
   },
   {
@@ -263,36 +151,8 @@
    ],
    "correct": "вьющимися растениями",
    "case": "Творительный (Instrumental)",
-   "explain": "«вьющимися растениями» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «обвиты», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c26"
-  },
-  {
-   "sentence": "Кое-где лучи солнца пробивались сквозь листву и ___ ложились на землю, поросшую кустарниками и травой.",
-   "lemma": "пятно",
-   "options": [
-    "золотыми пятнами",
-    "золотых пятнах",
-    "золотым пятнам",
-    "золотых пятен"
-   ],
-   "correct": "золотыми пятнами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«золотыми пятнами» — the instrumental marks the means, company, or complement.",
-   "id": "c27"
-  },
-  {
-   "sentence": "— Наш ___, Лолита, благословляет твой брак с Ишваром.",
-   "lemma": "гость",
-   "options": [
-    "великого гостя",
-    "великий гость",
-    "великому гостю",
-    "великим гостем"
-   ],
-   "correct": "великий гость",
-   "case": "Именительный (Nominative)",
-   "explain": "«великий гость» — the subject of the sentence stands in the nominative.",
-   "id": "c29"
   },
   {
    "sentence": "И боги могут иногда завидовать ___!",
@@ -300,12 +160,12 @@
    "options": [
     "простых людях",
     "простым людям",
-    "простых людей",
-    "простыми людьми"
+    "простыми людьми",
+    "простые люди"
    ],
    "correct": "простым людям",
    "case": "Дательный (Dative)",
-   "explain": "«простым людям» — the dative marks the indirect object or recipient.",
+   "explain": "«завидовать» takes the dative (кому? чему?).",
    "id": "c30"
   }
  ]

@@ -1,46 +1,18 @@
 {
  "cases": [
   {
-   "sentence": "-- От сердца жалеючи, как ___ истинного друга?",
-   "lemma": "друг",
-   "options": [
-    "истинный друг",
-    "истинном друге",
-    "истинного друга",
-    "истинным другом"
-   ],
-   "correct": "истинный друг",
-   "case": "Именительный (Nominative)",
-   "explain": "«истинный друг» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "-- От сердца жалеючи, как истинный друг ___?",
    "lemma": "друг",
    "options": [
-    "истинный друг",
+    "истинным другом",
     "истинном друге",
     "истинного друга",
-    "истинному другу"
+    "истинный друг"
    ],
    "correct": "истинного друга",
    "case": "Родительный (Genitive)",
-   "explain": "«истинного друга» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«истинного друга» depends on the noun «друг» (whose? of what?) — genitive.",
    "id": "c2"
-  },
-  {
-   "sentence": "-- Ишь, Наденька с Сашенькой, ___,-- хи-хи-хи!",
-   "lemma": "деточка",
-   "options": [
-    "милыми деточками",
-    "милые деточки",
-    "милых деточек",
-    "милым деточкам"
-   ],
-   "correct": "милые деточки",
-   "case": "Именительный (Nominative)",
-   "explain": "«милые деточки» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
   },
   {
    "sentence": "Всё неестественное напряжение его в этот день, и без того уже при ___ здоровья за последнее время, как-то вдруг порвалось, и он обессилел, как ребенок.",
@@ -53,7 +25,7 @@
    ],
    "correct": "сильном расстройстве",
    "case": "Предложный (Prepositional)",
-   "explain": "«сильном расстройстве» — after the preposition «при», for location or topic.",
+   "explain": "«сильном расстройстве» — «при» always takes the prepositional.",
    "id": "c5"
   },
   {
@@ -67,7 +39,7 @@
    ],
    "correct": "диванной подушке",
    "case": "Предложный (Prepositional)",
-   "explain": "«диванной подушке» — after the preposition «на», for location or topic.",
+   "explain": "«диванной подушке» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c7"
   },
   {
@@ -81,21 +53,21 @@
    ],
    "correct": "разных случайностей",
    "case": "Родительный (Genitive)",
-   "explain": "«разных случайностей» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«разных случайностей» — «от» always takes the genitive.",
    "id": "c8"
   },
   {
    "sentence": "Но Павел Павлович, бог знает почему, был почти вне себя, как будто дело шло о спасении ___.",
    "lemma": "сын",
    "options": [
-    "родного сына",
-    "родным сыном",
+    "родном сыне",
+    "родному сыну",
     "родный сын",
-    "родном сыне"
+    "родного сына"
    ],
    "correct": "родного сына",
    "case": "Родительный (Genitive)",
-   "explain": "«родного сына» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«родного сына» depends on the noun «спасении» (whose? of what?) — genitive.",
    "id": "c9"
   },
   {
@@ -109,22 +81,8 @@
    ],
    "correct": "третьей тарелки",
    "case": "Родительный (Genitive)",
-   "explain": "«третьей тарелки» — after the preposition «после», the genitive here marks possession, absence, or quantity.",
+   "explain": "«третьей тарелки» — «после» always takes the genitive.",
    "id": "c10"
-  },
-  {
-   "sentence": "После третьей тарелки и ___ чаю-кипятка, выпитого залпом, Вельчанинов вдруг почувствовал облегчение.",
-   "lemma": "чашка",
-   "options": [
-    "второй чашке",
-    "второй чашкой",
-    "второй чашки",
-    "вторая чашка"
-   ],
-   "correct": "второй чашки",
-   "case": "Родительный (Genitive)",
-   "explain": "«второй чашки» — the genitive here marks possession, absence, or quantity.",
-   "id": "c11"
   },
   {
    "sentence": "-- А уж если раз пошатнули боль, то и слава богу-с, и добрый знак-с! -- вскричал Павел Павлович и радостно побежал за ___ и за новым чаем.",
@@ -137,7 +95,7 @@
    ],
    "correct": "новой тарелкой",
    "case": "Творительный (Instrumental)",
-   "explain": "«новой тарелкой» — after the preposition «за», the instrumental marks the means, company, or complement.",
+   "explain": "«новой тарелкой» — «за» takes the instrumental here (где? за чем? за кем?) — the accusative would mean motion behind or 'for' (куда? за что?).",
    "id": "c12"
   },
   {
@@ -151,22 +109,8 @@
    ],
    "correct": "новым чаем",
    "case": "Творительный (Instrumental)",
-   "explain": "«новым чаем» — after the preposition «за», the instrumental marks the means, company, or complement.",
+   "explain": "«новым чаем» — «за» takes the instrumental here (где? за чем? за кем?) — the accusative would mean motion behind or 'for' (куда? за что?).",
    "id": "c13"
-  },
-  {
-   "sentence": "-- Спать, спать,-- повторил он ___.",
-   "lemma": "голос",
-   "options": [
-    "слабым голосом",
-    "слабый голос",
-    "слабого голоса",
-    "слабому голосу"
-   ],
-   "correct": "слабым голосом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«слабым голосом» — the instrumental marks the means, company, or complement.",
-   "id": "c14"
   },
   {
    "sentence": "Гардины были спущены, но было не совершенно темно, потому что из ___, в которой не было таких гардин, уже проходил слабый свет.",
@@ -179,7 +123,7 @@
    ],
    "correct": "другой комнаты",
    "case": "Родительный (Genitive)",
-   "explain": "«другой комнаты» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«другой комнаты» — «из» always takes the genitive.",
    "id": "c15"
   },
   {
@@ -193,50 +137,8 @@
    ],
    "correct": "слабый свет",
    "case": "Именительный (Nominative)",
-   "explain": "«слабый свет» — the subject of the sentence stands in the nominative.",
+   "explain": "«слабый свет» is the subject of «проходил» — who or what does it — so nominative.",
    "id": "c16"
-  },
-  {
-   "sentence": "Он стал искать ощупью, ___,-- придерживая раненой левой убийцу,-- шнура с оконной занавески и долго не мог найти, но наконец захватил и сорвал с окна.",
-   "lemma": "рука",
-   "options": [
-    "правой руки",
-    "правой рукой",
-    "правой руке",
-    "правая рука"
-   ],
-   "correct": "правой рукой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«правой рукой» — the instrumental marks the means, company, or complement.",
-   "id": "c18"
-  },
-  {
-   "sentence": "Во все эти три минуты ни тот, ни другой не проговорили ни слова; только слышно было их тяжелое дыхание и ___ борьбы.",
-   "lemma": "звук",
-   "options": [
-    "глухие звуки",
-    "глухих звуков",
-    "глухими звуками",
-    "глухих звуках"
-   ],
-   "correct": "глухие звуки",
-   "case": "Винительный (Accusative)",
-   "explain": "«глухие звуки» — the accusative marks the direct object of the verb.",
-   "id": "c19"
-  },
-  {
-   "sentence": "Был уже ___ в начале.",
-   "lemma": "час",
-   "options": [
-    "пятому часу",
-    "пятом часе",
-    "пятый час",
-    "пятым часом"
-   ],
-   "correct": "пятый час",
-   "case": "Именительный (Nominative)",
-   "explain": "«пятый час» — the subject of the sentence stands in the nominative.",
-   "id": "c20"
   },
   {
    "sentence": "Вельчанинов взял свою подушку, захватил свое верхнее платье и отправился в другую комнату, заперев Павла Павловича в ___ на замок.",
@@ -249,22 +151,8 @@
    ],
    "correct": "первой комнате",
    "case": "Предложный (Prepositional)",
-   "explain": "«первой комнате» — after the preposition «в», for location or topic.",
+   "explain": "«первой комнате» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c21"
-  },
-  {
-   "sentence": "(Бритвы же и всегда лежали в бюро, на замке, и только в вчерашнее утро Вельчанинов их вынул, чтоб подбрить ___ около усов и бакенбард, что иногда делывал).",
-   "lemma": "волос",
-   "options": [
-    "лишними волосами",
-    "лишних волосах",
-    "лишних волос",
-    "лишние волосы"
-   ],
-   "correct": "лишние волосы",
-   "case": "Винительный (Accusative)",
-   "explain": "«лишние волосы» — the accusative marks the direct object of the verb.",
-   "id": "c22"
   },
   {
    "sentence": "\"Если б он давно уже намеревался меня убить, то наверно бы приготовил заранее нож или пистолет, а не рассчитывал бы на мои бритвы, которых никогда и не видал, до ___\",-- придумалось ему между прочим.",
@@ -277,7 +165,7 @@
    ],
    "correct": "вчерашнего вечера",
    "case": "Родительный (Genitive)",
-   "explain": "«вчерашнего вечера» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«вчерашнего вечера» — «до» always takes the genitive.",
    "id": "c23"
   }
  ]

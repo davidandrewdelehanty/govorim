@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "— Господин профессор, — сказал капитан, указывая на приборы, развешанные по стенам его каюты, — вот ___ для плавания «Наутилуса».",
-   "lemma": "инструмент",
-   "options": [
-    "необходимые инструменты",
-    "необходимыми инструментами",
-    "необходимых инструментов",
-    "необходимым инструментам"
-   ],
-   "correct": "необходимые инструменты",
-   "case": "Именительный (Nominative)",
-   "explain": "«необходимые инструменты» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "— Да, это манометр, он указывает наружное давление и в то же время глубину, на которой находится мое ___.",
    "lemma": "судно",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "подводное судно",
    "case": "Именительный (Nominative)",
-   "explain": "«подводное судно» — the subject of the sentence stands in the nominative.",
+   "explain": "«подводное судно» is the subject of «находится» — who or what does it — so nominative.",
    "id": "c2"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "первое место",
    "case": "Именительный (Nominative)",
-   "explain": "«первое место» — the subject of the sentence stands in the nominative.",
+   "explain": "«первое место» is the subject of «принадлежит» — who or what does it — so nominative.",
    "id": "c3"
   },
   {
@@ -53,22 +39,8 @@
    ],
    "correct": "подробных объяснениях",
    "case": "Предложный (Prepositional)",
-   "explain": "«подробных объяснениях» — after the preposition «на», for location or topic.",
+   "explain": "«подробных объяснениях» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c4"
-  },
-  {
-   "sentence": "Элементы, которые вы употребляете для произведения этой ___, должны быстро истощаться.",
-   "lemma": "сила",
-   "options": [
-    "чудодейственной силы",
-    "чудодейственная сила",
-    "чудодейственной силе",
-    "чудодейственной силой"
-   ],
-   "correct": "чудодейственной силы",
-   "case": "Родительный (Genitive)",
-   "explain": "«чудодейственной силы» — the genitive here marks possession, absence, or quantity.",
-   "id": "c5"
   },
   {
    "sentence": "Но я не хотел добывать металлы, а предпочел, чтобы ___ доставляло мне способы для выработки моего электричества.",
@@ -81,7 +53,7 @@
    ],
    "correct": "само море",
    "case": "Именительный (Nominative)",
-   "explain": "«само море» — the subject of the sentence stands in the nominative.",
+   "explain": "«само море» is the subject of «доставляло» — who or what does it — so nominative.",
    "id": "c6"
   },
   {
@@ -95,7 +67,7 @@
    ],
    "correct": "различных глубинах",
    "case": "Предложный (Prepositional)",
-   "explain": "«различных глубинах» — after the preposition «на», for location or topic.",
+   "explain": "«различных глубинах» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c7"
   },
   {
@@ -109,7 +81,7 @@
    ],
    "correct": "хлористый натрий",
    "case": "Именительный (Nominative)",
-   "explain": "«Хлористый натрий» — the subject of the sentence stands in the nominative.",
+   "explain": "«хлористый натрий» is the subject of «содержится» — who or what does it — so nominative.",
    "id": "c8"
   },
   {
@@ -123,7 +95,7 @@
    ],
    "correct": "значительном количестве",
    "case": "Предложный (Prepositional)",
-   "explain": "«значительном количестве» — after the preposition «в», for location or topic.",
+   "explain": "«значительном количестве» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c9"
   },
   {
@@ -137,22 +109,8 @@
    ],
    "correct": "морской воды",
    "case": "Родительный (Genitive)",
-   "explain": "«морской воды» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«морской воды» — «из» always takes the genitive.",
    "id": "c10"
-  },
-  {
-   "sentence": "Кроме того, скажу вам, что натриевые элементы гораздо лучше, потому что их ___ вдвое больше силы цинковых элементов.",
-   "lemma": "сила",
-   "options": [
-    "электродвигательной силе",
-    "электродвигательная сила",
-    "электродвигательной силы",
-    "электродвигательной силой"
-   ],
-   "correct": "электродвигательная сила",
-   "case": "Именительный (Nominative)",
-   "explain": "«электродвигательная сила» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
   },
   {
    "sentence": "Кроме того, скажу вам, что натриевые элементы гораздо лучше, потому что их электродвигательная сила вдвое больше силы ___.",
@@ -165,21 +123,21 @@
    ],
    "correct": "цинковых элементов",
    "case": "Родительный (Genitive)",
-   "explain": "«цинковых элементов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«цинковых элементов» depends on the noun «силы» (whose? of what?) — genitive.",
    "id": "c12"
   },
   {
    "sentence": "Ваши батареи, очевидно, могут служить для разложения ___, но если я не ошибаюсь, расход натрия на электролиз может превысить его приход.",
    "lemma": "натрий",
    "options": [
-    "хлористом натрии",
-    "хлористым натрием",
     "хлористого натрия",
+    "хлористому натрию",
+    "хлористом натрии",
     "хлористый натрий"
    ],
    "correct": "хлористого натрия",
    "case": "Родительный (Genitive)",
-   "explain": "«хлористого натрия» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«хлористого натрия» depends on the noun «разложения» (whose? of what?) — genitive.",
    "id": "c13"
   },
   {
@@ -193,35 +151,35 @@
    ],
    "correct": "каменного угля",
    "case": "Родительный (Genitive)",
-   "explain": "«каменного угля» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«каменного угля» depends on the noun «энергию» (whose? of what?) — genitive.",
    "id": "c14"
   },
   {
    "sentence": "— Ну, скажем, ___, если вы хотите, — отвечал капитан.",
    "lemma": "уголь",
    "options": [
+    "морского угля",
     "морским углём",
     "морскому углю",
-    "морского угля",
-    "морской уголь"
+    "морском угле"
    ],
    "correct": "морского угля",
    "case": "Родительный (Genitive)",
-   "explain": "«морского угля» — the genitive here marks possession, absence, or quantity.",
+   "explain": "With «хотите», a verb of waiting, seeking, asking or wanting, the object can stand in the genitive — as here.",
    "id": "c15"
   },
   {
    "sentence": "Она нас освещает равномерно и безостановочно, чего ___ не может.",
    "lemma": "свет",
    "options": [
-    "солнечного света",
-    "солнечный свет",
+    "солнечным светом",
     "солнечном свете",
-    "солнечным светом"
+    "солнечный свет",
+    "солнечному свету"
    ],
    "correct": "солнечный свет",
    "case": "Именительный (Nominative)",
-   "explain": "«солнечный свет» — the subject of the sentence stands in the nominative.",
+   "explain": "«солнечный свет» is the subject of «может» — who or what does it — so nominative.",
    "id": "c16"
   },
   {
@@ -235,50 +193,8 @@
    ],
    "correct": "итальянской системе",
    "case": "Дательный (Dative)",
-   "explain": "«итальянской системе» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«итальянской системе» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c17"
-  },
-  {
-   "sentence": "Я разде лил их циферблат по итальянской системе на двадцать четыре часа, потому что для меня не существуют ни день, ни ночь, ни солнце, ни луна, а только этот ___, который я уношу с собой на дно океана.",
-   "lemma": "свет",
-   "options": [
-    "искусственного света",
-    "искусственным светом",
-    "искусственный свет",
-    "искусственном свете"
-   ],
-   "correct": "искусственный свет",
-   "case": "Именительный (Nominative)",
-   "explain": "«искусственный свет» — the subject of the sentence stands in the nominative.",
-   "id": "c18"
-  },
-  {
-   "sentence": "— ___ электричества — этот циферблат, висящий перед нашими глазами, — служит для указания скорости «Наутилуса».",
-   "lemma": "приложение",
-   "options": [
-    "другому приложению",
-    "другого приложения",
-    "другом приложении",
-    "другое приложение"
-   ],
-   "correct": "другое приложение",
-   "case": "Именительный (Nominative)",
-   "explain": "«Другое приложение» — the subject of the sentence stands in the nominative.",
-   "id": "c19"
-  },
-  {
-   "sentence": "___ приводит его в соприкосновение с винтом лага, и стрелка показывает мне скорость судна.",
-   "lemma": "провод",
-   "options": [
-    "электрическом проводе",
-    "электрическим проводом",
-    "электрического провода",
-    "электрический провод"
-   ],
-   "correct": "электрический провод",
-   "case": "Именительный (Nominative)",
-   "explain": "«Электрический провод» — the subject of the sentence stands in the nominative.",
-   "id": "c20"
   },
   {
    "sentence": "В ___, я уже видел всю переднюю часть подводного судна; ее устройство было следующим.",
@@ -291,7 +207,7 @@
    ],
    "correct": "самом деле",
    "case": "Предложный (Prepositional)",
-   "explain": "«самом деле» — after the preposition «в», for location or topic.",
+   "explain": "«самом деле» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c21"
   },
   {
@@ -305,78 +221,22 @@
    ],
    "correct": "подводного судна",
    "case": "Родительный (Genitive)",
-   "explain": "«подводного судна» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«подводного судна» depends on the noun «часть» (whose? of what?) — genitive.",
    "id": "c22"
-  },
-  {
-   "sentence": "___ и герметичные двери с резиновыми задвижками обеспечивали безопасность «Наутилуса» в случае образования течи.",
-   "lemma": "переборка",
-   "options": [
-    "водонепроницаемым переборкам",
-    "водонепроницаемые переборки",
-    "водонепроницаемых переборках",
-    "водонепроницаемых переборок"
-   ],
-   "correct": "водонепроницаемые переборки",
-   "case": "Именительный (Nominative)",
-   "explain": "«Водонепроницаемые переборки» — the subject of the sentence stands in the nominative.",
-   "id": "c23"
   },
   {
    "sentence": "Я последовал за капитаном по ___ и очутился в центре судна.",
    "lemma": "проход",
    "options": [
     "узких проходах",
-    "узкими проходами",
     "узким проходам",
-    "узкие проходы"
+    "узкими проходами",
+    "узких проходов"
    ],
    "correct": "узким проходам",
    "case": "Дательный (Dative)",
-   "explain": "«узким проходам» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«узким проходам» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c24"
-  },
-  {
-   "sentence": "Тут было ___, похожее на колодец, ограниченное двумя переборками; железный трап, привинченный к стене, вел наверх.",
-   "lemma": "помещение",
-   "options": [
-    "узкому помещению",
-    "узкого помещения",
-    "узкое помещение",
-    "узким помещением"
-   ],
-   "correct": "узкое помещение",
-   "case": "Именительный (Nominative)",
-   "explain": "«узкое помещение» — the subject of the sentence stands in the nominative.",
-   "id": "c25"
-  },
-  {
-   "sentence": "Тут было узкое помещение, похожее на колодец, ограниченное двумя переборками; ___, привинченный к стене, вел наверх.",
-   "lemma": "трап",
-   "options": [
-    "железном трапе",
-    "железный трап",
-    "железного трапа",
-    "железному трапу"
-   ],
-   "correct": "железный трап",
-   "case": "Именительный (Nominative)",
-   "explain": "«железный трап» — the subject of the sentence stands in the nominative.",
-   "id": "c26"
-  },
-  {
-   "sentence": "Отличное ___, легкое и устойчивое, которое служит для прогулок и для рыбной ловли.",
-   "lemma": "судно",
-   "options": [
-    "гребным судном",
-    "гребного судна",
-    "гребное судно",
-    "гребном судне"
-   ],
-   "correct": "гребное судно",
-   "case": "Именительный (Nominative)",
-   "explain": "«гребное судно» — the subject of the sentence stands in the nominative.",
-   "id": "c27"
   },
   {
    "sentence": "Отличное гребное судно, легкое и устойчивое, которое служит для прогулок и для ___.",
@@ -389,22 +249,8 @@
    ],
    "correct": "рыбной ловли",
    "case": "Родительный (Genitive)",
-   "explain": "«рыбной ловли» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«рыбной ловли» — «для» always takes the genitive.",
    "id": "c28"
-  },
-  {
-   "sentence": "Это настоящее ___, оно не пропускает воду и прикреплено болтами.",
-   "lemma": "судно",
-   "options": [
-    "палубным судном",
-    "палубному судну",
-    "палубном судне",
-    "палубное судно"
-   ],
-   "correct": "палубное судно",
-   "case": "Именительный (Nominative)",
-   "explain": "«палубное судно» — the subject of the sentence stands in the nominative.",
-   "id": "c29"
   },
   {
    "sentence": "— В ___, — сказал я, восхищенный этими чудесами, — ничего не может быть проще!",
@@ -417,50 +263,22 @@
    ],
    "correct": "самом деле",
    "case": "Предложный (Prepositional)",
-   "explain": "«самом деле» — after the preposition «в», for location or topic.",
+   "explain": "«самом деле» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c30"
-  },
-  {
-   "sentence": "Рядом открылась дверь на камбуз длиной три метра, расположенный между ___.",
-   "lemma": "кладовая",
-   "options": [
-    "огромным кладовым",
-    "огромных кладовых",
-    "огромные кладовые",
-    "огромными кладовыми"
-   ],
-   "correct": "огромными кладовыми",
-   "case": "Творительный (Instrumental)",
-   "explain": "«огромными кладовыми» — after the preposition «между», the instrumental marks the means, company, or complement.",
-   "id": "c31"
   },
   {
    "sentence": "Здесь электричество оказалось удобнее всякого газа, оно употреблялось на всевозможные ___.",
    "lemma": "надобность",
    "options": [
+    "кухонными надобностями",
+    "кухонным надобностям",
     "кухонные надобности",
-    "кухонных надобностях",
-    "кухонных надобностей",
-    "кухонным надобностям"
+    "кухонных надобностей"
    ],
    "correct": "кухонные надобности",
    "case": "Винительный (Accusative)",
-   "explain": "«кухонные надобности» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«кухонные надобности» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c32"
-  },
-  {
-   "sentence": "Провода в печи раскаляли ___, нагревая плиту и поддерживая необходимую температуру.",
-   "lemma": "спираль",
-   "options": [
-    "платиновыми спиралями",
-    "платиновые спирали",
-    "платиновых спиралях",
-    "платиновым спиралям"
-   ],
-   "correct": "платиновые спирали",
-   "case": "Винительный (Accusative)",
-   "explain": "«платиновые спирали» — the accusative marks the direct object of the verb.",
-   "id": "c33"
   },
   {
    "sentence": "В задней части была четвертая переборка, отделяющая кубрик от ___.",
@@ -473,36 +291,8 @@
    ],
    "correct": "машинного отделения",
    "case": "Родительный (Genitive)",
-   "explain": "«машинного отделения» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«машинного отделения» — «от» always takes the genitive.",
    "id": "c34"
-  },
-  {
-   "sentence": "Дверь открылась, и я оказался в отделении, где капитан Немо, ___, установил свои двигатели.",
-   "lemma": "инженер",
-   "options": [
-    "первоклассном инженере",
-    "первоклассным инженером",
-    "первоклассный инженер",
-    "первоклассному инженеру"
-   ],
-   "correct": "первоклассный инженер",
-   "case": "Именительный (Nominative)",
-   "explain": "«первоклассный инженер» — the subject of the sentence stands in the nominative.",
-   "id": "c35"
-  },
-  {
-   "sentence": "___ было отлично освещено и имело не менее двадцати метров в длину.",
-   "lemma": "отделение",
-   "options": [
-    "машинном отделении",
-    "машинного отделения",
-    "машинное отделение",
-    "машинным отделением"
-   ],
-   "correct": "машинное отделение",
-   "case": "Именительный (Nominative)",
-   "explain": "«Машинное отделение» — the subject of the sentence stands in the nominative.",
-   "id": "c36"
   },
   {
    "sentence": "Я был поражен прежде всего ___, которым было наполнено это отделение, и капитан заметил это.",
@@ -515,22 +305,8 @@
    ],
    "correct": "неприятным запахом",
    "case": "Творительный (Instrumental)",
-   "explain": "«неприятным запахом» — after the preposition «прежде», the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «поражен», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c37"
-  },
-  {
-   "sentence": "В сущности, это не очень ___.",
-   "lemma": "неудобство",
-   "options": [
-    "большого неудобства",
-    "большому неудобству",
-    "большое неудобство",
-    "большим неудобством"
-   ],
-   "correct": "большое неудобство",
-   "case": "Именительный (Nominative)",
-   "explain": "«большое неудобство» — the subject of the sentence stands in the nominative.",
-   "id": "c38"
   },
   {
    "sentence": "Полученная электрическая энергия через электромагнит ___ передается на сложную систему рычагов, которые приводят в действие ось винта.",
@@ -543,22 +319,8 @@
    ],
    "correct": "большого размера",
    "case": "Родительный (Genitive)",
-   "explain": "«большого размера» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«большого размера» depends on the noun «электромагнит» (whose? of what?) — genitive.",
    "id": "c39"
-  },
-  {
-   "sentence": "Пойдемте в салон, там у меня настоящий ___, и вы узнаете все, что вам можно знать про «Наутилус»!",
-   "lemma": "кабинет",
-   "options": [
-    "рабочий кабинет",
-    "рабочим кабинетом",
-    "рабочего кабинета",
-    "рабочему кабинету"
-   ],
-   "correct": "рабочий кабинет",
-   "case": "Именительный (Nominative)",
-   "explain": "«рабочий кабинет» — the subject of the sentence stands in the nominative.",
-   "id": "c40"
   }
  ]
 }

@@ -1,60 +1,18 @@
 {
  "cases": [
   {
-   "sentence": "Что мы, ___, будем сказывати.",
-   "lemma": "старик",
-   "options": [
-    "старые старики",
-    "старых стариках",
-    "старых стариков",
-    "старым старикам"
-   ],
-   "correct": "старые старики",
-   "case": "Именительный (Nominative)",
-   "explain": "«старые старики» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Сия обширная и богатая губерния обитаема была множеством ___, признавших еще недавно владычество российских государей.",
    "lemma": "народ",
    "options": [
-    "полудиких народах",
-    "полудикие народы",
+    "полудиким народам",
     "полудиких народов",
-    "полудикими народами"
+    "полудикие народы",
+    "полудиких народах"
    ],
    "correct": "полудиких народов",
    "case": "Родительный (Genitive)",
-   "explain": "«полудиких народов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«полудиких народов» depends on the noun «множеством» (whose? of what?) — genitive.",
    "id": "c2"
-  },
-  {
-   "sentence": "Сия обширная и богатая губерния обитаема была множеством полудиких народов, признавших еще недавно владычество ___.",
-   "lemma": "государь",
-   "options": [
-    "российские государи",
-    "российских государях",
-    "российскими государями",
-    "российских государей"
-   ],
-   "correct": "российских государей",
-   "case": "Винительный (Accusative)",
-   "explain": "«российских государей» — the accusative marks the direct object of the verb.",
-   "id": "c3"
-  },
-  {
-   "sentence": "Но ___, долженствовавшие охранять спокойствие и безопасность сего края, с некоторого времени были сами для правительства неспокойными и опасными подданными.",
-   "lemma": "казак",
-   "options": [
-    "яицких казаках",
-    "яицким казакам",
-    "яицкие казаки",
-    "яицких казаков"
-   ],
-   "correct": "яицкие казаки",
-   "case": "Именительный (Nominative)",
-   "explain": "«Яицкие казаки» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
   },
   {
    "sentence": "В 1772 году произошло возмущение в их ___.",
@@ -67,7 +25,7 @@
    ],
    "correct": "главном городке",
    "case": "Предложный (Prepositional)",
-   "explain": "«главном городке» — after the preposition «в», for location or topic.",
+   "explain": "«главном городке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c5"
   },
   {
@@ -81,50 +39,8 @@
    ],
    "correct": "должному повиновению",
    "case": "Дательный (Dative)",
-   "explain": "«должному повиновению» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«должному повиновению» — «к» always takes the dative.",
    "id": "c7"
-  },
-  {
-   "sentence": "Следствием было варварское убиение Траубенберга, ___ в управлении, и наконец усмирение бунта картечью и жестокими наказаниями.",
-   "lemma": "перемена",
-   "options": [
-    "своевольной перемене",
-    "своевольной переменой",
-    "своевольная перемена",
-    "своевольной перемены"
-   ],
-   "correct": "своевольная перемена",
-   "case": "Именительный (Nominative)",
-   "explain": "«своевольная перемена» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
-  },
-  {
-   "sentence": "Следствием было варварское убиение Траубенберга, своевольная перемена в управлении, и наконец усмирение бунта картечью и ___.",
-   "lemma": "наказание",
-   "options": [
-    "жестоких наказаний",
-    "жестоких наказаниях",
-    "жестокими наказаниями",
-    "жестоким наказаниям"
-   ],
-   "correct": "жестокими наказаниями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«жестокими наказаниями» — the instrumental marks the means, company, or complement.",
-   "id": "c9"
-  },
-  {
-   "sentence": "Получив письмо от генерала, он довольно искусным образом выпроводил Василису Егоровну, сказав ей, будто бы отец Герасим получил из Оренбурга какие-то ___, которые содержит в великой тайне.",
-   "lemma": "известие",
-   "options": [
-    "чудные известия",
-    "чудным известиям",
-    "чудных известий",
-    "чудными известиями"
-   ],
-   "correct": "чудные известия",
-   "case": "Именительный (Nominative)",
-   "explain": "«чудные известия» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
   },
   {
    "sentence": "Получив письмо от генерала, он довольно искусным образом выпроводил Василису Егоровну, сказав ей, будто бы отец Герасим получил из Оренбурга какие-то чудные известия, которые содержит в ___.",
@@ -137,50 +53,22 @@
    ],
    "correct": "великой тайне",
    "case": "Предложный (Prepositional)",
-   "explain": "«великой тайне» — after the preposition «в», for location or topic.",
+   "explain": "«великой тайне» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c12"
   },
   {
    "sentence": "Иван Кузмич, оставшись ___, тотчас послал за нами, а Палашку запер в чулан, чтоб она не могла нас подслушать.",
    "lemma": "хозяин",
    "options": [
-    "полному хозяину",
-    "полным хозяином",
     "полном хозяине",
-    "полный хозяин"
+    "полного хозяина",
+    "полному хозяину",
+    "полным хозяином"
    ],
    "correct": "полным хозяином",
    "case": "Творительный (Instrumental)",
-   "explain": "«полным хозяином» — the instrumental marks the means, company, or complement.",
+   "explain": "After «оставшись», what someone or something is or becomes stands in the instrumental.",
    "id": "c13"
-  },
-  {
-   "sentence": "Василиса Егоровна увидела коварство своего мужа; но зная, что ничего от него ни добьется, прекратила свои вопросы и завела речь о соленых огурцах, которые Акулина Памфиловна приготовляла совершенно ___.",
-   "lemma": "образ",
-   "options": [
-    "особенному образу",
-    "особенным образом",
-    "особенный образ",
-    "особенном образе"
-   ],
-   "correct": "особенным образом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«особенным образом» — the instrumental marks the means, company, or complement.",
-   "id": "c14"
-  },
-  {
-   "sentence": "Урядник возвратился через два дня и объявил, что в степи верст за шестьдесят от крепости видел он множество огней и слышал от башкирцев, что идет ___.",
-   "lemma": "сила",
-   "options": [
-    "неведомой силы",
-    "неведомой силе",
-    "неведомой силой",
-    "неведомая сила"
-   ],
-   "correct": "неведомая сила",
-   "case": "Именительный (Nominative)",
-   "explain": "«неведомая сила» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
   },
   {
    "sentence": "В крепости между казаками заметно стало ___; во всех улицах они толпились в кучки, тихо разговаривали между собою, и расходились, увидя драгуна или гарнизонного солдата.",
@@ -193,7 +81,7 @@
    ],
    "correct": "необыкновенное волнение",
    "case": "Именительный (Nominative)",
-   "explain": "«необыкновенное волнение» — the subject of the sentence stands in the nominative.",
+   "explain": "«необыкновенное волнение» is the subject of «стало» — who or what does it — so nominative.",
    "id": "c18"
   },
   {
@@ -207,7 +95,7 @@
    ],
    "correct": "новое обстоятельство",
    "case": "Именительный (Nominative)",
-   "explain": "«Новое обстоятельство» — the subject of the sentence stands in the nominative.",
+   "explain": "«новое обстоятельство» is the subject of «усилило» — who or what does it — so nominative.",
    "id": "c20"
   },
   {
@@ -221,7 +109,7 @@
    ],
    "correct": "другого способа",
    "case": "Родительный (Genitive)",
-   "explain": "«другого способа» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«другого способа» is the object of a negated verb («не нашел») — genitive instead of the accusative.",
    "id": "c24"
   },
   {
@@ -235,7 +123,7 @@
    ],
    "correct": "полуграмотным казаком",
    "case": "Творительный (Instrumental)",
-   "explain": "«полуграмотным казаком» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «писанное», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c25"
   },
   {
@@ -249,7 +137,7 @@
    ],
    "correct": "простых людей",
    "case": "Родительный (Genitive)",
-   "explain": "«простых людей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«простых людей» depends on the noun «умы» (whose? of what?) — genitive.",
    "id": "c26"
   },
   {
@@ -263,7 +151,7 @@
    ],
    "correct": "старых судей",
    "case": "Винительный (Accusative)",
-   "explain": "«старых судей» — the accusative marks the direct object of the verb.",
+   "explain": "«старых судей» is the direct object of «слышать» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c28"
   },
   {
@@ -271,13 +159,13 @@
    "lemma": "обычай",
    "options": [
     "варварского обычая",
-    "варварским обычаем",
     "варварский обычай",
+    "варварском обычае",
     "варварскому обычаю"
    ],
    "correct": "варварского обычая",
    "case": "Родительный (Genitive)",
-   "explain": "«варварского обычая» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«варварского обычая» depends on the noun «уничтожении» (whose? of what?) — genitive.",
    "id": "c29"
   },
   {
@@ -291,36 +179,8 @@
    ],
    "correct": "старый башкирец",
    "case": "Именительный (Nominative)",
-   "explain": "«Старый башкирец» — the subject of the sentence stands in the nominative.",
+   "explain": "«старый башкирец» is the subject of «молчал» — who or what does it — so nominative.",
    "id": "c30"
-  },
-  {
-   "sentence": "Ребята! сымите-ка с него дурацкий ___, да выстрочите ему спину.",
-   "lemma": "халат",
-   "options": [
-    "полосатый халат",
-    "полосатому халату",
-    "полосатом халате",
-    "полосатым халатом"
-   ],
-   "correct": "полосатый халат",
-   "case": "Именительный (Nominative)",
-   "explain": "«полосатый халат» — the subject of the sentence stands in the nominative.",
-   "id": "c32"
-  },
-  {
-   "sentence": "Комендант Нижнеозерной крепости, тихий и скромный ___, был мне знаком: месяца за два перед тем проезжал он из Оренбурга с молодой своей женою и останавливался у Ивана Кузмича.",
-   "lemma": "человек",
-   "options": [
-    "молодой человек",
-    "молодому человеку",
-    "молодого человека",
-    "молодым человеком"
-   ],
-   "correct": "молодой человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«молодой человек» — the subject of the sentence stands in the nominative.",
-   "id": "c33"
   },
   {
    "sentence": "Слава богу, двадцать ___ в ней проживаем.",
@@ -333,7 +193,7 @@
    ],
    "correct": "второй год",
    "case": "Винительный (Accusative)",
-   "explain": "«второй год» — the accusative marks the direct object of the verb.",
+   "explain": "«второй год» tells how long or how often, with no preposition — accusative.",
    "id": "c35"
   },
   {
@@ -347,22 +207,8 @@
    ],
    "correct": "одинокой могилы",
    "case": "Родительный (Genitive)",
-   "explain": "«одинокой могилы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "With «искать», a verb of waiting, seeking, asking or wanting, the object can stand in the genitive — as here.",
    "id": "c38"
-  },
-  {
-   "sentence": "Что бы со мною ни было, верь, что последняя моя мысль и ___ будет о тебе! – Маша рыдала, прильнув к моей груди.",
-   "lemma": "молитва",
-   "options": [
-    "последней молитве",
-    "последней молитвы",
-    "последней молитвой",
-    "последняя молитва"
-   ],
-   "correct": "последняя молитва",
-   "case": "Именительный (Nominative)",
-   "explain": "«последняя молитва» — the subject of the sentence stands in the nominative.",
-   "id": "c40"
   }
  ]
 }

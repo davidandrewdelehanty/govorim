@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Три дня у нее дрожало сердце, замирая каждый раз, как она вспоминала, что в дом придут какие-то ___, страшные.",
-   "lemma": "человек",
-   "options": [
-    "чужими людьми",
-    "чужих людей",
-    "чужие люди",
-    "чужим людям"
-   ],
-   "correct": "чужие люди",
-   "case": "Именительный (Nominative)",
-   "explain": "«чужие люди» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Днем на мерзлую землю выпал сухой ___, и теперь было слышно, как он скрипит под ногами уходившего сына.",
    "lemma": "снег",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "мелкий снег",
    "case": "Именительный (Nominative)",
-   "explain": "«мелкий снег» — the subject of the sentence stands in the nominative.",
+   "explain": "«мелкий снег» is the subject of «выпал» — who or what does it — so nominative.",
    "id": "c2"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "густая тьма",
    "case": "Именительный (Nominative)",
-   "explain": "«густая тьма» — the subject of the sentence stands in the nominative.",
+   "explain": "«густая тьма» is the subject of «прислонилась» — who or what does it — so nominative.",
    "id": "c3"
   },
   {
@@ -53,50 +39,8 @@
    ],
    "correct": "длинных ногах",
    "case": "Предложный (Prepositional)",
-   "explain": "«длинных ногах» — after the preposition «на», for location or topic.",
+   "explain": "«длинных ногах» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c6"
-  },
-  {
-   "sentence": "-- ___! -- заметил он.",
-   "lemma": "хата",
-   "options": [
-    "неважная хата",
-    "неважной хатой",
-    "неважной хате",
-    "неважной хаты"
-   ],
-   "correct": "неважная хата",
-   "case": "Именительный (Nominative)",
-   "explain": "«Неважная хата» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
-  },
-  {
-   "sentence": "-- Да я уже и жду! -- спокойно сказал ___.",
-   "lemma": "человек",
-   "options": [
-    "длинному человеку",
-    "длинным человеком",
-    "длинном человеке",
-    "длинный человек"
-   ],
-   "correct": "длинный человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«длинный человек» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
-  },
-  {
-   "sentence": "Его спокойствие, ___ и простота лица ободряли мать.",
-   "lemma": "голос",
-   "options": [
-    "мягким голосом",
-    "мягком голосе",
-    "мягкому голосу",
-    "мягкий голос"
-   ],
-   "correct": "мягкий голос",
-   "case": "Именительный (Nominative)",
-   "explain": "«мягкий голос» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
   },
   {
    "sentence": "Человек смотрел на нее открыто, доброжелательно, в глубине его ___ играла веселая искра, а во всей фигуре, угловатой, сутулой, с длинными ногами, было что-то забавное и располагающее к нему.",
@@ -109,7 +53,7 @@
    ],
    "correct": "прозрачных глаз",
    "case": "Родительный (Genitive)",
-   "explain": "«прозрачных глаз» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«прозрачных глаз» depends on the noun «глубине» (whose? of what?) — genitive.",
    "id": "c12"
   },
   {
@@ -123,7 +67,7 @@
    ],
    "correct": "небольшого роста",
    "case": "Родительный (Genitive)",
-   "explain": "«небольшого роста» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«небольшого роста» depends on the noun «девушка» (whose? of what?) — genitive.",
    "id": "c16"
   },
   {
@@ -137,22 +81,8 @@
    ],
    "correct": "простым лицом",
    "case": "Творительный (Instrumental)",
-   "explain": "«простым лицом» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«простым лицом» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c17"
-  },
-  {
-   "sentence": "Но, к ее удивлению, в кухню вошла девушка небольшого роста, с простым лицом крестьянки и ___ светлых волос.",
-   "lemma": "коса",
-   "options": [
-    "толстой косой",
-    "толстая коса",
-    "толстой косы",
-    "толстой косе"
-   ],
-   "correct": "толстой косой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«толстой косой» — the instrumental marks the means, company, or complement.",
-   "id": "c18"
   },
   {
    "sentence": "Но, к ее удивлению, в кухню вошла девушка небольшого роста, с простым лицом крестьянки и толстой косой ___.",
@@ -165,7 +95,7 @@
    ],
    "correct": "светлых волос",
    "case": "Родительный (Genitive)",
-   "explain": "«светлых волос» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«светлых волос» depends on the noun «косой» (whose? of what?) — genitive.",
    "id": "c19"
   },
   {
@@ -179,50 +109,8 @@
    ],
    "correct": "старого вора",
    "case": "Родительный (Genitive)",
-   "explain": "«старого вора» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«старого вора» depends on the noun «сын» (whose? of what?) — genitive.",
    "id": "c21"
-  },
-  {
-   "sentence": "Одного из них мать знала, -- это племянник старого фабричного рабочего Сизова -- Федор, остролицый, с ___ и курчавыми волосами.",
-   "lemma": "лоб",
-   "options": [
-    "высокий лоб",
-    "высокому лбу",
-    "высоким лбом",
-    "высоком лбе"
-   ],
-   "correct": "высоким лбом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«высоким лбом» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c22"
-  },
-  {
-   "sentence": "Одного из них мать знала, -- это племянник старого фабричного рабочего Сизова -- Федор, остролицый, с высоким лбом и ___.",
-   "lemma": "волос",
-   "options": [
-    "курчавых волос",
-    "курчавых волосах",
-    "курчавым волосам",
-    "курчавыми волосами"
-   ],
-   "correct": "курчавыми волосами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«курчавыми волосами» — the instrumental marks the means, company, or complement.",
-   "id": "c23"
-  },
-  {
-   "sentence": "-- Эх ты!.. -- проводила она его ___, а про себя снисходительно подумала: \"Дитя еще!\"",
-   "lemma": "восклицание",
-   "options": [
-    "ласковому восклицанию",
-    "ласковым восклицанием",
-    "ласковом восклицании",
-    "ласковое восклицание"
-   ],
-   "correct": "ласковым восклицанием",
-   "case": "Творительный (Instrumental)",
-   "explain": "«ласковым восклицанием» — the instrumental marks the means, company, or complement.",
-   "id": "c24"
   }
  ]
 }

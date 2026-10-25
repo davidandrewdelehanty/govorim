@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Над головой Пьера, под темною изнанкою ___, встрепенулись голубки от движения, которое он сделал приподнимаясь.",
-   "lemma": "навес",
-   "options": [
-    "тесовым навесом",
-    "тесовому навесу",
-    "тесового навеса",
-    "тесовый навес"
-   ],
-   "correct": "тесового навеса",
-   "case": "Родительный (Genitive)",
-   "explain": "«тесового навеса» — the genitive here marks possession, absence, or quantity.",
-   "id": "c1"
-  },
-  {
-   "sentence": "По всему двору был разлит мирный, радостный для Пьера в эту минуту, ___ постоялого двора, запах сена, навоза и дегтя.",
-   "lemma": "запах",
-   "options": [
-    "крепким запахом",
-    "крепкий запах",
-    "крепкому запаху",
-    "крепком запахе"
-   ],
-   "correct": "крепкий запах",
-   "case": "Именительный (Nominative)",
-   "explain": "«крепкий запах» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
    "sentence": "По всему двору был разлит мирный, радостный для Пьера в эту минуту, крепкий запах ___, запах сена, навоза и дегтя.",
    "lemma": "двор",
    "options": [
@@ -39,7 +11,7 @@
    ],
    "correct": "постоялого двора",
    "case": "Родительный (Genitive)",
-   "explain": "«постоялого двора» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«постоялого двора» depends on the noun «запах» (whose? of what?) — genitive.",
    "id": "c3"
   },
   {
@@ -53,7 +25,7 @@
    ],
    "correct": "других людей",
    "case": "Родительный (Genitive)",
-   "explain": "«других людей» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«других людей» — «от» always takes the genitive.",
    "id": "c4"
   },
   {
@@ -67,7 +39,7 @@
    ],
    "correct": "внешнего человека",
    "case": "Родительный (Genitive)",
-   "explain": "«внешнего человека» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«внешнего человека» depends on the noun «бремя» (whose? of what?) — genitive.",
    "id": "c5"
   },
   {
@@ -76,12 +48,12 @@
    "options": [
     "постоялый двор",
     "постоялому двору",
-    "постоялого двора",
-    "постоялом дворе"
+    "постоялым двором",
+    "постоялого двора"
    ],
    "correct": "постоялый двор",
    "case": "Винительный (Accusative)",
-   "explain": "«постоялый двор» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«постоялый двор» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c8"
   },
   {
@@ -95,22 +67,8 @@
    ],
    "correct": "худых лошадей",
    "case": "Винительный (Accusative)",
-   "explain": "«худых лошадей» — the accusative marks the direct object of the verb.",
+   "explain": "«худых лошадей» is the direct object of «поили» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c9"
-  },
-  {
-   "sentence": "Пьер отдал догнавшую его коляску знакомому, ___ и с ним вместе поехал до Москвы.",
-   "lemma": "генерал",
-   "options": [
-    "раненому генералу",
-    "раненым генералом",
-    "раненом генерале",
-    "раненый генерал"
-   ],
-   "correct": "раненому генералу",
-   "case": "Дательный (Dative)",
-   "explain": "«раненому генералу» — the dative marks the indirect object or recipient.",
-   "id": "c10"
   }
  ]
 }

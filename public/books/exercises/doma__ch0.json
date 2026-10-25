@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Сегодня и ___ я заметила, что он курит.",
-   "lemma": "день",
-   "options": [
-    "третий день",
-    "третьего дня",
-    "третьем дне",
-    "третьим днём"
-   ],
-   "correct": "третьего дня",
-   "case": "Родительный (Genitive)",
-   "explain": "«третьего дня» — the genitive here marks possession, absence, or quantity.",
-   "id": "c1"
-  },
-  {
    "sentence": "Евгений Петрович Быковский, прокурор ___, только что вернувшийся из заседания и снимавший у себя в кабинете перчатки, поглядел на докладывавшую ему гувернантку и засмеялся.",
    "lemma": "суд",
    "options": [
@@ -25,22 +11,8 @@
    ],
    "correct": "окружного суда",
    "case": "Родительный (Genitive)",
-   "explain": "«окружного суда» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«окружного суда» depends on the noun «прокурор» (whose? of what?) — genitive.",
    "id": "c2"
-  },
-  {
-   "sentence": "Вам кажется это несерьезным, но в его годы курение составляет вредную и дурную привычку, а ___ следует искоренять в самом начале.",
-   "lemma": "привычка",
-   "options": [
-    "дурных привычках",
-    "дурным привычкам",
-    "дурными привычками",
-    "дурные привычки"
-   ],
-   "correct": "дурные привычки",
-   "case": "Винительный (Accusative)",
-   "explain": "«дурные привычки» — the accusative marks the direct object of the verb.",
-   "id": "c3"
   },
   {
    "sentence": "По уходе гувернантки Быковский сел в кресло перед ___, закрыл глаза и стал думать.",
@@ -53,7 +25,7 @@
    ],
    "correct": "письменным столом",
    "case": "Творительный (Instrumental)",
-   "explain": "«письменным столом» — after the preposition «перед», the instrumental marks the means, company, or complement.",
+   "explain": "«письменным столом» — «перед» always takes the instrumental.",
    "id": "c5"
   },
   {
@@ -67,36 +39,8 @@
    ],
    "correct": "умные люди",
    "case": "Именительный (Nominative)",
-   "explain": "«умные люди» — the subject of the sentence stands in the nominative.",
+   "explain": "«умные люди» is the subject of «затруднялись» — who or what does it — so nominative.",
    "id": "c6"
-  },
-  {
-   "sentence": "Вспомнил прокурор двух-трех исключенных, их последующую жизнь и не мог не подумать о том, что наказание очень часто приносит гораздо больше зла, чем ___.",
-   "lemma": "преступление",
-   "options": [
-    "самому преступлению",
-    "самого преступления",
-    "само преступление",
-    "самом преступлении"
-   ],
-   "correct": "само преступление",
-   "case": "Именительный (Nominative)",
-   "explain": "«само преступление» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
-  },
-  {
-   "sentence": "Наверху, за потолком, во втором этаже кто-то ходил из угла в угол, а еще выше, на ___, четыре руки играли гаммы.",
-   "lemma": "этаж",
-   "options": [
-    "третьем этаже",
-    "третьему этажу",
-    "третьего этажа",
-    "третьим этажом"
-   ],
-   "correct": "третьем этаже",
-   "case": "Предложный (Prepositional)",
-   "explain": "«третьем этаже» — after the preposition «на», for location or topic.",
-   "id": "c10"
   },
   {
    "sentence": "Шаганье человека, который, судя по ___, о чем-то мучительно думал или же страдал зубною болью, и монотонные гаммы придавали тишине вечера что-то дремотное, располагающее к ленивым думам.",
@@ -109,7 +53,7 @@
    ],
    "correct": "нервной походке",
    "case": "Дательный (Dative)",
-   "explain": "«нервной походке» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«нервной походке» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c11"
   },
   {
@@ -123,50 +67,22 @@
    ],
    "correct": "ленивым думам",
    "case": "Дательный (Dative)",
-   "explain": "«ленивым думам» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«ленивым думам» — «к» always takes the dative.",
    "id": "c12"
-  },
-  {
-   "sentence": "Он был вял телом, как ___, и всё у него казалось необыкновенно нежным и мягким: движения, кудрявые волосы, взгляд, бархатная куртка.",
-   "lemma": "овощ",
-   "options": [
-    "парникового овоща",
-    "парниковым овощем",
-    "парниковому овощу",
-    "парниковый овощ"
-   ],
-   "correct": "парниковый овощ",
-   "case": "Именительный (Nominative)",
-   "explain": "«парниковый овощ» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
   },
   {
    "sentence": "Значит, ты уличен в трех ___: куришь, берешь из стола чужой табак и лжешь.",
    "lemma": "поступок",
    "options": [
-    "нехорошие поступки",
-    "нехороших поступках",
+    "нехорошими поступками",
     "нехорошим поступкам",
+    "нехороших поступках",
     "нехороших поступков"
    ],
    "correct": "нехороших поступках",
    "case": "Предложный (Prepositional)",
-   "explain": "«нехороших поступках» — after the preposition «в», for location or topic.",
+   "explain": "«нехороших поступках» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c15"
-  },
-  {
-   "sentence": "Сережа глядел ему в грудь и внимательно слушал (он любил по вечерам беседовать с отцом), потом облокотился о край стола и начал щурить свои ___ на бумаги и чернильницу.",
-   "lemma": "глаз",
-   "options": [
-    "близоруким глазам",
-    "близорукие глаза",
-    "близоруких глаз",
-    "близоруких глазах"
-   ],
-   "correct": "близорукие глаза",
-   "case": "Винительный (Accusative)",
-   "explain": "«близорукие глаза» — the accusative marks the direct object of the verb.",
-   "id": "c21"
   },
   {
    "sentence": "У тебя грудь слабая, ты еще не окреп, а у ___ табачный дым производит чахотку и другие болезни.",
@@ -179,7 +95,7 @@
    ],
    "correct": "слабых людей",
    "case": "Родительный (Genitive)",
-   "explain": "«слабых людей» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«слабых людей» — «у» always takes the genitive.",
    "id": "c22"
   },
   {
@@ -193,22 +109,8 @@
    ],
    "correct": "табачный дым",
    "case": "Именительный (Nominative)",
-   "explain": "«табачный дым» — the subject of the sentence stands in the nominative.",
+   "explain": "«табачный дым» is the subject of «производит» — who or what does it — so nominative.",
    "id": "c23"
-  },
-  {
-   "sentence": "У тебя грудь слабая, ты еще не окреп, а у слабых людей табачный дым производит чахотку и ___.",
-   "lemma": "болезнь",
-   "options": [
-    "другим болезням",
-    "другие болезни",
-    "другими болезнями",
-    "других болезней"
-   ],
-   "correct": "другие болезни",
-   "case": "Винительный (Accusative)",
-   "explain": "«другие болезни» — the accusative marks the direct object of the verb.",
-   "id": "c24"
   },
   {
    "sentence": "На бледном лице его застыло такое выражение, как будто он прислушивался или же следил за развитием ___; печаль и что-то похожее на испуг показались в его больших, немигающих глазах.",
@@ -221,7 +123,7 @@
    ],
    "correct": "собственных мыслей",
    "case": "Родительный (Genitive)",
-   "explain": "«собственных мыслей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«собственных мыслей» depends on the noun «развитием» (whose? of what?) — genitive.",
    "id": "c25"
   },
   {
@@ -235,50 +137,22 @@
    ],
    "correct": "деловых бумаг",
    "case": "Родительный (Genitive)",
-   "explain": "«деловых бумаг» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«деловых бумаг» is the object of a negated verb («не пачкал») — genitive instead of the accusative.",
    "id": "c28"
-  },
-  {
-   "sentence": "Чтобы он не пачкал деловых бумаг и не трогал чернил, на столе лежала пачка четвертух, нарезанных нарочно для него, и ___.",
-   "lemma": "карандаш",
-   "options": [
-    "синем карандаше",
-    "синий карандаш",
-    "синему карандашу",
-    "синим карандашом"
-   ],
-   "correct": "синий карандаш",
-   "case": "Именительный (Nominative)",
-   "explain": "«синий карандаш» — the subject of the sentence stands in the nominative.",
-   "id": "c29"
   },
   {
    "sentence": "И как она может ___ брать в рот!",
    "lemma": "палец",
    "options": [
-    "грязного пальца",
+    "грязный палец",
+    "грязном пальце",
     "грязным пальцем",
-    "грязному пальцу",
-    "грязный палец"
+    "грязному пальцу"
    ],
    "correct": "грязный палец",
    "case": "Винительный (Accusative)",
-   "explain": "«грязный палец» — the accusative marks the direct object of the verb.",
+   "explain": "«грязный палец» is the direct object of «может» (кого? что?) — accusative.",
    "id": "c30"
-  },
-  {
-   "sentence": "И Евгению Петровичу казалось странным и смешным, что он, ___, полжизни упражнявшийся во всякого рода пресечениях, предупреждениях и наказаниях, решительно терялся и не знал, что сказать мальчику.",
-   "lemma": "правовед",
-   "options": [
-    "опытный правовед",
-    "опытному правоведу",
-    "опытным правоведом",
-    "опытном правоведе"
-   ],
-   "correct": "опытный правовед",
-   "case": "Именительный (Nominative)",
-   "explain": "«опытный правовед» — the subject of the sentence stands in the nominative.",
-   "id": "c32"
   },
   {
    "sentence": "Но ведь в школе и в суде все эти ___ решаются гораздо проще, чем дома; тут имеешь дело с людьми, которых без ума любишь, а любовь требовательна и осложняет вопрос.",
@@ -291,22 +165,8 @@
    ],
    "correct": "канальские вопросы",
    "case": "Именительный (Nominative)",
-   "explain": "«канальские вопросы» — the subject of the sentence stands in the nominative.",
+   "explain": "«канальские вопросы» is the subject of «решаются» — who or what does it — so nominative.",
    "id": "c34"
-  },
-  {
-   "sentence": "На этом рисунке был изображен дом с кривой крышей и с дымом, который, как молния, зигзагами шел из труб до ___ четвертухи; возле дома стоял солдат с точками вместо глаз и со штыком, похожим на цифру 4.",
-   "lemma": "край",
-   "options": [
-    "самим краем",
-    "сам край",
-    "самого края",
-    "самом крае"
-   ],
-   "correct": "самого края",
-   "case": "Родительный (Genitive)",
-   "explain": "«самого края» — the genitive here marks possession, absence, or quantity.",
-   "id": "c36"
   },
   {
    "sentence": "Из ___ над сыном прокурор убедился, что у детей, как у дикарей, свои художественные воззрения и требования своеобразные, недоступные пониманию взрослых.",
@@ -319,22 +179,8 @@
    ],
    "correct": "ежедневных наблюдений",
    "case": "Родительный (Genitive)",
-   "explain": "«ежедневных наблюдений» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«ежедневных наблюдений» — «из» always takes the genitive.",
    "id": "c37"
-  },
-  {
-   "sentence": "Из ежедневных наблюдений над сыном прокурор убедился, что у детей, как у дикарей, свои ___ и требования своеобразные, недоступные пониманию взрослых.",
-   "lemma": "воззрение",
-   "options": [
-    "художественные воззрения",
-    "художественным воззрениям",
-    "художественных воззрений",
-    "художественными воззрениями"
-   ],
-   "correct": "художественные воззрения",
-   "case": "Винительный (Accusative)",
-   "explain": "«художественные воззрения» — the accusative marks the direct object of the verb.",
-   "id": "c38"
   },
   {
    "sentence": "При ___, взрослому Сережа мог показаться ненормальным.",
@@ -347,7 +193,7 @@
    ],
    "correct": "внимательном наблюдении",
    "case": "Предложный (Prepositional)",
-   "explain": "«внимательном наблюдении» — after the preposition «при», for location or topic.",
+   "explain": "«внимательном наблюдении» — «при» always takes the prepositional.",
    "id": "c39"
   },
   {
@@ -361,7 +207,7 @@
    ],
    "correct": "отцовской бородой",
    "case": "Творительный (Instrumental)",
-   "explain": "«отцовской бородой» — the instrumental marks the means, company, or complement.",
+   "explain": "«занялся» takes the instrumental.",
    "id": "c40"
   },
   {
@@ -375,50 +221,22 @@
    ],
    "correct": "широких зрачков",
    "case": "Родительный (Genitive)",
-   "explain": "«широких зрачков» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«широких зрачков» — «из» always takes the genitive.",
    "id": "c41"
   },
   {
    "sentence": "Как и большинство ___, он не знал наизусть ни одного стихотворения и не помнил ни одной сказки, так что всякий раз ему приходилось импровизировать.",
    "lemma": "человек",
    "options": [
-    "деловых людей",
+    "деловых людях",
+    "деловые люди",
     "деловым людям",
-    "деловыми людьми",
-    "деловых людях"
+    "деловых людей"
    ],
    "correct": "деловых людей",
    "case": "Родительный (Genitive)",
-   "explain": "«деловых людей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«деловых людей» depends on the noun «большинство» (whose? of what?) — genitive.",
    "id": "c44"
-  },
-  {
-   "sentence": "Обыкновенно он начинал с шаблона «В некотором царстве, в некотором государстве», далее громоздил всякий ___ и, рассказывая начало, совсем не знал, каковы будут середина и конец.",
-   "lemma": "вздор",
-   "options": [
-    "невинному вздору",
-    "невинным вздором",
-    "невинный вздор",
-    "невинного вздора"
-   ],
-   "correct": "невинный вздор",
-   "case": "Винительный (Accusative)",
-   "explain": "«невинный вздор» — the accusative marks the direct object of the verb.",
-   "id": "c45"
-  },
-  {
-   "sentence": "Ну-с, жил он в стеклянном дворце, который сверкал и сиял на солнце, как ___ чистого льда.",
-   "lemma": "кусок",
-   "options": [
-    "большому куску",
-    "большим куском",
-    "большой кусок",
-    "большого куска"
-   ],
-   "correct": "большой кусок",
-   "case": "Именительный (Nominative)",
-   "explain": "«большой кусок» — the subject of the sentence stands in the nominative.",
-   "id": "c48"
   },
   {
    "sentence": "Ну-с, жил он в стеклянном дворце, который сверкал и сиял на солнце, как большой кусок ___.",
@@ -431,7 +249,7 @@
    ],
    "correct": "чистого льда",
    "case": "Родительный (Genitive)",
-   "explain": "«чистого льда» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«чистого льда» depends on the noun «кусок» (whose? of what?) — genitive.",
    "id": "c49"
   },
   {
@@ -445,22 +263,8 @@
    ],
    "correct": "стеклянные колокольчики",
    "case": "Именительный (Nominative)",
-   "explain": "«стеклянные колокольчики» — the subject of the sentence stands in the nominative.",
+   "explain": "«стеклянные колокольчики» is the subject of «висели» — who or what does it — so nominative.",
    "id": "c50"
-  },
-  {
-   "sentence": "Вот точно такие же фонтаны стояли в царском саду, но только в гораздо ___, и струя воды достигала верхушки самого высокого тополя.",
-   "lemma": "размер",
-   "options": [
-    "больших размеров",
-    "больших размерах",
-    "большими размерами",
-    "большие размеры"
-   ],
-   "correct": "больших размерах",
-   "case": "Предложный (Prepositional)",
-   "explain": "«больших размерах» — after the preposition «в», for location or topic.",
-   "id": "c51"
   },
   {
    "sentence": "— У ___ был единственный сын и наследник царства — мальчик, такой же маленький, как ты.",
@@ -473,22 +277,8 @@
    ],
    "correct": "старого царя",
    "case": "Родительный (Genitive)",
-   "explain": "«старого царя» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«старого царя» — «у» always takes the genitive.",
    "id": "c53"
-  },
-  {
-   "sentence": "Он принялся работать, а ленивые, ___ долго еще бродили в его голове.",
-   "lemma": "мысль",
-   "options": [
-    "домашним мыслям",
-    "домашних мыслях",
-    "домашние мысли",
-    "домашних мыслей"
-   ],
-   "correct": "домашние мысли",
-   "case": "Именительный (Nominative)",
-   "explain": "«домашние мысли» — the subject of the sentence stands in the nominative.",
-   "id": "c58"
   }
  ]
 }

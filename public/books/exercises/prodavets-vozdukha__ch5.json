@@ -1,31 +1,17 @@
 {
  "cases": [
   {
-   "sentence": "Первый ___ был отведен под жилые комнаты для администрации городка.",
-   "lemma": "этаж",
-   "options": [
-    "верхнему этажу",
-    "верхнем этаже",
-    "верхним этажом",
-    "верхний этаж"
-   ],
-   "correct": "верхний этаж",
-   "case": "Именительный (Nominative)",
-   "explain": "«верхний этаж» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
    "sentence": "— Такой ___ не может оставаться без охраны, — ответила она.",
    "lemma": "городок",
    "options": [
-    "большой городок",
-    "большого городка",
     "большому городку",
-    "большим городком"
+    "большим городком",
+    "большой городок",
+    "большом городке"
    ],
    "correct": "большой городок",
    "case": "Именительный (Nominative)",
-   "explain": "«большой городок» — the subject of the sentence stands in the nominative.",
+   "explain": "«большой городок» is the subject of «может» — who or what does it — so nominative.",
    "id": "c4"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "необычного городка",
    "case": "Родительный (Genitive)",
-   "explain": "«необычного городка» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«необычного городка» depends on the noun «устройством» (whose? of what?) — genitive.",
    "id": "c5"
   },
   {
@@ -53,7 +39,7 @@
    ],
    "correct": "внутреннего кольца",
    "case": "Родительный (Genitive)",
-   "explain": "«внутреннего кольца» — after the preposition «вдоль», the genitive here marks possession, absence, or quantity.",
+   "explain": "«внутреннего кольца» — «вдоль» always takes the genitive.",
    "id": "c7"
   },
   {
@@ -67,50 +53,8 @@
    ],
    "correct": "третий этаж",
    "case": "Именительный (Nominative)",
-   "explain": "«Третий этаж» — the subject of the sentence stands in the nominative.",
+   "explain": "«третий этаж» is the subject of «отведен» — who or what does it — so nominative.",
    "id": "c8"
-  },
-  {
-   "sentence": "— Четвертый этаж, или первый под уровнем земли, занят машинами, перерабатывающими ___ в азот в виде аммиака, азотной кислоты и цианамида — вещества, очень важного для промышленности и сельского хозяйства.",
-   "lemma": "воздух",
-   "options": [
-    "жидкий воздух",
-    "жидком воздухе",
-    "жидкого воздуха",
-    "жидкому воздуху"
-   ],
-   "correct": "жидкий воздух",
-   "case": "Винительный (Accusative)",
-   "explain": "«жидкий воздух» — the accusative marks the direct object of the verb.",
-   "id": "c9"
-  },
-  {
-   "sentence": "— Четвертый этаж, или первый под уровнем земли, занят машинами, перерабатывающими жидкий воздух в азот в виде аммиака, азотной кислоты и цианамида — вещества, очень важного для промышленности и ___.",
-   "lemma": "хозяйство",
-   "options": [
-    "сельском хозяйстве",
-    "сельское хозяйство",
-    "сельскому хозяйству",
-    "сельского хозяйства"
-   ],
-   "correct": "сельского хозяйства",
-   "case": "Родительный (Genitive)",
-   "explain": "«сельского хозяйства» — the genitive here marks possession, absence, or quantity.",
-   "id": "c10"
-  },
-  {
-   "sentence": "— У нас добывается ___ более миллиона тонн в год, и мы все время расширяем производство.",
-   "lemma": "кислота",
-   "options": [
-    "азотной кислоты",
-    "азотная кислота",
-    "азотной кислотой",
-    "азотной кислоте"
-   ],
-   "correct": "азотной кислоты",
-   "case": "Родительный (Genitive)",
-   "explain": "«азотной кислоты» — the genitive here marks possession, absence, or quantity.",
-   "id": "c11"
   },
   {
    "sentence": "На уровне четвертого этажа в трубе устроена ___ сит, начиная с таких, сквозь решетку которых может пролезть человек, и кончая столь густыми, что они не пропускают даже пыли.",
@@ -123,50 +67,8 @@
    ],
    "correct": "целая система",
    "case": "Именительный (Nominative)",
-   "explain": "«целая система» — the subject of the sentence stands in the nominative.",
+   "explain": "«целая система» is the subject of «устроена» — who or what does it — so nominative.",
    "id": "c12"
-  },
-  {
-   "sentence": "Иногда ветер приносит и вырванные с корнем ___, ели, сосны, пихты, лиственницы.",
-   "lemma": "кедр",
-   "options": [
-    "огромные кедры",
-    "огромных кедрах",
-    "огромным кедрам",
-    "огромными кедрами"
-   ],
-   "correct": "огромные кедры",
-   "case": "Винительный (Accusative)",
-   "explain": "«огромные кедры» — the accusative marks the direct object of the verb.",
-   "id": "c13"
-  },
-  {
-   "sentence": "Часть их мы замораживаем, делая ___, а часть, охладив жидким воздухом, превращаем в хрупкий камень, который затем измельчается в порошок и хранится в кладовых, а может быть, и экспортируется.",
-   "lemma": "запас",
-   "options": [
-    "годовые запасы",
-    "годовым запасам",
-    "годовых запасов",
-    "годовых запасах"
-   ],
-   "correct": "годовые запасы",
-   "case": "Винительный (Accusative)",
-   "explain": "«годовые запасы» — the accusative marks the direct object of the verb.",
-   "id": "c14"
-  },
-  {
-   "sentence": "Часть их мы замораживаем, делая годовые запасы, а часть, охладив ___, превращаем в хрупкий камень, который затем измельчается в порошок и хранится в кладовых, а может быть, и экспортируется.",
-   "lemma": "воздух",
-   "options": [
-    "жидком воздухе",
-    "жидким воздухом",
-    "жидкого воздуха",
-    "жидкий воздух"
-   ],
-   "correct": "жидким воздухом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«жидким воздухом» — the instrumental marks the means, company, or complement.",
-   "id": "c15"
   },
   {
    "sentence": "Нередко в трубу попадают мелкие ___, попадают и более крупные: енотовые собаки, песцы, а были случаи, когда к нам пожаловали в гости, совершив воздушное путешествие, белый медведь и даже тигр!",
@@ -179,36 +81,8 @@
    ],
    "correct": "четвероногие хищники",
    "case": "Именительный (Nominative)",
-   "explain": "«четвероногие хищники» — the subject of the sentence stands in the nominative.",
+   "explain": "«четвероногие хищники» is the subject of «попадают» — who or what does it — so nominative.",
    "id": "c17"
-  },
-  {
-   "sentence": "Нередко в трубу попадают мелкие четвероногие хищники, попадают и более крупные: ___, песцы, а были случаи, когда к нам пожаловали в гости, совершив воздушное путешествие, белый медведь и даже тигр!",
-   "lemma": "собака",
-   "options": [
-    "енотовые собаки",
-    "енотовых собак",
-    "енотовым собакам",
-    "енотовыми собаками"
-   ],
-   "correct": "енотовые собаки",
-   "case": "Именительный (Nominative)",
-   "explain": "«енотовые собаки» — the subject of the sentence stands in the nominative.",
-   "id": "c18"
-  },
-  {
-   "sentence": "Нередко в трубу попадают мелкие четвероногие хищники, попадают и более крупные: енотовые собаки, песцы, а были случаи, когда к нам пожаловали в гости, совершив воздушное путешествие, ___ и даже тигр!",
-   "lemma": "медведь",
-   "options": [
-    "белым медведем",
-    "белого медведя",
-    "белому медведю",
-    "белый медведь"
-   ],
-   "correct": "белый медведь",
-   "case": "Именительный (Nominative)",
-   "explain": "«белый медведь» — the subject of the sentence stands in the nominative.",
-   "id": "c19"
   },
   {
    "sentence": "Во всех ___ — от четвертого до восьмого — происходит превращение атмосферного воздуха, поступающего из центральной трубы, в жидкий воздух.",
@@ -221,21 +95,21 @@
    ],
    "correct": "подземных этажах",
    "case": "Предложный (Prepositional)",
-   "explain": "«подземных этажах» — after the preposition «во», for location or topic.",
+   "explain": "«подземных этажах» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c21"
   },
   {
    "sentence": "Во всех подземных этажах — от четвертого до восьмого — происходит превращение ___, поступающего из центральной трубы, в жидкий воздух.",
    "lemma": "воздух",
    "options": [
+    "атмосферном воздухе",
     "атмосферный воздух",
-    "атмосферного воздуха",
     "атмосферному воздуху",
-    "атмосферным воздухом"
+    "атмосферного воздуха"
    ],
    "correct": "атмосферного воздуха",
    "case": "Родительный (Genitive)",
-   "explain": "«атмосферного воздуха» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«атмосферного воздуха» depends on the noun «превращение» (whose? of what?) — genitive.",
    "id": "c22"
   },
   {
@@ -249,21 +123,21 @@
    ],
    "correct": "центральной трубы",
    "case": "Родительный (Genitive)",
-   "explain": "«центральной трубы» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«центральной трубы» — «из» always takes the genitive.",
    "id": "c23"
   },
   {
    "sentence": "В каждом из этих этажей имеются склады для хранения ___.",
    "lemma": "воздух",
    "options": [
-    "жидким воздухом",
+    "жидком воздухе",
+    "жидкому воздуху",
     "жидкий воздух",
-    "жидкого воздуха",
-    "жидком воздухе"
+    "жидкого воздуха"
    ],
    "correct": "жидкого воздуха",
    "case": "Родительный (Genitive)",
-   "explain": "«жидкого воздуха» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«жидкого воздуха» depends on the noun «хранения» (whose? of what?) — genitive.",
    "id": "c25"
   },
   {
@@ -277,22 +151,8 @@
    ],
    "correct": "седьмом этаже",
    "case": "Предложный (Prepositional)",
-   "explain": "«седьмом этаже» — after the preposition «в», for location or topic.",
+   "explain": "«седьмом этаже» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c27"
-  },
-  {
-   "sentence": "В седьмом этаже при помощи ___ мы добываем жидкий водород, имеющий температуру всего двадцать градусов выше абсолютного нуля.",
-   "lemma": "воздух",
-   "options": [
-    "жидким воздухом",
-    "жидкий воздух",
-    "жидкого воздуха",
-    "жидком воздухе"
-   ],
-   "correct": "жидкого воздуха",
-   "case": "Родительный (Genitive)",
-   "explain": "«жидкого воздуха» — after the preposition «при», the genitive here marks possession, absence, or quantity.",
-   "id": "c28"
   },
   {
    "sentence": "В седьмом этаже при помощи жидкого воздуха мы добываем ___, имеющий температуру всего двадцать градусов выше абсолютного нуля.",
@@ -300,41 +160,13 @@
    "options": [
     "жидким водородом",
     "жидкий водород",
-    "жидкого водорода",
+    "жидком водороде",
     "жидкому водороду"
    ],
    "correct": "жидкий водород",
    "case": "Винительный (Accusative)",
-   "explain": "«жидкий водород» — the accusative marks the direct object of the verb.",
+   "explain": "«жидкий водород» is the direct object of «добываем» (кого? что?) — accusative.",
    "id": "c29"
-  },
-  {
-   "sentence": "В седьмом этаже при помощи жидкого воздуха мы добываем жидкий водород, имеющий температуру всего двадцать градусов выше ___.",
-   "lemma": "нуль",
-   "options": [
-    "абсолютном нуле",
-    "абсолютному нулю",
-    "абсолютного нуля",
-    "абсолютный нуль"
-   ],
-   "correct": "абсолютного нуля",
-   "case": "Родительный (Genitive)",
-   "explain": "«абсолютного нуля» — the genitive here marks possession, absence, or quantity.",
-   "id": "c30"
-  },
-  {
-   "sentence": "А при помощи ___ мы превращаем в жидкое состояние гелий.",
-   "lemma": "водород",
-   "options": [
-    "жидкий водород",
-    "жидкому водороду",
-    "жидкого водорода",
-    "жидком водороде"
-   ],
-   "correct": "жидкого водорода",
-   "case": "Родительный (Genitive)",
-   "explain": "«жидкого водорода» — after the preposition «при», the genitive here marks possession, absence, or quantity.",
-   "id": "c31"
   },
   {
    "sentence": "Весь ___ отведен под жидкий гелий — очень ценный продукт.",
@@ -347,22 +179,8 @@
    ],
    "correct": "восьмой этаж",
    "case": "Именительный (Nominative)",
-   "explain": "«восьмой этаж» — the subject of the sentence stands in the nominative.",
+   "explain": "«восьмой этаж» is the subject of «отведен» — who or what does it — so nominative.",
    "id": "c32"
-  },
-  {
-   "sentence": "Весь восьмой этаж отведен под жидкий гелий — очень ___.",
-   "lemma": "продукт",
-   "options": [
-    "ценному продукту",
-    "ценном продукте",
-    "ценного продукта",
-    "ценный продукт"
-   ],
-   "correct": "ценный продукт",
-   "case": "Именительный (Nominative)",
-   "explain": "«ценный продукт» — the subject of the sentence stands in the nominative.",
-   "id": "c33"
   },
   {
    "sentence": "— Мы не интересуемся ___ мистера Бэйли, — ответила Элеонора, повторяя слова, уже слышанные мною от ее отца.",
@@ -375,7 +193,7 @@
    ],
    "correct": "коммерческими операциями",
    "case": "Творительный (Instrumental)",
-   "explain": "«коммерческими операциями» — the instrumental marks the means, company, or complement.",
+   "explain": "«интересуемся» takes the instrumental.",
    "id": "c34"
   },
   {
@@ -389,7 +207,7 @@
    ],
    "correct": "машинное отделение",
    "case": "Именительный (Nominative)",
-   "explain": "«машинное отделение» — the subject of the sentence stands in the nominative.",
+   "explain": "«машинное отделение» is the subject of «помещается» — who or what does it — so nominative.",
    "id": "c35"
   },
   {
@@ -403,22 +221,8 @@
    ],
    "correct": "первого этажа",
    "case": "Родительный (Genitive)",
-   "explain": "«первого этажа» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«первого этажа» depends on the noun «прогулку» (whose? of what?) — genitive.",
    "id": "c37"
-  },
-  {
-   "sentence": "___ по кругу наводило тоску.",
-   "lemma": "хождение",
-   "options": [
-    "бесконечное хождение",
-    "бесконечного хождения",
-    "бесконечным хождением",
-    "бесконечном хождении"
-   ],
-   "correct": "бесконечное хождение",
-   "case": "Именительный (Nominative)",
-   "explain": "«Бесконечное хождение» — the subject of the sentence stands in the nominative.",
-   "id": "c38"
   },
   {
    "sentence": "Глядя на номера дверей по сторонам, можно было подумать, что находишься в ___.",
@@ -431,7 +235,7 @@
    ],
    "correct": "огромной тюрьме",
    "case": "Предложный (Prepositional)",
-   "explain": "«огромной тюрьме» — after the preposition «в», for location or topic.",
+   "explain": "«огромной тюрьме» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c39"
   },
   {
@@ -445,22 +249,8 @@
    ],
    "correct": "первого этажа",
    "case": "Родительный (Genitive)",
-   "explain": "«первого этажа» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«первого этажа» depends on the noun «обитатели» (whose? of what?) — genitive.",
    "id": "c40"
-  },
-  {
-   "sentence": "Это был поистине ___, и Элеонора, очевидно, составляла такое же исключение, каким бывала в старину дочь капитана на каперском корабле.",
-   "lemma": "городок",
-   "options": [
-    "мужской городок",
-    "мужским городком",
-    "мужскому городку",
-    "мужского городка"
-   ],
-   "correct": "мужской городок",
-   "case": "Именительный (Nominative)",
-   "explain": "«мужской городок» — the subject of the sentence stands in the nominative.",
-   "id": "c44"
   },
   {
    "sentence": "Я напрасно искал среди них людей в ___.",
@@ -473,7 +263,7 @@
    ],
    "correct": "военной форме",
    "case": "Предложный (Prepositional)",
-   "explain": "«военной форме» — after the preposition «в», for location or topic.",
+   "explain": "«военной форме» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c46"
   },
   {
@@ -487,7 +277,7 @@
    ],
    "correct": "первого этажа",
    "case": "Родительный (Genitive)",
-   "explain": "«первого этажа» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«первого этажа» depends on the noun «жителей» (whose? of what?) — genitive.",
    "id": "c48"
   },
   {
@@ -501,7 +291,7 @@
    ],
    "correct": "человеческой породы",
    "case": "Родительный (Genitive)",
-   "explain": "«человеческой породы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«человеческой породы» depends on the noun «типа» (whose? of what?) — genitive.",
    "id": "c53"
   },
   {
@@ -515,7 +305,7 @@
    ],
    "correct": "классовым обществом",
    "case": "Творительный (Instrumental)",
-   "explain": "«классовым обществом» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «создан», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c54"
   },
   {
@@ -529,22 +319,8 @@
    ],
    "correct": "верхнего этажа",
    "case": "Родительный (Genitive)",
-   "explain": "«верхнего этажа» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«верхнего этажа» depends on the noun «толпы» (whose? of what?) — genitive.",
    "id": "c56"
-  },
-  {
-   "sentence": "Те же почти изысканные, прекрасные костюмы, те же ___, то же пропорциональное сложение, хорошо тренированные, здоровые, более ловкие, чем сильные, тела, лица интеллигентов.",
-   "lemma": "манера",
-   "options": [
-    "изящными манерами",
-    "изящных манер",
-    "изящных манерах",
-    "изящные манеры"
-   ],
-   "correct": "изящные манеры",
-   "case": "Винительный (Accusative)",
-   "explain": "«изящные манеры» — the accusative marks the direct object of the verb.",
-   "id": "c57"
   },
   {
    "sentence": "Такое лицо могло быть у директора крупного ___.",
@@ -557,7 +333,7 @@
    ],
    "correct": "торгового предприятия",
    "case": "Родительный (Genitive)",
-   "explain": "«торгового предприятия» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«торгового предприятия» depends on the noun «директора» (whose? of what?) — genitive.",
    "id": "c60"
   }
  ]

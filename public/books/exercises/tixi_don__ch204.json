@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Донская армия, выйдя за границу ___, вновь, как в 1918 году, утратила наступательную силу своего движения.",
-   "lemma": "округ",
-   "options": [
-    "хоперскому округу",
-    "хоперский округ",
-    "хоперского округа",
-    "хоперском округе"
-   ],
-   "correct": "хоперского округа",
-   "case": "Родительный (Genitive)",
-   "explain": "«Хоперского округа» — the genitive here marks possession, absence, or quantity.",
-   "id": "c1"
-  },
-  {
    "sentence": "Наиболее ___ происходили на фланговых направлениях и именно там, где действовали части Добровольческо-Кубанской южной армии.",
    "lemma": "операция",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "активные операции",
    "case": "Именительный (Nominative)",
-   "explain": "«активные операции» — the subject of the sentence stands in the nominative.",
+   "explain": "«активные операции» is the subject of «происходили» — who or what does it — so nominative.",
    "id": "c2"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "левого фланга",
    "case": "Родительный (Genitive)",
-   "explain": "«левого фланга» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«левого фланга» depends on the noun «обходом» (whose? of what?) — genitive.",
    "id": "c4"
   },
   {
@@ -53,36 +39,8 @@
    ],
    "correct": "значительным числом",
    "case": "Творительный (Instrumental)",
-   "explain": "«значительным числом» — the instrumental marks the means, company, or complement.",
+   "explain": "«располагали» takes the instrumental.",
    "id": "c5"
-  },
-  {
-   "sentence": "Но не помогли Врангелю ни французские самолеты, ни ___ и батареи; дальше Камышина продвинуться ему не удалось.",
-   "lemma": "танк",
-   "options": [
-    "английские танки",
-    "английскими танками",
-    "английских танках",
-    "английских танков"
-   ],
-   "correct": "английские танки",
-   "case": "Именительный (Nominative)",
-   "explain": "«английские танки» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
-  },
-  {
-   "sentence": "На этом участке завязались затяжные, упорные бои, обусловившие лишь ___ в линии фронта.",
-   "lemma": "изменение",
-   "options": [
-    "незначительных изменениях",
-    "незначительным изменениям",
-    "незначительными изменениями",
-    "незначительные изменения"
-   ],
-   "correct": "незначительные изменения",
-   "case": "Винительный (Accusative)",
-   "explain": "«незначительные изменения» — the accusative marks the direct object of the verb.",
-   "id": "c8"
   },
   {
    "sentence": "В конце июля началась подготовка ___ к переходу в широкое наступление по всему центральному участку Южного фронта.",
@@ -95,7 +53,7 @@
    ],
    "correct": "красных армий",
    "case": "Родительный (Genitive)",
-   "explain": "«красных армий» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«красных армий» depends on the noun «подготовка» (whose? of what?) — genitive.",
    "id": "c9"
   },
   {
@@ -109,7 +67,7 @@
    ],
    "correct": "центральному участку",
    "case": "Дательный (Dative)",
-   "explain": "«центральному участку» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«центральному участку» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c10"
   },
   {
@@ -123,7 +81,7 @@
    ],
    "correct": "южного фронта",
    "case": "Родительный (Genitive)",
-   "explain": "«Южного фронта» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«южного фронта» depends on the noun «участку» (whose? of what?) — genitive.",
    "id": "c11"
   },
   {
@@ -137,64 +95,22 @@
    ],
    "correct": "ударной группы",
    "case": "Родительный (Genitive)",
-   "explain": "«ударной группы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«ударной группы» depends on the noun «резерв» (whose? of what?) — genitive.",
    "id": "c12"
-  },
-  {
-   "sentence": "В резерв ударной группы должны были поступить перебрасываемые с ___ 28-я дивизия с бригадой бывшего Казанского укрепленного района и 25-я дивизия с бригадой Саратовского укрепленного района.",
-   "lemma": "фронт",
-   "options": [
-    "восточному фронту",
-    "восточном фронте",
-    "восточного фронта",
-    "восточный фронт"
-   ],
-   "correct": "восточного фронта",
-   "case": "Родительный (Genitive)",
-   "explain": "«Восточного фронта» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
-   "id": "c13"
   },
   {
    "sentence": "Нанесение ___ намечалось на воронежском направлении силами 8-й армии с приданными ей 31-й стрелковой дивизией, снятой с Восточного фронта, и 7-й стрелковой дивизией.",
    "lemma": "удар",
    "options": [
-    "вспомогательного удара",
-    "вспомогательном ударе",
+    "вспомогательный удар",
     "вспомогательному удару",
-    "вспомогательным ударом"
+    "вспомогательном ударе",
+    "вспомогательного удара"
    ],
    "correct": "вспомогательного удара",
    "case": "Родительный (Genitive)",
-   "explain": "«вспомогательного удара» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«вспомогательного удара» depends on the noun «Нанесение» (whose? of what?) — genitive.",
    "id": "c16"
-  },
-  {
-   "sentence": "Нанесение вспомогательного удара намечалось на воронежском направлении силами 8-й армии с приданными ей 31-й стрелковой дивизией, снятой с ___, и 7-й стрелковой дивизией.",
-   "lemma": "фронт",
-   "options": [
-    "восточному фронту",
-    "восточном фронте",
-    "восточного фронта",
-    "восточный фронт"
-   ],
-   "correct": "восточного фронта",
-   "case": "Родительный (Genitive)",
-   "explain": "«Восточного фронта» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
-   "id": "c18"
-  },
-  {
-   "sentence": "___ в наступление намечался между 1 и 10 августа.",
-   "lemma": "переход",
-   "options": [
-    "общем переходе",
-    "общий переход",
-    "общего перехода",
-    "общему переходу"
-   ],
-   "correct": "общий переход",
-   "case": "Именительный (Nominative)",
-   "explain": "«Общий переход» — the subject of the sentence stands in the nominative.",
-   "id": "c19"
   },
   {
    "sentence": "А 10-го вновь сформированный корпус под командованием генерала Мамонтова прорвался на стыке 8-й и 9-й ___ и от Новохоперска направился на Тамбов.",
@@ -207,35 +123,35 @@
    ],
    "correct": "красных армий",
    "case": "Родительный (Genitive)",
-   "explain": "«красных армий» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«красных армий» depends on the noun «стыке» (whose? of what?) — genitive.",
    "id": "c20"
   },
   {
    "sentence": "Восьмой армии удалось восстановить положение своего ___ введением в дело армейского резерва.",
    "lemma": "фланг",
    "options": [
-    "левого фланга",
-    "левый фланг",
     "левом фланге",
-    "левым флангом"
+    "левый фланг",
+    "левому флангу",
+    "левого фланга"
    ],
    "correct": "левого фланга",
    "case": "Родительный (Genitive)",
-   "explain": "«левого фланга» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«левого фланга» depends on the noun «положение» (whose? of what?) — genitive.",
    "id": "c21"
   },
   {
    "sentence": "Восьмой армии удалось восстановить положение своего левого фланга введением в дело ___.",
    "lemma": "резерв",
    "options": [
-    "армейском резерве",
+    "армейский резерв",
+    "армейского резерва",
     "армейскому резерву",
-    "армейским резервом",
-    "армейского резерва"
+    "армейском резерве"
    ],
    "correct": "армейского резерва",
    "case": "Родительный (Genitive)",
-   "explain": "«армейского резерва» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«армейского резерва» depends on the noun «положение» (whose? of what?) — genitive.",
    "id": "c22"
   },
   {
@@ -249,36 +165,8 @@
    ],
    "correct": "правый фланг",
    "case": "Именительный (Nominative)",
-   "explain": "«Правый фланг» — the subject of the sentence stands in the nominative.",
+   "explain": "«правый фланг» is the subject of «оказался» — who or what does it — so nominative.",
    "id": "c23"
-  },
-  {
-   "sentence": "Принятыми мерами командующему главной ___ Шорину удалось сомкнуть внутренние фланги обеих армий, но не удалось задержать конницу Мамонтова.",
-   "lemma": "группа",
-   "options": [
-    "ударной группе",
-    "ударная группа",
-    "ударной группы",
-    "ударной группой"
-   ],
-   "correct": "ударной группой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«ударной группой» — the instrumental marks the means, company, or complement.",
-   "id": "c24"
-  },
-  {
-   "sentence": "Принятыми мерами командующему главной ударной группой Шорину удалось сомкнуть ___ обеих армий, но не удалось задержать конницу Мамонтова.",
-   "lemma": "фланг",
-   "options": [
-    "внутренних флангов",
-    "внутренних флангах",
-    "внутренние фланги",
-    "внутренним флангам"
-   ],
-   "correct": "внутренние фланги",
-   "case": "Винительный (Accusative)",
-   "explain": "«внутренние фланги» — the accusative marks the direct object of the verb.",
-   "id": "c25"
   },
   {
    "sentence": "Батальон ее, посаженный на подводы и высланный на станцию Сампур, был разбит во встречном бою одним из ___ мамонтовского корпуса.",
@@ -291,7 +179,7 @@
    ],
    "correct": "боковых отрядов",
    "case": "Родительный (Genitive)",
-   "explain": "«боковых отрядов» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«боковых отрядов» — «из» always takes the genitive.",
    "id": "c26"
   },
   {
@@ -305,7 +193,7 @@
    ],
    "correct": "мамонтовского корпуса",
    "case": "Родительный (Genitive)",
-   "explain": "«мамонтовского корпуса» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«мамонтовского корпуса» depends on the noun «отрядов» (whose? of what?) — genitive.",
    "id": "c27"
   },
   {
@@ -319,7 +207,7 @@
    ],
    "correct": "железной дороги",
    "case": "Родительный (Genitive)",
-   "explain": "«железной дороги» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«железной дороги» depends on the noun «участка» (whose? of what?) — genitive.",
    "id": "c28"
   },
   {
@@ -333,7 +221,7 @@
    ],
    "correct": "короткого боя",
    "case": "Родительный (Genitive)",
-   "explain": "«короткого боя» — after the preposition «после», the genitive here marks possession, absence, or quantity.",
+   "explain": "«короткого боя» — «после» always takes the genitive.",
    "id": "c29"
   },
   {
@@ -347,7 +235,7 @@
    ],
    "correct": "основным силам",
    "case": "Дательный (Dative)",
-   "explain": "«основным силам» — the dative marks the indirect object or recipient.",
+   "explain": "«помешало» takes the dative (кому? чему?).",
    "id": "c30"
   },
   {
@@ -361,7 +249,7 @@
    ],
    "correct": "ударной группы",
    "case": "Родительный (Genitive)",
-   "explain": "«ударной группы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«ударной группы» depends on the noun «силам» (whose? of what?) — genitive.",
    "id": "c31"
   },
   {
@@ -375,22 +263,8 @@
    ],
    "correct": "южного фронта",
    "case": "Родительный (Genitive)",
-   "explain": "«Южного фронта» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«южного фронта» depends on the noun «участке» (whose? of what?) — genitive.",
    "id": "c33"
-  },
-  {
-   "sentence": "___ под давлением превосходящих сил противника отступали на юг, переходя в частые контратаки, задерживаясь на каждом рубеже.",
-   "lemma": "полка",
-   "options": [
-    "казачьим полкам",
-    "казачьих полок",
-    "казачьи полки",
-    "казачьих полках"
-   ],
-   "correct": "казачьи полки",
-   "case": "Именительный (Nominative)",
-   "explain": "«Казачьи полки» — the subject of the sentence stands in the nominative.",
-   "id": "c34"
   },
   {
    "sentence": "Чем дальше части ___ Шорина вторгались в землю Войска Донского, тем сильнее и ожесточеннее становилось оказываемое им сопротивление.",
@@ -403,7 +277,7 @@
    ],
    "correct": "ударной группы",
    "case": "Родительный (Genitive)",
-   "explain": "«ударной группы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«ударной группы» depends on the noun «части» (whose? of what?) — genitive.",
    "id": "c36"
   },
   {
@@ -417,7 +291,7 @@
    ],
    "correct": "повстанческих станиц",
    "case": "Родительный (Genitive)",
-   "explain": "«повстанческих станиц» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«повстанческих станиц» depends on the noun «казаки» (whose? of what?) — genitive.",
    "id": "c37"
   },
   {
@@ -431,7 +305,7 @@
    ],
    "correct": "верхнедонского округа",
    "case": "Родительный (Genitive)",
-   "explain": "«Верхнедонского округа» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«верхнедонского округа» depends on the noun «станиц» (whose? of what?) — genitive.",
    "id": "c38"
   }
  ]

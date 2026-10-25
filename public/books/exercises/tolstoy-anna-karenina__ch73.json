@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Точно не он, а одна ___ сама вжикала по сочной траве.",
-   "lemma": "коса",
-   "options": [
-    "острой косы",
-    "острая коса",
-    "острой косой",
-    "острой косе"
-   ],
-   "correct": "острая коса",
-   "case": "Именительный (Nominative)",
-   "explain": "«острая коса» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Точно не он, а одна острая коса сама вжикала по ___.",
    "lemma": "трава",
    "options": [
@@ -25,36 +11,8 @@
    ],
    "correct": "сочной траве",
    "case": "Дательный (Dative)",
-   "explain": "«сочной траве» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«сочной траве» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c2"
-  },
-  {
-   "sentence": "Миловидное ___ его, обвязанное по волосам жгутом свежей травы, все работало от усилий; но как только взглядывали на него, он улыбался.",
-   "lemma": "лицо",
-   "options": [
-    "молодое лицо",
-    "молодом лице",
-    "молодого лица",
-    "молодому лицу"
-   ],
-   "correct": "молодое лицо",
-   "case": "Именительный (Nominative)",
-   "explain": "«молодое лицо» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
-   "sentence": "Миловидное молодое лицо его, обвязанное по волосам жгутом ___, все работало от усилий; но как только взглядывали на него, он улыбался.",
-   "lemma": "трава",
-   "options": [
-    "свежей траве",
-    "свежая трава",
-    "свежей травы",
-    "свежей травой"
-   ],
-   "correct": "свежей травы",
-   "case": "Родительный (Genitive)",
-   "explain": "«свежей травы» — the genitive here marks possession, absence, or quantity.",
-   "id": "c4"
   },
   {
    "sentence": "Еще радостнее были минуты, когда, подходя к реке, в которую утыкались ряды, старик обтирал мокрою густою травой косу, полоскал ее сталь в ___ реки, зачерпывал брусницу и угощал Левина.",
@@ -67,36 +25,8 @@
    ],
    "correct": "свежей воде",
    "case": "Предложный (Prepositional)",
-   "explain": "«свежей воде» — after the preposition «в», for location or topic.",
+   "explain": "«свежей воде» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c7"
-  },
-  {
-   "sentence": "Это были самые ___.",
-   "lemma": "минута",
-   "options": [
-    "блаженных минут",
-    "блаженными минутами",
-    "блаженные минуты",
-    "блаженным минутам"
-   ],
-   "correct": "блаженные минуты",
-   "case": "Именительный (Nominative)",
-   "explain": "«блаженные минуты» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
-  },
-  {
-   "sentence": "Приходила кочка, он изменял движенье и где пяткой, где концом косы подбивал кочку с обеих сторон ___.",
-   "lemma": "удар",
-   "options": [
-    "коротеньким ударам",
-    "коротенькие удары",
-    "коротеньких ударах",
-    "коротенькими ударами"
-   ],
-   "correct": "коротенькими ударами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«коротенькими ударами» — the instrumental marks the means, company, or complement.",
-   "id": "c9"
   },
   {
    "sentence": "Одни мылись, ___ купались в реке, другие прилаживали место для отдыха, развязывали мешочки с хлебом и оттыкали кувшинчики с квасом.",
@@ -109,21 +39,21 @@
    ],
    "correct": "молодые ребята",
    "case": "Именительный (Nominative)",
-   "explain": "«молодые ребята» — the subject of the sentence stands in the nominative.",
+   "explain": "«молодые ребята» is the subject of «купались» — who or what does it — so nominative.",
    "id": "c11"
   },
   {
    "sentence": "Он пообедал со стариком и разговорился с ним о его ___, принимая в них живейшее участие, и сообщил ему все свои дела и все обстоятельства, которые могли интересовать старика.",
    "lemma": "дело",
    "options": [
-    "домашним делам",
-    "домашних дел",
     "домашних делах",
-    "домашние дела"
+    "домашних дел",
+    "домашними делами",
+    "домашним делам"
    ],
    "correct": "домашних делах",
    "case": "Предложный (Prepositional)",
-   "explain": "«домашних делах» — after the preposition «о», for location or topic.",
+   "explain": "«домашних делах» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c12"
   },
   {
@@ -137,64 +67,8 @@
    ],
    "correct": "молодых ребят",
    "case": "Винительный (Accusative)",
-   "explain": "«молодых ребят» — the accusative marks the direct object of the verb.",
+   "explain": "«молодых ребят» is the direct object of «отбивая» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c13"
-  },
-  {
-   "sentence": "Огромное пространство луга было скошено и блестело особенным, ___, со своими уже пахнущими рядами, на вечерних косых лучах солнца.",
-   "lemma": "блеск",
-   "options": [
-    "нового блеска",
-    "новый блеск",
-    "новом блеске",
-    "новым блеском"
-   ],
-   "correct": "новым блеском",
-   "case": "Творительный (Instrumental)",
-   "explain": "«новым блеском» — after the preposition «со», the instrumental marks the means, company, or complement.",
-   "id": "c14"
-  },
-  {
-   "sentence": "Весь ___, который кашивали два дня при барщине в тридцать кос, был уже скошен.",
-   "lemma": "луг",
-   "options": [
-    "большим лугом",
-    "большой луг",
-    "большому лугу",
-    "большом луге"
-   ],
-   "correct": "большой луг",
-   "case": "Именительный (Nominative)",
-   "explain": "«большой луг» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
-  },
-  {
-   "sentence": "Нескошенными оставались углы с ___.",
-   "lemma": "ряд",
-   "options": [
-    "короткими рядами",
-    "короткие ряды",
-    "коротким рядам",
-    "коротких рядах"
-   ],
-   "correct": "короткими рядами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«короткими рядами» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c16"
-  },
-  {
-   "sentence": "Еще ___ доходили ряды, как передние захватили кафтаны на плечи и пошли через дорогу к Машкину Верху.",
-   "lemma": "космы",
-   "options": [
-    "последним космам",
-    "последних косм",
-    "последних космах",
-    "последние космы"
-   ],
-   "correct": "последние космы",
-   "case": "Именительный (Nominative)",
-   "explain": "«последние космы» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
   },
   {
    "sentence": "После ___ – вдоль ли ходить или поперек – Прохор Ермилин, тоже известный косец, огромный черноватый мужик, пошел передом.",
@@ -207,22 +81,8 @@
    ],
    "correct": "короткого совещания",
    "case": "Родительный (Genitive)",
-   "explain": "«короткого совещания» — after the preposition «после», the genitive here marks possession, absence, or quantity.",
+   "explain": "«короткого совещания» — «после» always takes the genitive.",
    "id": "c18"
-  },
-  {
-   "sentence": "После короткого совещания – вдоль ли ходить или поперек – Прохор Ермилин, тоже известный косец, огромный ___, пошел передом.",
-   "lemma": "мужик",
-   "options": [
-    "черноватому мужику",
-    "черноватый мужик",
-    "черноватом мужике",
-    "черноватого мужика"
-   ],
-   "correct": "черноватый мужик",
-   "case": "Именительный (Nominative)",
-   "explain": "«черноватый мужик» — the subject of the sentence stands in the nominative.",
-   "id": "c19"
   },
   {
    "sentence": "В лесу беспрестанно попадались березовые, разбухшие в ___ грибы, которые резались косами.",
@@ -235,22 +95,8 @@
    ],
    "correct": "сочной траве",
    "case": "Предложный (Prepositional)",
-   "explain": "«сочной траве» — after the preposition «в», for location or topic.",
+   "explain": "«сочной траве» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c20"
-  },
-  {
-   "sentence": "Левин шел за ним и часто думал, что он непременно упадет, поднимаясь с косою на такой ___, куда и без косы трудно влезть; но он взлезал и делал что надо.",
-   "lemma": "бугор",
-   "options": [
-    "крутому бугру",
-    "крутого бугра",
-    "крутой бугор",
-    "крутом бугре"
-   ],
-   "correct": "крутой бугор",
-   "case": "Винительный (Accusative)",
-   "explain": "«крутой бугор» — after the preposition «на», the accusative marks the direct object of the verb.",
-   "id": "c21"
   },
   {
    "sentence": "Он чувствовал, что какая-то ___ двигала им.",
@@ -263,7 +109,7 @@
    ],
    "correct": "внешняя сила",
    "case": "Именительный (Nominative)",
-   "explain": "«внешняя сила» — the subject of the sentence stands in the nominative.",
+   "explain": "«внешняя сила» is the subject of «двигала» — who or what does it — so nominative.",
    "id": "c22"
   }
  ]

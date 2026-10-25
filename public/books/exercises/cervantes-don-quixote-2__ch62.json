@@ -1,46 +1,18 @@
 {
  "cases": [
   {
-   "sentence": "Увидев столько ___, Дон-Кихот разинул рот, но удивление его удвоилось, когда паруса натянули в его глазах с такой быстротой, словно все черти принялись за дело.",
-   "lemma": "человек",
-   "options": [
-    "голых людях",
-    "голым людям",
-    "голых людей",
-    "голыми людьми"
-   ],
-   "correct": "голых людей",
-   "case": "Родительный (Genitive)",
-   "explain": "«голых людей» — the genitive here marks possession, absence, or quantity.",
-   "id": "c1"
-  },
-  {
    "sentence": "Санчо сидел на ___ возле шпалерника, или первого гребца на правой скамье.",
    "lemma": "столб",
    "options": [
     "кормовом столбе",
-    "кормовым столбом",
-    "кормовой столб",
-    "кормового столба"
+    "кормового столба",
+    "кормовому столбу",
+    "кормовым столбом"
    ],
    "correct": "кормовом столбе",
    "case": "Предложный (Prepositional)",
-   "explain": "«кормовом столбе» — after the preposition «на», for location or topic.",
+   "explain": "«кормовом столбе» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c2"
-  },
-  {
-   "sentence": "Санчо сидел на кормовом столбе возле шпалерника, или ___ на правой скамье.",
-   "lemma": "гребец",
-   "options": [
-    "первому гребцу",
-    "первым гребцом",
-    "первом гребце",
-    "первого гребца"
-   ],
-   "correct": "первого гребца",
-   "case": "Родительный (Genitive)",
-   "explain": "«первого гребца» — the genitive here marks possession, absence, or quantity.",
-   "id": "c3"
   },
   {
    "sentence": "Санчо сидел на кормовом столбе возле шпалерника, или первого гребца на ___.",
@@ -53,50 +25,8 @@
    ],
    "correct": "правой скамье",
    "case": "Предложный (Prepositional)",
-   "explain": "«правой скамье» — after the preposition «на», for location or topic.",
+   "explain": "«правой скамье» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c4"
-  },
-  {
-   "sentence": "Когда Санчо увидел, что все эти ___ пришли в движение, — весла показались ему красными ногами, — он проговорил сам себе: \"вот где я вижу очарование, а вовсе не в том, что рассказывает мой господин.",
-   "lemma": "нога",
-   "options": [
-    "красным ногам",
-    "красные ноги",
-    "красных ногах",
-    "красных ног"
-   ],
-   "correct": "красные ноги",
-   "case": "Именительный (Nominative)",
-   "explain": "«красные ноги» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
-  },
-  {
-   "sentence": "Когда Санчо увидел, что все эти красные ноги пришли в движение, — весла показались ему ___, — он проговорил сам себе: \"вот где я вижу очарование, а вовсе не в том, что рассказывает мой господин.",
-   "lemma": "нога",
-   "options": [
-    "красными ногами",
-    "красным ногам",
-    "красных ногах",
-    "красных ног"
-   ],
-   "correct": "красными ногами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«красными ногами» — the instrumental marks the means, company, or complement.",
-   "id": "c6"
-  },
-  {
-   "sentence": "Клянусь Богом, вот, вот где ___, или по крайней мере чистилище.",
-   "lemma": "ад",
-   "options": [
-    "истинному аду",
-    "истинный ад",
-    "истинным адом",
-    "истинном аде"
-   ],
-   "correct": "истинный ад",
-   "case": "Именительный (Nominative)",
-   "explain": "«истинный ад» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
   },
   {
    "sentence": "Она двигалась так быстро, что гребцы на бригантине увидели невозможность спастись, и арраец приказал сложить весла и сдаться, чтобы не раздражить начальника ___.",
@@ -109,36 +39,22 @@
    ],
    "correct": "испанских галер",
    "case": "Родительный (Genitive)",
-   "explain": "«испанских галер» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«испанских галер» depends on the noun «начальника» (whose? of what?) — genitive.",
    "id": "c8"
   },
   {
    "sentence": "«Вот кто!» сказал по испански один пленный, оказавшийся ___; указав на одного из самых прекрасных юношей, какие когда либо существовали на свете; на вид ему не было и двадцати лет.",
    "lemma": "ренегат",
    "options": [
-    "испанский ренегат",
-    "испанского ренегата",
     "испанским ренегатом",
+    "испанском ренегате",
+    "испанского ренегата",
     "испанскому ренегату"
    ],
    "correct": "испанским ренегатом",
    "case": "Творительный (Instrumental)",
-   "explain": "«испанским ренегатом» — the instrumental marks the means, company, or complement.",
+   "explain": "After «оказавшийся», what someone or something is or becomes stands in the instrumental.",
    "id": "c9"
-  },
-  {
-   "sentence": "«Вот кто!» сказал по испански один пленный, оказавшийся испанским ренегатом; указав на одного из самых ___, какие когда либо существовали на свете; на вид ему не было и двадцати лет.",
-   "lemma": "юноша",
-   "options": [
-    "прекрасным юношам",
-    "прекрасных юношей",
-    "прекрасными юношами",
-    "прекрасные юноши"
-   ],
-   "correct": "прекрасных юношей",
-   "case": "Родительный (Genitive)",
-   "explain": "«прекрасных юношей» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
-   "id": "c10"
   },
   {
    "sentence": "«В ___ человек может показаться храбрым, но не дерзким».",
@@ -151,36 +67,22 @@
    ],
    "correct": "сомнительных обстоятельствах",
    "case": "Предложный (Prepositional)",
-   "explain": "«сомнительных обстоятельствах» — after the preposition «в», for location or topic.",
+   "explain": "«сомнительных обстоятельствах» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c11"
   },
   {
    "sentence": "Говоря это, он указал вице-королю на ___, ожидавшего смерти с связанными руками и с веревкой на шее.",
    "lemma": "юноша",
    "options": [
-    "молодого юноши",
-    "молодом юноше",
     "молодым юношей",
-    "молодого юношу"
+    "молодого юноши",
+    "молодого юношу",
+    "молодому юноше"
    ],
    "correct": "молодого юношу",
    "case": "Винительный (Accusative)",
-   "explain": "«молодого юношу» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«молодого юношу» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c12"
-  },
-  {
-   "sentence": "Вице-король взглянул за него и при виде такого красавца, такого решительного и храброго юноши, преисполнился ___ и пожелал спасти его.",
-   "lemma": "сострадание",
-   "options": [
-    "глубокого сострадания",
-    "глубокому состраданию",
-    "глубоким состраданием",
-    "глубоком сострадании"
-   ],
-   "correct": "глубоким состраданием",
-   "case": "Творительный (Instrumental)",
-   "explain": "«глубоким состраданием» — the instrumental marks the means, company, or complement.",
-   "id": "c13"
   },
   {
    "sentence": "— Отсрочьте на время казнь, сказала ___; вы не много потеряете, удалив минуту мщения на столько, сколько нужно времени, чтобы рассказать вам мою историю.",
@@ -193,21 +95,21 @@
    ],
    "correct": "прекрасная девушка",
    "case": "Именительный (Nominative)",
-   "explain": "«прекрасная девушка» — the subject of the sentence stands in the nominative.",
+   "explain": "«прекрасная девушка» is the subject of «сказала» — who or what does it — so nominative.",
    "id": "c14"
   },
   {
    "sentence": "Какое ___ не смягчилось бы при этих словах, хоть на столько, чтобы пожелать услышать рассказ несчастного юноши?",
    "lemma": "сердце",
    "options": [
+    "каменным сердцем",
     "каменном сердце",
     "каменному сердцу",
-    "каменное сердце",
-    "каменного сердца"
+    "каменное сердце"
    ],
    "correct": "каменное сердце",
    "case": "Именительный (Nominative)",
-   "explain": "«каменное сердце» — the subject of the sentence stands in the nominative.",
+   "explain": "«каменное сердце» is the subject of «смягчилось» — who or what does it — so nominative.",
    "id": "c15"
   },
   {
@@ -221,22 +123,8 @@
    ],
    "correct": "родной стороне",
    "case": "Предложный (Prepositional)",
-   "explain": "«родной стороне» — after the preposition «на», for location or topic.",
+   "explain": "«родной стороне» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c16"
-  },
-  {
-   "sentence": "___ мой, услышав про эдикт, грозивший нам изгнанием, поспешил покинуть родную сторону и отыскать для нас убежище на чужбине.",
-   "lemma": "отец",
-   "options": [
-    "предусмотрительного отца",
-    "предусмотрительному отцу",
-    "предусмотрительный отец",
-    "предусмотрительным отцом"
-   ],
-   "correct": "предусмотрительный отец",
-   "case": "Именительный (Nominative)",
-   "explain": "«Предусмотрительный отец» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
   },
   {
    "sentence": "Он зарыл в ___, которое известно только мне, множество драгоценных камней и дорогих жемчугов и много, много денег, и велел мне не дотрогиваться до всех этих богатств, если нас изгонят прежде его возвращения.",
@@ -249,7 +137,7 @@
    ],
    "correct": "тихом месте",
    "case": "Предложный (Prepositional)",
-   "explain": "«тихом месте» — after the preposition «в», for location or topic.",
+   "explain": "«тихом месте» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c18"
   },
   {
@@ -263,77 +151,49 @@
    ],
    "correct": "драгоценных камней",
    "case": "Родительный (Genitive)",
-   "explain": "«драгоценных камней» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«драгоценных камней» depends on the noun «множество» (whose? of what?) — genitive.",
    "id": "c19"
-  },
-  {
-   "sentence": "Он зарыл в тихом месте, которое известно только мне, множество драгоценных камней и ___ и много, много денег, и велел мне не дотрогиваться до всех этих богатств, если нас изгонят прежде его возвращения.",
-   "lemma": "жемчуг",
-   "options": [
-    "дорогим жемчугам",
-    "дорогими жемчугами",
-    "дорогие жемчуга",
-    "дорогих жемчугов"
-   ],
-   "correct": "дорогих жемчугов",
-   "case": "Родительный (Genitive)",
-   "explain": "«дорогих жемчугов» — the genitive here marks possession, absence, or quantity.",
-   "id": "c20"
   },
   {
    "sentence": "Я задрожала при мысли грозившей ему опасности, потому что эти варвары предпочитают ___ прелестнейшей женщине.",
    "lemma": "юноша",
    "options": [
-    "прекрасный юноша",
     "прекрасного юношу",
-    "прекрасного юноши",
+    "прекрасному юноше",
+    "прекрасный юноша",
     "прекрасном юноше"
    ],
    "correct": "прекрасного юношу",
    "case": "Винительный (Accusative)",
-   "explain": "«прекрасного юношу» — the accusative marks the direct object of the verb.",
+   "explain": "«прекрасного юношу» is the direct object of «предпочитают» (кого? что?) — accusative.",
    "id": "c21"
-  },
-  {
-   "sentence": "Как бы вдохновенная ___, я ответила ему: „правда, но только я должна тебе сказать, что это не юноша, а такая же девушка, как я.",
-   "lemma": "небо",
-   "options": [
-    "самим небом",
-    "само небо",
-    "самому небу",
-    "самого неба"
-   ],
-   "correct": "самим небом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«самим небом» — the instrumental marks the means, company, or complement.",
-   "id": "c22"
   },
   {
    "sentence": "Дей согласился и сказал, что на ___ переговорить со мною, как мне вернуться в Испанию за моими богатствами.",
    "lemma": "день",
    "options": [
-    "другой день",
     "другого дня",
-    "другом дне",
-    "другим днём"
+    "другой день",
+    "другим днём",
+    "другому дню"
    ],
    "correct": "другой день",
    "case": "Винительный (Accusative)",
-   "explain": "«другой день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«другой день» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c23"
   },
   {
    "sentence": "Но, устраняя опасность, грозившую ей от него самого, даже в его ___, он приказал отдать ее под надзор знатных мавританок, и дон Грегорио отвели к ним в туже минуту.",
    "lemma": "гарем",
    "options": [
-    "собственный гарем",
-    "собственном гареме",
     "собственным гаремом",
-    "собственного гарема"
+    "собственному гарему",
+    "собственного гарема",
+    "собственном гареме"
    ],
    "correct": "собственном гареме",
    "case": "Предложный (Prepositional)",
-   "explain": "«собственном гареме» — after the preposition «в», for location or topic.",
+   "explain": "«собственном гареме» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c24"
   },
   {
@@ -347,7 +207,7 @@
    ],
    "correct": "знатных мавританок",
    "case": "Родительный (Genitive)",
-   "explain": "«знатных мавританок» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«знатных мавританок» depends on the noun «надзор» (whose? of what?) — genitive.",
    "id": "c25"
   },
   {
@@ -361,64 +221,36 @@
    ],
    "correct": "женском платье",
    "case": "Предложный (Prepositional)",
-   "explain": "«женском платье» — after the preposition «в», for location or topic.",
+   "explain": "«женском платье» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c26"
   },
   {
    "sentence": "С ___ она умолкла и с глазами полными слез вызывала слезы из глаз всех её слушателей.",
    "lemma": "слово",
    "options": [
-    "последнего слова",
     "последнему слову",
     "последним словом",
-    "последнее слово"
+    "последнее слово",
+    "последнем слове"
    ],
    "correct": "последним словом",
    "case": "Творительный (Instrumental)",
-   "explain": "«последним словом» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«последним словом» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c27"
-  },
-  {
-   "sentence": "Дочери я не нашел, но нашел деньги, которые уношу с собой, а в эту минуту, такими ___, отыскиваю самый драгоценный клад свой, мое дитя.",
-   "lemma": "путь",
-   "options": [
-    "непредвиденные пути",
-    "непредвиденным путям",
-    "непредвиденных путей",
-    "непредвиденными путями"
-   ],
-   "correct": "непредвиденными путями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«непредвиденными путями» — the instrumental marks the means, company, or complement.",
-   "id": "c28"
   },
   {
    "sentence": "«Живите, очаровательная Анна Феликс, столько, сколько небо велит вам, и пусть кара обрушатся на ___ несчастного события».",
    "lemma": "виновник",
    "options": [
-    "дерзких виновниках",
+    "дерзкими виновниками",
     "дерзкие виновники",
-    "дерзких виновников",
-    "дерзким виновникам"
+    "дерзким виновникам",
+    "дерзких виновников"
    ],
    "correct": "дерзких виновников",
    "case": "Винительный (Accusative)",
-   "explain": "«дерзких виновников» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«дерзких виновников» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c29"
-  },
-  {
-   "sentence": "«Живите, очаровательная Анна Феликс, столько, сколько небо велит вам, и пусть кара обрушатся на дерзких виновников ___».",
-   "lemma": "событие",
-   "options": [
-    "несчастном событии",
-    "несчастного события",
-    "несчастным событием",
-    "несчастному событию"
-   ],
-   "correct": "несчастного события",
-   "case": "Родительный (Genitive)",
-   "explain": "«несчастного события» — the genitive here marks possession, absence, or quantity.",
-   "id": "c30"
   },
   {
    "sentence": "Вице-король и адмирал колебались было доверяться ренегату, особенно поручить ему ___, но Анна Феликс ручалась за него, а Рикот предложил внести выкуп, в случае если христиан гребцов оставят в неволе.",
@@ -431,7 +263,7 @@
    ],
    "correct": "христианских гребцов",
    "case": "Винительный (Accusative)",
-   "explain": "«христианских гребцов» — the accusative marks the direct object of the verb.",
+   "explain": "«христианских гребцов» is the direct object of «поручить» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c31"
   }
  ]

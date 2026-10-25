@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Прокурора Буэнос-Айреса посетил ___ — настоятель местного кафедрального собора, епископ Хуан де Гарсилассо.",
-   "lemma": "гость",
-   "options": [
-    "редком госте",
-    "редкий гость",
-    "редкого гостя",
-    "редким гостем"
-   ],
-   "correct": "редкий гость",
-   "case": "Именительный (Nominative)",
-   "explain": "«редкий гость» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Прокурора Буэнос-Айреса посетил редкий гость — настоятель местного ___, епископ Хуан де Гарсилассо.",
    "lemma": "собор",
    "options": [
@@ -25,36 +11,8 @@
    ],
    "correct": "кафедрального собора",
    "case": "Родительный (Genitive)",
-   "explain": "«кафедрального собора» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«кафедрального собора» depends on the noun «настоятель» (whose? of what?) — genitive.",
    "id": "c2"
-  },
-  {
-   "sentence": "Прокурор, толстый, маленький, ___ с заплывшими глазками, коротко остриженными волосами и крашеными усами, поднялся со своего кресла, приветствуя епископа.",
-   "lemma": "человек",
-   "options": [
-    "живым человеком",
-    "живого человека",
-    "живому человеку",
-    "живой человек"
-   ],
-   "correct": "живой человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«живой человек» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
-   "sentence": "Прокурор, толстый, маленький, живой человек с заплывшими глазками, коротко остриженными волосами и ___, поднялся со своего кресла, приветствуя епископа.",
-   "lemma": "ус",
-   "options": [
-    "крашеным усам",
-    "крашеные усы",
-    "крашеных усов",
-    "крашеными усами"
-   ],
-   "correct": "крашеными усами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«крашеными усами» — the instrumental marks the means, company, or complement.",
-   "id": "c4"
   },
   {
    "sentence": "Хозяин бережно усадил ___ в тяжелое кожаное кресло против своего письменного стола.",
@@ -67,7 +25,7 @@
    ],
    "correct": "дорогого гостя",
    "case": "Винительный (Accusative)",
-   "explain": "«дорогого гостя» — the accusative marks the direct object of the verb.",
+   "explain": "«дорогого гостя» is the direct object of «усадил» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c5"
   },
   {
@@ -81,63 +39,21 @@
    ],
    "correct": "письменного стола",
    "case": "Родительный (Genitive)",
-   "explain": "«письменного стола» — after the preposition «против», the genitive here marks possession, absence, or quantity.",
+   "explain": "«письменного стола» — «против» always takes the genitive.",
    "id": "c6"
-  },
-  {
-   "sentence": "Пальцы рук напоминали толстые ___, а пуговицы на круглом животе ежеминутно готовы были оторваться, не будучи в силах сдержать колышущуюся стихию жира.",
-   "lemma": "обрубка",
-   "options": [
-    "коротких обрубках",
-    "коротким обрубкам",
-    "короткие обрубки",
-    "коротких обрубок"
-   ],
-   "correct": "короткие обрубки",
-   "case": "Винительный (Accusative)",
-   "explain": "«короткие обрубки» — the accusative marks the direct object of the verb.",
-   "id": "c8"
-  },
-  {
-   "sentence": "Сухой нос с горбинкой, ___ и тонкие, почти синие губы придавали ему типичный облик иезуита.",
-   "lemma": "подбородок",
-   "options": [
-    "острому подбородку",
-    "острым подбородком",
-    "остром подбородке",
-    "острый подбородок"
-   ],
-   "correct": "острый подбородок",
-   "case": "Именительный (Nominative)",
-   "explain": "«острый подбородок» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
-  },
-  {
-   "sentence": "Сухой нос с горбинкой, острый подбородок и тонкие, почти ___ придавали ему типичный облик иезуита.",
-   "lemma": "губа",
-   "options": [
-    "синими губами",
-    "синих губах",
-    "синих губ",
-    "синие губы"
-   ],
-   "correct": "синие губы",
-   "case": "Именительный (Nominative)",
-   "explain": "«синие губы» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
   },
   {
    "sentence": "Сухой нос с горбинкой, острый подбородок и тонкие, почти синие губы придавали ему ___ иезуита.",
    "lemma": "облик",
    "options": [
-    "типичный облик",
-    "типичному облику",
     "типичном облике",
-    "типичного облика"
+    "типичным обликом",
+    "типичный облик",
+    "типичному облику"
    ],
    "correct": "типичный облик",
    "case": "Винительный (Accusative)",
-   "explain": "«типичный облик» — the accusative marks the direct object of the verb.",
+   "explain": "«типичный облик» is the direct object of «придавали» (кого? что?) — accusative.",
    "id": "c11"
   },
   {
@@ -151,22 +67,8 @@
    ],
    "correct": "духовных дел",
    "case": "Родительный (Genitive)",
-   "explain": "«духовных дел» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«духовных дел» — «от» always takes the genitive.",
    "id": "c12"
-  },
-  {
-   "sentence": "Влияние епископа было огромно, и он охотно отрывался от духовных дел, чтобы управлять сложной ___.",
-   "lemma": "игра",
-   "options": [
-    "политической игре",
-    "политическая игра",
-    "политической игры",
-    "политической игрой"
-   ],
-   "correct": "политической игрой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«политической игрой» — the instrumental marks the means, company, or complement.",
-   "id": "c13"
   },
   {
    "sentence": "Заявление Зурита о том, что Сальватор производил ___ на животных, подтвердилось вполне.",
@@ -179,162 +81,36 @@
    ],
    "correct": "необычайные операции",
    "case": "Винительный (Accusative)",
-   "explain": "«необычайные операции» — the accusative marks the direct object of the verb.",
+   "explain": "«необычайные операции» is the direct object of «производил» (кого? что?) — accusative.",
    "id": "c14"
-  },
-  {
-   "sentence": "Кроме того, мы перевезли в город, в качестве ___ и свидетеля обвинения, молодого человека по имени Ихтиандр — он же «морской дьявол».",
-   "lemma": "доказательство",
-   "options": [
-    "вещественном доказательстве",
-    "вещественное доказательство",
-    "вещественному доказательству",
-    "вещественного доказательства"
-   ],
-   "correct": "вещественного доказательства",
-   "case": "Родительный (Genitive)",
-   "explain": "«вещественного доказательства» — after the preposition «в», the genitive here marks possession, absence, or quantity.",
-   "id": "c16"
-  },
-  {
-   "sentence": "Кроме того, мы перевезли в город, в качестве вещественного доказательства и свидетеля обвинения, ___ по имени Ихтиандр — он же «морской дьявол».",
-   "lemma": "человек",
-   "options": [
-    "молодом человеке",
-    "молодого человека",
-    "молодому человеку",
-    "молодым человеком"
-   ],
-   "correct": "молодого человека",
-   "case": "Винительный (Accusative)",
-   "explain": "«молодого человека» — the accusative marks the direct object of the verb.",
-   "id": "c17"
-  },
-  {
-   "sentence": "Кроме того, мы перевезли в город, в качестве вещественного доказательства и свидетеля обвинения, молодого человека по имени Ихтиандр — он же «___».",
-   "lemma": "дьявол",
-   "options": [
-    "морским дьяволом",
-    "морскому дьяволу",
-    "морского дьявола",
-    "морской дьявол"
-   ],
-   "correct": "морской дьявол",
-   "case": "Именительный (Nominative)",
-   "explain": "«морской дьявол» — the subject of the sentence stands in the nominative.",
-   "id": "c18"
-  },
-  {
-   "sentence": "Кто бы мог подумать, что знаменитый «___», который так долго занимал нас, оказался одним из чудовищ зверинца Сальватора!",
-   "lemma": "дьявол",
-   "options": [
-    "морским дьяволом",
-    "морскому дьяволу",
-    "морского дьявола",
-    "морской дьявол"
-   ],
-   "correct": "морской дьявол",
-   "case": "Именительный (Nominative)",
-   "explain": "«морской дьявол» — the subject of the sentence stands in the nominative.",
-   "id": "c19"
-  },
-  {
-   "sentence": "Представьте, ему пришлось соорудить ___, так как он не может жить без воды.",
-   "lemma": "бак",
-   "options": [
-    "большой бак",
-    "большом бак",
-    "большого бак",
-    "большому бак"
-   ],
-   "correct": "большой бак",
-   "case": "Винительный (Accusative)",
-   "explain": "«большой бак» — the accusative marks the direct object of the verb.",
-   "id": "c20"
   },
   {
    "sentence": "Очевидно, Сальватор произвел какие-то ___ в его организме, превратившие юношу в человека-амфибию.",
    "lemma": "изменение",
    "options": [
-    "необычайным изменениям",
+    "необычайных изменениях",
     "необычайные изменения",
-    "необычайных изменений",
-    "необычайных изменениях"
+    "необычайными изменениями",
+    "необычайным изменениям"
    ],
    "correct": "необычайные изменения",
    "case": "Винительный (Accusative)",
-   "explain": "«необычайные изменения» — the accusative marks the direct object of the verb.",
+   "explain": "«необычайные изменения» is the direct object of «произвел» (кого? что?) — accusative.",
    "id": "c21"
-  },
-  {
-   "sentence": "— Дело Сальватора — редкий ___, — ответил прокурор.",
-   "lemma": "казус",
-   "options": [
-    "юридическим казусом",
-    "юридическому казусу",
-    "юридического казуса",
-    "юридический казус"
-   ],
-   "correct": "юридический казус",
-   "case": "Именительный (Nominative)",
-   "explain": "«юридический казус» — the subject of the sentence stands in the nominative.",
-   "id": "c22"
   },
   {
    "sentence": "— Значит, в лучшем случае Сальватор будет обвинен только в нарушении ___ и судить его будут лишь за производство операции над ребенком без разрешения родителя?",
    "lemma": "устав",
    "options": [
+    "медицинском уставе",
     "медицинскому уставу",
     "медицинского устава",
-    "медицинский устав",
-    "медицинским уставом"
+    "медицинский устав"
    ],
    "correct": "медицинского устава",
    "case": "Родительный (Genitive)",
-   "explain": "«медицинского устава» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«медицинского устава» depends on the noun «нарушении» (whose? of what?) — genitive.",
    "id": "c23"
-  },
-  {
-   "sentence": "Эксперты, — правда, это не окончательное их суждение, — склоняются к тому, что ___ не могла даже явиться мысль так уродовать животных и совершить такую необычайную операцию.",
-   "lemma": "человек",
-   "options": [
-    "нормальный человек",
-    "нормальном человеке",
-    "нормальному человеку",
-    "нормальным человеком"
-   ],
-   "correct": "нормальному человеку",
-   "case": "Дательный (Dative)",
-   "explain": "«нормальному человеку» — the dative marks the indirect object or recipient.",
-   "id": "c24"
-  },
-  {
-   "sentence": "Епископ сидел молча, сжав свои ___ и глядя на угол стола.",
-   "lemma": "губа",
-   "options": [
-    "тонкими губами",
-    "тонким губам",
-    "тонких губах",
-    "тонкие губы"
-   ],
-   "correct": "тонкие губы",
-   "case": "Винительный (Accusative)",
-   "explain": "«тонкие губы» — the accusative marks the direct object of the verb.",
-   "id": "c25"
-  },
-  {
-   "sentence": "Суд церкви — ___ — смотрит на действия Сальватора иначе.",
-   "lemma": "суд",
-   "options": [
-    "небесного суда",
-    "небесный суд",
-    "небесному суду",
-    "небесным судом"
-   ],
-   "correct": "небесный суд",
-   "case": "Именительный (Nominative)",
-   "explain": "«небесный суд» — the subject of the sentence stands in the nominative.",
-   "id": "c26"
   },
   {
    "sentence": "Неужели нужно какое-то вмешательство профессора Сальватора, чтобы придать ___ совершенный вид?",
@@ -347,50 +123,36 @@
    ],
    "correct": "человеческому телу",
    "case": "Дательный (Dative)",
-   "explain": "«человеческому телу» — the dative marks the indirect object or recipient.",
+   "explain": "«человеческому телу» is the indirect object of «придать» — to or for whom (кому?) — dative.",
    "id": "c27"
   },
   {
    "sentence": "Или ___ уже не карают у нас религиозных преступлений?",
    "lemma": "закон",
    "options": [
-    "гражданским законам",
     "гражданских законах",
-    "гражданские законы",
-    "гражданских законов"
+    "гражданскими законами",
+    "гражданским законам",
+    "гражданские законы"
    ],
    "correct": "гражданские законы",
    "case": "Именительный (Nominative)",
-   "explain": "«гражданские законы» — the subject of the sentence stands in the nominative.",
+   "explain": "«гражданские законы» is the subject of «карают» — who or what does it — so nominative.",
    "id": "c28"
   },
   {
    "sentence": "Или гражданские законы уже не карают у нас ___?",
    "lemma": "преступление",
    "options": [
+    "религиозных преступлениях",
+    "религиозных преступлений",
     "религиозными преступлениями",
-    "религиозные преступления",
-    "религиозным преступлениям",
-    "религиозных преступлений"
+    "религиозным преступлениям"
    ],
    "correct": "религиозных преступлений",
    "case": "Родительный (Genitive)",
-   "explain": "«религиозных преступлений» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«религиозных преступлений» is the object of a negated verb («не карают») — genitive instead of the accusative.",
    "id": "c29"
-  },
-  {
-   "sentence": "Разве это не ___ религии?..",
-   "lemma": "подрыв",
-   "options": [
-    "чудовищным подрывом",
-    "чудовищному подрыву",
-    "чудовищного подрыва",
-    "чудовищный подрыв"
-   ],
-   "correct": "чудовищный подрыв",
-   "case": "Именительный (Nominative)",
-   "explain": "«чудовищный подрыв» — the subject of the sentence stands in the nominative.",
-   "id": "c30"
   },
   {
    "sentence": "Ведь это существо не имеет даже ___, ибо Ихтиандр по-гречески значит не что иное, как «человек-рыба».",
@@ -403,7 +165,7 @@
    ],
    "correct": "христианского имени",
    "case": "Родительный (Genitive)",
-   "explain": "«христианского имени» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«христианского имени» is the object of a negated verb («не имеет») — genitive instead of the accusative.",
    "id": "c31"
   },
   {
@@ -417,7 +179,7 @@
    ],
    "correct": "грешные размышления",
    "case": "Винительный (Accusative)",
-   "explain": "«грешные размышления» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«грешные размышления» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c32"
   },
   {
@@ -431,7 +193,7 @@
    ],
    "correct": "малых сил",
    "case": "Родительный (Genitive)",
-   "explain": "«малых сил» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«малых сил» — «от» always takes the genitive.",
    "id": "c33"
   },
   {
@@ -445,22 +207,8 @@
    ],
    "correct": "кое-какие преступления",
    "case": "Именительный (Nominative)",
-   "explain": "«кое-какие преступления» — the subject of the sentence stands in the nominative.",
+   "explain": "«кое-какие преступления» is the subject of «водились» — who or what does it — so nominative.",
    "id": "c34"
-  },
-  {
-   "sentence": "Безбожник Сальватор и омерзительное детище его рук — Ихтиандр — ___ церкви, богу, небу!",
-   "lemma": "вызов",
-   "options": [
-    "дерзком вызове",
-    "дерзкому вызову",
-    "дерзким вызовом",
-    "дерзкий вызов"
-   ],
-   "correct": "дерзкий вызов",
-   "case": "Именительный (Nominative)",
-   "explain": "«дерзкий вызов» — the subject of the sentence stands in the nominative.",
-   "id": "c35"
   },
   {
    "sentence": "Прокурор сидел перед ним подавленный, опустив голову, не пытаясь прервать этот поток ___.",
@@ -473,36 +221,8 @@
    ],
    "correct": "грозных слов",
    "case": "Родительный (Genitive)",
-   "explain": "«грозных слов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«грозных слов» depends on the noun «поток» (whose? of what?) — genitive.",
    "id": "c36"
-  },
-  {
-   "sentence": "А как ___, я приношу вам благодарность за ту помощь, которую вы оказали мне.",
-   "lemma": "лицо",
-   "options": [
-    "должностном лице",
-    "должностному лицу",
-    "должностное лицо",
-    "должностного лица"
-   ],
-   "correct": "должностное лицо",
-   "case": "Именительный (Nominative)",
-   "explain": "«должностное лицо» — the subject of the sentence stands in the nominative.",
-   "id": "c37"
-  },
-  {
-   "sentence": "Он много писал, произвел несколько ___ в тюремной больнице.",
-   "lemma": "операция",
-   "options": [
-    "блестящими операциями",
-    "блестящим операциям",
-    "блестящих операций",
-    "блестящие операции"
-   ],
-   "correct": "блестящих операций",
-   "case": "Родительный (Genitive)",
-   "explain": "«блестящих операций» — the genitive here marks possession, absence, or quantity.",
-   "id": "c39"
   },
   {
    "sentence": "Он много писал, произвел несколько блестящих операций в ___.",
@@ -515,7 +235,7 @@
    ],
    "correct": "тюремной больнице",
    "case": "Предложный (Prepositional)",
-   "explain": "«тюремной больнице» — after the preposition «в», for location or topic.",
+   "explain": "«тюремной больнице» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c40"
   },
   {
@@ -529,7 +249,7 @@
    ],
    "correct": "тюремных пациентов",
    "case": "Родительный (Genitive)",
-   "explain": "«тюремных пациентов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«тюремных пациентов» depends on the noun «числе» (whose? of what?) — genitive.",
    "id": "c41"
   },
   {
@@ -543,21 +263,21 @@
    ],
    "correct": "тюремного смотрителя",
    "case": "Родительный (Genitive)",
-   "explain": "«тюремного смотрителя» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«тюремного смотрителя» depends on the noun «жена» (whose? of what?) — genitive.",
    "id": "c42"
   },
   {
    "sentence": "Сальватор спас ей жизнь в тот ___, когда приглашенные для консультации врачи отказались помочь, заявив, что здесь медицина бессильна.",
    "lemma": "момент",
    "options": [
-    "самый момент",
-    "самому моменту",
     "самым моментом",
-    "самом моменте"
+    "самому моменту",
+    "самого момента",
+    "самый момент"
    ],
    "correct": "самый момент",
    "case": "Винительный (Accusative)",
-   "explain": "«самый момент» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«самый момент» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c43"
   },
   {
@@ -571,7 +291,7 @@
    ],
    "correct": "судебный зал",
    "case": "Именительный (Nominative)",
-   "explain": "«судебный зал» — the subject of the sentence stands in the nominative.",
+   "explain": "«судебный зал» is the subject of «мог» — who or what does it — so nominative.",
    "id": "c44"
   },
   {
@@ -585,22 +305,8 @@
    ],
    "correct": "жадных глаз",
    "case": "Родительный (Genitive)",
-   "explain": "«жадных глаз» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«жадных глаз» depends on the noun «Сотни» (whose? of what?) — genitive.",
    "id": "c46"
-  },
-  {
-   "sentence": "Но мало кто мог выдержать ___ Сальватора.",
-   "lemma": "взгляд",
-   "options": [
-    "пристального взгляда",
-    "пристальному взгляду",
-    "пристальным взглядом",
-    "пристальный взгляд"
-   ],
-   "correct": "пристальный взгляд",
-   "case": "Винительный (Accusative)",
-   "explain": "«пристальный взгляд» — the accusative marks the direct object of the verb.",
-   "id": "c47"
   },
   {
    "sentence": "___ Ихтиандр чувствовал себя плохо и почти все время проводил в водяном баке, скрываясь от надоедливых любопытных глаз.",
@@ -613,7 +319,7 @@
    ],
    "correct": "последние дни",
    "case": "Винительный (Accusative)",
-   "explain": "«Последние дни» — the accusative marks the direct object of the verb.",
+   "explain": "«последние дни» tells how long or how often, with no preposition — accusative.",
    "id": "c48"
   },
   {
@@ -627,7 +333,7 @@
    ],
    "correct": "любопытных глаз",
    "case": "Родительный (Genitive)",
-   "explain": "«любопытных глаз» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«любопытных глаз» — «от» always takes the genitive.",
    "id": "c49"
   },
   {
@@ -641,7 +347,7 @@
    ],
    "correct": "вещественных доказательств",
    "case": "Родительный (Genitive)",
-   "explain": "«вещественных доказательств» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«вещественных доказательств» — «из» always takes the genitive.",
    "id": "c50"
   },
   {
@@ -655,120 +361,8 @@
    ],
    "correct": "будущего процесса",
    "case": "Родительный (Genitive)",
-   "explain": "«будущего процесса» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«будущего процесса» depends on the noun «свидетелей» (whose? of what?) — genitive.",
    "id": "c51"
-  },
-  {
-   "sentence": "— По требованию суда, — начал свою речь уже немолодой профессор Шейн, ___ суда, — мы осмотрели животных и юношу Ихтиандра, подвергшихся операциям, произведенным профессором Сальватором в его лабораториях.",
-   "lemma": "эксперт",
-   "options": [
-    "главному эксперту",
-    "главного эксперта",
-    "главным экспертом",
-    "главный эксперт"
-   ],
-   "correct": "главный эксперт",
-   "case": "Именительный (Nominative)",
-   "explain": "«главный эксперт» — the subject of the sentence stands in the nominative.",
-   "id": "c53"
-  },
-  {
-   "sentence": "В садах Сальватора мы нашли детей и подростков в возрасте от нескольких месяцев до четырнадцати лет, принадлежащих к различным ___.",
-   "lemma": "племя",
-   "options": [
-    "индейские племена",
-    "индейским племенам",
-    "индейскими племенами",
-    "индейских племён"
-   ],
-   "correct": "индейским племенам",
-   "case": "Дательный (Dative)",
-   "explain": "«индейским племенам» — after the preposition «к», the dative marks the indirect object or recipient.",
-   "id": "c54"
-  },
-  {
-   "sentence": "— Суду не интересны ___ эксперта на научные вопросы.",
-   "lemma": "взгляд",
-   "options": [
-    "личных взглядах",
-    "личных взглядов",
-    "личные взгляды",
-    "личным взглядам"
-   ],
-   "correct": "личные взгляды",
-   "case": "Именительный (Nominative)",
-   "explain": "«личные взгляды» — the subject of the sentence stands in the nominative.",
-   "id": "c55"
-  },
-  {
-   "sentence": "— Его тело было покрыто искусственной чешуей, — продолжал эксперт, — из какого-то неизвестного, гибкого, но крайне ___.",
-   "lemma": "вещество",
-   "options": [
-    "прочном веществе",
-    "прочное вещество",
-    "прочному веществу",
-    "прочного вещества"
-   ],
-   "correct": "прочного вещества",
-   "case": "Родительный (Genitive)",
-   "explain": "«прочного вещества» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
-   "id": "c57"
-  },
-  {
-   "sentence": "Когда мы сняли с Ихтиандра его чешую, то обнаружили под обеими лопатками круглые отверстия десяти сантиметров в диаметре, закрытые пятью ___, похожими на жабры акулы.",
-   "lemma": "полоска",
-   "options": [
-    "тонкие полоски",
-    "тонких полосках",
-    "тонкими полосками",
-    "тонким полоскам"
-   ],
-   "correct": "тонкими полосками",
-   "case": "Творительный (Instrumental)",
-   "explain": "«тонкими полосками» — the instrumental marks the means, company, or complement.",
-   "id": "c58"
-  },
-  {
-   "sentence": "— Это загадка, которую, быть может, пожелает нам разъяснить ___ Сальватор.",
-   "lemma": "профессор",
-   "options": [
-    "самого профессора",
-    "самому профессору",
-    "сам профессор",
-    "самом профессоре"
-   ],
-   "correct": "сам профессор",
-   "case": "Именительный (Nominative)",
-   "explain": "«сам профессор» — the subject of the sentence stands in the nominative.",
-   "id": "c59"
-  },
-  {
-   "sentence": "Наше мнение было таково: по биологическому закону Геккеля каждое ___ в своем развитии повторяет все те формы, которые прошел данный вид живого существа в течение вековой жизни вида на земле.",
-   "lemma": "существо",
-   "options": [
-    "живому существу",
-    "живым существом",
-    "живого существа",
-    "живое существо"
-   ],
-   "correct": "живое существо",
-   "case": "Именительный (Nominative)",
-   "explain": "«живое существо» — the subject of the sentence stands in the nominative.",
-   "id": "c61"
-  },
-  {
-   "sentence": "Наше мнение было таково: по биологическому закону Геккеля каждое живое существо в своем развитии повторяет все те формы, которые прошел ___ живого существа в течение вековой жизни вида на земле.",
-   "lemma": "вид",
-   "options": [
-    "данному виду",
-    "данного вида",
-    "данный вид",
-    "данном виде"
-   ],
-   "correct": "данный вид",
-   "case": "Именительный (Nominative)",
-   "explain": "«данный вид» — the subject of the sentence stands in the nominative.",
-   "id": "c62"
   },
   {
    "sentence": "Наше мнение было таково: по биологическому закону Геккеля каждое живое существо в своем развитии повторяет все те формы, которые прошел данный вид ___ в течение вековой жизни вида на земле.",
@@ -781,7 +375,7 @@
    ],
    "correct": "живого существа",
    "case": "Родительный (Genitive)",
-   "explain": "«живого существа» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«живого существа» depends on the noun «вид» (whose? of what?) — genitive.",
    "id": "c63"
   },
   {
@@ -795,7 +389,7 @@
    ],
    "correct": "двадцатый день",
    "case": "Винительный (Accusative)",
-   "explain": "«двадцатый день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«двадцатый день» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c64"
   },
   {
@@ -809,22 +403,8 @@
    ],
    "correct": "человеческого зародыша",
    "case": "Родительный (Genitive)",
-   "explain": "«человеческого зародыша» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«человеческого зародыша» — «у» always takes the genitive.",
    "id": "c65"
-  },
-  {
-   "sentence": "Науке, правда, известны случаи, когда даже у совершенно ___ остается незаросшее жаберное отверстие на шее, под челюстью.",
-   "lemma": "человек",
-   "options": [
-    "взрослый человек",
-    "взрослому человеку",
-    "взрослого человека",
-    "взрослом человеке"
-   ],
-   "correct": "взрослого человека",
-   "case": "Родительный (Genitive)",
-   "explain": "«взрослого человека» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
-   "id": "c66"
   },
   {
    "sentence": "Науке, правда, известны случаи, когда даже у совершенно взрослого человека остается незаросшее ___ на шее, под челюстью.",
@@ -837,22 +417,8 @@
    ],
    "correct": "жаберное отверстие",
    "case": "Именительный (Nominative)",
-   "explain": "«жаберное отверстие» — the subject of the sentence stands in the nominative.",
+   "explain": "«жаберное отверстие» is the subject of «остается» — who or what does it — so nominative.",
    "id": "c67"
-  },
-  {
-   "sentence": "Это так называемые ___.",
-   "lemma": "фистула",
-   "options": [
-    "шейные фистулы",
-    "шейных фистул",
-    "шейными фистулами",
-    "шейным фистулам"
-   ],
-   "correct": "шейные фистулы",
-   "case": "Именительный (Nominative)",
-   "explain": "«шейные фистулы» — the subject of the sentence stands in the nominative.",
-   "id": "c68"
   },
   {
    "sentence": "При ___ зародыша должно было получиться одно из двух: или продолжали бы развиваться жабры, но за счет развития органа слуха и других анатомических изменений.",
@@ -865,106 +431,8 @@
    ],
    "correct": "ненормальном развитии",
    "case": "Предложный (Prepositional)",
-   "explain": "«ненормальном развитии» — after the preposition «при», for location or topic.",
+   "explain": "«ненормальном развитии» — «при» always takes the prepositional.",
    "id": "c69"
-  },
-  {
-   "sentence": "При ненормальном развитии зародыша должно было получиться одно из двух: или продолжали бы развиваться жабры, но за счет развития органа слуха и других ___.",
-   "lemma": "изменение",
-   "options": [
-    "анатомические изменения",
-    "анатомических изменений",
-    "анатомическим изменениям",
-    "анатомических изменениях"
-   ],
-   "correct": "анатомических изменений",
-   "case": "Родительный (Genitive)",
-   "explain": "«анатомических изменений» — the genitive here marks possession, absence, or quantity.",
-   "id": "c70"
-  },
-  {
-   "sentence": "Но Ихтиандр — нормально ___, с хорошим слухом, вполне развитой нижней челюстью и нормальными легкими, но, кроме того, у него есть вполне сформированные жабры.",
-   "lemma": "человек",
-   "options": [
-    "развитого человека",
-    "развитом человеке",
-    "развитый человек",
-    "развитому человеку"
-   ],
-   "correct": "развитый человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«развитый человек» — the subject of the sentence stands in the nominative.",
-   "id": "c71"
-  },
-  {
-   "sentence": "Но Ихтиандр — нормально развитый человек, с ___, вполне развитой нижней челюстью и нормальными легкими, но, кроме того, у него есть вполне сформированные жабры.",
-   "lemma": "слух",
-   "options": [
-    "хорошем слухе",
-    "хорошим слухом",
-    "хорошему слуху",
-    "хороший слух"
-   ],
-   "correct": "хорошим слухом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«хорошим слухом» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c72"
-  },
-  {
-   "sentence": "Это, повторяю, загадка, ответ на которую должен дать ___ Сальватор.",
-   "lemma": "профессор",
-   "options": [
-    "самого профессора",
-    "самому профессору",
-    "сам профессор",
-    "самом профессоре"
-   ],
-   "correct": "сам профессор",
-   "case": "Именительный (Nominative)",
-   "explain": "«сам профессор» — the subject of the sentence stands in the nominative.",
-   "id": "c73"
-  },
-  {
-   "sentence": "— Какое же ваше ___?",
-   "lemma": "заключение",
-   "options": [
-    "общем заключении",
-    "общим заключением",
-    "общему заключению",
-    "общее заключение"
-   ],
-   "correct": "общее заключение",
-   "case": "Именительный (Nominative)",
-   "explain": "«общее заключение» — the subject of the sentence stands in the nominative.",
-   "id": "c74"
-  },
-  {
-   "sentence": "Он не знал, что эксперты решили облегчить его участь и поднять вопрос о его невменяемости, чтобы иметь возможность заменить ___ больничным.",
-   "lemma": "режим",
-   "options": [
-    "тюремным режимом",
-    "тюремного режима",
-    "тюремном режиме",
-    "тюремный режим"
-   ],
-   "correct": "тюремный режим",
-   "case": "Винительный (Accusative)",
-   "explain": "«тюремный режим» — the accusative marks the direct object of the verb.",
-   "id": "c75"
-  },
-  {
-   "sentence": "Но пусть это будет вместе с тем и моим ___.",
-   "lemma": "слово",
-   "options": [
-    "последнему слову",
-    "последнее слово",
-    "последнего слова",
-    "последним словом"
-   ],
-   "correct": "последним словом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«последним словом» — the instrumental marks the means, company, or complement.",
-   "id": "c76"
   }
  ]
 }

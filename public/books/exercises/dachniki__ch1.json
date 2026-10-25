@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "___, одновременно столовая и гостиная.",
-   "lemma": "комната",
-   "options": [
-    "большей комнате",
-    "большая комната",
-    "большей комнаты",
-    "большей комнатой"
-   ],
-   "correct": "большая комната",
-   "case": "Именительный (Nominative)",
-   "explain": "«Большая комната» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "В ___ налево открытая дверь в кабинет Басова, направо дверь в комнату его жены.",
    "lemma": "стена",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "задней стене",
    "case": "Предложный (Prepositional)",
-   "explain": "«задней стене» — after the preposition «в», for location or topic.",
+   "explain": "«задней стене» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c2"
   },
   {
@@ -39,36 +25,8 @@
    ],
    "correct": "правой стене",
    "case": "Предложный (Prepositional)",
-   "explain": "«правой стене» — after the preposition «в», for location or topic.",
+   "explain": "«правой стене» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c3"
-  },
-  {
-   "sentence": "Посреди комнаты большой ___, против двери в кабинет рояль.",
-   "lemma": "стол",
-   "options": [
-    "обеденного стола",
-    "обеденным столом",
-    "обеденном столе",
-    "обеденный стол"
-   ],
-   "correct": "обеденный стол",
-   "case": "Винительный (Accusative)",
-   "explain": "«обеденный стол» — the accusative marks the direct object of the verb.",
-   "id": "c4"
-  },
-  {
-   "sentence": "Мебель плетеная, дачная, только около входа в коридор ___, покрытый серым чехлом.",
-   "lemma": "диван",
-   "options": [
-    "широкий диван",
-    "широкого дивана",
-    "широком диване",
-    "широкому дивану"
-   ],
-   "correct": "широкий диван",
-   "case": "Винительный (Accusative)",
-   "explain": "«широкий диван» — the accusative marks the direct object of the verb.",
-   "id": "c5"
   },
   {
    "sentence": "Мебель плетеная, дачная, только около входа в коридор широкий диван, покрытый ___.",
@@ -81,50 +39,8 @@
    ],
    "correct": "серым чехлом",
    "case": "Творительный (Instrumental)",
-   "explain": "«серым чехлом» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «покрытый», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c6"
-  },
-  {
-   "sentence": "Басов сидит за столом в кабинете, перед ним ___ под зеленым абажуром.",
-   "lemma": "лампа",
-   "options": [
-    "рабочая лампа",
-    "рабочей лампе",
-    "рабочей лампы",
-    "рабочей лампой"
-   ],
-   "correct": "рабочая лампа",
-   "case": "Именительный (Nominative)",
-   "explain": "«рабочая лампа» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
-  },
-  {
-   "sentence": "Он пишет, сидя боком к двери, поворачивает голову, присматривается к чему-то в полутьме ___ и порой тихо напевает.",
-   "lemma": "комната",
-   "options": [
-    "большой комнатой",
-    "большая комната",
-    "большой комнате",
-    "большой комнаты"
-   ],
-   "correct": "большой комнаты",
-   "case": "Родительный (Genitive)",
-   "explain": "«большой комнаты» — after the preposition «в», the genitive here marks possession, absence, or quantity.",
-   "id": "c8"
-  },
-  {
-   "sentence": "(За портьерой слышен ___.) Кто это?",
-   "lemma": "кашель",
-   "options": [
-    "сухой кашель",
-    "сухим кашлем",
-    "сухому кашлю",
-    "сухом кашле"
-   ],
-   "correct": "сухой кашель",
-   "case": "Именительный (Nominative)",
-   "explain": "«сухой кашель» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
   },
   {
    "sentence": "Влас (входит, в руках его ___).",
@@ -137,22 +53,8 @@
    ],
    "correct": "старый портфель",
    "case": "Именительный (Nominative)",
-   "explain": "«старый портфель» — the subject of the sentence stands in the nominative.",
+   "explain": "«старый портфель» is the subject of «входит» — who or what does it — so nominative.",
    "id": "c18"
-  },
-  {
-   "sentence": "Вы думаете, я только ___ не люблю?",
-   "lemma": "родственник",
-   "options": [
-    "бедных родственников",
-    "бедные родственники",
-    "бедным родственникам",
-    "бедными родственниками"
-   ],
-   "correct": "бедных родственников",
-   "case": "Винительный (Accusative)",
-   "explain": "«бедных родственников» — the accusative marks the direct object of the verb.",
-   "id": "c19"
   },
   {
    "sentence": "А этот ваш Замыслов в один ___ скомпрометирует Сергея, вы увидите!",
@@ -165,22 +67,8 @@
    ],
    "correct": "подлый день",
    "case": "Винительный (Accusative)",
-   "explain": "«подлый день» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«подлый день» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c20"
-  },
-  {
-   "sentence": "Говорят, это участь ___.",
-   "lemma": "человек",
-   "options": [
-    "недюжинных людях",
-    "недюжинными людьми",
-    "недюжинных людей",
-    "недюжинным людям"
-   ],
-   "correct": "недюжинных людей",
-   "case": "Родительный (Genitive)",
-   "explain": "«недюжинных людей» — the genitive here marks possession, absence, or quantity.",
-   "id": "c22"
   },
   {
    "sentence": "Я принимаю хотя и косвенное, но напряженное участие в защите и охране ___ собственности а вы называете это бесполезным трудом!",
@@ -193,7 +81,7 @@
    ],
    "correct": "священного института",
    "case": "Родительный (Genitive)",
-   "explain": "«священного института» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«священного института» depends on the noun «охране» (whose? of what?) — genitive.",
    "id": "c23"
   },
   {
@@ -201,13 +89,13 @@
    "lemma": "труд",
    "options": [
     "бесполезного труда",
-    "бесполезный труд",
+    "бесполезному труду",
     "бесполезном труде",
     "бесполезным трудом"
    ],
    "correct": "бесполезным трудом",
    "case": "Творительный (Instrumental)",
-   "explain": "«бесполезным трудом» — the instrumental marks the means, company, or complement.",
+   "explain": "After «называете» (to call, consider or make someone something), that something is in the instrumental.",
    "id": "c24"
   },
   {
@@ -221,36 +109,8 @@
    ],
    "correct": "новом учителе",
    "case": "Предложный (Prepositional)",
-   "explain": "«новом учителе» — after the preposition «о», for location or topic.",
+   "explain": "«новом учителе» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c32"
-  },
-  {
-   "sentence": "За окном вдали слышна трещотка ___ и тихий свист.",
-   "lemma": "сторож",
-   "options": [
-    "ночной сторож",
-    "ночным сторожем",
-    "ночном стороже",
-    "ночного сторожа"
-   ],
-   "correct": "ночного сторожа",
-   "case": "Родительный (Genitive)",
-   "explain": "«ночного сторожа» — the genitive here marks possession, absence, or quantity.",
-   "id": "c34"
-  },
-  {
-   "sentence": "За окном вдали слышна трещотка ночного сторожа и ___.",
-   "lemma": "свист",
-   "options": [
-    "тихом свисте",
-    "тихий свист",
-    "тихого свиста",
-    "тихому свисту"
-   ],
-   "correct": "тихий свист",
-   "case": "Именительный (Nominative)",
-   "explain": "«тихий свист» — the subject of the sentence stands in the nominative.",
-   "id": "c35"
   },
   {
    "sentence": "___ кружатся и от запаха цветов!",
@@ -263,22 +123,8 @@
    ],
    "correct": "слабые головы",
    "case": "Именительный (Nominative)",
-   "explain": "«Слабые головы» — the subject of the sentence stands in the nominative.",
+   "explain": "«слабые головы» is the subject of «кружатся» — who or what does it — so nominative.",
    "id": "c38"
-  },
-  {
-   "sentence": "За окном ___ сторожа, и, в ответ ему, издали доносится еще более тихий свист.",
-   "lemma": "свист",
-   "options": [
-    "тихом свисте",
-    "тихий свист",
-    "тихого свиста",
-    "тихому свисту"
-   ],
-   "correct": "тихий свист",
-   "case": "Именительный (Nominative)",
-   "explain": "«тихий свист» — the subject of the sentence stands in the nominative.",
-   "id": "c39"
   },
   {
    "sentence": "Калерия тихонько касается клавиш ___.",
@@ -291,22 +137,8 @@
    ],
    "correct": "среднего регистра",
    "case": "Родительный (Genitive)",
-   "explain": "«среднего регистра» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«среднего регистра» depends on the noun «клавиш» (whose? of what?) — genitive.",
    "id": "c40"
-  },
-  {
-   "sentence": "И это ___, на которые нет ответов ни у меня, ни у вас, ни у кого нет!",
-   "lemma": "вопрос",
-   "options": [
-    "страшных вопросах",
-    "страшным вопросам",
-    "страшных вопросов",
-    "страшные вопросы"
-   ],
-   "correct": "страшные вопросы",
-   "case": "Именительный (Nominative)",
-   "explain": "«страшные вопросы» — the subject of the sentence stands in the nominative.",
-   "id": "c43"
   },
   {
    "sentence": "Вы, патронесса, отрываете меня от моих ___ — так и знайте!",
@@ -319,7 +151,7 @@
    ],
    "correct": "прямых обязанностей",
    "case": "Родительный (Genitive)",
-   "explain": "«прямых обязанностей» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«прямых обязанностей» — «от» always takes the genitive.",
    "id": "c44"
   },
   {
@@ -333,7 +165,7 @@
    ],
    "correct": "ежедневного упражнения",
    "case": "Родительный (Genitive)",
-   "explain": "«ежедневного упражнения» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«ежедневного упражнения» — «для» always takes the genitive.",
    "id": "c47"
   },
   {
@@ -347,7 +179,7 @@
    ],
    "correct": "первый раз",
    "case": "Винительный (Accusative)",
-   "explain": "«первый раз» — the accusative marks the direct object of the verb.",
+   "explain": "«первый раз» tells how long or how often, with no preposition — accusative.",
    "id": "c51"
   },
   {
@@ -361,22 +193,8 @@
    ],
    "correct": "приличном обществе",
    "case": "Предложный (Prepositional)",
-   "explain": "«приличном обществе» — after the preposition «в», for location or topic.",
+   "explain": "«приличном обществе» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c52"
-  },
-  {
-   "sentence": "Вы сразу можете отравить ребенка, открыв перед ним всегда ___ правды.",
-   "lemma": "лицо",
-   "options": [
-    "страшного лица",
-    "страшное лицо",
-    "страшном лице",
-    "страшным лицом"
-   ],
-   "correct": "страшное лицо",
-   "case": "Именительный (Nominative)",
-   "explain": "«страшное лицо» — the subject of the sentence stands in the nominative.",
-   "id": "c54"
   },
   {
    "sentence": "Это насчет колонии ___.",
@@ -389,7 +207,7 @@
    ],
    "correct": "малолетних преступников",
    "case": "Родительный (Genitive)",
-   "explain": "«малолетних преступников» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«малолетних преступников» depends on the noun «колонии» (whose? of what?) — genitive.",
    "id": "c62"
   },
   {
@@ -403,7 +221,7 @@
    ],
    "correct": "усталый владыка",
    "case": "Именительный (Nominative)",
-   "explain": "«усталый владыка» — the subject of the sentence stands in the nominative.",
+   "explain": "«усталый владыка» is the subject of «страдает» — who or what does it — so nominative.",
    "id": "c72"
   },
   {
@@ -417,7 +235,7 @@
    ],
    "correct": "горных вершин",
    "case": "Родительный (Genitive)",
-   "explain": "«горных вершин» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«горных вершин» depends on the noun «безмолвия» (whose? of what?) — genitive.",
    "id": "c74"
   },
   {
@@ -431,22 +249,8 @@
    ],
    "correct": "гордых высот",
    "case": "Родительный (Genitive)",
-   "explain": "«гордых высот» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«гордых высот» depends on the noun «молчание» (whose? of what?) — genitive.",
    "id": "c75"
-  },
-  {
-   "sentence": "Далеко звучат трещотка сторожа и ___.",
-   "lemma": "свист",
-   "options": [
-    "тихом свисте",
-    "тихий свист",
-    "тихого свиста",
-    "тихому свисту"
-   ],
-   "correct": "тихий свист",
-   "case": "Именительный (Nominative)",
-   "explain": "«тихий свист» — the subject of the sentence stands in the nominative.",
-   "id": "c81"
   }
  ]
 }

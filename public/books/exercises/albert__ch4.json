@@ -1,62 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Очень приятно повел вечер: музицировали, смеялись, ___ было.",
-   "lemma": "общество",
-   "options": [
-    "приятным обществом",
-    "приятном обществе",
-    "приятному обществу",
-    "приятное общество"
-   ],
-   "correct": "приятное общество",
-   "case": "Именительный (Nominative)",
-   "explain": "«приятное общество» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Альберт был такой же, как и вчера: та же ___ глаз и губ, тот же светлый, вдохновенный лоб и слабые члены.",
-   "lemma": "улыбка",
-   "options": [
-    "красивая улыбка",
-    "красивой улыбки",
-    "красивой улыбке",
-    "красивой улыбкой"
-   ],
-   "correct": "красивая улыбка",
-   "case": "Именительный (Nominative)",
-   "explain": "«красивая улыбка» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Альберт был такой же, как и вчера: та же красивая улыбка глаз и губ, тот же светлый, вдохновенный лоб и ___.",
-   "lemma": "член",
-   "options": [
-    "слабых членов",
-    "слабых членах",
-    "слабым членам",
-    "слабые члены"
-   ],
-   "correct": "слабые члены",
-   "case": "Именительный (Nominative)",
-   "explain": "«слабые члены» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
-   "sentence": "Пальто Захара пришлось ему как раз впору, и чистый, длинный, некрахмаленый воротник ___ живописно откидывался вокруг его тонкой белой шеи, придавая ему что-то особенно детское и невинное.",
-   "lemma": "рубашка",
-   "options": [
-    "ночная рубашка",
-    "ночной рубашки",
-    "ночной рубашкой",
-    "ночной рубашке"
-   ],
-   "correct": "ночной рубашки",
-   "case": "Родительный (Genitive)",
-   "explain": "«ночной рубашки» — the genitive here marks possession, absence, or quantity.",
-   "id": "c4"
-  },
-  {
    "sentence": "Пальто Захара пришлось ему как раз впору, и чистый, длинный, некрахмаленый воротник ночной рубашки живописно откидывался вокруг его тонкой ___, придавая ему что-то особенно детское и невинное.",
    "lemma": "шея",
    "options": [
@@ -67,36 +11,8 @@
    ],
    "correct": "белой шеи",
    "case": "Родительный (Genitive)",
-   "explain": "«белой шеи» — after the preposition «вокруг», the genitive here marks possession, absence, or quantity.",
+   "explain": "«белой шеи» — «вокруг» always takes the genitive.",
    "id": "c5"
-  },
-  {
-   "sentence": "Захар с видимым удовольствием принес бутылку лафиту, два стакана, ___, которые курил Альберт, и скрипку.",
-   "lemma": "папироса",
-   "options": [
-    "слабых папирос",
-    "слабые папиросы",
-    "слабых папиросах",
-    "слабыми папиросами"
-   ],
-   "correct": "слабых папирос",
-   "case": "Родительный (Genitive)",
-   "explain": "«слабых папирос» — the genitive here marks possession, absence, or quantity.",
-   "id": "c7"
-  },
-  {
-   "sentence": "И он ___,— прибавил Альберт,— он играл там из оперы что-то.",
-   "lemma": "музыкант",
-   "options": [
-    "славный музыкант",
-    "славному музыканту",
-    "славного музыканта",
-    "славном музыканте"
-   ],
-   "correct": "славный музыкант",
-   "case": "Именительный (Nominative)",
-   "explain": "«славный музыкант» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
   },
   {
    "sentence": "— Да, он хорошо играет, но я не люблю его игры,— сказал Делесов, желая навести своего собеседника на разговор о музыке,— он ___ не понимает; а ведь Донизетти и Беллини — ведь это не музыка.",
@@ -109,50 +25,22 @@
    ],
    "correct": "классической музыки",
    "case": "Родительный (Genitive)",
-   "explain": "«классической музыки» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«классической музыки» is the object of a negated verb («не понимает») — genitive instead of the accusative.",
    "id": "c9"
   },
   {
    "sentence": "— О нет, нет, извините меня,— заговорил Альберт с мягким ___,— старая музыка — музыка, и новая музыка — музыка.",
    "lemma": "выражение",
    "options": [
-    "заступническим выражением",
-    "заступнического выражения",
     "заступническом выражении",
-    "заступническое выражение"
+    "заступническим выражением",
+    "заступническое выражение",
+    "заступническому выражению"
    ],
    "correct": "заступническим выражением",
    "case": "Творительный (Instrumental)",
-   "explain": "«заступническим выражением» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«заступническим выражением» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c10"
-  },
-  {
-   "sentence": "— О нет, нет, извините меня,— заговорил Альберт с мягким заступническим выражением,— ___ — музыка, и новая музыка — музыка.",
-   "lemma": "музыка",
-   "options": [
-    "старой музыки",
-    "старая музыка",
-    "старой музыке",
-    "старой музыкой"
-   ],
-   "correct": "старая музыка",
-   "case": "Именительный (Nominative)",
-   "explain": "«старая музыка» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
-  },
-  {
-   "sentence": "— О нет, нет, извините меня,— заговорил Альберт с мягким заступническим выражением,— старая музыка — музыка, и ___ — музыка.",
-   "lemma": "музыка",
-   "options": [
-    "новой музыке",
-    "новой музыки",
-    "новая музыка",
-    "новой музыкой"
-   ],
-   "correct": "новая музыка",
-   "case": "Именительный (Nominative)",
-   "explain": "«новая музыка» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
   },
   {
    "sentence": "И действительно, страшный ___ горел во всей его фигуре.",
@@ -165,7 +53,7 @@
    ],
    "correct": "внутренний огонь",
    "case": "Именительный (Nominative)",
-   "explain": "«внутренний огонь» — the subject of the sentence stands in the nominative.",
+   "explain": "«внутренний огонь» is the subject of «горел» — who or what does it — so nominative.",
    "id": "c14"
   },
   {
@@ -179,22 +67,8 @@
    ],
    "correct": "первого акта",
    "case": "Родительный (Genitive)",
-   "explain": "«первого акта» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«первого акта» depends on the noun «финал» (whose? of what?) — genitive.",
    "id": "c16"
-  },
-  {
-   "sentence": "Но вслед за тем он подошел к столу, налил себе ___ вина, залпом выпил и сел опять на кровать к Делесову.",
-   "lemma": "стакан",
-   "options": [
-    "полном стакане",
-    "полным стаканом",
-    "полный стакан",
-    "полного стакана"
-   ],
-   "correct": "полный стакан",
-   "case": "Винительный (Accusative)",
-   "explain": "«полный стакан» — the accusative marks the direct object of the verb.",
-   "id": "c17"
   },
   {
    "sentence": "Они оба молчали; но между ними взглядом и улыбкой ближе и ближе устанавливались ___.",
@@ -207,78 +81,8 @@
    ],
    "correct": "любовные отношения",
    "case": "Именительный (Nominative)",
-   "explain": "«любовные отношения» — the subject of the sentence stands in the nominative.",
+   "explain": "«любовные отношения» is the subject of «устанавливались» — who or what does it — so nominative.",
    "id": "c18"
-  },
-  {
-   "sentence": "Альберт задумался на несколько секунд, потом лицо его озарилось ___.",
-   "lemma": "улыбка",
-   "options": [
-    "грустной улыбке",
-    "грустной улыбки",
-    "грустная улыбка",
-    "грустной улыбкой"
-   ],
-   "correct": "грустной улыбкой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«грустной улыбкой» — the instrumental marks the means, company, or complement.",
-   "id": "c19"
-  },
-  {
-   "sentence": "Это неправда, она из шутки говорит это, она ___, а я, точно, не совершенно здоров стал с некоторого времени.",
-   "lemma": "женщина",
-   "options": [
-    "доброй женщины",
-    "доброй женщиной",
-    "добрая женщина",
-    "доброй женщине"
-   ],
-   "correct": "добрая женщина",
-   "case": "Именительный (Nominative)",
-   "explain": "«добрая женщина» — the subject of the sentence stands in the nominative.",
-   "id": "c21"
-  },
-  {
-   "sentence": "Альберт опять замолчал и остановившимися, широко ___ посмотрел в темную дверь.",
-   "lemma": "глаз",
-   "options": [
-    "открытые глаза",
-    "открытых глаз",
-    "открытым глазам",
-    "открытыми глазами"
-   ],
-   "correct": "открытыми глазами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«открытыми глазами» — the instrumental marks the means, company, or complement.",
-   "id": "c22"
-  },
-  {
-   "sentence": "Я молчал и только смотрел на нее; я знал, что я ___, а она аристократическая дама.",
-   "lemma": "артист",
-   "options": [
-    "бедного артиста",
-    "бедным артистом",
-    "бедный артист",
-    "бедном артисте"
-   ],
-   "correct": "бедный артист",
-   "case": "Именительный (Nominative)",
-   "explain": "«бедный артист» — the subject of the sentence stands in the nominative.",
-   "id": "c24"
-  },
-  {
-   "sentence": "Я ___, а она аристократическая дама.",
-   "lemma": "артист",
-   "options": [
-    "бедного артиста",
-    "бедным артистом",
-    "бедный артист",
-    "бедном артисте"
-   ],
-   "correct": "бедный артист",
-   "case": "Именительный (Nominative)",
-   "explain": "«бедный артист» — the subject of the sentence stands in the nominative.",
-   "id": "c25"
   },
   {
    "sentence": "Она сидела у ___, положила руки на рампу; на ней было белое платье и перлы на шее.",
@@ -291,35 +95,21 @@
    ],
    "correct": "самого края",
    "case": "Родительный (Genitive)",
-   "explain": "«самого края» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«самого края» — «у» always takes the genitive.",
    "id": "c26"
-  },
-  {
-   "sentence": "Она сидела у самого края, положила руки на рампу; на ней было ___ и перлы на шее.",
-   "lemma": "платье",
-   "options": [
-    "белом платье",
-    "белое платье",
-    "белого платья",
-    "белому платью"
-   ],
-   "correct": "белое платье",
-   "case": "Именительный (Nominative)",
-   "explain": "«белое платье» — the subject of the sentence stands in the nominative.",
-   "id": "c27"
   },
   {
    "sentence": "Я не боюсь этих глупостей и не верю; но мне стало страшно за свою голову,— сказал он, любезно улыбаясь и дотрагиваясь рукою до лба,— за свой ___ мне стало страшно, мне казалось, что-то сделалось у меня в голове.",
    "lemma": "ум",
    "options": [
-    "бедный ум",
-    "бедным умом",
+    "бедном уме",
     "бедному уму",
-    "бедном уме"
+    "бедный ум",
+    "бедного ума"
    ],
    "correct": "бедный ум",
    "case": "Винительный (Accusative)",
-   "explain": "«бедный ум» — after the preposition «за», the accusative marks the direct object of the verb.",
+   "explain": "«бедный ум» — «за» takes the accusative here (куда? за что? за кого?) — the instrumental would mean position behind or at (где? за чем?).",
    "id": "c29"
   },
   {
@@ -333,7 +123,7 @@
    ],
    "correct": "целый оркестр",
    "case": "Именительный (Nominative)",
-   "explain": "«целый оркестр» — the subject of the sentence stands in the nominative.",
+   "explain": "«целый оркестр» is the subject of «играет» — who or what does it — so nominative.",
    "id": "c30"
   }
  ]

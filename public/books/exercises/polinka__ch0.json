@@ -1,88 +1,18 @@
 {
  "cases": [
   {
-   "sentence": "В галантерейном магазине «___», что в одном из пассажей, торговля в разгаре.",
-   "lemma": "новость",
-   "options": [
-    "парижских новостях",
-    "парижским новостям",
-    "парижских новостей",
-    "парижские новости"
-   ],
-   "correct": "парижские новости",
-   "case": "Именительный (Nominative)",
-   "explain": "«Парижские новости» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Слышен ___ приказчичьих голосов, гул, какой бывает в школе, когда учитель заставляет всех учеников зубрить что-нибудь вслух.",
-   "lemma": "гул",
-   "options": [
-    "монотонным гулом",
-    "монотонный гул",
-    "монотонного гула",
-    "монотонном гуле"
-   ],
-   "correct": "монотонный гул",
-   "case": "Именительный (Nominative)",
-   "explain": "«монотонный гул» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
    "sentence": "И этого ___ не нарушают ни смех дам, ни стук входной стеклянной двери, ни беготня мальчиков.",
    "lemma": "шум",
    "options": [
-    "однообразным шумом",
+    "однообразном шуме",
+    "однообразного шума",
     "однообразному шуму",
-    "однообразный шум",
-    "однообразного шума"
+    "однообразным шумом"
    ],
    "correct": "однообразного шума",
    "case": "Родительный (Genitive)",
-   "explain": "«однообразного шума» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«однообразного шума» is the object of a negated verb («не нарушают») — genitive instead of the accusative.",
    "id": "c4"
-  },
-  {
-   "sentence": "А приказчик Николай Тимофеич, ___, завитой, одетый по моде, с большой булавкой на галстуке, уже расчистил место на прилавке, вытянул шею и с улыбкой глядит на Полиньку.",
-   "lemma": "брюнет",
-   "options": [
-    "стройного брюнета",
-    "стройный брюнет",
-    "стройным брюнетом",
-    "стройному брюнету"
-   ],
-   "correct": "стройный брюнет",
-   "case": "Именительный (Nominative)",
-   "explain": "«стройный брюнет» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
-  },
-  {
-   "sentence": "Стеклярусные кружева по тюлю, черные и цветные — самая ___.",
-   "lemma": "отделка",
-   "options": [
-    "модной отделки",
-    "модной отделкой",
-    "модной отделке",
-    "модная отделка"
-   ],
-   "correct": "модная отделка",
-   "case": "Именительный (Nominative)",
-   "explain": "«модная отделка» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
-  },
-  {
-   "sentence": "Не всякому приятно ___ в возу быть.",
-   "lemma": "колесо",
-   "options": [
-    "пятому колесу",
-    "пятое колесо",
-    "пятым колесом",
-    "пятого колеса"
-   ],
-   "correct": "пятым колесом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«пятым колесом» — the instrumental marks the means, company, or complement.",
-   "id": "c9"
   },
   {
    "sentence": "— Самый модный теперь из ___.",
@@ -95,7 +25,7 @@
    ],
    "correct": "птичьего пера",
    "case": "Родительный (Genitive)",
-   "explain": "«птичьего пера» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«птичьего пера» — «из» always takes the genitive.",
    "id": "c10"
   },
   {
@@ -109,22 +39,8 @@
    ],
    "correct": "красные пятна",
    "case": "Именительный (Nominative)",
-   "explain": "«красные пятна» — the subject of the sentence stands in the nominative.",
+   "explain": "«красные пятна» is the subject of «выступают» — who or what does it — so nominative.",
    "id": "c11"
-  },
-  {
-   "sentence": "Студентам запрещается жениться, да и разве он к вам затем ходит, чтобы всё ___ кончить?",
-   "lemma": "образ",
-   "options": [
-    "честном образе",
-    "честным образом",
-    "честной образ",
-    "честному образу"
-   ],
-   "correct": "честным образом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«честным образом» — the instrumental marks the means, company, or complement.",
-   "id": "c12"
   },
   {
    "sentence": "У себя дома да в ___ стыдно пить, ну, а у таких простых, необразованных людей, как мы, некого им стыдиться, можно и вверх ногами ходить.",
@@ -137,7 +53,7 @@
    ],
    "correct": "хороших домах",
    "case": "Предложный (Prepositional)",
-   "explain": "«хороших домах» — after the preposition «в», for location or topic.",
+   "explain": "«хороших домах» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c13"
   },
   {
@@ -151,7 +67,7 @@
    ],
    "correct": "белых коробок",
    "case": "Родительный (Genitive)",
-   "explain": "«белых коробок» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«белых коробок» depends on the noun «гору» (whose? of what?) — genitive.",
    "id": "c14"
   },
   {
@@ -165,7 +81,7 @@
    ],
    "correct": "сама мамаша",
    "case": "Именительный (Nominative)",
-   "explain": "«сама мамаша» — the subject of the sentence stands in the nominative.",
+   "explain": "«сама мамаша» is the subject of «берет» — who or what does it — so nominative.",
    "id": "c15"
   }
  ]

@@ -1,48 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Марфенька вызвалась показать ему все хозяйство: и свой садик, и ___, и огород, цветник, беседки.",
-   "lemma": "сад",
-   "options": [
-    "большой сад",
-    "большого сада",
-    "большому саду",
-    "большим садом"
-   ],
-   "correct": "большой сад",
-   "case": "Именительный (Nominative)",
-   "explain": "«большой сад» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Она надела на голову косынку, взяла зонтик и летала по грядам и цветам, как сильф, блестя красками здоровья, веселостью ___ и летним нарядом из прозрачных тканей.",
-   "lemma": "глаз",
-   "options": [
-    "серо-голубые глаза",
-    "серо-голубым глазам",
-    "серо-голубых глазах",
-    "серо-голубых глаз"
-   ],
-   "correct": "серо-голубых глаз",
-   "case": "Родительный (Genitive)",
-   "explain": "«серо-голубых глаз» — the genitive here marks possession, absence, or quantity.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Она надела на голову косынку, взяла зонтик и летала по грядам и цветам, как сильф, блестя красками здоровья, веселостью серо-голубых глаз и ___ из прозрачных тканей.",
-   "lemma": "наряд",
-   "options": [
-    "летнего наряда",
-    "летним нарядом",
-    "летний наряд",
-    "летнем наряде"
-   ],
-   "correct": "летним нарядом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«летним нарядом» — the instrumental marks the means, company, or complement.",
-   "id": "c3"
-  },
-  {
    "sentence": "Она надела на голову косынку, взяла зонтик и летала по грядам и цветам, как сильф, блестя красками здоровья, веселостью серо-голубых глаз и летним нарядом из ___.",
    "lemma": "ткань",
    "options": [
@@ -53,7 +11,7 @@
    ],
    "correct": "прозрачных тканей",
    "case": "Родительный (Genitive)",
-   "explain": "«прозрачных тканей» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«прозрачных тканей» — «из» always takes the genitive.",
    "id": "c4"
   },
   {
@@ -67,7 +25,7 @@
    ],
    "correct": "старческой красоте",
    "case": "Предложный (Prepositional)",
-   "explain": "«старческой красоте» — after the preposition «во», for location or topic.",
+   "explain": "«старческой красоте» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c5"
   },
   {
@@ -81,7 +39,7 @@
    ],
    "correct": "живая фигура",
    "case": "Именительный (Nominative)",
-   "explain": "«живая фигура» — the subject of the sentence stands in the nominative.",
+   "explain": "«живая фигура» is the subject of «выходила» — who or what does it — so nominative.",
    "id": "c6"
   },
   {
@@ -95,64 +53,8 @@
    ],
    "correct": "другого цветка",
    "case": "Родительный (Genitive)",
-   "explain": "«другого цветка» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«другого цветка» — «у» always takes the genitive.",
    "id": "c7"
-  },
-  {
-   "sentence": "— Ты любишь щеголять, Марфенька: ___!",
-   "lemma": "башмак",
-   "options": [
-    "лакированному башмаку",
-    "лакированного башмака",
-    "лакированным башмаком",
-    "лакированный башмак"
-   ],
-   "correct": "лакированный башмак",
-   "case": "Именительный (Nominative)",
-   "explain": "«лакированный башмак» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
-  },
-  {
-   "sentence": "— ___; начала итальянскую музыку, да учитель уехал.",
-   "lemma": "романс",
-   "options": [
-    "русскими романсами",
-    "русских романсах",
-    "русские романсы",
-    "русских романсов"
-   ],
-   "correct": "русские романсы",
-   "case": "Именительный (Nominative)",
-   "explain": "«Русские романсы» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
-  },
-  {
-   "sentence": "— ___, но зато беспрестанно.",
-   "lemma": "голос",
-   "options": [
-    "диким голосом",
-    "диком голосе",
-    "дикий голос",
-    "дикого голоса"
-   ],
-   "correct": "диким голосом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«Диким голосом» — the instrumental marks the means, company, or complement.",
-   "id": "c10"
-  },
-  {
-   "sentence": "Еще «Кота Мура», «Братья Серапионы», «___»: это больше всего люблю.",
-   "lemma": "человек",
-   "options": [
-    "песочным человеком",
-    "песочный человек",
-    "песочного человека",
-    "песочному человеку"
-   ],
-   "correct": "песочный человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«Песочный человек» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
   },
   {
    "sentence": "Он с улыбкой вслушивался в ее ___ и с возрастающим наслаждением вглядывался ей в глаза, в беленькие тесные зубы, когда она смеялась.",
@@ -165,78 +67,8 @@
    ],
    "correct": "литературный лепет",
    "case": "Винительный (Accusative)",
-   "explain": "«литературный лепет» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«литературный лепет» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c12"
-  },
-  {
-   "sentence": "Он замолчал, припоминал Беловодову, разговор с ней, сходство между той и другой, и ___ этого сходства, и причины несходства.",
-   "lemma": "причина",
-   "options": [
-    "разными причинами",
-    "разных причин",
-    "разные причины",
-    "разных причинах"
-   ],
-   "correct": "разные причины",
-   "case": "Именительный (Nominative)",
-   "explain": "«разные причины» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
-  },
-  {
-   "sentence": "У него рисовались оба образа и просились во что-то: обе готовые, обе прекрасные — каждая своей красотой — обе разливали ___ на какую-то картину.",
-   "lemma": "свет",
-   "options": [
-    "ярком свете",
-    "яркий свет",
-    "ярким светом",
-    "яркому свету"
-   ],
-   "correct": "яркий свет",
-   "case": "Винительный (Accusative)",
-   "explain": "«яркий свет» — the accusative marks the direct object of the verb.",
-   "id": "c15"
-  },
-  {
-   "sentence": "Что из этого будет — он не знал, и пока решил написать Марфенькин портрет ___.",
-   "lemma": "краска",
-   "options": [
-    "масляным краскам",
-    "масляные краски",
-    "масляных красках",
-    "масляными красками"
-   ],
-   "correct": "масляными красками",
-   "case": "Творительный (Instrumental)",
-   "explain": "«масляными красками» — the instrumental marks the means, company, or complement.",
-   "id": "c16"
-  },
-  {
-   "sentence": "Райский бросил взгляд на Волгу, забыл все и замер неподвижно, воззрясь в ее задумчивое течение, глядя, как она раскидывается по лугам ___.",
-   "lemma": "разлив",
-   "options": [
-    "широкие разливы",
-    "широкими разливами",
-    "широким разливам",
-    "широких разливах"
-   ],
-   "correct": "широкими разливами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«широкими разливами» — the instrumental marks the means, company, or complement.",
-   "id": "c17"
-  },
-  {
-   "sentence": "Полноводье еще не сбыло, и река эавладела ___, а у крутых берегов шумливо и кругами омывала подножия гор.",
-   "lemma": "прибрежье",
-   "options": [
-    "плоским прибрежьем",
-    "плоского прибрежья",
-    "плоскому прибрежью",
-    "плоское прибрежье"
-   ],
-   "correct": "плоским прибрежьем",
-   "case": "Творительный (Instrumental)",
-   "explain": "«плоским прибрежьем» — the instrumental marks the means, company, or complement.",
-   "id": "c18"
   },
   {
    "sentence": "Полноводье еще не сбыло, и река эавладела плоским прибрежьем, а у ___ шумливо и кругами омывала подножия гор.",
@@ -249,7 +81,7 @@
    ],
    "correct": "крутых берегов",
    "case": "Родительный (Genitive)",
-   "explain": "«крутых берегов» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«крутых берегов» — «у» always takes the genitive.",
    "id": "c19"
   },
   {
@@ -263,7 +95,7 @@
    ],
    "correct": "прошлый год",
    "case": "Винительный (Accusative)",
-   "explain": "«Прошлый год» — the accusative marks the direct object of the verb.",
+   "explain": "«прошлый год» tells how long or how often, with no preposition — accusative.",
    "id": "c21"
   }
  ]

@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Теперь ей чаще приходится крошить лук, тереть хрен и тому ___.",
-   "lemma": "пряность",
-   "options": [
-    "подобные пряности",
-    "подобных пряностях",
-    "подобными пряностями",
-    "подобным пряностям"
-   ],
-   "correct": "подобные пряности",
-   "case": "Именительный (Nominative)",
-   "explain": "«подобные пряности» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
    "sentence": "В лице у ней лежит ___.",
    "lemma": "уныние",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "глубокое уныние",
    "case": "Именительный (Nominative)",
-   "explain": "«глубокое уныние» — the subject of the sentence stands in the nominative.",
+   "explain": "«глубокое уныние» is the subject of «лежит» — who or what does it — so nominative.",
    "id": "c3"
   },
   {
@@ -39,50 +25,8 @@
    ],
    "correct": "другой год",
    "case": "Винительный (Accusative)",
-   "explain": "«другой год» — the accusative marks the direct object of the verb.",
+   "explain": "«другой год» tells how long or how often, with no preposition — accusative.",
    "id": "c4"
-  },
-  {
-   "sentence": "«___» братца удалось сверх ожидания.",
-   "lemma": "дело",
-   "options": [
-    "законное дело",
-    "законном деле",
-    "законным делом",
-    "законного дела"
-   ],
-   "correct": "законное дело",
-   "case": "Именительный (Nominative)",
-   "explain": "«Законное дело» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
-  },
-  {
-   "sentence": "Братец сказали, что это ___ по дому, и велели написать: «К сему заемному письму такая-то (чин, имя и фамилия) руку приложила».",
-   "lemma": "бумага",
-   "options": [
-    "нужной бумагой",
-    "нужной бумаги",
-    "нужной бумаге",
-    "нужная бумага"
-   ],
-   "correct": "нужная бумага",
-   "case": "Именительный (Nominative)",
-   "explain": "«нужная бумага» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
-  },
-  {
-   "sentence": "Обломов понял, в какие тиски попал он, когда все, что присылал Штольц, стало поступать на уплату долга, а ему оставалось только ___ денег на прожиток.",
-   "lemma": "количество",
-   "options": [
-    "небольшом количестве",
-    "небольшим количеством",
-    "небольшому количеству",
-    "небольшое количество"
-   ],
-   "correct": "небольшое количество",
-   "case": "Именительный (Nominative)",
-   "explain": "«небольшое количество» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
   },
   {
    "sentence": "___ Агафьи Матвеевны вдруг приостановились: осетрина, белоснежная телятина, индейки стали появляться на другой кухне, в новой квартире Мухоярова.",
@@ -95,22 +39,8 @@
    ],
    "correct": "хозяйственные размахи",
    "case": "Именительный (Nominative)",
-   "explain": "«Хозяйственные размахи» — the subject of the sentence stands in the nominative.",
+   "explain": "«хозяйственные размахи» is the subject of «приостановились» — who or what does it — so nominative.",
    "id": "c8"
-  },
-  {
-   "sentence": "Хозяйственные размахи Агафьи Матвеевны вдруг приостановились: осетрина, ___, индейки стали появляться на другой кухне, в новой квартире Мухоярова.",
-   "lemma": "телятина",
-   "options": [
-    "белоснежная телятина",
-    "белоснежной телятины",
-    "белоснежной телятиной",
-    "белоснежной телятине"
-   ],
-   "correct": "белоснежная телятина",
-   "case": "Именительный (Nominative)",
-   "explain": "«белоснежная телятина» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
   },
   {
    "sentence": "Хозяйственные размахи Агафьи Матвеевны вдруг приостановились: осетрина, белоснежная телятина, индейки стали появляться на ___, в новой квартире Мухоярова.",
@@ -123,7 +53,7 @@
    ],
    "correct": "другой кухне",
    "case": "Предложный (Prepositional)",
-   "explain": "«другой кухне» — after the preposition «на», for location or topic.",
+   "explain": "«другой кухне» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c10"
   },
   {
@@ -137,7 +67,7 @@
    ],
    "correct": "новой квартире",
    "case": "Предложный (Prepositional)",
-   "explain": "«новой квартире» — after the preposition «в», for location or topic.",
+   "explain": "«новой квартире» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c11"
   },
   {
@@ -151,7 +81,7 @@
    ],
    "correct": "пустыми кастрюлями",
    "case": "Творительный (Instrumental)",
-   "explain": "«пустыми кастрюлями» — after the preposition «над», the instrumental marks the means, company, or complement.",
+   "explain": "«пустыми кастрюлями» — «над» always takes the instrumental.",
    "id": "c12"
   },
   {
@@ -165,7 +95,7 @@
    ],
    "correct": "медных денег",
    "case": "Родительный (Genitive)",
-   "explain": "«медных денег» — the genitive here marks possession, absence, or quantity.",
+   "explain": "What is absent after «нет» — genitive.",
    "id": "c13"
   },
   {
@@ -179,50 +109,8 @@
    ],
    "correct": "другой день",
    "case": "Винительный (Accusative)",
-   "explain": "«другой день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«другой день» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c16"
-  },
-  {
-   "sentence": "Илья Ильич, не подозревая ничего, пил на другой день смородинную водку, закусывал отличной семгой, кушал ___ и белого свежего рябчика.",
-   "lemma": "потроха",
-   "options": [
-    "любимых потрохов",
-    "любимыми потрохами",
-    "любимые потроха",
-    "любимых потрохах"
-   ],
-   "correct": "любимые потроха",
-   "case": "Винительный (Accusative)",
-   "explain": "«любимые потроха» — the accusative marks the direct object of the verb.",
-   "id": "c17"
-  },
-  {
-   "sentence": "Илья Ильич, не подозревая ничего, пил на другой день смородинную водку, закусывал отличной семгой, кушал любимые потроха и белого ___.",
-   "lemma": "рябчик",
-   "options": [
-    "свежем рябчике",
-    "свежим рябчиком",
-    "свежего рябчика",
-    "свежий рябчик"
-   ],
-   "correct": "свежего рябчика",
-   "case": "Родительный (Genitive)",
-   "explain": "«свежего рябчика» — the genitive here marks possession, absence, or quantity.",
-   "id": "c18"
-  },
-  {
-   "sentence": "Агафья Матвеевна с детьми поела ___ и каши и только за компанию с Ильей Ильичом выпила две чашки кофе.",
-   "lemma": "щи",
-   "options": [
-    "людским щам",
-    "людских щей",
-    "людские щи",
-    "людскими щами"
-   ],
-   "correct": "людских щей",
-   "case": "Родительный (Genitive)",
-   "explain": "«людских щей» — the genitive here marks possession, absence, or quantity.",
-   "id": "c19"
   },
   {
    "sentence": "— Вот погодите, получу из деревни деньги, я ему две пары сошью, — вмешался Обломов, — синюю курточку, а на ___ мундир: в гимназию поступит.",
@@ -235,36 +123,8 @@
    ],
    "correct": "будущий год",
    "case": "Винительный (Accusative)",
-   "explain": "«будущий год» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«будущий год» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c23"
-  },
-  {
-   "sentence": "— Уха из ершей, ___ да вареники.",
-   "lemma": "баранина",
-   "options": [
-    "жареная баранина",
-    "жареной баранине",
-    "жареной баранины",
-    "жареной бараниной"
-   ],
-   "correct": "жареная баранина",
-   "case": "Именительный (Nominative)",
-   "explain": "«жареная баранина» — the subject of the sentence stands in the nominative.",
-   "id": "c24"
-  },
-  {
-   "sentence": "Обломов ушел к себе, думая, что кто-нибудь пришел к хозяйке: мясник, зеленщик или другое ___.",
-   "lemma": "лицо",
-   "options": [
-    "подобным лицом",
-    "подобному лицу",
-    "подобном лице",
-    "подобное лицо"
-   ],
-   "correct": "подобное лицо",
-   "case": "Именительный (Nominative)",
-   "explain": "«подобное лицо» — the subject of the sentence stands in the nominative.",
-   "id": "c25"
   },
   {
    "sentence": "— Нет, нет, тот, что обедал в ___.",
@@ -277,22 +137,8 @@
    ],
    "correct": "ильин день",
    "case": "Винительный (Accusative)",
-   "explain": "«ильин день» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«ильин день» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c26"
-  },
-  {
-   "sentence": "— Надо ___ изготовить, — решил он помолчав.",
-   "lemma": "обед",
-   "options": [
-    "другого обеда",
-    "другой обед",
-    "другом обеде",
-    "другому обеду"
-   ],
-   "correct": "другой обед",
-   "case": "Винительный (Accusative)",
-   "explain": "«другой обед» — the accusative marks the direct object of the verb.",
-   "id": "c28"
   },
   {
    "sentence": "У ней оставался всего полтинник, а до ___, когда братец выдает деньги, осталось еще десять дней.",
@@ -305,22 +151,8 @@
    ],
    "correct": "первого числа",
    "case": "Родительный (Genitive)",
-   "explain": "«первого числа» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«первого числа» — «до» always takes the genitive.",
    "id": "c29"
-  },
-  {
-   "sentence": "Она отвечала ___ ужаса.",
-   "lemma": "взгляд",
-   "options": [
-    "новый взгляд",
-    "новом взгляде",
-    "новому взгляду",
-    "новым взглядом"
-   ],
-   "correct": "новым взглядом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«новым взглядом» — the instrumental marks the means, company, or complement.",
-   "id": "c30"
   }
  ]
 }

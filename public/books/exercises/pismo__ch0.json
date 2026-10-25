@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Душной ночью, в купе вагона, мой сосед, маленький ___, рассказал мне странную историю.",
-   "lemma": "человек",
-   "options": [
-    "нервного человека",
-    "нервном человеке",
-    "нервный человек",
-    "нервному человеку"
-   ],
-   "correct": "нервный человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«нервный человек» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
    "sentence": "Я подошёл к берегу реки, — со скамьи, под липой, быстро встала женщина в белом платье и пошла прочь от меня по ___ парка, по золотым пятнам солнца; идёт и отирает на ходу глаза концом газового шарфа.",
    "lemma": "дорожка",
    "options": [
@@ -25,36 +11,22 @@
    ],
    "correct": "запущенной дорожке",
    "case": "Дательный (Dative)",
-   "explain": "«запущенной дорожке» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«запущенной дорожке» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c5"
   },
   {
    "sentence": "Я подошёл к берегу реки, — со скамьи, под липой, быстро встала женщина в белом платье и пошла прочь от меня по запущенной дорожке парка, по золотым пятнам солнца; идёт и отирает на ходу глаза концом ___.",
    "lemma": "шарф",
    "options": [
-    "газовому шарфу",
-    "газового шарфа",
+    "газовый шарф",
+    "газовым шарфом",
     "газовом шарфе",
-    "газовым шарфом"
+    "газового шарфа"
    ],
    "correct": "газового шарфа",
    "case": "Родительный (Genitive)",
-   "explain": "«газового шарфа» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«газового шарфа» depends on the noun «концом» (whose? of what?) — genitive.",
    "id": "c7"
-  },
-  {
-   "sentence": "___ зимнего сезона, — стоит ли об этом плакать?",
-   "lemma": "роман",
-   "options": [
-    "мимолётному роману",
-    "мимолётном романе",
-    "мимолётного романа",
-    "мимолётный роман"
-   ],
-   "correct": "мимолётный роман",
-   "case": "Именительный (Nominative)",
-   "explain": "«Мимолётный роман» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
   },
   {
    "sentence": "Мимолётный роман ___, — стоит ли об этом плакать?",
@@ -67,7 +39,7 @@
    ],
    "correct": "зимнего сезона",
    "case": "Родительный (Genitive)",
-   "explain": "«зимнего сезона» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«зимнего сезона» depends on the noun «роман» (whose? of what?) — genitive.",
    "id": "c9"
   },
   {
@@ -81,7 +53,7 @@
    ],
    "correct": "острый прилив",
    "case": "Винительный (Accusative)",
-   "explain": "«острый прилив» — the accusative marks the direct object of the verb.",
+   "explain": "«острый прилив» is the direct object of «почувствовал» (кого? что?) — accusative.",
    "id": "c11"
   },
   {
@@ -95,7 +67,7 @@
    ],
    "correct": "солнечных лучей",
    "case": "Родительный (Genitive)",
-   "explain": "«солнечных лучей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«солнечных лучей» depends on the noun «золотом» (whose? of what?) — genitive.",
    "id": "c12"
   },
   {
@@ -109,7 +81,7 @@
    ],
    "correct": "сладкими запахами",
    "case": "Творительный (Instrumental)",
-   "explain": "«сладкими запахами» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «насыщен», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c13"
   },
   {
@@ -123,7 +95,7 @@
    ],
    "correct": "синего бархата",
    "case": "Родительный (Genitive)",
-   "explain": "«синего бархата» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«синего бархата» depends on the noun «берегов» (whose? of what?) — genitive.",
    "id": "c14"
   },
   {
@@ -137,36 +109,8 @@
    ],
    "correct": "певучей тишине",
    "case": "Предложный (Prepositional)",
-   "explain": "«певучей тишине» — after the preposition «в», for location or topic.",
+   "explain": "«певучей тишине» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c15"
-  },
-  {
-   "sentence": "Орёт, визжит оно, как ___, который способен лживой декламацией исказить и оболгать все чувства людей.",
-   "lemma": "актёр",
-   "options": [
-    "бездарным актёром",
-    "бездарном актёре",
-    "бездарный актёр",
-    "бездарному актёру"
-   ],
-   "correct": "бездарный актёр",
-   "case": "Именительный (Nominative)",
-   "explain": "«бездарный актёр» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
-  },
-  {
-   "sentence": "В следующую минуту я поднял письмо, положил его на лавку рядом с собою, зажёг спичку, — бумага расцвела ___ и нехотя сгорела.",
-   "lemma": "цветок",
-   "options": [
-    "жёлтому цветку",
-    "жёлтый цветок",
-    "жёлтого цветка",
-    "жёлтым цветком"
-   ],
-   "correct": "жёлтым цветком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«жёлтым цветком» — the instrumental marks the means, company, or complement.",
-   "id": "c18"
   },
   {
    "sentence": "По ___ пепла быстро пробежали красные змейки, потом пепел посерел и на нём явились чёрные узоры слов.",
@@ -179,7 +123,7 @@
    ],
    "correct": "чёрной кучке",
    "case": "Дательный (Dative)",
-   "explain": "«чёрной кучке» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«чёрной кучке» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c19"
   },
   {
@@ -193,22 +137,8 @@
    ],
    "correct": "чёрные узоры",
    "case": "Именительный (Nominative)",
-   "explain": "«чёрные узоры» — the subject of the sentence stands in the nominative.",
+   "explain": "«чёрные узоры» is the subject of «явились» — who or what does it — so nominative.",
    "id": "c20"
-  },
-  {
-   "sentence": "___ ночной лампы освещал это детское лицо; нос, удлинённый тенью, печально вытянулся.",
-   "lemma": "свет",
-   "options": [
-    "синего света",
-    "синий свет",
-    "синему свету",
-    "синим светом"
-   ],
-   "correct": "синий свет",
-   "case": "Именительный (Nominative)",
-   "explain": "«Синий свет» — the subject of the sentence stands in the nominative.",
-   "id": "c21"
   },
   {
    "sentence": "Синий свет ___ освещал это детское лицо; нос, удлинённый тенью, печально вытянулся.",
@@ -221,22 +151,8 @@
    ],
    "correct": "ночной лампы",
    "case": "Родительный (Genitive)",
-   "explain": "«ночной лампы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«ночной лампы» depends on the noun «свет» (whose? of what?) — genitive.",
    "id": "c22"
-  },
-  {
-   "sentence": "— Удивительно ___ у неё и такие ясные, ясные глаза.",
-   "lemma": "лицо",
-   "options": [
-    "милого лица",
-    "милое лицо",
-    "милому лицу",
-    "милом лице"
-   ],
-   "correct": "милое лицо",
-   "case": "Именительный (Nominative)",
-   "explain": "«милое лицо» — the subject of the sentence stands in the nominative.",
-   "id": "c25"
   }
  ]
 }

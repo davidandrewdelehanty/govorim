@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "___, по которой он шел, извивалась между кустами и вела на мельницу.",
-   "lemma": "дорога",
-   "options": [
-    "песчаная дорога",
-    "песчаной дорогой",
-    "песчаной дороге",
-    "песчаной дороги"
-   ],
-   "correct": "песчаная дорога",
-   "case": "Именительный (Nominative)",
-   "explain": "«Песчаная дорога» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "По ту сторону круто поднимался ___, поросший красноватым орешником, вперемежку с мелким курчавым дубом.",
    "lemma": "обрыв",
    "options": [
@@ -25,22 +11,8 @@
    ],
    "correct": "каменистый обрыв",
    "case": "Именительный (Nominative)",
-   "explain": "«каменистый обрыв» — the subject of the sentence stands in the nominative.",
+   "explain": "«каменистый обрыв» is the subject of «поднимался» — who or what does it — so nominative.",
    "id": "c2"
-  },
-  {
-   "sentence": "По ту сторону круто поднимался каменистый обрыв, поросший красноватым орешником, вперемежку с мелким ___.",
-   "lemma": "дуб",
-   "options": [
-    "курчавый дуб",
-    "курчавым дубом",
-    "курчавому дубу",
-    "курчавом дубе"
-   ],
-   "correct": "курчавым дубом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«курчавым дубом» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c3"
   },
   {
    "sentence": "С отлогого берега видна была серая, изрытая дорога, смело вьющаяся в гору, зеленая крыша ___ и барская усадьба, до половины сидящая в зелени.",
@@ -53,36 +25,8 @@
    ],
    "correct": "водяной мельницы",
    "case": "Родительный (Genitive)",
-   "explain": "«водяной мельницы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«водяной мельницы» depends on the noun «крыша» (whose? of what?) — genitive.",
    "id": "c5"
-  },
-  {
-   "sentence": "С отлогого берега видна была серая, изрытая дорога, смело вьющаяся в гору, зеленая крыша водяной мельницы и ___, до половины сидящая в зелени.",
-   "lemma": "усадьба",
-   "options": [
-    "барской усадьбой",
-    "барская усадьба",
-    "барской усадьбе",
-    "барской усадьбы"
-   ],
-   "correct": "барская усадьба",
-   "case": "Именительный (Nominative)",
-   "explain": "«барская усадьба» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
-  },
-  {
-   "sentence": "Солнца уже не было, только ___ реки весь был залит красноватым светом.",
-   "lemma": "берег",
-   "options": [
-    "крутым берегом",
-    "крутому берегу",
-    "крутой берег",
-    "крутом береге"
-   ],
-   "correct": "крутой берег",
-   "case": "Именительный (Nominative)",
-   "explain": "«крутой берег» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
   },
   {
    "sentence": "Солнца уже не было, только крутой берег реки весь был залит ___.",
@@ -95,7 +39,7 @@
    ],
    "correct": "красноватым светом",
    "case": "Творительный (Instrumental)",
-   "explain": "«красноватым светом» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «залит», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c8"
   },
   {
@@ -109,22 +53,8 @@
    ],
    "correct": "лошадиная морда",
    "case": "Именительный (Nominative)",
-   "explain": "«лошадиная морда» — the subject of the sentence stands in the nominative.",
+   "explain": "«лошадиная морда» is the subject of «двигалась» — who or what does it — so nominative.",
    "id": "c9"
-  },
-  {
-   "sentence": "Становилось темно; Рязанов сидел рядом с батюшкою; волосы от ___ развевало ветром, и во время разговора они беспрестанно попадали Рязанову в рот.",
-   "lemma": "борода",
-   "options": [
-    "батюшкина борода",
-    "батюшкиной бороды",
-    "батюшкиной бородой",
-    "батюшкиной бороде"
-   ],
-   "correct": "батюшкиной бороды",
-   "case": "Родительный (Genitive)",
-   "explain": "«батюшкиной бороды» — the genitive here marks possession, absence, or quantity.",
-   "id": "c11"
   },
   {
    "sentence": "— Да, вот с Семеном-то с этим задумал я ___ пчел держать пополам.",
@@ -137,64 +67,8 @@
    ],
    "correct": "прошлый год",
    "case": "Винительный (Accusative)",
-   "explain": "«прошлый год» — the accusative marks the direct object of the verb.",
+   "explain": "«прошлый год» tells how long or how often, with no preposition — accusative.",
    "id": "c14"
-  },
-  {
-   "sentence": "Ты, любезный, меня этим обидел до крайности: ___ своего обманул.",
-   "lemma": "отец",
-   "options": [
-    "духовным отцом",
-    "духовного отца",
-    "духовному отцу",
-    "духовном отце"
-   ],
-   "correct": "духовного отца",
-   "case": "Винительный (Accusative)",
-   "explain": "«духовного отца» — the accusative marks the direct object of the verb.",
-   "id": "c15"
-  },
-  {
-   "sentence": "Батюшка бросил на Рязанова ___.",
-   "lemma": "взгляд",
-   "options": [
-    "беспокойный взгляд",
-    "беспокойного взгляда",
-    "беспокойном взгляде",
-    "беспокойному взгляду"
-   ],
-   "correct": "беспокойный взгляд",
-   "case": "Винительный (Accusative)",
-   "explain": "«беспокойный взгляд» — the accusative marks the direct object of the verb.",
-   "id": "c16"
-  },
-  {
-   "sentence": "— Да; это ___, — сказал Щетинин.",
-   "lemma": "женщина",
-   "options": [
-    "несчастной женщине",
-    "несчастной женщины",
-    "несчастной женщиной",
-    "несчастная женщина"
-   ],
-   "correct": "несчастная женщина",
-   "case": "Именительный (Nominative)",
-   "explain": "«несчастная женщина» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
-  },
-  {
-   "sentence": "Ежели бы они понимали что-нибудь, а то ведь, ей-богу, и грех и смех с ними ___.",
-   "lemma": "раз",
-   "options": [
-    "иной раз",
-    "иному разу",
-    "иным разом",
-    "иного раза"
-   ],
-   "correct": "иной раз",
-   "case": "Винительный (Accusative)",
-   "explain": "«иной раз» — the accusative marks the direct object of the verb.",
-   "id": "c18"
   },
   {
    "sentence": "Сквозь ___ виднелись едва заметные призраки берез и вьющиеся между ними песчаные дорожки.",
@@ -207,78 +81,8 @@
    ],
    "correct": "прозрачный туман",
    "case": "Винительный (Accusative)",
-   "explain": "«прозрачный туман» — after the preposition «сквозь», the accusative marks the direct object of the verb.",
+   "explain": "«прозрачный туман» — «сквозь» always takes the accusative.",
    "id": "c20"
-  },
-  {
-   "sentence": "Сквозь прозрачный туман виднелись едва ___ берез и вьющиеся между ними песчаные дорожки.",
-   "lemma": "призрак",
-   "options": [
-    "заметных призраках",
-    "заметные призраки",
-    "заметных призраков",
-    "заметными призраками"
-   ],
-   "correct": "заметные призраки",
-   "case": "Именительный (Nominative)",
-   "explain": "«заметные призраки» — the subject of the sentence stands in the nominative.",
-   "id": "c21"
-  },
-  {
-   "sentence": "Сквозь прозрачный туман виднелись едва заметные призраки берез и вьющиеся между ними ___.",
-   "lemma": "дорожка",
-   "options": [
-    "песчаным дорожкам",
-    "песчаные дорожки",
-    "песчаных дорожек",
-    "песчаными дорожками"
-   ],
-   "correct": "песчаные дорожки",
-   "case": "Винительный (Accusative)",
-   "explain": "«песчаные дорожки» — the accusative marks the direct object of the verb.",
-   "id": "c22"
-  },
-  {
-   "sentence": "Какая-то ___ подступала все ближе и ближе, застилая кусты и деревья и поглощая тревожный шелест и робкий шорох ветвей.",
-   "lemma": "тишина",
-   "options": [
-    "непонятной тишиной",
-    "непонятной тишины",
-    "непонятная тишина",
-    "непонятной тишине"
-   ],
-   "correct": "непонятная тишина",
-   "case": "Именительный (Nominative)",
-   "explain": "«непонятная тишина» — the subject of the sentence stands in the nominative.",
-   "id": "c23"
-  },
-  {
-   "sentence": "Какая-то непонятная тишина подступала все ближе и ближе, застилая кусты и деревья и поглощая ___ и робкий шорох ветвей.",
-   "lemma": "шелест",
-   "options": [
-    "тревожном шелесте",
-    "тревожный шелест",
-    "тревожного шелеста",
-    "тревожным шелестом"
-   ],
-   "correct": "тревожный шелест",
-   "case": "Винительный (Accusative)",
-   "explain": "«тревожный шелест» — the accusative marks the direct object of the verb.",
-   "id": "c24"
-  },
-  {
-   "sentence": "Какая-то непонятная тишина подступала все ближе и ближе, застилая кусты и деревья и поглощая тревожный шелест и ___ ветвей.",
-   "lemma": "шорох",
-   "options": [
-    "робкого шороха",
-    "робкий шорох",
-    "робком шорохе",
-    "робкому шороху"
-   ],
-   "correct": "робкий шорох",
-   "case": "Именительный (Nominative)",
-   "explain": "«робкий шорох» — the subject of the sentence stands in the nominative.",
-   "id": "c25"
   }
  ]
 }

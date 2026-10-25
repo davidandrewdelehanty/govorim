@@ -1,48 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Раиса Павловна Гурмыжская, вдова, лет 50-ти с небольшим, очень ___, одевается скромно, почти в трауре, постоянно с рабочим ящиком на руке.",
-   "lemma": "помещица",
-   "options": [
-    "богатая помещица",
-    "богатой помещицей",
-    "богатой помещице",
-    "богатой помещицы"
-   ],
-   "correct": "богатая помещица",
-   "case": "Именительный (Nominative)",
-   "explain": "«богатая помещица» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Аксинья Даниловна (Аксюша), ее ___, бедная девушка лет 20-ти, одета чисто, но бедно, немного лучше горничной.",
-   "lemma": "родственница",
-   "options": [
-    "дальней родственницей",
-    "дальней родственнице",
-    "дальней родственницы",
-    "дальняя родственница"
-   ],
-   "correct": "дальняя родственница",
-   "case": "Именительный (Nominative)",
-   "explain": "«дальняя родственница» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
-   "sentence": "Аксинья Даниловна (Аксюша), ее дальняя родственница, ___ лет 20-ти, одета чисто, но бедно, немного лучше горничной.",
-   "lemma": "девушка",
-   "options": [
-    "бедной девушке",
-    "бедная девушка",
-    "бедной девушкой",
-    "бедной девушки"
-   ],
-   "correct": "бедная девушка",
-   "case": "Именительный (Nominative)",
-   "explain": "«бедная девушка» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
-  },
-  {
    "sentence": "Евгений Аполлоныч Милонов, лет 45-ти, гладко причесан, одет изысканно, в ___.",
    "lemma": "галстук",
    "options": [
@@ -53,22 +11,8 @@
    ],
    "correct": "розовом галстуке",
    "case": "Предложный (Prepositional)",
-   "explain": "«розовом галстуке» — after the preposition «в», for location or topic.",
+   "explain": "«розовом галстуке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c5"
-  },
-  {
-   "sentence": "Алексей Сергеевич Буланов, ___, недоучившийся в гимназии.",
-   "lemma": "человек",
-   "options": [
-    "молодому человеку",
-    "молодым человеком",
-    "молодом человеке",
-    "молодой человек"
-   ],
-   "correct": "молодой человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«молодой человек» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
   },
   {
    "sentence": "Усадьба Гурмыжской, верстах в пяти от ___.",
@@ -81,22 +25,8 @@
    ],
    "correct": "уездного города",
    "case": "Родительный (Genitive)",
-   "explain": "«уездного города» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«уездного города» — «от» always takes the genitive.",
    "id": "c8"
-  },
-  {
-   "sentence": "Богатая старинная мебель, трельяжи, цветы, у окна рабочий столик, налево ___ и несколько кресел.",
-   "lemma": "стол",
-   "options": [
-    "круглому столу",
-    "круглый стол",
-    "круглым столом",
-    "круглого стола"
-   ],
-   "correct": "круглый стол",
-   "case": "Винительный (Accusative)",
-   "explain": "«круглый стол» — the accusative marks the direct object of the verb.",
-   "id": "c10"
   },
   {
    "sentence": "Нет, послушайте; вы в ___ мне нравитесь.",
@@ -109,7 +39,7 @@
    ],
    "correct": "самом деле",
    "case": "Предложный (Prepositional)",
-   "explain": "«самом деле» — after the preposition «в», for location or topic.",
+   "explain": "«самом деле» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c11"
   },
   {
@@ -123,36 +53,8 @@
    ],
    "correct": "чужим двором",
    "case": "Творительный (Instrumental)",
-   "explain": "«чужим двором» — after the preposition «за», the instrumental marks the means, company, or complement.",
+   "explain": "«чужим двором» — «за» takes the instrumental here (где? за чем? за кем?) — the accusative would mean motion behind or 'for' (куда? за что?).",
    "id": "c12"
-  },
-  {
-   "sentence": "Мечетесь вы, как ___.",
-   "lemma": "кошка",
-   "options": [
-    "угорелая кошка",
-    "угорелой кошкой",
-    "угорелой кошки",
-    "угорелой кошке"
-   ],
-   "correct": "угорелая кошка",
-   "case": "Именительный (Nominative)",
-   "explain": "«угорелая кошка» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
-  },
-  {
-   "sentence": "Позовут вас, тогда ___.",
-   "lemma": "дело",
-   "options": [
-    "другому делу",
-    "другое дело",
-    "другим делом",
-    "другом деле"
-   ],
-   "correct": "другое дело",
-   "case": "Именительный (Nominative)",
-   "explain": "«другое дело» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
   },
   {
    "sentence": "Господа, представляю вам ___, Алексея Сергеича Буланова.",
@@ -165,50 +67,8 @@
    ],
    "correct": "молодого дворянина",
    "case": "Винительный (Accusative)",
-   "explain": "«молодого дворянина» — the accusative marks the direct object of the verb.",
+   "explain": "«молодого дворянина» is the direct object of «представляю» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c15"
-  },
-  {
-   "sentence": "Этот ___, господа, сын одной моей приятельницы.",
-   "lemma": "человек",
-   "options": [
-    "молодому человеку",
-    "молодым человеком",
-    "молодом человеке",
-    "молодой человек"
-   ],
-   "correct": "молодой человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«молодой человек» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
-  },
-  {
-   "sentence": "Раиса Павловна строгостью своей жизни украшает всю нашу губернию; наша ___, если можно так сказать, благоухает ее добродетелями.",
-   "lemma": "атмосфера",
-   "options": [
-    "нравственная атмосфера",
-    "нравственной атмосферой",
-    "нравственной атмосфере",
-    "нравственной атмосферы"
-   ],
-   "correct": "нравственная атмосфера",
-   "case": "Именительный (Nominative)",
-   "explain": "«нравственная атмосфера» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
-  },
-  {
-   "sentence": "Я выписала сюда на лето ___; пусть они познакомятся; потом женю их и дам за племянницей хорошее приданое.",
-   "lemma": "человек",
-   "options": [
-    "молодым человеком",
-    "молодого человека",
-    "молодой человек",
-    "молодому человеку"
-   ],
-   "correct": "молодого человека",
-   "case": "Винительный (Accusative)",
-   "explain": "«молодого человека» — the accusative marks the direct object of the verb.",
-   "id": "c20"
   },
   {
    "sentence": "Хоть я и выше подозрений, но, если б нашлись ___, вы можете объяснить, в чем дело.",
@@ -221,7 +81,7 @@
    ],
    "correct": "злые языки",
    "case": "Именительный (Nominative)",
-   "explain": "«злые языки» — the subject of the sentence stands in the nominative.",
+   "explain": "«злые языки» is the subject of «нашлись» — who or what does it — so nominative.",
    "id": "c21"
   },
   {
@@ -235,49 +95,21 @@
    ],
    "correct": "общественном мнении",
    "case": "Предложный (Prepositional)",
-   "explain": "«общественном мнении» — after the preposition «об», for location or topic.",
+   "explain": "«общественном мнении» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c22"
-  },
-  {
-   "sentence": "У меня ___ только племянник моего мужа.",
-   "lemma": "родные",
-   "options": [
-    "близким родным",
-    "близких родных",
-    "близкими родными",
-    "близкие родные"
-   ],
-   "correct": "близких родных",
-   "case": "Родительный (Genitive)",
-   "explain": "«близких родных» — the genitive here marks possession, absence, or quantity.",
-   "id": "c23"
-  },
-  {
-   "sentence": "Я надеюсь, что ничто не препятствует мне назначить его своим ___.",
-   "lemma": "наследник",
-   "options": [
-    "единственного наследника",
-    "единственном наследнике",
-    "единственным наследником",
-    "единственному наследнику"
-   ],
-   "correct": "единственным наследником",
-   "case": "Творительный (Instrumental)",
-   "explain": "«единственным наследником» — the instrumental marks the means, company, or complement.",
-   "id": "c24"
   },
   {
    "sentence": "Один должник его отца принес мне ___; сумма хотя небольшая, но она тяготит меня.",
    "lemma": "долг",
    "options": [
+    "старым долгом",
+    "старому долгу",
     "старом долге",
-    "старый долг",
-    "старого долга",
-    "старому долгу"
+    "старый долг"
    ],
    "correct": "старый долг",
    "case": "Винительный (Accusative)",
-   "explain": "«старый долг» — the accusative marks the direct object of the verb.",
+   "explain": "«старый долг» is the direct object of «принес» (кого? что?) — accusative.",
    "id": "c25"
   },
   {
@@ -291,22 +123,8 @@
    ],
    "correct": "простые люди",
    "case": "Именительный (Nominative)",
-   "explain": "«простые люди» — the subject of the sentence stands in the nominative.",
+   "explain": "«простые люди» is the subject of «живут» — who or what does it — so nominative.",
    "id": "c27"
-  },
-  {
-   "sentence": "Развращение нравов на двух концах: в невежестве и в излишестве образования; ___ посередине.",
-   "lemma": "нрав",
-   "options": [
-    "добрые нравы",
-    "добрыми нравами",
-    "добрых нравах",
-    "добрым нравам"
-   ],
-   "correct": "добрые нравы",
-   "case": "Именительный (Nominative)",
-   "explain": "«добрые нравы» — the subject of the sentence stands in the nominative.",
-   "id": "c29"
   },
   {
    "sentence": "Я хотела, чтоб этот мальчик сам прошел суровую школу жизни; я приготовила его в юнкера и предоставила его ___.",
@@ -319,64 +137,8 @@
    ],
    "correct": "собственным средствам",
    "case": "Дательный (Dative)",
-   "explain": "«собственным средствам» — the dative marks the indirect object or recipient.",
+   "explain": "«собственным средствам» is the indirect object of «предоставила» — to or for whom (кому?) — dative.",
    "id": "c30"
-  },
-  {
-   "sentence": "Хотя ___ ваше подвергало меня не раз на край нищеты и погибели; но лобызаю вашу ручку.",
-   "lemma": "подаяние",
-   "options": [
-    "скудное подаяние",
-    "скудном подаянии",
-    "скудным подаянием",
-    "скудному подаянию"
-   ],
-   "correct": "скудное подаяние",
-   "case": "Именительный (Nominative)",
-   "explain": "«скудное подаяние» — the subject of the sentence stands in the nominative.",
-   "id": "c31"
-  },
-  {
-   "sentence": "Только вы с ним поосторожнее, он плут ___.",
-   "lemma": "рука",
-   "options": [
-    "большой руке",
-    "большой рукой",
-    "большая рука",
-    "большой руки"
-   ],
-   "correct": "большой руки",
-   "case": "Родительный (Genitive)",
-   "explain": "«большой руки» — the genitive here marks possession, absence, or quantity.",
-   "id": "c32"
-  },
-  {
-   "sentence": "Знаете, он такой, хороший семьянин; это — ___.",
-   "lemma": "дело",
-   "options": [
-    "великого дела",
-    "великом деле",
-    "великое дело",
-    "великому делу"
-   ],
-   "correct": "великое дело",
-   "case": "Именительный (Nominative)",
-   "explain": "«великое дело» — the subject of the sentence stands in the nominative.",
-   "id": "c33"
-  },
-  {
-   "sentence": "Мы с вами точно сговорились; я сам ___ семейных людей и семейных отношений.",
-   "lemma": "защитник",
-   "options": [
-    "горячий защитник",
-    "горячим защитником",
-    "горячем защитнике",
-    "горячему защитнику"
-   ],
-   "correct": "горячий защитник",
-   "case": "Именительный (Nominative)",
-   "explain": "«горячий защитник» — the subject of the sentence stands in the nominative.",
-   "id": "c34"
   },
   {
    "sentence": "Мы с вами точно сговорились; я сам горячий защитник ___ и семейных отношений.",
@@ -389,22 +151,8 @@
    ],
    "correct": "семейных людей",
    "case": "Родительный (Genitive)",
-   "explain": "«семейных людей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«семейных людей» depends on the noun «защитник» (whose? of what?) — genitive.",
    "id": "c35"
-  },
-  {
-   "sentence": "Мы с вами точно сговорились; я сам горячий защитник семейных людей и ___.",
-   "lemma": "отношение",
-   "options": [
-    "семейным отношениям",
-    "семейных отношениях",
-    "семейные отношения",
-    "семейных отношений"
-   ],
-   "correct": "семейных отношений",
-   "case": "Родительный (Genitive)",
-   "explain": "«семейных отношений» — the genitive here marks possession, absence, or quantity.",
-   "id": "c36"
   },
   {
    "sentence": "Как жаль, что мы удалились от ___, что наши отеческие отношения и отеческие меры в применении к нашим меньшим братьям прекратились!",
@@ -417,22 +165,8 @@
    ],
    "correct": "первобытной простоты",
    "case": "Родительный (Genitive)",
-   "explain": "«первобытной простоты» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«первобытной простоты» — «от» always takes the genitive.",
    "id": "c37"
-  },
-  {
-   "sentence": "Как жаль, что мы удалились от первобытной простоты, что наши ___ и отеческие меры в применении к нашим меньшим братьям прекратились!",
-   "lemma": "отношение",
-   "options": [
-    "отеческих отношениях",
-    "отеческие отношения",
-    "отеческими отношениями",
-    "отеческих отношений"
-   ],
-   "correct": "отеческие отношения",
-   "case": "Именительный (Nominative)",
-   "explain": "«отеческие отношения» — the subject of the sentence stands in the nominative.",
-   "id": "c38"
   },
   {
    "sentence": "Вот спросим у ___; он правду скажет.",
@@ -445,64 +179,8 @@
    ],
    "correct": "простого человека",
    "case": "Родительный (Genitive)",
-   "explain": "«простого человека» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«простого человека» — «у» always takes the genitive.",
    "id": "c39"
-  },
-  {
-   "sentence": "Но ведь этому письму двенадцать лет; что же теперь с вашим! племянником, с его ___?",
-   "lemma": "слава",
-   "options": [
-    "громкая слава",
-    "громкой славы",
-    "громкой славой",
-    "громкой славе"
-   ],
-   "correct": "громкой славой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«громкой славой» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c40"
-  },
-  {
-   "sentence": "Нужно любовнику халат подарить — она хлеб продает не вовремя за бесценок; нужно любовнику ермолку с кисточкой — она лес продает, строевой, береженый, ___.",
-   "lemma": "плут",
-   "options": [
-    "первого плута",
-    "первый плут",
-    "первом плуте",
-    "первому плуту"
-   ],
-   "correct": "первому плуту",
-   "case": "Дательный (Dative)",
-   "explain": "«первому плуту» — the dative marks the indirect object or recipient.",
-   "id": "c41"
-  },
-  {
-   "sentence": "Коли им, ___, в чем воля, так добра мало.",
-   "lemma": "сословие",
-   "options": [
-    "женском сословии",
-    "женским сословием",
-    "женское сословие",
-    "женскому сословию"
-   ],
-   "correct": "женскому сословию",
-   "case": "Дательный (Dative)",
-   "explain": "«женскому сословию» — the dative marks the indirect object or recipient.",
-   "id": "c42"
-  },
-  {
-   "sentence": "Ну, конечно, мы с ним дорогого не стоим, а если б бог дал ___ быть, дали бы вы тысячки на четыре лесу на разживу ему, с нас бы и довольно.",
-   "lemma": "дело",
-   "options": [
-    "доброго дела",
-    "добром деле",
-    "доброе дело",
-    "доброму делу"
-   ],
-   "correct": "доброму делу",
-   "case": "Дательный (Dative)",
-   "explain": "«доброму делу» — the dative marks the indirect object or recipient.",
-   "id": "c43"
   },
   {
    "sentence": "Я человек неграмотный, ___ и сам не знаю, что в записке-то написано.",
@@ -515,50 +193,8 @@
    ],
    "correct": "другой раз",
    "case": "Винительный (Accusative)",
-   "explain": "«другой раз» — the accusative marks the direct object of the verb.",
+   "explain": "«другой раз» tells how long or how often, with no preposition — accusative.",
    "id": "c46"
-  },
-  {
-   "sentence": "Потому не сердись, моя милая, если за тобой будет самый ___.",
-   "lemma": "надзор",
-   "options": [
-    "строгим надзором",
-    "строгий надзор",
-    "строгому надзору",
-    "строгом надзоре"
-   ],
-   "correct": "строгий надзор",
-   "case": "Именительный (Nominative)",
-   "explain": "«строгий надзор» — the subject of the sentence stands in the nominative.",
-   "id": "c47"
-  },
-  {
-   "sentence": "Не тебе чета, ___ им увлекались.",
-   "lemma": "дама",
-   "options": [
-    "светских дам",
-    "светских дамах",
-    "светским дамам",
-    "светские дамы"
-   ],
-   "correct": "светские дамы",
-   "case": "Именительный (Nominative)",
-   "explain": "«светские дамы» — the subject of the sentence stands in the nominative.",
-   "id": "c48"
-  },
-  {
-   "sentence": "Я девочка с улицы, не ___, а не польщусь на такое сокровище.",
-   "lemma": "дама",
-   "options": [
-    "светская дама",
-    "светской дамы",
-    "светской даме",
-    "светской дамой"
-   ],
-   "correct": "светская дама",
-   "case": "Именительный (Nominative)",
-   "explain": "«светская дама» — the subject of the sentence stands in the nominative.",
-   "id": "c49"
   }
  ]
 }

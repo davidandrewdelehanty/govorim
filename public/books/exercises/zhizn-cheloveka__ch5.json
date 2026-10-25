@@ -1,48 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Широкая ___ с очень низким потолком, без одного окна в стенах.",
-   "lemma": "комната",
-   "options": [
-    "длинная комната",
-    "длинной комнатой",
-    "длинной комнаты",
-    "длинной комнате"
-   ],
-   "correct": "длинная комната",
-   "case": "Именительный (Nominative)",
-   "explain": "«длинная комната» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Широкая длинная комната с очень ___, без одного окна в стенах.",
-   "lemma": "потолок",
-   "options": [
-    "низким потолком",
-    "низком потолке",
-    "низкий потолок",
-    "низкому потолку"
-   ],
-   "correct": "низким потолком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«низким потолком» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c3"
-  },
-  {
-   "sentence": "Стены гладки и сумрачно-грязны — похоже на грубую, запятнанную кожу какого-то ___.",
-   "lemma": "зверь",
-   "options": [
-    "большим зверем",
-    "большого зверя",
-    "большом звере",
-    "большому зверю"
-   ],
-   "correct": "большого зверя",
-   "case": "Родительный (Genitive)",
-   "explain": "«большого зверя» — after the preposition «на», the genitive here marks possession, absence, or quantity.",
-   "id": "c4"
-  },
-  {
    "sentence": "Всю заднюю стену, до ступенек, занимает один огромный, плоский, стеклянный буфет, сплошь установленный совершенно ___ бутылок, с разноцветными жидкостями.",
    "lemma": "ряд",
    "options": [
@@ -53,35 +11,21 @@
    ],
    "correct": "правильными рядами",
    "case": "Творительный (Instrumental)",
-   "explain": "«правильными рядами» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «установленный», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c5"
-  },
-  {
-   "sentence": "Белое с румянцем лицо, лысина, большая ___ — выражение полного спокойствия и равнодушия.",
-   "lemma": "борода",
-   "options": [
-    "рыжая борода",
-    "рыжей бороды",
-    "рыжей бородой",
-    "рыжей бороде"
-   ],
-   "correct": "рыжая борода",
-   "case": "Именительный (Nominative)",
-   "explain": "«рыжая борода» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
   },
   {
    "sentence": "Белое с румянцем лицо, лысина, большая рыжая борода — выражение ___ и равнодушия.",
    "lemma": "спокойствие",
    "options": [
+    "полному спокойствию",
+    "полное спокойствие",
     "полном спокойствии",
-    "полного спокойствия",
-    "полным спокойствием",
-    "полное спокойствие"
+    "полного спокойствия"
    ],
    "correct": "полного спокойствия",
    "case": "Родительный (Genitive)",
-   "explain": "«полного спокойствия» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«полного спокойствия» depends on the noun «выражение» (whose? of what?) — genitive.",
    "id": "c9"
   },
   {
@@ -95,22 +39,8 @@
    ],
    "correct": "страшного сходства",
    "case": "Родительный (Genitive)",
-   "explain": "«страшного сходства» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«страшного сходства» depends on the noun «печать» (whose? of what?) — genitive.",
    "id": "c12"
-  },
-  {
-   "sentence": "Одеты Пьяницы в одноцветные лохмотья, обнажающие то зеленую костлявую руку, то ___, то впалую, страшную грудь.",
-   "lemma": "колено",
-   "options": [
-    "острым коленом",
-    "острому колену",
-    "остром колене",
-    "острое колено"
-   ],
-   "correct": "острое колено",
-   "case": "Именительный (Nominative)",
-   "explain": "«острое колено» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
   },
   {
    "sentence": "Узкое ___ колеблется, то ложась на край, то острым язычком устремляясь вверх.",
@@ -123,7 +53,7 @@
    ],
    "correct": "синее пламя",
    "case": "Именительный (Nominative)",
-   "explain": "«синее пламя» — the subject of the sentence stands in the nominative.",
+   "explain": "«синее пламя» is the subject of «колеблется» — who or what does it — so nominative.",
    "id": "c15"
   },
   {
@@ -137,21 +67,21 @@
    ],
    "correct": "большие камни",
    "case": "Именительный (Nominative)",
-   "explain": "«Большие камни» — the subject of the sentence stands in the nominative.",
+   "explain": "«большие камни» is the subject of «падают» — who or what does it — so nominative.",
    "id": "c17"
   },
   {
    "sentence": "— Я вижу огромные ___, и на них горят люди.",
    "lemma": "костёр",
    "options": [
-    "красных костров",
+    "красные костры",
     "красными кострами",
-    "красных кострах",
-    "красные костры"
+    "красным кострам",
+    "красных кострах"
    ],
    "correct": "красные костры",
    "case": "Винительный (Accusative)",
-   "explain": "«красные костры» — the accusative marks the direct object of the verb.",
+   "explain": "«красные костры» is the direct object of «вижу» (кого? что?) — accusative.",
    "id": "c18"
   },
   {
@@ -165,22 +95,8 @@
    ],
    "correct": "целый час",
    "case": "Винительный (Accusative)",
-   "explain": "«целый час» — the accusative marks the direct object of the verb.",
+   "explain": "«целый час» tells how long or how often, with no preposition — accusative.",
    "id": "c19"
-  },
-  {
-   "sentence": "Уже целый час смотрю я, как из моей утробы выходят ___ и ползают.",
-   "lemma": "змейка",
-   "options": [
-    "маленьких змейках",
-    "маленьким змейкам",
-    "маленькими змейками",
-    "маленькие змейки"
-   ],
-   "correct": "маленькие змейки",
-   "case": "Именительный (Nominative)",
-   "explain": "«маленькие змейки» — the subject of the sentence stands in the nominative.",
-   "id": "c20"
   },
   {
    "sentence": "Я чувствую, как одна ___ отделяется от другой.",
@@ -193,22 +109,8 @@
    ],
    "correct": "серая частица",
    "case": "Именительный (Nominative)",
-   "explain": "«серая частица» — the subject of the sentence stands in the nominative.",
+   "explain": "«серая частица» is the subject of «отделяется» — who or what does it — so nominative.",
    "id": "c21"
-  },
-  {
-   "sentence": "Когда я выхожу отсюда на улицу, она мечется, как ___, и скоро валит меня с ног.",
-   "lemma": "зверь",
-   "options": [
-    "дикий зверь",
-    "диким зверем",
-    "дикого зверя",
-    "дикому зверю"
-   ],
-   "correct": "дикий зверь",
-   "case": "Именительный (Nominative)",
-   "explain": "«дикий зверь» — the subject of the sentence stands in the nominative.",
-   "id": "c23"
   },
   {
    "sentence": "Во время этого разговора и последующего потихоньку входят Старухи в ___, незаметно заменяя собой тихо уходящих Пьяниц.",
@@ -221,22 +123,8 @@
    ],
    "correct": "странных покрывалах",
    "case": "Предложный (Prepositional)",
-   "explain": "«странных покрывалах» — after the preposition «в», for location or topic.",
+   "explain": "«странных покрывалах» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c24"
-  },
-  {
-   "sentence": "— Позвольте поздравить вас, ___, с новорожденным.",
-   "lemma": "родственник",
-   "options": [
-    "дорогом родственнике",
-    "дорогому родственнику",
-    "дорогой родственник",
-    "дорогим родственником"
-   ],
-   "correct": "дорогой родственник",
-   "case": "Именительный (Nominative)",
-   "explain": "«дорогой родственник» — the subject of the sentence stands in the nominative.",
-   "id": "c25"
   },
   {
    "sentence": "Пьяницы все ушли и их места заняты Старухами в ___.",
@@ -249,22 +137,8 @@
    ],
    "correct": "странных покрывалах",
    "case": "Предложный (Prepositional)",
-   "explain": "«странных покрывалах» — after the preposition «в», for location or topic.",
+   "explain": "«странных покрывалах» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c26"
-  },
-  {
-   "sentence": "Резко выделяется фигура Неизвестного и ___ Человека, на которую сверху падает слабый свет.",
-   "lemma": "голова",
-   "options": [
-    "седой головой",
-    "седая голова",
-    "седой голове",
-    "седой головы"
-   ],
-   "correct": "седая голова",
-   "case": "Именительный (Nominative)",
-   "explain": "«седая голова» — the subject of the sentence stands in the nominative.",
-   "id": "c27"
   },
   {
    "sentence": "Резко выделяется фигура Неизвестного и седая голова Человека, на которую сверху падает ___.",
@@ -277,64 +151,8 @@
    ],
    "correct": "слабый свет",
    "case": "Именительный (Nominative)",
-   "explain": "«слабый свет» — the subject of the sentence stands in the nominative.",
+   "explain": "«слабый свет» is the subject of «падает» — who or what does it — so nominative.",
    "id": "c28"
-  },
-  {
-   "sentence": "— А в кабинете на столе лежат игрушки: ___, кивер, красноносый паяц.",
-   "lemma": "лошадка",
-   "options": [
-    "бесхвостая лошадка",
-    "бесхвостой лошадкой",
-    "бесхвостой лошадки",
-    "бесхвостой лошадке"
-   ],
-   "correct": "бесхвостая лошадка",
-   "case": "Именительный (Nominative)",
-   "explain": "«бесхвостая лошадка» — the subject of the sentence stands in the nominative.",
-   "id": "c29"
-  },
-  {
-   "sentence": "— Вообрази, что это дворец, сверхъестественно ___.",
-   "lemma": "дворец",
-   "options": [
-    "красивом дворце",
-    "красивого дворца",
-    "красивым дворцом",
-    "красивый дворец"
-   ],
-   "correct": "красивый дворец",
-   "case": "Винительный (Accusative)",
-   "explain": "«красивый дворец» — the accusative marks the direct object of the verb.",
-   "id": "c30"
-  },
-  {
-   "sentence": "Нельзя же ___ давать без музыки.",
-   "lemma": "бал",
-   "options": [
-    "хорошем бале",
-    "хороший бал",
-    "хорошего бала",
-    "хорошим балом"
-   ],
-   "correct": "хороший бал",
-   "case": "Винительный (Accusative)",
-   "explain": "«хороший бал» — the accusative marks the direct object of the verb.",
-   "id": "c31"
-  },
-  {
-   "sentence": "Тот, что со скрипкой, аккуратно постилает на плечо ___, и все три начинают играть с чрезвычайной старательностью.",
-   "lemma": "платок",
-   "options": [
-    "носовой платок",
-    "носового платка",
-    "носовом платке",
-    "носовым платком"
-   ],
-   "correct": "носовой платок",
-   "case": "Винительный (Accusative)",
-   "explain": "«носовой платок» — the accusative marks the direct object of the verb.",
-   "id": "c32"
   },
   {
    "sentence": "При первой ___ они кружатся, при второй — сходятся и расходятся грациозно и тихо.",
@@ -347,22 +165,8 @@
    ],
    "correct": "музыкальной фразе",
    "case": "Предложный (Prepositional)",
-   "explain": "«музыкальной фразе» — after the preposition «при», for location or topic.",
+   "explain": "«музыкальной фразе» — «при» always takes the prepositional.",
    "id": "c34"
-  },
-  {
-   "sentence": "В голосах поющих Старух проскальзывают странные, визгливые нотки; такой же ___, пока еще сдержанный, тихим шуршанием пробегает по танцующим.",
-   "lemma": "смех",
-   "options": [
-    "странный смех",
-    "странного смеха",
-    "странным смехом",
-    "странному смеху"
-   ],
-   "correct": "странный смех",
-   "case": "Именительный (Nominative)",
-   "explain": "«странный смех» — the subject of the sentence stands in the nominative.",
-   "id": "c35"
   },
   {
    "sentence": "После каждой ___ короткая, но глубокая пауза.",
@@ -375,22 +179,8 @@
    ],
    "correct": "короткой фразы",
    "case": "Родительный (Genitive)",
-   "explain": "«короткой фразы» — after the preposition «после», the genitive here marks possession, absence, or quantity.",
+   "explain": "«короткой фразы» — «после» always takes the genitive.",
    "id": "c36"
-  },
-  {
-   "sentence": "После каждой короткой фразы короткая, но ___.",
-   "lemma": "пауза",
-   "options": [
-    "глубокой паузе",
-    "глубокой паузой",
-    "глубокая пауза",
-    "глубокой паузы"
-   ],
-   "correct": "глубокая пауза",
-   "case": "Именительный (Nominative)",
-   "explain": "«глубокая пауза» — the subject of the sentence stands in the nominative.",
-   "id": "c37"
   },
   {
    "sentence": "В то же мгновение, ярко вспыхнув, гаснет свеча, и ___ поглощает предметы.",
@@ -403,36 +193,8 @@
    ],
    "correct": "сильный сумрак",
    "case": "Именительный (Nominative)",
-   "explain": "«сильный сумрак» — the subject of the sentence stands in the nominative.",
+   "explain": "«сильный сумрак» is the subject of «поглощает» — who or what does it — so nominative.",
    "id": "c38"
-  },
-  {
-   "sentence": "Уже не танцуют, а бешено носятся они вокруг мертвеца, топая ногами, визжа, смеясь непрерывно ___.",
-   "lemma": "смех",
-   "options": [
-    "диком смехе",
-    "дикому смеху",
-    "диким смехом",
-    "дикий смех"
-   ],
-   "correct": "диким смехом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«диким смехом» — the instrumental marks the means, company, or complement.",
-   "id": "c39"
-  },
-  {
-   "sentence": "И во мраке слышно движение бешено танцующих, взвизгивания, смех, нестройные, отчаянно ___ оркестра.",
-   "lemma": "звук",
-   "options": [
-    "громких звуков",
-    "громкие звуки",
-    "громких звуках",
-    "громкими звуками"
-   ],
-   "correct": "громкие звуки",
-   "case": "Именительный (Nominative)",
-   "explain": "«громкие звуки» — the subject of the sentence stands in the nominative.",
-   "id": "c40"
   }
  ]
 }

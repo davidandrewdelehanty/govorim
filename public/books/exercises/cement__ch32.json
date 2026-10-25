@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Вверх — пустая, вниз — брюхатая, ___ — дрова.",
-   "lemma": "куб",
-   "options": [
-    "правильном кубе",
-    "правильным кубом",
-    "правильный куб",
-    "правильному кубу"
-   ],
-   "correct": "правильным кубом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«правильным кубом» — the instrumental marks the means, company, or complement.",
-   "id": "c1"
-  },
-  {
    "sentence": "Тут — спецы, присланные из Совнархоза, которые сами не знают ___.",
    "lemma": "дело",
    "options": [
@@ -25,22 +11,8 @@
    ],
    "correct": "заводских дел",
    "case": "Родительный (Genitive)",
-   "explain": "«заводских дел» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«заводских дел» is the object of a negated verb («не знают») — genitive instead of the accusative.",
    "id": "c4"
-  },
-  {
-   "sentence": "На ячейке, по его докладу, решили — потребовать ___ заводоуправления на общем собрании рабочих.",
-   "lemma": "доклад",
-   "options": [
-    "подробным докладом",
-    "подробного доклада",
-    "подробный доклад",
-    "подробном докладе"
-   ],
-   "correct": "подробный доклад",
-   "case": "Винительный (Accusative)",
-   "explain": "«подробный доклад» — the accusative marks the direct object of the verb.",
-   "id": "c5"
   },
   {
    "sentence": "Сам же до изнурения изучал положение дел — не верил словам, взвалил на себя добровольную каторгу разобраться в цифрах, в докладах, в книгах, в ___, в нарядах и планах.",
@@ -53,50 +25,8 @@
    ],
    "correct": "текущих бумагах",
    "case": "Предложный (Prepositional)",
-   "explain": "«текущих бумагах» — after the preposition «в», for location or topic.",
+   "explain": "«текущих бумагах» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c7"
-  },
-  {
-   "sentence": "В первые дни плохо слушались тяжелые руки, и язык измозолил ___: сколько листов — столько работы пальцам, столько труда языку.",
-   "lemma": "палец",
-   "options": [
-    "корявых пальцев",
-    "корявых пальцах",
-    "корявые пальцы",
-    "корявыми пальцами"
-   ],
-   "correct": "корявыми пальцами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«корявыми пальцами» — the instrumental marks the means, company, or complement.",
-   "id": "c9"
-  },
-  {
-   "sentence": "На вопросы отвечали учтиво белобрысые ___, и когда отвечали, смотрели на него с изумленным вопросом, а за вопросом—умело скрытая насмешка и презрение вприщурку.",
-   "lemma": "спец",
-   "options": [
-    "бритых спецах",
-    "бритых спецов",
-    "бритым спецам",
-    "бритые спецы"
-   ],
-   "correct": "бритые спецы",
-   "case": "Именительный (Nominative)",
-   "explain": "«бритые спецы» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
-  },
-  {
-   "sentence": "Глеб смотрел в окно, на работу бремсберга, изучал ___, которые надлежало знать только спецам, и считал, сколько будет доставлено дров с лесосек до нового года.",
-   "lemma": "дело",
-   "options": [
-    "заводскими делами",
-    "заводских дел",
-    "заводских делах",
-    "заводские дела"
-   ],
-   "correct": "заводские дела",
-   "case": "Винительный (Accusative)",
-   "explain": "«заводские дела» — the accusative marks the direct object of the verb.",
-   "id": "c12"
   },
   {
    "sentence": "Глеб смотрел в окно, на работу бремсберга, изучал заводские дела, которые надлежало знать только спецам, и считал, сколько будет доставлено дров с лесосек до ___.",
@@ -109,7 +39,7 @@
    ],
    "correct": "нового года",
    "case": "Родительный (Genitive)",
-   "explain": "«нового года» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«нового года» — «до» always takes the genitive.",
    "id": "c13"
   },
   {
@@ -123,7 +53,7 @@
    ],
    "correct": "стального каната",
    "case": "Родительный (Genitive)",
-   "explain": "«стального каната» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«стального каната» — «от» always takes the genitive.",
    "id": "c15"
   },
   {
@@ -137,36 +67,8 @@
    ],
    "correct": "ажурной вышке",
    "case": "Дательный (Dative)",
-   "explain": "«ажурной вышке» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«ажурной вышке» — «к» always takes the dative.",
    "id": "c16"
-  },
-  {
-   "sentence": "И здесь был Глеб, и когда проходил — пьянел от электрического шороха колес, от звона и визга вагонеток, от ___ хмельных от труда рабочих, бросал на землю дела и таблицы и кувыркался в артельную суету.",
-   "lemma": "работа",
-   "options": [
-    "бойкой работы",
-    "бойкой работой",
-    "бойкая работа",
-    "бойкой работе"
-   ],
-   "correct": "бойкой работы",
-   "case": "Родительный (Genitive)",
-   "explain": "«бойкой работы» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
-   "id": "c17"
-  },
-  {
-   "sentence": "И видел, что другие были лица у рабочих — не тифозный сизый отек, а пот и загар, и в глазах — напряжение, и ___, взмахивающие от усталости.",
-   "lemma": "грудь",
-   "options": [
-    "голым грудям",
-    "голые груди",
-    "голых грудях",
-    "голыми грудями"
-   ],
-   "correct": "голые груди",
-   "case": "Именительный (Nominative)",
-   "explain": "«голые груди» — the subject of the sentence stands in the nominative.",
-   "id": "c18"
   }
  ]
 }

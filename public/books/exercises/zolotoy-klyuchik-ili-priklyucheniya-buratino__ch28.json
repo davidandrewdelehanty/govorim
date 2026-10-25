@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "___ кукольного театра протекала.",
-   "lemma": "крыша",
-   "options": [
-    "дырявая крыша",
-    "дырявой крыши",
-    "дырявой крышей",
-    "дырявой крыше"
-   ],
-   "correct": "дырявая крыша",
-   "case": "Именительный (Nominative)",
-   "explain": "«Дырявая крыша» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
    "sentence": "Дырявая крыша ___ протекала.",
    "lemma": "театр",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "кукольного театра",
    "case": "Родительный (Genitive)",
-   "explain": "«кукольного театра» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«кукольного театра» depends on the noun «крыша» (whose? of what?) — genitive.",
    "id": "c3"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "третий день",
    "case": "Винительный (Accusative)",
-   "explain": "«третий день» — the accusative marks the direct object of the verb.",
+   "explain": "«третий день» tells how long or how often, with no preposition — accusative.",
    "id": "c4"
   },
   {
@@ -53,7 +39,7 @@
    ],
    "correct": "городской башне",
    "case": "Предложный (Prepositional)",
-   "explain": "«городской башне» — after the preposition «на», for location or topic.",
+   "explain": "«городской башне» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c5"
   },
   {
@@ -67,7 +53,7 @@
    ],
    "correct": "зрительный зал",
    "case": "Винительный (Accusative)",
-   "explain": "«зрительный зал» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«зрительный зал» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c6"
   },
   {
@@ -81,7 +67,7 @@
    ],
    "correct": "полотняной палаткой",
    "case": "Творительный (Instrumental)",
-   "explain": "«полотняной палаткой» — after the preposition «перед», the instrumental marks the means, company, or complement.",
+   "explain": "«полотняной палаткой» — «перед» always takes the instrumental.",
    "id": "c7"
   },
   {
@@ -95,7 +81,7 @@
    ],
    "correct": "сырой ветер",
    "case": "Винительный (Accusative)",
-   "explain": "«сырой ветер» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«сырой ветер» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c8"
   },
   {
@@ -109,7 +95,7 @@
    ],
    "correct": "лечебными пиявками",
    "case": "Творительный (Instrumental)",
-   "explain": "«лечебными пиявками» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«лечебными пиявками» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c10"
   },
   {
@@ -123,21 +109,21 @@
    ],
    "correct": "сами куклы",
    "case": "Именительный (Nominative)",
-   "explain": "«сами куклы» — the subject of the sentence stands in the nominative.",
+   "explain": "«сами куклы» is the subject of «открыли» — who or what does it — so nominative.",
    "id": "c11"
   },
   {
    "sentence": "— Это сами куклы открыли ___ «Молния», они сами пишут пьесы в стихах, сами играют.",
    "lemma": "театр",
    "options": [
-    "кукольного театра",
-    "кукольный театр",
     "кукольному театру",
+    "кукольный театр",
+    "кукольным театром",
     "кукольном театре"
    ],
    "correct": "кукольный театр",
    "case": "Винительный (Accusative)",
-   "explain": "«кукольный театр» — the accusative marks the direct object of the verb.",
+   "explain": "«кукольный театр» is the direct object of «открыли» (кого? что?) — accusative.",
    "id": "c12"
   },
   {
@@ -151,22 +137,8 @@
    ],
    "correct": "полотняной палатке",
    "case": "Дательный (Dative)",
-   "explain": "«полотняной палатке» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«полотняной палатке» — «к» always takes the dative.",
    "id": "c13"
-  },
-  {
-   "sentence": "— ___ занимательной, увлекательной комедии из жизни деревянных человечков.",
-   "lemma": "представление",
-   "options": [
-    "первого представления",
-    "первое представление",
-    "первым представлением",
-    "первом представлении"
-   ],
-   "correct": "первое представление",
-   "case": "Именительный (Nominative)",
-   "explain": "«Первое представление» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
   },
   {
    "sentence": "— Первое представление занимательной, увлекательной комедии из жизни ___.",
@@ -179,7 +151,7 @@
    ],
    "correct": "деревянных человечков",
    "case": "Родительный (Genitive)",
-   "explain": "«деревянных человечков» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«деревянных человечков» depends on the noun «жизни» (whose? of what?) — genitive.",
    "id": "c15"
   },
   {
@@ -193,22 +165,8 @@
    ],
    "correct": "стеклянной будочке",
    "case": "Предложный (Prepositional)",
-   "explain": "«стеклянной будочке» — after the preposition «в», for location or topic.",
+   "explain": "«стеклянной будочке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c17"
-  },
-  {
-   "sentence": "У входа в кукольный театр в стеклянной будочке сидела Мальвина с ___ в голубых волосах и не поспевала раздавать билеты желающим посмотреть веселую комедию из кукольной жизни.",
-   "lemma": "бант",
-   "options": [
-    "красивый бант",
-    "красивом банте",
-    "красивым бантом",
-    "красивому банту"
-   ],
-   "correct": "красивым бантом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«красивым бантом» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c18"
   },
   {
    "sentence": "Папа Карло в новой ___ вертел шарманку и весело подмигивал почтеннейшей публике.",
@@ -221,7 +179,7 @@
    ],
    "correct": "бархатной куртке",
    "case": "Предложный (Prepositional)",
-   "explain": "«бархатной куртке» — after the preposition «в», for location or topic.",
+   "explain": "«бархатной куртке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c20"
   },
   {
@@ -235,21 +193,21 @@
    ],
    "correct": "бедный папа",
    "case": "Именительный (Nominative)",
-   "explain": "«бедный папа» — the subject of the sentence stands in the nominative.",
+   "explain": "«бедный папа» is the subject of «выстругивает» — who or what does it — so nominative.",
    "id": "c21"
   },
   {
    "sentence": "Карабас Барабас мрачно вернулся в свой ___.",
    "lemma": "театр",
    "options": [
-    "пустым театром",
     "пустого театра",
-    "пустой театр",
-    "пустом театре"
+    "пустому театру",
+    "пустым театром",
+    "пустой театр"
    ],
    "correct": "пустой театр",
    "case": "Винительный (Accusative)",
-   "explain": "«пустой театр» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«пустой театр» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c23"
   },
   {
@@ -263,22 +221,8 @@
    ],
    "correct": "остроконечных шапках",
    "case": "Предложный (Prepositional)",
-   "explain": "«остроконечных шапках» — after the preposition «в», for location or topic.",
+   "explain": "«остроконечных шапках» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c24"
-  },
-  {
-   "sentence": "Со ___ он выскочил из театра на улицу.",
-   "lemma": "вой",
-   "options": [
-    "страшный вой",
-    "страшном вое",
-    "страшному вою",
-    "страшным воем"
-   ],
-   "correct": "страшным воем",
-   "case": "Творительный (Instrumental)",
-   "explain": "«страшным воем» — after the preposition «со», the instrumental marks the means, company, or complement.",
-   "id": "c25"
   }
  ]
 }

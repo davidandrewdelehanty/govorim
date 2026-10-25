@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "В этом краю с ноября по март на небе не видно ни одной тучки, и вдоль берегов, защищенных Кордильерами, неизменно дует ___.",
-   "lemma": "ветер",
-   "options": [
-    "южный ветер",
-    "южному ветру",
-    "южным ветром",
-    "южного ветра"
-   ],
-   "correct": "южный ветер",
-   "case": "Именительный (Nominative)",
-   "explain": "«южный ветер» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "По приказанию лорда Гленарвана Джон Манглс вел яхту вблизи берегов архипелага Чилоэ и других ___ этой части Американского материка.",
-   "lemma": "осколок",
-   "options": [
-    "бесчисленные осколки",
-    "бесчисленным осколкам",
-    "бесчисленных осколках",
-    "бесчисленных осколков"
-   ],
-   "correct": "бесчисленных осколков",
-   "case": "Родительный (Genitive)",
-   "explain": "«бесчисленных осколков» — the genitive here marks possession, absence, or quantity.",
-   "id": "c2"
-  },
-  {
    "sentence": "По приказанию лорда Гленарвана Джон Манглс вел яхту вблизи берегов архипелага Чилоэ и других бесчисленных осколков этой части ___.",
    "lemma": "материк",
    "options": [
@@ -39,7 +11,7 @@
    ],
    "correct": "американского материка",
    "case": "Родительный (Genitive)",
-   "explain": "«Американского материка» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«американского материка» depends on the noun «осколков» (whose? of what?) — genitive.",
    "id": "c3"
   },
   {
@@ -53,36 +25,8 @@
    ],
    "correct": "человеческой рукой",
    "case": "Творительный (Instrumental)",
-   "explain": "«человеческой рукой» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «обработанный», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c4"
-  },
-  {
-   "sentence": "Яхта продолжала свой путь и, наконец, через сорок два дня после того, как покинула ___ Фёрт-оф-Клайд, бросила якорь в порту Талькауано.",
-   "lemma": "вода",
-   "options": [
-    "туманных водах",
-    "туманным водам",
-    "туманными водами",
-    "туманные воды"
-   ],
-   "correct": "туманные воды",
-   "case": "Винительный (Accusative)",
-   "explain": "«туманные воды» — the accusative marks the direct object of the verb.",
-   "id": "c5"
-  },
-  {
-   "sentence": "Ученый-географ хотел было применить на практике свой ___, над изучением которого он так добросовестно потрудился, но, к его крайнему удивлению, туземцы его не понимали.",
-   "lemma": "язык",
-   "options": [
-    "испанском языке",
-    "испанскому языку",
-    "испанский язык",
-    "испанского языка"
-   ],
-   "correct": "испанский язык",
-   "case": "Винительный (Accusative)",
-   "explain": "«испанский язык» — the accusative marks the direct object of the verb.",
-   "id": "c6"
   },
   {
    "sentence": "Ученый-географ хотел было применить на практике свой испанский язык, над изучением которого он так добросовестно потрудился, но, к его ___, туземцы его не понимали.",
@@ -95,36 +39,8 @@
    ],
    "correct": "крайнему удивлению",
    "case": "Дательный (Dative)",
-   "explain": "«крайнему удивлению» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«крайнему удивлению» — «к» always takes the dative.",
    "id": "c7"
-  },
-  {
-   "sentence": "— Очевидно, у меня ___, — сказал он.",
-   "lemma": "произношение",
-   "options": [
-    "плохому произношению",
-    "плохим произношением",
-    "плохого произношения",
-    "плохое произношение"
-   ],
-   "correct": "плохое произношение",
-   "case": "Именительный (Nominative)",
-   "explain": "«плохое произношение» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
-  },
-  {
-   "sentence": "В таможне с помощью нескольких ___ и вы разительных жестов ему дали понять, что английский консул живет в Консепсьоне, на расстоянии часа езды.",
-   "lemma": "слово",
-   "options": [
-    "английских слов",
-    "английские слова",
-    "английским словам",
-    "английскими словами"
-   ],
-   "correct": "английских слов",
-   "case": "Родительный (Genitive)",
-   "explain": "«английских слов» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
-   "id": "c9"
   },
   {
    "sentence": "В таможне с помощью нескольких английских слов и вы разительных жестов ему дали понять, что ___ живет в Консепсьоне, на расстоянии часа езды.",
@@ -137,50 +53,22 @@
    ],
    "correct": "английский консул",
    "case": "Именительный (Nominative)",
-   "explain": "«английский консул» — the subject of the sentence stands in the nominative.",
+   "explain": "«английский консул» is the subject of «живет» — who or what does it — so nominative.",
    "id": "c10"
-  },
-  {
-   "sentence": "Гленарван легко нашел двух хороших ___, и вскоре они с Паганелем уже въезжали в этот большой город, обязанный своим существованием предприимчивому Вальдивия, спутнику братьев Писарро.",
-   "lemma": "лошадь",
-   "options": [
-    "верховых лошадях",
-    "верховые лошади",
-    "верховым лошадям",
-    "верховых лошадей"
-   ],
-   "correct": "верховых лошадей",
-   "case": "Родительный (Genitive)",
-   "explain": "«верховых лошадей» — the genitive here marks possession, absence, or quantity.",
-   "id": "c11"
   },
   {
    "sentence": "Гленарван легко нашел двух хороших верховых лошадей, и вскоре они с Паганелем уже въезжали в этот ___, обязанный своим существованием предприимчивому Вальдивия, спутнику братьев Писарро.",
    "lemma": "город",
    "options": [
-    "большой город",
+    "большим городом",
+    "большому городу",
     "большого города",
-    "большом городе",
-    "большому городу"
+    "большой город"
    ],
    "correct": "большой город",
    "case": "Винительный (Accusative)",
-   "explain": "«большой город» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«большой город» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c12"
-  },
-  {
-   "sentence": "С каждого балкона неслись звуки мандолины, а из-за решетчатых ставен слышалось ___.",
-   "lemma": "пение",
-   "options": [
-    "томном пении",
-    "томным пением",
-    "томного пения",
-    "томное пение"
-   ],
-   "correct": "томное пение",
-   "case": "Именительный (Nominative)",
-   "explain": "«томное пение» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
   },
   {
    "sentence": "Гленарван не выказал ___ углубляться в причины такого упадка, хотя Паганель и порывался заговорить на эту тему.",
@@ -193,64 +81,8 @@
    ],
    "correct": "большого желания",
    "case": "Родительный (Genitive)",
-   "explain": "«большого желания» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«большого желания» is the object of a negated verb («не выказал») — genitive instead of the accusative.",
    "id": "c14"
-  },
-  {
-   "sentence": "Не теряя ни минуты, Гленарван отправился к консулу ее величества ___ Дж.",
-   "lemma": "королева",
-   "options": [
-    "британской королеве",
-    "британской королевой",
-    "британская королева",
-    "британской королевы"
-   ],
-   "correct": "британской королевы",
-   "case": "Родительный (Genitive)",
-   "explain": "«британской королевы» — the genitive here marks possession, absence, or quantity.",
-   "id": "c15"
-  },
-  {
-   "sentence": "Ни каких ___ не поступило ни к нему, ни к его коллегам, консулам других стран.",
-   "lemma": "сведение",
-   "options": [
-    "подобными сведениями",
-    "подобные сведения",
-    "подобных сведениях",
-    "подобных сведений"
-   ],
-   "correct": "подобных сведений",
-   "case": "Родительный (Genitive)",
-   "explain": "«подобных сведений» — the genitive here marks possession, absence, or quantity.",
-   "id": "c16"
-  },
-  {
-   "sentence": "Ни каких подобных сведений не поступило ни к нему, ни к его коллегам, консулам ___.",
-   "lemma": "страна",
-   "options": [
-    "другими странами",
-    "другим странам",
-    "других стран",
-    "другие страны"
-   ],
-   "correct": "других стран",
-   "case": "Родительный (Genitive)",
-   "explain": "«других стран» — the genitive here marks possession, absence, or quantity.",
-   "id": "c17"
-  },
-  {
-   "sentence": "Тщетно: самые ___ прибрежного населения ничего не дали.",
-   "lemma": "опрос",
-   "options": [
-    "подробными опросами",
-    "подробных опросов",
-    "подробных опросах",
-    "подробные опросы"
-   ],
-   "correct": "подробные опросы",
-   "case": "Именительный (Nominative)",
-   "explain": "«подробные опросы» — the subject of the sentence stands in the nominative.",
-   "id": "c18"
   },
   {
    "sentence": "Тщетно: самые подробные опросы ___ ничего не дали.",
@@ -263,36 +95,8 @@
    ],
    "correct": "прибрежного населения",
    "case": "Родительный (Genitive)",
-   "explain": "«прибрежного населения» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«прибрежного населения» depends on the noun «опросы» (whose? of what?) — genitive.",
    "id": "c19"
-  },
-  {
-   "sentence": "— Разве слово «Патагония» не бросается в глаза даже самому ___?",
-   "lemma": "человек",
-   "options": [
-    "недогадливый человек",
-    "недогадливом человеке",
-    "недогадливому человеку",
-    "недогадливым человеком"
-   ],
-   "correct": "недогадливому человеку",
-   "case": "Дательный (Dative)",
-   "explain": "«недогадливому человеку» — the dative marks the indirect object or recipient.",
-   "id": "c20"
-  },
-  {
-   "sentence": "— Если ваши ___ верны, то последний, во всяком случае, мне не кажется правильным.",
-   "lemma": "вывод",
-   "options": [
-    "первых выводах",
-    "первым выводам",
-    "первыми выводами",
-    "первые выводы"
-   ],
-   "correct": "первые выводы",
-   "case": "Именительный (Nominative)",
-   "explain": "«первые выводы» — the subject of the sentence stands in the nominative.",
-   "id": "c21"
   },
   {
    "sentence": "— По одной ___, дорогой Паганель: для того чтобы бросить в море бутылку, надо, во всяком случае, быть у моря.",
@@ -305,78 +109,50 @@
    ],
    "correct": "простой причине",
    "case": "Дательный (Dative)",
-   "explain": "«простой причине» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«простой причине» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c22"
   },
   {
    "sentence": "— Я думаю, что надо найти место пересечения ___ тридцать седьмой параллелью и затем следовать вдоль нее, не уклоняясь ни на полградуса, до той точки, где эта параллель уходит в Атлантический океан.",
    "lemma": "материк",
    "options": [
-    "американского материка",
     "американском материке",
-    "американскому материку",
-    "американским материком"
+    "американского материка",
+    "американский материк",
+    "американскому материку"
    ],
    "correct": "американского материка",
    "case": "Родительный (Genitive)",
-   "explain": "«Американского материка» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«американского материка» depends on the noun «пересечения» (whose? of what?) — genitive.",
    "id": "c23"
   },
   {
    "sentence": "— Я думаю, что надо найти место пересечения Американского материка тридцать седьмой параллелью и затем следовать вдоль нее, не уклоняясь ни на полградуса, до той точки, где эта параллель уходит в ___.",
    "lemma": "океан",
    "options": [
-    "атлантическому океану",
     "атлантический океан",
+    "атлантическим океаном",
     "атлантического океана",
-    "атлантическом океане"
+    "атлантическому океану"
    ],
    "correct": "атлантический океан",
    "case": "Винительный (Accusative)",
-   "explain": "«Атлантический океан» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«атлантический океан» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c24"
-  },
-  {
-   "sentence": "Говоря это, Паганель разложил на столе карту Чили и ___.",
-   "lemma": "провинция",
-   "options": [
-    "аргентинским провинциям",
-    "аргентинских провинций",
-    "аргентинских провинциях",
-    "аргентинскими провинциями"
-   ],
-   "correct": "аргентинских провинций",
-   "case": "Родительный (Genitive)",
-   "explain": "«аргентинских провинций» — the genitive here marks possession, absence, or quantity.",
-   "id": "c25"
   },
   {
    "sentence": "— Смотрите же, — повторил он, — и следуйте за мной в этой прогулке по ___.",
    "lemma": "материк",
    "options": [
-    "американском материке",
     "американскому материку",
-    "американским материком",
-    "американский материк"
+    "американском материке",
+    "американского материка",
+    "американским материком"
    ],
    "correct": "американскому материку",
    "case": "Дательный (Dative)",
-   "explain": "«Американскому материку» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«американскому материку» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c26"
-  },
-  {
-   "sentence": "Эти ___, произнесенные Паганелем с таким воодушевлением, произвели глубокое впечатление на слушателей.",
-   "lemma": "слово",
-   "options": [
-    "великодушными словами",
-    "великодушным словам",
-    "великодушных слов",
-    "великодушные слова"
-   ],
-   "correct": "великодушные слова",
-   "case": "Именительный (Nominative)",
-   "explain": "«великодушные слова» — the subject of the sentence stands in the nominative.",
-   "id": "c27"
   },
   {
    "sentence": "В ___ мы сами его освободим.",
@@ -389,7 +165,7 @@
    ],
    "correct": "последнем случае",
    "case": "Предложный (Prepositional)",
-   "explain": "«последнем случае» — after the preposition «в», for location or topic.",
+   "explain": "«последнем случае» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c28"
   },
   {
@@ -403,7 +179,7 @@
    ],
    "correct": "аргентинских провинций",
    "case": "Родительный (Genitive)",
-   "explain": "«аргентинских провинций» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«аргентинских провинций» depends on the noun «индейцами» (whose? of what?) — genitive.",
    "id": "c29"
   },
   {
@@ -417,50 +193,8 @@
    ],
    "correct": "географическому обществу",
    "case": "Дательный (Dative)",
-   "explain": "«Географическому обществу» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«географическому обществу» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c30"
-  },
-  {
-   "sentence": "Индейцы знают ему цену и заботятся о нем, как о самом ___.",
-   "lemma": "животное",
-   "options": [
-    "полезном животном",
-    "полезным животным",
-    "полезное животное",
-    "полезного животного"
-   ],
-   "correct": "полезном животном",
-   "case": "Предложный (Prepositional)",
-   "explain": "«полезном животном» — after the preposition «о», for location or topic.",
-   "id": "c31"
-  },
-  {
-   "sentence": "— Вначале горы, потом отлогий восточный склон Кордильер, а дальше — ___ с травкой и песочком: настоящий сад.",
-   "lemma": "равнина",
-   "options": [
-    "гладкой равнине",
-    "гладкой равниной",
-    "гладкая равнина",
-    "гладкой равнины"
-   ],
-   "correct": "гладкая равнина",
-   "case": "Именительный (Nominative)",
-   "explain": "«гладкая равнина» — the subject of the sentence stands in the nominative.",
-   "id": "c32"
-  },
-  {
-   "sentence": "— Вначале горы, потом отлогий восточный склон Кордильер, а дальше — гладкая равнина с травкой и песочком: ___.",
-   "lemma": "сад",
-   "options": [
-    "настоящий сад",
-    "настоящего сада",
-    "настоящем саде",
-    "настоящим садом"
-   ],
-   "correct": "настоящий сад",
-   "case": "Именительный (Nominative)",
-   "explain": "«настоящий сад» — the subject of the sentence stands in the nominative.",
-   "id": "c33"
   },
   {
    "sentence": "Мы выступим из той точки ___ между мысом Румена и заливом Карнеро, где тридцать седьмая параллель вступает на Американский материк.",
@@ -473,36 +207,22 @@
    ],
    "correct": "чилийского побережья",
    "case": "Родительный (Genitive)",
-   "explain": "«чилийского побережья» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«чилийского побережья» depends on the noun «точки» (whose? of what?) — genitive.",
    "id": "c34"
   },
   {
    "sentence": "Мы выступим из той точки чилийского побережья между мысом Румена и заливом Карнеро, где тридцать седьмая параллель вступает на ___.",
    "lemma": "материк",
    "options": [
+    "американского материка",
     "американскому материку",
-    "американским материком",
-    "американском материке",
-    "американский материк"
+    "американский материк",
+    "американским материком"
    ],
    "correct": "американский материк",
    "case": "Винительный (Accusative)",
-   "explain": "«Американский материк» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«американский материк» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c35"
-  },
-  {
-   "sentence": "Миновав столицу Араукании, мы ___ Антуко перевалим через Береговые Кордильеры, причем вулкан останется в стороне, на юге.",
-   "lemma": "проход",
-   "options": [
-    "горного прохода",
-    "горным проходом",
-    "горному проходу",
-    "горном проходе"
-   ],
-   "correct": "горным проходом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«горным проходом» — the instrumental marks the means, company, or complement.",
-   "id": "c36"
   },
   {
    "sentence": "Затем спустимся по ___ гор, переберемся через Рио-Колорадо и двинемся через пампасы к озеру Салина-Гранде, к реке Гуамини, к Сьерра — Тапальке.",
@@ -511,11 +231,11 @@
     "пологих склонах",
     "пологими склонами",
     "пологим склонам",
-    "пологие склоны"
+    "пологих склонов"
    ],
    "correct": "пологим склонам",
    "case": "Дательный (Dative)",
-   "explain": "«пологим склонам» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«пологим склонам» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c37"
   },
   {
@@ -529,7 +249,7 @@
    ],
    "correct": "атлантического океана",
    "case": "Родительный (Genitive)",
-   "explain": "«Атлантического океана» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«атлантического океана» depends on the noun «побережье» (whose? of what?) — genitive.",
    "id": "c38"
   },
   {
@@ -543,36 +263,8 @@
    ],
    "correct": "восточном побережье",
    "case": "Предложный (Prepositional)",
-   "explain": "«восточном побережье» — after the preposition «на», for location or topic.",
+   "explain": "«восточном побережье» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c39"
-  },
-  {
-   "sentence": "В месяц мы его закончим и будем на восточном побережье даже раньше «Дункана», если его хоть немного задержит в пути ___.",
-   "lemma": "ветер",
-   "options": [
-    "западный ветер",
-    "западному ветру",
-    "западного ветра",
-    "западном ветре"
-   ],
-   "correct": "западный ветер",
-   "case": "Винительный (Accusative)",
-   "explain": "«западный ветер» — the accusative marks the direct object of the verb.",
-   "id": "c40"
-  },
-  {
-   "sentence": "Кто лучше может о них позаботиться, чем ___ «Дункана»!",
-   "lemma": "капитан",
-   "options": [
-    "преданном капитане",
-    "преданный капитан",
-    "преданного капитана",
-    "преданному капитану"
-   ],
-   "correct": "преданный капитан",
-   "case": "Именительный (Nominative)",
-   "explain": "«преданный капитан» — the subject of the sentence stands in the nominative.",
-   "id": "c41"
   },
   {
    "sentence": "Гленарван не знал, кого выбрать, и, не желая обидеть никого из этих ___, решил бросить жребий.",
@@ -585,22 +277,8 @@
    ],
    "correct": "славных малых",
    "case": "Родительный (Genitive)",
-   "explain": "«славных малых» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«славных малых» — «из» always takes the genitive.",
    "id": "c42"
-  },
-  {
-   "sentence": "И вот между Гленарваном и ___ возникло настоящее соперничество, и оно, конечно, послужило на пользу дела.",
-   "lemma": "капитан",
-   "options": [
-    "молодым капитаном",
-    "молодой капитан",
-    "молодому капитану",
-    "молодом капитане"
-   ],
-   "correct": "молодым капитаном",
-   "case": "Творительный (Instrumental)",
-   "explain": "«молодым капитаном» — the instrumental marks the means, company, or complement.",
-   "id": "c43"
   },
   {
    "sentence": "И вот между Гленарваном и молодым капитаном возникло ___, и оно, конечно, послужило на пользу дела.",
@@ -613,50 +291,22 @@
    ],
    "correct": "настоящее соперничество",
    "case": "Именительный (Nominative)",
-   "explain": "«настоящее соперничество» — the subject of the sentence stands in the nominative.",
+   "explain": "«настоящее соперничество» is the subject of «возникло» — who or what does it — so nominative.",
    "id": "c44"
-  },
-  {
-   "sentence": "«Дункан» уже снимался с якоря, и лопасти его винта будоражили ___ бухты Талькауано.",
-   "lemma": "вода",
-   "options": [
-    "прозрачных водах",
-    "прозрачным водам",
-    "прозрачных вод",
-    "прозрачные воды"
-   ],
-   "correct": "прозрачные воды",
-   "case": "Винительный (Accusative)",
-   "explain": "«прозрачные воды» — the accusative marks the direct object of the verb.",
-   "id": "c45"
   },
   {
    "sentence": "Проводники и мулы ждали их у конца ___.",
    "lemma": "мол",
    "options": [
     "бревенчатому молу",
-    "бревенчатый мол",
-    "бревенчатым молом",
-    "бревенчатого мола"
+    "бревенчатом моле",
+    "бревенчатого мола",
+    "бревенчатым молом"
    ],
    "correct": "бревенчатого мола",
    "case": "Родительный (Genitive)",
-   "explain": "«бревенчатого мола» — the genitive here marks possession, absence, or quantity.",
+   "explain": "With «ждали», a verb of waiting, seeking, asking or wanting, the object can stand in the genitive — as here.",
    "id": "c46"
-  },
-  {
-   "sentence": "— А теперь, ___, — воскликнул Паганель, — покрепче пожмем на прощанье друг другу руки, чтобы это рукопожатие чувствовалось до самой нашей встречи на берегах Атлантического океана!",
-   "lemma": "друг",
-   "options": [
-    "дорогих друзьях",
-    "дорогих друзей",
-    "дорогие друзья",
-    "дорогим друзьям"
-   ],
-   "correct": "дорогие друзья",
-   "case": "Именительный (Nominative)",
-   "explain": "«дорогие друзья» — the subject of the sentence stands in the nominative.",
-   "id": "c47"
   },
   {
    "sentence": "— А теперь, дорогие друзья, — воскликнул Паганель, — покрепче пожмем на прощанье друг другу руки, чтобы это рукопожатие чувствовалось до самой нашей встречи на берегах ___!",
@@ -669,22 +319,8 @@
    ],
    "correct": "атлантического океана",
    "case": "Родительный (Genitive)",
-   "explain": "«Атлантического океана» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«атлантического океана» depends on the noun «берегах» (whose? of what?) — genitive.",
    "id": "c48"
-  },
-  {
-   "sentence": "— ___ и успеха, друзья мои!",
-   "lemma": "путь",
-   "options": [
-    "счастливом пути",
-    "счастливым путём",
-    "счастливого пути",
-    "счастливый путь"
-   ],
-   "correct": "счастливого пути",
-   "case": "Родительный (Genitive)",
-   "explain": "«Счастливого пути» — the genitive here marks possession, absence, or quantity.",
-   "id": "c49"
   },
   {
    "sentence": "И в тот момент, когда наши всадники понеслись по ___, «Дункан» на всех парах направился в открытое море.",
@@ -697,7 +333,7 @@
    ],
    "correct": "прибрежной дороге",
    "case": "Дательный (Dative)",
-   "explain": "«прибрежной дороге» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«прибрежной дороге» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c50"
   }
  ]

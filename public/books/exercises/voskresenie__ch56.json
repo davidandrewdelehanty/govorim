@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "В то время как Нехлюдов подъезжал к дому, одна карета стояла у подъезда, и лакей в шляпе с кокардой и пелерине подсаживал с порога крыльца даму, подхватившую свой шлейф и открывшую черные ___ в туфлях.",
-   "lemma": "щиколотка",
-   "options": [
-    "тонкими щиколотками",
-    "тонких щиколоток",
-    "тонкие щиколотки",
-    "тонким щиколоткам"
-   ],
-   "correct": "тонкие щиколотки",
-   "case": "Именительный (Nominative)",
-   "explain": "«тонкие щиколотки» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
    "sentence": "Не успел Нехлюдов спросить швейцара о том, где Михаил Иванович (Масленников), как он сам показался на ___, провожая очень важного гостя, такого, какого он провожал уже не до площадки, а до самого низа.",
    "lemma": "лестница",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "ковровой лестнице",
    "case": "Предложный (Prepositional)",
-   "explain": "«ковровой лестнице» — after the preposition «на», for location or topic.",
+   "explain": "«ковровой лестнице» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c4"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "важного гостя",
    "case": "Винительный (Accusative)",
-   "explain": "«важного гостя» — the accusative marks the direct object of the verb.",
+   "explain": "«важного гостя» is the direct object of «провожая» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c5"
   },
   {
@@ -53,64 +39,8 @@
    ],
    "correct": "самого низа",
    "case": "Родительный (Genitive)",
-   "explain": "«самого низа» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«самого низа» — «до» always takes the genitive.",
    "id": "c6"
-  },
-  {
-   "sentence": "Очень важный ___ этот, сходя, говорил по-французски об аллегри в пользу приютов, устраиваемых в городе, высказывая мнение, что это хорошее занятие для дам: «Им весело, и деньги собираются».",
-   "lemma": "гость",
-   "options": [
-    "военным гостем",
-    "военный гость",
-    "военного гостя",
-    "военном госте"
-   ],
-   "correct": "военный гость",
-   "case": "Именительный (Nominative)",
-   "explain": "«военный гость» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
-  },
-  {
-   "sentence": "Очень важный военный гость этот, сходя, говорил по-французски об аллегри в пользу приютов, устраиваемых в городе, высказывая мнение, что это ___ для дам: «Им весело, и деньги собираются».",
-   "lemma": "занятие",
-   "options": [
-    "хорошим занятием",
-    "хорошего занятия",
-    "хорошем занятии",
-    "хорошее занятие"
-   ],
-   "correct": "хорошее занятие",
-   "case": "Именительный (Nominative)",
-   "explain": "«хорошее занятие» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
-  },
-  {
-   "sentence": "И Корчагины тут. Et Nadine Bukshevden. Toutes les jolies femmes de la ville, — сказал он, подставляя и несколько приподнимая свои ___ под подаваемую ему его же великолепным с золотыми галунами лакеем шинель.",
-   "lemma": "плечо",
-   "options": [
-    "военные плечи",
-    "военными плечами",
-    "военных плечах",
-    "военных плеч"
-   ],
-   "correct": "военные плечи",
-   "case": "Винительный (Accusative)",
-   "explain": "«военные плечи» — the accusative marks the direct object of the verb.",
-   "id": "c9"
-  },
-  {
-   "sentence": "Масленников был в особенно ___, причиной которого было оказанное ему внимание важным лицом.",
-   "lemma": "возбуждение",
-   "options": [
-    "радостному возбуждению",
-    "радостным возбуждением",
-    "радостном возбуждении",
-    "радостное возбуждение"
-   ],
-   "correct": "радостном возбуждении",
-   "case": "Предложный (Prepositional)",
-   "explain": "«радостном возбуждении» — after the preposition «в», for location or topic.",
-   "id": "c10"
   },
   {
    "sentence": "— Ни за что, ни за что не соглашусь: она просто не любила, — говорил ___.",
@@ -123,22 +53,8 @@
    ],
    "correct": "женский голос",
    "case": "Именительный (Nominative)",
-   "explain": "«женский голос» — the subject of the sentence stands in the nominative.",
+   "explain": "«женский голос» is the subject of «говорил» — who or what does it — so nominative.",
    "id": "c13"
-  },
-  {
-   "sentence": "— Вечно ___, — со смехом вступилась другая дама в высокой шляпе, блестевшая шелком, золотом и камнями.",
-   "lemma": "шутка",
-   "options": [
-    "глупых шуток",
-    "глупых шутках",
-    "глупые шутки",
-    "глупыми шутками"
-   ],
-   "correct": "глупые шутки",
-   "case": "Винительный (Accusative)",
-   "explain": "«глупые шутки» — the accusative marks the direct object of the verb.",
-   "id": "c14"
   },
   {
    "sentence": "— Вечно глупые шутки, — со смехом вступилась ___ в высокой шляпе, блестевшая шелком, золотом и камнями.",
@@ -151,7 +67,7 @@
    ],
    "correct": "другая дама",
    "case": "Именительный (Nominative)",
-   "explain": "«другая дама» — the subject of the sentence stands in the nominative.",
+   "explain": "«другая дама» is the subject of «вступилась» — who or what does it — so nominative.",
    "id": "c15"
   },
   {
@@ -165,22 +81,8 @@
    ],
    "correct": "высокой шляпе",
    "case": "Предложный (Prepositional)",
-   "explain": "«высокой шляпе» — after the preposition «в», for location or topic.",
+   "explain": "«высокой шляпе» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c16"
-  },
-  {
-   "sentence": "— Такая ___, так хорошо теперь в деревне!",
-   "lemma": "весна",
-   "options": [
-    "прелестная весна",
-    "прелестной весной",
-    "прелестной весны",
-    "прелестной весне"
-   ],
-   "correct": "прелестная весна",
-   "case": "Именительный (Nominative)",
-   "explain": "«прелестная весна» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
   },
   {
    "sentence": "Мисси сердито нахмурилась, пожала плечами и обратилась к ___, который подхватил у нее из рук порожнюю чашку и, цепляя саблей за кресла, мужественно перенес ее на другой стол.",
@@ -193,36 +95,8 @@
    ],
    "correct": "элегантному офицеру",
    "case": "Дательный (Dative)",
-   "explain": "«элегантному офицеру» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«элегантному офицеру» — «к» always takes the dative.",
    "id": "c18"
-  },
-  {
-   "sentence": "— Мика (это был ее ___, Масленников) может иметь другие недостатки, но вы знаете, как он добр.",
-   "lemma": "муж",
-   "options": [
-    "толстому мужу",
-    "толстым мужем",
-    "толстый муж",
-    "толстом муже"
-   ],
-   "correct": "толстый муж",
-   "case": "Именительный (Nominative)",
-   "explain": "«толстый муж» — the subject of the sentence stands in the nominative.",
-   "id": "c20"
-  },
-  {
-   "sentence": "— Мика (это был ее толстый муж, Масленников) может иметь ___, но вы знаете, как он добр.",
-   "lemma": "недостаток",
-   "options": [
-    "других недостатках",
-    "других недостатков",
-    "другим недостаткам",
-    "другие недостатки"
-   ],
-   "correct": "другие недостатки",
-   "case": "Винительный (Accusative)",
-   "explain": "«другие недостатки» — the accusative marks the direct object of the verb.",
-   "id": "c21"
   },
   {
    "sentence": "Они вошли в маленький ___ и сели у окна.",
@@ -235,7 +109,7 @@
    ],
    "correct": "японский кабинетик",
    "case": "Винительный (Accusative)",
-   "explain": "«японский кабинетик» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«японский кабинетик» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c22"
   }
  ]

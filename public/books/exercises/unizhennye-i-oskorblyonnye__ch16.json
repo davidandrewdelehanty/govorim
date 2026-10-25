@@ -1,46 +1,18 @@
 {
  "cases": [
   {
-   "sentence": "Он был довольно ___, сложен изящно, несколько худощаво и казался несравненно моложе своих лет.",
-   "lemma": "рост",
-   "options": [
-    "высокого роста",
-    "высокому росту",
-    "высоком росте",
-    "высоким ростом"
-   ],
-   "correct": "высокого роста",
-   "case": "Родительный (Genitive)",
-   "explain": "«высокого роста» — the genitive here marks possession, absence, or quantity.",
-   "id": "c1"
-  },
-  {
    "sentence": "Темно-русые ___ его почти еще и не начинали седеть.",
    "lemma": "волос",
    "options": [
-    "мягких волос",
-    "мягким волосам",
     "мягкие волосы",
+    "мягким волосам",
+    "мягкими волосами",
     "мягких волосах"
    ],
    "correct": "мягкие волосы",
    "case": "Именительный (Nominative)",
-   "explain": "«мягкие волосы» — the subject of the sentence stands in the nominative.",
+   "explain": "«мягкие волосы» is the subject of «начинали» — who or what does it — so nominative.",
    "id": "c2"
-  },
-  {
-   "sentence": "Одет он был с утонченною изящностию и свежестию, но с некоторыми замашками ___, что, впрочем, к нему шло.",
-   "lemma": "человек",
-   "options": [
-    "молодого человека",
-    "молодому человеку",
-    "молодым человеком",
-    "молодой человек"
-   ],
-   "correct": "молодого человека",
-   "case": "Винительный (Accusative)",
-   "explain": "«молодого человека» — the accusative marks the direct object of the verb.",
-   "id": "c3"
   },
   {
    "sentence": "По крайней мере его никак нельзя было принять за отца такого ___.",
@@ -53,7 +25,7 @@
    ],
    "correct": "взрослого сына",
    "case": "Родительный (Genitive)",
-   "explain": "«взрослого сына» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«взрослого сына» depends on the noun «отца» (whose? of what?) — genitive.",
    "id": "c5"
   },
   {
@@ -67,7 +39,7 @@
    ],
    "correct": "первого смущения",
    "case": "Родительный (Genitive)",
-   "explain": "«первого смущения» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«первого смущения» — «от» always takes the genitive.",
    "id": "c6"
   },
   {
@@ -81,64 +53,8 @@
    ],
    "correct": "сильном волнении",
    "case": "Предложный (Prepositional)",
-   "explain": "«сильном волнении» — after the preposition «в», for location or topic.",
+   "explain": "«сильном волнении» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c7"
-  },
-  {
-   "sentence": "Такое ___ от Катерины Федоровны и, наконец, в такую минуту, разумеется, было вызвано чрезвычайною странностию твоего объяснения с нею.",
-   "lemma": "признание",
-   "options": [
-    "невероятным признанием",
-    "невероятном признании",
-    "невероятное признание",
-    "невероятному признанию"
-   ],
-   "correct": "невероятное признание",
-   "case": "Именительный (Nominative)",
-   "explain": "«невероятное признание» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
-  },
-  {
-   "sentence": "— Тогда мысль, которая преследовала меня уже давно, до того вполне овладела мною, что я не в состоянии был противиться ___ и вошел к вам.",
-   "lemma": "влечение",
-   "options": [
-    "первое влечение",
-    "первому влечению",
-    "первым влечением",
-    "первом влечении"
-   ],
-   "correct": "первому влечению",
-   "case": "Дательный (Dative)",
-   "explain": "«первому влечению» — the dative marks the indirect object or recipient.",
-   "id": "c9"
-  },
-  {
-   "sentence": "Я склонен подозревать дурное прежде хорошего — черта несчастная, свойственная ___.",
-   "lemma": "сердце",
-   "options": [
-    "сухое сердце",
-    "сухим сердцем",
-    "сухому сердцу",
-    "сухого сердца"
-   ],
-   "correct": "сухому сердцу",
-   "case": "Дательный (Dative)",
-   "explain": "«сухому сердцу» — the dative marks the indirect object or recipient.",
-   "id": "c10"
-  },
-  {
-   "sentence": "___ предполагавшегося брака моего сына с падчерицею графини Зинаиды Федоровны та, что эта девушка в высшей степени достойна любви и уважения.",
-   "lemma": "причина",
-   "options": [
-    "второй причины",
-    "вторая причина",
-    "второй причине",
-    "второй причиной"
-   ],
-   "correct": "вторая причина",
-   "case": "Именительный (Nominative)",
-   "explain": "«Вторая причина» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
   },
   {
    "sentence": "Алеша без характера, легкомыслен, чрезвычайно нерассудителен, в двадцать два года еще совершенно ребенок и разве только с одним достоинством, с добрым сердцем, — качество даже опасное при ___.",
@@ -151,22 +67,8 @@
    ],
    "correct": "других недостатках",
    "case": "Предложный (Prepositional)",
-   "explain": "«других недостатках» — after the preposition «при», for location or topic.",
+   "explain": "«других недостатках» — «при» always takes the prepositional.",
    "id": "c14"
-  },
-  {
-   "sentence": "Уже давно я заметил, что мое влияние на него начинает уменьшаться: пылкость, ___ берут свое и даже берут верх над некоторыми настоящими обязанностями.",
-   "lemma": "увлечение",
-   "options": [
-    "юношеские увлечения",
-    "юношеским увлечениям",
-    "юношескими увлечениями",
-    "юношеских увлечениях"
-   ],
-   "correct": "юношеские увлечения",
-   "case": "Именительный (Nominative)",
-   "explain": "«юношеские увлечения» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
   },
   {
    "sentence": "Уже давно я заметил, что мое влияние на него начинает уменьшаться: пылкость, юношеские увлечения берут свое и даже берут верх над некоторыми ___.",
@@ -179,22 +81,8 @@
    ],
    "correct": "настоящими обязанностями",
    "case": "Творительный (Instrumental)",
-   "explain": "«настоящими обязанностями» — after the preposition «над», the instrumental marks the means, company, or complement.",
+   "explain": "«настоящими обязанностями» — «над» always takes the instrumental.",
    "id": "c16"
-  },
-  {
-   "sentence": "Но я обрадовался поздно; над ним уже неразрушимо царило ___ — ваше.",
-   "lemma": "влияние",
-   "options": [
-    "другом влиянии",
-    "другое влияние",
-    "другого влияния",
-    "другому влиянию"
-   ],
-   "correct": "другое влияние",
-   "case": "Именительный (Nominative)",
-   "explain": "«другое влияние» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
   },
   {
    "sentence": "Легкомыслие, детскость — в нем почти еще те же, но в нем укрепились некоторые ___; он и начинает интересоваться не одними игрушками, а тем, что возвышенно, благородно, честно.",
@@ -207,22 +95,8 @@
    ],
    "correct": "благородные внушения",
    "case": "Именительный (Nominative)",
-   "explain": "«благородные внушения» — the subject of the sentence stands in the nominative.",
+   "explain": "«благородные внушения» is the subject of «укрепились» — who or what does it — so nominative.",
    "id": "c18"
-  },
-  {
-   "sentence": "Но происшествие в доме графини разом перевернуло все мои предположения, и прежде всего меня поразил ___: странная в Алеше серьезность, строгость привязанности к вам, упорство, живучесть этой привязанности.",
-   "lemma": "факт",
-   "options": [
-    "неожиданному факту",
-    "неожиданным фактом",
-    "неожиданный факт",
-    "неожиданном факте"
-   ],
-   "correct": "неожиданный факт",
-   "case": "Именительный (Nominative)",
-   "explain": "«неожиданный факт» — the subject of the sentence stands in the nominative.",
-   "id": "c19"
   },
   {
    "sentence": "Он затронул и возбудил самые благороднейшие способности ___, именно — способность прощать и отплачивать за зло великодушием.",
@@ -235,22 +109,8 @@
    ],
    "correct": "человеческого сердца",
    "case": "Родительный (Genitive)",
-   "explain": "«человеческого сердца» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«человеческого сердца» depends on the noun «способности» (whose? of what?) — genitive.",
    "id": "c20"
-  },
-  {
-   "sentence": "Идти на такое объяснение и в то же время не оскорбить, не обидеть — на это иногда не способны даже самые ___, а способны именно сердца свежие, чистые и хорошо направленные, как у него.",
-   "lemma": "мудрец",
-   "options": [
-    "ловкие мудрецы",
-    "ловких мудрецов",
-    "ловкими мудрецами",
-    "ловких мудрецах"
-   ],
-   "correct": "ловкие мудрецы",
-   "case": "Именительный (Nominative)",
-   "explain": "«ловкие мудрецы» — the subject of the sentence stands in the nominative.",
-   "id": "c21"
   },
   {
    "sentence": "Я уверен, что вы, Наталья Николаевна, не участвовали в его ___ ни словом, ни советом.",
@@ -263,64 +123,8 @@
    ],
    "correct": "сегодняшнем поступке",
    "case": "Предложный (Prepositional)",
-   "explain": "«сегодняшнем поступке» — after the preposition «в», for location or topic.",
+   "explain": "«сегодняшнем поступке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c22"
-  },
-  {
-   "sentence": "— Вы не ошибаетесь, — повторила Наташа, у которой пылало все лицо и глаза сияли каким-то ___, точно вдохновением.",
-   "lemma": "блеск",
-   "options": [
-    "странным блеском",
-    "странном блеске",
-    "странного блеска",
-    "странному блеску"
-   ],
-   "correct": "странным блеском",
-   "case": "Творительный (Instrumental)",
-   "explain": "«странным блеском» — the instrumental marks the means, company, or complement.",
-   "id": "c23"
-  },
-  {
-   "sentence": "Что ж, если я сам убедился, что вы одна только можете составить его счастие, что вы — ___ его, что вы уже положили начало его будущему счастью!",
-   "lemma": "руководитель",
-   "options": [
-    "настоящим руководителем",
-    "настоящий руководитель",
-    "настоящему руководителю",
-    "настоящем руководителе"
-   ],
-   "correct": "настоящий руководитель",
-   "case": "Именительный (Nominative)",
-   "explain": "«настоящий руководитель» — the subject of the sentence stands in the nominative.",
-   "id": "c24"
-  },
-  {
-   "sentence": "Я, может быть, ___ как решил это и только теперь сам узнал, что я решил справедливо.",
-   "lemma": "месяц",
-   "options": [
-    "целого месяца",
-    "целый месяц",
-    "целым месяцем",
-    "целом месяце"
-   ],
-   "correct": "целый месяц",
-   "case": "Винительный (Accusative)",
-   "explain": "«целый месяц» — the accusative marks the direct object of the verb.",
-   "id": "c26"
-  },
-  {
-   "sentence": "Тон всей его речи даже иногда не соответствовал порыву, привлекшему его к нам в такой ___ для первого посещения и особенно при таких отношениях.",
-   "lemma": "час",
-   "options": [
-    "неурочного часа",
-    "неурочному часу",
-    "неурочный час",
-    "неурочным часом"
-   ],
-   "correct": "неурочный час",
-   "case": "Винительный (Accusative)",
-   "explain": "«неурочный час» — the accusative marks the direct object of the verb.",
-   "id": "c28"
   },
   {
    "sentence": "Тон всей его речи даже иногда не соответствовал порыву, привлекшему его к нам в такой неурочный час для ___ и особенно при таких отношениях.",
@@ -333,92 +137,22 @@
    ],
    "correct": "первого посещения",
    "case": "Родительный (Genitive)",
-   "explain": "«первого посещения» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«первого посещения» — «для» always takes the genitive.",
    "id": "c29"
   },
   {
    "sentence": "___ он проговорил так одушевленно, с таким чувством, с таким видом самого искреннего уважения к Наташе, что победил нас всех.",
    "lemma": "слово",
    "options": [
-    "последних словах",
     "последним словам",
-    "последних слов",
+    "последних словах",
+    "последними словами",
     "последние слова"
    ],
    "correct": "последние слова",
    "case": "Винительный (Accusative)",
-   "explain": "«Последние слова» — the accusative marks the direct object of the verb.",
+   "explain": "«последние слова» is the direct object of «проговорил» (кого? что?) — accusative.",
    "id": "c31"
-  },
-  {
-   "sentence": "Последние слова он проговорил так одушевленно, с таким чувством, с таким видом самого ___ к Наташе, что победил нас всех.",
-   "lemma": "уважение",
-   "options": [
-    "искреннему уважению",
-    "искреннее уважение",
-    "искреннем уважении",
-    "искреннего уважения"
-   ],
-   "correct": "искреннего уважения",
-   "case": "Родительный (Genitive)",
-   "explain": "«искреннего уважения» — the genitive here marks possession, absence, or quantity.",
-   "id": "c32"
-  },
-  {
-   "sentence": "___ Наташи было побеждено совершенно.",
-   "lemma": "сердце",
-   "options": [
-    "благородному сердцу",
-    "благородное сердце",
-    "благородном сердце",
-    "благородным сердцем"
-   ],
-   "correct": "благородное сердце",
-   "case": "Именительный (Nominative)",
-   "explain": "«Благородное сердце» — the subject of the sentence stands in the nominative.",
-   "id": "c33"
-  },
-  {
-   "sentence": "Я просил у вас только десять минут, а просидел ___, — прибавил он, усмехаясь.",
-   "lemma": "час",
-   "options": [
-    "целый час",
-    "целому часу",
-    "целого часа",
-    "целым часом"
-   ],
-   "correct": "целый час",
-   "case": "Винительный (Accusative)",
-   "explain": "«целый час» — the accusative marks the direct object of the verb.",
-   "id": "c35"
-  },
-  {
-   "sentence": "— Но я ухожу в самом ___ свидеться с вами опять как можно скорее.",
-   "lemma": "нетерпение",
-   "options": [
-    "горячее нетерпение",
-    "горячем нетерпении",
-    "горячему нетерпению",
-    "горячего нетерпения"
-   ],
-   "correct": "горячем нетерпении",
-   "case": "Предложный (Prepositional)",
-   "explain": "«горячем нетерпении» — after the preposition «в», for location or topic.",
-   "id": "c36"
-  },
-  {
-   "sentence": "Но ваша искренность дороже всех этих ___.",
-   "lemma": "вежливость",
-   "options": [
-    "поддельных вежливостей",
-    "поддельных вежливостях",
-    "поддельным вежливостям",
-    "поддельные вежливости"
-   ],
-   "correct": "поддельных вежливостей",
-   "case": "Родительный (Genitive)",
-   "explain": "«поддельных вежливостей» — the genitive here marks possession, absence, or quantity.",
-   "id": "c37"
   },
   {
    "sentence": "Да, много помешала мне эта мнительность в моей жизни, и весь раздор мой с семейством вашим, может быть, только последствия моего ___!..",
@@ -431,7 +165,7 @@
    ],
    "correct": "жалкого характера",
    "case": "Родительный (Genitive)",
-   "explain": "«жалкого характера» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«жалкого характера» depends on the noun «последствия» (whose? of what?) — genitive.",
    "id": "c38"
   },
   {
@@ -445,7 +179,7 @@
    ],
    "correct": "целый вечер",
    "case": "Винительный (Accusative)",
-   "explain": "«целый вечер» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«целый вечер» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c39"
   },
   {
@@ -459,22 +193,8 @@
    ],
    "correct": "прошлого года",
    "case": "Родительный (Genitive)",
-   "explain": "«прошлого года» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«прошлого года» depends on the noun «князя» (whose? of what?) — genitive.",
    "id": "c40"
-  },
-  {
-   "sentence": "— Да, он наш ___, и мы должны быть все вместе!",
-   "lemma": "друг",
-   "options": [
-    "искренний друг",
-    "искреннему другу",
-    "искренним другом",
-    "искреннего друга"
-   ],
-   "correct": "искренний друг",
-   "case": "Именительный (Nominative)",
-   "explain": "«искренний друг» — the subject of the sentence stands in the nominative.",
-   "id": "c41"
   },
   {
    "sentence": "Да что ж, я ведь и в ___ такой.",
@@ -487,7 +207,7 @@
    ],
    "correct": "самом деле",
    "case": "Предложный (Prepositional)",
-   "explain": "«самом деле» — after the preposition «в», for location or topic.",
+   "explain": "«самом деле» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c45"
   },
   {
@@ -501,7 +221,7 @@
    ],
    "correct": "доброе сердце",
    "case": "Именительный (Nominative)",
-   "explain": "«доброе сердце» — the subject of the sentence stands in the nominative.",
+   "explain": "«доброе сердце» is the subject of «вредит» — who or what does it — so nominative.",
    "id": "c46"
   },
   {
@@ -515,7 +235,7 @@
    ],
    "correct": "сильном волнении",
    "case": "Предложный (Prepositional)",
-   "explain": "«сильном волнении» — after the preposition «в», for location or topic.",
+   "explain": "«сильном волнении» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c47"
   },
   {
@@ -529,7 +249,7 @@
    ],
    "correct": "самом деле",
    "case": "Предложный (Prepositional)",
-   "explain": "«самом деле» — after the preposition «в», for location or topic.",
+   "explain": "«самом деле» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c49"
   },
   {
@@ -543,7 +263,7 @@
    ],
    "correct": "странных мыслей",
    "case": "Родительный (Genitive)",
-   "explain": "«странных мыслей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "After «Много», a word of quantity — genitive.",
    "id": "c50"
   }
  ]

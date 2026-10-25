@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "При всяком самом разумном сомнении цифры и название улицы не могли бы сообщить мне, есть ли в квартире этой еще ___, — довольно, что я думал о той и что она была там.",
-   "lemma": "семья",
-   "options": [
-    "другой семьёй",
-    "другая семья",
-    "другой семьи",
-    "другой семье"
-   ],
-   "correct": "другая семья",
-   "case": "Именительный (Nominative)",
-   "explain": "«другая семья» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "С силой необъяснимой я сдвинул одним порывом заваливающий ее хлам и выбежал в ___ провала.",
    "lemma": "коридор",
    "options": [
@@ -25,36 +11,8 @@
    ],
    "correct": "памятный коридор",
    "case": "Винительный (Accusative)",
-   "explain": "«памятный коридор» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«памятный коридор» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c4"
-  },
-  {
-   "sentence": "Но инстинктивно я искал ходов не книзу, а вверх, пробегая одним скачком короткие лестницы и ___.",
-   "lemma": "переход",
-   "options": [
-    "пустынные переходы",
-    "пустынных переходов",
-    "пустынными переходами",
-    "пустынным переходам"
-   ],
-   "correct": "пустынные переходы",
-   "case": "Винительный (Accusative)",
-   "explain": "«пустынные переходы» — the accusative marks the direct object of the verb.",
-   "id": "c6"
-  },
-  {
-   "sentence": "Это было ужасно, как ___, тем более, что за мной гнались, — я слышал торопливые переходы сзади и спереди, — этот психически нагоняющий шум, от которого я не мог скрыться.",
-   "lemma": "сон",
-   "options": [
-    "дурным сном",
-    "дурного сна",
-    "дурной сон",
-    "дурному сну"
-   ],
-   "correct": "дурной сон",
-   "case": "Именительный (Nominative)",
-   "explain": "«дурной сон» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
   },
   {
    "sentence": "Он раздавался с неправильностью ___, иногда так близко, что я отскакивал за дверь, или же ровно следовал в стороне, как бы обещая ежесекундно обрушиться мне наперерез.",
@@ -67,7 +25,7 @@
    ],
    "correct": "уличного движения",
    "case": "Родительный (Genitive)",
-   "explain": "«уличного движения» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«уличного движения» depends on the noun «неправильностью» (whose? of what?) — genitive.",
    "id": "c8"
   },
   {
@@ -81,36 +39,8 @@
    ],
    "correct": "гулких полов",
    "case": "Родительный (Genitive)",
-   "explain": "«гулких полов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«гулких полов» depends on the noun «грохота» (whose? of what?) — genitive.",
    "id": "c9"
-  },
-  {
-   "sentence": "___, замеченная мною, упиралась в потолок квадратной дырой, я проскочил по ней вверх с чувством занесенного над спиной удара, — так спешили ко мне со всех сторон.",
-   "lemma": "лестница",
-   "options": [
-    "последней лестницей",
-    "последней лестнице",
-    "последняя лестница",
-    "последней лестницы"
-   ],
-   "correct": "последняя лестница",
-   "case": "Именительный (Nominative)",
-   "explain": "«Последняя лестница» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
-  },
-  {
-   "sentence": "Последняя лестница, замеченная мною, упиралась в потолок ___, я проскочил по ней вверх с чувством занесенного над спиной удара, — так спешили ко мне со всех сторон.",
-   "lemma": "дыра",
-   "options": [
-    "квадратной дыры",
-    "квадратная дыра",
-    "квадратной дырой",
-    "квадратной дыре"
-   ],
-   "correct": "квадратной дырой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«квадратной дырой» — the instrumental marks the means, company, or complement.",
-   "id": "c11"
   },
   {
    "sentence": "Я очутился в ___ чердака, немедленно обрушив на люк все, что смутно белело по сторонам; это оказалось грудой оконных рам, двинуть которую с размаха могла лишь сила отчаяния.",
@@ -123,7 +53,7 @@
    ],
    "correct": "душной тьме",
    "case": "Предложный (Prepositional)",
-   "explain": "«душной тьме» — after the preposition «в», for location or topic.",
+   "explain": "«душной тьме» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c12"
   },
   {
@@ -137,7 +67,7 @@
    ],
    "correct": "оконных рам",
    "case": "Родительный (Genitive)",
-   "explain": "«оконных рам» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«оконных рам» depends on the noun «грудой» (whose? of what?) — genitive.",
    "id": "c13"
   },
   {
@@ -151,7 +81,7 @@
    ],
    "correct": "слуховому окну",
    "case": "Дательный (Dative)",
-   "explain": "«слуховому окну» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«слуховому окну» — «к» always takes the dative.",
    "id": "c14"
   },
   {
@@ -165,22 +95,8 @@
    ],
    "correct": "открытого пространства",
    "case": "Родительный (Genitive)",
-   "explain": "«открытого пространства» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«открытого пространства» depends on the noun «Свежесть» (whose? of what?) — genitive.",
    "id": "c16"
-  },
-  {
-   "sentence": "Свежесть открытого пространства дышала ___.",
-   "lemma": "сон",
-   "options": [
-    "глубоким сном",
-    "глубокому сну",
-    "глубокий сон",
-    "глубоком сне"
-   ],
-   "correct": "глубоким сном",
-   "case": "Творительный (Instrumental)",
-   "explain": "«глубоким сном» — the instrumental marks the means, company, or complement.",
-   "id": "c17"
   },
   {
    "sentence": "Я вылез и пробрался к воронке ___.",
@@ -193,7 +109,7 @@
    ],
    "correct": "водосточной трубы",
    "case": "Родительный (Genitive)",
-   "explain": "«водосточной трубы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«водосточной трубы» depends on the noun «воронке» (whose? of what?) — genitive.",
    "id": "c18"
   },
   {
@@ -207,7 +123,7 @@
    ],
    "correct": "холодное железо",
    "case": "Именительный (Nominative)",
-   "explain": "«холодное железо» — the subject of the sentence stands in the nominative.",
+   "explain": "«холодное железо» is the subject of «оказалось» — who or what does it — so nominative.",
    "id": "c19"
   }
  ]

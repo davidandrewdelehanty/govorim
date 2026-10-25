@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Ничто не нарушало покоя прирейнского ___ К., лежащего в зеленой и влажной долине вблизи знаменитых заводов Анилиновой компании.",
-   "lemma": "городок",
-   "options": [
-    "небольшого городка",
-    "небольшой городок",
-    "небольшим городком",
-    "небольшому городку"
-   ],
-   "correct": "небольшого городка",
-   "case": "Родительный (Genitive)",
-   "explain": "«небольшого городка» — the genitive here marks possession, absence, or quantity.",
-   "id": "c1"
-  },
-  {
    "sentence": "Ничто не нарушало покоя прирейнского небольшого городка К., лежащего в зеленой и влажной долине вблизи ___ Анилиновой компании.",
    "lemma": "завод",
    "options": [
@@ -25,64 +11,8 @@
    ],
    "correct": "знаменитых заводов",
    "case": "Родительный (Genitive)",
-   "explain": "«знаменитых заводов» — after the preposition «вблизи», the genitive here marks possession, absence, or quantity.",
+   "explain": "«знаменитых заводов» — «вблизи» always takes the genitive.",
    "id": "c2"
-  },
-  {
-   "sentence": "Подмастерье лез на нее чистить и без того сверкающую вывеску на штанге — ___ и белый конский хвост.",
-   "lemma": "тазик",
-   "options": [
-    "медный тазик",
-    "медного тазика",
-    "медном тазике",
-    "медному тазику"
-   ],
-   "correct": "медный тазик",
-   "case": "Винительный (Accusative)",
-   "explain": "«медный тазик» — the accusative marks the direct object of the verb.",
-   "id": "c4"
-  },
-  {
-   "sentence": "Подмастерье лез на нее чистить и без того сверкающую вывеску на штанге — медный тазик и белый ___.",
-   "lemma": "хвост",
-   "options": [
-    "конском хвосте",
-    "конского хвоста",
-    "конский хвост",
-    "конским хвостом"
-   ],
-   "correct": "конский хвост",
-   "case": "Именительный (Nominative)",
-   "explain": "«конский хвост» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
-  },
-  {
-   "sentence": "Громыхала на огромных колесах телега с пустыми ___.",
-   "lemma": "бочка",
-   "options": [
-    "пивными бочками",
-    "пивных бочек",
-    "пивные бочки",
-    "пивным бочкам"
-   ],
-   "correct": "пивными бочками",
-   "case": "Творительный (Instrumental)",
-   "explain": "«пивными бочками» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c6"
-  },
-  {
-   "sentence": "Теперь — несколько картофелин, пучочек луку, брюква и немного ___.",
-   "lemma": "хлеб",
-   "options": [
-    "серому хлебу",
-    "сером хлебе",
-    "серый хлеб",
-    "серого хлеба"
-   ],
-   "correct": "серого хлеба",
-   "case": "Родительный (Genitive)",
-   "explain": "«серого хлеба» — the genitive here marks possession, absence, or quantity.",
-   "id": "c7"
   },
   {
    "sentence": "Какими надеждами светились голубые ___.",
@@ -95,7 +25,7 @@
    ],
    "correct": "германские глаза",
    "case": "Именительный (Nominative)",
-   "explain": "«германские глаза» — the subject of the sentence stands in the nominative.",
+   "explain": "«германские глаза» is the subject of «светились» — who or what does it — so nominative.",
    "id": "c8"
   },
   {
@@ -109,22 +39,8 @@
    ],
    "correct": "изразцовой доске",
    "case": "Предложный (Prepositional)",
-   "explain": "«изразцовой доске» — after the preposition «на», for location or topic.",
+   "explain": "«изразцовой доске» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c9"
-  },
-  {
-   "sentence": "Вольф и Хлынов, в пыльной обуви, с пиджаками, перекинутыми через руку, с мокрыми лбами, перешли ___ и стали подниматься по шоссе под липами в К.",
-   "lemma": "мостик",
-   "options": [
-    "горбатый мостик",
-    "горбатого мостика",
-    "горбатом мостике",
-    "горбатому мостику"
-   ],
-   "correct": "горбатый мостик",
-   "case": "Винительный (Accusative)",
-   "explain": "«горбатый мостик» — the accusative marks the direct object of the verb.",
-   "id": "c11"
   },
   {
    "sentence": "В золотистом ___ еще дымились трубы Анилиновой компании.",
@@ -137,7 +53,7 @@
    ],
    "correct": "вечернем свете",
    "case": "Предложный (Prepositional)",
-   "explain": "«вечернем свете» — after the preposition «в», for location or topic.",
+   "explain": "«вечернем свете» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c13"
   },
   {
@@ -151,7 +67,7 @@
    ],
    "correct": "самому городу",
    "case": "Дательный (Dative)",
-   "explain": "«самому городу» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«самому городу» — «к» always takes the dative.",
    "id": "c14"
   },
   {
@@ -165,7 +81,7 @@
    ],
    "correct": "последнего камня",
    "case": "Родительный (Genitive)",
-   "explain": "«последнего камня» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«последнего камня» — «до» always takes the genitive.",
    "id": "c17"
   },
   {
@@ -179,7 +95,7 @@
    ],
    "correct": "глубокие тени",
    "case": "Именительный (Nominative)",
-   "explain": "«глубокие тени» — the subject of the sentence stands in the nominative.",
+   "explain": "«глубокие тени» is the subject of «лежали» — who or what does it — so nominative.",
    "id": "c19"
   }
  ]

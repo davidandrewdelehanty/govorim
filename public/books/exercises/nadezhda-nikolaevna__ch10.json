@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Положим, я знаю Лопатина много лет и, кажется, искренно симпатизирую этому ___.",
-   "lemma": "юноша",
-   "options": [
-    "талантливом юноше",
-    "талантливому юноше",
-    "талантливого юноши",
-    "талантливого юношу"
-   ],
-   "correct": "талантливому юноше",
-   "case": "Дательный (Dative)",
-   "explain": "«талантливому юноше» — the dative marks the indirect object or recipient.",
-   "id": "c1"
-  },
-  {
    "sentence": "Я не хотел бы ему зла, а сближение с падшей женщиной, прошедшей огонь и воду, это — зло, особенно для такой ___, как он.",
    "lemma": "натура",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "нетронутой натуры",
    "case": "Родительный (Genitive)",
-   "explain": "«нетронутой натуры» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«нетронутой натуры» — «для» always takes the genitive.",
    "id": "c3"
   },
   {
@@ -39,36 +25,8 @@
    ],
    "correct": "мягкосердечного человека",
    "case": "Винительный (Accusative)",
-   "explain": "«мягкосердечного человека» — the accusative marks the direct object of the verb.",
+   "explain": "«мягкосердечного человека» is the direct object of «вывел» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c4"
-  },
-  {
-   "sentence": "Я попробовал искать ее, но, несмотря на ___ и услуги дворников, не мог найти ее следа.",
-   "lemma": "стол",
-   "options": [
-    "адресному столу",
-    "адресного стола",
-    "адресным столом",
-    "адресный стол"
-   ],
-   "correct": "адресный стол",
-   "case": "Винительный (Accusative)",
-   "explain": "«адресный стол» — the accusative marks the direct object of the verb.",
-   "id": "c5"
-  },
-  {
-   "sentence": "Необходимо оставить свой ___ действий.",
-   "lemma": "образ",
-   "options": [
-    "прежний образ",
-    "прежнему образу",
-    "прежнего образа",
-    "прежним образом"
-   ],
-   "correct": "прежний образ",
-   "case": "Винительный (Accusative)",
-   "explain": "«прежний образ» — the accusative marks the direct object of the verb.",
-   "id": "c6"
   },
   {
    "sentence": "Это ___ приобрело какой-то отпечаток достоинства, совершенно не идущий к ее общественному положению.",
@@ -81,7 +39,7 @@
    ],
    "correct": "бледное лицо",
    "case": "Именительный (Nominative)",
-   "explain": "«бледное лицо» — the subject of the sentence stands in the nominative.",
+   "explain": "«бледное лицо» is the subject of «приобрело» — who or what does it — so nominative.",
    "id": "c7"
   },
   {
@@ -95,21 +53,21 @@
    ],
    "correct": "общественному положению",
    "case": "Дательный (Dative)",
-   "explain": "«общественному положению» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«общественному положению» — «к» always takes the dative.",
    "id": "c8"
   },
   {
    "sentence": "Мы разговорились, и они внимательно слушали мои поучения, касавшиеся ___, которыми я в настоящее время занят.",
    "lemma": "предмет",
    "options": [
-    "разными предметами",
-    "разные предметы",
     "разных предметов",
-    "разных предметах"
+    "разными предметами",
+    "разных предметах",
+    "разным предметам"
    ],
    "correct": "разных предметов",
    "case": "Родительный (Genitive)",
-   "explain": "«разных предметов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«касавшиеся» takes its object in the genitive.",
    "id": "c9"
   }
  ]

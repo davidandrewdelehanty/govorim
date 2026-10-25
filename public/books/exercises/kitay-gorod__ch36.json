@@ -1,48 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Это довольно ___, где всегда душно.",
-   "lemma": "комната",
-   "options": [
-    "низкой комнате",
-    "низкой комнатой",
-    "низкой комнаты",
-    "низкая комната"
-   ],
-   "correct": "низкая комната",
-   "case": "Именительный (Nominative)",
-   "explain": "«низкая комната» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Сложения он сухого; узкая грудь, жидкие ноги и руки; ___; бледное лицо скучного сидельца.",
-   "lemma": "рост",
-   "options": [
-    "среднего роста",
-    "среднему росту",
-    "среднем росте",
-    "средним ростом"
-   ],
-   "correct": "среднего роста",
-   "case": "Родительный (Genitive)",
-   "explain": "«среднего роста» — the genitive here marks possession, absence, or quantity.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Сложения он сухого; узкая грудь, жидкие ноги и руки; среднего роста; ___ скучного сидельца.",
-   "lemma": "лицо",
-   "options": [
-    "бледном лице",
-    "бледного лица",
-    "бледному лицу",
-    "бледное лицо"
-   ],
-   "correct": "бледное лицо",
-   "case": "Именительный (Nominative)",
-   "explain": "«бледное лицо» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
    "sentence": "Сложения он сухого; узкая грудь, жидкие ноги и руки; среднего роста; бледное лицо ___.",
    "lemma": "сиделец",
    "options": [
@@ -53,7 +11,7 @@
    ],
    "correct": "скучного сидельца",
    "case": "Родительный (Genitive)",
-   "explain": "«скучного сидельца» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«скучного сидельца» depends on the noun «лицо» (whose? of what?) — genitive.",
    "id": "c4"
   },
   {
@@ -67,35 +25,35 @@
    ],
    "correct": "верхней запонки",
    "case": "Родительный (Genitive)",
-   "explain": "«верхней запонки» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«верхней запонки» — «до» always takes the genitive.",
    "id": "c8"
   },
   {
    "sentence": "Ордена лежали у него в особом ___ с серебряными горельефами.",
    "lemma": "ларец",
    "options": [
-    "кованым ларцом",
-    "кованому ларцу",
     "кованом ларце",
-    "кованый ларец"
+    "кованому ларцу",
+    "кованого ларца",
+    "кованым ларцом"
    ],
    "correct": "кованом ларце",
    "case": "Предложный (Prepositional)",
-   "explain": "«кованом ларце» — after the preposition «в», for location or topic.",
+   "explain": "«кованом ларце» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c10"
   },
   {
    "sentence": "Заказал себе он ___ для вечеров, но и этого не любила Марья Орестовна.",
    "lemma": "орден",
    "options": [
-    "маленьким орденам",
     "маленьких орденах",
-    "маленьких орденов",
-    "маленькие ордена"
+    "маленькими орденами",
+    "маленькие ордена",
+    "маленьким орденам"
    ],
    "correct": "маленькие ордена",
    "case": "Винительный (Accusative)",
-   "explain": "«маленькие ордена» — the accusative marks the direct object of the verb.",
+   "explain": "«маленькие ордена» is the direct object of «Заказал» (кого? что?) — accusative.",
    "id": "c12"
   },
   {
@@ -109,7 +67,7 @@
    ],
    "correct": "частный пристав",
    "case": "Именительный (Nominative)",
-   "explain": "«частный пристав» — the subject of the sentence stands in the nominative.",
+   "explain": "«частный пристав» is the subject of «имеет» — who or what does it — so nominative.",
    "id": "c13"
   },
   {
@@ -123,7 +81,7 @@
    ],
    "correct": "внутренней потуги",
    "case": "Родительный (Genitive)",
-   "explain": "«внутренней потуги» — after the preposition «без», the genitive here marks possession, absence, or quantity.",
+   "explain": "«внутренней потуги» — «без» always takes the genitive.",
    "id": "c14"
   }
  ]

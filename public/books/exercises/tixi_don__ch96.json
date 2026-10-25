@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "___ чудом держалась на его затылке.",
-   "lemma": "папаха",
-   "options": [
-    "белой папахе",
-    "белой папахи",
-    "белой папахой",
-    "белая папаха"
-   ],
-   "correct": "белая папаха",
-   "case": "Именительный (Nominative)",
-   "explain": "«Белая папаха» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
-  },
-  {
-   "sentence": "Мокрые от пота, ___ падали на лоб.",
-   "lemma": "волос",
-   "options": [
-    "прямых волос",
-    "прямым волосам",
-    "прямыми волосами",
-    "прямые волосы"
-   ],
-   "correct": "прямые волосы",
-   "case": "Именительный (Nominative)",
-   "explain": "«прямые волосы» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
-  },
-  {
    "sentence": "Снаружи под навесом, на стенах амбара висели вентери; на них глядел дед Гришака, опираясь на костыль, — видно, думал о ___ и починке рыболовных снастей.",
    "lemma": "весна",
    "options": [
@@ -39,7 +11,7 @@
    ],
    "correct": "близкой весне",
    "case": "Предложный (Prepositional)",
-   "explain": "«близкой весне» — after the preposition «о», for location or topic.",
+   "explain": "«близкой весне» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c6"
   },
   {
@@ -53,7 +25,7 @@
    ],
    "correct": "рыболовных снастей",
    "case": "Родительный (Genitive)",
-   "explain": "«рыболовных снастей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«рыболовных снастей» depends on the noun «починке» (whose? of what?) — genitive.",
    "id": "c7"
   },
   {
@@ -67,35 +39,21 @@
    ],
    "correct": "чужие голоса",
    "case": "Именительный (Nominative)",
-   "explain": "«чужие голоса» — the subject of the sentence stands in the nominative.",
+   "explain": "«чужие голоса» is the subject of «дошли» — who or what does it — so nominative.",
    "id": "c8"
-  },
-  {
-   "sentence": "Со дна голубой ___ Христоня доставал замусоленную курительную бумажку.",
-   "lemma": "фуражка",
-   "options": [
-    "атаманская фуражка",
-    "атаманской фуражки",
-    "атаманской фуражке",
-    "атаманской фуражкой"
-   ],
-   "correct": "атаманской фуражки",
-   "case": "Родительный (Genitive)",
-   "explain": "«атаманской фуражки» — the genitive here marks possession, absence, or quantity.",
-   "id": "c9"
   },
   {
    "sentence": "— Были все ___, Петро Мелехов не был.",
    "lemma": "фронтовик",
    "options": [
-    "хуторные фронтовики",
     "хуторных фронтовиках",
-    "хуторных фронтовиков",
-    "хуторными фронтовиками"
+    "хуторные фронтовики",
+    "хуторными фронтовиками",
+    "хуторным фронтовикам"
    ],
    "correct": "хуторные фронтовики",
    "case": "Именительный (Nominative)",
-   "explain": "«хуторные фронтовики» — the subject of the sentence stands in the nominative.",
+   "explain": "«хуторные фронтовики» is the subject of «Были» — who or what does it — so nominative.",
    "id": "c10"
   },
   {
@@ -109,7 +67,7 @@
    ],
    "correct": "собственной охоте",
    "case": "Дательный (Dative)",
-   "explain": "«собственной охоте» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«собственной охоте» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c11"
   },
   {
@@ -123,7 +81,7 @@
    ],
    "correct": "добрых коней",
    "case": "Родительный (Genitive)",
-   "explain": "«добрых коней» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«добрых коней» depends on the noun «Пара» (whose? of what?) — genitive.",
    "id": "c12"
   },
   {
@@ -137,22 +95,8 @@
    ],
    "correct": "курганистый гребень",
    "case": "Винительный (Accusative)",
-   "explain": "«курганистый гребень» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«курганистый гребень» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c13"
-  },
-  {
-   "sentence": "На стволах ___ золотою прозеленью узорились чешуйчатые плиты ржавчины.",
-   "lemma": "дуб",
-   "options": [
-    "сохатые дубы",
-    "сохатым дубам",
-    "сохатых дубов",
-    "сохатых дубах"
-   ],
-   "correct": "сохатых дубов",
-   "case": "Родительный (Genitive)",
-   "explain": "«сохатых дубов» — the genitive here marks possession, absence, or quantity.",
-   "id": "c14"
   },
   {
    "sentence": "По улицам ___ шли к центру толпы казаков.",
@@ -165,7 +109,7 @@
    ],
    "correct": "большой станицы",
    "case": "Родительный (Genitive)",
-   "explain": "«большой станицы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«большой станицы» depends on the noun «улицам» (whose? of what?) — genitive.",
    "id": "c15"
   },
   {
@@ -179,7 +123,7 @@
    ],
    "correct": "полном разгаре",
    "case": "Предложный (Prepositional)",
-   "explain": "«полном разгаре» — after the preposition «в», for location or topic.",
+   "explain": "«полном разгаре» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c17"
   },
   {
@@ -193,7 +137,7 @@
    ],
    "correct": "многооконная комната",
    "case": "Именительный (Nominative)",
-   "explain": "«многооконная комната» — the subject of the sentence stands in the nominative.",
+   "explain": "«многооконная комната» is the subject of «вместила» — who or what does it — so nominative.",
    "id": "c18"
   },
   {
@@ -207,22 +151,8 @@
    ],
    "correct": "самого входа",
    "case": "Родительный (Genitive)",
-   "explain": "«самого входа» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«самого входа» — «у» always takes the genitive.",
    "id": "c20"
-  },
-  {
-   "sentence": "Казаки, стоявшие ___, заулыбались, с невольным почтением разглядывая Христоню, бывшего на голову выше всех.",
-   "lemma": "гурт",
-   "options": [
-    "тесным гуртом",
-    "тесному гурту",
-    "тесном гурте",
-    "тесного гурта"
-   ],
-   "correct": "тесным гуртом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«тесным гуртом» — the instrumental marks the means, company, or complement.",
-   "id": "c21"
   },
   {
    "sentence": "Григория нашли у ___.",
@@ -235,64 +165,22 @@
    ],
    "correct": "задней стены",
    "case": "Родительный (Genitive)",
-   "explain": "«задней стены» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«задней стены» — «у» always takes the genitive.",
    "id": "c22"
   },
   {
    "sentence": "Григорий продолжал расспрашивать, пользуясь ___ в заседании.",
    "lemma": "перерыв",
    "options": [
-    "небольшой перерыв",
-    "небольшого перерыва",
     "небольшим перерывом",
-    "небольшому перерыву"
+    "небольшому перерыву",
+    "небольшого перерыва",
+    "небольшом перерыве"
    ],
    "correct": "небольшим перерывом",
    "case": "Творительный (Instrumental)",
-   "explain": "«небольшим перерывом» — the instrumental marks the means, company, or complement.",
+   "explain": "«пользуясь» takes the instrumental.",
    "id": "c23"
-  },
-  {
-   "sentence": "___ человек поправил зачесанные вверх русые волосы, заговорил.",
-   "lemma": "рост",
-   "options": [
-    "средним ростом",
-    "среднем росте",
-    "среднего роста",
-    "средний рост"
-   ],
-   "correct": "среднего роста",
-   "case": "Родительный (Genitive)",
-   "explain": "«Среднего роста» — the genitive here marks possession, absence, or quantity.",
-   "id": "c24"
-  },
-  {
-   "sentence": "Среднего роста человек поправил зачесанные вверх ___, заговорил.",
-   "lemma": "волос",
-   "options": [
-    "русых волосах",
-    "русыми волосами",
-    "русые волосы",
-    "русым волосам"
-   ],
-   "correct": "русые волосы",
-   "case": "Винительный (Accusative)",
-   "explain": "«русые волосы» — the accusative marks the direct object of the verb.",
-   "id": "c25"
-  },
-  {
-   "sentence": "Сразу, как обрубленный, смолк ___ голосов.",
-   "lemma": "гул",
-   "options": [
-    "пчелином гуле",
-    "пчелиному гулу",
-    "пчелиного гула",
-    "пчелиный гул"
-   ],
-   "correct": "пчелиный гул",
-   "case": "Винительный (Accusative)",
-   "explain": "«пчелиный гул» — the accusative marks the direct object of the verb.",
-   "id": "c26"
   },
   {
    "sentence": "С первых же слов его горячей, прожженной страстью речи Григорий и остальные почувствовали силу ___.",
@@ -305,7 +193,7 @@
    ],
    "correct": "чужого убеждения",
    "case": "Родительный (Genitive)",
-   "explain": "«чужого убеждения» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«чужого убеждения» depends on the noun «силу» (whose? of what?) — genitive.",
    "id": "c27"
   },
   {
@@ -319,7 +207,7 @@
    ],
    "correct": "трудовому казачеству",
    "case": "Дательный (Dative)",
-   "explain": "«трудовому казачеству» — the dative marks the indirect object or recipient.",
+   "explain": "«трудовому казачеству» is the indirect object of «протягиваем» — to or for whom (кому?) — dative.",
    "id": "c28"
   },
   {
@@ -333,7 +221,7 @@
    ],
    "correct": "верных союзников",
    "case": "Винительный (Accusative)",
-   "explain": "«верных союзников» — the accusative marks the direct object of the verb.",
+   "explain": "«верных союзников» is the direct object of «найдем» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c30"
   },
   {
@@ -347,7 +235,7 @@
    ],
    "correct": "фронтового казачества",
    "case": "Родительный (Genitive)",
-   "explain": "«фронтового казачества» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«фронтового казачества» depends on the noun «лице» (whose? of what?) — genitive.",
    "id": "c31"
   },
   {
@@ -361,22 +249,8 @@
    ],
    "correct": "царской войны",
    "case": "Родительный (Genitive)",
-   "explain": "«царской войны» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«царской войны» depends on the noun «фронтах» (whose? of what?) — genitive.",
    "id": "c32"
-  },
-  {
-   "sentence": "Рука с рукой мы пойдем в бой против тех, кто порабощал трудящихся в течение ___!",
-   "lemma": "столетие",
-   "options": [
-    "целых столетий",
-    "целых столетиях",
-    "целыми столетиями",
-    "целые столетия"
-   ],
-   "correct": "целых столетий",
-   "case": "Родительный (Genitive)",
-   "explain": "«целых столетий» — after the preposition «в», the genitive here marks possession, absence, or quantity.",
-   "id": "c33"
   },
   {
    "sentence": "Был шахтер этот вроде ___: узловат, надежно крепок, сух, отсвечивал зеленым — будто прокупорошенный.",
@@ -389,50 +263,8 @@
    ],
    "correct": "баржевого каната",
    "case": "Родительный (Genitive)",
-   "explain": "«баржевого каната» — after the preposition «вроде», the genitive here marks possession, absence, or quantity.",
+   "explain": "«баржевого каната» — «вроде» always takes the genitive.",
    "id": "c34"
-  },
-  {
-   "sentence": "Он встряхнул ___, взмахом стиснутых в кулачья рук как кайло всадил.",
-   "lemma": "волос",
-   "options": [
-    "коротких волосах",
-    "коротких волос",
-    "короткими волосами",
-    "короткие волосы"
-   ],
-   "correct": "короткими волосами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«короткими волосами» — the instrumental marks the means, company, or complement.",
-   "id": "c35"
-  },
-  {
-   "sentence": "Лагутин — ___ и первый председатель казачьего отдела при ВЦИКе второго созыва — жег казаков кровяными, нескладными, но бравшими за живое словами.",
-   "lemma": "казак",
-   "options": [
-    "букановский казак",
-    "букановском казаке",
-    "букановскому казаку",
-    "букановского казака"
-   ],
-   "correct": "букановский казак",
-   "case": "Именительный (Nominative)",
-   "explain": "«букановский казак» — the subject of the sentence stands in the nominative.",
-   "id": "c36"
-  },
-  {
-   "sentence": "Лагутин — букановский казак и ___ казачьего отдела при ВЦИКе второго созыва — жег казаков кровяными, нескладными, но бравшими за живое словами.",
-   "lemma": "председатель",
-   "options": [
-    "первого председателя",
-    "первый председатель",
-    "первым председателем",
-    "первом председателе"
-   ],
-   "correct": "первый председатель",
-   "case": "Именительный (Nominative)",
-   "explain": "«первый председатель» — the subject of the sentence stands in the nominative.",
-   "id": "c37"
   },
   {
    "sentence": "Лагутин — букановский казак и первый председатель ___ при ВЦИКе второго созыва — жег казаков кровяными, нескладными, но бравшими за живое словами.",
@@ -445,7 +277,7 @@
    ],
    "correct": "казачьего отдела",
    "case": "Родительный (Genitive)",
-   "explain": "«казачьего отдела» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«казачьего отдела» depends on the noun «председатель» (whose? of what?) — genitive.",
    "id": "c38"
   },
   {
@@ -459,7 +291,7 @@
    ],
    "correct": "второго созыва",
    "case": "Родительный (Genitive)",
-   "explain": "«второго созыва» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«второго созыва» depends on the noun «отдела» (whose? of what?) — genitive.",
    "id": "c39"
   },
   {
@@ -473,36 +305,8 @@
    ],
    "correct": "нового оратора",
    "case": "Винительный (Accusative)",
-   "explain": "«нового оратора» — the accusative marks the direct object of the verb.",
+   "explain": "«нового оратора» is the direct object of «слушал» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c40"
-  },
-  {
-   "sentence": "Христоня, удовлетворенный, замолкал, слушал нового оратора с прежним ___ и первый покрывал сотни голосов своим густым октавистым «верна-а-а!..».",
-   "lemma": "внимание",
-   "options": [
-    "неослабному вниманию",
-    "неослабным вниманием",
-    "неослабном внимании",
-    "неослабного внимания"
-   ],
-   "correct": "неослабным вниманием",
-   "case": "Творительный (Instrumental)",
-   "explain": "«неослабным вниманием» — the instrumental marks the means, company, or complement.",
-   "id": "c41"
-  },
-  {
-   "sentence": "Христоня, удовлетворенный, замолкал, слушал нового оратора с прежним неослабным вниманием и первый покрывал сотни голосов своим ___ «верна-а-а!..».",
-   "lemma": "октавистый",
-   "options": [
-    "густом октавистом",
-    "густому октавистому",
-    "густой октавистый",
-    "густым октавистым"
-   ],
-   "correct": "густым октавистым",
-   "case": "Творительный (Instrumental)",
-   "explain": "«густым октавистым» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c42"
   },
   {
    "sentence": "То, что говорил он, видимо, находило среди них ___.",
@@ -515,7 +319,7 @@
    ],
    "correct": "живой отклик",
    "case": "Винительный (Accusative)",
-   "explain": "«живой отклик» — the accusative marks the direct object of the verb.",
+   "explain": "«живой отклик» is the direct object of «находило» (кого? что?) — accusative.",
    "id": "c44"
   },
   {
@@ -529,7 +333,7 @@
    ],
    "correct": "сурьезному делу",
    "case": "Дательный (Dative)",
-   "explain": "«сурьезному делу» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«сурьезному делу» — «к» always takes the dative.",
    "id": "c45"
   },
   {
@@ -543,22 +347,8 @@
    ],
    "correct": "кровавой войны",
    "case": "Родительный (Genitive)",
-   "explain": "«кровавой войны» — after the preposition «без», the genitive here marks possession, absence, or quantity.",
+   "explain": "«кровавой войны» — «без» always takes the genitive.",
    "id": "c46"
-  },
-  {
-   "sentence": "— Надо нам послать своих от съезда депутатов в Новочеркасск и добром попросить, чтобы добровольцы и ___ уходили отсель.",
-   "lemma": "партизан",
-   "options": [
-    "разных партизанах",
-    "разные партизаны",
-    "разных партизан",
-    "разным партизанам"
-   ],
-   "correct": "разные партизаны",
-   "case": "Именительный (Nominative)",
-   "explain": "«разные партизаны» — the subject of the sentence stands in the nominative.",
-   "id": "c48"
   },
   {
    "sentence": "Мы со врагами ___ сами сладим.",
@@ -571,7 +361,7 @@
    ],
    "correct": "рабочего народа",
    "case": "Родительный (Genitive)",
-   "explain": "«рабочего народа» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«рабочего народа» depends on the noun «врагами» (whose? of what?) — genitive.",
    "id": "c49"
   },
   {
@@ -585,50 +375,22 @@
    ],
    "correct": "трудового народа",
    "case": "Родительный (Genitive)",
-   "explain": "«трудового народа» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«трудового народа» depends on the noun «враги» (whose? of what?) — genitive.",
    "id": "c50"
   },
   {
    "sentence": "Вздыбился шум, в сто крат больший, чем на любом ___.",
    "lemma": "майдан",
    "options": [
-    "станичного майдана",
-    "станичный майдан",
+    "станичным майданом",
     "станичном майдане",
+    "станичного майдана",
     "станичному майдану"
    ],
    "correct": "станичном майдане",
    "case": "Предложный (Prepositional)",
-   "explain": "«станичном майдане» — after the preposition «на», for location or topic.",
+   "explain": "«станичном майдане» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c51"
-  },
-  {
-   "sentence": "Да здравствует казачий ___!",
-   "lemma": "комитет",
-   "options": [
-    "военно-революционном комитете",
-    "военно-революционным комитетом",
-    "военно-революционному комитету",
-    "военно-революционный комитет"
-   ],
-   "correct": "военно-революционный комитет",
-   "case": "Именительный (Nominative)",
-   "explain": "«Военно-революционный комитет» — the subject of the sentence stands in the nominative.",
-   "id": "c52"
-  },
-  {
-   "sentence": "— Предлагаю избрать из своей среды казачий ___!",
-   "lemma": "комитет",
-   "options": [
-    "военно-революционном комитете",
-    "военно-революционным комитетом",
-    "военно-революционному комитету",
-    "военно-революционный комитет"
-   ],
-   "correct": "военно-революционный комитет",
-   "case": "Именительный (Nominative)",
-   "explain": "«Военно-революционный комитет» — the subject of the sentence stands in the nominative.",
-   "id": "c53"
   }
  ]
 }

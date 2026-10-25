@@ -1,74 +1,18 @@
 {
  "cases": [
   {
-   "sentence": "___: финик с Родоса.",
-   "lemma": "плоскость",
-   "options": [
-    "чиновничьих плоскостях",
-    "чиновничьих плоскостей",
-    "чиновничьи плоскости",
-    "чиновничьими плоскостями"
-   ],
-   "correct": "чиновничьи плоскости",
-   "case": "Именительный (Nominative)",
-   "explain": "«Чиновничьи плоскости» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
    "sentence": "Откровенно скажу, вы открыли ___.",
    "lemma": "мир",
    "options": [
+    "новому миру",
     "новый мир",
     "новом мире",
-    "новому миру",
-    "нового мира"
+    "новым миром"
    ],
    "correct": "новый мир",
    "case": "Винительный (Accusative)",
-   "explain": "«новый мир» — the accusative marks the direct object of the verb.",
+   "explain": "«новый мир» is the direct object of «открыли» (кого? что?) — accusative.",
    "id": "c3"
-  },
-  {
-   "sentence": "Они уже были подчеркнуты кое-где вдоль рыхлыми ___, а на полях появились крестики и красные птички.",
-   "lemma": "чернила",
-   "options": [
-    "синими чернилами",
-    "синим чернилам",
-    "синие чернила",
-    "синих чернилах"
-   ],
-   "correct": "синими чернилами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«синими чернилами» — after the preposition «вдоль», the instrumental marks the means, company, or complement.",
-   "id": "c4"
-  },
-  {
-   "sentence": "— Да, там ведь все люди мелкие, — сказал он медленно, — выходцы из России, «___», которых уже есть целое кладбище под Тифлисом.",
-   "lemma": "майор",
-   "options": [
-    "кавказских майорах",
-    "кавказских майоров",
-    "кавказские майоры",
-    "кавказскими майорами"
-   ],
-   "correct": "кавказские майоры",
-   "case": "Именительный (Nominative)",
-   "explain": "«кавказские майоры» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
-  },
-  {
-   "sentence": "— Да, там ведь все люди мелкие, — сказал он медленно, — выходцы из России, «кавказские майоры», которых уже есть ___ под Тифлисом.",
-   "lemma": "кладбище",
-   "options": [
-    "целое кладбище",
-    "целым кладбищем",
-    "целого кладбища",
-    "целому кладбищу"
-   ],
-   "correct": "целое кладбище",
-   "case": "Именительный (Nominative)",
-   "explain": "«целое кладбище» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
   },
   {
    "sentence": "— Но ведь, как известно вам, Константин Константинович, есть намерение перевести из Персии десять тысяч человек ___, торгашей по большей части, и обратить их на земли татар.",
@@ -81,7 +25,7 @@
    ],
    "correct": "грузинских армян",
    "case": "Родительный (Genitive)",
-   "explain": "«грузинских армян» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«грузинских армян» depends on the noun «человек» (whose? of what?) — genitive.",
    "id": "c9"
   },
   {
@@ -95,50 +39,8 @@
    ],
    "correct": "частному владельцу",
    "case": "Дательный (Dative)",
-   "explain": "«частному владельцу» — the dative marks the indirect object or recipient.",
+   "explain": "«угрожает» takes the dative (кому? чему?).",
    "id": "c11"
-  },
-  {
-   "sentence": "___: неумение разматывать шелк.",
-   "lemma": "причина",
-   "options": [
-    "главной причиной",
-    "главной причине",
-    "главная причина",
-    "главной причины"
-   ],
-   "correct": "главная причина",
-   "case": "Именительный (Nominative)",
-   "explain": "«Главная причина» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
-  },
-  {
-   "sentence": "— ___ с соседними державами.",
-   "lemma": "сношение",
-   "options": [
-    "дипломатических сношений",
-    "дипломатических сношениях",
-    "дипломатические сношения",
-    "дипломатическими сношениями"
-   ],
-   "correct": "дипломатические сношения",
-   "case": "Именительный (Nominative)",
-   "explain": "«Дипломатические сношения» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
-  },
-  {
-   "sentence": "В тяжелом кабинете, с ___ красного дерева.",
-   "lemma": "шкаф",
-   "options": [
-    "унылыми шкафами",
-    "унылые шкафы",
-    "унылым шкафам",
-    "унылых шкафах"
-   ],
-   "correct": "унылыми шкафами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«унылыми шкафами» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c15"
   },
   {
    "sentence": "В тяжелом кабинете, с унылыми шкафами ___.",
@@ -151,7 +53,7 @@
    ],
    "correct": "красного дерева",
    "case": "Родительный (Genitive)",
-   "explain": "«красного дерева» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«красного дерева» depends on the noun «шкафами» (whose? of what?) — genitive.",
    "id": "c16"
   },
   {
@@ -165,7 +67,7 @@
    ],
    "correct": "самого начала",
    "case": "Родительный (Genitive)",
-   "explain": "«самого начала» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
+   "explain": "«самого начала» — «с» takes the genitive here (с чего? откуда? с каких пор?): from, off, since — with the instrumental it would mean 'with'.",
    "id": "c17"
   }
  ]

@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Мы с Элджерноном - самые ___.",
-   "lemma": "экспонат",
-   "options": [
-    "яркими экспонатами",
-    "ярких экспонатах",
-    "ярким экспонатам",
-    "яркие экспонаты"
-   ],
-   "correct": "яркие экспонаты",
-   "case": "Именительный (Nominative)",
-   "explain": "«яркие экспонаты» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Надоели его ___ обо мне, как некоем лабораторном образце.",
    "lemma": "разговор",
    "options": [
@@ -25,22 +11,8 @@
    ],
    "correct": "постоянные разговоры",
    "case": "Именительный (Nominative)",
-   "explain": "«постоянные разговоры» — the subject of the sentence stands in the nominative.",
+   "explain": "«постоянные разговоры» is the subject of «Надоели» — who or what does it — so nominative.",
    "id": "c2"
-  },
-  {
-   "sentence": "Надоели его постоянные разговоры обо мне, как некоем ___.",
-   "lemma": "образец",
-   "options": [
-    "лабораторный образец",
-    "лабораторным образцом",
-    "лабораторном образце",
-    "лабораторному образцу"
-   ],
-   "correct": "лабораторном образце",
-   "case": "Предложный (Prepositional)",
-   "explain": "«лабораторном образце» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c3"
   },
   {
    "sentence": "Ведь теперь я живу по другую сторону ___.",
@@ -53,7 +25,7 @@
    ],
    "correct": "интеллектуального забора",
    "case": "Родительный (Genitive)",
-   "explain": "«интеллектуального забора» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«интеллектуального забора» depends on the noun «сторону» (whose? of what?) — genitive.",
    "id": "c4"
   },
   {
@@ -67,7 +39,7 @@
    ],
    "correct": "полной мере",
    "case": "Предложный (Prepositional)",
-   "explain": "«полной мере» — after the preposition «в», for location or topic.",
+   "explain": "«полной мере» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c7"
   },
   {
@@ -81,78 +53,22 @@
    ],
    "correct": "подсознательного предупреждения",
    "case": "Родительный (Genitive)",
-   "explain": "«подсознательного предупреждения» — after the preposition «вроде», the genitive here marks possession, absence, or quantity.",
+   "explain": "«подсознательного предупреждения» — «вроде» always takes the genitive.",
    "id": "c8"
-  },
-  {
-   "sentence": "Скоро я научусь контролировать их полностью и смогу исследовать не только сумму случаев из моей прошлой жизни, но и ___ мозга.",
-   "lemma": "возможность",
-   "options": [
-    "скрытых возможностей",
-    "скрытые возможности",
-    "скрытым возможностям",
-    "скрытых возможностях"
-   ],
-   "correct": "скрытые возможности",
-   "case": "Винительный (Accusative)",
-   "explain": "«скрытые возможности» — the accusative marks the direct object of the verb.",
-   "id": "c9"
-  },
-  {
-   "sentence": "Норма - ___, со светло-каштановыми волосами, аккуратно заплетенными в косички и уложенными вокруг головы наподобие короны.",
-   "lemma": "девочка",
-   "options": [
-    "миловидная девочка",
-    "миловидной девочки",
-    "миловидной девочкой",
-    "миловидной девочке"
-   ],
-   "correct": "миловидная девочка",
-   "case": "Именительный (Nominative)",
-   "explain": "«миловидная девочка» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
   },
   {
    "sentence": "Я тоже буду кормить ее, расчесывать и не дам ___ кусать ее!",
    "lemma": "собака",
    "options": [
-    "других собак",
-    "другим собакам",
+    "другими собаками",
     "другие собаки",
-    "другими собаками"
+    "другим собакам",
+    "других собаках"
    ],
    "correct": "другим собакам",
    "case": "Дательный (Dative)",
-   "explain": "«другим собакам» — the dative marks the indirect object or recipient.",
+   "explain": "«другим собакам» is the indirect object of «дам» — to or for whom (кому?) — dative.",
    "id": "c16"
-  },
-  {
-   "sentence": "После операции я еще не был в Центре обучения умственно ___, и возможность увидеть его снова показалась мне заманчивой.",
-   "lemma": "взрослый",
-   "options": [
-    "отсталыми взрослыми",
-    "отсталые взрослые",
-    "отсталых взрослых",
-    "отсталым взрослым"
-   ],
-   "correct": "отсталых взрослых",
-   "case": "Родительный (Genitive)",
-   "explain": "«отсталых взрослых» — the genitive here marks possession, absence, or quantity.",
-   "id": "c18"
-  },
-  {
-   "sentence": "Он расположен на Двадцать ___, восточнее Пятой авеню, в старом школьном здании, которое университет Бекмана вот уже пять лет арендует для экспериментального обучения - специальные классы для неполноценных.",
-   "lemma": "улица",
-   "options": [
-    "третьей улице",
-    "третьей улицы",
-    "третья улица",
-    "третьей улицей"
-   ],
-   "correct": "третьей улице",
-   "case": "Предложный (Prepositional)",
-   "explain": "«третьей улице» — after the preposition «на», for location or topic.",
-   "id": "c19"
   },
   {
    "sentence": "Он расположен на Двадцать третьей улице, восточнее Пятой авеню, в старом ___, которое университет Бекмана вот уже пять лет арендует для экспериментального обучения - специальные классы для неполноценных.",
@@ -165,7 +81,7 @@
    ],
    "correct": "школьном здании",
    "case": "Предложный (Prepositional)",
-   "explain": "«школьном здании» — after the preposition «в», for location or topic.",
+   "explain": "«школьном здании» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c20"
   },
   {
@@ -179,50 +95,8 @@
    ],
    "correct": "экспериментального обучения",
    "case": "Родительный (Genitive)",
-   "explain": "«экспериментального обучения» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«экспериментального обучения» — «для» always takes the genitive.",
    "id": "c21"
-  },
-  {
-   "sentence": "Он расположен на Двадцать третьей улице, восточнее Пятой авеню, в старом школьном здании, которое университет Бекмана вот уже пять лет арендует для экспериментального обучения - ___ для неполноценных.",
-   "lemma": "класс",
-   "options": [
-    "специальным классам",
-    "специальных классах",
-    "специальные классы",
-    "специальными классами"
-   ],
-   "correct": "специальные классы",
-   "case": "Именительный (Nominative)",
-   "explain": "«специальные классы» — the subject of the sentence stands in the nominative.",
-   "id": "c22"
-  },
-  {
-   "sentence": "Алиса была на своим месте за учительским столом, а рядом с ней сидела незнакомая мне женщина с изможденным лицом, на котором было написано ___.",
-   "lemma": "удивление",
-   "options": [
-    "нескрываемого удивления",
-    "нескрываемому удивлению",
-    "нескрываемым удивлением",
-    "нескрываемое удивление"
-   ],
-   "correct": "нескрываемое удивление",
-   "case": "Именительный (Nominative)",
-   "explain": "«нескрываемое удивление» — the subject of the sentence stands in the nominative.",
-   "id": "c23"
-  },
-  {
-   "sentence": "Над чем я корпел ___, Лестер схватывал сразу, но появлялся он в школе, когда хотел, а иногда подрабатывал натиркой полов и пропадал неделями.",
-   "lemma": "день",
-   "options": [
-    "целых дней",
-    "целыми днями",
-    "целых днях",
-    "целым дням"
-   ],
-   "correct": "целыми днями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«целыми днями» — the instrumental marks the means, company, or complement.",
-   "id": "c25"
   },
   {
    "sentence": "Неужели ты могла хоть на минуту представить, что я останусь ___, который виляет хвостиком и лижет пнувший его ботинок?",
@@ -235,7 +109,7 @@
    ],
    "correct": "ласковым щенком",
    "case": "Творительный (Instrumental)",
-   "explain": "«ласковым щенком» — the instrumental marks the means, company, or complement.",
+   "explain": "After «останусь», what someone or something is or becomes stands in the instrumental.",
    "id": "c31"
   },
   {
@@ -249,22 +123,8 @@
    ],
    "correct": "многие люди",
    "case": "Именительный (Nominative)",
-   "explain": "«Многие люди» — the subject of the sentence stands in the nominative.",
+   "explain": "«многие люди» is the subject of «относились» — who or what does it — so nominative.",
    "id": "c32"
-  },
-  {
-   "sentence": "Моя роль в них сводится к тому, чтобы слушать, согласно кивать и притворяться, будто я имею представление о культурных различиях, необулианской математике и ___.",
-   "lemma": "логика",
-   "options": [
-    "постсимволической логики",
-    "постсимволической логике",
-    "постсимволической логикой",
-    "постсимволическая логика"
-   ],
-   "correct": "постсимволической логике",
-   "case": "Дательный (Dative)",
-   "explain": "«постсимволической логике» — the dative marks the indirect object or recipient.",
-   "id": "c35"
   },
   {
    "sentence": "Лед треснул, и полоса ___ между нами становится все шире.",
@@ -277,22 +137,8 @@
    ],
    "correct": "чистой воды",
    "case": "Родительный (Genitive)",
-   "explain": "«чистой воды» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«чистой воды» depends on the noun «полоса» (whose? of what?) — genitive.",
    "id": "c37"
-  },
-  {
-   "sentence": "- Не придавай моим словам слишком ___.",
-   "lemma": "значение",
-   "options": [
-    "большого значения",
-    "большому значению",
-    "большим значением",
-    "большое значение"
-   ],
-   "correct": "большого значения",
-   "case": "Родительный (Genitive)",
-   "explain": "«большого значения» — the genitive here marks possession, absence, or quantity.",
-   "id": "c38"
   },
   {
    "sentence": "В ___ за много недель она не пригласила меня зайти.",
@@ -305,7 +151,7 @@
    ],
    "correct": "первый раз",
    "case": "Винительный (Accusative)",
-   "explain": "«первый раз» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«первый раз» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c40"
   },
   {
@@ -319,7 +165,7 @@
    ],
    "correct": "других мужчин",
    "case": "Винительный (Accusative)",
-   "explain": "«других мужчин» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«других мужчин» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c48"
   },
   {
@@ -333,50 +179,8 @@
    ],
    "correct": "летний вечер",
    "case": "Винительный (Accusative)",
-   "explain": "«летний вечер» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«летний вечер» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c49"
-  },
-  {
-   "sentence": "Опять ___: мама, беременная сестрой, в те дни, когда она меньше прижимала меня к себе, меньше согревала, меньше защищала от тех, кто говорил, что я не совсем нормален.",
-   "lemma": "образ",
-   "options": [
-    "двойному образу",
-    "двойного образа",
-    "двойной образ",
-    "двойным образом"
-   ],
-   "correct": "двойной образ",
-   "case": "Именительный (Nominative)",
-   "explain": "«двойной образ» — the subject of the sentence stands in the nominative.",
-   "id": "c50"
-  },
-  {
-   "sentence": "Тут я разглядел какие-то качели и понял, что это ___, закрытая на ночь.",
-   "lemma": "площадка",
-   "options": [
-    "детской площадке",
-    "детская площадка",
-    "детской площадкой",
-    "детской площадки"
-   ],
-   "correct": "детская площадка",
-   "case": "Именительный (Nominative)",
-   "explain": "«детская площадка» — the subject of the sentence stands in the nominative.",
-   "id": "c52"
-  },
-  {
-   "sentence": "У полукруглого озерца, окружавшего площадку, я повернул назад, нашел еще одну тропинку, миновал ___, потом другой.",
-   "lemma": "мостик",
-   "options": [
-    "маленькому мостику",
-    "маленьком мостике",
-    "маленький мостик",
-    "маленького мостика"
-   ],
-   "correct": "маленький мостик",
-   "case": "Винительный (Accusative)",
-   "explain": "«маленький мостик» — the accusative marks the direct object of the verb.",
-   "id": "c53"
   },
   {
    "sentence": "Но скоро впереди показались огни Пятьдесят ___ и Пятой авеню, и я вышел из парка.",
@@ -389,7 +193,7 @@
    ],
    "correct": "девятой улицы",
    "case": "Родительный (Genitive)",
-   "explain": "«девятой улицы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«девятой улицы» depends on the noun «огни» (whose? of what?) — genitive.",
    "id": "c55"
   }
  ]

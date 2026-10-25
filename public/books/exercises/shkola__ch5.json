@@ -1,74 +1,18 @@
 {
  "cases": [
   {
-   "sentence": "Я валялся на кровати, читал ___ и газеты.",
-   "lemma": "книга",
-   "options": [
-    "отцовских книгах",
-    "отцовскими книгами",
-    "отцовским книгам",
-    "отцовские книги"
-   ],
-   "correct": "отцовские книги",
-   "case": "Винительный (Accusative)",
-   "explain": "«отцовские книги» — the accusative marks the direct object of the verb.",
-   "id": "c1"
-  },
-  {
-   "sentence": "К тому времени из деревень вся молодежь, все ___ были угнаны на фронт.",
-   "lemma": "мужик",
-   "options": [
-    "здоровых мужиках",
-    "здоровые мужики",
-    "здоровыми мужиками",
-    "здоровым мужикам"
-   ],
-   "correct": "здоровые мужики",
-   "case": "Именительный (Nominative)",
-   "explain": "«здоровые мужики» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
-  },
-  {
    "sentence": "Раньше, бывало, ходишь ___ по улицам — и ни одного незнакомого не встретишь.",
    "lemma": "день",
    "options": [
-    "целому дню",
-    "целым днём",
     "целый день",
-    "целого дня"
+    "целым днём",
+    "целому дню",
+    "целом дне"
    ],
    "correct": "целый день",
    "case": "Винительный (Accusative)",
-   "explain": "«целый день» — the accusative marks the direct object of the verb.",
+   "explain": "«целый день» is the direct object of «ходишь» (кого? что?) — accusative.",
    "id": "c5"
-  },
-  {
-   "sentence": "Иного хоть по фамилии не знаешь, так обязательно где-нибудь встречал, а теперь попадались на каждом шагу незнакомые, чужие лица — евреи, румыны, поляки, ___, раненые солдаты из госпиталя Красного Креста.",
-   "lemma": "австриец",
-   "options": [
-    "пленными австрийцами",
-    "пленных австрийцах",
-    "пленные австрийцы",
-    "пленным австрийцам"
-   ],
-   "correct": "пленные австрийцы",
-   "case": "Именительный (Nominative)",
-   "explain": "«пленные австрийцы» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
-  },
-  {
-   "sentence": "Иного хоть по фамилии не знаешь, так обязательно где-нибудь встречал, а теперь попадались на каждом шагу незнакомые, чужие лица — евреи, румыны, поляки, пленные австрийцы, ___ из госпиталя Красного Креста.",
-   "lemma": "солдат",
-   "options": [
-    "раненых солдат",
-    "раненые солдаты",
-    "раненых солдатах",
-    "раненым солдатам"
-   ],
-   "correct": "раненые солдаты",
-   "case": "Именительный (Nominative)",
-   "explain": "«раненые солдаты» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
   },
   {
    "sentence": "Масло, яйца, молоко по ___ раскупались на базаре с раннего утра.",
@@ -81,7 +25,7 @@
    ],
    "correct": "дорогой цене",
    "case": "Дательный (Dative)",
-   "explain": "«дорогой цене» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«дорогой цене» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c8"
   },
   {
@@ -95,7 +39,7 @@
    ],
    "correct": "белый хлеб",
    "case": "Именительный (Nominative)",
-   "explain": "«белый хлеб» — the subject of the sentence stands in the nominative.",
+   "explain": "«белый хлеб» is the subject of «исчез» — who or what does it — so nominative.",
    "id": "c10"
   },
   {
@@ -109,36 +53,8 @@
    ],
    "correct": "последний год",
    "case": "Винительный (Accusative)",
-   "explain": "«последний год» — after the preposition «за», the accusative marks the direct object of the verb.",
+   "explain": "«последний год» — «за» takes the accusative here (куда? за что? за кого?) — the instrumental would mean position behind or at (где? за чем?).",
    "id": "c12"
-  },
-  {
-   "sentence": "Гришке от епископа было за это назначено ___.",
-   "lemma": "покаяние",
-   "options": [
-    "тридцатидневном покаянии",
-    "тридцатидневным покаянием",
-    "тридцатидневное покаяние",
-    "тридцатидневного покаяния"
-   ],
-   "correct": "тридцатидневное покаяние",
-   "case": "Именительный (Nominative)",
-   "explain": "«тридцатидневное покаяние» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
-  },
-  {
-   "sentence": "Мало ему покаяния, а надо бы для примера засадить в тюрьму, потому что похороны за крестный ход принять — это еще куда ни шло, но чтобы этакую богомерзкую скотину с пресвятой иконой спутать — это уже ___!",
-   "lemma": "грех",
-   "options": [
-    "смертном грехе",
-    "смертный грех",
-    "смертным грехом",
-    "смертному греху"
-   ],
-   "correct": "смертный грех",
-   "case": "Именительный (Nominative)",
-   "explain": "«смертный грех» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
   },
   {
    "sentence": "Мы с ним восемь лет в ___ проработали.",
@@ -151,7 +67,7 @@
    ],
    "correct": "сельской школе",
    "case": "Предложный (Prepositional)",
-   "explain": "«сельской школе» — after the preposition «в», for location or topic.",
+   "explain": "«сельской школе» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c16"
   },
   {
@@ -165,22 +81,8 @@
    ],
    "correct": "самой голове",
    "case": "Дательный (Dative)",
-   "explain": "«самой голове» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«самой голове» — «к» always takes the dative.",
    "id": "c17"
-  },
-  {
-   "sentence": "___ с любопытством посматривал на Тимкино занятие.",
-   "lemma": "щегол",
-   "options": [
-    "глупого щегла",
-    "глупом щегле",
-    "глупому щеглу",
-    "глупый щегол"
-   ],
-   "correct": "глупый щегол",
-   "case": "Именительный (Nominative)",
-   "explain": "«Глупый щегол» — the subject of the sentence stands in the nominative.",
-   "id": "c18"
   },
   {
    "sentence": "Через минуту он уже прыгал в клетке вместе с пятком других ___.",
@@ -193,92 +95,22 @@
    ],
    "correct": "пленных собратьев",
    "case": "Родительный (Genitive)",
-   "explain": "«пленных собратьев» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«пленных собратьев» depends on the noun «пятком» (whose? of what?) — genitive.",
    "id": "c19"
-  },
-  {
-   "sentence": "___, он всего на полтора года моложе меня, а такой маленький, что ему не только двенадцати, а и десяти лет нельзя было дать.",
-   "lemma": "мальчуган",
-   "options": [
-    "странном мальчугане",
-    "странному мальчугану",
-    "странным мальчуганом",
-    "странный мальчуган"
-   ],
-   "correct": "странный мальчуган",
-   "case": "Именительный (Nominative)",
-   "explain": "«Странный мальчуган» — the subject of the sentence stands in the nominative.",
-   "id": "c20"
-  },
-  {
-   "sentence": "Когда Тимка просил что-нибудь, ну, скажем, перочинный ножик карандаш очинить, или перо, или решить трудную задачу, то всегда глядел в упор большими ___ и почему-то виновато улыбался.",
-   "lemma": "глаз",
-   "options": [
-    "круглых глаз",
-    "круглыми глазами",
-    "круглых глазах",
-    "круглым глазам"
-   ],
-   "correct": "круглыми глазами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«круглыми глазами» — the instrumental marks the means, company, or complement.",
-   "id": "c21"
   },
   {
    "sentence": "Рябоватое лицо его приняло ___, и он неуверенно вышел за дверь.",
    "lemma": "оттенок",
    "options": [
+    "сером оттенке",
     "серому оттенку",
     "серый оттенок",
-    "сером оттенке",
-    "серого оттенка"
+    "серым оттенком"
    ],
    "correct": "серый оттенок",
    "case": "Винительный (Accusative)",
-   "explain": "«серый оттенок» — the accusative marks the direct object of the verb.",
+   "explain": "«серый оттенок» is the direct object of «приняло» (кого? что?) — accusative.",
    "id": "c23"
-  },
-  {
-   "sentence": "Мать сшила мне гимнастерку и штаны из какой-то материи, которая называлась «___».",
-   "lemma": "кожа",
-   "options": [
-    "чертовой кожи",
-    "чертовой кожей",
-    "чертовой коже",
-    "чертовая кожа"
-   ],
-   "correct": "чертовой кожей",
-   "case": "Творительный (Instrumental)",
-   "explain": "«чертовой кожей» — the instrumental marks the means, company, or complement.",
-   "id": "c24"
-  },
-  {
-   "sentence": "К нам прикомандировали офицера, дали ___, которые с виду совсем походили на настоящие, и начали обучать военному строю.",
-   "lemma": "винтовка",
-   "options": [
-    "деревянных винтовках",
-    "деревянных винтовок",
-    "деревянными винтовками",
-    "деревянные винтовки"
-   ],
-   "correct": "деревянные винтовки",
-   "case": "Винительный (Accusative)",
-   "explain": "«деревянные винтовки» — the accusative marks the direct object of the verb.",
-   "id": "c25"
-  },
-  {
-   "sentence": "К нам прикомандировали офицера, дали деревянные винтовки, которые с виду совсем походили на настоящие, и начали обучать ___.",
-   "lemma": "строй",
-   "options": [
-    "военному строю",
-    "военном строе",
-    "военным строем",
-    "военного строя"
-   ],
-   "correct": "военному строю",
-   "case": "Дательный (Dative)",
-   "explain": "«военному строю» — the dative marks the indirect object or recipient.",
-   "id": "c26"
   }
  ]
 }

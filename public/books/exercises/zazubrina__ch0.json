@@ -1,76 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "У меня было достаточно времени для того, чтобы ознакомиться с населением тюрьмы, и я знал, что самый ___ среди её угрюмого населения назывался — Зазубрина.",
-   "lemma": "человек",
-   "options": [
-    "весёлому человеку",
-    "весёлым человеком",
-    "весёлый человек",
-    "весёлого человека"
-   ],
-   "correct": "весёлый человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«весёлый человек» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
-   "sentence": "У меня было достаточно времени для того, чтобы ознакомиться с населением тюрьмы, и я знал, что самый весёлый человек среди её ___ назывался — Зазубрина.",
-   "lemma": "население",
-   "options": [
-    "угрюмым населением",
-    "угрюмого населения",
-    "угрюмом населении",
-    "угрюмое население"
-   ],
-   "correct": "угрюмого населения",
-   "case": "Родительный (Genitive)",
-   "explain": "«угрюмого населения» — the genitive here marks possession, absence, or quantity.",
-   "id": "c4"
-  },
-  {
-   "sentence": "Это коренастый и толстый малый, с красным лицом и ___, из-под которого всегда оживлённо сверкали большие светлые глаза.",
-   "lemma": "лоб",
-   "options": [
-    "высоком лбе",
-    "высокому лбу",
-    "высоким лбом",
-    "высокого лба"
-   ],
-   "correct": "высоким лбом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«высоким лбом» — the instrumental marks the means, company, or complement.",
-   "id": "c6"
-  },
-  {
-   "sentence": "Это коренастый и толстый малый, с красным лицом и высоким лбом, из-под которого всегда оживлённо сверкали большие ___.",
-   "lemma": "глаз",
-   "options": [
-    "светлые глаза",
-    "светлым глазам",
-    "светлыми глазами",
-    "светлых глаз"
-   ],
-   "correct": "светлые глаза",
-   "case": "Именительный (Nominative)",
-   "explain": "«светлые глаза» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
-  },
-  {
-   "sentence": "Мне казалось неизбежным, что Зазубрина убьёт котёнка при первом же ___, и мне было жалко весёлого арестанта.",
-   "lemma": "случай",
-   "options": [
-    "удобном случае",
-    "удобному случаю",
-    "удобный случай",
-    "удобного случая"
-   ],
-   "correct": "удобном случае",
-   "case": "Предложный (Prepositional)",
-   "explain": "«удобном случае» — after the preposition «при», for location or topic.",
-   "id": "c8"
-  },
-  {
    "sentence": "Стремление человека быть центром ___ людей — пагубно для него, ибо ничто не умерщвляет душу так быстро, как жажда нравиться людям.",
    "lemma": "внимание",
    "options": [
@@ -81,21 +11,21 @@
    ],
    "correct": "общего внимания",
    "case": "Родительный (Genitive)",
-   "explain": "«общего внимания» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«общего внимания» depends on the noun «центром» (whose? of what?) — genitive.",
    "id": "c9"
   },
   {
    "sentence": "Однажды в яркий ___, когда арестанты высыпали из камер во двор, Зазубрина увидал в углу двора ведро зелёной краски, оставленное малярами, красившими крышу тюрьмы.",
    "lemma": "день",
    "options": [
+    "солнечным днём",
     "солнечный день",
-    "солнечном дне",
-    "солнечному дню",
-    "солнечного дня"
+    "солнечного дня",
+    "солнечному дню"
    ],
    "correct": "солнечный день",
    "case": "Винительный (Accusative)",
-   "explain": "«солнечный день» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«солнечный день» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c10"
   },
   {
@@ -109,7 +39,7 @@
    ],
    "correct": "зелёной краски",
    "case": "Родительный (Genitive)",
-   "explain": "«зелёной краски» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«зелёной краски» depends on the noun «ведро» (whose? of what?) — genitive.",
    "id": "c11"
   },
   {
@@ -123,36 +53,8 @@
    ],
    "correct": "зелёный цвет",
    "case": "Винительный (Accusative)",
-   "explain": "«зелёный цвет» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«зелёный цвет» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c12"
-  },
-  {
-   "sentence": "Эти зелёные усы на его красной роже возбудили ___.",
-   "lemma": "хохот",
-   "options": [
-    "общем хохоте",
-    "общий хохот",
-    "общего хохота",
-    "общим хохотом"
-   ],
-   "correct": "общий хохот",
-   "case": "Винительный (Accusative)",
-   "explain": "«общий хохот» — the accusative marks the direct object of the verb.",
-   "id": "c13"
-  },
-  {
-   "sentence": "Подросток фыркал и мотал головой, Зазубрина приплясывал вокруг него, а публика хохотала, поощряя своего забавника ___.",
-   "lemma": "возглас",
-   "options": [
-    "одобрительных возгласов",
-    "одобрительными возгласами",
-    "одобрительных возгласах",
-    "одобрительным возгласам"
-   ],
-   "correct": "одобрительными возгласами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«одобрительными возгласами» — the instrumental marks the means, company, or complement.",
-   "id": "c14"
   },
   {
    "sentence": "Именно в этот момент на дворе явился ___.",
@@ -165,7 +67,7 @@
    ],
    "correct": "рыжий котёнок",
    "case": "Именительный (Nominative)",
-   "explain": "«рыжий котёнок» — the subject of the sentence stands in the nominative.",
+   "explain": "«рыжий котёнок» is the subject of «явился» — who or what does it — so nominative.",
    "id": "c15"
   },
   {
@@ -179,22 +81,8 @@
    ],
    "correct": "женского корпуса",
    "case": "Родительный (Genitive)",
-   "explain": "«женского корпуса» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«женского корпуса» depends on the noun «окон» (whose? of what?) — genitive.",
    "id": "c18"
-  },
-  {
-   "sentence": "Надзиратель, прижавшись спиной к стене, выпятил свой ___ и, поддерживая его руками, пускал из себя залпами густой, басовитый, душивший его хохот.",
-   "lemma": "живот",
-   "options": [
-    "толстый живот",
-    "толстым животом",
-    "толстом животе",
-    "толстому животу"
-   ],
-   "correct": "толстый живот",
-   "case": "Винительный (Accusative)",
-   "explain": "«толстый живот» — the accusative marks the direct object of the verb.",
-   "id": "c20"
   },
   {
    "sentence": "Вокруг него гремел ___ серых людей, и Зазубрина знал, что это он именно заставляет всех так смеяться.",
@@ -207,7 +95,7 @@
    ],
    "correct": "безумный смех",
    "case": "Именительный (Nominative)",
-   "explain": "«безумный смех» — the subject of the sentence stands in the nominative.",
+   "explain": "«безумный смех» is the subject of «гремел» — who or what does it — so nominative.",
    "id": "c23"
   },
   {
@@ -221,50 +109,8 @@
    ],
    "correct": "серых людей",
    "case": "Родительный (Genitive)",
-   "explain": "«серых людей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«серых людей» depends on the noun «смех» (whose? of what?) — genitive.",
    "id": "c24"
-  },
-  {
-   "sentence": "В каждом его жесте, в каждой гримасе его подвижного ___ ясно проглядывало это сознание, и всё его тело подёргивалось от наслаждения торжеством.",
-   "lemma": "лицо",
-   "options": [
-    "шутовском лице",
-    "шутовскому лицу",
-    "шутовским лицом",
-    "шутовского лица"
-   ],
-   "correct": "шутовского лица",
-   "case": "Родительный (Genitive)",
-   "explain": "«шутовского лица» — the genitive here marks possession, absence, or quantity.",
-   "id": "c25"
-  },
-  {
-   "sentence": "Всё вокруг переродилось, сбросило с себя скучный ___, наводивший уныние, ожило, пропитанное этим очищающим смехом, который, как солнце, даже и грязь заставляет быть более приличной.",
-   "lemma": "тон",
-   "options": [
-    "серый тон",
-    "серым тоном",
-    "серого тона",
-    "сером тоне"
-   ],
-   "correct": "серый тон",
-   "case": "Винительный (Accusative)",
-   "explain": "«серый тон» — the accusative marks the direct object of the verb.",
-   "id": "c26"
-  },
-  {
-   "sentence": "Положив зелёного котёнка на траву, островки которой, пробиваясь между камнями, пестрили ___, Зазубрина, возбуждённый, задыхавшийся и потный, всё исполнял свой танец.",
-   "lemma": "двор",
-   "options": [
-    "тюремном дворе",
-    "тюремным двором",
-    "тюремному двору",
-    "тюремный двор"
-   ],
-   "correct": "тюремный двор",
-   "case": "Винительный (Accusative)",
-   "explain": "«тюремный двор» — the accusative marks the direct object of the verb.",
-   "id": "c27"
   },
   {
    "sentence": "Маленький ___ возился у ног этих грубых людей и был жалок в своей беспомощности.",
@@ -277,7 +123,7 @@
    ],
    "correct": "зелёный комок",
    "case": "Именительный (Nominative)",
-   "explain": "«зелёный комок» — the subject of the sentence stands in the nominative.",
+   "explain": "«зелёный комок» is the subject of «возился» — who or what does it — so nominative.",
    "id": "c29"
   },
   {
@@ -291,36 +137,8 @@
    ],
    "correct": "грубых людей",
    "case": "Родительный (Genitive)",
-   "explain": "«грубых людей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«грубых людей» depends on the noun «ног» (whose? of what?) — genitive.",
    "id": "c30"
-  },
-  {
-   "sentence": "Зелёное ___ всё ползало по траве, двадцать пар глаз следили за ним, и уже ни на одном лице не было и тени улыбки.",
-   "lemma": "существо",
-   "options": [
-    "безобразного существа",
-    "безобразное существо",
-    "безобразном существе",
-    "безобразным существом"
-   ],
-   "correct": "безобразное существо",
-   "case": "Именительный (Nominative)",
-   "explain": "«безобразное существо» — the subject of the sentence stands in the nominative.",
-   "id": "c31"
-  },
-  {
-   "sentence": "— А по-моему, взять его за хвост и через стенку кинуть, — сказал Зазубрина и, усмехаясь, добавил: — Самое ___!",
-   "lemma": "дело",
-   "options": [
-    "простому делу",
-    "простом деле",
-    "простым делом",
-    "простое дело"
-   ],
-   "correct": "простое дело",
-   "case": "Именительный (Nominative)",
-   "explain": "«простое дело» — the subject of the sentence stands in the nominative.",
-   "id": "c34"
   },
   {
    "sentence": "Раздавались изредка ___: били ногами по рёбрам Зазубрины, били не торопясь, без озлобления, выжидая, когда, извиваясь ужом, человек откроет удару ноги какое-нибудь особенно удобное место.",
@@ -333,36 +151,8 @@
    ],
    "correct": "глухие звуки",
    "case": "Именительный (Nominative)",
-   "explain": "«глухие звуки» — the subject of the sentence stands in the nominative.",
+   "explain": "«глухие звуки» is the subject of «Раздавались» — who or what does it — so nominative.",
    "id": "c36"
-  },
-  {
-   "sentence": "Потом он осторожно, точно боясь рассыпаться, начал подниматься с земли, упёрся ___ в неё, потом подогнул одну ногу и, завыв, как больная собака, сел на земле.",
-   "lemma": "рука",
-   "options": [
-    "левой руки",
-    "левой рукой",
-    "левой руке",
-    "левая рука"
-   ],
-   "correct": "левой рукой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«левой рукой» — the instrumental marks the means, company, or complement.",
-   "id": "c37"
-  },
-  {
-   "sentence": "Потом он осторожно, точно боясь рассыпаться, начал подниматься с земли, упёрся левой рукой в неё, потом подогнул одну ногу и, завыв, как ___, сел на земле.",
-   "lemma": "собака",
-   "options": [
-    "больная собака",
-    "больной собаки",
-    "больной собаке",
-    "больной собакой"
-   ],
-   "correct": "больная собака",
-   "case": "Именительный (Nominative)",
-   "explain": "«больная собака» — the subject of the sentence stands in the nominative.",
-   "id": "c38"
   },
   {
    "sentence": "Я видел, как на землю падали ___; отлично видно было, как они мелькали на сером фоне тюремной стены.",
@@ -375,7 +165,7 @@
    ],
    "correct": "тёмные капли",
    "case": "Именительный (Nominative)",
-   "explain": "«тёмные капли» — the subject of the sentence stands in the nominative.",
+   "explain": "«тёмные капли» is the subject of «падали» — who or what does it — so nominative.",
    "id": "c39"
   },
   {
@@ -389,7 +179,7 @@
    ],
    "correct": "тюремной стены",
    "case": "Родительный (Genitive)",
-   "explain": "«тюремной стены» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«тюремной стены» depends on the noun «фоне» (whose? of what?) — genitive.",
    "id": "c41"
   }
  ]

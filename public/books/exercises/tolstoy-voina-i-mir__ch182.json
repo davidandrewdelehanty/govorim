@@ -1,48 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "___, которое он увидал у Ростовых, была Наташа.",
-   "lemma": "лицо",
-   "options": [
-    "первом лице",
-    "первое лицо",
-    "первым лицом",
-    "первому лицу"
-   ],
-   "correct": "первое лицо",
-   "case": "Именительный (Nominative)",
-   "explain": "«Первое лицо» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Я нынче так счастлива! ― сказала она с тем ___, которого уже давно не видел в ней Пьер. ― Вы знаете, Nicolas получил Георгиевский крест.",
-   "lemma": "оживление",
-   "options": [
-    "прежним оживлением",
-    "прежнего оживления",
-    "прежнее оживление",
-    "прежнем оживлении"
-   ],
-   "correct": "прежним оживлением",
-   "case": "Творительный (Instrumental)",
-   "explain": "«прежним оживлением» — the instrumental marks the means, company, or complement.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Я нынче так счастлива! ― сказала она с тем прежним оживлением, которого уже давно не видел в ней Пьер. ― Вы знаете, Nicolas получил ___.",
-   "lemma": "крест",
-   "options": [
-    "георгиевском кресте",
-    "георгиевским крестом",
-    "георгиевского креста",
-    "георгиевский крест"
-   ],
-   "correct": "георгиевский крест",
-   "case": "Винительный (Accusative)",
-   "explain": "«Георгиевский крест» — the accusative marks the direct object of the verb.",
-   "id": "c3"
-  },
-  {
    "sentence": "Не будет он иметь против меня ___?",
    "lemma": "чувство",
    "options": [
@@ -53,22 +11,8 @@
    ],
    "correct": "злого чувства",
    "case": "Родительный (Genitive)",
-   "explain": "«злого чувства» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«злого чувства» is the object of a negated verb («не иметь») — genitive instead of the accusative.",
    "id": "c4"
-  },
-  {
-   "sentence": "Петя был теперь красивый, румяный, ___ с толстыми, красными губами, похожий на Наташу.",
-   "lemma": "мальчик",
-   "options": [
-    "пятнадцатилетнему мальчику",
-    "пятнадцатилетнего мальчика",
-    "пятнадцатилетний мальчик",
-    "пятнадцатилетним мальчиком"
-   ],
-   "correct": "пятнадцатилетний мальчик",
-   "case": "Именительный (Nominative)",
-   "explain": "«пятнадцатилетний мальчик» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
   },
   {
    "sentence": "— Нет, после обеда, — сказал ___, видимо в этом чтении предвидевший большое удовольствие.",
@@ -81,7 +25,7 @@
    ],
    "correct": "старый граф",
    "case": "Именительный (Nominative)",
-   "explain": "«старый граф» — the subject of the sentence stands in the nominative.",
+   "explain": "«старый граф» is the subject of «сказал» — who or what does it — so nominative.",
    "id": "c8"
   },
   {
@@ -95,7 +39,7 @@
    ],
    "correct": "военных вкусов",
    "case": "Родительный (Genitive)",
-   "explain": "«военных вкусов» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«военных вкусов» — «от» always takes the genitive.",
    "id": "c11"
   },
   {
@@ -109,7 +53,7 @@
    ],
    "correct": "торжественного выражения",
    "case": "Родительный (Genitive)",
-   "explain": "«торжественного выражения» — after the preposition «против», the genitive here marks possession, absence, or quantity.",
+   "explain": "«торжественного выражения» — «против» always takes the genitive.",
    "id": "c15"
   }
  ]

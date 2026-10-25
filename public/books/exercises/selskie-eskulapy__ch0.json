@@ -1,48 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Кузьма Егоров, в ожидании, пока запишутся больные, сидит в приёмной и пьёт ___.",
-   "lemma": "кофе",
-   "options": [
-    "цикорный кофе",
-    "цикорном кофе",
-    "цикорного кофе",
-    "цикорным кофе"
-   ],
-   "correct": "цикорный кофе",
-   "case": "Винительный (Accusative)",
-   "explain": "«цикорный кофе» — the accusative marks the direct object of the verb.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Первый берёт на себя фармацевтическую часть — и идёт в аптеку, второй — терапевтическую — и надевает ___.",
-   "lemma": "фартук",
-   "options": [
-    "клеёнчатый фартук",
-    "клеёнчатому фартуку",
-    "клеёнчатом фартуке",
-    "клеёнчатого фартука"
-   ],
-   "correct": "клеёнчатый фартук",
-   "case": "Винительный (Accusative)",
-   "explain": "«клеёнчатый фартук» — the accusative marks the direct object of the verb.",
-   "id": "c6"
-  },
-  {
-   "sentence": "В приёмную входит маленькая, в три погибели сморщенная, как бы ___ приплюснутая, старушонка.",
-   "lemma": "рок",
-   "options": [
-    "злым роком",
-    "злой рок",
-    "злому року",
-    "злом роке"
-   ],
-   "correct": "злым роком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«злым роком» — the instrumental marks the means, company, or complement.",
-   "id": "c7"
-  },
-  {
    "sentence": "Глеб Глебыч наливает треть ___ касторки и подаёт Стукотею.",
    "lemma": "стакан",
    "options": [
@@ -53,7 +11,7 @@
    ],
    "correct": "чайного стакана",
    "case": "Родительный (Genitive)",
-   "explain": "«чайного стакана» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«чайного стакана» depends on the noun «треть» (whose? of what?) — genitive.",
    "id": "c10"
   },
   {
@@ -67,7 +25,7 @@
    ],
    "correct": "прекрасных особ",
    "case": "Родительный (Genitive)",
-   "explain": "«прекрасных особ» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«прекрасных особ» — «для» always takes the genitive.",
    "id": "c12"
   },
   {
@@ -81,7 +39,7 @@
    ],
    "correct": "женского пола",
    "case": "Родительный (Genitive)",
-   "explain": "«женского пола» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«женского пола» depends on the noun «особ» (whose? of what?) — genitive.",
    "id": "c13"
   },
   {
@@ -95,22 +53,8 @@
    ],
    "correct": "горячих напитков",
    "case": "Родительный (Genitive)",
-   "explain": "«горячих напитков» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«горячих напитков» — «от» always takes the genitive.",
    "id": "c14"
-  },
-  {
-   "sentence": "— ___ употреблять не следует.",
-   "lemma": "напиток",
-   "options": [
-    "горячие напитки",
-    "горячим напиткам",
-    "горячих напитков",
-    "горячими напитками"
-   ],
-   "correct": "горячих напитков",
-   "case": "Родительный (Genitive)",
-   "explain": "«Горячих напитков» — the genitive here marks possession, absence, or quantity.",
-   "id": "c15"
   },
   {
    "sentence": "А к тому, как я животом слаб, и по этой ___, с вашего позволения, каждый месяц кровь себе пущаю и травку пью, то можно ли мне в законный брак вступить?",
@@ -123,7 +67,7 @@
    ],
    "correct": "самой причине",
    "case": "Дательный (Dative)",
-   "explain": "«самой причине» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«самой причине» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c16"
   }
  ]

@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Ему приносили ___, фрукты, конфеты, шербет.",
-   "lemma": "плов",
-   "options": [
-    "жирном плове",
-    "жирным пловом",
-    "жирный плов",
-    "жирного плова"
-   ],
-   "correct": "жирный плов",
-   "case": "Винительный (Accusative)",
-   "explain": "«жирный плов» — the accusative marks the direct object of the verb.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Он делал вид, что сыт до отвалу, — и в самом деле пишхедмет уносил ___.",
-   "lemma": "блюдо",
-   "options": [
-    "пустых блюдах",
-    "пустым блюдам",
-    "пустые блюда",
-    "пустыми блюдами"
-   ],
-   "correct": "пустые блюда",
-   "case": "Винительный (Accusative)",
-   "explain": "«пустые блюда» — the accusative marks the direct object of the verb.",
-   "id": "c3"
-  },
-  {
    "sentence": "___ расположился скромно в углу, с чернилами и бумагой, и чинил перо.",
    "lemma": "толмач",
    "options": [
@@ -39,36 +11,22 @@
    ],
    "correct": "другой толмач",
    "case": "Именительный (Nominative)",
-   "explain": "«Другой толмач» — the subject of the sentence stands in the nominative.",
+   "explain": "«другой толмач» is the subject of «расположился» — who or what does it — so nominative.",
    "id": "c7"
   },
   {
    "sentence": "— Аллах, аллах, — сказал дервиш, — вот падишах уплатил ___, и что же?",
    "lemma": "курур",
    "options": [
-    "восьмом куруре",
-    "восьмым куруром",
     "восьмой курур",
-    "восьмого курура"
+    "восьмым куруром",
+    "восьмом куруре",
+    "восьмому куруру"
    ],
    "correct": "восьмой курур",
    "case": "Винительный (Accusative)",
-   "explain": "«восьмой курур» — the accusative marks the direct object of the verb.",
+   "explain": "«восьмой курур» is the direct object of «уплатил» (кого? что?) — accusative.",
    "id": "c8"
-  },
-  {
-   "sentence": "— Виноват, к великому моему сожалению, — ___.",
-   "lemma": "посол",
-   "options": [
-    "русскому послу",
-    "русский посол",
-    "русского посла",
-    "русском после"
-   ],
-   "correct": "русский посол",
-   "case": "Именительный (Nominative)",
-   "explain": "«русский посол» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
   },
   {
    "sentence": "Вот он голодает ___, вот его хотят убить.",
@@ -81,22 +39,8 @@
    ],
    "correct": "второй день",
    "case": "Винительный (Accusative)",
-   "explain": "«второй день» — the accusative marks the direct object of the verb.",
+   "explain": "«второй день» tells how long or how often, with no preposition — accusative.",
    "id": "c10"
-  },
-  {
-   "sentence": "Он вовсе не был для Мальцева ___, который теперь лежал в выгребной яме, в братской могиле с дохлыми собаками.",
-   "lemma": "предмет",
-   "options": [
-    "безголовому предмету",
-    "безголовый предмет",
-    "безголового предмета",
-    "безголовым предметом"
-   ],
-   "correct": "безголовым предметом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«безголовым предметом» — the instrumental marks the means, company, or complement.",
-   "id": "c11"
   },
   {
    "sentence": "Он вовсе не был для Мальцева безголовым предметом, который теперь лежал в ___, в братской могиле с дохлыми собаками.",
@@ -109,7 +53,7 @@
    ],
    "correct": "выгребной яме",
    "case": "Предложный (Prepositional)",
-   "explain": "«выгребной яме» — after the preposition «в», for location or topic.",
+   "explain": "«выгребной яме» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c12"
   },
   {
@@ -123,7 +67,7 @@
    ],
    "correct": "братской могиле",
    "case": "Предложный (Prepositional)",
-   "explain": "«братской могиле» — after the preposition «в», for location or topic.",
+   "explain": "«братской могиле» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c13"
   },
   {
@@ -137,21 +81,21 @@
    ],
    "correct": "дохлыми собаками",
    "case": "Творительный (Instrumental)",
-   "explain": "«дохлыми собаками» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«дохлыми собаками» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c14"
   },
   {
    "sentence": "Я засвидетельствую перед лицом моего императора деяния его ___.",
    "lemma": "посол",
    "options": [
-    "недостойным послом",
+    "недостойный посол",
     "недостойному послу",
     "недостойного посла",
-    "недостойный посол"
+    "недостойном после"
    ],
    "correct": "недостойного посла",
    "case": "Родительный (Genitive)",
-   "explain": "«недостойного посла» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«недостойного посла» depends on the noun «деяния» (whose? of what?) — genitive.",
    "id": "c15"
   },
   {
@@ -165,21 +109,21 @@
    ],
    "correct": "первый раз",
    "case": "Винительный (Accusative)",
-   "explain": "«Первый раз» — the accusative marks the direct object of the verb.",
+   "explain": "«первый раз» tells how long or how often, with no preposition — accusative.",
    "id": "c16"
   },
   {
    "sentence": "Он хватал ___, почти не жуя, со сладострастием глотал, давился.",
    "lemma": "кусок",
    "options": [
-    "крупных кусков",
-    "крупным кускам",
+    "крупные куски",
     "крупными кусками",
-    "крупные куски"
+    "крупных кусках",
+    "крупным кускам"
    ],
    "correct": "крупные куски",
    "case": "Винительный (Accusative)",
-   "explain": "«крупные куски» — the accusative marks the direct object of the verb.",
+   "explain": "«крупные куски» is the direct object of «хватал» (кого? что?) — accusative.",
    "id": "c17"
   },
   {
@@ -193,7 +137,7 @@
    ],
    "correct": "придворного толмача",
    "case": "Родительный (Genitive)",
-   "explain": "«придворного толмача» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«придворного толмача» depends on the noun «текст» (whose? of what?) — genitive.",
    "id": "c19"
   }
  ]

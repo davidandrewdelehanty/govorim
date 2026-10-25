@@ -1,62 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "___ Ильин недавно проснулся.",
-   "lemma": "корнет",
-   "options": [
-    "уланском корнете",
-    "уланского корнета",
-    "уланскому корнету",
-    "уланский корнет"
-   ],
-   "correct": "уланский корнет",
-   "case": "Именительный (Nominative)",
-   "explain": "«Уланский корнет» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Он заснул почти в полдень и спал тем тяжелым сном без сновидений, которым спится только очень ___ и после очень большого проигрыша.",
-   "lemma": "человек",
-   "options": [
-    "молодой человек",
-    "молодому человеку",
-    "молодом человеке",
-    "молодого человека"
-   ],
-   "correct": "молодому человеку",
-   "case": "Дательный (Dative)",
-   "explain": "«молодому человеку» — after the preposition «в», the dative marks the indirect object or recipient.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Он заснул почти в полдень и спал тем тяжелым сном без сновидений, которым спится только очень молодому человеку и после очень ___.",
-   "lemma": "проигрыш",
-   "options": [
-    "большим проигрышем",
-    "большого проигрыша",
-    "большом проигрыше",
-    "большому проигрышу"
-   ],
-   "correct": "большого проигрыша",
-   "case": "Родительный (Genitive)",
-   "explain": "«большого проигрыша» — after the preposition «после», the genitive here marks possession, absence, or quantity.",
-   "id": "c3"
-  },
-  {
-   "sentence": "Ему захотелось пройтись, чтобы прогнать неотвязчивые ___.",
-   "lemma": "воспоминание",
-   "options": [
-    "игорных воспоминаниях",
-    "игорным воспоминаниям",
-    "игорных воспоминаний",
-    "игорные воспоминания"
-   ],
-   "correct": "игорные воспоминания",
-   "case": "Винительный (Accusative)",
-   "explain": "«игорные воспоминания» — the accusative marks the direct object of the verb.",
-   "id": "c4"
-  },
-  {
    "sentence": "На ___ тихо падал хлопьями влажный снег.",
    "lemma": "улица",
    "options": [
@@ -67,7 +11,7 @@
    ],
    "correct": "грязные улицы",
    "case": "Винительный (Accusative)",
-   "explain": "«грязные улицы» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«грязные улицы» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c7"
   },
   {
@@ -81,22 +25,8 @@
    ],
    "correct": "влажный снег",
    "case": "Именительный (Nominative)",
-   "explain": "«влажный снег» — the subject of the sentence stands in the nominative.",
+   "explain": "«влажный снег» is the subject of «падал» — who or what does it — so nominative.",
    "id": "c8"
-  },
-  {
-   "sentence": "«Вот так ___», подумал он отчего-то.",
-   "lemma": "барыня",
-   "options": [
-    "глупая барыня",
-    "глупой барыней",
-    "глупой барыни",
-    "глупой барыне"
-   ],
-   "correct": "глупая барыня",
-   "case": "Именительный (Nominative)",
-   "explain": "«глупая барыня» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
   },
   {
    "sentence": "Купец в ___ стоял у дверей лавки и зазывал к себе.",
@@ -109,7 +39,7 @@
    ],
    "correct": "лисьей шубе",
    "case": "Предложный (Prepositional)",
-   "explain": "«лисьей шубе» — after the preposition «в», for location or topic.",
+   "explain": "«лисьей шубе» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c10"
   },
   {
@@ -123,36 +53,22 @@
    ],
    "correct": "медвежьей шубе",
    "case": "Предложный (Prepositional)",
-   "explain": "«медвежьей шубе» — after the preposition «в», for location or topic.",
+   "explain": "«медвежьей шубе» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c11"
   },
   {
    "sentence": "Всем хотелось начать игру поскорее; но ___ ничего не говорили об этом предмете, особенно Лухнов чрезвычайно спокойно рассказывал о мошенничестве в Москве.",
    "lemma": "игрок",
    "options": [
-    "главным игрокам",
-    "главные игроки",
     "главными игроками",
-    "главных игроков"
+    "главным игрокам",
+    "главных игроках",
+    "главные игроки"
    ],
    "correct": "главные игроки",
    "case": "Именительный (Nominative)",
-   "explain": "«главные игроки» — the subject of the sentence stands in the nominative.",
+   "explain": "«главные игроки» is the subject of «говорили» — who or what does it — so nominative.",
    "id": "c15"
-  },
-  {
-   "sentence": "— Надо вообразить, — говорил он: — Москва — ___, столица — и по ночам ходят с крюками мошенники, в чертей наряжены, глупую чернь пугают, грабят проезжих — и конец.",
-   "lemma": "град",
-   "options": [
-    "первопрестольном граде",
-    "первопрестольным градом",
-    "первопрестольный град",
-    "первопрестольному граду"
-   ],
-   "correct": "первопрестольный град",
-   "case": "Именительный (Nominative)",
-   "explain": "«первопрестольный град» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
   },
   {
    "sentence": "— Точно, пора бы, — сказал ___.",
@@ -165,7 +81,7 @@
    ],
    "correct": "гарнизонный офицер",
    "case": "Именительный (Nominative)",
-   "explain": "«гарнизонный офицер» — the subject of the sentence stands in the nominative.",
+   "explain": "«гарнизонный офицер» is the subject of «сказал» — who or what does it — so nominative.",
    "id": "c17"
   },
   {
@@ -179,7 +95,7 @@
    ],
    "correct": "другого утра",
    "case": "Родительный (Genitive)",
-   "explain": "«другого утра» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«другого утра» — «до» always takes the genitive.",
    "id": "c21"
   },
   {
@@ -193,7 +109,7 @@
    ],
    "correct": "другим делом",
    "case": "Творительный (Instrumental)",
-   "explain": "«другим делом» — the instrumental marks the means, company, or complement.",
+   "explain": "«заниматься» takes the instrumental.",
    "id": "c22"
   }
  ]

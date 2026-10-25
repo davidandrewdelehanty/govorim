@@ -1,46 +1,18 @@
 {
  "cases": [
   {
-   "sentence": "В туманной дали, на западе, теряются его темные воды; в туманную даль, на север, уходит ___.",
-   "lemma": "берег",
-   "options": [
-    "каменистому берегу",
-    "каменистый берег",
-    "каменистым берегом",
-    "каменистом береге"
-   ],
-   "correct": "каменистый берег",
-   "case": "Именительный (Nominative)",
-   "explain": "«каменистый берег» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Видишь, как бесприютно вьется она в тусклом ___, качаясь по холодному ветру на упругих крыльях?",
    "lemma": "туман",
    "options": [
-    "осенний туман",
-    "осеннего тумана",
     "осеннему туману",
-    "осеннем тумане"
+    "осеннем тумане",
+    "осеннего тумана",
+    "осенним туманом"
    ],
    "correct": "осеннем тумане",
    "case": "Предложный (Prepositional)",
-   "explain": "«осеннем тумане» — after the preposition «в», for location or topic.",
+   "explain": "«осеннем тумане» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c3"
-  },
-  {
-   "sentence": "Здесь, на этом неприветливом ___, на его пустынных островах и прибрежьях, круглый год ненастье.",
-   "lemma": "море",
-   "options": [
-    "северном море",
-    "северное море",
-    "северного моря",
-    "северному морю"
-   ],
-   "correct": "северном море",
-   "case": "Предложный (Prepositional)",
-   "explain": "«северном море» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c7"
   },
   {
    "sentence": "Здесь, на этом неприветливом северном море, на его ___ и прибрежьях, круглый год ненастье.",
@@ -53,7 +25,7 @@
    ],
    "correct": "пустынных островах",
    "case": "Предложный (Prepositional)",
-   "explain": "«пустынных островах» — after the preposition «на», for location or topic.",
+   "explain": "«пустынных островах» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c8"
   },
   {
@@ -67,7 +39,7 @@
    ],
    "correct": "новой волне",
    "case": "Предложный (Prepositional)",
-   "explain": "«новой волне» — after the preposition «на», for location or topic.",
+   "explain": "«новой волне» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c11"
   },
   {
@@ -81,50 +53,8 @@
    ],
    "correct": "высокого гребня",
    "case": "Родительный (Genitive)",
-   "explain": "«высокого гребня» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«высокого гребня» — «до» always takes the genitive.",
    "id": "c12"
-  },
-  {
-   "sentence": "Шум прибоя растет, ___ вздымает и бешено срывает волны, разнося по воздуху брызги и резкий запах моря.",
-   "lemma": "ветер",
-   "options": [
-    "ледяным ветром",
-    "ледяного ветра",
-    "ледяной ветер",
-    "ледяном ветре"
-   ],
-   "correct": "ледяной ветер",
-   "case": "Именительный (Nominative)",
-   "explain": "«ледяной ветер» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
-  },
-  {
-   "sentence": "Шум прибоя растет, ледяной ветер вздымает и бешено срывает волны, разнося по воздуху брызги и ___ моря.",
-   "lemma": "запах",
-   "options": [
-    "резкого запаха",
-    "резким запахом",
-    "резком запахе",
-    "резкий запах"
-   ],
-   "correct": "резкий запах",
-   "case": "Винительный (Accusative)",
-   "explain": "«резкий запах» — the accusative marks the direct object of the verb.",
-   "id": "c15"
-  },
-  {
-   "sentence": "Слушай, я расскажу тебе, под шум бушующего ___, старую северную легенду.",
-   "lemma": "море",
-   "options": [
-    "северном море",
-    "северному морю",
-    "северным морем",
-    "северного моря"
-   ],
-   "correct": "северного моря",
-   "case": "Родительный (Genitive)",
-   "explain": "«северного моря» — the genitive here marks possession, absence, or quantity.",
-   "id": "c16"
   },
   {
    "sentence": "У холодного ___ жила молодая и сильная Велга.",
@@ -137,22 +67,8 @@
    ],
    "correct": "северного моря",
    "case": "Родительный (Genitive)",
-   "explain": "«северного моря» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«северного моря» — «у» always takes the genitive.",
    "id": "c17"
-  },
-  {
-   "sentence": "Не ходил и отец ее, не ходила и мать, не ходила и ___, Снеггар.",
-   "lemma": "сестра",
-   "options": [
-    "старшей сестры",
-    "старшей сестрой",
-    "старшей сестре",
-    "старшая сестра"
-   ],
-   "correct": "старшая сестра",
-   "case": "Именительный (Nominative)",
-   "explain": "«старшая сестра» — the subject of the sentence stands in the nominative.",
-   "id": "c18"
   },
   {
    "sentence": "Зимой, когда море только под самым краем неба чернело волнами, а у берегов было покрыто ___, Велга спала в мягком гагачьем пуху и, просыпаясь, видела перед собой живой свет очага среди темной и низкой хижины.",
@@ -165,22 +81,8 @@
    ],
    "correct": "белым снегом",
    "case": "Творительный (Instrumental)",
-   "explain": "«белым снегом» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «покрыто», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c20"
-  },
-  {
-   "sentence": "Зимой, когда море только под самым краем неба чернело волнами, а у берегов было покрыто белым снегом, Велга спала в мягком гагачьем пуху и, просыпаясь, видела перед собой ___ очага среди темной и низкой хижины.",
-   "lemma": "свет",
-   "options": [
-    "живого света",
-    "живой свет",
-    "живом свете",
-    "живому свету"
-   ],
-   "correct": "живой свет",
-   "case": "Винительный (Accusative)",
-   "explain": "«живой свет» — the accusative marks the direct object of the verb.",
-   "id": "c21"
   },
   {
    "sentence": "Но, когда он уходил по берегу к своему дому, Велга догоняла его и провожала до ___.",
@@ -193,22 +95,8 @@
    ],
    "correct": "самого порога",
    "case": "Родительный (Genitive)",
-   "explain": "«самого порога» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«самого порога» — «до» always takes the genitive.",
    "id": "c22"
-  },
-  {
-   "sentence": "И стала Велга петь на берегу моря ___ сквозь слезы.",
-   "lemma": "песня",
-   "options": [
-    "звонким песням",
-    "звонкими песнями",
-    "звонких песнях",
-    "звонкие песни"
-   ],
-   "correct": "звонкие песни",
-   "case": "Винительный (Accusative)",
-   "explain": "«звонкие песни» — the accusative marks the direct object of the verb.",
-   "id": "c23"
   }
  ]
 }

@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "___ не подлежало ведению кардинала; семейное дело не касалось никого, о семейном деле можно было говорить перед всеми.",
-   "lemma": "дело",
-   "options": [
-    "семейном деле",
-    "семейного дела",
-    "семейному делу",
-    "семейное дело"
-   ],
-   "correct": "семейное дело",
-   "case": "Именительный (Nominative)",
-   "explain": "«Семейное дело» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Семейное дело не подлежало ведению кардинала; ___ не касалось никого, о семейном деле можно было говорить перед всеми.",
-   "lemma": "дело",
-   "options": [
-    "семейном деле",
-    "семейного дела",
-    "семейное дело",
-    "семейному делу"
-   ],
-   "correct": "семейное дело",
-   "case": "Именительный (Nominative)",
-   "explain": "«семейное дело» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
    "sentence": "Семейное дело не подлежало ведению кардинала; семейное дело не касалось никого, о ___ можно было говорить перед всеми.",
    "lemma": "дело",
    "options": [
@@ -39,7 +11,7 @@
    ],
    "correct": "семейном деле",
    "case": "Предложный (Prepositional)",
-   "explain": "«семейном деле» — after the preposition «о», for location or topic.",
+   "explain": "«семейном деле» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c3"
   },
   {
@@ -53,22 +25,8 @@
    ],
    "correct": "прекрасные речи",
    "case": "Именительный (Nominative)",
-   "explain": "«прекрасные речи» — the subject of the sentence stands in the nominative.",
+   "explain": "«прекрасные речи» is the subject of «произнесены» — who or what does it — so nominative.",
    "id": "c4"
-  },
-  {
-   "sentence": "— Если так, ___, прибавьте к его бескорыстной преданности вам еще кругленькую сумму денег, которая доставила бы ему некоторые удобства, и тогда вы можете за него ручаться вдвойне.",
-   "lemma": "друг",
-   "options": [
-    "любезном друге",
-    "любезный друг",
-    "любезному другу",
-    "любезным другом"
-   ],
-   "correct": "любезный друг",
-   "case": "Именительный (Nominative)",
-   "explain": "«любезный друг» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
   },
   {
    "sentence": "— Они пообещают все, чтобы получить деньги, и ___ помешает им действовать.",
@@ -81,35 +39,21 @@
    ],
    "correct": "дорогой страх",
    "case": "Именительный (Nominative)",
-   "explain": "«дорогой страх» — the subject of the sentence stands in the nominative.",
+   "explain": "«дорогой страх» is the subject of «помешает» — who or what does it — so nominative.",
    "id": "c6"
-  },
-  {
-   "sentence": "— Не годится — согласен; я напишу просто: ___.",
-   "lemma": "государь",
-   "options": [
-    "милостивого государя",
-    "милостивый государь",
-    "милостивому государю",
-    "милостивым государем"
-   ],
-   "correct": "милостивый государь",
-   "case": "Именительный (Nominative)",
-   "explain": "«милостивый государь» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
   },
   {
    "sentence": "— Дорогой д’Артаньян, заметил Атос, — вы никогда не будете ___: «Где вам даровали жизнь!» Фуй! это просто неприлично.",
    "lemma": "писатель",
    "options": [
-    "хорошем писателе",
+    "хорошим писателем",
     "хорошему писателю",
-    "хороший писатель",
-    "хорошим писателем"
+    "хорошем писателе",
+    "хорошего писателя"
    ],
    "correct": "хорошим писателем",
    "case": "Творительный (Instrumental)",
-   "explain": "«хорошим писателем» — the instrumental marks the means, company, or complement.",
+   "explain": "After «будете», what someone or something is or becomes stands in the instrumental.",
    "id": "c8"
   },
   {
@@ -123,22 +67,8 @@
    ],
    "correct": "святого отца",
    "case": "Родительный (Genitive)",
-   "explain": "«святого отца» — after the preposition «ради», the genitive here marks possession, absence, or quantity.",
+   "explain": "«святого отца» — «ради» always takes the genitive.",
    "id": "c9"
-  },
-  {
-   "sentence": "— Д’Артаньян и я, или, вернее, соблюдая ___: я и д’Артаньян, ответил Атос.",
-   "lemma": "порядок",
-   "options": [
-    "хронологический порядок",
-    "хронологическом порядке",
-    "хронологическому порядку",
-    "хронологическим порядком"
-   ],
-   "correct": "хронологический порядок",
-   "case": "Винительный (Accusative)",
-   "explain": "«хронологический порядок» — the accusative marks the direct object of the verb.",
-   "id": "c10"
   },
   {
    "sentence": "___ стал бы втупик при составлении подобного послания, а между тем канцлер отлично составляет протоколы.",
@@ -151,36 +81,22 @@
    ],
    "correct": "сам канцлер",
    "case": "Именительный (Nominative)",
-   "explain": "«Сам канцлер» — the subject of the sentence stands in the nominative.",
+   "explain": "«сам канцлер» is the subject of «стал» — who or what does it — so nominative.",
    "id": "c11"
   },
   {
    "sentence": "Сам канцлер стал бы втупик при составлении ___, а между тем канцлер отлично составляет протоколы.",
    "lemma": "послание",
    "options": [
-    "подобному посланию",
     "подобном послании",
-    "подобным посланием",
+    "подобное послание",
+    "подобному посланию",
     "подобного послания"
    ],
    "correct": "подобного послания",
    "case": "Родительный (Genitive)",
-   "explain": "«подобного послания» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«подобного послания» depends on the noun «составлении» (whose? of what?) — genitive.",
    "id": "c12"
-  },
-  {
-   "sentence": "Так как с тех пор вы много раз называли себя другом этой особы, то она считает себя обязанным доказать эту дружбу ___.",
-   "lemma": "совет",
-   "options": [
-    "доброму совету",
-    "добрый совет",
-    "добром совете",
-    "добрым советом"
-   ],
-   "correct": "добрым советом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«добрым советом» — the instrumental marks the means, company, or complement.",
-   "id": "c13"
   },
   {
    "sentence": "Два раза вы чуть не сделались жертвой вашей ___, которую вы считаете своей наследницей, так как вам неизвестно, что до вступления в брак в Англии она уже была замужем во Франции.",
@@ -193,49 +109,35 @@
    ],
    "correct": "близкой родственницы",
    "case": "Родительный (Genitive)",
-   "explain": "«близкой родственницы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«близкой родственницы» depends on the noun «жертвой» (whose? of what?) — genitive.",
    "id": "c14"
   },
   {
    "sentence": "Но в ___, то есть теперь, вы можете пасть.",
    "lemma": "раз",
    "options": [
+    "третий раз",
     "третьим разом",
     "третьего раза",
-    "третьем разе",
-    "третий раз"
+    "третьему разу"
    ],
    "correct": "третий раз",
    "case": "Винительный (Accusative)",
-   "explain": "«третий раз» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«третий раз» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c15"
-  },
-  {
-   "sentence": "— Вы пишете точно ___, мой милый Арамис.",
-   "lemma": "секретарь",
-   "options": [
-    "государственный секретарь",
-    "государственному секретарю",
-    "государственного секретаря",
-    "государственном секретаре"
-   ],
-   "correct": "государственный секретарь",
-   "case": "Именительный (Nominative)",
-   "explain": "«государственный секретарь» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
   },
   {
    "sentence": "Лорд Винтер учредит теперь за ней ___, если только предостережение придет во время, а если бы даже оно и попало в руки самого кардинала, мы не были бы скомпрометированы.",
    "lemma": "надзор",
    "options": [
+    "хорошем надзоре",
     "хороший надзор",
-    "хорошему надзору",
-    "хорошего надзора",
-    "хорошим надзором"
+    "хорошим надзором",
+    "хорошему надзору"
    ],
    "correct": "хороший надзор",
    "case": "Винительный (Accusative)",
-   "explain": "«хороший надзор» — the accusative marks the direct object of the verb.",
+   "explain": "«хороший надзор» is the direct object of «учредит» (кого? что?) — accusative.",
    "id": "c17"
   },
   {
@@ -249,21 +151,21 @@
    ],
    "correct": "самого кардинала",
    "case": "Родительный (Genitive)",
-   "explain": "«самого кардинала» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«самого кардинала» depends on the noun «руки» (whose? of what?) — genitive.",
    "id": "c18"
   },
   {
    "sentence": "— Сколько в этом ___? спросил он.",
    "lemma": "мешок",
    "options": [
-    "маленькому мешку",
+    "маленьким мешком",
     "маленького мешка",
     "маленьком мешке",
-    "маленький мешок"
+    "маленькому мешку"
    ],
    "correct": "маленьком мешке",
    "case": "Предложный (Prepositional)",
-   "explain": "«маленьком мешке» — after the preposition «в», for location or topic.",
+   "explain": "«маленьком мешке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c19"
   },
   {
@@ -277,36 +179,8 @@
    ],
    "correct": "негодный брильянт",
    "case": "Именительный (Nominative)",
-   "explain": "«негодный брильянт» — the subject of the sentence stands in the nominative.",
+   "explain": "«негодный брильянт» is the subject of «стоит» — who or what does it — so nominative.",
    "id": "c20"
-  },
-  {
-   "sentence": "— Очень просто, сказал Атос: — составить другое письмо к очень ___, проживающей в Туре.",
-   "lemma": "особа",
-   "options": [
-    "ловкой особе",
-    "ловкая особа",
-    "ловкой особой",
-    "ловкой особы"
-   ],
-   "correct": "ловкой особе",
-   "case": "Дательный (Dative)",
-   "explain": "«ловкой особе» — after the preposition «к», the dative marks the indirect object or recipient.",
-   "id": "c21"
-  },
-  {
-   "sentence": "— Моя ___, подтвердил Арамис.",
-   "lemma": "сестра",
-   "options": [
-    "двоюродной сестры",
-    "двоюродной сестре",
-    "двоюродная сестра",
-    "двоюродной сестрой"
-   ],
-   "correct": "двоюродная сестра",
-   "case": "Именительный (Nominative)",
-   "explain": "«двоюродная сестра» — the subject of the sentence stands in the nominative.",
-   "id": "c22"
   },
   {
    "sentence": "Я видел во сне, что этот ___ умер; не могу припомнить — от кинжала или яда, но знаю только, что мне снилось, что он умер, а вы знаете — мои сны никогда не обманывают.",
@@ -319,133 +193,63 @@
    ],
    "correct": "проклятый англичанин",
    "case": "Именительный (Nominative)",
-   "explain": "«проклятый англичанин» — the subject of the sentence stands in the nominative.",
+   "explain": "«проклятый англичанин» is the subject of «умер» — who or what does it — so nominative.",
    "id": "c23"
-  },
-  {
-   "sentence": "— Прекрасно! вскричал Атос, — вы царь поэтов; вы говорите точно ясновидящий и правдиво, как ___.",
-   "lemma": "природа",
-   "options": [
-    "сама природа",
-    "самой природе",
-    "самой природы",
-    "самой природой"
-   ],
-   "correct": "сама природа",
-   "case": "Именительный (Nominative)",
-   "explain": "«сама природа» — the subject of the sentence stands in the nominative.",
-   "id": "c24"
-  },
-  {
-   "sentence": "Позвали Плянше и дали ему ___; он уже раньше был предупрежден д’Артаньяном, который прежде всего сказал ему, что его ожидает слава, затем деньги и уже после этого упомянул об опасности.",
-   "lemma": "инструкция",
-   "options": [
-    "необходимым инструкциям",
-    "необходимыми инструкциями",
-    "необходимые инструкции",
-    "необходимых инструкций"
-   ],
-   "correct": "необходимые инструкции",
-   "case": "Винительный (Accusative)",
-   "explain": "«необходимые инструкции» — the accusative marks the direct object of the verb.",
-   "id": "c25"
-  },
-  {
-   "sentence": "— А я, сказал Портос, поводя своими ___, — сдеру с тебя с живого шкуру.",
-   "lemma": "глаз",
-   "options": [
-    "огромными глазами",
-    "огромные глаза",
-    "огромных глаз",
-    "огромных глазах"
-   ],
-   "correct": "огромными глазами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«огромными глазами» — the instrumental marks the means, company, or complement.",
-   "id": "c26"
-  },
-  {
-   "sentence": "— А я, прибавил Арамис, своим тихим ___, — помни: сожгу тебя на медленном огне, как дикаря.",
-   "lemma": "голос",
-   "options": [
-    "мелодичный голос",
-    "мелодичного голоса",
-    "мелодичным голосом",
-    "мелодичном голосе"
-   ],
-   "correct": "мелодичным голосом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«мелодичным голосом» — the instrumental marks the means, company, or complement.",
-   "id": "c27"
   },
   {
    "sentence": "— А я, прибавил Арамис, своим тихим мелодичным голосом, — помни: сожгу тебя на ___, как дикаря.",
    "lemma": "огонь",
    "options": [
-    "медленный огонь",
+    "медленному огню",
     "медленного огня",
-    "медленном огне",
-    "медленному огню"
+    "медленным огнём",
+    "медленном огне"
    ],
    "correct": "медленном огне",
    "case": "Предложный (Prepositional)",
-   "explain": "«медленном огне» — after the preposition «на», for location or topic.",
+   "explain": "«медленном огне» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c28"
-  },
-  {
-   "sentence": "И Плянше заплакал; мы не сумеем сказать, было ли это следствием страха, причиненного ему угрозами, или следствием умиления при виде такой ___ четырех друзей.",
-   "lemma": "дружба",
-   "options": [
-    "тесная дружба",
-    "тесной дружбе",
-    "тесной дружбы",
-    "тесной дружбой"
-   ],
-   "correct": "тесной дружбы",
-   "case": "Родительный (Genitive)",
-   "explain": "«тесной дружбы» — the genitive here marks possession, absence, or quantity.",
-   "id": "c29"
   },
   {
    "sentence": "Было решено, что Плянше уедет на ___ в восемь часов утра, чтобы дать ему время, как он хотел, в продолжение ночи выучить письмо наизусть; он должен был вернуться на шестнадцатый день, в восемь часов вечера.",
    "lemma": "день",
    "options": [
+    "следующему дню",
     "следующий день",
-    "следующем дне",
     "следующим днём",
-    "следующему дню"
+    "следующего дня"
    ],
    "correct": "следующий день",
    "case": "Винительный (Accusative)",
-   "explain": "«следующий день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«следующий день» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c30"
   },
   {
    "sentence": "Было решено, что Плянше уедет на следующий день в восемь часов утра, чтобы дать ему время, как он хотел, в продолжение ночи выучить письмо наизусть; он должен был вернуться на ___, в восемь часов вечера.",
    "lemma": "день",
    "options": [
-    "шестнадцатого дня",
     "шестнадцатый день",
-    "шестнадцатому дню",
-    "шестнадцатом дне"
+    "шестнадцатого дня",
+    "шестнадцатым днём",
+    "шестнадцатому дню"
    ],
    "correct": "шестнадцатый день",
    "case": "Винительный (Accusative)",
-   "explain": "«шестнадцатый день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«шестнадцатый день» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c31"
   },
   {
    "sentence": "Базен уехал на ___ утром в Тур; ему дано было восемь дней для исполнения возложенного на него поручения.",
    "lemma": "день",
    "options": [
+    "следующему дню",
+    "следующего дня",
     "следующий день",
-    "следующем дне",
-    "следующим днём",
-    "следующему дню"
+    "следующим днём"
    ],
    "correct": "следующий день",
    "case": "Винительный (Accusative)",
-   "explain": "«следующий день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«следующий день» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c32"
   },
   {
@@ -459,7 +263,7 @@
    ],
    "correct": "целые дни",
    "case": "Винительный (Accusative)",
-   "explain": "«целые дни» — the accusative marks the direct object of the verb.",
+   "explain": "«целые дни» is the direct object of «проводили» (кого? что?) — accusative.",
    "id": "c33"
   },
   {
@@ -473,50 +277,8 @@
    ],
    "correct": "грубым почерком",
    "case": "Творительный (Instrumental)",
-   "explain": "«грубым почерком» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «написанное», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c34"
-  },
-  {
-   "sentence": "Арамис, невольно покраснев, взял письмо, написанное грубым почерком, с ___.",
-   "lemma": "ошибка",
-   "options": [
-    "орфографическим ошибкам",
-    "орфографических ошибках",
-    "орфографическими ошибками",
-    "орфографических ошибок"
-   ],
-   "correct": "орфографическими ошибками",
-   "case": "Творительный (Instrumental)",
-   "explain": "«орфографическими ошибками» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c35"
-  },
-  {
-   "sentence": "Но Базен своим ___ снял только часть беспокойства, тяготившего четырех друзей.",
-   "lemma": "возвращение",
-   "options": [
-    "счастливого возвращения",
-    "счастливым возвращением",
-    "счастливое возвращение",
-    "счастливому возвращению"
-   ],
-   "correct": "счастливым возвращением",
-   "case": "Творительный (Instrumental)",
-   "explain": "«счастливым возвращением» — the instrumental marks the means, company, or complement.",
-   "id": "c36"
-  },
-  {
-   "sentence": "Один только Атос попрежнему сохранял хладнокровие, точно кругом его не было ни малейшей опасности и ничто не нарушало ___ вещей.",
-   "lemma": "порядок",
-   "options": [
-    "обычному порядку",
-    "обычный порядок",
-    "обычном порядке",
-    "обычного порядка"
-   ],
-   "correct": "обычного порядка",
-   "case": "Родительный (Genitive)",
-   "explain": "«обычного порядка» — the genitive here marks possession, absence, or quantity.",
-   "id": "c37"
   },
   {
    "sentence": "Жизнь представляет ряд ___, которые философ встречает со смехом.",
@@ -529,7 +291,7 @@
    ],
    "correct": "маленьких несчастий",
    "case": "Родительный (Genitive)",
-   "explain": "«маленьких несчастий» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«маленьких несчастий» depends on the noun «ряд» (whose? of what?) — genitive.",
    "id": "c38"
   },
   {
@@ -543,36 +305,8 @@
    ],
    "correct": "розовом свете",
    "case": "Предложный (Prepositional)",
-   "explain": "«розовом свете» — after the preposition «в», for location or topic.",
+   "explain": "«розовом свете» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c39"
-  },
-  {
-   "sentence": "— Вы очень требовательны, отозвался Атос: — она такая ___!",
-   "lemma": "женщина",
-   "options": [
-    "красивая женщина",
-    "красивой женщиной",
-    "красивой женщине",
-    "красивой женщины"
-   ],
-   "correct": "красивая женщина",
-   "case": "Именительный (Nominative)",
-   "explain": "«красивая женщина» — the subject of the sentence stands in the nominative.",
-   "id": "c40"
-  },
-  {
-   "sentence": "— Заклейменная женщина! сказал Портос со своим ___.",
-   "lemma": "смех",
-   "options": [
-    "громкому смеху",
-    "громкого смеха",
-    "громким смехом",
-    "громкий смех"
-   ],
-   "correct": "громким смехом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«громким смехом» — after the preposition «со», the instrumental marks the means, company, or complement.",
-   "id": "c41"
   },
   {
    "sentence": "Атос вздрогнул, провел рукой по лбу, точно вытирая пот, и встал в ___, которое он был не в силах скрыть.",
@@ -585,22 +319,8 @@
    ],
    "correct": "нервном волнении",
    "case": "Предложный (Prepositional)",
-   "explain": "«нервном волнении» — after the preposition «в», for location or topic.",
+   "explain": "«нервном волнении» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c42"
-  },
-  {
-   "sentence": "В лице Бюзиньи, который к тому же угостил их ___, он нашел отличного партнера, вполне достойного себя.",
-   "lemma": "обед",
-   "options": [
-    "чудным обедом",
-    "чудного обеда",
-    "чудном обеде",
-    "чудной обед"
-   ],
-   "correct": "чудным обедом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«чудным обедом» — the instrumental marks the means, company, or complement.",
-   "id": "c43"
   },
   {
    "sentence": "Записка просто жгла руку д’Артаньяну; он хотел ускорить шаг, но Атос взял его под руку, так что ___ поневоле принужден был замедлить шаг.",
@@ -613,21 +333,21 @@
    ],
    "correct": "молодой человек",
    "case": "Именительный (Nominative)",
-   "explain": "«молодой человек» — the subject of the sentence stands in the nominative.",
+   "explain": "«молодой человек» is the subject of «принужден» — who or what does it — so nominative.",
    "id": "c44"
   },
   {
    "sentence": "— Могу вас уверить, барин, что я усну спокойно в ___ после шестнадцати дней.",
    "lemma": "раз",
    "options": [
-    "первом разе",
-    "первый раз",
+    "первым разом",
+    "первого раза",
     "первому разу",
-    "первым разом"
+    "первый раз"
    ],
    "correct": "первый раз",
    "case": "Винительный (Accusative)",
-   "explain": "«первый раз» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«первый раз» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c45"
   }
  ]

@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Князь и Сергей Иваныч сели в тележку и поехали; ___, ускорив шаг, пешком пошло домой.",
-   "lemma": "общество",
-   "options": [
-    "остальным обществом",
-    "остального общества",
-    "остальное общество",
-    "остальном обществе"
-   ],
-   "correct": "остальное общество",
-   "case": "Именительный (Nominative)",
-   "explain": "«остальное общество» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Мужчины, придерживая шляпы, шли ___.",
-   "lemma": "шаг",
-   "options": [
-    "большими шагами",
-    "большие шаги",
-    "большим шагам",
-    "больших шагов"
-   ],
-   "correct": "большими шагами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«большими шагами» — the instrumental marks the means, company, or complement.",
-   "id": "c3"
-  },
-  {
    "sentence": "Они были уже у ___, как большая капля ударилась и разбилась о край железного желоба.",
    "lemma": "крыльцо",
    "options": [
@@ -39,7 +11,7 @@
    ],
    "correct": "самого крыльца",
    "case": "Родительный (Genitive)",
-   "explain": "«самого крыльца» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«самого крыльца» — «у» always takes the genitive.",
    "id": "c4"
   },
   {
@@ -53,7 +25,7 @@
    ],
    "correct": "большая капля",
    "case": "Именительный (Nominative)",
-   "explain": "«большая капля» — the subject of the sentence stands in the nominative.",
+   "explain": "«большая капля» is the subject of «ударилась» — who or what does it — so nominative.",
    "id": "c5"
   },
   {
@@ -67,7 +39,7 @@
    ],
    "correct": "короткий промежуток",
    "case": "Винительный (Accusative)",
-   "explain": "«короткий промежуток» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«короткий промежуток» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c6"
   },
   {
@@ -81,7 +53,7 @@
    ],
    "correct": "белый занавес",
    "case": "Именительный (Nominative)",
-   "explain": "«Белый занавес» — the subject of the sentence stands in the nominative.",
+   "explain": "«белый занавес» is the subject of «захватывал» — who or what does it — so nominative.",
    "id": "c7"
   },
   {
@@ -95,21 +67,21 @@
    ],
    "correct": "проливного дождя",
    "case": "Родительный (Genitive)",
-   "explain": "«проливного дождя» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«проливного дождя» depends on the noun «занавес» (whose? of what?) — genitive.",
    "id": "c8"
   },
   {
    "sentence": "Белый занавес проливного дождя уже захватывал весь ___ и половину ближнего поля и быстро подвигался к Колку.",
    "lemma": "лес",
    "options": [
-    "дальнего леса",
-    "дальнем лесе",
     "дальний лес",
-    "дальнему лесу"
+    "дальним лесом",
+    "дальнему лесу",
+    "дальнем лесе"
    ],
    "correct": "дальний лес",
    "case": "Винительный (Accusative)",
-   "explain": "«дальний лес» — the accusative marks the direct object of the verb.",
+   "explain": "«дальний лес» is the direct object of «захватывал» (кого? что?) — accusative.",
    "id": "c9"
   },
   {
@@ -123,7 +95,7 @@
    ],
    "correct": "ближнего поля",
    "case": "Родительный (Genitive)",
-   "explain": "«ближнего поля» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«ближнего поля» depends on the noun «половину» (whose? of what?) — genitive.",
    "id": "c10"
   },
   {
@@ -137,7 +109,7 @@
    ],
    "correct": "мелкие капли",
    "case": "Винительный (Accusative)",
-   "explain": "«мелкие капли» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«мелкие капли» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c11"
   },
   {
@@ -151,7 +123,7 @@
    ],
    "correct": "другими деревьями",
    "case": "Творительный (Instrumental)",
-   "explain": "«другими деревьями» — after the preposition «за», the instrumental marks the means, company, or complement.",
+   "explain": "«другими деревьями» — «за» takes the instrumental here (где? за чем? за кем?) — the accusative would mean motion behind or 'for' (куда? за что?).",
    "id": "c12"
   },
   {
@@ -165,22 +137,8 @@
    ],
    "correct": "большого дерева",
    "case": "Родительный (Genitive)",
-   "explain": "«большого дерева» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«большого дерева» depends on the noun «деревья» (whose? of what?) — genitive.",
    "id": "c14"
-  },
-  {
-   "sentence": "И хотя он тотчас же подумал о том, как бессмысленна его просьба о том, чтоб они не были убиты дубом, который уже упал теперь, он повторил ее, зная, что лучше этой ___ он ничего не может сделать.",
-   "lemma": "молитва",
-   "options": [
-    "бессмысленной молитвой",
-    "бессмысленной молитвы",
-    "бессмысленная молитва",
-    "бессмысленной молитве"
-   ],
-   "correct": "бессмысленной молитвы",
-   "case": "Родительный (Genitive)",
-   "explain": "«бессмысленной молитвы» — the genitive here marks possession, absence, or quantity.",
-   "id": "c15"
   }
  ]
 }

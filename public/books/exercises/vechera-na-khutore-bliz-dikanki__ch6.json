@@ -1,48 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Приехал на гнедом коне своем и запорожец Микитка прямо с разгульной попойки с Перешляя поля, где поил он семь дней и семь ночей королевских шляхтичей ___.",
-   "lemma": "вино",
-   "options": [
-    "красного вина",
-    "красным вином",
-    "красном вине",
-    "красное вино"
-   ],
-   "correct": "красным вином",
-   "case": "Творительный (Instrumental)",
-   "explain": "«красным вином» — the instrumental marks the means, company, or complement.",
-   "id": "c3"
-  },
-  {
-   "sentence": "Приехал и ___ есаула, Данило Бурульбаш, с другого берега Днепра, где, промеж двумя горами, был его хутор, с молодою женою Катериною и с годовым сыном.",
-   "lemma": "брат",
-   "options": [
-    "названом брате",
-    "названому брату",
-    "названый брат",
-    "названого брата"
-   ],
-   "correct": "названый брат",
-   "case": "Именительный (Nominative)",
-   "explain": "«названый брат» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
-  },
-  {
-   "sentence": "Приехал и названый брат есаула, Данило Бурульбаш, с ___ Днепра, где, промеж двумя горами, был его хутор, с молодою женою Катериною и с годовым сыном.",
-   "lemma": "берег",
-   "options": [
-    "другой берег",
-    "другом береге",
-    "другому берегу",
-    "другого берега"
-   ],
-   "correct": "другого берега",
-   "case": "Родительный (Genitive)",
-   "explain": "«другого берега» — the genitive here marks possession, absence, or quantity.",
-   "id": "c5"
-  },
-  {
    "sentence": "Да как и не рассказать, бывши так долго в ___!",
    "lemma": "земля",
    "options": [
@@ -53,7 +11,7 @@
    ],
    "correct": "чужой земле",
    "case": "Предложный (Prepositional)",
-   "explain": "«чужой земле» — after the preposition «в», for location or topic.",
+   "explain": "«чужой земле» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c7"
   },
   {
@@ -67,22 +25,8 @@
    ],
    "correct": "честного схимника",
    "case": "Родительный (Genitive)",
-   "explain": "«честного схимника» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«честного схимника» — «от» always takes the genitive.",
    "id": "c9"
-  },
-  {
-   "sentence": "Не богата на них утварь, не горит ни серебро, ни золото, но никакая ___ не посмеет прикоснуться к тому, у кого они в доме.",
-   "lemma": "сила",
-   "options": [
-    "нечистой силы",
-    "нечистой силе",
-    "нечистой силой",
-    "нечистая сила"
-   ],
-   "correct": "нечистая сила",
-   "case": "Именительный (Nominative)",
-   "explain": "«нечистая сила» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
   },
   {
    "sentence": "— И, зашипев и щелкнув, как волк, зубами, пропал ___.",
@@ -95,7 +39,7 @@
    ],
    "correct": "чудный старик",
    "case": "Именительный (Nominative)",
-   "explain": "«чудный старик» — the subject of the sentence stands in the nominative.",
+   "explain": "«чудный старик» is the subject of «пропал» — who or what does it — so nominative.",
    "id": "c12"
   },
   {
@@ -109,7 +53,7 @@
    ],
    "correct": "чудного колдуна",
    "case": "Винительный (Accusative)",
-   "explain": "«чудного колдуна» — after the preposition «про», the accusative marks the direct object of the verb.",
+   "explain": "«чудного колдуна» — «про» always takes the accusative.",
    "id": "c13"
   },
   {
@@ -123,7 +67,7 @@
    ],
    "correct": "верхней половине",
    "case": "Предложный (Prepositional)",
-   "explain": "«верхней половине» — after the preposition «в», for location or topic.",
+   "explain": "«верхней половине» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c17"
   },
   {
@@ -137,50 +81,22 @@
    ],
    "correct": "нижней половине",
    "case": "Предложный (Prepositional)",
-   "explain": "«нижней половине» — after the preposition «в», for location or topic.",
+   "explain": "«нижней половине» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c18"
-  },
-  {
-   "sentence": "— Что, моя ___, моя золотая Катерина, вдалася в печаль?",
-   "lemma": "жена",
-   "options": [
-    "молодой жене",
-    "молодая жена",
-    "молодой женой",
-    "молодой жены"
-   ],
-   "correct": "молодая жена",
-   "case": "Именительный (Nominative)",
-   "explain": "«молодая жена» — the subject of the sentence stands in the nominative.",
-   "id": "c19"
   },
   {
    "sentence": "Дуб повернул и стал держаться ___.",
    "lemma": "берег",
    "options": [
     "лесистым берегом",
-    "лесистого берега",
     "лесистому берегу",
-    "лесистый берег"
+    "лесистом береге",
+    "лесистого берега"
    ],
    "correct": "лесистого берега",
    "case": "Родительный (Genitive)",
-   "explain": "«лесистого берега» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«держаться» takes its object in the genitive.",
    "id": "c23"
-  },
-  {
-   "sentence": "Пошатнулся ___, поднялся третий мертвец.",
-   "lemma": "крест",
-   "options": [
-    "третий крест",
-    "третьему кресту",
-    "третьем кресте",
-    "третьего креста"
-   ],
-   "correct": "третий крест",
-   "case": "Именительный (Nominative)",
-   "explain": "«третий крест» — the subject of the sentence stands in the nominative.",
-   "id": "c26"
   },
   {
    "sentence": "Пошатнулся третий крест, поднялся ___.",
@@ -193,50 +109,22 @@
    ],
    "correct": "третий мертвец",
    "case": "Именительный (Nominative)",
-   "explain": "«третий мертвец» — the subject of the sentence stands in the nominative.",
+   "explain": "«третий мертвец» is the subject of «поднялся» — who or what does it — so nominative.",
    "id": "c27"
-  },
-  {
-   "sentence": "___, принесшего свежесть козацким косточкам.",
-   "lemma": "холод",
-   "options": [
-    "ночной холод",
-    "ночного холода",
-    "ночным холодом",
-    "ночному холоду"
-   ],
-   "correct": "ночного холода",
-   "case": "Родительный (Genitive)",
-   "explain": "«ночного холода» — the genitive here marks possession, absence, or quantity.",
-   "id": "c37"
   },
   {
    "sentence": "— Может, в иных ___ этого не бывает — я не знаю.",
    "lemma": "земля",
    "options": [
+    "неверным землям",
     "неверных землях",
-    "неверные земли",
     "неверных земель",
     "неверными землями"
    ],
    "correct": "неверных землях",
    "case": "Предложный (Prepositional)",
-   "explain": "«неверных землях» — after the preposition «в», for location or topic.",
+   "explain": "«неверных землях» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c38"
-  },
-  {
-   "sentence": "— А вот это дело, ___!",
-   "lemma": "тесть",
-   "options": [
-    "дорогом тесте",
-    "дорогому тестю",
-    "дорогой тесть",
-    "дорогого тестя"
-   ],
-   "correct": "дорогой тесть",
-   "case": "Именительный (Nominative)",
-   "explain": "«дорогой тесть» — the subject of the sentence stands in the nominative.",
-   "id": "c40"
   },
   {
    "sentence": "Наступает пан Данило — подается ___, и опять наравне.",
@@ -249,64 +137,22 @@
    ],
    "correct": "суровый отец",
    "case": "Именительный (Nominative)",
-   "explain": "«суровый отец» — the subject of the sentence stands in the nominative.",
+   "explain": "«суровый отец» is the subject of «подается» — who or what does it — so nominative.",
    "id": "c44"
-  },
-  {
-   "sentence": "___, а правая атаман.",
-   "lemma": "рука",
-   "options": [
-    "левой руке",
-    "левой рукой",
-    "левой руки",
-    "левая рука"
-   ],
-   "correct": "левая рука",
-   "case": "Именительный (Nominative)",
-   "explain": "«левая рука» — the subject of the sentence stands in the nominative.",
-   "id": "c47"
-  },
-  {
-   "sentence": "Блеснул день, но не солнечный: небо хмурилось и ___ сеялся на поля, на леса, на широкий Днепр.",
-   "lemma": "дождь",
-   "options": [
-    "тонкий дождь",
-    "тонкому дождю",
-    "тонком дожде",
-    "тонким дождём"
-   ],
-   "correct": "тонкий дождь",
-   "case": "Именительный (Nominative)",
-   "explain": "«тонкий дождь» — the subject of the sentence stands in the nominative.",
-   "id": "c54"
   },
   {
    "sentence": "Я буду тебе ___.",
    "lemma": "муж",
    "options": [
     "славным мужем",
-    "славном муже",
+    "славному мужу",
     "славного мужа",
-    "славный муж"
+    "славном муже"
    ],
    "correct": "славным мужем",
    "case": "Творительный (Instrumental)",
-   "explain": "«славным мужем» — the instrumental marks the means, company, or complement.",
+   "explain": "After «буду», what someone or something is or becomes stands in the instrumental.",
    "id": "c55"
-  },
-  {
-   "sentence": "Посполитство будем угощать ___, а шляхтичи потанцуют и от батогов.",
-   "lemma": "слив",
-   "options": [
-    "свинцовые сливы",
-    "свинцовым сливам",
-    "свинцовых сливах",
-    "свинцовыми сливами"
-   ],
-   "correct": "свинцовыми сливами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«свинцовыми сливами» — the instrumental marks the means, company, or complement.",
-   "id": "c57"
   },
   {
    "sentence": "Много, верно, он грехов наделал в ___.",
@@ -319,36 +165,8 @@
    ],
    "correct": "чужой земле",
    "case": "Предложный (Prepositional)",
-   "explain": "«чужой земле» — after the preposition «в», for location or topic.",
+   "explain": "«чужой земле» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c58"
-  },
-  {
-   "sentence": "Что ж, в самом деле, за причина: живет около месяца и хоть бы раз развеселился, как ___!",
-   "lemma": "козак",
-   "options": [
-    "доброго козака",
-    "добрый козак",
-    "доброму козаку",
-    "добрым козаком"
-   ],
-   "correct": "добрый козак",
-   "case": "Именительный (Nominative)",
-   "explain": "«добрый козак» — the subject of the sentence stands in the nominative.",
-   "id": "c60"
-  },
-  {
-   "sentence": "— Лжешь, ___! вишь, как мухи напали на усы!",
-   "lemma": "сын",
-   "options": [
-    "собачьем сыне",
-    "собачьего сына",
-    "собачьему сыну",
-    "собачий сын"
-   ],
-   "correct": "собачий сын",
-   "case": "Именительный (Nominative)",
-   "explain": "«собачий сын» — the subject of the sentence stands in the nominative.",
-   "id": "c62"
   },
   {
    "sentence": "А вот и ___ влазит в дверь!",
@@ -361,22 +179,8 @@
    ],
    "correct": "турецкий игумен",
    "case": "Именительный (Nominative)",
-   "explain": "«турецкий игумен» — the subject of the sentence stands in the nominative.",
+   "explain": "«турецкий игумен» is the subject of «влазит» — who or what does it — so nominative.",
    "id": "c64"
-  },
-  {
-   "sentence": "Все ___ и угодники божии едали галушки.",
-   "lemma": "человек",
-   "options": [
-    "святых людей",
-    "святым людям",
-    "святые люди",
-    "святых людях"
-   ],
-   "correct": "святые люди",
-   "case": "Именительный (Nominative)",
-   "explain": "«святые люди» — the subject of the sentence stands in the nominative.",
-   "id": "c66"
   },
   {
    "sentence": "Только одну лемишку с молоком и ел ___ и потянул вместо водки из фляжки, бывшей у него в пазухе, какую-то черную воду.",
@@ -389,22 +193,8 @@
    ],
    "correct": "старый отец",
    "case": "Именительный (Nominative)",
-   "explain": "«старый отец» — the subject of the sentence stands in the nominative.",
+   "explain": "«старый отец» is the subject of «ел» — who or what does it — so nominative.",
    "id": "c67"
-  },
-  {
-   "sentence": "Сидит пан Данило, глядит ___ на писание, а правым в окошко.",
-   "lemma": "глаз",
-   "options": [
-    "левым глазом",
-    "левому глазу",
-    "левого глаза",
-    "левый глаз"
-   ],
-   "correct": "левым глазом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«левым глазом» — the instrumental marks the means, company, or complement.",
-   "id": "c68"
   },
   {
    "sentence": "Но не далеким небом и не синим лесом любуется пан Данило: глядит он на выдавшийся мыс, на котором чернел ___.",
@@ -417,7 +207,7 @@
    ],
    "correct": "старый замок",
    "case": "Именительный (Nominative)",
-   "explain": "«старый замок» — the subject of the sentence stands in the nominative.",
+   "explain": "«старый замок» is the subject of «чернел» — who or what does it — so nominative.",
    "id": "c69"
   },
   {
@@ -431,7 +221,7 @@
    ],
    "correct": "свежий ветер",
    "case": "Именительный (Nominative)",
-   "explain": "«Свежий ветер» — the subject of the sentence stands in the nominative.",
+   "explain": "«свежий ветер» is the subject of «навевал» — who or what does it — so nominative.",
    "id": "c71"
   },
   {
@@ -445,36 +235,8 @@
    ],
    "correct": "другой стороне",
    "case": "Предложный (Prepositional)",
-   "explain": "«другой стороне» — after the preposition «на», for location or topic.",
+   "explain": "«другой стороне» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c75"
-  },
-  {
-   "sentence": "Нет, Катерина, я говорил тебе, что отец твой ___; не так он и делал все, как православный.",
-   "lemma": "человек",
-   "options": [
-    "недобрый человек",
-    "недобром человеке",
-    "недоброго человека",
-    "недоброму человеку"
-   ],
-   "correct": "недобрый человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«недобрый человек» — the subject of the sentence stands in the nominative.",
-   "id": "c76"
-  },
-  {
-   "sentence": "Уже мелькнули пан Данило и его ___ на выдавшемся берегу.",
-   "lemma": "хлопец",
-   "options": [
-    "верного хлопца",
-    "верному хлопцу",
-    "верный хлопец",
-    "верном хлопце"
-   ],
-   "correct": "верный хлопец",
-   "case": "Именительный (Nominative)",
-   "explain": "«верный хлопец» — the subject of the sentence stands in the nominative.",
-   "id": "c77"
   },
   {
    "sentence": "Присевши на сук, возле ___ уцепился он рукою за дерево и глядит: в комнате и свечи нет, а светит.",
@@ -487,22 +249,8 @@
    ],
    "correct": "самого окна",
    "case": "Родительный (Genitive)",
-   "explain": "«самого окна» — after the preposition «возле», the genitive here marks possession, absence, or quantity.",
+   "explain": "«самого окна» — «возле» always takes the genitive.",
    "id": "c79"
-  },
-  {
-   "sentence": "Висит оружие, но все странное: такого не носят ни турки, ни крымцы, ни ляхи, ни христиане, ни ___ шведский.",
-   "lemma": "народ",
-   "options": [
-    "славный народ",
-    "славного народа",
-    "славном народе",
-    "славным народом"
-   ],
-   "correct": "славный народ",
-   "case": "Именительный (Nominative)",
-   "explain": "«славный народ» — the subject of the sentence stands in the nominative.",
-   "id": "c80"
   },
   {
    "sentence": "Он пришел пасмурен, не в духе, сдернул со стола скатерть — и вдруг по всей комнате тихо разлился ___.",
@@ -515,7 +263,7 @@
    ],
    "correct": "прозрачно-голубой свет",
    "case": "Именительный (Nominative)",
-   "explain": "«прозрачно-голубой свет» — the subject of the sentence stands in the nominative.",
+   "explain": "«прозрачно-голубой свет» is the subject of «разлился» — who or what does it — so nominative.",
    "id": "c82"
   },
   {
@@ -529,22 +277,8 @@
    ],
    "correct": "голубой свет",
    "case": "Именительный (Nominative)",
-   "explain": "«Голубой свет» — the subject of the sentence stands in the nominative.",
+   "explain": "«голубой свет» is the subject of «становился» — who or what does it — so nominative.",
    "id": "c84"
-  },
-  {
-   "sentence": "И светлица осветилась уже тонким ___.",
-   "lemma": "свет",
-   "options": [
-    "розовым светом",
-    "розовый свет",
-    "розовому свету",
-    "розового света"
-   ],
-   "correct": "розовым светом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«розовым светом» — the instrumental marks the means, company, or complement.",
-   "id": "c85"
   },
   {
    "sentence": "Слышался только шум, будто ветер в ___ вечера наигрывал, кружась по водному зеркалу, нагибая еще ниже в воду серебряные ивы.",
@@ -557,22 +291,8 @@
    ],
    "correct": "тихий час",
    "case": "Винительный (Accusative)",
-   "explain": "«тихий час» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«тихий час» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c87"
-  },
-  {
-   "sentence": "Слышался только шум, будто ветер в тихий час вечера наигрывал, кружась по водному зеркалу, нагибая еще ниже в воду ___.",
-   "lemma": "ива",
-   "options": [
-    "серебряных ивах",
-    "серебряным ивам",
-    "серебряных ив",
-    "серебряные ивы"
-   ],
-   "correct": "серебряные ивы",
-   "case": "Винительный (Accusative)",
-   "explain": "«серебряные ивы» — the accusative marks the direct object of the verb.",
-   "id": "c89"
   },
   {
    "sentence": "И чудится пану Даниле, что в светлице блестит месяц, ходят звезды, неясно мелькает темно-синее небо, и холод ___ пахнул даже ему в лицо.",
@@ -585,22 +305,8 @@
    ],
    "correct": "ночного воздуха",
    "case": "Родительный (Genitive)",
-   "explain": "«ночного воздуха» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«ночного воздуха» depends on the noun «холод» (whose? of what?) — genitive.",
    "id": "c90"
-  },
-  {
-   "sentence": "Отчего же она стоит и земли не трогает, и не опершись ни на что, и сквозь нее просвечивает ___, и мелькают на стене знаки?",
-   "lemma": "свет",
-   "options": [
-    "розовый свет",
-    "розовым светом",
-    "розовом свете",
-    "розовому свету"
-   ],
-   "correct": "розовый свет",
-   "case": "Винительный (Accusative)",
-   "explain": "«розовый свет» — the accusative marks the direct object of the verb.",
-   "id": "c93"
   },
   {
    "sentence": "Я была в том ___, где родилась и прожила пятнадцать лет.",
@@ -613,22 +319,8 @@
    ],
    "correct": "самом месте",
    "case": "Предложный (Prepositional)",
-   "explain": "«самом месте» — after the preposition «в», for location or topic.",
+   "explain": "«самом месте» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c94"
-  },
-  {
-   "sentence": "Как зелен и душист тот луг, где я играла в детстве: и ___ те же, и хата наша, и огород!",
-   "lemma": "цветочек",
-   "options": [
-    "полевыми цветочками",
-    "полевым цветочкам",
-    "полевых цветочков",
-    "полевые цветочки"
-   ],
-   "correct": "полевые цветочки",
-   "case": "Именительный (Nominative)",
-   "explain": "«полевые цветочки» — the subject of the sentence stands in the nominative.",
-   "id": "c95"
   },
   {
    "sentence": "— Какой ___ мне виделся!",
@@ -641,7 +333,7 @@
    ],
    "correct": "страшный сон",
    "case": "Именительный (Nominative)",
-   "explain": "«страшный сон» — the subject of the sentence stands in the nominative.",
+   "explain": "«страшный сон» is the subject of «виделся» — who or what does it — so nominative.",
    "id": "c100"
   },
   {
@@ -655,36 +347,8 @@
    ],
    "correct": "десятой доли",
    "case": "Родительный (Genitive)",
-   "explain": "«десятой доли» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«десятой доли» is the object of a negated verb («не знаешь») — genitive instead of the accusative.",
    "id": "c101"
-  },
-  {
-   "sentence": "Я ли изменила тебе, мой ___?",
-   "lemma": "муж",
-   "options": [
-    "любом муже",
-    "любым мужем",
-    "любый муж",
-    "любого мужа"
-   ],
-   "correct": "любый муж",
-   "case": "Именительный (Nominative)",
-   "explain": "«любый муж» — the subject of the sentence stands in the nominative.",
-   "id": "c103"
-  },
-  {
-   "sentence": "Не верно разве служила тебе? сказала ли противное слово, когда ты ворочался навеселе с молодецкой пирушки? тебе ли не родила ___?..",
-   "lemma": "сын",
-   "options": [
-    "чернобровому сыну",
-    "чернобровый сын",
-    "чернобрового сына",
-    "чернобровым сыном"
-   ],
-   "correct": "чернобрового сына",
-   "case": "Винительный (Accusative)",
-   "explain": "«чернобрового сына» — the accusative marks the direct object of the verb.",
-   "id": "c104"
   },
   {
    "sentence": "Сохни он от ___ — не подам воды напиться ему.",
@@ -697,7 +361,7 @@
    ],
    "correct": "тайной травы",
    "case": "Родительный (Genitive)",
-   "explain": "«тайной травы» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«тайной травы» — «от» always takes the genitive.",
    "id": "c105"
   },
   {
@@ -711,22 +375,8 @@
    ],
    "correct": "душного подвала",
    "case": "Родительный (Genitive)",
-   "explain": "«душного подвала» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«душного подвала» — «из» always takes the genitive.",
    "id": "c121"
-  },
-  {
-   "sentence": "— Его выпустил кто-нибудь, мой ___?",
-   "lemma": "муж",
-   "options": [
-    "любом муже",
-    "любым мужем",
-    "любый муж",
-    "любого мужа"
-   ],
-   "correct": "любый муж",
-   "case": "Именительный (Nominative)",
-   "explain": "«любый муж» — the subject of the sentence stands in the nominative.",
-   "id": "c123"
   },
   {
    "sentence": "Я бы тебя зашил тогда в мешок и утопил бы на ___ Днепра!..",
@@ -739,7 +389,7 @@
    ],
    "correct": "самой середине",
    "case": "Предложный (Prepositional)",
-   "explain": "«самой середине» — after the preposition «на», for location or topic.",
+   "explain": "«самой середине» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c124"
   },
   {
@@ -753,7 +403,7 @@
    ],
    "correct": "пограничной дороге",
    "case": "Предложный (Prepositional)",
-   "explain": "«пограничной дороге» — after the preposition «на», for location or topic.",
+   "explain": "«пограничной дороге» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c125"
   },
   {
@@ -767,22 +417,8 @@
    ],
    "correct": "небывалые дела",
    "case": "Винительный (Accusative)",
-   "explain": "«небывалые дела» — after the preposition «про», the accusative marks the direct object of the verb.",
+   "explain": "«небывалые дела» — «про» always takes the accusative.",
    "id": "c126"
-  },
-  {
-   "sentence": "Паны беснуются и отпускают штуки: хватают за бороду жида, малюют ему на нечестивом лбу крест; стреляют в баб ___ и танцуют краковяк с нечестивым попом своим.",
-   "lemma": "заряд",
-   "options": [
-    "холостыми зарядами",
-    "холостых зарядах",
-    "холостые заряды",
-    "холостых зарядов"
-   ],
-   "correct": "холостыми зарядами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«холостыми зарядами» — the instrumental marks the means, company, or complement.",
-   "id": "c128"
   },
   {
    "sentence": "Не бывало такого соблазна на ___ и от татар.",
@@ -795,7 +431,7 @@
    ],
    "correct": "русской земле",
    "case": "Предложный (Prepositional)",
-   "explain": "«Русской земле» — after the preposition «на», for location or topic.",
+   "explain": "«русской земле» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c130"
   },
   {
@@ -809,22 +445,8 @@
    ],
    "correct": "сырой земле",
    "case": "Предложный (Prepositional)",
-   "explain": "«сырой земле» — after the preposition «в», for location or topic.",
+   "explain": "«сырой земле» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c134"
-  },
-  {
-   "sentence": "А теперь сам говоришь, как ___.",
-   "lemma": "жена",
-   "options": [
-    "слабой жене",
-    "слабая жена",
-    "слабой женой",
-    "слабой жены"
-   ],
-   "correct": "слабая жена",
-   "case": "Именительный (Nominative)",
-   "explain": "«слабая жена» — the subject of the sentence stands in the nominative.",
-   "id": "c135"
   },
   {
    "sentence": "___ сидел на вороном коне.",
@@ -837,78 +459,8 @@
    ],
    "correct": "старый гетьман",
    "case": "Именительный (Nominative)",
-   "explain": "«Старый гетьман» — the subject of the sentence stands in the nominative.",
+   "explain": "«старый гетьман» is the subject of «сидел» — who or what does it — so nominative.",
    "id": "c136"
-  },
-  {
-   "sentence": "Нет ___ над всеми.",
-   "lemma": "голова",
-   "options": [
-    "старшей головы",
-    "старшей голове",
-    "старшей головой",
-    "старшая голова"
-   ],
-   "correct": "старшей головы",
-   "case": "Родительный (Genitive)",
-   "explain": "«старшей головы» — the genitive here marks possession, absence, or quantity.",
-   "id": "c139"
-  },
-  {
-   "sentence": "— Седлайте, мои ___, коней! надевайте сбрую! сабли наголо! не забудьте набрать и свинцового толокна.",
-   "lemma": "слуга",
-   "options": [
-    "верных слугах",
-    "верным слугам",
-    "верные слуги",
-    "верными слугами"
-   ],
-   "correct": "верные слуги",
-   "case": "Именительный (Nominative)",
-   "explain": "«верные слуги» — the subject of the sentence stands in the nominative.",
-   "id": "c142"
-  },
-  {
-   "sentence": "Натешься же, ___, в последний раз!",
-   "lemma": "душа",
-   "options": [
-    "козацкой душе",
-    "козацкой души",
-    "козацкая душа",
-    "козацкой душой"
-   ],
-   "correct": "козацкая душа",
-   "case": "Именительный (Nominative)",
-   "explain": "«козацкая душа» — the subject of the sentence stands in the nominative.",
-   "id": "c144"
-  },
-  {
-   "sentence": "___ и чудная шапка.",
-   "lemma": "одежда",
-   "options": [
-    "красной одежде",
-    "красная одежда",
-    "красной одежды",
-    "красной одеждой"
-   ],
-   "correct": "красная одежда",
-   "case": "Именительный (Nominative)",
-   "explain": "«красная одежда» — the subject of the sentence stands in the nominative.",
-   "id": "c151"
-  },
-  {
-   "sentence": "Но, видно, почуял ___ своего.",
-   "lemma": "слуга",
-   "options": [
-    "верного слуги",
-    "верному слуге",
-    "верного слугу",
-    "верном слуге"
-   ],
-   "correct": "верного слугу",
-   "case": "Винительный (Accusative)",
-   "explain": "«верного слугу» — the accusative marks the direct object of the verb.",
-   "id": "c154"
   },
   {
    "sentence": "Лежит он пьянехонек на ___.",
@@ -921,22 +473,8 @@
    ],
    "correct": "сырой земле",
    "case": "Предложный (Prepositional)",
-   "explain": "«сырой земле» — after the preposition «на», for location or topic.",
+   "explain": "«сырой земле» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c159"
-  },
-  {
-   "sentence": "Но ты молчишь, ты молчишь, мой ___!",
-   "lemma": "пан",
-   "options": [
-    "ясному пану",
-    "ясном пане",
-    "ясного пана",
-    "ясный пан"
-   ],
-   "correct": "ясный пан",
-   "case": "Именительный (Nominative)",
-   "explain": "«ясный пан» — the subject of the sentence stands in the nominative.",
-   "id": "c161"
   },
   {
    "sentence": "Плачет и убивается Катерина; а даль вся покрывается пылью: скачет ___ Горобець на помощь.",
@@ -949,36 +487,8 @@
    ],
    "correct": "старый есаул",
    "case": "Именительный (Nominative)",
-   "explain": "«старый есаул» — the subject of the sentence stands in the nominative.",
+   "explain": "«старый есаул» is the subject of «скачет» — who or what does it — so nominative.",
    "id": "c164"
-  },
-  {
-   "sentence": "Пышный! ему нет ___ в мире.",
-   "lemma": "река",
-   "options": [
-    "равной реки",
-    "равная река",
-    "равной реке",
-    "равной рекой"
-   ],
-   "correct": "равной реки",
-   "case": "Родительный (Genitive)",
-   "explain": "«равной реки» — the genitive here marks possession, absence, or quantity.",
-   "id": "c169"
-  },
-  {
-   "sentence": "«Я зарублю твое дитя, Катерина, — кричал он, — если не выйдешь за меня замуж!..» — и, зарыдав, кинулась она к колыбели, а ___ протянуло ручонки и кричало.",
-   "lemma": "дитя",
-   "options": [
-    "испуганном дитяти",
-    "испуганному дитяти",
-    "испуганное дитя",
-    "испуганным дитятей"
-   ],
-   "correct": "испуганное дитя",
-   "case": "Именительный (Nominative)",
-   "explain": "«испуганное дитя» — the subject of the sentence stands in the nominative.",
-   "id": "c183"
   },
   {
    "sentence": "— Пусть попробует он, окаянный антихрист, прийти сюда; отведает, бывает ли сила в руках ___.",
@@ -991,50 +501,8 @@
    ],
    "correct": "старого козака",
    "case": "Родительный (Genitive)",
-   "explain": "«старого козака» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«старого козака» depends on the noun «руках» (whose? of what?) — genitive.",
    "id": "c185"
-  },
-  {
-   "sentence": "Бог видит, — говорил он, подымая кверху ___, — не летел ли я подать руку брату Данилу?",
-   "lemma": "око",
-   "options": [
-    "прозорливые очи",
-    "прозорливых очах",
-    "прозорливых очей",
-    "прозорливым очам"
-   ],
-   "correct": "прозорливые очи",
-   "case": "Винительный (Accusative)",
-   "explain": "«прозорливые очи» — the accusative marks the direct object of the verb.",
-   "id": "c186"
-  },
-  {
-   "sentence": "Его ___! застал уже на холодной постеле, на которой много, много улеглось козацкого народа.",
-   "lemma": "воля",
-   "options": [
-    "святой воле",
-    "святой воли",
-    "святой волей",
-    "святая воля"
-   ],
-   "correct": "святая воля",
-   "case": "Именительный (Nominative)",
-   "explain": "«святая воля» — the subject of the sentence stands in the nominative.",
-   "id": "c187"
-  },
-  {
-   "sentence": "Кончив слова свои, ___ пришел к колыбели, и дитя, увидевши висевшую на ремне у него в серебряной оправе красную люльку и гаман с блестящим огнивом, протянуло к нему ручонки и засмеялось.",
-   "lemma": "есаул",
-   "options": [
-    "старого есаула",
-    "старый есаул",
-    "старом есауле",
-    "старому есаулу"
-   ],
-   "correct": "старый есаул",
-   "case": "Именительный (Nominative)",
-   "explain": "«старый есаул» — the subject of the sentence stands in the nominative.",
-   "id": "c188"
   },
   {
    "sentence": "Кончив слова свои, старый есаул пришел к колыбели, и дитя, увидевши висевшую на ремне у него в ___ красную люльку и гаман с блестящим огнивом, протянуло к нему ручонки и засмеялось.",
@@ -1047,7 +515,7 @@
    ],
    "correct": "серебряной оправе",
    "case": "Предложный (Prepositional)",
-   "explain": "«серебряной оправе» — after the preposition «в», for location or topic.",
+   "explain": "«серебряной оправе» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c189"
   },
   {
@@ -1061,7 +529,7 @@
    ],
    "correct": "блестящим огнивом",
    "case": "Творительный (Instrumental)",
-   "explain": "«блестящим огнивом» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«блестящим огнивом» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c190"
   },
   {
@@ -1075,7 +543,7 @@
    ],
    "correct": "старый есаул",
    "case": "Именительный (Nominative)",
-   "explain": "«старый есаул» — the subject of the sentence stands in the nominative.",
+   "explain": "«старый есаул» is the subject of «сказал» — who or what does it — so nominative.",
    "id": "c191"
   },
   {
@@ -1089,7 +557,7 @@
    ],
    "correct": "неживое дитя",
    "case": "Именительный (Nominative)",
-   "explain": "«неживое дитя» — the subject of the sentence stands in the nominative.",
+   "explain": "«неживое дитя» is the subject of «лежало» — who or what does it — so nominative.",
    "id": "c192"
   },
   {
@@ -1103,22 +571,8 @@
    ],
    "correct": "украинского края",
    "case": "Родительный (Genitive)",
-   "explain": "«Украинского края» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«украинского края» — «от» always takes the genitive.",
    "id": "c194"
-  },
-  {
-   "sentence": "Далеко от Украинского края, проехавши Польшу, минуя и ___ Лемберг, идут рядами высоковерхие горы.",
-   "lemma": "город",
-   "options": [
-    "многолюдном городе",
-    "многолюдный город",
-    "многолюдному городу",
-    "многолюдным городом"
-   ],
-   "correct": "многолюдный город",
-   "case": "Винительный (Accusative)",
-   "explain": "«многолюдный город» — the accusative marks the direct object of the verb.",
-   "id": "c195"
   },
   {
    "sentence": "Идут ___ в Валахию и в Седмиградскую область и громадою стали в виде подковы между галичским и венгерским народом.",
@@ -1131,7 +585,7 @@
    ],
    "correct": "каменные цепи",
    "case": "Именительный (Nominative)",
-   "explain": "«каменные цепи» — the subject of the sentence stands in the nominative.",
+   "explain": "«каменные цепи» is the subject of «Идут» — who or what does it — so nominative.",
    "id": "c196"
   },
   {
@@ -1145,36 +599,8 @@
    ],
    "correct": "широких берегов",
    "case": "Родительный (Genitive)",
-   "explain": "«широких берегов» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«широких берегов» — «из» always takes the genitive.",
    "id": "c197"
-  },
-  {
-   "sentence": "Чуден и вид их: не задорное ли море выбежало в бурю из широких берегов, вскинуло вихрем ___, и они, окаменев, остались недвижимы в воздухе?",
-   "lemma": "волна",
-   "options": [
-    "безобразными волнами",
-    "безобразных волн",
-    "безобразные волны",
-    "безобразным волнам"
-   ],
-   "correct": "безобразные волны",
-   "case": "Именительный (Nominative)",
-   "explain": "«безобразные волны» — the subject of the sentence stands in the nominative.",
-   "id": "c198"
-  },
-  {
-   "sentence": "Не оборвались ли с неба тяжелые тучи и загромоздили собою землю? ибо и на них такой же ___, а белая верхушка блестит и искрится при солнце.",
-   "lemma": "цвет",
-   "options": [
-    "серому цвету",
-    "серым цветом",
-    "серого цвета",
-    "серый цвет"
-   ],
-   "correct": "серый цвет",
-   "case": "Именительный (Nominative)",
-   "explain": "«серый цвет» — the subject of the sentence stands in the nominative.",
-   "id": "c199"
   },
   {
    "sentence": "Не оборвались ли с неба тяжелые тучи и загромоздили собою землю? ибо и на них такой же серый цвет, а ___ блестит и искрится при солнце.",
@@ -1187,7 +613,7 @@
    ],
    "correct": "белая верхушка",
    "case": "Именительный (Nominative)",
-   "explain": "«белая верхушка» — the subject of the sentence stands in the nominative.",
+   "explain": "«белая верхушка» is the subject of «блестит» — who or what does it — so nominative.",
    "id": "c200"
   },
   {
@@ -1201,22 +627,8 @@
    ],
    "correct": "карпатских гор",
    "case": "Родительный (Genitive)",
-   "explain": "«Карпатских гор» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«карпатских гор» — «до» always takes the genitive.",
    "id": "c201"
-  },
-  {
-   "sentence": "Как стекло, недвижимы они и, как зеркало, отдают в себе ___ гор и зеленые их подошвы.",
-   "lemma": "вершина",
-   "options": [
-    "голых вершинах",
-    "голым вершинам",
-    "голыми вершинами",
-    "голые вершины"
-   ],
-   "correct": "голые вершины",
-   "case": "Винительный (Accusative)",
-   "explain": "«голые вершины» — the accusative marks the direct object of the verb.",
-   "id": "c202"
   },
   {
    "sentence": "Но кто середи ночи, блещут или не блещут звезды, едет на огромном ___?",
@@ -1224,12 +636,12 @@
    "options": [
     "вороном коне",
     "вороному коню",
-    "вороным конём",
-    "вороного коня"
+    "вороной конь",
+    "вороным конём"
    ],
    "correct": "вороном коне",
    "case": "Предложный (Prepositional)",
-   "explain": "«вороном коне» — after the preposition «на», for location or topic.",
+   "explain": "«вороном коне» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c203"
   },
   {
@@ -1243,7 +655,7 @@
    ],
    "correct": "белой шее",
    "case": "Дательный (Dative)",
-   "explain": "«белой шее» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«белой шее» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c207"
   },
   {
@@ -1257,7 +669,7 @@
    ],
    "correct": "старая няня",
    "case": "Именительный (Nominative)",
-   "explain": "«старая няня» — the subject of the sentence stands in the nominative.",
+   "explain": "«старая няня» is the subject of «стояла» — who or what does it — so nominative.",
    "id": "c208"
   },
   {
@@ -1271,7 +683,7 @@
    ],
    "correct": "верных хлопцев",
    "case": "Родительный (Genitive)",
-   "explain": "«верных хлопцев» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«верных хлопцев» — «у» always takes the genitive.",
    "id": "c209"
   },
   {
@@ -1285,7 +697,7 @@
    ],
    "correct": "пекельном огне",
    "case": "Предложный (Prepositional)",
-   "explain": "«пекельном огне» — after the preposition «на», for location or topic.",
+   "explain": "«пекельном огне» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c211"
   },
   {
@@ -1299,36 +711,8 @@
    ],
    "correct": "позднего вечера",
    "case": "Родительный (Genitive)",
-   "explain": "«позднего вечера» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«позднего вечера» — «до» always takes the genitive.",
    "id": "c212"
-  },
-  {
-   "sentence": "Беги, крещеный человек! уста ее — лед, постель — ___; она защекочет тебя и утащит в реку.",
-   "lemma": "вода",
-   "options": [
-    "холодной воде",
-    "холодной воды",
-    "холодной водой",
-    "холодная вода"
-   ],
-   "correct": "холодная вода",
-   "case": "Именительный (Nominative)",
-   "explain": "«холодная вода» — the subject of the sentence stands in the nominative.",
-   "id": "c213"
-  },
-  {
-   "sentence": "Все паны и гетьманы собирались дивиться ___: вдруг стало видимо далеко во все концы света.",
-   "lemma": "чудо",
-   "options": [
-    "сим чудом",
-    "сие чудо",
-    "сему чуду",
-    "сего чуда"
-   ],
-   "correct": "сему чуду",
-   "case": "Дательный (Dative)",
-   "explain": "«сему чуду» — the dative marks the indirect object or recipient.",
-   "id": "c217"
   },
   {
    "sentence": "___ узнали и Крым, горою подымавшийся из моря, и болотный Сиваш.",
@@ -1341,7 +725,7 @@
    ],
    "correct": "бывалые люди",
    "case": "Именительный (Nominative)",
-   "explain": "«Бывалые люди» — the subject of the sentence stands in the nominative.",
+   "explain": "«бывалые люди» is the subject of «узнали» — who or what does it — so nominative.",
    "id": "c218"
   },
   {
@@ -1355,7 +739,7 @@
    ],
    "correct": "новое диво",
    "case": "Именительный (Nominative)",
-   "explain": "«новое диво» — the subject of the sentence stands in the nominative.",
+   "explain": "«новое диво» is the subject of «показалось» — who or what does it — so nominative.",
    "id": "c220"
   },
   {
@@ -1369,22 +753,8 @@
    ],
    "correct": "высокой горы",
    "case": "Родительный (Genitive)",
-   "explain": "«высокой горы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«высокой горы» depends on the noun «самкой» (whose? of what?) — genitive.",
    "id": "c221"
-  },
-  {
-   "sentence": "Тут показалось новое диво: облака слетели с самкой высокой горы, и на вершине ее показался во всей рыцарской сбруе человек на коне, с ___, и так виден, как бы стоял вблизи.",
-   "lemma": "око",
-   "options": [
-    "закрытыми очами",
-    "закрытым очам",
-    "закрытых очах",
-    "закрытые очи"
-   ],
-   "correct": "закрытыми очами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«закрытыми очами» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c222"
   },
   {
    "sentence": "___ летел в Киев к святым местам.",
@@ -1397,7 +767,7 @@
    ],
    "correct": "отчаянный колдун",
    "case": "Именительный (Nominative)",
-   "explain": "«Отчаянный колдун» — the subject of the sentence stands in the nominative.",
+   "explain": "«отчаянный колдун» is the subject of «летел» — who or what does it — so nominative.",
    "id": "c223"
   },
   {
@@ -1411,64 +781,8 @@
    ],
    "correct": "святым местам",
    "case": "Дательный (Dative)",
-   "explain": "«святым местам» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«святым местам» — «к» always takes the dative.",
    "id": "c224"
-  },
-  {
-   "sentence": "Уже сделал себе и ___, в который ложился спать вместо постели.",
-   "lemma": "гроб",
-   "options": [
-    "дощатый гроб",
-    "дощатым гробом",
-    "дощатого гроба",
-    "дощатом гробе"
-   ],
-   "correct": "дощатый гроб",
-   "case": "Винительный (Accusative)",
-   "explain": "«дощатый гроб» — the accusative marks the direct object of the verb.",
-   "id": "c226"
-  },
-  {
-   "sentence": "Вдруг вбежал человек чудного, ___.",
-   "lemma": "вид",
-   "options": [
-    "страшный вид",
-    "страшного вида",
-    "страшному виду",
-    "страшным видом"
-   ],
-   "correct": "страшного вида",
-   "case": "Родительный (Genitive)",
-   "explain": "«страшного вида» — the genitive here marks possession, absence, or quantity.",
-   "id": "c227"
-  },
-  {
-   "sentence": "Весь дрожал он, как осиновый лист; очи дико косились; ___ пугливо сыпался из очей; дрожь наводило на душу уродливое его лицо.",
-   "lemma": "огонь",
-   "options": [
-    "страшному огню",
-    "страшный огонь",
-    "страшным огнём",
-    "страшного огня"
-   ],
-   "correct": "страшный огонь",
-   "case": "Именительный (Nominative)",
-   "explain": "«страшный огонь» — the subject of the sentence stands in the nominative.",
-   "id": "c229"
-  },
-  {
-   "sentence": "— Гляди: ___ в книге налились кровью.",
-   "lemma": "буква",
-   "options": [
-    "святых буквах",
-    "святым буквам",
-    "святых букв",
-    "святые буквы"
-   ],
-   "correct": "святые буквы",
-   "case": "Именительный (Nominative)",
-   "explain": "«святые буквы» — the subject of the sentence stands in the nominative.",
-   "id": "c230"
   },
   {
    "sentence": "И как бешеный кинулся он — и убил ___.",
@@ -1481,36 +795,8 @@
    ],
    "correct": "святого схимника",
    "case": "Винительный (Accusative)",
-   "explain": "«святого схимника» — the accusative marks the direct object of the verb.",
+   "explain": "«святого схимника» is the direct object of «убил» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c232"
-  },
-  {
-   "sentence": "Из-за леса поднялись тощие, ___ с длинными когтями; затряслись и пропали.",
-   "lemma": "рука",
-   "options": [
-    "сухих руках",
-    "сухими руками",
-    "сухим рукам",
-    "сухие руки"
-   ],
-   "correct": "сухие руки",
-   "case": "Именительный (Nominative)",
-   "explain": "«сухие руки» — the subject of the sentence stands in the nominative.",
-   "id": "c233"
-  },
-  {
-   "sentence": "Тут чудится колдуну, что все в нем замерло, что ___ шевелится и разом открыл свои очи; увидел несшегося к нему колдуна и засмеялся.",
-   "lemma": "всадник",
-   "options": [
-    "недвижного всадника",
-    "недвижному всаднику",
-    "недвижном всаднике",
-    "недвижный всадник"
-   ],
-   "correct": "недвижный всадник",
-   "case": "Именительный (Nominative)",
-   "explain": "«недвижный всадник» — the subject of the sentence stands in the nominative.",
-   "id": "c236"
   },
   {
    "sentence": "Нередко бывало по всему миру, что земля тряслась от одного конца до другого: то оттого делается, толкуют ___, что есть где-то близ моря гора, из которой выхватывается пламя и текут горящие реки.",
@@ -1523,36 +809,22 @@
    ],
    "correct": "грамотные люди",
    "case": "Именительный (Nominative)",
-   "explain": "«грамотные люди» — the subject of the sentence stands in the nominative.",
+   "explain": "«грамотные люди» is the subject of «толкуют» — who or what does it — so nominative.",
    "id": "c237"
   },
   {
    "sentence": "Еще таких ___ и так хорошо не пел ни один бандурист.",
    "lemma": "песня",
    "options": [
-    "чудные песни",
-    "чудных песен",
     "чудными песнями",
-    "чудным песням"
+    "чудных песнях",
+    "чудным песням",
+    "чудных песен"
    ],
    "correct": "чудных песен",
    "case": "Родительный (Genitive)",
-   "explain": "«чудных песен» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«чудных песен» is the object of a negated verb («не пел») — genitive instead of the accusative.",
    "id": "c238"
-  },
-  {
-   "sentence": "А у турчина был паша такой, что сам с десятью янычарами мог порубить ___.",
-   "lemma": "полк",
-   "options": [
-    "целым полком",
-    "целом полке",
-    "целого полка",
-    "целый полк"
-   ],
-   "correct": "целый полк",
-   "case": "Винительный (Accusative)",
-   "explain": "«целый полк» — the accusative marks the direct object of the verb.",
-   "id": "c239"
   },
   {
    "sentence": "Поймал ли бы еще или не поймал Петро, а уже Иван ведет пашу арканом за шею к ___.",
@@ -1565,22 +837,8 @@
    ],
    "correct": "самому королю",
    "case": "Дательный (Dative)",
-   "explain": "«самому королю» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«самому королю» — «к» always takes the dative.",
    "id": "c240"
-  },
-  {
-   "sentence": "По-над ___ дорога — два человека еще могут проехать, а трое ни за что.",
-   "lemma": "провал",
-   "options": [
-    "самый провал",
-    "самом провале",
-    "самым провалом",
-    "самого провала"
-   ],
-   "correct": "самым провалом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«самым провалом» — the instrumental marks the means, company, or complement.",
-   "id": "c241"
   },
   {
    "sentence": "Оглянулся и толкнул ___ в провал.",
@@ -1593,7 +851,7 @@
    ],
    "correct": "названого брата",
    "case": "Винительный (Accusative)",
-   "explain": "«названого брата» — the accusative marks the direct object of the verb.",
+   "explain": "«названого брата» is the direct object of «толкнул» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c242"
   },
   {
@@ -1607,22 +865,8 @@
    ],
    "correct": "честного рода",
    "case": "Родительный (Genitive)",
-   "explain": "«честного рода» — after the preposition «без», the genitive here marks possession, absence, or quantity.",
+   "explain": "«честного рода» — «без» always takes the genitive.",
    "id": "c243"
-  },
-  {
-   "sentence": "А человек без честного рода и потомства, что ___, кинутое в землю и пропавшее даром в земле.",
-   "lemma": "семя",
-   "options": [
-    "хлебным семенем",
-    "хлебному семени",
-    "хлебном семени",
-    "хлебное семя"
-   ],
-   "correct": "хлебное семя",
-   "case": "Именительный (Nominative)",
-   "explain": "«хлебное семя» — the subject of the sentence stands in the nominative.",
-   "id": "c244"
   }
  ]
 }

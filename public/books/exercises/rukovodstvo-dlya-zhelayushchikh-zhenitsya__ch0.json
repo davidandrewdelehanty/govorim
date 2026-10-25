@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "— Семейная жизнь имеет много ___.",
-   "lemma": "сторона",
-   "options": [
-    "хорошие стороны",
-    "хороших сторонах",
-    "хороших сторон",
-    "хорошим сторонам"
-   ],
-   "correct": "хороших сторон",
-   "case": "Родительный (Genitive)",
-   "explain": "«хороших сторон» — the genitive here marks possession, absence, or quantity.",
-   "id": "c1"
-  },
-  {
    "sentence": "Не будь ее, дочери всю жизнь жили бы на шее отцов и ___ сидели бы без хлеба, так как тогда не было бы свадеб.",
    "lemma": "музыкант",
    "options": [
@@ -25,22 +11,8 @@
    ],
    "correct": "многие музыканты",
    "case": "Именительный (Nominative)",
-   "explain": "«многие музыканты» — the subject of the sentence stands in the nominative.",
+   "explain": "«многие музыканты» is the subject of «сидели» — who or what does it — so nominative.",
    "id": "c2"
-  },
-  {
-   "sentence": "В наружности различай: цвет волос и глаз, рост, походку и ___.",
-   "lemma": "примета",
-   "options": [
-    "особых приметах",
-    "особым приметам",
-    "особые приметы",
-    "особыми приметами"
-   ],
-   "correct": "особые приметы",
-   "case": "Винительный (Accusative)",
-   "explain": "«особые приметы» — the accusative marks the direct object of the verb.",
-   "id": "c3"
   },
   {
    "sentence": "К ___ они относятся чутко, в своей же собственной любви они холодны, как рыбы.",
@@ -53,7 +25,7 @@
    ],
    "correct": "чужим любвям",
    "case": "Дательный (Dative)",
-   "explain": "«чужим любвям» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«чужим любвям» — «к» always takes the dative.",
    "id": "c4"
   },
   {
@@ -67,7 +39,7 @@
    ],
    "correct": "классных дам",
    "case": "Винительный (Accusative)",
-   "explain": "«классных дам» — the accusative marks the direct object of the verb.",
+   "explain": "«классных дам» is the direct object of «ненавидят» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c5"
   },
   {
@@ -81,22 +53,8 @@
    ],
    "correct": "чужих волос",
    "case": "Родительный (Genitive)",
-   "explain": "«чужих волос» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«чужих волос» — «из» always takes the genitive.",
    "id": "c9"
-  },
-  {
-   "sentence": "Такая прическа, если она не вершится тяжелой ___, означает вкус и легкость нрава.",
-   "lemma": "башня",
-   "options": [
-    "вавилонская башня",
-    "вавилонской башни",
-    "вавилонской башней",
-    "вавилонской башне"
-   ],
-   "correct": "вавилонской башней",
-   "case": "Творительный (Instrumental)",
-   "explain": "«вавилонской башней» — the instrumental marks the means, company, or complement.",
-   "id": "c10"
   },
   {
    "sentence": "___ говорят за игривость и художественность натуры.",
@@ -109,7 +67,7 @@
    ],
    "correct": "вьющиеся волосы",
    "case": "Именительный (Nominative)",
-   "explain": "«Вьющиеся волосы» — the subject of the sentence stands in the nominative.",
+   "explain": "«вьющиеся волосы» is the subject of «говорят» — who or what does it — so nominative.",
    "id": "c11"
   },
   {
@@ -123,7 +81,7 @@
    ],
    "correct": "голубые глаза",
    "case": "Именительный (Nominative)",
-   "explain": "«Голубые глаза» — the subject of the sentence stands in the nominative.",
+   "explain": "«голубые глаза» is the subject of «означают» — who or what does it — so nominative.",
    "id": "c13"
   },
   {
@@ -137,7 +95,7 @@
    ],
    "correct": "умных женщин",
    "case": "Родительный (Genitive)",
-   "explain": "«умных женщин» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«умных женщин» — «у» always takes the genitive.",
    "id": "c14"
   },
   {
@@ -151,7 +109,7 @@
    ],
    "correct": "чужим нарядам",
    "case": "Дательный (Dative)",
-   "explain": "«чужим нарядам» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«чужим нарядам» — «к» always takes the dative.",
    "id": "c15"
   },
   {
@@ -165,7 +123,7 @@
    ],
    "correct": "высокие женщины",
    "case": "Именительный (Nominative)",
-   "explain": "«Высокие женщины» — the subject of the sentence stands in the nominative.",
+   "explain": "«высокие женщины» is the subject of «грубоваты» — who or what does it — so nominative.",
    "id": "c16"
   },
   {
@@ -179,22 +137,8 @@
    ],
    "correct": "длинные ногти",
    "case": "Именительный (Nominative)",
-   "explain": "«Длинные ногти» — the subject of the sentence stands in the nominative.",
+   "explain": "«длинные ногти» is the subject of «бывают» — who or what does it — so nominative.",
    "id": "c18"
-  },
-  {
-   "sentence": "Пухленькие и сдобненькие барышни с одутлыми щеками и ___ наивны, в слове еще делают четыре ошибки, но зато они скоро выучиваются печь вкусные пироги и шить мужу бархатные жилетки.",
-   "lemma": "рука",
-   "options": [
-    "красных руках",
-    "красным рукам",
-    "красных рук",
-    "красными руками"
-   ],
-   "correct": "красными руками",
-   "case": "Творительный (Instrumental)",
-   "explain": "«красными руками» — the instrumental marks the means, company, or complement.",
-   "id": "c20"
   }
  ]
 }

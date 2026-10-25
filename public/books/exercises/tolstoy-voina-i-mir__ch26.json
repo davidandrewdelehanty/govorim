@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "___, покраснев, подбежал к лошади, дрожащими руками взялся за стремя, перекинул тело, оправился, вынул шпагу и с счастливым, решительным лицом, набок раскрыв рот, приготовился крикнуть.",
-   "lemma": "командир",
-   "options": [
-    "полковой командир",
-    "полковым командиром",
-    "полковом командире",
-    "полкового командира"
-   ],
-   "correct": "полковой командир",
-   "case": "Именительный (Nominative)",
-   "explain": "«Полковой командир» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "По широкой, обсаженной деревьями, большой, бесшоссейной дороге, слегка погромыхивая рессорами, шибкою рысью ехала высокая голубая ___ цугом.",
-   "lemma": "коляска",
-   "options": [
-    "венской коляской",
-    "венская коляска",
-    "венской коляски",
-    "венской коляске"
-   ],
-   "correct": "венская коляска",
-   "case": "Именительный (Nominative)",
-   "explain": "«венская коляска» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
    "sentence": "Подле Кутузова сидел ___ в странном, среди черных русских, белом мундире.",
    "lemma": "генерал",
    "options": [
@@ -39,22 +11,8 @@
    ],
    "correct": "австрийский генерал",
    "case": "Именительный (Nominative)",
-   "explain": "«австрийский генерал» — the subject of the sentence stands in the nominative.",
+   "explain": "«австрийский генерал» is the subject of «сидел» — who or what does it — so nominative.",
    "id": "c4"
-  },
-  {
-   "sentence": "Подле Кутузова сидел австрийский генерал в странном, среди черных русских, ___.",
-   "lemma": "мундир",
-   "options": [
-    "белым мундиром",
-    "белом мундире",
-    "белому мундиру",
-    "белого мундира"
-   ],
-   "correct": "белом мундире",
-   "case": "Предложный (Prepositional)",
-   "explain": "«белом мундире» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c5"
   },
   {
    "sentence": "В мертвой тишине послышался ___ главнокомандующего.",
@@ -67,7 +25,7 @@
    ],
    "correct": "слабый голос",
    "case": "Именительный (Nominative)",
-   "explain": "«слабый голос» — the subject of the sentence stands in the nominative.",
+   "explain": "«слабый голос» is the subject of «послышался» — who or what does it — so nominative.",
    "id": "c6"
   },
   {
@@ -81,22 +39,8 @@
    ],
    "correct": "полкового командира",
    "case": "Родительный (Genitive)",
-   "explain": "«полкового командира» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«полкового командира» depends on the noun «старательности» (whose? of what?) — genitive.",
    "id": "c8"
-  },
-  {
-   "sentence": "Кутузов прошел по рядам, изредка останавливаясь и говоря по нескольку ___ офицерам, которых он знал по турецкой войне, а иногда и солдатам.",
-   "lemma": "слово",
-   "options": [
-    "ласковыми словами",
-    "ласковые слова",
-    "ласковым словам",
-    "ласковых слов"
-   ],
-   "correct": "ласковых слов",
-   "case": "Родительный (Genitive)",
-   "explain": "«ласковых слов» — after the preposition «по», the genitive here marks possession, absence, or quantity.",
-   "id": "c10"
   },
   {
    "sentence": "Кутузов прошел по рядам, изредка останавливаясь и говоря по нескольку ласковых слов офицерам, которых он знал по ___, а иногда и солдатам.",
@@ -109,7 +53,7 @@
    ],
    "correct": "турецкой войне",
    "case": "Дательный (Dative)",
-   "explain": "«турецкой войне» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«турецкой войне» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c11"
   },
   {
@@ -123,7 +67,7 @@
    ],
    "correct": "австрийскому генералу",
    "case": "Дательный (Dative)",
-   "explain": "«австрийскому генералу» — the dative marks the indirect object or recipient.",
+   "explain": "«австрийскому генералу» is the indirect object of «указывал» — to or for whom (кому?) — dative.",
    "id": "c12"
   },
   {
@@ -137,7 +81,7 @@
    ],
    "correct": "полковой командир",
    "case": "Именительный (Nominative)",
-   "explain": "«Полковой командир» — the subject of the sentence stands in the nominative.",
+   "explain": "«полковой командир» is the subject of «забегал» — who or what does it — so nominative.",
    "id": "c13"
   },
   {
@@ -151,50 +95,8 @@
    ],
    "correct": "красивый адъютант",
    "case": "Именительный (Nominative)",
-   "explain": "«красивый адъютант» — the subject of the sentence stands in the nominative.",
+   "explain": "«красивый адъютант» is the subject of «шел» — who or what does it — so nominative.",
    "id": "c14"
-  },
-  {
-   "sentence": "Рядом с ним шел его товарищ Несвицкий, ___, чрезвычайно толстый, с добрым, улыбающимся красивым лицом и влажными глазами.",
-   "lemma": "штаб-офицер",
-   "options": [
-    "высоким штаб-офицером",
-    "высокий штаб-офицер",
-    "высокому штаб-офицеру",
-    "высоком штаб-офицере"
-   ],
-   "correct": "высокий штаб-офицер",
-   "case": "Именительный (Nominative)",
-   "explain": "«высокий штаб-офицер» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
-  },
-  {
-   "sentence": "Рядом с ним шел его товарищ Несвицкий, высокий штаб-офицер, чрезвычайно толстый, с добрым, улыбающимся ___ и влажными глазами.",
-   "lemma": "лицо",
-   "options": [
-    "красивого лица",
-    "красивым лицом",
-    "красивом лице",
-    "красивому лицу"
-   ],
-   "correct": "красивым лицом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«красивым лицом» — the instrumental marks the means, company, or complement.",
-   "id": "c16"
-  },
-  {
-   "sentence": "Рядом с ним шел его товарищ Несвицкий, высокий штаб-офицер, чрезвычайно толстый, с добрым, улыбающимся красивым лицом и ___.",
-   "lemma": "глаз",
-   "options": [
-    "влажные глаза",
-    "влажных глазах",
-    "влажным глазам",
-    "влажными глазами"
-   ],
-   "correct": "влажными глазами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«влажными глазами» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c17"
   },
   {
    "sentence": "Несвицкий едва удерживался от смеха, возбуждаемого черноватым ___, шедшим подле него.",
@@ -207,22 +109,8 @@
    ],
    "correct": "гусарским офицером",
    "case": "Творительный (Instrumental)",
-   "explain": "«гусарским офицером» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «возбуждаемого», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c18"
-  },
-  {
-   "sentence": "___, не улыбаясь, не изменяя выражения остановившихся глаз, с серьезным лицом смотрел на спину полкового командира и передразнивал каждое его движение.",
-   "lemma": "офицер",
-   "options": [
-    "гусарскому офицеру",
-    "гусарского офицера",
-    "гусарским офицером",
-    "гусарский офицер"
-   ],
-   "correct": "гусарский офицер",
-   "case": "Именительный (Nominative)",
-   "explain": "«Гусарский офицер» — the subject of the sentence stands in the nominative.",
-   "id": "c19"
   },
   {
    "sentence": "Гусарский офицер, не улыбаясь, не изменяя выражения остановившихся глаз, с серьезным лицом смотрел на спину ___ и передразнивал каждое его движение.",
@@ -235,36 +123,8 @@
    ],
    "correct": "полкового командира",
    "case": "Родительный (Genitive)",
-   "explain": "«полкового командира» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«полкового командира» depends on the noun «спину» (whose? of what?) — genitive.",
    "id": "c20"
-  },
-  {
-   "sentence": "Каждый раз, как ___ вздрагивал и нагибался вперед, точно так же, точь-в-точь так же, вздрагивал и нагибался вперед гусарский офицер.",
-   "lemma": "командир",
-   "options": [
-    "полковом командире",
-    "полкового командира",
-    "полковой командир",
-    "полковому командиру"
-   ],
-   "correct": "полковой командир",
-   "case": "Именительный (Nominative)",
-   "explain": "«полковой командир» — the subject of the sentence stands in the nominative.",
-   "id": "c21"
-  },
-  {
-   "sentence": "Каждый раз, как полковой командир вздрагивал и нагибался вперед, точно так же, точь-в-точь так же, вздрагивал и нагибался вперед ___.",
-   "lemma": "офицер",
-   "options": [
-    "гусарскому офицеру",
-    "гусарском офицере",
-    "гусарский офицер",
-    "гусарского офицера"
-   ],
-   "correct": "гусарский офицер",
-   "case": "Именительный (Nominative)",
-   "explain": "«гусарский офицер» — the subject of the sentence stands in the nominative.",
-   "id": "c22"
   },
   {
    "sentence": "Казалось, нельзя было вытягиваться больше того, как вытягивался Тимохин, в то время как ___ делал ему замечание.",
@@ -277,7 +137,7 @@
    ],
    "correct": "полковой командир",
    "case": "Именительный (Nominative)",
-   "explain": "«полковой командир» — the subject of the sentence stands in the nominative.",
+   "explain": "«полковой командир» is the subject of «делал» — who or what does it — so nominative.",
    "id": "c24"
   },
   {
@@ -291,22 +151,8 @@
    ],
    "correct": "заметная улыбка",
    "case": "Именительный (Nominative)",
-   "explain": "«заметная улыбка» — the subject of the sentence stands in the nominative.",
+   "explain": "«заметная улыбка» is the subject of «пробежала» — who or what does it — so nominative.",
    "id": "c25"
-  },
-  {
-   "sentence": "— Еще ___, — сказал он.",
-   "lemma": "товарищ",
-   "options": [
-    "измайловским товарищем",
-    "измайловского товарища",
-    "измайловский товарищ",
-    "измайловском товарище"
-   ],
-   "correct": "измайловский товарищ",
-   "case": "Именительный (Nominative)",
-   "explain": "«измайловский товарищ» — the subject of the sentence stands in the nominative.",
-   "id": "c26"
   },
   {
    "sentence": "___ испугался, не виноват ли он в этом, и ничего не ответил.",
@@ -319,78 +165,8 @@
    ],
    "correct": "полковой командир",
    "case": "Именительный (Nominative)",
-   "explain": "«Полковой командир» — the subject of the sentence stands in the nominative.",
+   "explain": "«полковой командир» is the subject of «испугался» — who or what does it — so nominative.",
    "id": "c30"
-  },
-  {
-   "sentence": "Офицер в эту минуту заметил лицо капитана с красным носом и ___ и так похоже передразнил его лицо и позу, что Несвицкий не мог удержать смеха.",
-   "lemma": "живот",
-   "options": [
-    "подтянутый живот",
-    "подтянутом животе",
-    "подтянутым животом",
-    "подтянутого живота"
-   ],
-   "correct": "подтянутым животом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«подтянутым животом» — the instrumental marks the means, company, or complement.",
-   "id": "c32"
-  },
-  {
-   "sentence": "___ была последняя, и Кутузов задумался, видимо припоминая что-то.",
-   "lemma": "рота",
-   "options": [
-    "третьей роте",
-    "третьей роты",
-    "третьей ротой",
-    "третья рота"
-   ],
-   "correct": "третья рота",
-   "case": "Именительный (Nominative)",
-   "explain": "«Третья рота» — the subject of the sentence stands in the nominative.",
-   "id": "c33"
-  },
-  {
-   "sentence": "___ белокурого с ясными голубыми глазами солдата выступила из фронта.",
-   "lemma": "фигура",
-   "options": [
-    "стройной фигуры",
-    "стройной фигурой",
-    "стройная фигура",
-    "стройной фигуре"
-   ],
-   "correct": "стройная фигура",
-   "case": "Именительный (Nominative)",
-   "explain": "«Стройная фигура» — the subject of the sentence stands in the nominative.",
-   "id": "c34"
-  },
-  {
-   "sentence": "Стройная фигура белокурого с ясными ___ солдата выступила из фронта.",
-   "lemma": "глаз",
-   "options": [
-    "голубыми глазами",
-    "голубых глаз",
-    "голубым глазам",
-    "голубые глаза"
-   ],
-   "correct": "голубыми глазами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«голубыми глазами» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c35"
-  },
-  {
-   "sentence": "Голубые ___ смотрели на главнокомандующего так же дерзко, как и на полкового командира, как будто своим выражением разрывая завесу условности, отделявшую так далеко главнокомандующего от солдата.",
-   "lemma": "глаз",
-   "options": [
-    "ясных глазах",
-    "ясные глаза",
-    "ясных глаз",
-    "ясным глазам"
-   ],
-   "correct": "ясные глаза",
-   "case": "Именительный (Nominative)",
-   "explain": "«ясные глаза» — the subject of the sentence stands in the nominative.",
-   "id": "c36"
   },
   {
    "sentence": "Голубые ясные глаза смотрели на главнокомандующего так же дерзко, как и на ___, как будто своим выражением разрывая завесу условности, отделявшую так далеко главнокомандующего от солдата.",
@@ -403,7 +179,7 @@
    ],
    "correct": "полкового командира",
    "case": "Винительный (Accusative)",
-   "explain": "«полкового командира» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«полкового командира» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c37"
   },
   {
@@ -417,7 +193,7 @@
    ],
    "correct": "трудных переходов",
    "case": "Родительный (Genitive)",
-   "explain": "«трудных переходов» — after the preposition «после», the genitive here marks possession, absence, or quantity.",
+   "explain": "«трудных переходов» — «после» always takes the genitive.",
    "id": "c38"
   },
   {
@@ -431,7 +207,7 @@
    ],
    "correct": "полкового командира",
    "case": "Родительный (Genitive)",
-   "explain": "«полкового командира» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«полкового командира» depends on the noun «Лицо» (whose? of what?) — genitive.",
    "id": "c40"
   },
   {
@@ -445,7 +221,7 @@
    ],
    "correct": "полковой командир",
    "case": "Именительный (Nominative)",
-   "explain": "«полковой командир» — the subject of the sentence stands in the nominative.",
+   "explain": "«полковой командир» is the subject of «сказал» — who or what does it — so nominative.",
    "id": "c44"
   },
   {
@@ -459,7 +235,7 @@
    ],
    "correct": "молодого человека",
    "case": "Винительный (Accusative)",
-   "explain": "«молодого человека» — the accusative marks the direct object of the verb.",
+   "explain": "«молодого человека» is the direct object of «пожалеть» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c45"
   },
   {
@@ -473,7 +249,7 @@
    ],
    "correct": "первого дела",
    "case": "Родительный (Genitive)",
-   "explain": "«первого дела» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«первого дела» — «до» always takes the genitive.",
    "id": "c46"
   },
   {
@@ -487,22 +263,8 @@
    ],
    "correct": "полковой командир",
    "case": "Именительный (Nominative)",
-   "explain": "«полковой командир» — the subject of the sentence stands in the nominative.",
+   "explain": "«полковой командир» is the subject of «продолжал» — who or what does it — so nominative.",
    "id": "c47"
-  },
-  {
-   "sentence": "— Что̀ ж, он, право, ___, с ним служить можно, — сказал Тимохин субалтерн-офицеру, шедшему подле него.",
-   "lemma": "человек",
-   "options": [
-    "хорошего человека",
-    "хороший человек",
-    "хорошем человеке",
-    "хорошим человеком"
-   ],
-   "correct": "хороший человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«хороший человек» — the subject of the sentence stands in the nominative.",
-   "id": "c48"
   },
   {
    "sentence": "(___ прозвали червонным королем) — смеясь, сказал субалтерн-офицер.",
@@ -515,120 +277,8 @@
    ],
    "correct": "полкового командира",
    "case": "Винительный (Accusative)",
-   "explain": "«полкового командира» — the accusative marks the direct object of the verb.",
+   "explain": "«полкового командира» is the direct object of «прозвали» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c49"
-  },
-  {
-   "sentence": "___, гляди, уже в деревню заворачивает, они кашу сварят, а мы еще до места не дойдем.",
-   "lemma": "рота",
-   "options": [
-    "пятой роты",
-    "пятой ротой",
-    "пятой роте",
-    "пятая рота"
-   ],
-   "correct": "пятая рота",
-   "case": "Именительный (Nominative)",
-   "explain": "«Пятая рота» — the subject of the sentence stands in the nominative.",
-   "id": "c50"
-  },
-  {
-   "sentence": "Там всё как будто поляк был, всё ___; а нынче, брат, сплошной немец пошел.",
-   "lemma": "корона",
-   "options": [
-    "русской короне",
-    "русской короны",
-    "русская корона",
-    "русской короной"
-   ],
-   "correct": "русской короны",
-   "case": "Родительный (Genitive)",
-   "explain": "«русской короны» — the genitive here marks possession, absence, or quantity.",
-   "id": "c51"
-  },
-  {
-   "sentence": "Там всё как будто поляк был, всё русской короны; а нынче, брат, ___ пошел.",
-   "lemma": "немец",
-   "options": [
-    "сплошной немец",
-    "сплошного немца",
-    "сплошным немцем",
-    "сплошном немце"
-   ],
-   "correct": "сплошной немец",
-   "case": "Именительный (Nominative)",
-   "explain": "«сплошной немец» — the subject of the sentence stands in the nominative.",
-   "id": "c52"
-  },
-  {
-   "sentence": "Оторвав по-солдатски эти ___ и махнув руками, как будто он бросал что-тo на землю, барабанщик, сухой и красивый солдат лет сорока, строго оглянул солдат-песенников и зажмурился.",
-   "lemma": "слово",
-   "options": [
-    "последних словах",
-    "последним словам",
-    "последними словами",
-    "последние слова"
-   ],
-   "correct": "последние слова",
-   "case": "Винительный (Accusative)",
-   "explain": "«последние слова» — the accusative marks the direct object of the verb.",
-   "id": "c54"
-  },
-  {
-   "sentence": "Солдаты, в такт песни размахивая руками, шли ___, невольно попадая в ногу.",
-   "lemma": "шаг",
-   "options": [
-    "просторный шаг",
-    "просторном шаге",
-    "просторному шагу",
-    "просторным шагом"
-   ],
-   "correct": "просторным шагом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«просторным шагом» — the instrumental marks the means, company, or complement.",
-   "id": "c55"
-  },
-  {
-   "sentence": "Гусарский корнет из свиты Кутузова, передразнивавший ___, отстал от коляски и подъехал к Долохову.",
-   "lemma": "командир",
-   "options": [
-    "полковым командиром",
-    "полковому командиру",
-    "полкового командира",
-    "полковой командир"
-   ],
-   "correct": "полкового командира",
-   "case": "Винительный (Accusative)",
-   "explain": "«полкового командира» — the accusative marks the direct object of the verb.",
-   "id": "c56"
-  },
-  {
-   "sentence": "___ Жерков одно время в Петербурге принадлежал к тому буйному обществу, которым руководил Долохов.",
-   "lemma": "корнет",
-   "options": [
-    "гусарскому корнету",
-    "гусарским корнетом",
-    "гусарском корнете",
-    "гусарский корнет"
-   ],
-   "correct": "гусарский корнет",
-   "case": "Именительный (Nominative)",
-   "explain": "«Гусарский корнет» — the subject of the sentence stands in the nominative.",
-   "id": "c57"
-  },
-  {
-   "sentence": "Гусарский корнет Жерков одно время в Петербурге принадлежал к тому ___, которым руководил Долохов.",
-   "lemma": "общество",
-   "options": [
-    "буйном обществе",
-    "буйного общества",
-    "буйному обществу",
-    "буйным обществом"
-   ],
-   "correct": "буйному обществу",
-   "case": "Дательный (Dative)",
-   "explain": "«буйному обществу» — the dative marks the indirect object or recipient.",
-   "id": "c58"
   },
   {
    "sentence": "___ придавала особенное значение тону развязной веселости, с которою говорил Жерков, и умышленной холодности ответов Долохова.",
@@ -641,7 +291,7 @@
    ],
    "correct": "бойкая песня",
    "case": "Именительный (Nominative)",
-   "explain": "«Бойкая песня» — the subject of the sentence stands in the nominative.",
+   "explain": "«бойкая песня» is the subject of «придавала» — who or what does it — so nominative.",
    "id": "c60"
   }
  ]

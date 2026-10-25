@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Я городским толкам не верю; но люблю думать, как говорит наш ___, что они справедливы.",
-   "lemma": "губернатор",
-   "options": [
-    "образованному губернатору",
-    "образованного губернатора",
-    "образованным губернатором",
-    "образованный губернатор"
-   ],
-   "correct": "образованный губернатор",
-   "case": "Именительный (Nominative)",
-   "explain": "«образованный губернатор» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
-   "sentence": "___ в ливрее ввел обоих приятелей в большую комнату, меблированную дурно, как все комнаты русских гостиниц, но уставленную цветами.",
-   "lemma": "слуга",
-   "options": [
-    "молодой слуга",
-    "молодого слугу",
-    "молодому слуге",
-    "молодого слуги"
-   ],
-   "correct": "молодой слуга",
-   "case": "Именительный (Nominative)",
-   "explain": "«Молодой слуга» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
    "sentence": "Молодой слуга в ливрее ввел обоих приятелей в большую комнату, меблированную дурно, как все комнаты ___, но уставленную цветами.",
    "lemma": "гостиница",
    "options": [
@@ -39,7 +11,7 @@
    ],
    "correct": "русских гостиниц",
    "case": "Родительный (Genitive)",
-   "explain": "«русских гостиниц» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«русских гостиниц» depends on the noun «комнаты» (whose? of what?) — genitive.",
    "id": "c4"
   },
   {
@@ -53,7 +25,7 @@
    ],
    "correct": "утреннем платье",
    "case": "Предложный (Prepositional)",
-   "explain": "«утреннем платье» — after the preposition «в», for location or topic.",
+   "explain": "«утреннем платье» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c5"
   },
   {
@@ -67,50 +39,22 @@
    ],
    "correct": "весеннего солнца",
    "case": "Родительный (Genitive)",
-   "explain": "«весеннего солнца» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«весеннего солнца» depends on the noun «свете» (whose? of what?) — genitive.",
    "id": "c6"
   },
   {
    "sentence": "«Вот тебе раз! бабы испугался!» – подумал он и, развалясь в кресле не хуже Ситникова, заговорил преувеличенно развязно, а Одинцова не спускала с него своих ___.",
    "lemma": "глаз",
    "options": [
-    "ясными глазами",
     "ясных глазах",
+    "ясными глазами",
     "ясных глаз",
-    "ясные глаза"
+    "ясным глазам"
    ],
    "correct": "ясных глаз",
    "case": "Родительный (Genitive)",
-   "explain": "«ясных глаз» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«ясных глаз» is the object of a negated verb («не спускала») — genitive instead of the accusative.",
    "id": "c8"
-  },
-  {
-   "sentence": "___, полученное ею в Петербурге, не подготовило ее к перенесению забот по хозяйству и по дому, – к глухому деревенскому житью.",
-   "lemma": "воспитание",
-   "options": [
-    "блестящего воспитания",
-    "блестящее воспитание",
-    "блестящему воспитанию",
-    "блестящем воспитании"
-   ],
-   "correct": "блестящее воспитание",
-   "case": "Именительный (Nominative)",
-   "explain": "«Блестящее воспитание» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
-  },
-  {
-   "sentence": "Там у ней был великолепный, отлично убранный дом, ___ с оранжереями: покойный Одинцов ни в чем себе не отказывал.",
-   "lemma": "сад",
-   "options": [
-    "прекрасном саде",
-    "прекрасного сада",
-    "прекрасным садом",
-    "прекрасный сад"
-   ],
-   "correct": "прекрасный сад",
-   "case": "Именительный (Nominative)",
-   "explain": "«прекрасный сад» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
   },
   {
    "sentence": "«Прошла через огонь и воду», – говорили о ней; а известный ___ обыкновенно прибавлял: «И через медные трубы».",
@@ -123,7 +67,7 @@
    ],
    "correct": "губернский остряк",
    "case": "Именительный (Nominative)",
-   "explain": "«губернский остряк» — the subject of the sentence stands in the nominative.",
+   "explain": "«губернский остряк» is the subject of «прибавлял» — who or what does it — so nominative.",
    "id": "c13"
   },
   {
@@ -137,7 +81,7 @@
    ],
    "correct": "медные трубы",
    "case": "Винительный (Accusative)",
-   "explain": "«медные трубы» — after the preposition «через», the accusative marks the direct object of the verb.",
+   "explain": "«медные трубы» — «через» always takes the accusative.",
    "id": "c14"
   },
   {
@@ -151,7 +95,7 @@
    ],
    "correct": "прекрасные глаза",
    "case": "Именительный (Nominative)",
-   "explain": "«прекрасные глаза» — the subject of the sentence stands in the nominative.",
+   "explain": "«прекрасные глаза» is the subject of «светились» — who or what does it — so nominative.",
    "id": "c15"
   },
   {
@@ -165,50 +109,8 @@
    ],
    "correct": "первые минуты",
    "case": "Винительный (Accusative)",
-   "explain": "«первые минуты» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«первые минуты» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c16"
-  },
-  {
-   "sentence": "Ломание Базарова в первые минуты посещения неприятно подействовало на нее, как ___ или резкий звук; но она тотчас же поняла, что он чувствовал смущение, и это ей даже польстило.",
-   "lemma": "запах",
-   "options": [
-    "дурной запах",
-    "дурного запаха",
-    "дурному запаху",
-    "дурном запахе"
-   ],
-   "correct": "дурной запах",
-   "case": "Именительный (Nominative)",
-   "explain": "«дурной запах» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
-  },
-  {
-   "sentence": "Оказалось, что Одинцова не теряла времени в уединении: она прочла несколько ___ и выражалась правильным русским языком.",
-   "lemma": "книга",
-   "options": [
-    "хорошим книгам",
-    "хороших книгах",
-    "хороших книг",
-    "хорошими книгами"
-   ],
-   "correct": "хороших книг",
-   "case": "Родительный (Genitive)",
-   "explain": "«хороших книг» — the genitive here marks possession, absence, or quantity.",
-   "id": "c18"
-  },
-  {
-   "sentence": "Оказалось, что Одинцова не теряла времени в уединении: она прочла несколько хороших книг и выражалась правильным ___.",
-   "lemma": "язык",
-   "options": [
-    "русский язык",
-    "русского языка",
-    "русском языке",
-    "русским языком"
-   ],
-   "correct": "русским языком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«русским языком» — the instrumental marks the means, company, or complement.",
-   "id": "c19"
   },
   {
    "sentence": "Она навела речь на музыку, но, заметив, что Базаров не признает искусства, потихоньку возвратилась к ботанике, хотя Аркадий и пустился было толковать о значении ___.",
@@ -221,36 +123,8 @@
    ],
    "correct": "народных мелодий",
    "case": "Родительный (Genitive)",
-   "explain": "«народных мелодий» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«народных мелодий» depends on the noun «значении» (whose? of what?) — genitive.",
    "id": "c20"
-  },
-  {
-   "sentence": "Вишь, как она себя заморозила! – возразил Базаров и, помолчав немного, прибавил: – Герцогиня, ___.",
-   "lemma": "особа",
-   "options": [
-    "владетельной особе",
-    "владетельной особой",
-    "владетельная особа",
-    "владетельной особы"
-   ],
-   "correct": "владетельная особа",
-   "case": "Именительный (Nominative)",
-   "explain": "«владетельная особа» — the subject of the sentence stands in the nominative.",
-   "id": "c22"
-  },
-  {
-   "sentence": "– Этакое ___! – продолжал Базаров. – Хоть сейчас в анатомический театр.",
-   "lemma": "тело",
-   "options": [
-    "богатым телом",
-    "богатом теле",
-    "богатое тело",
-    "богатому телу"
-   ],
-   "correct": "богатое тело",
-   "case": "Именительный (Nominative)",
-   "explain": "«богатое тело» — the subject of the sentence stands in the nominative.",
-   "id": "c23"
   },
   {
    "sentence": "– Этакое богатое тело! – продолжал Базаров. – Хоть сейчас в ___.",
@@ -263,22 +137,8 @@
    ],
    "correct": "анатомический театр",
    "case": "Винительный (Accusative)",
-   "explain": "«анатомический театр» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«анатомический театр» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c24"
-  },
-  {
-   "sentence": "День стоял светлый и не слишком жаркий, и ямские ___ дружно бежали, слегка помахивая своими закрученными и заплетенными хвостами.",
-   "lemma": "лошадка",
-   "options": [
-    "сытыми лошадками",
-    "сытых лошадок",
-    "сытым лошадкам",
-    "сытые лошадки"
-   ],
-   "correct": "сытые лошадки",
-   "case": "Именительный (Nominative)",
-   "explain": "«сытые лошадки» — the subject of the sentence stands in the nominative.",
-   "id": "c25"
   }
  ]
 }

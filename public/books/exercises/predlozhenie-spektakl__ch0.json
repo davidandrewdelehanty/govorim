@@ -1,46 +1,18 @@
 {
  "cases": [
   {
-   "sentence": "Иван Васильевич Ломов, сосед Чубукова, здоровый, упитанный, но очень ___.",
-   "lemma": "помещик",
-   "options": [
-    "мнительного помещика",
-    "мнительным помещиком",
-    "мнительный помещик",
-    "мнительном помещике"
-   ],
-   "correct": "мнительный помещик",
-   "case": "Именительный (Nominative)",
-   "explain": "«мнительный помещик» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Это было моим ___.",
    "lemma": "желание",
    "options": [
-    "всегдашнее желание",
-    "всегдашнему желанию",
     "всегдашним желанием",
-    "всегдашнем желании"
+    "всегдашнем желании",
+    "всегдашнего желания",
+    "всегдашнему желанию"
    ],
    "correct": "всегдашним желанием",
    "case": "Творительный (Instrumental)",
-   "explain": "«всегдашним желанием» — the instrumental marks the means, company, or complement.",
+   "explain": "After «было», what someone or something is or becomes stands in the instrumental.",
    "id": "c3"
-  },
-  {
-   "sentence": "(Пускает слезу.) И всегда я любил вас, ангел мой, как ___.",
-   "lemma": "сын",
-   "options": [
-    "родному сыну",
-    "родного сына",
-    "родный сын",
-    "родным сыном"
-   ],
-   "correct": "родного сына",
-   "case": "Винительный (Accusative)",
-   "explain": "«родного сына» — the accusative marks the direct object of the verb.",
-   "id": "c4"
   },
   {
    "sentence": "Моя покойная тетушка и ее супруг, от которых я, как вы изволите знать, получил в наследство землю, всегда относились с ___ к вашему батюшке и к покойной матушке.",
@@ -53,7 +25,7 @@
    ],
    "correct": "глубоким уважением",
    "case": "Творительный (Instrumental)",
-   "explain": "«глубоким уважением» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«глубоким уважением» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c8"
   },
   {
@@ -67,36 +39,8 @@
    ],
    "correct": "покойной матушке",
    "case": "Дательный (Dative)",
-   "explain": "«покойной матушке» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«покойной матушке» — «к» always takes the dative.",
    "id": "c9"
-  },
-  {
-   "sentence": "Род Ломовых и род Чубуковых всегда находились в самых дружественных и, можно даже сказать, ___.",
-   "lemma": "отношение",
-   "options": [
-    "родственным отношениям",
-    "родственными отношениями",
-    "родственных отношений",
-    "родственных отношениях"
-   ],
-   "correct": "родственных отношениях",
-   "case": "Предложный (Prepositional)",
-   "explain": "«родственных отношениях» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c10"
-  },
-  {
-   "sentence": "И мой дедушка, и прадедушка считали, что ___ доходила до Горелого болота — значит, Воловьи Лужки были наши.",
-   "lemma": "земля",
-   "options": [
-    "ихней земле",
-    "ихней земли",
-    "ихняя земля",
-    "ихней землёй"
-   ],
-   "correct": "ихняя земля",
-   "case": "Именительный (Nominative)",
-   "explain": "«ихняя земля» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
   },
   {
    "sentence": "И мой дедушка, и прадедушка считали, что ихняя земля доходила до ___ — значит, Воловьи Лужки были наши.",
@@ -109,106 +53,36 @@
    ],
    "correct": "горелого болота",
    "case": "Родительный (Genitive)",
-   "explain": "«Горелого болота» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«горелого болота» — «до» always takes the genitive.",
    "id": "c12"
-  },
-  {
-   "sentence": "До сих пор мы вас считали ___, другом, в прошлом году давали вам свою молотилку, и через это самим нам пришлось домолачивать свой хлеб в ноябре, а вы поступаете с нами, как с цыганами.",
-   "lemma": "сосед",
-   "options": [
-    "хороший сосед",
-    "хорошего соседа",
-    "хорошему соседу",
-    "хорошим соседом"
-   ],
-   "correct": "хорошим соседом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«хорошим соседом» — the instrumental marks the means, company, or complement.",
-   "id": "c13"
-  },
-  {
-   "sentence": "Вот именно, ___, я не привык, чтобы со мною разговаривали таким тоном и прочее.",
-   "lemma": "человек",
-   "options": [
-    "молодой человек",
-    "молодом человеке",
-    "молодого человека",
-    "молодому человеку"
-   ],
-   "correct": "молодой человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«молодой человек» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
-  },
-  {
-   "sentence": "Я, ___, старше вас вдвое и прошу вас говорить со мною без ажитации и тому подобное.",
-   "lemma": "человек",
-   "options": [
-    "молодой человек",
-    "молодом человеке",
-    "молодого человека",
-    "молодому человеку"
-   ],
-   "correct": "молодой человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«молодой человек» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
   },
   {
    "sentence": "Так ___ не поступают, Степан Степаныч!",
    "lemma": "сосед",
    "options": [
-    "хороших соседях",
+    "хорошие соседи",
     "хорошими соседями",
-    "хороших соседей",
-    "хорошие соседи"
+    "хорошим соседям",
+    "хороших соседях"
    ],
    "correct": "хорошие соседи",
    "case": "Именительный (Nominative)",
-   "explain": "«хорошие соседи» — the subject of the sentence stands in the nominative.",
+   "explain": "«хорошие соседи» is the subject of «поступают» — who or what does it — so nominative.",
    "id": "c17"
-  },
-  {
-   "sentence": "Можете подавать в суд, ___, и тому подобное!",
-   "lemma": "государь",
-   "options": [
-    "милостивому государю",
-    "милостивого государя",
-    "милостивый государь",
-    "милостивом государе"
-   ],
-   "correct": "милостивый государь",
-   "case": "Именительный (Nominative)",
-   "explain": "«милостивый государь» — the subject of the sentence stands in the nominative.",
-   "id": "c18"
   },
   {
    "sentence": "Вот и верь после этого ___!",
    "lemma": "сосед",
    "options": [
-    "добрым соседям",
-    "добрых соседей",
+    "добрые соседи",
     "добрыми соседями",
+    "добрым соседям",
     "добрых соседях"
    ],
    "correct": "добрым соседям",
    "case": "Дательный (Dative)",
-   "explain": "«добрым соседям» — the dative marks the indirect object or recipient.",
+   "explain": "«верь» takes the dative (кому? чему?).",
    "id": "c19"
-  },
-  {
-   "sentence": "И эта кикимора, эта, вот именно, ___ осмеливается еще делать предложение и прочее!",
-   "lemma": "слепота",
-   "options": [
-    "куриной слепотой",
-    "куриная слепота",
-    "куриной слепоте",
-    "куриной слепоты"
-   ],
-   "correct": "куриная слепота",
-   "case": "Именительный (Nominative)",
-   "explain": "«куриная слепота» — the subject of the sentence stands in the nominative.",
-   "id": "c20"
   },
   {
    "sentence": "Позвольте, Наталья Степановна, но ведь вы забываете, что он подуздоват, а ___ всегда непоимиста!",
@@ -221,22 +95,8 @@
    ],
    "correct": "подуздоватая собака",
    "case": "Именительный (Nominative)",
-   "explain": "«подуздоватая собака» — the subject of the sentence stands in the nominative.",
+   "explain": "«подуздоватая собака» is the subject of «непоимиста» — who or what does it — so nominative.",
    "id": "c23"
-  },
-  {
-   "sentence": "Но у этой собаки, если хотите знать, красавец мой, два существенных недостатка: стара и с ___.",
-   "lemma": "щипец",
-   "options": [
-    "короткому щипцу",
-    "короткий щипец",
-    "коротким щипцом",
-    "коротком щипце"
-   ],
-   "correct": "коротким щипцом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«коротким щипцом» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c26"
   },
   {
    "sentence": "Отстал, потому что ___ ударил его арапником.",
@@ -249,22 +109,8 @@
    ],
    "correct": "графский доезжачий",
    "case": "Именительный (Nominative)",
-   "explain": "«графский доезжачий» — the subject of the sentence stands in the nominative.",
+   "explain": "«графский доезжачий» is the subject of «ударил» — who or what does it — so nominative.",
    "id": "c27"
-  },
-  {
-   "sentence": "Добро бы охотились, а то ведь ездите только за тем, чтобы спорить да ___ мешать и прочее.",
-   "lemma": "собака",
-   "options": [
-    "чужими собаками",
-    "чужим собакам",
-    "чужих собак",
-    "чужих собаках"
-   ],
-   "correct": "чужим собакам",
-   "case": "Дательный (Dative)",
-   "explain": "«чужим собакам» — the dative marks the indirect object or recipient.",
-   "id": "c28"
   },
   {
    "sentence": "Замолчи, а то я подстрелю тебя из ___, как куропатку!",
@@ -277,7 +123,7 @@
    ],
    "correct": "поганого ружья",
    "case": "Родительный (Genitive)",
-   "explain": "«поганого ружья» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«поганого ружья» — «из» always takes the genitive.",
    "id": "c29"
   }
  ]

@@ -11,7 +11,7 @@
    ],
    "correct": "русский император",
    "case": "Именительный (Nominative)",
-   "explain": "«Русский император» — the subject of the sentence stands in the nominative.",
+   "explain": "«русский император» is the subject of «жил» — who or what does it — so nominative.",
    "id": "c1"
   },
   {
@@ -19,13 +19,13 @@
    "lemma": "план",
    "options": [
     "общем плане",
-    "общий план",
-    "общего плана",
-    "общему плану"
+    "общим планом",
+    "общему плану",
+    "общего плана"
    ],
    "correct": "общего плана",
    "case": "Родительный (Genitive)",
-   "explain": "«Общего плана» — the genitive here marks possession, absence, or quantity.",
+   "explain": "What is absent after «не было» — genitive.",
    "id": "c2"
   },
   {
@@ -39,7 +39,7 @@
    ],
    "correct": "месячного пребывания",
    "case": "Родительный (Genitive)",
-   "explain": "«месячного пребывания» — after the preposition «после», the genitive here marks possession, absence, or quantity.",
+   "explain": "«месячного пребывания» — «после» always takes the genitive.",
    "id": "c3"
   },
   {
@@ -53,35 +53,21 @@
    ],
    "correct": "главной квартире",
    "case": "Предложный (Prepositional)",
-   "explain": "«главной квартире» — after the preposition «в», for location or topic.",
+   "explain": "«главной квартире» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c4"
-  },
-  {
-   "sentence": "В трех армиях был в каждой ___, но общего начальника над всеми армиями не было, и император не принимал на себя этого звания.",
-   "lemma": "главнокомандующий",
-   "options": [
-    "отдельный главнокомандующий",
-    "отдельном главнокомандующем",
-    "отдельным главнокомандующим",
-    "отдельного главнокомандующего"
-   ],
-   "correct": "отдельный главнокомандующий",
-   "case": "Именительный (Nominative)",
-   "explain": "«отдельный главнокомандующий» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
   },
   {
    "sentence": "В трех армиях был в каждой отдельный главнокомандующий, но ___ над всеми армиями не было, и император не принимал на себя этого звания.",
    "lemma": "начальник",
    "options": [
-    "общий начальник",
-    "общем начальнике",
+    "общего начальника",
     "общему начальнику",
-    "общего начальника"
+    "общим начальником",
+    "общем начальнике"
    ],
    "correct": "общего начальника",
    "case": "Родительный (Genitive)",
-   "explain": "«общего начальника» — the genitive here marks possession, absence, or quantity.",
+   "explain": "What is absent after «не было» — genitive.",
    "id": "c6"
   },
   {
@@ -95,7 +81,7 @@
    ],
    "correct": "предстоящей войне",
    "case": "Предложный (Prepositional)",
-   "explain": "«предстоящей войне» — after the preposition «о», for location or topic.",
+   "explain": "«предстоящей войне» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c7"
   },
   {
@@ -109,7 +95,7 @@
    ],
    "correct": "польских магнатов",
    "case": "Родительный (Genitive)",
-   "explain": "«польских магнатов» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«польских магнатов» — «у» always takes the genitive.",
    "id": "c8"
   },
   {
@@ -123,64 +109,22 @@
    ],
    "correct": "самого государя",
    "case": "Родительный (Genitive)",
-   "explain": "«самого государя» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«самого государя» — «у» always takes the genitive.",
    "id": "c9"
   },
   {
    "sentence": "Граф Бенигсен, помещик Виленской губернии, предложил свой ___ для этого праздника, и 13-го июня был назначен бал, обед, катанье на лодках и фейерверк в Закрете, загородном доме графа Бенигсена.",
    "lemma": "дом",
    "options": [
-    "загородного дома",
     "загородным домом",
+    "загородном доме",
     "загородный дом",
     "загородному дому"
    ],
    "correct": "загородный дом",
    "case": "Винительный (Accusative)",
-   "explain": "«загородный дом» — the accusative marks the direct object of the verb.",
+   "explain": "«загородный дом» is the direct object of «предложил» (кого? что?) — accusative.",
    "id": "c10"
-  },
-  {
-   "sentence": "Граф Бенигсен, помещик Виленской губернии, предложил свой загородный дом для этого праздника, и 13-го июня был назначен бал, обед, катанье на лодках и фейерверк в Закрете, ___ графа Бенигсена.",
-   "lemma": "дом",
-   "options": [
-    "загородном доме",
-    "загородному дому",
-    "загородным домом",
-    "загородный дом"
-   ],
-   "correct": "загородном доме",
-   "case": "Предложный (Prepositional)",
-   "explain": "«загородном доме» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c11"
-  },
-  {
-   "sentence": "Графиня Безухова в числе других ___, приехавших за государем из Петербурга в Вильну, была на этом бале, затемняя своею тяжелою, так называемою, русскою красотой утонченных польских дам.",
-   "lemma": "дама",
-   "options": [
-    "русскими дамами",
-    "русских дам",
-    "русских дамах",
-    "русские дамы"
-   ],
-   "correct": "русских дам",
-   "case": "Родительный (Genitive)",
-   "explain": "«русских дам» — the genitive here marks possession, absence, or quantity.",
-   "id": "c12"
-  },
-  {
-   "sentence": "Элен, не имевшая ___, сама предложила мазурку Борису.",
-   "lemma": "кавалер",
-   "options": [
-    "достойному кавалеру",
-    "достойном кавалере",
-    "достойным кавалером",
-    "достойного кавалера"
-   ],
-   "correct": "достойного кавалера",
-   "case": "Родительный (Genitive)",
-   "explain": "«достойного кавалера» — the genitive here marks possession, absence, or quantity.",
-   "id": "c13"
   },
   {
    "sentence": "Они сидели в ___.",
@@ -193,36 +137,8 @@
    ],
    "correct": "третьей паре",
    "case": "Предложный (Prepositional)",
-   "explain": "«третьей паре» — after the preposition «в», for location or topic.",
+   "explain": "«третьей паре» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c14"
-  },
-  {
-   "sentence": "Государь не танцовал; он стоял в дверях и останавливал то тех, то других теми ___, которые он один только умел говорить.",
-   "lemma": "слово",
-   "options": [
-    "ласковым словам",
-    "ласковые слова",
-    "ласковых словах",
-    "ласковыми словами"
-   ],
-   "correct": "ласковыми словами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«ласковыми словами» — the instrumental marks the means, company, or complement.",
-   "id": "c15"
-  },
-  {
-   "sentence": "Аракчеев, исподлобья глядя на государя и посапывая ___, выдвинулся из толпы, как бы ожидая, что государь обратится к нему.",
-   "lemma": "нос",
-   "options": [
-    "красный нос",
-    "красным носом",
-    "красном носе",
-    "красному носу"
-   ],
-   "correct": "красным носом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«красным носом» — the instrumental marks the means, company, or complement.",
-   "id": "c17"
   },
   {
    "sentence": "На ___ было написано следующее письмо к Наполеону.",
@@ -235,7 +151,7 @@
    ],
    "correct": "другой день",
    "case": "Винительный (Accusative)",
-   "explain": "«другой день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«другой день» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c19"
   },
   {
@@ -249,7 +165,7 @@
    ],
    "correct": "следующее письмо",
    "case": "Именительный (Nominative)",
-   "explain": "«следующее письмо» — the subject of the sentence stands in the nominative.",
+   "explain": "«следующее письмо» is the subject of «написано» — who or what does it — so nominative.",
    "id": "c20"
   }
  ]

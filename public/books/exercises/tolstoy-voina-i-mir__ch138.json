@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Наташа, любимица молодых Мелюковых, с ними вместе исчезла в задние комнаты, куда была потребована пробка и ___ и мужские платья, которые в растворенную дверь принимали от лакея оголенные девичьи руки.",
-   "lemma": "халат",
-   "options": [
-    "разных халатов",
-    "разным халатам",
-    "разными халатами",
-    "разные халаты"
-   ],
-   "correct": "разные халаты",
-   "case": "Именительный (Nominative)",
-   "explain": "«разные халаты» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Наташа, любимица молодых Мелюковых, с ними вместе исчезла в задние комнаты, куда была потребована пробка и разные халаты и мужские платья, которые в растворенную дверь принимали от лакея оголенные ___.",
-   "lemma": "рука",
-   "options": [
-    "девичьих руках",
-    "девичьи руки",
-    "девичьим рукам",
-    "девичьими руками"
-   ],
-   "correct": "девичьи руки",
-   "case": "Винительный (Accusative)",
-   "explain": "«девичьи руки» — the accusative marks the direct object of the verb.",
-   "id": "c2"
-  },
-  {
    "sentence": "После ___ и хороводов Пелагея Даниловна соединила всех дворовых и господ вместе, в один большой круг; принесли кольцо, веревочку и рублик, и устроились общие игры.",
    "lemma": "пляска",
    "options": [
@@ -39,50 +11,22 @@
    ],
    "correct": "русских плясок",
    "case": "Родительный (Genitive)",
-   "explain": "«русских плясок» — after the preposition «после», the genitive here marks possession, absence, or quantity.",
+   "explain": "«русских плясок» — «после» always takes the genitive.",
    "id": "c4"
   },
   {
    "sentence": "После русских плясок и хороводов Пелагея Даниловна соединила всех дворовых и господ вместе, в один ___; принесли кольцо, веревочку и рублик, и устроились общие игры.",
    "lemma": "круг",
    "options": [
-    "большом круге",
     "большим кругом",
     "большого круга",
-    "большой круг"
+    "большой круг",
+    "большому кругу"
    ],
    "correct": "большой круг",
    "case": "Винительный (Accusative)",
-   "explain": "«большой круг» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«большой круг» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c5"
-  },
-  {
-   "sentence": "После русских плясок и хороводов Пелагея Даниловна соединила всех дворовых и господ вместе, в один большой круг; принесли кольцо, веревочку и рублик, и устроились ___.",
-   "lemma": "игра",
-   "options": [
-    "общие игры",
-    "общим играм",
-    "общих игр",
-    "общими играми"
-   ],
-   "correct": "общие игры",
-   "case": "Винительный (Accusative)",
-   "explain": "«общие игры» — the accusative marks the direct object of the verb.",
-   "id": "c6"
-  },
-  {
-   "sentence": "___ и брови размазались по вспотевшим, разгоревшимся и веселым лицам.",
-   "lemma": "ус",
-   "options": [
-    "пробочных усах",
-    "пробочным усам",
-    "пробочных усов",
-    "пробочные усы"
-   ],
-   "correct": "пробочные усы",
-   "case": "Винительный (Accusative)",
-   "explain": "«Пробочные усы» — the accusative marks the direct object of the verb.",
-   "id": "c7"
   },
   {
    "sentence": "— Да вот так-то, пошла одна барышня, — сказала ___, — взяла петуха, два прибора — как следует, села.",
@@ -95,22 +39,8 @@
    ],
    "correct": "старая девушка",
    "case": "Именительный (Nominative)",
-   "explain": "«старая девушка» — the subject of the sentence stands in the nominative.",
+   "explain": "«старая девушка» is the subject of «сказала» — who or what does it — so nominative.",
    "id": "c9"
-  },
-  {
-   "sentence": "Играли ли в колечко, в веревочку или рублик, разговаривали ли, как теперь, Николай не отходил от Сони и совсем ___ смотрел на нее.",
-   "lemma": "глаз",
-   "options": [
-    "новых глазах",
-    "новых глаз",
-    "новым глазам",
-    "новыми глазами"
-   ],
-   "correct": "новыми глазами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«новыми глазами» — the instrumental marks the means, company, or complement.",
-   "id": "c10"
   },
   {
    "sentence": "Ему казалось, что он нынче только в ___, благодаря этим пробочным усам, вполне узнал ее.",
@@ -123,7 +53,7 @@
    ],
    "correct": "первый раз",
    "case": "Винительный (Accusative)",
-   "explain": "«первый раз» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«первый раз» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c11"
   },
   {
@@ -137,22 +67,8 @@
    ],
    "correct": "пробочным усам",
    "case": "Дательный (Dative)",
-   "explain": "«пробочным усам» — after the preposition «благодаря», the dative marks the indirect object or recipient.",
+   "explain": "«пробочным усам» — «благодаря» always takes the dative.",
    "id": "c12"
-  },
-  {
-   "sentence": "«Так вот она какая, а я то дурак!» думал он, глядя на ее ___ и счастливую, восторженную, из-под усов делающую ямочки на щеках, улыбку, которой он не видал прежде.",
-   "lemma": "глаз",
-   "options": [
-    "блестящих глазах",
-    "блестящих глаз",
-    "блестящим глазам",
-    "блестящие глаза"
-   ],
-   "correct": "блестящие глаза",
-   "case": "Винительный (Accusative)",
-   "explain": "«блестящие глаза» — the accusative marks the direct object of the verb.",
-   "id": "c13"
   },
   {
    "sentence": "На половине дороги стояли сложенные сажени дров, на них был снег, от них падала тень; через них и с боку их переплетаясь, падали тени старых ___ на снег и дорожку.",
@@ -165,7 +81,7 @@
    ],
    "correct": "голых лип",
    "case": "Родительный (Genitive)",
-   "explain": "«голых лип» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«голых лип» depends on the noun «тени» (whose? of what?) — genitive.",
    "id": "c15"
   },
   {
@@ -179,36 +95,8 @@
    ],
    "correct": "драгоценного камня",
    "case": "Родительный (Genitive)",
-   "explain": "«драгоценного камня» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«драгоценного камня» — «из» always takes the genitive.",
    "id": "c16"
-  },
-  {
-   "sentence": "«Совсем другая, и всё та же», думал Николай, глядя на ее лицо, всё освещенное ___.",
-   "lemma": "свет",
-   "options": [
-    "лунный свет",
-    "лунного света",
-    "лунном свете",
-    "лунным светом"
-   ],
-   "correct": "лунным светом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«лунным светом» — the instrumental marks the means, company, or complement.",
-   "id": "c21"
-  },
-  {
-   "sentence": "Соня в самую середину губ поцеловала его и, выпростав ___, с обеих сторон взяла его за щеки.",
-   "lemma": "рука",
-   "options": [
-    "маленькими руками",
-    "маленькие руки",
-    "маленьким рукам",
-    "маленьких руках"
-   ],
-   "correct": "маленькие руки",
-   "case": "Винительный (Accusative)",
-   "explain": "«маленькие руки» — the accusative marks the direct object of the verb.",
-   "id": "c22"
   }
  ]
 }

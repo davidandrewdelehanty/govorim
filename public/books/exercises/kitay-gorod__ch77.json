@@ -1,46 +1,18 @@
 {
  "cases": [
   {
-   "sentence": "Надо было обойти ___, посмотреть, заперта ли дверь в передней.",
-   "lemma": "комната",
-   "options": [
-    "остальным комнатам",
-    "остальные комнаты",
-    "остальных комнат",
-    "остальными комнатами"
-   ],
-   "correct": "остальные комнаты",
-   "case": "Винительный (Accusative)",
-   "explain": "«остальные комнаты» — the accusative marks the direct object of the verb.",
-   "id": "c1"
-  },
-  {
    "sentence": "У ней было почище, чем в других ___, но так же холодно и через день непременно угар.",
    "lemma": "комната",
    "options": [
-    "женские комнаты",
-    "женским комнатам",
+    "женскими комнатами",
     "женских комнат",
-    "женских комнатах"
+    "женских комнатах",
+    "женским комнатам"
    ],
    "correct": "женских комнатах",
    "case": "Предложный (Prepositional)",
-   "explain": "«женских комнатах» — after the preposition «в», for location or topic.",
+   "explain": "«женских комнатах» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c3"
-  },
-  {
-   "sentence": "У окна ___, остаток прежней жизни, с синим, теперь обтертым, бархатом и резьбой из цельного ореха.",
-   "lemma": "столик",
-   "options": [
-    "письменном столике",
-    "письменному столику",
-    "письменного столика",
-    "письменный столик"
-   ],
-   "correct": "письменный столик",
-   "case": "Винительный (Accusative)",
-   "explain": "«письменный столик» — the accusative marks the direct object of the verb.",
-   "id": "c4"
   },
   {
    "sentence": "У окна письменный столик, остаток прежней жизни, с синим, теперь обтертым, бархатом и резьбой из ___.",
@@ -53,7 +25,7 @@
    ],
    "correct": "цельного ореха",
    "case": "Родительный (Genitive)",
-   "explain": "«цельного ореха» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«цельного ореха» — «из» always takes the genitive.",
    "id": "c5"
   },
   {
@@ -67,7 +39,7 @@
    ],
    "correct": "лишний раз",
    "case": "Винительный (Accusative)",
-   "explain": "«лишний раз» — the accusative marks the direct object of the verb.",
+   "explain": "«лишний раз» tells how long or how often, with no preposition — accusative.",
    "id": "c6"
   },
   {
@@ -81,21 +53,21 @@
    ],
    "correct": "хорошего круга",
    "case": "Родительный (Genitive)",
-   "explain": "«хорошего круга» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«хорошего круга» depends on the noun «дамы» (whose? of what?) — genitive.",
    "id": "c8"
   },
   {
    "sentence": "Тогда и дамы «хорошего круга» посещали представления ___.",
    "lemma": "пьеса",
    "options": [
-    "новыми пьесами",
-    "новых пьес",
     "новых пьесах",
+    "новых пьес",
+    "новые пьесы",
     "новым пьесам"
    ],
    "correct": "новых пьес",
    "case": "Родительный (Genitive)",
-   "explain": "«новых пьес» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«новых пьес» depends on the noun «представления» (whose? of what?) — genitive.",
    "id": "c9"
   },
   {
@@ -109,22 +81,8 @@
    ],
    "correct": "московский театр",
    "case": "Винительный (Accusative)",
-   "explain": "«московский театр» — after the preposition «про», the accusative marks the direct object of the verb.",
+   "explain": "«московский театр» — «про» always takes the accusative.",
    "id": "c10"
-  },
-  {
-   "sentence": "От нее Тася узнала, что «Петровский» театр — так старуха называет до сих пор ___ — держал какой-то Медокс, как у него давали оперу «Русалка».",
-   "lemma": "театр",
-   "options": [
-    "большому театру",
-    "большим театром",
-    "большом театре",
-    "большой театр"
-   ],
-   "correct": "большой театр",
-   "case": "Именительный (Nominative)",
-   "explain": "«Большой театр» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
   },
   {
    "sentence": "И опять горел тот же театр недавно, перед ___, когда Таси не было на свете.",
@@ -137,7 +95,7 @@
    ],
    "correct": "крымской войной",
    "case": "Творительный (Instrumental)",
-   "explain": "«крымской войной» — after the preposition «перед», the instrumental marks the means, company, or complement.",
+   "explain": "«крымской войной» — «перед» always takes the instrumental.",
    "id": "c12"
   },
   {
@@ -151,7 +109,7 @@
    ],
    "correct": "простой плотник",
    "case": "Именительный (Nominative)",
-   "explain": "«простой плотник» — the subject of the sentence stands in the nominative.",
+   "explain": "«простой плотник» is the subject of «отличился» — who or what does it — so nominative.",
    "id": "c13"
   },
   {
@@ -165,7 +123,7 @@
    ],
    "correct": "благотворительных спектаклей",
    "case": "Родительный (Genitive)",
-   "explain": "«благотворительных спектаклей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«благотворительных спектаклей» depends on the noun «репетициях» (whose? of what?) — genitive.",
    "id": "c14"
   }
  ]

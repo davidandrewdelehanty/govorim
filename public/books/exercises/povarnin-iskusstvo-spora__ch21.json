@@ -1,62 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "— ___ и красивые названия.",
-   "lemma": "кличка",
-   "options": [
-    "злостные клички",
-    "злостными кличками",
-    "злостных кличек",
-    "злостным кличкам"
-   ],
-   "correct": "злостные клички",
-   "case": "Именительный (Nominative)",
-   "explain": "«Злостные клички» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "— Злостные клички и ___.",
-   "lemma": "название",
-   "options": [
-    "красивых названий",
-    "красивые названия",
-    "красивых названиях",
-    "красивым названиям"
-   ],
-   "correct": "красивые названия",
-   "case": "Именительный (Nominative)",
-   "explain": "«красивые названия» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Бесспорно, самая распространенная ошибка и самый распространенный софизм — это — «___».",
-   "lemma": "довод",
-   "options": [
-    "произвольные доводы",
-    "произвольных доводов",
-    "произвольными доводами",
-    "произвольным доводам"
-   ],
-   "correct": "произвольные доводы",
-   "case": "Именительный (Nominative)",
-   "explain": "«произвольные доводы» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
-   "sentence": "Только в строго ___ из области точных наук редко проскальзывают подобного рода ошибки.",
-   "lemma": "книга",
-   "options": [
-    "научные книги",
-    "научным книгам",
-    "научными книгами",
-    "научных книгах"
-   ],
-   "correct": "научных книгах",
-   "case": "Предложный (Prepositional)",
-   "explain": "«научных книгах» — after the preposition «в», for location or topic.",
-   "id": "c4"
-  },
-  {
    "sentence": "Только в строго научных книгах из области ___ редко проскальзывают подобного рода ошибки.",
    "lemma": "наука",
    "options": [
@@ -67,7 +11,7 @@
    ],
    "correct": "точных наук",
    "case": "Родительный (Genitive)",
-   "explain": "«точных наук» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«точных наук» depends on the noun «области» (whose? of what?) — genitive.",
    "id": "c5"
   },
   {
@@ -81,36 +25,8 @@
    ],
    "correct": "подобного рода",
    "case": "Родительный (Genitive)",
-   "explain": "«подобного рода» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«подобного рода» depends on the noun «ошибки» (whose? of what?) — genitive.",
    "id": "c6"
-  },
-  {
-   "sentence": "Иначе мы впадаем в ошибку «___» или «чрезмерной точности», которой соответствует и свой особый софизм.",
-   "lemma": "сомнение",
-   "options": [
-    "чрезмерное сомнение",
-    "чрезмерным сомнением",
-    "чрезмерного сомнения",
-    "чрезмерному сомнению"
-   ],
-   "correct": "чрезмерного сомнения",
-   "case": "Родительный (Genitive)",
-   "explain": "«чрезмерного сомнения» — the genitive here marks possession, absence, or quantity.",
-   "id": "c7"
-  },
-  {
-   "sentence": "Если начать исследовать достоверность всякого довода и при всех обстоятельствах с абсолютной точностью, то не был бы возможен ___, не возможна была бы практическая деятельность.",
-   "lemma": "спор",
-   "options": [
-    "обычному спору",
-    "обычного спора",
-    "обычным спором",
-    "обычный спор"
-   ],
-   "correct": "обычный спор",
-   "case": "Именительный (Nominative)",
-   "explain": "«обычный спор» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
   },
   {
    "sentence": "Оставалось бы повторять мудрость ___, которые считали необходимым прилагать мерку абсолютной достоверности, и поэтому во всем сомневаться.",
@@ -123,35 +39,21 @@
    ],
    "correct": "древних философов-скептиков",
    "case": "Родительный (Genitive)",
-   "explain": "«древних философов-скептиков» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«древних философов-скептиков» depends on the noun «мудрость» (whose? of what?) — genitive.",
    "id": "c9"
-  },
-  {
-   "sentence": "Наша философия требует, чтобы не было высказываемо вполне ___, чтобы обо всем говорилось неопределенно, и чтобы суждения были условные, предположительные.",
-   "lemma": "предложение",
-   "options": [
-    "решительными предложениями",
-    "решительным предложениям",
-    "решительные предложения",
-    "решительных предложений"
-   ],
-   "correct": "решительных предложений",
-   "case": "Родительный (Genitive)",
-   "explain": "«решительных предложений» — the genitive here marks possession, absence, or quantity.",
-   "id": "c10"
   },
   {
    "sentence": "Ошибка Марфурия в том, что он применяет утонченные ___ там, где надо весить на обыкновенных лавочных.",
    "lemma": "весы",
    "options": [
-    "химических весов",
     "химические весы",
+    "химическим весам",
     "химических весах",
-    "химическим весам"
+    "химическими весами"
    ],
    "correct": "химические весы",
    "case": "Винительный (Accusative)",
-   "explain": "«химические весы» — the accusative marks the direct object of the verb.",
+   "explain": "«химические весы» is the direct object of «применяет» (кого? что?) — accusative.",
    "id": "c12"
   },
   {
@@ -165,63 +67,21 @@
    ],
    "correct": "логическим тактом",
    "case": "Творительный (Instrumental)",
-   "explain": "«логическим тактом» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «устанавливаемая», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c13"
-  },
-  {
-   "sentence": "В науке — она одна, в ___ — другая, в обычной жизни — третья.",
-   "lemma": "практика",
-   "options": [
-    "юридической практике",
-    "юридическая практика",
-    "юридической практики",
-    "юридической практикой"
-   ],
-   "correct": "юридической практике",
-   "case": "Предложный (Prepositional)",
-   "explain": "«юридической практике» — after the preposition «в», for location or topic.",
-   "id": "c14"
-  },
-  {
-   "sentence": "И в этих пределах она зависит ___ от болышей или меньшей важности для нас спора.",
-   "lemma": "образ",
-   "options": [
-    "главный образ",
-    "главного образа",
-    "главным образом",
-    "главном образе"
-   ],
-   "correct": "главным образом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«главным образом» — the instrumental marks the means, company, or complement.",
-   "id": "c15"
-  },
-  {
-   "sentence": "«Не доказано!» «___!» «Докажи!» «Не верю!» Эти дешевые заявления в искусных руках обращаются в очень важное средство для отступления.",
-   "lemma": "довод",
-   "options": [
-    "произвольному доводу",
-    "произвольным доводом",
-    "произвольного довода",
-    "произвольный довод"
-   ],
-   "correct": "произвольный довод",
-   "case": "Именительный (Nominative)",
-   "explain": "«Произвольный довод» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
   },
   {
    "sentence": "Нужен именно логический такт и опыт, чтобы в каждом ___ найти надлежащую мерку требовательности.",
    "lemma": "случай",
    "options": [
-    "данного случая",
     "данном случае",
-    "данный случай",
-    "данным случаем"
+    "данным случаем",
+    "данного случая",
+    "данному случаю"
    ],
    "correct": "данном случае",
    "case": "Предложный (Prepositional)",
-   "explain": "«данном случае» — after the preposition «в», for location or topic.",
+   "explain": "«данном случае» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c18"
   },
   {
@@ -235,36 +95,8 @@
    ],
    "correct": "произвольного довода",
    "case": "Родительный (Genitive)",
-   "explain": "«произвольного довода» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«произвольного довода» depends on the noun «видов» (whose? of what?) — genitive.",
    "id": "c19"
-  },
-  {
-   "sentence": "Из всех видов софизмов произвольного довода надо прежде всего выделить «скрытые ___».",
-   "lemma": "довод",
-   "options": [
-    "произвольные доводы",
-    "произвольных доводов",
-    "произвольными доводами",
-    "произвольным доводам"
-   ],
-   "correct": "произвольные доводы",
-   "case": "Винительный (Accusative)",
-   "explain": "«произвольные доводы» — the accusative marks the direct object of the verb.",
-   "id": "c20"
-  },
-  {
-   "sentence": "Разберем наиболее характерный вид этой ошибки — софизм «___», скрывающий довод.",
-   "lemma": "название",
-   "options": [
-    "произвольным названием",
-    "произвольному названию",
-    "произвольного названия",
-    "произвольное название"
-   ],
-   "correct": "произвольного названия",
-   "case": "Родительный (Genitive)",
-   "explain": "«произвольного названия» — the genitive here marks possession, absence, or quantity.",
-   "id": "c22"
   },
   {
    "sentence": "Огромную роль в ___ играют названия с пропущенной посылкой, которая оправдывает их.",
@@ -277,64 +109,22 @@
    ],
    "correct": "софистической практике",
    "case": "Предложный (Prepositional)",
-   "explain": "«софистической практике» — after the preposition «в», for location or topic.",
+   "explain": "«софистической практике» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c23"
-  },
-  {
-   "sentence": "Когда я говорю: «этот офицер ___», то само собою подразумевается мысль: «этот человек офицер».",
-   "lemma": "путешественник",
-   "options": [
-    "известном путешественнике",
-    "известный путешественник",
-    "известному путешественнику",
-    "известного путешественника"
-   ],
-   "correct": "известный путешественник",
-   "case": "Именительный (Nominative)",
-   "explain": "«известный путешественник» — the subject of the sentence stands in the nominative.",
-   "id": "c24"
-  },
-  {
-   "sentence": "Эта посылка тоже довод, ___ и очень часто произвольный.",
-   "lemma": "довод",
-   "options": [
-    "скрытого довода",
-    "скрытом доводе",
-    "скрытый довод",
-    "скрытому доводу"
-   ],
-   "correct": "скрытый довод",
-   "case": "Именительный (Nominative)",
-   "explain": "«скрытый довод» — the subject of the sentence stands in the nominative.",
-   "id": "c25"
   },
   {
    "sentence": "Ведь приняв его, мы, тем самым, приняли, что предмет, обозначенный им, обладает и ___.",
    "lemma": "свойство",
    "options": [
     "соответственными свойствами",
-    "соответственных свойств",
     "соответственных свойствах",
-    "соответственные свойства"
+    "соответственным свойствам",
+    "соответственных свойств"
    ],
    "correct": "соответственными свойствами",
    "case": "Творительный (Instrumental)",
-   "explain": "«соответственными свойствами» — the instrumental marks the means, company, or complement.",
+   "explain": "«обладает» takes the instrumental.",
    "id": "c26"
-  },
-  {
-   "sentence": "Чтобы мы приняли на веру название, он пользуется, кроме обычной нашей склонности к этому, еще разными ___, например, внушением.",
-   "lemma": "уловка",
-   "options": [
-    "обычных уловок",
-    "обычными уловками",
-    "обычных уловках",
-    "обычным уловкам"
-   ],
-   "correct": "обычными уловками",
-   "case": "Творительный (Instrumental)",
-   "explain": "«обычными уловками» — the instrumental marks the means, company, or complement.",
-   "id": "c27"
   },
   {
    "sentence": "Отвлекает внимание от проверки скрытой ___ и т.д., и т.д.",
@@ -347,7 +137,7 @@
    ],
    "correct": "оправдательной посылки",
    "case": "Родительный (Genitive)",
-   "explain": "«оправдательной посылки» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«оправдательной посылки» depends on the noun «проверки» (whose? of what?) — genitive.",
    "id": "c28"
   },
   {
@@ -361,7 +151,7 @@
    ],
    "correct": "московской купчихи",
    "case": "Родительный (Genitive)",
-   "explain": "«московской купчихи» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«московской купчихи» — «для» always takes the genitive.",
    "id": "c29"
   },
   {
@@ -375,7 +165,7 @@
    ],
    "correct": "полном смысле",
    "case": "Предложный (Prepositional)",
-   "explain": "«полном смысле» — after the preposition «в», for location or topic.",
+   "explain": "«полном смысле» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c30"
   },
   {
@@ -389,22 +179,8 @@
    ],
    "correct": "соответственным словом",
    "case": "Творительный (Instrumental)",
-   "explain": "«соответственным словом» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «загипнотизированный», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c31"
-  },
-  {
-   "sentence": "Игра «___» и «злостным кличками» встречается на каждом шагу, например, в газетной полемике известного типа.",
-   "lemma": "название",
-   "options": [
-    "красивых названиях",
-    "красивыми названиями",
-    "красивым названиям",
-    "красивые названия"
-   ],
-   "correct": "красивыми названиями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«красивыми названиями» — the instrumental marks the means, company, or complement.",
-   "id": "c32"
   },
   {
    "sentence": "Игра «красивыми названиями» и «злостным кличками» встречается на каждом шагу, например, в ___ известного типа.",
@@ -417,7 +193,7 @@
    ],
    "correct": "газетной полемике",
    "case": "Предложный (Prepositional)",
-   "explain": "«газетной полемике» — after the preposition «в», for location or topic.",
+   "explain": "«газетной полемике» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c33"
   },
   {
@@ -431,7 +207,7 @@
    ],
    "correct": "известного типа",
    "case": "Родительный (Genitive)",
-   "explain": "«известного типа» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«известного типа» depends on the noun «полемике» (whose? of what?) — genitive.",
    "id": "c34"
   },
   {
@@ -445,7 +221,7 @@
    ],
    "correct": "красноречивые рассуждения",
    "case": "Именительный (Nominative)",
-   "explain": "«красноречивые рассуждения» — the subject of the sentence stands in the nominative.",
+   "explain": "«красноречивые рассуждения» is the subject of «идут» — who or what does it — so nominative.",
    "id": "c35"
   },
   {
@@ -459,36 +235,8 @@
    ],
    "correct": "должным вниманием",
    "case": "Творительный (Instrumental)",
-   "explain": "«должным вниманием» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«должным вниманием» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c36"
-  },
-  {
-   "sentence": "Читая само заявление, мы, обыкновенно, не вникаем в него с должным вниманием, поэтому «___» проходит «сама собою», без критики, особенно, если она дана в «нашей газете», которой мы доверяем.",
-   "lemma": "кличка",
-   "options": [
-    "злостной кличкой",
-    "злостной клички",
-    "злостная кличка",
-    "злостной кличке"
-   ],
-   "correct": "злостная кличка",
-   "case": "Именительный (Nominative)",
-   "explain": "«злостная кличка» — the subject of the sentence stands in the nominative.",
-   "id": "c37"
-  },
-  {
-   "sentence": "Иногда этими «___» пугают или, как говорят в народе, «пужают» робких людей.",
-   "lemma": "кличка",
-   "options": [
-    "злостными кличками",
-    "злостных кличках",
-    "злостных кличек",
-    "злостным кличкам"
-   ],
-   "correct": "злостными кличками",
-   "case": "Творительный (Instrumental)",
-   "explain": "«злостными кличками» — the instrumental marks the means, company, or complement.",
-   "id": "c38"
   },
   {
    "sentence": "Но иногда ___ обращается в страшное орудие демагогии.",
@@ -501,120 +249,22 @@
    ],
    "correct": "злостная кличка",
    "case": "Именительный (Nominative)",
-   "explain": "«злостная кличка» — the subject of the sentence stands in the nominative.",
+   "explain": "«злостная кличка» is the subject of «обращается» — who or what does it — so nominative.",
    "id": "c39"
-  },
-  {
-   "sentence": "Не менее успешно применяются и «___» для того, например, чтобы смягчить впечатление от какого-нибудь факта, или «выдать ворону за ястреба» и т.д., и т.д.",
-   "lemma": "название",
-   "options": [
-    "красивых названий",
-    "красивые названия",
-    "красивых названиях",
-    "красивым названиям"
-   ],
-   "correct": "красивые названия",
-   "case": "Именительный (Nominative)",
-   "explain": "«красивые названия» — the subject of the sentence stands in the nominative.",
-   "id": "c42"
-  },
-  {
-   "sentence": "Слова «жулик» и «___» имеют очень неприятный оттенок, но если назвать того же человека «экспроприатором» — это звучит благородно.",
-   "lemma": "преступник",
-   "options": [
-    "уголовному преступнику",
-    "уголовного преступника",
-    "уголовным преступником",
-    "уголовный преступник"
-   ],
-   "correct": "уголовный преступник",
-   "case": "Именительный (Nominative)",
-   "explain": "«уголовный преступник» — the subject of the sentence stands in the nominative.",
-   "id": "c43"
-  },
-  {
-   "sentence": "Слова «жулик» и «уголовный преступник» имеют очень ___, но если назвать того же человека «экспроприатором» — это звучит благородно.",
-   "lemma": "оттенок",
-   "options": [
-    "неприятный оттенок",
-    "неприятном оттенке",
-    "неприятному оттенку",
-    "неприятным оттенком"
-   ],
-   "correct": "неприятный оттенок",
-   "case": "Винительный (Accusative)",
-   "explain": "«неприятный оттенок» — the accusative marks the direct object of the verb.",
-   "id": "c44"
-  },
-  {
-   "sentence": "Там, где совершить ___ мешает остаток стыда, голос совести, и т.д., и т.д., туда приходит, как дьявол-искуситель, демагог и бросает для прикрытия низменных побуждений «красивое название».",
-   "lemma": "поступок",
-   "options": [
-    "низменному поступку",
-    "низменный поступок",
-    "низменного поступка",
-    "низменном поступке"
-   ],
-   "correct": "низменный поступок",
-   "case": "Винительный (Accusative)",
-   "explain": "«низменный поступок» — the accusative marks the direct object of the verb.",
-   "id": "c45"
   },
   {
    "sentence": "Там, где совершить низменный поступок мешает остаток стыда, голос совести, и т.д., и т.д., туда приходит, как дьявол-искуситель, демагог и бросает для прикрытия ___ «красивое название».",
    "lemma": "побуждение",
    "options": [
-    "низменными побуждениями",
-    "низменных побуждениях",
+    "низменные побуждения",
+    "низменным побуждениям",
     "низменных побуждений",
-    "низменным побуждениям"
+    "низменных побуждениях"
    ],
    "correct": "низменных побуждений",
    "case": "Родительный (Genitive)",
-   "explain": "«низменных побуждений» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«низменных побуждений» depends on the noun «прикрытия» (whose? of what?) — genitive.",
    "id": "c46"
-  },
-  {
-   "sentence": "Так искушает нас внутри нас «___», так действует в помощь ему, часто гораздо более хитрый, искусный и бессовестный внешний софист.",
-   "lemma": "софист",
-   "options": [
-    "внутренним софистом",
-    "внутренний софист",
-    "внутреннем софисте",
-    "внутреннего софиста"
-   ],
-   "correct": "внутренний софист",
-   "case": "Именительный (Nominative)",
-   "explain": "«внутренний софист» — the subject of the sentence stands in the nominative.",
-   "id": "c47"
-  },
-  {
-   "sentence": "Так искушает нас внутри нас «внутренний софист», так действует в помощь ему, часто гораздо более хитрый, искусный и бессовестный ___.",
-   "lemma": "софист",
-   "options": [
-    "внешнем софисте",
-    "внешний софист",
-    "внешнего софиста",
-    "внешнему софисту"
-   ],
-   "correct": "внешний софист",
-   "case": "Именительный (Nominative)",
-   "explain": "«внешний софист» — the subject of the sentence stands in the nominative.",
-   "id": "c48"
-  },
-  {
-   "sentence": "Нередко игра ___ и злостными кличками усложняется, обращаясь в «игру двумя синонимами».",
-   "lemma": "название",
-   "options": [
-    "красивых названиях",
-    "красивыми названиями",
-    "красивым названиям",
-    "красивые названия"
-   ],
-   "correct": "красивыми названиями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«красивыми названиями» — the instrumental marks the means, company, or complement.",
-   "id": "c49"
   },
   {
    "sentence": "Но нужно же уметь отличать порнографию от ___, возводящего жизнь в перл создания!",
@@ -627,7 +277,7 @@
    ],
    "correct": "светлого искусства",
    "case": "Родительный (Genitive)",
-   "explain": "«светлого искусства» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«светлого искусства» — «от» always takes the genitive.",
    "id": "c50"
   },
   {
@@ -641,7 +291,7 @@
    ],
    "correct": "юного гения",
    "case": "Родительный (Genitive)",
-   "explain": "«юного гения» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«юного гения» depends on the noun «шалости» (whose? of what?) — genitive.",
    "id": "c51"
   },
   {
@@ -655,92 +305,8 @@
    ],
    "correct": "журнального шаблона",
    "case": "Родительный (Genitive)",
-   "explain": "«журнального шаблона» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«журнального шаблона» depends on the noun «формах» (whose? of what?) — genitive.",
    "id": "c52"
-  },
-  {
-   "sentence": "Нет только одного: доказательства, что ___ не порнография, а «светлое искусство».",
-   "lemma": "произведение",
-   "options": [
-    "зашщишаемому произведению",
-    "зашщишаемое произведение",
-    "зашщишаемом произведении",
-    "зашщишаемого произведения"
-   ],
-   "correct": "зашщишаемое произведение",
-   "case": "Именительный (Nominative)",
-   "explain": "«зашщишаемое произведение» — the subject of the sentence stands in the nominative.",
-   "id": "c53"
-  },
-  {
-   "sentence": "Нет только одного: доказательства, что зашщишаемое произведение не порнография, а «___».",
-   "lemma": "искусство",
-   "options": [
-    "светлое искусство",
-    "светлого искусства",
-    "светлом искусстве",
-    "светлым искусством"
-   ],
-   "correct": "светлое искусство",
-   "case": "Именительный (Nominative)",
-   "explain": "«светлое искусство» — the subject of the sentence stands in the nominative.",
-   "id": "c54"
-  },
-  {
-   "sentence": "К тому же роду софизмов ___ относится одна из самых обычных уловок спора — бездоказательная оценка доводов противника.",
-   "lemma": "название",
-   "options": [
-    "произвольным названием",
-    "произвольному названию",
-    "произвольного названия",
-    "произвольное название"
-   ],
-   "correct": "произвольного названия",
-   "case": "Родительный (Genitive)",
-   "explain": "«произвольного названия» — the genitive here marks possession, absence, or quantity.",
-   "id": "c55"
-  },
-  {
-   "sentence": "К тому же роду софизмов произвольного названия относится одна из самых ___ спора — бездоказательная оценка доводов противника.",
-   "lemma": "уловка",
-   "options": [
-    "обычными уловками",
-    "обычным уловкам",
-    "обычных уловок",
-    "обычные уловки"
-   ],
-   "correct": "обычных уловок",
-   "case": "Родительный (Genitive)",
-   "explain": "«обычных уловок» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
-   "id": "c56"
-  },
-  {
-   "sentence": "К тому же роду софизмов произвольного названия относится одна из самых обычных уловок спора — ___ доводов противника.",
-   "lemma": "оценка",
-   "options": [
-    "бездоказательной оценкой",
-    "бездоказательной оценки",
-    "бездоказательная оценка",
-    "бездоказательной оценке"
-   ],
-   "correct": "бездоказательная оценка",
-   "case": "Именительный (Nominative)",
-   "explain": "«бездоказательная оценка» — the subject of the sentence stands in the nominative.",
-   "id": "c57"
-  },
-  {
-   "sentence": "Если они потом и докажут правильность своей оценки, то все-таки подобные ___ доводов противника по меньшей мере излишни.",
-   "lemma": "квалификация",
-   "options": [
-    "резкие квалификации",
-    "резким квалификациям",
-    "резкими квалификациями",
-    "резких квалификациях"
-   ],
-   "correct": "резкие квалификации",
-   "case": "Именительный (Nominative)",
-   "explain": "«резкие квалификации» — the subject of the sentence stands in the nominative.",
-   "id": "c58"
   },
   {
    "sentence": "Надо сказать, однако, что в ___ случаев такие оценки и недоказуемы и неправильны.",
@@ -753,64 +319,8 @@
    ],
    "correct": "огромном большинстве",
    "case": "Предложный (Prepositional)",
-   "explain": "«огромном большинстве» — after the preposition «в», for location or topic.",
+   "explain": "«огромном большинстве» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c59"
-  },
-  {
-   "sentence": "Это уже чистейший софизм ___: название заменяет довод, а само не доказано, Даже более — это один из самых грубых софизмов этого рода.",
-   "lemma": "название",
-   "options": [
-    "произвольным названием",
-    "произвольному названию",
-    "произвольного названия",
-    "произвольное название"
-   ],
-   "correct": "произвольного названия",
-   "case": "Родительный (Genitive)",
-   "explain": "«произвольного названия» — the genitive here marks possession, absence, or quantity.",
-   "id": "c60"
-  },
-  {
-   "sentence": "Это уже чистейший софизм произвольного названия: название заменяет довод, а само не доказано, Даже более — это один из самых ___ этого рода.",
-   "lemma": "софизм",
-   "options": [
-    "грубыми софизмами",
-    "грубых софизмах",
-    "грубым софизмам",
-    "грубых софизмов"
-   ],
-   "correct": "грубых софизмов",
-   "case": "Родительный (Genitive)",
-   "explain": "«грубых софизмов» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
-   "id": "c61"
-  },
-  {
-   "sentence": "Жизнь человека — великий ___ — говорил Луи Блан.",
-   "lemma": "долг",
-   "options": [
-    "социальный долг",
-    "социального долга",
-    "социальном долге",
-    "социальным долгом"
-   ],
-   "correct": "социальный долг",
-   "case": "Именительный (Nominative)",
-   "explain": "«социальный долг» — the subject of the sentence stands in the nominative.",
-   "id": "c62"
-  },
-  {
-   "sentence": "Или ___ (из Тургенева).",
-   "lemma": "пример",
-   "options": [
-    "другого примера",
-    "другим примером",
-    "другому примеру",
-    "другой пример"
-   ],
-   "correct": "другой пример",
-   "case": "Именительный (Nominative)",
-   "explain": "«другой пример» — the subject of the sentence stands in the nominative.",
-   "id": "c63"
   },
   {
    "sentence": "К ___ относятся или с ними связаны и более тонкие, переплетенные с другими софизмами оценки доводов, с целью отделаться от труда на них ответить.",
@@ -823,7 +333,7 @@
    ],
    "correct": "произвольным доводам",
    "case": "Дательный (Dative)",
-   "explain": "«произвольным доводам» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«произвольным доводам» — «к» always takes the dative.",
    "id": "c64"
   },
   {
@@ -837,36 +347,8 @@
    ],
    "correct": "произвольного довода",
    "case": "Родительный (Genitive)",
-   "explain": "«произвольного довода» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«произвольного довода» depends on the noun «уловки» (whose? of what?) — genitive.",
    "id": "c66"
-  },
-  {
-   "sentence": "Сюда же примыкают и такие уловки произвольного довода, как та, в которой один ___ упрекает В.",
-   "lemma": "логик",
-   "options": [
-    "английском логике",
-    "английский логик",
-    "английским логиком",
-    "английского логика"
-   ],
-   "correct": "английский логик",
-   "case": "Именительный (Nominative)",
-   "explain": "«английский логик» — the subject of the sentence stands in the nominative.",
-   "id": "c67"
-  },
-  {
-   "sentence": "Далее одним из самых ___ произвольного довода являются неправильные ссылки на авторитеты.",
-   "lemma": "вид",
-   "options": [
-    "употребительным видам",
-    "употребительных видов",
-    "употребительными видами",
-    "употребительные виды"
-   ],
-   "correct": "употребительных видов",
-   "case": "Родительный (Genitive)",
-   "explain": "«употребительных видов» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
-   "id": "c68"
   },
   {
    "sentence": "Далее одним из самых употребительных видов ___ являются неправильные ссылки на авторитеты.",
@@ -879,7 +361,7 @@
    ],
    "correct": "произвольного довода",
    "case": "Родительный (Genitive)",
-   "explain": "«произвольного довода» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«произвольного довода» depends on the noun «видов» (whose? of what?) — genitive.",
    "id": "c69"
   },
   {
@@ -893,21 +375,21 @@
    ],
    "correct": "остальных случаях",
    "case": "Предложный (Prepositional)",
-   "explain": "«остальных случаях» — after the preposition «в», for location or topic.",
+   "explain": "«остальных случаях» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c71"
   },
   {
    "sentence": "Но и при соблюдении указанных условий ссылка на авторитет имеет ___ вероятности, которые необходимо учитывать каждый раз отдельно.",
    "lemma": "степень",
    "options": [
-    "разных степеней",
     "разными степенями",
     "разные степени",
+    "разных степенях",
     "разным степеням"
    ],
    "correct": "разные степени",
    "case": "Винительный (Accusative)",
-   "explain": "«разные степени» — the accusative marks the direct object of the verb.",
+   "explain": "«разные степени» is the direct object of «имеет» (кого? что?) — accusative.",
    "id": "c72"
   },
   {
@@ -921,7 +403,7 @@
    ],
    "correct": "данного лица",
    "case": "Родительный (Genitive)",
-   "explain": "«данного лица» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«данного лица» depends on the noun «специальности» (whose? of what?) — genitive.",
    "id": "c73"
   },
   {
@@ -935,134 +417,8 @@
    ],
    "correct": "мирового эфира",
    "case": "Родительный (Genitive)",
-   "explain": "«мирового эфира» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«мирового эфира» depends on the noun «Теория» (whose? of what?) — genitive.",
    "id": "c75"
-  },
-  {
-   "sentence": "В подтверждение он ссылается на слова профессора Икса, известного своим ___ и широкими познаниями в современном положении физики.",
-   "lemma": "ум",
-   "options": [
-    "точным умом",
-    "точного ума",
-    "точном уме",
-    "точный ум"
-   ],
-   "correct": "точным умом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«точным умом» — the instrumental marks the means, company, or complement.",
-   "id": "c76"
-  },
-  {
-   "sentence": "В подтверждение он ссылается на слова профессора Икса, известного своим точным умом и ___ в современном положении физики.",
-   "lemma": "познание",
-   "options": [
-    "широких познаниях",
-    "широких познаний",
-    "широким познаниям",
-    "широкими познаниями"
-   ],
-   "correct": "широкими познаниями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«широкими познаниями» — the instrumental marks the means, company, or complement.",
-   "id": "c77"
-  },
-  {
-   "sentence": "Тем, например, про которых можно повторить слова Гоголя: «У него есть ум, но сейчас по выходе журнала, а запоздала выходом книжка — и в голове ничего» («___»).",
-   "lemma": "разъезд",
-   "options": [
-    "театральному разъезду",
-    "театральным разъездом",
-    "театральный разъезд",
-    "театрального разъезда"
-   ],
-   "correct": "театральный разъезд",
-   "case": "Именительный (Nominative)",
-   "explain": "«Театральный разъезд» — the subject of the sentence stands in the nominative.",
-   "id": "c79"
-  },
-  {
-   "sentence": "В виде небезынтересного ___ споров в этом роде приведу рассказ «Радда Бай» (Блаватской).",
-   "lemma": "пример",
-   "options": [
-    "характерным примером",
-    "характерному примеру",
-    "характерного примера",
-    "характерном примере"
-   ],
-   "correct": "характерного примера",
-   "case": "Родительный (Genitive)",
-   "explain": "«характерного примера» — the genitive here marks possession, absence, or quantity.",
-   "id": "c80"
-  },
-  {
-   "sentence": "___, нервно заиграв кольцами на ногах, обратился с новым вопросом, довольно на этот раз оригинальным.",
-   "lemma": "магистр",
-   "options": [
-    "юному магистру",
-    "юный магистр",
-    "юном магистре",
-    "юным магистром"
-   ],
-   "correct": "юный магистр",
-   "case": "Именительный (Nominative)",
-   "explain": "«Юный магистр» — the subject of the sentence stands in the nominative.",
-   "id": "c81"
-  },
-  {
-   "sentence": "Юный магистр, нервно заиграв кольцами на ногах, обратился с ___, довольно на этот раз оригинальным.",
-   "lemma": "вопрос",
-   "options": [
-    "новому вопросу",
-    "новый вопрос",
-    "новым вопросом",
-    "новом вопросе"
-   ],
-   "correct": "новым вопросом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«новым вопросом» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c82"
-  },
-  {
-   "sentence": "(Далее юноша совершает диверсию от этого довода и переходит к ___, тоже очень характерному для подобного рода умов).",
-   "lemma": "довод",
-   "options": [
-    "другой довод",
-    "другим доводом",
-    "другому доводу",
-    "другом доводе"
-   ],
-   "correct": "другому доводу",
-   "case": "Дательный (Dative)",
-   "explain": "«другому доводу» — after the preposition «к», the dative marks the indirect object or recipient.",
-   "id": "c83"
-  },
-  {
-   "sentence": "(Далее юноша совершает диверсию от этого довода и переходит к другому доводу, тоже очень характерному для ___ умов).",
-   "lemma": "род",
-   "options": [
-    "подобном роде",
-    "подобным родом",
-    "подобный род",
-    "подобного рода"
-   ],
-   "correct": "подобного рода",
-   "case": "Родительный (Genitive)",
-   "explain": "«подобного рода» — the genitive here marks possession, absence, or quantity.",
-   "id": "c84"
-  },
-  {
-   "sentence": "Знаменитый ___ и зоолог 60-х и 70-х годов Х1Х столетия.",
-   "lemma": "биолог",
-   "options": [
-    "английском биологе",
-    "английский биолог",
-    "английскому биологу",
-    "английского биолога"
-   ],
-   "correct": "английский биолог",
-   "case": "Именительный (Nominative)",
-   "explain": "«английский биолог» — the subject of the sentence stands in the nominative.",
-   "id": "c85"
   },
   {
    "sentence": "Или ошибка неграмотного в логике и в науке ___, или софизм, т.е. лживый довод.",
@@ -1075,22 +431,8 @@
    ],
    "correct": "незрелого мышления",
    "case": "Родительный (Genitive)",
-   "explain": "«незрелого мышления» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«незрелого мышления» depends on the noun «науке» (whose? of what?) — genitive.",
    "id": "c86"
-  },
-  {
-   "sentence": "Или ошибка неграмотного в логике и в науке незрелого мышления, или софизм, т.е. ___.",
-   "lemma": "довод",
-   "options": [
-    "лживого довода",
-    "лживом доводе",
-    "лживый довод",
-    "лживым доводом"
-   ],
-   "correct": "лживый довод",
-   "case": "Именительный (Nominative)",
-   "explain": "«лживый довод» — the subject of the sentence stands in the nominative.",
-   "id": "c87"
   },
   {
    "sentence": "Уловка ___ — совершенное отрицание авторитетов.",
@@ -1103,7 +445,7 @@
    ],
    "correct": "противоположного характера",
    "case": "Родительный (Genitive)",
-   "explain": "«противоположного характера» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«противоположного характера» depends on the noun «Уловка» (whose? of what?) — genitive.",
    "id": "c88"
   },
   {
@@ -1117,7 +459,7 @@
    ],
    "correct": "нужного труда",
    "case": "Родительный (Genitive)",
-   "explain": "«нужного труда» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«нужного труда» depends on the noun «затратой» (whose? of what?) — genitive.",
    "id": "c90"
   },
   {
@@ -1131,22 +473,8 @@
    ],
    "correct": "житейского опыта",
    "case": "Родительный (Genitive)",
-   "explain": "«житейского опыта» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«житейского опыта» depends on the noun «пределы» (whose? of what?) — genitive.",
    "id": "c91"
-  },
-  {
-   "sentence": "В остальном мы поневоле основываемся на опыте и знаниях всего ___.",
-   "lemma": "человечество",
-   "options": [
-    "прочему человечеству",
-    "прочем человечестве",
-    "прочего человечества",
-    "прочее человечество"
-   ],
-   "correct": "прочего человечества",
-   "case": "Родительный (Genitive)",
-   "explain": "«прочего человечества» — the genitive here marks possession, absence, or quantity.",
-   "id": "c92"
   },
   {
    "sentence": "Поэтому ___ авторитетов чаще всего является «мальчишеством» или результатом недомыслия, или софизмом — в параллель софизму злоупотребления авторитетами.",
@@ -1159,7 +487,7 @@
    ],
    "correct": "полное отрицание",
    "case": "Именительный (Nominative)",
-   "explain": "«полное отрицание» — the subject of the sentence stands in the nominative.",
+   "explain": "«полное отрицание» is the subject of «является» — who or what does it — so nominative.",
    "id": "c93"
   },
   {
@@ -1173,22 +501,8 @@
    ],
    "correct": "свободного мыслителя",
    "case": "Родительный (Genitive)",
-   "explain": "«свободного мыслителя» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«свободного мыслителя» depends on the noun «отвага» (whose? of what?) — genitive.",
    "id": "c94"
-  },
-  {
-   "sentence": "Иногда это отвага «свободного мыслителя», у которого мысль «свободна» потому, что не связана принципами разума, или же выходка ___ мысли, «оригинальничающего» своим отрицанием, по заветам доброй старины.",
-   "lemma": "дилетант",
-   "options": [
-    "юному дилетанту",
-    "юным дилетантом",
-    "юного дилетанта",
-    "юный дилетант"
-   ],
-   "correct": "юного дилетанта",
-   "case": "Родительный (Genitive)",
-   "explain": "«юного дилетанта» — the genitive here marks possession, absence, or quantity.",
-   "id": "c95"
   },
   {
    "sentence": "Иногда это отвага «свободного мыслителя», у которого мысль «свободна» потому, что не связана принципами разума, или же выходка юного дилетанта мысли, «оригинальничающего» своим отрицанием, по заветам ___.",
@@ -1201,7 +515,7 @@
    ],
    "correct": "доброй старины",
    "case": "Родительный (Genitive)",
-   "explain": "«доброй старины» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«доброй старины» depends on the noun «заветам» (whose? of what?) — genitive.",
    "id": "c96"
   },
   {
@@ -1215,36 +529,8 @@
    ],
    "correct": "полное отрицание",
    "case": "Именительный (Nominative)",
-   "explain": "«полное отрицание» — the subject of the sentence stands in the nominative.",
+   "explain": "«полное отрицание» is the subject of «встречается» — who or what does it — so nominative.",
    "id": "c97"
-  },
-  {
-   "sentence": "Чаще, однако, встречается в настоящее время не полное отрицание авторитетов, а ___: отрицание того авторитета, который правильно приводится в подкрепление своей мысли противником.",
-   "lemma": "софизм",
-   "options": [
-    "другого софизма",
-    "другой софизм",
-    "другом софизме",
-    "другим софизмом"
-   ],
-   "correct": "другой софизм",
-   "case": "Именительный (Nominative)",
-   "explain": "«другой софизм» — the subject of the sentence stands in the nominative.",
-   "id": "c98"
-  },
-  {
-   "sentence": "Однако, в таких случаях на помощь доводу, как недоказанному, приходится подбирать ___.",
-   "lemma": "довод",
-   "options": [
-    "другие доводы",
-    "других доводах",
-    "других доводов",
-    "другими доводами"
-   ],
-   "correct": "другие доводы",
-   "case": "Винительный (Accusative)",
-   "explain": "«другие доводы» — the accusative marks the direct object of the verb.",
-   "id": "c99"
   }
  ]
 }

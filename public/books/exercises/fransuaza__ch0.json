@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Он сдал свой груз в Китае, взял там ___, отвез его в Буэнос-Айрес и оттуда повез товары в Бразилию.",
-   "lemma": "груз",
-   "options": [
-    "новый груз",
-    "новым грузом",
-    "новом грузе",
-    "нового груза"
-   ],
-   "correct": "новый груз",
-   "case": "Винительный (Accusative)",
-   "explain": "«новый груз» — the accusative marks the direct object of the verb.",
-   "id": "c2"
-  },
-  {
    "sentence": "Во время путешествия один матрос умер, четыре пропали при ___ и только девять воротились во Францию.",
    "lemma": "приключение",
    "options": [
@@ -25,21 +11,21 @@
    ],
    "correct": "разных приключениях",
    "case": "Предложный (Prepositional)",
-   "explain": "«разных приключениях» — after the preposition «при», for location or topic.",
+   "explain": "«разных приключениях» — «при» always takes the prepositional.",
    "id": "c3"
   },
   {
    "sentence": "«Богородица-Ветров» стала между ___ и английскою галеттой, которые потеснились, чтобы дать место новому товарищу.",
    "lemma": "бриг",
    "options": [
-    "итальянскому бригу",
     "итальянском бриге",
-    "итальянского брига",
+    "итальянскому бригу",
+    "итальянский бриг",
     "итальянским бригом"
    ],
    "correct": "итальянским бригом",
    "case": "Творительный (Instrumental)",
-   "explain": "«итальянским бригом» — after the preposition «между», the instrumental marks the means, company, or complement.",
+   "explain": "«итальянским бригом» — «между» + instrumental: between.",
    "id": "c4"
   },
   {
@@ -53,50 +39,8 @@
    ],
    "correct": "новому товарищу",
    "case": "Дательный (Dative)",
-   "explain": "«новому товарищу» — the dative marks the indirect object or recipient.",
+   "explain": "«новому товарищу» is the indirect object of «дать» — to or for whom (кому?) — dative.",
    "id": "c5"
-  },
-  {
-   "sentence": "Как только капитан разделался с таможенными и ___, он отпустил половину матросов на всю ночь на берег.",
-   "lemma": "чиновник",
-   "options": [
-    "портовые чиновники",
-    "портовым чиновникам",
-    "портовыми чиновниками",
-    "портовых чиновниках"
-   ],
-   "correct": "портовыми чиновниками",
-   "case": "Творительный (Instrumental)",
-   "explain": "«портовыми чиновниками» — the instrumental marks the means, company, or complement.",
-   "id": "c6"
-  },
-  {
-   "sentence": "Впереди их шел Селестин Дюкло, ___ и ловкий.",
-   "lemma": "парень",
-   "options": [
-    "здоровенным парнем",
-    "здоровенному парню",
-    "здоровенный парень",
-    "здоровенного парня"
-   ],
-   "correct": "здоровенный парень",
-   "case": "Именительный (Nominative)",
-   "explain": "«здоровенный парень» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
-  },
-  {
-   "sentence": "Наконец Селестин выбрал один ___, в котором горели над дверями выпуклые фонари, и вошел в него.",
-   "lemma": "переулок",
-   "options": [
-    "узком переулке",
-    "узкий переулок",
-    "узким переулком",
-    "узкого переулка"
-   ],
-   "correct": "узкий переулок",
-   "case": "Винительный (Accusative)",
-   "explain": "«узкий переулок» — the accusative marks the direct object of the verb.",
-   "id": "c8"
   },
   {
    "sentence": "На матовых раскрашенных стеклах фонарей были выписаны ___.",
@@ -109,36 +53,8 @@
    ],
    "correct": "огромные цифры",
    "case": "Именительный (Nominative)",
-   "explain": "«огромные цифры» — the subject of the sentence stands in the nominative.",
+   "explain": "«огромные цифры» is the subject of «выписаны» — who or what does it — so nominative.",
    "id": "c9"
-  },
-  {
-   "sentence": "___ в глубине сеней нечаянно распахивалась дверь.",
-   "lemma": "раз",
-   "options": [
-    "ином разе",
-    "иному разу",
-    "иным разом",
-    "иной раз"
-   ],
-   "correct": "иной раз",
-   "case": "Винительный (Accusative)",
-   "explain": "«Иной раз» — the accusative marks the direct object of the verb.",
-   "id": "c11"
-  },
-  {
-   "sentence": "Из нее показывалась полураздетая девка в грубых бумажных ___, в коротенькой юбке и в бархатном черном нагруднике с позолоченными позументами.",
-   "lemma": "штаны",
-   "options": [
-    "обтянутым штанам",
-    "обтянутые штаны",
-    "обтянутых штанов",
-    "обтянутых штанах"
-   ],
-   "correct": "обтянутых штанах",
-   "case": "Предложный (Prepositional)",
-   "explain": "«обтянутых штанах» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c13"
   },
   {
    "sentence": "Из нее показывалась полураздетая девка в грубых бумажных обтянутых штанах, в ___ и в бархатном черном нагруднике с позолоченными позументами.",
@@ -151,36 +67,8 @@
    ],
    "correct": "коротенькой юбке",
    "case": "Предложный (Prepositional)",
-   "explain": "«коротенькой юбке» — after the preposition «в», for location or topic.",
+   "explain": "«коротенькой юбке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c14"
-  },
-  {
-   "sentence": "В других переулках светились такие же фонари, но матросы шли дальше и дальше, шагая через вонючую жижу, сочившуюся из-под домов, полных ___.",
-   "lemma": "тело",
-   "options": [
-    "женских телах",
-    "женских тел",
-    "женскими телами",
-    "женским телам"
-   ],
-   "correct": "женскими телами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«женскими телами» — the instrumental marks the means, company, or complement.",
-   "id": "c16"
-  },
-  {
-   "sentence": "Долго и громко стучали ___ двадцати ног по деревянным ступенькам, пока они все ввалились через узкие двери и разбрелись по спальным комнатам.",
-   "lemma": "башмак",
-   "options": [
-    "толстых башмаках",
-    "толстые башмаки",
-    "толстыми башмаками",
-    "толстых башмаков"
-   ],
-   "correct": "толстые башмаки",
-   "case": "Винительный (Accusative)",
-   "explain": "«толстые башмаки» — the accusative marks the direct object of the verb.",
-   "id": "c17"
   },
   {
    "sentence": "Долго и громко стучали толстые башмаки двадцати ног по деревянным ступенькам, пока они все ввалились через ___ и разбрелись по спальным комнатам.",
@@ -193,7 +81,7 @@
    ],
    "correct": "узкие двери",
    "case": "Винительный (Accusative)",
-   "explain": "«узкие двери» — after the preposition «через», the accusative marks the direct object of the verb.",
+   "explain": "«узкие двери» — «через» always takes the accusative.",
    "id": "c19"
   },
   {
@@ -207,7 +95,7 @@
    ],
    "correct": "спальных комнат",
    "case": "Родительный (Genitive)",
-   "explain": "«спальных комнат» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«спальных комнат» — «из» always takes the genitive.",
    "id": "c21"
   },
   {
@@ -221,7 +109,7 @@
    ],
    "correct": "кое-какие мысли",
    "case": "Именительный (Nominative)",
-   "explain": "«кое-какие мысли» — the subject of the sentence stands in the nominative.",
+   "explain": "«кое-какие мысли» is the subject of «бродили» — who or what does it — so nominative.",
    "id": "c22"
   },
   {
@@ -235,92 +123,8 @@
    ],
    "correct": "прошлой неделе",
    "case": "Предложный (Prepositional)",
-   "explain": "«прошлой неделе» — after the preposition «на», for location or topic.",
+   "explain": "«прошлой неделе» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c23"
-  },
-  {
-   "sentence": "А вокруг них остальные орали ___.",
-   "lemma": "голос",
-   "options": [
-    "пьяных голосах",
-    "пьяными голосами",
-    "пьяным голосам",
-    "пьяные голоса"
-   ],
-   "correct": "пьяными голосами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«пьяными голосами» — the instrumental marks the means, company, or complement.",
-   "id": "c24"
-  },
-  {
-   "sentence": "Звон стаканов, стук ладонями и каблуками и ___ женщин перемешивались с гамом песен.",
-   "lemma": "визг",
-   "options": [
-    "пронзительному визгу",
-    "пронзительный визг",
-    "пронзительного визга",
-    "пронзительном визге"
-   ],
-   "correct": "пронзительный визг",
-   "case": "Именительный (Nominative)",
-   "explain": "«пронзительный визг» — the subject of the sentence stands in the nominative.",
-   "id": "c25"
-  },
-  {
-   "sentence": "Сердце его сжималось так больно и так сильно, что ему хотелось кричать и реветь, как ___, когда его бьют.",
-   "lemma": "мальчик",
-   "options": [
-    "маленьким мальчиком",
-    "маленьком мальчике",
-    "маленького мальчика",
-    "маленькому мальчику"
-   ],
-   "correct": "маленькому мальчику",
-   "case": "Дательный (Dative)",
-   "explain": "«маленькому мальчику» — the dative marks the indirect object or recipient.",
-   "id": "c26"
-  },
-  {
-   "sentence": "Он поднялся, отстранил ее от себя и, схватив своими большими ___ ее голову, пристально стал вглядываться в ее лицо.",
-   "lemma": "лапа",
-   "options": [
-    "матросских лапах",
-    "матросских лап",
-    "матросские лапы",
-    "матросскими лапами"
-   ],
-   "correct": "матросскими лапами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«матросскими лапами» — the instrumental marks the means, company, or complement.",
-   "id": "c27"
-  },
-  {
-   "sentence": "Он отпустил ее голову, ударил по столу так, что стаканы опрокинулись и разлетелись вдребезги, и закричал ___.",
-   "lemma": "голос",
-   "options": [
-    "диким голосом",
-    "дикого голоса",
-    "дикому голосу",
-    "дикий голос"
-   ],
-   "correct": "диким голосом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«диким голосом» — the instrumental marks the means, company, or complement.",
-   "id": "c28"
-  },
-  {
-   "sentence": "Идем опять наверх,— сказал третий, одной рукой дергая Селестина за рукав, а другой обнимая свою хохотавшую, раскрасневшуюся, с блестящими черными глазами подругу в шелковом розовом ___.",
-   "lemma": "лиф",
-   "options": [
-    "открытом лифе",
-    "открытому лифу",
-    "открытого лифа",
-    "открытый лиф"
-   ],
-   "correct": "открытом лифе",
-   "case": "Предложный (Prepositional)",
-   "explain": "«открытом лифе» — after the preposition «в», for location or topic.",
-   "id": "c29"
   }
  ]
 }

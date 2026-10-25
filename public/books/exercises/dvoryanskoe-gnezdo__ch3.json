@@ -1,31 +1,17 @@
 {
  "cases": [
   {
-   "sentence": "___, с которым мы только что познакомили читателей, прозывался Владимиром Николаичем Паншиным.",
-   "lemma": "человек",
-   "options": [
-    "молодого человека",
-    "молодом человеке",
-    "молодой человек",
-    "молодому человеку"
-   ],
-   "correct": "молодой человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«Молодой человек» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Он служил в Петербурге чиновником по особым поручениям в министерстве ___.",
    "lemma": "дело",
    "options": [
-    "внутренним делам",
     "внутренние дела",
-    "внутренних дел",
-    "внутренними делами"
+    "внутренним делам",
+    "внутренних делах",
+    "внутренних дел"
    ],
    "correct": "внутренних дел",
    "case": "Родительный (Genitive)",
-   "explain": "«внутренних дел» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«внутренних дел» depends on the noun «министерстве» (whose? of what?) — genitive.",
    "id": "c3"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "самом рубеже",
    "case": "Предложный (Prepositional)",
-   "explain": "«самом рубеже» — after the preposition «на», for location or topic.",
+   "explain": "«самом рубеже» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c5"
   },
   {
@@ -48,12 +34,12 @@
    "options": [
     "единственным сыном",
     "единственному сыну",
-    "единственного сына",
-    "единственный сын"
+    "единственный сын",
+    "единственном сыне"
    ],
    "correct": "единственному сыну",
    "case": "Дательный (Dative)",
-   "explain": "«единственному сыну» — the dative marks the indirect object or recipient.",
+   "explain": "«единственному сыну» is the indirect object of «оставил» — to or for whom (кому?) — dative.",
    "id": "c6"
   },
   {
@@ -67,91 +53,21 @@
    ],
    "correct": "действительного студента",
    "case": "Родительный (Genitive)",
-   "explain": "«действительного студента» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«действительного студента» depends on the noun «чином» (whose? of what?) — genitive.",
    "id": "c8"
-  },
-  {
-   "sentence": "С своей стороны, Владимир Николаич во время пребывания в университете, откуда он вышел с чином действительного студента, познакомился с некоторыми знатными ___ и стал вхож в лучшие дома.",
-   "lemma": "человек",
-   "options": [
-    "молодых людях",
-    "молодыми людьми",
-    "молодым людям",
-    "молодых людей"
-   ],
-   "correct": "молодыми людьми",
-   "case": "Творительный (Instrumental)",
-   "explain": "«молодыми людьми» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c9"
-  },
-  {
-   "sentence": "Его везде охотно принимали; он был очень недурен собою, развязен, забавен, всегда здоров и на все готов; где нужно — почтителен, где можно — дерзок, ___, un charmant garçon.",
-   "lemma": "товарищ",
-   "options": [
-    "отличного товарища",
-    "отличному товарищу",
-    "отличный товарищ",
-    "отличным товарищем"
-   ],
-   "correct": "отличный товарищ",
-   "case": "Именительный (Nominative)",
-   "explain": "«отличный товарищ» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
-  },
-  {
-   "sentence": "В короткое время он прослыл одним из самых любезных и ловких ___ в Петербурге.",
-   "lemma": "человек",
-   "options": [
-    "молодым людям",
-    "молодыми людьми",
-    "молодых людях",
-    "молодых людей"
-   ],
-   "correct": "молодых людей",
-   "case": "Родительный (Genitive)",
-   "explain": "«молодых людей» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
-   "id": "c11"
-  },
-  {
-   "sentence": "Ему всего пошел двадцать ___, а он был уже камер-юнкером и чин имел весьма изрядный.",
-   "lemma": "год",
-   "options": [
-    "восьмом годе",
-    "восьмой год",
-    "восьмым годом",
-    "восьмого года"
-   ],
-   "correct": "восьмой год",
-   "case": "Винительный (Accusative)",
-   "explain": "«восьмой год» — the accusative marks the direct object of the verb.",
-   "id": "c12"
-  },
-  {
-   "sentence": "Паншин твердо верил в себя, в свой ум, в свою проницательность; он шел вперед смело и весело, ___; жизнь его текла как по маслу.",
-   "lemma": "мах",
-   "options": [
-    "полный мах",
-    "полным махом",
-    "полному маху",
-    "полного маха"
-   ],
-   "correct": "полным махом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«полным махом» — the instrumental marks the means, company, or complement.",
-   "id": "c13"
   },
   {
    "sentence": "Он привык нравиться всем, старому и малому, и воображал, что знает людей, особенно женщин: он хорошо знал их ___.",
    "lemma": "слабость",
    "options": [
-    "обыденные слабости",
-    "обыденных слабостей",
+    "обыденными слабостями",
     "обыденных слабостях",
-    "обыденными слабостями"
+    "обыденные слабости",
+    "обыденным слабостям"
    ],
    "correct": "обыденные слабости",
    "case": "Винительный (Accusative)",
-   "explain": "«обыденные слабости» — the accusative marks the direct object of the verb.",
+   "explain": "«обыденные слабости» is the direct object of «знал» (кого? что?) — accusative.",
    "id": "c14"
   },
   {
@@ -165,7 +81,7 @@
    ],
    "correct": "блестящем чиновнике",
    "case": "Предложный (Prepositional)",
-   "explain": "«блестящем чиновнике» — after the preposition «в», for location or topic.",
+   "explain": "«блестящем чиновнике» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c15"
   },
   {
@@ -179,35 +95,21 @@
    ],
    "correct": "молодой человек",
    "case": "Именительный (Nominative)",
-   "explain": "«молодой человек» — the subject of the sentence stands in the nominative.",
+   "explain": "«молодой человек» is the subject of «успевает» — who or what does it — so nominative.",
    "id": "c17"
-  },
-  {
-   "sentence": "Впрочем, Паншина и в Петербурге считали ___: работа кипела у него в руках; он говорил о ней шутя, как оно и следует светскому человеку, не придающему особенного значения своим трудам, но был «исполнитель».",
-   "lemma": "чиновник",
-   "options": [
-    "дельным чиновником",
-    "дельного чиновника",
-    "дельный чиновник",
-    "дельном чиновнике"
-   ],
-   "correct": "дельным чиновником",
-   "case": "Творительный (Instrumental)",
-   "explain": "«дельным чиновником» — the instrumental marks the means, company, or complement.",
-   "id": "c18"
   },
   {
    "sentence": "Впрочем, Паншина и в Петербурге считали дельным чиновником: работа кипела у него в руках; он говорил о ней шутя, как оно и следует ___, не придающему особенного значения своим трудам, но был «исполнитель».",
    "lemma": "человек",
    "options": [
-    "светскому человеку",
-    "светского человека",
     "светском человеке",
-    "светский человек"
+    "светским человеком",
+    "светский человек",
+    "светскому человеку"
    ],
    "correct": "светскому человеку",
    "case": "Дательный (Dative)",
-   "explain": "«светскому человеку» — the dative marks the indirect object or recipient.",
+   "explain": "«следует» takes the dative (кому? чему?).",
    "id": "c19"
   },
   {
@@ -221,36 +123,8 @@
    ],
    "correct": "особенного значения",
    "case": "Родительный (Genitive)",
-   "explain": "«особенного значения» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«особенного значения» is the object of a negated verb («не придающему») — genitive instead of the accusative.",
    "id": "c20"
-  },
-  {
-   "sentence": "— Беленицына только хвасталась, что у ней вся ___, — на деле у ней, кроме полек и вальсов, ничего нет; но я уже написал в Москву, и через неделю вы будете иметь эту увертюру.",
-   "lemma": "музыка",
-   "options": [
-    "классической музыке",
-    "классической музыкой",
-    "классическая музыка",
-    "классической музыки"
-   ],
-   "correct": "классическая музыка",
-   "case": "Именительный (Nominative)",
-   "explain": "«классическая музыка» — the subject of the sentence stands in the nominative.",
-   "id": "c22"
-  },
-  {
-   "sentence": "___ был спет Паншиным с особенным выражением и силой; в бурном аккомпанементе слышались переливы волн.",
-   "lemma": "куплет",
-   "options": [
-    "второй куплет",
-    "второму куплету",
-    "втором куплете",
-    "второго куплета"
-   ],
-   "correct": "второй куплет",
-   "case": "Именительный (Nominative)",
-   "explain": "«Второй куплет» — the subject of the sentence stands in the nominative.",
-   "id": "c23"
   },
   {
    "sentence": "Второй куплет был спет Паншиным с ___ и силой; в бурном аккомпанементе слышались переливы волн.",
@@ -263,36 +137,8 @@
    ],
    "correct": "особенным выражением",
    "case": "Творительный (Instrumental)",
-   "explain": "«особенным выражением» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«особенным выражением» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c24"
-  },
-  {
-   "sentence": "— Я не слушиль, — произнес дурным ___ вошедший человек и, раскланявшись со всеми, неловко остановился посреди комнаты.",
-   "lemma": "язык",
-   "options": [
-    "русскому языку",
-    "русский язык",
-    "русского языка",
-    "русским языком"
-   ],
-   "correct": "русским языком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«русским языком» — the instrumental marks the means, company, or complement.",
-   "id": "c26"
-  },
-  {
-   "sentence": "Старик покраснел до ушей, бросил ___ на Лизу и торопливо вышел из комнаты.",
-   "lemma": "взгляд",
-   "options": [
-    "косвенным взглядом",
-    "косвенного взгляда",
-    "косвенный взгляд",
-    "косвенному взгляду"
-   ],
-   "correct": "косвенный взгляд",
-   "case": "Винительный (Accusative)",
-   "explain": "«косвенный взгляд» — the accusative marks the direct object of the verb.",
-   "id": "c27"
   },
   {
    "sentence": "Сверху доносились ___ гамм, разыгрываемых неверными пальчиками Леночки.",
@@ -305,7 +151,7 @@
    ],
    "correct": "слабые звуки",
    "case": "Именительный (Nominative)",
-   "explain": "«слабые звуки» — the subject of the sentence stands in the nominative.",
+   "explain": "«слабые звуки» is the subject of «доносились» — who or what does it — so nominative.",
    "id": "c28"
   },
   {
@@ -319,7 +165,7 @@
    ],
    "correct": "неверными пальчиками",
    "case": "Творительный (Instrumental)",
-   "explain": "«неверными пальчиками» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «разыгрываемых», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c29"
   }
  ]

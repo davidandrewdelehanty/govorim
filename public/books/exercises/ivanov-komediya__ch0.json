@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Иванов Николай Алексеевич, ___ по крестьянским делам присутствия.",
-   "lemma": "член",
-   "options": [
-    "непременному члену",
-    "непременного члена",
-    "непременным членом",
-    "непременный член"
-   ],
-   "correct": "непременный член",
-   "case": "Именительный (Nominative)",
-   "explain": "«непременный член» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Лебедев Павел Кириллыч, председатель ___.",
    "lemma": "управа",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "земской управы",
    "case": "Родительный (Genitive)",
-   "explain": "«земской управы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«земской управы» depends on the noun «председатель» (whose? of what?) — genitive.",
    "id": "c3"
   },
   {
@@ -39,22 +25,8 @@
    ],
    "correct": "богатого купца",
    "case": "Родительный (Genitive)",
-   "explain": "«богатого купца» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«богатого купца» depends on the noun «дочь» (whose? of what?) — genitive.",
    "id": "c5"
-  },
-  {
-   "sentence": "Боркин Михаил Михайлович, ___ Иванова и управляющий его имением.",
-   "lemma": "родственник",
-   "options": [
-    "дальнему родственнику",
-    "дальнего родственника",
-    "дальним родственником",
-    "дальний родственник"
-   ],
-   "correct": "дальний родственник",
-   "case": "Именительный (Nominative)",
-   "explain": "«дальний родственник» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
   },
   {
    "sentence": "Действие происходит в одном из уездов ___ России.",
@@ -67,7 +39,7 @@
    ],
    "correct": "средней полосы",
    "case": "Родительный (Genitive)",
-   "explain": "«средней полосы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«средней полосы» depends on the noun «уездов» (whose? of what?) — genitive.",
    "id": "c8"
   },
   {
@@ -81,22 +53,8 @@
    ],
    "correct": "двухэтажного дома",
    "case": "Родительный (Genitive)",
-   "explain": "«двухэтажного дома» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«двухэтажного дома» depends on the noun «фасад» (whose? of what?) — genitive.",
    "id": "c9"
-  },
-  {
-   "sentence": "Перед террасой широкая ___, от которой в сад, прямо и вправо, идут аллеи.",
-   "lemma": "площадка",
-   "options": [
-    "полукруглой площадке",
-    "полукруглой площадки",
-    "полукруглая площадка",
-    "полукруглой площадкой"
-   ],
-   "correct": "полукруглая площадка",
-   "case": "Именительный (Nominative)",
-   "explain": "«полукруглая площадка» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
   },
   {
    "sentence": "На ___ садовые диванчики и столики.",
@@ -109,7 +67,7 @@
    ],
    "correct": "правой стороне",
    "case": "Предложный (Prepositional)",
-   "explain": "«правой стороне» — after the preposition «на», for location or topic.",
+   "explain": "«правой стороне» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c11"
   },
   {
@@ -123,7 +81,7 @@
    ],
    "correct": "больших сапогах",
    "case": "Предложный (Prepositional)",
-   "explain": "«больших сапогах» — after the preposition «в», for location or topic.",
+   "explain": "«больших сапогах» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c12"
   },
   {
@@ -137,7 +95,7 @@
    ],
    "correct": "первого числа",
    "case": "Родительный (Genitive)",
-   "explain": "«первого числа» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«первого числа» — «до» always takes the genitive.",
    "id": "c14"
   },
   {
@@ -151,148 +109,8 @@
    ],
    "correct": "открытого окна",
    "case": "Родительный (Genitive)",
-   "explain": "«открытого окна» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«открытого окна» — «у» always takes the genitive.",
    "id": "c19"
-  },
-  {
-   "sentence": "Для всех ты, ___, изобретаешь и учишь всех, как жить, а меня хоть бы раз поучил.",
-   "lemma": "башка",
-   "options": [
-    "гениальной башки",
-    "гениальной башкой",
-    "гениальной башке",
-    "гениальная башка"
-   ],
-   "correct": "гениальная башка",
-   "case": "Именительный (Nominative)",
-   "explain": "«гениальная башка» — the subject of the sentence stands in the nominative.",
-   "id": "c25"
-  },
-  {
-   "sentence": "___, лишние слова, необходимость отвечать на глупые вопросы — все это, доктор, утомило меня до болезни.",
-   "lemma": "человек",
-   "options": [
-    "лишними людьми",
-    "лишние люди",
-    "лишних людях",
-    "лишним людям"
-   ],
-   "correct": "лишние люди",
-   "case": "Именительный (Nominative)",
-   "explain": "«Лишние люди» — the subject of the sentence stands in the nominative.",
-   "id": "c27"
-  },
-  {
-   "sentence": "Лишние люди, ___, необходимость отвечать на глупые вопросы — все это, доктор, утомило меня до болезни.",
-   "lemma": "слово",
-   "options": [
-    "лишние слова",
-    "лишних слов",
-    "лишним словам",
-    "лишних словах"
-   ],
-   "correct": "лишние слова",
-   "case": "Именительный (Nominative)",
-   "explain": "«лишние слова» — the subject of the sentence stands in the nominative.",
-   "id": "c28"
-  },
-  {
-   "sentence": "Самое ___ от чахотки — это абсолютный покой, а ваша жена не знает ни минуты покоя.",
-   "lemma": "лекарство",
-   "options": [
-    "главному лекарству",
-    "главным лекарством",
-    "главном лекарстве",
-    "главное лекарство"
-   ],
-   "correct": "главное лекарство",
-   "case": "Именительный (Nominative)",
-   "explain": "«главное лекарство» — the subject of the sentence stands in the nominative.",
-   "id": "c32"
-  },
-  {
-   "sentence": "Самое главное лекарство от чахотки — это ___, а ваша жена не знает ни минуты покоя.",
-   "lemma": "покой",
-   "options": [
-    "абсолютному покою",
-    "абсолютного покоя",
-    "абсолютным покоем",
-    "абсолютный покой"
-   ],
-   "correct": "абсолютный покой",
-   "case": "Именительный (Nominative)",
-   "explain": "«абсолютный покой» — the subject of the sentence stands in the nominative.",
-   "id": "c33"
-  },
-  {
-   "sentence": "Я, ___, рассказал бы вам с самого начала, но история длинная и такая сложная, что до утра не расскажешь.",
-   "lemma": "друг",
-   "options": [
-    "милого друга",
-    "милый друг",
-    "милом друге",
-    "милым другом"
-   ],
-   "correct": "милый друг",
-   "case": "Именительный (Nominative)",
-   "explain": "«милый друг» — the subject of the sentence stands in the nominative.",
-   "id": "c34"
-  },
-  {
-   "sentence": "___, это не мошенник, а мыслитель, виртуоз!..",
-   "lemma": "слово",
-   "options": [
-    "честном слове",
-    "честное слово",
-    "честного слова",
-    "честному слову"
-   ],
-   "correct": "честное слово",
-   "case": "Именительный (Nominative)",
-   "explain": "«Честное слово» — the subject of the sentence stands in the nominative.",
-   "id": "c37"
-  },
-  {
-   "sentence": "Стало быть, каким был бы ___, если бы еще усвоил культуру, гуманитарные науки!..",
-   "lemma": "подлец",
-   "options": [
-    "гениальном подлеце",
-    "гениальному подлецу",
-    "гениальным подлецом",
-    "гениальный подлец"
-   ],
-   "correct": "гениальным подлецом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«гениальным подлецом» — the instrumental marks the means, company, or complement.",
-   "id": "c39"
-  },
-  {
-   "sentence": "Стало быть, каким был бы гениальным подлецом, если бы еще усвоил культуру, ___!..",
-   "lemma": "наука",
-   "options": [
-    "гуманитарных наук",
-    "гуманитарные науки",
-    "гуманитарных науках",
-    "гуманитарными науками"
-   ],
-   "correct": "гуманитарные науки",
-   "case": "Винительный (Accusative)",
-   "explain": "«гуманитарные науки» — the accusative marks the direct object of the verb.",
-   "id": "c40"
-  },
-  {
-   "sentence": "(___.) Зачиво вы шмеетесь?",
-   "lemma": "акцент",
-   "options": [
-    "еврейского акцента",
-    "еврейскому акценту",
-    "еврейским акцентом",
-    "еврейском акценте"
-   ],
-   "correct": "еврейским акцентом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«Еврейским акцентом» — the instrumental marks the means, company, or complement.",
-   "id": "c41"
   },
   {
    "sentence": "По целым дням сидел бы на ___ и думал.",
@@ -305,22 +123,8 @@
    ],
    "correct": "жениной могиле",
    "case": "Предложный (Prepositional)",
-   "explain": "«жениной могиле» — after the preposition «на», for location or topic.",
+   "explain": "«жениной могиле» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c45"
-  },
-  {
-   "sentence": "Вы, ___, кончили курс только в прошлом году, еще молоды и бодры, а мне тридцать пять.",
-   "lemma": "друг",
-   "options": [
-    "милого друга",
-    "милый друг",
-    "милом друге",
-    "милым другом"
-   ],
-   "correct": "милый друг",
-   "case": "Именительный (Nominative)",
-   "explain": "«милый друг» — the subject of the sentence stands in the nominative.",
-   "id": "c46"
   },
   {
    "sentence": "Не женитесь вы ни на еврейках, ни на психопатках, ни на синих чулках, а выбирайте себе что-нибудь заурядное, серенькое, без ___, без лишних звуков.",
@@ -333,7 +137,7 @@
    ],
    "correct": "ярких красок",
    "case": "Родительный (Genitive)",
-   "explain": "«ярких красок» — after the preposition «без», the genitive here marks possession, absence, or quantity.",
+   "explain": "«ярких красок» — «без» always takes the genitive.",
    "id": "c48"
   },
   {
@@ -347,7 +151,7 @@
    ],
    "correct": "лишних звуков",
    "case": "Родительный (Genitive)",
-   "explain": "«лишних звуков» — after the preposition «без», the genitive here marks possession, absence, or quantity.",
+   "explain": "«лишних звуков» — «без» always takes the genitive.",
    "id": "c49"
   },
   {
@@ -361,36 +165,8 @@
    ],
    "correct": "самого утра",
    "case": "Родительный (Genitive)",
-   "explain": "«самого утра» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«самого утра» — «до» always takes the genitive.",
    "id": "c56"
-  },
-  {
-   "sentence": "Это, доктор, ___, и я жалею, что вы не знали его года два-три тому назад.",
-   "lemma": "человек",
-   "options": [
-    "замечательного человека",
-    "замечательном человеке",
-    "замечательному человеку",
-    "замечательный человек"
-   ],
-   "correct": "замечательный человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«замечательный человек» — the subject of the sentence stands in the nominative.",
-   "id": "c58"
-  },
-  {
-   "sentence": "Я полюбила его с ___.",
-   "lemma": "взгляд",
-   "options": [
-    "первому взгляду",
-    "первом взгляде",
-    "первый взгляд",
-    "первого взгляда"
-   ],
-   "correct": "первого взгляда",
-   "case": "Родительный (Genitive)",
-   "explain": "«первого взгляда» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
-   "id": "c59"
   }
  ]
 }

@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "___ яхты, — скорлупка с парусами, наполненными ветром, со звенящими, поющими вантами, — то скрывался до верхушек мачт между волнами, то взмывал на гребне, отряхивая пену.",
-   "lemma": "корпус",
-   "options": [
-    "узким корпусом",
-    "узкого корпуса",
-    "узком корпусе",
-    "узкий корпус"
-   ],
-   "correct": "узкий корпус",
-   "case": "Именительный (Nominative)",
-   "explain": "«Узкий корпус» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Башни эти, покрытые брезентами, придавали «Аризоне» ___ полувоенного судна.",
-   "lemma": "профиль",
-   "options": [
-    "странного профиля",
-    "странному профилю",
-    "странный профиль",
-    "странным профилем"
-   ],
-   "correct": "странный профиль",
-   "case": "Именительный (Nominative)",
-   "explain": "«странный профиль» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
    "sentence": "Башни эти, покрытые брезентами, придавали «Аризоне» странный профиль ___.",
    "lemma": "судно",
    "options": [
@@ -39,7 +11,7 @@
    ],
    "correct": "полувоенного судна",
    "case": "Родительный (Genitive)",
-   "explain": "«полувоенного судна» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«полувоенного судна» depends on the noun «профиль» (whose? of what?) — genitive.",
    "id": "c4"
   },
   {
@@ -53,22 +25,8 @@
    ],
    "correct": "капитанском мостике",
    "case": "Предложный (Prepositional)",
-   "explain": "«капитанском мостике» — after the preposition «на», for location or topic.",
+   "explain": "«капитанском мостике» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c5"
-  },
-  {
-   "sentence": "На обоих — ___ и шляпы.",
-   "lemma": "плащ",
-   "options": [
-    "кожаными плащами",
-    "кожаным плащам",
-    "кожаных плащей",
-    "кожаные плащи"
-   ],
-   "correct": "кожаные плащи",
-   "case": "Именительный (Nominative)",
-   "explain": "«кожаные плащи» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
   },
   {
    "sentence": "___ шла с правого борта.",
@@ -81,22 +39,8 @@
    ],
    "correct": "огромная волна",
    "case": "Именительный (Nominative)",
-   "explain": "«Огромная волна» — the subject of the sentence stands in the nominative.",
+   "explain": "«огромная волна» is the subject of «шла» — who or what does it — so nominative.",
    "id": "c7"
-  },
-  {
-   "sentence": "Огромная волна шла с ___.",
-   "lemma": "борт",
-   "options": [
-    "правый борт",
-    "правого борта",
-    "правом борте",
-    "правому борту"
-   ],
-   "correct": "правого борта",
-   "case": "Родительный (Genitive)",
-   "explain": "«правого борта» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
-   "id": "c8"
   },
   {
    "sentence": "Пел ___ между парусами, вынося кораблик из бездны.",
@@ -109,36 +53,8 @@
    ],
    "correct": "дикий ветер",
    "case": "Именительный (Nominative)",
-   "explain": "«дикий ветер» — the subject of the sentence stands in the nominative.",
+   "explain": "«дикий ветер» is the subject of «Пел» — who or what does it — so nominative.",
    "id": "c10"
-  },
-  {
-   "sentence": "Вода кипела кругом ___.",
-   "lemma": "мостик",
-   "options": [
-    "капитанскому мостику",
-    "капитанского мостика",
-    "капитанский мостик",
-    "капитанском мостике"
-   ],
-   "correct": "капитанского мостика",
-   "case": "Родительный (Genitive)",
-   "explain": "«капитанского мостика» — the genitive here marks possession, absence, or quantity.",
-   "id": "c11"
-  },
-  {
-   "sentence": "Недаром он и Роллинг нашли на земле друг друга: ___, а одному без другого не дыхнуть.",
-   "lemma": "враг",
-   "options": [
-    "лютым врагам",
-    "лютых врагов",
-    "лютых врагах",
-    "лютые враги"
-   ],
-   "correct": "лютые враги",
-   "case": "Именительный (Nominative)",
-   "explain": "«лютые враги» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
   },
   {
    "sentence": "___ порождает из своего чрева этого воспаленного преступными идеями человечка, — тот, в свою очередь, оплодотворяет чудовищной фантазией Роллингову пустыню.",
@@ -151,50 +67,8 @@
    ],
    "correct": "химический король",
    "case": "Именительный (Nominative)",
-   "explain": "«Химический король» — the subject of the sentence stands in the nominative.",
+   "explain": "«химический король» is the subject of «порождает» — who or what does it — so nominative.",
    "id": "c13"
-  },
-  {
-   "sentence": "Химический король порождает из своего чрева этого воспаленного ___ человечка, — тот, в свою очередь, оплодотворяет чудовищной фантазией Роллингову пустыню.",
-   "lemma": "идея",
-   "options": [
-    "преступными идеями",
-    "преступных идеях",
-    "преступные идеи",
-    "преступным идеям"
-   ],
-   "correct": "преступными идеями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«преступными идеями» — the instrumental marks the means, company, or complement.",
-   "id": "c14"
-  },
-  {
-   "sentence": "Тогда, в Неаполе, он был нужен Гарину как ___ и свидетель.",
-   "lemma": "лицо",
-   "options": [
-    "третьему лицу",
-    "третьим лицом",
-    "третье лицо",
-    "третьего лица"
-   ],
-   "correct": "третье лицо",
-   "case": "Именительный (Nominative)",
-   "explain": "«третье лицо» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
-  },
-  {
-   "sentence": "Явись Гарин один в Неаполе на «Аризону», могли случиться ___.",
-   "lemma": "неприятность",
-   "options": [
-    "неожиданных неприятностях",
-    "неожиданными неприятностями",
-    "неожиданные неприятности",
-    "неожиданных неприятностей"
-   ],
-   "correct": "неожиданные неприятности",
-   "case": "Именительный (Nominative)",
-   "explain": "«неожиданные неприятности» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
   },
   {
    "sentence": "И ему начинали мерещиться кое-какие выходы из ___.",
@@ -207,36 +81,8 @@
    ],
    "correct": "скверного положения",
    "case": "Родительный (Genitive)",
-   "explain": "«скверного положения» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«скверного положения» — «из» always takes the genitive.",
    "id": "c19"
-  },
-  {
-   "sentence": "___ не было конца.",
-   "lemma": "океан",
-   "options": [
-    "суровый океан",
-    "суровому океану",
-    "сурового океана",
-    "суровом океане"
-   ],
-   "correct": "суровому океану",
-   "case": "Дательный (Dative)",
-   "explain": "«Суровому океану» — the dative marks the indirect object or recipient.",
-   "id": "c21"
-  },
-  {
-   "sentence": "___, кому я верю, — это вам.",
-   "lemma": "человек",
-   "options": [
-    "единственному человеку",
-    "единственном человеке",
-    "единственный человек",
-    "единственным человеком"
-   ],
-   "correct": "единственный человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«Единственный человек» — the subject of the sentence stands in the nominative.",
-   "id": "c22"
   },
   {
    "sentence": "Он не договорил, гребень ___, выше прежних, обрушился на яхту.",
@@ -249,21 +95,21 @@
    ],
    "correct": "огромной волны",
    "case": "Родительный (Genitive)",
-   "explain": "«огромной волны» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«огромной волны» depends on the noun «гребень» (whose? of what?) — genitive.",
    "id": "c23"
   },
   {
    "sentence": "Кипящая пена покрыла ___.",
    "lemma": "мостик",
    "options": [
-    "капитанский мостик",
     "капитанским мостиком",
     "капитанскому мостику",
-    "капитанского мостика"
+    "капитанском мостике",
+    "капитанский мостик"
    ],
    "correct": "капитанский мостик",
    "case": "Винительный (Accusative)",
-   "explain": "«капитанский мостик» — the accusative marks the direct object of the verb.",
+   "explain": "«капитанский мостик» is the direct object of «покрыла» (кого? что?) — accusative.",
    "id": "c24"
   }
  ]

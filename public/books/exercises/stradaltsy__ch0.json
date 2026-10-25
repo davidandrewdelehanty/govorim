@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Лизочка Кудринская, ___, имеющая много поклонников, вдруг заболела, да так серьезно, что муж ее не пошел на службу и ее мамаше в Тверь была послана телеграмма.",
-   "lemma": "дамочка",
-   "options": [
-    "молоденькой дамочки",
-    "молоденькой дамочкой",
-    "молоденькая дамочка",
-    "молоденькой дамочке"
-   ],
-   "correct": "молоденькая дамочка",
-   "case": "Именительный (Nominative)",
-   "explain": "«молоденькая дамочка» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Во-первых, я там участвовала в ___.",
    "lemma": "спектакль",
    "options": [
@@ -25,22 +11,8 @@
    ],
    "correct": "любительском спектакле",
    "case": "Предложный (Prepositional)",
-   "explain": "«любительском спектакле» — after the preposition «в», for location or topic.",
+   "explain": "«любительском спектакле» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c2"
-  },
-  {
-   "sentence": "Спазмы начались в полдень, в третьем часу приезжал доктор, а в шесть Лизочка уснула и спала ___ до двух часов ночи.",
-   "lemma": "сон",
-   "options": [
-    "крепком сне",
-    "крепким сном",
-    "крепкого сна",
-    "крепкому сну"
-   ],
-   "correct": "крепким сном",
-   "case": "Творительный (Instrumental)",
-   "explain": "«крепким сном» — the instrumental marks the means, company, or complement.",
-   "id": "c6"
   },
   {
    "sentence": "Свет маленькой ___ скудно пробивается сквозь голубой абажур.",
@@ -53,7 +25,7 @@
    ],
    "correct": "ночной лампы",
    "case": "Родительный (Genitive)",
-   "explain": "«ночной лампы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«ночной лампы» depends on the noun «Свет» (whose? of what?) — genitive.",
    "id": "c7"
   },
   {
@@ -67,7 +39,7 @@
    ],
    "correct": "голубой абажур",
    "case": "Винительный (Accusative)",
-   "explain": "«голубой абажур» — after the preposition «сквозь», the accusative marks the direct object of the verb.",
+   "explain": "«голубой абажур» — «сквозь» always takes the accusative.",
    "id": "c8"
   },
   {
@@ -81,7 +53,7 @@
    ],
    "correct": "красной подушки",
    "case": "Родительный (Genitive)",
-   "explain": "«красной подушки» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«красной подушки» depends on the noun «фоне» (whose? of what?) — genitive.",
    "id": "c9"
   },
   {
@@ -95,7 +67,7 @@
    ],
    "correct": "бледном лице",
    "case": "Предложный (Prepositional)",
-   "explain": "«бледном лице» — after the preposition «на», for location or topic.",
+   "explain": "«бледном лице» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c10"
   },
   {
@@ -109,7 +81,7 @@
    ],
    "correct": "страдальческим выражением",
    "case": "Творительный (Instrumental)",
-   "explain": "«страдальческим выражением» — after the preposition «со», the instrumental marks the means, company, or complement.",
+   "explain": "«страдальческим выражением» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c11"
   },
   {
@@ -123,7 +95,7 @@
    ],
    "correct": "горячего тела",
    "case": "Родительный (Genitive)",
-   "explain": "«горячего тела» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«горячего тела» depends on the noun «пальцами» (whose? of what?) — genitive.",
    "id": "c12"
   },
   {
@@ -137,7 +109,7 @@
    ],
    "correct": "холодной воды",
    "case": "Родительный (Genitive)",
-   "explain": "«холодной воды» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«холодной воды» — «от» always takes the genitive.",
    "id": "c13"
   },
   {
@@ -151,78 +123,8 @@
    ],
    "correct": "дурного оборота",
    "case": "Родительный (Genitive)",
-   "explain": "«дурного оборота» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«дурного оборота» is the object of a negated verb («не приняла») — genitive instead of the accusative.",
    "id": "c14"
-  },
-  {
-   "sentence": "К чему эти ___?",
-   "lemma": "мысль",
-   "options": [
-    "мрачные мысли",
-    "мрачными мыслями",
-    "мрачным мыслям",
-    "мрачных мыслей"
-   ],
-   "correct": "мрачные мысли",
-   "case": "Именительный (Nominative)",
-   "explain": "«мрачные мысли» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
-  },
-  {
-   "sentence": "Потом, когда она уже мертва, ее, интересно бледную, черноволосую, одевают в розовое платье (оно ей к лицу) и кладут в очень ___ на золотых ножках, полный цветов.",
-   "lemma": "гроб",
-   "options": [
-    "дорогой гроб",
-    "дорогом гробе",
-    "дорогим гробом",
-    "дорогого гроба"
-   ],
-   "correct": "дорогой гроб",
-   "case": "Винительный (Accusative)",
-   "explain": "«дорогой гроб» — after the preposition «в», the accusative marks the direct object of the verb.",
-   "id": "c17"
-  },
-  {
-   "sentence": "Несут: Иван Петрович, Адольф Иваныч, Варин муж, Николай Семеныч и тот ___, который научил ее пить лимонную воду с коньяком.",
-   "lemma": "студент",
-   "options": [
-    "черноглазом студенте",
-    "черноглазый студент",
-    "черноглазого студента",
-    "черноглазому студенту"
-   ],
-   "correct": "черноглазый студент",
-   "case": "Именительный (Nominative)",
-   "explain": "«черноглазый студент» — the subject of the sentence stands in the nominative.",
-   "id": "c19"
-  },
-  {
-   "sentence": "— У меня такие ___.",
-   "lemma": "мысль",
-   "options": [
-    "мрачные мысли",
-    "мрачными мыслями",
-    "мрачным мыслям",
-    "мрачных мыслей"
-   ],
-   "correct": "мрачные мысли",
-   "case": "Именительный (Nominative)",
-   "explain": "«мрачные мысли» — the subject of the sentence stands in the nominative.",
-   "id": "c21"
-  },
-  {
-   "sentence": "— Болезнь примет ___, вот ты и будешь виноват.",
-   "lemma": "оборот",
-   "options": [
-    "дурного оборота",
-    "дурной оборот",
-    "дурным оборотом",
-    "дурном обороте"
-   ],
-   "correct": "дурной оборот",
-   "case": "Винительный (Accusative)",
-   "explain": "«дурной оборот» — the accusative marks the direct object of the verb.",
-   "id": "c29"
   },
   {
    "sentence": "Не спит он до ___.",
@@ -235,22 +137,8 @@
    ],
    "correct": "самого утра",
    "case": "Родительный (Genitive)",
-   "explain": "«самого утра» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«самого утра» — «до» always takes the genitive.",
    "id": "c30"
-  },
-  {
-   "sentence": "Они встревожены, испуганы, привезли много цветов, ___.",
-   "lemma": "книжка",
-   "options": [
-    "французских книжек",
-    "французскими книжками",
-    "французских книжках",
-    "французским книжкам"
-   ],
-   "correct": "французских книжек",
-   "case": "Родительный (Genitive)",
-   "explain": "«французских книжек» — the genitive here marks possession, absence, or quantity.",
-   "id": "c31"
   },
   {
    "sentence": "Вася по-прежнему сидит у ее ног, борется с дремотой, переменяет компресс, изображает из ___, а утром, после второй страдальческой ночи, Лиза уже вертится перед зеркалом и надевает шляпку.",
@@ -263,22 +151,8 @@
    ],
    "correct": "еврейского быта",
    "case": "Родительный (Genitive)",
-   "explain": "«еврейского быта» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«еврейского быта» — «из» always takes the genitive.",
    "id": "c33"
-  },
-  {
-   "sentence": "На вас, однако, очень ___!",
-   "lemma": "лицо",
-   "options": [
-    "бледного лица",
-    "бледному лицу",
-    "бледное лицо",
-    "бледном лице"
-   ],
-   "correct": "бледное лицо",
-   "case": "Именительный (Nominative)",
-   "explain": "«бледное лицо» — the subject of the sentence stands in the nominative.",
-   "id": "c35"
   },
   {
    "sentence": "Усердие хорошее особенность ___, но не надо забывать, как говорили римляне, mens sana in corpore sano, то есть здоровая голова в здоровом корпусе!",
@@ -291,22 +165,8 @@
    ],
    "correct": "молодого чиновника",
    "case": "Родительный (Genitive)",
-   "explain": "«молодого чиновника» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«молодого чиновника» depends on the noun «особенность» (whose? of what?) — genitive.",
    "id": "c36"
-  },
-  {
-   "sentence": "Усердие хорошее особенность молодого чиновника, но не надо забывать, как говорили римляне, mens sana in corpore sano, то есть ___ в здоровом корпусе!",
-   "lemma": "голова",
-   "options": [
-    "здоровой головы",
-    "здоровой голове",
-    "здоровой головой",
-    "здоровая голова"
-   ],
-   "correct": "здоровая голова",
-   "case": "Именительный (Nominative)",
-   "explain": "«здоровая голова» — the subject of the sentence stands in the nominative.",
-   "id": "c37"
   },
   {
    "sentence": "Усердие хорошее особенность молодого чиновника, но не надо забывать, как говорили римляне, mens sana in corpore sano, то есть здоровая голова в ___!",
@@ -319,7 +179,7 @@
    ],
    "correct": "здоровом корпусе",
    "case": "Предложный (Prepositional)",
-   "explain": "«здоровом корпусе» — after the preposition «в», for location or topic.",
+   "explain": "«здоровом корпусе» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c38"
   }
  ]

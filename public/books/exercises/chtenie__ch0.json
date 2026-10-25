@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Семипалатов поморщился: проза прервала поэзию на самом ___.",
-   "lemma": "место",
-   "options": [
-    "интересное место",
-    "интересном месте",
-    "интересному месту",
-    "интересным местом"
-   ],
-   "correct": "интересном месте",
-   "case": "Предложный (Prepositional)",
-   "explain": "«интересном месте» — after the preposition «на», for location or topic.",
-   "id": "c1"
-  },
-  {
    "sentence": "Потомство никогда не простит Семипалатову его ___!",
    "lemma": "поступок",
    "options": [
@@ -25,22 +11,8 @@
    ],
    "correct": "легкомысленного поступка",
    "case": "Родительный (Genitive)",
-   "explain": "«легкомысленного поступка» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«легкомысленного поступка» is the object of a negated verb («не простит») — genitive instead of the accusative.",
    "id": "c4"
-  },
-  {
-   "sentence": "Это можно было бы, пожалуй, простить юноше, но опытному действительному ___ — никогда!",
-   "lemma": "советник",
-   "options": [
-    "статскому советнику",
-    "статском советнике",
-    "статский советник",
-    "статского советника"
-   ],
-   "correct": "статскому советнику",
-   "case": "Дательный (Dative)",
-   "explain": "«статскому советнику» — the dative marks the indirect object or recipient.",
-   "id": "c5"
   },
   {
    "sentence": "___ его беспокойно бегали и, казалось, искали у окружающих предметов помощи.",
@@ -53,7 +25,7 @@
    ],
    "correct": "косые глазки",
    "case": "Именительный (Nominative)",
-   "explain": "«Косые глазки» — the subject of the sentence stands in the nominative.",
+   "explain": "«косые глазки» is the subject of «бегали» — who or what does it — so nominative.",
    "id": "c6"
   },
   {
@@ -67,35 +39,21 @@
    ],
    "correct": "старший внук",
    "case": "Именительный (Nominative)",
-   "explain": "«старший внук» — the subject of the sentence stands in the nominative.",
+   "explain": "«старший внук» is the subject of «зовет» — who or what does it — so nominative.",
    "id": "c10"
-  },
-  {
-   "sentence": "Подходцев, читавший второй том «___», назвал Будылду «иезуитом»; Смирнов стал являться на службу в нетрезвом виде.",
-   "lemma": "жид",
-   "options": [
-    "вечный жид",
-    "вечном жиде",
-    "вечного жида",
-    "вечному жиду"
-   ],
-   "correct": "вечного жида",
-   "case": "Родительный (Genitive)",
-   "explain": "«Вечного жида» — the genitive here marks possession, absence, or quantity.",
-   "id": "c11"
   },
   {
    "sentence": "— Простите меня, православные, за то, что я ___ делаю!",
    "lemma": "бумажка",
    "options": [
     "фальшивыми бумажками",
+    "фальшивым бумажкам",
     "фальшивых бумажках",
-    "фальшивых бумажек",
     "фальшивые бумажки"
    ],
    "correct": "фальшивые бумажки",
    "case": "Винительный (Accusative)",
-   "explain": "«фальшивые бумажки» — the accusative marks the direct object of the verb.",
+   "explain": "«фальшивые бумажки» is the direct object of «делаю» (кого? что?) — accusative.",
    "id": "c13"
   }
  ]

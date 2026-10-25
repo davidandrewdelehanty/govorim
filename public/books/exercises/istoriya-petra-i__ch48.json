@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Петр, узнав, что несколько полков саксонских вступили в Курляндию, писал ___ Голицыну, чтоб он от них остерегался; ибо подозревали Августа в тайном сношении с Карлом.",
-   "lemma": "губернатор",
-   "options": [
-    "рижским губернатором",
-    "рижскому губернатору",
-    "рижском губернаторе",
-    "рижского губернатора"
-   ],
-   "correct": "рижскому губернатору",
-   "case": "Дательный (Dative)",
-   "explain": "«рижскому губернатору» — the dative marks the indirect object or recipient.",
-   "id": "c1"
-  },
-  {
    "sentence": "Получив от Ягужинского из Копенгагена неудовлетворительный ответ от ___, Петр сам писал ему свои жалобы и проч.",
    "lemma": "король",
    "options": [
@@ -25,22 +11,8 @@
    ],
    "correct": "датского короля",
    "case": "Родительный (Genitive)",
-   "explain": "«датского короля» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«датского короля» — «от» always takes the genitive.",
    "id": "c3"
-  },
-  {
-   "sentence": "В случае восшествия на шведский престол молодого герцога отдать ему ___.",
-   "lemma": "владение",
-   "options": [
-    "наследственным владениям",
-    "наследственные владения",
-    "наследственных владений",
-    "наследственными владениями"
-   ],
-   "correct": "наследственные владения",
-   "case": "Винительный (Accusative)",
-   "explain": "«наследственные владения» — the accusative marks the direct object of the verb.",
-   "id": "c6"
   },
   {
    "sentence": "(На ___ Петр согласился, на второй — нет: зело на тонких ногах носит свое седалище).",
@@ -53,7 +25,7 @@
    ],
    "correct": "первый пункт",
    "case": "Винительный (Accusative)",
-   "explain": "«первый пункт» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«первый пункт» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c7"
   },
   {
@@ -62,12 +34,12 @@
    "options": [
     "молодого герцога",
     "молодом герцоге",
-    "молодым герцогом",
-    "молодому герцогу"
+    "молодому герцогу",
+    "молодой герцог"
    ],
    "correct": "молодого герцога",
    "case": "Родительный (Genitive)",
-   "explain": "«молодого герцога» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«молодого герцога» depends on the noun «Предложение» (whose? of what?) — genitive.",
    "id": "c9"
   },
   {
@@ -81,64 +53,22 @@
    ],
    "correct": "старшей царевне",
    "case": "Предложный (Prepositional)",
-   "explain": "«старшей царевне» — after the preposition «на», for location or topic.",
+   "explain": "«старшей царевне» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c10"
-  },
-  {
-   "sentence": "С обер-инспектором Исаевым сделал ___ о торговле и проч.",
-   "lemma": "положение",
-   "options": [
-    "разными положениями",
-    "разные положения",
-    "разным положениям",
-    "разных положениях"
-   ],
-   "correct": "разные положения",
-   "case": "Винительный (Accusative)",
-   "explain": "«разные положения» — the accusative marks the direct object of the verb.",
-   "id": "c12"
   },
   {
    "sentence": "Петр в Гаагу писал послу своему, чтоб он ехал на Бруншвейгский съезд, а ___ барону Дешаку повелел покаместь быть в Голландии при Штатах.",
    "lemma": "посланник",
    "options": [
-    "английского посланника",
-    "английском посланнике",
     "английский посланник",
-    "английскому посланнику"
+    "английскому посланнику",
+    "английским посланником",
+    "английском посланнике"
    ],
    "correct": "английскому посланнику",
    "case": "Дательный (Dative)",
-   "explain": "«английскому посланнику» — the dative marks the indirect object or recipient.",
+   "explain": "«английскому посланнику» is the indirect object of «повелел» — to or for whom (кому?) — dative.",
    "id": "c15"
-  },
-  {
-   "sentence": "Для детей дворянских и приказных учреждает ___ в домах архиерейских и в монастырях.",
-   "lemma": "школа",
-   "options": [
-    "арифметическими школами",
-    "арифметических школах",
-    "арифметические школы",
-    "арифметическим школам"
-   ],
-   "correct": "арифметические школы",
-   "case": "Винительный (Accusative)",
-   "explain": "«арифметические школы» — the accusative marks the direct object of the verb.",
-   "id": "c16"
-  },
-  {
-   "sentence": "Петр долго его обдумывал и изъяснил самым ___.",
-   "lemma": "образ",
-   "options": [
-    "подробному образу",
-    "подробным образом",
-    "подробный образ",
-    "подробного образа"
-   ],
-   "correct": "подробным образом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«подробным образом» — the instrumental marks the means, company, or complement.",
-   "id": "c17"
   },
   {
    "sentence": "Учреждена ___ по 10 денег с 1 руб.",
@@ -151,7 +81,7 @@
    ],
    "correct": "новая пошлина",
    "case": "Именительный (Nominative)",
-   "explain": "«новая пошлина» — the subject of the sentence stands in the nominative.",
+   "explain": "«новая пошлина» is the subject of «Учреждена» — who or what does it — so nominative.",
    "id": "c18"
   },
   {
@@ -165,7 +95,7 @@
    ],
    "correct": "любимой сестры",
    "case": "Родительный (Genitive)",
-   "explain": "«любимой сестры» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«любимой сестры» depends on the noun «кончине» (whose? of what?) — genitive.",
    "id": "c19"
   },
   {
@@ -179,36 +109,8 @@
    ],
    "correct": "незаконных детей",
    "case": "Винительный (Accusative)",
-   "explain": "«незаконных детей» — the accusative marks the direct object of the verb.",
+   "explain": "«незаконных детей» is the direct object of «принимать» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c20"
-  },
-  {
-   "sentence": "Указом от 6 мая повелено губернаторам осматривать ___, с коих пошлин и рекрут не берется, под опасением лишения чести и живота и проч., а места переписать и проч.",
-   "lemma": "жилище",
-   "options": [
-    "опустелых жилищах",
-    "опустелых жилищ",
-    "опустелыми жилищами",
-    "опустелые жилища"
-   ],
-   "correct": "опустелые жилища",
-   "case": "Винительный (Accusative)",
-   "explain": "«опустелые жилища» — the accusative marks the direct object of the verb.",
-   "id": "c21"
-  },
-  {
-   "sentence": "___ — гвардии майор Андрей Иванович Ушаков.",
-   "lemma": "исследователь",
-   "options": [
-    "главном исследователе",
-    "главный исследователь",
-    "главным исследователем",
-    "главному исследователю"
-   ],
-   "correct": "главным исследователем",
-   "case": "Творительный (Instrumental)",
-   "explain": "«Главным исследователем» — the instrumental marks the means, company, or complement.",
-   "id": "c22"
   },
   {
    "sentence": "Из указа о лоскутках и тряпицах (для ___) видно, что пуд стоил 8 денежек.",
@@ -221,22 +123,8 @@
    ],
    "correct": "бумажной фабрики",
    "case": "Родительный (Genitive)",
-   "explain": "«бумажной фабрики» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«бумажной фабрики» — «для» always takes the genitive.",
    "id": "c23"
-  },
-  {
-   "sentence": "Шведам, умеющим по-русски, повелено переводить книги с ___.",
-   "lemma": "язык",
-   "options": [
-    "шведскому языку",
-    "шведском языке",
-    "шведского языка",
-    "шведский язык"
-   ],
-   "correct": "шведского языка",
-   "case": "Родительный (Genitive)",
-   "explain": "«шведского языка» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
-   "id": "c24"
   },
   {
    "sentence": "___ князь Гагарин донес о золотом песке, находимом в малой Бухарии, в калмыцком владении при городе Эркети.",
@@ -249,7 +137,7 @@
    ],
    "correct": "сибирский губернатор",
    "case": "Именительный (Nominative)",
-   "explain": "«Сибирский губернатор» — the subject of the sentence stands in the nominative.",
+   "explain": "«сибирский губернатор» is the subject of «донес» — who or what does it — so nominative.",
    "id": "c29"
   },
   {
@@ -263,35 +151,21 @@
    ],
    "correct": "калмыцком владении",
    "case": "Предложный (Prepositional)",
-   "explain": "«калмыцком владении» — after the preposition «в», for location or topic.",
+   "explain": "«калмыцком владении» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c31"
-  },
-  {
-   "sentence": "Начальником экспедиции назначен гвардии капитан Бухольц («___», 1760 года).",
-   "lemma": "сочинение",
-   "options": [
-    "ежемесячными сочинениями",
-    "ежемесячные сочинения",
-    "ежемесячных сочинений",
-    "ежемесячных сочинениях"
-   ],
-   "correct": "ежемесячные сочинения",
-   "case": "Именительный (Nominative)",
-   "explain": "«Ежемесячные сочинения» — the subject of the sentence stands in the nominative.",
-   "id": "c32"
   },
   {
    "sentence": "О сем Петр сообщил бывшему тогда в Петербурге ___.",
    "lemma": "посланник",
    "options": [
-    "хивинского посланника",
     "хивинским посланником",
+    "хивинскому посланнику",
     "хивинский посланник",
-    "хивинскому посланнику"
+    "хивинском посланнике"
    ],
    "correct": "хивинскому посланнику",
    "case": "Дательный (Dative)",
-   "explain": "«хивинскому посланнику» — the dative marks the indirect object or recipient.",
+   "explain": "«хивинскому посланнику» is the indirect object of «сообщил» — to or for whom (кому?) — dative.",
    "id": "c33"
   },
   {
@@ -305,77 +179,35 @@
    ],
    "correct": "золотой песок",
    "case": "Именительный (Nominative)",
-   "explain": "«золотой песок» — the subject of the sentence stands in the nominative.",
+   "explain": "«золотой песок» is the subject of «находится» — who or what does it — so nominative.",
    "id": "c34"
-  },
-  {
-   "sentence": "Флоту же галерному идти с Апраксиным к Або и, в случае встречи со ___, дать знать государю.",
-   "lemma": "флот",
-   "options": [
-    "шведским флотом",
-    "шведскому флоту",
-    "шведский флот",
-    "шведском флоте"
-   ],
-   "correct": "шведским флотом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«шведским флотом» — after the preposition «со», the instrumental marks the means, company, or complement.",
-   "id": "c37"
   },
   {
    "sentence": "Петр послал ___ Шувалову повеление идти взять Нейшлот.",
    "lemma": "губернатор",
    "options": [
-    "выборгского губернатора",
+    "выборгском губернаторе",
+    "выборгский губернатор",
     "выборгским губернатором",
-    "выборгскому губернатору",
-    "выборгском губернаторе"
+    "выборгскому губернатору"
    ],
    "correct": "выборгскому губернатору",
    "case": "Дательный (Dative)",
-   "explain": "«выборгскому губернатору» — the dative marks the indirect object or recipient.",
+   "explain": "«выборгскому губернатору» is the indirect object of «послал» — to or for whom (кому?) — dative.",
    "id": "c38"
-  },
-  {
-   "sentence": "Это спасло пять ___ от преследования.",
-   "lemma": "корабль",
-   "options": [
-    "шведских кораблях",
-    "шведских кораблей",
-    "шведским кораблям",
-    "шведскими кораблями"
-   ],
-   "correct": "шведских кораблей",
-   "case": "Родительный (Genitive)",
-   "explain": "«шведских кораблей» — the genitive here marks possession, absence, or quantity.",
-   "id": "c43"
-  },
-  {
-   "sentence": "Петр с ___ отправился в Эльзингфорс к Апраксину, но за противным ветром воротился в Ревель.",
-   "lemma": "совет",
-   "options": [
-    "общему совету",
-    "общий совет",
-    "общем совете",
-    "общего совета"
-   ],
-   "correct": "общего совета",
-   "case": "Родительный (Genitive)",
-   "explain": "«общего совета» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
-   "id": "c44"
   },
   {
    "sentence": "Твереминдская гавань имеет ___.",
    "lemma": "выход",
    "options": [
-    "узкий выход",
     "узким выходом",
+    "узкий выход",
     "узкому выходу",
-    "узкого выхода"
+    "узком выходе"
    ],
    "correct": "узкий выход",
    "case": "Винительный (Accusative)",
-   "explain": "«узкий выход» — the accusative marks the direct object of the verb.",
+   "explain": "«узкий выход» is the direct object of «имеет» (кого? что?) — accusative.",
    "id": "c46"
   },
   {
@@ -389,7 +221,7 @@
    ],
    "correct": "ближним островам",
    "case": "Дательный (Dative)",
-   "explain": "«ближним островам» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«ближним островам» — «к» always takes the dative.",
    "id": "c47"
   },
   {
@@ -403,7 +235,7 @@
    ],
    "correct": "первого предположения",
    "case": "Родительный (Genitive)",
-   "explain": "«первого предположения» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«первого предположения» depends on the noun «истине» (whose? of what?) — genitive.",
    "id": "c48"
   },
   {
@@ -417,7 +249,7 @@
    ],
    "correct": "самом государе",
    "case": "Предложный (Prepositional)",
-   "explain": "«самом государе» — after the preposition «при», for location or topic.",
+   "explain": "«самом государе» — «при» always takes the prepositional.",
    "id": "c49"
   },
   {
@@ -431,36 +263,22 @@
    ],
    "correct": "шведский адмирал",
    "case": "Именительный (Nominative)",
-   "explain": "«Шведский адмирал» — the subject of the sentence stands in the nominative.",
+   "explain": "«шведский адмирал» is the subject of «поднял» — who or what does it — so nominative.",
    "id": "c50"
   },
   {
    "sentence": "Шведский адмирал поднял ___, давая знак Лелию возвратиться.",
    "lemma": "флаг",
    "options": [
-    "белым флагом",
-    "белый флаг",
+    "белом флаге",
     "белому флагу",
-    "белого флага"
+    "белым флагом",
+    "белый флаг"
    ],
    "correct": "белый флаг",
    "case": "Винительный (Accusative)",
-   "explain": "«белый флаг» — the accusative marks the direct object of the verb.",
+   "explain": "«белый флаг» is the direct object of «поднял» (кого? что?) — accusative.",
    "id": "c51"
-  },
-  {
-   "sentence": "Велено Змаевичу (капитан-командору) с галерами атаковать сию эскадру; ночь тому помешала. 27 июля весь наш ___ выступил, дабы пробиться сквозь шведский (на коем было до 1127 пушек).",
-   "lemma": "флот",
-   "options": [
-    "галерного флота",
-    "галерный флот",
-    "галерным флотом",
-    "галерному флоту"
-   ],
-   "correct": "галерный флот",
-   "case": "Именительный (Nominative)",
-   "explain": "«галерный флот» — after the preposition «сквозь», the subject of the sentence stands in the nominative.",
-   "id": "c52"
   },
   {
    "sentence": "Апраксин соединился с Змаевичем и послал к командиру ___ (девять судов), чтоб он сдался.",
@@ -473,7 +291,7 @@
    ],
    "correct": "шведской эскадры",
    "case": "Родительный (Genitive)",
-   "explain": "«шведской эскадры» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«шведской эскадры» depends on the noun «командиру» (whose? of what?) — genitive.",
    "id": "c53"
   },
   {
@@ -487,36 +305,8 @@
    ],
    "correct": "пятого часа",
    "case": "Родительный (Genitive)",
-   "explain": "«пятого часа» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«пятого часа» — «до» always takes the genitive.",
    "id": "c54"
-  },
-  {
-   "sentence": "___ и завоевание Аланда привели в ужас Швецию.",
-   "lemma": "победа",
-   "options": [
-    "сей победы",
-    "сия победа",
-    "сей победе",
-    "сей победой"
-   ],
-   "correct": "сия победа",
-   "case": "Именительный (Nominative)",
-   "explain": "«Сия победа» — the subject of the sentence stands in the nominative.",
-   "id": "c55"
-  },
-  {
-   "sentence": "На пути узнал он об окончании разграничения с Турцией и о смерти ___.",
-   "lemma": "королева",
-   "options": [
-    "английская королева",
-    "английской королевой",
-    "английской королеве",
-    "английской королевы"
-   ],
-   "correct": "английской королевы",
-   "case": "Родительный (Genitive)",
-   "explain": "«английской королевы» — the genitive here marks possession, absence, or quantity.",
-   "id": "c58"
   },
   {
    "sentence": "___ говорит, что Петр сел на шлюпку и в самую ночь переехал на Березовые острова, дабы, дав оттоле сигнал, ободрить своих людей etc.",
@@ -529,64 +319,8 @@
    ],
    "correct": "венецианский историк",
    "case": "Именительный (Nominative)",
-   "explain": "«Венецианский историк» — the subject of the sentence stands in the nominative.",
+   "explain": "«венецианский историк» is the subject of «говорит» — who or what does it — so nominative.",
    "id": "c60"
-  },
-  {
-   "sentence": "Меншиков и ___ прибыли к нему на корабль.",
-   "lemma": "вельможа",
-   "options": [
-    "прочим вельможам",
-    "прочие вельможи",
-    "прочих вельмож",
-    "прочих вельможах"
-   ],
-   "correct": "прочие вельможи",
-   "case": "Именительный (Nominative)",
-   "explain": "«прочие вельможи» — the subject of the sentence stands in the nominative.",
-   "id": "c61"
-  },
-  {
-   "sentence": "Двое суток еще ___, дождь и туман препятствовали его въезду.",
-   "lemma": "ветер",
-   "options": [
-    "противный ветер",
-    "противном ветре",
-    "противного ветра",
-    "противному ветру"
-   ],
-   "correct": "противный ветер",
-   "case": "Именительный (Nominative)",
-   "explain": "«противный ветер» — the subject of the sentence stands in the nominative.",
-   "id": "c63"
-  },
-  {
-   "sentence": "Триумфатор, остановясь перед дверьми ___ (в сенате), велел доложить о себе его величеству князю кесарю и подал ему рапорт.",
-   "lemma": "палата",
-   "options": [
-    "присутственной палате",
-    "присутственной палаты",
-    "присутственной палатой",
-    "присутственная палата"
-   ],
-   "correct": "присутственной палаты",
-   "case": "Родительный (Genitive)",
-   "explain": "«присутственной палаты» — the genitive here marks possession, absence, or quantity.",
-   "id": "c66"
-  },
-  {
-   "sentence": "___ Петр каждый день присутствовал в сенате, принимая отчет в управлении государственном.",
-   "lemma": "месяц",
-   "options": [
-    "целый месяц",
-    "целым месяцем",
-    "целого месяца",
-    "целом месяце"
-   ],
-   "correct": "целый месяц",
-   "case": "Винительный (Accusative)",
-   "explain": "«Целый месяц» — the accusative marks the direct object of the verb.",
-   "id": "c67"
   },
   {
    "sentence": "В сие время издан тиранский же указ о запрещении во всем государстве ___ под страхом конфискации и ссылки.",
@@ -599,7 +333,7 @@
    ],
    "correct": "каменного строения",
    "case": "Родительный (Genitive)",
-   "explain": "«каменного строения» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«каменного строения» depends on the noun «запрещении» (whose? of what?) — genitive.",
    "id": "c70"
   },
   {
@@ -613,77 +347,21 @@
    ],
    "correct": "французских мастерах",
    "case": "Предложный (Prepositional)",
-   "explain": "«французских мастерах» — after the preposition «о», for location or topic.",
+   "explain": "«французских мастерах» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c71"
-  },
-  {
-   "sentence": "О французских мастерах писал он в Париж, обещая им льготу на 10 лет, ___ etc.",
-   "lemma": "дом",
-   "options": [
-    "готовые дома",
-    "готовыми домами",
-    "готовых домах",
-    "готовым домам"
-   ],
-   "correct": "готовые дома",
-   "case": "Именительный (Nominative)",
-   "explain": "«готовые дома» — the subject of the sentence stands in the nominative.",
-   "id": "c72"
-  },
-  {
-   "sentence": "Он просил царя повелеть Аюке-хану жить в согласии с ним, а за то обещал он 50 000 ___ и свободный путь русским караванам в Китай.",
-   "lemma": "войско",
-   "options": [
-    "вспомогательного войска",
-    "вспомогательным войском",
-    "вспомогательное войско",
-    "вспомогательному войску"
-   ],
-   "correct": "вспомогательного войска",
-   "case": "Родительный (Genitive)",
-   "explain": "«вспомогательного войска» — the genitive here marks possession, absence, or quantity.",
-   "id": "c73"
-  },
-  {
-   "sentence": "Он просил царя повелеть Аюке-хану жить в согласии с ним, а за то обещал он 50 000 вспомогательного войска и ___ русским караванам в Китай.",
-   "lemma": "путь",
-   "options": [
-    "свободным путём",
-    "свободному пути",
-    "свободный путь",
-    "свободного пути"
-   ],
-   "correct": "свободный путь",
-   "case": "Винительный (Accusative)",
-   "explain": "«свободный путь» — the accusative marks the direct object of the verb.",
-   "id": "c74"
-  },
-  {
-   "sentence": "Петр повелел Шереметеву всех офицеров, а равно и детей офицерских от 7 до 20 лет выслать к нему на смотр в Петербург по зимнему пути и к 1 января и ___ быть в Петербурге же.",
-   "lemma": "фельдмаршал",
-   "options": [
-    "самого фельдмаршала",
-    "самим фельдмаршалом",
-    "сам фельдмаршал",
-    "самому фельдмаршалу"
-   ],
-   "correct": "самому фельдмаршалу",
-   "case": "Дательный (Dative)",
-   "explain": "«самому фельдмаршалу» — the dative marks the indirect object or recipient.",
-   "id": "c76"
   },
   {
    "sentence": "Апраксин поручил ___ князю Голицыну, а конницу генерал-поручику Брюсу. 18-го сентября поехал в Петербург — на море и у него разбило бурею 11 галер, 5 лодок etc.",
    "lemma": "флот",
    "options": [
-    "галерного флота",
-    "галерный флот",
     "галерным флотом",
-    "галерному флоту"
+    "галерному флоту",
+    "галерном флоте",
+    "галерный флот"
    ],
    "correct": "галерный флот",
    "case": "Винительный (Accusative)",
-   "explain": "«галерный флот» — the accusative marks the direct object of the verb.",
+   "explain": "«галерный флот» is the direct object of «поручил» (кого? что?) — accusative.",
    "id": "c79"
   },
   {
@@ -697,7 +375,7 @@
    ],
    "correct": "невскому монастырю",
    "case": "Дательный (Dative)",
-   "explain": "«Невскому монастырю» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«невскому монастырю» — «к» always takes the dative.",
    "id": "c80"
   },
   {
@@ -711,7 +389,7 @@
    ],
    "correct": "других монастырей",
    "case": "Родительный (Genitive)",
-   "explain": "«других монастырей» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«других монастырей» — «из» always takes the genitive.",
    "id": "c81"
   },
   {
@@ -725,7 +403,7 @@
    ],
    "correct": "московскому коменданту",
    "case": "Дательный (Dative)",
-   "explain": "«московскому коменданту» — the dative marks the indirect object or recipient.",
+   "explain": "«московскому коменданту» is the indirect object of «дан» — to or for whom (кому?) — dative.",
    "id": "c82"
   },
   {
@@ -739,7 +417,7 @@
    ],
    "correct": "шведскими пленниками",
    "case": "Творительный (Instrumental)",
-   "explain": "«шведскими пленниками» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«шведскими пленниками» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c83"
   },
   {
@@ -753,7 +431,7 @@
    ],
    "correct": "государственные доходы",
    "case": "Именительный (Nominative)",
-   "explain": "«государственные доходы» — the subject of the sentence stands in the nominative.",
+   "explain": "«государственные доходы» is the subject of «уменьшились» — who or what does it — so nominative.",
    "id": "c84"
   },
   {
@@ -767,7 +445,7 @@
    ],
    "correct": "артиллерийского извозчика",
    "case": "Родительный (Genitive)",
-   "explain": "«артиллерийского извозчика» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«артиллерийского извозчика» depends on the noun «дело» (whose? of what?) — genitive.",
    "id": "c85"
   },
   {
@@ -781,22 +459,8 @@
    ],
    "correct": "архангельских сборов",
    "case": "Родительный (Genitive)",
-   "explain": "«архангельских сборов» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«архангельских сборов» — «из» always takes the genitive.",
    "id": "c86"
-  },
-  {
-   "sentence": "Изданы 16 ___ Балтийскому морю.",
-   "lemma": "карта",
-   "options": [
-    "морских картах",
-    "морские карты",
-    "морских карт",
-    "морским картам"
-   ],
-   "correct": "морских карт",
-   "case": "Родительный (Genitive)",
-   "explain": "«морских карт» — the genitive here marks possession, absence, or quantity.",
-   "id": "c88"
   },
   {
    "sentence": "Быть протоколам во всех ___ и в полках.",
@@ -809,7 +473,7 @@
    ],
    "correct": "присутственных местах",
    "case": "Предложный (Prepositional)",
-   "explain": "«присутственных местах» — after the preposition «во», for location or topic.",
+   "explain": "«присутственных местах» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c92"
   },
   {
@@ -823,7 +487,7 @@
    ],
    "correct": "каменном фундаменте",
    "case": "Предложный (Prepositional)",
-   "explain": "«каменном фундаменте» — after the preposition «на», for location or topic.",
+   "explain": "«каменном фундаменте» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c94"
   },
   {
@@ -837,7 +501,7 @@
    ],
    "correct": "дикого камня",
    "case": "Родительный (Genitive)",
-   "explain": "«дикого камня» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«дикого камня» depends on the noun «привозе» (whose? of what?) — genitive.",
    "id": "c95"
   },
   {
@@ -851,7 +515,7 @@
    ],
    "correct": "больших судах",
    "case": "Предложный (Prepositional)",
-   "explain": "«больших судах» — after the preposition «на», for location or topic.",
+   "explain": "«больших судах» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c96"
   },
   {
@@ -865,7 +529,7 @@
    ],
    "correct": "господских крестьян",
    "case": "Родительный (Genitive)",
-   "explain": "«господских крестьян» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«господских крестьян» — «из» always takes the genitive.",
    "id": "c97"
   },
   {
@@ -879,7 +543,7 @@
    ],
    "correct": "русского платья",
    "case": "Родительный (Genitive)",
-   "explain": "«русского платья» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«русского платья» depends on the noun «непродаже» (whose? of what?) — genitive.",
    "id": "c99"
   }
  ]

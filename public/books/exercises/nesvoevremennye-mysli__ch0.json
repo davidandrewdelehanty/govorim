@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "___ обвенчался со Свободой.",
-   "lemma": "народ",
-   "options": [
-    "русским народом",
-    "русского народа",
-    "русский народ",
-    "русскому народу"
-   ],
-   "correct": "русский народ",
-   "case": "Именительный (Nominative)",
-   "explain": "«Русский народ» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Будем верить, что от этого союза в нашей стране, измученной и физически, и духовно, родятся новые ___.",
    "lemma": "человек",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "сильные люди",
    "case": "Именительный (Nominative)",
-   "explain": "«сильные люди» — the subject of the sentence stands in the nominative.",
+   "explain": "«сильные люди» is the subject of «родятся» — who or what does it — so nominative.",
    "id": "c2"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "полицейского строя",
    "case": "Родительный (Genitive)",
-   "explain": "«полицейского строя» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«полицейского строя» depends on the noun «гнетом» (whose? of what?) — genitive.",
    "id": "c4"
   },
   {
@@ -53,22 +39,8 @@
    ],
    "correct": "охранного отделения",
    "case": "Родительный (Genitive)",
-   "explain": "«Охранного отделения» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«охранного отделения» depends on the noun «сотрудников» (whose? of what?) — genitive.",
    "id": "c5"
-  },
-  {
-   "sentence": "Публикуемые в газетах списки «секретных сотрудников Охранного отделения», — это позорный ___ против нас, это один из признаков социального распада и гниения страны, — признак грозный.",
-   "lemma": "акт",
-   "options": [
-    "обвинительного акта",
-    "обвинительным актом",
-    "обвинительному акту",
-    "обвинительный акт"
-   ],
-   "correct": "обвинительный акт",
-   "case": "Именительный (Nominative)",
-   "explain": "«обвинительный акт» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
   },
   {
    "sentence": "Публикуемые в газетах списки «секретных сотрудников Охранного отделения», — это позорный обвинительный акт против нас, это один из признаков ___ и гниения страны, — признак грозный.",
@@ -81,7 +53,7 @@
    ],
    "correct": "социального распада",
    "case": "Родительный (Genitive)",
-   "explain": "«социального распада» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«социального распада» depends on the noun «признаков» (whose? of what?) — genitive.",
    "id": "c7"
   },
   {
@@ -95,22 +67,8 @@
    ],
    "correct": "старый порядок",
    "case": "Именительный (Nominative)",
-   "explain": "«старый порядок» — the subject of the sentence stands in the nominative.",
+   "explain": "«старый порядок» is the subject of «разрушен» — who or what does it — so nominative.",
    "id": "c8"
-  },
-  {
-   "sentence": "Многоглавая гидра невежества, варварства, глупости, пошлости и хамства не убита; она испугана, спряталась, но не потеряла способности пожирать ___.",
-   "lemma": "душа",
-   "options": [
-    "живых душ",
-    "живых душах",
-    "живые души",
-    "живым душам"
-   ],
-   "correct": "живые души",
-   "case": "Винительный (Accusative)",
-   "explain": "«живые души» — the accusative marks the direct object of the verb.",
-   "id": "c9"
   },
   {
    "sentence": "Не нужно забывать, что мы живем в дебрях ___ обывателя, политически безграмотного, социально невоспитанного.",
@@ -123,7 +81,7 @@
    ],
    "correct": "многомиллионной массы",
    "case": "Родительный (Genitive)",
-   "explain": "«многомиллионной массы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«многомиллионной массы» depends on the noun «дебрях» (whose? of what?) — genitive.",
    "id": "c10"
   },
   {
@@ -137,22 +95,8 @@
    ],
    "correct": "классовым путям",
    "case": "Дательный (Dative)",
-   "explain": "«классовым путям» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«классовым путям» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c11"
-  },
-  {
-   "sentence": "И до поры, пока не организуется, она будет питать своим мутным и нездоровым соком чудовищ прошлого, рожденных привычным обывателю ___.",
-   "lemma": "строй",
-   "options": [
-    "полицейским строем",
-    "полицейский строй",
-    "полицейском строе",
-    "полицейскому строю"
-   ],
-   "correct": "полицейским строем",
-   "case": "Творительный (Instrumental)",
-   "explain": "«полицейским строем» — the instrumental marks the means, company, or complement.",
-   "id": "c12"
   },
   {
    "sentence": "Мы переживаем момент в высшей степени сложный, требующий напряжения всех наших сил, ___ и величайшей осторожности в решениях.",
@@ -165,49 +109,35 @@
    ],
    "correct": "упорной работы",
    "case": "Родительный (Genitive)",
-   "explain": "«упорной работы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«упорной работы» depends on the noun «работы» (whose? of what?) — genitive.",
    "id": "c14"
-  },
-  {
-   "sentence": "Нам не нужно забывать роковых ошибок 905—6 гг., — ___, последовавшая за этими ошибками, обессилила и обезглавила нас на целое десятилетие.",
-   "lemma": "расправа",
-   "options": [
-    "зверской расправе",
-    "зверской расправы",
-    "зверская расправа",
-    "зверской расправой"
-   ],
-   "correct": "зверская расправа",
-   "case": "Именительный (Nominative)",
-   "explain": "«зверская расправа» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
   },
   {
    "sentence": "Поколению, которое первым примет новый строй жизни, свобода досталась дешево; это поколение плохо знает ___ людей, на протяжении целого века постепенно разрушавших мрачную крепость русского монархизма.",
    "lemma": "усилие",
    "options": [
     "страшными усилиями",
-    "страшным усилиям",
-    "страшных усилий",
-    "страшные усилия"
+    "страшные усилия",
+    "страшных усилиях",
+    "страшным усилиям"
    ],
    "correct": "страшные усилия",
    "case": "Винительный (Accusative)",
-   "explain": "«страшные усилия» — the accusative marks the direct object of the verb.",
+   "explain": "«страшные усилия» is the direct object of «знает» (кого? что?) — accusative.",
    "id": "c17"
   },
   {
    "sentence": "Поколению, которое первым примет новый строй жизни, свобода досталась дешево; это поколение плохо знает страшные усилия людей, на протяжении ___ постепенно разрушавших мрачную крепость русского монархизма.",
    "lemma": "век",
    "options": [
-    "целым веком",
-    "целый век",
+    "целому веку",
     "целом веке",
+    "целый век",
     "целого века"
    ],
    "correct": "целого века",
    "case": "Родительный (Genitive)",
-   "explain": "«целого века» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«целого века» depends on the noun «протяжении» (whose? of what?) — genitive.",
    "id": "c18"
   },
   {
@@ -221,50 +151,22 @@
    ],
    "correct": "русского монархизма",
    "case": "Родительный (Genitive)",
-   "explain": "«русского монархизма» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«русского монархизма» depends on the noun «крепость» (whose? of what?) — genitive.",
    "id": "c19"
-  },
-  {
-   "sentence": "Обыватель не знал той адовой, кротовой работы, которая сделана для него, — этот ___ неведом не только одному обывателю десятисот уездных городов российских.",
-   "lemma": "труд",
-   "options": [
-    "каторжного труда",
-    "каторжный труд",
-    "каторжном труде",
-    "каторжному труду"
-   ],
-   "correct": "каторжный труд",
-   "case": "Именительный (Nominative)",
-   "explain": "«каторжный труд» — the subject of the sentence stands in the nominative.",
-   "id": "c20"
   },
   {
    "sentence": "Мы понимаем эти начала разумом, они знакомы нам в теории, но — этих начал нет в нашем инстинкте, и нам страшно трудно будет ввести их в практику жизни, в древний ___.",
    "lemma": "быт",
    "options": [
-    "русского быта",
+    "русскому быту",
     "русским бытом",
-    "русском быте",
+    "русского быта",
     "русский быт"
    ],
    "correct": "русский быт",
    "case": "Винительный (Accusative)",
-   "explain": "«русский быт» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«русский быт» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c21"
-  },
-  {
-   "sentence": "И надо помнить, что буржуазия берет в свои руки не государство, а развалины государства, она берет эти ___ при условиях, неизмеримо более трудных, чем условия 5—6 года.",
-   "lemma": "развалины",
-   "options": [
-    "хаотическими развалинами",
-    "хаотические развалины",
-    "хаотических развалинах",
-    "хаотическим развалинам"
-   ],
-   "correct": "хаотические развалины",
-   "case": "Винительный (Accusative)",
-   "explain": "«хаотические развалины» — the accusative marks the direct object of the verb.",
-   "id": "c22"
   },
   {
    "sentence": "Поймет ли она, что ее работа будет успешна только при условии ___ с демократией, и что дело укрепления позиций, отнятых у старой власти, не будет прочно при всех иных условиях?",
@@ -277,7 +179,7 @@
    ],
    "correct": "прочного единения",
    "case": "Родительный (Genitive)",
-   "explain": "«прочного единения» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«прочного единения» depends on the noun «условии» (whose? of what?) — genitive.",
    "id": "c23"
   },
   {
@@ -291,7 +193,7 @@
    ],
    "correct": "иных условиях",
    "case": "Предложный (Prepositional)",
-   "explain": "«иных условиях» — after the preposition «при», for location or topic.",
+   "explain": "«иных условиях» — «при» always takes the prepositional.",
    "id": "c24"
   },
   {
@@ -305,7 +207,7 @@
    ],
    "correct": "мрачной ошибки",
    "case": "Родительный (Genitive)",
-   "explain": "«мрачной ошибки» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«мрачной ошибки» is the object of a negated verb («не повторить») — genitive instead of the accusative.",
    "id": "c25"
   },
   {
@@ -319,22 +221,8 @@
    ],
    "correct": "собственными иллюзиями",
    "case": "Творительный (Instrumental)",
-   "explain": "«собственными иллюзиями» — after the preposition «над», the instrumental marks the means, company, or complement.",
+   "explain": "«собственными иллюзиями» — «над» always takes the instrumental.",
    "id": "c26"
-  },
-  {
-   "sentence": "Мы опрокинули старую власть, но это удалось нам не потому, что мы — сила, а потому, что власть, гноившая нас, сама насквозь прогнила и развалилась при первом же ___.",
-   "lemma": "толчок",
-   "options": [
-    "дружный толчок",
-    "дружного толчка",
-    "дружным толчком",
-    "дружном толчке"
-   ],
-   "correct": "дружном толчке",
-   "case": "Предложный (Prepositional)",
-   "explain": "«дружном толчке» — after the preposition «при», for location or topic.",
-   "id": "c27"
   },
   {
    "sentence": "Задача момента — по возможности прочно укрепить за собою взятые нами позиции, что достижимо только при ___ всех сил, способных к работе политического, экономического и духовного возрождения России.",
@@ -347,7 +235,7 @@
    ],
    "correct": "разумном единении",
    "case": "Предложный (Prepositional)",
-   "explain": "«разумном единении» — after the preposition «при», for location or topic.",
+   "explain": "«разумном единении» — «при» always takes the prepositional.",
    "id": "c28"
   },
   {
@@ -361,7 +249,7 @@
    ],
    "correct": "здоровой воли",
    "case": "Родительный (Genitive)",
-   "explain": "«здоровой воли» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«здоровой воли» depends on the noun «возбудителем» (whose? of what?) — genitive.",
    "id": "c29"
   },
   {
@@ -375,7 +263,7 @@
    ],
    "correct": "правильной самооценки",
    "case": "Родительный (Genitive)",
-   "explain": "«правильной самооценки» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«правильной самооценки» depends on the noun «приемом» (whose? of what?) — genitive.",
    "id": "c30"
   },
   {
@@ -389,36 +277,22 @@
    ],
    "correct": "творческих сил",
    "case": "Родительный (Genitive)",
-   "explain": "«творческих сил» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«творческих сил» depends on the noun «Организация» (whose? of what?) — genitive.",
    "id": "c32"
   },
   {
    "sentence": "Устранить и преодолеть их возможно только при условии спокойной и дружной работы по укреплению ___ жизни.",
    "lemma": "строй",
    "options": [
-    "нового строя",
     "новый строй",
     "новому строю",
-    "новым строем"
+    "нового строя",
+    "новом строе"
    ],
    "correct": "нового строя",
    "case": "Родительный (Genitive)",
-   "explain": "«нового строя» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«нового строя» depends on the noun «укреплению» (whose? of what?) — genitive.",
    "id": "c33"
-  },
-  {
-   "sentence": "Самая ценная ___ — человек: чем более развит он духовно, чем лучше вооружен техническими знаниями, тем более прочен и ценен его труд, тем более он культурен, историчен.",
-   "lemma": "сила",
-   "options": [
-    "творческой силы",
-    "творческая сила",
-    "творческой силе",
-    "творческой силой"
-   ],
-   "correct": "творческая сила",
-   "case": "Именительный (Nominative)",
-   "explain": "«творческая сила» — the subject of the sentence stands in the nominative.",
-   "id": "c34"
   },
   {
    "sentence": "Самая ценная творческая сила — человек: чем более развит он духовно, чем лучше вооружен ___, тем более прочен и ценен его труд, тем более он культурен, историчен.",
@@ -431,7 +305,7 @@
    ],
    "correct": "техническими знаниями",
    "case": "Творительный (Instrumental)",
-   "explain": "«техническими знаниями» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «вооружен», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c35"
   },
   {
@@ -445,7 +319,7 @@
    ],
    "correct": "должного внимания",
    "case": "Родительный (Genitive)",
-   "explain": "«должного внимания» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«должного внимания» is the object of a negated verb («не обращает») — genitive instead of the accusative.",
    "id": "c36"
   },
   {
@@ -459,7 +333,7 @@
    ],
    "correct": "физической силы",
    "case": "Родительный (Genitive)",
-   "explain": "«физической силы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«физической силы» depends on the noun «источник» (whose? of what?) — genitive.",
    "id": "c37"
   },
   {
@@ -473,7 +347,7 @@
    ],
    "correct": "классовых трений",
    "case": "Родительный (Genitive)",
-   "explain": "«классовых трений» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«классовых трений» depends on the noun «противоречие» (whose? of what?) — genitive.",
    "id": "c38"
   },
   {
@@ -487,7 +361,7 @@
    ],
    "correct": "плодотворной работы",
    "case": "Родительный (Genitive)",
-   "explain": "«плодотворной работы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«плодотворной работы» depends on the noun «источник» (whose? of what?) — genitive.",
    "id": "c39"
   },
   {
@@ -501,22 +375,8 @@
    ],
    "correct": "данного момента",
    "case": "Родительный (Genitive)",
-   "explain": "«данного момента» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«данного момента» depends on the noun «задачи» (whose? of what?) — genitive.",
    "id": "c40"
-  },
-  {
-   "sentence": "И только знание вооружит нас самосознанием, только оно поможет нам правильно оценить наши силы, задачи данного момента и укажет нам ___ к дальнейшим победам.",
-   "lemma": "путь",
-   "options": [
-    "широкому пути",
-    "широкий путь",
-    "широком пути",
-    "широкого пути"
-   ],
-   "correct": "широкий путь",
-   "case": "Винительный (Accusative)",
-   "explain": "«широкий путь» — the accusative marks the direct object of the verb.",
-   "id": "c41"
   },
   {
    "sentence": "И только знание вооружит нас самосознанием, только оно поможет нам правильно оценить наши силы, задачи данного момента и укажет нам широкий путь к ___.",
@@ -529,36 +389,8 @@
    ],
    "correct": "дальнейшим победам",
    "case": "Дательный (Dative)",
-   "explain": "«дальнейшим победам» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«дальнейшим победам» — «к» always takes the dative.",
    "id": "c42"
-  },
-  {
-   "sentence": "Особенно ___ спокойной разумности был день 23-го марта, день похорон на Марсовом поле.",
-   "lemma": "явление",
-   "options": [
-    "мощным явлением",
-    "мощного явления",
-    "мощное явление",
-    "мощному явлению"
-   ],
-   "correct": "мощным явлением",
-   "case": "Творительный (Instrumental)",
-   "explain": "«мощным явлением» — the instrumental marks the means, company, or complement.",
-   "id": "c44"
-  },
-  {
-   "sentence": "И всей душой я желал бы ___ вот так же спокойно и мощно идти все дальше, все вперед и выше, до великого праздника всемирной свободы, всечеловеческого равенства, братства!",
-   "lemma": "народ",
-   "options": [
-    "русскому народу",
-    "русским народом",
-    "русского народа",
-    "русский народ"
-   ],
-   "correct": "русскому народу",
-   "case": "Дательный (Dative)",
-   "explain": "«русскому народу» — the dative marks the indirect object or recipient.",
-   "id": "c46"
   },
   {
    "sentence": "И всей душой я желал бы русскому народу вот так же спокойно и мощно идти все дальше, все вперед и выше, до ___ всемирной свободы, всечеловеческого равенства, братства!",
@@ -571,7 +403,7 @@
    ],
    "correct": "великого праздника",
    "case": "Родительный (Genitive)",
-   "explain": "«великого праздника» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«великого праздника» — «до» always takes the genitive.",
    "id": "c47"
   },
   {
@@ -585,7 +417,7 @@
    ],
    "correct": "всемирной свободы",
    "case": "Родительный (Genitive)",
-   "explain": "«всемирной свободы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«всемирной свободы» depends on the noun «праздника» (whose? of what?) — genitive.",
    "id": "c48"
   }
  ]

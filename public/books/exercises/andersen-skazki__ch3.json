@@ -1,60 +1,18 @@
 {
  "cases": [
   {
-   "sentence": "— Вот тебе ячменное зерно; это не ___, не из тех, что крестьяне сеют в поле или бросают курам; посади-ка его в цветочный горшок — увидишь, что будет!",
-   "lemma": "зерно",
-   "options": [
-    "простым зерном",
-    "простое зерно",
-    "простого зерна",
-    "простом зерне"
-   ],
-   "correct": "простое зерно",
-   "case": "Именительный (Nominative)",
-   "explain": "«простое зерно» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "— Вот тебе ячменное зерно; это не простое зерно, не из тех, что крестьяне сеют в поле или бросают курам; посади-ка его в ___ — увидишь, что будет!",
    "lemma": "горшок",
    "options": [
-    "цветочном горшке",
+    "цветочным горшком",
     "цветочному горшку",
     "цветочный горшок",
     "цветочного горшка"
    ],
    "correct": "цветочный горшок",
    "case": "Винительный (Accusative)",
-   "explain": "«цветочный горшок» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«цветочный горшок» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c2"
-  },
-  {
-   "sentence": "Это был точь-в-точь тюльпан, но в ___ на зелёном стульчике сидела крошечная девочка.",
-   "lemma": "чашечка",
-   "options": [
-    "самой чашечкой",
-    "самой чашечке",
-    "самой чашечки",
-    "сама чашечка"
-   ],
-   "correct": "самой чашечке",
-   "case": "Предложный (Prepositional)",
-   "explain": "«самой чашечке» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c3"
-  },
-  {
-   "sentence": "Это был точь-в-точь тюльпан, но в самой чашечке на ___ сидела крошечная девочка.",
-   "lemma": "стульчик",
-   "options": [
-    "зелёный стульчик",
-    "зелёного стульчика",
-    "зелёном стульчике",
-    "зелёному стульчику"
-   ],
-   "correct": "зелёном стульчике",
-   "case": "Предложный (Prepositional)",
-   "explain": "«зелёном стульчике» — after the preposition «на», for location or topic.",
-   "id": "c4"
   },
   {
    "sentence": "Это был точь-в-точь тюльпан, но в самой чашечке на зелёном стульчике сидела ___.",
@@ -67,50 +25,8 @@
    ],
    "correct": "крошечная девочка",
    "case": "Именительный (Nominative)",
-   "explain": "«крошечная девочка» — the subject of the sentence stands in the nominative.",
+   "explain": "«крошечная девочка» is the subject of «сидела» — who or what does it — so nominative.",
    "id": "c5"
-  },
-  {
-   "sentence": "На стол женщина поставила тарелку с водою, а на края тарелки положила венок из цветов; ___ цветов купались в воде, у самого же края плавал большой лепесток тюльпана.",
-   "lemma": "стебель",
-   "options": [
-    "длинных стеблях",
-    "длинные стебли",
-    "длинным стеблям",
-    "длинных стеблей"
-   ],
-   "correct": "длинные стебли",
-   "case": "Именительный (Nominative)",
-   "explain": "«длинные стебли» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
-  },
-  {
-   "sentence": "Раз ночью, когда она лежала в своей колыбельке, через разбитое оконное стекло пролезла ___, мокрая, безобразная!",
-   "lemma": "жаба",
-   "options": [
-    "большущей жабе",
-    "большущая жаба",
-    "большущей жабы",
-    "большущей жабой"
-   ],
-   "correct": "большущая жаба",
-   "case": "Именительный (Nominative)",
-   "explain": "«большущая жаба» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
-  },
-  {
-   "sentence": "Там протекала большая, ___; у самого берега было топко и вязко; здесь-то, в тине, и жила жаба с сыном.",
-   "lemma": "река",
-   "options": [
-    "широкая река",
-    "широкой реки",
-    "широкой реке",
-    "широкой рекой"
-   ],
-   "correct": "широкая река",
-   "case": "Именительный (Nominative)",
-   "explain": "«широкая река» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
   },
   {
    "sentence": "Там протекала большая, широкая река; у ___ было топко и вязко; здесь-то, в тине, и жила жаба с сыном.",
@@ -123,64 +39,8 @@
    ],
    "correct": "самого берега",
    "case": "Родительный (Genitive)",
-   "explain": "«самого берега» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«самого берега» — «у» always takes the genitive.",
    "id": "c9"
-  },
-  {
-   "sentence": "— Она ведь легче ___!",
-   "lemma": "пух",
-   "options": [
-    "лебединого пуха",
-    "лебединый пух",
-    "лебединому пуху",
-    "лебедином пухе"
-   ],
-   "correct": "лебединого пуха",
-   "case": "Родительный (Genitive)",
-   "explain": "«лебединого пуха» — the genitive here marks possession, absence, or quantity.",
-   "id": "c10"
-  },
-  {
-   "sentence": "Высадим-ка её посередине реки на ___ кувшинки — это ведь целый остров для такой крошки, оттуда она не сбежит, а мы пока приберём там, внизу, наше гнёздышко.",
-   "lemma": "лист",
-   "options": [
-    "широком листе",
-    "широким листом",
-    "широкий лист",
-    "широкого листа"
-   ],
-   "correct": "широкий лист",
-   "case": "Винительный (Accusative)",
-   "explain": "«широкий лист» — after the preposition «для», the accusative marks the direct object of the verb.",
-   "id": "c11"
-  },
-  {
-   "sentence": "Высадим-ка её посередине реки на широкий лист кувшинки — это ведь ___ для такой крошки, оттуда она не сбежит, а мы пока приберём там, внизу, наше гнёздышко.",
-   "lemma": "остров",
-   "options": [
-    "целом острове",
-    "целого острова",
-    "целый остров",
-    "целым островом"
-   ],
-   "correct": "целый остров",
-   "case": "Именительный (Nominative)",
-   "explain": "«целый остров» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
-  },
-  {
-   "sentence": "Самый ___ был дальше всего от берега; к этому-то листу подплыла жаба и поставила туда ореховую скорлупу с девочкой.",
-   "lemma": "лист",
-   "options": [
-    "большому листу",
-    "большим листом",
-    "большой лист",
-    "большом листе"
-   ],
-   "correct": "большой лист",
-   "case": "Именительный (Nominative)",
-   "explain": "«большой лист» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
   },
   {
    "sentence": "Самый большой лист был дальше всего от берега; к ___ подплыла жаба и поставила туда ореховую скорлупу с девочкой.",
@@ -193,7 +53,7 @@
    ],
    "correct": "этому-то листу",
    "case": "Дательный (Dative)",
-   "explain": "«этому-то листу» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«этому-то листу» — «к» always takes the dative.",
    "id": "c14"
   },
   {
@@ -207,7 +67,7 @@
    ],
    "correct": "бедная крошка",
    "case": "Именительный (Nominative)",
-   "explain": "«Бедная крошка» — the subject of the sentence stands in the nominative.",
+   "explain": "«бедная крошка» is the subject of «проснулась» — who or what does it — so nominative.",
    "id": "c15"
   },
   {
@@ -221,7 +81,7 @@
    ],
    "correct": "старая жаба",
    "case": "Именительный (Nominative)",
-   "explain": "«старая жаба» — the subject of the sentence stands in the nominative.",
+   "explain": "«старая жаба» is the subject of «сидела» — who or what does it — so nominative.",
    "id": "c16"
   },
   {
@@ -235,78 +95,36 @@
    ],
    "correct": "молодой невестки",
    "case": "Родительный (Genitive)",
-   "explain": "«молодой невестки» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«молодой невестки» — «для» always takes the genitive.",
    "id": "c17"
   },
   {
    "sentence": "Потом она поплыла со своим ___ к листу, где сидела Дюймовочка, чтобы взять прежде всего её хорошенькую кроватку и поставить в спальне невесты.",
    "lemma": "сынок",
    "options": [
-    "безобразном сынке",
-    "безобразным сынком",
+    "безобразному сынку",
     "безобразный сынок",
-    "безобразного сынка"
+    "безобразном сынке",
+    "безобразным сынком"
    ],
    "correct": "безобразным сынком",
    "case": "Творительный (Instrumental)",
-   "explain": "«безобразным сынком» — after the preposition «прежде», the instrumental marks the means, company, or complement.",
+   "explain": "«безобразным сынком» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c18"
-  },
-  {
-   "sentence": "— Вот мой сынок, твой ___!",
-   "lemma": "муж",
-   "options": [
-    "будущего мужа",
-    "будущему мужу",
-    "будущий муж",
-    "будущим мужем"
-   ],
-   "correct": "будущий муж",
-   "case": "Именительный (Nominative)",
-   "explain": "«будущий муж» — the subject of the sentence stands in the nominative.",
-   "id": "c19"
   },
   {
    "sentence": "Они взяли хорошенькую кроватку и уплыли с ней, а девочка осталась одна-одинёшенька на ___ и горько-горько плакала, — ей вовсе не хотелось жить у гадкой жабы и выйти замуж за её противного сына.",
    "lemma": "лист",
    "options": [
     "зелёного листа",
-    "зелёный лист",
-    "зелёному листу",
-    "зелёном листе"
+    "зелёном листе",
+    "зелёным листом",
+    "зелёному листу"
    ],
    "correct": "зелёном листе",
    "case": "Предложный (Prepositional)",
-   "explain": "«зелёном листе» — after the preposition «на», for location or topic.",
+   "explain": "«зелёном листе» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c20"
-  },
-  {
-   "sentence": "___, которые плавали под водой, верно, видели жабу с сынком и слышали, что она говорила, потому что все повысунули из воды головки, чтобы поглядеть на крошку невесту.",
-   "lemma": "рыбка",
-   "options": [
-    "маленькими рыбками",
-    "маленьких рыбок",
-    "маленьких рыбках",
-    "маленькие рыбки"
-   ],
-   "correct": "маленькие рыбки",
-   "case": "Именительный (Nominative)",
-   "explain": "«Маленькие рыбки» — the subject of the sentence stands in the nominative.",
-   "id": "c21"
-  },
-  {
-   "sentence": "А как они увидели её, им стало ужасно жалко, что такой ___ приходится идти жить к старой жабе в тину.",
-   "lemma": "девочка",
-   "options": [
-    "миленькой девочкой",
-    "миленькой девочке",
-    "миленькой девочки",
-    "миленькая девочка"
-   ],
-   "correct": "миленькой девочке",
-   "case": "Дательный (Dative)",
-   "explain": "«миленькой девочке» — the dative marks the indirect object or recipient.",
-   "id": "c22"
   },
   {
    "sentence": "А как они увидели её, им стало ужасно жалко, что такой миленькой девочке приходится идти жить к ___ в тину.",
@@ -319,22 +137,8 @@
    ],
    "correct": "старой жабе",
    "case": "Дательный (Dative)",
-   "explain": "«старой жабе» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«старой жабе» — «к» always takes the dative.",
    "id": "c23"
-  },
-  {
-   "sentence": "А она ужасно радовалась: ___ не могла теперь догнать её, а вокруг всё было так красиво!",
-   "lemma": "жаба",
-   "options": [
-    "гадкой жабе",
-    "гадкая жаба",
-    "гадкой жабы",
-    "гадкой жабой"
-   ],
-   "correct": "гадкая жаба",
-   "case": "Именительный (Nominative)",
-   "explain": "«гадкая жаба» — the subject of the sentence stands in the nominative.",
-   "id": "c24"
   },
   {
    "sentence": "Мимо летел ___, увидал девочку, обхватил её за тонкую талию лапкой и унёс на дерево, а зелёный листок поплыл дальше, и с ним мотылёк — он ведь был привязан и не мог освободиться.",
@@ -347,7 +151,7 @@
    ],
    "correct": "майский жук",
    "case": "Именительный (Nominative)",
-   "explain": "«майский жук» — the subject of the sentence stands in the nominative.",
+   "explain": "«майский жук» is the subject of «летел» — who or what does it — so nominative.",
    "id": "c25"
   },
   {
@@ -361,36 +165,8 @@
    ],
    "correct": "зелёный листок",
    "case": "Именительный (Nominative)",
-   "explain": "«зелёный листок» — the subject of the sentence stands in the nominative.",
+   "explain": "«зелёный листок» is the subject of «поплыл» — who or what does it — so nominative.",
    "id": "c26"
-  },
-  {
-   "sentence": "Но ___ и горя было мало.",
-   "lemma": "жук",
-   "options": [
-    "майскому жуку",
-    "майским жуком",
-    "майском жуке",
-    "майский жук"
-   ],
-   "correct": "майскому жуку",
-   "case": "Дательный (Dative)",
-   "explain": "«майскому жуку» — the dative marks the indirect object or recipient.",
-   "id": "c27"
-  },
-  {
-   "sentence": "Он уселся с крошкой на самый большой зелёный лист, покормил её сладким ___ и сказал, что она прелесть какая хорошенькая, хоть и совсем непохожа на майского жука.",
-   "lemma": "сок",
-   "options": [
-    "цветочному соку",
-    "цветочный сок",
-    "цветочным соком",
-    "цветочного сока"
-   ],
-   "correct": "цветочным соком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«цветочным соком» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c28"
   },
   {
    "sentence": "Он уселся с крошкой на самый большой зелёный лист, покормил её сладким цветочным соком и сказал, что она прелесть какая хорошенькая, хоть и совсем непохожа на ___.",
@@ -403,7 +179,7 @@
    ],
    "correct": "майского жука",
    "case": "Винительный (Accusative)",
-   "explain": "«майского жука» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«майского жука» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c29"
   },
   {
@@ -417,35 +193,21 @@
    ],
    "correct": "майские жуки",
    "case": "Именительный (Nominative)",
-   "explain": "«майские жуки» — the subject of the sentence stands in the nominative.",
+   "explain": "«майские жуки» is the subject of «пришли» — who or what does it — so nominative.",
    "id": "c30"
-  },
-  {
-   "sentence": "___, который принёс её, она тоже очень понравилась сначала, а тут вдруг и он нашёл, что она безобразна, и не захотел больше держать её у себя — пусть идёт куда хочет.",
-   "lemma": "жук",
-   "options": [
-    "майский жук",
-    "майском жуке",
-    "майского жука",
-    "майскому жуку"
-   ],
-   "correct": "майскому жуку",
-   "case": "Дательный (Dative)",
-   "explain": "«Майскому жуку» — the dative marks the indirect object or recipient.",
-   "id": "c31"
   },
   {
    "sentence": "Тут девочка принялась плакать о том, что она такая безобразная: даже ___ не захотели держать её у себя!",
    "lemma": "жук",
    "options": [
     "майские жуки",
-    "майским жукам",
-    "майских жуков",
-    "майских жуках"
+    "майских жуках",
+    "майскими жуками",
+    "майским жукам"
    ],
    "correct": "майские жуки",
    "case": "Именительный (Nominative)",
-   "explain": "«майские жуки» — the subject of the sentence stands in the nominative.",
+   "explain": "«майские жуки» is the subject of «захотели» — who or what does it — so nominative.",
    "id": "c32"
   },
   {
@@ -459,22 +221,8 @@
    ],
    "correct": "самом-то деле",
    "case": "Предложный (Prepositional)",
-   "explain": "«самом-то деле» — after the preposition «на», for location or topic.",
+   "explain": "«самом-то деле» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c33"
-  },
-  {
-   "sentence": "Все певуньи птички разлетелись, кусты и цветы увяли, большой ___, под которым жила Дюймовочка, пожелтел, весь засох и свернулся в трубочку.",
-   "lemma": "лист",
-   "options": [
-    "лопушиному листу",
-    "лопушиным листом",
-    "лопушиный лист",
-    "лопушиного листа"
-   ],
-   "correct": "лопушиный лист",
-   "case": "Именительный (Nominative)",
-   "explain": "«лопушиный лист» — the subject of the sentence stands in the nominative.",
-   "id": "c34"
   },
   {
    "sentence": "___ мёрзла от холода: платьице её всё разорвалось, а она была такая маленькая, нежная — замерзай, да и всё тут!",
@@ -487,22 +235,8 @@
    ],
    "correct": "сама крошка",
    "case": "Именительный (Nominative)",
-   "explain": "«Сама крошка» — the subject of the sentence stands in the nominative.",
+   "explain": "«сама крошка» is the subject of «мёрзла» — who or what does it — so nominative.",
    "id": "c35"
-  },
-  {
-   "sentence": "Пошёл снег, и каждая снежинка была для неё то же, что для нас ___ снега; мы ведь большие, а она была всего-то с дюйм!",
-   "lemma": "лопата",
-   "options": [
-    "целая лопата",
-    "целой лопатой",
-    "целой лопате",
-    "целой лопаты"
-   ],
-   "correct": "целая лопата",
-   "case": "Именительный (Nominative)",
-   "explain": "«целая лопата» — the subject of the sentence stands in the nominative.",
-   "id": "c36"
   },
   {
    "sentence": "Она завернулась было в ___, но он совсем не грел, и бедняжка сама дрожала как лист.",
@@ -515,7 +249,7 @@
    ],
    "correct": "сухой лист",
    "case": "Винительный (Accusative)",
-   "explain": "«сухой лист» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«сухой лист» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c37"
   },
   {
@@ -529,36 +263,8 @@
    ],
    "correct": "большое поле",
    "case": "Именительный (Nominative)",
-   "explain": "«большое поле» — the subject of the sentence stands in the nominative.",
+   "explain": "«большое поле» is the subject of «лежало» — who or what does it — so nominative.",
    "id": "c38"
-  },
-  {
-   "sentence": "Возле леса, куда она попала, лежало большое поле; хлеб давно был убран, одни голые, сухие стебельки торчали из мёрзлой земли; для Дюймовочки это был ___.",
-   "lemma": "лес",
-   "options": [
-    "целого леса",
-    "целому лесу",
-    "целый лес",
-    "целым лесом"
-   ],
-   "correct": "целый лес",
-   "case": "Именительный (Nominative)",
-   "explain": "«целый лес» — the subject of the sentence stands in the nominative.",
-   "id": "c39"
-  },
-  {
-   "sentence": "И вот пришла бедняжка к дверям полевой мыши; дверью была ___, прикрытая сухими стебельками и былинками.",
-   "lemma": "дырочка",
-   "options": [
-    "маленькая дырочка",
-    "маленькой дырочкой",
-    "маленькой дырочки",
-    "маленькой дырочке"
-   ],
-   "correct": "маленькая дырочка",
-   "case": "Именительный (Nominative)",
-   "explain": "«маленькая дырочка» — the subject of the sentence stands in the nominative.",
-   "id": "c40"
   },
   {
    "sentence": "И вот пришла бедняжка к дверям полевой мыши; дверью была маленькая дырочка, прикрытая ___ и былинками.",
@@ -571,7 +277,7 @@
    ],
    "correct": "сухими стебельками",
    "case": "Творительный (Instrumental)",
-   "explain": "«сухими стебельками» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «прикрытая», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c41"
   },
   {
@@ -585,36 +291,8 @@
    ],
    "correct": "ячменного зерна",
    "case": "Родительный (Genitive)",
-   "explain": "«ячменного зерна» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«ячменного зерна» depends on the noun «кусочек» (whose? of what?) — genitive.",
    "id": "c42"
-  },
-  {
-   "sentence": "— Ты можешь жить у меня всю зиму, только убирай хорошенько мои комнаты да рассказывай мне сказки — я до них ___.",
-   "lemma": "охотница",
-   "options": [
-    "большей охотницы",
-    "большая охотница",
-    "большей охотницей",
-    "большей охотнице"
-   ],
-   "correct": "большая охотница",
-   "case": "Именительный (Nominative)",
-   "explain": "«большая охотница» — the subject of the sentence stands in the nominative.",
-   "id": "c43"
-  },
-  {
-   "sentence": "Он живёт ещё куда лучше меня: у него ___, а ходит он в чудесной бархатной шубке.",
-   "lemma": "зал",
-   "options": [
-    "огромных залов",
-    "огромным залам",
-    "огромные залы",
-    "огромными залами"
-   ],
-   "correct": "огромные залы",
-   "case": "Именительный (Nominative)",
-   "explain": "«огромные залы» — the subject of the sentence stands in the nominative.",
-   "id": "c44"
   },
   {
    "sentence": "Он живёт ещё куда лучше меня: у него огромные залы, а ходит он в чудесной ___.",
@@ -627,7 +305,7 @@
    ],
    "correct": "бархатной шубке",
    "case": "Предложный (Prepositional)",
-   "explain": "«бархатной шубке» — after the preposition «в», for location or topic.",
+   "explain": "«бархатной шубке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c45"
   },
   {
@@ -641,36 +319,8 @@
    ],
    "correct": "самом деле",
    "case": "Предложный (Prepositional)",
-   "explain": "«самом деле» — after the preposition «в», for location or topic.",
+   "explain": "«самом деле» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c46"
-  },
-  {
-   "sentence": "Девочке пришлось петь, и она спела две песенки: «___, лети, лети» и «Бродит по лугам монах», да так мило, что крот прямо-таки в неё влюбился.",
-   "lemma": "жук",
-   "options": [
-    "майскому жуку",
-    "майском жуке",
-    "майского жука",
-    "майский жук"
-   ],
-   "correct": "майский жук",
-   "case": "Именительный (Nominative)",
-   "explain": "«Майский жук» — the subject of the sentence stands in the nominative.",
-   "id": "c47"
-  },
-  {
-   "sentence": "Это была ___, с перьями, с клювом; она, должно быть, умерла недавно, в начале зимы, и была зарыта в землю как раз там, где крот прорыл свою галерею.",
-   "lemma": "птица",
-   "options": [
-    "настоящей птице",
-    "настоящей птицей",
-    "настоящая птица",
-    "настоящей птицы"
-   ],
-   "correct": "настоящая птица",
-   "case": "Именительный (Nominative)",
-   "explain": "«настоящая птица» — the subject of the sentence stands in the nominative.",
-   "id": "c48"
   },
   {
    "sentence": "Когда они дошли до места, где лежала ___, крот проткнул своим широким носом в земляном потолке дыру, и в галерею пробился дневной свет.",
@@ -683,22 +333,8 @@
    ],
    "correct": "мёртвая птица",
    "case": "Именительный (Nominative)",
-   "explain": "«мёртвая птица» — the subject of the sentence stands in the nominative.",
+   "explain": "«мёртвая птица» is the subject of «лежала» — who or what does it — so nominative.",
    "id": "c49"
-  },
-  {
-   "sentence": "Когда они дошли до места, где лежала мёртвая птица, крот проткнул своим ___ в земляном потолке дыру, и в галерею пробился дневной свет.",
-   "lemma": "нос",
-   "options": [
-    "широкий нос",
-    "широком носе",
-    "широкому носу",
-    "широким носом"
-   ],
-   "correct": "широким носом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«широким носом» — the instrumental marks the means, company, or complement.",
-   "id": "c50"
   },
   {
    "sentence": "В ___ галереи лежала мёртвая ласточка; хорошенькие крылья были крепко прижаты к телу, лапки и головка спрятаны в пёрышки; бедная птичка, верно, умерла от холода.",
@@ -711,7 +347,7 @@
    ],
    "correct": "самой середине",
    "case": "Предложный (Prepositional)",
-   "explain": "«самой середине» — after the preposition «в», for location or topic.",
+   "explain": "«самой середине» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c51"
   },
   {
@@ -725,36 +361,8 @@
    ],
    "correct": "мёртвая ласточка",
    "case": "Именительный (Nominative)",
-   "explain": "«мёртвая ласточка» — the subject of the sentence stands in the nominative.",
+   "explain": "«мёртвая ласточка» is the subject of «лежала» — who or what does it — so nominative.",
    "id": "c52"
-  },
-  {
-   "sentence": "В самой середине галереи лежала мёртвая ласточка; ___ были крепко прижаты к телу, лапки и головка спрятаны в пёрышки; бедная птичка, верно, умерла от холода.",
-   "lemma": "крыло",
-   "options": [
-    "хорошенькие крылья",
-    "хорошенькими крыльями",
-    "хорошеньких крыльев",
-    "хорошеньких крыльях"
-   ],
-   "correct": "хорошенькие крылья",
-   "case": "Именительный (Nominative)",
-   "explain": "«хорошенькие крылья» — the subject of the sentence stands in the nominative.",
-   "id": "c53"
-  },
-  {
-   "sentence": "В самой середине галереи лежала мёртвая ласточка; хорошенькие крылья были крепко прижаты к телу, лапки и головка спрятаны в пёрышки; ___, верно, умерла от холода.",
-   "lemma": "птичка",
-   "options": [
-    "бедной птичкой",
-    "бедная птичка",
-    "бедной птичке",
-    "бедной птички"
-   ],
-   "correct": "бедная птичка",
-   "case": "Именительный (Nominative)",
-   "explain": "«бедная птичка» — the subject of the sentence stands in the nominative.",
-   "id": "c54"
   },
   {
    "sentence": "___ только и умеет чирикать — поневоле замёрзнешь зимой!",
@@ -767,64 +375,22 @@
    ],
    "correct": "этакая птичка",
    "case": "Именительный (Nominative)",
-   "explain": "«Этакая птичка» — the subject of the sentence stands in the nominative.",
+   "explain": "«этакая птичка» is the subject of «умеет» — who or what does it — so nominative.",
    "id": "c55"
-  },
-  {
-   "sentence": "— Прощай, ___, — сказала Дюймовочка.",
-   "lemma": "птичка",
-   "options": [
-    "миленькая птичка",
-    "миленькой птички",
-    "миленькой птичке",
-    "миленькой птичкой"
-   ],
-   "correct": "миленькая птичка",
-   "case": "Именительный (Nominative)",
-   "explain": "«миленькая птичка» — the subject of the sentence stands in the nominative.",
-   "id": "c56"
   },
   {
    "sentence": "Осенью ласточки улетают в ___, а если которая запоздает, то от холода окоченеет, упадёт замертво на землю, и её засыплет холодным снегом.",
    "lemma": "край",
    "options": [
-    "тёплых краях",
-    "тёплым краям",
     "тёплые края",
+    "тёплым краям",
+    "тёплых краёв",
     "тёплыми краями"
    ],
    "correct": "тёплые края",
    "case": "Винительный (Accusative)",
-   "explain": "«тёплые края» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«тёплые края» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c57"
-  },
-  {
-   "sentence": "Осенью ласточки улетают в тёплые края, а если которая запоздает, то от холода окоченеет, упадёт замертво на землю, и её засыплет ___.",
-   "lemma": "снег",
-   "options": [
-    "холодного снега",
-    "холодному снегу",
-    "холодном снеге",
-    "холодным снегом"
-   ],
-   "correct": "холодным снегом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«холодным снегом» — the instrumental marks the means, company, or complement.",
-   "id": "c58"
-  },
-  {
-   "sentence": "Птичка совсем уже ожила, только была ещё очень слаба и еле-еле открыла глаза, чтобы посмотреть на девочку, которая стояла перед нею с кусочком гнилушки в руках, — ___ у неё не было.",
-   "lemma": "фонарь",
-   "options": [
-    "другого фонаря",
-    "другим фонарём",
-    "другому фонарю",
-    "другой фонарь"
-   ],
-   "correct": "другого фонаря",
-   "case": "Родительный (Genitive)",
-   "explain": "«другого фонаря» — the genitive here marks possession, absence, or quantity.",
-   "id": "c59"
   },
   {
    "sentence": "Останься лучше в своей ___, я буду ухаживать за тобой.",
@@ -837,21 +403,21 @@
    ],
    "correct": "тёплой постельке",
    "case": "Предложный (Prepositional)",
-   "explain": "«тёплой постельке» — after the preposition «в», for location or topic.",
+   "explain": "«тёплой постельке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c60"
   },
   {
    "sentence": "И Дюймовочка принесла птичке воды в ___.",
    "lemma": "лепесток",
    "options": [
-    "цветочный лепесток",
-    "цветочном лепестке",
     "цветочного лепестка",
+    "цветочном лепестке",
+    "цветочным лепестком",
     "цветочному лепестку"
    ],
    "correct": "цветочном лепестке",
    "case": "Предложный (Prepositional)",
-   "explain": "«цветочном лепестке» — after the preposition «в», for location or topic.",
+   "explain": "«цветочном лепестке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c61"
   },
   {
@@ -859,56 +425,42 @@
    "lemma": "ласточка",
    "options": [
     "другим ласточкам",
-    "других ласточках",
+    "другие ласточки",
     "другими ласточками",
-    "других ласточек"
+    "других ласточках"
    ],
    "correct": "другими ласточками",
    "case": "Творительный (Instrumental)",
-   "explain": "«другими ласточками» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«другими ласточками» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c62"
   },
   {
    "sentence": "Ласточка попила и рассказала девочке, как поранила себе крыло о терновый куст и поэтому не смогла улететь вместе с другими ласточками в ___.",
    "lemma": "край",
    "options": [
-    "тёплых краях",
     "тёплым краям",
-    "тёплые края",
-    "тёплыми краями"
+    "тёплыми краями",
+    "тёплых краёв",
+    "тёплые края"
    ],
    "correct": "тёплые края",
    "case": "Винительный (Accusative)",
-   "explain": "«тёплые края» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«тёплые края» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c63"
   },
   {
    "sentence": "Солнце так славно грело, и ласточка спросила, не хочет ли девочка отправиться вместе с ней, — пускай сядет к ней на спину, и они полетят в ___!",
    "lemma": "лес",
    "options": [
-    "зелёном лесе",
+    "зелёному лесу",
     "зелёного леса",
-    "зелёный лес",
-    "зелёному лесу"
+    "зелёным лесом",
+    "зелёный лес"
    ],
    "correct": "зелёный лес",
    "case": "Винительный (Accusative)",
-   "explain": "«зелёный лес» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«зелёный лес» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c64"
-  },
-  {
-   "sentence": "— Прощай, прощай, милая ___!",
-   "lemma": "крошка",
-   "options": [
-    "доброй крошке",
-    "доброй крошкой",
-    "доброй крошки",
-    "добрая крошка"
-   ],
-   "correct": "добрая крошка",
-   "case": "Именительный (Nominative)",
-   "explain": "«добрая крошка» — the subject of the sentence stands in the nominative.",
-   "id": "c65"
   },
   {
    "sentence": "Дюймовочка посмотрела ей вслед, и у неё даже слёзы навернулись на глазах, — уж очень полюбилась ей ___.",
@@ -921,7 +473,7 @@
    ],
    "correct": "бедная птичка",
    "case": "Именительный (Nominative)",
-   "explain": "«бедная птичка» — the subject of the sentence stands in the nominative.",
+   "explain": "«бедная птичка» is the subject of «полюбилась» — who or what does it — so nominative.",
    "id": "c66"
   },
   {
@@ -935,22 +487,8 @@
    ],
    "correct": "хлебное поле",
    "case": "Именительный (Nominative)",
-   "explain": "«хлебное поле» — the subject of the sentence stands in the nominative.",
+   "explain": "«хлебное поле» is the subject of «заросло» — who or what does it — so nominative.",
    "id": "c67"
-  },
-  {
-   "sentence": "Ей совсем не позволяли выходить на солнышко, а хлебное поле так всё заросло высокими ___, что стало для бедной крошки дремучим лесом.",
-   "lemma": "колос",
-   "options": [
-    "толстыми колосьями",
-    "толстые колосья",
-    "толстых колосьев",
-    "толстых колосьях"
-   ],
-   "correct": "толстыми колосьями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«толстыми колосьями» — the instrumental marks the means, company, or complement.",
-   "id": "c68"
   },
   {
    "sentence": "Ей совсем не позволяли выходить на солнышко, а хлебное поле так всё заросло высокими толстыми колосьями, что стало для ___ дремучим лесом.",
@@ -963,36 +501,8 @@
    ],
    "correct": "бедной крошки",
    "case": "Родительный (Genitive)",
-   "explain": "«бедной крошки» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«бедной крошки» — «для» always takes the genitive.",
    "id": "c69"
-  },
-  {
-   "sentence": "Ей совсем не позволяли выходить на солнышко, а хлебное поле так всё заросло высокими толстыми колосьями, что стало для бедной крошки ___.",
-   "lemma": "лес",
-   "options": [
-    "дремучим лесом",
-    "дремучем лесе",
-    "дремучему лесу",
-    "дремучий лес"
-   ],
-   "correct": "дремучим лесом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«дремучим лесом» — the instrumental marks the means, company, or complement.",
-   "id": "c70"
-  },
-  {
-   "sentence": "Оказалось, что ___ в бархатной шубе посватался за девочку.",
-   "lemma": "сосед",
-   "options": [
-    "скучного соседа",
-    "скучный сосед",
-    "скучным соседом",
-    "скучному соседу"
-   ],
-   "correct": "скучный сосед",
-   "case": "Именительный (Nominative)",
-   "explain": "«скучный сосед» — the subject of the sentence stands in the nominative.",
-   "id": "c71"
   },
   {
    "sentence": "Оказалось, что скучный сосед в ___ посватался за девочку.",
@@ -1005,35 +515,35 @@
    ],
    "correct": "бархатной шубе",
    "case": "Предложный (Prepositional)",
-   "explain": "«бархатной шубе» — after the preposition «в», for location or topic.",
+   "explain": "«бархатной шубе» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c72"
   },
   {
    "sentence": "И девочке пришлось прясть по ___, а старуха мышь наняла четырёх пауков для тканья, и они работали день и ночь.",
    "lemma": "день",
    "options": [
+    "целых дней",
     "целых днях",
-    "целые дни",
     "целым дням",
     "целыми днями"
    ],
    "correct": "целым дням",
    "case": "Дательный (Dative)",
-   "explain": "«целым дням» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«целым дням» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c73"
   },
   {
    "sentence": "Но девочка была совсем не рада: ей не нравился ___.",
    "lemma": "крот",
    "options": [
-    "скучного крота",
     "скучному кроту",
-    "скучный крот",
-    "скучном кроте"
+    "скучном кроте",
+    "скучным кротом",
+    "скучный крот"
    ],
    "correct": "скучный крот",
    "case": "Именительный (Nominative)",
-   "explain": "«скучный крот» — the subject of the sentence stands in the nominative.",
+   "explain": "«скучный крот» is the subject of «нравился» — who or what does it — so nominative.",
    "id": "c74"
   },
   {
@@ -1047,7 +557,7 @@
    ],
    "correct": "мышиной норки",
    "case": "Родительный (Genitive)",
-   "explain": "«мышиной норки» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«мышиной норки» depends on the noun «порог» (whose? of what?) — genitive.",
    "id": "c75"
   },
   {
@@ -1061,36 +571,22 @@
    ],
    "correct": "голубого неба",
    "case": "Родительный (Genitive)",
-   "explain": "«голубого неба» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«голубого неба» depends on the noun «кусочек» (whose? of what?) — genitive.",
    "id": "c76"
   },
   {
    "sentence": "Но крошка заплакала и сказала, что не хочет выходить замуж за ___.",
    "lemma": "крот",
    "options": [
+    "скучного крота",
     "скучный крот",
-    "скучным кротом",
     "скучному кроту",
-    "скучного крота"
+    "скучном кроте"
    ],
    "correct": "скучного крота",
    "case": "Винительный (Accusative)",
-   "explain": "«скучного крота» — after the preposition «за», the accusative marks the direct object of the verb.",
+   "explain": "«скучного крота» — «за» takes the accusative here (куда? за что? за кого?) — the instrumental would mean position behind or at (где? за чем?).",
    "id": "c77"
-  },
-  {
-   "sentence": "— Только не капризничай, а то я укушу тебя — видишь, какой у меня ___?",
-   "lemma": "зуб",
-   "options": [
-    "белый зуб",
-    "белым зубом",
-    "белому зубу",
-    "белого зуба"
-   ],
-   "correct": "белый зуб",
-   "case": "Именительный (Nominative)",
-   "explain": "«белый зуб» — the subject of the sentence stands in the nominative.",
-   "id": "c78"
   },
   {
    "sentence": "У ___ нет такой бархатной шубки, как у него!",
@@ -1103,22 +599,8 @@
    ],
    "correct": "самой королевы",
    "case": "Родительный (Genitive)",
-   "explain": "«самой королевы» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«самой королевы» — «у» always takes the genitive.",
    "id": "c79"
-  },
-  {
-   "sentence": "А ___ было так тяжело навсегда распроститься с красным солнышком!",
-   "lemma": "крошка",
-   "options": [
-    "бедной крошкой",
-    "бедной крошке",
-    "бедной крошки",
-    "бедная крошка"
-   ],
-   "correct": "бедной крошке",
-   "case": "Дательный (Dative)",
-   "explain": "«бедной крошке» — the dative marks the indirect object or recipient.",
-   "id": "c80"
   },
   {
    "sentence": "А бедной крошке было так тяжело навсегда распроститься с ___!",
@@ -1131,21 +613,21 @@
    ],
    "correct": "красным солнышком",
    "case": "Творительный (Instrumental)",
-   "explain": "«красным солнышком» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«красным солнышком» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c81"
   },
   {
    "sentence": "И Дюймовочка вышла взглянуть на солнце в ___.",
    "lemma": "раз",
    "options": [
-    "последний раз",
     "последнего раза",
+    "последним разом",
     "последнему разу",
-    "последнем разе"
+    "последний раз"
    ],
    "correct": "последний раз",
    "case": "Винительный (Accusative)",
-   "explain": "«последний раз» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«последний раз» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c82"
   },
   {
@@ -1159,22 +641,8 @@
    ],
    "correct": "холодная зима",
    "case": "Именительный (Nominative)",
-   "explain": "«холодная зима» — the subject of the sentence stands in the nominative.",
+   "explain": "«холодная зима» is the subject of «придёт» — who or what does it — so nominative.",
    "id": "c83"
-  },
-  {
-   "sentence": "— Скоро придёт холодная зима, — сказала ласточка, — и я улетаю далеко-далеко, в ___.",
-   "lemma": "край",
-   "options": [
-    "тёплых краях",
-    "тёплым краям",
-    "тёплые края",
-    "тёплыми краями"
-   ],
-   "correct": "тёплые края",
-   "case": "Винительный (Accusative)",
-   "explain": "«тёплые края» — after the preposition «в», the accusative marks the direct object of the verb.",
-   "id": "c84"
   },
   {
    "sentence": "Ты можешь сесть ко мне на спину — только привяжи себя покрепче поясом, — и мы улетим с тобой далеко от ___, далеко за синие моря, в тёплые края, где солнышко светит ярче, где всегда лето и цветут чудные цветы!",
@@ -1187,7 +655,7 @@
    ],
    "correct": "гадкого крота",
    "case": "Родительный (Genitive)",
-   "explain": "«гадкого крота» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«гадкого крота» — «от» always takes the genitive.",
    "id": "c85"
   },
   {
@@ -1195,42 +663,28 @@
    "lemma": "море",
    "options": [
     "синих морях",
-    "синими морями",
-    "синие моря",
-    "синим морям"
+    "синих морей",
+    "синим морям",
+    "синие моря"
    ],
    "correct": "синие моря",
    "case": "Винительный (Accusative)",
-   "explain": "«синие моря» — after the preposition «за», the accusative marks the direct object of the verb.",
+   "explain": "«синие моря» — «за» takes the accusative here (куда? за что? за кого?) — the instrumental would mean position behind or at (где? за чем?).",
    "id": "c86"
   },
   {
    "sentence": "Ты можешь сесть ко мне на спину — только привяжи себя покрепче поясом, — и мы улетим с тобой далеко от гадкого крота, далеко за синие моря, в ___, где солнышко светит ярче, где всегда лето и цветут чудные цветы!",
    "lemma": "край",
    "options": [
-    "тёплых краях",
     "тёплым краям",
     "тёплые края",
+    "тёплых краёв",
     "тёплыми краями"
    ],
    "correct": "тёплые края",
    "case": "Винительный (Accusative)",
-   "explain": "«тёплые края» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«тёплые края» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c87"
-  },
-  {
-   "sentence": "Полетим со мной, ___!",
-   "lemma": "крошка",
-   "options": [
-    "милой крошке",
-    "милая крошка",
-    "милой крошки",
-    "милой крошкой"
-   ],
-   "correct": "милая крошка",
-   "case": "Именительный (Nominative)",
-   "explain": "«милая крошка» — the subject of the sentence stands in the nominative.",
-   "id": "c88"
   },
   {
    "sentence": "Ласточка взвилась стрелой и полетела над ___, над синими морями и высокими горами, покрытыми снегом.",
@@ -1243,7 +697,7 @@
    ],
    "correct": "тёмными лесами",
    "case": "Творительный (Instrumental)",
-   "explain": "«тёмными лесами» — after the preposition «над», the instrumental marks the means, company, or complement.",
+   "explain": "«тёмными лесами» — «над» always takes the instrumental.",
    "id": "c89"
   },
   {
@@ -1257,22 +711,8 @@
    ],
    "correct": "синими морями",
    "case": "Творительный (Instrumental)",
-   "explain": "«синими морями» — after the preposition «над», the instrumental marks the means, company, or complement.",
+   "explain": "«синими морями» — «над» always takes the instrumental.",
    "id": "c90"
-  },
-  {
-   "sentence": "Ласточка взвилась стрелой и полетела над тёмными лесами, над синими морями и ___, покрытыми снегом.",
-   "lemma": "гора",
-   "options": [
-    "высокими горами",
-    "высоким горам",
-    "высокие горы",
-    "высоких гор"
-   ],
-   "correct": "высокими горами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«высокими горами» — the instrumental marks the means, company, or complement.",
-   "id": "c91"
   },
   {
    "sentence": "Тут было страсть как холодно; Дюймовочка вся зарылась в ___ ласточки и только головку высунула, чтобы любоваться всеми прелестями, которые встречались в пути.",
@@ -1285,7 +725,7 @@
    ],
    "correct": "тёплые перья",
    "case": "Винительный (Accusative)",
-   "explain": "«тёплые перья» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«тёплые перья» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c92"
   },
   {
@@ -1299,7 +739,7 @@
    ],
    "correct": "прелестные ребятишки",
    "case": "Именительный (Nominative)",
-   "explain": "«прелестные ребятишки» — the subject of the sentence stands in the nominative.",
+   "explain": "«прелестные ребятишки» is the subject of «бегали» — who or what does it — so nominative.",
    "id": "c93"
   },
   {
@@ -1313,64 +753,22 @@
    ],
    "correct": "голубого озера",
    "case": "Родительный (Genitive)",
-   "explain": "«голубого озера» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«голубого озера» depends on the noun «берегу» (whose? of what?) — genitive.",
    "id": "c94"
-  },
-  {
-   "sentence": "На берегу красивого голубого озера, посреди зелёных ___, стоял старинный белый мраморный дворец.",
-   "lemma": "дерево",
-   "options": [
-    "кудрявых деревьев",
-    "кудрявыми деревьями",
-    "кудрявые деревья",
-    "кудрявых деревьях"
-   ],
-   "correct": "кудрявых деревьев",
-   "case": "Родительный (Genitive)",
-   "explain": "«кудрявых деревьев» — the genitive here marks possession, absence, or quantity.",
-   "id": "c95"
-  },
-  {
-   "sentence": "На берегу красивого голубого озера, посреди зелёных кудрявых деревьев, стоял старинный белый ___.",
-   "lemma": "дворец",
-   "options": [
-    "мраморным дворцом",
-    "мраморному дворцу",
-    "мраморный дворец",
-    "мраморном дворце"
-   ],
-   "correct": "мраморный дворец",
-   "case": "Именительный (Nominative)",
-   "explain": "«мраморный дворец» — after the preposition «посреди», the subject of the sentence stands in the nominative.",
-   "id": "c96"
   },
   {
    "sentence": "— А ты выбери себе внизу какой-нибудь ___, я тебя посажу в него, и ты чудесно заживёшь!",
    "lemma": "цветок",
    "options": [
+    "красивому цветку",
+    "красивым цветком",
     "красивом цветке",
-    "красивого цветка",
-    "красивый цветок",
-    "красивым цветком"
+    "красивый цветок"
    ],
    "correct": "красивый цветок",
    "case": "Винительный (Accusative)",
-   "explain": "«красивый цветок» — the accusative marks the direct object of the verb.",
+   "explain": "«красивый цветок» is the direct object of «посажу» (кого? что?) — accusative.",
    "id": "c97"
-  },
-  {
-   "sentence": "Внизу лежали ___ мрамора — это свалилась верхушка одной колонны и разбилась на три куска, между ними росли крупные белые цветы.",
-   "lemma": "кусок",
-   "options": [
-    "больших кусках",
-    "больших кусков",
-    "большим кускам",
-    "большие куски"
-   ],
-   "correct": "большие куски",
-   "case": "Именительный (Nominative)",
-   "explain": "«большие куски» — the subject of the sentence stands in the nominative.",
-   "id": "c98"
   },
   {
    "sentence": "Ласточка спустилась и посадила девочку на один из ___.",
@@ -1383,22 +781,8 @@
    ],
    "correct": "широких лепестков",
    "case": "Родительный (Genitive)",
-   "explain": "«широких лепестков» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«широких лепестков» — «из» always takes the genitive.",
    "id": "c99"
-  },
-  {
-   "sentence": "В ___ цветка сидел маленький человечек, беленький и прозрачный, точно хрустальный.",
-   "lemma": "чашечка",
-   "options": [
-    "самой чашечкой",
-    "самой чашечке",
-    "самой чашечки",
-    "сама чашечка"
-   ],
-   "correct": "самой чашечке",
-   "case": "Предложный (Prepositional)",
-   "explain": "«самой чашечке» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c100"
   },
   {
    "sentence": "В самой чашечке цветка сидел ___, беленький и прозрачный, точно хрустальный.",
@@ -1411,50 +795,8 @@
    ],
    "correct": "маленький человечек",
    "case": "Именительный (Nominative)",
-   "explain": "«маленький человечек» — the subject of the sentence stands in the nominative.",
+   "explain": "«маленький человечек» is the subject of «сидел» — who or what does it — so nominative.",
    "id": "c101"
-  },
-  {
-   "sentence": "На голове у него сияла прелестная ___, за плечами развевались блестящие крылышки, а сам он был не больше Дюймовочки.",
-   "lemma": "корона",
-   "options": [
-    "золотой короне",
-    "золотой короной",
-    "золотая корона",
-    "золотой короны"
-   ],
-   "correct": "золотая корона",
-   "case": "Именительный (Nominative)",
-   "explain": "«золотая корона» — the subject of the sentence stands in the nominative.",
-   "id": "c102"
-  },
-  {
-   "sentence": "На голове у него сияла прелестная золотая корона, за плечами развевались ___, а сам он был не больше Дюймовочки.",
-   "lemma": "крылышко",
-   "options": [
-    "блестящим крылышкам",
-    "блестящими крылышками",
-    "блестящих крылышках",
-    "блестящие крылышки"
-   ],
-   "correct": "блестящие крылышки",
-   "case": "Именительный (Nominative)",
-   "explain": "«блестящие крылышки» — the subject of the sentence stands in the nominative.",
-   "id": "c103"
-  },
-  {
-   "sentence": "В каждом цветке живёт эльф, мальчик или девочка, а тот, который сидел рядом с Дюймовочкой, был ___ эльфов.",
-   "lemma": "король",
-   "options": [
-    "самом короле",
-    "самому королю",
-    "самим королём",
-    "сам король"
-   ],
-   "correct": "сам король",
-   "case": "Именительный (Nominative)",
-   "explain": "«сам король» — the subject of the sentence stands in the nominative.",
-   "id": "c104"
   },
   {
    "sentence": "___ совсем перепугался при виде ласточки.",
@@ -1467,7 +809,7 @@
    ],
    "correct": "маленький король",
    "case": "Именительный (Nominative)",
-   "explain": "«Маленький король» — the subject of the sentence stands in the nominative.",
+   "explain": "«маленький король» is the subject of «перепугался» — who or what does it — so nominative.",
    "id": "c105"
   },
   {
@@ -1481,7 +823,7 @@
    ],
    "correct": "хорошенькой девочки",
    "case": "Родительный (Genitive)",
-   "explain": "«хорошенькой девочки» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«хорошенькой девочки» is the object of a negated verb («не видывал») — genitive instead of the accusative.",
    "id": "c106"
   },
   {
@@ -1495,7 +837,7 @@
    ],
    "correct": "бархатной шубе",
    "case": "Предложный (Prepositional)",
-   "explain": "«бархатной шубе» — after the preposition «в», for location or topic.",
+   "explain": "«бархатной шубе» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c107"
   },
   {
@@ -1509,7 +851,7 @@
    ],
    "correct": "стрекозиных крылышек",
    "case": "Родительный (Genitive)",
-   "explain": "«стрекозиных крылышек» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«стрекозиных крылышек» depends on the noun «пара» (whose? of what?) — genitive.",
    "id": "c108"
   },
   {
@@ -1523,22 +865,8 @@
    ],
    "correct": "маленькое гнездо",
    "case": "Именительный (Nominative)",
-   "explain": "«маленькое гнездо» — the subject of the sentence stands in the nominative.",
+   "explain": "«маленькое гнездо» is the subject of «было» — who or what does it — so nominative.",
    "id": "c109"
-  },
-  {
-   "sentence": "Там у неё было маленькое гнездо, как раз над окном человека, ___ рассказывать сказки.",
-   "lemma": "мастер",
-   "options": [
-    "большим мастером",
-    "большой мастер",
-    "большого мастера",
-    "большом мастере"
-   ],
-   "correct": "большого мастера",
-   "case": "Родительный (Genitive)",
-   "explain": "«большого мастера» — the genitive here marks possession, absence, or quantity.",
-   "id": "c110"
   }
  ]
 }

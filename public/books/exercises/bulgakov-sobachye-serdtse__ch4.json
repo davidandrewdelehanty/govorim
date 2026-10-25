@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "___ приблизительно двух лет от роду.",
-   "lemma": "собака",
-   "options": [
-    "лабораторной собакой",
-    "лабораторной собаке",
-    "лабораторная собака",
-    "лабораторной собаки"
-   ],
-   "correct": "лабораторная собака",
-   "case": "Именительный (Nominative)",
-   "explain": "«Лабораторная собака» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
    "sentence": "Питание до поступления к профессору плохое, после ___ – крайне упитанный.",
    "lemma": "пребывание",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "недельного пребывания",
    "case": "Родительный (Genitive)",
-   "explain": "«недельного пребывания» — after the preposition «после», the genitive here marks possession, absence, or quantity.",
+   "explain": "«недельного пребывания» — «после» always takes the genitive.",
    "id": "c5"
   },
   {
@@ -39,36 +25,8 @@
    ],
    "correct": "вышеуказанного мужчины",
    "case": "Родительный (Genitive)",
-   "explain": "«вышеуказанного мужчины» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«вышеуказанного мужчины» — «от» always takes the genitive.",
    "id": "c6"
-  },
-  {
-   "sentence": "В ночь после операции: грозные ___ пульса.",
-   "lemma": "падение",
-   "options": [
-    "повторными падениями",
-    "повторные падения",
-    "повторным падениям",
-    "повторных падений"
-   ],
-   "correct": "повторные падения",
-   "case": "Именительный (Nominative)",
-   "explain": "«повторные падения» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
-  },
-  {
-   "sentence": "___ камфары по Преображенскому.",
-   "lemma": "доза",
-   "options": [
-    "громадных дозах",
-    "громадных доз",
-    "громадные дозы",
-    "громадным дозам"
-   ],
-   "correct": "громадные дозы",
-   "case": "Именительный (Nominative)",
-   "explain": "«Громадные дозы» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
   },
   {
    "sentence": "Вызваны для консультации: профессор по кафедре ___ Василий Васильевич Бундарев и директор московского Ветеринарного Показательного института.",
@@ -81,7 +39,7 @@
    ],
    "correct": "кожных болезней",
    "case": "Родительный (Genitive)",
-   "explain": "«кожных болезней» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«кожных болезней» depends on the noun «кафедре» (whose? of what?) — genitive.",
    "id": "c12"
   },
   {
@@ -95,7 +53,7 @@
    ],
    "correct": "показательного института",
    "case": "Родительный (Genitive)",
-   "explain": "«Показательного института» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«показательного института» depends on the noun «директор» (whose? of what?) — genitive.",
    "id": "c13"
   },
   {
@@ -109,7 +67,7 @@
    ],
    "correct": "первый лай",
    "case": "Именительный (Nominative)",
-   "explain": "«первый лай» — the subject of the sentence stands in the nominative.",
+   "explain": "«первый лай» is the subject of «появился» — who or what does it — so nominative.",
    "id": "c14"
   },
   {
@@ -123,106 +81,22 @@
    ],
    "correct": "общего облысения",
    "case": "Родительный (Genitive)",
-   "explain": "«общего облысения» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«общего облысения» depends on the noun «характер» (whose? of what?) — genitive.",
    "id": "c15"
   },
   {
    "sentence": "Взвешивание дало ___ – 30 кг за счёт роста (удлинение). костей.",
    "lemma": "результат",
    "options": [
+    "неожиданному результату",
     "неожиданном результате",
-    "неожиданный результат",
-    "неожиданного результата",
-    "неожиданным результатом"
+    "неожиданным результатом",
+    "неожиданный результат"
    ],
    "correct": "неожиданный результат",
    "case": "Винительный (Accusative)",
-   "explain": "«неожиданный результат» — the accusative marks the direct object of the verb.",
+   "explain": "«неожиданный результат» is the direct object of «дало» (кого? что?) — accusative.",
    "id": "c16"
-  },
-  {
-   "sentence": "В 3 часа дня (___) засмеялся, вызвав обморок горничной Зины.",
-   "lemma": "буква",
-   "options": [
-    "крупных буквах",
-    "крупным буквам",
-    "крупными буквами",
-    "крупные буквы"
-   ],
-   "correct": "крупными буквами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«крупными буквами» — the instrumental marks the means, company, or complement.",
-   "id": "c18"
-  },
-  {
-   "sentence": "___ чуть не понесла тяжёлую утрату.",
-   "lemma": "наука",
-   "options": [
-    "русской науке",
-    "русской науки",
-    "русской наукой",
-    "русская наука"
-   ],
-   "correct": "русская наука",
-   "case": "Именительный (Nominative)",
-   "explain": "«Русская наука» — the subject of the sentence stands in the nominative.",
-   "id": "c20"
-  },
-  {
-   "sentence": "В 1 час 13 мин. – ___ с проф.",
-   "lemma": "обморок",
-   "options": [
-    "глубокому обмороку",
-    "глубокого обморока",
-    "глубоким обмороком",
-    "глубокий обморок"
-   ],
-   "correct": "глубокий обморок",
-   "case": "Именительный (Nominative)",
-   "explain": "«глубокий обморок» — the subject of the sentence stands in the nominative.",
-   "id": "c21"
-  },
-  {
-   "sentence": "(То карандашом, то ___).",
-   "lemma": "чернила",
-   "options": [
-    "фиолетовым чернилам",
-    "фиолетовых чернил",
-    "фиолетовых чернилах",
-    "фиолетовыми чернилами"
-   ],
-   "correct": "фиолетовыми чернилами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«фиолетовыми чернилами» — the instrumental marks the means, company, or complement.",
-   "id": "c22"
-  },
-  {
-   "sentence": "Он произносит очень много слов: «извозчик», «мест нету», «___», «лучший подарок детям» и все бранные слова, какие только существуют в русском лексиконе.",
-   "lemma": "газета",
-   "options": [
-    "вечерней газете",
-    "вечерняя газета",
-    "вечерней газетой",
-    "вечерней газеты"
-   ],
-   "correct": "вечерняя газета",
-   "case": "Именительный (Nominative)",
-   "explain": "«вечерняя газета» — the subject of the sentence stands in the nominative.",
-   "id": "c23"
-  },
-  {
-   "sentence": "Он произносит очень много слов: «извозчик», «мест нету», «вечерняя газета», «лучший подарок детям» и все ___, какие только существуют в русском лексиконе.",
-   "lemma": "слово",
-   "options": [
-    "бранными словами",
-    "бранные слова",
-    "бранных словах",
-    "бранным словам"
-   ],
-   "correct": "бранные слова",
-   "case": "Винительный (Accusative)",
-   "explain": "«бранные слова» — the accusative marks the direct object of the verb.",
-   "id": "c24"
   },
   {
    "sentence": "В области ___ формирующийся мужчина.",
@@ -235,7 +109,7 @@
    ],
    "correct": "половых органов",
    "case": "Родительный (Genitive)",
-   "explain": "«половых органов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«половых органов» depends on the noun «области» (whose? of what?) — genitive.",
    "id": "c27"
   },
   {
@@ -249,77 +123,35 @@
    ],
    "correct": "полном составе",
    "case": "Предложный (Prepositional)",
-   "explain": "«полном составе» — after the preposition «в», for location or topic.",
+   "explain": "«полном составе» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c32"
-  },
-  {
-   "sentence": "Филипп Филиппович, как ___, признал свою ошибку – перемена гипофиза даёт не омоложение, а полное очеловечение (подчёркнуто три раза).",
-   "lemma": "учёный",
-   "options": [
-    "истого учёного",
-    "истый учёный",
-    "истому учёному",
-    "истом учёном"
-   ],
-   "correct": "истый учёный",
-   "case": "Именительный (Nominative)",
-   "explain": "«истый учёный» — the subject of the sentence stands in the nominative.",
-   "id": "c34"
-  },
-  {
-   "sentence": "Филипп Филиппович, как истый учёный, признал свою ошибку – перемена гипофиза даёт не омоложение, а ___ (подчёркнуто три раза).",
-   "lemma": "очеловечение",
-   "options": [
-    "полном очеловечении",
-    "полное очеловечение",
-    "полным очеловечением",
-    "полному очеловечению"
-   ],
-   "correct": "полное очеловечение",
-   "case": "Именительный (Nominative)",
-   "explain": "«полное очеловечение» — the subject of the sentence stands in the nominative.",
-   "id": "c35"
   },
   {
    "sentence": "Она носит несколько ___: как будто это существо где-то раньше слышало бранные слова, автоматически подсознательно занесло их в свой мозг и теперь изрыгает их пачками.",
    "lemma": "характер",
    "options": [
+    "фонографическим характером",
+    "фонографическом характере",
     "фонографический характер",
-    "фонографического характера",
-    "фонографическому характеру",
-    "фонографическим характером"
+    "фонографическому характеру"
    ],
    "correct": "фонографический характер",
    "case": "Винительный (Accusative)",
-   "explain": "«фонографический характер» — the accusative marks the direct object of the verb.",
+   "explain": "«фонографический характер» is the direct object of «носит» (кого? что?) — accusative.",
    "id": "c37"
-  },
-  {
-   "sentence": "Она носит несколько фонографический характер: как будто это существо где-то раньше слышало ___, автоматически подсознательно занесло их в свой мозг и теперь изрыгает их пачками.",
-   "lemma": "слово",
-   "options": [
-    "бранными словами",
-    "бранные слова",
-    "бранных словах",
-    "бранным словам"
-   ],
-   "correct": "бранные слова",
-   "case": "Винительный (Accusative)",
-   "explain": "«бранные слова» — the accusative marks the direct object of the verb.",
-   "id": "c38"
   },
   {
    "sentence": "Бывают моменты, когда он выходит из сдержанного и холодного наблюдения ___ и как бы теряет терпение.",
    "lemma": "явление",
    "options": [
-    "новых явлениях",
-    "новым явлениям",
     "новых явлений",
-    "новыми явлениями"
+    "новых явлениях",
+    "новые явления",
+    "новым явлениям"
    ],
    "correct": "новых явлений",
    "case": "Родительный (Genitive)",
-   "explain": "«новых явлений» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«новых явлений» depends on the noun «наблюдения» (whose? of what?) — genitive.",
    "id": "c39"
   },
   {
@@ -333,106 +165,8 @@
    ],
    "correct": "умного человека",
    "case": "Винительный (Accusative)",
-   "explain": "«умного человека» — the accusative marks the direct object of the verb.",
+   "explain": "«умного человека» is the direct object of «видел» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c41"
-  },
-  {
-   "sentence": "От кальсон отказался, выразив протест хриплыми криками: «В очередь, ___, в очередь!» Был одет.",
-   "lemma": "ребёнок",
-   "options": [
-    "сукиных детях",
-    "сукиным детям",
-    "сукины дети",
-    "сукиными детьми"
-   ],
-   "correct": "сукины дети",
-   "case": "Именительный (Nominative)",
-   "explain": "«сукины дети» — the subject of the sentence stands in the nominative.",
-   "id": "c47"
-  },
-  {
-   "sentence": "(В тетради какие-то ___, по всем признакам изображающие превращение собачьей ноги в человеческую).",
-   "lemma": "рисунок",
-   "options": [
-    "схематическими рисунками",
-    "схематическим рисункам",
-    "схематических рисунков",
-    "схематические рисунки"
-   ],
-   "correct": "схематические рисунки",
-   "case": "Винительный (Accusative)",
-   "explain": "«схематические рисунки» — the accusative marks the direct object of the verb.",
-   "id": "c48"
-  },
-  {
-   "sentence": "(В тетради какие-то схематические рисунки, по всем признакам изображающие превращение ___ в человеческую).",
-   "lemma": "нога",
-   "options": [
-    "собачьей ногой",
-    "собачьей ноги",
-    "собачьей ноге",
-    "собачья нога"
-   ],
-   "correct": "собачьей ноги",
-   "case": "Родительный (Genitive)",
-   "explain": "«собачьей ноги» — the genitive here marks possession, absence, or quantity.",
-   "id": "c49"
-  },
-  {
-   "sentence": "Удлиняется ___ скелета стопы (plаnта).",
-   "lemma": "половина",
-   "options": [
-    "задней половине",
-    "задней половиной",
-    "задней половины",
-    "задняя половина"
-   ],
-   "correct": "задняя половина",
-   "case": "Именительный (Nominative)",
-   "explain": "«задняя половина» — the subject of the sentence stands in the nominative.",
-   "id": "c50"
-  },
-  {
-   "sentence": "Повторное ___ посещения уборной.",
-   "lemma": "обучение",
-   "options": [
-    "систематическом обучении",
-    "систематическим обучением",
-    "систематического обучения",
-    "систематическое обучение"
-   ],
-   "correct": "систематическое обучение",
-   "case": "Именительный (Nominative)",
-   "explain": "«систематическое обучение» — the subject of the sentence stands in the nominative.",
-   "id": "c51"
-  },
-  {
-   "sentence": "Сегодня облез ___ с ушей.",
-   "lemma": "пух",
-   "options": [
-    "последним пухом",
-    "последнему пуху",
-    "последний пух",
-    "последнем пухе"
-   ],
-   "correct": "последний пух",
-   "case": "Винительный (Accusative)",
-   "explain": "«последний пух» — the accusative marks the direct object of the verb.",
-   "id": "c52"
-  },
-  {
-   "sentence": "Другое неизмеримо более важное: ___ проф.",
-   "lemma": "опыт",
-   "options": [
-    "изумительным опытом",
-    "изумительный опыт",
-    "изумительного опыта",
-    "изумительном опыте"
-   ],
-   "correct": "изумительный опыт",
-   "case": "Именительный (Nominative)",
-   "explain": "«изумительный опыт» — the subject of the sentence stands in the nominative.",
-   "id": "c53"
   },
   {
    "sentence": "Преображенского раскрыл одну из тайн ___.",
@@ -445,7 +179,7 @@
    ],
    "correct": "человеческого мозга",
    "case": "Родительный (Genitive)",
-   "explain": "«человеческого мозга» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«человеческого мозга» depends on the noun «тайн» (whose? of what?) — genitive.",
    "id": "c54"
   },
   {
@@ -459,64 +193,8 @@
    ],
    "correct": "собачьем периоде",
    "case": "Предложный (Prepositional)",
-   "explain": "«собачьем периоде» — after the preposition «в», for location or topic.",
+   "explain": "«собачьем периоде» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c56"
-  },
-  {
-   "sentence": "Все слова, которыми он начал оперировать в первую очередь, – ___, он их слышал и затаил в мозгу.",
-   "lemma": "слово",
-   "options": [
-    "уличные слова",
-    "уличными словами",
-    "уличным словам",
-    "уличных слов"
-   ],
-   "correct": "уличные слова",
-   "case": "Именительный (Nominative)",
-   "explain": "«уличные слова» — the subject of the sentence stands in the nominative.",
-   "id": "c57"
-  },
-  {
-   "sentence": "Теперь, проходя по улице, я с ___ смотрю на встречных псов.",
-   "lemma": "ужас",
-   "options": [
-    "тайным ужасом",
-    "тайном ужасе",
-    "тайный ужас",
-    "тайному ужасу"
-   ],
-   "correct": "тайным ужасом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«тайным ужасом» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c58"
-  },
-  {
-   "sentence": "И я даже знаю, где разрешение этой загадки: в перерезке ___ собаки.",
-   "lemma": "нерв",
-   "options": [
-    "зрительных нервов",
-    "зрительным нервам",
-    "зрительных нервах",
-    "зрительными нервами"
-   ],
-   "correct": "зрительных нервов",
-   "case": "Родительный (Genitive)",
-   "explain": "«зрительных нервов» — the genitive here marks possession, absence, or quantity.",
-   "id": "c60"
-  },
-  {
-   "sentence": "Семь ___ уже сидят за распространение слухов о светопреставлении, которое навлекли большевики.",
-   "lemma": "торговец",
-   "options": [
-    "сухаревские торговцы",
-    "сухаревских торговцах",
-    "сухаревскими торговцами",
-    "сухаревских торговцев"
-   ],
-   "correct": "сухаревских торговцев",
-   "case": "Родительный (Genitive)",
-   "explain": "«сухаревских торговцев» — the genitive here marks possession, absence, or quantity.",
-   "id": "c61"
   },
   {
    "sentence": "Причина смерти – удар ножом в сердце в пивной («стоп-сигнал», у ___).",
@@ -529,22 +207,8 @@
    ],
    "correct": "преображенской заставы",
    "case": "Родительный (Genitive)",
-   "explain": "«Преображенской заставы» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«преображенской заставы» — «у» always takes the genitive.",
    "id": "c66"
-  },
-  {
-   "sentence": "Перед нами ___; наблюдать его нужно сначала.",
-   "lemma": "организм",
-   "options": [
-    "новому организму",
-    "новым организмом",
-    "нового организма",
-    "новый организм"
-   ],
-   "correct": "новый организм",
-   "case": "Именительный (Nominative)",
-   "explain": "«новый организм» — the subject of the sentence stands in the nominative.",
-   "id": "c67"
   }
  ]
 }

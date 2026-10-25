@@ -1,62 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Обед состоялся в тот же ___, и слуга прислуживал за столом.",
-   "lemma": "день",
-   "options": [
-    "самый день",
-    "самом дне",
-    "самым днём",
-    "самому дню"
-   ],
-   "correct": "самый день",
-   "case": "Винительный (Accusative)",
-   "explain": "«самый день» — after the preposition «в», the accusative marks the direct object of the verb.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Атос с своей стороны имел слугу, которого он выдрессировал на свой лад совершенно, ___; его звали Гримо.",
-   "lemma": "образ",
-   "options": [
-    "особенный образ",
-    "особенным образом",
-    "особенном образе",
-    "особенному образу"
-   ],
-   "correct": "особенным образом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«особенным образом» — the instrumental marks the means, company, or complement.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Этот ___ был очень молчалив — понятно, что мы говорим об Атосе.",
-   "lemma": "барин",
-   "options": [
-    "достойным барином",
-    "достойном барине",
-    "достойного барина",
-    "достойный барин"
-   ],
-   "correct": "достойный барин",
-   "case": "Именительный (Nominative)",
-   "explain": "«достойный барин» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
-   "sentence": "В продолжение пяти или шести лет самой ___, в которой он жил со своими товарищами, Портосом и Арамисом, эти последние часто видели, что он улыбался, но никогда не слышали, чтобы он смеялся.",
-   "lemma": "дружба",
-   "options": [
-    "глубокой дружбы",
-    "глубокой дружбой",
-    "глубокой дружбе",
-    "глубокая дружба"
-   ],
-   "correct": "глубокой дружбы",
-   "case": "Родительный (Genitive)",
-   "explain": "«глубокой дружбы» — the genitive here marks possession, absence, or quantity.",
-   "id": "c4"
-  },
-  {
    "sentence": "Разговор его передавал факт, какое-нибудь дело, без всяких ___.",
    "lemma": "рассказ",
    "options": [
@@ -67,77 +11,63 @@
    ],
    "correct": "вводных рассказов",
    "case": "Родительный (Genitive)",
-   "explain": "«вводных рассказов» — after the preposition «без», the genitive here marks possession, absence, or quantity.",
+   "explain": "«вводных рассказов» — «без» always takes the genitive.",
    "id": "c5"
   },
   {
    "sentence": "Его скромность, нелюдимость и неразговорчивость делали его почти стариком, а потому, чтобы не изменять своим привычкам, он приучил Гримо повиноваться его ___ или просто движению губ.",
    "lemma": "жест",
    "options": [
-    "простому жесту",
-    "простой жест",
+    "простом жесте",
     "простым жестом",
-    "простом жесте"
+    "простого жеста",
+    "простому жесту"
    ],
    "correct": "простому жесту",
    "case": "Дательный (Dative)",
-   "explain": "«простому жесту» — the dative marks the indirect object or recipient.",
+   "explain": "«повиноваться» takes the dative (кому? чему?).",
    "id": "c6"
-  },
-  {
-   "sentence": "Он говорил с ним только в самых ___.",
-   "lemma": "обстоятельство",
-   "options": [
-    "исключительными обстоятельствами",
-    "исключительных обстоятельств",
-    "исключительным обстоятельствам",
-    "исключительных обстоятельствах"
-   ],
-   "correct": "исключительных обстоятельствах",
-   "case": "Предложный (Prepositional)",
-   "explain": "«исключительных обстоятельствах» — after the preposition «в», for location or topic.",
-   "id": "c7"
   },
   {
    "sentence": "Но в своем ___ мушкетера Атос только тем, что известным манером закидывал назад голову и выставлял ногу, сейчас же занимал подобающее ему место и оттеснял тщеславного Портоса на второй план.",
    "lemma": "мундир",
    "options": [
     "простому мундиру",
+    "простого мундира",
     "простым мундиром",
-    "простой мундир",
     "простом мундире"
    ],
    "correct": "простом мундире",
    "case": "Предложный (Prepositional)",
-   "explain": "«простом мундире» — after the preposition «в», for location or topic.",
+   "explain": "«простом мундире» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c8"
   },
   {
    "sentence": "Но в своем простом мундире мушкетера Атос только тем, что известным манером закидывал назад голову и выставлял ногу, сейчас же занимал подобающее ему место и оттеснял тщеславного Портоса на ___.",
    "lemma": "план",
    "options": [
-    "втором плане",
-    "второй план",
     "второго плана",
+    "второй план",
+    "второму плану",
     "вторым планом"
    ],
    "correct": "второй план",
    "case": "Винительный (Accusative)",
-   "explain": "«второй план» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«второй план» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c9"
   },
   {
    "sentence": "Портос вознаграждал себя тем, что в приемной де-Тревиля и в казармах без умолку рассказывал о своих ___ и успехах, а Атос не говорил никогда о подобных вещах.",
    "lemma": "похождение",
    "options": [
+    "любовных похождений",
     "любовных похождениях",
-    "любовные похождения",
-    "любовными похождениями",
-    "любовным похождениям"
+    "любовным похождениям",
+    "любовными похождениями"
    ],
    "correct": "любовных похождениях",
    "case": "Предложный (Prepositional)",
-   "explain": "«любовных похождениях» — after the preposition «о», for location or topic.",
+   "explain": "«любовных похождениях» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c10"
   },
   {
@@ -151,7 +81,7 @@
    ],
    "correct": "подобных вещах",
    "case": "Предложный (Prepositional)",
-   "explain": "«подобных вещах» — after the preposition «о», for location or topic.",
+   "explain": "«подобных вещах» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c11"
   },
   {
@@ -165,22 +95,8 @@
    ],
    "correct": "старой поговорке",
    "case": "Дательный (Dative)",
-   "explain": "«старой поговорке» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«старой поговорке» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c12"
-  },
-  {
-   "sentence": "Мускетон был нормандец; его барин переменил его слишком ___ Бонифаса на неизмеримо более звучное — Мускетон.",
-   "lemma": "имя",
-   "options": [
-    "обыкновенного имени",
-    "обыкновенное имя",
-    "обыкновенному имени",
-    "обыкновенном имени"
-   ],
-   "correct": "обыкновенное имя",
-   "case": "Именительный (Nominative)",
-   "explain": "«обыкновенное имя» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
   },
   {
    "sentence": "С характером его, как кажется, мы уже достаточно знакомы, к тому же за ___ его характера, как и его товарищей, мы будем иметь возможность следить.",
@@ -193,7 +109,7 @@
    ],
    "correct": "дальнейшим развитием",
    "case": "Творительный (Instrumental)",
-   "explain": "«дальнейшим развитием» — after the preposition «за», the instrumental marks the means, company, or complement.",
+   "explain": "«дальнейшим развитием» — «за» takes the instrumental here (где? за чем? за кем?) — the accusative would mean motion behind or 'for' (куда? за что?).",
    "id": "c14"
   },
   {
@@ -207,21 +123,21 @@
    ],
    "correct": "духовного лица",
    "case": "Родительный (Genitive)",
-   "explain": "«духовного лица» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«духовного лица» depends on the noun «слуге» (whose? of what?) — genitive.",
    "id": "c15"
   },
   {
    "sentence": "Кроме шпаги, у него был еще портрет, изображавшие вельможу времен Генриха III, в самом ___, с орденом Святого Духа.",
    "lemma": "костюм",
    "options": [
-    "изящному костюму",
     "изящном костюме",
     "изящным костюмом",
-    "изящный костюм"
+    "изящному костюму",
+    "изящного костюма"
    ],
    "correct": "изящном костюме",
    "case": "Предложный (Prepositional)",
-   "explain": "«изящном костюме» — after the preposition «в», for location or topic.",
+   "explain": "«изящном костюме» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c16"
   },
   {
@@ -235,35 +151,21 @@
    ],
    "correct": "самой средине",
    "case": "Предложный (Prepositional)",
-   "explain": "«самой средине» — after the preposition «на», for location or topic.",
+   "explain": "«самой средине» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c17"
-  },
-  {
-   "sentence": "Наконец, над камином на самой средине стояла шкатулка с ___, с таким же гербом, как на шпаге и на портрете, и составляла полнейшую противоположность с остальным убранством квартиры.",
-   "lemma": "позолота",
-   "options": [
-    "великолепная позолота",
-    "великолепной позолоты",
-    "великолепной позолоте",
-    "великолепной позолотой"
-   ],
-   "correct": "великолепной позолотой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«великолепной позолотой» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c18"
   },
   {
    "sentence": "Наконец, над камином на самой средине стояла шкатулка с великолепной позолотой, с таким же гербом, как на шпаге и на портрете, и составляла полнейшую противоположность с ___ квартиры.",
    "lemma": "убранство",
    "options": [
-    "остального убранства",
-    "остальному убранству",
+    "остальным убранством",
     "остальное убранство",
-    "остальным убранством"
+    "остальному убранству",
+    "остальном убранстве"
    ],
    "correct": "остальным убранством",
    "case": "Творительный (Instrumental)",
-   "explain": "«остальным убранством» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«остальным убранством» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c19"
   },
   {
@@ -277,7 +179,7 @@
    ],
    "correct": "парадной ливрее",
    "case": "Предложный (Prepositional)",
-   "explain": "«парадной ливрее» — after the preposition «в», for location or topic.",
+   "explain": "«парадной ливрее» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c20"
   },
   {
@@ -291,22 +193,8 @@
    ],
    "correct": "самом деле",
    "case": "Предложный (Prepositional)",
-   "explain": "«самом деле» — after the preposition «на», for location or topic.",
+   "explain": "«самом деле» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c21"
-  },
-  {
-   "sentence": "Но его никогда не заставали дома; он никогда никого не приглашал к себе и никто не мог составить себе представления о том, какие богатства на самом деле заключает в себе эта по виду ___.",
-   "lemma": "квартира",
-   "options": [
-    "роскошная квартира",
-    "роскошной квартире",
-    "роскошной квартирой",
-    "роскошной квартиры"
-   ],
-   "correct": "роскошная квартира",
-   "case": "Именительный (Nominative)",
-   "explain": "«роскошная квартира» — the subject of the sentence stands in the nominative.",
-   "id": "c22"
   },
   {
    "sentence": "К несчастию, Портос сам о жизни своего ___ знал только то, что было известно всем.",
@@ -319,21 +207,21 @@
    ],
    "correct": "молчаливого товарища",
    "case": "Родительный (Genitive)",
-   "explain": "«молчаливого товарища» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«молчаливого товарища» depends on the noun «жизни» (whose? of what?) — genitive.",
    "id": "c23"
   },
   {
    "sentence": "Говорили, что он был очень несчастлив в ___ и что ужасная измена навсегда отравила жизнь этого благородного человека.",
    "lemma": "похождение",
    "options": [
-    "любовных похождениях",
-    "любовные похождения",
+    "любовных похождений",
     "любовными похождениями",
+    "любовных похождениях",
     "любовным похождениям"
    ],
    "correct": "любовных похождениях",
    "case": "Предложный (Prepositional)",
-   "explain": "«любовных похождениях» — after the preposition «в», for location or topic.",
+   "explain": "«любовных похождениях» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c24"
   },
   {
@@ -347,7 +235,7 @@
    ],
    "correct": "ужасная измена",
    "case": "Именительный (Nominative)",
-   "explain": "«ужасная измена» — the subject of the sentence stands in the nominative.",
+   "explain": "«ужасная измена» is the subject of «отравила» — who or what does it — so nominative.",
    "id": "c25"
   },
   {
@@ -361,22 +249,8 @@
    ],
    "correct": "благородного человека",
    "case": "Родительный (Genitive)",
-   "explain": "«благородного человека» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«благородного человека» depends on the noun «жизнь» (whose? of what?) — genitive.",
    "id": "c26"
-  },
-  {
-   "sentence": "Жизнь Портоса, ___ которого, равно как и двух его товарищей, было известно одному только де-Тревилю, не представляла ничего таинственного.",
-   "lemma": "имя",
-   "options": [
-    "настоящее имя",
-    "настоящим именем",
-    "настоящего имени",
-    "настоящему имени"
-   ],
-   "correct": "настоящее имя",
-   "case": "Именительный (Nominative)",
-   "explain": "«настоящее имя» — the subject of the sentence stands in the nominative.",
-   "id": "c27"
   },
   {
    "sentence": "Арамис, не имевший, повидимому, никаких тайн, на ___ был сама таинственность; он мало сообщал в ответ на вопросы, которые ему задавали относительно других, и избегал отвечать на те, которые касались лично его.",
@@ -389,35 +263,21 @@
    ],
    "correct": "самом деле",
    "case": "Предложный (Prepositional)",
-   "explain": "«самом деле» — after the preposition «на», for location or topic.",
+   "explain": "«самом деле» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c28"
-  },
-  {
-   "sentence": "— А вы, ___, спросил он его, — вы сами, который рассказываете только о чужих графинях, баронессах и принцессах?",
-   "lemma": "товарищ",
-   "options": [
-    "любезного товарища",
-    "любезном товарище",
-    "любезным товарищем",
-    "любезный товарищ"
-   ],
-   "correct": "любезный товарищ",
-   "case": "Именительный (Nominative)",
-   "explain": "«любезный товарищ» — the subject of the sentence stands in the nominative.",
-   "id": "c29"
   },
   {
    "sentence": "— А вы, любезный товарищ, спросил он его, — вы сами, который рассказываете только о ___, баронессах и принцессах?",
    "lemma": "графиня",
    "options": [
-    "чужих графинь",
     "чужих графинях",
+    "чужим графиням",
     "чужие графини",
     "чужими графинями"
    ],
    "correct": "чужих графинях",
    "case": "Предложный (Prepositional)",
-   "explain": "«чужих графинях» — after the preposition «о», for location or topic.",
+   "explain": "«чужих графинях» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c30"
   },
   {
@@ -431,36 +291,8 @@
    ],
    "correct": "другого источника",
    "case": "Родительный (Genitive)",
-   "explain": "«другого источника» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«другого источника» — «из» always takes the genitive.",
    "id": "c31"
-  },
-  {
-   "sentence": "Но поверьте, любезный г. д’Артаньян, что если бы я знал об этом из другого источника или если бы он сам доверил мне это, то не было бы более ___, чем я.",
-   "lemma": "исповедник",
-   "options": [
-    "скромному исповеднику",
-    "скромном исповеднике",
-    "скромного исповедника",
-    "скромный исповедник"
-   ],
-   "correct": "скромного исповедника",
-   "case": "Родительный (Genitive)",
-   "explain": "«скромного исповедника» — the genitive here marks possession, absence, or quantity.",
-   "id": "c32"
-  },
-  {
-   "sentence": "— Я в этом не сомневаюсь, возразил д’Артаньян, — но мне кажется, что вы сами довольно коротко знакомы со знатью, доказательством чего служить ___, которому я обязан честью быть знакомым с вами..",
-   "lemma": "платок",
-   "options": [
-    "вышитому платку",
-    "вышитого платка",
-    "вышитом платке",
-    "вышитый платок"
-   ],
-   "correct": "вышитый платок",
-   "case": "Именительный (Nominative)",
-   "explain": "«вышитый платок» — the subject of the sentence stands in the nominative.",
-   "id": "c33"
   },
   {
    "sentence": "— Не забывайте, мой любезный, что я хочу быть служителем церкви и что поэтому я избегаю всяких ___.",
@@ -473,91 +305,35 @@
    ],
    "correct": "светских приключений",
    "case": "Родительный (Genitive)",
-   "explain": "«светских приключений» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«избегаю» takes its object in the genitive.",
    "id": "c34"
-  },
-  {
-   "sentence": "И Арамис дружески протянул р.уку своему ___ и простился с ним.",
-   "lemma": "приятель",
-   "options": [
-    "молодым приятелем",
-    "молодого приятеля",
-    "молодому приятелю",
-    "молодом приятеле"
-   ],
-   "correct": "молодому приятелю",
-   "case": "Дательный (Dative)",
-   "explain": "«молодому приятелю» — the dative marks the indirect object or recipient.",
-   "id": "c35"
-  },
-  {
-   "sentence": "Он был самый плохой мушкетер и самый ___, какого только можно вообразить.",
-   "lemma": "гость",
-   "options": [
-    "неприятном госте",
-    "неприятного гостя",
-    "неприятным гостем",
-    "неприятный гость"
-   ],
-   "correct": "неприятный гость",
-   "case": "Именительный (Nominative)",
-   "explain": "«неприятный гость» — the subject of the sentence stands in the nominative.",
-   "id": "c36"
   },
   {
    "sentence": "В ___ он возвращался к себе домой писать диссертацию и просил приятелей не развлекать его.",
    "lemma": "раз",
    "options": [
-    "другой раз",
     "другого раза",
-    "другом разе",
+    "другой раз",
+    "другому разу",
     "другим разом"
    ],
    "correct": "другой раз",
    "case": "Винительный (Accusative)",
-   "explain": "«другой раз» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«другой раз» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c37"
-  },
-  {
-   "sentence": "Между тем Атос улыбался той меланхоличной ___, которая так хорошо шла к его благородному лицу, а Портос пил и божился, что Арамис никогда не пошел бы дальше приходского священника.",
-   "lemma": "улыбка",
-   "options": [
-    "прекрасной улыбки",
-    "прекрасной улыбкой",
-    "прекрасной улыбке",
-    "прекрасная улыбка"
-   ],
-   "correct": "прекрасной улыбкой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«прекрасной улыбкой» — the instrumental marks the means, company, or complement.",
-   "id": "c38"
-  },
-  {
-   "sentence": "Между тем Атос улыбался той меланхоличной прекрасной улыбкой, которая так хорошо шла к его благородному лицу, а Портос пил и божился, что Арамис никогда не пошел бы дальше ___.",
-   "lemma": "священник",
-   "options": [
-    "приходском священнике",
-    "приходский священник",
-    "приходского священника",
-    "приходскому священнику"
-   ],
-   "correct": "приходского священника",
-   "case": "Винительный (Accusative)",
-   "explain": "«приходского священника» — the accusative marks the direct object of the verb.",
-   "id": "c39"
   },
   {
    "sentence": "Плянше, слуга д’Артаньяна, в первое время вел себя хорошо; он получал тридцать су в день, в продолжение ___ возвращался в квартиру навеселе, как зяблик, и быль чрезвычайно предупредителен.",
    "lemma": "месяц",
    "options": [
-    "целого месяца",
-    "целым месяцем",
     "целому месяцу",
+    "целом месяце",
+    "целого месяца",
     "целый месяц"
    ],
    "correct": "целого месяца",
    "case": "Родительный (Genitive)",
-   "explain": "«целого месяца» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«целого месяца» depends on the noun «продолжение» (whose? of what?) — genitive.",
    "id": "c40"
   },
   {
@@ -571,22 +347,8 @@
    ],
    "correct": "домашнему хозяйству",
    "case": "Дательный (Dative)",
-   "explain": "«домашнему хозяйству» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«домашнему хозяйству» — «к» always takes the dative.",
    "id": "c41"
-  },
-  {
-   "sentence": "Твое счастье будет в таком случае совершенно обезпечено, если только ты останешься у меня: я слишком ___, чтобы дать тебе возможность упустить твое счастие, отпустив тебя, как ты этого просишь.",
-   "lemma": "барин",
-   "options": [
-    "добрый барин",
-    "добрым барином",
-    "доброго барина",
-    "добром барине"
-   ],
-   "correct": "добрый барин",
-   "case": "Именительный (Nominative)",
-   "explain": "«добрый барин» — the subject of the sentence stands in the nominative.",
-   "id": "c42"
   },
   {
    "sentence": "Жизнь наши ___ стали вести общую; д’Артаньян, не имевший никаких привычек, так как он только что приехал из провинции и попал в совершенно для него новый мир, тотчас же перенял привычки своих друзей.",
@@ -599,50 +361,8 @@
    ],
    "correct": "молодые люди",
    "case": "Именительный (Nominative)",
-   "explain": "«молодые люди» — the subject of the sentence stands in the nominative.",
+   "explain": "«молодые люди» is the subject of «стали» — who or what does it — so nominative.",
    "id": "c43"
-  },
-  {
-   "sentence": "Жизнь наши молодые люди стали вести общую; д’Артаньян, не имевший никаких привычек, так как он только что приехал из провинции и попал в совершенно для него ___, тотчас же перенял привычки своих друзей.",
-   "lemma": "мир",
-   "options": [
-    "новом мире",
-    "новый мир",
-    "новым миром",
-    "нового мира"
-   ],
-   "correct": "новый мир",
-   "case": "Винительный (Accusative)",
-   "explain": "«новый мир» — the accusative marks the direct object of the verb.",
-   "id": "c44"
-  },
-  {
-   "sentence": "Его знали в отеле мушкетеров и все считали ___; де-Тревиль, оценивший его с первого взгляда и чувствовавший к нему искреннее расположение, не переставал рекомендовать его королю.",
-   "lemma": "товарищ",
-   "options": [
-    "хорошим товарищем",
-    "хороший товарищ",
-    "хорошему товарищу",
-    "хорошего товарища"
-   ],
-   "correct": "хорошим товарищем",
-   "case": "Творительный (Instrumental)",
-   "explain": "«хорошим товарищем» — the instrumental marks the means, company, or complement.",
-   "id": "c45"
-  },
-  {
-   "sentence": "Его знали в отеле мушкетеров и все считали хорошим товарищем; де-Тревиль, оценивший его с ___ и чувствовавший к нему искреннее расположение, не переставал рекомендовать его королю.",
-   "lemma": "взгляд",
-   "options": [
-    "первому взгляду",
-    "первым взглядом",
-    "первого взгляда",
-    "первом взгляде"
-   ],
-   "correct": "первого взгляда",
-   "case": "Родительный (Genitive)",
-   "explain": "«первого взгляда» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
-   "id": "c46"
   },
   {
    "sentence": "С своей стороны, три мушкетера очень полюбили ___.",
@@ -655,21 +375,21 @@
    ],
    "correct": "молодого товарища",
    "case": "Винительный (Accusative)",
-   "explain": "«молодого товарища» — the accusative marks the direct object of the verb.",
+   "explain": "«молодого товарища» is the direct object of «полюбили» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c47"
   },
   {
    "sentence": "В один ___ король приказал капитану Дезессиру принять д’Артаньяна младшим гвардейцем в свою роту.",
    "lemma": "день",
    "options": [
-    "прекрасном дне",
-    "прекрасным днём",
+    "прекрасного дня",
     "прекрасный день",
-    "прекрасного дня"
+    "прекрасному дню",
+    "прекрасным днём"
    ],
    "correct": "прекрасный день",
    "case": "Винительный (Accusative)",
-   "explain": "«прекрасный день» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«прекрасный день» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c48"
   }
  ]

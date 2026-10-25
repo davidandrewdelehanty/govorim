@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Во время войны англичан с бурами процветал «___» (кажется, к этому именно времени относилась знаменитая драка русских моряков с английскими).",
-   "lemma": "марш",
-   "options": [
-    "бурский марш",
-    "бурским маршем",
-    "бурского марша",
-    "бурскому маршу"
-   ],
-   "correct": "бурский марш",
-   "case": "Именительный (Nominative)",
-   "explain": "«Бурский марш» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Во время войны англичан с бурами процветал «Бурский марш» (кажется, к этому именно времени относилась ___ русских моряков с английскими).",
    "lemma": "драка",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "знаменитая драка",
    "case": "Именительный (Nominative)",
-   "explain": "«знаменитая драка» — the subject of the sentence stands in the nominative.",
+   "explain": "«знаменитая драка» is the subject of «относилась» — who or what does it — so nominative.",
    "id": "c2"
   },
   {
@@ -39,50 +25,8 @@
    ],
    "correct": "русских моряков",
    "case": "Родительный (Genitive)",
-   "explain": "«русских моряков» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«русских моряков» depends on the noun «драка» (whose? of what?) — genitive.",
    "id": "c3"
-  },
-  {
-   "sentence": "На минутку сделался было модным мотив кекуока, и даже какой-то случайный, заколобродивший купчик, не снимая енотовой шубы, ___ и лисьей шапки, протанцевал его однажды между бочками.",
-   "lemma": "калоша",
-   "options": [
-    "высокими калошами",
-    "высокие калоши",
-    "высоким калошам",
-    "высоких калош"
-   ],
-   "correct": "высоких калош",
-   "case": "Родительный (Genitive)",
-   "explain": "«высоких калош» — the genitive here marks possession, absence, or quantity.",
-   "id": "c5"
-  },
-  {
-   "sentence": "На минутку сделался было модным мотив кекуока, и даже какой-то случайный, заколобродивший купчик, не снимая енотовой шубы, высоких калош и ___, протанцевал его однажды между бочками.",
-   "lemma": "шапка",
-   "options": [
-    "лисьей шапке",
-    "лисьей шапкой",
-    "лисьей шапки",
-    "лисья шапка"
-   ],
-   "correct": "лисьей шапки",
-   "case": "Родительный (Genitive)",
-   "explain": "«лисьей шапки» — the genitive here marks possession, absence, or quantity.",
-   "id": "c6"
-  },
-  {
-   "sentence": "Однако этот ___ был вскорости позабыт.",
-   "lemma": "танец",
-   "options": [
-    "негритянскому танцу",
-    "негритянский танец",
-    "негритянском танце",
-    "негритянским танцем"
-   ],
-   "correct": "негритянский танец",
-   "case": "Именительный (Nominative)",
-   "explain": "«негритянский танец» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
   },
   {
    "sentence": "Но вот наступила великая ___.",
@@ -95,36 +39,8 @@
    ],
    "correct": "японская война",
    "case": "Именительный (Nominative)",
-   "explain": "«японская война» — the subject of the sentence stands in the nominative.",
+   "explain": "«японская война» is the subject of «наступила» — who or what does it — so nominative.",
    "id": "c8"
-  },
-  {
-   "sentence": "Каждый вечер приходил кто-нибудь прощаться, храбрился, ходил петухом, бросал шапку об землю, грозил один разбить всех япошек и кончал ___ со слезами.",
-   "lemma": "песня",
-   "options": [
-    "страдательной песней",
-    "страдательной песне",
-    "страдательная песня",
-    "страдательной песни"
-   ],
-   "correct": "страдательной песней",
-   "case": "Творительный (Instrumental)",
-   "explain": "«страдательной песней» — the instrumental marks the means, company, or complement.",
-   "id": "c10"
-  },
-  {
-   "sentence": "Он пробовал кривляться, гримасничать, прищуривать глаза, но из его кротких ___ глядели грусть и ужас.",
-   "lemma": "глаз",
-   "options": [
-    "смешных глаз",
-    "смешными глазами",
-    "смешным глазам",
-    "смешные глаза"
-   ],
-   "correct": "смешных глаз",
-   "case": "Родительный (Genitive)",
-   "explain": "«смешных глаз» — the genitive here marks possession, absence, or quantity.",
-   "id": "c11"
   },
   {
    "sentence": "Всем была ясна очевидная глупость такого предложения, но Сашка растрогался, прослезился, обнял ___ и тут же подарил ему свою скрипку.",
@@ -137,7 +53,7 @@
    ],
    "correct": "котельного мастера",
    "case": "Винительный (Accusative)",
-   "explain": "«котельного мастера» — the accusative marks the direct object of the verb.",
+   "explain": "«котельного мастера» is the direct object of «обнял» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c12"
   },
   {
@@ -151,7 +67,7 @@
    ],
    "correct": "двоюродный брат",
    "case": "Именительный (Nominative)",
-   "explain": "«двоюродный брат» — the subject of the sentence stands in the nominative.",
+   "explain": "«двоюродный брат» is the subject of «есть» — who or what does it — so nominative.",
    "id": "c13"
   },
   {
@@ -165,7 +81,7 @@
    ],
    "correct": "русского креста",
    "case": "Родительный (Genitive)",
-   "explain": "«русского креста» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«русского креста» — «от» always takes the genitive.",
    "id": "c14"
   }
  ]

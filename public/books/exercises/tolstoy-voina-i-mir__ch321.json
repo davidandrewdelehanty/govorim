@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "___ стояла подле самого леса.",
-   "lemma": "рота",
-   "options": [
-    "пятой роте",
-    "пятая рота",
-    "пятой роты",
-    "пятой ротой"
-   ],
-   "correct": "пятая рота",
-   "case": "Именительный (Nominative)",
-   "explain": "«Пятая рота» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Пятая рота стояла подле ___.",
    "lemma": "лес",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "самого леса",
    "case": "Родительный (Genitive)",
-   "explain": "«самого леса» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«самого леса» depends on the noun «подле» (whose? of what?) — genitive.",
    "id": "c2"
   },
   {
@@ -39,22 +25,8 @@
    ],
    "correct": "пятой роты",
    "case": "Родительный (Genitive)",
-   "explain": "«пятой роты» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«пятой роты» depends on the noun «солдаты» (whose? of what?) — genitive.",
    "id": "c3"
-  },
-  {
-   "sentence": "Все подняли головы; прислушались, и из леса, в яркий свет костра, выступили две, держащиеся друг за друга, странно одетые ___.",
-   "lemma": "фигура",
-   "options": [
-    "человеческих фигур",
-    "человеческими фигурами",
-    "человеческие фигуры",
-    "человеческим фигурам"
-   ],
-   "correct": "человеческие фигуры",
-   "case": "Винительный (Accusative)",
-   "explain": "«человеческие фигуры» — the accusative marks the direct object of the verb.",
-   "id": "c5"
   },
   {
    "sentence": "Один был повыше ростом в ___ и казался совсем ослабевшим.",
@@ -67,36 +39,8 @@
    ],
    "correct": "офицерской шляпе",
    "case": "Предложный (Prepositional)",
-   "explain": "«офицерской шляпе» — after the preposition «в», for location or topic.",
+   "explain": "«офицерской шляпе» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c6"
-  },
-  {
-   "sentence": "Ослабевший ___ был Рамбаль; повязанный платком был его денщик Морель.",
-   "lemma": "офицер",
-   "options": [
-    "французском офицере",
-    "французскому офицеру",
-    "французский офицер",
-    "французского офицера"
-   ],
-   "correct": "французский офицер",
-   "case": "Именительный (Nominative)",
-   "explain": "«французский офицер» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
-  },
-  {
-   "sentence": "Рамбаль отказывался от еды и молча лежал на локте у костра, бессмысленными ___ глядя на русских солдат.",
-   "lemma": "глаз",
-   "options": [
-    "красные глаза",
-    "красных глаз",
-    "красными глазами",
-    "красных глазах"
-   ],
-   "correct": "красными глазами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«красными глазами» — the instrumental marks the means, company, or complement.",
-   "id": "c8"
   },
   {
    "sentence": "Изредка он издавал ___ и опять замолкал.",
@@ -109,50 +53,8 @@
    ],
    "correct": "протяжный стон",
    "case": "Винительный (Accusative)",
-   "explain": "«протяжный стон» — the accusative marks the direct object of the verb.",
+   "explain": "«протяжный стон» is the direct object of «издавал» (кого? что?) — accusative.",
    "id": "c10"
-  },
-  {
-   "sentence": "Офицер русский, подошедший к костру, послал спросить у полковника, не возьмет ли он к себе отогреть ___; и когда вернулись и сказали, что полковник велел привести офицера, Рамбалю передали, чтоб он шел.",
-   "lemma": "офицер",
-   "options": [
-    "французским офицером",
-    "французского офицера",
-    "французский офицер",
-    "французском офицере"
-   ],
-   "correct": "французского офицера",
-   "case": "Винительный (Accusative)",
-   "explain": "«французского офицера» — the accusative marks the direct object of the verb.",
-   "id": "c11"
-  },
-  {
-   "sentence": "О, мои добрые, ___!",
-   "lemma": "друг",
-   "options": [
-    "добрых друзьях",
-    "добрым друзьям",
-    "добрыми друзьями",
-    "добрые друзья"
-   ],
-   "correct": "добрые друзья",
-   "case": "Именительный (Nominative)",
-   "explain": "«добрые друзья» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
-  },
-  {
-   "sentence": "Да здравствует сей ___! и т. д.",
-   "lemma": "король",
-   "options": [
-    "храбром короле",
-    "храбрым королём",
-    "храбрый король",
-    "храброму королю"
-   ],
-   "correct": "храбрый король",
-   "case": "Именительный (Nominative)",
-   "explain": "«храбрый король» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
   },
   {
    "sentence": "___ стояли на всех лицах молодых солдат, смотревших на Мореля.",
@@ -165,22 +67,8 @@
    ],
    "correct": "радостные улыбки",
    "case": "Именительный (Nominative)",
-   "explain": "«Радостные улыбки» — the subject of the sentence stands in the nominative.",
+   "explain": "«радостные улыбки» is the subject of «стояли» — who or what does it — so nominative.",
    "id": "c17"
-  },
-  {
-   "sentence": "___, считавшие неприличным заниматься такими пустяками, лежали с другой стороны костра, но изредка, приподнимаясь на локте, с улыбкой взглядывали на Мореля.",
-   "lemma": "солдат",
-   "options": [
-    "старым солдатам",
-    "старые солдаты",
-    "старыми солдатами",
-    "старых солдат"
-   ],
-   "correct": "старые солдаты",
-   "case": "Именительный (Nominative)",
-   "explain": "«Старые солдаты» — the subject of the sentence stands in the nominative.",
-   "id": "c18"
   }
  ]
 }

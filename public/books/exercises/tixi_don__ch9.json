@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Товар ему взялся отпускать ___, Сергей Платонович.",
-   "lemma": "хозяин",
-   "options": [
-    "самим хозяином",
-    "самому хозяину",
-    "самом хозяине",
-    "сам хозяин"
-   ],
-   "correct": "сам хозяин",
-   "case": "Именительный (Nominative)",
-   "explain": "«сам хозяин» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Минуя ___, глянул через плетень: Аксинья, нарядная, помолодевшая, покачиваясь в бедрах, шла в курень с порожним ведром.",
-   "lemma": "двор",
-   "options": [
-    "астаховскому двору",
-    "астаховский двор",
-    "астаховского двора",
-    "астаховским двором"
-   ],
-   "correct": "астаховский двор",
-   "case": "Винительный (Accusative)",
-   "explain": "«астаховский двор» — the accusative marks the direct object of the verb.",
-   "id": "c2"
-  },
-  {
    "sentence": "Минуя астаховский двор, глянул через плетень: Аксинья, нарядная, помолодевшая, покачиваясь в бедрах, шла в курень с ___.",
    "lemma": "ведро",
    "options": [
@@ -39,36 +11,8 @@
    ],
    "correct": "порожним ведром",
    "case": "Творительный (Instrumental)",
-   "explain": "«порожним ведром» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«порожним ведром» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c3"
-  },
-  {
-   "sentence": "Чисто выметенный ___ присыпан красноватым песком, в переднем углу на лавке вынутые из печи пироги.",
-   "lemma": "пол",
-   "options": [
-    "земляном поле",
-    "земляному полу",
-    "земляным полом",
-    "земляной пол"
-   ],
-   "correct": "земляной пол",
-   "case": "Именительный (Nominative)",
-   "explain": "«земляной пол» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
-  },
-  {
-   "sentence": "Чисто выметенный земляной пол присыпан ___, в переднем углу на лавке вынутые из печи пироги.",
-   "lemma": "песок",
-   "options": [
-    "красноватого песка",
-    "красноватый песок",
-    "красноватому песку",
-    "красноватым песком"
-   ],
-   "correct": "красноватым песком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«красноватым песком» — the instrumental marks the means, company, or complement.",
-   "id": "c5"
   },
   {
    "sentence": "Из горницы пахнет ___ и почему-то — анисовыми яблоками.",
@@ -81,36 +25,8 @@
    ],
    "correct": "слежалой одеждой",
    "case": "Творительный (Instrumental)",
-   "explain": "«слежалой одеждой» — the instrumental marks the means, company, or complement.",
+   "explain": "«пахнет» takes the instrumental.",
    "id": "c6"
-  },
-  {
-   "sentence": "Из горницы пахнет слежалой одеждой и почему-то — ___.",
-   "lemma": "яблоко",
-   "options": [
-    "анисовыми яблоками",
-    "анисовых яблоках",
-    "анисовые яблоки",
-    "анисовых яблок"
-   ],
-   "correct": "анисовыми яблоками",
-   "case": "Творительный (Instrumental)",
-   "explain": "«анисовыми яблоками» — the instrumental marks the means, company, or complement.",
-   "id": "c7"
-  },
-  {
-   "sentence": "Под ноги Пантелею Прокофьевичу подошел было поластиться рябой ___.",
-   "lemma": "кот",
-   "options": [
-    "большеголовый кот",
-    "большеголовым котом",
-    "большеголовом коте",
-    "большеголового кота"
-   ],
-   "correct": "большеголовый кот",
-   "case": "Именительный (Nominative)",
-   "explain": "«большеголовый кот» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
   },
   {
    "sentence": "И вдруг бесстыдно мотнула подолом, обдала Пантелея Прокофьевича запахом ___ и грудью пошла на него, кривляясь и скаля зубы.",
@@ -123,22 +39,8 @@
    ],
    "correct": "бабьих юбок",
    "case": "Родительный (Genitive)",
-   "explain": "«бабьих юбок» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«бабьих юбок» depends on the noun «запахом» (whose? of what?) — genitive.",
    "id": "c10"
-  },
-  {
-   "sentence": "Пиши хучь ___, а Гришка мой!",
-   "lemma": "атаман",
-   "options": [
-    "наказным атаманом",
-    "наказного атамана",
-    "наказном атамане",
-    "наказному атаману"
-   ],
-   "correct": "наказному атаману",
-   "case": "Дательный (Dative)",
-   "explain": "«наказному атаману» — the dative marks the indirect object or recipient.",
-   "id": "c11"
   },
   {
    "sentence": "Аксинья напирала на оробевшего Пантелея Прокофьевича грудью (билась она под ___, как стрепет в силке), жгла его полымем черных глаз, сыпала слова — одно другого страшней и бесстыжей.",
@@ -151,7 +53,7 @@
    ],
    "correct": "узкой кофточкой",
    "case": "Творительный (Instrumental)",
-   "explain": "«узкой кофточкой» — after the preposition «под», the instrumental marks the means, company, or complement.",
+   "explain": "«узкой кофточкой» — «под» takes the instrumental here (где? под чем?) — the accusative would mean movement under (куда? под что?).",
    "id": "c12"
   },
   {
@@ -165,7 +67,7 @@
    ],
    "correct": "отцовской руке",
    "case": "Предложный (Prepositional)",
-   "explain": "«отцовской руке» — after the preposition «на», for location or topic.",
+   "explain": "«отцовской руке» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c13"
   }
  ]

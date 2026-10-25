@@ -1,31 +1,17 @@
 {
  "cases": [
   {
-   "sentence": "___ — вовсе мелкота: одному три года, другому четыре.",
-   "lemma": "ребята",
-   "options": [
-    "остальные ребята",
-    "остальных ребят",
-    "остальными ребятами",
-    "остальным ребятам"
-   ],
-   "correct": "остальные ребята",
-   "case": "Именительный (Nominative)",
-   "explain": "«Остальные ребята» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Я тебе ___ покажу.",
    "lemma": "фокус",
    "options": [
-    "американскому фокусу",
-    "американского фокуса",
     "американский фокус",
-    "американском фокусе"
+    "американскому фокусу",
+    "американском фокусе",
+    "американским фокусом"
    ],
    "correct": "американский фокус",
    "case": "Винительный (Accusative)",
-   "explain": "«американский фокус» — the accusative marks the direct object of the verb.",
+   "explain": "«американский фокус» is the direct object of «покажу» (кого? что?) — accusative.",
    "id": "c2"
   },
   {
@@ -39,50 +25,8 @@
    ],
    "correct": "прошлый раз",
    "case": "Винительный (Accusative)",
-   "explain": "«прошлый раз» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«прошлый раз» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c3"
-  },
-  {
-   "sentence": "Мать к соседке ушла, отец — на переезд, встречать ___.",
-   "lemma": "поезд",
-   "options": [
-    "скором поезде",
-    "скорому поезду",
-    "скорым поездом",
-    "скорый поезд"
-   ],
-   "correct": "скорый поезд",
-   "case": "Винительный (Accusative)",
-   "explain": "«скорый поезд» — the accusative marks the direct object of the verb.",
-   "id": "c4"
-  },
-  {
-   "sentence": "Сел он к окну и стал поджидать, когда промчится ___.",
-   "lemma": "поезд",
-   "options": [
-    "скором поезде",
-    "скорому поезду",
-    "скорым поездом",
-    "скорый поезд"
-   ],
-   "correct": "скорый поезд",
-   "case": "Именительный (Nominative)",
-   "explain": "«скорый поезд» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
-  },
-  {
-   "sentence": "Только чуть виден ___ позади последнего вагона.",
-   "lemma": "фонарь",
-   "options": [
-    "сигнальным фонарём",
-    "сигнальному фонарю",
-    "сигнальном фонаре",
-    "сигнальный фонарь"
-   ],
-   "correct": "сигнальный фонарь",
-   "case": "Именительный (Nominative)",
-   "explain": "«сигнальный фонарь» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
   },
   {
    "sentence": "Только чуть виден сигнальный фонарь позади ___.",
@@ -95,7 +39,7 @@
    ],
    "correct": "последнего вагона",
    "case": "Родительный (Genitive)",
-   "explain": "«последнего вагона» — after the preposition «позади», the genitive here marks possession, absence, or quantity.",
+   "explain": "«последнего вагона» — «позади» always takes the genitive.",
    "id": "c8"
   },
   {
@@ -109,7 +53,7 @@
    ],
    "correct": "маленьком разъезде",
    "case": "Предложный (Prepositional)",
-   "explain": "«маленьком разъезде» — after the preposition «на», for location or topic.",
+   "explain": "«маленьком разъезде» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c9"
   },
   {
@@ -123,22 +67,8 @@
    ],
    "correct": "скорого поезда",
    "case": "Родительный (Genitive)",
-   "explain": "«скорого поезда» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«скорого поезда» — «у» always takes the genitive.",
    "id": "c10"
-  },
-  {
-   "sentence": "Ну, настоящий техник или ___ с портфелем.",
-   "lemma": "мастер",
-   "options": [
-    "дорожного мастера",
-    "дорожном мастере",
-    "дорожный мастер",
-    "дорожным мастером"
-   ],
-   "correct": "дорожный мастер",
-   "case": "Именительный (Nominative)",
-   "explain": "«дорожный мастер» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
   },
   {
    "sentence": "Но только он открыл форточку, как пришла мать и заругалась, зачем он с больным горлом на ___ лезет.",
@@ -151,7 +81,7 @@
    ],
    "correct": "морозный воздух",
    "case": "Винительный (Accusative)",
-   "explain": "«морозный воздух» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«морозный воздух» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c13"
   },
   {
@@ -165,7 +95,7 @@
    ],
    "correct": "приезжих комсомольцев",
    "case": "Родительный (Genitive)",
-   "explain": "«приезжих комсомольцев» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«приезжих комсомольцев» — «от» always takes the genitive.",
    "id": "c15"
   },
   {
@@ -179,36 +109,8 @@
    ],
    "correct": "злобному генералу",
    "case": "Дательный (Dative)",
-   "explain": "«злобному генералу» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«злобному генералу» — «к» always takes the dative.",
    "id": "c17"
-  },
-  {
-   "sentence": "Положил под голову овчинный полушубок и под ровное мурлыканье ___ Ивана Ивановича задумался над своей печальной судьбой.",
-   "lemma": "кот",
-   "options": [
-    "рыжего кота",
-    "рыжим котом",
-    "рыжему коту",
-    "рыжем коте"
-   ],
-   "correct": "рыжего кота",
-   "case": "Родительный (Genitive)",
-   "explain": "«рыжего кота» — the genitive here marks possession, absence, or quantity.",
-   "id": "c18"
-  },
-  {
-   "sentence": "Положил под голову овчинный полушубок и под ровное мурлыканье рыжего кота Ивана Ивановича задумался над своей ___.",
-   "lemma": "судьба",
-   "options": [
-    "печальной судьбой",
-    "печальной судьбе",
-    "печальная судьба",
-    "печальной судьбы"
-   ],
-   "correct": "печальной судьбой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«печальной судьбой» — after the preposition «над», the instrumental marks the means, company, or complement.",
-   "id": "c19"
   },
   {
    "sentence": "И Васька вспомнил о том, как однажды летом, всем на удивление, он поймал на удочку ___.",
@@ -221,7 +123,7 @@
    ],
    "correct": "здоровенного окуня",
    "case": "Родительный (Genitive)",
-   "explain": "«здоровенного окуня» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«здоровенного окуня» depends on the noun «удочку» (whose? of what?) — genitive.",
    "id": "c20"
   },
   {
@@ -235,36 +137,8 @@
    ],
    "correct": "рыжий кот",
    "case": "Именительный (Nominative)",
-   "explain": "«Рыжий кот» — the subject of the sentence stands in the nominative.",
+   "explain": "«рыжий кот» is the subject of «подпрыгнул» — who or what does it — so nominative.",
    "id": "c22"
-  },
-  {
-   "sentence": "С крыш свесились толстые ___.",
-   "lemma": "сосулька",
-   "options": [
-    "острые сосульки",
-    "острых сосульках",
-    "острым сосулькам",
-    "острыми сосульками"
-   ],
-   "correct": "острые сосульки",
-   "case": "Винительный (Accusative)",
-   "explain": "«острые сосульки» — the accusative marks the direct object of the verb.",
-   "id": "c24"
-  },
-  {
-   "sentence": "Одна книга для чтения, ___ — арифметика.",
-   "lemma": "книга",
-   "options": [
-    "другой книгой",
-    "другой книги",
-    "другой книге",
-    "другая книга"
-   ],
-   "correct": "другая книга",
-   "case": "Именительный (Nominative)",
-   "explain": "«другая книга» — the subject of the sentence stands in the nominative.",
-   "id": "c25"
   },
   {
    "sentence": "Я уже ___ с ними хожу к Ивану Михайловичу.",
@@ -277,7 +151,7 @@
    ],
    "correct": "третий день",
    "case": "Винительный (Accusative)",
-   "explain": "«третий день» — the accusative marks the direct object of the verb.",
+   "explain": "«третий день» tells how long or how often, with no preposition — accusative.",
    "id": "c26"
   },
   {
@@ -291,22 +165,8 @@
    ],
    "correct": "свежих орехов",
    "case": "Родительный (Genitive)",
-   "explain": "«свежих орехов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«свежих орехов» depends on the noun «лесу» (whose? of what?) — genitive.",
    "id": "c27"
-  },
-  {
-   "sentence": "— Когда ты, Петька, за грушами лазил да упал и руку свихнул, то я тебе домой из лесу свежих орехов принес, да две железные гайки, да ___.",
-   "lemma": "ёж",
-   "options": [
-    "живого ежа",
-    "живой ёж",
-    "живым ежом",
-    "живому ежу"
-   ],
-   "correct": "живого ежа",
-   "case": "Винительный (Accusative)",
-   "explain": "«живого ежа» — the accusative marks the direct object of the verb.",
-   "id": "c28"
   },
   {
    "sentence": "А утром отправились к ___, к Ивану Михайловичу.",
@@ -319,7 +179,7 @@
    ],
    "correct": "доброму человеку",
    "case": "Дательный (Dative)",
-   "explain": "«доброму человеку» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«доброму человеку» — «к» always takes the dative.",
    "id": "c29"
   }
  ]

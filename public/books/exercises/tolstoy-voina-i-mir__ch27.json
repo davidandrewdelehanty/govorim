@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Перед разложенным на столе планом сидели Кутузов и ___ гофкригсрата.",
-   "lemma": "член",
-   "options": [
-    "австрийский член",
-    "австрийском члене",
-    "австрийского члена",
-    "австрийским членом"
-   ],
-   "correct": "австрийский член",
-   "case": "Именительный (Nominative)",
-   "explain": "«австрийский член» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "— Я только одно говорю, генерал, что ежели бы дело зависело от моего ___, то воля его величества императора Франца давно была бы исполнена.",
    "lemma": "желание",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "личного желания",
    "case": "Родительный (Genitive)",
-   "explain": "«личного желания» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«личного желания» — «от» always takes the genitive.",
    "id": "c3"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "австрийский генерал",
    "case": "Именительный (Nominative)",
-   "explain": "«Австрийский генерал» — the subject of the sentence stands in the nominative.",
+   "explain": "«австрийский генерал» is the subject of «имел» — who or what does it — so nominative.",
    "id": "c4"
   },
   {
@@ -53,50 +39,8 @@
    ],
    "correct": "недовольный вид",
    "case": "Винительный (Accusative)",
-   "explain": "«недовольный вид» — the accusative marks the direct object of the verb.",
+   "explain": "«недовольный вид» is the direct object of «имел» (кого? что?) — accusative.",
    "id": "c5"
-  },
-  {
-   "sentence": "Действительно, ___, полученное им из армии Мака, извещало его о победе и о самом выгодном стратегическом положении армии.",
-   "lemma": "письмо",
-   "options": [
-    "последнему письму",
-    "последним письмом",
-    "последнее письмо",
-    "последнего письма"
-   ],
-   "correct": "последнее письмо",
-   "case": "Именительный (Nominative)",
-   "explain": "«последнее письмо» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
-  },
-  {
-   "sentence": "Действительно, последнее письмо, полученное им из армии Мака, извещало его о победе и о самом выгодном ___ армии.",
-   "lemma": "положение",
-   "options": [
-    "стратегическое положение",
-    "стратегическим положением",
-    "стратегического положения",
-    "стратегическом положении"
-   ],
-   "correct": "стратегическом положении",
-   "case": "Предложный (Prepositional)",
-   "explain": "«стратегическом положении» — after the preposition «о», for location or topic.",
-   "id": "c7"
-  },
-  {
-   "sentence": "— Но вы знаете, ваше превосходительство, ___, предписывающее предполагать худшее, — сказал австрийский генерал, видимо желая покончить с шутками и приступить к делу.",
-   "lemma": "правило",
-   "options": [
-    "мудрым правилом",
-    "мудром правиле",
-    "мудрое правило",
-    "мудрого правила"
-   ],
-   "correct": "мудрое правило",
-   "case": "Именительный (Nominative)",
-   "explain": "«мудрое правило» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
   },
   {
    "sentence": "— Но вы знаете, ваше превосходительство, мудрое правило, предписывающее предполагать худшее, — сказал ___, видимо желая покончить с шутками и приступить к делу.",
@@ -109,22 +53,8 @@
    ],
    "correct": "австрийский генерал",
    "case": "Именительный (Nominative)",
-   "explain": "«австрийский генерал» — the subject of the sentence stands in the nominative.",
+   "explain": "«австрийский генерал» is the subject of «сказал» — who or what does it — so nominative.",
    "id": "c9"
-  },
-  {
-   "sentence": "Он собрал бумаги, и, отдав ___, тихо шагая по ковру, вышел в приемную.",
-   "lemma": "поклон",
-   "options": [
-    "общего поклона",
-    "общем поклоне",
-    "общим поклоном",
-    "общий поклон"
-   ],
-   "correct": "общий поклон",
-   "case": "Винительный (Accusative)",
-   "explain": "«общий поклон» — the accusative marks the direct object of the verb.",
-   "id": "c12"
   },
   {
    "sentence": "Кутузов, которого он догнал еще в Польше, принял его очень ласково, обещал ему не забывать его, отличал от ___, брал с собою в Вену и давал более серьезные поручения.",
@@ -137,7 +67,7 @@
    ],
    "correct": "других адъютантов",
    "case": "Родительный (Genitive)",
-   "explain": "«других адъютантов» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«других адъютантов» — «от» always takes the genitive.",
    "id": "c13"
   },
   {
@@ -151,7 +81,7 @@
    ],
    "correct": "неизвестному генералу",
    "case": "Дательный (Dative)",
-   "explain": "«неизвестному генералу» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«неизвестному генералу» — «к» always takes the dative.",
    "id": "c17"
   },
   {
@@ -165,36 +95,8 @@
    ],
    "correct": "неизвестный генерал",
    "case": "Именительный (Nominative)",
-   "explain": "«Неизвестный генерал» — the subject of the sentence stands in the nominative.",
+   "explain": "«неизвестный генерал» is the subject of «оглянулся» — who or what does it — so nominative.",
    "id": "c18"
-  },
-  {
-   "sentence": "Он вынул записную книжку, быстро начертил что-то карандашом, вырвал листок, отдал, ___ подошел к окну, бросил свое тело на стул и оглянул бывших в комнате, как будто спрашивая: зачем они на него смотрят?",
-   "lemma": "шаг",
-   "options": [
-    "быстрых шагов",
-    "быстрыми шагами",
-    "быстрых шагах",
-    "быстрым шагам"
-   ],
-   "correct": "быстрыми шагами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«быстрыми шагами» — the instrumental marks the means, company, or complement.",
-   "id": "c19"
-  },
-  {
-   "sentence": "Потом генерал поднял голову, вытянул шею, как будто намереваясь что-то сказать, но тотчас же, как будто небрежно начиная напевать про себя, произвел ___, который тотчас же пресекся.",
-   "lemma": "звук",
-   "options": [
-    "странному звуку",
-    "странный звук",
-    "странным звуком",
-    "странном звуке"
-   ],
-   "correct": "странный звук",
-   "case": "Винительный (Accusative)",
-   "explain": "«странный звук» — the accusative marks the direct object of the verb.",
-   "id": "c20"
   },
   {
    "sentence": "Генерал с повязанною головой, как будто убегая от опасности, нагнувшись, большими, быстрыми шагами ___ подошел к Кутузову.",
@@ -207,22 +109,8 @@
    ],
    "correct": "худых ног",
    "case": "Родительный (Genitive)",
-   "explain": "«худых ног» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«худых ног» depends on the noun «шагами» (whose? of what?) — genitive.",
    "id": "c21"
-  },
-  {
-   "sentence": "Через полчаса уже по разным направлениям были разосланы адъютанты с приказаниями, доказывавшими, что скоро и ___, до сих пор бывшие в бездействии, должны будут встретиться с неприятелем.",
-   "lemma": "войско",
-   "options": [
-    "русские войска",
-    "русских войсках",
-    "русским войскам",
-    "русских войск"
-   ],
-   "correct": "русские войска",
-   "case": "Именительный (Nominative)",
-   "explain": "«русские войска» — the subject of the sentence stands in the nominative.",
-   "id": "c23"
   },
   {
    "sentence": "Князь Андрей был один из тех ___ в штабе, который полагал свой главный интерес в общем ходе военного дела.",
@@ -235,36 +123,22 @@
    ],
    "correct": "редких офицеров",
    "case": "Родительный (Genitive)",
-   "explain": "«редких офицеров» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«редких офицеров» — «из» always takes the genitive.",
    "id": "c24"
   },
   {
    "sentence": "Князь Андрей был один из тех редких офицеров в штабе, который полагал свой ___ в общем ходе военного дела.",
    "lemma": "интерес",
    "options": [
-    "главном интересе",
-    "главному интересу",
     "главный интерес",
-    "главного интереса"
+    "главным интересом",
+    "главному интересу",
+    "главном интересе"
    ],
    "correct": "главный интерес",
    "case": "Винительный (Accusative)",
-   "explain": "«главный интерес» — the accusative marks the direct object of the verb.",
+   "explain": "«главный интерес» is the direct object of «полагал» (кого? что?) — accusative.",
    "id": "c25"
-  },
-  {
-   "sentence": "Князь Андрей был один из тех редких офицеров в штабе, который полагал свой главный интерес в общем ходе ___.",
-   "lemma": "дело",
-   "options": [
-    "военном деле",
-    "военному делу",
-    "военным делом",
-    "военного дела"
-   ],
-   "correct": "военного дела",
-   "case": "Родительный (Genitive)",
-   "explain": "«военного дела» — the genitive here marks possession, absence, or quantity.",
-   "id": "c27"
   },
   {
    "sentence": "Но он боялся гения Бонапарта, который мог оказаться сильнее всей храбрости ___, и вместе с тем не мог допустить позора для своего героя.",
@@ -277,7 +151,7 @@
    ],
    "correct": "русских войск",
    "case": "Родительный (Genitive)",
-   "explain": "«русских войск» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«русских войск» depends on the noun «храбрости» (whose? of what?) — genitive.",
    "id": "c28"
   },
   {
@@ -291,7 +165,7 @@
    ],
    "correct": "глупая улыбка",
    "case": "Именительный (Nominative)",
-   "explain": "«глупая улыбка» — the subject of the sentence stands in the nominative.",
+   "explain": "«глупая улыбка» is the subject of «выразилась» — who or what does it — so nominative.",
    "id": "c31"
   },
   {
@@ -305,7 +179,7 @@
    ],
    "correct": "австрийскому генералу",
    "case": "Дательный (Dative)",
-   "explain": "«австрийскому генералу» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«австрийскому генералу» — «к» always takes the dative.",
    "id": "c32"
   },
   {
@@ -319,7 +193,7 @@
    ],
    "correct": "глупой улыбки",
    "case": "Родительный (Genitive)",
-   "explain": "«глупой улыбки» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«глупой улыбки» depends on the noun «серьезность» (whose? of what?) — genitive.",
    "id": "c33"
   }
  ]

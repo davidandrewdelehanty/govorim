@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Мало того; в молодых летах, я служил солдатом, и потому знаю также очень хорошо, что такое шлем, шишак и другие ___.",
-   "lemma": "атрибут",
-   "options": [
-    "воинских атрибутах",
-    "воинскими атрибутами",
-    "воинских атрибутов",
-    "воинские атрибуты"
-   ],
-   "correct": "воинские атрибуты",
-   "case": "Винительный (Accusative)",
-   "explain": "«воинские атрибуты» — the accusative marks the direct object of the verb.",
-   "id": "c1"
-  },
-  {
    "sentence": "— Нет, не целый, воскликнул Дон-Кихот, ему не достает ___.",
    "lemma": "половина",
    "options": [
@@ -25,22 +11,8 @@
    ],
    "correct": "целой половины",
    "case": "Родительный (Genitive)",
-   "explain": "«целой половины» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«целой половины» is the object of a negated verb («не достает») — genitive instead of the accusative.",
    "id": "c2"
-  },
-  {
-   "sentence": "___ меня страшно беспокоил прогуливающийся по этому замку очарованный мавр, а свита его тревожила в то время Санчо.",
-   "lemma": "раз",
-   "options": [
-    "прошлый раз",
-    "прошлом разе",
-    "прошлого раза",
-    "прошлым разом"
-   ],
-   "correct": "прошлый раз",
-   "case": "Винительный (Accusative)",
-   "explain": "«Прошлый раз» — the accusative marks the direct object of the verb.",
-   "id": "c3"
   },
   {
    "sentence": "И теперь, вы хотите, чтоб я стал решителем этого ___; нет, господа, это значило бы слишком много принимать на себя.",
@@ -53,7 +25,7 @@
    ],
    "correct": "запутанного спора",
    "case": "Родительный (Genitive)",
-   "explain": "«запутанного спора» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«запутанного спора» depends on the noun «решителем» (whose? of what?) — genitive.",
    "id": "c4"
   },
   {
@@ -67,7 +39,7 @@
    ],
    "correct": "спорном деле",
    "case": "Предложный (Prepositional)",
-   "explain": "«спорном деле» — after the preposition «об», for location or topic.",
+   "explain": "«спорном деле» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c5"
   },
   {
@@ -81,7 +53,7 @@
    ],
    "correct": "мамбренского шлема",
    "case": "Родительный (Genitive)",
-   "explain": "«Мамбренского шлема» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«мамбренского шлема» depends on the noun «обладатель» (whose? of what?) — genitive.",
    "id": "c6"
   },
   {
@@ -95,7 +67,7 @@
    ],
    "correct": "мамбреновский шлем",
    "case": "Винительный (Accusative)",
-   "explain": "«Мамбреновский шлем» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«мамбреновский шлем» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c7"
   },
   {
@@ -109,22 +81,8 @@
    ],
    "correct": "общего смеха",
    "case": "Родительный (Genitive)",
-   "explain": "«общего смеха» — after the preposition «среди», the genitive here marks possession, absence, or quantity.",
+   "explain": "«общего смеха» — «среди» always takes the genitive.",
    "id": "c8"
-  },
-  {
-   "sentence": "— Если все это не шутка, отозвался в эту минуту один из слуг Дон-Луи, так я решительно не понимаю, как могут такие ___ утверждать, будто это не вьюк, а это не цирюльничий таз.",
-   "lemma": "господин",
-   "options": [
-    "умных господ",
-    "умным господам",
-    "умных господах",
-    "умные господа"
-   ],
-   "correct": "умные господа",
-   "case": "Именительный (Nominative)",
-   "explain": "«умные господа» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
   },
   {
    "sentence": "И я полагаю, что они, должно быть не даром хотят уверить нас, будто перед нами лежит совсем не то, что мы видим ___.",
@@ -137,49 +95,21 @@
    ],
    "correct": "собственными глазами",
    "case": "Творительный (Instrumental)",
-   "explain": "«собственными глазами» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «видим», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c10"
-  },
-  {
-   "sentence": "Вдруг, среди этого хаоса, среди этой ___, новая мысль поражает Дон-Кихота.",
-   "lemma": "свалка",
-   "options": [
-    "общей свалкой",
-    "общей свалке",
-    "общей свалки",
-    "общая свалка"
-   ],
-   "correct": "общей свалки",
-   "case": "Родительный (Genitive)",
-   "explain": "«общей свалки» — the genitive here marks possession, absence, or quantity.",
-   "id": "c11"
-  },
-  {
-   "sentence": "В доказательство этого я хочу, чтобы вы увидели теперь вашими ___, как перешла сюда вражда, обуревавшая лагерь Аграманта.",
-   "lemma": "глаз",
-   "options": [
-    "собственных глаз",
-    "собственные глаза",
-    "собственным глазам",
-    "собственными глазами"
-   ],
-   "correct": "собственными глазами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«собственными глазами» — the instrumental marks the means, company, or complement.",
-   "id": "c12"
   },
   {
    "sentence": "Смотрите: здесь сражаются за обладание мечом; там за обладание конем; с одной стороны за ___, с другой за шлем, словом все сражаются, не понимая друг друга.",
    "lemma": "орёл",
    "options": [
-    "белому орлу",
+    "белого орла",
+    "белый орёл",
     "белом орле",
-    "белым орлом",
-    "белого орла"
+    "белому орлу"
    ],
    "correct": "белого орла",
    "case": "Винительный (Accusative)",
-   "explain": "«белого орла» — after the preposition «за», the accusative marks the direct object of the verb.",
+   "explain": "«белого орла» — «за» takes the accusative here (куда? за что? за кого?) — the instrumental would mean position behind or at (где? за чем?).",
    "id": "c13"
   },
   {
@@ -193,36 +123,8 @@
    ],
    "correct": "благородных людей",
    "case": "Родительный (Genitive)",
-   "explain": "«благородных людей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "After «столько», a word of quantity — genitive.",
    "id": "c14"
-  },
-  {
-   "sentence": "___ решило, чтобы дон-Фернанд объявил слугам дон-Луи, это он такой и сказал им, что он отвезет господина их в Андалузию, к маркизу брату своему, который примет влюбленного юношу как нельзя лучше.",
-   "lemma": "мнение",
-   "options": [
-    "общему мнению",
-    "общего мнения",
-    "общее мнение",
-    "общим мнением"
-   ],
-   "correct": "общее мнение",
-   "case": "Именительный (Nominative)",
-   "explain": "«Общее мнение» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
-  },
-  {
-   "sentence": "Стрельцы святой Германдады, узнав, с какими ___ они имеют дело, и поняв, что какой бы оборот ни принял спор, на долю их выпадут только новые удары, решились положить оружие.",
-   "lemma": "лицо",
-   "options": [
-    "значительных лиц",
-    "значительным лицам",
-    "значительные лица",
-    "значительными лицами"
-   ],
-   "correct": "значительными лицами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«значительными лицами» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c16"
   },
   {
    "sentence": "Стрельцы святой Германдады, узнав, с какими значительными лицами они имеют дело, и поняв, что какой бы оборот ни принял спор, на долю их выпадут только ___, решились положить оружие.",
@@ -235,21 +137,21 @@
    ],
    "correct": "новые удары",
    "case": "Именительный (Nominative)",
-   "explain": "«новые удары» — the subject of the sentence stands in the nominative.",
+   "explain": "«новые удары» is the subject of «выпадут» — who or what does it — so nominative.",
    "id": "c17"
   },
   {
    "sentence": "«Помощь святой Германдаде!» громко закричал он; «я требую ее теперь серьезно; вот приказ, в котором велено задержать этого грабителя на ___».",
    "lemma": "дорога",
    "options": [
-    "больших дорог",
-    "большие дороги",
+    "большими дорогами",
     "больших дорогах",
-    "большими дорогами"
+    "большим дорогам",
+    "больших дорог"
    ],
    "correct": "больших дорогах",
    "case": "Предложный (Prepositional)",
-   "explain": "«больших дорогах» — after the preposition «на», for location or topic.",
+   "explain": "«больших дорогах» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c18"
   },
   {
@@ -263,21 +165,21 @@
    ],
    "correct": "следующим ответом",
    "case": "Творительный (Instrumental)",
-   "explain": "«следующим ответом» — the instrumental marks the means, company, or complement.",
+   "explain": "«ограничился» takes the instrumental.",
    "id": "c19"
   },
   {
    "sentence": "Возвратить свободу закованным в цепи, освободить арестантов, поднять упавших, помочь нуждающимся, облегчить страдальцев, это вы называете грабежом на ___.",
    "lemma": "дорога",
    "options": [
-    "больших дорог",
-    "большие дороги",
+    "большим дорогам",
+    "большими дорогами",
     "больших дорогах",
-    "большими дорогами"
+    "больших дорог"
    ],
    "correct": "больших дорогах",
    "case": "Предложный (Prepositional)",
-   "explain": "«больших дорогах» — after the preposition «на», for location or topic.",
+   "explain": "«больших дорогах» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c20"
   }
  ]

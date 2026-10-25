@@ -1,62 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Эти ___, эти слезы — все это вам кажется странным.",
-   "lemma": "разговор",
-   "options": [
-    "таинственных разговоров",
-    "таинственные разговоры",
-    "таинственными разговорами",
-    "таинственных разговорах"
-   ],
-   "correct": "таинственные разговоры",
-   "case": "Именительный (Nominative)",
-   "explain": "«таинственные разговоры» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Поверь мне: ___ слишком редки в наше время!",
-   "lemma": "друг",
-   "options": [
-    "настоящие друзья",
-    "настоящим друзьям",
-    "настоящими друзьями",
-    "настоящих друзьях"
-   ],
-   "correct": "настоящие друзья",
-   "case": "Именительный (Nominative)",
-   "explain": "«настоящие друзья» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
-   "sentence": "Я хоть и ___ — а этого не вынесу.",
-   "lemma": "сложение",
-   "options": [
-    "крепкому сложению",
-    "крепкого сложения",
-    "крепким сложением",
-    "крепкое сложение"
-   ],
-   "correct": "крепкого сложения",
-   "case": "Родительный (Genitive)",
-   "explain": "«крепкого сложения» — the genitive here marks possession, absence, or quantity.",
-   "id": "c6"
-  },
-  {
-   "sentence": "((Берет его за руку.)) Мы ведь ___ — ты меня с детства знаешь: хитрить я не умею — да и ты был всегда со мной откровенен.",
-   "lemma": "друг",
-   "options": [
-    "старых друзьях",
-    "старым друзьям",
-    "старые друзья",
-    "старыми друзьями"
-   ],
-   "correct": "старые друзья",
-   "case": "Именительный (Nominative)",
-   "explain": "«старые друзья» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
-  },
-  {
    "sentence": "(Останавливается.) Но после ___, после вашего вторичного свидания вечером — как тут быть?",
    "lemma": "сцена",
    "options": [
@@ -67,7 +11,7 @@
    ],
    "correct": "вчерашней сцены",
    "case": "Родительный (Genitive)",
-   "explain": "«вчерашней сцены» — after the preposition «после», the genitive here marks possession, absence, or quantity.",
+   "explain": "«вчерашней сцены» — «после» always takes the genitive.",
    "id": "c8"
   },
   {
@@ -81,35 +25,21 @@
    ],
    "correct": "вторичного свидания",
    "case": "Родительный (Genitive)",
-   "explain": "«вторичного свидания» — after the preposition «после», the genitive here marks possession, absence, or quantity.",
+   "explain": "«вторичного свидания» — «после» always takes the genitive.",
    "id": "c9"
-  },
-  {
-   "sentence": "Я должен тебе сказать, Michel, что хоть я и ___ — а настолько понимаю, что чужую жизнь заедать не годится — и что бывают случаи, когда на своих правах настаивать грешно.",
-   "lemma": "человек",
-   "options": [
-    "простой человек",
-    "простом человеке",
-    "простым человеком",
-    "простому человеку"
-   ],
-   "correct": "простой человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«простой человек» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
   },
   {
    "sentence": "((Махает рукой.)) И вот что, брат, еще: с некоторых пор, особенно в эти ___, я вижу в ней большую перемену.",
    "lemma": "день",
    "options": [
-    "последних дней",
     "последние дни",
+    "последних дней",
     "последними днями",
-    "последних днях"
+    "последним дням"
    ],
    "correct": "последние дни",
    "case": "Винительный (Accusative)",
-   "explain": "«последние дни» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«последние дни» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c12"
   },
   {
@@ -123,36 +53,8 @@
    ],
    "correct": "самом деле",
    "case": "Предложный (Prepositional)",
-   "explain": "«самом деле» — after the preposition «в», for location or topic.",
+   "explain": "«самом деле» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c13"
-  },
-  {
-   "sentence": "У нас с ним был довольно ___.",
-   "lemma": "разговор",
-   "options": [
-    "важного разговора",
-    "важным разговором",
-    "важном разговоре",
-    "важный разговор"
-   ],
-   "correct": "важный разговор",
-   "case": "Именительный (Nominative)",
-   "explain": "«важный разговор» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
-  },
-  {
-   "sentence": "Дай вам бог долго сохранить такие ___!",
-   "lemma": "убеждение",
-   "options": [
-    "приятных убеждениях",
-    "приятными убеждениями",
-    "приятные убеждения",
-    "приятных убеждений"
-   ],
-   "correct": "приятные убеждения",
-   "case": "Винительный (Accusative)",
-   "explain": "«приятные убеждения» — the accusative marks the direct object of the verb.",
-   "id": "c19"
   },
   {
    "sentence": "Именно без всякого ___.",
@@ -165,22 +67,8 @@
    ],
    "correct": "особенного повода",
    "case": "Родительный (Genitive)",
-   "explain": "«особенного повода» — after the preposition «без», the genitive here marks possession, absence, or quantity.",
+   "explain": "«особенного повода» — «без» always takes the genitive.",
    "id": "c22"
-  },
-  {
-   "sentence": "Женщины — это очень ___.",
-   "lemma": "народ",
-   "options": [
-    "своенравный народ",
-    "своенравного народа",
-    "своенравном народе",
-    "своенравным народом"
-   ],
-   "correct": "своенравный народ",
-   "case": "Именительный (Nominative)",
-   "explain": "«своенравный народ» — the subject of the sentence stands in the nominative.",
-   "id": "c23"
   },
   {
    "sentence": "Я, право, не знаю, с какой стати я попал в этот ___, но уж позвольте мне на прощанье дать вам один добрый совет.",
@@ -193,21 +81,21 @@
    ],
    "correct": "наставнический тон",
    "case": "Винительный (Accusative)",
-   "explain": "«наставнический тон» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«наставнический тон» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c24"
   },
   {
    "sentence": "Я вижу, вы в господине Беляеве с каждым днем открываете ___.",
    "lemma": "достоинство",
    "options": [
-    "новые достоинства",
     "новым достоинствам",
     "новых достоинствах",
-    "новых достоинств"
+    "новыми достоинствами",
+    "новые достоинства"
    ],
    "correct": "новые достоинства",
    "case": "Винительный (Accusative)",
-   "explain": "«новые достоинства» — the accusative marks the direct object of the verb.",
+   "explain": "«новые достоинства» is the direct object of «открываете» (кого? что?) — accusative.",
    "id": "c25"
   },
   {
@@ -221,50 +109,22 @@
    ],
    "correct": "другие рисунки",
    "case": "Именительный (Nominative)",
-   "explain": "«другие рисунки» — the subject of the sentence stands in the nominative.",
+   "explain": "«другие рисунки» is the subject of «есть» — who or what does it — so nominative.",
    "id": "c26"
-  },
-  {
-   "sentence": "Большинцов, ваш знакомый, точно ___?",
-   "lemma": "человек",
-   "options": [
-    "хорошего человека",
-    "хорошем человеке",
-    "хорошим человеком",
-    "хороший человек"
-   ],
-   "correct": "хороший человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«хороший человек» — the subject of the sentence stands in the nominative.",
-   "id": "c28"
   },
   {
    "sentence": "((С сильным ___.)) Вот, видите ли, Вера Александровна, мне нельзя здесь остаться.",
    "lemma": "волнение",
    "options": [
+    "внутреннее волнение",
     "внутренним волнением",
-    "внутреннего волнения",
-    "внутреннему волнению",
-    "внутреннем волнении"
+    "внутреннем волнении",
+    "внутреннему волнению"
    ],
    "correct": "внутренним волнением",
    "case": "Творительный (Instrumental)",
-   "explain": "«внутренним волнением» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«внутренним волнением» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c30"
-  },
-  {
-   "sentence": "Пора было прекратить эти болезненные, эти ___.",
-   "lemma": "отношение",
-   "options": [
-    "чахоточным отношениям",
-    "чахоточные отношения",
-    "чахоточных отношений",
-    "чахоточных отношениях"
-   ],
-   "correct": "чахоточные отношения",
-   "case": "Именительный (Nominative)",
-   "explain": "«чахоточные отношения» — the subject of the sentence stands in the nominative.",
-   "id": "c40"
   },
   {
    "sentence": "А теперь час ___.",
@@ -277,22 +137,8 @@
    ],
    "correct": "русского урока",
    "case": "Родительный (Genitive)",
-   "explain": "«русского урока» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«русского урока» depends on the noun «час» (whose? of what?) — genitive.",
    "id": "c42"
-  },
-  {
-   "sentence": "Ну, он, как ___, решился удалиться.",
-   "lemma": "человек",
-   "options": [
-    "честный человек",
-    "честным человеком",
-    "честном человеке",
-    "честного человека"
-   ],
-   "correct": "честный человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«честный человек» — the subject of the sentence stands in the nominative.",
-   "id": "c43"
   },
   {
    "sentence": "А что, Михайло Александрыч, не прикажете ли довезти вас на ___ до большой дороги?",
@@ -305,7 +151,7 @@
    ],
    "correct": "новой троечке",
    "case": "Предложный (Prepositional)",
-   "explain": "«новой троечке» — after the preposition «на», for location or topic.",
+   "explain": "«новой троечке» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c45"
   },
   {
@@ -319,22 +165,8 @@
    ],
    "correct": "большой дороги",
    "case": "Родительный (Genitive)",
-   "explain": "«большой дороги» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«большой дороги» — «до» always takes the genitive.",
    "id": "c46"
-  },
-  {
-   "sentence": "Анна Семёновна с ___ глядит на неё, Лизавета Богдановна стоит перед ней, не поднимая глаз.",
-   "lemma": "изумление",
-   "options": [
-    "невыразимым изумлением",
-    "невыразимому изумлению",
-    "невыразимое изумление",
-    "невыразимом изумлении"
-   ],
-   "correct": "невыразимым изумлением",
-   "case": "Творительный (Instrumental)",
-   "explain": "«невыразимым изумлением» — the instrumental marks the means, company, or complement.",
-   "id": "c48"
   }
  ]
 }

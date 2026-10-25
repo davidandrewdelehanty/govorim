@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Замысел рассказа связан с появлением в газете \"Голос\" ___ Л.",
-   "lemma": "заметка",
-   "options": [
-    "журнальной заметки",
-    "журнальная заметка",
-    "журнальной заметкой",
-    "журнальной заметке"
-   ],
-   "correct": "журнальной заметки",
-   "case": "Родительный (Genitive)",
-   "explain": "«журнальной заметки» — the genitive here marks possession, absence, or quantity.",
-   "id": "c1"
-  },
-  {
    "sentence": "Это портрет человека, истомленного ___\" (Голос. 1873. 14 янв N 14).",
    "lemma": "недуг",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "тяжким недугом",
    "case": "Творительный (Instrumental)",
-   "explain": "«тяжким недугом» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «истомленного», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c2"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "первого толчка",
    "case": "Родительный (Genitive)",
-   "explain": "«первого толчка» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«первого толчка» depends on the noun «роль» (whose? of what?) — genitive.",
    "id": "c4"
   },
   {
@@ -53,50 +39,8 @@
    ],
    "correct": "второй половине",
    "case": "Предложный (Prepositional)",
-   "explain": "«второй половине» — after the preposition «во», for location or topic.",
+   "explain": "«второй половине» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c5"
-  },
-  {
-   "sentence": "Почти ___ мотивируются фантасмагоричные видения героев обоих произведений.",
-   "lemma": "образ",
-   "options": [
-    "аналогичном образе",
-    "аналогичным образом",
-    "аналогичного образа",
-    "аналогичному образу"
-   ],
-   "correct": "аналогичным образом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«аналогичным образом» — the instrumental marks the means, company, or complement.",
-   "id": "c6"
-  },
-  {
-   "sentence": "Я начинаю видеть и слышать какие-то ___\".",
-   "lemma": "вещь",
-   "options": [
-    "странных вещей",
-    "странных вещах",
-    "странными вещами",
-    "странные вещи"
-   ],
-   "correct": "странные вещи",
-   "case": "Винительный (Accusative)",
-   "explain": "«странные вещи» — the accusative marks the direct object of the verb.",
-   "id": "c7"
-  },
-  {
-   "sentence": "Полемические намеки ощутимы и в таком размышлении: \"Не люблю, когда при одном лишь ___ суются у нас разрешать специальности; а у нас это сплошь.",
-   "lemma": "образование",
-   "options": [
-    "общим образованием",
-    "общему образованию",
-    "общем образовании",
-    "общее образование"
-   ],
-   "correct": "общем образовании",
-   "case": "Предложный (Prepositional)",
-   "explain": "«общем образовании» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c8"
   },
   {
    "sentence": "Штатские лица любят судить о предметах военных и даже фельдмаршальских, а люди с ___ судят больше о философии и политической экономии\".",
@@ -109,22 +53,8 @@
    ],
    "correct": "инженерным образованием",
    "case": "Творительный (Instrumental)",
-   "explain": "«инженерным образованием» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«инженерным образованием» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c9"
-  },
-  {
-   "sentence": "Среди \"___\", судящих о фельдмаршальских предметах, безусловно должен быть назван социолог А.",
-   "lemma": "лицо",
-   "options": [
-    "штатскими лицами",
-    "штатских лицах",
-    "штатские лица",
-    "штатских лиц"
-   ],
-   "correct": "штатских лиц",
-   "case": "Родительный (Genitive)",
-   "explain": "«штатских лиц» — after the preposition «среди», the genitive here marks possession, absence, or quantity.",
-   "id": "c10"
   },
   {
    "sentence": "Достоевский полемизирует с книгой Стронина в статье \"Мечты и грезы\". \"Люди с ___\", занимающиеся философией и политической экономией, это главным образом H.",
@@ -137,22 +67,8 @@
    ],
    "correct": "инженерным образованием",
    "case": "Творительный (Instrumental)",
-   "explain": "«инженерным образованием» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«инженерным образованием» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c12"
-  },
-  {
-   "sentence": "Достоевский полемизирует с книгой Стронина в статье \"Мечты и грезы\". \"Люди с инженерным образованием\", занимающиеся философией и политической экономией, это ___ H.",
-   "lemma": "образ",
-   "options": [
-    "главным образом",
-    "главному образу",
-    "главного образа",
-    "главном образе"
-   ],
-   "correct": "главным образом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«главным образом» — the instrumental marks the means, company, or complement.",
-   "id": "c13"
   },
   {
    "sentence": "Михайловский, учившийся с 1856 по 1863 г. в Петербургском институте ___, и, видимо, П.",
@@ -165,7 +81,7 @@
    ],
    "correct": "горных инженеров",
    "case": "Родительный (Genitive)",
-   "explain": "«горных инженеров» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«горных инженеров» depends on the noun «институте» (whose? of what?) — genitive.",
    "id": "c15"
   },
   {
@@ -179,22 +95,8 @@
    ],
    "correct": "артиллерийском училище",
    "case": "Предложный (Prepositional)",
-   "explain": "«артиллерийском училище» — after the preposition «в», for location or topic.",
+   "explain": "«артиллерийском училище» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c16"
-  },
-  {
-   "sentence": "___ \"одного лица\" полемичны и резки.",
-   "lemma": "мнение",
-   "options": [
-    "литературные мнения",
-    "литературным мнениям",
-    "литературных мнениях",
-    "литературных мнений"
-   ],
-   "correct": "литературные мнения",
-   "case": "Именительный (Nominative)",
-   "explain": "«Литературные мнения» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
   },
   {
    "sentence": "По-видимому, не прошел мимо факта принадлежности Домбровича к поколению людей ___ и Достоевский.",
@@ -207,7 +109,7 @@
    ],
    "correct": "1840-х годов",
    "case": "Родительный (Genitive)",
-   "explain": "«1840-х годов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«1840-х годов» depends on the noun «людей» (whose? of what?) — genitive.",
    "id": "c25"
   },
   {
@@ -221,36 +123,8 @@
    ],
    "correct": "русского вестника",
    "case": "Родительный (Genitive)",
-   "explain": "«Русского вестника» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«русского вестника» depends on the noun «Беллетрист» (whose? of what?) — genitive.",
    "id": "c27"
-  },
-  {
-   "sentence": "Беллетрист \"Русского вестника\", внесший свой вклад в \"антинигилистическую\" литературу романом \"Марина из ___\", Б. M.",
-   "lemma": "рог",
-   "options": [
-    "алому рогу",
-    "алого рога",
-    "алом роге",
-    "алый рог"
-   ],
-   "correct": "алого рога",
-   "case": "Родительный (Genitive)",
-   "explain": "«Алого рога» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
-   "id": "c28"
-  },
-  {
-   "sentence": "Созвучна фамилия героя \"Бобка\" и фамилия литератора Кинаревича в \"___\" И.",
-   "lemma": "тля",
-   "options": [
-    "литературная тля",
-    "литературной тлёй",
-    "литературной тле",
-    "литературной тли"
-   ],
-   "correct": "литературной тле",
-   "case": "Предложный (Prepositional)",
-   "explain": "«Литературной тле» — after the preposition «в», for location or topic.",
-   "id": "c29"
   },
   {
    "sentence": "Развратники Боборыкина занимаются непристойными \"литературными\" играми, а также участвуют в своеобразной \"пети-жё\": \"От ___ мы перешли к простому.",
@@ -263,22 +137,8 @@
    ],
    "correct": "письменного вранья",
    "case": "Родительный (Genitive)",
-   "explain": "«письменного вранья» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«письменного вранья» — «от» always takes the genitive.",
    "id": "c31"
-  },
-  {
-   "sentence": "В рассказе есть свой ___ Платон Николаевич, как и многие другие действующие или упоминаемые персонажи, являющийся лицом вымышленным, \"художественным\".",
-   "lemma": "философ",
-   "options": [
-    "кладбищенский философ",
-    "кладбищенском философе",
-    "кладбищенскому философу",
-    "кладбищенским философом"
-   ],
-   "correct": "кладбищенский философ",
-   "case": "Именительный (Nominative)",
-   "explain": "«кладбищенский философ» — the subject of the sentence stands in the nominative.",
-   "id": "c32"
   },
   {
    "sentence": "Страхов (1828--1896) защитил магистерскую диссертацию по зоологии на тему \"О костях запястья млекопитающих\" (1857) и к 1873 г. был автором нескольких ___, в том числе и книги \"Мир как целое.",
@@ -291,36 +151,8 @@
    ],
    "correct": "философских книг",
    "case": "Родительный (Genitive)",
-   "explain": "«философских книг» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«философских книг» depends on the noun «автором» (whose? of what?) — genitive.",
    "id": "c35"
-  },
-  {
-   "sentence": "Клиневич и его ___ хорошо знают толк в такого рода \"особом сладострастии\".",
-   "lemma": "сосед",
-   "options": [
-    "могильными соседями",
-    "могильные соседи",
-    "могильным соседям",
-    "могильных соседях"
-   ],
-   "correct": "могильные соседи",
-   "case": "Именительный (Nominative)",
-   "explain": "«могильные соседи» — the subject of the sentence stands in the nominative.",
-   "id": "c37"
-  },
-  {
-   "sentence": "Клиневич и его могильные соседи хорошо знают толк в такого рода \"___\".",
-   "lemma": "сладострастие",
-   "options": [
-    "особого сладострастия",
-    "особом сладострастии",
-    "особому сладострастию",
-    "особым сладострастием"
-   ],
-   "correct": "особом сладострастии",
-   "case": "Предложный (Prepositional)",
-   "explain": "«особом сладострастии» — after the preposition «в», for location or topic.",
-   "id": "c38"
   },
   {
    "sentence": "Павлов в своем \"монологе\" развивает ___: \"А формы приличия -- это все, самое главное.",
@@ -329,40 +161,12 @@
     "близким мыслям",
     "близкие мысли",
     "близких мыслях",
-    "близких мыслей"
+    "близкими мыслями"
    ],
    "correct": "близкие мысли",
    "case": "Винительный (Accusative)",
-   "explain": "«близкие мысли» — the accusative marks the direct object of the verb.",
+   "explain": "«близкие мысли» is the direct object of «развивает» (кого? что?) — accusative.",
    "id": "c40"
-  },
-  {
-   "sentence": "Самые ___, самые ненормальные явления становятся мало-помалу обыкновенными\".",
-   "lemma": "уклонение",
-   "options": [
-    "чудовищных уклонениях",
-    "чудовищным уклонениям",
-    "чудовищных уклонений",
-    "чудовищные уклонения"
-   ],
-   "correct": "чудовищные уклонения",
-   "case": "Именительный (Nominative)",
-   "explain": "«чудовищные уклонения» — the subject of the sentence stands in the nominative.",
-   "id": "c42"
-  },
-  {
-   "sentence": "Самые чудовищные уклонения, самые ___ становятся мало-помалу обыкновенными\".",
-   "lemma": "явление",
-   "options": [
-    "ненормальные явления",
-    "ненормальных явлениях",
-    "ненормальными явлениями",
-    "ненормальных явлений"
-   ],
-   "correct": "ненормальные явления",
-   "case": "Именительный (Nominative)",
-   "explain": "«ненормальные явления» — the subject of the sentence stands in the nominative.",
-   "id": "c43"
   },
   {
    "sentence": "Волконский (1776--1852), любимец Николая I и фактор в ___ государя,1 то \"Волоконские\" в \"Бобке\", очевидно, аналогичная реалия.",
@@ -375,7 +179,7 @@
    ],
    "correct": "любовных делах",
    "case": "Предложный (Prepositional)",
-   "explain": "«любовных делах» — after the preposition «в», for location or topic.",
+   "explain": "«любовных делах» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c44"
   },
   {
@@ -389,50 +193,8 @@
    ],
    "correct": "достаточном количестве",
    "case": "Предложный (Prepositional)",
-   "explain": "«достаточном количестве» — after the preposition «при», for location or topic.",
+   "explain": "«достаточном количестве» — «при» always takes the prepositional.",
    "id": "c45"
-  },
-  {
-   "sentence": "При достаточном количестве злободневных ___ в \"Бобке\" его герои не \"личности\", а типы.3 Не составляет исключения и сам условный \"автор\" \"Записок\", выступивший под псевдонимом \"одно лицо\".",
-   "lemma": "реалия",
-   "options": [
-    "полемических реалиях",
-    "полемических реалий",
-    "полемические реалии",
-    "полемическими реалиями"
-   ],
-   "correct": "полемических реалий",
-   "case": "Родительный (Genitive)",
-   "explain": "«полемических реалий» — the genitive here marks possession, absence, or quantity.",
-   "id": "c46"
-  },
-  {
-   "sentence": "Бурениным (\"С.-___\") и H.",
-   "lemma": "ведомость",
-   "options": [
-    "петербургскими ведомостями",
-    "петербургским ведомостям",
-    "петербургских ведомостях",
-    "петербургские ведомости"
-   ],
-   "correct": "петербургские ведомости",
-   "case": "Именительный (Nominative)",
-   "explain": "«Петербургские ведомости» — the subject of the sentence stands in the nominative.",
-   "id": "c47"
-  },
-  {
-   "sentence": "Михайловским (\"___\") и прямо относится к Буренину.",
-   "lemma": "записка",
-   "options": [
-    "отечественных записок",
-    "отечественных записках",
-    "отечественным запискам",
-    "отечественные записки"
-   ],
-   "correct": "отечественные записки",
-   "case": "Именительный (Nominative)",
-   "explain": "«Отечественные записки» — the subject of the sentence stands in the nominative.",
-   "id": "c48"
   },
   {
    "sentence": "Но это и обобщенный образ, тип ___, литератора-неудачника.",
@@ -445,50 +207,22 @@
    ],
    "correct": "петербургского фельетониста",
    "case": "Родительный (Genitive)",
-   "explain": "«петербургского фельетониста» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«петербургского фельетониста» depends on the noun «тип» (whose? of what?) — genitive.",
    "id": "c49"
-  },
-  {
-   "sentence": "Насыщенность рассказа памфлетно-полемическими выпадами уподобляет его ___, вошедшим в \"Дневник писателя\" 1873 г.",
-   "lemma": "статья",
-   "options": [
-    "публицистические статьи",
-    "публицистических статей",
-    "публицистических статьях",
-    "публицистическим статьям"
-   ],
-   "correct": "публицистическим статьям",
-   "case": "Дательный (Dative)",
-   "explain": "«публицистическим статьям» — the dative marks the indirect object or recipient.",
-   "id": "c52"
   },
   {
    "sentence": "Напротив, хищения, производство \"___\" и прочие жизненные подвиги мертвецов вряд ли восходят к определенным судебным процессам; это скорее заурядные преступления в духе времени.",
    "lemma": "бумажка",
    "options": [
-    "фальшивых бумажек",
-    "фальшивыми бумажками",
     "фальшивых бумажках",
-    "фальшивые бумажки"
+    "фальшивые бумажки",
+    "фальшивых бумажек",
+    "фальшивым бумажкам"
    ],
    "correct": "фальшивых бумажек",
    "case": "Родительный (Genitive)",
-   "explain": "«фальшивых бумажек» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«фальшивых бумажек» depends on the noun «производство» (whose? of what?) — genitive.",
    "id": "c54"
-  },
-  {
-   "sentence": "Напротив, хищения, производство \"фальшивых бумажек\" и прочие ___ мертвецов вряд ли восходят к определенным судебным процессам; это скорее заурядные преступления в духе времени.",
-   "lemma": "подвиг",
-   "options": [
-    "жизненные подвиги",
-    "жизненных подвигов",
-    "жизненных подвигах",
-    "жизненным подвигам"
-   ],
-   "correct": "жизненные подвиги",
-   "case": "Именительный (Nominative)",
-   "explain": "«жизненные подвиги» — the subject of the sentence stands in the nominative.",
-   "id": "c55"
   },
   {
    "sentence": "Напротив, хищения, производство \"фальшивых бумажек\" и прочие жизненные подвиги мертвецов вряд ли восходят к определенным ___; это скорее заурядные преступления в духе времени.",
@@ -501,35 +235,21 @@
    ],
    "correct": "судебным процессам",
    "case": "Дательный (Dative)",
-   "explain": "«судебным процессам» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«судебным процессам» — «к» always takes the dative.",
    "id": "c56"
-  },
-  {
-   "sentence": "Напротив, хищения, производство \"фальшивых бумажек\" и прочие жизненные подвиги мертвецов вряд ли восходят к определенным судебным процессам; это скорее ___ в духе времени.",
-   "lemma": "преступление",
-   "options": [
-    "заурядными преступлениями",
-    "заурядных преступлений",
-    "заурядных преступлениях",
-    "заурядные преступления"
-   ],
-   "correct": "заурядные преступления",
-   "case": "Именительный (Nominative)",
-   "explain": "«заурядные преступления» — the subject of the sentence stands in the nominative.",
-   "id": "c57"
   },
   {
    "sentence": "Наконец, наиболее близким по времени ___ \"Бобка\" явился другой фельетон уже названного выше Л.",
    "lemma": "предшественник",
    "options": [
-    "литературный предшественник",
+    "литературного предшественника",
     "литературному предшественнику",
-    "литературном предшественнике",
-    "литературным предшественником"
+    "литературным предшественником",
+    "литературном предшественнике"
    ],
    "correct": "литературным предшественником",
    "case": "Творительный (Instrumental)",
-   "explain": "«литературным предшественником» — the instrumental marks the means, company, or complement.",
+   "explain": "After «явился», what someone or something is or becomes stands in the instrumental.",
    "id": "c58"
   },
   {
@@ -543,7 +263,7 @@
    ],
    "correct": "другой фельетон",
    "case": "Именительный (Nominative)",
-   "explain": "«другой фельетон» — the subject of the sentence stands in the nominative.",
+   "explain": "«другой фельетон» is the subject of «явился» — who or what does it — so nominative.",
    "id": "c59"
   },
   {
@@ -557,120 +277,8 @@
    ],
    "correct": "необычный собеседник",
    "case": "Именительный (Nominative)",
-   "explain": "«Необычный собеседник» — the subject of the sentence stands in the nominative.",
+   "explain": "«необычный собеседник» is the subject of «оказался» — who or what does it — so nominative.",
    "id": "c60"
-  },
-  {
-   "sentence": "Беседа фельетониста с мертвецом прерывается ___, автора будит городовой.",
-   "lemma": "образ",
-   "options": [
-    "тривиальном образе",
-    "тривиальному образу",
-    "тривиальным образом",
-    "тривиального образа"
-   ],
-   "correct": "тривиальным образом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«тривиальным образом» — the instrumental marks the means, company, or complement.",
-   "id": "c62"
-  },
-  {
-   "sentence": "В \"Бобке\", по-видимому, отразился один мотив фельетона·мертвец у Панютина говорит каким-то ___, не так, как живые люди·\"Языка я еще при жизни имел неприятность лишиться\".",
-   "lemma": "образ",
-   "options": [
-    "непонятного образа",
-    "непонятным образом",
-    "непонятном образе",
-    "непонятному образу"
-   ],
-   "correct": "непонятным образом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«непонятным образом» — the instrumental marks the means, company, or complement.",
-   "id": "c63"
-  },
-  {
-   "sentence": "Тютчева: \"Не плоть, а дух растлился в наши дни\" (\"Наш век\", 1851) и одновременно развитие ___ омертвения человеческой души.",
-   "lemma": "тема",
-   "options": [
-    "гоголевской теме",
-    "гоголевской темы",
-    "гоголевская тема",
-    "гоголевской темой"
-   ],
-   "correct": "гоголевской темы",
-   "case": "Родительный (Genitive)",
-   "explain": "«гоголевской темы» — the genitive here marks possession, absence, or quantity.",
-   "id": "c66"
-  },
-  {
-   "sentence": "Тютчева: \"Не плоть, а дух растлился в наши дни\" (\"Наш век\", 1851) и одновременно развитие гоголевской темы омертвения ___.",
-   "lemma": "душа",
-   "options": [
-    "человеческой душе",
-    "человеческой души",
-    "человеческой душой",
-    "человеческая душа"
-   ],
-   "correct": "человеческой души",
-   "case": "Родительный (Genitive)",
-   "explain": "«человеческой души» — the genitive here marks possession, absence, or quantity.",
-   "id": "c67"
-  },
-  {
-   "sentence": "Какой же тебе соли ~ аттической? -- ___, означающее утонченное остроумие; восходит к Марку Туллию Цицерону (106 -- 43 г. до н. э.), высоко ценившему ораторское искусство в Греции (Аттике).",
-   "lemma": "выражение",
-   "options": [
-    "образному выражению",
-    "образное выражение",
-    "образном выражении",
-    "образным выражением"
-   ],
-   "correct": "образное выражение",
-   "case": "Именительный (Nominative)",
-   "explain": "«Образное выражение» — the subject of the sentence stands in the nominative.",
-   "id": "c70"
-  },
-  {
-   "sentence": "Бонмо (от франц. bon mots) --___.",
-   "lemma": "слово",
-   "options": [
-    "острые слова",
-    "острыми словами",
-    "острых слов",
-    "острых словах"
-   ],
-   "correct": "острые слова",
-   "case": "Именительный (Nominative)",
-   "explain": "«острые слова» — the subject of the sentence stands in the nominative.",
-   "id": "c71"
-  },
-  {
-   "sentence": "___ -- гражданский чин шестого класса.",
-   "lemma": "советник",
-   "options": [
-    "коллежский советник",
-    "коллежским советником",
-    "коллежскому советнику",
-    "коллежского советника"
-   ],
-   "correct": "коллежский советник",
-   "case": "Именительный (Nominative)",
-   "explain": "«Коллежский советник» — the subject of the sentence stands in the nominative.",
-   "id": "c77"
-  },
-  {
-   "sentence": "Коллежский советник -- ___ шестого класса.",
-   "lemma": "чин",
-   "options": [
-    "гражданского чина",
-    "гражданский чин",
-    "гражданском чине",
-    "гражданскому чину"
-   ],
-   "correct": "гражданский чин",
-   "case": "Именительный (Nominative)",
-   "explain": "«гражданский чин» — the subject of the sentence stands in the nominative.",
-   "id": "c78"
   },
   {
    "sentence": "Коллежский советник -- гражданский чин ___.",
@@ -683,7 +291,7 @@
    ],
    "correct": "шестого класса",
    "case": "Родительный (Genitive)",
-   "explain": "«шестого класса» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«шестого класса» depends on the noun «чин» (whose? of what?) — genitive.",
    "id": "c79"
   },
   {
@@ -697,7 +305,7 @@
    ],
    "correct": "церковном богослужении",
    "case": "Предложный (Prepositional)",
-   "explain": "«церковном богослужении» — after the preposition «в», for location or topic.",
+   "explain": "«церковном богослужении» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c83"
   },
   {
@@ -711,36 +319,8 @@
    ],
    "correct": "второй половине",
    "case": "Предложный (Prepositional)",
-   "explain": "«второй половине» — after the preposition «во», for location or topic.",
+   "explain": "«второй половине» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c86"
-  },
-  {
-   "sentence": "Большая ___ \"Политехническая выставка в Москве\", подписанная инициалами Б.",
-   "lemma": "статья",
-   "options": [
-    "обзорная статья",
-    "обзорной статье",
-    "обзорной статьёй",
-    "обзорной статьи"
-   ],
-   "correct": "обзорная статья",
-   "case": "Именительный (Nominative)",
-   "explain": "«обзорная статья» — the subject of the sentence stands in the nominative.",
-   "id": "c87"
-  },
-  {
-   "sentence": "Большая обзорная статья \"___ в Москве\", подписанная инициалами Б.",
-   "lemma": "выставка",
-   "options": [
-    "политехнической выставкой",
-    "политехническая выставка",
-    "политехнической выставки",
-    "политехнической выставке"
-   ],
-   "correct": "политехническая выставка",
-   "case": "Именительный (Nominative)",
-   "explain": "«Политехническая выставка» — the subject of the sentence stands in the nominative.",
-   "id": "c88"
   },
   {
    "sentence": "___ значительно отличался от бытовавших ранее узко справочных изданий.",
@@ -753,36 +333,8 @@
    ],
    "correct": "новый календарь",
    "case": "Именительный (Nominative)",
-   "explain": "«Новый календарь» — the subject of the sentence stands in the nominative.",
+   "explain": "«новый календарь» is the subject of «отличался» — who or what does it — so nominative.",
    "id": "c90"
-  },
-  {
-   "sentence": "Новый календарь значительно отличался от бытовавших ранее узко ___.",
-   "lemma": "издание",
-   "options": [
-    "справочные издания",
-    "справочным изданиям",
-    "справочных изданиях",
-    "справочных изданий"
-   ],
-   "correct": "справочных изданий",
-   "case": "Родительный (Genitive)",
-   "explain": "«справочных изданий» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
-   "id": "c91"
-  },
-  {
-   "sentence": "С. 53. \"Покойся, ___, до радостного утра!\" -- эпитафия H. M.",
-   "lemma": "прах",
-   "options": [
-    "милого праха",
-    "милому праху",
-    "милый прах",
-    "милым прахом"
-   ],
-   "correct": "милый прах",
-   "case": "Именительный (Nominative)",
-   "explain": "«милый прах» — the subject of the sentence stands in the nominative.",
-   "id": "c92"
   },
   {
    "sentence": "С. 53. \"Покойся, милый прах, до ___!\" -- эпитафия H. M.",
@@ -795,22 +347,8 @@
    ],
    "correct": "радостного утра",
    "case": "Родительный (Genitive)",
-   "explain": "«радостного утра» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«радостного утра» — «до» always takes the genitive.",
    "id": "c93"
-  },
-  {
-   "sentence": "Сцены из городской жизни\" констатировал: \"Люди частым повторением так износили, истерли эту прекрасную надпись, что она совершенно потеряла ___ свой.",
-   "lemma": "смысл",
-   "options": [
-    "прекрасный смысл",
-    "прекрасным смыслом",
-    "прекрасном смысле",
-    "прекрасному смыслу"
-   ],
-   "correct": "прекрасный смысл",
-   "case": "Винительный (Accusative)",
-   "explain": "«прекрасный смысл» — the accusative marks the direct object of the verb.",
-   "id": "c95"
   },
   {
    "sentence": "Эпитафия Карамзина ранее фигурировала (в ___) и в романе \"Идиот\".",
@@ -823,36 +361,8 @@
    ],
    "correct": "бурлескном контексте",
    "case": "Предложный (Prepositional)",
-   "explain": "«бурлескном контексте» — after the preposition «в», for location or topic.",
+   "explain": "«бурлескном контексте» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c96"
-  },
-  {
-   "sentence": "___ -- гражданский чин седьмого класса.",
-   "lemma": "советник",
-   "options": [
-    "надворного советника",
-    "надворный советник",
-    "надворном советнике",
-    "надворным советником"
-   ],
-   "correct": "надворный советник",
-   "case": "Именительный (Nominative)",
-   "explain": "«Надворный советник» — the subject of the sentence stands in the nominative.",
-   "id": "c97"
-  },
-  {
-   "sentence": "Надворный советник -- ___ седьмого класса.",
-   "lemma": "чин",
-   "options": [
-    "гражданского чина",
-    "гражданский чин",
-    "гражданском чине",
-    "гражданскому чину"
-   ],
-   "correct": "гражданский чин",
-   "case": "Именительный (Nominative)",
-   "explain": "«гражданский чин» — the subject of the sentence stands in the nominative.",
-   "id": "c98"
   },
   {
    "sentence": "Надворный советник -- гражданский чин ___.",
@@ -865,22 +375,8 @@
    ],
    "correct": "седьмого класса",
    "case": "Родительный (Genitive)",
-   "explain": "«седьмого класса» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«седьмого класса» depends on the noun «чин» (whose? of what?) — genitive.",
    "id": "c99"
-  },
-  {
-   "sentence": "Здесь зерно, по-видимому,-- символ воскрешения, а мед (или другие ___) -- символ сладостных благ будущей жизни.",
-   "lemma": "ингредиент",
-   "options": [
-    "сладкие ингредиенты",
-    "сладких ингредиентах",
-    "сладких ингредиентов",
-    "сладкими ингредиентами"
-   ],
-   "correct": "сладкие ингредиенты",
-   "case": "Именительный (Nominative)",
-   "explain": "«сладкие ингредиенты» — the subject of the sentence stands in the nominative.",
-   "id": "c101"
   },
   {
    "sentence": "Кутья -- традиционная символическая деталь ___.",
@@ -893,36 +389,8 @@
    ],
    "correct": "похоронного обряда",
    "case": "Родительный (Genitive)",
-   "explain": "«похоронного обряда» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«похоронного обряда» depends on the noun «деталь» (whose? of what?) — genitive.",
    "id": "c102"
-  },
-  {
-   "sentence": "Действительный ___ -- гражданский чин второго класса.",
-   "lemma": "советник",
-   "options": [
-    "тайном советнике",
-    "тайным советником",
-    "тайный советник",
-    "тайному советнику"
-   ],
-   "correct": "тайный советник",
-   "case": "Именительный (Nominative)",
-   "explain": "«тайный советник» — the subject of the sentence stands in the nominative.",
-   "id": "c103"
-  },
-  {
-   "sentence": "Действительный тайный советник -- ___ второго класса.",
-   "lemma": "чин",
-   "options": [
-    "гражданского чина",
-    "гражданский чин",
-    "гражданском чине",
-    "гражданскому чину"
-   ],
-   "correct": "гражданский чин",
-   "case": "Именительный (Nominative)",
-   "explain": "«гражданский чин» — the subject of the sentence stands in the nominative.",
-   "id": "c104"
   },
   {
    "sentence": "Действительный тайный советник -- гражданский чин ___.",
@@ -935,92 +403,8 @@
    ],
    "correct": "второго класса",
    "case": "Родительный (Genitive)",
-   "explain": "«второго класса» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«второго класса» depends on the noun «чин» (whose? of what?) — genitive.",
    "id": "c105"
-  },
-  {
-   "sentence": "О них так сообщал календарь Суворина в Рубрике \"___\": \"Боткин (внутренние болезни).",
-   "lemma": "врач-специалист",
-   "options": [
-    "петербургских врачей-специалистов",
-    "петербургские врачи-специалисты",
-    "петербургских врачах-специалистах",
-    "петербургским врачам-специалистам"
-   ],
-   "correct": "петербургские врачи-специалисты",
-   "case": "Именительный (Nominative)",
-   "explain": "«Петербургские врачи-специалисты» — the subject of the sentence stands in the nominative.",
-   "id": "c107"
-  },
-  {
-   "sentence": "О них так сообщал календарь Суворина в Рубрике \"Петербургские врачи-специалисты\": \"Боткин (___).",
-   "lemma": "болезнь",
-   "options": [
-    "внутренних болезней",
-    "внутренним болезням",
-    "внутренние болезни",
-    "внутренних болезнях"
-   ],
-   "correct": "внутренние болезни",
-   "case": "Именительный (Nominative)",
-   "explain": "«внутренние болезни» — the subject of the sentence stands in the nominative.",
-   "id": "c108"
-  },
-  {
-   "sentence": "Экк (1818--1875) -- врач-терапевт, доктор медицины, ___, преподавал в Медико-хирургической академии клиническую терапию.",
-   "lemma": "адъюнкт-профессор",
-   "options": [
-    "действительном адъюнкт-профессоре",
-    "действительному адъюнкт-профессору",
-    "действительного адъюнкт-профессора",
-    "действительный адъюнкт-профессор"
-   ],
-   "correct": "действительный адъюнкт-профессор",
-   "case": "Именительный (Nominative)",
-   "explain": "«действительный адъюнкт-профессор» — the subject of the sentence stands in the nominative.",
-   "id": "c111"
-  },
-  {
-   "sentence": "Боткин (1832--1889) -- ___ и ученый; с 1873 г. избран почетным лейб-медиком, упоминается (\"Б-н\") в черновых записях к \"Преступлению и наказанию\" и в \"Идиоте\" (см.: VII, 393; VIII, 239).",
-   "lemma": "врач",
-   "options": [
-    "русского врача",
-    "русскому врачу",
-    "русским врачом",
-    "русский врач"
-   ],
-   "correct": "русский врач",
-   "case": "Именительный (Nominative)",
-   "explain": "«русский врач» — the subject of the sentence stands in the nominative.",
-   "id": "c112"
-  },
-  {
-   "sentence": "___ -- Гражданский чин пятого класса.",
-   "lemma": "советник",
-   "options": [
-    "статский советник",
-    "статском советнике",
-    "статским советником",
-    "статского советника"
-   ],
-   "correct": "статский советник",
-   "case": "Именительный (Nominative)",
-   "explain": "«Статский советник» — the subject of the sentence stands in the nominative.",
-   "id": "c114"
-  },
-  {
-   "sentence": "Статский советник -- ___ пятого класса.",
-   "lemma": "чин",
-   "options": [
-    "гражданском чине",
-    "гражданский чин",
-    "гражданским чином",
-    "гражданского чина"
-   ],
-   "correct": "гражданский чин",
-   "case": "Именительный (Nominative)",
-   "explain": "«Гражданский чин» — the subject of the sentence stands in the nominative.",
-   "id": "c115"
   },
   {
    "sentence": "Статский советник -- Гражданский чин ___.",
@@ -1033,36 +417,8 @@
    ],
    "correct": "пятого класса",
    "case": "Родительный (Genitive)",
-   "explain": "«пятого класса» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«пятого класса» depends on the noun «чин» (whose? of what?) — genitive.",
    "id": "c116"
-  },
-  {
-   "sentence": "Возможно, сниженная аллюзия на стихотворение Пушкина \"Паж, или ___\" (1830).",
-   "lemma": "год",
-   "options": [
-    "пятнадцатым годом",
-    "пятнадцатый год",
-    "пятнадцатом годе",
-    "пятнадцатого года"
-   ],
-   "correct": "пятнадцатый год",
-   "case": "Винительный (Accusative)",
-   "explain": "«Пятнадцатый год» — the accusative marks the direct object of the verb.",
-   "id": "c118"
-  },
-  {
-   "sentence": "Оригинал здесь: Русская ___.",
-   "lemma": "библиотека",
-   "options": [
-    "виртуальной библиотеки",
-    "виртуальной библиотеке",
-    "виртуальной библиотекой",
-    "виртуальная библиотека"
-   ],
-   "correct": "виртуальная библиотека",
-   "case": "Именительный (Nominative)",
-   "explain": "«виртуальная библиотека» — the subject of the sentence stands in the nominative.",
-   "id": "c121"
   }
  ]
 }

@@ -1,31 +1,17 @@
 {
  "cases": [
   {
-   "sentence": "— Сегодня мы не будем видеться, ваш муж нас подозревает; держу пари, что ___, которое он читал, вздыхая, — анонимное письмо.",
-   "lemma": "письмо",
-   "options": [
-    "длинного письма",
-    "длинным письмом",
-    "длинное письмо",
-    "длинном письме"
-   ],
-   "correct": "длинное письмо",
-   "case": "Именительный (Nominative)",
-   "explain": "«длинное письмо» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Она окончательно потеряла голову и в ___ подошла к его двери.",
    "lemma": "час",
    "options": [
-    "обычном часе",
-    "обычному часу",
     "обычный час",
+    "обычным часом",
+    "обычному часу",
     "обычного часа"
    ],
    "correct": "обычный час",
    "case": "Винительный (Accusative)",
-   "explain": "«обычный час» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«обычный час» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c2"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "другой день",
    "case": "Винительный (Accusative)",
-   "explain": "«другой день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«другой день» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c3"
   },
   {
@@ -53,21 +39,21 @@
    ],
    "correct": "единственном человеке",
    "case": "Предложный (Prepositional)",
-   "explain": "«единственном человеке» — after the preposition «в», for location or topic.",
+   "explain": "«единственном человеке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c4"
   },
   {
    "sentence": "Сжимая тебя в объятиях, быть может, в ___, я бы никогда не могла рассуждать хладнокровно, как я рассуждаю, оставшись одна.",
    "lemma": "раз",
    "options": [
+    "последний раз",
     "последним разом",
     "последнему разу",
-    "последний раз",
-    "последнем разе"
+    "последнего раза"
    ],
    "correct": "последний раз",
    "case": "Винительный (Accusative)",
-   "explain": "«последний раз» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«последний раз» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c5"
   },
   {
@@ -81,35 +67,21 @@
    ],
    "correct": "занимательной книги",
    "case": "Родительный (Genitive)",
-   "explain": "«занимательной книги» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«занимательной книги» is the object of a negated verb («не получите») — genitive instead of the accusative.",
    "id": "c6"
-  },
-  {
-   "sentence": "Жертва принесена; завтра — есть ли ___ или нет его — я сама скажу мужу, что получила анонимное письмо и что следует немедленно удалить тебя под приличным предлогом, отправить тотчас к твоим родным.",
-   "lemma": "письмо",
-   "options": [
-    "анонимном письме",
-    "анонимного письма",
-    "анонимное письмо",
-    "анонимным письмом"
-   ],
-   "correct": "анонимное письмо",
-   "case": "Именительный (Nominative)",
-   "explain": "«анонимное письмо» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
   },
   {
    "sentence": "Жертва принесена; завтра — есть ли анонимное письмо или нет его — я сама скажу мужу, что получила анонимное письмо и что следует немедленно удалить тебя под ___, отправить тотчас к твоим родным.",
    "lemma": "предлог",
    "options": [
-    "приличный предлог",
-    "приличного предлога",
+    "приличном предлоге",
+    "приличному предлогу",
     "приличным предлогом",
-    "приличному предлогу"
+    "приличного предлога"
    ],
    "correct": "приличным предлогом",
    "case": "Творительный (Instrumental)",
-   "explain": "«приличным предлогом» — after the preposition «под», the instrumental marks the means, company, or complement.",
+   "explain": "«приличным предлогом» — «под» takes the instrumental here (где? под чем?) — the accusative would mean movement under (куда? под что?).",
    "id": "c8"
   },
   {
@@ -123,64 +95,22 @@
    ],
    "correct": "целый месяц",
    "case": "Винительный (Accusative)",
-   "explain": "«целый месяц» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«целый месяц» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c9"
-  },
-  {
-   "sentence": "Но, в конце концов, это ___ противодействовать этому анонимному письму; это уже не первое, полученное моим мужем, и все по поводу меня.",
-   "lemma": "средство",
-   "options": [
-    "единственного средства",
-    "единственное средство",
-    "единственным средством",
-    "единственному средству"
-   ],
-   "correct": "единственное средство",
-   "case": "Именительный (Nominative)",
-   "explain": "«единственное средство» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
-  },
-  {
-   "sentence": "Но, в конце концов, это единственное средство противодействовать этому ___; это уже не первое, полученное моим мужем, и все по поводу меня.",
-   "lemma": "письмо",
-   "options": [
-    "анонимном письме",
-    "анонимное письмо",
-    "анонимного письма",
-    "анонимному письму"
-   ],
-   "correct": "анонимному письму",
-   "case": "Дательный (Dative)",
-   "explain": "«анонимному письму» — the dative marks the indirect object or recipient.",
-   "id": "c11"
   },
   {
    "sentence": "Если ты не найдешь ___, не поленись составить их по буквам.",
    "lemma": "слово",
    "options": [
-    "готовых слов",
     "готовых словах",
+    "готовыми словами",
     "готовым словам",
-    "готовые слова"
+    "готовых слов"
    ],
    "correct": "готовых слов",
    "case": "Родительный (Genitive)",
-   "explain": "«готовых слов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«готовых слов» is the object of a negated verb («не найдешь») — genitive instead of the accusative.",
    "id": "c12"
-  },
-  {
-   "sentence": "Чтобы облегчить твой труд я составила очень короткое ___.",
-   "lemma": "письмо",
-   "options": [
-    "анонимном письме",
-    "анонимного письма",
-    "анонимное письмо",
-    "анонимным письмом"
-   ],
-   "correct": "анонимное письмо",
-   "case": "Именительный (Nominative)",
-   "explain": "«анонимное письмо» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
   },
   {
    "sentence": "Остаток ___ к вам заставляет меня предложить вам решительно удалить от себя молодого крестьянина.",
@@ -193,7 +123,7 @@
    ],
    "correct": "дружеских чувств",
    "case": "Родительный (Genitive)",
-   "explain": "«дружеских чувств» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«дружеских чувств» depends on the noun «Остаток» (whose? of what?) — genitive.",
    "id": "c14"
   },
   {
@@ -207,7 +137,7 @@
    ],
    "correct": "молодого крестьянина",
    "case": "Винительный (Accusative)",
-   "explain": "«молодого крестьянина» — the accusative marks the direct object of the verb.",
+   "explain": "«молодого крестьянина» is the direct object of «удалить» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c15"
   },
   {
@@ -221,7 +151,7 @@
    ],
    "correct": "самом деле",
    "case": "Предложный (Prepositional)",
-   "explain": "«самом деле» — after the preposition «в», for location or topic.",
+   "explain": "«самом деле» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c16"
   },
   {
@@ -235,7 +165,7 @@
    ],
    "correct": "большому лесу",
    "case": "Дательный (Dative)",
-   "explain": "«большому лесу» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«большому лесу» — «к» always takes the dative.",
    "id": "c17"
   },
   {
@@ -249,22 +179,8 @@
    ],
    "correct": "окончательного разрыва",
    "case": "Родительный (Genitive)",
-   "explain": "«окончательного разрыва» — after the preposition «после», the genitive here marks possession, absence, or quantity.",
+   "explain": "«окончательного разрыва» — «после» always takes the genitive.",
    "id": "c18"
-  },
-  {
-   "sentence": "Ах! какая я скверная мать, но это ___, дорогой Жюльен.",
-   "lemma": "слово",
-   "options": [
-    "пустым словам",
-    "пустых слов",
-    "пустых словах",
-    "пустые слова"
-   ],
-   "correct": "пустые слова",
-   "case": "Именительный (Nominative)",
-   "explain": "«пустые слова» — the subject of the sentence stands in the nominative.",
-   "id": "c19"
   },
   {
    "sentence": "Мне кажется пустяком заплатить жизнью за ___, которые я провела в твоих объятиях.",
@@ -277,7 +193,7 @@
    ],
    "correct": "счастливые дни",
    "case": "Винительный (Accusative)",
-   "explain": "«счастливые дни» — after the preposition «за», the accusative marks the direct object of the verb.",
+   "explain": "«счастливые дни» — «за» takes the accusative here (куда? за что? за кого?) — the instrumental would mean position behind or at (где? за чем?).",
    "id": "c20"
   }
  ]

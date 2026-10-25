@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Вот однажды в доме, где я жил, поднялись ___, вопли: у хозяйки украли двух кур, и она в этой краже обвиняла моего денщика.",
-   "lemma": "крик",
-   "options": [
-    "бранчивых криков",
-    "бранчивые крики",
-    "бранчивым крикам",
-    "бранчивыми криками"
-   ],
-   "correct": "бранчивые крики",
-   "case": "Именительный (Nominative)",
-   "explain": "«бранчивые крики» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Вдруг вдоль улицы раздался дружный конский топот: то ___ проезжал со своим штабом.",
    "lemma": "главнокомандующий",
    "options": [
@@ -25,22 +11,8 @@
    ],
    "correct": "сам главнокомандующий",
    "case": "Именительный (Nominative)",
-   "explain": "«сам главнокомандующий» — the subject of the sentence stands in the nominative.",
+   "explain": "«сам главнокомандующий» is the subject of «проезжал» — who or what does it — so nominative.",
    "id": "c2"
-  },
-  {
-   "sentence": "Смутил ли его весь этот остановившийся посреди улицы генералитет, окаменел ли он перед налетающей бедою — только стоит мой Егор да мигает глазами — а ___, как глина!",
-   "lemma": "бел",
-   "options": [
-    "самом беле",
-    "сам бел",
-    "самого бела",
-    "самому белу"
-   ],
-   "correct": "сам бел",
-   "case": "Именительный (Nominative)",
-   "explain": "«сам бел» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
   },
   {
    "sentence": "Она никак не ожидала такого ___ и в свою очередь разревелась!",
@@ -53,21 +25,21 @@
    ],
    "correct": "страшного решения",
    "case": "Родительный (Genitive)",
-   "explain": "«страшного решения» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«страшного решения» is the object of a negated verb («не ожидала») — genitive instead of the accusative.",
    "id": "c5"
   },
   {
    "sentence": "Мой знакомый повторил эти ___ своего слуги, прошептал: «Егорушка, голубчик, праведник!» — и слезы закапали по его старым щекам.",
    "lemma": "слово",
    "options": [
-    "последними словами",
+    "последним словам",
     "последних словах",
     "последние слова",
-    "последних слов"
+    "последними словами"
    ],
    "correct": "последние слова",
    "case": "Винительный (Accusative)",
-   "explain": "«последние слова» — the accusative marks the direct object of the verb.",
+   "explain": "«последние слова» is the direct object of «повторил» (кого? что?) — accusative.",
    "id": "c6"
   },
   {
@@ -81,7 +53,7 @@
    ],
    "correct": "старым щекам",
    "case": "Дательный (Dative)",
-   "explain": "«старым щекам» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«старым щекам» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c7"
   }
  ]

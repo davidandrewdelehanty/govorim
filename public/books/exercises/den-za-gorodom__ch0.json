@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "На ней то там, то сям ___ мелькает молния.",
-   "lemma": "зигзаг",
-   "options": [
-    "красные зигзаги",
-    "красных зигзагах",
-    "красными зигзагами",
-    "красным зигзагам"
-   ],
-   "correct": "красными зигзагами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«красными зигзагами» — the instrumental marks the means, company, or complement.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Сейчас брызнет ___ и начнется настоящая гроза.",
-   "lemma": "дождь",
-   "options": [
-    "майского дождя",
-    "майский дождь",
-    "майскому дождю",
-    "майским дождём"
-   ],
-   "correct": "майский дождь",
-   "case": "Именительный (Nominative)",
-   "explain": "«майский дождь» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
    "sentence": "Сейчас брызнет майский дождь и начнется ___.",
    "lemma": "гроза",
    "options": [
@@ -39,7 +11,7 @@
    ],
    "correct": "настоящая гроза",
    "case": "Именительный (Nominative)",
-   "explain": "«настоящая гроза» — the subject of the sentence stands in the nominative.",
+   "explain": "«настоящая гроза» is the subject of «начнется» — who or what does it — so nominative.",
    "id": "c3"
   },
   {
@@ -53,50 +25,8 @@
    ],
    "correct": "шестилетняя нищенка",
    "case": "Именительный (Nominative)",
-   "explain": "«шестилетняя нищенка» — the subject of the sentence stands in the nominative.",
+   "explain": "«шестилетняя нищенка» is the subject of «бегает» — who or what does it — so nominative.",
    "id": "c4"
-  },
-  {
-   "sentence": "Сапожник Терентий, ___ с рябым худощавым лицом и с очень длинными ногами, босой и одетый в порванную женину кофту, стоит около грядок и пьяными, посоловелыми глазками глядит на темную тучу.",
-   "lemma": "старик",
-   "options": [
-    "высоким стариком",
-    "высокому старику",
-    "высокого старика",
-    "высокий старик"
-   ],
-   "correct": "высокий старик",
-   "case": "Именительный (Nominative)",
-   "explain": "«высокий старик» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
-  },
-  {
-   "sentence": "Сапожник Терентий, высокий старик с рябым ___ и с очень длинными ногами, босой и одетый в порванную женину кофту, стоит около грядок и пьяными, посоловелыми глазками глядит на темную тучу.",
-   "lemma": "лицо",
-   "options": [
-    "худощавым лицом",
-    "худощавом лице",
-    "худощавого лица",
-    "худощавое лицо"
-   ],
-   "correct": "худощавым лицом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«худощавым лицом» — the instrumental marks the means, company, or complement.",
-   "id": "c7"
-  },
-  {
-   "sentence": "Сапожник Терентий, высокий старик с рябым худощавым лицом и с очень ___, босой и одетый в порванную женину кофту, стоит около грядок и пьяными, посоловелыми глазками глядит на темную тучу.",
-   "lemma": "нога",
-   "options": [
-    "длинных ног",
-    "длинные ноги",
-    "длинными ногами",
-    "длинных ногах"
-   ],
-   "correct": "длинными ногами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«длинными ногами» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c8"
   },
   {
    "sentence": "— В ___ Данилка засунул в дупло руку и вытащить теперь не может.",
@@ -109,22 +39,8 @@
    ],
    "correct": "графской роще",
    "case": "Предложный (Prepositional)",
-   "explain": "«графской роще» — after the preposition «в», for location or topic.",
+   "explain": "«графской роще» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c9"
-  },
-  {
-   "sentence": "Терентий идет с огорода и, высоко поднимая свои ___, начинает шагать вдоль по улице.",
-   "lemma": "нога",
-   "options": [
-    "длинные ноги",
-    "длинными ногами",
-    "длинным ногам",
-    "длинных ногах"
-   ],
-   "correct": "длинные ноги",
-   "case": "Винительный (Accusative)",
-   "explain": "«длинные ноги» — the accusative marks the direct object of the verb.",
-   "id": "c10"
   },
   {
    "sentence": "Путники выходят из деревни и по ___ направляются к синеющей вдали графской роще.",
@@ -137,22 +53,8 @@
    ],
    "correct": "пыльной дороге",
    "case": "Дательный (Dative)",
-   "explain": "«пыльной дороге» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«пыльной дороге» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c11"
-  },
-  {
-   "sentence": "___, крупные и тяжелые, черными точками ложатся на пыльную дорогу.",
-   "lemma": "брызги",
-   "options": [
-    "первых брызг",
-    "первыми брызгами",
-    "первые брызги",
-    "первых брызгах"
-   ],
-   "correct": "первые брызги",
-   "case": "Именительный (Nominative)",
-   "explain": "«Первые брызги» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
   },
   {
    "sentence": "___ падает на щеку Феклы и ползет слезой к подбородку.",
@@ -165,50 +67,8 @@
    ],
    "correct": "большая капля",
    "case": "Именительный (Nominative)",
-   "explain": "«Большая капля» — the subject of the sentence stands in the nominative.",
+   "explain": "«большая капля» is the subject of «падает» — who or what does it — so nominative.",
    "id": "c14"
-  },
-  {
-   "sentence": "Омытые деревья, потревоженные налетевшим порывом ветра, сыплют на них ___ брызгов.",
-   "lemma": "поток",
-   "options": [
-    "целого потока",
-    "целый поток",
-    "целым потоком",
-    "целому потоку"
-   ],
-   "correct": "целый поток",
-   "case": "Винительный (Accusative)",
-   "explain": "«целый поток» — the accusative marks the direct object of the verb.",
-   "id": "c17"
-  },
-  {
-   "sentence": "Ее брат, маленький, ___ с рыжей, как охра, головой и бледным, болезненным лицом, стоит, прислонившись к дереву, и, склонив голову набок, косится на небо.",
-   "lemma": "мальчик",
-   "options": [
-    "восьмилетнем мальчике",
-    "восьмилетним мальчиком",
-    "восьмилетний мальчик",
-    "восьмилетнему мальчику"
-   ],
-   "correct": "восьмилетний мальчик",
-   "case": "Именительный (Nominative)",
-   "explain": "«восьмилетний мальчик» — the subject of the sentence stands in the nominative.",
-   "id": "c18"
-  },
-  {
-   "sentence": "Одна рука его придерживает поношенную шапчонку, другая спрятана в дупле ___.",
-   "lemma": "липа",
-   "options": [
-    "старой липой",
-    "старая липа",
-    "старой липе",
-    "старой липы"
-   ],
-   "correct": "старой липы",
-   "case": "Родительный (Genitive)",
-   "explain": "«старой липы» — after the preposition «в», the genitive here marks possession, absence, or quantity.",
-   "id": "c19"
   },
   {
    "sentence": "На небе показывается ___.",
@@ -221,22 +81,8 @@
    ],
    "correct": "светло-голубое пятно",
    "case": "Именительный (Nominative)",
-   "explain": "«светло-голубое пятно» — the subject of the sentence stands in the nominative.",
+   "explain": "«светло-голубое пятно» is the subject of «показывается» — who or what does it — so nominative.",
    "id": "c20"
-  },
-  {
-   "sentence": "— Это ___, — учит Терентий.",
-   "lemma": "рой",
-   "options": [
-    "пчелиного роя",
-    "пчелиный рой",
-    "пчелином рое",
-    "пчелиным роем"
-   ],
-   "correct": "пчелиный рой",
-   "case": "Именительный (Nominative)",
-   "explain": "«пчелиный рой» — the subject of the sentence stands in the nominative.",
-   "id": "c24"
   },
   {
    "sentence": "В роще где-нибудь на дереве сидят ___.",
@@ -249,22 +95,8 @@
    ],
    "correct": "шпанские мухи",
    "case": "Именительный (Nominative)",
-   "explain": "«шпанские мухи» — the subject of the sentence stands in the nominative.",
+   "explain": "«шпанские мухи» is the subject of «сидят» — who or what does it — so nominative.",
    "id": "c25"
-  },
-  {
-   "sentence": "Пахнет черемухой, ___ и ландышами.",
-   "lemma": "кашка",
-   "options": [
-    "медовой кашке",
-    "медовой кашки",
-    "медовая кашка",
-    "медовой кашкой"
-   ],
-   "correct": "медовой кашкой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«медовой кашкой» — the instrumental marks the means, company, or complement.",
-   "id": "c26"
   },
   {
    "sentence": "Перед глазами Терентия, Данилы и Феклы мчится ___.",
@@ -277,7 +109,7 @@
    ],
    "correct": "товарный поезд",
    "case": "Именительный (Nominative)",
-   "explain": "«товарный поезд» — the subject of the sentence stands in the nominative.",
+   "explain": "«товарный поезд» is the subject of «мчится» — who or what does it — so nominative.",
    "id": "c28"
   },
   {
@@ -291,7 +123,7 @@
    ],
    "correct": "железной дороги",
    "case": "Родительный (Genitive)",
-   "explain": "«железной дороги» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«железной дороги» depends on the noun «полотно» (whose? of what?) — genitive.",
    "id": "c29"
   },
   {
@@ -305,7 +137,7 @@
    ],
    "correct": "полевых трав",
    "case": "Родительный (Genitive)",
-   "explain": "«полевых трав» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«полевых трав» depends on the noun «названия» (whose? of what?) — genitive.",
    "id": "c30"
   },
   {
@@ -319,7 +151,7 @@
    ],
    "correct": "сами птицы",
    "case": "Именительный (Nominative)",
-   "explain": "«сами птицы» — the subject of the sentence stands in the nominative.",
+   "explain": "«сами птицы» is the subject of «Учили» — who or what does it — so nominative.",
    "id": "c31"
   },
   {
@@ -333,7 +165,7 @@
    ],
    "correct": "майских жуков",
    "case": "Винительный (Accusative)",
-   "explain": "«майских жуков» — after the preposition «про», the accusative marks the direct object of the verb.",
+   "explain": "«майских жуков» — «про» always takes the accusative.",
    "id": "c32"
   },
   {
@@ -347,22 +179,8 @@
    ],
    "correct": "неутомимых странников",
    "case": "Винительный (Accusative)",
-   "explain": "«неутомимых странников» — the accusative marks the direct object of the verb.",
+   "explain": "«неутомимых странников» is the direct object of «оставить» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c33"
-  },
-  {
-   "sentence": "Дети идут на ночлег в заброшенный сарай, где прежде ссыпался ___, а Терентий, простившись с ними, направляется к кабаку.",
-   "lemma": "хлеб",
-   "options": [
-    "общественном хлебе",
-    "общественным хлебом",
-    "общественному хлебу",
-    "общественный хлеб"
-   ],
-   "correct": "общественный хлеб",
-   "case": "Винительный (Accusative)",
-   "explain": "«общественный хлеб» — the accusative marks the direct object of the verb.",
-   "id": "c34"
   }
  ]
 }

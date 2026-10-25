@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "___ со спущенными по брюхо рубахами, косматые и немытые, вытаскивали вшей из рубашечных рубцов.",
-   "lemma": "баба",
-   "options": [
-    "голые бабы",
-    "голых баб",
-    "голыми бабами",
-    "голым бабам"
-   ],
-   "correct": "голые бабы",
-   "case": "Именительный (Nominative)",
-   "explain": "«Голые бабы» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Давили ногтями, клали на ___, смотрели, как дуются они, обожженные.",
    "lemma": "кирпич",
    "options": [
@@ -25,21 +11,21 @@
    ],
    "correct": "горячие кирпичи",
    "case": "Винительный (Accusative)",
-   "explain": "«горячие кирпичи» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«горячие кирпичи» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c2"
   },
   {
    "sentence": "Мужики в расстегнутых штанах, наклонив головы над вывороченными ширинками, часто плевали на грязные ___.",
    "lemma": "ноготь",
    "options": [
-    "окровавленных ногтях",
-    "окровавленным ногтям",
     "окровавленных ногтей",
-    "окровавленные ногти"
+    "окровавленным ногтям",
+    "окровавленные ногти",
+    "окровавленными ногтями"
    ],
    "correct": "окровавленные ногти",
    "case": "Винительный (Accusative)",
-   "explain": "«окровавленные ногти» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«окровавленные ногти» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c3"
   },
   {
@@ -53,7 +39,7 @@
    ],
    "correct": "голодными ребятами",
    "case": "Творительный (Instrumental)",
-   "explain": "«голодными ребятами» — after the preposition «над», the instrumental marks the means, company, or complement.",
+   "explain": "«голодными ребятами» — «над» always takes the instrumental.",
    "id": "c5"
   },
   {
@@ -67,7 +53,7 @@
    ],
    "correct": "голодные ребята",
    "case": "Именительный (Nominative)",
-   "explain": "«голодные ребята» — the subject of the sentence stands in the nominative.",
+   "explain": "«голодные ребята» is the subject of «грызли» — who or what does it — so nominative.",
    "id": "c6"
   },
   {
@@ -81,7 +67,7 @@
    ],
    "correct": "серые вши",
    "case": "Именительный (Nominative)",
-   "explain": "«серые вши» — the subject of the sentence stands in the nominative.",
+   "explain": "«серые вши» is the subject of «ползали» — who or what does it — so nominative.",
    "id": "c8"
   },
   {
@@ -95,36 +81,22 @@
    ],
    "correct": "мокрых ноздрей",
    "case": "Родительный (Genitive)",
-   "explain": "«мокрых ноздрей» — after the preposition «около», the genitive here marks possession, absence, or quantity.",
+   "explain": "«мокрых ноздрей» — «около» always takes the genitive.",
    "id": "c9"
   },
   {
    "sentence": "Ноги вдруг ослабли от сладкого ощущенья ___, лицо и уши стали горячими.",
    "lemma": "воровство",
    "options": [
-    "первое воровство",
+    "первом воровстве",
     "первого воровства",
-    "первому воровству",
-    "первым воровством"
+    "первое воровство",
+    "первому воровству"
    ],
    "correct": "первого воровства",
    "case": "Родительный (Genitive)",
-   "explain": "«первого воровства» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«первого воровства» depends on the noun «ощущенья» (whose? of what?) — genitive.",
    "id": "c10"
-  },
-  {
-   "sentence": "Двинул ___ — зараз двоих опрокинул, на третьего верхом сел.",
-   "lemma": "плечо",
-   "options": [
-    "правым плечом",
-    "правом плече",
-    "правое плечо",
-    "правому плечу"
-   ],
-   "correct": "правым плечом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«правым плечом» — the instrumental marks the means, company, or complement.",
-   "id": "c12"
   },
   {
    "sentence": "А кривоногий девченку отшвырнул в ___, хорьком ощетинился на подскочившего Мишку.",
@@ -137,7 +109,7 @@
    ],
    "correct": "длинной рубахе",
    "case": "Предложный (Prepositional)",
-   "explain": "«длинной рубахе» — after the preposition «в», for location or topic.",
+   "explain": "«длинной рубахе» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c15"
   },
   {
@@ -151,22 +123,8 @@
    ],
    "correct": "хозяйские мысли",
    "case": "Именительный (Nominative)",
-   "explain": "«хозяйские мысли» — the subject of the sentence stands in the nominative.",
+   "explain": "«хозяйские мысли» is the subject of «укладывались» — who or what does it — so nominative.",
    "id": "c16"
-  },
-  {
-   "sentence": "Схватил одну корочку, да и ту вырвал Ванька кривоногий с большим брюхом и щеку оцарапал ему большими ___.",
-   "lemma": "ноготь",
-   "options": [
-    "собачьими ногтями",
-    "собачьи ногти",
-    "собачьих ногтях",
-    "собачьим ногтям"
-   ],
-   "correct": "собачьими ногтями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«собачьими ногтями» — the instrumental marks the means, company, or complement.",
-   "id": "c18"
   }
  ]
 }

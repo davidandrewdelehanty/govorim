@@ -1,45 +1,17 @@
 {
  "cases": [
   {
-   "sentence": "У меня должно было быть какое-нибудь ___ о значении учения Христа для того, чтобы я мог так не понять его.",
-   "lemma": "представление",
-   "options": [
-    "ложному представлению",
-    "ложное представление",
-    "ложного представления",
-    "ложным представлением"
-   ],
-   "correct": "ложное представление",
-   "case": "Именительный (Nominative)",
-   "explain": "«ложное представление» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "И ___ это было.",
-   "lemma": "представление",
-   "options": [
-    "ложному представлению",
-    "ложное представление",
-    "ложного представления",
-    "ложным представлением"
-   ],
-   "correct": "ложное представление",
-   "case": "Именительный (Nominative)",
-   "explain": "«ложное представление» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
    "sentence": "Я бы понял, что Христос отрицает ___ и дает свой, новый закон.",
    "lemma": "закон",
    "options": [
-    "старого закона",
+    "старому закону",
     "старым законом",
     "старый закон",
-    "старому закону"
+    "старом законе"
    ],
    "correct": "старый закон",
    "case": "Винительный (Accusative)",
-   "explain": "«старый закон» — the accusative marks the direct object of the verb.",
+   "explain": "«старый закон» is the direct object of «отрицает» (кого? что?) — accusative.",
    "id": "c3"
   },
   {
@@ -53,21 +25,21 @@
    ],
    "correct": "прежних чтениях",
    "case": "Предложный (Prepositional)",
-   "explain": "«прежних чтениях» — after the preposition «при», for location or topic.",
+   "explain": "«прежних чтениях» — «при» always takes the prepositional.",
    "id": "c4"
   },
   {
    "sentence": "Я принимал на веру то с детства внушенное мне толкование, что оба закона эти суть произведения ___, что законы эти соглашаются, что Христос утверждает закон Моисея и дополняет и восполняет его.",
    "lemma": "дух",
    "options": [
-    "святого духа",
-    "святой дух",
+    "святому духу",
     "святом духе",
-    "святым духом"
+    "святой дух",
+    "святого духа"
    ],
    "correct": "святого духа",
    "case": "Родительный (Genitive)",
-   "explain": "«святого духа» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«святого духа» depends on the noun «произведения» (whose? of what?) — genitive.",
    "id": "c5"
   },
   {
@@ -81,7 +53,7 @@
    ],
    "correct": "ложного понимания",
    "case": "Родительный (Genitive)",
-   "explain": "«ложного понимания» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«ложного понимания» — «от» always takes the genitive.",
    "id": "c7"
   },
   {
@@ -95,50 +67,8 @@
    ],
    "correct": "вечного закона",
    "case": "Родительный (Genitive)",
-   "explain": "«вечного закона» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«вечного закона» depends on the noun «смысл» (whose? of what?) — genitive.",
    "id": "c11"
-  },
-  {
-   "sentence": "___, не признающие книг Моисея, или исключают вставку, или заменяют слово: «и» — «καί» словом «или» — «ἤ».",
-   "lemma": "христианин",
-   "options": [
-    "других христианах",
-    "других христиан",
-    "другие христиане",
-    "другими христианами"
-   ],
-   "correct": "другие христиане",
-   "case": "Именительный (Nominative)",
-   "explain": "«Другие христиане» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
-  },
-  {
-   "sentence": "По-русски — закон, по-гречески — νόμος, по-еврейски — тора, как по-русски, по-гречески и по-еврейски имеют два главные значения: одно — ___ без отношения к его выражению.",
-   "lemma": "закон",
-   "options": [
-    "самому закону",
-    "самом законе",
-    "самого закона",
-    "самый закон"
-   ],
-   "correct": "самый закон",
-   "case": "Именительный (Nominative)",
-   "explain": "«самый закон» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
-  },
-  {
-   "sentence": "___ есть писанное выражение того, что известные люди считают законом.",
-   "lemma": "понятие",
-   "options": [
-    "другое понятие",
-    "другим понятием",
-    "другом понятии",
-    "другому понятию"
-   ],
-   "correct": "другое понятие",
-   "case": "Именительный (Nominative)",
-   "explain": "«Другое понятие» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
   },
   {
    "sentence": "Другое понятие есть писанное выражение того, что ___ считают законом.",
@@ -151,22 +81,8 @@
    ],
    "correct": "известные люди",
    "case": "Именительный (Nominative)",
-   "explain": "«известные люди» — the subject of the sentence stands in the nominative.",
+   "explain": "«известные люди» is the subject of «считают» — who or what does it — so nominative.",
    "id": "c16"
-  },
-  {
-   "sentence": "Без члена Павел употребляет это слово большею частью в смысле писанного закона, с членом — в смысле ___ бога.",
-   "lemma": "закон",
-   "options": [
-    "вечным законом",
-    "вечного закона",
-    "вечному закону",
-    "вечном законе"
-   ],
-   "correct": "вечного закона",
-   "case": "Родительный (Genitive)",
-   "explain": "«вечного закона» — after the preposition «в», the genitive here marks possession, absence, or quantity.",
-   "id": "c17"
   },
   {
    "sentence": "У ___, у пророков, у Исаии — слово закон, тора, всегда употребляется в смысле вечного, единого, невыраженного откровения — научения бога.",
@@ -179,120 +95,8 @@
    ],
    "correct": "древних евреев",
    "case": "Родительный (Genitive)",
-   "explain": "«древних евреев» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«древних евреев» — «у» always takes the genitive.",
    "id": "c18"
-  },
-  {
-   "sentence": "И потому Христос, употребляя слово закон — «тора», употребляет его, то утверждая его, как Исаия и ___, в смысле закона бога, который вечен, то отрицая его в смысле писанного закона пяти книг.",
-   "lemma": "пророк",
-   "options": [
-    "другим пророкам",
-    "других пророках",
-    "другие пророки",
-    "другими пророками"
-   ],
-   "correct": "другие пророки",
-   "case": "Именительный (Nominative)",
-   "explain": "«другие пророки» — the subject of the sentence stands in the nominative.",
-   "id": "c19"
-  },
-  {
-   "sentence": "По толкованиям церкви, он учил тому, что он, ___ троицы, сын бога отца, пришел на землю и искупил своей смертью грех Адама.",
-   "lemma": "лицо",
-   "options": [
-    "второе лицо",
-    "вторым лицом",
-    "второго лица",
-    "втором лице"
-   ],
-   "correct": "второе лицо",
-   "case": "Именительный (Nominative)",
-   "explain": "«второе лицо» — the subject of the sentence stands in the nominative.",
-   "id": "c20"
-  },
-  {
-   "sentence": "Но, во всяком случае, указание Христа на то, что он есть ___ троицы и искупляет грехи человечества, занимает самую малую и неясную часть Евангелия.",
-   "lemma": "лицо",
-   "options": [
-    "второе лицо",
-    "вторым лицом",
-    "второго лица",
-    "втором лице"
-   ],
-   "correct": "второе лицо",
-   "case": "Именительный (Nominative)",
-   "explain": "«второе лицо» — the subject of the sentence stands in the nominative.",
-   "id": "c21"
-  },
-  {
-   "sentence": "В чем же всё ___ учения Христа?",
-   "lemma": "содержание",
-   "options": [
-    "остальному содержанию",
-    "остальное содержание",
-    "остального содержания",
-    "остальным содержанием"
-   ],
-   "correct": "остальное содержание",
-   "case": "Именительный (Nominative)",
-   "explain": "«остальное содержание» — the subject of the sentence stands in the nominative.",
-   "id": "c22"
-  },
-  {
-   "sentence": "Нельзя отрицать, и все христиане всегда признавали это, что ___ учения Христа есть учение о жизни людей: как надо жить людям между собою.",
-   "lemma": "содержание",
-   "options": [
-    "главного содержания",
-    "главному содержанию",
-    "главным содержанием",
-    "главное содержание"
-   ],
-   "correct": "главное содержание",
-   "case": "Именительный (Nominative)",
-   "explain": "«главное содержание» — the subject of the sentence stands in the nominative.",
-   "id": "c23"
-  },
-  {
-   "sentence": "Признав, что Христос учил ___ жизни, надо представить себе каких-нибудь определенных людей, среди которых он учил.",
-   "lemma": "образ",
-   "options": [
-    "новому образу",
-    "нового образа",
-    "новом образе",
-    "новым образом"
-   ],
-   "correct": "новому образу",
-   "case": "Дательный (Dative)",
-   "explain": "«новому образу» — the dative marks the indirect object or recipient.",
-   "id": "c24"
-  },
-  {
-   "sentence": "Если Христос признавал закон Моисея, то где же были те ___ этого закона, которых бы одобрял за это Христос?",
-   "lemma": "исполнитель",
-   "options": [
-    "настоящими исполнителями",
-    "настоящих исполнителях",
-    "настоящие исполнители",
-    "настоящим исполнителям"
-   ],
-   "correct": "настоящие исполнители",
-   "case": "Именительный (Nominative)",
-   "explain": "«настоящие исполнители» — the subject of the sentence stands in the nominative.",
-   "id": "c25"
-  },
-  {
-   "sentence": "Они говорят: фарисеи — ___ закона.",
-   "lemma": "исполнитель",
-   "options": [
-    "истинных исполнителей",
-    "истинных исполнителях",
-    "истинные исполнители",
-    "истинным исполнителям"
-   ],
-   "correct": "истинные исполнители",
-   "case": "Именительный (Nominative)",
-   "explain": "«истинные исполнители» — the subject of the sentence stands in the nominative.",
-   "id": "c26"
   },
   {
    "sentence": "Но и Никодим представлен нам ___, но заблудшим.",
@@ -305,92 +109,22 @@
    ],
    "correct": "добрым человеком",
    "case": "Творительный (Instrumental)",
-   "explain": "«добрым человеком» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «представлен», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c27"
   },
   {
    "sentence": "По всем ___, особенно с пятого века, Христос не нарушал писанный закон, а утверждал его.",
    "lemma": "толкование",
    "options": [
-    "церковным толкованиям",
     "церковными толкованиями",
-    "церковные толкования",
-    "церковных толкований"
+    "церковных толкований",
+    "церковных толкованиях",
+    "церковным толкованиям"
    ],
    "correct": "церковным толкованиям",
    "case": "Дательный (Dative)",
-   "explain": "«церковным толкованиям» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«церковным толкованиям» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c29"
-  },
-  {
-   "sentence": "Всякий интересующийся этим вопросом пусть сам посмотрит ___ этого места, начиная от Иоанна Златоуста и до нашего времени.",
-   "lemma": "толкование",
-   "options": [
-    "церковных толкованиях",
-    "церковные толкования",
-    "церковных толкований",
-    "церковным толкованиям"
-   ],
-   "correct": "церковные толкования",
-   "case": "Винительный (Accusative)",
-   "explain": "«церковные толкования» — the accusative marks the direct object of the verb.",
-   "id": "c31"
-  },
-  {
-   "sentence": "___ соединения несоединимого ясно показывают, что соединение это не есть ошибка мысли, а что соединение имеет ясную и определенную цель, что оно нужно.",
-   "lemma": "попытка",
-   "options": [
-    "невозможным попыткам",
-    "невозможных попытках",
-    "невозможных попыток",
-    "невозможные попытки"
-   ],
-   "correct": "невозможные попытки",
-   "case": "Именительный (Nominative)",
-   "explain": "«Невозможные попытки» — the subject of the sentence stands in the nominative.",
-   "id": "c32"
-  },
-  {
-   "sentence": "А я столько страшусь назвать сии постановления жестокими, что противное оным почел бы делом беззаконным, судя по здравому ___.",
-   "lemma": "смысл",
-   "options": [
-    "человеческом смысле",
-    "человеческого смысла",
-    "человеческий смысл",
-    "человеческому смыслу"
-   ],
-   "correct": "человеческому смыслу",
-   "case": "Дательный (Dative)",
-   "explain": "«человеческому смыслу» — after the preposition «по», the dative marks the indirect object or recipient.",
-   "id": "c34"
-  },
-  {
-   "sentence": "Если и при существовании законов, при страхе и угрозах, ___ едва удерживаются, то когда бы отнята была и сия преграда, что тогда препятствовало бы людям решаться на зло?",
-   "lemma": "намерение",
-   "options": [
-    "злые намерения",
-    "злым намерениям",
-    "злых намерениях",
-    "злых намерений"
-   ],
-   "correct": "злые намерения",
-   "case": "Именительный (Nominative)",
-   "explain": "«злые намерения» — the subject of the sentence stands in the nominative.",
-   "id": "c35"
-  },
-  {
-   "sentence": "Если и при существовании законов, при страхе и угрозах, злые намерения едва удерживаются, то когда бы отнята была и ___, что тогда препятствовало бы людям решаться на зло?",
-   "lemma": "преграда",
-   "options": [
-    "сей преграде",
-    "сия преграда",
-    "сей преградой",
-    "сей преграды"
-   ],
-   "correct": "сия преграда",
-   "case": "Именительный (Nominative)",
-   "explain": "«сия преграда» — the subject of the sentence stands in the nominative.",
-   "id": "c36"
   },
   {
    "sentence": "Скажи мне, если бы кто-нибудь, собрав отовсюду ___ и вооруживши их мечами, приказал им ходить по всему городу и убивать всех встречающихся, — может ли быть что бесчеловечнее сего?",
@@ -403,7 +137,7 @@
    ],
    "correct": "злых людей",
    "case": "Винительный (Accusative)",
-   "explain": "«злых людей» — the accusative marks the direct object of the verb.",
+   "explain": "«злых людей» is the direct object of «собрав» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c37"
   },
   {
@@ -417,7 +151,7 @@
    ],
    "correct": "ложном толковании",
    "case": "Предложный (Prepositional)",
-   "explain": "«ложном толковании» — after the preposition «в», for location or topic.",
+   "explain": "«ложном толковании» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c38"
   },
   {
@@ -431,7 +165,7 @@
    ],
    "correct": "еврейского народа",
    "case": "Родительный (Genitive)",
-   "explain": "«еврейского народа» — after the preposition «среди», the genitive here marks possession, absence, or quantity.",
+   "explain": "«еврейского народа» — «среди» always takes the genitive.",
    "id": "c39"
   },
   {
@@ -445,7 +179,7 @@
    ],
    "correct": "внешними правилами",
    "case": "Творительный (Instrumental)",
-   "explain": "«внешними правилами» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «запутанного», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c40"
   },
   {
@@ -459,35 +193,21 @@
    ],
    "correct": "божеских законов",
    "case": "Родительный (Genitive)",
-   "explain": "«божеских законов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«божеских законов» depends on the noun «видом» (whose? of what?) — genitive.",
    "id": "c41"
-  },
-  {
-   "sentence": "Что же может сделать, не говорю Христос-бог, но пророк, но самый ___, уча такой народ, не нарушая тот закон, который уже определил всё до малейших подробностей?",
-   "lemma": "учитель",
-   "options": [
-    "обыкновенным учителем",
-    "обыкновенного учителя",
-    "обыкновенный учитель",
-    "обыкновенному учителю"
-   ],
-   "correct": "обыкновенный учитель",
-   "case": "Именительный (Nominative)",
-   "explain": "«обыкновенный учитель» — the subject of the sentence stands in the nominative.",
-   "id": "c42"
   },
   {
    "sentence": "Христос так же, как и все пророки, берет из того, что люди считают законом бога, то, что есть точно закон бога, берет основы, откидывает всё остальное и с этими основами связывает свое откровение ___.",
    "lemma": "закон",
    "options": [
-    "вечным законом",
+    "вечном законе",
     "вечного закона",
-    "вечному закону",
-    "вечном законе"
+    "вечный закон",
+    "вечному закону"
    ],
    "correct": "вечного закона",
    "case": "Родительный (Genitive)",
-   "explain": "«вечного закона» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«вечного закона» depends on the noun «откровение» (whose? of what?) — genitive.",
    "id": "c43"
   },
   {
@@ -501,7 +221,7 @@
    ],
    "correct": "вечный закон",
    "case": "Именительный (Nominative)",
-   "explain": "«вечный закон» — the subject of the sentence stands in the nominative.",
+   "explain": "«вечный закон» is the subject of «есть» — who or what does it — so nominative.",
    "id": "c44"
   }
  ]

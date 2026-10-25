@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Она сообщала мне, что чернобородый все еще витает где-то между Марсом и Юпитером, в кольце астероидов, но скоро прилетит на Кэц и что она сделала какое-то очередное «___».",
-   "lemma": "открытие",
-   "options": [
-    "поразительном открытии",
-    "поразительному открытию",
-    "поразительное открытие",
-    "поразительным открытием"
-   ],
-   "correct": "поразительное открытие",
-   "case": "Именительный (Nominative)",
-   "explain": "«поразительное открытие» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
    "sentence": "Мои ___ познакомили меня с небесной колонией.",
    "lemma": "друг",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "новые друзья",
    "case": "Именительный (Nominative)",
-   "explain": "«новые друзья» — the subject of the sentence stands in the nominative.",
+   "explain": "«новые друзья» is the subject of «познакомили» — who or what does it — so nominative.",
    "id": "c4"
   },
   {
@@ -39,78 +25,8 @@
    ],
    "correct": "молодой инженер",
    "case": "Именительный (Nominative)",
-   "explain": "«Молодой инженер» — the subject of the sentence stands in the nominative.",
+   "explain": "«молодой инженер» is the subject of «приглашал» — who or what does it — so nominative.",
    "id": "c5"
-  },
-  {
-   "sentence": "— ___, — говорил он с небольшим акцентом.",
-   "lemma": "сооружение",
-   "options": [
-    "замечательное сооружение",
-    "замечательного сооружения",
-    "замечательном сооружении",
-    "замечательному сооружению"
-   ],
-   "correct": "замечательное сооружение",
-   "case": "Именительный (Nominative)",
-   "explain": "«Замечательное сооружение» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
-  },
-  {
-   "sentence": "— Замечательное сооружение, — говорил он с ___.",
-   "lemma": "акцент",
-   "options": [
-    "небольшой акцент",
-    "небольшому акценту",
-    "небольшим акцентом",
-    "небольшом акценте"
-   ],
-   "correct": "небольшим акцентом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«небольшим акцентом» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c7"
-  },
-  {
-   "sentence": "Слабая тяжесть помогла нам поставить самые ___.",
-   "lemma": "производство",
-   "options": [
-    "сложными производствами",
-    "сложным производствам",
-    "сложных производствах",
-    "сложные производства"
-   ],
-   "correct": "сложные производства",
-   "case": "Винительный (Accusative)",
-   "explain": "«сложные производства» — the accusative marks the direct object of the verb.",
-   "id": "c8"
-  },
-  {
-   "sentence": "У нас законы рычага, ___ и газов не осложняются весом.",
-   "lemma": "тело",
-   "options": [
-    "жидких тел",
-    "жидким телам",
-    "жидких телах",
-    "жидкими телами"
-   ],
-   "correct": "жидких тел",
-   "case": "Родительный (Genitive)",
-   "explain": "«жидких тел» — the genitive here marks possession, absence, or quantity.",
-   "id": "c9"
-  },
-  {
-   "sentence": "Звуки и вообще ___ распространяются, как на Земле.",
-   "lemma": "колебание",
-   "options": [
-    "разными колебаниями",
-    "разным колебаниям",
-    "разные колебания",
-    "разных колебаниях"
-   ],
-   "correct": "разные колебания",
-   "case": "Именительный (Nominative)",
-   "explain": "«разные колебания» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
   },
   {
    "sentence": "Массу можно определить и на ___.",
@@ -123,7 +39,7 @@
    ],
    "correct": "центробежной машине",
    "case": "Предложный (Prepositional)",
-   "explain": "«центробежной машине» — after the preposition «на», for location or topic.",
+   "explain": "«центробежной машине» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c11"
   },
   {
@@ -137,22 +53,8 @@
    ],
    "correct": "штамповочных машин",
    "case": "Родительный (Genitive)",
-   "explain": "«штамповочных машин» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«штамповочных машин» depends on the noun «процессов» (whose? of what?) — genitive.",
    "id": "c12"
-  },
-  {
-   "sentence": "Для выработки электрической энергии мы используем Солнце при помощи самых ___.",
-   "lemma": "машина",
-   "options": [
-    "разнообразные машины",
-    "разнообразных машин",
-    "разнообразными машинами",
-    "разнообразным машинам"
-   ],
-   "correct": "разнообразных машин",
-   "case": "Родительный (Genitive)",
-   "explain": "«разнообразных машин» — after the preposition «при», the genitive here marks possession, absence, or quantity.",
-   "id": "c13"
   },
   {
    "sentence": "___ превращает заключенную в цилиндре жидкость в пар.",
@@ -165,7 +67,7 @@
    ],
    "correct": "солнечная теплота",
    "case": "Именительный (Nominative)",
-   "explain": "«Солнечная теплота» — the subject of the sentence stands in the nominative.",
+   "explain": "«солнечная теплота» is the subject of «превращает» — who or what does it — so nominative.",
    "id": "c14"
   },
   {
@@ -179,7 +81,7 @@
    ],
    "correct": "холодный цилиндр",
    "case": "Винительный (Accusative)",
-   "explain": "«холодный цилиндр» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«холодный цилиндр» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c15"
   },
   {
@@ -193,22 +95,8 @@
    ],
    "correct": "горячего цилиндра",
    "case": "Родительный (Genitive)",
-   "explain": "«горячего цилиндра» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«горячего цилиндра» — «из» always takes the genitive.",
    "id": "c16"
-  },
-  {
-   "sentence": "Это почти «___», если не считать износа трущихся частей.",
-   "lemma": "двигатель",
-   "options": [
-    "вечному двигателю",
-    "вечного двигателя",
-    "вечным двигателем",
-    "вечный двигатель"
-   ],
-   "correct": "вечный двигатель",
-   "case": "Именительный (Nominative)",
-   "explain": "«вечный двигатель» — the subject of the sentence stands in the nominative.",
-   "id": "c18"
   },
   {
    "sentence": "Другая ___ имеет вид большого шара с маленьким отверстием.",
@@ -221,7 +109,7 @@
    ],
    "correct": "солнечная установка",
    "case": "Именительный (Nominative)",
-   "explain": "«солнечная установка» — the subject of the sentence stands in the nominative.",
+   "explain": "«солнечная установка» is the subject of «имеет» — who or what does it — so nominative.",
    "id": "c19"
   },
   {
@@ -235,7 +123,7 @@
    ],
    "correct": "большого шара",
    "case": "Родительный (Genitive)",
-   "explain": "«большого шара» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«большого шара» depends on the noun «вид» (whose? of what?) — genitive.",
    "id": "c20"
   },
   {
@@ -249,7 +137,7 @@
    ],
    "correct": "маленьким отверстием",
    "case": "Творительный (Instrumental)",
-   "explain": "«маленьким отверстием» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«маленьким отверстием» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c21"
   },
   {
@@ -263,64 +151,8 @@
    ],
    "correct": "металлургических работ",
    "case": "Родительный (Genitive)",
-   "explain": "«металлургических работ» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«металлургических работ» — «для» always takes the genitive.",
    "id": "c22"
-  },
-  {
-   "sentence": "— А позади шара заметили ___, который закрывает часть звездного неба?",
-   "lemma": "квадрат",
-   "options": [
-    "огромного квадрата",
-    "огромным квадратом",
-    "огромном квадрате",
-    "огромный квадрат"
-   ],
-   "correct": "огромный квадрат",
-   "case": "Винительный (Accusative)",
-   "explain": "«огромный квадрат» — the accusative marks the direct object of the verb.",
-   "id": "c23"
-  },
-  {
-   "sentence": "Когда он освещен Солнцем, то далеко виден, как необычайная «___».",
-   "lemma": "луна",
-   "options": [
-    "квадратной луной",
-    "квадратной луне",
-    "квадратная луна",
-    "квадратной луны"
-   ],
-   "correct": "квадратная луна",
-   "case": "Именительный (Nominative)",
-   "explain": "«квадратная луна» — the subject of the sentence stands in the nominative.",
-   "id": "c25"
-  },
-  {
-   "sentence": "Тончайший медный лист в десять тысяч ___, покрытый окисью меди.",
-   "lemma": "метр",
-   "options": [
-    "квадратным метрам",
-    "квадратными метрами",
-    "квадратных метрах",
-    "квадратных метров"
-   ],
-   "correct": "квадратных метров",
-   "case": "Родительный (Genitive)",
-   "explain": "«квадратных метров» — after the preposition «в», the genitive here marks possession, absence, or quantity.",
-   "id": "c26"
-  },
-  {
-   "sentence": "От него вдут невидимые издали ___.",
-   "lemma": "провод",
-   "options": [
-    "тонких проводах",
-    "тонкие провода",
-    "тонкими проводами",
-    "тонких проводов"
-   ],
-   "correct": "тонкие провода",
-   "case": "Винительный (Accusative)",
-   "explain": "«тонкие провода» — the accusative marks the direct object of the verb.",
-   "id": "c27"
   },
   {
    "sentence": "Над ним помещается еще более грандиозное сооружение, похожее на радиатор ___.",
@@ -333,22 +165,8 @@
    ],
    "correct": "парового отопления",
    "case": "Родительный (Genitive)",
-   "explain": "«парового отопления» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«парового отопления» depends on the noun «радиатор» (whose? of what?) — genitive.",
    "id": "c28"
-  },
-  {
-   "sentence": "___ из разного металла, спаянные посредине.",
-   "lemma": "трубка",
-   "options": [
-    "металлических трубках",
-    "металлическими трубками",
-    "металлические трубки",
-    "металлическим трубкам"
-   ],
-   "correct": "металлические трубки",
-   "case": "Именительный (Nominative)",
-   "explain": "«Металлические трубки» — the subject of the sentence stands in the nominative.",
-   "id": "c29"
   },
   {
    "sentence": "Металлические трубки из ___, спаянные посредине.",
@@ -361,78 +179,22 @@
    ],
    "correct": "разного металла",
    "case": "Родительный (Genitive)",
-   "explain": "«разного металла» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«разного металла» — «из» always takes the genitive.",
    "id": "c30"
-  },
-  {
-   "sentence": "При нагревании Солнцем места спая получается ___.",
-   "lemma": "ток",
-   "options": [
-    "электрический ток",
-    "электрическом токе",
-    "электрического тока",
-    "электрическим током"
-   ],
-   "correct": "электрический ток",
-   "case": "Именительный (Nominative)",
-   "explain": "«электрический ток» — the subject of the sentence stands in the nominative.",
-   "id": "c31"
   },
   {
    "sentence": "Передвижение ___ дается легко.",
    "lemma": "тяжесть",
    "options": [
-    "огромными тяжестями",
-    "огромных тяжестей",
     "огромных тяжестях",
+    "огромным тяжестям",
+    "огромных тяжестей",
     "огромные тяжести"
    ],
    "correct": "огромных тяжестей",
    "case": "Родительный (Genitive)",
-   "explain": "«огромных тяжестей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«огромных тяжестей» depends on the noun «Передвижение» (whose? of what?) — genitive.",
    "id": "c33"
-  },
-  {
-   "sentence": "Иногда мы пользуемся и ___, «безвоздушными ракетокарами», заменяющими электрокары.",
-   "lemma": "ракета",
-   "options": [
-    "небольшими ракетами",
-    "небольшие ракеты",
-    "небольшим ракетам",
-    "небольших ракет"
-   ],
-   "correct": "небольшими ракетами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«небольшими ракетами» — the instrumental marks the means, company, or complement.",
-   "id": "c34"
-  },
-  {
-   "sentence": "___, быть может, величиною немного более песчинки, пронизал насквозь нашу Звезду, пробив по пути листья растений и плечо одной нашей сотрудницы.",
-   "lemma": "метеор",
-   "options": [
-    "маленький метеор",
-    "маленьком метеоре",
-    "маленьким метеором",
-    "маленького метеора"
-   ],
-   "correct": "маленький метеор",
-   "case": "Именительный (Nominative)",
-   "explain": "«Маленький метеор» — the subject of the sentence stands in the nominative.",
-   "id": "c35"
-  },
-  {
-   "sentence": "Но Горева, сквозь комбинезон и плечо которой прошел ___, говорила, что видела вспышку и слышала треск, как от молнии.",
-   "lemma": "гость",
-   "options": [
-    "небесного гостя",
-    "небесным гостем",
-    "небесный гость",
-    "небесному гостю"
-   ],
-   "correct": "небесный гость",
-   "case": "Именительный (Nominative)",
-   "explain": "«небесный гость» — the subject of the sentence stands in the nominative.",
-   "id": "c36"
   },
   {
    "sentence": "Газ начал бы выходить, и ___ проник бы в ракету.",
@@ -445,7 +207,7 @@
    ],
    "correct": "мировой холод",
    "case": "Именительный (Nominative)",
-   "explain": "«мировой холод» — the subject of the sentence stands in the nominative.",
+   "explain": "«мировой холод» is the subject of «проник» — who or what does it — so nominative.",
    "id": "c37"
   },
   {
@@ -459,92 +221,8 @@
    ],
    "correct": "других отделений",
    "case": "Родительный (Genitive)",
-   "explain": "«других отделений» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«других отделений» — «из» always takes the genitive.",
    "id": "c39"
-  },
-  {
-   "sentence": "Впрочем, едва ли можно назвать раной отверстие немногим больше ___.",
-   "lemma": "укол",
-   "options": [
-    "булавочным уколом",
-    "булавочный укол",
-    "булавочного укола",
-    "булавочном уколе"
-   ],
-   "correct": "булавочного укола",
-   "case": "Родительный (Genitive)",
-   "explain": "«булавочного укола» — the genitive here marks possession, absence, or quantity.",
-   "id": "c40"
-  },
-  {
-   "sentence": "Эта «___» не потребовала даже перевязки.",
-   "lemma": "рана",
-   "options": [
-    "сквозной ране",
-    "сквозной раны",
-    "сквозная рана",
-    "сквозной раной"
-   ],
-   "correct": "сквозная рана",
-   "case": "Именительный (Nominative)",
-   "explain": "«сквозная рана» — the subject of the sentence stands in the nominative.",
-   "id": "c41"
-  },
-  {
-   "sentence": "Я почти переселился в зоолабораторию, часто даже не являлся обедать в Кэц: переодевания в «водолазный» костюм, ___ — все это отнимало немало времени, а я дорожил каждой минутой.",
-   "lemma": "камера",
-   "options": [
-    "атмосферным камерам",
-    "атмосферными камерами",
-    "атмосферные камеры",
-    "атмосферных камер"
-   ],
-   "correct": "атмосферные камеры",
-   "case": "Именительный (Nominative)",
-   "explain": "«атмосферные камеры» — the subject of the sentence stands in the nominative.",
-   "id": "c43"
-  },
-  {
-   "sentence": "Ведь одна минута в этой лаборатории давала больше, чем ___ на Земле, — так быстро протекали здесь при опытах различные биологические процессы.",
-   "lemma": "часы",
-   "options": [
-    "многие часы",
-    "многими часами",
-    "многих часов",
-    "многих часах"
-   ],
-   "correct": "многие часы",
-   "case": "Именительный (Nominative)",
-   "explain": "«многие часы» — the subject of the sentence stands in the nominative.",
-   "id": "c44"
-  },
-  {
-   "sentence": "Ведь одна минута в этой лаборатории давала больше, чем многие часы на Земле, — так быстро протекали здесь при опытах различные ___.",
-   "lemma": "процесс",
-   "options": [
-    "биологических процессов",
-    "биологические процессы",
-    "биологических процессах",
-    "биологическим процессам"
-   ],
-   "correct": "биологические процессы",
-   "case": "Винительный (Accusative)",
-   "explain": "«биологические процессы» — the accusative marks the direct object of the verb.",
-   "id": "c45"
-  },
-  {
-   "sentence": "Я поражался разнообразию все новых и ___.",
-   "lemma": "разновидность",
-   "options": [
-    "новым разновидностям",
-    "новые разновидности",
-    "новыми разновидностями",
-    "новых разновидностей"
-   ],
-   "correct": "новых разновидностей",
-   "case": "Родительный (Genitive)",
-   "explain": "«новых разновидностей» — the genitive here marks possession, absence, or quantity.",
-   "id": "c46"
   },
   {
    "sentence": "Понять их — значит найти новое могучее орудие ___ развитием и ростом животных.",
@@ -557,7 +235,7 @@
    ],
    "correct": "произвольного управления",
    "case": "Родительный (Genitive)",
-   "explain": "«произвольного управления» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«произвольного управления» depends on the noun «орудие» (whose? of what?) — genitive.",
    "id": "c47"
   },
   {
@@ -571,35 +249,21 @@
    ],
    "correct": "наследственных признаков",
    "case": "Родительный (Genitive)",
-   "explain": "«наследственных признаков» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«наследственных признаков» depends on the noun «носители» (whose? of what?) — genitive.",
    "id": "c48"
-  },
-  {
-   "sentence": "Я изучал ядра клеток и находящиеся в них хромосомы — носители наследственных признаков, — изучал ___ или комплекты.",
-   "lemma": "набор",
-   "options": [
-    "хромосомные наборы",
-    "хромосомных наборах",
-    "хромосомным наборам",
-    "хромосомными наборами"
-   ],
-   "correct": "хромосомные наборы",
-   "case": "Винительный (Accusative)",
-   "explain": "«хромосомные наборы» — the accusative marks the direct object of the verb.",
-   "id": "c49"
   },
   {
    "sentence": "Какие перспективы развития ___!",
    "lemma": "животноводство",
    "options": [
-    "земному животноводству",
     "земном животноводстве",
+    "земное животноводство",
     "земного животноводства",
-    "земным животноводством"
+    "земному животноводству"
    ],
    "correct": "земного животноводства",
    "case": "Родительный (Genitive)",
-   "explain": "«земного животноводства» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«земного животноводства» depends on the noun «развития» (whose? of what?) — genitive.",
    "id": "c50"
   },
   {
@@ -613,7 +277,7 @@
    ],
    "correct": "искусственного получения",
    "case": "Родительный (Genitive)",
-   "explain": "«искусственного получения» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«искусственного получения» depends on the noun «способы» (whose? of what?) — genitive.",
    "id": "c52"
   },
   {
@@ -627,78 +291,8 @@
    ],
    "correct": "космических лучей",
    "case": "Родительный (Genitive)",
-   "explain": "«космических лучей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«космических лучей» depends on the noun «получения» (whose? of what?) — genitive.",
    "id": "c53"
-  },
-  {
-   "sentence": "Там это еще слишком ___, но опыты можно производить здесь, а результаты сообщать на Землю.",
-   "lemma": "удовольствие",
-   "options": [
-    "дорогим удовольствием",
-    "дорогое удовольствие",
-    "дорогом удовольствии",
-    "дорогого удовольствия"
-   ],
-   "correct": "дорогое удовольствие",
-   "case": "Именительный (Nominative)",
-   "explain": "«дорогое удовольствие» — the subject of the sentence stands in the nominative.",
-   "id": "c54"
-  },
-  {
-   "sentence": "И на Земле в особых камерах станут подвергать искусственному ___ животных, для того чтобы наверняка получать желаемый результат.",
-   "lemma": "облучение",
-   "options": [
-    "космическому облучению",
-    "космического облучения",
-    "космическом облучении",
-    "космическое облучение"
-   ],
-   "correct": "космическому облучению",
-   "case": "Дательный (Dative)",
-   "explain": "«космическому облучению» — the dative marks the indirect object or recipient.",
-   "id": "c56"
-  },
-  {
-   "sentence": "И на Земле в особых камерах станут подвергать искусственному космическому облучению животных, для того чтобы наверняка получать ___.",
-   "lemma": "результат",
-   "options": [
-    "желаемым результатом",
-    "желаемому результату",
-    "желаемый результат",
-    "желаемого результата"
-   ],
-   "correct": "желаемый результат",
-   "case": "Винительный (Accusative)",
-   "explain": "«желаемый результат» — the accusative marks the direct object of the verb.",
-   "id": "c57"
-  },
-  {
-   "sentence": "___ каждый день дает десятки ведер молока.",
-   "lemma": "корова",
-   "options": [
-    "слоноподобная корова",
-    "слоноподобной коровой",
-    "слоноподобной коровы",
-    "слоноподобной корове"
-   ],
-   "correct": "слоноподобная корова",
-   "case": "Именительный (Nominative)",
-   "explain": "«Слоноподобная корова» — the subject of the sentence stands in the nominative.",
-   "id": "c58"
-  },
-  {
-   "sentence": "Разве это не ___?",
-   "lemma": "задача",
-   "options": [
-    "заманчивая задача",
-    "заманчивой задачей",
-    "заманчивой задачи",
-    "заманчивой задаче"
-   ],
-   "correct": "заманчивая задача",
-   "case": "Именительный (Nominative)",
-   "explain": "«заманчивая задача» — the subject of the sentence stands in the nominative.",
-   "id": "c59"
   },
   {
    "sentence": "Ведь люди не всегда вежливы со своими ___.",
@@ -711,7 +305,7 @@
    ],
    "correct": "четвероногими друзьями",
    "case": "Творительный (Instrumental)",
-   "explain": "«четвероногими друзьями» — after the preposition «со», the instrumental marks the means, company, or complement.",
+   "explain": "«четвероногими друзьями» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c60"
   },
   {
@@ -725,50 +319,8 @@
    ],
    "correct": "условного языка",
    "case": "Родительный (Genitive)",
-   "explain": "«условного языка» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«условного языка» depends on the noun «созданию» (whose? of what?) — genitive.",
    "id": "c61"
-  },
-  {
-   "sentence": "Он часто лизал мне руки — это ___ ласки у него осталось.",
-   "lemma": "выражение",
-   "options": [
-    "собачьему выражению",
-    "собачьем выражении",
-    "собачье выражение",
-    "собачьего выражения"
-   ],
-   "correct": "собачье выражение",
-   "case": "Именительный (Nominative)",
-   "explain": "«собачье выражение» — the subject of the sentence stands in the nominative.",
-   "id": "c62"
-  },
-  {
-   "sentence": "Да и как иначе он мог проявить свои ___?",
-   "lemma": "чувство",
-   "options": [
-    "нежных чувств",
-    "нежные чувства",
-    "нежными чувствами",
-    "нежным чувствам"
-   ],
-   "correct": "нежные чувства",
-   "case": "Винительный (Accusative)",
-   "explain": "«нежные чувства» — the accusative marks the direct object of the verb.",
-   "id": "c63"
-  },
-  {
-   "sentence": "Джипси с его ___ мало приспособлен для движения по Земле.",
-   "lemma": "лапа",
-   "options": [
-    "перепончатым лапам",
-    "перепончатыми лапами",
-    "перепончатых лап",
-    "перепончатые лапы"
-   ],
-   "correct": "перепончатыми лапами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«перепончатыми лапами» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c65"
   },
   {
    "sentence": "Но ничего нет проще создать здесь тип высокоразвитой собаки, годной для ___.",
@@ -781,7 +333,7 @@
    ],
    "correct": "земных условий",
    "case": "Родительный (Genitive)",
-   "explain": "«земных условий» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«земных условий» — «для» always takes the genitive.",
    "id": "c66"
   },
   {
@@ -795,7 +347,7 @@
    ],
    "correct": "искусственной силе",
    "case": "Предложный (Prepositional)",
-   "explain": "«искусственной силе» — after the preposition «при», for location or topic.",
+   "explain": "«искусственной силе» — «при» always takes the prepositional.",
    "id": "c67"
   },
   {
@@ -809,50 +361,8 @@
    ],
    "correct": "космических лучей",
    "case": "Родительный (Genitive)",
-   "explain": "«космических лучей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«космических лучей» depends on the noun «влиянии» (whose? of what?) — genitive.",
    "id": "c68"
-  },
-  {
-   "sentence": "Я заметил у Джипси необычайно ___ и слух.",
-   "lemma": "нюх",
-   "options": [
-    "тонком нюхе",
-    "тонким нюхом",
-    "тонкого нюха",
-    "тонкий нюх"
-   ],
-   "correct": "тонкий нюх",
-   "case": "Именительный (Nominative)",
-   "explain": "«тонкий нюх» — the subject of the sentence stands in the nominative.",
-   "id": "c69"
-  },
-  {
-   "sentence": "Он мог бы быть не только ___, который при случае может зажечь сигнальные огни, позвонить в звонок, вызвать лаем по телефону, но и своего рода живым реактивом на производстве.",
-   "lemma": "сторож",
-   "options": [
-    "прекрасного сторожа",
-    "прекрасном стороже",
-    "прекрасным сторожем",
-    "прекрасный сторож"
-   ],
-   "correct": "прекрасным сторожем",
-   "case": "Творительный (Instrumental)",
-   "explain": "«прекрасным сторожем» — the instrumental marks the means, company, or complement.",
-   "id": "c70"
-  },
-  {
-   "sentence": "Он мог бы быть не только прекрасным сторожем, который при случае может зажечь ___, позвонить в звонок, вызвать лаем по телефону, но и своего рода живым реактивом на производстве.",
-   "lemma": "огонь",
-   "options": [
-    "сигнальным огням",
-    "сигнальных огней",
-    "сигнальных огнях",
-    "сигнальные огни"
-   ],
-   "correct": "сигнальные огни",
-   "case": "Винительный (Accusative)",
-   "explain": "«сигнальные огни» — the accusative marks the direct object of the verb.",
-   "id": "c71"
   },
   {
    "sentence": "Джипси вообразил, что ___ хотел ударить меня, он буквально налетел на него и отбросил далеко в сторону.",
@@ -865,7 +375,7 @@
    ],
    "correct": "новый человек",
    "case": "Именительный (Nominative)",
-   "explain": "«новый человек» — the subject of the sentence stands in the nominative.",
+   "explain": "«новый человек» is the subject of «хотел» — who or what does it — so nominative.",
    "id": "c74"
   },
   {
@@ -879,7 +389,7 @@
    ],
    "correct": "простых вещей",
    "case": "Родительный (Genitive)",
-   "explain": "«простых вещей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«простых вещей» is the object of a negated verb («не понимая») — genitive instead of the accusative.",
    "id": "c75"
   }
  ]

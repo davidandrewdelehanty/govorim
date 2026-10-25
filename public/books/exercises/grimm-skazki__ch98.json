@@ -1,31 +1,17 @@
 {
  "cases": [
   {
-   "sentence": "Жил да был король, у которого около замка был ___, а в том лесу всякая дичь водилась.",
-   "lemma": "лес",
-   "options": [
-    "большому лесу",
-    "большим лесом",
-    "большом лесе",
-    "большой лес"
-   ],
-   "correct": "большой лес",
-   "case": "Именительный (Nominative)",
-   "explain": "«большой лес» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "«Быть может, с ним случилось какое-нибудь несчастье?» — сказал король и на ___ выслал за ним, на поиски двоих егерей; но и те не вернулись.",
    "lemma": "день",
    "options": [
-    "другой день",
+    "другого дня",
     "другим днём",
-    "другому дню",
-    "другом дне"
+    "другой день",
+    "другому дню"
    ],
    "correct": "другой день",
    "case": "Винительный (Accusative)",
-   "explain": "«другой день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«другой день» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c2"
   },
   {
@@ -39,21 +25,21 @@
    ],
    "correct": "третий день",
    "case": "Винительный (Accusative)",
-   "explain": "«третий день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«третий день» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c3"
   },
   {
    "sentence": "Так прошло много лет, и вдруг явился к королю иноземный егерь, попросился к нему на службу и взялся в тот ___ заглянуть.",
    "lemma": "лес",
    "options": [
-    "опасном лесе",
     "опасный лес",
     "опасного леса",
+    "опасным лесом",
     "опасному лесу"
    ],
    "correct": "опасный лес",
    "case": "Винительный (Accusative)",
-   "explain": "«опасный лес» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«опасный лес» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c4"
   },
   {
@@ -67,36 +53,8 @@
    ],
    "correct": "дикого человека",
    "case": "Родительный (Genitive)",
-   "explain": "«дикого человека» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«дикого человека» depends on the noun «дне» (whose? of what?) — genitive.",
    "id": "c5"
-  },
-  {
-   "sentence": "Все на того ___ дивились, а король приказал его посадить на своем дворе в железную клетку и под страхом смертной казни воспретил отворять у клетки дверцы, а ключ самой королеве на хранение отдал.",
-   "lemma": "человек",
-   "options": [
-    "диким человеком",
-    "дикий человек",
-    "дикого человека",
-    "дикому человеку"
-   ],
-   "correct": "дикого человека",
-   "case": "Винительный (Accusative)",
-   "explain": "«дикого человека» — the accusative marks the direct object of the verb.",
-   "id": "c6"
-  },
-  {
-   "sentence": "Все на того дикого человека дивились, а король приказал его посадить на своем дворе в железную клетку и под страхом смертной казни воспретил отворять у клетки дверцы, а ключ ___ на хранение отдал.",
-   "lemma": "королева",
-   "options": [
-    "сама королева",
-    "самой королевы",
-    "самой королеве",
-    "самой королевой"
-   ],
-   "correct": "самой королеве",
-   "case": "Дательный (Dative)",
-   "explain": "«самой королеве» — the dative marks the indirect object or recipient.",
-   "id": "c7"
   },
   {
    "sentence": "У короля был сынок лет восьми, который однажды играл во дворе, и во время игры его ___ попал в ту клетку.",
@@ -109,7 +67,7 @@
    ],
    "correct": "золотой мяч",
    "case": "Именительный (Nominative)",
-   "explain": "«золотой мяч» — the subject of the sentence stands in the nominative.",
+   "explain": "«золотой мяч» is the subject of «попал» — who or what does it — so nominative.",
    "id": "c8"
   },
   {
@@ -117,13 +75,13 @@
    "lemma": "человек",
    "options": [
     "дикий человек",
-    "дикого человека",
     "диким человеком",
+    "диком человеке",
     "дикому человеку"
    ],
    "correct": "дикому человеку",
    "case": "Дательный (Dative)",
-   "explain": "«дикому человеку» — the dative marks the indirect object or recipient.",
+   "explain": "«дикому человеку» is the indirect object of «сказал» — to or for whom (кому?) — dative.",
    "id": "c9"
   },
   {
@@ -131,13 +89,13 @@
    "lemma": "день",
    "options": [
     "другой день",
-    "другим днём",
     "другому дню",
-    "другом дне"
+    "другим днём",
+    "другого дня"
    ],
    "correct": "другой день",
    "case": "Винительный (Accusative)",
-   "explain": "«другой день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«другой день» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c10"
   },
   {
@@ -151,7 +109,7 @@
    ],
    "correct": "дикий человек",
    "case": "Именительный (Nominative)",
-   "explain": "«Дикий человек» — the subject of the sentence stands in the nominative.",
+   "explain": "«дикий человек» is the subject of «отвечал» — who or what does it — so nominative.",
    "id": "c11"
   },
   {
@@ -165,22 +123,8 @@
    ],
    "correct": "третий день",
    "case": "Винительный (Accusative)",
-   "explain": "«третий день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«третий день» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c12"
-  },
-  {
-   "sentence": "Он стал кричать дикарю вслед: «Не уходи, ___, не то мне из-за тебя достанется».",
-   "lemma": "человек",
-   "options": [
-    "диком человеке",
-    "диким человеком",
-    "дикого человека",
-    "дикий человек"
-   ],
-   "correct": "дикий человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«дикий человек» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
   },
   {
    "sentence": "Тогда король догадался, в чем дело, и великая печаль воцарилась при ___.",
@@ -193,49 +137,35 @@
    ],
    "correct": "королевском дворе",
    "case": "Предложный (Prepositional)",
-   "explain": "«королевском дворе» — after the preposition «при», for location or topic.",
+   "explain": "«королевском дворе» — «при» always takes the prepositional.",
    "id": "c14"
   },
   {
    "sentence": "Мальчик присел у ключа и стал любоваться ___ и золотыми змейками, которые в нем мелькали, и все следил, чтобы ничто в тот колодец не попало.",
    "lemma": "рыбка",
    "options": [
-    "золотых рыбках",
-    "золотых рыбок",
+    "золотым рыбкам",
     "золотыми рыбками",
+    "золотых рыбках",
     "золотые рыбки"
    ],
    "correct": "золотыми рыбками",
    "case": "Творительный (Instrumental)",
-   "explain": "«золотыми рыбками» — the instrumental marks the means, company, or complement.",
+   "explain": "«любоваться» takes the instrumental.",
    "id": "c15"
-  },
-  {
-   "sentence": "Мальчик присел у ключа и стал любоваться золотыми рыбками и ___, которые в нем мелькали, и все следил, чтобы ничто в тот колодец не попало.",
-   "lemma": "змейка",
-   "options": [
-    "золотых змейках",
-    "золотых змеек",
-    "золотые змейки",
-    "золотыми змейками"
-   ],
-   "correct": "золотыми змейками",
-   "case": "Творительный (Instrumental)",
-   "explain": "«золотыми змейками» — the instrumental marks the means, company, or complement.",
-   "id": "c16"
   },
   {
    "sentence": "На ___ спозаранок опять сидел мальчик над колодцем и стерег его.",
    "lemma": "день",
    "options": [
-    "другой день",
     "другим днём",
     "другому дню",
-    "другом дне"
+    "другой день",
+    "другого дня"
    ],
    "correct": "другой день",
    "case": "Винительный (Accusative)",
-   "explain": "«другой день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«другой день» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c17"
   },
   {
@@ -244,12 +174,12 @@
    "options": [
     "третьему разу",
     "третий раз",
-    "третьим разом",
-    "третьем разе"
+    "третьего раза",
+    "третьим разом"
    ],
    "correct": "третий раз",
    "case": "Винительный (Accusative)",
-   "explain": "«третий раз» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«третий раз» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c18"
   },
   {
@@ -263,36 +193,8 @@
    ],
    "correct": "третий день",
    "case": "Винительный (Accusative)",
-   "explain": "«третий день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«третий день» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c19"
-  },
-  {
-   "sentence": "Нагибался-нагибался, чтобы хорошенько глаза рассмотреть, и вдруг пряди его ___, соскользнув с плеч, коснулись воды.",
-   "lemma": "волос",
-   "options": [
-    "длинные волосы",
-    "длинными волосами",
-    "длинных волосах",
-    "длинных волос"
-   ],
-   "correct": "длинных волос",
-   "case": "Родительный (Genitive)",
-   "explain": "«длинных волос» — the genitive here marks possession, absence, or quantity.",
-   "id": "c20"
-  },
-  {
-   "sentence": "Он обвязал себе голову ___, чтобы дикарь не мог увидеть его волос.",
-   "lemma": "платок",
-   "options": [
-    "носовом платке",
-    "носовому платку",
-    "носовой платок",
-    "носовым платком"
-   ],
-   "correct": "носовым платком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«носовым платком» — the instrumental marks the means, company, or complement.",
-   "id": "c21"
   },
   {
    "sentence": "Тут ___ скатились мальчику на плечи, и он, как ни старался извиниться, уже ничего не мог сделать.",
@@ -305,64 +207,50 @@
    ],
    "correct": "золотые волосы",
    "case": "Именительный (Nominative)",
-   "explain": "«золотые волосы» — the subject of the sentence stands in the nominative.",
+   "explain": "«золотые волосы» is the subject of «скатились» — who or what does it — so nominative.",
    "id": "c22"
   },
   {
    "sentence": "Вот и вышел королевич из леса, и пошел торными и неторными дорогами, все дальше и дальше, пока наконец не пришел в ___.",
    "lemma": "город",
    "options": [
-    "большим городом",
-    "большой город",
     "большого города",
-    "большом городе"
+    "большим городом",
+    "большому городу",
+    "большой город"
    ],
    "correct": "большой город",
    "case": "Винительный (Accusative)",
-   "explain": "«большой город» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«большой город» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c23"
   },
   {
    "sentence": "___ сами не знали, на что бы он мог им пригодиться, но он им приглянулся, и они ему велели остаться.",
    "lemma": "слуга",
    "options": [
-    "придворные слуги",
     "придворных слугах",
-    "придворных слуг",
+    "придворные слуги",
+    "придворными слугами",
     "придворным слугам"
    ],
    "correct": "придворные слуги",
    "case": "Именительный (Nominative)",
-   "explain": "«Придворные слуги» — the subject of the sentence stands in the nominative.",
+   "explain": "«придворные слуги» is the subject of «знали» — who or what does it — so nominative.",
    "id": "c24"
   },
   {
    "sentence": "Однажды, когда никого другого не было под руками, повар велел ему снести кушанье на ___, а так как юноша не желал показать королю свои золотые волосы, то, подавая кушанья, не снял он своей шапочки с головы.",
    "lemma": "стол",
    "options": [
-    "королевского стола",
+    "королевскому столу",
     "королевский стол",
-    "королевским столом",
-    "королевском столе"
+    "королевского стола",
+    "королевским столом"
    ],
    "correct": "королевский стол",
    "case": "Винительный (Accusative)",
-   "explain": "«королевский стол» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«королевский стол» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c25"
-  },
-  {
-   "sentence": "Однажды, когда никого другого не было под руками, повар велел ему снести кушанье на королевский стол, а так как юноша не желал показать королю свои ___, то, подавая кушанья, не снял он своей шапочки с головы.",
-   "lemma": "волос",
-   "options": [
-    "золотыми волосами",
-    "золотых волосах",
-    "золотым волосам",
-    "золотые волосы"
-   ],
-   "correct": "золотые волосы",
-   "case": "Винительный (Accusative)",
-   "explain": "«золотые волосы» — the accusative marks the direct object of the verb.",
-   "id": "c26"
   },
   {
    "sentence": "К королю еще никто так не смел являться, и он сказал: «Когда ты к ___ являешься, то должен снимать свою шапчонку».",
@@ -375,63 +263,21 @@
    ],
    "correct": "королевскому столу",
    "case": "Дательный (Dative)",
-   "explain": "«королевскому столу» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«королевскому столу» — «к» always takes the dative.",
    "id": "c27"
-  },
-  {
-   "sentence": "— «Ах, государь, — сказал мальчик, — не могу снять, потому что у меня ___ на голове».",
-   "lemma": "струп",
-   "options": [
-    "гнойный струп",
-    "гнойному струпу",
-    "гнойного струпа",
-    "гнойном струпе"
-   ],
-   "correct": "гнойный струп",
-   "case": "Именительный (Nominative)",
-   "explain": "«гнойный струп» — the subject of the sentence stands in the nominative.",
-   "id": "c28"
-  },
-  {
-   "sentence": "Тот поспешно нахлобучил шапчонку, нарвал диких ___ и связал их в пучок.",
-   "lemma": "цвет",
-   "options": [
-    "полевым цветам",
-    "полевых цветов",
-    "полевыми цветами",
-    "полевых цветах"
-   ],
-   "correct": "полевых цветов",
-   "case": "Родительный (Genitive)",
-   "explain": "«полевых цветов» — the genitive here marks possession, absence, or quantity.",
-   "id": "c29"
-  },
-  {
-   "sentence": "Но та ухватила его за шапочку и сдернула ее долой, и скатились его ___ ему на плечи, так что смотреть было любо.",
-   "lemma": "волос",
-   "options": [
-    "золотыми волосами",
-    "золотых волосах",
-    "золотым волосам",
-    "золотые волосы"
-   ],
-   "correct": "золотые волосы",
-   "case": "Винительный (Accusative)",
-   "explain": "«золотые волосы» — the accusative marks the direct object of the verb.",
-   "id": "c30"
   },
   {
    "sentence": "На ___ опять призвала его королевна, приказав принести букет полевых цветов, и когда он с цветами явился, она тотчас ухватила его за шапку и хотела сорвать, но он держал ее крепко обеими руками.",
    "lemma": "день",
    "options": [
-    "другой день",
-    "другим днём",
     "другому дню",
-    "другом дне"
+    "другого дня",
+    "другим днём",
+    "другой день"
    ],
    "correct": "другой день",
    "case": "Винительный (Accusative)",
-   "explain": "«другой день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«другой день» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c31"
   },
   {
@@ -445,7 +291,7 @@
    ],
    "correct": "полевых цветов",
    "case": "Родительный (Genitive)",
-   "explain": "«полевых цветов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«полевых цветов» depends on the noun «букет» (whose? of what?) — genitive.",
    "id": "c32"
   },
   {
@@ -459,7 +305,7 @@
    ],
    "correct": "садовниковым детям",
    "case": "Дательный (Dative)",
-   "explain": "«садовниковым детям» — the dative marks the indirect object or recipient.",
+   "explain": "«садовниковым детям» is the indirect object of «передал» — to or for whom (кому?) — dative.",
    "id": "c33"
   },
   {
@@ -473,7 +319,7 @@
    ],
    "correct": "третий день",
    "case": "Винительный (Accusative)",
-   "explain": "«третий день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«третий день» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c34"
   },
   {
@@ -487,7 +333,7 @@
    ],
    "correct": "остальные слуги",
    "case": "Именительный (Nominative)",
-   "explain": "«Остальные слуги» — the subject of the sentence stands in the nominative.",
+   "explain": "«остальные слуги» is the subject of «смеялись» — who or what does it — so nominative.",
    "id": "c35"
   },
   {
@@ -501,36 +347,8 @@
    ],
    "correct": "дикий человек",
    "case": "Именительный (Nominative)",
-   "explain": "«дикий человек» — the subject of the sentence stands in the nominative.",
+   "explain": "«дикий человек» is the subject of «явился» — who or what does it — so nominative.",
    "id": "c36"
-  },
-  {
-   "sentence": "Тотчас явился к нему дикий человек и спросил его: «Чего желаешь?» — «Желаю ___, чтобы на войну ехать».",
-   "lemma": "конь",
-   "options": [
-    "добрый конь",
-    "доброго коня",
-    "добром коне",
-    "добрым конём"
-   ],
-   "correct": "доброго коня",
-   "case": "Родительный (Genitive)",
-   "explain": "«доброго коня» — the genitive here marks possession, absence, or quantity.",
-   "id": "c37"
-  },
-  {
-   "sentence": "Юноша передал конюху свою трехногую лошадь, вскочил на ___ и поехал во главе отряда.",
-   "lemma": "конь",
-   "options": [
-    "борзого коня",
-    "борзом коне",
-    "борзой конь",
-    "борзому коню"
-   ],
-   "correct": "борзого коня",
-   "case": "Винительный (Accusative)",
-   "explain": "«борзого коня» — the accusative marks the direct object of the verb.",
-   "id": "c38"
   },
   {
    "sentence": "Когда они приблизились к полю битвы, большая часть ___ была перебита и остальные уже почти готовились к отступлению.",
@@ -543,22 +361,8 @@
    ],
    "correct": "королевского войска",
    "case": "Родительный (Genitive)",
-   "explain": "«королевского войска» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«королевского войска» depends on the noun «часть» (whose? of what?) — genitive.",
    "id": "c39"
-  },
-  {
-   "sentence": "Но вместо того, чтобы идти к королю, он повел свой отряд ___ к лесу и вызвал вновь Железного Ганса.",
-   "lemma": "дорога",
-   "options": [
-    "окольных дорог",
-    "окольные дороги",
-    "окольными дорогами",
-    "окольным дорогам"
-   ],
-   "correct": "окольными дорогами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«окольными дорогами» — the instrumental marks the means, company, or complement.",
-   "id": "c40"
   },
   {
    "sentence": "«Что желаешь?» — спросил ___.",
@@ -571,78 +375,8 @@
    ],
    "correct": "дикий человек",
    "case": "Именительный (Nominative)",
-   "explain": "«дикий человек» — the subject of the sentence stands in the nominative.",
+   "explain": "«дикий человек» is the subject of «спросил» — who or what does it — so nominative.",
    "id": "c41"
-  },
-  {
-   "sentence": "«Не я победил, — сказал король, — победителем был какой-то ___, который пришел ко мне на помощь со своим отрядом».",
-   "lemma": "рыцарь",
-   "options": [
-    "чужой рыцарь",
-    "чужим рыцарем",
-    "чужому рыцарю",
-    "чужого рыцаря"
-   ],
-   "correct": "чужой рыцарь",
-   "case": "Именительный (Nominative)",
-   "explain": "«чужой рыцарь» — the subject of the sentence stands in the nominative.",
-   "id": "c42"
-  },
-  {
-   "sentence": "Дочь хотела узнать, кто был этот ___, но король и сам не знал.",
-   "lemma": "рыцарь",
-   "options": [
-    "чужой рыцарь",
-    "чужим рыцарем",
-    "чужому рыцарю",
-    "чужого рыцаря"
-   ],
-   "correct": "чужой рыцарь",
-   "case": "Именительный (Nominative)",
-   "explain": "«чужой рыцарь» — the subject of the sentence stands in the nominative.",
-   "id": "c43"
-  },
-  {
-   "sentence": "И ___ все над ним смеялись и кричали: «Вот наш богатырь на Хромушке едет».",
-   "lemma": "слуга",
-   "options": [
-    "другими слугами",
-    "другие слуги",
-    "других слуг",
-    "другим слугам"
-   ],
-   "correct": "другие слуги",
-   "case": "Именительный (Nominative)",
-   "explain": "«другие слуги» — the subject of the sentence stands in the nominative.",
-   "id": "c44"
-  },
-  {
-   "sentence": "Король сказал своей дочери: «Я устрою ___, который должен будет длиться три дня, и ты на том празднике брось золотое яблоко: может быть, и придет тот чужой рыцарь, и поднимет твое яблоко».",
-   "lemma": "праздник",
-   "options": [
-    "большого праздника",
-    "большом празднике",
-    "большой праздник",
-    "большому празднику"
-   ],
-   "correct": "большой праздник",
-   "case": "Винительный (Accusative)",
-   "explain": "«большой праздник» — the accusative marks the direct object of the verb.",
-   "id": "c45"
-  },
-  {
-   "sentence": "Король сказал своей дочери: «Я устрою большой праздник, который должен будет длиться три дня, и ты на том празднике брось золотое яблоко: может быть, и придет тот ___, и поднимет твое яблоко».",
-   "lemma": "рыцарь",
-   "options": [
-    "чужой рыцарь",
-    "чужим рыцарем",
-    "чужому рыцарю",
-    "чужого рыцаря"
-   ],
-   "correct": "чужой рыцарь",
-   "case": "Именительный (Nominative)",
-   "explain": "«чужой рыцарь» — the subject of the sentence stands in the nominative.",
-   "id": "c46"
   },
   {
    "sentence": "«Желаю, чтобы мне досталось ___ королевны».",
@@ -655,7 +389,7 @@
    ],
    "correct": "золотое яблоко",
    "case": "Именительный (Nominative)",
-   "explain": "«золотое яблоко» — the subject of the sentence stands in the nominative.",
+   "explain": "«золотое яблоко» is the subject of «досталось» — who or what does it — so nominative.",
    "id": "c47"
   },
   {
@@ -663,27 +397,27 @@
    "lemma": "день",
    "options": [
     "другой день",
+    "другого дня",
     "другим днём",
-    "другому дню",
-    "другом дне"
+    "другому дню"
    ],
    "correct": "другой день",
    "case": "Винительный (Accusative)",
-   "explain": "«другой день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«другой день» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c48"
   },
   {
    "sentence": "На другой день Железный Ганс нарядил юношу в ___ и дал ему саврасого коня.",
    "lemma": "доспех",
    "options": [
-    "белые доспехи",
     "белыми доспехами",
     "белых доспехов",
-    "белых доспехах"
+    "белые доспехи",
+    "белым доспехам"
    ],
    "correct": "белые доспехи",
    "case": "Винительный (Accusative)",
-   "explain": "«белые доспехи» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«белые доспехи» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c49"
   },
   {
@@ -697,7 +431,7 @@
    ],
    "correct": "саврасого коня",
    "case": "Винительный (Accusative)",
-   "explain": "«саврасого коня» — the accusative marks the direct object of the verb.",
+   "explain": "«саврасого коня» is the direct object of «дал» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c50"
   },
   {
@@ -711,7 +445,7 @@
    ],
    "correct": "третий день",
    "case": "Винительный (Accusative)",
-   "explain": "«третий день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«третий день» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c51"
   },
   {
@@ -725,36 +459,8 @@
    ],
    "correct": "королевские люди",
    "case": "Именительный (Nominative)",
-   "explain": "«королевские люди» — the subject of the sentence stands in the nominative.",
+   "explain": "«королевские люди» is the subject of «погнались» — who or what does it — so nominative.",
    "id": "c52"
-  },
-  {
-   "sentence": "Король потребовал его к себе, и тот явился опять-таки в своей шапочке, но королевна ее тотчас сдернула, и упали ему на плечи ___ мягкими кольцами, и так он был хорош, что все диву дались.",
-   "lemma": "волос",
-   "options": [
-    "золотыми волосами",
-    "золотых волосах",
-    "золотым волосам",
-    "золотые волосы"
-   ],
-   "correct": "золотые волосы",
-   "case": "Винительный (Accusative)",
-   "explain": "«золотые волосы» — the accusative marks the direct object of the verb.",
-   "id": "c53"
-  },
-  {
-   "sentence": "Король потребовал его к себе, и тот явился опять-таки в своей шапочке, но королевна ее тотчас сдернула, и упали ему на плечи золотые волосы ___, и так он был хорош, что все диву дались.",
-   "lemma": "кольцо",
-   "options": [
-    "мягких колец",
-    "мягких кольцах",
-    "мягкими кольцами",
-    "мягкие кольца"
-   ],
-   "correct": "мягкими кольцами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«мягкими кольцами» — the instrumental marks the means, company, or complement.",
-   "id": "c54"
   },
   {
    "sentence": "«Ты ли тот рыцарь, что все три дня являлся на праздник в доспехах ___ и поймал все три яблока?» — спросил король.",
@@ -767,35 +473,21 @@
    ],
    "correct": "разных цветов",
    "case": "Родительный (Genitive)",
-   "explain": "«разных цветов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«разных цветов» depends on the noun «доспехах» (whose? of what?) — genitive.",
    "id": "c55"
-  },
-  {
-   "sentence": "— «Если ты способен совершать такие дела, то ты не садовников помощник: скажи мне, кто твой отец?» — «Отец мой — ___, и золота у меня столько, сколько душе угодно».",
-   "lemma": "король",
-   "options": [
-    "могущественный король",
-    "могущественному королю",
-    "могущественного короля",
-    "могущественным королём"
-   ],
-   "correct": "могущественный король",
-   "case": "Именительный (Nominative)",
-   "explain": "«могущественный король» — the subject of the sentence stands in the nominative.",
-   "id": "c56"
   },
   {
    "sentence": "И когда все сидели за ___, тогда вдруг смолкла музыка, двери распахнулись, и важный-преважный король вступил в залу с многочисленной свитой.",
    "lemma": "стол",
    "options": [
-    "свадебный стол",
-    "свадебному столу",
+    "свадебном столе",
     "свадебным столом",
+    "свадебному столу",
     "свадебного стола"
    ],
    "correct": "свадебным столом",
    "case": "Творительный (Instrumental)",
-   "explain": "«свадебным столом» — after the preposition «за», the instrumental marks the means, company, or complement.",
+   "explain": "«свадебным столом» — «за» takes the instrumental here (где? за чем? за кем?) — the accusative would mean motion behind or 'for' (куда? за что?).",
    "id": "c57"
   },
   {
@@ -809,22 +501,8 @@
    ],
    "correct": "важный-преважный король",
    "case": "Именительный (Nominative)",
-   "explain": "«важный-преважный король» — the subject of the sentence stands in the nominative.",
+   "explain": "«важный-преважный король» is the subject of «вступил» — who or what does it — so nominative.",
    "id": "c58"
-  },
-  {
-   "sentence": "И когда все сидели за свадебным столом, тогда вдруг смолкла музыка, двери распахнулись, и важный-преважный король вступил в залу с ___.",
-   "lemma": "свита",
-   "options": [
-    "многочисленная свита",
-    "многочисленной свиты",
-    "многочисленной свите",
-    "многочисленной свитой"
-   ],
-   "correct": "многочисленной свитой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«многочисленной свитой» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c59"
   }
  ]
 }

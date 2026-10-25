@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Жила-была ___, и было у нее семь козляток, и она их любила, как всякая мать своих деток любит.",
-   "lemma": "коза",
-   "options": [
-    "старой козой",
-    "старая коза",
-    "старой козе",
-    "старой козы"
-   ],
-   "correct": "старая коза",
-   "case": "Именительный (Nominative)",
-   "explain": "«старая коза» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Козлятки отвечали: «___, уж мы поостережемся, и вы можете идти, о нас не тревожась».",
-   "lemma": "матушка",
-   "options": [
-    "милой матушкой",
-    "милая матушка",
-    "милой матушке",
-    "милой матушки"
-   ],
-   "correct": "милая матушка",
-   "case": "Именительный (Nominative)",
-   "explain": "«Милая матушка» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
    "sentence": "Тогда ___ заблеяла и преспокойно тронулась в путь.",
    "lemma": "коза",
    "options": [
@@ -39,78 +11,22 @@
    ],
    "correct": "старая коза",
    "case": "Именительный (Nominative)",
-   "explain": "«старая коза» — the subject of the sentence stands in the nominative.",
+   "explain": "«старая коза» is the subject of «заблеяла» — who or what does it — so nominative.",
    "id": "c3"
-  },
-  {
-   "sentence": "Немного прошло времени после ее ухода, как уж кто-то постучался в дверь их домика и крикнул: «Отомкнитеся, ___, ваша мать пришла и каждому из вас по гостинцу принесла».",
-   "lemma": "детушки",
-   "options": [
-    "милым детушкам",
-    "милыми детушками",
-    "милые детушки",
-    "милых детушках"
-   ],
-   "correct": "милые детушки",
-   "case": "Именительный (Nominative)",
-   "explain": "«милые детушки» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
-  },
-  {
-   "sentence": "Вернулся опять к той же двери, постучал в нее и крикнул: «Отомкнитеся, ___, ваша мать пришла, всем вам по гостинцу принесла».",
-   "lemma": "ребёночек",
-   "options": [
-    "милым деткам",
-    "милые детки",
-    "милых деток",
-    "милыми детками"
-   ],
-   "correct": "милые детки",
-   "case": "Именительный (Nominative)",
-   "explain": "«милые детки» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
   },
   {
    "sentence": "Вот и пошел злодей в ___ к той же двери, постучался и сказал: «Отомкнитеся, детушки, ваша милая матушка воротилася и каждому из вас принесла по гостинчику из леса».",
    "lemma": "раз",
    "options": [
+    "третьего раза",
     "третьим разом",
-    "третий раз",
-    "третьем разе",
-    "третьего раза"
+    "третьему разу",
+    "третий раз"
    ],
    "correct": "третий раз",
    "case": "Винительный (Accusative)",
-   "explain": "«третий раз» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«третий раз» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c6"
-  },
-  {
-   "sentence": "Вот и пошел злодей в третий раз к той же двери, постучался и сказал: «Отомкнитеся, детушки, ваша ___ воротилася и каждому из вас принесла по гостинчику из леса».",
-   "lemma": "матушка",
-   "options": [
-    "милой матушке",
-    "милая матушка",
-    "милой матушкой",
-    "милой матушки"
-   ],
-   "correct": "милая матушка",
-   "case": "Именительный (Nominative)",
-   "explain": "«милая матушка» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
-  },
-  {
-   "sentence": "Козляточки закричали: «Сначала покажи нам, какая у тебя лапа, чтобы мы могли знать, точно ли ты наша ___!»",
-   "lemma": "матушка",
-   "options": [
-    "милой матушке",
-    "милая матушка",
-    "милой матушкой",
-    "милой матушки"
-   ],
-   "correct": "милая матушка",
-   "case": "Именительный (Nominative)",
-   "explain": "«милая матушка» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
   },
   {
    "sentence": "Один прыгнул под стол, другой забился в постель, третий залез в печку, четвертый убежал на кухню, пятый спрятался в шкаф, шестой — под корыто, седьмой — в футляр для ___.",
@@ -123,21 +39,21 @@
    ],
    "correct": "часовых гирь",
    "case": "Родительный (Genitive)",
-   "explain": "«часовых гирь» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«часовых гирь» — «для» always takes the genitive.",
    "id": "c9"
   },
   {
    "sentence": "Однако же волк всех их разыскал и очень с ними не чинился: одного за другим заглотнул он своею пастью, и только младшего никак не мог найти в ___.",
    "lemma": "футляр",
    "options": [
-    "часовой футляр",
-    "часовом футляре",
     "часового футляра",
-    "часовому футляру"
+    "часовому футляру",
+    "часовом футляре",
+    "часовым футляром"
    ],
    "correct": "часовом футляре",
    "case": "Предложный (Prepositional)",
-   "explain": "«часовом футляре» — after the preposition «в», for location or topic.",
+   "explain": "«часовом футляре» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c10"
   },
   {
@@ -151,35 +67,21 @@
    ],
    "correct": "старая коза",
    "case": "Именительный (Nominative)",
-   "explain": "«старая коза» — the subject of the sentence stands in the nominative.",
+   "explain": "«старая коза» is the subject of «вернулась» — who or what does it — so nominative.",
    "id": "c11"
-  },
-  {
-   "sentence": "Наконец, когда она дошла до младшего, тоненький голосок прокричал ей: «___, я забился в часовой футляр».",
-   "lemma": "матушка",
-   "options": [
-    "милой матушкой",
-    "милая матушка",
-    "милой матушке",
-    "милой матушки"
-   ],
-   "correct": "милая матушка",
-   "case": "Именительный (Nominative)",
-   "explain": "«Милая матушка» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
   },
   {
    "sentence": "Наконец, когда она дошла до младшего, тоненький голосок прокричал ей: «Милая матушка, я забился в ___».",
    "lemma": "футляр",
    "options": [
-    "часового футляра",
     "часовой футляр",
-    "часовым футляром",
-    "часовом футляре"
+    "часовому футляру",
+    "часового футляра",
+    "часовым футляром"
    ],
    "correct": "часовой футляр",
    "case": "Винительный (Accusative)",
-   "explain": "«часовой футляр» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«часовой футляр» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c13"
   },
   {
@@ -193,7 +95,7 @@
    ],
    "correct": "остальных козляток",
    "case": "Винительный (Accusative)",
-   "explain": "«остальных козляток» — the accusative marks the direct object of the verb.",
+   "explain": "«остальных козляток» is the direct object of «сожрал» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c14"
   },
   {
@@ -207,7 +109,7 @@
    ],
    "correct": "старая коза",
    "case": "Именительный (Nominative)",
-   "explain": "«старая коза» — the subject of the sentence stands in the nominative.",
+   "explain": "«старая коза» is the subject of «пошла» — who or what does it — so nominative.",
    "id": "c15"
   },
   {
@@ -221,36 +123,8 @@
    ],
    "correct": "старая коза",
    "case": "Именительный (Nominative)",
-   "explain": "«старая коза» — the subject of the sentence stands in the nominative.",
+   "explain": "«старая коза» is the subject of «сказала» — who or what does it — so nominative.",
    "id": "c16"
-  },
-  {
-   "sentence": "А старая коза сказала: «Теперь ступайте, соберите мне побольше булыжников, мы их навалим этому ___ в утробу, пока он спит».",
-   "lemma": "зверина",
-   "options": [
-    "проклятого зверины",
-    "проклятому зверине",
-    "проклятого зверину",
-    "проклятом зверине"
-   ],
-   "correct": "проклятому зверине",
-   "case": "Дательный (Dative)",
-   "explain": "«проклятому зверине» — the dative marks the indirect object or recipient.",
-   "id": "c17"
-  },
-  {
-   "sentence": "А ___ еще того скорее зашила ему разрез, так что он ничего не приметил и даже не пошевельнулся.",
-   "lemma": "коза",
-   "options": [
-    "старой козой",
-    "старая коза",
-    "старой козе",
-    "старой козы"
-   ],
-   "correct": "старая коза",
-   "case": "Именительный (Nominative)",
-   "explain": "«старая коза» — the subject of the sentence stands in the nominative.",
-   "id": "c18"
   },
   {
    "sentence": "Когда же наконец волк выспался, он поднялся на ноги, и так как ___ возбуждал у него в желудке сильную жажду, то вздумал он пробраться к ключу и напиться.",
@@ -263,7 +137,7 @@
    ],
    "correct": "каменный груз",
    "case": "Именительный (Nominative)",
-   "explain": "«каменный груз» — the subject of the sentence stands in the nominative.",
+   "explain": "«каменный груз» is the subject of «возбуждал» — who or what does it — so nominative.",
    "id": "c19"
   }
  ]

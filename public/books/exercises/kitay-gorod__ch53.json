@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "У ней был настоящий maître d’hôtel, обруселый эльзасец, Огюст, ___, в кудрях на круглой голове и с легким немецким акцентом.",
-   "lemma": "блондин",
-   "options": [
-    "полный блондин",
-    "полного блондина",
-    "полным блондином",
-    "полному блондину"
-   ],
-   "correct": "полный блондин",
-   "case": "Именительный (Nominative)",
-   "explain": "«полный блондин» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "У ней был настоящий maître d’hôtel, обруселый эльзасец, Огюст, полный блондин, в кудрях на ___ и с легким немецким акцентом.",
    "lemma": "голова",
    "options": [
@@ -25,22 +11,8 @@
    ],
    "correct": "круглой голове",
    "case": "Предложный (Prepositional)",
-   "explain": "«круглой голове» — after the preposition «на», for location or topic.",
+   "explain": "«круглой голове» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c2"
-  },
-  {
-   "sentence": "У ней был настоящий maître d’hôtel, обруселый эльзасец, Огюст, полный блондин, в кудрях на круглой голове и с легким ___.",
-   "lemma": "акцент",
-   "options": [
-    "немецким акцентом",
-    "немецкому акценту",
-    "немецкий акцент",
-    "немецком акценте"
-   ],
-   "correct": "немецким акцентом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«немецким акцентом» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c3"
   },
   {
    "sentence": "Одна, с dame de compagnie из умных ___.",
@@ -53,22 +25,8 @@
    ],
    "correct": "пожилых парижанок",
    "case": "Родительный (Genitive)",
-   "explain": "«пожилых парижанок» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«пожилых парижанок» — «из» always takes the genitive.",
    "id": "c4"
-  },
-  {
-   "sentence": "Она и теперь может называться «madame de Niétoff», a к тому времени ее «благоверному» дадут ___.",
-   "lemma": "чин",
-   "options": [
-    "генеральском чине",
-    "генеральский чин",
-    "генеральскому чину",
-    "генеральским чином"
-   ],
-   "correct": "генеральский чин",
-   "case": "Винительный (Accusative)",
-   "explain": "«генеральский чин» — the accusative marks the direct object of the verb.",
-   "id": "c5"
   },
   {
    "sentence": "Она перешла в свой кабинет, комнату ___, с темно-фиолетовым штофом в черных рамах, с бронзой Louis XVI.",
@@ -81,50 +39,8 @@
    ],
    "correct": "строгого стиля",
    "case": "Родительный (Genitive)",
-   "explain": "«строгого стиля» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«строгого стиля» depends on the noun «комнату» (whose? of what?) — genitive.",
    "id": "c6"
-  },
-  {
-   "sentence": "Шкап с книгами и ___ — также черного дерева.",
-   "lemma": "стол",
-   "options": [
-    "письменным столом",
-    "письменному столу",
-    "письменный стол",
-    "письменном столе"
-   ],
-   "correct": "письменный стол",
-   "case": "Винительный (Accusative)",
-   "explain": "«письменный стол» — the accusative marks the direct object of the verb.",
-   "id": "c7"
-  },
-  {
-   "sentence": "Разноцветные ___ пестрели, уходя вдаль, до порога залы, где налощенный паркет желтел нежными колерами штучного пола.",
-   "lemma": "ковёр",
-   "options": [
-    "сплошных ковров",
-    "сплошные ковры",
-    "сплошными коврами",
-    "сплошных коврах"
-   ],
-   "correct": "сплошные ковры",
-   "case": "Именительный (Nominative)",
-   "explain": "«сплошные ковры» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
-  },
-  {
-   "sentence": "Разноцветные сплошные ковры пестрели, уходя вдаль, до порога залы, где налощенный паркет желтел нежными колерами ___.",
-   "lemma": "пол",
-   "options": [
-    "штучного пола",
-    "штучным полом",
-    "штучном поле",
-    "штучному полу"
-   ],
-   "correct": "штучного пола",
-   "case": "Родительный (Genitive)",
-   "explain": "«штучного пола» — the genitive here marks possession, absence, or quantity.",
-   "id": "c9"
   }
  ]
 }

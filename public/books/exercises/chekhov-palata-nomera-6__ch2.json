@@ -1,48 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Однажды ___, подняв воротник своего пальто и шлепая по грязи, по переулкам и задворкам пробирался Иван Дмитрич к какому-то мещанину, чтобы получить по исполнительному листу.",
-   "lemma": "утро",
-   "options": [
-    "осеннем утре",
-    "осеннему утру",
-    "осеннее утро",
-    "осенним утром"
-   ],
-   "correct": "осенним утром",
-   "case": "Творительный (Instrumental)",
-   "explain": "«осенним утром» — the instrumental marks the means, company, or complement.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Дома ___ у него не выходили из головы арестанты и солдаты с ружьями, и непонятная душевная тревога мешала ему читать и сосредоточиться.",
-   "lemma": "день",
-   "options": [
-    "целом дне",
-    "целого дня",
-    "целый день",
-    "целым днём"
-   ],
-   "correct": "целый день",
-   "case": "Винительный (Accusative)",
-   "explain": "«целый день» — the accusative marks the direct object of the verb.",
-   "id": "c3"
-  },
-  {
-   "sentence": "Дома целый день у него не выходили из головы арестанты и солдаты с ружьями, и непонятная ___ мешала ему читать и сосредоточиться.",
-   "lemma": "тревога",
-   "options": [
-    "душевной тревоге",
-    "душевная тревога",
-    "душевной тревоги",
-    "душевной тревогой"
-   ],
-   "correct": "душевная тревога",
-   "case": "Именительный (Nominative)",
-   "explain": "«душевная тревога» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
-  },
-  {
    "sentence": "Ведь недаром же вековой ___ учит от сумы да тюрьмы не зарекаться.",
    "lemma": "опыт",
    "options": [
@@ -53,22 +11,8 @@
    ],
    "correct": "народный опыт",
    "case": "Именительный (Nominative)",
-   "explain": "«народный опыт» — the subject of the sentence stands in the nominative.",
+   "explain": "«народный опыт» is the subject of «учит» — who or what does it — so nominative.",
    "id": "c5"
-  },
-  {
-   "sentence": "А ___ при теперешнем судопроизводстве очень возможна и ничего в ней нет мудреного.",
-   "lemma": "ошибка",
-   "options": [
-    "судебной ошибке",
-    "судебной ошибкой",
-    "судебной ошибки",
-    "судебная ошибка"
-   ],
-   "correct": "судебная ошибка",
-   "case": "Именительный (Nominative)",
-   "explain": "«судебная ошибка» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
   },
   {
    "sentence": "А судебная ошибка при ___ очень возможна и ничего в ней нет мудреного.",
@@ -81,22 +25,8 @@
    ],
    "correct": "теперешнем судопроизводстве",
    "case": "Предложный (Prepositional)",
-   "explain": "«теперешнем судопроизводстве» — after the preposition «при», for location or topic.",
+   "explain": "«теперешнем судопроизводстве» — «при» always takes the prepositional.",
    "id": "c7"
-  },
-  {
-   "sentence": "При формальном же, ___ к личности, для того, чтобы невинного человека лишить всех прав состояния и присудить к каторге, судье нужно только одно: время.",
-   "lemma": "отношение",
-   "options": [
-    "бездушное отношение",
-    "бездушном отношении",
-    "бездушным отношением",
-    "бездушному отношению"
-   ],
-   "correct": "бездушном отношении",
-   "case": "Предложный (Prepositional)",
-   "explain": "«бездушном отношении» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c8"
   },
   {
    "sentence": "Только время на соблюдение ___, за которые судье платят жалованье, а затем – всё кончено.",
@@ -109,22 +39,8 @@
    ],
    "correct": "кое-каких формальностей",
    "case": "Родительный (Genitive)",
-   "explain": "«кое-каких формальностей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«кое-каких формальностей» depends on the noun «соблюдение» (whose? of what?) — genitive.",
    "id": "c9"
-  },
-  {
-   "sentence": "Ищи потом справедливости и защиты в этом маленьком, грязном городишке, за двести верст от ___!",
-   "lemma": "дорога",
-   "options": [
-    "железной дорогой",
-    "железная дорога",
-    "железной дороги",
-    "железной дороге"
-   ],
-   "correct": "железной дороги",
-   "case": "Родительный (Genitive)",
-   "explain": "«железной дороги» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
-   "id": "c10"
   },
   {
    "sentence": "Не могли же они в ___ прийти в голову безо всякого повода.",
@@ -137,35 +53,35 @@
    ],
    "correct": "самом деле",
    "case": "Предложный (Prepositional)",
-   "explain": "«самом деле» — after the preposition «в», for location or topic.",
+   "explain": "«самом деле» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c11"
   },
   {
    "sentence": "Он боялся, что его как-нибудь подведут, положат ему незаметно в карман взятку и потом уличат, или он сам нечаянно сделает в казенных бумагах ошибку, равносильную подлогу, или потеряет ___.",
    "lemma": "деньга",
    "options": [
-    "чужих денег",
-    "чужим деньгам",
     "чужие деньги",
-    "чужих деньгах"
+    "чужих деньгах",
+    "чужим деньгам",
+    "чужими деньгами"
    ],
    "correct": "чужие деньги",
    "case": "Винительный (Accusative)",
-   "explain": "«чужие деньги» — the accusative marks the direct object of the verb.",
+   "explain": "«чужие деньги» is the direct object of «потеряет» (кого? что?) — accusative.",
    "id": "c12"
   },
   {
    "sentence": "Странно, что никогда в другое время мысль его не была так гибка и изобретательна, как теперь, когда он каждый день выдумывал тысячи ___ к тому, чтобы серьезно опасаться за свою свободу и честь.",
    "lemma": "повод",
    "options": [
-    "разнообразные поводы",
-    "разнообразных поводах",
+    "разнообразными поводами",
     "разнообразных поводов",
-    "разнообразным поводам"
+    "разнообразным поводам",
+    "разнообразных поводах"
    ],
    "correct": "разнообразных поводов",
    "case": "Родительный (Genitive)",
-   "explain": "«разнообразных поводов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«разнообразных поводов» is the object of a negated verb («не выдумывал») — genitive instead of the accusative.",
    "id": "c13"
   },
   {
@@ -179,36 +95,8 @@
    ],
    "correct": "внешнему миру",
    "case": "Дательный (Dative)",
-   "explain": "«внешнему миру» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«внешнему миру» — «к» always takes the dative.",
    "id": "c14"
-  },
-  {
-   "sentence": "В городе только и разговора было, что об этих трупах и ___.",
-   "lemma": "убийца",
-   "options": [
-    "неизвестных убийцах",
-    "неизвестным убийцам",
-    "неизвестными убийцами",
-    "неизвестные убийцы"
-   ],
-   "correct": "неизвестных убийцах",
-   "case": "Предложный (Prepositional)",
-   "explain": "«неизвестных убийцах» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c15"
-  },
-  {
-   "sentence": "В погребе просидел он день, потом ночь и ___, сильно озяб и, дождавшись потемок, тайком, как вор, пробрался к себе в комнату.",
-   "lemma": "день",
-   "options": [
-    "другого дня",
-    "другой день",
-    "другим днём",
-    "другом дне"
-   ],
-   "correct": "другой день",
-   "case": "Винительный (Accusative)",
-   "explain": "«другой день» — the accusative marks the direct object of the verb.",
-   "id": "c17"
   }
  ]
 }

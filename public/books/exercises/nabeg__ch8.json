@@ -1,48 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Длинные ___ с плоскими земляными крышами и красивыми трубами были расположены по неровным каменистым буграм, между которыми текла небольшая река.",
-   "lemma": "сакля",
-   "options": [
-    "чистым саклям",
-    "чистые сакли",
-    "чистых саклях",
-    "чистыми саклями"
-   ],
-   "correct": "чистые сакли",
-   "case": "Именительный (Nominative)",
-   "explain": "«чистые сакли» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Длинные чистые сакли с плоскими ___ и красивыми трубами были расположены по неровным каменистым буграм, между которыми текла небольшая река.",
-   "lemma": "крыша",
-   "options": [
-    "земляные крыши",
-    "земляных крышах",
-    "земляными крышами",
-    "земляных крыш"
-   ],
-   "correct": "земляными крышами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«земляными крышами» — after the preposition «по», the instrumental marks the means, company, or complement.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Длинные чистые сакли с плоскими земляными крышами и ___ были расположены по неровным каменистым буграм, между которыми текла небольшая река.",
-   "lemma": "труба",
-   "options": [
-    "красивым трубам",
-    "красивых трубах",
-    "красивые трубы",
-    "красивыми трубами"
-   ],
-   "correct": "красивыми трубами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«красивыми трубами» — the instrumental marks the means, company, or complement.",
-   "id": "c3"
-  },
-  {
    "sentence": "Длинные чистые сакли с плоскими земляными крышами и красивыми трубами были расположены по неровным каменистым буграм, между которыми текла ___.",
    "lemma": "река",
    "options": [
@@ -53,7 +11,7 @@
    ],
    "correct": "небольшая река",
    "case": "Именительный (Nominative)",
-   "explain": "«небольшая река» — the subject of the sentence stands in the nominative.",
+   "explain": "«небольшая река» is the subject of «текла» — who or what does it — so nominative.",
    "id": "c4"
   },
   {
@@ -67,36 +25,8 @@
    ],
    "correct": "пустой аул",
    "case": "Именительный (Nominative)",
-   "explain": "«пустой аул» — the subject of the sentence stands in the nominative.",
+   "explain": "«пустой аул» is the subject of «оживился» — who or what does it — so nominative.",
    "id": "c6"
-  },
-  {
-   "sentence": "___ поручика Розенкранца то там, то сям мелькала в ауле; он без умолку распоряжался и имел вид человека, чем-то крайне озабоченного.",
-   "lemma": "фигура",
-   "options": [
-    "высокая фигура",
-    "высокой фигуре",
-    "высокой фигурой",
-    "высокой фигуры"
-   ],
-   "correct": "высокая фигура",
-   "case": "Именительный (Nominative)",
-   "explain": "«Высокая фигура» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
-  },
-  {
-   "sentence": "Я видел, как он с торжествующим видом вышел из одной сакли; вслед за ним двое солдат вели связанного ___.",
-   "lemma": "татарин",
-   "options": [
-    "старого татарина",
-    "старому татарину",
-    "старом татарине",
-    "старым татарином"
-   ],
-   "correct": "старого татарина",
-   "case": "Родительный (Genitive)",
-   "explain": "«старого татарина» — the genitive here marks possession, absence, or quantity.",
-   "id": "c10"
   },
   {
    "sentence": "Возвращаясь назад, я видел, как этот старик, без шапки, со связанными руками, трясся за седлом ___ и с тем же бесстрастным выражением смотрел вокруг себя.",
@@ -109,22 +39,8 @@
    ],
    "correct": "линейного казака",
    "case": "Родительный (Genitive)",
-   "explain": "«линейного казака» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«линейного казака» depends on the noun «седлом» (whose? of what?) — genitive.",
    "id": "c11"
-  },
-  {
-   "sentence": "Возвращаясь назад, я видел, как этот старик, без шапки, со связанными руками, трясся за седлом линейного казака и с тем же ___ смотрел вокруг себя.",
-   "lemma": "выражение",
-   "options": [
-    "бесстрастным выражением",
-    "бесстрастное выражение",
-    "бесстрастном выражении",
-    "бесстрастному выражению"
-   ],
-   "correct": "бесстрастным выражением",
-   "case": "Творительный (Instrumental)",
-   "explain": "«бесстрастным выражением» — the instrumental marks the means, company, or complement.",
-   "id": "c12"
   },
   {
    "sentence": "— Неприятеля, кажется, было немного, — сказал я ему, желая узнать его мнение о ___.",
@@ -137,7 +53,7 @@
    ],
    "correct": "бывшем деле",
    "case": "Предложный (Prepositional)",
-   "explain": "«бывшем деле» — after the preposition «о», for location or topic.",
+   "explain": "«бывшем деле» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c13"
   },
   {
@@ -151,7 +67,7 @@
    ],
    "correct": "молодой прапорщик",
    "case": "Именительный (Nominative)",
-   "explain": "«Молодой прапорщик» — the subject of the sentence stands in the nominative.",
+   "explain": "«молодой прапорщик» is the subject of «растерялся» — who or what does it — so nominative.",
    "id": "c15"
   }
  ]

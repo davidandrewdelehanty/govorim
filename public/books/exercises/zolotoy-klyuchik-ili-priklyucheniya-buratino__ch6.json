@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "На занавесе были нарисованы ___, девочки в черных масках, страшные бородатые люди в колпаках со звездами, солнце, похожее на блин с носом и глазами, и другие занимательные картинки.",
-   "lemma": "человечек",
-   "options": [
-    "танцующих человечков",
-    "танцующими человечками",
-    "танцующим человечкам",
-    "танцующие человечки"
-   ],
-   "correct": "танцующие человечки",
-   "case": "Именительный (Nominative)",
-   "explain": "«танцующие человечки» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "На занавесе были нарисованы танцующие человечки, девочки в черных масках, страшные ___ в колпаках со звездами, солнце, похожее на блин с носом и глазами, и другие занимательные картинки.",
-   "lemma": "человек",
-   "options": [
-    "бородатые люди",
-    "бородатым людям",
-    "бородатых людей",
-    "бородатых людях"
-   ],
-   "correct": "бородатые люди",
-   "case": "Именительный (Nominative)",
-   "explain": "«бородатые люди» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
    "sentence": "На ___ справа и слева стояли картонные деревья.",
    "lemma": "сцена",
    "options": [
@@ -39,7 +11,7 @@
    ],
    "correct": "маленькой сцене",
    "case": "Предложный (Prepositional)",
-   "explain": "«маленькой сцене» — after the preposition «на», for location or topic.",
+   "explain": "«маленькой сцене» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c3"
   },
   {
@@ -53,22 +25,8 @@
    ],
    "correct": "картонные деревья",
    "case": "Именительный (Nominative)",
-   "explain": "«картонные деревья» — the subject of the sentence stands in the nominative.",
+   "explain": "«картонные деревья» is the subject of «стояли» — who or what does it — so nominative.",
    "id": "c4"
-  },
-  {
-   "sentence": "Над ними висел фонарь в виде луны и отражался в кусочке зеркала, на котором плавали два лебедя, сделанные из ваты, с ___.",
-   "lemma": "нос",
-   "options": [
-    "золотых носах",
-    "золотыми носами",
-    "золотым носам",
-    "золотые носы"
-   ],
-   "correct": "золотыми носами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«золотыми носами» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c5"
   },
   {
    "sentence": "Из-за ___ появился маленький человечек в длинной белой рубашке с длинными рукавами.",
@@ -81,7 +39,7 @@
    ],
    "correct": "картонного дерева",
    "case": "Родительный (Genitive)",
-   "explain": "«картонного дерева» — after the preposition «из-за», the genitive here marks possession, absence, or quantity.",
+   "explain": "«картонного дерева» — «из-за» always takes the genitive.",
    "id": "c6"
   },
   {
@@ -95,7 +53,7 @@
    ],
    "correct": "маленький человечек",
    "case": "Именительный (Nominative)",
-   "explain": "«маленький человечек» — the subject of the sentence stands in the nominative.",
+   "explain": "«маленький человечек» is the subject of «появился» — who or what does it — so nominative.",
    "id": "c7"
   },
   {
@@ -109,22 +67,8 @@
    ],
    "correct": "белой рубашке",
    "case": "Предложный (Prepositional)",
-   "explain": "«белой рубашке» — after the preposition «в», for location or topic.",
+   "explain": "«белой рубашке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c8"
-  },
-  {
-   "sentence": "Его лицо было обсыпано пудрой, белой, как ___.",
-   "lemma": "порошок",
-   "options": [
-    "зубной порошок",
-    "зубном порошке",
-    "зубным порошком",
-    "зубного порошка"
-   ],
-   "correct": "зубной порошок",
-   "case": "Именительный (Nominative)",
-   "explain": "«зубной порошок» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
   },
   {
    "sentence": "Из-за другого ___ выскочил другой человек, весь клетчатый, как шахматная доска.",
@@ -137,50 +81,8 @@
    ],
    "correct": "картонного дерева",
    "case": "Родительный (Genitive)",
-   "explain": "«картонного дерева» — after the preposition «из-за», the genitive here marks possession, absence, or quantity.",
+   "explain": "«картонного дерева» — «из-за» always takes the genitive.",
    "id": "c12"
-  },
-  {
-   "sentence": "Из-за другого картонного дерева выскочил ___, весь клетчатый, как шахматная доска.",
-   "lemma": "человек",
-   "options": [
-    "другим человеком",
-    "другой человек",
-    "другому человеку",
-    "другом человеке"
-   ],
-   "correct": "другой человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«другой человек» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
-  },
-  {
-   "sentence": "Из-за другого картонного дерева выскочил другой человек, весь клетчатый, как ___.",
-   "lemma": "доска",
-   "options": [
-    "шахматная доска",
-    "шахматной доской",
-    "шахматной доске",
-    "шахматной доски"
-   ],
-   "correct": "шахматная доска",
-   "case": "Именительный (Nominative)",
-   "explain": "«шахматная доска» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
-  },
-  {
-   "sentence": "Густая нечесаная борода его волочилась по полу, выпученные глаза вращались, ___ лязгал зубами, будто это был не человек, а крокодил.",
-   "lemma": "рот",
-   "options": [
-    "огромному рту",
-    "огромный рот",
-    "огромного рта",
-    "огромным ртом"
-   ],
-   "correct": "огромный рот",
-   "case": "Именительный (Nominative)",
-   "explain": "«огромный рот» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
   },
   {
    "sentence": "Это был хозяин ___, доктор кукольных наук синьор Карабас Барабас.",
@@ -193,7 +95,7 @@
    ],
    "correct": "кукольного театра",
    "case": "Родительный (Genitive)",
-   "explain": "«кукольного театра» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«кукольного театра» depends on the noun «хозяин» (whose? of what?) — genitive.",
    "id": "c18"
   },
   {
@@ -207,7 +109,7 @@
    ],
    "correct": "кукольных наук",
    "case": "Родительный (Genitive)",
-   "explain": "«кукольных наук» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«кукольных наук» depends on the noun «доктор» (whose? of what?) — genitive.",
    "id": "c19"
   },
   {
@@ -221,22 +123,8 @@
    ],
    "correct": "кукольных наук",
    "case": "Родительный (Genitive)",
-   "explain": "«кукольных наук» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«кукольных наук» depends on the noun «Доктор» (whose? of what?) — genitive.",
    "id": "c20"
-  },
-  {
-   "sentence": "Сунув нижнюю часть бороды в карман, чтобы не мешала, он сел перед очагом, где на вертеле жарились ___ и два цыпленка.",
-   "lemma": "кролик",
-   "options": [
-    "целого кролика",
-    "целому кролику",
-    "целом кролике",
-    "целый кролик"
-   ],
-   "correct": "целый кролик",
-   "case": "Именительный (Nominative)",
-   "explain": "«целый кролик» — the subject of the sentence stands in the nominative.",
-   "id": "c21"
   },
   {
    "sentence": "— Он сделан из ___, я его подкину в огонь, мое жаркое живо зажарится.",
@@ -249,7 +137,7 @@
    ],
    "correct": "сухого дерева",
    "case": "Родительный (Genitive)",
-   "explain": "«сухого дерева» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«сухого дерева» — «из» always takes the genitive.",
    "id": "c22"
   }
  ]

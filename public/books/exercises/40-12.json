@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Он вошел в дом Божий и ел ___ , который нельзя было есть ни ему, ни его людям, но только священникам .",
-   "lemma": "хлеб",
-   "options": [
-    "священном хлебе",
-    "священному хлебу",
-    "священного хлеба",
-    "священный хлеб"
-   ],
-   "correct": "священный хлеб",
-   "case": "Винительный (Accusative)",
-   "explain": "«священный хлеб» — the accusative marks the direct object of the verb.",
-   "id": "c1"
-  },
-  {
    "sentence": "Как может кто-нибудь войти в дом ___ и разграбить его добро, если сначала не свяжет его?",
    "lemma": "человек",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "сильного человека",
    "case": "Родительный (Genitive)",
-   "explain": "«сильного человека» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«сильного человека» depends on the noun «дом» (whose? of what?) — genitive.",
    "id": "c2"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "добрый человек",
    "case": "Именительный (Nominative)",
-   "explain": "«добрый человек» — the subject of the sentence stands in the nominative.",
+   "explain": "«добрый человек» is the subject of «выносит» — who or what does it — so nominative.",
    "id": "c3"
   },
   {
@@ -53,7 +39,7 @@
    ],
    "correct": "злой человек",
    "case": "Именительный (Nominative)",
-   "explain": "«злой человек» — the subject of the sentence stands in the nominative.",
+   "explain": "«злой человек» is the subject of «выносит» — who or what does it — so nominative.",
    "id": "c4"
   },
   {
@@ -67,7 +53,7 @@
    ],
    "correct": "собственные слова",
    "case": "Именительный (Nominative)",
-   "explain": "«собственные слова» — the subject of the sentence stands in the nominative.",
+   "explain": "«собственные слова» is the subject of «послужат» — who or what does it — so nominative.",
    "id": "c5"
   },
   {
@@ -81,22 +67,8 @@
    ],
    "correct": "огромной рыбы",
    "case": "Родительный (Genitive)",
-   "explain": "«огромной рыбы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«огромной рыбы» depends on the noun «желудке» (whose? of what?) — genitive.",
    "id": "c6"
-  },
-  {
-   "sentence": "Царица Юга тоже встанет в День Суда и обвинит это поколение, потому что она пришла с ___ света послушать мудрость Соломона.",
-   "lemma": "конец",
-   "options": [
-    "другому концу",
-    "другом конце",
-    "другого конца",
-    "другой конец"
-   ],
-   "correct": "другого конца",
-   "case": "Родительный (Genitive)",
-   "explain": "«другого конца» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
-   "id": "c7"
   },
   {
    "sentence": "Когда ___ выходит из человека, он скитается по безводным местам, ища место для отдыха, но не находит его.",
@@ -109,35 +81,21 @@
    ],
    "correct": "нечистый дух",
    "case": "Именительный (Nominative)",
-   "explain": "«нечистый дух» — the subject of the sentence stands in the nominative.",
+   "explain": "«нечистый дух» is the subject of «выходит» — who or what does it — so nominative.",
    "id": "c8"
-  },
-  {
-   "sentence": "Тогда он идет, берет с собой семь ___, еще более злых, чем он сам, и они приходят и поселяются там.",
-   "lemma": "дух",
-   "options": [
-    "других духов",
-    "другие духи",
-    "другими духами",
-    "другим духам"
-   ],
-   "correct": "других духов",
-   "case": "Родительный (Genitive)",
-   "explain": "«других духов» — the genitive here marks possession, absence, or quantity.",
-   "id": "c10"
   },
   {
    "sentence": "Так будет и с этим ___.",
    "lemma": "поколение",
    "options": [
-    "злое поколение",
     "злом поколении",
-    "злого поколения",
-    "злым поколением"
+    "злым поколением",
+    "злое поколение",
+    "злому поколению"
    ],
    "correct": "злым поколением",
    "case": "Творительный (Instrumental)",
-   "explain": "«злым поколением» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«злым поколением» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c11"
   }
  ]

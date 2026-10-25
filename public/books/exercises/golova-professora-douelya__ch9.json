@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "___ с окном в сад.",
-   "lemma": "комната",
-   "options": [
-    "небольшой комнаты",
-    "небольшой комнатой",
-    "небольшая комната",
-    "небольшой комнате"
-   ],
-   "correct": "небольшая комната",
-   "case": "Именительный (Nominative)",
-   "explain": "«Небольшая комната» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Белая кровать, застеленная ___.",
    "lemma": "одеяло",
    "options": [
@@ -25,22 +11,8 @@
    ],
    "correct": "светло-серым одеялом",
    "case": "Творительный (Instrumental)",
-   "explain": "«светло-серым одеялом» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «застеленная», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c2"
-  },
-  {
-   "sentence": "___ и два таких-же белых стула.",
-   "lemma": "столик",
-   "options": [
-    "белым столиком",
-    "белому столику",
-    "белый столик",
-    "белого столика"
-   ],
-   "correct": "белый столик",
-   "case": "Винительный (Accusative)",
-   "explain": "«Белый столик» — the accusative marks the direct object of the verb.",
-   "id": "c3"
   },
   {
    "sentence": "Между ними мелькают ___ сестер.",
@@ -53,7 +25,7 @@
    ],
    "correct": "белые халаты",
    "case": "Именительный (Nominative)",
-   "explain": "«белые халаты» — the subject of the sentence stands in the nominative.",
+   "explain": "«белые халаты» is the subject of «мелькают» — who or what does it — so nominative.",
    "id": "c4"
   },
   {
@@ -67,7 +39,7 @@
    ],
    "correct": "тонкие руки",
    "case": "Винительный (Accusative)",
-   "explain": "«тонкие руки» — the accusative marks the direct object of the verb.",
+   "explain": "«тонкие руки» is the direct object of «сжала» (кого? что?) — accusative.",
    "id": "c5"
   },
   {
@@ -81,7 +53,7 @@
    ],
    "correct": "научного долга",
    "case": "Родительный (Genitive)",
-   "explain": "«научного долга» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«научного долга» depends on the noun «жертве» (whose? of what?) — genitive.",
    "id": "c6"
   },
   {
@@ -95,7 +67,7 @@
    ],
    "correct": "загородной больнице",
    "case": "Предложный (Prepositional)",
-   "explain": "«загородной больнице» — after the preposition «в», for location or topic.",
+   "explain": "«загородной больнице» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c7"
   },
   {
@@ -109,7 +81,7 @@
    ],
    "correct": "общегосударственного торжества",
    "case": "Родительный (Genitive)",
-   "explain": "«общегосударственного торжества» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«общегосударственного торжества» depends on the noun «характер» (whose? of what?) — genitive.",
    "id": "c9"
   },
   {
@@ -123,22 +95,8 @@
    ],
    "correct": "другом номере",
    "case": "Предложный (Prepositional)",
-   "explain": "«другом номере» — after the preposition «в», for location or topic.",
+   "explain": "«другом номере» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c10"
-  },
-  {
-   "sentence": "Таким образом, рассеиваются ___, — если они у кого и были, — о виновности профессора Керна.",
-   "lemma": "сомнение",
-   "options": [
-    "последних сомнений",
-    "последним сомнениям",
-    "последние сомнения",
-    "последними сомнениями"
-   ],
-   "correct": "последние сомнения",
-   "case": "Винительный (Accusative)",
-   "explain": "«последние сомнения» — the accusative marks the direct object of the verb.",
-   "id": "c11"
   },
   {
    "sentence": "Перед ней стоял ___, одетый с изящной простотой.",
@@ -151,36 +109,22 @@
    ],
    "correct": "молодой человек",
    "case": "Именительный (Nominative)",
-   "explain": "«молодой человек» — the subject of the sentence stands in the nominative.",
+   "explain": "«молодой человек» is the subject of «стоял» — who or what does it — so nominative.",
    "id": "c12"
   },
   {
    "sentence": "Сейчас не время говорить о моей благодарности за ваш ___.",
    "lemma": "поступок",
    "options": [
-    "самоотверженный поступок",
     "самоотверженному поступку",
-    "самоотверженным поступком",
-    "самоотверженного поступка"
+    "самоотверженного поступка",
+    "самоотверженный поступок",
+    "самоотверженном поступке"
    ],
    "correct": "самоотверженный поступок",
    "case": "Винительный (Accusative)",
-   "explain": "«самоотверженный поступок» — after the preposition «за», the accusative marks the direct object of the verb.",
+   "explain": "«самоотверженный поступок» — «за» takes the accusative here (куда? за что? за кого?) — the instrumental would mean position behind or at (где? за чем?).",
    "id": "c14"
-  },
-  {
-   "sentence": "Могу только сообщить, что голова ему была еще нужна для окончания одной ___.",
-   "lemma": "работа",
-   "options": [
-    "крупной работе",
-    "крупной работы",
-    "крупная работа",
-    "крупной работой"
-   ],
-   "correct": "крупной работы",
-   "case": "Родительный (Genitive)",
-   "explain": "«крупной работы» — the genitive here marks possession, absence, or quantity.",
-   "id": "c15"
   },
   {
    "sentence": "Но я надеюсь, что мы с вами скоро встретимся в ___!",
@@ -193,7 +137,7 @@
    ],
    "correct": "другой обстановке",
    "case": "Предложный (Prepositional)",
-   "explain": "«другой обстановке» — after the preposition «в», for location or topic.",
+   "explain": "«другой обстановке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c16"
   }
  ]

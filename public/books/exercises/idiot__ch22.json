@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "___, сопровождавший генерала, был лет двадцати восьми, высокий, стройный, с прекрасным и умным лицом, с блестящим, полным остроумия и насмешки взглядом больших черных глаз.",
-   "lemma": "человек",
-   "options": [
-    "молодым человеком",
-    "молодом человеке",
-    "молодому человеку",
-    "молодой человек"
-   ],
-   "correct": "молодой человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«Молодой человек» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Но, по крайней мере, ___ несколько поправили его неловкое положение.",
    "lemma": "гость",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "новые гости",
    "case": "Именительный (Nominative)",
-   "explain": "«новые гости» — the subject of the sentence stands in the nominative.",
+   "explain": "«новые гости» is the subject of «поправили» — who or what does it — so nominative.",
    "id": "c2"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "насмешливая улыбка",
    "case": "Именительный (Nominative)",
-   "explain": "«Насмешливая улыбка» — the subject of the sentence stands in the nominative.",
+   "explain": "«насмешливая улыбка» is the subject of «бродила» — who or what does it — so nominative.",
    "id": "c3"
   },
   {
@@ -53,64 +39,8 @@
    ],
    "correct": "нового гостя",
    "case": "Родительный (Genitive)",
-   "explain": "«нового гостя» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«нового гостя» depends on the noun «губах» (whose? of what?) — genitive.",
    "id": "c4"
-  },
-  {
-   "sentence": "___ были произнесены, оба пожали друг другу руку и пристально заглянули друг другу в глаза.",
-   "lemma": "вежливость",
-   "options": [
-    "взаимных вежливостях",
-    "взаимные вежливости",
-    "взаимных вежливостей",
-    "взаимными вежливостями"
-   ],
-   "correct": "взаимные вежливости",
-   "case": "Именительный (Nominative)",
-   "explain": "«Взаимные вежливости» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
-  },
-  {
-   "sentence": "Сам ___ кричит, что не надо стулья ломать.",
-   "lemma": "дело",
-   "options": [
-    "первое дело",
-    "первом деле",
-    "первого дела",
-    "первым делом"
-   ],
-   "correct": "первым делом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«первым делом» — the instrumental marks the means, company, or complement.",
-   "id": "c9"
-  },
-  {
-   "sentence": "Да он и о серьезных-то вещах говорил всегда с таким ___, что никак его разобрать нельзя, особенно если сам захочет, чтобы не разобрали.",
-   "lemma": "вид",
-   "options": [
-    "шутливому виду",
-    "шутливый вид",
-    "шутливым видом",
-    "шутливого вида"
-   ],
-   "correct": "шутливым видом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«шутливым видом» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c10"
-  },
-  {
-   "sentence": "— Значит, \"___\" опять на сцене?",
-   "lemma": "рыцарь",
-   "options": [
-    "бедный рыцарь",
-    "бедного рыцаря",
-    "бедном рыцаре",
-    "бедному рыцарю"
-   ],
-   "correct": "бедный рыцарь",
-   "case": "Именительный (Nominative)",
-   "explain": "«бедный рыцарь» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
   },
   {
    "sentence": "— Да он иначе и не говорит, как из книжек, — подхватил Евгений Павлович, — целыми фразами из ___ выражается.",
@@ -123,49 +53,21 @@
    ],
    "correct": "критических обозрений",
    "case": "Родительный (Genitive)",
-   "explain": "«критических обозрений» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«критических обозрений» — «из» always takes the genitive.",
    "id": "c12"
-  },
-  {
-   "sentence": "Ему показалось, что он держит себя прекрасно, скромно, весело, и особенно понравилось, что он с таким ___ и по-дружески говорит с задиравшим его Колей.",
-   "lemma": "равенство",
-   "options": [
-    "совершенному равенству",
-    "совершенном равенстве",
-    "совершенным равенством",
-    "совершенного равенства"
-   ],
-   "correct": "совершенным равенством",
-   "case": "Творительный (Instrumental)",
-   "explain": "«совершенным равенством» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c13"
-  },
-  {
-   "sentence": "Подношу с благоговением, желая продать и тем утолить благородное нетерпение благороднейших ___ вашего превосходительства.",
-   "lemma": "чувство",
-   "options": [
-    "литературных чувств",
-    "литературными чувствами",
-    "литературных чувствах",
-    "литературным чувствам"
-   ],
-   "correct": "литературных чувств",
-   "case": "Родительный (Genitive)",
-   "explain": "«литературных чувств» — the genitive here marks possession, absence, or quantity.",
-   "id": "c15"
   },
   {
    "sentence": "Но мне особенно на этих ___ поглядеть хочется, — ответил князь Щ.",
    "lemma": "человек",
    "options": [
-    "молодых людях",
-    "молодых людей",
     "молодые люди",
-    "молодыми людьми"
+    "молодым людям",
+    "молодыми людьми",
+    "молодых людей"
    ],
    "correct": "молодых людей",
    "case": "Винительный (Accusative)",
-   "explain": "«молодых людей» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«молодых людей» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c17"
   },
   {
@@ -179,7 +81,7 @@
    ],
    "correct": "новых гостей",
    "case": "Родительный (Genitive)",
-   "explain": "«новых гостей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«новых гостей» depends on the noun «человека» (whose? of what?) — genitive.",
    "id": "c18"
   }
  ]

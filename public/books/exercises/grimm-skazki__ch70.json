@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Давно уж это было: жила-была на свете ___, у которой муж уже умер и осталась одна дочка-красавица.",
-   "lemma": "королева",
-   "options": [
-    "старой королевой",
-    "старой королевы",
-    "старая королева",
-    "старой королеве"
-   ],
-   "correct": "старая королева",
-   "case": "Именительный (Nominative)",
-   "explain": "«старая королева» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Кроме всего этого ___ отдала своей дочери и такую служанку в провожатые, которая должна была с нею вместе ехать и передать ее в руки жениха; каждой из них — и невесте, и камеристке — королева дала по коню.",
    "lemma": "королева",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "старая королева",
    "case": "Именительный (Nominative)",
-   "explain": "«старая королева» — the subject of the sentence stands in the nominative.",
+   "explain": "«старая королева» is the subject of «отдала» — who or what does it — so nominative.",
    "id": "c2"
   },
   {
@@ -39,22 +25,8 @@
    ],
    "correct": "часового переезда",
    "case": "Родительный (Genitive)",
-   "explain": "«часового переезда» — after the preposition «после», the genitive here marks possession, absence, or quantity.",
+   "explain": "«часового переезда» — «после» always takes the genitive.",
    "id": "c3"
-  },
-  {
-   "sentence": "Королевну так мучила жажда, что она сошла с коня, приклонилась к воде ручья и стала пить, и не смела ___ воды зачерпнуть.",
-   "lemma": "кубок",
-   "options": [
-    "золотом кубке",
-    "золотого кубка",
-    "золотым кубком",
-    "золотой кубок"
-   ],
-   "correct": "золотым кубком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«золотым кубком» — the instrumental marks the means, company, or complement.",
-   "id": "c4"
   },
   {
    "sentence": "Проезжая мимо реки, она еще раз позвала камеристку и сказала: «Сойди с коня и дай мне напиться из моего ___».",
@@ -67,63 +39,21 @@
    ],
    "correct": "золотого кубка",
    "case": "Родительный (Genitive)",
-   "explain": "«золотого кубка» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«золотого кубка» — «из» always takes the genitive.",
    "id": "c5"
-  },
-  {
-   "sentence": "Тогда сошла королевна с коня от ___, приникла к текучей воде, заплакала и сказала: «Ах, Боже мой!» — а три капельки крови ей опять отвечали: «Кабы знала твоя матушка, у ней сердце в груди разорвалось бы!»",
-   "lemma": "жажда",
-   "options": [
-    "великой жажде",
-    "великая жажда",
-    "великой жаждой",
-    "великой жажды"
-   ],
-   "correct": "великой жажды",
-   "case": "Родительный (Genitive)",
-   "explain": "«великой жажды» — after the preposition «к», the genitive here marks possession, absence, or quantity.",
-   "id": "c6"
-  },
-  {
-   "sentence": "Тогда сошла королевна с коня от великой жажды, приникла к ___, заплакала и сказала: «Ах, Боже мой!» — а три капельки крови ей опять отвечали: «Кабы знала твоя матушка, у ней сердце в груди разорвалось бы!»",
-   "lemma": "вода",
-   "options": [
-    "текучей воде",
-    "текучей водой",
-    "текучая вода",
-    "текучей воды"
-   ],
-   "correct": "текучей воде",
-   "case": "Дательный (Dative)",
-   "explain": "«текучей воде» — the dative marks the indirect object or recipient.",
-   "id": "c7"
-  },
-  {
-   "sentence": "И вот камеристка села верхом на Фаладу, а ___ на ее плохого коня, и так поехали они далее, до самых ворот королевского замка.",
-   "lemma": "невеста",
-   "options": [
-    "настоящей невестой",
-    "настоящей невесты",
-    "настоящая невеста",
-    "настоящей невесте"
-   ],
-   "correct": "настоящая невеста",
-   "case": "Именительный (Nominative)",
-   "explain": "«настоящая невеста» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
   },
   {
    "sentence": "И вот камеристка села верхом на Фаладу, а настоящая невеста на ее ___, и так поехали они далее, до самых ворот королевского замка.",
    "lemma": "конь",
    "options": [
-    "плохого коня",
-    "плохом коне",
     "плохой конь",
-    "плохому коню"
+    "плохому коню",
+    "плохим конём",
+    "плохого коня"
    ],
    "correct": "плохого коня",
    "case": "Винительный (Accusative)",
-   "explain": "«плохого коня» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«плохого коня» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c9"
   },
   {
@@ -137,7 +67,7 @@
    ],
    "correct": "самых ворот",
    "case": "Родительный (Genitive)",
-   "explain": "«самых ворот» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«самых ворот» — «до» always takes the genitive.",
    "id": "c10"
   },
   {
@@ -151,36 +81,8 @@
    ],
    "correct": "королевского замка",
    "case": "Родительный (Genitive)",
-   "explain": "«королевского замка» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«королевского замка» depends on the noun «ворот» (whose? of what?) — genitive.",
    "id": "c11"
-  },
-  {
-   "sentence": "Он повел ее вверх по лестнице в замок, а ___ должна была внизу дожидаться.",
-   "lemma": "королевна",
-   "options": [
-    "настоящей-то королевны",
-    "настоящей-то королевне",
-    "настоящей-то королевной",
-    "настоящая-то королевна"
-   ],
-   "correct": "настоящая-то королевна",
-   "case": "Именительный (Nominative)",
-   "explain": "«настоящая-то королевна» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
-  },
-  {
-   "sentence": "___ тем временем смотрел из окошка во двор и заметил, какая она была тонкая, нежная и красивая; тотчас пошел он к невесте и спросил ее, что за особа с ней приехала и там во дворе осталась и кто она такова.",
-   "lemma": "король",
-   "options": [
-    "старым королём",
-    "старый король",
-    "старому королю",
-    "старом короле"
-   ],
-   "correct": "старый король",
-   "case": "Именительный (Nominative)",
-   "explain": "«Старый король» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
   },
   {
    "sentence": "Но у ___ не было для нее работы, и он сказал только: «Есть у меня маленький мальчишечка, что гусей пасет, вот пусть тому помогает».",
@@ -193,36 +95,8 @@
    ],
    "correct": "старого короля",
    "case": "Родительный (Genitive)",
-   "explain": "«старого короля» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«старого короля» — «у» always takes the genitive.",
    "id": "c14"
-  },
-  {
-   "sentence": "Но у старого короля не было для нее работы, и он сказал только: «Есть у меня ___, что гусей пасет, вот пусть тому помогает».",
-   "lemma": "мальчишечка",
-   "options": [
-    "маленький мальчишечка",
-    "маленьким мальчишечкой",
-    "маленького мальчишечки",
-    "маленьком мальчишечке"
-   ],
-   "correct": "маленький мальчишечка",
-   "case": "Именительный (Nominative)",
-   "explain": "«маленький мальчишечка» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
-  },
-  {
-   "sentence": "Мальчика того звали Кюрдхен, ему-то и должна была ___ помочь гусей пасти.",
-   "lemma": "невеста",
-   "options": [
-    "настоящей невестой",
-    "настоящей невесты",
-    "настоящая невеста",
-    "настоящей невесте"
-   ],
-   "correct": "настоящая невеста",
-   "case": "Именительный (Nominative)",
-   "explain": "«настоящая невеста» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
   },
   {
    "sentence": "Вскоре после того ___ стала говорить, молодому королю: «Милый мой супруг, прошу вас сделать мне маленькое одолжение».",
@@ -235,7 +109,7 @@
    ],
    "correct": "ложная невеста",
    "case": "Именительный (Nominative)",
-   "explain": "«ложная невеста» — the subject of the sentence stands in the nominative.",
+   "explain": "«ложная невеста» is the subject of «стала» — who or what does it — so nominative.",
    "id": "c17"
   },
   {
@@ -249,7 +123,7 @@
    ],
    "correct": "молодому королю",
    "case": "Дательный (Dative)",
-   "explain": "«молодому королю» — the dative marks the indirect object or recipient.",
+   "explain": "«молодому королю» is the indirect object of «говорить» — to or for whom (кому?) — dative.",
    "id": "c18"
   },
   {
@@ -263,7 +137,7 @@
    ],
    "correct": "настоящей королевны",
    "case": "Родительный (Genitive)",
-   "explain": "«настоящей королевны» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«настоящей королевны» — «до» always takes the genitive.",
    "id": "c19"
   },
   {
@@ -277,7 +151,7 @@
    ],
    "correct": "королевском городе",
    "case": "Предложный (Prepositional)",
-   "explain": "«королевском городе» — after the preposition «в», for location or topic.",
+   "explain": "«королевском городе» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c20"
   },
   {
@@ -291,50 +165,36 @@
    ],
    "correct": "мрачные ворота",
    "case": "Именительный (Nominative)",
-   "explain": "«мрачные ворота» — the subject of the sentence stands in the nominative.",
+   "explain": "«мрачные ворота» is the subject of «были» — who or what does it — so nominative.",
    "id": "c21"
   },
   {
    "sentence": "Так и пообещал ей живодеров помощник, отрубил ___ голову и прибил гвоздем под мрачными воротами.",
    "lemma": "конь",
    "options": [
-    "верного коня",
-    "верному коню",
+    "верном коне",
     "верным конём",
+    "верному коню",
     "верный конь"
    ],
    "correct": "верному коню",
    "case": "Дательный (Dative)",
-   "explain": "«верному коню» — the dative marks the indirect object or recipient.",
+   "explain": "«верному коню» is the indirect object of «отрубил» — to or for whom (кому?) — dative.",
    "id": "c22"
   },
   {
    "sentence": "Так и пообещал ей живодеров помощник, отрубил верному коню голову и прибил гвоздем под ___.",
    "lemma": "ворота",
    "options": [
-    "мрачным воротам",
-    "мрачных ворот",
+    "мрачных воротах",
     "мрачными воротами",
-    "мрачные ворота"
+    "мрачным воротам",
+    "мрачных ворот"
    ],
    "correct": "мрачными воротами",
    "case": "Творительный (Instrumental)",
-   "explain": "«мрачными воротами» — after the preposition «под», the instrumental marks the means, company, or complement.",
+   "explain": "«мрачными воротами» — «под» takes the instrumental here (где? под чем?) — the accusative would mean movement under (куда? под что?).",
    "id": "c23"
-  },
-  {
-   "sentence": "И налетел вдруг такой ___, что сдул с Кюрдхена его колпачок, погнал его вдаль, и мальчик вынужден был за тем колпачком бежать.",
-   "lemma": "ветер",
-   "options": [
-    "сильному ветру",
-    "сильный ветер",
-    "сильном ветре",
-    "сильным ветром"
-   ],
-   "correct": "сильный ветер",
-   "case": "Именительный (Nominative)",
-   "explain": "«сильный ветер» — the subject of the sentence stands in the nominative.",
-   "id": "c24"
   },
   {
    "sentence": "Тогда мальчик рассердился на нее и не стал с нею говорить; и так пасли они гусей до ___, а затем отправились домой.",
@@ -347,7 +207,7 @@
    ],
    "correct": "самого вечера",
    "case": "Родительный (Genitive)",
-   "explain": "«самого вечера» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«самого вечера» — «до» always takes the genitive.",
    "id": "c25"
   },
   {
@@ -361,7 +221,7 @@
    ],
    "correct": "старому королю",
    "case": "Дательный (Dative)",
-   "explain": "«старому королю» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«старому королю» — «к» always takes the dative.",
    "id": "c26"
   },
   {
@@ -375,22 +235,8 @@
    ],
    "correct": "старый король",
    "case": "Именительный (Nominative)",
-   "explain": "«Старый король» — the subject of the sentence stands in the nominative.",
+   "explain": "«старый король» is the subject of «стал» — who or what does it — so nominative.",
    "id": "c27"
-  },
-  {
-   "sentence": "Тут вскоре он своими ___ увидел, как Кюрдхен и гусятница пригнали стадо гусей и как она потом села и распустила свои волосы, блестевшие как золото.",
-   "lemma": "глаз",
-   "options": [
-    "собственных глаз",
-    "собственных глазах",
-    "собственные глаза",
-    "собственными глазами"
-   ],
-   "correct": "собственными глазами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«собственными глазами» — the instrumental marks the means, company, or complement.",
-   "id": "c28"
   },
   {
    "sentence": "А ___ тем временем стоял наверху у самого устья трубы, прислушивался и слышал все, что она говорила.",
@@ -403,7 +249,7 @@
    ],
    "correct": "старый-то король",
    "case": "Именительный (Nominative)",
-   "explain": "«старый-то король» — the subject of the sentence stands in the nominative.",
+   "explain": "«старый-то король» is the subject of «стоял» — who or what does it — so nominative.",
    "id": "c29"
   },
   {
@@ -417,49 +263,21 @@
    ],
    "correct": "самого устья",
    "case": "Родительный (Genitive)",
-   "explain": "«самого устья» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«самого устья» — «у» always takes the genitive.",
    "id": "c30"
-  },
-  {
-   "sentence": "Затем позвал король своего сына и открыл ему, что приехала к нему не его невеста, а ее камеристка, и что девушка-гусятница есть его ___.",
-   "lemma": "невеста",
-   "options": [
-    "настоящей невестой",
-    "настоящей невесты",
-    "настоящая невеста",
-    "настоящей невесте"
-   ],
-   "correct": "настоящая невеста",
-   "case": "Именительный (Nominative)",
-   "explain": "«настоящая невеста» — the subject of the sentence stands in the nominative.",
-   "id": "c31"
-  },
-  {
-   "sentence": "___ был радешенек, увидев, какая у него невеста красавица и умница, и по поводу этого открытия затеял большой пир, на который пригласил всех своих друзей и близких.",
-   "lemma": "король",
-   "options": [
-    "молодого короля",
-    "молодой король",
-    "молодом короле",
-    "молодым королём"
-   ],
-   "correct": "молодой король",
-   "case": "Именительный (Nominative)",
-   "explain": "«Молодой король» — the subject of the sentence stands in the nominative.",
-   "id": "c32"
   },
   {
    "sentence": "Молодой король был радешенек, увидев, какая у него невеста красавица и умница, и по поводу этого открытия затеял ___, на который пригласил всех своих друзей и близких.",
    "lemma": "пир",
    "options": [
     "большому пиру",
-    "большой пир",
     "большом пире",
-    "большого пира"
+    "большой пир",
+    "большим пиром"
    ],
    "correct": "большой пир",
    "case": "Винительный (Accusative)",
-   "explain": "«большой пир» — the accusative marks the direct object of the verb.",
+   "explain": "«большой пир» is the direct object of «затеял» (кого? что?) — accusative.",
    "id": "c33"
   },
   {
@@ -473,35 +291,35 @@
    ],
    "correct": "первом месте",
    "case": "Предложный (Prepositional)",
-   "explain": "«первом месте» — after the preposition «на», for location or topic.",
+   "explain": "«первом месте» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c34"
   },
   {
    "sentence": "На первом месте за столом сидел жених, и королевна сидела по одну его руку, а камеристка — по другую и настолько была ослеплена, что не могла узнать королевну в ее ___.",
    "lemma": "наряд",
    "options": [
-    "блестящий наряд",
+    "блестящего наряда",
+    "блестящему наряду",
     "блестящим нарядом",
-    "блестящем наряде",
-    "блестящего наряда"
+    "блестящем наряде"
    ],
    "correct": "блестящем наряде",
    "case": "Предложный (Prepositional)",
-   "explain": "«блестящем наряде» — after the preposition «в», for location or topic.",
+   "explain": "«блестящем наряде» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c35"
   },
   {
    "sentence": "Король же сказал: «Эта обманщица — ты сама, и произнесла ты свой ___: над тобой его и исполним».",
    "lemma": "приговор",
    "options": [
+    "собственный приговор",
     "собственном приговоре",
     "собственным приговором",
-    "собственный приговор",
-    "собственного приговора"
+    "собственному приговору"
    ],
    "correct": "собственный приговор",
    "case": "Винительный (Accusative)",
-   "explain": "«собственный приговор» — the accusative marks the direct object of the verb.",
+   "explain": "«собственный приговор» is the direct object of «произнесла» (кого? что?) — accusative.",
    "id": "c36"
   },
   {
@@ -515,7 +333,7 @@
    ],
    "correct": "молодой король",
    "case": "Именительный (Nominative)",
-   "explain": "«молодой король» — the subject of the sentence stands in the nominative.",
+   "explain": "«молодой король» is the subject of «женился» — who or what does it — so nominative.",
    "id": "c37"
   },
   {
@@ -529,7 +347,7 @@
    ],
    "correct": "настоящей королевне",
    "case": "Предложный (Prepositional)",
-   "explain": "«настоящей королевне» — after the preposition «на», for location or topic.",
+   "explain": "«настоящей королевне» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c38"
   }
  ]

@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Мы находились на 9°42 ___.",
-   "lemma": "широта",
-   "options": [
-    "северной широты",
-    "северной широтой",
-    "северной широте",
-    "северная широта"
-   ],
-   "correct": "северной широты",
-   "case": "Родительный (Genitive)",
-   "explain": "«северной широты» — after the preposition «на», the genitive here marks possession, absence, or quantity.",
-   "id": "c1"
-  },
-  {
-   "sentence": "— Остров Цейлон знаменит своей ___, профессор, — сказал капитан Немо.",
-   "lemma": "ловля",
-   "options": [
-    "жемчужная ловля",
-    "жемчужной ловле",
-    "жемчужной ловлей",
-    "жемчужной ловли"
-   ],
-   "correct": "жемчужной ловлей",
-   "case": "Творительный (Instrumental)",
-   "explain": "«жемчужной ловлей» — the instrumental marks the means, company, or complement.",
-   "id": "c2"
-  },
-  {
    "sentence": "Я распоряжусь, чтобы «Наутилус» направили к ___.",
    "lemma": "залив",
    "options": [
@@ -39,7 +11,7 @@
    ],
    "correct": "манарскому заливу",
    "case": "Дательный (Dative)",
-   "explain": "«Манарскому заливу» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«манарскому заливу» — «к» always takes the dative.",
    "id": "c3"
   },
   {
@@ -53,22 +25,8 @@
    ],
    "correct": "тридцатифутовой глубины",
    "case": "Родительный (Genitive)",
-   "explain": "«тридцатифутовой глубины» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«придерживается» takes its object in the genitive.",
    "id": "c4"
-  },
-  {
-   "sentence": "Я снова взял карту и начал искать ___.",
-   "lemma": "залив",
-   "options": [
-    "манарском заливе",
-    "манарского залива",
-    "манарскому заливу",
-    "манарский залив"
-   ],
-   "correct": "манарский залив",
-   "case": "Винительный (Accusative)",
-   "explain": "«Манарский залив» — the accusative marks the direct object of the verb.",
-   "id": "c5"
   },
   {
    "sentence": "Залив этот образуется продолговатой линией ___ Манар.",
@@ -81,105 +39,77 @@
    ],
    "correct": "маленького острова",
    "case": "Родительный (Genitive)",
-   "explain": "«маленького острова» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«маленького острова» depends on the noun «линией» (whose? of what?) — genitive.",
    "id": "c6"
-  },
-  {
-   "sentence": "Чтобы достигнуть залива, надо было обогнуть весь ___ Цейлона.",
-   "lemma": "берег",
-   "options": [
-    "западным берегом",
-    "западному берегу",
-    "западного берега",
-    "западный берег"
-   ],
-   "correct": "западный берег",
-   "case": "Винительный (Accusative)",
-   "explain": "«западный берег» — the accusative marks the direct object of the verb.",
-   "id": "c7"
   },
   {
    "sentence": "Ловцы жемчуга появляются в ___ только в марте и целых тридцать дней занимаются добыванием морских сокровищ.",
    "lemma": "залив",
    "options": [
     "манарским заливом",
-    "манарском заливе",
     "манарского залива",
-    "манарский залив"
+    "манарском заливе",
+    "манарскому заливу"
    ],
    "correct": "манарском заливе",
    "case": "Предложный (Prepositional)",
-   "explain": "«Манарском заливе» — after the preposition «в», for location or topic.",
+   "explain": "«манарском заливе» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c8"
   },
   {
    "sentence": "Ловцы жемчуга появляются в Манарском заливе только в марте и целых тридцать дней занимаются добыванием ___.",
    "lemma": "сокровище",
    "options": [
-    "морских сокровищ",
     "морских сокровищах",
-    "морскими сокровищами",
-    "морские сокровища"
+    "морские сокровища",
+    "морских сокровищ",
+    "морским сокровищам"
    ],
    "correct": "морских сокровищ",
    "case": "Родительный (Genitive)",
-   "explain": "«морских сокровищ» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«морских сокровищ» depends on the noun «добыванием» (whose? of what?) — genitive.",
    "id": "c9"
   },
   {
    "sentence": "Обыкновенно в ___ собирается до трехсот лодок.",
    "lemma": "залив",
    "options": [
-    "манарским заливом",
-    "манарском заливе",
+    "манарскому заливу",
     "манарского залива",
-    "манарский залив"
+    "манарским заливом",
+    "манарском заливе"
    ],
    "correct": "манарском заливе",
    "case": "Предложный (Prepositional)",
-   "explain": "«Манарском заливе» — after the preposition «в», for location or topic.",
+   "explain": "«манарском заливе» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c10"
-  },
-  {
-   "sentence": "— До сих пор, — ответил капитан Немо, — хотя здешние жемчужные россыпи принадлежат самой ___ в мире — Англии.",
-   "lemma": "страна",
-   "options": [
-    "промышленной стране",
-    "промышленная страна",
-    "промышленной страной",
-    "промышленной страны"
-   ],
-   "correct": "промышленной стране",
-   "case": "Дательный (Dative)",
-   "explain": "«промышленной стране» — the dative marks the indirect object or recipient.",
-   "id": "c11"
   },
   {
    "sentence": "В 1802 году она получила их по ___.",
    "lemma": "договор",
    "options": [
-    "амьенский договор",
-    "амьенскому договору",
+    "амьенского договора",
     "амьенским договором",
-    "амьенского договора"
+    "амьенском договоре",
+    "амьенскому договору"
    ],
    "correct": "амьенскому договору",
    "case": "Дательный (Dative)",
-   "explain": "«Амьенскому договору» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«амьенскому договору» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c12"
   },
   {
    "sentence": "И служит он только для удовлетворения ___!",
    "lemma": "прихоть",
    "options": [
+    "женских прихотях",
+    "женским прихотям",
     "женские прихоти",
-    "женских прихотей",
-    "женскими прихотями",
-    "женским прихотям"
+    "женских прихотей"
    ],
    "correct": "женских прихотей",
    "case": "Родительный (Genitive)",
-   "explain": "«женских прихотей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«женских прихотей» depends on the noun «удовлетворения» (whose? of what?) — genitive.",
    "id": "c13"
   },
   {
@@ -193,7 +123,7 @@
    ],
    "correct": "английское правительство",
    "case": "Именительный (Nominative)",
-   "explain": "«английское правительство» — the subject of the sentence stands in the nominative.",
+   "explain": "«английское правительство» is the subject of «устроило» — who or what does it — so nominative.",
    "id": "c14"
   },
   {
@@ -207,21 +137,21 @@
    ],
    "correct": "холодного пота",
    "case": "Родительный (Genitive)",
-   "explain": "«холодного пота» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«холодного пота» depends on the noun «капельки» (whose? of what?) — genitive.",
    "id": "c15"
   },
   {
    "sentence": "Охотиться за ___, как мы охотились в лесах острова Креспо, — это еще ничего.",
    "lemma": "выдра",
    "options": [
-    "морские выдры",
-    "морским выдрам",
+    "морских выдрах",
     "морскими выдрами",
-    "морских выдр"
+    "морские выдры",
+    "морским выдрам"
    ],
    "correct": "морскими выдрами",
    "case": "Творительный (Instrumental)",
-   "explain": "«морскими выдрами» — after the preposition «за», the instrumental marks the means, company, or complement.",
+   "explain": "«морскими выдрами» — «за» takes the instrumental here (где? за чем? за кем?) — the accusative would mean motion behind or 'for' (куда? за что?).",
    "id": "c16"
   },
   {
@@ -235,22 +165,8 @@
    ],
    "correct": "морскому дну",
    "case": "Дательный (Dative)",
-   "explain": "«морскому дну» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«морскому дну» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c17"
-  },
-  {
-   "sentence": "Но бродить по морскому дну, когда знаешь, что того и гляди появится ___, — дело другое.",
-   "lemma": "красавица",
-   "options": [
-    "зубастой красавицей",
-    "зубастой красавицы",
-    "зубастая красавица",
-    "зубастой красавице"
-   ],
-   "correct": "зубастая красавица",
-   "case": "Именительный (Nominative)",
-   "explain": "«зубастая красавица» — the subject of the sentence stands in the nominative.",
-   "id": "c18"
   },
   {
    "sentence": "Я знаю, что в некоторых местах, например на ___, негры, не задумываясь, нападают на акул с кинжалом в одной руке и петлей в другой, но я знаю также, что многие из этих смельчаков отправляются к праотцам.",
@@ -263,22 +179,8 @@
    ],
    "correct": "андаманских островах",
    "case": "Предложный (Prepositional)",
-   "explain": "«Андаманских островах» — after the preposition «на», for location or topic.",
+   "explain": "«андаманских островах» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c19"
-  },
-  {
-   "sentence": "Я стал размышлять об акулах, мне представлялись их ___, вооруженные многочисленными рядами зубов, — челюсти, которые могут перекусить человека пополам.",
-   "lemma": "челюсть",
-   "options": [
-    "громадных челюстей",
-    "громадными челюстями",
-    "громадным челюстям",
-    "громадные челюсти"
-   ],
-   "correct": "громадные челюсти",
-   "case": "Именительный (Nominative)",
-   "explain": "«громадные челюсти» — the subject of the sentence stands in the nominative.",
-   "id": "c20"
   },
   {
    "sentence": "Я стал размышлять об акулах, мне представлялись их громадные челюсти, вооруженные ___ зубов, — челюсти, которые могут перекусить человека пополам.",
@@ -291,7 +193,7 @@
    ],
    "correct": "многочисленными рядами",
    "case": "Творительный (Instrumental)",
-   "explain": "«многочисленными рядами» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «вооруженные», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c21"
   },
   {
@@ -305,36 +207,8 @@
    ],
    "correct": "приятной прогулки",
    "case": "Родительный (Genitive)",
-   "explain": "«приятной прогулки» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«приятной прогулки» — «от» always takes the genitive.",
    "id": "c22"
-  },
-  {
-   "sentence": "— С позволения их чести, — сказал Консейль, — капитан Немо нам сказал: «Приглашаю вас посетить завтра, вместе с профессором, знаменитые цейлонские ___».",
-   "lemma": "промысл",
-   "options": [
-    "жемчужных промыслов",
-    "жемчужные промыслы",
-    "жемчужных промыслах",
-    "жемчужным промыслам"
-   ],
-   "correct": "жемчужные промыслы",
-   "case": "Именительный (Nominative)",
-   "explain": "«жемчужные промыслы» — the subject of the sentence stands in the nominative.",
-   "id": "c23"
-  },
-  {
-   "sentence": "Он сказал это очень учтиво, очень ласково и показал себя ___.",
-   "lemma": "джентльмен",
-   "options": [
-    "настоящий джентльмен",
-    "настоящим джентльменом",
-    "настоящему джентльмену",
-    "настоящего джентльмена"
-   ],
-   "correct": "настоящим джентльменом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«настоящим джентльменом» — the instrumental marks the means, company, or complement.",
-   "id": "c24"
   },
   {
    "sentence": "— Рассказать тебе про саму ловлю, Консейль, — спросил я, — или про ___?..",
@@ -347,7 +221,7 @@
    ],
    "correct": "разные случаи",
    "case": "Винительный (Accusative)",
-   "explain": "«разные случаи» — after the preposition «про», the accusative marks the direct object of the verb.",
+   "explain": "«разные случаи» — «про» always takes the accusative.",
    "id": "c25"
   },
   {
@@ -361,50 +235,8 @@
    ],
    "correct": "съедобные ракушки",
    "case": "Именительный (Nominative)",
-   "explain": "«съедобные ракушки» — the subject of the sentence stands in the nominative.",
+   "explain": "«съедобные ракушки» is the subject of «могут» — who or what does it — so nominative.",
    "id": "c26"
-  },
-  {
-   "sentence": "— ___ производит жемчуг моллюск, известный под названием жемчужница, meleagrina margaritifera, — драгоценная перловка.",
-   "lemma": "образ",
-   "options": [
-    "главным образом",
-    "главному образу",
-    "главный образ",
-    "главного образа"
-   ],
-   "correct": "главным образом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«Главным образом» — the instrumental marks the means, company, or complement.",
-   "id": "c27"
-  },
-  {
-   "sentence": "— Главным образом производит жемчуг моллюск, известный под названием жемчужница, meleagrina margaritifera, — ___.",
-   "lemma": "перловка",
-   "options": [
-    "драгоценная перловка",
-    "драгоценной перловкой",
-    "драгоценной перловки",
-    "драгоценной перловке"
-   ],
-   "correct": "драгоценная перловка",
-   "case": "Именительный (Nominative)",
-   "explain": "«драгоценная перловка» — the subject of the sentence stands in the nominative.",
-   "id": "c28"
-  },
-  {
-   "sentence": "Жемчужина — это не что иное, как перламутровое сгущение ___.",
-   "lemma": "форма",
-   "options": [
-    "сферической формой",
-    "сферической формы",
-    "сферическая форма",
-    "сферической форме"
-   ],
-   "correct": "сферической формы",
-   "case": "Родительный (Genitive)",
-   "explain": "«сферической формы» — the genitive here marks possession, absence, or quantity.",
-   "id": "c29"
   },
   {
    "sentence": "Оно или прилепляется к створкам, или пристает к ___.",
@@ -417,22 +249,8 @@
    ],
    "correct": "самому моллюску",
    "case": "Дательный (Dative)",
-   "explain": "«самому моллюску» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«самому моллюску» — «к» always takes the dative.",
    "id": "c30"
-  },
-  {
-   "sentence": "Но у нее всегда есть ядро — ___, песчинка или паразит, попавшее в раковину или ткань моллюска.",
-   "lemma": "тело",
-   "options": [
-    "инородном теле",
-    "инородное тело",
-    "инородного тела",
-    "инородному телу"
-   ],
-   "correct": "инородное тело",
-   "case": "Именительный (Nominative)",
-   "explain": "«инородное тело» — the subject of the sentence stands in the nominative.",
-   "id": "c31"
   },
   {
    "sentence": "Вокруг него и нарастает ___ в продолжение многих лет тонкими концентрическими слоями.",
@@ -445,22 +263,8 @@
    ],
    "correct": "перламутровое вещество",
    "case": "Именительный (Nominative)",
-   "explain": "«перламутровое вещество» — the subject of the sentence stands in the nominative.",
+   "explain": "«перламутровое вещество» is the subject of «нарастает» — who or what does it — so nominative.",
    "id": "c32"
-  },
-  {
-   "sentence": "Вокруг него и нарастает перламутровое вещество в продолжение многих лет тонкими ___.",
-   "lemma": "слой",
-   "options": [
-    "концентрических слоёв",
-    "концентрическими слоями",
-    "концентрические слои",
-    "концентрическим слоям"
-   ],
-   "correct": "концентрическими слоями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«концентрическими слоями» — the instrumental marks the means, company, or complement.",
-   "id": "c33"
   },
   {
    "sentence": "Обычно же раскладывают раковины на плетеных циновках из ___, который растет по берегам.",
@@ -473,7 +277,7 @@
    ],
    "correct": "испанского дрока",
    "case": "Родительный (Genitive)",
-   "explain": "«испанского дрока» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«испанского дрока» — «из» always takes the genitive.",
    "id": "c34"
   },
   {
@@ -487,78 +291,22 @@
    ],
    "correct": "огромные резервуары",
    "case": "Винительный (Accusative)",
-   "explain": "«огромные резервуары» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«огромные резервуары» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c35"
-  },
-  {
-   "sentence": "Тогда раковины погружают в огромные резервуары с ___, потом открывают и промывают.",
-   "lemma": "вода",
-   "options": [
-    "морской водой",
-    "морской воде",
-    "морской воды",
-    "морская вода"
-   ],
-   "correct": "морской водой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«морской водой» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c36"
-  },
-  {
-   "sentence": "Самые ___ выбирают вручную.",
-   "lemma": "жемчужина",
-   "options": [
-    "крупных жемчужин",
-    "крупных жемчужинах",
-    "крупные жемчужины",
-    "крупным жемчужинам"
-   ],
-   "correct": "крупные жемчужины",
-   "case": "Именительный (Nominative)",
-   "explain": "«крупные жемчужины» — the subject of the sentence stands in the nominative.",
-   "id": "c37"
   },
   {
    "sentence": "Прежде всего они отделяют ___, известные под названием «настоящей серебристой», «белого дичка» и «черного дичка», и раскладывают их по ящикам весом от ста двадцати до ста пятидесяти килограммов.",
    "lemma": "пластинка",
    "options": [
-    "перламутровых пластинок",
-    "перламутровым пластинкам",
+    "перламутровых пластинках",
+    "перламутровыми пластинками",
     "перламутровые пластинки",
-    "перламутровых пластинках"
+    "перламутровым пластинкам"
    ],
    "correct": "перламутровые пластинки",
    "case": "Винительный (Accusative)",
-   "explain": "«перламутровые пластинки» — the accusative marks the direct object of the verb.",
+   "explain": "«перламутровые пластинки» is the direct object of «отделяют» (кого? что?) — accusative.",
    "id": "c38"
-  },
-  {
-   "sentence": "Прежде всего они отделяют перламутровые пластинки, известные под названием «настоящей серебристой», «___» и «черного дичка», и раскладывают их по ящикам весом от ста двадцати до ста пятидесяти килограммов.",
-   "lemma": "дичок",
-   "options": [
-    "белым дичком",
-    "белый дичок",
-    "белом дичке",
-    "белого дичка"
-   ],
-   "correct": "белого дичка",
-   "case": "Родительный (Genitive)",
-   "explain": "«белого дичка» — the genitive here marks possession, absence, or quantity.",
-   "id": "c39"
-  },
-  {
-   "sentence": "Самые ___ те, которые образуются в ткани самого моллюска, поодиночке.",
-   "lemma": "жемчужина",
-   "options": [
-    "ценные жемчужины",
-    "ценных жемчужин",
-    "ценных жемчужинах",
-    "ценными жемчужинами"
-   ],
-   "correct": "ценные жемчужины",
-   "case": "Именительный (Nominative)",
-   "explain": "«ценные жемчужины» — the subject of the sentence stands in the nominative.",
-   "id": "c40"
   },
   {
    "sentence": "Самые ценные жемчужины те, которые образуются в ткани ___, поодиночке.",
@@ -571,50 +319,22 @@
    ],
    "correct": "самого моллюска",
    "case": "Родительный (Genitive)",
-   "explain": "«самого моллюска» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«самого моллюска» depends on the noun «ткани» (whose? of what?) — genitive.",
    "id": "c41"
-  },
-  {
-   "sentence": "Наконец, есть еще низший сорт жемчуга, ___, известные под названием «бисер».",
-   "lemma": "жемчужинка",
-   "options": [
-    "мелкие жемчужинки",
-    "мелким жемчужинкам",
-    "мелких жемчужинок",
-    "мелкими жемчужинками"
-   ],
-   "correct": "мелкие жемчужинки",
-   "case": "Именительный (Nominative)",
-   "explain": "«мелкие жемчужинки» — the subject of the sentence stands in the nominative.",
-   "id": "c42"
   },
   {
    "sentence": "Этот жемчуг продается мерками и идет большей частью на вышивание ___ и украшений.",
    "lemma": "покров",
    "options": [
-    "церковными покровами",
-    "церковных покровах",
     "церковным покровам",
+    "церковных покровах",
+    "церковные покровы",
     "церковных покровов"
    ],
    "correct": "церковных покровов",
    "case": "Родительный (Genitive)",
-   "explain": "«церковных покровов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«церковных покровов» depends on the noun «вышивание» (whose? of what?) — genitive.",
    "id": "c43"
-  },
-  {
-   "sentence": "— А ведь отбирать ___ от мелкого — работа долгая и трудная!",
-   "lemma": "жемчуг",
-   "options": [
-    "крупном жемчуге",
-    "крупным жемчугом",
-    "крупный жемчуг",
-    "крупного жемчуга"
-   ],
-   "correct": "крупный жемчуг",
-   "case": "Винительный (Accusative)",
-   "explain": "«крупный жемчуг» — the accusative marks the direct object of the verb.",
-   "id": "c44"
   },
   {
    "sentence": "У сортировщиков есть ___.",
@@ -627,7 +347,7 @@
    ],
    "correct": "особые сита",
    "case": "Именительный (Nominative)",
-   "explain": "«особые сита» — the subject of the sentence stands in the nominative.",
+   "explain": "«особые сита» is the subject of «есть» — who or what does it — so nominative.",
    "id": "c45"
   },
   {
@@ -641,50 +361,8 @@
    ],
    "correct": "различной величины",
    "case": "Родительный (Genitive)",
-   "explain": "«различной величины» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«различной величины» depends on the noun «Дырочки» (whose? of what?) — genitive.",
    "id": "c46"
-  },
-  {
-   "sentence": "Самый ___ остается в сите, где имеется от двадцати до восьмидесяти дырочек, — это самый первый сорт.",
-   "lemma": "жемчуг",
-   "options": [
-    "крупном жемчуге",
-    "крупным жемчугом",
-    "крупный жемчуг",
-    "крупного жемчуга"
-   ],
-   "correct": "крупный жемчуг",
-   "case": "Именительный (Nominative)",
-   "explain": "«крупный жемчуг» — the subject of the sentence stands in the nominative.",
-   "id": "c47"
-  },
-  {
-   "sentence": "Самый крупный жемчуг остается в сите, где имеется от двадцати до восьмидесяти дырочек, — это самый ___.",
-   "lemma": "сорт",
-   "options": [
-    "первый сорт",
-    "первым сортом",
-    "первому сорту",
-    "первого сорта"
-   ],
-   "correct": "первый сорт",
-   "case": "Именительный (Nominative)",
-   "explain": "«первый сорт» — the subject of the sentence stands in the nominative.",
-   "id": "c48"
-  },
-  {
-   "sentence": "___ жемчуга остается на решете, в котором от ста до восьмисот дырочек.",
-   "lemma": "сорт",
-   "options": [
-    "вторым сортом",
-    "второго сорта",
-    "второму сорту",
-    "второй сорт"
-   ],
-   "correct": "второй сорт",
-   "case": "Именительный (Nominative)",
-   "explain": "«Второй сорт» — the subject of the sentence stands in the nominative.",
-   "id": "c49"
   },
   {
    "sentence": "Наконец, ___ остается на решете, имеющем до тысячи отверстий.",
@@ -697,22 +375,8 @@
    ],
    "correct": "третий сорт",
    "case": "Именительный (Nominative)",
-   "explain": "«третий сорт» — the subject of the sentence stands in the nominative.",
+   "explain": "«третий сорт» is the subject of «остается» — who or what does it — so nominative.",
    "id": "c50"
-  },
-  {
-   "sentence": "— А какой, с позволения их чести, получается доход с этой ___?",
-   "lemma": "ловля",
-   "options": [
-    "жемчужной ловлей",
-    "жемчужной ловле",
-    "жемчужной ловли",
-    "жемчужная ловля"
-   ],
-   "correct": "жемчужной ловли",
-   "case": "Родительный (Genitive)",
-   "explain": "«жемчужной ловли» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
-   "id": "c51"
   },
   {
    "sentence": "— Но я думаю, что все-таки теперь ___ приносят меньше, чем прежде.",
@@ -725,7 +389,7 @@
    ],
    "correct": "жемчужные промыслы",
    "case": "Именительный (Nominative)",
-   "explain": "«жемчужные промыслы» — the subject of the sentence stands in the nominative.",
+   "explain": "«жемчужные промыслы» is the subject of «приносят» — who or what does it — so nominative.",
    "id": "c52"
   },
   {
@@ -739,92 +403,22 @@
    ],
    "correct": "жемчужные промыслы",
    "case": "Именительный (Nominative)",
-   "explain": "«жемчужные промыслы» — the subject of the sentence stands in the nominative.",
+   "explain": "«жемчужные промыслы» is the subject of «приносили» — who or what does it — so nominative.",
    "id": "c53"
-  },
-  {
-   "sentence": "___ с жемчужной ловли можно оценить в девять миллионов ежегодно.",
-   "lemma": "доход",
-   "options": [
-    "общим доходом",
-    "общего дохода",
-    "общий доход",
-    "общем доходе"
-   ],
-   "correct": "общий доход",
-   "case": "Именительный (Nominative)",
-   "explain": "«Общий доход» — the subject of the sentence stands in the nominative.",
-   "id": "c54"
-  },
-  {
-   "sentence": "Общий доход с ___ можно оценить в девять миллионов ежегодно.",
-   "lemma": "ловля",
-   "options": [
-    "жемчужной ловлей",
-    "жемчужной ловле",
-    "жемчужной ловли",
-    "жемчужная ловля"
-   ],
-   "correct": "жемчужной ловли",
-   "case": "Родительный (Genitive)",
-   "explain": "«жемчужной ловли» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
-   "id": "c55"
-  },
-  {
-   "sentence": "Ведь у такого ___, должно быть, кошмарный вкус!",
-   "lemma": "напиток",
-   "options": [
-    "жемчужный напиток",
-    "жемчужного напитка",
-    "жемчужному напитку",
-    "жемчужном напитке"
-   ],
-   "correct": "жемчужного напитка",
-   "case": "Родительный (Genitive)",
-   "explain": "«жемчужного напитка» — the genitive here marks possession, absence, or quantity.",
-   "id": "c56"
-  },
-  {
-   "sentence": "Ведь у такого жемчужного напитка, должно быть, ___!",
-   "lemma": "вкус",
-   "options": [
-    "кошмарного вкуса",
-    "кошмарном вкусе",
-    "кошмарный вкус",
-    "кошмарному вкусу"
-   ],
-   "correct": "кошмарный вкус",
-   "case": "Именительный (Nominative)",
-   "explain": "«кошмарный вкус» — the subject of the sentence stands in the nominative.",
-   "id": "c57"
   },
   {
    "sentence": "— Дружище Нед, — ответил я, смеясь, — вы купили ___, простые стеклянные шарики, намазанные жемчужной эссенцией!",
    "lemma": "жемчуг",
    "options": [
-    "искусственным жемчугом",
     "искусственному жемчугу",
-    "искусственный жемчуг",
-    "искусственного жемчуга"
+    "искусственном жемчуге",
+    "искусственным жемчугом",
+    "искусственный жемчуг"
    ],
    "correct": "искусственный жемчуг",
    "case": "Винительный (Accusative)",
-   "explain": "«искусственный жемчуг» — the accusative marks the direct object of the verb.",
+   "explain": "«искусственный жемчуг» is the direct object of «купили» (кого? что?) — accusative.",
    "id": "c58"
-  },
-  {
-   "sentence": "Это просто ___ с чешуи рыбы уклейки, растворенное в азотной кислоте.",
-   "lemma": "вещество",
-   "options": [
-    "серебристому веществу",
-    "серебристым веществом",
-    "серебристое вещество",
-    "серебристом веществе"
-   ],
-   "correct": "серебристое вещество",
-   "case": "Именительный (Nominative)",
-   "explain": "«серебристое вещество» — the subject of the sentence stands in the nominative.",
-   "id": "c59"
   },
   {
    "sentence": "Это просто серебристое вещество с чешуи рыбы уклейки, растворенное в ___.",
@@ -837,22 +431,8 @@
    ],
    "correct": "азотной кислоте",
    "case": "Предложный (Prepositional)",
-   "explain": "«азотной кислоте» — after the preposition «в», for location or topic.",
+   "explain": "«азотной кислоте» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c60"
-  },
-  {
-   "sentence": "— Да, вот мы говорим про ___, а я и забыл сказать, что у капитана Немо есть диковинная жемчужина.",
-   "lemma": "жемчуг",
-   "options": [
-    "дорогим жемчугам",
-    "дорогие жемчуга",
-    "дорогих жемчугов",
-    "дорогих жемчугах"
-   ],
-   "correct": "дорогие жемчуга",
-   "case": "Винительный (Accusative)",
-   "explain": "«дорогие жемчуга» — the accusative marks the direct object of the verb.",
-   "id": "c61"
   },
   {
    "sentence": "— Да, вот мы говорим про дорогие жемчуга, а я и забыл сказать, что у капитана Немо есть ___.",
@@ -865,7 +445,7 @@
    ],
    "correct": "диковинная жемчужина",
    "case": "Именительный (Nominative)",
-   "explain": "«диковинная жемчужина» — the subject of the sentence stands in the nominative.",
+   "explain": "«диковинная жемчужина» is the subject of «есть» — who or what does it — so nominative.",
    "id": "c62"
   },
   {
@@ -879,7 +459,7 @@
    ],
    "correct": "другом месте",
    "case": "Предложный (Prepositional)",
-   "explain": "«другом месте» — after the preposition «в», for location or topic.",
+   "explain": "«другом месте» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c63"
   },
   {
@@ -893,7 +473,7 @@
    ],
    "correct": "самом деле",
    "case": "Предложный (Prepositional)",
-   "explain": "«самом деле» — after the preposition «в», for location or topic.",
+   "explain": "«самом деле» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c64"
   },
   {
@@ -907,64 +487,22 @@
    ],
    "correct": "морской воды",
    "case": "Родительный (Genitive)",
-   "explain": "«морской воды» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«морской воды» depends on the noun «глоточка» (whose? of what?) — genitive.",
    "id": "c65"
   },
   {
    "sentence": "— Разумеется, Нед, — сказал я, стараясь подражать ___ капитана Немо.",
    "lemma": "тон",
    "options": [
-    "беспечного тона",
-    "беспечный тон",
+    "беспечном тоне",
+    "беспечным тоном",
     "беспечному тону",
-    "беспечном тоне"
+    "беспечного тона"
    ],
    "correct": "беспечному тону",
    "case": "Дательный (Dative)",
-   "explain": "«беспечному тону» — the dative marks the indirect object or recipient.",
+   "explain": "«подражать» takes the dative (кому? чему?).",
    "id": "c66"
-  },
-  {
-   "sentence": "— Ну что ж, лишь бы ___ в руки, так все пойдет как по маслу.",
-   "lemma": "гарпун",
-   "options": [
-    "хороший гарпун",
-    "хорошего гарпуна",
-    "хорошему гарпуну",
-    "хорошем гарпуне"
-   ],
-   "correct": "хороший гарпун",
-   "case": "Именительный (Nominative)",
-   "explain": "«хороший гарпун» — the subject of the sentence stands in the nominative.",
-   "id": "c67"
-  },
-  {
-   "sentence": "Вы знаете, профессор, эти твари ___.",
-   "lemma": "животное",
-   "options": [
-    "неловким животным",
-    "неловких животных",
-    "неловкие животные",
-    "неловкими животными"
-   ],
-   "correct": "неловкие животные",
-   "case": "Именительный (Nominative)",
-   "explain": "«неловкие животные» — the subject of the sentence stands in the nominative.",
-   "id": "c68"
-  },
-  {
-   "sentence": "— Ну а ты, Консейль, — спросил я своего ___, — ты что об этом думаешь?",
-   "lemma": "слуга",
-   "options": [
-    "верном слуге",
-    "верным слугой",
-    "верному слуге",
-    "верного слугу"
-   ],
-   "correct": "верного слугу",
-   "case": "Винительный (Accusative)",
-   "explain": "«верного слугу» — the accusative marks the direct object of the verb.",
-   "id": "c69"
   }
  ]
 }

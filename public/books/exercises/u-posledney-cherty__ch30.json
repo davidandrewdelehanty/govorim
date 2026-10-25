@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Там, где ___ были навалены красные, синие и белые цветы, почти скрытое ими, виднелось заострившееся, синее мертвое лицо и закрытыми навеки глазами молча и непонятно смотрело вверх.",
-   "lemma": "груда",
-   "options": [
-    "пышной груды",
-    "пышной груде",
-    "пышная груда",
-    "пышной грудой"
-   ],
-   "correct": "пышной грудой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«пышной грудой» — the instrumental marks the means, company, or complement.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Его ___, как всегда, были сложены на палке, и шляпа лежала на коленях, точно он присел на минуту отдохнуть.",
-   "lemma": "рука",
-   "options": [
-    "толстые руки",
-    "толстыми руками",
-    "толстых рук",
-    "толстых руках"
-   ],
-   "correct": "толстые руки",
-   "case": "Именительный (Nominative)",
-   "explain": "«толстые руки» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
    "sentence": "Но проходили часы, наступила глубокая ночь, а ___ один сидел в своем углу, и только голова его опускалась все ниже.",
    "lemma": "доктор",
    "options": [
@@ -39,7 +11,7 @@
    ],
    "correct": "старый доктор",
    "case": "Именительный (Nominative)",
-   "explain": "«старый доктор» — the subject of the sentence stands in the nominative.",
+   "explain": "«старый доктор» is the subject of «сидел» — who or what does it — so nominative.",
    "id": "c3"
   },
   {
@@ -53,7 +25,7 @@
    ],
    "correct": "соседней комнате",
    "case": "Предложный (Prepositional)",
-   "explain": "«соседней комнате» — after the preposition «в», for location or topic.",
+   "explain": "«соседней комнате» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c4"
   },
   {
@@ -67,7 +39,7 @@
    ],
    "correct": "полубезумное чувство",
    "case": "Именительный (Nominative)",
-   "explain": "«полубезумное чувство» — the subject of the sentence stands in the nominative.",
+   "explain": "«полубезумное чувство» is the subject of «охватывало» — who or what does it — so nominative.",
    "id": "c5"
   },
   {
@@ -81,36 +53,22 @@
    ],
    "correct": "старого доктора",
    "case": "Винительный (Accusative)",
-   "explain": "«старого доктора» — the accusative marks the direct object of the verb.",
+   "explain": "«старого доктора» is the direct object of «охватывало» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c6"
   },
   {
    "sentence": "Доктор Арнольди припоминал все мелочи, все ее слова, взгляды, движения слабых ___.",
    "lemma": "рука",
    "options": [
-    "прозрачных руках",
     "прозрачным рукам",
-    "прозрачными руками",
-    "прозрачных рук"
+    "прозрачных рук",
+    "прозрачные руки",
+    "прозрачных руках"
    ],
    "correct": "прозрачных рук",
    "case": "Родительный (Genitive)",
-   "explain": "«прозрачных рук» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«прозрачных рук» depends on the noun «движения» (whose? of what?) — genitive.",
    "id": "c7"
-  },
-  {
-   "sentence": "Все светит ваше ___, все греет оно живых и веселых людей, а для меня настала уже вечная темная ночь.",
-   "lemma": "солнце",
-   "options": [
-    "живом солнце",
-    "живое солнце",
-    "живого солнца",
-    "живым солнцем"
-   ],
-   "correct": "живое солнце",
-   "case": "Именительный (Nominative)",
-   "explain": "«живое солнце» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
   },
   {
    "sentence": "Только спина гнулась и голова опускалась ниже под холодом ___, перед призраком долгих лет без радости и смысла.",
@@ -123,134 +81,22 @@
    ],
    "correct": "вечного одиночества",
    "case": "Родительный (Genitive)",
-   "explain": "«вечного одиночества» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«вечного одиночества» depends on the noun «холодом» (whose? of what?) — genitive.",
    "id": "c9"
-  },
-  {
-   "sentence": "С мертвого лица сползли желтые отблески свечей, и холодный ___ положил на него неподвижные зеленоватые пятна.",
-   "lemma": "свет",
-   "options": [
-    "синем свете",
-    "синим светом",
-    "синий свет",
-    "синему свету"
-   ],
-   "correct": "синий свет",
-   "case": "Именительный (Nominative)",
-   "explain": "«синий свет» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
   },
   {
    "sentence": "С мертвого лица сползли желтые отблески свечей, и холодный синий свет положил на него неподвижные ___.",
    "lemma": "пятно",
    "options": [
-    "зеленоватых пятен",
-    "зеленоватых пятнах",
     "зеленоватые пятна",
+    "зеленоватыми пятнами",
+    "зеленоватых пятнах",
     "зеленоватым пятнам"
    ],
    "correct": "зеленоватые пятна",
    "case": "Винительный (Accusative)",
-   "explain": "«зеленоватые пятна» — the accusative marks the direct object of the verb.",
+   "explain": "«зеленоватые пятна» is the direct object of «положил» (кого? что?) — accusative.",
    "id": "c11"
-  },
-  {
-   "sentence": "Страшно вытянулся ___, притухли огни свечей.",
-   "lemma": "труп",
-   "options": [
-    "холодном трупе",
-    "холодному трупу",
-    "холодный труп",
-    "холодным трупом"
-   ],
-   "correct": "холодный труп",
-   "case": "Именительный (Nominative)",
-   "explain": "«холодный труп» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
-  },
-  {
-   "sentence": "Послышался ___, на дворе продребезжали колеса, начинался новый день, последний день для нее на земле.",
-   "lemma": "говор",
-   "options": [
-    "тихого говора",
-    "тихом говоре",
-    "тихому говору",
-    "тихий говор"
-   ],
-   "correct": "тихий говор",
-   "case": "Именительный (Nominative)",
-   "explain": "«тихий говор» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
-  },
-  {
-   "sentence": "Послышался тихий говор, на дворе продребезжали колеса, начинался ___, последний день для нее на земле.",
-   "lemma": "день",
-   "options": [
-    "новом дне",
-    "новый день",
-    "нового дня",
-    "новому дню"
-   ],
-   "correct": "новый день",
-   "case": "Именительный (Nominative)",
-   "explain": "«новый день» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
-  },
-  {
-   "sentence": "Послышался тихий говор, на дворе продребезжали колеса, начинался новый день, ___ для нее на земле.",
-   "lemma": "день",
-   "options": [
-    "последним днём",
-    "последнего дня",
-    "последнему дню",
-    "последний день"
-   ],
-   "correct": "последний день",
-   "case": "Винительный (Accusative)",
-   "explain": "«последний день» — the accusative marks the direct object of the verb.",
-   "id": "c15"
-  },
-  {
-   "sentence": "Так близко-близко, ___, взглянуло на него закрытыми глазами милое, совсем не страшное ему лицо.",
-   "lemma": "раз",
-   "options": [
-    "последнего раза",
-    "последний раз",
-    "последним разом",
-    "последнему разу"
-   ],
-   "correct": "последний раз",
-   "case": "Винительный (Accusative)",
-   "explain": "«последний раз» — the accusative marks the direct object of the verb.",
-   "id": "c16"
-  },
-  {
-   "sentence": "Так близко-близко, последний раз, взглянуло на него ___ милое, совсем не страшное ему лицо.",
-   "lemma": "глаз",
-   "options": [
-    "закрытых глаз",
-    "закрытыми глазами",
-    "закрытых глазах",
-    "закрытые глаза"
-   ],
-   "correct": "закрытыми глазами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«закрытыми глазами» — the instrumental marks the means, company, or complement.",
-   "id": "c17"
-  },
-  {
-   "sentence": "И вдруг желтое ___ свечей тихо закружилось и расплылось в одно желтое марево, отодвинулись стены, окна, все исчезло, и перед доктором осталось одно ее лицо.",
-   "lemma": "пламя",
-   "options": [
-    "бледным пламенем",
-    "бледном пламени",
-    "бледное пламя",
-    "бледного пламени"
-   ],
-   "correct": "бледное пламя",
-   "case": "Именительный (Nominative)",
-   "explain": "«бледное пламя» — the subject of the sentence stands in the nominative.",
-   "id": "c18"
   },
   {
    "sentence": "Тихо застонав, ___ наклонился всем телом и последний раз в жизни тихо поцеловал бледные мертвые холодные пальчики скрещенных рук.",
@@ -263,7 +109,7 @@
    ],
    "correct": "старый доктор",
    "case": "Именительный (Nominative)",
-   "explain": "«старый доктор» — the subject of the sentence stands in the nominative.",
+   "explain": "«старый доктор» is the subject of «наклонился» — who or what does it — so nominative.",
    "id": "c19"
   },
   {
@@ -277,7 +123,7 @@
    ],
    "correct": "последний раз",
    "case": "Винительный (Accusative)",
-   "explain": "«последний раз» — the accusative marks the direct object of the verb.",
+   "explain": "«последний раз» tells how long or how often, with no preposition — accusative.",
    "id": "c20"
   },
   {
@@ -291,7 +137,7 @@
    ],
    "correct": "светлый день",
    "case": "Именительный (Nominative)",
-   "explain": "«светлый день» — the subject of the sentence stands in the nominative.",
+   "explain": "«светлый день» is the subject of «был» — who or what does it — so nominative.",
    "id": "c21"
   }
  ]

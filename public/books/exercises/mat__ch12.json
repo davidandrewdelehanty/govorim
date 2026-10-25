@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Серый ___ Власовых все более и более притягивал внимание слободки.",
-   "lemma": "дом",
-   "options": [
-    "маленькому дому",
-    "маленьким домом",
-    "маленький дом",
-    "маленьком доме"
-   ],
-   "correct": "маленький дом",
-   "case": "Именительный (Nominative)",
-   "explain": "«маленький дом» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "В сложных случаях Павел давал человеку записку в город к ___, а когда мог -- объяснял дело сам.",
    "lemma": "адвокат",
    "options": [
@@ -25,22 +11,8 @@
    ],
    "correct": "знакомому адвокату",
    "case": "Дательный (Dative)",
-   "explain": "«знакомому адвокату» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«знакомому адвокату» — «к» always takes the dative.",
    "id": "c3"
-  },
-  {
-   "sentence": "За фабрикой, почти окружая ее ___, тянулось обширное болото, поросшее ельником и березой.",
-   "lemma": "кольцо",
-   "options": [
-    "гнилым кольцом",
-    "гнилому кольцу",
-    "гнилого кольца",
-    "гнилом кольце"
-   ],
-   "correct": "гнилым кольцом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«гнилым кольцом» — the instrumental marks the means, company, or complement.",
-   "id": "c4"
   },
   {
    "sentence": "За фабрикой, почти окружая ее гнилым кольцом, тянулось ___, поросшее ельником и березой.",
@@ -53,22 +25,8 @@
    ],
    "correct": "обширное болото",
    "case": "Именительный (Nominative)",
-   "explain": "«обширное болото» — the subject of the sentence stands in the nominative.",
+   "explain": "«обширное болото» is the subject of «тянулось» — who or what does it — so nominative.",
    "id": "c5"
-  },
-  {
-   "sentence": "Болото принадлежало фабрике, и ___, желая извлечь из него пользу, задумал осушить его, а кстати выбрать торф.",
-   "lemma": "директор",
-   "options": [
-    "нового директора",
-    "новому директору",
-    "новый директор",
-    "новым директором"
-   ],
-   "correct": "новый директор",
-   "case": "Именительный (Nominative)",
-   "explain": "«новый директор» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
   },
   {
    "sentence": "Особенно обидело их, что служащие не входили в число плательщиков ___.",
@@ -81,36 +39,8 @@
    ],
    "correct": "нового налога",
    "case": "Родительный (Genitive)",
-   "explain": "«нового налога» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«нового налога» depends on the noun «плательщиков» (whose? of what?) — genitive.",
    "id": "c7"
-  },
-  {
-   "sentence": "На другой день, после обедни, к нему пришли ___, литейщик Сизов, высокий и злой слесарь Махотин и рассказали ему о решении директора.",
-   "lemma": "старик",
-   "options": [
-    "благообразный старик",
-    "благообразным стариком",
-    "благообразного старика",
-    "благообразном старике"
-   ],
-   "correct": "благообразный старик",
-   "case": "Именительный (Nominative)",
-   "explain": "«благообразный старик» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
-  },
-  {
-   "sentence": "-- Сообрази! -- сказал Махотин, сверкая ___. -- Четыре года тому назад они, жулье, на баню собирали.",
-   "lemma": "глаз",
-   "options": [
-    "узкими глазами",
-    "узким глазам",
-    "узких глаз",
-    "узких глазах"
-   ],
-   "correct": "узкими глазами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«узкими глазами» — the instrumental marks the means, company, or complement.",
-   "id": "c10"
   },
   {
    "sentence": "Она смотрела в его лицо сотнями ___, всасывала его слова.",
@@ -123,91 +53,21 @@
    ],
    "correct": "внимательных глаз",
    "case": "Родительный (Genitive)",
-   "explain": "«внимательных глаз» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«внимательных глаз» depends on the noun «сотнями» (whose? of what?) — genitive.",
    "id": "c18"
-  },
-  {
-   "sentence": "Смело говорит! -- толкнув мать в плечо, сказал высокий ___.",
-   "lemma": "рабочий",
-   "options": [
-    "кривого рабочего",
-    "кривым рабочим",
-    "кривому рабочему",
-    "кривой рабочий"
-   ],
-   "correct": "кривой рабочий",
-   "case": "Именительный (Nominative)",
-   "explain": "«кривой рабочий» — the subject of the sentence stands in the nominative.",
-   "id": "c20"
-  },
-  {
-   "sentence": "Точно град на железо, сыпались ___, ругательства, злые слова.",
-   "lemma": "восклицание",
-   "options": [
-    "отрывистых восклицаний",
-    "отрывистыми восклицаниями",
-    "отрывистые восклицания",
-    "отрывистых восклицаниях"
-   ],
-   "correct": "отрывистые восклицания",
-   "case": "Именительный (Nominative)",
-   "explain": "«отрывистые восклицания» — the subject of the sentence stands in the nominative.",
-   "id": "c21"
-  },
-  {
-   "sentence": "Точно град на железо, сыпались отрывистые восклицания, ругательства, ___.",
-   "lemma": "слово",
-   "options": [
-    "злыми словами",
-    "злых словах",
-    "злые слова",
-    "злых слов"
-   ],
-   "correct": "злые слова",
-   "case": "Винительный (Accusative)",
-   "explain": "«злые слова» — the accusative marks the direct object of the verb.",
-   "id": "c22"
-  },
-  {
-   "sentence": "Павел смотрел на людей сверху и искал среди них чего-то широко ___.",
-   "lemma": "глаз",
-   "options": [
-    "открытых глаз",
-    "открытым глазам",
-    "открытыми глазами",
-    "открытые глаза"
-   ],
-   "correct": "открытыми глазами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«открытыми глазами» — the instrumental marks the means, company, or complement.",
-   "id": "c23"
-  },
-  {
-   "sentence": "Толпа расступилась, давая дорогу высокому человеку с острой бородкой и ___.",
-   "lemma": "лицо",
-   "options": [
-    "длинному лицу",
-    "длинное лицо",
-    "длинном лице",
-    "длинным лицом"
-   ],
-   "correct": "длинным лицом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«длинным лицом» — the instrumental marks the means, company, or complement.",
-   "id": "c27"
   },
   {
    "sentence": "-- Вы кажетесь довольно ___ -- неужели и вы не понимаете пользу этой меры?",
    "lemma": "человек",
    "options": [
+    "интеллигентном человеке",
     "интеллигентным человеком",
-    "интеллигентного человека",
-    "интеллигентный человек",
-    "интеллигентному человеку"
+    "интеллигентному человеку",
+    "интеллигентного человека"
    ],
    "correct": "интеллигентным человеком",
    "case": "Творительный (Instrumental)",
-   "explain": "«интеллигентным человеком» — the instrumental marks the means, company, or complement.",
+   "explain": "After «кажетесь», what someone or something is or becomes stands in the instrumental.",
    "id": "c31"
   },
   {
@@ -221,22 +81,8 @@
    ],
    "correct": "недовольный гул",
    "case": "Именительный (Nominative)",
-   "explain": "«недовольный гул» — the subject of the sentence stands in the nominative.",
+   "explain": "«недовольный гул» is the subject of «раздался» — who or what does it — so nominative.",
    "id": "c32"
-  },
-  {
-   "sentence": "Он снова пошел сквозь толпу, но теперь сзади него возникал ___, и чем глубже уходила его фигура, тем выше поднимались крики.",
-   "lemma": "ропот",
-   "options": [
-    "глухого ропота",
-    "глухом ропоте",
-    "глухому ропоту",
-    "глухой ропот"
-   ],
-   "correct": "глухой ропот",
-   "case": "Именительный (Nominative)",
-   "explain": "«глухой ропот» — the subject of the sentence stands in the nominative.",
-   "id": "c34"
   }
  ]
 }

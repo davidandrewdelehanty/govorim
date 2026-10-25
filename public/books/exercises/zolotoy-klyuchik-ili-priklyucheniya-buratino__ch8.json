@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Рано утром Буратино пересчитал деньги, — ___ было столько, сколько пальцев на руке, — пять.",
-   "lemma": "монета",
-   "options": [
-    "золотым монетам",
-    "золотых монет",
-    "золотыми монетами",
-    "золотые монеты"
-   ],
-   "correct": "золотых монет",
-   "case": "Родительный (Genitive)",
-   "explain": "«золотых монет» — the genitive here marks possession, absence, or quantity.",
-   "id": "c1"
-  },
-  {
    "sentence": "Когда из глаз скрылся балаган ___ и развевающиеся флаги, он увидел двух нищих, уныло бредущих по пыльной дороге: лису Алису, ковыляющую на трех лапах, и слепого кота Базилио.",
    "lemma": "театр",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "кукольного театра",
    "case": "Родительный (Genitive)",
-   "explain": "«кукольного театра» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«кукольного театра» depends on the noun «балаган» (whose? of what?) — genitive.",
    "id": "c2"
   },
   {
@@ -39,36 +25,8 @@
    ],
    "correct": "пыльной дороге",
    "case": "Дательный (Dative)",
-   "explain": "«пыльной дороге» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«пыльной дороге» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c3"
-  },
-  {
-   "sentence": "Когда из глаз скрылся балаган кукольного театра и развевающиеся флаги, он увидел двух нищих, уныло бредущих по пыльной дороге: лису Алису, ковыляющую на трех лапах, и ___ Базилио.",
-   "lemma": "кот",
-   "options": [
-    "слепой кот",
-    "слепого кота",
-    "слепым котом",
-    "слепому коту"
-   ],
-   "correct": "слепого кота",
-   "case": "Винительный (Accusative)",
-   "explain": "«слепого кота» — the accusative marks the direct object of the verb.",
-   "id": "c4"
-  },
-  {
-   "sentence": "Увидев деньги, лиса невольно потянулась к ним лапой, а кот вдруг широко раскрыл ___, и они сверкнули у него, как два зеленых фонаря.",
-   "lemma": "глаз",
-   "options": [
-    "слепым глазам",
-    "слепые глаза",
-    "слепых глаз",
-    "слепых глазах"
-   ],
-   "correct": "слепые глаза",
-   "case": "Винительный (Accusative)",
-   "explain": "«слепые глаза» — the accusative marks the direct object of the verb.",
-   "id": "c5"
   },
   {
    "sentence": "На ___ около дороги сидела пожилая ворона.",
@@ -81,7 +39,7 @@
    ],
    "correct": "сухой ветке",
    "case": "Предложный (Prepositional)",
-   "explain": "«сухой ветке» — after the preposition «на», for location or topic.",
+   "explain": "«сухой ветке» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c6"
   },
   {
@@ -95,7 +53,7 @@
    ],
    "correct": "пожилая ворона",
    "case": "Именительный (Nominative)",
-   "explain": "«пожилая ворона» — the subject of the sentence stands in the nominative.",
+   "explain": "«пожилая ворона» is the subject of «сидела» — who or what does it — so nominative.",
    "id": "c7"
   },
   {
@@ -109,7 +67,7 @@
    ],
    "correct": "пыльной дороге",
    "case": "Дательный (Dative)",
-   "explain": "«пыльной дороге» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«пыльной дороге» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c8"
   },
   {
@@ -123,22 +81,8 @@
    ],
    "correct": "небольшое деревце",
    "case": "Именительный (Nominative)",
-   "explain": "«небольшое деревце» — the subject of the sentence stands in the nominative.",
+   "explain": "«небольшое деревце» is the subject of «вырастет» — who or what does it — so nominative.",
    "id": "c9"
-  },
-  {
-   "sentence": "Наутро из ямки вырастет небольшое деревце, на нем вместо листьев будут висеть ___.",
-   "lemma": "монета",
-   "options": [
-    "золотым монетам",
-    "золотые монеты",
-    "золотых монетах",
-    "золотыми монетами"
-   ],
-   "correct": "золотые монеты",
-   "case": "Именительный (Nominative)",
-   "explain": "«золотые монеты» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
   }
  ]
 }

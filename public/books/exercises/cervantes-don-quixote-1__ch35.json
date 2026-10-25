@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Едва лишь успели они принять ___ предосторожности, как к корчме подъехали новоприбывшие путешественники.",
-   "lemma": "мера",
-   "options": [
-    "необходимые меры",
-    "необходимых мер",
-    "необходимыми мерами",
-    "необходимым мерам"
-   ],
-   "correct": "необходимые меры",
-   "case": "Винительный (Accusative)",
-   "explain": "«необходимые меры» — the accusative marks the direct object of the verb.",
-   "id": "c1"
-  },
-  {
    "sentence": "Едва лишь успели они принять необходимые меры предосторожности, как к корчме подъехали ___.",
    "lemma": "путешественник",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "новоприбывшие путешественники",
    "case": "Именительный (Nominative)",
-   "explain": "«новоприбывшие путешественники» — the subject of the sentence stands in the nominative.",
+   "explain": "«новоприбывшие путешественники» is the subject of «подъехали» — who or what does it — so nominative.",
    "id": "c2"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "замаскированный путешественник",
    "case": "Именительный (Nominative)",
-   "explain": "«замаскированный путешественник» — the subject of the sentence stands in the nominative.",
+   "explain": "«замаскированный путешественник» is the subject of «посадил» — who or what does it — so nominative.",
    "id": "c3"
   },
   {
@@ -53,22 +39,8 @@
    ],
    "correct": "несчастной дамы",
    "case": "Родительный (Genitive)",
-   "explain": "«несчастной дамы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«несчастной дамы» depends on the noun «вздохи» (whose? of what?) — genitive.",
    "id": "c4"
-  },
-  {
-   "sentence": "Вздыхавшая дама не ответила ничего и продолжала упорно молчать, не смотря на то, что Доротея с большим и ___ продолжала предлагать ей свои услуги.",
-   "lemma": "увлечение",
-   "options": [
-    "большим увлечением",
-    "большему увлечению",
-    "большее увлечение",
-    "большем увлечении"
-   ],
-   "correct": "большим увлечением",
-   "case": "Творительный (Instrumental)",
-   "explain": "«большим увлечением» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c5"
   },
   {
    "sentence": "«Боже, что слышу я? какой голос поразил мой слух», воскликнул, в эту минуту, раздирающим голосом Карденио, ясно слышавший слова ___, от которой его отделяла одна только дверь.",
@@ -81,92 +53,36 @@
    ],
    "correct": "незнакомой дамы",
    "case": "Родительный (Genitive)",
-   "explain": "«незнакомой дамы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«незнакомой дамы» depends on the noun «слова» (whose? of what?) — genitive.",
    "id": "c6"
   },
   {
    "sentence": "Говоривший с ней и крепко державший её за плечи мужчина не мог, в свою очередь, удержать маски, и также очутился с ___.",
    "lemma": "лицо",
    "options": [
-    "открытого лица",
-    "открытым лицом",
     "открытом лице",
-    "открытому лицу"
+    "открытому лицу",
+    "открытое лицо",
+    "открытым лицом"
    ],
    "correct": "открытым лицом",
    "case": "Творительный (Instrumental)",
-   "explain": "«открытым лицом» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«открытым лицом» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c7"
-  },
-  {
-   "sentence": "Не теряя ни минуты, священник поспешил снять с нея вуаль, чтобы брызнуть на нее ___; между тем дон-Фернанд тоже обмер, увидевши перед собой Доротею.",
-   "lemma": "вода",
-   "options": [
-    "холодной водой",
-    "холодной воде",
-    "холодная вода",
-    "холодной воды"
-   ],
-   "correct": "холодной водой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«холодной водой» — the instrumental marks the means, company, or complement.",
-   "id": "c8"
-  },
-  {
-   "sentence": "Тем не менее он не выпускал из рук Лусинды (___, старавшаяся освободиться из рук его, была Лусинда), узнавшей по голосу Карденио, который, в свою очередь, узнал ее.",
-   "lemma": "дама",
-   "options": [
-    "незнакомая дама",
-    "незнакомой даме",
-    "незнакомой дамы",
-    "незнакомой дамой"
-   ],
-   "correct": "незнакомая дама",
-   "case": "Именительный (Nominative)",
-   "explain": "«незнакомая дама» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
-  },
-  {
-   "sentence": "Вы видите, какими странными и непредугаданными путями небо возвратило меня моему ___.",
-   "lemma": "муж",
-   "options": [
-    "настоящий муж",
-    "настоящем муже",
-    "настоящему мужу",
-    "настоящего мужа"
-   ],
-   "correct": "настоящему мужу",
-   "case": "Дательный (Dative)",
-   "explain": "«настоящему мужу» — the dative marks the indirect object or recipient.",
-   "id": "c10"
   },
   {
    "sentence": "Возьмите мою жизнь; позвольте мне только, в ___, вздохнуть на глазах моего любимого мужа, и я благословлю мою смерть.",
    "lemma": "раз",
    "options": [
-    "последнем разе",
+    "последним разом",
     "последний раз",
-    "последнему разу",
-    "последнего раза"
+    "последнего раза",
+    "последнему разу"
    ],
    "correct": "последний раз",
    "case": "Винительный (Accusative)",
-   "explain": "«последний раз» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«последний раз» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c11"
-  },
-  {
-   "sentence": "Если ты не хочешь признать меня своей ___, сделай меня рабой твоей, и я сочту себя богатой и счастливой, когда буду в твоей власти.",
-   "lemma": "жена",
-   "options": [
-    "законной жены",
-    "законной женой",
-    "законной жене",
-    "законная жена"
-   ],
-   "correct": "законной женой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«законной женой» — the instrumental marks the means, company, or complement.",
-   "id": "c12"
   },
   {
    "sentence": "Не допусти, покидая меня, поблекнуть моему доброму имени под гнетом ___ и пересуд; устрани от родных моих такую грустную старость: они верно служили твоим родителям, и не такой награды достойна их служба.",
@@ -179,7 +95,7 @@
    ],
    "correct": "злых толков",
    "case": "Родительный (Genitive)",
-   "explain": "«злых толков» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«злых толков» depends on the noun «гнетом» (whose? of what?) — genitive.",
    "id": "c13"
   },
   {
@@ -193,22 +109,8 @@
    ],
    "correct": "истинное благородство",
    "case": "Именительный (Nominative)",
-   "explain": "«истинное благородство» — the subject of the sentence stands in the nominative.",
+   "explain": "«истинное благородство» is the subject of «заключается» — who or what does it — so nominative.",
    "id": "c14"
-  },
-  {
-   "sentence": "Это ___ произвело всеобщее удивление.",
-   "lemma": "происшествие",
-   "options": [
-    "неожиданного происшествия",
-    "неожиданному происшествию",
-    "неожиданное происшествие",
-    "неожиданном происшествии"
-   ],
-   "correct": "неожиданное происшествие",
-   "case": "Именительный (Nominative)",
-   "explain": "«неожиданное происшествие» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
   },
   {
    "sentence": "И не лучше ли тебе возвысить, назвать равной тебе ту женщину, которая, не смотря на все препятствия, поддерживаемая своим постоянством, глядит тебе теперь в глаза и орошает слезами любви лицо своего ___?",
@@ -221,21 +123,21 @@
    ],
    "correct": "настоящего мужа",
    "case": "Родительный (Genitive)",
-   "explain": "«настоящего мужа» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«настоящего мужа» depends on the noun «лицо» (whose? of what?) — genitive.",
    "id": "c16"
   },
   {
    "sentence": "Подумайте, что в ___, в неисправимых обстоятельствах жизни, лучшее, что остается сделать — это: восторжествовать над собою и выказать великодушие нашей души.",
    "lemma": "случай",
    "options": [
-    "крайними случаями",
     "крайних случаев",
-    "крайние случаи",
+    "крайними случаями",
+    "крайним случаям",
     "крайних случаях"
    ],
    "correct": "крайних случаях",
    "case": "Предложный (Prepositional)",
-   "explain": "«крайних случаях» — after the preposition «в», for location or topic.",
+   "explain": "«крайних случаях» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c17"
   },
   {
@@ -249,7 +151,7 @@
    ],
    "correct": "неисправимых обстоятельствах",
    "case": "Предложный (Prepositional)",
-   "explain": "«неисправимых обстоятельствах» — after the preposition «в», for location or topic.",
+   "explain": "«неисправимых обстоятельствах» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c18"
   },
   {
@@ -263,7 +165,7 @@
    ],
    "correct": "остальные лица",
    "case": "Именительный (Nominative)",
-   "explain": "«остальные лица» — the subject of the sentence stands in the nominative.",
+   "explain": "«остальные лица» is the subject of «присовокупили» — who or what does it — so nominative.",
    "id": "c19"
   },
   {
@@ -277,63 +179,35 @@
    ],
    "correct": "общим усилиям",
    "case": "Дательный (Dative)",
-   "explain": "«общим усилиям» — after the preposition «благодаря», the dative marks the indirect object or recipient.",
+   "explain": "«общим усилиям» — «благодаря» always takes the dative.",
    "id": "c20"
-  },
-  {
-   "sentence": "К словам священника все остальные лица присовокупили несколько своих и, благодаря общим усилиям, ___ дон-Фернанда успокоилось наконец и преклонилось пред могуществом добродетели.",
-   "lemma": "сердце",
-   "options": [
-    "благородным сердцем",
-    "благородное сердце",
-    "благородного сердца",
-    "благородном сердце"
-   ],
-   "correct": "благородное сердце",
-   "case": "Именительный (Nominative)",
-   "explain": "«благородное сердце» — the subject of the sentence stands in the nominative.",
-   "id": "c21"
-  },
-  {
-   "sentence": "Не порицайте меня за то, что я покинул вас; меня удалила от вас та ___, которая привлекла меня в вам.",
-   "lemma": "сила",
-   "options": [
-    "самая сила",
-    "самой силе",
-    "самой силой",
-    "самой силы"
-   ],
-   "correct": "самая сила",
-   "case": "Именительный (Nominative)",
-   "explain": "«самая сила» — the subject of the sentence stands in the nominative.",
-   "id": "c22"
   },
   {
    "sentence": "С ___ он сжал Доротею в своих объятиях и так нежно прижал в лицу её — свое, что ему нужно было сделать некоторое усилие над собою, чтобы слезы — свидетели его любви и раскаяния — не брызнули у него из глаз.",
    "lemma": "слово",
    "options": [
-    "последнему слову",
-    "последнего слова",
     "последним словом",
-    "последнее слово"
+    "последнее слово",
+    "последнем слове",
+    "последнему слову"
    ],
    "correct": "последним словом",
    "case": "Творительный (Instrumental)",
-   "explain": "«последним словом» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«последним словом» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c23"
   },
   {
    "sentence": "Сам Санчо заливался слезами, но, как он уверял впоследствии, потому только, что Доротея оказалась не принцессою Мивоиивон, от которой он ожидал таких ___.",
    "lemma": "милость",
    "options": [
+    "богатых милостей",
     "богатым милостям",
     "богатыми милостями",
-    "богатых милостей",
-    "богатые милости"
+    "богатых милостях"
    ],
    "correct": "богатых милостей",
    "case": "Родительный (Genitive)",
-   "explain": "«богатых милостей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "With «ожидал», a verb of waiting, seeking, asking or wanting, the object can stand in the genitive — as here.",
    "id": "c24"
   },
   {
@@ -347,35 +221,21 @@
    ],
    "correct": "общее волнение",
    "case": "Именительный (Nominative)",
-   "explain": "«общее волнение» — the subject of the sentence stands in the nominative.",
+   "explain": "«общее волнение» is the subject of «продолжалось» — who or what does it — so nominative.",
    "id": "c25"
-  },
-  {
-   "sentence": "После Доротеи рассказал и дон-Фернанд все, что случилось с ним с тех пор, как он нашел на груди Лусинды записку, в которой она писала, что не может быть его женой, так как она ___ Карденио.",
-   "lemma": "жена",
-   "options": [
-    "законной женой",
-    "законной жене",
-    "законной жены",
-    "законная жена"
-   ],
-   "correct": "законная жена",
-   "case": "Именительный (Nominative)",
-   "explain": "«законная жена» — the subject of the sentence stands in the nominative.",
-   "id": "c26"
   },
   {
    "sentence": "На ___ я узнал, что Лусинда исчезла из родительского дома, и никто не мог сказать, куда она делась.",
    "lemma": "день",
    "options": [
-    "другому дню",
-    "другой день",
     "другим днём",
-    "другом дне"
+    "другого дня",
+    "другой день",
+    "другому дню"
    ],
    "correct": "другой день",
    "case": "Винительный (Accusative)",
-   "explain": "«другой день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«другой день» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c27"
   },
   {
@@ -389,7 +249,7 @@
    ],
    "correct": "родительского дома",
    "case": "Родительный (Genitive)",
-   "explain": "«родительского дома» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«родительского дома» — «из» always takes the genitive.",
    "id": "c28"
   },
   {
@@ -403,7 +263,7 @@
    ],
    "correct": "людских жилищ",
    "case": "Родительный (Genitive)",
-   "explain": "«людских жилищ» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«людских жилищ» — «от» always takes the genitive.",
    "id": "c29"
   }
  ]

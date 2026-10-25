@@ -1,90 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Леля NN, хорошенькая ___, стоит у палисадника дачи и, положив подбородок на перекладину, глядит вдаль.",
-   "lemma": "блондинка",
-   "options": [
-    "двадцатилетней блондинкой",
-    "двадцатилетней блондинки",
-    "двадцатилетняя блондинка",
-    "двадцатилетней блондинке"
-   ],
-   "correct": "двадцатилетняя блондинка",
-   "case": "Именительный (Nominative)",
-   "explain": "«двадцатилетняя блондинка» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "___ ее так грустно, в глазах темнеет столько тоски, что, право, неделикатно и жестоко не поделиться с ней ее горем.",
-   "lemma": "лицо",
-   "options": [
-    "хорошенькому лицу",
-    "хорошенького лица",
-    "хорошеньком лице",
-    "хорошенькое лицо"
-   ],
-   "correct": "хорошенькое лицо",
-   "case": "Именительный (Nominative)",
-   "explain": "«Хорошенькое лицо» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
-   "sentence": "В прошлом году, в этом же самом душистом и поэтическом мае, она была в институте и держала ___.",
-   "lemma": "экзамен",
-   "options": [
-    "выпускными экзаменами",
-    "выпускные экзамены",
-    "выпускных экзаменах",
-    "выпускных экзаменов"
-   ],
-   "correct": "выпускные экзамены",
-   "case": "Винительный (Accusative)",
-   "explain": "«выпускные экзамены» — the accusative marks the direct object of the verb.",
-   "id": "c3"
-  },
-  {
-   "sentence": "Ей припоминается, как ___ m-lle Morceau, забитое, больное и ужасно недалекое созданье с вечно испуганным лицом и большим, вспотевшим носом, водила выпускных в фотографию сниматься.",
-   "lemma": "дама",
-   "options": [
-    "классной даме",
-    "классная дама",
-    "классной дамы",
-    "классной дамой"
-   ],
-   "correct": "классная дама",
-   "case": "Именительный (Nominative)",
-   "explain": "«классная дама» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
-  },
-  {
-   "sentence": "Ей припоминается, как классная дама m-lle Morceau, забитое, больное и ужасно недалекое созданье с вечно ___ и большим, вспотевшим носом, водила выпускных в фотографию сниматься.",
-   "lemma": "лицо",
-   "options": [
-    "испуганным лицом",
-    "испуганном лице",
-    "испуганного лица",
-    "испуганное лицо"
-   ],
-   "correct": "испуганным лицом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«испуганным лицом» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c5"
-  },
-  {
-   "sentence": "Эта ___, никогда не знавшая мужчин, приходила в священный ужас при виде мужской физиономии.",
-   "lemma": "ящерица",
-   "options": [
-    "бедная ящерица",
-    "бедной ящерице",
-    "бедной ящерицей",
-    "бедной ящерицы"
-   ],
-   "correct": "бедная ящерица",
-   "case": "Именительный (Nominative)",
-   "explain": "«бедная ящерица» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
-  },
-  {
    "sentence": "Институтки смеялись над глупой Morceau, но, пропитанные насквозь «идеалами», они не могли не разделять ее ___.",
    "lemma": "ужас",
    "options": [
@@ -95,7 +11,7 @@
    ],
    "correct": "священного ужаса",
    "case": "Родительный (Genitive)",
-   "explain": "«священного ужаса» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«священного ужаса» is the object of a negated verb («не разделять») — genitive instead of the accusative.",
    "id": "c8"
   },
   {
@@ -109,7 +25,7 @@
    ],
    "correct": "поэтическим маем",
    "case": "Творительный (Instrumental)",
-   "explain": "«поэтическим маем» — after the preposition «перед», the instrumental marks the means, company, or complement.",
+   "explain": "«поэтическим маем» — «перед» always takes the instrumental.",
    "id": "c9"
   },
   {
@@ -123,7 +39,7 @@
    ],
    "correct": "нелепых братьев",
    "case": "Родительный (Genitive)",
-   "explain": "«нелепых братьев» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«нелепых братьев» depends on the noun «тысяч» (whose? of what?) — genitive.",
    "id": "c10"
   },
   {
@@ -137,22 +53,8 @@
    ],
    "correct": "озабоченным лицом",
    "case": "Творительный (Instrumental)",
-   "explain": "«озабоченным лицом» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«озабоченным лицом» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c11"
-  },
-  {
-   "sentence": "Переписывает ли он только бумаги, сочиняет ли ___, или, быть может, даже вращает судьбами «общества» — неизвестно.",
-   "lemma": "проект",
-   "options": [
-    "умным проектам",
-    "умные проекты",
-    "умных проектах",
-    "умными проектами"
-   ],
-   "correct": "умные проекты",
-   "case": "Винительный (Accusative)",
-   "explain": "«умные проекты» — the accusative marks the direct object of the verb.",
-   "id": "c13"
   },
   {
    "sentence": "— Нет у нас теперь ___!",
@@ -165,7 +67,7 @@
    ],
    "correct": "хороших писателей",
    "case": "Родительный (Genitive)",
-   "explain": "«хороших писателей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "What is absent after «нет» — genitive.",
    "id": "c15"
   },
   {
@@ -179,7 +81,7 @@
    ],
    "correct": "смешные вещи",
    "case": "Именительный (Nominative)",
-   "explain": "«смешные вещи» — the subject of the sentence stands in the nominative.",
+   "explain": "«смешные вещи» is the subject of «есть» — who or what does it — so nominative.",
    "id": "c16"
   },
   {
@@ -193,7 +95,7 @@
    ],
    "correct": "карточной игры",
    "case": "Родительный (Genitive)",
-   "explain": "«карточной игры» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«карточной игры» depends on the noun «правила» (whose? of what?) — genitive.",
    "id": "c18"
   },
   {
@@ -207,36 +109,8 @@
    ],
    "correct": "озабоченным лицом",
    "case": "Творительный (Instrumental)",
-   "explain": "«озабоченным лицом» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«озабоченным лицом» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c19"
-  },
-  {
-   "sentence": "Во сне он покоен, как ___.",
-   "lemma": "бревно",
-   "options": [
-    "лежачее бревно",
-    "лежачего бревна",
-    "лежачему бревну",
-    "лежачем бревне"
-   ],
-   "correct": "лежачее бревно",
-   "case": "Именительный (Nominative)",
-   "explain": "«лежачее бревно» — the subject of the sentence stands in the nominative.",
-   "id": "c20"
-  },
-  {
-   "sentence": "___ m-lle Morceau обещал ей больше.",
-   "lemma": "ужас",
-   "options": [
-    "священному ужасу",
-    "священный ужас",
-    "священным ужасом",
-    "священного ужаса"
-   ],
-   "correct": "священный ужас",
-   "case": "Винительный (Accusative)",
-   "explain": "«Священный ужас» — the accusative marks the direct object of the verb.",
-   "id": "c21"
   }
  ]
 }

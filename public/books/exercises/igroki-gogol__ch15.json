@@ -1,62 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Утешительный и Глов Александр Михалыч, ___.",
-   "lemma": "человек",
-   "options": [
-    "молодому человеку",
-    "молодом человеке",
-    "молодого человека",
-    "молодой человек"
-   ],
-   "correct": "молодой человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«молодой человек» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Рекомендую: Александр Михалыч Глов, ___, прошу полюбить, как меня.",
-   "lemma": "товарищ",
-   "options": [
-    "отличному товарищу",
-    "отличный товарищ",
-    "отличном товарище",
-    "отличного товарища"
-   ],
-   "correct": "отличный товарищ",
-   "case": "Именительный (Nominative)",
-   "explain": "«отличный товарищ» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Вот оно, что называется ___, чорт побери!",
-   "lemma": "гусар",
-   "options": [
-    "настоящим гусаром",
-    "настоящий гусар",
-    "настоящему гусару",
-    "настоящего гусара"
-   ],
-   "correct": "настоящий гусар",
-   "case": "Именительный (Nominative)",
-   "explain": "«настоящий гусар» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
-  },
-  {
-   "sentence": "Вот это мой решительно вкус: этаких ___ я люблю.",
-   "lemma": "человек",
-   "options": [
-    "открытые люди",
-    "открытым людям",
-    "открытых людей",
-    "открытыми людьми"
-   ],
-   "correct": "открытых людей",
-   "case": "Винительный (Accusative)",
-   "explain": "«открытых людей» — the accusative marks the direct object of the verb.",
-   "id": "c5"
-  },
-  {
    "sentence": "Господа, за здравие будущего ___.",
    "lemma": "юнкер",
    "options": [
@@ -67,7 +11,7 @@
    ],
    "correct": "гусарского юнкера",
    "case": "Родительный (Genitive)",
-   "explain": "«гусарского юнкера» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«гусарского юнкера» depends on the noun «здравие» (whose? of what?) — genitive.",
    "id": "c6"
   },
   {
@@ -81,7 +25,7 @@
    ],
    "correct": "гусарские обычаи",
    "case": "Винительный (Accusative)",
-   "explain": "«гусарские обычаи» — after the preposition «во», the accusative marks the direct object of the verb.",
+   "explain": "«гусарские обычаи» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c7"
   },
   {
@@ -95,7 +39,7 @@
    ],
    "correct": "приказная строка",
    "case": "Именительный (Nominative)",
-   "explain": "«приказная строка» — the subject of the sentence stands in the nominative.",
+   "explain": "«приказная строка» is the subject of «отважится» — who or what does it — so nominative.",
    "id": "c8"
   },
   {
@@ -109,92 +53,8 @@
    ],
    "correct": "пиковая дама",
    "case": "Именительный (Nominative)",
-   "explain": "«пиковая дама» — the subject of the sentence stands in the nominative.",
+   "explain": "«пиковая дама» is the subject of «продаст» — who or what does it — so nominative.",
    "id": "c9"
-  },
-  {
-   "sentence": "Помнишь, Швохнев, свою брюнетку, что называл ты ___.",
-   "lemma": "дама",
-   "options": [
-    "пиковая дама",
-    "пиковой дамой",
-    "пиковой даме",
-    "пиковой дамы"
-   ],
-   "correct": "пиковой дамой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«пиковой дамой» — the instrumental marks the means, company, or complement.",
-   "id": "c10"
-  },
-  {
-   "sentence": "Замечаешь, Швохнев, как ___ всегда выходит в наружу?",
-   "lemma": "чувство",
-   "options": [
-    "настоящего чувства",
-    "настоящим чувством",
-    "настоящее чувство",
-    "настоящем чувстве"
-   ],
-   "correct": "настоящее чувство",
-   "case": "Именительный (Nominative)",
-   "explain": "«настоящее чувство» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
-  },
-  {
-   "sentence": "Вот тебе, Швохнев, ___.",
-   "lemma": "дама",
-   "options": [
-    "бубновой дамы",
-    "бубновой дамой",
-    "бубновая дама",
-    "бубновой даме"
-   ],
-   "correct": "бубновая дама",
-   "case": "Именительный (Nominative)",
-   "explain": "«бубновая дама» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
-  },
-  {
-   "sentence": "Прежде заплати, без этого нельзя начинать ___.",
-   "lemma": "игра",
-   "options": [
-    "новой игры",
-    "новой игрой",
-    "новой игре",
-    "новая игра"
-   ],
-   "correct": "новой игры",
-   "case": "Родительный (Genitive)",
-   "explain": "«новой игры» — the genitive here marks possession, absence, or quantity.",
-   "id": "c13"
-  },
-  {
-   "sentence": "Нет, это совсем ___.",
-   "lemma": "дело",
-   "options": [
-    "другого дела",
-    "другом деле",
-    "другое дело",
-    "другому делу"
-   ],
-   "correct": "другое дело",
-   "case": "Именительный (Nominative)",
-   "explain": "«другое дело» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
-  },
-  {
-   "sentence": "Ну, так скажите ___: не хотите играть?",
-   "lemma": "слово",
-   "options": [
-    "последнем слове",
-    "последнего слова",
-    "последнее слово",
-    "последнему слову"
-   ],
-   "correct": "последнее слово",
-   "case": "Именительный (Nominative)",
-   "explain": "«последнее слово» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
   },
   {
    "sentence": "Побежать за ним, в ___, чтоб еще как-нибудь не застрелился.",
@@ -207,7 +67,7 @@
    ],
    "correct": "самом деле",
    "case": "Предложный (Prepositional)",
-   "explain": "«самом деле» — after the preposition «в», for location or topic.",
+   "explain": "«самом деле» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c16"
   }
  ]

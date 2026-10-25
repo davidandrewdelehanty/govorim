@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Человек он был степенный, богобоязненный, состоятельный; был он притом ___.",
-   "lemma": "староста",
-   "options": [
-    "церковного старосту",
-    "церковным старостой",
-    "церковного старосты",
-    "церковном старосте"
-   ],
-   "correct": "церковным старостой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«церковным старостой» — the instrumental marks the means, company, or complement.",
-   "id": "c2"
-  },
-  {
    "sentence": "Теперь он был спокоен, язвителен и со всей высоты своего роста, всею силой своего звучного голоса и ораторского таланта давил захлебывавшегося и выбитого совершенно из своей ___ церковного старосту.",
    "lemma": "колея",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "степенной колеи",
    "case": "Родительный (Genitive)",
-   "explain": "«степенной колеи» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«степенной колеи» — «из» always takes the genitive.",
    "id": "c3"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "другой раз",
    "case": "Винительный (Accusative)",
-   "explain": "«другой раз» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«другой раз» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c4"
   },
   {
@@ -47,13 +33,13 @@
    "lemma": "лицо",
    "options": [
     "глянцевитом лице",
-    "глянцевитому лицу",
-    "глянцевитого лица",
-    "глянцевитым лицом"
+    "глянцевитым лицом",
+    "глянцевитое лицо",
+    "глянцевитому лицу"
    ],
    "correct": "глянцевитым лицом",
    "case": "Творительный (Instrumental)",
-   "explain": "«глянцевитым лицом» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«глянцевитым лицом» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c6"
   },
   {
@@ -67,64 +53,8 @@
    ],
    "correct": "самодовольное выражение",
    "case": "Именительный (Nominative)",
-   "explain": "«самодовольное выражение» — the subject of the sentence stands in the nominative.",
+   "explain": "«самодовольное выражение» is the subject of «лежало» — who or what does it — so nominative.",
    "id": "c7"
-  },
-  {
-   "sentence": "___ Михеичева забрили, а его дядя еще домой не приходил.",
-   "lemma": "набор",
-   "options": [
-    "прошлому набору",
-    "прошлым набором",
-    "прошлого набора",
-    "прошлый набор"
-   ],
-   "correct": "прошлый набор",
-   "case": "Именительный (Nominative)",
-   "explain": "«Прошлый набор» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
-  },
-  {
-   "sentence": "-- Надо по совести судить, друг ты мой любезный, -- говорил добродушный Храпков, повторяя слова Копылова и дергая Дутлова за тулуп, -- на то ___ была, а не мирское решение.",
-   "lemma": "воля",
-   "options": [
-    "господская воля",
-    "господской воли",
-    "господской волей",
-    "господской воле"
-   ],
-   "correct": "господская воля",
-   "case": "Именительный (Nominative)",
-   "explain": "«господская воля» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
-  },
-  {
-   "sentence": "И такие ___ наговорили себе оба мужика, что ежели бы сотая доля того, в чем они попрекали себя, была правда, их бы следовало обоих, по закону, тотчас же в Сибирь сослать, по крайней мере, на поселенье.",
-   "lemma": "вещь",
-   "options": [
-    "страшных вещах",
-    "страшным вещам",
-    "страшных вещей",
-    "страшные вещи"
-   ],
-   "correct": "страшные вещи",
-   "case": "Именительный (Nominative)",
-   "explain": "«страшные вещи» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
-  },
-  {
-   "sentence": "И такие страшные вещи наговорили себе оба мужика, что ежели бы ___ того, в чем они попрекали себя, была правда, их бы следовало обоих, по закону, тотчас же в Сибирь сослать, по крайней мере, на поселенье.",
-   "lemma": "доля",
-   "options": [
-    "сотой доле",
-    "сотой доли",
-    "сотой долей",
-    "сотая доля"
-   ],
-   "correct": "сотая доля",
-   "case": "Именительный (Nominative)",
-   "explain": "«сотая доля» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
   },
   {
    "sentence": "Старостин слегка улыбнулся, крякнул и, погладив бороду с приемом ___, отвечал, что на то воля господская.",
@@ -137,7 +67,7 @@
    ],
    "correct": "богатого мужика",
    "case": "Родительный (Genitive)",
-   "explain": "«богатого мужика» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«богатого мужика» depends on the noun «приемом» (whose? of what?) — genitive.",
    "id": "c12"
   },
   {
@@ -151,7 +81,7 @@
    ],
    "correct": "старом барине",
    "case": "Предложный (Prepositional)",
-   "explain": "«старом барине» — after the preposition «при», for location or topic.",
+   "explain": "«старом барине» — «при» always takes the prepositional.",
    "id": "c13"
   }
  ]

@@ -1,62 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Только в виде ___ Никите будет разрешено держать вступительный экзамен во второй класс.",
-   "lemma": "исключение",
-   "options": [
-    "отдельному исключению",
-    "отдельное исключение",
-    "отдельного исключения",
-    "отдельном исключении"
-   ],
-   "correct": "отдельного исключения",
-   "case": "Родительный (Genitive)",
-   "explain": "«отдельного исключения» — after the preposition «в», the genitive here marks possession, absence, or quantity.",
-   "id": "c3"
-  },
-  {
-   "sentence": "Только в виде отдельного исключения Никите будет разрешено держать ___ во второй класс.",
-   "lemma": "экзамен",
-   "options": [
-    "вступительный экзамен",
-    "вступительному экзамену",
-    "вступительного экзамена",
-    "вступительным экзаменом"
-   ],
-   "correct": "вступительный экзамен",
-   "case": "Винительный (Accusative)",
-   "explain": "«вступительный экзамен» — the accusative marks the direct object of the verb.",
-   "id": "c4"
-  },
-  {
-   "sentence": "Тревога за нахождение в руках Василия Никитьевича ___ я в особенности опасность покупки им никому на свете не нужных китайских ваз заставили Александру Леонтьевну собраться в три дня.",
-   "lemma": "деньга",
-   "options": [
-    "больших денег",
-    "большими деньгами",
-    "больших деньгах",
-    "большим деньгам"
-   ],
-   "correct": "больших денег",
-   "case": "Родительный (Genitive)",
-   "explain": "«больших денег» — the genitive here marks possession, absence, or quantity.",
-   "id": "c6"
-  },
-  {
-   "sentence": "Кругом ___ и пашни.",
-   "lemma": "жнивьё",
-   "options": [
-    "пустынные жнивья",
-    "пустынными жнивьями",
-    "пустынных жнивьев",
-    "пустынных жнивьях"
-   ],
-   "correct": "пустынные жнивья",
-   "case": "Именительный (Nominative)",
-   "explain": "«пустынные жнивья» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
-  },
-  {
    "sentence": "На ___, к обеду, из-за плоского края степи, из серой мглы поднялись купола церквей, трубы паровых мельниц.",
    "lemma": "день",
    "options": [
@@ -67,7 +11,7 @@
    ],
    "correct": "другой день",
    "case": "Винительный (Accusative)",
-   "explain": "«другой день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«другой день» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c10"
   },
   {
@@ -81,7 +25,7 @@
    ],
    "correct": "плоского края",
    "case": "Родительный (Genitive)",
-   "explain": "«плоского края» — after the preposition «из-за», the genitive here marks possession, absence, or quantity.",
+   "explain": "«плоского края» — «из-за» always takes the genitive.",
    "id": "c11"
   },
   {
@@ -95,7 +39,7 @@
    ],
    "correct": "серой мглы",
    "case": "Родительный (Genitive)",
-   "explain": "«серой мглы» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«серой мглы» — «из» always takes the genitive.",
    "id": "c12"
   },
   {
@@ -109,7 +53,7 @@
    ],
    "correct": "паровых мельниц",
    "case": "Родительный (Genitive)",
-   "explain": "«паровых мельниц» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«паровых мельниц» depends on the noun «трубы» (whose? of what?) — genitive.",
    "id": "c13"
   },
   {
@@ -123,22 +67,8 @@
    ],
    "correct": "пожарной каланчи",
    "case": "Родительный (Genitive)",
-   "explain": "«пожарной каланчи» — after the preposition «мимо», the genitive here marks possession, absence, or quantity.",
+   "explain": "«пожарной каланчи» — «мимо» always takes the genitive.",
    "id": "c15"
-  },
-  {
-   "sentence": "Наконец свернули в боковую улицу, проехали мимо пожарной каланчи, где у калитки стоял ___ в греческом шлеме, и остановились у белого одноэтажного дома с чугунным через весь тротуар крыльцом.",
-   "lemma": "парень",
-   "options": [
-    "мордастом парне",
-    "мордастый парень",
-    "мордастому парню",
-    "мордастого парня"
-   ],
-   "correct": "мордастый парень",
-   "case": "Именительный (Nominative)",
-   "explain": "«мордастый парень» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
   },
   {
    "sentence": "Наконец свернули в боковую улицу, проехали мимо пожарной каланчи, где у калитки стоял мордастый парень в ___, и остановились у белого одноэтажного дома с чугунным через весь тротуар крыльцом.",
@@ -151,7 +81,7 @@
    ],
    "correct": "греческом шлеме",
    "case": "Предложный (Prepositional)",
-   "explain": "«греческом шлеме» — after the preposition «в», for location or topic.",
+   "explain": "«греческом шлеме» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c17"
   },
   {
@@ -165,7 +95,7 @@
    ],
    "correct": "одноэтажного дома",
    "case": "Родительный (Genitive)",
-   "explain": "«одноэтажного дома» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«одноэтажного дома» — «у» always takes the genitive.",
    "id": "c18"
   },
   {
@@ -179,22 +109,8 @@
    ],
    "correct": "радостное лицо",
    "case": "Именительный (Nominative)",
-   "explain": "«радостное лицо» — the subject of the sentence stands in the nominative.",
+   "explain": "«радостное лицо» is the subject of «появилось» — who or what does it — so nominative.",
    "id": "c19"
-  },
-  {
-   "sentence": "В небольшом, оклеенном белым, совершенно ___ было светло, пахло масляной краской, на блестящем крашеном полу у стены стояли две китайские вазы, похожие на умывальные кувшины.",
-   "lemma": "зал",
-   "options": [
-    "пустому залу",
-    "пустом зале",
-    "пустым залом",
-    "пустого зала"
-   ],
-   "correct": "пустом зале",
-   "case": "Предложный (Prepositional)",
-   "explain": "«пустом зале» — after the preposition «в», for location or topic.",
-   "id": "c20"
   },
   {
    "sentence": "В небольшом, оклеенном белым, совершенно пустом зале было светло, пахло ___, на блестящем крашеном полу у стены стояли две китайские вазы, похожие на умывальные кувшины.",
@@ -207,22 +123,8 @@
    ],
    "correct": "масляной краской",
    "case": "Творительный (Instrumental)",
-   "explain": "«масляной краской» — the instrumental marks the means, company, or complement.",
+   "explain": "«пахло» takes the instrumental.",
    "id": "c21"
-  },
-  {
-   "sentence": "___ глядели строго, даже немножко прищурились.",
-   "lemma": "глаз",
-   "options": [
-    "синие глаза",
-    "синими глазами",
-    "синих глазах",
-    "синим глазам"
-   ],
-   "correct": "синие глаза",
-   "case": "Именительный (Nominative)",
-   "explain": "«Синие глаза» — the subject of the sentence stands in the nominative.",
-   "id": "c25"
   },
   {
    "sentence": "Должно быть, Лиля глядела на него точно так же, как на ___ прохожие глядели на сосновские тарантасы.",
@@ -235,7 +137,7 @@
    ],
    "correct": "главной улице",
    "case": "Предложный (Prepositional)",
-   "explain": "«главной улице» — after the preposition «на», for location or topic.",
+   "explain": "«главной улице» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c26"
   },
   {
@@ -249,7 +151,7 @@
    ],
    "correct": "длинные ресницы",
    "case": "Именительный (Nominative)",
-   "explain": "«длинные ресницы» — the subject of the sentence stands in the nominative.",
+   "explain": "«длинные ресницы» is the subject of «закрылись» — who or what does it — so nominative.",
    "id": "c28"
   },
   {
@@ -263,35 +165,21 @@
    ],
    "correct": "первый день",
    "case": "Именительный (Nominative)",
-   "explain": "«первый день» — the subject of the sentence stands in the nominative.",
+   "explain": "«первый день» is the subject of «начался» — who or what does it — so nominative.",
    "id": "c29"
-  },
-  {
-   "sentence": "Выпросил у Никиты ___ с двенадцатью лезвиями и ушел «к одному товарищу, — ты его не знаешь», — играть в перышки.",
-   "lemma": "нож",
-   "options": [
-    "перочинного ножа",
-    "перочинному ножу",
-    "перочинный нож",
-    "перочинном ноже"
-   ],
-   "correct": "перочинный нож",
-   "case": "Винительный (Accusative)",
-   "explain": "«перочинный нож» — the accusative marks the direct object of the verb.",
-   "id": "c30"
   },
   {
    "sentence": "В комнату вошел Аркадий Иванович, в пальто и в шапке, в руке он держал чистый ___, распространяющий запах одеколона.",
    "lemma": "платок",
    "options": [
     "носовому платку",
-    "носовой платок",
     "носовым платком",
-    "носового платка"
+    "носовой платок",
+    "носовом платке"
    ],
    "correct": "носовой платок",
    "case": "Винительный (Accusative)",
-   "explain": "«носовой платок» — the accusative marks the direct object of the verb.",
+   "explain": "«носовой платок» is the direct object of «держал» (кого? что?) — accusative.",
    "id": "c31"
   },
   {
@@ -305,22 +193,8 @@
    ],
    "correct": "другим человеком",
    "case": "Творительный (Instrumental)",
-   "explain": "«другим человеком» — the instrumental marks the means, company, or complement.",
+   "explain": "After «сделался», what someone or something is or becomes stands in the instrumental.",
    "id": "c32"
-  },
-  {
-   "sentence": "Наутро матушка, Аркадий Иванович и Никита пошли в гимназию и говорили с директором, худым, седым, ___, от которого пахло медью.",
-   "lemma": "человек",
-   "options": [
-    "строгим человеком",
-    "строгому человеку",
-    "строгого человека",
-    "строгом человеке"
-   ],
-   "correct": "строгим человеком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«строгим человеком» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c33"
   }
  ]
 }

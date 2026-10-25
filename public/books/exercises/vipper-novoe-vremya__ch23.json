@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Во Франции июльская революция 1830 года, в Англии ___ 1832 года совершились благодаря дружному натиску зажиточной буржуазии и городских рабочих.",
-   "lemma": "реформа",
-   "options": [
-    "парламентская реформа",
-    "парламентской реформы",
-    "парламентской реформе",
-    "парламентской реформой"
-   ],
-   "correct": "парламентская реформа",
-   "case": "Именительный (Nominative)",
-   "explain": "«парламентская реформа» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Во Франции июльская революция 1830 года, в Англии парламентская реформа 1832 года совершились благодаря ___ зажиточной буржуазии и городских рабочих.",
    "lemma": "натиск",
    "options": [
@@ -25,22 +11,8 @@
    ],
    "correct": "дружному натиску",
    "case": "Дательный (Dative)",
-   "explain": "«дружному натиску» — after the preposition «благодаря», the dative marks the indirect object or recipient.",
+   "explain": "«дружному натиску» — «благодаря» always takes the dative.",
    "id": "c2"
-  },
-  {
-   "sentence": "Во Франции июльская революция 1830 года, в Англии парламентская реформа 1832 года совершились благодаря дружному натиску зажиточной буржуазии и ___.",
-   "lemma": "рабочий",
-   "options": [
-    "городским рабочим",
-    "городские рабочие",
-    "городских рабочих",
-    "городскими рабочими"
-   ],
-   "correct": "городских рабочих",
-   "case": "Родительный (Genitive)",
-   "explain": "«городских рабочих» — the genitive here marks possession, absence, or quantity.",
-   "id": "c3"
   },
   {
    "sentence": "Отсюда недовольство в среде рабочих, которым в свою очередь либерализм, со своей проповедью ___, не мог дать ничего утешительного.",
@@ -53,7 +25,7 @@
    ],
    "correct": "свободного соперничества",
    "case": "Родительный (Genitive)",
-   "explain": "«свободного соперничества» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«свободного соперничества» depends on the noun «проповедью» (whose? of what?) — genitive.",
    "id": "c4"
   },
   {
@@ -67,7 +39,7 @@
    ],
    "correct": "огромный перевес",
    "case": "Винительный (Accusative)",
-   "explain": "«огромный перевес» — the accusative marks the direct object of the verb.",
+   "explain": "«огромный перевес» is the direct object of «дали» (кого? что?) — accusative.",
    "id": "c6"
   },
   {
@@ -81,50 +53,8 @@
    ],
    "correct": "якобинскому клубу",
    "case": "Дательный (Dative)",
-   "explain": "«якобинскому клубу» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«якобинскому клубу» — «к» always takes the dative.",
    "id": "c7"
-  },
-  {
-   "sentence": "В тоже время из среды студентов и ___ составилась рееп у блика н ская дружина, готовая на вооруженное восстание; она группировалась около старого генерала Лафаиета, деятеля первой революции.",
-   "lemma": "рабочий",
-   "options": [
-    "парижских рабочих",
-    "парижскими рабочими",
-    "парижским рабочим",
-    "парижские рабочие"
-   ],
-   "correct": "парижских рабочих",
-   "case": "Родительный (Genitive)",
-   "explain": "«парижских рабочих» — the genitive here marks possession, absence, or quantity.",
-   "id": "c8"
-  },
-  {
-   "sentence": "В тоже время из среды студентов и парижских рабочих составилась рееп у блика н ская дружина, готовая на вооруженное восстание; она группировалась около ___ Лафаиета, деятеля первой революции.",
-   "lemma": "генерал",
-   "options": [
-    "старого генерала",
-    "старый генерал",
-    "старом генерале",
-    "старым генералом"
-   ],
-   "correct": "старого генерала",
-   "case": "Родительный (Genitive)",
-   "explain": "«старого генерала» — after the preposition «н», the genitive here marks possession, absence, or quantity.",
-   "id": "c9"
-  },
-  {
-   "sentence": "Рядом указов правительство распустило только что избранную палату, изменило ___, с передачей преобладания землевладельцам и устранением промышленников, и уничтожило свободу печати.",
-   "lemma": "закон",
-   "options": [
-    "избирательный закон",
-    "избирательному закону",
-    "избирательного закона",
-    "избирательном законе"
-   ],
-   "correct": "избирательный закон",
-   "case": "Винительный (Accusative)",
-   "explain": "«избирательный закон» — the accusative marks the direct object of the verb.",
-   "id": "c10"
   },
   {
    "sentence": "В тот же день (26 июля) журналисты 10 больших ___, которые подверглись запрещению, подписали протест, составленный Тьером, и разослали его по провинциям.",
@@ -137,36 +67,22 @@
    ],
    "correct": "либеральных газет",
    "case": "Родительный (Genitive)",
-   "explain": "«либеральных газет» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«либеральных газет» depends on the noun «журналисты» (whose? of what?) — genitive.",
    "id": "c11"
   },
   {
    "sentence": "Призывая к сопротивлению, вожди: либеральной буржуазии не имели, однако никаких средств ___ на правительство.",
    "lemma": "воздействие",
    "options": [
-    "внешнем воздействии",
-    "внешнего воздействия",
+    "внешнее воздействие",
     "внешнему воздействию",
-    "внешним воздействием"
+    "внешнем воздействии",
+    "внешнего воздействия"
    ],
    "correct": "внешнего воздействия",
    "case": "Родительный (Genitive)",
-   "explain": "«внешнего воздействия» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«внешнего воздействия» depends on the noun «средств» (whose? of what?) — genitive.",
    "id": "c12"
-  },
-  {
-   "sentence": "На улицы вышли наборщики, лишившиеся заработка вследствие закрытия газет, и ___, которых хозяева отпустили с обещанием заплатить за потерянные дни, если они вступят в бой.",
-   "lemma": "рабочий",
-   "options": [
-    "фабричных рабочих",
-    "фабричные рабочие",
-    "фабричным рабочим",
-    "фабричными рабочими"
-   ],
-   "correct": "фабричные рабочие",
-   "case": "Именительный (Nominative)",
-   "explain": "«фабричные рабочие» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
   },
   {
    "sentence": "Узкие, извилистые улицы ___ Парижа были загорожены баррикадами, и восставшие повели оттуда нападение на немногочисленные королевские войска.",
@@ -179,21 +95,21 @@
    ],
    "correct": "рабочих кварталов",
    "case": "Родительный (Genitive)",
-   "explain": "«рабочих кварталов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«рабочих кварталов» depends on the noun «улицы» (whose? of what?) — genitive.",
    "id": "c14"
   },
   {
    "sentence": "Узкие, извилистые улицы рабочих кварталов Парижа были загорожены баррикадами, и восставшие повели оттуда нападение на немногочисленные ___.",
    "lemma": "войско",
    "options": [
-    "королевских войск",
-    "королевскими войсками",
     "королевские войска",
-    "королевских войсках"
+    "королевским войскам",
+    "королевскими войсками",
+    "королевских войск"
    ],
    "correct": "королевские войска",
    "case": "Винительный (Accusative)",
-   "explain": "«королевские войска» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«королевские войска» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c15"
   },
   {
@@ -207,7 +123,7 @@
    ],
    "correct": "сам король",
    "case": "Именительный (Nominative)",
-   "explain": "«Сам король» — the subject of the sentence stands in the nominative.",
+   "explain": "«сам король» is the subject of «находился» — who or what does it — so nominative.",
    "id": "c16"
   },
   {
@@ -221,7 +137,7 @@
    ],
    "correct": "третий день",
    "case": "Винительный (Accusative)",
-   "explain": "«третий день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«третий день» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c17"
   },
   {
@@ -235,7 +151,7 @@
    ],
    "correct": "королевский дворец",
    "case": "Именительный (Nominative)",
-   "explain": "«королевский дворец» — the subject of the sentence stands in the nominative.",
+   "explain": "«королевский дворец» is the subject of «взят» — who or what does it — so nominative.",
    "id": "c18"
   },
   {
@@ -249,7 +165,7 @@
    ],
    "correct": "парижскими студентами",
    "case": "Творительный (Instrumental)",
-   "explain": "«парижскими студентами» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «добытой», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c19"
   },
   {
@@ -263,22 +179,8 @@
    ],
    "correct": "временное правительство",
    "case": "Именительный (Nominative)",
-   "explain": "«временное правительство» — the subject of the sentence stands in the nominative.",
+   "explain": "«временное правительство» is the subject of «Образовалось» — who or what does it — so nominative.",
    "id": "c20"
-  },
-  {
-   "sentence": "Палата изменила лишь немного хартию 1814 года, чрисоединивши к титулу короля; слова «волею народа»; цензура была уничтожена, проступки печати так же, как ___, были подчинены суду присяжных.",
-   "lemma": "дело",
-   "options": [
-    "политическими делами",
-    "политических делах",
-    "политических дел",
-    "политические дела"
-   ],
-   "correct": "политические дела",
-   "case": "Именительный (Nominative)",
-   "explain": "«политические дела» — the subject of the sentence stands in the nominative.",
-   "id": "c21"
   },
   {
    "sentence": "Однако — что было всего важнее — ___ населения осталось выключенным от участия в политической жизни: избирательный ценз в 300 франков был пониже до 200, и число избирателей увеличилось лишь на 100.000.",
@@ -291,63 +193,21 @@
    ],
    "correct": "огромное большинство",
    "case": "Именительный (Nominative)",
-   "explain": "«огромное большинство» — the subject of the sentence stands in the nominative.",
+   "explain": "«огромное большинство» is the subject of «осталось» — who or what does it — so nominative.",
    "id": "c22"
-  },
-  {
-   "sentence": "Однако — что было всего важнее — огромное большинство населения осталось выключенным от участия в политической жизни: ___ в 300 франков был пониже до 200, и число избирателей увеличилось лишь на 100.000.",
-   "lemma": "ценз",
-   "options": [
-    "избирательного ценза",
-    "избирательному цензу",
-    "избирательный ценз",
-    "избирательным цензом"
-   ],
-   "correct": "избирательный ценз",
-   "case": "Именительный (Nominative)",
-   "explain": "«избирательный ценз» — the subject of the sentence stands in the nominative.",
-   "id": "c23"
-  },
-  {
-   "sentence": "___ новой династии (по имени июльской революции, его правление 1830—48 назвали июльской монархией) примыкал по своим вкусам и понятиям к тому же общественному слою.",
-   "lemma": "король",
-   "options": [
-    "сам король",
-    "самого короля",
-    "самому королю",
-    "самим королём"
-   ],
-   "correct": "сам король",
-   "case": "Именительный (Nominative)",
-   "explain": "«Сам король» — the subject of the sentence stands in the nominative.",
-   "id": "c24"
-  },
-  {
-   "sentence": "Сам король новой династии (по имени июльской революции, его правление 1830—48 назвали июльской монархией) примыкал по своим вкусам и понятиям к тому же ___.",
-   "lemma": "слой",
-   "options": [
-    "общественному слою",
-    "общественном слое",
-    "общественным слоем",
-    "общественный слой"
-   ],
-   "correct": "общественному слою",
-   "case": "Дательный (Dative)",
-   "explain": "«общественному слою» — the dative marks the indirect object or recipient.",
-   "id": "c25"
   },
   {
    "sentence": "Ограниченная по своим результатам для Франции, революция 1830 г. произвела весьма сильное впечатление в других ___.",
    "lemma": "страна",
    "options": [
-    "европейским странам",
-    "европейских странах",
     "европейскими странами",
-    "европейские страны"
+    "европейских странах",
+    "европейским странам",
+    "европейских стран"
    ],
    "correct": "европейских странах",
    "case": "Предложный (Prepositional)",
-   "explain": "«европейских странах» — after the preposition «в», for location or topic.",
+   "explain": "«европейских странах» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c26"
   },
   {
@@ -361,7 +221,7 @@
    ],
    "correct": "реакционных правительств",
    "case": "Родительный (Genitive)",
-   "explain": "«реакционных правительств» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«реакционных правительств» depends on the noun «руку» (whose? of what?) — genitive.",
    "id": "c27"
   },
   {
@@ -375,7 +235,7 @@
    ],
    "correct": "венским конгрессом",
    "case": "Творительный (Instrumental)",
-   "explain": "«Венским конгрессом» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «установленный», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c28"
   },
   {
@@ -389,7 +249,7 @@
    ],
    "correct": "священным союзом",
    "case": "Творительный (Instrumental)",
-   "explain": "«Священным союзом» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «закрепленный», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c29"
   },
   {
@@ -403,49 +263,35 @@
    ],
    "correct": "политические волнения",
    "case": "Именительный (Nominative)",
-   "explain": "«Политические волнения» — the subject of the sentence stands in the nominative.",
+   "explain": "«политические волнения» is the subject of «имели» — who or what does it — so nominative.",
    "id": "c30"
   },
   {
    "sentence": "В Германии июльская революция вызвала ___, которые заставили правителей мелких, северных государств, Саксонии, Ганновера, Гессен-Касселя, ввести у себя конституции.",
    "lemma": "манифестация",
    "options": [
-    "народных манифестаций",
+    "народных манифестациях",
     "народными манифестациями",
-    "народным манифестациям",
-    "народные манифестации"
+    "народные манифестации",
+    "народным манифестациям"
    ],
    "correct": "народные манифестации",
    "case": "Винительный (Accusative)",
-   "explain": "«народные манифестации» — the accusative marks the direct object of the verb.",
+   "explain": "«народные манифестации» is the direct object of «вызвала» (кого? что?) — accusative.",
    "id": "c32"
-  },
-  {
-   "sentence": "В Италии начались было восстания в церковной области и соседних ___, Модене и Парке, однако вступление австрийских войск быстро положило им конец.",
-   "lemma": "владение",
-   "options": [
-    "мелким владениям",
-    "мелких владениях",
-    "мелких владений",
-    "мелкие владения"
-   ],
-   "correct": "мелких владениях",
-   "case": "Предложный (Prepositional)",
-   "explain": "«мелких владениях» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c33"
   },
   {
    "sentence": "В Италии начались было восстания в церковной области и соседних мелких владениях, Модене и Парке, однако вступление ___ быстро положило им конец.",
    "lemma": "войско",
    "options": [
+    "австрийским войскам",
     "австрийские войска",
-    "австрийских войск",
-    "австрийскими войсками",
-    "австрийских войсках"
+    "австрийских войсках",
+    "австрийских войск"
    ],
    "correct": "австрийских войск",
    "case": "Родительный (Genitive)",
-   "explain": "«австрийских войск» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«австрийских войск» depends on the noun «вступление» (whose? of what?) — genitive.",
    "id": "c34"
   },
   {
@@ -459,22 +305,8 @@
    ],
    "correct": "карательного отряда",
    "case": "Родительный (Genitive)",
-   "explain": "«карательного отряда» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«карательного отряда» depends on the noun «посылкой» (whose? of what?) — genitive.",
    "id": "c35"
-  },
-  {
-   "sentence": "Король ответил посылкой карательного отряда; но ___, двинувшийся на Брюссель во главе армии, был отбит волонтерами; сошелся национальный конгресс, который объявил независимость Бельгии.",
-   "lemma": "принц",
-   "options": [
-    "наследный принц",
-    "наследным принцем",
-    "наследном принце",
-    "наследному принцу"
-   ],
-   "correct": "наследный принц",
-   "case": "Именительный (Nominative)",
-   "explain": "«наследный принц» — the subject of the sentence stands in the nominative.",
-   "id": "c36"
   },
   {
    "sentence": "Король ответил посылкой карательного отряда; но наследный принц, двинувшийся на Брюссель во главе армии, был отбит волонтерами; сошелся ___, который объявил независимость Бельгии.",
@@ -487,7 +319,7 @@
    ],
    "correct": "национальный конгресс",
    "case": "Именительный (Nominative)",
-   "explain": "«национальный конгресс» — the subject of the sentence stands in the nominative.",
+   "explain": "«национальный конгресс» is the subject of «сошелся» — who or what does it — so nominative.",
    "id": "c37"
   },
   {
@@ -501,7 +333,7 @@
    ],
    "correct": "великим державам",
    "case": "Дательный (Dative)",
-   "explain": "«великим державам» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«великим державам» — «к» always takes the dative.",
    "id": "c38"
   },
   {
@@ -515,7 +347,7 @@
    ],
    "correct": "нидерландский король",
    "case": "Именительный (Nominative)",
-   "explain": "«нидерландский король» — the subject of the sentence stands in the nominative.",
+   "explain": "«нидерландский король» is the subject of «вздумал» — who or what does it — so nominative.",
    "id": "c39"
   },
   {
@@ -524,12 +356,12 @@
    "options": [
     "голландским берегам",
     "голландские берега",
-    "голландских берегов",
-    "голландских берегах"
+    "голландских берегах",
+    "голландскими берегами"
    ],
    "correct": "голландские берега",
    "case": "Винительный (Accusative)",
-   "explain": "«голландские берега» — the accusative marks the direct object of the verb.",
+   "explain": "«голландские берега» is the direct object of «блокировала» (кого? что?) — accusative.",
    "id": "c40"
   },
   {
@@ -543,7 +375,7 @@
    ],
    "correct": "германских князей",
    "case": "Родительный (Genitive)",
-   "explain": "«германских князей» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«германских князей» — «из» always takes the genitive.",
    "id": "c41"
   },
   {
@@ -557,7 +389,7 @@
    ],
    "correct": "политической свободы",
    "case": "Родительный (Genitive)",
-   "explain": "«политической свободы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«политической свободы» depends on the noun «принципы» (whose? of what?) — genitive.",
    "id": "c43"
   },
   {
@@ -571,36 +403,22 @@
    ],
    "correct": "западных держав",
    "case": "Родительный (Genitive)",
-   "explain": "«западных держав» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«западных держав» depends on the noun «Влияние» (whose? of what?) — genitive.",
    "id": "c44"
   },
   {
    "sentence": "Александр I дал Польше учреждения конституционные и национальные; ___ сделался польский, все главные должности были заняты польскими аристократами; страна располагала национальной армией.",
    "lemma": "язык",
    "options": [
-    "официальному языку",
-    "официального языка",
+    "официальном языке",
     "официальным языком",
-    "официальный язык"
+    "официальному языку",
+    "официального языка"
    ],
    "correct": "официальным языком",
    "case": "Творительный (Instrumental)",
-   "explain": "«официальным языком» — the instrumental marks the means, company, or complement.",
+   "explain": "After «сделался», what someone or something is or becomes stands in the instrumental.",
    "id": "c45"
-  },
-  {
-   "sentence": "Александр I дал Польше учреждения конституционные и национальные; официальным языком сделался польский, все ___ были заняты польскими аристократами; страна располагала национальной армией.",
-   "lemma": "должность",
-   "options": [
-    "главных должностях",
-    "главным должностям",
-    "главные должности",
-    "главными должностями"
-   ],
-   "correct": "главные должности",
-   "case": "Именительный (Nominative)",
-   "explain": "«главные должности» — the subject of the sentence stands in the nominative.",
-   "id": "c46"
   },
   {
    "sentence": "Александр I дал Польше учреждения конституционные и национальные; официальным языком сделался польский, все главные должности были заняты ___; страна располагала национальной армией.",
@@ -613,21 +431,21 @@
    ],
    "correct": "польскими аристократами",
    "case": "Творительный (Instrumental)",
-   "explain": "«польскими аристократами» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «заняты», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c47"
   },
   {
    "sentence": "Поляки были однако недовольны своим положением: они стремились к восстановлению прежнего великого ___ и прежде всего к присоединению Литвы.",
    "lemma": "государство",
    "options": [
-    "польского государства",
+    "польское государство",
     "польском государстве",
-    "польским государством",
-    "польское государство"
+    "польскому государству",
+    "польского государства"
    ],
    "correct": "польского государства",
    "case": "Родительный (Genitive)",
-   "explain": "«польского государства» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«польского государства» depends on the noun «восстановлению» (whose? of what?) — genitive.",
    "id": "c48"
   },
   {
@@ -641,22 +459,8 @@
    ],
    "correct": "военной школы",
    "case": "Родительный (Genitive)",
-   "explain": "«военной школы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«военной школы» depends on the noun «Кадеты» (whose? of what?) — genitive.",
    "id": "c49"
-  },
-  {
-   "sentence": "Так как ни Франция, ни Англия не могли оказать помощи восстанию, поляки были предоставлены ___.",
-   "lemma": "сила",
-   "options": [
-    "собственных сил",
-    "собственных силах",
-    "собственные силы",
-    "собственным силам"
-   ],
-   "correct": "собственным силам",
-   "case": "Дательный (Dative)",
-   "explain": "«собственным силам» — the dative marks the indirect object or recipient.",
-   "id": "c50"
   },
   {
    "sentence": "Русская армия под начальством Дибича (в перевешивающем числе 120.000 против 45.000) заставила поляков отступить из ___; но в самой Польше борьба затянулась благодаря упорству и храбрости инсургентов.",
@@ -669,7 +473,7 @@
    ],
    "correct": "литовских губерний",
    "case": "Родительный (Genitive)",
-   "explain": "«литовских губерний» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«литовских губерний» — «из» always takes the genitive.",
    "id": "c51"
   },
   {
@@ -683,7 +487,7 @@
    ],
    "correct": "николаевским генералом",
    "case": "Творительный (Instrumental)",
-   "explain": "«николаевским генералом» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «закончено», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c52"
   },
   {
@@ -697,50 +501,8 @@
    ],
    "correct": "русский язык",
    "case": "Именительный (Nominative)",
-   "explain": "«русский язык» — the subject of the sentence stands in the nominative.",
+   "explain": "«русский язык» is the subject of «сделался» — who or what does it — so nominative.",
    "id": "c53"
-  },
-  {
-   "sentence": "Страна лишилась конституции и национальной независимости; русский язык сделался обязательным для всех чиновников; ___ был закрыт.",
-   "lemma": "университет",
-   "options": [
-    "варшавский университет",
-    "варшавского университета",
-    "варшавском университете",
-    "варшавскому университету"
-   ],
-   "correct": "варшавский университет",
-   "case": "Именительный (Nominative)",
-   "explain": "«Варшавский университет» — the subject of the sentence stands in the nominative.",
-   "id": "c54"
-  },
-  {
-   "sentence": "Осталось лишь название Царства Польского; но оно было разделено на губернии, получило ___, которое предназначалось прежде всего к тому, чтобы ограничить влияние польской аристократии.",
-   "lemma": "управление",
-   "options": [
-    "военного управления",
-    "военное управление",
-    "военном управлении",
-    "военному управлению"
-   ],
-   "correct": "военное управление",
-   "case": "Именительный (Nominative)",
-   "explain": "«военное управление» — the subject of the sentence stands in the nominative.",
-   "id": "c55"
-  },
-  {
-   "sentence": "Имения магнатов, успевших бежать во Францию, были конфискованы и розданы ___; многие из участников восстания были сосланы в Сибирь на каторгу.",
-   "lemma": "генерал",
-   "options": [
-    "русским генералам",
-    "русские генералы",
-    "русских генералах",
-    "русскими генералами"
-   ],
-   "correct": "русским генералам",
-   "case": "Дательный (Dative)",
-   "explain": "«русским генералам» — the dative marks the indirect object or recipient.",
-   "id": "c56"
   },
   {
    "sentence": "___ оставил однако в неприкосновенности земельное положение помещиков и зависимость от них крестьян.",
@@ -753,22 +515,8 @@
    ],
    "correct": "русский император",
    "case": "Именительный (Nominative)",
-   "explain": "«Русский император» — the subject of the sentence stands in the nominative.",
+   "explain": "«русский император» is the subject of «оставил» — who or what does it — so nominative.",
    "id": "c57"
-  },
-  {
-   "sentence": "___ в эпоху июльской монархии.",
-   "lemma": "столкновение",
-   "options": [
-    "социальных столкновений",
-    "социальные столкновения",
-    "социальных столкновениях",
-    "социальными столкновениями"
-   ],
-   "correct": "социальные столкновения",
-   "case": "Именительный (Nominative)",
-   "explain": "«Социальные столкновения» — the subject of the sentence stands in the nominative.",
-   "id": "c58"
   },
   {
    "sentence": "Проявляя либерализм, во ___, крупная буржуазия, достигшая власти при июльской монархии, в делах внутренних обратилась к началам консервативным'.",
@@ -781,78 +529,8 @@
    ],
    "correct": "внешней политике",
    "case": "Предложный (Prepositional)",
-   "explain": "«внешней политике» — after the preposition «во», for location or topic.",
+   "explain": "«внешней политике» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c59"
-  },
-  {
-   "sentence": "Лафитт разорился и закрыл свой банк; начались волнения рабочих, потерявших заработок или обиженных понижением ___.",
-   "lemma": "плата",
-   "options": [
-    "заработной плате",
-    "заработной платой",
-    "заработной платы",
-    "заработная плата"
-   ],
-   "correct": "заработной платы",
-   "case": "Родительный (Genitive)",
-   "explain": "«заработной платы» — the genitive here marks possession, absence, or quantity.",
-   "id": "c60"
-  },
-  {
-   "sentence": "Луи Филипп не исполнил обещаний ввести ___, данных Лафайету, и отставил своих первых, более либеральных министров, в том числе Лафитта.",
-   "lemma": "реформа",
-   "options": [
-    "демократических реформ",
-    "демократическими реформами",
-    "демократические реформы",
-    "демократическим реформам"
-   ],
-   "correct": "демократические реформы",
-   "case": "Винительный (Accusative)",
-   "explain": "«демократические реформы» — the accusative marks the direct object of the verb.",
-   "id": "c61"
-  },
-  {
-   "sentence": "Луи Филипп не исполнил обещаний ввести демократические реформы, данных Лафайету, и отставил своих первых, более ___, в том числе Лафитта.",
-   "lemma": "министр",
-   "options": [
-    "либеральными министрами",
-    "либеральных министров",
-    "либеральных министрах",
-    "либеральным министрам"
-   ],
-   "correct": "либеральных министров",
-   "case": "Родительный (Genitive)",
-   "explain": "«либеральных министров» — the genitive here marks possession, absence, or quantity.",
-   "id": "c62"
-  },
-  {
-   "sentence": "После смерти властного Перье (1832) его менее ___ продолжали ту же политику сопротивления всяким реформам: июльская монархия как бы застыла в неподвижности.",
-   "lemma": "преемник",
-   "options": [
-    "значительных преемников",
-    "значительных преемниках",
-    "значительные преемники",
-    "значительными преемниками"
-   ],
-   "correct": "значительные преемники",
-   "case": "Именительный (Nominative)",
-   "explain": "«значительные преемники» — the subject of the sentence stands in the nominative.",
-   "id": "c63"
-  },
-  {
-   "sentence": "___ угрожали два врага: с одной стороны лег и тим исты, сторонники изгнанной династии Бурбонов, с другой республиканцы.",
-   "lemma": "правительство",
-   "options": [
-    "буржуазного правительства",
-    "буржуазному правительству",
-    "буржуазное правительство",
-    "буржуазном правительстве"
-   ],
-   "correct": "буржуазному правительству",
-   "case": "Дательный (Dative)",
-   "explain": "«Буржуазному правительству» — the dative marks the indirect object or recipient.",
-   "id": "c64"
   },
   {
    "sentence": "Этьена, Санта, населенных ___ и рабочими художественных профессий, каковы были: ткачи-шелковники, башмачники, ленточники, резчики, скульпторы, изготовители шкатулок, фарфоровых и фаянсовых вещей и т. п.",
@@ -865,7 +543,7 @@
    ],
    "correct": "мелкими мастерами",
    "case": "Творительный (Instrumental)",
-   "explain": "«мелкими мастерами» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «населенных», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c65"
   },
   {
@@ -879,7 +557,7 @@
    ],
    "correct": "художественных профессий",
    "case": "Родительный (Genitive)",
-   "explain": "«художественных профессий» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«художественных профессий» depends on the noun «рабочими» (whose? of what?) — genitive.",
    "id": "c66"
   },
   {
@@ -893,7 +571,7 @@
    ],
    "correct": "рабочий мир",
    "case": "Именительный (Nominative)",
-   "explain": "«Рабочий мир» — the subject of the sentence stands in the nominative.",
+   "explain": "«рабочий мир» is the subject of «переживал» — who or what does it — so nominative.",
    "id": "c67"
   },
   {
@@ -907,7 +585,7 @@
    ],
    "correct": "июльских боях",
    "case": "Предложный (Prepositional)",
-   "explain": "«июльских боях» — after the preposition «в», for location or topic.",
+   "explain": "«июльских боях» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c68"
   },
   {
@@ -921,36 +599,8 @@
    ],
    "correct": "рабочих газет",
    "case": "Родительный (Genitive)",
-   "explain": "«рабочих газет» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«рабочих газет» — «из» always takes the genitive.",
    "id": "c69"
-  },
-  {
-   "sentence": "В одной из рабочих газет говорилось: «по нашему мнению, народ и есть не что иное, как ___; он именно дает производительную силу капиталу, и на него опирается торговля и индустрия государства».",
-   "lemma": "класс",
-   "options": [
-    "рабочего класса",
-    "рабочему классу",
-    "рабочий класс",
-    "рабочим классом"
-   ],
-   "correct": "рабочий класс",
-   "case": "Именительный (Nominative)",
-   "explain": "«рабочий класс» — the subject of the sentence stands in the nominative.",
-   "id": "c70"
-  },
-  {
-   "sentence": "Правительство Луи Филиппа в свою очередь направляло на инсургентов национальную гвардию, состоявшую из зажиточной буржуазии, и ___; в столице и в других городах разыгрывались ожесточенные бои.",
-   "lemma": "войско",
-   "options": [
-    "линейным войскам",
-    "линейных войск",
-    "линейных войсках",
-    "линейные войска"
-   ],
-   "correct": "линейные войска",
-   "case": "Именительный (Nominative)",
-   "explain": "«линейные войска» — the subject of the sentence stands in the nominative.",
-   "id": "c71"
   },
   {
    "sentence": "Затем при содействии ___ в палатах были проведены так на. с е н. тя б рские законы, которые в сущности ограничили обещанную в 1830 г. политическую свободу.",
@@ -963,7 +613,7 @@
    ],
    "correct": "огромного большинства",
    "case": "Родительный (Genitive)",
-   "explain": "«огромного большинства» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«огромного большинства» depends on the noun «содействии» (whose? of what?) — genitive.",
    "id": "c73"
   },
   {
@@ -977,7 +627,7 @@
    ],
    "correct": "тесный союз",
    "case": "Именительный (Nominative)",
-   "explain": "«тесный союз» — the subject of the sentence stands in the nominative.",
+   "explain": "«тесный союз» is the subject of «обнаружился» — who or what does it — so nominative.",
    "id": "c75"
   },
   {
@@ -991,77 +641,21 @@
    ],
    "correct": "остальной массы",
    "case": "Родительный (Genitive)",
-   "explain": "«остальной массы» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«остальной массы» — «от» always takes the genitive.",
    "id": "c76"
-  },
-  {
-   "sentence": "Резко отделился этот слой от остальной массы и в отношении ___.",
-   "lemma": "служба",
-   "options": [
-    "военной службе",
-    "военная служба",
-    "военной службы",
-    "военной службой"
-   ],
-   "correct": "военной службы",
-   "case": "Родительный (Genitive)",
-   "explain": "«военной службы» — after the preposition «в», the genitive here marks possession, absence, or quantity.",
-   "id": "c77"
-  },
-  {
-   "sentence": "В результате получилось отчуждение большинства страны от правительства, заметное особенно в последние 8 лет июльской монархии (1840—48), когда ___ непрерывно состоял Гизо.",
-   "lemma": "министр",
-   "options": [
-    "первом министре",
-    "первого министра",
-    "первый министр",
-    "первым министром"
-   ],
-   "correct": "первым министром",
-   "case": "Творительный (Instrumental)",
-   "explain": "«первым министром» — the instrumental marks the means, company, or complement.",
-   "id": "c78"
-  },
-  {
-   "sentence": "Послушная министерству палата своим одобрением подкрепляла высокомерную уверенность Гизо; о всеобщем ___ он говорил, как о «нелепой системе, которой нет места на свете».",
-   "lemma": "право",
-   "options": [
-    "избирательном праве",
-    "избирательным правом",
-    "избирательному праву",
-    "избирательное право"
-   ],
-   "correct": "избирательном праве",
-   "case": "Предложный (Prepositional)",
-   "explain": "«избирательном праве» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c79"
-  },
-  {
-   "sentence": "Послушная министерству палата своим одобрением подкрепляла высокомерную уверенность Гизо; о всеобщем избирательном праве он говорил, как о «___, которой нет места на свете».",
-   "lemma": "система",
-   "options": [
-    "нелепой системы",
-    "нелепой системе",
-    "нелепая система",
-    "нелепой системой"
-   ],
-   "correct": "нелепой системе",
-   "case": "Предложный (Prepositional)",
-   "explain": "«нелепой системе» — after the preposition «о», for location or topic.",
-   "id": "c80"
   },
   {
    "sentence": "В настроении большинства французского ___, в противоположность правительственным верхам, преобладали демократические идеи.",
    "lemma": "общество",
    "options": [
-    "образованному обществу",
     "образованное общество",
+    "образованном обществе",
     "образованного общества",
-    "образованным обществом"
+    "образованному обществу"
    ],
    "correct": "образованного общества",
    "case": "Родительный (Genitive)",
-   "explain": "«образованного общества» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«образованного общества» depends on the noun «большинства» (whose? of what?) — genitive.",
    "id": "c81"
   },
   {
@@ -1075,7 +669,7 @@
    ],
    "correct": "демократические идеи",
    "case": "Именительный (Nominative)",
-   "explain": "«демократические идеи» — the subject of the sentence stands in the nominative.",
+   "explain": "«демократические идеи» is the subject of «преобладали» — who or what does it — so nominative.",
    "id": "c83"
   },
   {
@@ -1089,7 +683,7 @@
    ],
    "correct": "отдельные личности",
    "case": "Именительный (Nominative)",
-   "explain": "«отдельные личности» — the subject of the sentence stands in the nominative.",
+   "explain": "«отдельные личности» is the subject of «отступают» — who or what does it — so nominative.",
    "id": "c84"
   },
   {
@@ -1103,7 +697,7 @@
    ],
    "correct": "французским народом",
    "case": "Творительный (Instrumental)",
-   "explain": "«французским народом» — after the preposition «перед», the instrumental marks the means, company, or complement.",
+   "explain": "«французским народом» — «перед» always takes the instrumental.",
    "id": "c85"
   },
   {
@@ -1117,7 +711,7 @@
    ],
    "correct": "демократическим кругам",
    "case": "Дательный (Dative)",
-   "explain": "«демократическим кругам» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«демократическим кругам» — «к» always takes the dative.",
    "id": "c86"
   },
   {
@@ -1131,7 +725,7 @@
    ],
    "correct": "различных стран",
    "case": "Родительный (Genitive)",
-   "explain": "«различных стран» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«различных стран» — «из» always takes the genitive.",
    "id": "c87"
   },
   {
@@ -1145,7 +739,7 @@
    ],
    "correct": "30—40-х годов",
    "case": "Родительный (Genitive)",
-   "explain": "«30—40-х годов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«30—40-х годов» depends on the noun «Эмиграция» (whose? of what?) — genitive.",
    "id": "c88"
   },
   {
@@ -1159,7 +753,7 @@
    ],
    "correct": "неудавшихся революций",
    "case": "Родительный (Genitive)",
-   "explain": "«неудавшихся революций» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«неудавшихся революций» depends on the noun «результате» (whose? of what?) — genitive.",
    "id": "c89"
   },
   {
@@ -1173,7 +767,7 @@
    ],
    "correct": "малоимущих людей",
    "case": "Родительный (Genitive)",
-   "explain": "«малоимущих людей» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«малоимущих людей» — «из» always takes the genitive.",
    "id": "c90"
   },
   {
@@ -1187,148 +781,36 @@
    ],
    "correct": "средних классов",
    "case": "Родительный (Genitive)",
-   "explain": "«средних классов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«средних классов» depends on the noun «людей» (whose? of what?) — genitive.",
    "id": "c91"
-  },
-  {
-   "sentence": "Она получилась в результате неудавшихся революций и состояла по большей части из малоимущих людей средних классов, ___ интеллигенции, разделявшей республиканские и демократические идеи.",
-   "lemma": "образ",
-   "options": [
-    "главном образе",
-    "главным образом",
-    "главный образ",
-    "главному образу"
-   ],
-   "correct": "главным образом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«главным образом» — the instrumental marks the means, company, or complement.",
-   "id": "c92"
-  },
-  {
-   "sentence": "По мнению Сен-Симона, ___ с его взаимной борьбой людей, войнами, несправедливым распределением благ жизни, противоречит разуму и науке.",
-   "lemma": "порядок",
-   "options": [
-    "современным порядком",
-    "современного порядка",
-    "современному порядку",
-    "современный порядок"
-   ],
-   "correct": "современный порядок",
-   "case": "Именительный (Nominative)",
-   "explain": "«современный порядок» — the subject of the sentence stands in the nominative.",
-   "id": "c93"
-  },
-  {
-   "sentence": "По мнению Сен-Симона, современный порядок с его ___ людей, войнами, несправедливым распределением благ жизни, противоречит разуму и науке.",
-   "lemma": "борьба",
-   "options": [
-    "взаимной борьбы",
-    "взаимная борьба",
-    "взаимной борьбой",
-    "взаимной борьбе"
-   ],
-   "correct": "взаимной борьбой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«взаимной борьбой» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c94"
-  },
-  {
-   "sentence": "По мнению Сен-Симона, современный порядок с его взаимной борьбой людей, войнами, ___ благ жизни, противоречит разуму и науке.",
-   "lemma": "распределение",
-   "options": [
-    "несправедливым распределением",
-    "несправедливого распределения",
-    "несправедливому распределению",
-    "несправедливом распределении"
-   ],
-   "correct": "несправедливым распределением",
-   "case": "Творительный (Instrumental)",
-   "explain": "«несправедливым распределением» — the instrumental marks the means, company, or complement.",
-   "id": "c95"
-  },
-  {
-   "sentence": "Революция была отрицанием и разрушением обветшалых ___; за этим критическим периодом должна следовать эпоха орган и ческая, время строительства, приведения человеческих отношений в стройную гармонию.",
-   "lemma": "форма",
-   "options": [
-    "старыми формами",
-    "старых форм",
-    "старые формы",
-    "старым формам"
-   ],
-   "correct": "старых форм",
-   "case": "Родительный (Genitive)",
-   "explain": "«старых форм» — the genitive here marks possession, absence, or quantity.",
-   "id": "c96"
   },
   {
    "sentence": "Революция была отрицанием и разрушением обветшалых старых форм; за этим ___ должна следовать эпоха орган и ческая, время строительства, приведения человеческих отношений в стройную гармонию.",
    "lemma": "период",
    "options": [
-    "критический период",
+    "критическому периоду",
     "критическом периоде",
-    "критическим периодом",
-    "критического периода"
+    "критического периода",
+    "критическим периодом"
    ],
    "correct": "критическим периодом",
    "case": "Творительный (Instrumental)",
-   "explain": "«критическим периодом» — after the preposition «за», the instrumental marks the means, company, or complement.",
+   "explain": "«критическим периодом» — «за» takes the instrumental here (где? за чем? за кем?) — the accusative would mean motion behind or 'for' (куда? за что?).",
    "id": "c97"
   },
   {
    "sentence": "Революция была отрицанием и разрушением обветшалых старых форм; за этим критическим периодом должна следовать эпоха орган и ческая, время строительства, приведения ___ в стройную гармонию.",
    "lemma": "отношение",
    "options": [
-    "человеческим отношениям",
+    "человеческих отношениях",
     "человеческие отношения",
     "человеческих отношений",
-    "человеческими отношениями"
+    "человеческим отношениям"
    ],
    "correct": "человеческих отношений",
    "case": "Родительный (Genitive)",
-   "explain": "«человеческих отношений» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«человеческих отношений» depends on the noun «приведения» (whose? of what?) — genitive.",
    "id": "c98"
-  },
-  {
-   "sentence": "До сих пор человек эксплоатировал человека; отсюда получились ___ зависимости — рабство, крепостничество, наемный труд.",
-   "lemma": "форма",
-   "options": [
-    "разным формам",
-    "разные формы",
-    "разных форм",
-    "разными формами"
-   ],
-   "correct": "разные формы",
-   "case": "Именительный (Nominative)",
-   "explain": "«разные формы» — the subject of the sentence stands in the nominative.",
-   "id": "c99"
-  },
-  {
-   "sentence": "___ должна быть устроена таким образом, чтобы каждый мог приложить свои способности, и чтобы каждая способность получала вознаграждение сообразно своей услуге.",
-   "lemma": "работа",
-   "options": [
-    "совместной работы",
-    "совместная работа",
-    "совместной работе",
-    "совместной работой"
-   ],
-   "correct": "совместная работа",
-   "case": "Именительный (Nominative)",
-   "explain": "«Совместная работа» — the subject of the sentence stands in the nominative.",
-   "id": "c100"
-  },
-  {
-   "sentence": "Другая социалистическая теория примыкает к сочинениям умершего в безвестности Фурье (1772—1837), ___ и конторщика по профессии.",
-   "lemma": "приказчик",
-   "options": [
-    "купеческому приказчику",
-    "купеческом приказчике",
-    "купеческого приказчика",
-    "купеческим приказчиком"
-   ],
-   "correct": "купеческого приказчика",
-   "case": "Родительный (Genitive)",
-   "explain": "«купеческого приказчика» — the genitive here marks possession, absence, or quantity.",
-   "id": "c101"
   },
   {
    "sentence": "И спекуляция, и монополия, и раздробление сил происходят, по его мнению, от ___.",
@@ -1341,7 +823,7 @@
    ],
    "correct": "свободного соперничества",
    "case": "Родительный (Genitive)",
-   "explain": "«свободного соперничества» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«свободного соперничества» — «от» always takes the genitive.",
    "id": "c102"
   },
   {
@@ -1355,21 +837,21 @@
    ],
    "correct": "частных лиц",
    "case": "Родительный (Genitive)",
-   "explain": "«частных лиц» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«частных лиц» depends on the noun «рук» (whose? of what?) — genitive.",
    "id": "c103"
   },
   {
    "sentence": "Огромная энергия, которая тратится теперь даром во множестве ___, сбережется при устройстве общих производительных учреждений.",
    "lemma": "хозяйство",
    "options": [
-    "мелкими хозяйствами",
     "мелких хозяйствах",
+    "мелким хозяйствам",
     "мелких хозяйств",
     "мелкие хозяйства"
    ],
    "correct": "мелких хозяйств",
    "case": "Родительный (Genitive)",
-   "explain": "«мелких хозяйств» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«мелких хозяйств» depends on the noun «множестве» (whose? of what?) — genitive.",
    "id": "c104"
   },
   {
@@ -1383,7 +865,7 @@
    ],
    "correct": "производительных учреждений",
    "case": "Родительный (Genitive)",
-   "explain": "«производительных учреждений» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«производительных учреждений» depends on the noun «устройстве» (whose? of what?) — genitive.",
    "id": "c105"
   },
   {
@@ -1397,7 +879,7 @@
    ],
    "correct": "социалистические теории",
    "case": "Именительный (Nominative)",
-   "explain": "«социалистические теории» — the subject of the sentence stands in the nominative.",
+   "explain": "«социалистические теории» is the subject of «появляются» — who or what does it — so nominative.",
    "id": "c106"
   },
   {
@@ -1411,36 +893,8 @@
    ],
    "correct": "огромной силой",
    "case": "Творительный (Instrumental)",
-   "explain": "«огромной силой» — the instrumental marks the means, company, or complement.",
+   "explain": "«воспользоваться» takes the instrumental.",
    "id": "c107"
-  },
-  {
-   "sentence": "В книге «Организация труда» он рекомендует воспользоваться огромной силой капитала, орудующего ___.",
-   "lemma": "предприятие",
-   "options": [
-    "крупных предприятий",
-    "крупными предприятиями",
-    "крупным предприятиям",
-    "крупных предприятиях"
-   ],
-   "correct": "крупными предприятиями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«крупными предприятиями» — the instrumental marks the means, company, or complement.",
-   "id": "c108"
-  },
-  {
-   "sentence": "Как ни сильны ___, они не смогут выдержать конкуренции с государством, если оно возьмет в свои руки большие отрасли производства.",
-   "lemma": "предприниматель",
-   "options": [
-    "отдельных предпринимателях",
-    "отдельными предпринимателями",
-    "отдельных предпринимателей",
-    "отдельные предприниматели"
-   ],
-   "correct": "отдельные предприниматели",
-   "case": "Именительный (Nominative)",
-   "explain": "«отдельные предприниматели» — the subject of the sentence stands in the nominative.",
-   "id": "c109"
   },
   {
    "sentence": "Как ни сильны отдельные предприниматели, они не смогут выдержать конкуренции с государством, если оно возьмет в свои руки ___ производства.",
@@ -1448,27 +902,13 @@
    "options": [
     "большими отраслями",
     "большие отрасли",
-    "больших отраслей",
-    "большим отраслям"
+    "большим отраслям",
+    "больших отраслях"
    ],
    "correct": "большие отрасли",
    "case": "Винительный (Accusative)",
-   "explain": "«большие отрасли» — the accusative marks the direct object of the verb.",
+   "explain": "«большие отрасли» is the direct object of «возьмет» (кого? что?) — accusative.",
    "id": "c110"
-  },
-  {
-   "sentence": "Такой порядок возможен лишь при установлении ___, в которой все интересы будут равномерно представлены.",
-   "lemma": "республика",
-   "options": [
-    "демократической республикой",
-    "демократической республике",
-    "демократическая республика",
-    "демократической республики"
-   ],
-   "correct": "демократической республики",
-   "case": "Родительный (Genitive)",
-   "explain": "«демократической республики» — the genitive here marks possession, absence, or quantity.",
-   "id": "c111"
   },
   {
    "sentence": "Ламеннэ подчинился и закрыл свой журнал; но через два года среди ___ он не выдержал и напечатал необычайно горячее воззвание «Слова веруюіщего».",
@@ -1481,22 +921,8 @@
    ],
    "correct": "рабочих восстаний",
    "case": "Родительный (Genitive)",
-   "explain": "«рабочих восстаний» — after the preposition «среди», the genitive here marks possession, absence, or quantity.",
+   "explain": "«рабочих восстаний» — «среди» always takes the genitive.",
    "id": "c112"
-  },
-  {
-   "sentence": "Помимо уродливой привилегии гнилых местечек, всех друзей реформы возмущали еще ___ о присяге, выключавшие из парламента и от должностей католиков и диссентеров.",
-   "lemma": "закон",
-   "options": [
-    "односторонними законами",
-    "односторонних законах",
-    "односторонние законы",
-    "односторонних законов"
-   ],
-   "correct": "односторонние законы",
-   "case": "Винительный (Accusative)",
-   "explain": "«односторонние законы» — the accusative marks the direct object of the verb.",
-   "id": "c114"
   },
   {
    "sentence": "В конце ___ либералы и радикалы выдвинули требование избирательной реформы, заглохшее со времени бурных событий 1819 года.",
@@ -1509,22 +935,8 @@
    ],
    "correct": "20-х годов",
    "case": "Родительный (Genitive)",
-   "explain": "«20-х годов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«20-х годов» depends on the noun «конце» (whose? of what?) — genitive.",
    "id": "c115"
-  },
-  {
-   "sentence": "В конце 20-х годов либералы и радикалы выдвинули требование ___, заглохшее со времени бурных событий 1819 года.",
-   "lemma": "реформа",
-   "options": [
-    "избирательная реформа",
-    "избирательной реформы",
-    "избирательной реформе",
-    "избирательной реформой"
-   ],
-   "correct": "избирательной реформы",
-   "case": "Родительный (Genitive)",
-   "explain": "«избирательной реформы» — the genitive here marks possession, absence, or quantity.",
-   "id": "c116"
   },
   {
    "sentence": "В конце 20-х годов либералы и радикалы выдвинули требование избирательной реформы, заглохшее со времени ___ 1819 года.",
@@ -1537,7 +949,7 @@
    ],
    "correct": "бурных событий",
    "case": "Родительный (Genitive)",
-   "explain": "«бурных событий» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«бурных событий» depends on the noun «времени» (whose? of what?) — genitive.",
    "id": "c117"
   },
   {
@@ -1551,21 +963,21 @@
    ],
    "correct": "английской политике",
    "case": "Предложный (Prepositional)",
-   "explain": "«английской политике» — after the preposition «в», for location or topic.",
+   "explain": "«английской политике» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c118"
   },
   {
    "sentence": "Со времени Кромвеля и Вильгельма III, подавлявших восстания ___, она носила все черты страны завоеванной.",
    "lemma": "католик",
    "options": [
+    "ирландских католиках",
+    "ирландским католикам",
     "ирландские католики",
-    "ирландских католиков",
-    "ирландскими католиками",
-    "ирландским католикам"
+    "ирландских католиков"
    ],
    "correct": "ирландских католиков",
    "case": "Родительный (Genitive)",
-   "explain": "«ирландских католиков» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«ирландских католиков» depends on the noun «восстания» (whose? of what?) — genitive.",
    "id": "c119"
   },
   {
@@ -1579,7 +991,7 @@
    ],
    "correct": "сельского населения",
    "case": "Родительный (Genitive)",
-   "explain": "«сельского населения» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«сельского населения» depends on the noun «Быт» (whose? of what?) — genitive.",
    "id": "c120"
   },
   {
@@ -1593,36 +1005,8 @@
    ],
    "correct": "скученное население",
    "case": "Именительный (Nominative)",
-   "explain": "«скученное население» — the subject of the sentence stands in the nominative.",
+   "explain": "«скученное население» is the subject of «жило» — who or what does it — so nominative.",
    "id": "c121"
-  },
-  {
-   "sentence": "Все должности по управлению, а также ___ были закрыты для католиков: мировые судьи, присяжные и члены городских дум были протестанты, т. е. иностранцы.",
-   "lemma": "место",
-   "options": [
-    "судебными местами",
-    "судебных местах",
-    "судебных мест",
-    "судебные места"
-   ],
-   "correct": "судебные места",
-   "case": "Именительный (Nominative)",
-   "explain": "«судебные места» — the subject of the sentence stands in the nominative.",
-   "id": "c122"
-  },
-  {
-   "sentence": "Все должности по управлению, а также судебные места были закрыты для католиков: ___, присяжные и члены городских дум были протестанты, т. е. иностранцы.",
-   "lemma": "судья",
-   "options": [
-    "мировые судьи",
-    "мировых судьях",
-    "мировым судьям",
-    "мировых судей"
-   ],
-   "correct": "мировые судьи",
-   "case": "Именительный (Nominative)",
-   "explain": "«мировые судьи» — the subject of the sentence stands in the nominative.",
-   "id": "c123"
   },
   {
    "sentence": "Все должности по управлению, а также судебные места были закрыты для католиков: мировые судьи, присяжные и члены ___ были протестанты, т. е. иностранцы.",
@@ -1635,7 +1019,7 @@
    ],
    "correct": "городских дум",
    "case": "Родительный (Genitive)",
-   "explain": "«городских дум» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«городских дум» depends on the noun «члены» (whose? of what?) — genitive.",
    "id": "c124"
   },
   {
@@ -1649,36 +1033,8 @@
    ],
    "correct": "тайных обществ",
    "case": "Родительный (Genitive)",
-   "explain": "«тайных обществ» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«тайных обществ» depends on the noun «призывах» (whose? of what?) — genitive.",
    "id": "c125"
-  },
-  {
-   "sentence": "Благодаря всем этим невзгодам, в Ирландии сложилась жестокая ненависть к англичанам, которая выражалась в призывах тайных обществ к восстания и в непрерывных ___, нападениях на усадьбы лендлордов и т. п.",
-   "lemma": "беспорядок",
-   "options": [
-    "аграрных беспорядках",
-    "аграрные беспорядки",
-    "аграрным беспорядкам",
-    "аграрных беспорядков"
-   ],
-   "correct": "аграрных беспорядках",
-   "case": "Предложный (Prepositional)",
-   "explain": "«аграрных беспорядках» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c126"
-  },
-  {
-   "sentence": "Под его влиянием ___ (собрания) под открытым небом принимали внушительные резолюции, оттесняя т. о. деятельность революционных тайных обществ.",
-   "lemma": "митинг",
-   "options": [
-    "массовых митингах",
-    "массовых митингов",
-    "массовые митинги",
-    "массовым митингам"
-   ],
-   "correct": "массовые митинги",
-   "case": "Именительный (Nominative)",
-   "explain": "«массовые митинги» — the subject of the sentence stands in the nominative.",
-   "id": "c127"
   },
   {
    "sentence": "Под его влиянием массовые митинги (собрания) под ___ принимали внушительные резолюции, оттесняя т. о. деятельность революционных тайных обществ.",
@@ -1691,22 +1047,8 @@
    ],
    "correct": "открытым небом",
    "case": "Творительный (Instrumental)",
-   "explain": "«открытым небом» — after the preposition «под», the instrumental marks the means, company, or complement.",
+   "explain": "«открытым небом» — «под» takes the instrumental here (где? под чем?) — the accusative would mean movement under (куда? под что?).",
    "id": "c128"
-  },
-  {
-   "sentence": "Под его влиянием массовые митинги (собрания) под открытым небом принимали ___, оттесняя т. о. деятельность революционных тайных обществ.",
-   "lemma": "резолюция",
-   "options": [
-    "внушительные резолюции",
-    "внушительных резолюций",
-    "внушительными резолюциями",
-    "внушительным резолюциям"
-   ],
-   "correct": "внушительные резолюции",
-   "case": "Винительный (Accusative)",
-   "explain": "«внушительные резолюции» — the accusative marks the direct object of the verb.",
-   "id": "c129"
   },
   {
    "sentence": "Под его влиянием массовые митинги (собрания) под открытым небом принимали внушительные резолюции, оттесняя т. о. деятельность революционных ___.",
@@ -1719,7 +1061,7 @@
    ],
    "correct": "тайных обществ",
    "case": "Родительный (Genitive)",
-   "explain": "«тайных обществ» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«тайных обществ» depends on the noun «деятельность» (whose? of what?) — genitive.",
    "id": "c130"
   },
   {
@@ -1733,36 +1075,8 @@
    ],
    "correct": "консервативного кабинета",
    "case": "Родительный (Genitive)",
-   "explain": "«консервативного кабинета» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«консервативного кабинета» depends on the noun «глава» (whose? of what?) — genitive.",
    "id": "c131"
-  },
-  {
-   "sentence": "Когда самого о'Коннеля, вопреки закону о присяге, выбрали в парламент, глава консервативного кабинета, герцог Веллингтон понял, что ___ будет опасно и убедил короля уступить.",
-   "lemma": "упорство",
-   "options": [
-    "дальнейшему упорству",
-    "дальнейшее упорство",
-    "дальнейшим упорством",
-    "дальнейшем упорстве"
-   ],
-   "correct": "дальнейшее упорство",
-   "case": "Именительный (Nominative)",
-   "explain": "«дальнейшее упорство» — the subject of the sentence stands in the nominative.",
-   "id": "c132"
-  },
-  {
-   "sentence": "Но ___ реформы было в том, что допущение католиков пробило первую брешь в старой конституции XVII века.",
-   "lemma": "значение",
-   "options": [
-    "главного значения",
-    "главное значение",
-    "главным значением",
-    "главному значению"
-   ],
-   "correct": "главное значение",
-   "case": "Именительный (Nominative)",
-   "explain": "«главное значение» — the subject of the sentence stands in the nominative.",
-   "id": "c133"
   },
   {
    "sentence": "Хотя Веллингтон и заявил в ___, что английская избирательная система представляет совершенство, но в виду растущего возбуждения должен был выйти в отставку.",
@@ -1775,7 +1089,7 @@
    ],
    "correct": "верхней палате",
    "case": "Предложный (Prepositional)",
-   "explain": "«Верхней палате» — after the preposition «в», for location or topic.",
+   "explain": "«верхней палате» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c134"
   },
   {
@@ -1789,22 +1103,8 @@
    ],
    "correct": "избирательная система",
    "case": "Именительный (Nominative)",
-   "explain": "«избирательная система» — the subject of the sentence stands in the nominative.",
+   "explain": "«избирательная система» is the subject of «представляет» — who or what does it — so nominative.",
    "id": "c135"
-  },
-  {
-   "sentence": "___, Вильгельм IV (1830—37), поручил составить министерство морду Грею, старому вижу, за 40 лет перед тем, во время французской революции выступившему с проектом парламентской реформы.",
-   "lemma": "король",
-   "options": [
-    "новому королю",
-    "новым королём",
-    "новый король",
-    "нового короля"
-   ],
-   "correct": "новый король",
-   "case": "Именительный (Nominative)",
-   "explain": "«Новый король» — the subject of the sentence stands in the nominative.",
-   "id": "c136"
   },
   {
    "sentence": "Новый король, Вильгельм IV (1830—37), поручил составить министерство морду Грею, старому вижу, за 40 лет перед тем, во время французской революции выступившему с проектом ___.",
@@ -1817,7 +1117,7 @@
    ],
    "correct": "парламентской реформы",
    "case": "Родительный (Genitive)",
-   "explain": "«парламентской реформы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«парламентской реформы» depends on the noun «проектом» (whose? of what?) — genitive.",
    "id": "c137"
   },
   {
@@ -1831,22 +1131,8 @@
    ],
    "correct": "новое министерство",
    "case": "Именительный (Nominative)",
-   "explain": "«Новое министерство» — the subject of the sentence stands in the nominative.",
+   "explain": "«новое министерство» is the subject of «соединило» — who or what does it — so nominative.",
    "id": "c138"
-  },
-  {
-   "sentence": "Новое министерство соединило в своей среде видов и ___.",
-   "lemma": "торий",
-   "options": [
-    "умеренных ториев",
-    "умеренными ториями",
-    "умеренные тории",
-    "умеренных ториях"
-   ],
-   "correct": "умеренных ториев",
-   "case": "Родительный (Genitive)",
-   "explain": "«умеренных ториев» — the genitive here marks possession, absence, or quantity.",
-   "id": "c139"
   },
   {
    "sentence": "В начале ___ Россель выступил с биллем реформы; в то время как он произносил речь среди напряженного молчания палаты, на улице тревожно ожидала исхода огромная толпа народа.",
@@ -1859,50 +1145,8 @@
    ],
    "correct": "следующего года",
    "case": "Родительный (Genitive)",
-   "explain": "«следующего года» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«следующего года» depends on the noun «начале» (whose? of what?) — genitive.",
    "id": "c140"
-  },
-  {
-   "sentence": "В начале следующего года Россель выступил с биллем реформы; в то время как он произносил речь среди напряженного молчания палаты, на улице тревожно ожидала исхода ___ народа.",
-   "lemma": "толпа",
-   "options": [
-    "огромной толпе",
-    "огромной толпы",
-    "огромной толпой",
-    "огромная толпа"
-   ],
-   "correct": "огромная толпа",
-   "case": "Именительный (Nominative)",
-   "explain": "«огромная толпа» — the subject of the sentence stands in the nominative.",
-   "id": "c141"
-  },
-  {
-   "sentence": "Проект видов был совсем не похож на радикальные предлсужения 1816 г. о всеобщем и равном ___.",
-   "lemma": "право",
-   "options": [
-    "избирательном праве",
-    "избирательным правом",
-    "избирательному праву",
-    "избирательное право"
-   ],
-   "correct": "избирательном праве",
-   "case": "Предложный (Prepositional)",
-   "explain": "«избирательном праве» — after the preposition «о», for location or topic.",
-   "id": "c143"
-  },
-  {
-   "sentence": "Это был компромисс (___); имелась в виду лишь известная перестановка парламентских мест.",
-   "lemma": "уступка",
-   "options": [
-    "частичная уступка",
-    "частичной уступкой",
-    "частичной уступки",
-    "частичной уступке"
-   ],
-   "correct": "частичная уступка",
-   "case": "Именительный (Nominative)",
-   "explain": "«частичная уступка» — the subject of the sentence stands in the nominative.",
-   "id": "c144"
   },
   {
    "sentence": "Это был компромисс (частичная уступка); имелась в виду лишь ___ парламентских мест.",
@@ -1915,7 +1159,7 @@
    ],
    "correct": "известная перестановка",
    "case": "Именительный (Nominative)",
-   "explain": "«известная перестановка» — the subject of the sentence stands in the nominative.",
+   "explain": "«известная перестановка» is the subject of «имелась» — who or what does it — so nominative.",
    "id": "c145"
   },
   {
@@ -1929,7 +1173,7 @@
    ],
    "correct": "парламентских мест",
    "case": "Родительный (Genitive)",
-   "explain": "«парламентских мест» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«парламентских мест» depends on the noun «перестановка» (whose? of what?) — genitive.",
    "id": "c146"
   },
   {
@@ -1943,22 +1187,8 @@
    ],
    "correct": "новом парламенте",
    "case": "Предложный (Prepositional)",
-   "explain": "«новом парламенте» — after the preposition «в», for location or topic.",
+   "explain": "«новом парламенте» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c147"
-  },
-  {
-   "sentence": "Страна ответила на это ___; газеты вышли в траурной рамке; на митинге бирмингамского союза решено было отказать в уплате податей, если лорды будут продолжать упорство.",
-   "lemma": "протест",
-   "options": [
-    "резкого протеста",
-    "резким протестом",
-    "резкому протесту",
-    "резком протесте"
-   ],
-   "correct": "резким протестом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«резким протестом» — the instrumental marks the means, company, or complement.",
-   "id": "c149"
   },
   {
    "sentence": "Страна ответила на это резким протестом; газеты вышли в ___; на митинге бирмингамского союза решено было отказать в уплате податей, если лорды будут продолжать упорство.",
@@ -1971,7 +1201,7 @@
    ],
    "correct": "траурной рамке",
    "case": "Предложный (Prepositional)",
-   "explain": "«траурной рамке» — after the preposition «в», for location or topic.",
+   "explain": "«траурной рамке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c150"
   },
   {
@@ -1985,36 +1215,8 @@
    ],
    "correct": "бирмингамского союза",
    "case": "Родительный (Genitive)",
-   "explain": "«бирмингамского союза» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«бирмингамского союза» depends on the noun «митинге» (whose? of what?) — genitive.",
    "id": "c151"
-  },
-  {
-   "sentence": "Но в сущности билль был вынесен на плечах рабочими, которые решили поддержать ___ в его борьбе за умеренную реформу с тем, чтобы потом добиться более радикальной.",
-   "lemma": "класс",
-   "options": [
-    "среднего класса",
-    "средний класс",
-    "среднем классе",
-    "средним классом"
-   ],
-   "correct": "средний класс",
-   "case": "Винительный (Accusative)",
-   "explain": "«средний класс» — the accusative marks the direct object of the verb.",
-   "id": "c152"
-  },
-  {
-   "sentence": "Вигские министры предложили королю оказать давление на палату лордов назначением в нее ___, которые бы дали желаемое большинство.",
-   "lemma": "член",
-   "options": [
-    "новых членах",
-    "новым членам",
-    "новых членов",
-    "новыми членами"
-   ],
-   "correct": "новых членов",
-   "case": "Винительный (Accusative)",
-   "explain": "«новых членов» — the accusative marks the direct object of the verb.",
-   "id": "c154"
   },
   {
    "sentence": "Она уничтожила ___ более полусотни местечек, с населением меньше 2000 человек, оставила тридцати другим местечкам, с населением меньше 4000, право посылать только одного вместо двух депутатов.",
@@ -2027,7 +1229,7 @@
    ],
    "correct": "избирательные права",
    "case": "Винительный (Accusative)",
-   "explain": "«избирательные права» — the accusative marks the direct object of the verb.",
+   "explain": "«избирательные права» is the direct object of «уничтожила» (кого? что?) — accusative.",
    "id": "c155"
   },
   {
@@ -2041,21 +1243,21 @@
    ],
    "correct": "другим местечкам",
    "case": "Дательный (Dative)",
-   "explain": "«другим местечкам» — the dative marks the indirect object or recipient.",
+   "explain": "«другим местечкам» is the indirect object of «посылать» — to or for whom (кому?) — dative.",
    "id": "c156"
   },
   {
    "sentence": "Отнятые у местечек права были отданы 42 ___, большею частью в северочападной Англии, которые до тех пор вовсе не имели представителей (Манчестеру, Бирмингему, Лиддсу и др.).",
    "lemma": "город",
    "options": [
-    "крупным городам",
-    "крупных городов",
+    "крупными городами",
     "крупных городах",
-    "крупные города"
+    "крупным городам",
+    "крупных городов"
    ],
    "correct": "крупным городам",
    "case": "Дательный (Dative)",
-   "explain": "«крупным городам» — the dative marks the indirect object or recipient.",
+   "explain": "«крупным городам» is the indirect object of «отданы» — to or for whom (кому?) — dative.",
    "id": "c157"
   },
   {
@@ -2069,22 +1271,8 @@
    ],
    "correct": "технические изобретения",
    "case": "Винительный (Accusative)",
-   "explain": "«технические изобретения» — the accusative marks the direct object of the verb.",
+   "explain": "«технические изобретения» is the direct object of «вызывало» (кого? что?) — accusative.",
    "id": "c158"
-  },
-  {
-   "sentence": "С 10-х годов XIX века в Англии появились пароходы, начала речные, потом морские, с 20-х годов паровозы; первая ___ была выстроена в промышленном крае между Манчестером и Ливерпулем (1829).",
-   "lemma": "дорога",
-   "options": [
-    "железной дорогой",
-    "железная дорога",
-    "железной дороги",
-    "железной дороге"
-   ],
-   "correct": "железная дорога",
-   "case": "Именительный (Nominative)",
-   "explain": "«железная дорога» — the subject of the sentence stands in the nominative.",
-   "id": "c161"
   },
   {
    "sentence": "Постройка ___ отдельными предпринимателями и частными компаниями пошла очень быстро; 1836 год был временем настоящей «железнодорожной мании»: появилось зараз 29 новых линий.",
@@ -2097,22 +1285,8 @@
    ],
    "correct": "железных дорог",
    "case": "Родительный (Genitive)",
-   "explain": "«железных дорог» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«железных дорог» depends on the noun «Постройка» (whose? of what?) — genitive.",
    "id": "c163"
-  },
-  {
-   "sentence": "Постройка железных дорог отдельными предпринимателями и ___ пошла очень быстро; 1836 год был временем настоящей «железнодорожной мании»: появилось зараз 29 новых линий.",
-   "lemma": "компания",
-   "options": [
-    "частным компаниям",
-    "частными компаниями",
-    "частных компаний",
-    "частные компании"
-   ],
-   "correct": "частными компаниями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«частными компаниями» — the instrumental marks the means, company, or complement.",
-   "id": "c165"
   },
   {
    "sentence": "Постройка железных дорог отдельными предпринимателями и частными компаниями пошла очень быстро; 1836 год был временем настоящей «железнодорожной мании»: появилось зараз 29 ___.",
@@ -2125,21 +1299,21 @@
    ],
    "correct": "новых линий",
    "case": "Родительный (Genitive)",
-   "explain": "«новых линий» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«новых линий» depends on the noun «зараз» (whose? of what?) — genitive.",
    "id": "c166"
   },
   {
    "sentence": "Государственная власть сначала вовсе не вмешивалась в управление дорогами и, продавши ___ право на постройку, предоставляла им безграничную эксплоатацию пути, как своей собственности.",
    "lemma": "лицо",
    "options": [
-    "частных лиц",
     "частными лицами",
-    "частные лица",
-    "частным лицам"
+    "частных лиц",
+    "частным лицам",
+    "частных лицах"
    ],
    "correct": "частным лицам",
    "case": "Дательный (Dative)",
-   "explain": "«частным лицам» — the dative marks the indirect object or recipient.",
+   "explain": "«частным лицам» is the indirect object of «продавши» — to or for whom (кому?) — dative.",
    "id": "c167"
   },
   {
@@ -2153,21 +1327,21 @@
    ],
    "correct": "железнодорожные компании",
    "case": "Именительный (Nominative)",
-   "explain": "«Железнодорожные компании» — the subject of the sentence stands in the nominative.",
+   "explain": "«железнодорожные компании» is the subject of «назначали» — who or what does it — so nominative.",
    "id": "c168"
   },
   {
    "sentence": "Железнодорожные компании назначали непомерно ___ за перевоз людей и товаров, бесцеремонно водили третий класс в некрытых вагонах, заставляли пассажиров дожидаться целый день на промежуточных станциях.",
    "lemma": "тариф",
    "options": [
-    "высокими тарифами",
-    "высоких тарифов",
+    "высоким тарифам",
     "высоких тарифах",
-    "высокие тарифы"
+    "высокие тарифы",
+    "высокими тарифами"
    ],
    "correct": "высокие тарифы",
    "case": "Винительный (Accusative)",
-   "explain": "«высокие тарифы» — the accusative marks the direct object of the verb.",
+   "explain": "«высокие тарифы» is the direct object of «назначали» (кого? что?) — accusative.",
    "id": "c169"
   },
   {
@@ -2181,7 +1355,7 @@
    ],
    "correct": "промежуточных станциях",
    "case": "Предложный (Prepositional)",
-   "explain": "«промежуточных станциях» — after the preposition «на», for location or topic.",
+   "explain": "«промежуточных станциях» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c171"
   },
   {
@@ -2195,7 +1369,7 @@
    ],
    "correct": "делового класса",
    "case": "Родительный (Genitive)",
-   "explain": "«делового класса» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«делового класса» depends on the noun «возвысившегося» (whose? of what?) — genitive.",
    "id": "c172"
   },
   {
@@ -2209,7 +1383,7 @@
    ],
    "correct": "торийские землевладельцы",
    "case": "Именительный (Nominative)",
-   "explain": "«торийские землевладельцы» — the subject of the sentence stands in the nominative.",
+   "explain": "«торийские землевладельцы» is the subject of «обратились» — who or what does it — so nominative.",
    "id": "c174"
   },
   {
@@ -2223,36 +1397,8 @@
    ],
    "correct": "избирательной реформы",
    "case": "Родительный (Genitive)",
-   "explain": "«избирательной реформы» — after the preposition «после», the genitive here marks possession, absence, or quantity.",
+   "explain": "«избирательной реформы» — «после» always takes the genitive.",
    "id": "c175"
-  },
-  {
-   "sentence": "После избирательной реформы либералы с ___ правили до 1841 г.",
-   "lemma": "перерыв",
-   "options": [
-    "небольшому перерыву",
-    "небольшим перерывом",
-    "небольшой перерыв",
-    "небольшом перерыве"
-   ],
-   "correct": "небольшим перерывом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«небольшим перерывом» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c176"
-  },
-  {
-   "sentence": "___ к охране труда, к надзору за безопасностью и здоровьем рабочих были приняты по настоянию деятелей консервативной партии.",
-   "lemma": "мера",
-   "options": [
-    "первых мерах",
-    "первыми мерами",
-    "первые меры",
-    "первым мерам"
-   ],
-   "correct": "первые меры",
-   "case": "Именительный (Nominative)",
-   "explain": "«Первые меры» — the subject of the sentence stands in the nominative.",
-   "id": "c177"
   },
   {
    "sentence": "___ ограничивал детский труд на фабриках 8 часами и запрещал применять детей и подростков в ночной работе.",
@@ -2265,7 +1411,7 @@
    ],
    "correct": "первый закон",
    "case": "Именительный (Nominative)",
-   "explain": "«Первый закон» — the subject of the sentence stands in the nominative.",
+   "explain": "«первый закон» is the subject of «ограничивал» — who or what does it — so nominative.",
    "id": "c179"
   },
   {
@@ -2279,7 +1425,7 @@
    ],
    "correct": "детский труд",
    "case": "Винительный (Accusative)",
-   "explain": "«детский труд» — the accusative marks the direct object of the verb.",
+   "explain": "«детский труд» is the direct object of «ограничивал» (кого? что?) — accusative.",
    "id": "c180"
   },
   {
@@ -2293,7 +1439,7 @@
    ],
    "correct": "ночной работе",
    "case": "Предложный (Prepositional)",
-   "explain": "«ночной работе» — after the preposition «в», for location or topic.",
+   "explain": "«ночной работе» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c181"
   },
   {
@@ -2307,7 +1453,7 @@
    ],
    "correct": "рабочего класса",
    "case": "Родительный (Genitive)",
-   "explain": "«рабочего класса» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«рабочего класса» depends on the noun «бедствий» (whose? of what?) — genitive.",
    "id": "c182"
   },
   {
@@ -2321,7 +1467,7 @@
    ],
    "correct": "экономических взглядов",
    "case": "Родительный (Genitive)",
-   "explain": "«экономических взглядов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«экономических взглядов» depends on the noun «критикой» (whose? of what?) — genitive.",
    "id": "c184"
   },
   {
@@ -2335,36 +1481,8 @@
    ],
    "correct": "нынешнее производство",
    "case": "Именительный (Nominative)",
-   "explain": "«Нынешнее производство» — the subject of the sentence stands in the nominative.",
+   "explain": "«нынешнее производство» is the subject of «гоняется» — who or what does it — so nominative.",
    "id": "c185"
-  },
-  {
-   "sentence": "Оуен был неистощим в изобретении проектов; его стали считать ___, и он нашел лучшим уехать в Америку.",
-   "lemma": "мечтатель",
-   "options": [
-    "опасным мечтателем",
-    "опасном мечтателе",
-    "опасного мечтателя",
-    "опасный мечтатель"
-   ],
-   "correct": "опасным мечтателем",
-   "case": "Творительный (Instrumental)",
-   "explain": "«опасным мечтателем» — the instrumental marks the means, company, or complement.",
-   "id": "c187"
-  },
-  {
-   "sentence": "Здесь он купил землю и устроил ___ большого кооперативного общества; но товарищество составилось из случайных и частью неподходящих людей, и Оуен погубил в деле все свое состояние.",
-   "lemma": "опыт",
-   "options": [
-    "первый опыт",
-    "первого опыта",
-    "первом опыте",
-    "первому опыту"
-   ],
-   "correct": "первый опыт",
-   "case": "Винительный (Accusative)",
-   "explain": "«первый опыт» — the accusative marks the direct object of the verb.",
-   "id": "c188"
   },
   {
    "sentence": "Здесь он купил землю и устроил первый опыт большого ___; но товарищество составилось из случайных и частью неподходящих людей, и Оуен погубил в деле все свое состояние.",
@@ -2377,7 +1495,7 @@
    ],
    "correct": "кооперативного общества",
    "case": "Родительный (Genitive)",
-   "explain": "«кооперативного общества» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«кооперативного общества» depends on the noun «опыт» (whose? of what?) — genitive.",
    "id": "c189"
   },
   {
@@ -2391,22 +1509,8 @@
    ],
    "correct": "неподходящих людей",
    "case": "Родительный (Genitive)",
-   "explain": "«неподходящих людей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«неподходящих людей» depends on the noun «частью» (whose? of what?) — genitive.",
    "id": "c190"
-  },
-  {
-   "sentence": "Вернувшись в Англию, он пробовал устроить ___, участники которого для покупки товаров должны были приносить квитанции сделанных работ, но потерпел неудачу.",
-   "lemma": "банк",
-   "options": [
-    "торговом банке",
-    "торговый банк",
-    "торговым банком",
-    "торговому банку"
-   ],
-   "correct": "торговый банк",
-   "case": "Винительный (Accusative)",
-   "explain": "«торговый банк» — the accusative marks the direct object of the verb.",
-   "id": "c191"
   },
   {
    "sentence": "В своих брошюрах и воззваниях 30-х годов Оуен первый из англичан (в одно время с французом Леру) применяет выражение «социализм», чтобы обозначить идеальную форму ___.",
@@ -2419,7 +1523,7 @@
    ],
    "correct": "общественного устройства",
    "case": "Родительный (Genitive)",
-   "explain": "«общественного устройства» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«общественного устройства» depends on the noun «форму» (whose? of what?) — genitive.",
    "id": "c192"
   },
   {
@@ -2433,50 +1537,22 @@
    ],
    "correct": "общий союз",
    "case": "Именительный (Nominative)",
-   "explain": "«Общий союз» — the subject of the sentence stands in the nominative.",
+   "explain": "«общий союз» is the subject of «распался» — who or what does it — so nominative.",
    "id": "c193"
   },
   {
    "sentence": "Большинство ___ снова устремил все внимание на общую демократическую реформу в надежде, что она приведет к улучшению участи трудящихся.",
    "lemma": "класс",
    "options": [
-    "рабочему классу",
-    "рабочим классом",
     "рабочего класса",
-    "рабочий класс"
+    "рабочий класс",
+    "рабочем классе",
+    "рабочему классу"
    ],
    "correct": "рабочего класса",
    "case": "Родительный (Genitive)",
-   "explain": "«рабочего класса» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«рабочего класса» depends on the noun «Большинство» (whose? of what?) — genitive.",
    "id": "c194"
-  },
-  {
-   "sentence": "Но когда темно- • гочисленные ___ выступили с предложением расширить избирательное право, либеральный министр Россель заявил, что в 1832 г.",
-   "lemma": "депутат",
-   "options": [
-    "радикальных депутатов",
-    "радикальными депутатами",
-    "радикальных депутатах",
-    "радикальные депутаты"
-   ],
-   "correct": "радикальные депутаты",
-   "case": "Именительный (Nominative)",
-   "explain": "«радикальные депутаты» — the subject of the sentence stands in the nominative.",
-   "id": "c195"
-  },
-  {
-   "sentence": "Но когда темно- • гочисленные радикальные депутаты выступили с предложением расширить избирательное право, ___ Россель заявил, что в 1832 г.",
-   "lemma": "министр",
-   "options": [
-    "либеральному министру",
-    "либеральный министр",
-    "либерального министра",
-    "либеральном министре"
-   ],
-   "correct": "либеральный министр",
-   "case": "Именительный (Nominative)",
-   "explain": "«либеральный министр» — the subject of the sentence stands in the nominative.",
-   "id": "c196"
   },
   {
    "sentence": "Весною 1839 года сошелся в Лондоне, под названием Национального Конвента, съезд представителей артистов ___.",
@@ -2489,22 +1565,8 @@
    ],
    "correct": "разных городов",
    "case": "Родительный (Genitive)",
-   "explain": "«разных городов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«разных городов» depends on the noun «артистов» (whose? of what?) — genitive.",
    "id": "c197"
-  },
-  {
-   "sentence": "В качестве ___, он открыл заседания рядом с государственным парламентом, в котором рабочие не были представлены.",
-   "lemma": "парламент",
-   "options": [
-    "рабочему парламенту",
-    "рабочем парламенте",
-    "рабочий парламент",
-    "рабочего парламента"
-   ],
-   "correct": "рабочего парламента",
-   "case": "Родительный (Genitive)",
-   "explain": "«рабочего парламента» — after the preposition «в», the genitive here marks possession, absence, or quantity.",
-   "id": "c198"
   },
   {
    "sentence": "Конвент предложил палата рассмотреть Народную Хартию; когда однако петиция была отвергнута парламентом, в ___ произошел раскол.",
@@ -2517,7 +1579,7 @@
    ],
    "correct": "рабочем собрании",
    "case": "Предложный (Prepositional)",
-   "explain": "«рабочем собрании» — after the preposition «в», for location or topic.",
+   "explain": "«рабочем собрании» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c200"
   },
   {
@@ -2531,36 +1593,8 @@
    ],
    "correct": "физической силы",
    "case": "Родительный (Genitive)",
-   "explain": "«физической силы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«физической силы» depends on the noun «партии» (whose? of what?) — genitive.",
    "id": "c201"
-  },
-  {
-   "sentence": "Снова петиция была отвергнута палатой; последовала ___ в Ланкашире и новый процесс вождей, который Пил постарался, в противовес либералам, свести на нет, чтобы не вызывать вражды радикалов.",
-   "lemma": "стачка",
-   "options": [
-    "большей стачке",
-    "большая стачка",
-    "большей стачкой",
-    "большей стачки"
-   ],
-   "correct": "большая стачка",
-   "case": "Именительный (Nominative)",
-   "explain": "«большая стачка» — the subject of the sentence stands in the nominative.",
-   "id": "c202"
-  },
-  {
-   "sentence": "Снова петиция была отвергнута палатой; последовала большая стачка в Ланкашире и ___ вождей, который Пил постарался, в противовес либералам, свести на нет, чтобы не вызывать вражды радикалов.",
-   "lemma": "процесс",
-   "options": [
-    "новом процессе",
-    "новый процесс",
-    "новому процессу",
-    "новым процессом"
-   ],
-   "correct": "новый процесс",
-   "case": "Винительный (Accusative)",
-   "explain": "«новый процесс» — the accusative marks the direct object of the verb.",
-   "id": "c203"
   },
   {
    "sentence": "С 1843 года в Англии начинается ___, поднимаются заработки, и чартизм замирает.",
@@ -2573,7 +1607,7 @@
    ],
    "correct": "промышленное оживление",
    "case": "Именительный (Nominative)",
-   "explain": "«промышленное оживление» — the subject of the sentence stands in the nominative.",
+   "explain": "«промышленное оживление» is the subject of «начинается» — who or what does it — so nominative.",
    "id": "c204"
   },
   {
@@ -2587,22 +1621,8 @@
    ],
    "correct": "хлебного закона",
    "case": "Родительный (Genitive)",
-   "explain": "«хлебного закона» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«хлебного закона» depends on the noun «отмены» (whose? of what?) — genitive.",
    "id": "c205"
-  },
-  {
-   "sentence": "Он уступает агитации в пользу отмены хлебного закона, исходящей от торгово-промышленных ___.",
-   "lemma": "круг",
-   "options": [
-    "предпринимательских кругах",
-    "предпринимательские круги",
-    "предпринимательских кругов",
-    "предпринимательскими кругами"
-   ],
-   "correct": "предпринимательских кругов",
-   "case": "Родительный (Genitive)",
-   "explain": "«предпринимательских кругов» — the genitive here marks possession, absence, or quantity.",
-   "id": "c206"
   },
   {
    "sentence": "В 1838 году в Манчестере Кобден, сын фермера, сначала комивояжер, потом самостоятельный владетель фабрики, основал «лицу против ___».",
@@ -2615,36 +1635,8 @@
    ],
    "correct": "хлебного закона",
    "case": "Родительный (Genitive)",
-   "explain": "«хлебного закона» — after the preposition «против», the genitive here marks possession, absence, or quantity.",
+   "explain": "«хлебного закона» — «против» always takes the genitive.",
    "id": "c207"
-  },
-  {
-   "sentence": "Лига повела пропаганду своих идей в неслыханных дотоле размерах, пользуясь разрастающимися ___ и удешевлением почты.",
-   "lemma": "дорога",
-   "options": [
-    "железным дорогам",
-    "железные дороги",
-    "железными дорогами",
-    "железных дорог"
-   ],
-   "correct": "железными дорогами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«железными дорогами» — the instrumental marks the means, company, or complement.",
-   "id": "c208"
-  },
-  {
-   "sentence": "___ в Лондоне были обращены в политические арены.",
-   "lemma": "театр",
-   "options": [
-    "больших театрах",
-    "большими театрами",
-    "больших театров",
-    "большие театры"
-   ],
-   "correct": "большие театры",
-   "case": "Именительный (Nominative)",
-   "explain": "«Большие театры» — the subject of the sentence stands in the nominative.",
-   "id": "c209"
   },
   {
    "sentence": "Большие театры в Лондоне были обращены в ___.",
@@ -2657,36 +1649,22 @@
    ],
    "correct": "политические арены",
    "case": "Винительный (Accusative)",
-   "explain": "«политические арены» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«политические арены» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c210"
   },
   {
    "sentence": "В трех столицах, Лондоне, Эдинбурге, Дублине и в крупных ___ лита скоро добилась больших успехов.",
    "lemma": "центр",
    "options": [
-    "мануфактурных центрах",
+    "мануфактурными центрами",
     "мануфактурным центрам",
-    "мануфактурных центров",
-    "мануфактурные центры"
+    "мануфактурных центрах",
+    "мануфактурных центров"
    ],
    "correct": "мануфактурных центрах",
    "case": "Предложный (Prepositional)",
-   "explain": "«мануфактурных центрах» — after the preposition «в», for location or topic.",
+   "explain": "«мануфактурных центрах» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c211"
-  },
-  {
-   "sentence": "___ к отмене хлебного закона послужил ирландский голод 1845 года, который был вызван болезнью картофеля, единственной пищи бедного населения страны.",
-   "lemma": "толчок",
-   "options": [
-    "решительного толчка",
-    "решительным толчком",
-    "решительном толчке",
-    "решительный толчок"
-   ],
-   "correct": "решительным толчком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«Решительным толчком» — the instrumental marks the means, company, or complement.",
-   "id": "c213"
   },
   {
    "sentence": "Решительным толчком к отмене ___ послужил ирландский голод 1845 года, который был вызван болезнью картофеля, единственной пищи бедного населения страны.",
@@ -2699,7 +1677,7 @@
    ],
    "correct": "хлебного закона",
    "case": "Родительный (Genitive)",
-   "explain": "«хлебного закона» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«хлебного закона» depends on the noun «отмене» (whose? of what?) — genitive.",
    "id": "c214"
   },
   {
@@ -2713,22 +1691,8 @@
    ],
    "correct": "ирландский голод",
    "case": "Именительный (Nominative)",
-   "explain": "«ирландский голод» — the subject of the sentence stands in the nominative.",
+   "explain": "«ирландский голод» is the subject of «послужил» — who or what does it — so nominative.",
    "id": "c215"
-  },
-  {
-   "sentence": "Решительным толчком к отмене хлебного закона послужил ирландский голод 1845 года, который был вызван болезнью картофеля, ___ бедного населения страны.",
-   "lemma": "пища",
-   "options": [
-    "единственной пищи",
-    "единственная пища",
-    "единственной пище",
-    "единственной пищей"
-   ],
-   "correct": "единственной пищи",
-   "case": "Родительный (Genitive)",
-   "explain": "«единственной пищи» — the genitive here marks possession, absence, or quantity.",
-   "id": "c216"
   },
   {
    "sentence": "Решительным толчком к отмене хлебного закона послужил ирландский голод 1845 года, который был вызван болезнью картофеля, единственной пищи ___ страны.",
@@ -2741,7 +1705,7 @@
    ],
    "correct": "бедного населения",
    "case": "Родительный (Genitive)",
-   "explain": "«бедного населения» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«бедного населения» depends on the noun «пищи» (whose? of what?) — genitive.",
    "id": "c217"
   },
   {
@@ -2755,7 +1719,7 @@
    ],
    "correct": "немедленного открытия",
    "case": "Родительный (Genitive)",
-   "explain": "«немедленного открытия» — the genitive here marks possession, absence, or quantity.",
+   "explain": "With «потребовала», a verb of waiting, seeking, asking or wanting, the object can stand in the genitive — as here.",
    "id": "c218"
   },
   {
@@ -2769,7 +1733,7 @@
    ],
    "correct": "свободного ввоза",
    "case": "Родительный (Genitive)",
-   "explain": "«свободного ввоза» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«свободного ввоза» — «для» always takes the genitive.",
    "id": "c219"
   },
   {
@@ -2783,7 +1747,7 @@
    ],
    "correct": "иностранного хлеба",
    "case": "Родительный (Genitive)",
-   "explain": "«иностранного хлеба» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«иностранного хлеба» depends on the noun «ввоза» (whose? of what?) — genitive.",
    "id": "c220"
   },
   {
@@ -2797,7 +1761,7 @@
    ],
    "correct": "свободной торговли",
    "case": "Родительный (Genitive)",
-   "explain": "«свободной торговли» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«свободной торговли» depends on the noun «пользу» (whose? of what?) — genitive.",
    "id": "c221"
   },
   {
@@ -2811,35 +1775,21 @@
    ],
    "correct": "хлебного закона",
    "case": "Родительный (Genitive)",
-   "explain": "«хлебного закона» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«хлебного закона» depends on the noun «отмене» (whose? of what?) — genitive.",
    "id": "c222"
-  },
-  {
-   "sentence": "Прения по вопросу об отмене хлебного закона шли в течение 12 ___; было произнесено 103 речи.",
-   "lemma": "заседание",
-   "options": [
-    "ночных заседаний",
-    "ночные заседания",
-    "ночными заседаниями",
-    "ночных заседаниях"
-   ],
-   "correct": "ночных заседаний",
-   "case": "Родительный (Genitive)",
-   "explain": "«ночных заседаний» — after the preposition «в», the genitive here marks possession, absence, or quantity.",
-   "id": "c223"
   },
   {
    "sentence": "С устранением ___ торговопромышленный класс, вступивший во власть в 1832 г., достиг полного торжества.",
    "lemma": "закон",
    "options": [
-    "хлебным законом",
-    "хлебного закона",
+    "хлебном законе",
     "хлебный закон",
+    "хлебного закона",
     "хлебному закону"
    ],
    "correct": "хлебного закона",
    "case": "Родительный (Genitive)",
-   "explain": "«хлебного закона» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«хлебного закона» depends on the noun «устранением» (whose? of what?) — genitive.",
    "id": "c224"
   },
   {
@@ -2853,7 +1803,7 @@
    ],
    "correct": "французской республики",
    "case": "Родительный (Genitive)",
-   "explain": "«французской республики» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«французской республики» depends on the noun «провозглашенной» (whose? of what?) — genitive.",
    "id": "c227"
   },
   {
@@ -2867,22 +1817,8 @@
    ],
    "correct": "народные массы",
    "case": "Именительный (Nominative)",
-   "explain": "«народные массы» — the subject of the sentence stands in the nominative.",
+   "explain": "«народные массы» is the subject of «откажутся» — who or what does it — so nominative.",
    "id": "c229"
-  },
-  {
-   "sentence": "___ в Англии и на этот раз, как раньше, около 1820 и около 1832 г., не перешло в революцию.",
-   "lemma": "движение",
-   "options": [
-    "общественно-политическое движение",
-    "общественно-политическим движением",
-    "общественно-политическому движению",
-    "общественно-политического движения"
-   ],
-   "correct": "общественно-политическое движение",
-   "case": "Именительный (Nominative)",
-   "explain": "«Общественно-политическое движение» — the subject of the sentence stands in the nominative.",
-   "id": "c230"
   },
   {
    "sentence": "После 1847—8 гг. масса ___, составлявших наиболее беспокойную группу, а также английских рабочих веселились в Америку.",
@@ -2895,78 +1831,8 @@
    ],
    "correct": "бедствующих ирландцев",
    "case": "Родительный (Genitive)",
-   "explain": "«бедствующих ирландцев» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«бедствующих ирландцев» depends on the noun «масса» (whose? of what?) — genitive.",
    "id": "c231"
-  },
-  {
-   "sentence": "После 1847—8 гг. масса бедствующих ирландцев, составлявших наиболее беспокойную группу, а также ___ веселились в Америку.",
-   "lemma": "рабочий",
-   "options": [
-    "английские рабочие",
-    "английским рабочим",
-    "английскими рабочими",
-    "английских рабочих"
-   ],
-   "correct": "английских рабочих",
-   "case": "Винительный (Accusative)",
-   "explain": "«английских рабочих» — the accusative marks the direct object of the verb.",
-   "id": "c232"
-  },
-  {
-   "sentence": "Монархия Луи Филиппа в такой мере отдалась служению интересам крупной буржуазии, что от нее стали отклоняться более широкие ___, сочувствовавшие ей в начале.",
-   "lemma": "круг",
-   "options": [
-    "общественных кругах",
-    "общественным кругам",
-    "общественными кругами",
-    "общественные круги"
-   ],
-   "correct": "общественные круги",
-   "case": "Винительный (Accusative)",
-   "explain": "«общественные круги» — the accusative marks the direct object of the verb.",
-   "id": "c233"
-  },
-  {
-   "sentence": "Все громче заявляли они свои требования ___, распространения политических нрав на служащих в национальной гвардии и на людей с высшим образованием, а также выключения из палаты чиновников.",
-   "lemma": "реформа",
-   "options": [
-    "избирательная реформа",
-    "избирательной реформы",
-    "избирательной реформе",
-    "избирательной реформой"
-   ],
-   "correct": "избирательной реформы",
-   "case": "Родительный (Genitive)",
-   "explain": "«избирательной реформы» — the genitive here marks possession, absence, or quantity.",
-   "id": "c234"
-  },
-  {
-   "sentence": "Гизо запретил назначенный на 22-е февраля 1848 г. в Париже банкет сторонников реформы, в котором должны были принять участие ___ и национальные гвардейцы.",
-   "lemma": "депутат",
-   "options": [
-    "многих депутатов",
-    "многим депутатам",
-    "многие депутаты",
-    "многими депутатами"
-   ],
-   "correct": "многие депутаты",
-   "case": "Именительный (Nominative)",
-   "explain": "«многие депутаты» — the subject of the sentence stands in the nominative.",
-   "id": "c235"
-  },
-  {
-   "sentence": "Гизо запретил назначенный на 22-е февраля 1848 г. в Париже банкет сторонников реформы, в котором должны были принять участие многие депутаты и ___.",
-   "lemma": "гвардеец",
-   "options": [
-    "национальными гвардейцами",
-    "национальных гвардейцев",
-    "национальных гвардейцах",
-    "национальные гвардейцы"
-   ],
-   "correct": "национальные гвардейцы",
-   "case": "Именительный (Nominative)",
-   "explain": "«национальные гвардейцы» — the subject of the sentence stands in the nominative.",
-   "id": "c236"
   },
   {
    "sentence": "___ подчинились и отказались от процессии на улицах, которая должна была двинуться к месту банкета.",
@@ -2979,7 +1845,7 @@
    ],
    "correct": "умеренные вожди",
    "case": "Именительный (Nominative)",
-   "explain": "«Умеренные вожди» — the subject of the sentence stands in the nominative.",
+   "explain": "«умеренные вожди» is the subject of «подчинились» — who or what does it — so nominative.",
    "id": "c237"
   },
   {
@@ -2993,7 +1859,7 @@
    ],
    "correct": "латинского квартала",
    "case": "Родительный (Genitive)",
-   "explain": "«Латинского квартала» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«латинского квартала» depends on the noun «студенты» (whose? of what?) — genitive.",
    "id": "c238"
   },
   {
@@ -3007,7 +1873,7 @@
    ],
    "correct": "других министров",
    "case": "Винительный (Accusative)",
-   "explain": "«других министров» — the accusative marks the direct object of the verb.",
+   "explain": "«других министров» is the direct object of «назначил» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c239"
   },
   {
@@ -3021,7 +1887,7 @@
    ],
    "correct": "линейные войска",
    "case": "Именительный (Nominative)",
-   "explain": "«линейные войска» — the subject of the sentence stands in the nominative.",
+   "explain": "«линейные войска» is the subject of «действовали» — who or what does it — so nominative.",
    "id": "c240"
   },
   {
@@ -3035,22 +1901,8 @@
    ],
    "correct": "рабочих часов",
    "case": "Родительный (Genitive)",
-   "explain": "«рабочих часов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«рабочих часов» depends on the noun «числа» (whose? of what?) — genitive.",
    "id": "c241"
-  },
-  {
-   "sentence": "Комиссия издала правила об уменьшении числа рабочих часов, предложила ___ между хозяевами, и рабочими, но предприниматели не обращали никакого внимания на ее распоряжения.",
-   "lemma": "суд",
-   "options": [
-    "третейский суд",
-    "третейскому суду",
-    "третейским судом",
-    "третейском суде"
-   ],
-   "correct": "третейский суд",
-   "case": "Винительный (Accusative)",
-   "explain": "«третейский суд» — the accusative marks the direct object of the verb.",
-   "id": "c242"
   },
   {
    "sentence": "Революция 1848 г. создала, как и предшествующие перевороты, безработицу; массы ___ устремились в Париж искать заработка.",
@@ -3063,36 +1915,8 @@
    ],
    "correct": "незанятых людей",
    "case": "Родительный (Genitive)",
-   "explain": "«незанятых людей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«незанятых людей» depends on the noun «массы» (whose? of what?) — genitive.",
    "id": "c243"
-  },
-  {
-   "sentence": "Вместо того, чтобы распределить их по специальностям, их поставили всех без различия на землекопные работы, в сущности ненужные, на Марсовом поле: это и было признано считать ___.",
-   "lemma": "мастерская",
-   "options": [
-    "национальных мастерских",
-    "национальные мастерские",
-    "национальным мастерским",
-    "национальными мастерскими"
-   ],
-   "correct": "национальными мастерскими",
-   "case": "Творительный (Instrumental)",
-   "explain": "«национальными мастерскими» — the instrumental marks the means, company, or complement.",
-   "id": "c246"
-  },
-  {
-   "sentence": "Но так как в казне не было наличных средств, пришлось установить, для покрытия издержек по устройству работ, ___ в размере 45\"/., с каждого франка существующих податей.",
-   "lemma": "налог",
-   "options": [
-    "добавочным налогом",
-    "добавочного налога",
-    "добавочный налог",
-    "добавочному налогу"
-   ],
-   "correct": "добавочный налог",
-   "case": "Именительный (Nominative)",
-   "explain": "«добавочный налог» — the subject of the sentence stands in the nominative.",
-   "id": "c247"
   },
   {
    "sentence": "___ решило уволить рабочих, пришедших из провинций, и закрыть национальные мастерские; оно предложило рабочим вступить в армию или отправиться на землекопные работы в провинции.",
@@ -3105,22 +1929,8 @@
    ],
    "correct": "учредительное собрание",
    "case": "Именительный (Nominative)",
-   "explain": "«Учредительное собрание» — the subject of the sentence stands in the nominative.",
+   "explain": "«учредительное собрание» is the subject of «решило» — who or what does it — so nominative.",
    "id": "c248"
-  },
-  {
-   "sentence": "Учредительное собрание решило уволить рабочих, пришедших из провинций, и закрыть ___; оно предложило рабочим вступить в армию или отправиться на землекопные работы в провинции.",
-   "lemma": "мастерская",
-   "options": [
-    "национальными мастерскими",
-    "национальным мастерским",
-    "национальных мастерских",
-    "национальные мастерские"
-   ],
-   "correct": "национальные мастерские",
-   "case": "Винительный (Accusative)",
-   "explain": "«национальные мастерские» — the accusative marks the direct object of the verb.",
-   "id": "c249"
   },
   {
    "sentence": "Собрание поручило неограниченную власть над столицей и начальство над войсками вместе с буржуазной национальной гвардией генералу Кавеньяку, брату ___ 1830 г.",
@@ -3133,7 +1943,7 @@
    ],
    "correct": "героического республиканца",
    "case": "Родительный (Genitive)",
-   "explain": "«героического республиканца» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«героического республиканца» depends on the noun «брату» (whose? of what?) — genitive.",
    "id": "c252"
   },
   {
@@ -3147,7 +1957,7 @@
    ],
    "correct": "жестокое кровопролитие",
    "case": "Именительный (Nominative)",
-   "explain": "«жестокое кровопролитие» — the subject of the sentence stands in the nominative.",
+   "explain": "«жестокое кровопролитие» is the subject of «Произошло» — who or what does it — so nominative.",
    "id": "c253"
   },
   {
@@ -3161,7 +1971,7 @@
    ],
    "correct": "рабочих предместий",
    "case": "Родительный (Genitive)",
-   "explain": "«рабочих предместий» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«рабочих предместий» depends on the noun «штурм» (whose? of what?) — genitive.",
    "id": "c254"
   },
   {
@@ -3175,22 +1985,8 @@
    ],
    "correct": "военного искусства",
    "case": "Родительный (Genitive)",
-   "explain": "«военного искусства» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«военного искусства» depends on the noun «правилам» (whose? of what?) — genitive.",
    "id": "c255"
-  },
-  {
-   "sentence": "После победы пленных рабочих расстреливали, как изменников; руководителей предали ___ и сослали на каторгу в губительную по климату Кайенну.",
-   "lemma": "суд",
-   "options": [
-    "военный суд",
-    "военного суда",
-    "военным судом",
-    "военному суду"
-   ],
-   "correct": "военному суду",
-   "case": "Дательный (Dative)",
-   "explain": "«военному суду» — the dative marks the indirect object or recipient.",
-   "id": "c256"
   },
   {
    "sentence": "___ выставили своим кандидатом Кавеньяка.",
@@ -3203,22 +1999,8 @@
    ],
    "correct": "умеренные республиканцы",
    "case": "Именительный (Nominative)",
-   "explain": "«Умеренные республиканцы» — the subject of the sentence stands in the nominative.",
+   "explain": "«умеренные республиканцы» is the subject of «выставили» — who or what does it — so nominative.",
    "id": "c257"
-  },
-  {
-   "sentence": "Тьер, ___ клерикал из ма (влияния духовенства), примкнул теперь к католикам и привлек их партию на сторону нового кандидата.",
-   "lemma": "враг",
-   "options": [
-    "бывшего врага",
-    "бывшему врагу",
-    "бывший враг",
-    "бывшим врагом"
-   ],
-   "correct": "бывший враг",
-   "case": "Именительный (Nominative)",
-   "explain": "«бывший враг» — the subject of the sentence stands in the nominative.",
-   "id": "c258"
   },
   {
    "sentence": "Тьер, бывший враг клерикал из ма (влияния духовенства), примкнул теперь к католикам и привлек их партию на сторону ___.",
@@ -3231,7 +2013,7 @@
    ],
    "correct": "нового кандидата",
    "case": "Родительный (Genitive)",
-   "explain": "«нового кандидата» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«нового кандидата» depends on the noun «сторону» (whose? of what?) — genitive.",
    "id": "c259"
   },
   {
@@ -3245,7 +2027,7 @@
    ],
    "correct": "президентских выборов",
    "case": "Родительный (Genitive)",
-   "explain": "«президентских выборов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«президентских выборов» depends on the noun «результате» (whose? of what?) — genitive.",
    "id": "c260"
   },
   {
@@ -3259,7 +2041,7 @@
    ],
    "correct": "огромный перевес",
    "case": "Винительный (Accusative)",
-   "explain": "«огромный перевес» — the accusative marks the direct object of the verb.",
+   "explain": "«огромный перевес» is the direct object of «получил» (кого? что?) — accusative.",
    "id": "c261"
   },
   {
@@ -3273,7 +2055,7 @@
    ],
    "correct": "новый президент",
    "case": "Именительный (Nominative)",
-   "explain": "«Новый президент» — the subject of the sentence stands in the nominative.",
+   "explain": "«новый президент» is the subject of «пригласил» — who or what does it — so nominative.",
    "id": "c262"
   },
   {
@@ -3287,35 +2069,21 @@
    ],
    "correct": "консервативных партий",
    "case": "Родительный (Genitive)",
-   "explain": "«консервативных партий» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«консервативных партий» — «из» always takes the genitive.",
    "id": "c263"
-  },
-  {
-   "sentence": "Тотчас-же реакция пошла ___.",
-   "lemma": "ход",
-   "options": [
-    "полному ходу",
-    "полным ходом",
-    "полного хода",
-    "полном ходе"
-   ],
-   "correct": "полным ходом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«полным ходом» — the instrumental marks the means, company, or complement.",
-   "id": "c264"
   },
   {
    "sentence": "Далее католики провели в свою пользу новый ___ (1850).",
    "lemma": "закон",
    "options": [
     "школьным законом",
-    "школьном законе",
-    "школьного закона",
-    "школьный закон"
+    "школьный закон",
+    "школьному закону",
+    "школьном законе"
    ],
    "correct": "школьный закон",
    "case": "Винительный (Accusative)",
-   "explain": "«школьный закон» — the accusative marks the direct object of the verb.",
+   "explain": "«школьный закон» is the direct object of «провели» (кого? что?) — accusative.",
    "id": "c265"
   },
   {
@@ -3329,22 +2097,8 @@
    ],
    "correct": "духовные ордена",
    "case": "Именительный (Nominative)",
-   "explain": "«духовные ордена» — the subject of the sentence stands in the nominative.",
+   "explain": "«духовные ордена» is the subject of «воспользовались» — who or what does it — so nominative.",
    "id": "c266"
-  },
-  {
-   "sentence": "Этим правом воспользовались духовные ордена, среди них иезуиты; Франция быстро покрылась ___; все женское образование перешло в руки монахинь.",
-   "lemma": "школа",
-   "options": [
-    "католическими школами",
-    "католических школ",
-    "католические школы",
-    "католических школах"
-   ],
-   "correct": "католическими школами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«католическими школами» — the instrumental marks the means, company, or complement.",
-   "id": "c267"
   },
   {
    "sentence": "Этим правом воспользовались духовные ордена, среди них иезуиты; Франция быстро покрылась католическими школами; все ___ перешло в руки монахинь.",
@@ -3357,7 +2111,7 @@
    ],
    "correct": "женское образование",
    "case": "Именительный (Nominative)",
-   "explain": "«женское образование» — the subject of the sentence stands in the nominative.",
+   "explain": "«женское образование» is the subject of «перешло» — who or what does it — so nominative.",
    "id": "c268"
   }
  ]

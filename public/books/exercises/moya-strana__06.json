@@ -1,21 +1,5 @@
 {
- "title": "Быть женщиной",
- "source": "«Моя любимая страна» — Елена Костюченко",
  "cases": [
-  {
-   "id": "c1",
-   "sentence": "Это был последний ___ перед отпуском.",
-   "lemma": "день",
-   "options": [
-    "день",
-    "дня",
-    "дню",
-    "днем"
-   ],
-   "correct": "день",
-   "case": "Nominative (Именительный)",
-   "explain": "The subject of the sentence requires nominative case."
-  },
   {
    "id": "c3",
    "sentence": "К ___ я надела белые босоножки на платформе с цветными застежками.",
@@ -27,8 +11,8 @@
     "платьем"
    ],
    "correct": "платью",
-   "case": "Dative (Дательный)",
-   "explain": "The preposition 'к' (to, toward) requires the dative case."
+   "case": "Дательный (Dative)",
+   "explain": "«платью» — «к» always takes the dative."
   },
   {
    "id": "c4",
@@ -41,8 +25,8 @@
     "сумочкой"
    ],
    "correct": "сумочку",
-   "case": "Accusative (Винительный)",
-   "explain": "The preposition 'в' (into) with the meaning of movement requires the accusative case."
+   "case": "Винительный (Accusative)",
+   "explain": "«сумочку» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?)."
   },
   {
    "id": "c5",
@@ -55,22 +39,8 @@
     "спиной"
    ],
    "correct": "спиной",
-   "case": "Instrumental (Творительный)",
-   "explain": "The preposition 'за' (behind) requires the instrumental case."
-  },
-  {
-   "id": "c6",
-   "sentence": "Я пришла на работу в белом ___.",
-   "lemma": "платье",
-   "options": [
-    "платье",
-    "платья",
-    "платью",
-    "платьем"
-   ],
-   "correct": "платье",
-   "case": "Prepositional (Предложный)",
-   "explain": "The preposition 'в' (in) describing location requires the prepositional case."
+   "case": "Творительный (Instrumental)",
+   "explain": "«спиной» — «за» takes the instrumental here (где? за чем? за кем?) — the accusative would mean motion behind or 'for' (куда? за что?)."
   },
   {
    "id": "c8",
@@ -84,21 +54,21 @@
    ],
    "correct": "голову",
    "case": "Винительный (Accusative)",
-   "explain": "Direct object of the verb 'кружило' (made spin); the accusative case shows what is directly affected by the action."
+   "explain": "«голову» is the direct object of «кружило» (кого? что?) — accusative."
   },
   {
    "id": "c9",
    "sentence": "Я сидела на нашем ___, читала статьи, выбирала себе турагентство.",
    "lemma": "сайт",
    "options": [
-    "сайт",
-    "сайта",
     "сайте",
-    "сайтом"
+    "сайтом",
+    "сайту",
+    "сайта"
    ],
    "correct": "сайте",
    "case": "Предложный (Prepositional)",
-   "explain": "The preposition 'на' (on) with the prepositional case indicates location or surface where an action takes place."
+   "explain": "«сайте» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?)."
   },
   {
    "id": "c11",
@@ -112,7 +82,7 @@
    ],
    "correct": "небо",
    "case": "Именительный (Nominative)",
-   "explain": "Subject of the verb 'стало' (became); the nominative case indicates the subject undergoing the change."
+   "explain": "«небо» is the subject of «стало» — who or what does it — so nominative."
   },
   {
    "id": "c12",
@@ -126,7 +96,7 @@
    ],
    "correct": "поезд",
    "case": "Именительный (Nominative)",
-   "explain": "Subject of the verb 'сошел' (derailed); the nominative case marks the main subject performing the action."
+   "explain": "«поезд» is the subject of «сошел» — who or what does it — so nominative."
   },
   {
    "id": "c16",
@@ -140,471 +110,7 @@
    ],
    "correct": "дороге",
    "case": "Предложный (Prepositional)",
-   "explain": "The preposition 'на' (on) with the prepositional case indicates location or surface where something exists or happens."
-  }
- ],
- "reading": [
-  {
-   "id": "r1",
-   "ru": "Это был последний день перед отпуском.",
-   "question": "What was special about the day the narrator came to work?",
-   "options": [
-    "It was her first day of work",
-    "It was the last day before vacation",
-    "It was a company holiday",
-    "It was her birthday"
-   ],
-   "correct": "It was the last day before vacation",
-   "explain": "The opening sentence directly states this was the last day before her vacation."
-  },
-  {
-   "id": "r2",
-   "ru": "Я его купила в торговом центре — сама пошла и купила.",
-   "question": "How did the narrator acquire the white dress?",
-   "options": [
-    "Her mother bought it for her",
-    "She bought it herself at a shopping center",
-    "It was a gift from a friend",
-    "She found it in an old trunk"
-   ],
-   "correct": "She bought it herself at a shopping center",
-   "explain": "The narrator emphasizes that she bought it herself at a shopping center."
-  },
-  {
-   "id": "r3",
-   "ru": "Мне позвонил мой редактор. В Малой Вишере поезд сошел с рельс, теракт.",
-   "question": "What emergency interrupted the narrator's vacation plans?",
-   "options": [
-    "A car accident on the highway",
-    "A terrorist attack involving a derailed train",
-    "A flood in the city",
-    "A building fire"
-   ],
-   "correct": "A terrorist attack involving a derailed train",
-   "explain": "The editor calls to inform about a train derailment caused by a terrorist attack in Malaya Vishera."
-  },
-  {
-   "id": "r4",
-   "ru": "Я очень хотела работать по терактам. Это приближало меня к моей мечте — работать на Северном Кавказе, как Анна Политковская.",
-   "question": "What was the narrator's career aspiration?",
-   "options": [
-    "To become a taxi driver",
-    "To report on terrorist attacks and work in the North Caucasus like Anna Politkovskaya",
-    "To become a fashion designer",
-    "To teach at a university"
-   ],
-   "correct": "To report on terrorist attacks and work in the North Caucasus like Anna Politkovskaya",
-   "explain": "The narrator explicitly states her dream to cover terrorist attacks and work in the North Caucasus, inspired by journalist Anna Politkovskaya."
-  },
-  {
-   "id": "r5",
-   "ru": "Договорились на четыре с половиной тысячи рублей — ночь, долгая дорога, можно нарваться на ментов.",
-   "question": "Why did the taxi driver accept the high fare of 4,500 rubles?",
-   "options": [
-    "He was very wealthy",
-    "It was night, a long drive, and police might stop them for bribes",
-    "The passenger was very attractive",
-    "He needed money to pay debts"
-   ],
-   "correct": "It was night, a long drive, and police might stop them for bribes",
-   "explain": "The driver justified the price citing the late hour, long distance, and risk of being stopped by police."
-  },
-  {
-   "id": "r6",
-   "ru": "Когда мы выехали из города, водитель снял шашечки с машины. Сказал — гаишники тормозят, если берешь междугородний рейс. Вымогают взятки.",
-   "question": "Why did the taxi driver remove the taxi markings from his car?",
-   "options": [
-    "The markings were damaged",
-    "He wanted to avoid police stopping him for bribes",
-    "He was switching to a different job",
-    "The car was being sold"
-   ],
-   "correct": "He wanted to avoid police stopping him for bribes",
-   "explain": "The driver explains that he removes the taxi checkered markings to avoid traffic police who stop intercity taxis to extort bribes."
-  },
-  {
-   "id": "r7",
-   "ru": "Не страшно вам в ночь по трассе ехать? Не страшно, что вы. Я же с вами, а по вам сразу видно, что вы профессионал.",
-   "question": "How did the narrator respond to the driver's concern about her safety?",
-   "options": [
-    "She was terrified and wanted to turn back",
-    "She said she wasn't scared because he seemed like a professional",
-    "She refused to continue and called a taxi",
-    "She ignored his question and changed the subject"
-   ],
-   "correct": "She said she wasn't scared because he seemed like a professional",
-   "explain": "The narrator reassures the driver by saying she isn't afraid because it's clearly visible that he is a professional driver."
-  },
-  {
-   "id": "r8",
-   "ru": "Ну я-то мужик. Женщина — это другое.",
-   "question": "What distinction did the taxi driver make between men and women?",
-   "options": [
-    "Women are better drivers than men",
-    "Men and women are completely equal",
-    "Women should not travel alone at night like men do",
-    "Women are braver and more independent"
-   ],
-   "correct": "Women should not travel alone at night like men do",
-   "explain": "The driver implies that women traveling alone at night is fundamentally different and more dangerous than a man doing so."
-  },
-  {
-   "id": "r9",
-   "ru": "Нет маньяка. Просто у меня в голове не умещается — вот так, ночью, в белом платье. С ума сойти.",
-   "question": "What was the driver's main concern about the narrator's actions?",
-   "options": [
-    "Her driving skills",
-    "Her young age and education",
-    "Her traveling alone at night in a white dress",
-    "Her family background and origin"
-   ],
-   "correct": "Her traveling alone at night in a white dress",
-   "explain": "The driver expresses disbelief and concern that she would travel alone at night while dressed in a white dress."
-  },
-  {
-   "id": "r10",
-   "ru": "Я смотрю, как он уезжает. Я выхожу к рельсам и сажусь на них. Надо дождаться первых людей и спросить, где стоит взорванный поезд.",
-   "question": "What did the narrator do after arriving in Malaya Vishera?",
-   "options": [
-    "She went to a hotel to rest",
-    "She waited by the railroad tracks for people to ask about the derailed train",
-    "She called her editor to report her arrival",
-    "She went to the police station to gather information"
-   ],
-   "correct": "She waited by the railroad tracks for people to ask about the derailed train",
-   "explain": "After being dropped off at Malaya Vishera, the narrator sits on the railroad tracks to wait for people so she can ask them about the location of the damaged train."
-  },
-  {
-   "id": "r11",
-   "ru": "Все это — белое платье, белые босоножки, август, будущее море, первый мой отпуск — настоящий отпуск с официальной работы, кружило голову, делало кости мягкими.",
-   "question": "What did the narrator find most exciting about the prospect of her vacation?",
-   "options": [
-    "The white dress she had purchased",
-    "The combination of summer, her first official vacation, and the sea",
-    "The official letter from her boss",
-    "The money she would earn"
-   ],
-   "correct": "The combination of summer, her first official vacation, and the sea",
-   "explain": "The narrator describes how all these elements together—the white dress, the sandals, August, the future sea, and her first official vacation—made her dizzy with excitement."
-  },
-  {
-   "id": "r12",
-   "ru": "Я очень хотела работать по терактам. Это приближало меня к моей мечте — работать на Северном Кавказе, как Анна Политковская.",
-   "question": "Who was the journalist that the narrator admired and wanted to emulate?",
-   "options": [
-    "Her editor at the publication",
-    "Anna Politkovskaya",
-    "A famous television reporter",
-    "The taxi driver's cousin"
-   ],
-   "correct": "Anna Politkovskaya",
-   "explain": "The narrator explicitly states that her dream was to work in the North Caucasus like Anna Politkovskaya, suggesting she admired this journalist's courageous work."
-  },
-  {
-   "id": "r13",
-   "ru": "Малая Вишера — городок между Москвой и Петербургом. Поезда до Вишеры не ходят, рельсовый путь поврежден. Зато ходят до Твери. Я открыла карты. От Твери четыре часа на машине.",
-   "question": "How was the narrator planning to reach Malaya Vishera from Tver?",
-   "options": [
-    "By train along an alternative route",
-    "By walking through the forest",
-    "By taxi for a four-hour drive",
-    "By bus with the local authorities"
-   ],
-   "correct": "By taxi for a four-hour drive",
-   "explain": "The text states that trains do not go to Vishera because the railway is damaged, but trains do go to Tver, and from there it is four hours by car."
-  },
-  {
-   "id": "r14",
-   "ru": "Договорились на четыре с половиной тысячи рублей — ночь, долгая дорога, можно нарваться на ментов.",
-   "question": "Why did the taxi driver agree to the initial fare of 4,500 rubles?",
-   "options": [
-    "It was a very good price for a short distance",
-    "Because it was night and a long journey, and he might encounter police",
-    "Because the narrator offered him extra money",
-    "Because he wanted to help a young woman"
-   ],
-   "correct": "Because it was night and a long journey, and he might encounter police",
-   "explain": "The driver justifies the relatively high fare (for him) by explaining it was nighttime, a long distance, and there was risk of police stopping him."
-  },
-  {
-   "id": "r15",
-   "ru": "Когда мы выехали из города, водитель снял шашечки с машины. Сказал — гаишники тормозят, если берешь междугородний рейс. Вымогают взятки.",
-   "question": "What was the taxi driver's reason for removing the taxi markings from his car?",
-   "options": [
-    "To make the car go faster",
-    "To avoid being stopped by traffic police who extort bribes on long-distance routes",
-    "To hide the fact that he was driving a passenger",
-    "To distinguish his car from other taxis"
-   ],
-   "correct": "To avoid being stopped by traffic police who extort bribes on long-distance routes",
-   "explain": "The driver explains that traffic police ('гаишники') stop cars with taxi markings on intercity routes to extort bribes, so removing the markings was a precaution."
-  },
-  {
-   "id": "r16",
-   "ru": "Не страшно вам в ночь по трассе ехать? Не страшно, что вы. Я же с вами, а по вам сразу видно, что вы профессионал.",
-   "question": "How did the narrator address the taxi driver's concern about her traveling alone at night?",
-   "options": [
-    "She became very angry and told him to stop the car",
-    "She said she trusted him because she could see he was a professional",
-    "She called her boyfriend to reassure him",
-    "She suggested they stop at a police station for safety"
-   ],
-   "correct": "She said she trusted him because she could see he was a professional",
-   "explain": "The narrator reassures the driver by saying she is not afraid because she is with him, and she can tell immediately that he is a professional driver."
-  },
-  {
-   "id": "r17",
-   "ru": "А вы семейная? Пока нет. А сколько вам лет, если не секрет? У женщин такие вопросы не спрашивают, конечно. Да ладно, можно спрашивать, конечно. Мне девятнадцать, двадцать в сентябре.",
-   "question": "What was the narrator's age during this incident?",
-   "options": [
-    "Eighteen years old",
-    "Nineteen years old, turning twenty in September",
-    "Twenty years old",
-    "Twenty-one years old"
-   ],
-   "correct": "Nineteen years old, turning twenty in September",
-   "explain": "The narrator directly states she was nineteen years old and would turn twenty in September."
-  },
-  {
-   "id": "r18",
-   "ru": "И что, нравится? Нравится, конечно. Путешествуешь, людей хороших встречаешь.",
-   "question": "According to the narrator, what aspects of her work as a journalist did she enjoy?",
-   "options": [
-    "The high salary and prestige",
-    "Traveling and meeting good people",
-    "Staying in expensive hotels",
-    "Getting famous quickly"
-   ],
-   "correct": "Traveling and meeting good people",
-   "explain": "When asked if she likes her job, the narrator mentions that she enjoys traveling and meeting nice people."
-  },
-  {
-   "id": "r19",
-   "ru": "Вот я не буду хвастаться, а я прямо хорош. В этом деле. У меня жена знаешь что говорит? Другого мужика не надо, пока ты есть.",
-   "question": "What was the taxi driver bragging about to the narrator?",
-   "options": [
-    "His car's speed and reliability",
-    "His skills as a husband and lover",
-    "His experience as a taxi driver for many years",
-    "His ability to navigate difficult roads"
-   ],
-   "correct": "His skills as a husband and lover",
-   "explain": "The driver makes boastful comments about his sexual prowess, claiming his wife says she needs no other man while he exists."
-  },
-  {
-   "id": "r20",
-   "ru": "Ты чего? А вы чего? Так устал. Поспать надо. Не всю же ночь ехать. Мне надо быстрей. Быстрей! Опасно быстрей, когда водитель устал.",
-   "question": "Why did the taxi driver want to stop and sleep during the journey?",
-   "options": [
-    "He wanted to spend more time with the narrator",
-    "He had driven too long and was very tired",
-    "He needed to refuel the car",
-    "He was trying to spend more time and increase the fare"
-   ],
-   "correct": "He had driven too long and was very tired",
-   "explain": "The driver says he is tired and needs to sleep; he cannot drive all night without rest, though the narrator wants to continue quickly."
-  },
-  {
-   "id": "r21",
-   "ru": "Я вижу, как он заводит себя. Я отдаю ему деньги. Молчим.",
-   "question": "What did the narrator do after the taxi driver threatened her and demanded extra money?",
-   "options": [
-    "She argued with him and refused to pay",
-    "She gave him the money and they fell silent",
-    "She called the police for help",
-    "She jumped out of the car and ran away"
-   ],
-   "correct": "She gave him the money and they fell silent",
-   "explain": "After observing the driver escalating his threats, the narrator hands over the additional money and then they ride in silence."
-  },
-  {
-   "id": "r22",
-   "ru": "Вот смейся, если хочешь, а я сразу вижу таких. Которым не повезло. Мне даже стыдно за мужиков. Я считаю — мужик должен женщину удовлетворять.",
-   "question": "What claim did the taxi driver make about what he believed men should do for women?",
-   "options": [
-    "Men should protect women from traveling alone",
-    "Men should provide transportation for free",
-    "Men should satisfy women in intimate matters",
-    "Men should always tell women the truth"
-   ],
-   "correct": "Men should satisfy women in intimate matters",
-   "explain": "The driver claims that satisfying women intimately is men's first duty, though his comments on this topic are deeply inappropriate."
-  }
- ],
- "highlight": [
-  {
-   "id": "h1",
-   "question": "Which sentence best captures how the narrator felt about her upcoming vacation?",
-   "sentences": [
-    "Я пришла на работу в белом платье.",
-    "Все это — белое платье, белые босоножки, август, будущее море, первый мой отпуск — настоящий отпуск с официальной работы, кружило голову, делало кости мягкими.",
-    "Мне позвонил мой редактор.",
-    "День сменил летний вечер.",
-    "Работы особо не было."
-   ],
-   "correct": [
-    1
-   ],
-   "explain": "The narrator directly describes how the anticipation of vacation made her dizzy and weak with excitement."
-  },
-  {
-   "id": "h2",
-   "question": "Which sentence reveals the narrator's ambition as a journalist?",
-   "sentences": [
-    "Работы особо не было.",
-    "Я слонялась по кабинету, лето, жара.",
-    "Я очень хотела работать по терактам. Это приближало меня к моей мечте — работать на Северном Кавказе, как Анна Политковская.",
-    "К платью я надела белые босоножки на платформе с цветными застежками.",
-    "Договорились на четыре с половиной тысячи рублей."
-   ],
-   "correct": [
-    2
-   ],
-   "explain": "This sentence explicitly states her desire to cover terrorist attacks and her dream to work in the North Caucasus like Anna Politkovskaya."
-  },
-  {
-   "id": "h3",
-   "question": "Which sentences demonstrate the narrator's fear or concern during the dangerous taxi ride?",
-   "sentences": [
-    "Мы выехали на трассу. Огни, машины, скорость.",
-    "Залезаю в сумочку, но там нет ничего, что может меня защитить.",
-    "Ты чего? А вы чего?",
-    "Я дергаю дверь и выскакиваю.",
-    "Договорились на четыре с половиной тысячи рублей."
-   ],
-   "correct": [
-    1,
-    3
-   ],
-   "explain": "These sentences show her fear—desperately searching for protection in her handbag and jumping out of the car when she feels threatened."
-  },
-  {
-   "id": "h4",
-   "question": "Which sentence most clearly presents the taxi driver's sexist attitude toward women?",
-   "sentences": [
-    "Давно за рулем? Да считай, что с детства.",
-    "Ну я-то мужик. Женщина — это другое.",
-    "Люблю машины.",
-    "Я бы своей дочке не разрешил.",
-    "Не подумал, что так далеко."
-   ],
-   "correct": [
-    1
-   ],
-   "explain": "This statement encapsulates the driver's traditional view that women are fundamentally different and implicitly more vulnerable."
-  },
-  {
-   "id": "h5",
-   "question": "Which sentence best shows the narrator's pride and confidence in her professional abilities?",
-   "sentences": [
-    "Я радовалась, что редактор позвонил мне, а не кому-то из моих коллег.",
-    "Главное — не подвести.",
-    "Я глядела на них с превосходством — вы ничего не знаете и не узнаете, если я не сообщу.",
-    "А я обязательно все узнаю и сообщу.",
-    "Малая Вишера — городок между Москвой и Петербургом."
-   ],
-   "correct": [
-    2,
-    3
-   ],
-   "explain": "These sentences reveal how the narrator viewed herself as someone with superior knowledge and the ability to uncover truth that others could not access."
-  },
-  {
-   "id": "h6",
-   "question": "Which sentence(s) best describe the emotional and psychological state the narrator experienced during the frightening moment when the driver stopped the car?",
-   "sentences": [
-    "Он сворачивает с трассы. Говорит: «Тут поселками».",
-    "Я залезаю в сумочку, но там нет ничего, что может меня защитить.",
-    "Я сжимаю ручку в кулаке.",
-    "Лес редко шуршит за спиной. Мне жарко.",
-    "Мы молча проезжаем две спящие деревни."
-   ],
-   "correct": [
-    1,
-    2,
-    3
-   ],
-   "explain": "These sentences convey the narrator's fear, her desperate search for any means of defense, her physical response to danger, and her gripping the pen as her only possible weapon."
-  },
-  {
-   "id": "h7",
-   "question": "Which sentence most clearly reveals the taxi driver's fundamental sexism and belief that women need protection from men?",
-   "sentences": [
-    "Я бы своей дочке не разрешил. Чтоб ночью вот так ехать.",
-    "Ну я-то мужик. Женщина — это другое.",
-    "Деревья трогают машину с обеих сторон.",
-    "Ничего, ничего, ты молодая еще.",
-    "Молчим."
-   ],
-   "correct": [
-    1
-   ],
-   "explain": "This sentence directly expresses the driver's view that women are fundamentally different from men and need protection from nighttime travel that men can undertake."
-  },
-  {
-   "id": "h8",
-   "question": "Which sentence demonstrates how the taxi driver's threatening behavior escalated over the course of the journey?",
-   "sentences": [
-    "Договорились на четыре с половиной тысячи рублей — ночь, долгая дорога, можно нарваться на ментов.",
-    "Короче, с тебя шесть тысяч. Или высаживаю на трассе и иди куда хочешь.",
-    "Я вижу, как он заводит себя.",
-    "Дальнобои тебя по-любому за проститутку примут. Затащат в кусты.",
-    "Молчим."
-   ],
-   "correct": [
-    1,
-    3
-   ],
-   "explain": "These sentences show the driver escalating from the agreed fare to demanding extra money with threats of abandonment and then explicit threats of sexual violence."
-  },
-  {
-   "id": "h9",
-   "question": "Which sentence best captures the surreal, cinematic quality of how the narrator imagined her role as a young journalist?",
-   "sentences": [
-    "Иногда как будто сам собой на заднем плане играл саундтрек из фильма.",
-    "Молодая репортерка едет на место террористической атаки.",
-    "Очень красивая, в белом платье, но это же кино.",
-    "У нее непременно все получится.",
-    "Я глядела на них с превосходством."
-   ],
-   "correct": [
-    0,
-    1,
-    2
-   ],
-   "explain": "These sentences collectively reveal how the narrator romanticized her own experience, imagining it as a film scene with a soundtrack, a beautiful young reporter in a white dress who would succeed."
-  },
-  {
-   "id": "h10",
-   "question": "Which sentence shows the immediate practical reality of the narrator's difficult financial situation?",
-   "sentences": [
-    "Сняла деньги в банкомате — все, что было, шесть с половиной тысяч рублей.",
-    "Договорились на четыре с половиной тысячи рублей.",
-    "Я отдаю ему деньги.",
-    "Я вам все деньги отдала, которые у меня с собой.",
-    "Мне девятнадцать, двадцать в сентябре."
-   ],
-   "correct": [
-    0,
-    1
-   ],
-   "explain": "These sentences emphasize that the narrator had withdrawn her entire savings of only 6,500 rubles and was already committing 4,500 of it to the taxi ride, leaving her in a precarious financial position."
-  },
-  {
-   "id": "h11",
-   "question": "Which sentence best illustrates the narrator's relief and the restoration of her sense of safety after the dangerous journey ended?",
-   "sentences": [
-    "Через полчаса начинает светать. Мы еще плутаем по лесу и выезжаем к железнодорожному переезду.",
-    "Я смотрю, как он уезжает.",
-    "Я выхожу к рельсам и сажусь на них.",
-    "Надо дождаться первых людей и спросить, где стоит взорванный поезд.",
-    "Вишера — за ним, дальше пешком."
-   ],
-   "correct": [
-    1,
-    2
-   ],
-   "explain": "These sentences capture the moment of separation and the narrator's independent action of sitting by the tracks, suggesting she has regained control and safety after the ordeal."
+   "explain": "«дороге» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?)."
   }
  ]
 }

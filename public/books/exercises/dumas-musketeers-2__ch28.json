@@ -1,59 +1,31 @@
 {
  "cases": [
   {
-   "sentence": "Наконец-то она узнала силу своего очарования, до сих пор ей самой неизвестную, из опыта над человеком с ___ и с твердыми убеждениями.",
-   "lemma": "характер",
-   "options": [
-    "упорным характером",
-    "упорном характере",
-    "упорного характера",
-    "упорный характер"
-   ],
-   "correct": "упорным характером",
-   "case": "Творительный (Instrumental)",
-   "explain": "«упорным характером» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c1"
-  },
-  {
    "sentence": "Милэди, приготовляясь принять Фельтона, должна была обдумать свой образ действий и на ___.",
    "lemma": "день",
    "options": [
-    "следующим днём",
-    "следующем дне",
+    "следующего дня",
     "следующему дню",
-    "следующий день"
+    "следующий день",
+    "следующим днём"
    ],
    "correct": "следующий день",
    "case": "Винительный (Accusative)",
-   "explain": "«следующий день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«следующий день» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c2"
-  },
-  {
-   "sentence": "В девять часов, ни обыкновению, пришел лорд Винтер, осмотрел окно и железные решетки, пол, стены, камин и двери, и в продолжение всего этого долгого и тщательного осмотра ни он, ни милэди не обменялись ни ___.",
-   "lemma": "слово",
-   "options": [
-    "единым словом",
-    "единого слова",
-    "единому слову",
-    "едином слове"
-   ],
-   "correct": "единым словом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«единым словом» — the instrumental marks the means, company, or complement.",
-   "id": "c3"
   },
   {
    "sentence": "Без сомнения, оба понимали, что положение сделалось слишком серьезным, чтобы терять время в ___ и в бессильном гневе.",
    "lemma": "слово",
    "options": [
-    "бесполезные слова",
-    "бесполезных словах",
     "бесполезными словами",
-    "бесполезным словам"
+    "бесполезных словах",
+    "бесполезным словам",
+    "бесполезных слов"
    ],
    "correct": "бесполезных словах",
    "case": "Предложный (Prepositional)",
-   "explain": "«бесполезных словах» — after the preposition «в», for location or topic.",
+   "explain": "«бесполезных словах» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c4"
   },
   {
@@ -62,41 +34,13 @@
    "options": [
     "бессильному гневу",
     "бессильным гневом",
-    "бессильном гневе",
-    "бессильный гнев"
+    "бессильного гнева",
+    "бессильном гневе"
    ],
    "correct": "бессильном гневе",
    "case": "Предложный (Prepositional)",
-   "explain": "«бессильном гневе» — after the preposition «в», for location or topic.",
+   "explain": "«бессильном гневе» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c5"
-  },
-  {
-   "sentence": "Она угадывала теперь его походку, как любовница угадывает шаги возлюбленного, а между тем в то же время она ненавидела и презирала этого ___.",
-   "lemma": "фанатик",
-   "options": [
-    "слабохарактерного фанатика",
-    "слабохарактерным фанатиком",
-    "слабохарактерному фанатику",
-    "слабохарактерном фанатике"
-   ],
-   "correct": "слабохарактерного фанатика",
-   "case": "Родительный (Genitive)",
-   "explain": "«слабохарактерного фанатика» — the genitive here marks possession, absence, or quantity.",
-   "id": "c6"
-  },
-  {
-   "sentence": "Я пойду осмотреть еще ___ комнату этой женщины, у которой, я боюсь, есть злое намерение посягнуть на свою жизнь, и я получил строгое приказание следить за ней.",
-   "lemma": "раз",
-   "options": [
-    "вторым разом",
-    "втором разе",
-    "второму разу",
-    "второй раз"
-   ],
-   "correct": "второй раз",
-   "case": "Винительный (Accusative)",
-   "explain": "«второй раз» — the accusative marks the direct object of the verb.",
-   "id": "c7"
   },
   {
    "sentence": "Я пойду осмотреть еще второй раз комнату этой женщины, у которой, я боюсь, есть ___ посягнуть на свою жизнь, и я получил строгое приказание следить за ней.",
@@ -109,7 +53,7 @@
    ],
    "correct": "злое намерение",
    "case": "Именительный (Nominative)",
-   "explain": "«злое намерение» — the subject of the sentence stands in the nominative.",
+   "explain": "«злое намерение» is the subject of «есть» — who or what does it — so nominative.",
    "id": "c8"
   },
   {
@@ -123,7 +67,7 @@
    ],
    "correct": "строгий пуританин",
    "case": "Именительный (Nominative)",
-   "explain": "«строгий пуританин» — the subject of the sentence stands in the nominative.",
+   "explain": "«строгий пуританин» is the subject of «начинает» — who or what does it — so nominative.",
    "id": "c9"
   },
   {
@@ -137,50 +81,8 @@
    ],
    "correct": "других обстоятельствах",
    "case": "Предложный (Prepositional)",
-   "explain": "«других обстоятельствах» — after the preposition «при», for location or topic.",
+   "explain": "«других обстоятельствах» — «при» always takes the prepositional.",
    "id": "c10"
-  },
-  {
-   "sentence": "Фельтон покраснел; будь это при других обстоятельствах, он сделал бы солдату ___ за то, что он позволил себе подобную шутку, но его совесть слишком громко говорила в нем, и он ничего не возразил.",
-   "lemma": "выговор",
-   "options": [
-    "строгого выговора",
-    "строгий выговор",
-    "строгому выговору",
-    "строгом выговоре"
-   ],
-   "correct": "строгий выговор",
-   "case": "Винительный (Accusative)",
-   "explain": "«строгий выговор» — the accusative marks the direct object of the verb.",
-   "id": "c11"
-  },
-  {
-   "sentence": "Боже мой! проговорил ___, чувствовавший, несмотря на все уменье владеть собой, что у него дрожат колени и на лбу выступил пот.",
-   "lemma": "человек",
-   "options": [
-    "молодой человек",
-    "молодым человеком",
-    "молодого человека",
-    "молодому человеку"
-   ],
-   "correct": "молодой человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«молодой человек» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
-  },
-  {
-   "sentence": "— А! вы раздумали! заметила пленница, садясь на кресло с ___, — и я тоже раздумала.",
-   "lemma": "улыбка",
-   "options": [
-    "презрительной улыбке",
-    "презрительной улыбкой",
-    "презрительная улыбка",
-    "презрительной улыбки"
-   ],
-   "correct": "презрительной улыбкой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«презрительной улыбкой» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c13"
   },
   {
    "sentence": "Милэди остановилась, и ___ мелькнула на губах её.",
@@ -193,22 +95,8 @@
    ],
    "correct": "горькая улыбка",
    "case": "Именительный (Nominative)",
-   "explain": "«горькая улыбка» — the subject of the sentence stands in the nominative.",
+   "explain": "«горькая улыбка» is the subject of «мелькнула» — who or what does it — so nominative.",
    "id": "c14"
-  },
-  {
-   "sentence": "К тому же в ней, казалось, не было ни одной двери; можно было подумать, что это ___.",
-   "lemma": "тюрьма",
-   "options": [
-    "великолепной тюрьме",
-    "великолепная тюрьма",
-    "великолепной тюрьмой",
-    "великолепной тюрьмы"
-   ],
-   "correct": "великолепная тюрьма",
-   "case": "Именительный (Nominative)",
-   "explain": "«великолепная тюрьма» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
   },
   {
    "sentence": "Что произошло в продолжение этого ___?!",
@@ -221,21 +109,21 @@
    ],
    "correct": "долгого сна",
    "case": "Родительный (Genitive)",
-   "explain": "«долгого сна» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«долгого сна» depends on the noun «продолжение» (whose? of what?) — genitive.",
    "id": "c16"
   },
   {
    "sentence": "Все мои вялые движения, оцепенелость и слабость в членах указывали на то, что влияние ___ еще не прошло окончательно.",
    "lemma": "средство",
    "options": [
-    "наркотическом средстве",
     "наркотическое средство",
-    "наркотического средства",
-    "наркотическим средством"
+    "наркотическом средстве",
+    "наркотическому средству",
+    "наркотического средства"
    ],
    "correct": "наркотического средства",
    "case": "Родительный (Genitive)",
-   "explain": "«наркотического средства» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«наркотического средства» depends on the noun «влияние» (whose? of what?) — genitive.",
    "id": "c17"
   },
   {
@@ -249,22 +137,8 @@
    ],
    "correct": "первом шаге",
    "case": "Предложный (Prepositional)",
-   "explain": "«первом шаге» — after the preposition «при», for location or topic.",
+   "explain": "«первом шаге» — «при» always takes the prepositional.",
    "id": "c18"
-  },
-  {
-   "sentence": "Хотя я еще ничего не ела со ___, но мой страх заглушал во мне ощущение голода.",
-   "lemma": "день",
-   "options": [
-    "вчерашний день",
-    "вчерашнего дня",
-    "вчерашнему дню",
-    "вчерашним днём"
-   ],
-   "correct": "вчерашнего дня",
-   "case": "Родительный (Genitive)",
-   "explain": "«вчерашнего дня» — after the preposition «со», the genitive here marks possession, absence, or quantity.",
-   "id": "c19"
   },
   {
    "sentence": "Но ночь прошла спокойно, без ___ со стороны моего преследователя; наступил день, стол исчез, и только один нож остался у меня в руках.",
@@ -277,7 +151,7 @@
    ],
    "correct": "новых покушений",
    "case": "Родительный (Genitive)",
-   "explain": "«новых покушений» — after the preposition «без», the genitive here marks possession, absence, or quantity.",
+   "explain": "«новых покушений» — «без» always takes the genitive.",
    "id": "c20"
   },
   {
@@ -291,22 +165,8 @@
    ],
    "correct": "молодой офицер",
    "case": "Именительный (Nominative)",
-   "explain": "«молодой офицер» — the subject of the sentence stands in the nominative.",
+   "explain": "«молодой офицер» is the subject of «вскричал» — who or what does it — so nominative.",
    "id": "c21"
-  },
-  {
-   "sentence": "Милэди с ___ видела, как сильно заставляет она страдать Фельтона при передаче малейших подробностей рассказа, но она не хотела избавить его ни от единой пытки.",
-   "lemma": "взгляд",
-   "options": [
-    "первом взгляде",
-    "первый взгляд",
-    "первого взгляда",
-    "первым взглядом"
-   ],
-   "correct": "первого взгляда",
-   "case": "Родительный (Genitive)",
-   "explain": "«первого взгляда» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
-   "id": "c22"
   },
   {
    "sentence": "Милэди с первого взгляда видела, как сильно заставляет она страдать Фельтона при передаче малейших подробностей рассказа, но она не хотела избавить его ни от ___.",
@@ -319,7 +179,7 @@
    ],
    "correct": "единой пытки",
    "case": "Родительный (Genitive)",
-   "explain": "«единой пытки» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«единой пытки» — «от» always takes the genitive.",
    "id": "c23"
   },
   {
@@ -333,148 +193,22 @@
    ],
    "correct": "низкий преследователь",
    "case": "Именительный (Nominative)",
-   "explain": "«низкий преследователь» — the subject of the sentence stands in the nominative.",
+   "explain": "«низкий преследователь» is the subject of «имел» — who or what does it — so nominative.",
    "id": "c24"
-  },
-  {
-   "sentence": "— Только на этот раз низкий преследователь имел дело не с ___.",
-   "lemma": "труп",
-   "options": [
-    "бесчувственным трупом",
-    "бесчувственном трупе",
-    "бесчувственный труп",
-    "бесчувственного трупа"
-   ],
-   "correct": "бесчувственным трупом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«бесчувственным трупом» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c25"
   },
   {
    "sentence": "Фельтон слушал это, не говоря ни слова, но с ___; только холодный пот струился по его мраморному лбу и скрытая под одеждой рука терзала грудь.",
    "lemma": "рычание",
    "options": [
-    "глухого рычания",
     "глухое рычание",
-    "глухом рычании",
-    "глухим рычанием"
+    "глухим рычанием",
+    "глухому рычанию",
+    "глухом рычании"
    ],
    "correct": "глухим рычанием",
    "case": "Творительный (Instrumental)",
-   "explain": "«глухим рычанием» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«глухим рычанием» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c26"
-  },
-  {
-   "sentence": "Фельтон слушал это, не говоря ни слова, но с глухим рычанием; только ___ струился по его мраморному лбу и скрытая под одеждой рука терзала грудь.",
-   "lemma": "пот",
-   "options": [
-    "холодный пот",
-    "холодном поте",
-    "холодным потом",
-    "холодного пота"
-   ],
-   "correct": "холодный пот",
-   "case": "Именительный (Nominative)",
-   "explain": "«холодный пот» — the subject of the sentence stands in the nominative.",
-   "id": "c27"
-  },
-  {
-   "sentence": "— Моим ___, когда я очнулась, было схватиться за нож, который я не могла достать раньше; если он не послужил мне защитой, то послужит мне искуплением.",
-   "lemma": "движение",
-   "options": [
-    "первому движению",
-    "первого движения",
-    "первым движением",
-    "первое движение"
-   ],
-   "correct": "первым движением",
-   "case": "Творительный (Instrumental)",
-   "explain": "«первым движением» — the instrumental marks the means, company, or complement.",
-   "id": "c28"
-  },
-  {
-   "sentence": "— Да, признаюсь! сказала милэди: — я знаю, что это не христианская мысль; без сомнения, ее внушил мне этот рыкающий лев, ___ души нашей, постоянно преследующий нас.",
-   "lemma": "враг",
-   "options": [
-    "вечным врагом",
-    "вечного врага",
-    "вечном враге",
-    "вечный враг"
-   ],
-   "correct": "вечный враг",
-   "case": "Именительный (Nominative)",
-   "explain": "«вечный враг» — the subject of the sentence stands in the nominative.",
-   "id": "c29"
-  },
-  {
-   "sentence": "Однако, успокойтесь, мое ___! я думал, что вы уже смягчились.",
-   "lemma": "дитя",
-   "options": [
-    "прелестное дитя",
-    "прелестного дитяти",
-    "прелестном дитяти",
-    "прелестному дитяти"
-   ],
-   "correct": "прелестное дитя",
-   "case": "Именительный (Nominative)",
-   "explain": "«прелестное дитя» — the subject of the sentence stands in the nominative.",
-   "id": "c30"
-  },
-  {
-   "sentence": "Прекрасно! я умру здесь, и тогда вы увидите, что привидение, которое будет являться для укора вам, страшнее угрожающего ___.",
-   "lemma": "человек",
-   "options": [
-    "живому человеку",
-    "живым человеком",
-    "живого человека",
-    "живом человеке"
-   ],
-   "correct": "живого человека",
-   "case": "Родительный (Genitive)",
-   "explain": "«живого человека» — the genitive here marks possession, absence, or quantity.",
-   "id": "c31"
-  },
-  {
-   "sentence": "___, в конце концов вам здесь хорошо, вы не чувствуете ни в чем недостатка, и если вы уморите себя голодом, то будете сами виновны в этом.",
-   "lemma": "слово",
-   "options": [
-    "честного слова",
-    "честному слову",
-    "честное слово",
-    "честным словом"
-   ],
-   "correct": "честное слово",
-   "case": "Именительный (Nominative)",
-   "explain": "«Честное слово» — the subject of the sentence stands in the nominative.",
-   "id": "c32"
-  },
-  {
-   "sentence": "Прошел ___ и следующая ночь, и я его не видела.",
-   "lemma": "день",
-   "options": [
-    "целый день",
-    "целым днём",
-    "целого дня",
-    "целому дню"
-   ],
-   "correct": "целый день",
-   "case": "Винительный (Accusative)",
-   "explain": "«целый день» — the accusative marks the direct object of the verb.",
-   "id": "c33"
-  },
-  {
-   "sentence": "Послушайте, я ___, прибавил он, — и хотя я не люблю пуритан, но я им отдаю справедливость, равно как и пуританкам, когда они хорошенькие.",
-   "lemma": "принц",
-   "options": [
-    "добрым принцем",
-    "добрый принц",
-    "доброго принца",
-    "доброму принцу"
-   ],
-   "correct": "добрый принц",
-   "case": "Именительный (Nominative)",
-   "explain": "«добрый принц» — the subject of the sentence stands in the nominative.",
-   "id": "c34"
   },
   {
    "sentence": "Фельтон опирался о ___, и милэди с сатанинской радостью заметила, что он может лишиться чувств, не дослушав до конца, рассказа.",
@@ -487,7 +221,7 @@
    ],
    "correct": "мраморный стол",
    "case": "Винительный (Accusative)",
-   "explain": "«мраморный стол» — after the preposition «о», the accusative marks the direct object of the verb.",
+   "explain": "«мраморный стол» — «о» + accusative (обо что?): against — striking or touching something.",
    "id": "c35"
   }
  ]

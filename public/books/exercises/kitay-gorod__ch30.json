@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "___, давно не стриженные, выдавались над лбом длинным клоком, борода росла в разных направлениях.",
-   "lemma": "волос",
-   "options": [
-    "рыжеватыми волосами",
-    "рыжеватые волосы",
-    "рыжеватых волос",
-    "рыжеватых волосах"
-   ],
-   "correct": "рыжеватые волосы",
-   "case": "Именительный (Nominative)",
-   "explain": "«Рыжеватые волосы» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
-   "sentence": "Рыжеватые волосы, давно не стриженные, выдавались над лбом ___, борода росла в разных направлениях.",
-   "lemma": "клок",
-   "options": [
-    "длинном клоке",
-    "длинный клок",
-    "длинным клоком",
-    "длинного клока"
-   ],
-   "correct": "длинным клоком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«длинным клоком» — the instrumental marks the means, company, or complement.",
-   "id": "c4"
-  },
-  {
    "sentence": "Рыжеватые волосы, давно не стриженные, выдавались над лбом длинным клоком, борода росла в ___.",
    "lemma": "направление",
    "options": [
@@ -39,22 +11,8 @@
    ],
    "correct": "разных направлениях",
    "case": "Предложный (Prepositional)",
-   "explain": "«разных направлениях» — after the preposition «в», for location or topic.",
+   "explain": "«разных направлениях» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c5"
-  },
-  {
-   "sentence": "Играет он ___ по возвращении домой, собрал на своей половине целую коллекцию медных инструментов, а когда устанет, призовет двух артельщиков и приказывает им действовать на механическом фортепьяно.",
-   "lemma": "день",
-   "options": [
-    "целых днях",
-    "целыми днями",
-    "целые дни",
-    "целым дням"
-   ],
-   "correct": "целые дни",
-   "case": "Винительный (Accusative)",
-   "explain": "«целые дни» — the accusative marks the direct object of the verb.",
-   "id": "c6"
   },
   {
    "sentence": "Играет он целые дни по возвращении домой, собрал на своей половине целую коллекцию ___, а когда устанет, призовет двух артельщиков и приказывает им действовать на механическом фортепьяно.",
@@ -67,36 +25,22 @@
    ],
    "correct": "медных инструментов",
    "case": "Родительный (Genitive)",
-   "explain": "«медных инструментов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«медных инструментов» depends on the noun «коллекцию» (whose? of what?) — genitive.",
    "id": "c7"
   },
   {
    "sentence": "Девицы хотели расхохотаться, но просидели тихо: каждая имела ___ на Митрошу.",
    "lemma": "вид",
    "options": [
+    "тайными видами",
     "тайных видах",
-    "тайным видам",
-    "тайных видов",
-    "тайные виды"
+    "тайные виды",
+    "тайным видам"
    ],
    "correct": "тайные виды",
    "case": "Винительный (Accusative)",
-   "explain": "«тайные виды» — the accusative marks the direct object of the verb.",
+   "explain": "«тайные виды» is the direct object of «имела» (кого? что?) — accusative.",
    "id": "c9"
-  },
-  {
-   "sentence": "Ее начало давить, как во сне, когда вас «домовой», — так ей рассказывала когда-то няня, — душит своей ___.",
-   "lemma": "лапа",
-   "options": [
-    "мохнатая лапа",
-    "мохнатой лапы",
-    "мохнатой лапе",
-    "мохнатой лапой"
-   ],
-   "correct": "мохнатой лапой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«мохнатой лапой» — the instrumental marks the means, company, or complement.",
-   "id": "c10"
   },
   {
    "sentence": "Рыба на длинной ___, покрытой салфеткой, следовала за пирогом.",
@@ -109,7 +53,7 @@
    ],
    "correct": "деревянной доске",
    "case": "Предложный (Prepositional)",
-   "explain": "«деревянной доске» — after the preposition «на», for location or topic.",
+   "explain": "«деревянной доске» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c11"
   },
   {
@@ -123,36 +67,8 @@
    ],
    "correct": "новый гость",
    "case": "Именительный (Nominative)",
-   "explain": "«новый гость» — the subject of the sentence stands in the nominative.",
+   "explain": "«новый гость» is the subject of «показался» — who or what does it — so nominative.",
    "id": "c12"
-  },
-  {
-   "sentence": "Никто не услыхал, как в дверях залы показался новый гость, ___, с волосами и бородкой каштанового цвета и пробритой губой, что могло бы придавать ему наружность голландского или шведского шкипера.",
-   "lemma": "рост",
-   "options": [
-    "высокого роста",
-    "высокий рост",
-    "высокому росту",
-    "высоким ростом"
-   ],
-   "correct": "высокого роста",
-   "case": "Родительный (Genitive)",
-   "explain": "«высокого роста» — the genitive here marks possession, absence, or quantity.",
-   "id": "c13"
-  },
-  {
-   "sentence": "Круглый нос и светло-серые глаза, ___ и широкий подбородок — все это отзывалось Поволжьем.",
-   "lemma": "губа",
-   "options": [
-    "сочным губам",
-    "сочные губы",
-    "сочных губах",
-    "сочных губ"
-   ],
-   "correct": "сочные губы",
-   "case": "Именительный (Nominative)",
-   "explain": "«сочные губы» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
   },
   {
    "sentence": "Вокруг рта и под носом появлялись ___ юмора.",
@@ -165,7 +81,7 @@
    ],
    "correct": "мелкие складки",
    "case": "Именительный (Nominative)",
-   "explain": "«мелкие складки» — the subject of the sentence stands in the nominative.",
+   "explain": "«мелкие складки» is the subject of «появлялись» — who or what does it — so nominative.",
    "id": "c15"
   },
   {
@@ -179,22 +95,8 @@
    ],
    "correct": "двойных подошвах",
    "case": "Предложный (Prepositional)",
-   "explain": "«двойных подошвах» — after the preposition «на», for location or topic.",
+   "explain": "«двойных подошвах» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c16"
-  },
-  {
-   "sentence": "Его сапоги на двойных подошвах издавали ___.",
-   "lemma": "скрип",
-   "options": [
-    "сильный скрип",
-    "сильном скрипе",
-    "сильному скрипу",
-    "сильным скрипом"
-   ],
-   "correct": "сильный скрип",
-   "case": "Винительный (Accusative)",
-   "explain": "«сильный скрип» — the accusative marks the direct object of the verb.",
-   "id": "c17"
   },
   {
    "sentence": "___ пожал руку Марфе Николаевне, Любаше, ее брату и шурину.",
@@ -207,7 +109,7 @@
    ],
    "correct": "новый гость",
    "case": "Именительный (Nominative)",
-   "explain": "«Новый гость» — the subject of the sentence stands in the nominative.",
+   "explain": "«новый гость» is the subject of «пожал» — who or what does it — so nominative.",
    "id": "c18"
   }
  ]

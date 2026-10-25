@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Это была довольно большая зала, с круглым столом посредине, с камином, со множеством цветов на этажерках у окон, и с другою стеклянною дверью в сад, в ___.",
-   "lemma": "стена",
-   "options": [
-    "задней стене",
-    "задняя стена",
-    "задней стены",
-    "задней стеной"
-   ],
-   "correct": "задней стене",
-   "case": "Предложный (Prepositional)",
-   "explain": "«задней стене» — after the preposition «в», for location or topic.",
-   "id": "c2"
-  },
-  {
    "sentence": "Мы сошлись сегодня с Аглаей Ивановной у зеленой скамейки ровно в семь часов утра, вследствие ее ___.",
    "lemma": "приглашение",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "вчерашнего приглашения",
    "case": "Родительный (Genitive)",
-   "explain": "«вчерашнего приглашения» — after the preposition «вследствие», the genitive here marks possession, absence, or quantity.",
+   "explain": "«вчерашнего приглашения» — «вследствие» always takes the genitive.",
    "id": "c5"
   },
   {
@@ -39,22 +25,8 @@
    ],
    "correct": "важном деле",
    "case": "Предложный (Prepositional)",
-   "explain": "«важном деле» — after the preposition «о», for location or topic.",
+   "explain": "«важном деле» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c6"
-  },
-  {
-   "sentence": "Мы свиделись и проговорили ___ о делах, собственно одной Аглаи Ивановны касающихся; вот и все.",
-   "lemma": "час",
-   "options": [
-    "целом часе",
-    "целым часом",
-    "целый час",
-    "целому часу"
-   ],
-   "correct": "целый час",
-   "case": "Винительный (Accusative)",
-   "explain": "«целый час» — the accusative marks the direct object of the verb.",
-   "id": "c7"
   },
   {
    "sentence": "Они вместе прибирали и подметали после ___.",
@@ -67,7 +39,7 @@
    ],
    "correct": "вчерашнего беспорядка",
    "case": "Родительный (Genitive)",
-   "explain": "«вчерашнего беспорядка» — after the preposition «после», the genitive here marks possession, absence, or quantity.",
+   "explain": "«вчерашнего беспорядка» — «после» always takes the genitive.",
    "id": "c8"
   },
   {
@@ -81,36 +53,8 @@
    ],
    "correct": "боковой карман",
    "case": "Винительный (Accusative)",
-   "explain": "«боковой карман» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«боковой карман» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c9"
-  },
-  {
-   "sentence": "Нет, это ___ духа!",
-   "lemma": "сила",
-   "options": [
-    "гигантская сила",
-    "гигантской силе",
-    "гигантской силы",
-    "гигантской силой"
-   ],
-   "correct": "гигантская сила",
-   "case": "Именительный (Nominative)",
-   "explain": "«гигантская сила» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
-  },
-  {
-   "sentence": "— Единственно на минуту, ___, по некоторому значительному в моих глазах делу, — натянуто и каким-то проникнутым тоном, вполголоса проговорил вошедший Лебедев, и с важностию поклонился.",
-   "lemma": "князь",
-   "options": [
-    "многоуважаемым князем",
-    "многоуважаемом князе",
-    "многоуважаемый князь",
-    "многоуважаемому князю"
-   ],
-   "correct": "многоуважаемый князь",
-   "case": "Именительный (Nominative)",
-   "explain": "«многоуважаемый князь» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
   },
   {
    "sentence": "Лицо его было озабоченное и с особенным, необыкновенным оттенком ___.",
@@ -123,7 +67,7 @@
    ],
    "correct": "собственного достоинства",
    "case": "Родительный (Genitive)",
-   "explain": "«собственного достоинства» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«собственного достоинства» depends on the noun «оттенком» (whose? of what?) — genitive.",
    "id": "c14"
   },
   {
@@ -137,7 +81,7 @@
    ],
    "correct": "бокового кармана",
    "case": "Родительный (Genitive)",
-   "explain": "«бокового кармана» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«бокового кармана» — «из» always takes the genitive.",
    "id": "c16"
   },
   {
@@ -151,36 +95,8 @@
    ],
    "correct": "собственного имени",
    "case": "Родительный (Genitive)",
-   "explain": "«собственного имени» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«собственного имени» depends on the noun «имени» (whose? of what?) — genitive.",
    "id": "c17"
-  },
-  {
-   "sentence": "И только сегодня, уже в половине восьмого, пробудясь, вскочил как полоумный, схватился ___ за сюртук, — один пустой карман!",
-   "lemma": "дело",
-   "options": [
-    "первым делом",
-    "первое дело",
-    "первого дела",
-    "первом деле"
-   ],
-   "correct": "первым делом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«первым делом» — the instrumental marks the means, company, or complement.",
-   "id": "c20"
-  },
-  {
-   "sentence": "И только сегодня, уже в половине восьмого, пробудясь, вскочил как полоумный, схватился первым делом за сюртук, — один ___!",
-   "lemma": "карман",
-   "options": [
-    "пустой карман",
-    "пустого кармана",
-    "пустому карману",
-    "пустом кармане"
-   ],
-   "correct": "пустой карман",
-   "case": "Именительный (Nominative)",
-   "explain": "«пустой карман» — the subject of the sentence stands in the nominative.",
-   "id": "c21"
   },
   {
    "sentence": "Полагаете вы, что вы могли в ___ выронить из кармана?",
@@ -193,64 +109,8 @@
    ],
    "correct": "пьяном виде",
    "case": "Предложный (Prepositional)",
-   "explain": "«пьяном виде» — after the preposition «в», for location or topic.",
+   "explain": "«пьяном виде» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c22"
-  },
-  {
-   "sentence": "Да и как бы мог я заложить в шкапчик, истинно ___?",
-   "lemma": "князь",
-   "options": [
-    "уважаемый князь",
-    "уважаемому князю",
-    "уважаемым князем",
-    "уважаемого князя"
-   ],
-   "correct": "уважаемый князь",
-   "case": "Именительный (Nominative)",
-   "explain": "«уважаемый князь» — the subject of the sentence stands in the nominative.",
-   "id": "c24"
-  },
-  {
-   "sentence": "Далее ___ одна, от какой-то горничной, с требованием денег и угрозами, и клочки известного вам фельетона-с.",
-   "lemma": "записка",
-   "options": [
-    "любовной записке",
-    "любовной записки",
-    "любовная записка",
-    "любовной запиской"
-   ],
-   "correct": "любовная записка",
-   "case": "Именительный (Nominative)",
-   "explain": "«любовная записка» — the subject of the sentence stands in the nominative.",
-   "id": "c25"
-  },
-  {
-   "sentence": "— ___: след оказывается ложный, а данный адрес неточный.",
-   "lemma": "улика-с",
-   "options": [
-    "второй улике-с",
-    "второй улики-с",
-    "вторая улика-с",
-    "второй уликой-с"
-   ],
-   "correct": "вторая улика-с",
-   "case": "Именительный (Nominative)",
-   "explain": "«Вторая улика-с» — the subject of the sentence stands in the nominative.",
-   "id": "c26"
-  },
-  {
-   "sentence": "— Вторая улика-с: след оказывается ложный, а ___ неточный.",
-   "lemma": "адрес",
-   "options": [
-    "данному адресу",
-    "данный адрес",
-    "данного адреса",
-    "данном адресе"
-   ],
-   "correct": "данный адрес",
-   "case": "Именительный (Nominative)",
-   "explain": "«данный адрес» — the subject of the sentence stands in the nominative.",
-   "id": "c27"
   },
   {
    "sentence": "Час спустя, то-есть в восемь часов, я уже стучался к Вилкину; он тут в ___, и даже знаком-с.",
@@ -263,36 +123,8 @@
    ],
    "correct": "пятой улице-с",
    "case": "Предложный (Prepositional)",
-   "explain": "«Пятой улице-с» — after the preposition «в», for location or topic.",
+   "explain": "«пятой улице-с» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c28"
-  },
-  {
-   "sentence": "Хоть и велика моя ___, но не могу даже и теперь не подумать о нем и об исправлении его нравственности.",
-   "lemma": "беда",
-   "options": [
-    "собственная беда",
-    "собственной беды",
-    "собственной бедой",
-    "собственной беде"
-   ],
-   "correct": "собственная беда",
-   "case": "Именительный (Nominative)",
-   "explain": "«собственная беда» — the subject of the sentence stands in the nominative.",
-   "id": "c30"
-  },
-  {
-   "sentence": "— Видите, Лукьян Тимофеич, тут ___ в ошибке.",
-   "lemma": "дело",
-   "options": [
-    "страшного дела",
-    "страшном деле",
-    "страшным делом",
-    "страшное дело"
-   ],
-   "correct": "страшное дело",
-   "case": "Именительный (Nominative)",
-   "explain": "«страшное дело» — the subject of the sentence stands in the nominative.",
-   "id": "c32"
   },
   {
    "sentence": "Это значит, что его превосходительство нарочно прерывали свой сон невинности, в шестом часу, чтоб идти разбудить ___ и сообщить о чрезвычайной опасности соседства с господином Фердыщенком!",
@@ -305,22 +137,8 @@
    ],
    "correct": "любимого сына",
    "case": "Винительный (Accusative)",
-   "explain": "«любимого сына» — the accusative marks the direct object of the verb.",
+   "explain": "«любимого сына» is the direct object of «разбудить» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c34"
-  },
-  {
-   "sentence": "Каков же после того ___ господин Фердыщенко, и каково родительское беспокойство его превосходительства, хе-хе-хе!..",
-   "lemma": "человек",
-   "options": [
-    "опасный человек",
-    "опасным человеком",
-    "опасному человеку",
-    "опасного человека"
-   ],
-   "correct": "опасный человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«опасный человек» — the subject of the sentence stands in the nominative.",
-   "id": "c35"
   }
  ]
 }

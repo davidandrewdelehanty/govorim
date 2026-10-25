@@ -1,90 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Здесь мне хотелось отметить пока один весьма ___.",
-   "lemma": "момент",
-   "options": [
-    "важным моментом",
-    "важный момент",
-    "важном моменте",
-    "важному моменту"
-   ],
-   "correct": "важный момент",
-   "case": "Именительный (Nominative)",
-   "explain": "«важный момент» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Я начал с конспекта потому, что конспект, по моему мнению, вмещает в себя и тезисы, и план, и ___.",
-   "lemma": "материал",
-   "options": [
-    "фактический материал",
-    "фактическом материале",
-    "фактическому материалу",
-    "фактического материала"
-   ],
-   "correct": "фактический материал",
-   "case": "Именительный (Nominative)",
-   "explain": "«фактический материал» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Некоторые из вас определяют конспект как ___ прочитанного — это неверно: по конспекту можно пересказать прочитанное, но сам конспект пересказа не представляет.",
-   "lemma": "пересказ",
-   "options": [
-    "простому пересказу",
-    "простом пересказе",
-    "простой пересказ",
-    "простым пересказом"
-   ],
-   "correct": "простой пересказ",
-   "case": "Именительный (Nominative)",
-   "explain": "«простой пересказ» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
-   "sentence": "Некоторые из вас определяют конспект как простой пересказ прочитанного — это неверно: по конспекту можно пересказать прочитанное, но ___ пересказа не представляет.",
-   "lemma": "конспект",
-   "options": [
-    "сам конспект",
-    "самого конспекта",
-    "самому конспекту",
-    "самим конспектом"
-   ],
-   "correct": "сам конспект",
-   "case": "Именительный (Nominative)",
-   "explain": "«сам конспект» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
-  },
-  {
-   "sentence": "В состав конспекта прочитанного входят три основных элемента: план, тезисы и ___.",
-   "lemma": "материал",
-   "options": [
-    "фактический материал",
-    "фактическом материале",
-    "фактическому материалу",
-    "фактического материала"
-   ],
-   "correct": "фактический материал",
-   "case": "Винительный (Accusative)",
-   "explain": "«фактический материал» — the accusative marks the direct object of the verb.",
-   "id": "c5"
-  },
-  {
-   "sentence": "Иногда нам необходимо установить только перечень вопросов, затрагиваемых книгой, тогда мы составляем план; иногда нам необходимо выделить ___ прочитанного и кратко их формулировать, тогда мы составляем тезисы.",
-   "lemma": "мысль",
-   "options": [
-    "основные мысли",
-    "основным мыслям",
-    "основными мыслями",
-    "основных мыслях"
-   ],
-   "correct": "основные мысли",
-   "case": "Винительный (Accusative)",
-   "explain": "«основные мысли» — the accusative marks the direct object of the verb.",
-   "id": "c6"
-  },
-  {
    "sentence": "Под планом прочитанного мы понимаем перечень вопросов (кратко формулирован ных), затрагиваемых в ___, статье или отрывке из статьи.",
    "lemma": "книга",
    "options": [
@@ -95,7 +11,7 @@
    ],
    "correct": "данной книге",
    "case": "Предложный (Prepositional)",
-   "explain": "«данной книге» — after the preposition «в», for location or topic.",
+   "explain": "«данной книге» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c7"
   },
   {
@@ -109,7 +25,7 @@
    ],
    "correct": "отдельных тезисов",
    "case": "Родительный (Genitive)",
-   "explain": "«отдельных тезисов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«отдельных тезисов» depends on the noun «сумма» (whose? of what?) — genitive.",
    "id": "c8"
   },
   {
@@ -123,50 +39,8 @@
    ],
    "correct": "данной статье",
    "case": "Предложный (Prepositional)",
-   "explain": "«данной статье» — after the preposition «в», for location or topic.",
+   "explain": "«данной статье» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c9"
-  },
-  {
-   "sentence": "Если вы предполагаете рассказать прочитанную статью кому-нибудь через несколько часов после того, как вы ее сами прочли, и вы чувствуете, что уловили ___, и надеетесь на свою память — составляйте только план.",
-   "lemma": "мысль",
-   "options": [
-    "основные мысли",
-    "основным мыслям",
-    "основными мыслями",
-    "основных мыслях"
-   ],
-   "correct": "основные мысли",
-   "case": "Винительный (Accusative)",
-   "explain": "«основные мысли» — the accusative marks the direct object of the verb.",
-   "id": "c11"
-  },
-  {
-   "sentence": "___, что содержательнее, что полнее вскрывает содержание прочитанного, план или тезисы?",
-   "lemma": "вопрос",
-   "options": [
-    "другому вопросу",
-    "другого вопроса",
-    "другом вопросе",
-    "другой вопрос"
-   ],
-   "correct": "другой вопрос",
-   "case": "Именительный (Nominative)",
-   "explain": "«Другой вопрос» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
-  },
-  {
-   "sentence": "Запомните: «тезисам» прочитанного соответствует «план» прочитанного, каждому же ___ соответствует пункт плана.",
-   "lemma": "тезис",
-   "options": [
-    "отдельным тезисом",
-    "отдельному тезису",
-    "отдельного тезиса",
-    "отдельном тезисе"
-   ],
-   "correct": "отдельному тезису",
-   "case": "Дательный (Dative)",
-   "explain": "«отдельному тезису» — the dative marks the indirect object or recipient.",
-   "id": "c13"
   },
   {
    "sentence": "Для этого составим вместе с вами тезис и пункт плана к ___ из 4-й лекции «Очерков по истории революционного движения в России в XIX и XX вв.» т.",
@@ -179,7 +53,7 @@
    ],
    "correct": "следующему отрывку",
    "case": "Дательный (Dative)",
-   "explain": "«следующему отрывку» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«следующему отрывку» — «к» always takes the dative.",
    "id": "c14"
   },
   {
@@ -193,22 +67,8 @@
    ],
    "correct": "революционного движения",
    "case": "Родительный (Genitive)",
-   "explain": "«революционного движения» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«революционного движения» depends on the noun «истории» (whose? of what?) — genitive.",
    "id": "c15"
-  },
-  {
-   "sentence": "Об этом движении я вскользь уже упоминал, об этом движении много говорится даже в моем «___», но все-таки не могу не напомнить основных моментов этого движения.",
-   "lemma": "очерк",
-   "options": [
-    "сжатому очерку",
-    "сжатом очерке",
-    "сжатый очерк",
-    "сжатого очерка"
-   ],
-   "correct": "сжатом очерке",
-   "case": "Предложный (Prepositional)",
-   "explain": "«сжатом очерке» — after the preposition «в», for location or topic.",
-   "id": "c16"
   },
   {
    "sentence": "Это — циркуляр министра ___, изданный в 1870 году по случаю забастовки в Питере на Невской бумагопрядильне.",
@@ -221,7 +81,7 @@
    ],
    "correct": "внутренних дел",
    "case": "Родительный (Genitive)",
-   "explain": "«внутренних дел» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«внутренних дел» depends on the noun «министра» (whose? of what?) — genitive.",
    "id": "c19"
   },
   {
@@ -235,35 +95,21 @@
    ],
    "correct": "невской бумагопрядильне",
    "case": "Предложный (Prepositional)",
-   "explain": "«Невской бумагопрядильне» — after the preposition «на», for location or topic.",
+   "explain": "«невской бумагопрядильне» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c20"
-  },
-  {
-   "sentence": "Все развивающееся ___ семидесятых годов было своевременно замечено русским правительством и по своей близорукости своевременно не замечено тогдашней народнической революционной литературой.",
-   "lemma": "движение",
-   "options": [
-    "стачечным движением",
-    "стачечное движение",
-    "стачечного движения",
-    "стачечном движении"
-   ],
-   "correct": "стачечное движение",
-   "case": "Именительный (Nominative)",
-   "explain": "«стачечное движение» — the subject of the sentence stands in the nominative.",
-   "id": "c21"
   },
   {
    "sentence": "Все развивающееся стачечное движение ___ было своевременно замечено русским правительством и по своей близорукости своевременно не замечено тогдашней народнической революционной литературой.",
    "lemma": "год",
    "options": [
     "семидесятых годов",
-    "семидесятых годах",
     "семидесятым годам",
-    "семидесятыми годами"
+    "семидесятые годы",
+    "семидесятых годах"
    ],
    "correct": "семидесятых годов",
    "case": "Родительный (Genitive)",
-   "explain": "«семидесятых годов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«семидесятых годов» depends on the noun «движение» (whose? of what?) — genitive.",
    "id": "c22"
   },
   {
@@ -277,22 +123,8 @@
    ],
    "correct": "русским правительством",
    "case": "Творительный (Instrumental)",
-   "explain": "«русским правительством» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «замечено», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c23"
-  },
-  {
-   "sentence": "Все развивающееся стачечное движение семидесятых годов было своевременно замечено русским правительством и по своей близорукости своевременно не замечено тогдашней народнической ___.",
-   "lemma": "литература",
-   "options": [
-    "революционная литература",
-    "революционной литературы",
-    "революционной литературой",
-    "революционной литературе"
-   ],
-   "correct": "революционной литературой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«революционной литературой» — the instrumental marks the means, company, or complement.",
-   "id": "c24"
   },
   {
    "sentence": "Кто раньше заметил стачечное движение ___ (правительство или народники)?",
@@ -305,36 +137,8 @@
    ],
    "correct": "70-х годов",
    "case": "Родительный (Genitive)",
-   "explain": "«70-х годов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«70-х годов» depends on the noun «движение» (whose? of what?) — genitive.",
    "id": "c25"
-  },
-  {
-   "sentence": "Одни предлагают выразить пункт плана к приведенному отрывку так: «___ в 70-х годах», а другие так: «Отношение правительства и народников к стачечному движению 70-х годов».",
-   "lemma": "движение",
-   "options": [
-    "стачечным движением",
-    "стачечного движения",
-    "стачечное движение",
-    "стачечному движению"
-   ],
-   "correct": "стачечное движение",
-   "case": "Именительный (Nominative)",
-   "explain": "«Стачечное движение» — the subject of the sentence stands in the nominative.",
-   "id": "c27"
-  },
-  {
-   "sentence": "Одни предлагают выразить пункт плана к приведенному отрывку так: «Стачечное движение в 70-х годах», а другие так: «Отношение правительства и народников к ___ 70-х годов».",
-   "lemma": "движение",
-   "options": [
-    "стачечным движением",
-    "стачечному движению",
-    "стачечное движение",
-    "стачечного движения"
-   ],
-   "correct": "стачечному движению",
-   "case": "Дательный (Dative)",
-   "explain": "«стачечному движению» — after the preposition «к», the dative marks the indirect object or recipient.",
-   "id": "c28"
   },
   {
    "sentence": "Одни предлагают выразить пункт плана к приведенному отрывку так: «Стачечное движение в 70-х годах», а другие так: «Отношение правительства и народников к стачечному движению ___».",
@@ -347,22 +151,8 @@
    ],
    "correct": "70-х годов",
    "case": "Родительный (Genitive)",
-   "explain": "«70-х годов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«70-х годов» depends on the noun «движению» (whose? of what?) — genitive.",
    "id": "c29"
-  },
-  {
-   "sentence": "Покровский только устанавливает, что такой-то ___ кем-то был своевременно замечен, а кто-то его упустил.",
-   "lemma": "факт",
-   "options": [
-    "историческому факту",
-    "исторического факта",
-    "историческим фактом",
-    "исторический факт"
-   ],
-   "correct": "исторический факт",
-   "case": "Именительный (Nominative)",
-   "explain": "«исторический факт» — the subject of the sentence stands in the nominative.",
-   "id": "c31"
   },
   {
    "sentence": "Вы предполагаете озаглавить наш отрывок так: «Отношение правительства и народников к ___ 70-х годов».",
@@ -375,7 +165,7 @@
    ],
    "correct": "стачечному движению",
    "case": "Дательный (Dative)",
-   "explain": "«стачечному движению» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«стачечному движению» — «к» always takes the dative.",
    "id": "c33"
   },
   {
@@ -389,7 +179,7 @@
    ],
    "correct": "70-х годов",
    "case": "Родительный (Genitive)",
-   "explain": "«70-х годов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«70-х годов» depends on the noun «движению» (whose? of what?) — genitive.",
    "id": "c34"
   },
   {
@@ -403,7 +193,7 @@
    ],
    "correct": "стачечному движению",
    "case": "Дательный (Dative)",
-   "explain": "«стачечному движению» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«стачечному движению» — «к» always takes the dative.",
    "id": "c35"
   },
   {
@@ -417,22 +207,8 @@
    ],
    "correct": "70-х годов",
    "case": "Родительный (Genitive)",
-   "explain": "«70-х годов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«70-х годов» depends on the noun «движению» (whose? of what?) — genitive.",
    "id": "c36"
-  },
-  {
-   "sentence": "Тезисы обыкновенно передают только основные мысли прочитанного; заметки же не всегда передают только основные мысли прочитанного — в заметки мы часто вносим ___, примеры и т. д.",
-   "lemma": "данные",
-   "options": [
-    "фактических данных",
-    "фактическим данным",
-    "фактическими данными",
-    "фактические данные"
-   ],
-   "correct": "фактические данные",
-   "case": "Винительный (Accusative)",
-   "explain": "«фактические данные» — the accusative marks the direct object of the verb.",
-   "id": "c37"
   },
   {
    "sentence": "Васильев будем порознь составлять тезисы к ___ очерков т.",
@@ -445,92 +221,8 @@
    ],
    "correct": "4-й главе",
    "case": "Дательный (Dative)",
-   "explain": "«4-й главе» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«4-й главе» — «к» always takes the dative.",
    "id": "c38"
-  },
-  {
-   "sentence": "Васильева — иначе, но, в общем и целом, у нас ___ между тезисами нет.",
-   "lemma": "разница",
-   "options": [
-    "большая разница",
-    "большой разнице",
-    "большой разницей",
-    "большой разницы"
-   ],
-   "correct": "большой разницы",
-   "case": "Родительный (Genitive)",
-   "explain": "«большой разницы» — the genitive here marks possession, absence, or quantity.",
-   "id": "c39"
-  },
-  {
-   "sentence": "Мои личные ___ в разных аудиториях за составлением заметок прочитанного говорят о том, что в самых редких случаях два человека составят одни и те же заметки из одного и того же текста.",
-   "lemma": "наблюдение",
-   "options": [
-    "многочисленным наблюдениям",
-    "многочисленных наблюдениях",
-    "многочисленные наблюдения",
-    "многочисленными наблюдениями"
-   ],
-   "correct": "многочисленные наблюдения",
-   "case": "Именительный (Nominative)",
-   "explain": "«многочисленные наблюдения» — the subject of the sentence stands in the nominative.",
-   "id": "c40"
-  },
-  {
-   "sentence": "Мои личные многочисленные наблюдения в разных аудиториях за составлением заметок прочитанного говорят о том, что в самых ___ два человека составят одни и те же заметки из одного и того же текста.",
-   "lemma": "случай",
-   "options": [
-    "редким случаям",
-    "редкие случаи",
-    "редких случаях",
-    "редкими случаями"
-   ],
-   "correct": "редких случаях",
-   "case": "Предложный (Prepositional)",
-   "explain": "«редких случаях» — after the preposition «в», for location or topic.",
-   "id": "c42"
-  },
-  {
-   "sentence": "Когда работаешь над одною книгою, полезнее составлять тезисы — они вкратце знакомят тебя со всеми ___ книги; если к ним прибавить план и фактический материал, мы уже будем обладать конспектом прочитанного.",
-   "lemma": "мысль",
-   "options": [
-    "основных мыслей",
-    "основным мыслям",
-    "основные мысли",
-    "основными мыслями"
-   ],
-   "correct": "основными мыслями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«основными мыслями» — after the preposition «со», the instrumental marks the means, company, or complement.",
-   "id": "c43"
-  },
-  {
-   "sentence": "Когда работаешь над одною книгою, полезнее составлять тезисы — они вкратце знакомят тебя со всеми основными мыслями книги; если к ним прибавить план и ___, мы уже будем обладать конспектом прочитанного.",
-   "lemma": "материал",
-   "options": [
-    "фактический материал",
-    "фактическом материале",
-    "фактическому материалу",
-    "фактического материала"
-   ],
-   "correct": "фактический материал",
-   "case": "Винительный (Accusative)",
-   "explain": "«фактический материал» — the accusative marks the direct object of the verb.",
-   "id": "c44"
-  },
-  {
-   "sentence": "Тут ___ и не составишь.",
-   "lemma": "тезис",
-   "options": [
-    "сплошных тезисах",
-    "сплошными тезисами",
-    "сплошных тезисов",
-    "сплошным тезисам"
-   ],
-   "correct": "сплошных тезисов",
-   "case": "Родительный (Genitive)",
-   "explain": "«сплошных тезисов» — the genitive here marks possession, absence, or quantity.",
-   "id": "c45"
   },
   {
    "sentence": "___ спрашивает: «Из какого материала, вернее, по какому материалу труднее составлять тезисы?»",
@@ -543,7 +235,7 @@
    ],
    "correct": "вторая записочка",
    "case": "Именительный (Nominative)",
-   "explain": "«Вторая записочка» — the subject of the sentence stands in the nominative.",
+   "explain": "«вторая записочка» is the subject of «спрашивает» — who or what does it — so nominative.",
    "id": "c46"
   },
   {
@@ -557,22 +249,8 @@
    ],
    "correct": "революционного движения",
    "case": "Родительный (Genitive)",
-   "explain": "«революционного движения» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«революционного движения» depends on the noun «истории» (whose? of what?) — genitive.",
    "id": "c47"
-  },
-  {
-   "sentence": "___ Бардиной, одно из самых ярких и эффективных явлений 70-х годов, группировался около московских текстильных фабрик.",
-   "lemma": "кружок",
-   "options": [
-    "московского кружка",
-    "московский кружок",
-    "московским кружком",
-    "московскому кружку"
-   ],
-   "correct": "московский кружок",
-   "case": "Именительный (Nominative)",
-   "explain": "«Московский кружок» — the subject of the sentence stands in the nominative.",
-   "id": "c48"
   },
   {
    "sentence": "Московский кружок Бардиной, одно из самых ярких и эффективных явлений 70-х годов, группировался около московских ___.",
@@ -585,22 +263,8 @@
    ],
    "correct": "текстильных фабрик",
    "case": "Родительный (Genitive)",
-   "explain": "«текстильных фабрик» — after the preposition «около», the genitive here marks possession, absence, or quantity.",
+   "explain": "«текстильных фабрик» — «около» always takes the genitive.",
    "id": "c49"
-  },
-  {
-   "sentence": "Как вы знаете из Плеханова, этой забастовкой заинтересовался даже Суворин, ___ «Нового Времени», пожертвовавший в рабочее движение 3 руб.",
-   "lemma": "редактор",
-   "options": [
-    "будущего редактора",
-    "будущий редактор",
-    "будущему редактору",
-    "будущем редакторе"
-   ],
-   "correct": "будущий редактор",
-   "case": "Именительный (Nominative)",
-   "explain": "«будущий редактор» — the subject of the sentence stands in the nominative.",
-   "id": "c51"
   },
   {
    "sentence": "Очаги ___ в 70-х годах.",
@@ -613,22 +277,8 @@
    ],
    "correct": "революционных организаций",
    "case": "Родительный (Genitive)",
-   "explain": "«революционных организаций» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«революционных организаций» depends on the noun «Очаги» (whose? of what?) — genitive.",
    "id": "c52"
-  },
-  {
-   "sentence": "Первая революция, будучи в политической плоскости, в узко политической плоскости ___ торгового капитала и созданного им самодержавия, на самом деле закончилась компромиссом.",
-   "lemma": "победа",
-   "options": [
-    "блестящей победой",
-    "блестящей победе",
-    "блестящая победа",
-    "блестящей победы"
-   ],
-   "correct": "блестящей победой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«блестящей победой» — the instrumental marks the means, company, or complement.",
-   "id": "c53"
   },
   {
    "sentence": "Первая революция, будучи в политической плоскости, в узко политической плоскости блестящей победой ___ и созданного им самодержавия, на самом деле закончилась компромиссом.",
@@ -641,7 +291,7 @@
    ],
    "correct": "торгового капитала",
    "case": "Родительный (Genitive)",
-   "explain": "«торгового капитала» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«торгового капитала» depends on the noun «победой» (whose? of what?) — genitive.",
    "id": "c54"
   },
   {
@@ -655,36 +305,8 @@
    ],
    "correct": "самом деле",
    "case": "Предложный (Prepositional)",
-   "explain": "«самом деле» — after the preposition «на», for location or topic.",
+   "explain": "«самом деле» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c55"
-  },
-  {
-   "sentence": "За свою политическую победу ___ заплатил довольно дорого, расставшись с одним из самых могущественных орудий старой допромышленной эксплоатации деревни, — с сельской общиной.",
-   "lemma": "капитал",
-   "options": [
-    "торговому капиталу",
-    "торгового капитала",
-    "торговый капитал",
-    "торговым капиталом"
-   ],
-   "correct": "торговый капитал",
-   "case": "Именительный (Nominative)",
-   "explain": "«торговый капитал» — the subject of the sentence stands in the nominative.",
-   "id": "c56"
-  },
-  {
-   "sentence": "За свою политическую победу торговый капитал заплатил довольно дорого, расставшись с одним из самых ___ старой допромышленной эксплоатации деревни, — с сельской общиной.",
-   "lemma": "орудие",
-   "options": [
-    "могущественным орудиям",
-    "могущественных орудиях",
-    "могущественные орудия",
-    "могущественных орудий"
-   ],
-   "correct": "могущественных орудий",
-   "case": "Родительный (Genitive)",
-   "explain": "«могущественных орудий» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
-   "id": "c57"
   },
   {
    "sentence": "Бывают такие парадоксы, — мы, повторяю, называем это не парадоксом, а диалектикой ___.",
@@ -697,7 +319,7 @@
    ],
    "correct": "исторического процесса",
    "case": "Родительный (Genitive)",
-   "explain": "«исторического процесса» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«исторического процесса» depends on the noun «диалектикой» (whose? of what?) — genitive.",
    "id": "c59"
   },
   {
@@ -711,7 +333,7 @@
    ],
    "correct": "политическая победа",
    "case": "Именительный (Nominative)",
-   "explain": "«Политическая победа» — the subject of the sentence stands in the nominative.",
+   "explain": "«политическая победа» is the subject of «заставила» — who or what does it — so nominative.",
    "id": "c60"
   },
   {
@@ -725,7 +347,7 @@
    ],
    "correct": "торгового капитала",
    "case": "Родительный (Genitive)",
-   "explain": "«торгового капитала» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«торгового капитала» depends on the noun «победа» (whose? of what?) — genitive.",
    "id": "c61"
   },
   {
@@ -739,7 +361,7 @@
    ],
    "correct": "целый ряд",
    "case": "Винительный (Accusative)",
-   "explain": "«целый ряд» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«целый ряд» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c62"
   },
   {
@@ -753,36 +375,8 @@
    ],
    "correct": "сельской общины",
    "case": "Родительный (Genitive)",
-   "explain": "«сельской общины» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«сельской общины» — «от» always takes the genitive.",
    "id": "c64"
-  },
-  {
-   "sentence": "В результате отказ от сельской общины, внесение ___ в деревню, — быстрая пролетаризация деревенского населения, с одной стороны, и образование слоя сельской буржуазии, с другой стороны.",
-   "lemma": "борьба",
-   "options": [
-    "классовая борьба",
-    "классовой борьбе",
-    "классовой борьбой",
-    "классовой борьбы"
-   ],
-   "correct": "классовой борьбы",
-   "case": "Родительный (Genitive)",
-   "explain": "«классовой борьбы» — the genitive here marks possession, absence, or quantity.",
-   "id": "c65"
-  },
-  {
-   "sentence": "В результате отказ от сельской общины, внесение классовой борьбы в деревню, — быстрая пролетаризация ___, с одной стороны, и образование слоя сельской буржуазии, с другой стороны.",
-   "lemma": "население",
-   "options": [
-    "деревенское население",
-    "деревенского населения",
-    "деревенском населении",
-    "деревенскому населению"
-   ],
-   "correct": "деревенского населения",
-   "case": "Родительный (Genitive)",
-   "explain": "«деревенского населения» — the genitive here marks possession, absence, or quantity.",
-   "id": "c66"
   },
   {
    "sentence": "С развитием ___ в течение мануфактурного периода общественное мнение Европы освободилось от последних остатков стыда и совести.",
@@ -795,22 +389,8 @@
    ],
    "correct": "капиталистического производства",
    "case": "Родительный (Genitive)",
-   "explain": "«капиталистического производства» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«капиталистического производства» depends on the noun «развитием» (whose? of what?) — genitive.",
    "id": "c68"
-  },
-  {
-   "sentence": "С развитием капиталистического производства в течение ___ общественное мнение Европы освободилось от последних остатков стыда и совести.",
-   "lemma": "период",
-   "options": [
-    "мануфактурном периоде",
-    "мануфактурного периода",
-    "мануфактурному периоду",
-    "мануфактурный период"
-   ],
-   "correct": "мануфактурного периода",
-   "case": "Родительный (Genitive)",
-   "explain": "«мануфактурного периода» — after the preposition «в», the genitive here marks possession, absence, or quantity.",
-   "id": "c69"
   },
   {
    "sentence": "С развитием капиталистического производства в течение мануфактурного периода ___ Европы освободилось от последних остатков стыда и совести.",
@@ -823,7 +403,7 @@
    ],
    "correct": "общественное мнение",
    "case": "Именительный (Nominative)",
-   "explain": "«общественное мнение» — the subject of the sentence stands in the nominative.",
+   "explain": "«общественное мнение» is the subject of «освободилось» — who or what does it — so nominative.",
    "id": "c70"
   },
   {
@@ -837,7 +417,7 @@
    ],
    "correct": "последних остатков",
    "case": "Родительный (Genitive)",
-   "explain": "«последних остатков» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«последних остатков» — «от» always takes the genitive.",
    "id": "c71"
   },
   {
@@ -851,7 +431,7 @@
    ],
    "correct": "британской контрабанды",
    "case": "Родительный (Genitive)",
-   "explain": "«британской контрабанды» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«британской контрабанды» — «для» always takes the genitive.",
    "id": "c72"
   },
   {
@@ -865,7 +445,7 @@
    ],
    "correct": "первоначального накопления",
    "case": "Родительный (Genitive)",
-   "explain": "«первоначального накопления» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«первоначального накопления» depends on the noun «метод» (whose? of what?) — genitive.",
    "id": "c73"
   },
   {
@@ -879,36 +459,8 @@
    ],
    "correct": "современному положению",
    "case": "Дательный (Dative)",
-   "explain": "«современному положению» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«современному положению» — «к» always takes the dative.",
    "id": "c74"
-  },
-  {
-   "sentence": "Прежде чем перейти к его современному положению, бросим ___ назад.",
-   "lemma": "взгляд",
-   "options": [
-    "беглому взгляду",
-    "беглый взгляд",
-    "беглого взгляда",
-    "беглым взглядом"
-   ],
-   "correct": "беглый взгляд",
-   "case": "Винительный (Accusative)",
-   "explain": "«беглый взгляд» — the accusative marks the direct object of the verb.",
-   "id": "c75"
-  },
-  {
-   "sentence": "Его средняя ___, выраженная в пинтах пшеницы, составляла в 1770—1771 гг. 90 пинт, в 1797 г.",
-   "lemma": "плата",
-   "options": [
-    "заработной платой",
-    "заработной плате",
-    "заработной платы",
-    "заработная плата"
-   ],
-   "correct": "заработная плата",
-   "case": "Именительный (Nominative)",
-   "explain": "«заработная плата» — the subject of the sentence stands in the nominative.",
-   "id": "c76"
   },
   {
    "sentence": "Мы остановимся на графстве, которое представляет среднюю для всех ___.",
@@ -921,7 +473,7 @@
    ],
    "correct": "остальных графств",
    "case": "Родительный (Genitive)",
-   "explain": "«остальных графств» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«остальных графств» — «для» always takes the genitive.",
    "id": "c77"
   },
   {
@@ -935,7 +487,7 @@
    ],
    "correct": "небольшие удобства",
    "case": "Именительный (Nominative)",
-   "explain": "«небольшие удобства» — the subject of the sentence stands in the nominative.",
+   "explain": "«небольшие удобства» is the subject of «исчезли» — who or what does it — so nominative.",
    "id": "c78"
   },
   {
@@ -949,22 +501,8 @@
    ],
    "correct": "сельского рабочего",
    "case": "Родительный (Genitive)",
-   "explain": "«сельского рабочего» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«сельского рабочего» depends on the noun «коттедже» (whose? of what?) — genitive.",
    "id": "c79"
-  },
-  {
-   "sentence": "Из всех животных, которые держит фермер, с этого времени — рабочий — ___, оказывается таким, которое всего больше мучат, хуже всего кормят и с которым грубее всего обращаются.",
-   "lemma": "оружие",
-   "options": [
-    "говорящему оружию",
-    "говорящем оружии",
-    "говорящее оружие",
-    "говорящим оружием"
-   ],
-   "correct": "говорящее оружие",
-   "case": "Именительный (Nominative)",
-   "explain": "«говорящее оружие» — the subject of the sentence stands in the nominative.",
-   "id": "c80"
   },
   {
    "sentence": "После Разина, ровно 100 лет не было в России большого ___.",
@@ -977,22 +515,8 @@
    ],
    "correct": "крестьянского движения",
    "case": "Родительный (Genitive)",
-   "explain": "«крестьянского движения» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«крестьянского движения» depends on the noun «России» (whose? of what?) — genitive.",
    "id": "c81"
-  },
-  {
-   "sentence": "Но тут нужно вспомнить, что это время, ___ XVIII века, было временем первого расцвета русской хлебной торговли.",
-   "lemma": "половина",
-   "options": [
-    "вторая половина",
-    "второй половине",
-    "второй половиной",
-    "второй половины"
-   ],
-   "correct": "вторая половина",
-   "case": "Именительный (Nominative)",
-   "explain": "«вторая половина» — the subject of the sentence stands in the nominative.",
-   "id": "c82"
   },
   {
    "sentence": "Но тут нужно вспомнить, что это время, вторая половина XVIII века, было временем ___ русской хлебной торговли.",
@@ -1005,7 +529,7 @@
    ],
    "correct": "первого расцвета",
    "case": "Родительный (Genitive)",
-   "explain": "«первого расцвета» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«первого расцвета» depends on the noun «временем» (whose? of what?) — genitive.",
    "id": "c83"
   },
   {
@@ -1019,7 +543,7 @@
    ],
    "correct": "хлебной торговли",
    "case": "Родительный (Genitive)",
-   "explain": "«хлебной торговли» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«хлебной торговли» depends on the noun «расцвета» (whose? of what?) — genitive.",
    "id": "c84"
   },
   {
@@ -1033,36 +557,8 @@
    ],
    "correct": "русская пшеница",
    "case": "Именительный (Nominative)",
-   "explain": "«Русская пшеница» — the subject of the sentence stands in the nominative.",
+   "explain": "«русская пшеница» is the subject of «просилась» — who or what does it — so nominative.",
    "id": "c85"
-  },
-  {
-   "sentence": "Здесь аппетит помещика к ___ был особенно острым, а крестьян здесь было сравнительно мало: от этого эксплоатация крестьянина в восточной России отличалась особенной свирепостью.",
-   "lemma": "продукт",
-   "options": [
-    "прибавочный продукт",
-    "прибавочного продукта",
-    "прибавочным продуктом",
-    "прибавочному продукту"
-   ],
-   "correct": "прибавочному продукту",
-   "case": "Дательный (Dative)",
-   "explain": "«прибавочному продукту» — after the preposition «от», the dative marks the indirect object or recipient.",
-   "id": "c86"
-  },
-  {
-   "sentence": "Если бы у крестьянина был и ___, — когда ему было на нем хозяйничать?",
-   "lemma": "надел",
-   "options": [
-    "большим наделом",
-    "большого надела",
-    "большому наделу",
-    "большой надел"
-   ],
-   "correct": "большой надел",
-   "case": "Именительный (Nominative)",
-   "explain": "«большой надел» — the subject of the sentence stands in the nominative.",
-   "id": "c88"
   },
   {
    "sentence": "Везде уже в тогдашней России раб-крестьянин был в этих местах рабом более, чем где бы то ни было, напоминая негра ___ или раба в древнем Риме, у которого ничего не было своего, все барское.",
@@ -1075,36 +571,8 @@
    ],
    "correct": "американских плантаций",
    "case": "Родительный (Genitive)",
-   "explain": "«американских плантаций» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«американских плантаций» depends on the noun «негра» (whose? of what?) — genitive.",
    "id": "c89"
-  },
-  {
-   "sentence": "До сих пор мы говорили о работе над одною книгою, теперь дадим несколько ___ о работе над несколькими книгами.",
-   "lemma": "правило",
-   "options": [
-    "кратких правилах",
-    "кратких правил",
-    "кратким правилам",
-    "краткие правила"
-   ],
-   "correct": "кратких правил",
-   "case": "Родительный (Genitive)",
-   "explain": "«кратких правил» — the genitive here marks possession, absence, or quantity.",
-   "id": "c90"
-  },
-  {
-   "sentence": "Выбери одну из книг в качестве основной, а остальные используй в качестве ___, дополняющих, варьирующих или оспаривающих основную книгу.",
-   "lemma": "книга",
-   "options": [
-    "подсобных книг",
-    "подсобных книгах",
-    "подсобные книги",
-    "подсобным книгам"
-   ],
-   "correct": "подсобных книг",
-   "case": "Родительный (Genitive)",
-   "explain": "«подсобных книг» — after the preposition «в», the genitive here marks possession, absence, or quantity.",
-   "id": "c91"
   },
   {
    "sentence": "Выпиши весь оставшийся (после ___) материал из отдельных книг на карточки 1 или разнеси его по графам конспекта.",
@@ -1117,7 +585,7 @@
    ],
    "correct": "тщательного отсева",
    "case": "Родительный (Genitive)",
-   "explain": "«тщательного отсева» — after the preposition «после», the genitive here marks possession, absence, or quantity.",
+   "explain": "«тщательного отсева» — «после» always takes the genitive.",
    "id": "c92"
   },
   {
@@ -1131,49 +599,21 @@
    ],
    "correct": "отдельных книг",
    "case": "Родительный (Genitive)",
-   "explain": "«отдельных книг» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«отдельных книг» — «из» always takes the genitive.",
    "id": "c93"
-  },
-  {
-   "sentence": "(___ помести в графу «тезисы», а факты в графу «фактический материал») 2.",
-   "lemma": "мысль",
-   "options": [
-    "основные мысли",
-    "основных мыслях",
-    "основных мыслей",
-    "основными мыслями"
-   ],
-   "correct": "основные мысли",
-   "case": "Именительный (Nominative)",
-   "explain": "«Основные мысли» — the subject of the sentence stands in the nominative.",
-   "id": "c94"
-  },
-  {
-   "sentence": "(Основные мысли помести в графу «тезисы», а факты в графу «___») 2.",
-   "lemma": "материал",
-   "options": [
-    "фактический материал",
-    "фактическом материале",
-    "фактическому материалу",
-    "фактического материала"
-   ],
-   "correct": "фактический материал",
-   "case": "Винительный (Accusative)",
-   "explain": "«фактический материал» — the accusative marks the direct object of the verb.",
-   "id": "c95"
   },
   {
    "sentence": "При решении ___ следует помнить, что для того, чтобы ты понял своего оппонента, мог с ним спорить, у тебя должна быть своя точка зрения.",
    "lemma": "вопрос",
    "options": [
-    "второго вопроса",
     "второй вопрос",
-    "вторым вопросом",
-    "втором вопросе"
+    "втором вопросе",
+    "второго вопроса",
+    "второму вопросу"
    ],
    "correct": "второго вопроса",
    "case": "Родительный (Genitive)",
-   "explain": "«второго вопроса» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«второго вопроса» depends on the noun «решении» (whose? of what?) — genitive.",
    "id": "c96"
   },
   {
@@ -1187,22 +627,8 @@
    ],
    "correct": "противоречащим книгам",
    "case": "Дательный (Dative)",
-   "explain": "«противоречащим книгам» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«противоречащим книгам» — «к» always takes the dative.",
    "id": "c97"
-  },
-  {
-   "sentence": "Что полезнее: мысленно или письменно тезировать ___?",
-   "lemma": "отрывок",
-   "options": [
-    "данным отрывком",
-    "данный отрывок",
-    "данного отрывка",
-    "данном отрывке"
-   ],
-   "correct": "данный отрывок",
-   "case": "Винительный (Accusative)",
-   "explain": "«данный отрывок» — the accusative marks the direct object of the verb.",
-   "id": "c98"
   },
   {
    "sentence": "Составьте к ___ политэкономии Михалевского отдельно план и тезисы, затем подберите весь фактический материал и объедините все в конспект.",
@@ -1215,21 +641,21 @@
    ],
    "correct": "1-й главе",
    "case": "Дательный (Dative)",
-   "explain": "«1-й главе» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«1-й главе» — «к» always takes the dative.",
    "id": "c99"
   },
   {
    "sentence": "Составьте к 1-й главе политэкономии Михалевского отдельно план и тезисы, затем подберите весь ___ и объедините все в конспект.",
    "lemma": "материал",
    "options": [
-    "фактический материал",
     "фактическом материале",
-    "фактическому материалу",
-    "фактического материала"
+    "фактическим материалом",
+    "фактический материал",
+    "фактическому материалу"
    ],
    "correct": "фактический материал",
    "case": "Винительный (Accusative)",
-   "explain": "«фактический материал» — the accusative marks the direct object of the verb.",
+   "explain": "«фактический материал» is the direct object of «подберите» (кого? что?) — accusative.",
    "id": "c100"
   },
   {
@@ -1243,22 +669,8 @@
    ],
    "correct": "революционного движения",
    "case": "Родительный (Genitive)",
-   "explain": "«революционного движения» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«революционного движения» depends on the noun «истории» (whose? of what?) — genitive.",
    "id": "c101"
-  },
-  {
-   "sentence": "— Как самому изучать ___.",
-   "lemma": "язык",
-   "options": [
-    "русским языком",
-    "русскому языку",
-    "русского языка",
-    "русский язык"
-   ],
-   "correct": "русский язык",
-   "case": "Винительный (Accusative)",
-   "explain": "«русский язык» — the accusative marks the direct object of the verb.",
-   "id": "c102"
   }
  ]
 }

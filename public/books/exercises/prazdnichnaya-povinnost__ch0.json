@@ -1,31 +1,17 @@
 {
  "cases": [
   {
-   "sentence": "Вдова бывшего черногубского вице-губернатора Лягавого-Грызлова, Людмила Семеновна, маленькая ___, сидела у себя в гостиной и принимала визитеров.",
-   "lemma": "старушка",
-   "options": [
-    "шестидесятилетней старушкой",
-    "шестидесятилетняя старушка",
-    "шестидесятилетней старушки",
-    "шестидесятилетней старушке"
-   ],
-   "correct": "шестидесятилетняя старушка",
-   "case": "Именительный (Nominative)",
-   "explain": "«шестидесятилетняя старушка» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "— Вчера, матушка, с каланчи чуть было не свалился ___, — рассказывал он.",
    "lemma": "солдат",
    "options": [
+    "пьяному солдату",
+    "пьяным солдатом",
     "пьяном солдате",
-    "пьяный солдат",
-    "пьяного солдата",
-    "пьяному солдату"
+    "пьяный солдат"
    ],
    "correct": "пьяный солдат",
    "case": "Именительный (Nominative)",
-   "explain": "«пьяный солдат» — the subject of the sentence stands in the nominative.",
+   "explain": "«пьяный солдат» is the subject of «свалился» — who or what does it — so nominative.",
    "id": "c2"
   },
   {
@@ -39,21 +25,21 @@
    ],
    "correct": "сегодняшних визитов",
    "case": "Родительный (Genitive)",
-   "explain": "«сегодняшних визитов» — after the preposition «насчет», the genitive here marks possession, absence, or quantity.",
+   "explain": "«сегодняшних визитов» — «насчёт» always takes the genitive.",
    "id": "c4"
   },
   {
    "sentence": "Не достоин за свои ___ продолжать ласку вашу.",
    "lemma": "шутка",
    "options": [
-    "злые шутки",
-    "злыми шутками",
+    "злых шутках",
     "злых шуток",
+    "злые шутки",
     "злым шуткам"
    ],
    "correct": "злые шутки",
    "case": "Винительный (Accusative)",
-   "explain": "«злые шутки» — after the preposition «за», the accusative marks the direct object of the verb.",
+   "explain": "«злые шутки» — «за» takes the accusative here (куда? за что? за кого?) — the instrumental would mean position behind or at (где? за чем?).",
    "id": "c8"
   }
  ]

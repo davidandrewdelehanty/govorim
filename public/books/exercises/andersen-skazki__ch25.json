@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Конечно, ему хотелось взять за себя ___.",
-   "lemma": "цветочек",
-   "options": [
-    "хорошеньким цветочком",
-    "хорошенький цветочек",
-    "хорошенькому цветочку",
-    "хорошенького цветочка"
-   ],
-   "correct": "хорошенький цветочек",
-   "case": "Винительный (Accusative)",
-   "explain": "«хорошенький цветочек» — the accusative marks the direct object of the verb.",
-   "id": "c1"
-  },
-  {
    "sentence": "Мотыльку скоро надоело раздумывать, и он порхнул к ___.",
    "lemma": "ромашка",
    "options": [
@@ -25,22 +11,8 @@
    ],
    "correct": "полевой ромашке",
    "case": "Дательный (Dative)",
-   "explain": "«полевой ромашке» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«полевой ромашке» — «к» always takes the dative.",
    "id": "c2"
-  },
-  {
-   "sentence": "Мотылёк совсем было уж собрался посвататься, да вдруг увидал рядом стручок с ___.",
-   "lemma": "цветок",
-   "options": [
-    "увядшего цветка",
-    "увядшим цветком",
-    "увядший цветок",
-    "увядшем цветке"
-   ],
-   "correct": "увядшим цветком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«увядшим цветком» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c3"
   },
   {
    "sentence": "Через изгородь перевешивалась ___ каприфолий; но эти барышни с вытянутыми жёлтыми физиономиями были ему совсем не по вкусу.",
@@ -53,35 +25,21 @@
    ],
    "correct": "целая масса",
    "case": "Именительный (Nominative)",
-   "explain": "«целая масса» — the subject of the sentence stands in the nominative.",
+   "explain": "«целая масса» is the subject of «перевешивалась» — who or what does it — so nominative.",
    "id": "c4"
-  },
-  {
-   "sentence": "Через изгородь перевешивалась целая масса каприфолий; но эти барышни с вытянутыми ___ были ему совсем не по вкусу.",
-   "lemma": "физиономия",
-   "options": [
-    "жёлтых физиономий",
-    "жёлтыми физиономиями",
-    "жёлтых физиономиях",
-    "жёлтые физиономии"
-   ],
-   "correct": "жёлтыми физиономиями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«жёлтыми физиономиями» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c5"
   },
   {
    "sentence": "Появились новые цветы в ___, но что толку?",
    "lemma": "наряд",
    "options": [
-    "роскошными нарядами",
-    "роскошные наряды",
     "роскошных нарядах",
-    "роскошных нарядов"
+    "роскошными нарядами",
+    "роскошных нарядов",
+    "роскошным нарядам"
    ],
    "correct": "роскошных нарядах",
    "case": "Предложный (Prepositional)",
-   "explain": "«роскошных нарядах» — after the preposition «в», for location or topic.",
+   "explain": "«роскошных нарядах» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c6"
   },
   {
@@ -95,35 +53,35 @@
    ],
    "correct": "кудрявой мяте",
    "case": "Дательный (Dative)",
-   "explain": "«кудрявой мяте» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«кудрявой мяте» — «к» always takes the dative.",
    "id": "c7"
   },
   {
    "sentence": "— На ней нет никаких ___, но она вся один сплошной благоухающий цвет, её я и возьму!",
    "lemma": "цвет",
    "options": [
-    "особых цветах",
     "особым цветам",
     "особых цветов",
-    "особые цвета"
+    "особых цветах",
+    "особыми цветами"
    ],
    "correct": "особых цветов",
    "case": "Родительный (Genitive)",
-   "explain": "«особых цветов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "What is absent after «нет» — genitive.",
    "id": "c8"
   },
   {
    "sentence": "Он уж чересчур много выбирал, а это не годится, — вот и остался ___.",
    "lemma": "холостяк",
    "options": [
-    "старым холостяком",
-    "старый холостяк",
     "старом холостяке",
+    "старым холостяком",
+    "старому холостяку",
     "старого холостяка"
    ],
    "correct": "старым холостяком",
    "case": "Творительный (Instrumental)",
-   "explain": "«старым холостяком» — the instrumental marks the means, company, or complement.",
+   "explain": "After «остался», what someone or something is or becomes stands in the instrumental.",
    "id": "c9"
   },
   {
@@ -137,7 +95,7 @@
    ],
    "correct": "холодный ветер",
    "case": "Именительный (Nominative)",
-   "explain": "«холодный ветер» — the subject of the sentence stands in the nominative.",
+   "explain": "«холодный ветер» is the subject of «поднялся» — who or what does it — so nominative.",
    "id": "c10"
   },
   {
@@ -151,7 +109,7 @@
    ],
    "correct": "летнем платье",
    "case": "Предложный (Prepositional)",
-   "explain": "«летнем платье» — after the preposition «в», for location or topic.",
+   "explain": "«летнем платье» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c11"
   },
   {
@@ -165,50 +123,8 @@
    ],
    "correct": "летнее тепло",
    "case": "Именительный (Nominative)",
-   "explain": "«летнее тепло» — the subject of the sentence stands in the nominative.",
+   "explain": "«летнее тепло» is the subject of «стояло» — who or what does it — so nominative.",
    "id": "c12"
-  },
-  {
-   "sentence": "Мне нужны солнце, свобода и хоть ___!",
-   "lemma": "цветочек",
-   "options": [
-    "маленьким цветочком",
-    "маленький цветочек",
-    "маленьком цветочке",
-    "маленькому цветочку"
-   ],
-   "correct": "маленький цветочек",
-   "case": "Именительный (Nominative)",
-   "explain": "«маленький цветочек» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
-  },
-  {
-   "sentence": "Тут его увидали, пришли от него в восторг и посадили на булавку в ящичек с ___.",
-   "lemma": "редкость",
-   "options": [
-    "прочими редкостями",
-    "прочих редкостях",
-    "прочих редкостей",
-    "прочие редкости"
-   ],
-   "correct": "прочими редкостями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«прочими редкостями» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c14"
-  },
-  {
-   "sentence": "«Ну, ___ не очень-то верь!» думал мотылёк.",
-   "lemma": "цвета",
-   "options": [
-    "комнатные цвета",
-    "комнатными цветами",
-    "комнатных цветов",
-    "комнатным цветам"
-   ],
-   "correct": "комнатным цветам",
-   "case": "Дательный (Dative)",
-   "explain": "«комнатным цветам» — the dative marks the indirect object or recipient.",
-   "id": "c15"
   }
  ]
 }

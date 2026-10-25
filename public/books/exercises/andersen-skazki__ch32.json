@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Лён цвёл чудесными ___, мягкими и нежными, как крылья мотыльков, даже ещё нежнее!",
-   "lemma": "цветочек",
-   "options": [
-    "голубеньким цветочкам",
-    "голубеньких цветочках",
-    "голубенькими цветочками",
-    "голубенькие цветочки"
-   ],
-   "correct": "голубенькими цветочками",
-   "case": "Творительный (Instrumental)",
-   "explain": "«голубенькими цветочками» — the instrumental marks the means, company, or complement.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Солнце ласкало его, дождь поливал, и льну это было так же полезно и приятно, как ___, когда мать сначала умоет их, а потом поцелует, дети от этого хорошеют, хорошел и лён.",
-   "lemma": "ребёнок",
-   "options": [
-    "маленькие дети",
-    "маленьких детях",
-    "маленьким детям",
-    "маленькими детьми"
-   ],
-   "correct": "маленьким детям",
-   "case": "Дательный (Dative)",
-   "explain": "«маленьким детям» — after the preposition «от», the dative marks the indirect object or recipient.",
-   "id": "c2"
-  },
-  {
    "sentence": "— Говорят, что я ещё вытянусь, и потом из меня выйдет ___ холста!",
    "lemma": "кусок",
    "options": [
@@ -39,21 +11,21 @@
    ],
    "correct": "отличный кусок",
    "case": "Именительный (Nominative)",
-   "explain": "«отличный кусок» — the subject of the sentence stands in the nominative.",
+   "explain": "«отличный кусок» is the subject of «выйдет» — who or what does it — so nominative.",
    "id": "c3"
   },
   {
    "sentence": "И он повторял то же самое, даже попав на ___.",
    "lemma": "станок",
    "options": [
-    "ткацком станке",
     "ткацкому станку",
+    "ткацкого станка",
     "ткацким станком",
     "ткацкий станок"
    ],
    "correct": "ткацкий станок",
    "case": "Винительный (Accusative)",
-   "explain": "«ткацкий станок» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«ткацкий станок» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c4"
   },
   {
@@ -67,7 +39,7 @@
    ],
    "correct": "большой кусок",
    "case": "Именительный (Nominative)",
-   "explain": "«большой кусок» — the subject of the sentence stands in the nominative.",
+   "explain": "«большой кусок» is the subject of «вышел» — who or what does it — so nominative.",
    "id": "c5"
   },
   {
@@ -81,21 +53,21 @@
    ],
    "correct": "великолепного холста",
    "case": "Родительный (Genitive)",
-   "explain": "«великолепного холста» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«великолепного холста» depends on the noun «кусок» (whose? of what?) — genitive.",
    "id": "c6"
   },
   {
    "sentence": "Там никто за мною не ухаживал, воду я только и видал, что в дождик, а теперь ко мне приставили прислугу, каждое утро меня переворачивают на ___, каждый вечер поливают из лейки!",
    "lemma": "бок",
    "options": [
-    "другого бока",
-    "другом боке",
     "другой бок",
-    "другому боку"
+    "другого бока",
+    "другому боку",
+    "другим боком"
    ],
    "correct": "другой бок",
    "case": "Винительный (Accusative)",
-   "explain": "«другой бок» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«другой бок» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c7"
   },
   {
@@ -109,22 +81,8 @@
    ],
    "correct": "сама пасторша",
    "case": "Именительный (Nominative)",
-   "explain": "«Сама пасторша» — the subject of the sentence stands in the nominative.",
+   "explain": "«сама пасторша» is the subject of «держала» — who or what does it — so nominative.",
    "id": "c8"
-  },
-  {
-   "sentence": "Господь бог знает, что сама я тут ни при чём, я старалась только по мере ___ своих не даром занимать место!",
-   "lemma": "сила",
-   "options": [
-    "слабые силы",
-    "слабым силам",
-    "слабых сил",
-    "слабыми силами"
-   ],
-   "correct": "слабых сил",
-   "case": "Родительный (Genitive)",
-   "explain": "«слабых сил» — the genitive here marks possession, absence, or quantity.",
-   "id": "c9"
   },
   {
    "sentence": "Они могли принести пользу и доставить удовольствие бесконечно ___ людей, нежели одна та бумага, на которой были написаны рассказы: бегая по белу свету, она бы истрепалась на полпути.",
@@ -137,106 +95,22 @@
    ],
    "correct": "большему числу",
    "case": "Дательный (Dative)",
-   "explain": "«большему числу» — the dative marks the indirect object or recipient.",
+   "explain": "«большему числу» is the indirect object of «доставить» — to or for whom (кому?) — dative.",
    "id": "c10"
   },
   {
    "sentence": "В один ___ бумагу взяли да и сунули в плиту; её решили сжечь, так как её нельзя было продать в мелочную лавочку на обёртку масла и сахара.",
    "lemma": "день",
    "options": [
+    "прекрасного дня",
+    "прекрасным днём",
     "прекрасный день",
-    "прекрасном дне",
-    "прекрасному дню",
-    "прекрасного дня"
+    "прекрасному дню"
    ],
    "correct": "прекрасный день",
    "case": "Винительный (Accusative)",
-   "explain": "«прекрасный день» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«прекрасный день» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c11"
-  },
-  {
-   "sentence": "Дети обступили плиту; им хотелось посмотреть, как бумага вспыхнет и как потом по золе начнут перебегать и потухать одна за другою шаловливые, ___!",
-   "lemma": "искорка",
-   "options": [
-    "блестящих искорок",
-    "блестящие искорки",
-    "блестящим искоркам",
-    "блестящих искорках"
-   ],
-   "correct": "блестящие искорки",
-   "case": "Именительный (Nominative)",
-   "explain": "«блестящие искорки» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
-  },
-  {
-   "sentence": "После всех выходит учитель — это ___.",
-   "lemma": "искра",
-   "options": [
-    "последней искрой",
-    "последней искры",
-    "последней искре",
-    "последняя искра"
-   ],
-   "correct": "последняя искра",
-   "case": "Именительный (Nominative)",
-   "explain": "«последняя искра» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
-  },
-  {
-   "sentence": "Он выходит ещё много времени спустя после самого ___!",
-   "lemma": "школьник",
-   "options": [
-    "последнего школьника",
-    "последним школьником",
-    "последний школьник",
-    "последнему школьнику"
-   ],
-   "correct": "последнего школьника",
-   "case": "Родительный (Genitive)",
-   "explain": "«последнего школьника» — after the preposition «после», the genitive here marks possession, absence, or quantity.",
-   "id": "c14"
-  },
-  {
-   "sentence": "А в воздухе запорхали крошечные ___, легче, воздушнее пламени, из которого родились.",
-   "lemma": "существо",
-   "options": [
-    "незримые существа",
-    "незримых существ",
-    "незримым существам",
-    "незримыми существами"
-   ],
-   "correct": "незримые существа",
-   "case": "Именительный (Nominative)",
-   "explain": "«незримые существа» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
-  },
-  {
-   "sentence": "Когда пламя погасло, они ещё раз проплясали по ___, оставляя на ней блестящие следы в виде золотых искорок.",
-   "lemma": "зола",
-   "options": [
-    "чёрной золы",
-    "чёрной золой",
-    "чёрной золе",
-    "чёрная зола"
-   ],
-   "correct": "чёрной золе",
-   "case": "Дательный (Dative)",
-   "explain": "«чёрной золе» — after the preposition «в», the dative marks the indirect object or recipient.",
-   "id": "c16"
-  },
-  {
-   "sentence": "Когда пламя погасло, они ещё раз проплясали по чёрной золе, оставляя на ней ___ в виде золотых искорок.",
-   "lemma": "след",
-   "options": [
-    "блестящими следами",
-    "блестящие следы",
-    "блестящим следам",
-    "блестящих следов"
-   ],
-   "correct": "блестящие следы",
-   "case": "Винительный (Accusative)",
-   "explain": "«блестящие следы» — the accusative marks the direct object of the verb.",
-   "id": "c17"
   },
   {
    "sentence": "Когда пламя погасло, они ещё раз проплясали по чёрной золе, оставляя на ней блестящие следы в виде ___.",
@@ -249,7 +123,7 @@
    ],
    "correct": "золотых искорок",
    "case": "Родительный (Genitive)",
-   "explain": "«золотых искорок» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«золотых искорок» depends on the noun «следы» (whose? of what?) — genitive.",
    "id": "c18"
   }
  ]

@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "___, тишина; жизнь застыла в светлом покое, небо ласково смотрит на землю голубым ясным оком, солнце — огненный зрачок его.",
-   "lemma": "день",
-   "options": [
-    "знойному дню",
-    "знойный день",
-    "знойном дне",
-    "знойного дня"
-   ],
-   "correct": "знойный день",
-   "case": "Винительный (Accusative)",
-   "explain": "«Знойный день» — the accusative marks the direct object of the verb.",
-   "id": "c1"
-  },
-  {
    "sentence": "Знойный день, тишина; жизнь застыла в ___, небо ласково смотрит на землю голубым ясным оком, солнце — огненный зрачок его.",
    "lemma": "покой",
    "options": [
@@ -25,50 +11,8 @@
    ],
    "correct": "светлом покое",
    "case": "Предложный (Prepositional)",
-   "explain": "«светлом покое» — after the preposition «в», for location or topic.",
+   "explain": "«светлом покое» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c2"
-  },
-  {
-   "sentence": "Знойный день, тишина; жизнь застыла в светлом покое, небо ласково смотрит на землю голубым ___, солнце — огненный зрачок его.",
-   "lemma": "око",
-   "options": [
-    "ясном оке",
-    "ясным оком",
-    "ясного ока",
-    "ясное око"
-   ],
-   "correct": "ясным оком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«ясным оком» — the instrumental marks the means, company, or complement.",
-   "id": "c3"
-  },
-  {
-   "sentence": "Море гладко выковано из ___, пёстрые лодки рыбаков неподвижны, точно впаяны в полукруг залива, яркий, как небо.",
-   "lemma": "металл",
-   "options": [
-    "синий металл",
-    "синем металле",
-    "синим металлом",
-    "синего металла"
-   ],
-   "correct": "синего металла",
-   "case": "Родительный (Genitive)",
-   "explain": "«синего металла» — after the preposition «в», the genitive here marks possession, absence, or quantity.",
-   "id": "c4"
-  },
-  {
-   "sentence": "Мреет даль; там в тумане тихо плывёт — или, раскалён солнцем, тает — ___, одинокая скала среди моря, ласковый самоцветный камень в кольце Неаполитанского залива.",
-   "lemma": "остров",
-   "options": [
-    "лиловому острову",
-    "лиловом острове",
-    "лиловый остров",
-    "лилового острова"
-   ],
-   "correct": "лиловый остров",
-   "case": "Именительный (Nominative)",
-   "explain": "«лиловый остров» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
   },
   {
    "sentence": "Мреет даль; там в тумане тихо плывёт — или, раскалён солнцем, тает — лиловый остров, одинокая скала среди моря, ласковый самоцветный камень в кольце ___.",
@@ -81,7 +25,7 @@
    ],
    "correct": "неаполитанского залива",
    "case": "Родительный (Genitive)",
-   "explain": "«Неаполитанского залива» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«неаполитанского залива» depends on the noun «кольце» (whose? of what?) — genitive.",
    "id": "c6"
   },
   {
@@ -95,64 +39,8 @@
    ],
    "correct": "каменистый берег",
    "case": "Именительный (Nominative)",
-   "explain": "«каменистый берег» — the subject of the sentence stands in the nominative.",
+   "explain": "«каменистый берег» is the subject of «спускается» — who or what does it — so nominative.",
    "id": "c7"
-  },
-  {
-   "sentence": "Между садов вьётся тропа, и по ней, тихо спускаясь с камня на камень, идёт к морю высокая женщина в чёрном платье, оно выгорело на солнце до ___, и даже издали видны его заплаты.",
-   "lemma": "пятно",
-   "options": [
-    "бурые пятна",
-    "бурых пятнах",
-    "бурыми пятнами",
-    "бурых пятен"
-   ],
-   "correct": "бурых пятен",
-   "case": "Родительный (Genitive)",
-   "explain": "«бурых пятен» — the genitive here marks possession, absence, or quantity.",
-   "id": "c10"
-  },
-  {
-   "sentence": "___ научились хватать куски хлеба и почти безошибочно тащили их в большой, горячий рот.",
-   "lemma": "лапа",
-   "options": [
-    "коротенькими лапами",
-    "коротенькие лапы",
-    "коротеньких лап",
-    "коротеньким лапам"
-   ],
-   "correct": "коротенькие лапы",
-   "case": "Именительный (Nominative)",
-   "explain": "«Коротенькие лапы» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
-  },
-  {
-   "sentence": "Он был нем, но когда где-нибудь близко от него ели и урод слышал запах пищи, он глухо мычал, открыв пасть и качая тяжёлой головою, а ___ его глаз покрывались красной сеткой кровавых жилок.",
-   "lemma": "белка",
-   "options": [
-    "мутным белкам",
-    "мутными белками",
-    "мутные белки",
-    "мутных белках"
-   ],
-   "correct": "мутные белки",
-   "case": "Именительный (Nominative)",
-   "explain": "«мутные белки» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
-  },
-  {
-   "sentence": "Он был нем, но когда где-нибудь близко от него ели и урод слышал запах пищи, он глухо мычал, открыв пасть и качая тяжёлой головою, а мутные белки его глаз покрывались ___ кровавых жилок.",
-   "lemma": "сетка",
-   "options": [
-    "красной сетке",
-    "красная сетка",
-    "красной сетки",
-    "красной сеткой"
-   ],
-   "correct": "красной сеткой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«красной сеткой» — the instrumental marks the means, company, or complement.",
-   "id": "c14"
   },
   {
    "sentence": "Он был нем, но когда где-нибудь близко от него ели и урод слышал запах пищи, он глухо мычал, открыв пасть и качая тяжёлой головою, а мутные белки его глаз покрывались красной сеткой ___.",
@@ -165,36 +53,8 @@
    ],
    "correct": "кровавых жилок",
    "case": "Родительный (Genitive)",
-   "explain": "«кровавых жилок» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«кровавых жилок» depends on the noun «сеткой» (whose? of what?) — genitive.",
    "id": "c15"
-  },
-  {
-   "sentence": "Сытый, глядя на людей, он всегда оскаливал зубы, а глаза его сдвигались к переносью, сливаясь в мутное бездонное пятно на этом ___, движения которого напоминали агонию.",
-   "lemma": "лицо",
-   "options": [
-    "полумёртвое лицо",
-    "полумёртвого лица",
-    "полумёртвом лице",
-    "полумёртвому лицу"
-   ],
-   "correct": "полумёртвом лице",
-   "case": "Предложный (Prepositional)",
-   "explain": "«полумёртвом лице» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c16"
-  },
-  {
-   "sentence": "Если же он был голоден, то вытягивал шею вперёд и, открыв красную пасть, шевеля тонким ___, требовательно мычал.",
-   "lemma": "язык",
-   "options": [
-    "змеиным языком",
-    "змеином языке",
-    "змеиный язык",
-    "змеиного языка"
-   ],
-   "correct": "змеиным языком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«змеиным языком» — the instrumental marks the means, company, or complement.",
-   "id": "c17"
   },
   {
    "sentence": "У всех эта ___ вызывала мысли печальные, чувства, пугающие сердце.",
@@ -207,7 +67,7 @@
    ],
    "correct": "немая голова",
    "case": "Именительный (Nominative)",
-   "explain": "«немая голова» — the subject of the sentence stands in the nominative.",
+   "explain": "«немая голова» is the subject of «вызывала» — who or what does it — so nominative.",
    "id": "c19"
   },
   {
@@ -221,22 +81,8 @@
    ],
    "correct": "иных стран",
    "case": "Родительный (Genitive)",
-   "explain": "«иных стран» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«иных стран» depends on the noun «люди» (whose? of what?) — genitive.",
    "id": "c21"
-  },
-  {
-   "sentence": "— Они значат: Италия вымирает впереди всех ___.",
-   "lemma": "раса",
-   "options": [
-    "романскими расами",
-    "романским расам",
-    "романских расах",
-    "романских рас"
-   ],
-   "correct": "романских рас",
-   "case": "Родительный (Genitive)",
-   "explain": "«романских рас» — the genitive here marks possession, absence, or quantity.",
-   "id": "c23"
   },
   {
    "sentence": "А на ___ её сын объелся чем-то и умер в судорогах.",
@@ -249,7 +95,7 @@
    ],
    "correct": "другой день",
    "case": "Винительный (Accusative)",
-   "explain": "«другой день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«другой день» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c24"
   }
  ]

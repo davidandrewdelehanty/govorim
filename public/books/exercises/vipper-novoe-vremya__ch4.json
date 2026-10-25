@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Образование ___ в Передней Азии и на Балканском полуострове послужило к большому стеснения Европы.",
-   "lemma": "держава",
-   "options": [
-    "турецкой державы",
-    "турецкой державе",
-    "турецкая держава",
-    "турецкой державой"
-   ],
-   "correct": "турецкой державы",
-   "case": "Родительный (Genitive)",
-   "explain": "«турецкой державы» — the genitive here marks possession, absence, or quantity.",
-   "id": "c1"
-  },
-  {
    "sentence": "Турки изгнали венецианцев с островов и берегов восточной части ___.",
    "lemma": "море",
    "options": [
@@ -25,36 +11,8 @@
    ],
    "correct": "средиземного моря",
    "case": "Родительный (Genitive)",
-   "explain": "«Средиземного моря» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«средиземного моря» depends on the noun «берегов» (whose? of what?) — genitive.",
    "id": "c3"
-  },
-  {
-   "sentence": "___ в Индию и Китай через Азию закрылись для европейцев; морской путь віэти страны захватили также мусульмане — арабы.",
-   "lemma": "дорога",
-   "options": [
-    "сухопутных дорогах",
-    "сухопутным дорогам",
-    "сухопутные дороги",
-    "сухопутных дорог"
-   ],
-   "correct": "сухопутные дороги",
-   "case": "Именительный (Nominative)",
-   "explain": "«Сухопутные дороги» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
-  },
-  {
-   "sentence": "Сухопутные дороги в Индию и Китай через Азию закрылись для европейцев; ___ віэти страны захватили также мусульмане — арабы.",
-   "lemma": "путь",
-   "options": [
-    "морском пути",
-    "морскому пути",
-    "морской путь",
-    "морским путём"
-   ],
-   "correct": "морской путь",
-   "case": "Именительный (Nominative)",
-   "explain": "«морской путь» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
   },
   {
    "sentence": "По сравнению с эпохой ___, Европа стала теперь в невыгодное положение относительно Азии.",
@@ -67,7 +25,7 @@
    ],
    "correct": "крестовых походов",
    "case": "Родительный (Genitive)",
-   "explain": "«крестовых походов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«крестовых походов» depends on the noun «эпохой» (whose? of what?) — genitive.",
    "id": "c6"
   },
   {
@@ -81,21 +39,21 @@
    ],
    "correct": "морским открытиям",
    "case": "Дательный (Dative)",
-   "explain": "«морским открытиям» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«морским открытиям» — «к» always takes the dative.",
    "id": "c7"
   },
   {
    "sentence": "В Европе жадно ловили всякие слухи о далеких ___.",
    "lemma": "край",
    "options": [
-    "золотоносные края",
-    "золотоносных краях",
     "золотоносных краёв",
-    "золотоносными краями"
+    "золотоносных краях",
+    "золотоносными краями",
+    "золотоносным краям"
    ],
    "correct": "золотоносных краях",
    "case": "Предложный (Prepositional)",
-   "explain": "«золотоносных краях» — after the preposition «о», for location or topic.",
+   "explain": "«золотоносных краях» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c8"
   },
   {
@@ -109,78 +67,8 @@
    ],
    "correct": "восточной окраине",
    "case": "Дательный (Dative)",
-   "explain": "«восточной окраине» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«восточной окраине» — «к» always takes the dative.",
    "id": "c9"
-  },
-  {
-   "sentence": "Оно получило теперь особенное значение, наводя на мысль, что ___, к которым европейцы стремились, достижимы и с запада, если обогнуть івсю землю кругом.",
-   "lemma": "страна",
-   "options": [
-    "восточные страны",
-    "восточным странам",
-    "восточных стран",
-    "восточных странах"
-   ],
-   "correct": "восточные страны",
-   "case": "Именительный (Nominative)",
-   "explain": "«восточные страны» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
-  },
-  {
-   "sentence": "В искании путей на восток были особенно заинтересованы итальянские ___, и географическими вопросами более. всего заняты итальянские ученые.",
-   "lemma": "город",
-   "options": [
-    "торговые города",
-    "торговых городов",
-    "торговых городах",
-    "торговым городам"
-   ],
-   "correct": "торговые города",
-   "case": "Именительный (Nominative)",
-   "explain": "«торговые города» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
-  },
-  {
-   "sentence": "В искании путей на восток были особенно заинтересованы итальянские торговые города, и ___ более. всего заняты итальянские ученые.",
-   "lemma": "вопрос",
-   "options": [
-    "географических вопросов",
-    "географических вопросах",
-    "географические вопросы",
-    "географическими вопросами"
-   ],
-   "correct": "географическими вопросами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«географическими вопросами» — the instrumental marks the means, company, or complement.",
-   "id": "c13"
-  },
-  {
-   "sentence": "Предприятия португальцев возникли из войн с мусульманами, которые были изгнаны с ___, но составляли, еще военную и торговую силу на противоположном берегу Африки.",
-   "lemma": "полуостров",
-   "options": [
-    "пиренейском полуострове",
-    "пиренейскому полуострову",
-    "пиренейского полуострова",
-    "пиренейский полуостров"
-   ],
-   "correct": "пиренейского полуострова",
-   "case": "Родительный (Genitive)",
-   "explain": "«Пиренейского полуострова» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
-   "id": "c14"
-  },
-  {
-   "sentence": "___ Генрих, прозванный Мореплавателем (1394—1460), в течение более 40 лет настойчиво преследовал этот план.",
-   "lemma": "принц",
-   "options": [
-    "португальский принц",
-    "португальском принце",
-    "португальского принца",
-    "португальским принцем"
-   ],
-   "correct": "португальский принц",
-   "case": "Именительный (Nominative)",
-   "explain": "«Португальский принц» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
   },
   {
    "sentence": "На южной оконечности Португалии^ обращенной к Африке, стоял замок Генриха и устроенная им школа моряков для подготовки к ___: ежегодно он высылал по два или три корабля на юг.",
@@ -193,22 +81,8 @@
    ],
    "correct": "дальним плаваниям",
    "case": "Дательный (Dative)",
-   "explain": "«дальним плаваниям» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«дальним плаваниям» — «к» always takes the dative.",
    "id": "c18"
-  },
-  {
-   "sentence": "Далее португальцы открыли Гвинею и исследовали весь ___ Африки.",
-   "lemma": "берег",
-   "options": [
-    "западным берегом",
-    "западному берегу",
-    "западного берега",
-    "западный берег"
-   ],
-   "correct": "западный берег",
-   "case": "Винительный (Accusative)",
-   "explain": "«западный берег» — the accusative marks the direct object of the verb.",
-   "id": "c19"
   },
   {
    "sentence": "Одновременно ___ открыли другой путь в Индию — из Аравийского залива, а также исследовали восточный берег Африки, начиная с серіера и до Софалы.",
@@ -221,7 +95,7 @@
    ],
    "correct": "португальские искатели",
    "case": "Именительный (Nominative)",
-   "explain": "«португальские искатели» — the subject of the sentence stands in the nominative.",
+   "explain": "«португальские искатели» is the subject of «открыли» — who or what does it — so nominative.",
    "id": "c21"
   },
   {
@@ -235,22 +109,8 @@
    ],
    "correct": "аравийского залива",
    "case": "Родительный (Genitive)",
-   "explain": "«Аравийского залива» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«аравийского залива» — «из» always takes the genitive.",
    "id": "c23"
-  },
-  {
-   "sentence": "Одновременно португальские искатели открыли другой путь в Индию — из Аравийского залива, а также исследовали ___ Африки, начиная с серіера и до Софалы.",
-   "lemma": "берег",
-   "options": [
-    "восточным берегом",
-    "восточного берега",
-    "восточном береге",
-    "восточный берег"
-   ],
-   "correct": "восточный берег",
-   "case": "Винительный (Accusative)",
-   "explain": "«восточный берег» — the accusative marks the direct object of the verb.",
-   "id": "c24"
   },
   {
    "sentence": "В это время к ___ обратился Христофор Колумб с предложением устроить экспедицию для открытия новых земель и островов в западном от Европы направлении.",
@@ -263,21 +123,21 @@
    ],
    "correct": "португальскому правительству",
    "case": "Дательный (Dative)",
-   "explain": "«португальскому правительству» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«португальскому правительству» — «к» always takes the dative.",
    "id": "c25"
   },
   {
    "sentence": "В это время к португальскому правительству обратился Христофор Колумб с предложением устроить экспедицию для открытия ___ и островов в западном от Европы направлении.",
    "lemma": "земля",
    "options": [
-    "новых землях",
     "новых земель",
+    "новых землях",
     "новым землям",
-    "новыми землями"
+    "новые земли"
    ],
    "correct": "новых земель",
    "case": "Родительный (Genitive)",
-   "explain": "«новых земель» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«новых земель» depends on the noun «открытия» (whose? of what?) — genitive.",
    "id": "c26"
   },
   {
@@ -285,13 +145,13 @@
    "lemma": "имя",
    "options": [
     "итальянскому имени",
-    "итальянским именем",
-    "итальянского имени",
-    "итальянское имя"
+    "итальянском имени",
+    "итальянское имя",
+    "итальянского имени"
    ],
    "correct": "итальянского имени",
    "case": "Родительный (Genitive)",
-   "explain": "«итальянского имени» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«итальянского имени» depends on the noun «видоизменение» (whose? of what?) — genitive.",
    "id": "c27"
   },
   {
@@ -305,7 +165,7 @@
    ],
    "correct": "шерстяного дела",
    "case": "Родительный (Genitive)",
-   "explain": "«шерстяного дела» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«шерстяного дела» depends on the noun «мастером» (whose? of what?) — genitive.",
    "id": "c28"
   },
   {
@@ -319,22 +179,8 @@
    ],
    "correct": "морскими предприятиями",
    "case": "Творительный (Instrumental)",
-   "explain": "«морскими предприятиями» — the instrumental marks the means, company, or complement.",
+   "explain": "«увлекся» takes the instrumental.",
    "id": "c29"
-  },
-  {
-   "sentence": "Мадеру и в Гвинею, в бумагах своего тестя, ___, нашел очень ценные данных для океанических странствований.",
-   "lemma": "капитан",
-   "options": [
-    "португальский капитан",
-    "португальского капитана",
-    "португальском капитане",
-    "португальским капитаном"
-   ],
-   "correct": "португальского капитана",
-   "case": "Винительный (Accusative)",
-   "explain": "«португальского капитана» — the accusative marks the direct object of the verb.",
-   "id": "c30"
   },
   {
    "sentence": "Мадеру и в Гвинею, в бумагах своего тестя, португальского капитана, нашел очень ценные данных для ___.",
@@ -347,22 +193,8 @@
    ],
    "correct": "океанических странствований",
    "case": "Родительный (Genitive)",
-   "explain": "«океанических странствований» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«океанических странствований» — «для» always takes the genitive.",
    "id": "c31"
-  },
-  {
-   "sentence": "С географическими и торговыми задачами Колумб соединял религиозные и политические фантазии, мечтал открыть ___, отплатить мусульманам за взятие Константинополя и отнять у НИХ СВ'.",
-   "lemma": "рай",
-   "options": [
-    "земного рая",
-    "земном рае",
-    "земной рай",
-    "земному раю"
-   ],
-   "correct": "земной рай",
-   "case": "Винительный (Accusative)",
-   "explain": "«земной рай» — the accusative marks the direct object of the verb.",
-   "id": "c32"
   },
   {
    "sentence": "Так как ___ отклонил план Колумба, он обратился к католическим государям Испании.",
@@ -375,7 +207,7 @@
    ],
    "correct": "португальский король",
    "case": "Именительный (Nominative)",
-   "explain": "«португальский король» — the subject of the sentence stands in the nominative.",
+   "explain": "«португальский король» is the subject of «отклонил» — who or what does it — so nominative.",
    "id": "c33"
   },
   {
@@ -389,7 +221,7 @@
    ],
    "correct": "католическим государям",
    "case": "Дательный (Dative)",
-   "explain": "«католическим государям» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«католическим государям» — «к» always takes the dative.",
    "id": "c34"
   },
   {
@@ -403,7 +235,7 @@
    ],
    "correct": "саламанкского университета",
    "case": "Родительный (Genitive)",
-   "explain": "«Саламанкского университета» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«саламанкского университета» depends on the noun «ученые» (whose? of what?) — genitive.",
    "id": "c35"
   },
   {
@@ -417,7 +249,7 @@
    ],
    "correct": "долгих мытарств",
    "case": "Родительный (Genitive)",
-   "explain": "«долгих мытарств» — after the preposition «после», the genitive here marks possession, absence, or quantity.",
+   "explain": "«долгих мытарств» — «после» always takes the genitive.",
    "id": "c36"
   },
   {
@@ -431,7 +263,7 @@
    ],
    "correct": "францисканские монахи",
    "case": "Именительный (Nominative)",
-   "explain": "«францисканские монахи» — the subject of the sentence stands in the nominative.",
+   "explain": "«францисканские монахи» is the subject of «вступились» — who or what does it — so nominative.",
    "id": "c37"
   },
   {
@@ -445,7 +277,7 @@
    ],
    "correct": "религиозными целями",
    "case": "Творительный (Instrumental)",
-   "explain": "«религиозными целями» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «увлеченные», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c38"
   },
   {
@@ -455,11 +287,11 @@
     "краснокожих туземцах",
     "краснокожих туземцев",
     "краснокожим туземцам",
-    "краснокожими туземцами"
+    "краснокожие туземцы"
    ],
    "correct": "краснокожих туземцев",
    "case": "Родительный (Genitive)",
-   "explain": "«краснокожих туземцев» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«краснокожих туземцев» depends on the noun «состояние» (whose? of what?) — genitive.",
    "id": "c39"
   },
   {
@@ -473,35 +305,21 @@
    ],
    "correct": "новой поездки",
    "case": "Родительный (Genitive)",
-   "explain": "«новой поездки» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«новой поездки» — «для» always takes the genitive.",
    "id": "c40"
-  },
-  {
-   "sentence": "Для новой поездки ему дали 17 кораблей и 1200 человек экипажа; с ним отправилось много ___ искать счастья в ожидаемых золотоносных полях (эльдорадо) новооткрытой Индии.",
-   "lemma": "рыцарь",
-   "options": [
-    "кастильским рыцарям",
-    "кастильских рыцарей",
-    "кастильскими рыцарями",
-    "кастильские рыцари"
-   ],
-   "correct": "кастильских рыцарей",
-   "case": "Родительный (Genitive)",
-   "explain": "«кастильских рыцарей» — the genitive here marks possession, absence, or quantity.",
-   "id": "c41"
   },
   {
    "sentence": "Для новой поездки ему дали 17 кораблей и 1200 человек экипажа; с ним отправилось много кастильских рыцарей искать счастья в ожидаемых ___ (эльдорадо) новооткрытой Индии.",
    "lemma": "поле",
    "options": [
     "золотоносными полями",
+    "золотоносным полям",
     "золотоносных полях",
-    "золотоносных полей",
-    "золотоносные поля"
+    "золотоносных полей"
    ],
    "correct": "золотоносных полях",
    "case": "Предложный (Prepositional)",
-   "explain": "«золотоносных полях» — after the preposition «в», for location or topic.",
+   "explain": "«золотоносных полях» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c42"
   },
   {
@@ -515,50 +333,22 @@
    ],
    "correct": "новых земель",
    "case": "Родительный (Genitive)",
-   "explain": "«новых земель» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«новых земель» depends on the noun «наместника» (whose? of what?) — genitive.",
    "id": "c43"
-  },
-  {
-   "sentence": "Он был ___, а кастильские воины и золотоискатели не хотели подчиняться иностранцу.",
-   "lemma": "администратор",
-   "options": [
-    "плохому администратору",
-    "плохого администратора",
-    "плохой администратор",
-    "плохом администраторе"
-   ],
-   "correct": "плохой администратор",
-   "case": "Именительный (Nominative)",
-   "explain": "«плохой администратор» — the subject of the sentence stands in the nominative.",
-   "id": "c44"
   },
   {
    "sentence": "Он был плохой администратор, а ___ и золотоискатели не хотели подчиняться иностранцу.",
    "lemma": "воин",
    "options": [
-    "кастильские воины",
-    "кастильских воинов",
+    "кастильских воинах",
     "кастильскими воинами",
-    "кастильских воинах"
+    "кастильские воины",
+    "кастильским воинам"
    ],
    "correct": "кастильские воины",
    "case": "Именительный (Nominative)",
-   "explain": "«кастильские воины» — the subject of the sentence stands in the nominative.",
+   "explain": "«кастильские воины» is the subject of «хотели» — who or what does it — so nominative.",
    "id": "c45"
-  },
-  {
-   "sentence": "Все больше распространялось разочарование: это явно не была та ___, которую надеялись открыть.",
-   "lemma": "страна",
-   "options": [
-    "богатая страна",
-    "богатой страны",
-    "богатой страной",
-    "богатой стране"
-   ],
-   "correct": "богатая страна",
-   "case": "Именительный (Nominative)",
-   "explain": "«богатая страна» — the subject of the sentence stands in the nominative.",
-   "id": "c46"
   },
   {
    "sentence": "Обвинения Колумба в ___ с туземцами заставили правителей вызвать его в Испанию.",
@@ -571,64 +361,22 @@
    ],
    "correct": "жестоком обращении",
    "case": "Предложный (Prepositional)",
-   "explain": "«жестоком обращении» — after the preposition «в», for location or topic.",
+   "explain": "«жестоком обращении» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c47"
-  },
-  {
-   "sentence": "В 1498 г. ___ Васко да Гама, продолжая предприятие Диаса, обогнул южную оконечность Африки; доехав до Софалы, он напраш|ился дальше по пути, уже открытому его предшественниками.",
-   "lemma": "адмирал",
-   "options": [
-    "португальским адмиралом",
-    "португальскому адмиралу",
-    "португальского адмирала",
-    "португальский адмирал"
-   ],
-   "correct": "португальский адмирал",
-   "case": "Именительный (Nominative)",
-   "explain": "«португальский адмирал» — the subject of the sentence stands in the nominative.",
-   "id": "c48"
   },
   {
    "sentence": "В этой важнейшей гавани по торговле пряностями, принадлежавшей местному индусскому царю, Заморину, португальцы встретились со своими ___, маврами и арабами, и тотчас-же вступили с ними в борьбу.",
    "lemma": "враг",
    "options": [
     "старым врагам",
-    "старых врагов",
+    "старые враги",
     "старыми врагами",
     "старых врагах"
    ],
    "correct": "старыми врагами",
    "case": "Творительный (Instrumental)",
-   "explain": "«старыми врагами» — after the preposition «со», the instrumental marks the means, company, or complement.",
+   "explain": "«старыми врагами» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c49"
-  },
-  {
-   "sentence": "С богатой добычей золотого песку, жемчуга и ___ вернулся он домой.",
-   "lemma": "драгоценность",
-   "options": [
-    "разные драгоценности",
-    "разными драгоценностями",
-    "разных драгоценностей",
-    "разным драгоценностям"
-   ],
-   "correct": "разных драгоценностей",
-   "case": "Родительный (Genitive)",
-   "explain": "«разных драгоценностей» — the genitive here marks possession, absence, or quantity.",
-   "id": "c51"
-  },
-  {
-   "sentence": "Скоро португальцы открыли еще далее на востоке Цейлон, Малакку и проехали в моря Китая и ___.",
-   "lemma": "остров",
-   "options": [
-    "зондскими островами",
-    "зондским островам",
-    "зондских островов",
-    "зондских островах"
-   ],
-   "correct": "зондских островов",
-   "case": "Родительный (Genitive)",
-   "explain": "«Зондских островов» — the genitive here marks possession, absence, or quantity.",
-   "id": "c52"
   },
   {
    "sentence": "Весь ___ Азии от Аравийского моря до Тонкинского залива стал доступен для прямых сношений с Европой.",
@@ -641,7 +389,7 @@
    ],
    "correct": "южный берег",
    "case": "Именительный (Nominative)",
-   "explain": "«южный берег» — the subject of the sentence stands in the nominative.",
+   "explain": "«южный берег» is the subject of «стал» — who or what does it — so nominative.",
    "id": "c53"
   },
   {
@@ -655,7 +403,7 @@
    ],
    "correct": "аравийского моря",
    "case": "Родительный (Genitive)",
-   "explain": "«Аравийского моря» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«аравийского моря» — «от» always takes the genitive.",
    "id": "c54"
   },
   {
@@ -669,7 +417,7 @@
    ],
    "correct": "тонкинского залива",
    "case": "Родительный (Genitive)",
-   "explain": "«Тонкинского залива» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«тонкинского залива» — «до» always takes the genitive.",
    "id": "c55"
   },
   {
@@ -683,7 +431,7 @@
    ],
    "correct": "прямых сношений",
    "case": "Родительный (Genitive)",
-   "explain": "«прямых сношений» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«прямых сношений» — «для» always takes the genitive.",
    "id": "c56"
   },
   {
@@ -697,7 +445,7 @@
    ],
    "correct": "открытый океан",
    "case": "Винительный (Accusative)",
-   "explain": "«открытый океан» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«открытый океан» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c57"
   },
   {
@@ -711,7 +459,7 @@
    ],
    "correct": "безумным мечтателем",
    "case": "Творительный (Instrumental)",
-   "explain": "«безумным мечтателем» — the instrumental marks the means, company, or complement.",
+   "explain": "After «казался», what someone or something is or becomes stands in the instrumental.",
    "id": "c58"
   },
   {
@@ -725,21 +473,21 @@
    ],
    "correct": "амазонской реки",
    "case": "Родительный (Genitive)",
-   "explain": "«Амазонской реки» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«амазонской реки» depends on the noun «устье» (whose? of what?) — genitive.",
    "id": "c59"
   },
   {
    "sentence": "В письмах к одному из Медичи Америке дал подробное описание ___, которые он впервые назвал Новым Светом; его собственное имя утвердилось как название материка Америки.",
    "lemma": "страна",
    "options": [
-    "заатлантическими странами",
     "заатлантических стран",
     "заатлантических странах",
+    "заатлантическим странам",
     "заатлантические страны"
    ],
    "correct": "заатлантических стран",
    "case": "Родительный (Genitive)",
-   "explain": "«заатлантических стран» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«заатлантических стран» depends on the noun «описание» (whose? of what?) — genitive.",
    "id": "c61"
   },
   {
@@ -753,7 +501,7 @@
    ],
    "correct": "собственное имя",
    "case": "Именительный (Nominative)",
-   "explain": "«собственное имя» — the subject of the sentence stands in the nominative.",
+   "explain": "«собственное имя» is the subject of «утвердилось» — who or what does it — so nominative.",
    "id": "c62"
   },
   {
@@ -767,7 +515,7 @@
    ],
    "correct": "панамского перешейка",
    "case": "Родительный (Genitive)",
-   "explain": "«Панамского перешейка» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«панамского перешейка» depends on the noun «высот» (whose? of what?) — genitive.",
    "id": "c63"
   },
   {
@@ -781,21 +529,21 @@
    ],
    "correct": "испанский офицер",
    "case": "Именительный (Nominative)",
-   "explain": "«испанский офицер» — the subject of the sentence stands in the nominative.",
+   "explain": "«испанский офицер» is the subject of «увидал» — who or what does it — so nominative.",
    "id": "c64"
   },
   {
    "sentence": "В год смерти Колумба, с высот Панамского перешейка испанский офицер Бальбоа увидал ___, который нужно было переплыть, чтобы подойти к действительной Индии.",
    "lemma": "океан",
    "options": [
-    "громадный океан",
-    "громадного океана",
     "громадному океану",
-    "громадном океане"
+    "громадным океаном",
+    "громадном океане",
+    "громадный океан"
    ],
    "correct": "громадный океан",
    "case": "Винительный (Accusative)",
-   "explain": "«громадный океан» — the accusative marks the direct object of the verb.",
+   "explain": "«громадный океан» is the direct object of «увидал» (кого? что?) — accusative.",
    "id": "c65"
   },
   {
@@ -809,36 +557,8 @@
    ],
    "correct": "большого материка",
    "case": "Родительный (Genitive)",
-   "explain": "«большого материка» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«большого материка» depends on the noun «часть» (whose? of what?) — genitive.",
    "id": "c66"
-  },
-  {
-   "sentence": "___ проливом, который сохранил его имя, и вступил в океан, которому сам дал название Тихого (благодаря случайной тихой погоде).",
-   "lemma": "земля",
-   "options": [
-    "огненной землёй",
-    "огненной земле",
-    "огненная земля",
-    "огненной земли"
-   ],
-   "correct": "огненной земли",
-   "case": "Родительный (Genitive)",
-   "explain": "«Огненной земли» — the genitive here marks possession, absence, or quantity.",
-   "id": "c67"
-  },
-  {
-   "sentence": "Огненной земли проливом, который сохранил его имя, и вступил в океан, которому сам дал название Тихого (благодаря случайной ___).",
-   "lemma": "погода",
-   "options": [
-    "тихой погоды",
-    "тихой погоде",
-    "тихая погода",
-    "тихой погодой"
-   ],
-   "correct": "тихой погоде",
-   "case": "Дательный (Dative)",
-   "explain": "«тихой погоде» — the dative marks the indirect object or recipient.",
-   "id": "c68"
   },
   {
    "sentence": "Переезд его оказался неожиданно очень долгим;, провиант весь вышел; истомленные голодом, добрались испанцы до нынешних ___.",
@@ -851,7 +571,7 @@
    ],
    "correct": "филиппинских островов",
    "case": "Родительный (Genitive)",
-   "explain": "«Филиппинских островов» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«филиппинских островов» — «до» always takes the genitive.",
    "id": "c69"
   },
   {
@@ -865,7 +585,7 @@
    ],
    "correct": "географических сведений",
    "case": "Родительный (Genitive)",
-   "explain": "«географических сведений» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«географических сведений» depends on the noun «область» (whose? of what?) — genitive.",
    "id": "c71"
   }
  ]

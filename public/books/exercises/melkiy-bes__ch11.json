@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Этот хотя и не такая ___, как предводитель дворянства, -- думал Передонов,-- однако может навредить больше всех, а захочет, так он может и помочь своим отзывом перед начальством.",
-   "lemma": "птица",
-   "options": [
-    "важной птице",
-    "важной птицей",
-    "важной птицы",
-    "важная птица"
-   ],
-   "correct": "важная птица",
-   "case": "Именительный (Nominative)",
-   "explain": "«важная птица» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Хорошо директору носить шляпу, -- он на хорошем счету у начальства, а Передонову еще надо добиться ___; нечего рассчитывать на протекцию, надо и самому во всем показывать себя с наилучшей стороны.",
    "lemma": "место",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "инспекторского места",
    "case": "Родительный (Genitive)",
-   "explain": "«инспекторского места» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«добиться» takes its object in the genitive.",
    "id": "c2"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "синей бумаги",
    "case": "Родительный (Genitive)",
-   "explain": "«синей бумаги» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«синей бумаги» depends on the noun «сверток» (whose? of what?) — genitive.",
    "id": "c3"
   },
   {
@@ -53,7 +39,7 @@
    ],
    "correct": "третьего дня",
    "case": "Родительный (Genitive)",
-   "explain": "«третьего дня» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«третьего дня» depends on the noun «заказанную» (whose? of what?) — genitive.",
    "id": "c4"
   },
   {
@@ -67,78 +53,22 @@
    ],
    "correct": "городских улиц",
    "case": "Родительный (Genitive)",
-   "explain": "«городских улиц» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«городских улиц» — «из» always takes the genitive.",
    "id": "c5"
-  },
-  {
-   "sentence": "Из дверей выглядывали бледные женщины и ___, все с жадными, блестящими глазами.",
-   "lemma": "мальчик",
-   "options": [
-    "золотушными мальчиками",
-    "золотушных мальчиках",
-    "золотушные мальчики",
-    "золотушным мальчикам"
-   ],
-   "correct": "золотушные мальчики",
-   "case": "Именительный (Nominative)",
-   "explain": "«золотушные мальчики» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
-  },
-  {
-   "sentence": "-- Извините, что задержал, -- сказал он, пожимая руку Передонова обеими своими большими и загребистыми руками, -- там ___ по делам.",
-   "lemma": "посетитель",
-   "options": [
-    "разными посетителями",
-    "разные посетители",
-    "разных посетителях",
-    "разных посетителей"
-   ],
-   "correct": "разные посетители",
-   "case": "Именительный (Nominative)",
-   "explain": "«разные посетители» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
   },
   {
    "sentence": "Он бормотал ___ и сидя на кресле, старался шапку держать так, чтобы исправник видел кокарду.",
    "lemma": "слово",
    "options": [
+    "несвязных словах",
     "несвязные слова",
-    "несвязными словами",
-    "несвязных слов",
-    "несвязных словах"
+    "несвязным словам",
+    "несвязными словами"
    ],
    "correct": "несвязные слова",
    "case": "Винительный (Accusative)",
-   "explain": "«несвязные слова» — the accusative marks the direct object of the verb.",
+   "explain": "«несвязные слова» is the direct object of «бормотал» (кого? что?) — accusative.",
    "id": "c11"
-  },
-  {
-   "sentence": "-- Как же, как же, помилуйте, с величайшим удовольствием, -- сказал Миньчуков, простирая вперед свои ___, -- конечно, мы, полиция, должны знать, если за кем есть что-нибудь неблагонадежное или нет.",
-   "lemma": "ладонь",
-   "options": [
-    "широкие ладони",
-    "широким ладоням",
-    "широких ладонях",
-    "широких ладоней"
-   ],
-   "correct": "широкие ладони",
-   "case": "Винительный (Accusative)",
-   "explain": "«широкие ладони» — the accusative marks the direct object of the verb.",
-   "id": "c12"
-  },
-  {
-   "sentence": "-- ___, -- продолжал Передонов, думая о Володине, -- а много о себе думают.",
-   "lemma": "человек",
-   "options": [
-    "молодых людей",
-    "молодым людям",
-    "молодыми людьми",
-    "молодые люди"
-   ],
-   "correct": "молодые люди",
-   "case": "Именительный (Nominative)",
-   "explain": "«Молодые люди» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
   },
   {
    "sentence": "И он долго говорил о ___, по почему-то не хотел назвать Володина.",
@@ -151,22 +81,8 @@
    ],
    "correct": "молодых людях",
    "case": "Предложный (Prepositional)",
-   "explain": "«молодых людях» — after the preposition «о», for location or topic.",
+   "explain": "«молодых людях» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c15"
-  },
-  {
-   "sentence": "Про полицейских же молодых людей он сказал на всякий случай, чтоб Миньчуков понял, что у него и относительно служащих в полиции есть кое-какие ___.",
-   "lemma": "сведение",
-   "options": [
-    "неблагоприятные сведения",
-    "неблагоприятными сведениями",
-    "неблагоприятных сведений",
-    "неблагоприятных сведениях"
-   ],
-   "correct": "неблагоприятные сведения",
-   "case": "Именительный (Nominative)",
-   "explain": "«неблагоприятные сведения» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
   },
   {
    "sentence": "Миньчуков решил, что Передонов намекает на двух молодых чиновников ___: молоденькие, смешливые, ухаживают за барышнями.",
@@ -179,22 +95,8 @@
    ],
    "correct": "полицейского управления",
    "case": "Родительный (Genitive)",
-   "explain": "«полицейского управления» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«полицейского управления» depends on the noun «чиновников» (whose? of what?) — genitive.",
    "id": "c17"
-  },
-  {
-   "sentence": "-- Нет, вы только подумайте, какие есть на свете ___!",
-   "lemma": "человек",
-   "options": [
-    "низких людях",
-    "низкими людьми",
-    "низких людей",
-    "низкие люди"
-   ],
-   "correct": "низкие люди",
-   "case": "Именительный (Nominative)",
-   "explain": "«низкие люди» — the subject of the sentence stands in the nominative.",
-   "id": "c18"
   },
   {
    "sentence": "Но хитрая Грушина прежде начала угощать Варвару кофеем, потом погнала из дома на улицу своих ребятишек, причем ___ заупрямилась и не хотела итти.",
@@ -207,7 +109,7 @@
    ],
    "correct": "старшая девочка",
    "case": "Именительный (Nominative)",
-   "explain": "«старшая девочка» — the subject of the sentence stands in the nominative.",
+   "explain": "«старшая девочка» is the subject of «заупрямилась» — who or what does it — so nominative.",
    "id": "c19"
   },
   {
@@ -221,36 +123,8 @@
    ],
    "correct": "дерзкая девочка",
    "case": "Именительный (Nominative)",
-   "explain": "«дерзкая девочка» — the subject of the sentence stands in the nominative.",
+   "explain": "«дерзкая девочка» is the subject of «отвечала» — who or what does it — so nominative.",
    "id": "c20"
-  },
-  {
-   "sentence": "-- Сама дрянь, ___! -- кричала на улице девочка, прыгала на одной ноге и показывала матери грязные кулачки.",
-   "lemma": "дура",
-   "options": [
-    "злой дурой",
-    "злая дура",
-    "злой дуры",
-    "злой дуре"
-   ],
-   "correct": "злая дура",
-   "case": "Именительный (Nominative)",
-   "explain": "«злая дура» — the subject of the sentence stands in the nominative.",
-   "id": "c21"
-  },
-  {
-   "sentence": "-- Голубушка Варвара Дмитриевна, как же ему не быть похожим на девочку, -- ведь это и есть ___!",
-   "lemma": "барышня",
-   "options": [
-    "переодетой барышни",
-    "переодетой барышней",
-    "переодетая барышня",
-    "переодетой барышне"
-   ],
-   "correct": "переодетая барышня",
-   "case": "Именительный (Nominative)",
-   "explain": "«переодетая барышня» — the subject of the sentence stands in the nominative.",
-   "id": "c24"
   },
   {
    "sentence": "И вы заметьте, они его поместили на квартире, где ___ нет, он там один, так что все шито-крыто, думали, останется.",
@@ -259,40 +133,12 @@
     "другими гимназистами",
     "других гимназистах",
     "других гимназистов",
-    "другие гимназисты"
+    "другим гимназистам"
    ],
    "correct": "других гимназистов",
    "case": "Родительный (Genitive)",
-   "explain": "«других гимназистов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "What is absent after «нет» — genitive.",
    "id": "c25"
-  },
-  {
-   "sentence": "-- Еще бы, ___, -- согласилась Грушина, -- это она только стесняется, а погодите, попривыкнет, разойдется, так она тут всех в городе закружит.",
-   "lemma": "красавица",
-   "options": [
-    "писаной красавицы",
-    "писаной красавице",
-    "писаная красавица",
-    "писаной красавицей"
-   ],
-   "correct": "писаная красавица",
-   "case": "Именительный (Nominative)",
-   "explain": "«писаная красавица» — the subject of the sentence stands in the nominative.",
-   "id": "c26"
-  },
-  {
-   "sentence": "-- ___, тьфу, прости господи! -- сказала Варвара.",
-   "lemma": "оборотень",
-   "options": [
-    "чистом оборотне",
-    "чистому оборотню",
-    "чистый оборотень",
-    "чистым оборотнем"
-   ],
-   "correct": "чистый оборотень",
-   "case": "Именительный (Nominative)",
-   "explain": "«Чистый оборотень» — the subject of the sentence stands in the nominative.",
-   "id": "c28"
   },
   {
    "sentence": "До сих пор он мало обращал внимания на этого ___ и презирал его за смазливость и чистоту, за то, что он вел себя скромно, учился хорошо и был самым младшим по возрасту из учеников пятого класса.",
@@ -305,7 +151,7 @@
    ],
    "correct": "нового ученика",
    "case": "Винительный (Accusative)",
-   "explain": "«нового ученика» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«нового ученика» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c29"
   },
   {
@@ -319,7 +165,7 @@
    ],
    "correct": "пятого класса",
    "case": "Родительный (Genitive)",
-   "explain": "«пятого класса» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«пятого класса» depends on the noun «учеников» (whose? of what?) — genitive.",
    "id": "c30"
   }
  ]

@@ -1,48 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "А вы знаете, у них ___ с Вильгельмом?",
-   "lemma": "соглашение",
-   "options": [
-    "тайном соглашении",
-    "тайное соглашение",
-    "тайному соглашению",
-    "тайного соглашения"
-   ],
-   "correct": "тайное соглашение",
-   "case": "Именительный (Nominative)",
-   "explain": "«тайное соглашение» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "А у них ___.",
-   "lemma": "соглашение",
-   "options": [
-    "тайном соглашении",
-    "тайное соглашение",
-    "тайному соглашению",
-    "тайного соглашения"
-   ],
-   "correct": "тайное соглашение",
-   "case": "Именительный (Nominative)",
-   "explain": "«тайное соглашение» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Большевики продали Вильгельму Россию со всей требухой; ___ золота из Германии получили.",
-   "lemma": "поезд",
-   "options": [
-    "цельном поезде",
-    "цельным поездом",
-    "цельный поезд",
-    "цельному поезду"
-   ],
-   "correct": "цельный поезд",
-   "case": "Именительный (Nominative)",
-   "explain": "«цельный поезд» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
    "sentence": "И точно так же в ___, выходившей верандой на невидимое море, собрался командный состав обеих колонн.",
    "lemma": "дача",
    "options": [
@@ -53,7 +11,7 @@
    ],
    "correct": "пустой даче",
    "case": "Предложный (Prepositional)",
-   "explain": "«пустой даче» — after the preposition «в», for location or topic.",
+   "explain": "«пустой даче» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c4"
   },
   {
@@ -67,22 +25,8 @@
    ],
    "correct": "командный состав",
    "case": "Именительный (Nominative)",
-   "explain": "«командный состав» — the subject of the sentence stands in the nominative.",
+   "explain": "«командный состав» is the subject of «собрался» — who or what does it — so nominative.",
    "id": "c5"
-  },
-  {
-   "sentence": "Так же на обеденном столе разостлана карта, паркетный пол в окурках, на стенах сиротливо и разорванно ___.",
-   "lemma": "картина",
-   "options": [
-    "дорогие картины",
-    "дорогим картинам",
-    "дорогих картинах",
-    "дорогими картинами"
-   ],
-   "correct": "дорогие картины",
-   "case": "Винительный (Accusative)",
-   "explain": "«дорогие картины» — the accusative marks the direct object of the verb.",
-   "id": "c8"
   },
   {
    "sentence": "Смолокуров, громадный, чернобородый, добродушный, не знающий, куда девать физическую силу, сидит в ___, расставив ноги, прихлебывает чай.",
@@ -95,7 +39,7 @@
    ],
    "correct": "белой матроске",
    "case": "Предложный (Prepositional)",
-   "explain": "«белой матроске» — after the preposition «в», for location or topic.",
+   "explain": "«белой матроске» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c9"
   },
   {
@@ -109,22 +53,8 @@
    ],
    "correct": "общего начальника",
    "case": "Винительный (Accusative)",
-   "explain": "«общего начальника» — the accusative marks the direct object of the verb.",
+   "explain": "«общего начальника» is the direct object of «выбрать» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c10"
-  },
-  {
-   "sentence": "Смолокуров растерянно развел ___.",
-   "lemma": "рука",
-   "options": [
-    "громадные руки",
-    "громадными руками",
-    "громадным рукам",
-    "громадных рук"
-   ],
-   "correct": "громадными руками",
-   "case": "Творительный (Instrumental)",
-   "explain": "«громадными руками» — the instrumental marks the means, company, or complement.",
-   "id": "c11"
   },
   {
    "sentence": "— Кожуху надо приказ послать — выбран ___.",
@@ -137,78 +67,22 @@
    ],
    "correct": "новый командующий",
    "case": "Именительный (Nominative)",
-   "explain": "«новый командующий» — the subject of the sentence stands in the nominative.",
+   "explain": "«новый командующий» is the subject of «выбран» — who or what does it — so nominative.",
    "id": "c12"
   },
   {
    "sentence": "Он поднялся во весь свой ___, и не столько слова, сколько могучая фигура с красиво протянутой рукой были убедительны.",
    "lemma": "рост",
    "options": [
-    "громадного роста",
-    "громадном росте",
+    "громадному росту",
+    "громадный рост",
     "громадным ростом",
-    "громадный рост"
+    "громадного роста"
    ],
    "correct": "громадный рост",
    "case": "Винительный (Accusative)",
-   "explain": "«громадный рост» — after the preposition «во», the accusative marks the direct object of the verb.",
+   "explain": "«громадный рост» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c13"
-  },
-  {
-   "sentence": "Он поднялся во весь свой громадный рост, и не столько слова, сколько ___ с красиво протянутой рукой были убедительны.",
-   "lemma": "фигура",
-   "options": [
-    "могучей фигуре",
-    "могучей фигуры",
-    "могучая фигура",
-    "могучей фигурой"
-   ],
-   "correct": "могучая фигура",
-   "case": "Именительный (Nominative)",
-   "explain": "«могучая фигура» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
-  },
-  {
-   "sentence": "Солдаты слушали неподвижно, не сводя глаз, потом с ___, всякими хитростями, иногда с дракой доставали приказ, расправляли на коленях, свертывали собачью ножку и закуривали.",
-   "lemma": "усилие",
-   "options": [
-    "больших усилиях",
-    "большим усилиям",
-    "большие усилия",
-    "большими усилиями"
-   ],
-   "correct": "большими усилиями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«большими усилиями» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c15"
-  },
-  {
-   "sentence": "Кожуху тоже посылали приказы, но он каждый день уходил все дальше и дальше, и все больше ___ ложилось между ними безлюдное шоссе.",
-   "lemma": "пространство",
-   "options": [
-    "пустого пространства",
-    "пустое пространство",
-    "пустым пространством",
-    "пустом пространстве"
-   ],
-   "correct": "пустым пространством",
-   "case": "Творительный (Instrumental)",
-   "explain": "«пустым пространством» — the instrumental marks the means, company, or complement.",
-   "id": "c16"
-  },
-  {
-   "sentence": "Нам необходимо самим выработать план, наш ___.",
-   "lemma": "план",
-   "options": [
-    "собственный план",
-    "собственном плане",
-    "собственному плану",
-    "собственного плана"
-   ],
-   "correct": "собственный план",
-   "case": "Именительный (Nominative)",
-   "explain": "«собственный план» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
   },
   {
    "sentence": "Он хочет берегом дойти до перевальной ___, которая от моря через горы в кубанские степи идет, а мы двинемся сейчас вот отсюда, через хребет, через Дофиновку, — тут старая дорога через горы, и будет короче.",
@@ -221,36 +95,8 @@
    ],
    "correct": "шоссейной дороги",
    "case": "Родительный (Genitive)",
-   "explain": "«шоссейной дороги» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«шоссейной дороги» — «до» always takes the genitive.",
    "id": "c18"
-  },
-  {
-   "sentence": "Он хочет берегом дойти до перевальной шоссейной дороги, которая от моря через горы в кубанские степи идет, а мы двинемся сейчас вот отсюда, через хребет, через Дофиновку, — тут ___ через горы, и будет короче.",
-   "lemma": "дорога",
-   "options": [
-    "старая дорога",
-    "старой дорогой",
-    "старой дороге",
-    "старой дороги"
-   ],
-   "correct": "старая дорога",
-   "case": "Именительный (Nominative)",
-   "explain": "«старая дорога» — the subject of the sentence stands in the nominative.",
-   "id": "c20"
-  },
-  {
-   "sentence": "Без артиллерии казаки нас ___ заберут, да к тому же разобьют по частям — отдельно Кожуха, отдельно нас.",
-   "lemma": "рука",
-   "options": [
-    "голые руки",
-    "голых руках",
-    "голых рук",
-    "голыми руками"
-   ],
-   "correct": "голыми руками",
-   "case": "Творительный (Instrumental)",
-   "explain": "«голыми руками» — the instrumental marks the means, company, or complement.",
-   "id": "c22"
   }
  ]
 }

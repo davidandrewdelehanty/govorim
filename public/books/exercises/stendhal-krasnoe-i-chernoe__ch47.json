@@ -1,31 +1,17 @@
 {
  "cases": [
   {
-   "sentence": "Сколько пришлось бы сплавить вместе прекрасных ___, чтобы добиться такого страстного жеста?",
-   "lemma": "юноша",
-   "options": [
-    "светские юноши",
-    "светских юношей",
-    "светским юношам",
-    "светскими юношами"
-   ],
-   "correct": "светских юношей",
-   "case": "Родительный (Genitive)",
-   "explain": "«светских юношей» — the genitive here marks possession, absence, or quantity.",
-   "id": "c1"
-  },
-  {
    "sentence": "Сколько пришлось бы сплавить вместе прекрасных светских юношей, чтобы добиться такого ___?",
    "lemma": "жест",
    "options": [
-    "страстным жестом",
-    "страстного жеста",
+    "страстному жесту",
     "страстном жесте",
-    "страстный жест"
+    "страстного жеста",
+    "страстным жестом"
    ],
    "correct": "страстного жеста",
    "case": "Родительный (Genitive)",
-   "explain": "«страстного жеста» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«добиться» takes its object in the genitive.",
    "id": "c2"
   },
   {
@@ -39,36 +25,8 @@
    ],
    "correct": "приличный способ",
    "case": "Именительный (Nominative)",
-   "explain": "«приличный способ» — the subject of the sentence stands in the nominative.",
+   "explain": "«приличный способ» is the subject of «представился» — who or what does it — so nominative.",
    "id": "c3"
-  },
-  {
-   "sentence": "Жюльен, запершись накрепко в своей комнате, предавался самому ___.",
-   "lemma": "отчаяние",
-   "options": [
-    "неистового отчаяния",
-    "неистовому отчаянию",
-    "неистовое отчаяние",
-    "неистовом отчаянии"
-   ],
-   "correct": "неистовому отчаянию",
-   "case": "Дательный (Dative)",
-   "explain": "«неистовому отчаянию» — the dative marks the indirect object or recipient.",
-   "id": "c4"
-  },
-  {
-   "sentence": "Но хитрость, в отсутствии которой мы упрекаем Жюльена, не допустила бы того ___, который побудил его схватить шпагу и придал ему в ту минуту такую красоту в глазах мадемуазель де Ла Моль.",
-   "lemma": "порыв",
-   "options": [
-    "прекрасного порыва",
-    "прекрасный порыв",
-    "прекрасному порыву",
-    "прекрасном порыве"
-   ],
-   "correct": "прекрасного порыва",
-   "case": "Родительный (Genitive)",
-   "explain": "«прекрасного порыва» — the genitive here marks possession, absence, or quantity.",
-   "id": "c5"
   },
   {
    "sentence": "Этот благоприятный для Жюльена каприз продолжался ___; Матильда рисовала себе прелестные картины коротких мгновений ее любви к нему и сожалела о них.",
@@ -81,7 +39,7 @@
    ],
    "correct": "целый день",
    "case": "Винительный (Accusative)",
-   "explain": "«целый день» — the accusative marks the direct object of the verb.",
+   "explain": "«целый день» tells how long or how often, with no preposition — accusative.",
    "id": "c6"
   },
   {
@@ -90,12 +48,12 @@
    "options": [
     "прелестными картинами",
     "прелестных картинах",
-    "прелестных картин",
-    "прелестные картины"
+    "прелестные картины",
+    "прелестным картинам"
    ],
    "correct": "прелестные картины",
    "case": "Винительный (Accusative)",
-   "explain": "«прелестные картины» — the accusative marks the direct object of the verb.",
+   "explain": "«прелестные картины» is the direct object of «рисовала» (кого? что?) — accusative.",
    "id": "c7"
   },
   {
@@ -109,50 +67,22 @@
    ],
    "correct": "коротких мгновений",
    "case": "Родительный (Genitive)",
-   "explain": "«коротких мгновений» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«коротких мгновений» depends on the noun «картины» (whose? of what?) — genitive.",
    "id": "c8"
   },
   {
    "sentence": "После этого поступка, после всего происшедшего между ними не могло быть и речи об их ___.",
    "lemma": "разговор",
    "options": [
-    "прежними разговорами",
-    "прежние разговоры",
+    "прежних разговорах",
+    "прежним разговорам",
     "прежних разговоров",
-    "прежних разговорах"
+    "прежними разговорами"
    ],
    "correct": "прежних разговорах",
    "case": "Предложный (Prepositional)",
-   "explain": "«прежних разговорах» — after the preposition «об», for location or topic.",
+   "explain": "«прежних разговорах» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c9"
-  },
-  {
-   "sentence": "Она находила особое наслаждение в ___ разговоре и дошла до того, что стала описывать ему кратковременные порывы увлечения, которые она испытывала к господину де Круазнуа, к господину де Кейлюсу.",
-   "lemma": "род",
-   "options": [
-    "подобному роду",
-    "подобным родом",
-    "подобном роде",
-    "подобного рода"
-   ],
-   "correct": "подобного рода",
-   "case": "Родительный (Genitive)",
-   "explain": "«подобного рода» — the genitive here marks possession, absence, or quantity.",
-   "id": "c10"
-  },
-  {
-   "sentence": "Она находила особое наслаждение в подобного рода разговоре и дошла до того, что стала описывать ему ___ увлечения, которые она испытывала к господину де Круазнуа, к господину де Кейлюсу.",
-   "lemma": "порыв",
-   "options": [
-    "кратковременным порывам",
-    "кратковременные порывы",
-    "кратковременных порывах",
-    "кратковременных порывов"
-   ],
-   "correct": "кратковременные порывы",
-   "case": "Винительный (Accusative)",
-   "explain": "«кратковременные порывы» — the accusative marks the direct object of the verb.",
-   "id": "c11"
   },
   {
    "sentence": "Она продолжала мучить Жюльена, самым живописным и самым правдивым образом рассказывая ему все подробности своих ___.",
@@ -165,7 +95,7 @@
    ],
    "correct": "прежних чувств",
    "case": "Родительный (Genitive)",
-   "explain": "«прежних чувств» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«прежних чувств» depends on the noun «подробности» (whose? of what?) — genitive.",
    "id": "c12"
   },
   {
@@ -179,162 +109,78 @@
    ],
    "correct": "собственном сердце",
    "case": "Предложный (Prepositional)",
-   "explain": "«собственном сердце» — after the preposition «в», for location or topic.",
+   "explain": "«собственном сердце» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c13"
-  },
-  {
-   "sentence": "Ревность не может доставить ___.",
-   "lemma": "мучение",
-   "options": [
-    "большем мучении",
-    "большего мучения",
-    "большее мучение",
-    "большим мучением"
-   ],
-   "correct": "большего мучения",
-   "case": "Родительный (Genitive)",
-   "explain": "«большего мучения» — the genitive here marks possession, absence, or quantity.",
-   "id": "c14"
-  },
-  {
-   "sentence": "С каким прочувствованным и искренним горем преувеличивал он теперь все их ___.",
-   "lemma": "преимущество",
-   "options": [
-    "маленькие преимущества",
-    "маленьких преимуществах",
-    "маленьким преимуществам",
-    "маленькими преимуществами"
-   ],
-   "correct": "маленькие преимущества",
-   "case": "Именительный (Nominative)",
-   "explain": "«маленькие преимущества» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
   },
   {
    "sentence": "Он слушал ___ в любви к другим в той самой липовой аллее, где так недавно ждал, когда пробьет час, чтобы подняться к ней в комнату.",
    "lemma": "признание",
    "options": [
-    "подробных признаний",
-    "подробным признаниям",
+    "подробных признаниях",
+    "подробными признаниями",
     "подробные признания",
-    "подробными признаниями"
+    "подробным признаниям"
    ],
    "correct": "подробные признания",
    "case": "Винительный (Accusative)",
-   "explain": "«подробные признания» — the accusative marks the direct object of the verb.",
+   "explain": "«подробные признания» is the direct object of «слушал» (кого? что?) — accusative.",
    "id": "c16"
-  },
-  {
-   "sentence": "Он слушал подробные признания в любви к другим в той самой ___, где так недавно ждал, когда пробьет час, чтобы подняться к ней в комнату.",
-   "lemma": "аллея",
-   "options": [
-    "липовой аллеей",
-    "липовая аллея",
-    "липовой аллеи",
-    "липовой аллее"
-   ],
-   "correct": "липовой аллее",
-   "case": "Предложный (Prepositional)",
-   "explain": "«липовой аллее» — after the preposition «в», for location or topic.",
-   "id": "c17"
-  },
-  {
-   "sentence": "Большего горя ___ не могла бы вынести.",
-   "lemma": "природа",
-   "options": [
-    "человеческой природы",
-    "человеческая природа",
-    "человеческой природе",
-    "человеческой природой"
-   ],
-   "correct": "человеческая природа",
-   "case": "Именительный (Nominative)",
-   "explain": "«человеческая природа» — the subject of the sentence stands in the nominative.",
-   "id": "c18"
-  },
-  {
-   "sentence": "Она почти дословно передавала ему содержание своих писем, приводила наизусть ___.",
-   "lemma": "фраза",
-   "options": [
-    "целые фразы",
-    "целых фразах",
-    "целым фразам",
-    "целых фраз"
-   ],
-   "correct": "целые фразы",
-   "case": "Винительный (Accusative)",
-   "explain": "«целые фразы» — the accusative marks the direct object of the verb.",
-   "id": "c19"
   },
   {
    "sentence": "В ___ она, казалось, посматривала на Жюльена с какой-то лукавой радостью.",
    "lemma": "день",
    "options": [
-    "последних дней",
     "последним дням",
     "последние дни",
-    "последних днях"
+    "последних дней",
+    "последними днями"
    ],
    "correct": "последние дни",
    "case": "Винительный (Accusative)",
-   "explain": "«последние дни» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«последние дни» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c20"
   },
   {
    "sentence": "Из всего этого видно, что Жюльен не имел никакого ___, что он даже не читал романов.",
    "lemma": "опыт",
    "options": [
-    "житейскому опыту",
+    "житейского опыта",
     "житейском опыте",
-    "житейский опыт",
-    "житейского опыта"
+    "житейскому опыту",
+    "житейским опытом"
    ],
    "correct": "житейского опыта",
    "case": "Родительный (Genitive)",
-   "explain": "«житейского опыта» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«житейского опыта» is the object of a negated verb («не имел») — genitive instead of the accusative.",
    "id": "c21"
   },
   {
    "sentence": "В ___ Жюльен, наивный даже в несчастье, часто искренно восхвалял блестящие качества этих господ и доходил до преувеличения.",
    "lemma": "день",
    "options": [
-    "предыдущие дни",
+    "предыдущими днями",
+    "предыдущих дней",
     "предыдущим дням",
-    "предыдущих днях",
-    "предыдущих дней"
+    "предыдущие дни"
    ],
    "correct": "предыдущие дни",
    "case": "Винительный (Accusative)",
-   "explain": "«предыдущие дни» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«предыдущие дни» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c22"
   },
   {
    "sentence": "В предыдущие дни Жюльен, наивный даже в несчастье, часто искренно восхвалял ___ этих господ и доходил до преувеличения.",
    "lemma": "качество",
    "options": [
-    "блестящих качеств",
     "блестящих качествах",
+    "блестящими качествами",
     "блестящие качества",
-    "блестящими качествами"
+    "блестящим качествам"
    ],
    "correct": "блестящие качества",
    "case": "Винительный (Accusative)",
-   "explain": "«блестящие качества» — the accusative marks the direct object of the verb.",
+   "explain": "«блестящие качества» is the direct object of «восхвалял» (кого? что?) — accusative.",
    "id": "c23"
-  },
-  {
-   "sentence": "___ Жюльена, восхваляя счастливого соперника, сочувствовала его успеху.",
-   "lemma": "душа",
-   "options": [
-    "пылкая душа",
-    "пылкой душе",
-    "пылкой души",
-    "пылкой душой"
-   ],
-   "correct": "пылкая душа",
-   "case": "Именительный (Nominative)",
-   "explain": "«Пылкая душа» — the subject of the sentence stands in the nominative.",
-   "id": "c24"
   },
   {
    "sentence": "Пылкая душа Жюльена, восхваляя ___, сочувствовала его успеху.",
@@ -347,7 +193,7 @@
    ],
    "correct": "счастливого соперника",
    "case": "Винительный (Accusative)",
-   "explain": "«счастливого соперника» — the accusative marks the direct object of the verb.",
+   "explain": "«счастливого соперника» is the direct object of «восхваляя» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c25"
   },
   {
@@ -361,78 +207,36 @@
    ],
    "correct": "нелепые слова",
    "case": "Именительный (Nominative)",
-   "explain": "«нелепые слова» — the subject of the sentence stands in the nominative.",
+   "explain": "«нелепые слова» is the subject of «произнесены» — who or what does it — so nominative.",
    "id": "c26"
   },
   {
    "sentence": "Она тотчас же оставила его, и в ее ___ выражалось самое ужасное презрение.",
    "lemma": "взгляд",
    "options": [
+    "прощальном взгляде",
     "прощальному взгляду",
-    "прощальный взгляд",
-    "прощальным взглядом",
-    "прощальном взгляде"
+    "прощального взгляда",
+    "прощальным взглядом"
    ],
    "correct": "прощальном взгляде",
    "case": "Предложный (Prepositional)",
-   "explain": "«прощальном взгляде» — after the preposition «в», for location or topic.",
+   "explain": "«прощальном взгляде» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c27"
-  },
-  {
-   "sentence": "Она тотчас же оставила его, и в ее прощальном взгляде выражалось самое ___.",
-   "lemma": "презрение",
-   "options": [
-    "ужасное презрение",
-    "ужасного презрения",
-    "ужасным презрением",
-    "ужасному презрению"
-   ],
-   "correct": "ужасное презрение",
-   "case": "Именительный (Nominative)",
-   "explain": "«ужасное презрение» — the subject of the sentence stands in the nominative.",
-   "id": "c28"
-  },
-  {
-   "sentence": "Чувство Матильды дошло даже до отвращения, и ничем невозможно передать ___, которое она испытывала при встречах с ним.",
-   "lemma": "презрение",
-   "options": [
-    "крайнем презрении",
-    "крайнему презрению",
-    "крайнее презрение",
-    "крайнего презрения"
-   ],
-   "correct": "крайнего презрения",
-   "case": "Родительный (Genitive)",
-   "explain": "«крайнего презрения» — the genitive here marks possession, absence, or quantity.",
-   "id": "c29"
   },
   {
    "sentence": "«Мужество ___ имеет предел», — думал он.",
    "lemma": "сердце",
    "options": [
-    "человеческим сердцем",
+    "человеческому сердцу",
     "человеческого сердца",
     "человеческом сердце",
     "человеческое сердце"
    ],
    "correct": "человеческого сердца",
    "case": "Родительный (Genitive)",
-   "explain": "«человеческого сердца» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«человеческого сердца» depends on the noun «Мужество» (whose? of what?) — genitive.",
    "id": "c30"
-  },
-  {
-   "sentence": "___ Жюльен проводил под самой крышей у маленького окошечка; ставни были тщательно закрыты, но, по крайней мере, оттуда он мог наблюдать за мадемуазель де Ла Моль, когда она выходила в сад.",
-   "lemma": "день",
-   "options": [
-    "целых дней",
-    "целых днях",
-    "целыми днями",
-    "целые дни"
-   ],
-   "correct": "целые дни",
-   "case": "Винительный (Accusative)",
-   "explain": "«Целые дни» — the accusative marks the direct object of the verb.",
-   "id": "c31"
   },
   {
    "sentence": "Целые дни Жюльен проводил под ___ у маленького окошечка; ставни были тщательно закрыты, но, по крайней мере, оттуда он мог наблюдать за мадемуазель де Ла Моль, когда она выходила в сад.",
@@ -445,7 +249,7 @@
    ],
    "correct": "самой крышей",
    "case": "Творительный (Instrumental)",
-   "explain": "«самой крышей» — after the preposition «под», the instrumental marks the means, company, or complement.",
+   "explain": "«самой крышей» — «под» takes the instrumental here (где? под чем?) — the accusative would mean movement under (куда? под что?).",
    "id": "c32"
   },
   {
@@ -459,22 +263,8 @@
    ],
    "correct": "маленького окошечка",
    "case": "Родительный (Genitive)",
-   "explain": "«маленького окошечка» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«маленького окошечка» — «у» always takes the genitive.",
    "id": "c33"
-  },
-  {
-   "sentence": "Эта ___ была потрясена до самого основания.",
-   "lemma": "душа",
-   "options": [
-    "сильной души",
-    "сильная душа",
-    "сильной душе",
-    "сильной душой"
-   ],
-   "correct": "сильная душа",
-   "case": "Именительный (Nominative)",
-   "explain": "«сильная душа» — the subject of the sentence stands in the nominative.",
-   "id": "c34"
   },
   {
    "sentence": "Эта сильная душа была потрясена до ___.",
@@ -487,7 +277,7 @@
    ],
    "correct": "самого основания",
    "case": "Родительный (Genitive)",
-   "explain": "«самого основания» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«самого основания» — «до» always takes the genitive.",
    "id": "c35"
   },
   {
@@ -501,22 +291,8 @@
    ],
    "correct": "будущим путешествием",
    "case": "Творительный (Instrumental)",
-   "explain": "«будущим путешествием» — after the preposition «над», the instrumental marks the means, company, or complement.",
+   "explain": "«будущим путешествием» — «над» always takes the instrumental.",
    "id": "c36"
-  },
-  {
-   "sentence": "Уже несколько дней Жюльен избегал ее, а блестящие ___, обладавшие всем, чего не хватало этому бледному и мрачному созданию, которое она прежде любила, не могли вывести ее из мечтательности.",
-   "lemma": "человек",
-   "options": [
-    "молодых людей",
-    "молодые люди",
-    "молодыми людьми",
-    "молодых людях"
-   ],
-   "correct": "молодые люди",
-   "case": "Именительный (Nominative)",
-   "explain": "«молодые люди» — the subject of the sentence stands in the nominative.",
-   "id": "c37"
   }
  ]
 }

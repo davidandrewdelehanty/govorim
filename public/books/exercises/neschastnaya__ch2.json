@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Он жил у своей матери, довольно ___, статской советницы, в отдельном флигельке, на полной свободе, так же как я у тётушки.",
-   "lemma": "женщина",
-   "options": [
-    "богатой женщиной",
-    "богатая женщина",
-    "богатой женщине",
-    "богатой женщины"
-   ],
-   "correct": "богатой женщины",
-   "case": "Родительный (Genitive)",
-   "explain": "«богатой женщины» — the genitive here marks possession, absence, or quantity.",
-   "id": "c1"
-  },
-  {
    "sentence": "Он жил у своей матери, довольно богатой женщины, статской советницы, в отдельном флигельке, на ___, так же как я у тётушки.",
    "lemma": "свобода",
    "options": [
@@ -25,22 +11,8 @@
    ],
    "correct": "полной свободе",
    "case": "Предложный (Prepositional)",
-   "explain": "«полной свободе» — after the preposition «на», for location or topic.",
+   "explain": "«полной свободе» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c3"
-  },
-  {
-   "sentence": "В жизни моей я ещё не встречал ___ более «симпатичного».",
-   "lemma": "человек",
-   "options": [
-    "молодого человека",
-    "молодом человеке",
-    "молодой человек",
-    "молодому человеку"
-   ],
-   "correct": "молодого человека",
-   "case": "Винительный (Accusative)",
-   "explain": "«молодого человека» — the accusative marks the direct object of the verb.",
-   "id": "c4"
   },
   {
    "sentence": "Всякое излишество, даже в ___, его оскорбляло: «Это дико, дико», — говаривал он в таком случае, чуть-чуть пожимаясь и прищуривая свои золотистые глаза.",
@@ -53,49 +25,21 @@
    ],
    "correct": "хорошем чувстве",
    "case": "Предложный (Prepositional)",
-   "explain": "«хорошем чувстве» — after the preposition «в», for location or topic.",
+   "explain": "«хорошем чувстве» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c5"
-  },
-  {
-   "sentence": "Всякое излишество, даже в хорошем чувстве, его оскорбляло: «Это дико, дико», — говаривал он в таком случае, чуть-чуть пожимаясь и прищуривая свои ___.",
-   "lemma": "глаз",
-   "options": [
-    "золотистые глаза",
-    "золотистыми глазами",
-    "золотистым глазам",
-    "золотистых глаз"
-   ],
-   "correct": "золотистые глаза",
-   "case": "Винительный (Accusative)",
-   "explain": "«золотистые глаза» — the accusative marks the direct object of the verb.",
-   "id": "c6"
-  },
-  {
-   "sentence": "Природа наделила его ___.",
-   "lemma": "способность",
-   "options": [
-    "разнообразных способностей",
-    "разнообразными способностями",
-    "разнообразным способностям",
-    "разнообразные способности"
-   ],
-   "correct": "разнообразными способностями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«разнообразными способностями» — the instrumental marks the means, company, or complement.",
-   "id": "c7"
   },
   {
    "sentence": "Он вообще говорил мало и в наших ___ участвовал больше оживлённою мягкостью взгляда и улыбки.",
    "lemma": "беседа",
    "options": [
-    "студенческих беседах",
-    "студенческие беседы",
     "студенческими беседами",
+    "студенческих беседах",
+    "студенческих бесед",
     "студенческим беседам"
    ],
    "correct": "студенческих беседах",
    "case": "Предложный (Prepositional)",
-   "explain": "«студенческих беседах» — after the preposition «в», for location or topic.",
+   "explain": "«студенческих беседах» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c8"
   },
   {
@@ -104,12 +48,12 @@
    "options": [
     "женскому полу",
     "женским полом",
-    "женского пола",
-    "женском поле"
+    "женском поле",
+    "женский пол"
    ],
    "correct": "женскому полу",
    "case": "Дательный (Dative)",
-   "explain": "«Женскому полу» — the dative marks the indirect object or recipient.",
+   "explain": "«нравился» takes the dative (кому? чему?).",
    "id": "c9"
   },
   {
@@ -123,36 +67,8 @@
    ],
    "correct": "молодых людей",
    "case": "Родительный (Genitive)",
-   "explain": "«молодых людей» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«молодых людей» — «для» always takes the genitive.",
    "id": "c10"
-  },
-  {
-   "sentence": "Женскому полу Фустов нравился безусловно, но об этом, для молодых людей весьма ___, не любил распространяться и вполне заслуживал данное ему товарищами прозвище «скромного Дон-Жуана».",
-   "lemma": "вопрос",
-   "options": [
-    "важный вопрос",
-    "важном вопросе",
-    "важного вопроса",
-    "важным вопросом"
-   ],
-   "correct": "важном вопросе",
-   "case": "Предложный (Prepositional)",
-   "explain": "«важном вопросе» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c11"
-  },
-  {
-   "sentence": "В моих глазах Фустов был самым ___ на свете.",
-   "lemma": "человек",
-   "options": [
-    "счастливым человеком",
-    "счастливом человеке",
-    "счастливого человека",
-    "счастливый человек"
-   ],
-   "correct": "счастливым человеком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«счастливым человеком» — the instrumental marks the means, company, or complement.",
-   "id": "c12"
   },
   {
    "sentence": "Мать, братья, сёстры, тётки, дядья — все его обожали, он жил с ними со всеми в ладах необыкновенных и пользовался репутацией ___.",
@@ -165,7 +81,7 @@
    ],
    "correct": "образцового родственника",
    "case": "Родительный (Genitive)",
-   "explain": "«образцового родственника» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«образцового родственника» depends on the noun «репутацией» (whose? of what?) — genitive.",
    "id": "c13"
   }
  ]

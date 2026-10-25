@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "___ девки белелся в темной улице.",
-   "lemma": "платок",
-   "options": [
-    "белого платка",
-    "белом платке",
-    "белый платок",
-    "белым платком"
-   ],
-   "correct": "белый платок",
-   "case": "Именительный (Nominative)",
-   "explain": "«Белый платок» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "___ стоял над станицей.",
    "lemma": "туман",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "серебристый туман",
    "case": "Именительный (Nominative)",
-   "explain": "«Серебристый туман» — the subject of the sentence stands in the nominative.",
+   "explain": "«серебристый туман» is the subject of «стоял» — who or what does it — so nominative.",
    "id": "c2"
   },
   {
@@ -39,21 +25,21 @@
    ],
    "correct": "белый платок",
    "case": "Именительный (Nominative)",
-   "explain": "«Белый платок» — the subject of the sentence stands in the nominative.",
+   "explain": "«белый платок» is the subject of «скрылся» — who or what does it — so nominative.",
    "id": "c3"
   },
   {
    "sentence": "Он ___ провел с ней вдвоем в углу, около печки.",
    "lemma": "вечер",
    "options": [
+    "целом вечере",
+    "целый вечер",
     "целым вечером",
-    "целого вечера",
-    "целому вечеру",
-    "целый вечер"
+    "целому вечеру"
    ],
    "correct": "целый вечер",
    "case": "Винительный (Accusative)",
-   "explain": "«целый вечер» — the accusative marks the direct object of the verb.",
+   "explain": "«целый вечер» is the direct object of «провел» (кого? что?) — accusative.",
    "id": "c4"
   },
   {
@@ -67,36 +53,8 @@
    ],
    "correct": "другими девками",
    "case": "Творительный (Instrumental)",
-   "explain": "«другими девками» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«другими девками» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c5"
-  },
-  {
-   "sentence": "-- Смотри тогда ___ не люби!",
-   "lemma": "баба",
-   "options": [
-    "другими бабами",
-    "другим бабам",
-    "других бабах",
-    "других баб"
-   ],
-   "correct": "других баб",
-   "case": "Родительный (Genitive)",
-   "explain": "«других баб» — the genitive here marks possession, absence, or quantity.",
-   "id": "c6"
-  },
-  {
-   "sentence": "Ее нисколько, казалось, не волновало это ___.",
-   "lemma": "положение",
-   "options": [
-    "новому положению",
-    "новом положении",
-    "нового положения",
-    "новое положение"
-   ],
-   "correct": "новое положение",
-   "case": "Именительный (Nominative)",
-   "explain": "«новое положение» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
   },
   {
    "sentence": "Лукашка после двух ___ так много выпил на празднике, что свалился в первый раз с ног и спал у Ямки.",
@@ -109,7 +67,7 @@
    ],
    "correct": "бессонных ночей",
    "case": "Родительный (Genitive)",
-   "explain": "«бессонных ночей» — after the preposition «после», the genitive here marks possession, absence, or quantity.",
+   "explain": "«бессонных ночей» — «после» always takes the genitive.",
    "id": "c8"
   },
   {
@@ -123,7 +81,7 @@
    ],
    "correct": "первый раз",
    "case": "Винительный (Accusative)",
-   "explain": "«первый раз» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«первый раз» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c9"
   }
  ]

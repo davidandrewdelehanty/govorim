@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Жила-была на свете женщина — ___, и были у нее две дочери.",
-   "lemma": "ведьма",
-   "options": [
-    "настоящей ведьмы",
-    "настоящая ведьма",
-    "настоящей ведьмой",
-    "настоящей ведьме"
-   ],
-   "correct": "настоящая ведьма",
-   "case": "Именительный (Nominative)",
-   "explain": "«настоящая ведьма» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Однажды падчерица надела фартучек, и он до такой степени понравился ее ___, что та, завидуя, потребовала у матери и себе такого же фартучка.",
    "lemma": "сестра",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "названой сестре",
    "case": "Дательный (Dative)",
-   "explain": "«названой сестре» — the dative marks the indirect object or recipient.",
+   "explain": "«понравился» takes the dative (кому? чему?).",
    "id": "c2"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "укромного уголка",
    "case": "Родительный (Genitive)",
-   "explain": "«укромного уголка» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«укромного уголка» — «из» always takes the genitive.",
    "id": "c3"
   },
   {
@@ -53,50 +39,8 @@
    ],
    "correct": "целый день",
    "case": "Винительный (Accusative)",
-   "explain": "«целый день» — after the preposition «за», the accusative marks the direct object of the verb.",
+   "explain": "«целый день» — «за» takes the accusative here (куда? за что? за кого?) — the instrumental would mean position behind or at (где? за чем?).",
    "id": "c4"
-  },
-  {
-   "sentence": "За целый день ___ не посмела даже и шагу ступить за порог дома.",
-   "lemma": "падчерица",
-   "options": [
-    "бедной падчерицы",
-    "бедной падчерице",
-    "бедная падчерица",
-    "бедной падчерицей"
-   ],
-   "correct": "бедная падчерица",
-   "case": "Именительный (Nominative)",
-   "explain": "«бедная падчерица» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
-  },
-  {
-   "sentence": "А когда вечером пришло время спать ложиться, ___ должна была первая улечься в постель, чтобы ее злая сестра, как и велела ей мать, могла лечь позади.",
-   "lemma": "девушка",
-   "options": [
-    "бедная девушка",
-    "бедной девушке",
-    "бедной девушки",
-    "бедной девушкой"
-   ],
-   "correct": "бедная девушка",
-   "case": "Именительный (Nominative)",
-   "explain": "«бедная девушка» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
-  },
-  {
-   "sentence": "А когда вечером пришло время спать ложиться, бедная девушка должна была первая улечься в постель, чтобы ее ___, как и велела ей мать, могла лечь позади.",
-   "lemma": "сестра",
-   "options": [
-    "злой сестрой",
-    "злой сестры",
-    "злая сестра",
-    "злой сестре"
-   ],
-   "correct": "злая сестра",
-   "case": "Именительный (Nominative)",
-   "explain": "«злая сестра» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
   },
   {
    "sentence": "Среди ночи старуха подкралась к постели, держа в ___ топор, а левой ощупала, лежит ли кто-нибудь, выдвинувшись головой вперед.",
@@ -109,21 +53,21 @@
    ],
    "correct": "правой руке",
    "case": "Предложный (Prepositional)",
-   "explain": "«правой руке» — after the preposition «в», for location or topic.",
+   "explain": "«правой руке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c8"
   },
   {
    "sentence": "Девушка принесла ___ ведьмы, а затем взяла отрубленную голову сестры и накапала три капли крови: одну перед постелью на полу, одну в кухне и одну на лестнице.",
    "lemma": "жезл",
    "options": [
+    "волшебным жезлом",
     "волшебный жезл",
-    "волшебном жезле",
-    "волшебного жезла",
-    "волшебным жезлом"
+    "волшебному жезлу",
+    "волшебном жезле"
    ],
    "correct": "волшебный жезл",
    "case": "Винительный (Accusative)",
-   "explain": "«волшебный жезл» — the accusative marks the direct object of the verb.",
+   "explain": "«волшебный жезл» is the direct object of «принесла» (кого? что?) — accusative.",
    "id": "c9"
   },
   {
@@ -137,7 +81,7 @@
    ],
    "correct": "старая ведьма",
    "case": "Именительный (Nominative)",
-   "explain": "«старая ведьма» — the subject of the sentence stands in the nominative.",
+   "explain": "«старая ведьма» is the subject of «проснулась» — who or what does it — so nominative.",
    "id": "c10"
   },
   {
@@ -151,105 +95,49 @@
    ],
    "correct": "вторая капелька",
    "case": "Именительный (Nominative)",
-   "explain": "«вторая капелька» — the subject of the sentence stands in the nominative.",
+   "explain": "«вторая капелька» is the subject of «отвечала» — who or what does it — so nominative.",
    "id": "c11"
   },
   {
    "sentence": "«Да где же ты?» — закричала она дочке в ___.",
    "lemma": "раз",
    "options": [
-    "третьему разу",
-    "третьем разе",
     "третий раз",
-    "третьим разом"
+    "третьему разу",
+    "третьим разом",
+    "третьего раза"
    ],
    "correct": "третий раз",
    "case": "Винительный (Accusative)",
-   "explain": "«третий раз» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«третий раз» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c12"
-  },
-  {
-   "sentence": "«Ах, да здесь же я, в постели, сплю», — крикнула ведьме ___ крови.",
-   "lemma": "капелька",
-   "options": [
-    "третья капелька",
-    "третьей капельки",
-    "третьей капельке",
-    "третьей капелькой"
-   ],
-   "correct": "третья капелька",
-   "case": "Именительный (Nominative)",
-   "explain": "«третья капелька» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
-  },
-  {
-   "sentence": "Но, завидев издали старуху-ведьму, девушка обратила при помощи ___ своего милого в озеро, а сама обернулась уточкой и стала среди того озера плавать.",
-   "lemma": "жезл",
-   "options": [
-    "волшебный жезл",
-    "волшебном жезле",
-    "волшебного жезла",
-    "волшебному жезлу"
-   ],
-   "correct": "волшебного жезла",
-   "case": "Родительный (Genitive)",
-   "explain": "«волшебного жезла» — after the preposition «при», the genitive here marks possession, absence, or quantity.",
-   "id": "c14"
-  },
-  {
-   "sentence": "А падчерица ее со своим милым снова приняли свой ___ и еще целую ночь шли путем-дорогою до рассвета.",
-   "lemma": "вид",
-   "options": [
-    "обычного вида",
-    "обычным видом",
-    "обычный вид",
-    "обычном виде"
-   ],
-   "correct": "обычный вид",
-   "case": "Винительный (Accusative)",
-   "explain": "«обычный вид» — the accusative marks the direct object of the verb.",
-   "id": "c15"
   },
   {
    "sentence": "А на рассвете падчерица обернулась сама в ___ среди терновой изгороди, а своего милого Роланда обернула в музыканта со скрипкой.",
    "lemma": "цветок",
    "options": [
-    "прекрасном цветке",
-    "прекрасному цветку",
     "прекрасным цветком",
-    "прекрасный цветок"
+    "прекрасного цветка",
+    "прекрасный цветок",
+    "прекрасному цветку"
    ],
    "correct": "прекрасный цветок",
    "case": "Винительный (Accusative)",
-   "explain": "«прекрасный цветок» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«прекрасный цветок» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c16"
-  },
-  {
-   "sentence": "— «Ну, так я покамест здесь останусь, — сказала девушка, — и подожду тебя; а для того, чтобы никто меня не узнал, я обернусь ___».",
-   "lemma": "камень",
-   "options": [
-    "красноватого камня",
-    "красноватый камень",
-    "красноватым камнем",
-    "красноватом камне"
-   ],
-   "correct": "красноватым камнем",
-   "case": "Творительный (Instrumental)",
-   "explain": "«красноватым камнем» — the instrumental marks the means, company, or complement.",
-   "id": "c17"
   },
   {
    "sentence": "Роланд ушел, а девушка, превратившись в ___, осталась на поле и стала ждать своего милого.",
    "lemma": "камень",
    "options": [
+    "красноватым камнем",
     "красноватого камня",
     "красноватый камень",
-    "красноватом камне",
-    "красноватым камнем"
+    "красноватому камню"
    ],
    "correct": "красноватый камень",
    "case": "Винительный (Accusative)",
-   "explain": "«красноватый камень» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«красноватый камень» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c18"
   },
   {
@@ -263,64 +151,22 @@
    ],
    "correct": "другой женщине",
    "case": "Дательный (Dative)",
-   "explain": "«другой женщине» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«другой женщине» — «к» always takes the dative.",
    "id": "c19"
-  },
-  {
-   "sentence": "А в полдень, когда он возвращался домой, у него уже и стол был накрыт, и ___ на стол подано.",
-   "lemma": "кушанье",
-   "options": [
-    "хорошем кушанье",
-    "хорошего кушанья",
-    "хорошее кушанье",
-    "хорошим кушаньем"
-   ],
-   "correct": "хорошее кушанье",
-   "case": "Именительный (Nominative)",
-   "explain": "«хорошее кушанье» — the subject of the sentence stands in the nominative.",
-   "id": "c20"
   },
   {
    "sentence": "Пастух поступил, как ему было сказано, и на другое утро на ___ он увидел, как ящик стола открылся и цветок из него вышел.",
    "lemma": "рассвет",
    "options": [
-    "самого рассвета",
     "самом рассвете",
     "самому рассвету",
-    "сам рассвет"
+    "самого рассвета",
+    "самим рассветом"
    ],
    "correct": "самом рассвете",
    "case": "Предложный (Prepositional)",
-   "explain": "«самом рассвете» — after the preposition «на», for location or topic.",
+   "explain": "«самом рассвете» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c21"
-  },
-  {
-   "sentence": "Подскочил он к цветку и набросил на него ___.",
-   "lemma": "платок",
-   "options": [
-    "белому платку",
-    "белом платке",
-    "белым платком",
-    "белый платок"
-   ],
-   "correct": "белый платок",
-   "case": "Винительный (Accusative)",
-   "explain": "«белый платок» — the accusative marks the direct object of the verb.",
-   "id": "c22"
-  },
-  {
-   "sentence": "И тотчас цветок обратился ___, и она созналась ему, что была цветком и в виде цветка присматривала за его домашним хозяйством.",
-   "lemma": "девушка",
-   "options": [
-    "красивой девушкой",
-    "красивая девушка",
-    "красивой девушке",
-    "красивой девушки"
-   ],
-   "correct": "красивой девушкой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«красивой девушкой» — the instrumental marks the means, company, or complement.",
-   "id": "c23"
   },
   {
    "sentence": "И тотчас цветок обратился красивой девушкой, и она созналась ему, что была цветком и в виде цветка присматривала за его ___.",
@@ -333,50 +179,22 @@
    ],
    "correct": "домашним хозяйством",
    "case": "Творительный (Instrumental)",
-   "explain": "«домашним хозяйством» — after the preposition «за», the instrumental marks the means, company, or complement.",
+   "explain": "«домашним хозяйством» — «за» takes the instrumental here (где? за чем? за кем?) — the accusative would mean motion behind or 'for' (куда? за что?).",
    "id": "c24"
   },
   {
    "sentence": "Тут как раз подошло время свадьбы Роланда, и по ___ было по всей стране объявлено, чтобы все девушки собирались на свадьбу и славили молодых песнями.",
    "lemma": "обычай",
    "options": [
-    "старинного обычая",
-    "старинный обычай",
+    "старинном обычае",
+    "старинным обычаем",
     "старинному обычаю",
-    "старинном обычае"
+    "старинного обычая"
    ],
    "correct": "старинному обычаю",
    "case": "Дательный (Dative)",
-   "explain": "«старинному обычаю» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«старинному обычаю» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c25"
-  },
-  {
-   "sentence": "___, как услыхала об этом, так запечалилась, что у ней сердце разрывалось на части; она и не хотела идти на эту свадьбу, да другие девушки зашли за нею и увели ее с собою.",
-   "lemma": "девица",
-   "options": [
-    "красной девице",
-    "красной девицей",
-    "красная девица",
-    "красной девицы"
-   ],
-   "correct": "красная девица",
-   "case": "Именительный (Nominative)",
-   "explain": "«Красная девица» — the subject of the sentence stands in the nominative.",
-   "id": "c26"
-  },
-  {
-   "sentence": "Красная девица, как услыхала об этом, так запечалилась, что у ней сердце разрывалось на части; она и не хотела идти на эту свадьбу, да ___ зашли за нею и увели ее с собою.",
-   "lemma": "девушка",
-   "options": [
-    "другие девушки",
-    "другим девушкам",
-    "других девушек",
-    "другими девушками"
-   ],
-   "correct": "другие девушки",
-   "case": "Именительный (Nominative)",
-   "explain": "«другие девушки» — the subject of the sentence stands in the nominative.",
-   "id": "c27"
   }
  ]
 }

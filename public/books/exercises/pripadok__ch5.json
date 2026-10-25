@@ -1,74 +1,18 @@
 {
  "cases": [
   {
-   "sentence": "И выкупивший, вольно или невольно, делал ее своей содержанкой, потом, кончив курс, уезжал и сдавал ее на руки другому ___, как какую-нибудь вещь.",
-   "lemma": "человек",
-   "options": [
-    "порядочный человек",
-    "порядочном человеке",
-    "порядочным человеком",
-    "порядочному человеку"
-   ],
-   "correct": "порядочному человеку",
-   "case": "Дательный (Dative)",
-   "explain": "«порядочному человеку» — the dative marks the indirect object or recipient.",
-   "id": "c3"
-  },
-  {
-   "sentence": "Кто-то из приятелей сказал однажды про Васильева, что он ___.",
-   "lemma": "человек",
-   "options": [
-    "талантливым человеком",
-    "талантливый человек",
-    "талантливого человека",
-    "талантливом человеке"
-   ],
-   "correct": "талантливый человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«талантливый человек» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
-  },
-  {
-   "sentence": "Есть таланты писательские, сценические, художнические, у него же ___ — человеческий.",
-   "lemma": "талант",
-   "options": [
-    "особый талант",
-    "особым талантом",
-    "особому таланту",
-    "особом таланте"
-   ],
-   "correct": "особый талант",
-   "case": "Именительный (Nominative)",
-   "explain": "«особый талант» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
-  },
-  {
    "sentence": "Как хороший актер отражает в себе ___ и голос, так Васильев умеет отражать в своей душе чужую боль.",
    "lemma": "движение",
    "options": [
+    "чужие движения",
     "чужими движениями",
-    "чужих движений",
-    "чужих движениях",
-    "чужие движения"
+    "чужим движениям",
+    "чужих движениях"
    ],
    "correct": "чужие движения",
    "case": "Винительный (Accusative)",
-   "explain": "«чужие движения» — the accusative marks the direct object of the verb.",
+   "explain": "«чужие движения» is the direct object of «отражает» (кого? что?) — accusative.",
    "id": "c10"
-  },
-  {
-   "sentence": "Когда потемнело, он вспомнил о той мучительной ночи, которая ожидает его, и ___ овладело им.",
-   "lemma": "отчаяние",
-   "options": [
-    "страшного отчаяния",
-    "страшное отчаяние",
-    "страшным отчаянием",
-    "страшному отчаянию"
-   ],
-   "correct": "страшное отчаяние",
-   "case": "Именительный (Nominative)",
-   "explain": "«страшное отчаяние» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
   },
   {
    "sentence": "Не спрашивая себя, куда идти, он быстро пошел по ___.",
@@ -81,7 +25,7 @@
    ],
    "correct": "садовой улице",
    "case": "Дательный (Dative)",
-   "explain": "«Садовой улице» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«садовой улице» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c12"
   },
   {
@@ -95,22 +39,8 @@
    ],
    "correct": "красных ворот",
    "case": "Родительный (Genitive)",
-   "explain": "«Красных ворот» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«красных ворот» — «до» always takes the genitive.",
    "id": "c13"
-  },
-  {
-   "sentence": "Он зашел в кабак и выпил ___ водки, но от этого не стало легче.",
-   "lemma": "стакан",
-   "options": [
-    "большой стакан",
-    "большим стаканом",
-    "большого стакана",
-    "большому стакану"
-   ],
-   "correct": "большой стакан",
-   "case": "Винительный (Accusative)",
-   "explain": "«большой стакан» — after the preposition «в», the accusative marks the direct object of the verb.",
-   "id": "c14"
   },
   {
    "sentence": "Он дошел до того ___, где шумит Яуза и откуда видны длинные ряды огней в окнах Красных казарм.",
@@ -123,22 +53,8 @@
    ],
    "correct": "старого моста",
    "case": "Родительный (Genitive)",
-   "explain": "«старого моста» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«старого моста» — «до» always takes the genitive.",
    "id": "c15"
-  },
-  {
-   "sentence": "Он дошел до того старого моста, где шумит Яуза и откуда видны ___ огней в окнах Красных казарм.",
-   "lemma": "ряд",
-   "options": [
-    "длинных рядов",
-    "длинными рядами",
-    "длинные ряды",
-    "длинным рядам"
-   ],
-   "correct": "длинные ряды",
-   "case": "Именительный (Nominative)",
-   "explain": "«длинные ряды» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
   },
   {
    "sentence": "Он дошел до того старого моста, где шумит Яуза и откуда видны длинные ряды огней в окнах ___.",
@@ -151,35 +67,21 @@
    ],
    "correct": "красных казарм",
    "case": "Родительный (Genitive)",
-   "explain": "«Красных казарм» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«красных казарм» depends on the noun «окнах» (whose? of what?) — genitive.",
    "id": "c17"
-  },
-  {
-   "sentence": "Чтобы отвлечь свою душевную боль каким-нибудь ___ или другою болью, не зная, что делать, плача и дрожа, Васильев расстегнул пальто и сюртук и подставил свою голую грудь сырому снегу и ветру.",
-   "lemma": "ощущение",
-   "options": [
-    "новому ощущению",
-    "нового ощущения",
-    "новом ощущении",
-    "новым ощущением"
-   ],
-   "correct": "новым ощущением",
-   "case": "Творительный (Instrumental)",
-   "explain": "«новым ощущением» — the instrumental marks the means, company, or complement.",
-   "id": "c18"
   },
   {
    "sentence": "Чтобы отвлечь свою душевную боль каким-нибудь новым ощущением или другою болью, не зная, что делать, плача и дрожа, Васильев расстегнул пальто и сюртук и подставил свою голую грудь ___ и ветру.",
    "lemma": "снег",
    "options": [
-    "сыром снеге",
-    "сырого снега",
+    "сырым снегом",
     "сырому снегу",
-    "сырой снег"
+    "сыром снеге",
+    "сырого снега"
    ],
    "correct": "сырому снегу",
    "case": "Дательный (Dative)",
-   "explain": "«сырому снегу» — the dative marks the indirect object or recipient.",
+   "explain": "«сырому снегу» is the indirect object of «подставил» — to or for whom (кому?) — dative.",
    "id": "c19"
   },
   {
@@ -193,7 +95,7 @@
    ],
    "correct": "самого утра",
    "case": "Родительный (Genitive)",
-   "explain": "«самого утра» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«самого утра» — «до» always takes the genitive.",
    "id": "c21"
   }
  ]

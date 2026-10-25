@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Два-три раза приходил к Андрею Ефимычу коллега Хоботов; он тоже советовал оставить ___ и без всякого видимого повода рекомендовал принимать бромистый калий.",
-   "lemma": "напиток",
-   "options": [
-    "спиртных напитков",
-    "спиртные напитки",
-    "спиртным напиткам",
-    "спиртных напитках"
-   ],
-   "correct": "спиртные напитки",
-   "case": "Винительный (Accusative)",
-   "explain": "«спиртные напитки» — the accusative marks the direct object of the verb.",
-   "id": "c1"
-  },
-  {
    "sentence": "Два-три раза приходил к Андрею Ефимычу коллега Хоботов; он тоже советовал оставить спиртные напитки и без всякого ___ рекомендовал принимать бромистый калий.",
    "lemma": "повод",
    "options": [
@@ -25,64 +11,8 @@
    ],
    "correct": "видимого повода",
    "case": "Родительный (Genitive)",
-   "explain": "«видимого повода» — after the preposition «без», the genitive here marks possession, absence, or quantity.",
+   "explain": "«видимого повода» — «без» always takes the genitive.",
    "id": "c2"
-  },
-  {
-   "sentence": "Два-три раза приходил к Андрею Ефимычу коллега Хоботов; он тоже советовал оставить спиртные напитки и без всякого видимого повода рекомендовал принимать ___.",
-   "lemma": "калий",
-   "options": [
-    "бромистого калия",
-    "бромистом калии",
-    "бромистый калий",
-    "бромистым калием"
-   ],
-   "correct": "бромистый калий",
-   "case": "Винительный (Accusative)",
-   "explain": "«бромистый калий» — the accusative marks the direct object of the verb.",
-   "id": "c3"
-  },
-  {
-   "sentence": "В августе Андрей Ефимыч получил от городского головы письмо с просьбой пожаловать по очень ___.",
-   "lemma": "дело",
-   "options": [
-    "важное дело",
-    "важным делом",
-    "важному делу",
-    "важном деле"
-   ],
-   "correct": "важному делу",
-   "case": "Дательный (Dative)",
-   "explain": "«важному делу» — after the preposition «по», the dative marks the indirect object or recipient.",
-   "id": "c4"
-  },
-  {
-   "sentence": "Оно, конечно, это ничего, перевести можно, но ___ – флигель ремонту захочет.",
-   "lemma": "причина",
-   "options": [
-    "главной причиной",
-    "главная причина",
-    "главной причине",
-    "главной причины"
-   ],
-   "correct": "главная причина",
-   "case": "Именительный (Nominative)",
-   "explain": "«главная причина» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
-  },
-  {
-   "sentence": "– Я уже имел честь докладывать десять лет назад, – продолжал Андрей Ефимыч ___, – что эта больница в настоящем ее виде является для города роскошью не по средствам.",
-   "lemma": "голос",
-   "options": [
-    "тихий голос",
-    "тихим голосом",
-    "тихому голосу",
-    "тихом голосе"
-   ],
-   "correct": "тихим голосом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«тихим голосом» — the instrumental marks the means, company, or complement.",
-   "id": "c7"
   },
   {
    "sentence": "Строилась она в ___, но ведь тогда были не те средства.",
@@ -95,7 +25,7 @@
    ],
    "correct": "сороковых годах",
    "case": "Предложный (Prepositional)",
-   "explain": "«сороковых годах» — after the preposition «в», for location or topic.",
+   "explain": "«сороковых годах» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c8"
   },
   {
@@ -109,7 +39,7 @@
    ],
    "correct": "ненужные постройки",
    "case": "Винительный (Accusative)",
-   "explain": "«ненужные постройки» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«ненужные постройки» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c9"
   },
   {
@@ -123,22 +53,8 @@
    ],
    "correct": "других порядках",
    "case": "Предложный (Prepositional)",
-   "explain": "«других порядках» — after the preposition «при», for location or topic.",
+   "explain": "«других порядках» — «при» always takes the prepositional.",
    "id": "c10"
-  },
-  {
-   "sentence": "– Так вот и давайте заводить ___! – живо сказал член управы.",
-   "lemma": "порядок",
-   "options": [
-    "других порядках",
-    "другим порядкам",
-    "других порядков",
-    "другие порядки"
-   ],
-   "correct": "другие порядки",
-   "case": "Винительный (Accusative)",
-   "explain": "«другие порядки» — the accusative marks the direct object of the verb.",
-   "id": "c11"
   },
   {
    "sentence": "– Да, передайте земству деньги, а оно украдет, – засмеялся ___.",
@@ -151,21 +67,21 @@
    ],
    "correct": "белокурый доктор",
    "case": "Именительный (Nominative)",
-   "explain": "«белокурый доктор» — the subject of the sentence stands in the nominative.",
+   "explain": "«белокурый доктор» is the subject of «засмеялся» — who or what does it — so nominative.",
    "id": "c12"
   },
   {
    "sentence": "Ни театра, ни музыки, а на последнем ___ в клубе было около двадцати дам и только два кавалера.",
    "lemma": "вечер",
    "options": [
+    "танцевального вечера",
     "танцевальным вечером",
     "танцевальном вечере",
-    "танцевальному вечеру",
-    "танцевальный вечер"
+    "танцевальному вечеру"
    ],
    "correct": "танцевальном вечере",
    "case": "Предложный (Prepositional)",
-   "explain": "«танцевальном вечере» — after the preposition «на», for location or topic.",
+   "explain": "«танцевальном вечере» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c14"
   },
   {
@@ -179,36 +95,22 @@
    ],
    "correct": "замечательный пророк",
    "case": "Именительный (Nominative)",
-   "explain": "«замечательный пророк» — the subject of the sentence stands in the nominative.",
+   "explain": "«замечательный пророк» is the subject of «живет» — who or what does it — so nominative.",
    "id": "c15"
   },
   {
    "sentence": "Выйдя из управы, Андрей Ефимыч понял, что это была комиссия, назначенная для освидетельствования его ___.",
    "lemma": "способность",
    "options": [
-    "умственных способностях",
+    "умственные способности",
     "умственным способностям",
-    "умственными способностями",
+    "умственных способностях",
     "умственных способностей"
    ],
    "correct": "умственных способностей",
    "case": "Родительный (Genitive)",
-   "explain": "«умственных способностей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«умственных способностей» depends on the noun «освидетельствования» (whose? of what?) — genitive.",
    "id": "c18"
-  },
-  {
-   "sentence": "Он вспомнил вопросы, которые задавали ему, покраснел и почему-то теперь ___ в жизни ему стало горько жаль медицину.",
-   "lemma": "раз",
-   "options": [
-    "первом разе",
-    "первого раза",
-    "первым разом",
-    "первый раз"
-   ],
-   "correct": "первый раз",
-   "case": "Винительный (Accusative)",
-   "explain": "«первый раз» — the accusative marks the direct object of the verb.",
-   "id": "c19"
   },
   {
    "sentence": "Но он вспомнил разговор, бывший в управе, и тяжелое настроение, какое он испытал, возвращаясь из управы домой, и мысль уехать ненадолго из города, где ___ считают его сумасшедшим, улыбнулась ему.",
@@ -221,7 +123,7 @@
    ],
    "correct": "глупые люди",
    "case": "Именительный (Nominative)",
-   "explain": "«глупые люди» — the subject of the sentence stands in the nominative.",
+   "explain": "«глупые люди» is the subject of «считают» — who or what does it — so nominative.",
    "id": "c21"
   }
  ]

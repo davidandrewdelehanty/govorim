@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Давно, очень давно жил да был король, у которого позади замка был ___, а в том саду было дерево, на котором росли золотые яблоки.",
-   "lemma": "сад",
-   "options": [
-    "прекрасным садом",
-    "прекрасный сад",
-    "прекрасному саду",
-    "прекрасном саде"
-   ],
-   "correct": "прекрасный сад",
-   "case": "Именительный (Nominative)",
-   "explain": "«прекрасный сад» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Давно, очень давно жил да был король, у которого позади замка был прекрасный сад, а в том саду было дерево, на котором росли ___.",
    "lemma": "яблоко",
    "options": [
@@ -25,22 +11,8 @@
    ],
    "correct": "золотые яблоки",
    "case": "Именительный (Nominative)",
-   "explain": "«золотые яблоки» — the subject of the sentence stands in the nominative.",
+   "explain": "«золотые яблоки» is the subject of «росли» — who or what does it — so nominative.",
    "id": "c2"
-  },
-  {
-   "sentence": "На следующую ночь должен был идти ___; но и с тем случилось то же самое: едва наступила полночь, он заснул, а под утро недосчитались еще одного яблока.",
-   "lemma": "сын",
-   "options": [
-    "второго сына",
-    "вторым сыном",
-    "второму сыну",
-    "второй сын"
-   ],
-   "correct": "второй сын",
-   "case": "Именительный (Nominative)",
-   "explain": "«второй сын» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
   },
   {
    "sentence": "Как ударила полночь, так зашумело что-то в воздухе, и он увидел при ___ слетевшую на дерево птицу, у которой перья блестели как золото.",
@@ -53,7 +25,7 @@
    ],
    "correct": "лунном свете",
    "case": "Предложный (Prepositional)",
-   "explain": "«лунном свете» — after the preposition «при», for location or topic.",
+   "explain": "«лунном свете» — «при» always takes the prepositional.",
    "id": "c4"
   },
   {
@@ -67,7 +39,7 @@
    ],
    "correct": "старший сын",
    "case": "Именительный (Nominative)",
-   "explain": "«Старший сын» — the subject of the sentence stands in the nominative.",
+   "explain": "«старший сын» is the subject of «пустился» — who or what does it — so nominative.",
    "id": "c5"
   },
   {
@@ -81,7 +53,7 @@
    ],
    "correct": "золотой птицы",
    "case": "Родительный (Genitive)",
-   "explain": "«золотой птицы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«золотой птицы» depends on the noun «поиски» (whose? of what?) — genitive.",
    "id": "c6"
   },
   {
@@ -95,64 +67,8 @@
    ],
    "correct": "глупый зверь",
    "case": "Именительный (Nominative)",
-   "explain": "«глупый зверь» — the subject of the sentence stands in the nominative.",
+   "explain": "«глупый зверь» is the subject of «может» — who or what does it — so nominative.",
    "id": "c7"
-  },
-  {
-   "sentence": "— «Ну, может ли такой глупый зверь дать мне ___?» — подумал королевич и спустил курок; но он дал промах, и лисица, распустив хвост, быстро юркнула в лес.",
-   "lemma": "совет",
-   "options": [
-    "разумному совету",
-    "разумный совет",
-    "разумном совете",
-    "разумного совета"
-   ],
-   "correct": "разумный совет",
-   "case": "Винительный (Accusative)",
-   "explain": "«разумный совет» — the accusative marks the direct object of the verb.",
-   "id": "c8"
-  },
-  {
-   "sentence": "А королевич продолжал свой путь и вечерком прибыл в деревню, в которой находились обе гостиницы: в одной из них шло веселье, там пели и плясали, а у ___ был жалкий и печальный.",
-   "lemma": "вид",
-   "options": [
-    "другом виде",
-    "другого вида",
-    "другой вид",
-    "другим видом"
-   ],
-   "correct": "другой вид",
-   "case": "Именительный (Nominative)",
-   "explain": "«другой вид» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
-  },
-  {
-   "sentence": "Вот и завернул он в веселую, и зажил там припеваючи, позабыл и о птице, и об отце, и обо всех ___.",
-   "lemma": "совет",
-   "options": [
-    "добрых советах",
-    "добрые советы",
-    "добрых советов",
-    "добрым советам"
-   ],
-   "correct": "добрых советах",
-   "case": "Предложный (Prepositional)",
-   "explain": "«добрых советах» — after the preposition «обо», for location or topic.",
-   "id": "c10"
-  },
-  {
-   "sentence": "Когда уже прошло порядочно времени и ___ все не возвращался домой, снарядился в путь-дорогу на поиски золотой птицы второй королевич.",
-   "lemma": "сын",
-   "options": [
-    "старшим сыном",
-    "старшем сыне",
-    "старшего сына",
-    "старший сын"
-   ],
-   "correct": "старший сын",
-   "case": "Именительный (Nominative)",
-   "explain": "«старший сын» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
   },
   {
    "sentence": "Когда уже прошло порядочно времени и старший сын все не возвращался домой, снарядился в путь-дорогу на поиски ___ второй королевич.",
@@ -165,78 +81,22 @@
    ],
    "correct": "золотой птицы",
    "case": "Родительный (Genitive)",
-   "explain": "«золотой птицы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«золотой птицы» depends on the noun «поиски» (whose? of what?) — genitive.",
    "id": "c12"
-  },
-  {
-   "sentence": "Ему, как и ___, пришлось повстречаться с лисицею, которая дала ему добрый совет, и он тоже на тот совет не обратил никакого внимания.",
-   "lemma": "брат",
-   "options": [
-    "старшего брата",
-    "старшим братом",
-    "старший брат",
-    "старшему брату"
-   ],
-   "correct": "старшему брату",
-   "case": "Дательный (Dative)",
-   "explain": "«старшему брату» — the dative marks the indirect object or recipient.",
-   "id": "c13"
   },
   {
    "sentence": "Ему, как и старшему брату, пришлось повстречаться с лисицею, которая дала ему ___, и он тоже на тот совет не обратил никакого внимания.",
    "lemma": "совет",
    "options": [
-    "доброго совета",
-    "добрым советом",
+    "добром совете",
     "добрый совет",
-    "добром совете"
+    "добрым советом",
+    "доброму совету"
    ],
    "correct": "добрый совет",
    "case": "Винительный (Accusative)",
-   "explain": "«добрый совет» — the accusative marks the direct object of the verb.",
+   "explain": "«добрый совет» is the direct object of «дала» (кого? что?) — accusative.",
    "id": "c14"
-  },
-  {
-   "sentence": "Опять-таки прошло некоторое время, и вот ___ задумал попытать своего счастья; а отец ни за что не хотел этого допустить.",
-   "lemma": "королевич",
-   "options": [
-    "младший королевич",
-    "младшего королевича",
-    "младшем королевиче",
-    "младшим королевичем"
-   ],
-   "correct": "младший королевич",
-   "case": "Именительный (Nominative)",
-   "explain": "«младший королевич» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
-  },
-  {
-   "sentence": "И ___ на опушке леса повстречал лисицу, которая просила пощадить ее и дала ему добрый совет.",
-   "lemma": "королевич",
-   "options": [
-    "младший королевич",
-    "младшего королевича",
-    "младшем королевиче",
-    "младшим королевичем"
-   ],
-   "correct": "младший королевич",
-   "case": "Именительный (Nominative)",
-   "explain": "«младший королевич» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
-  },
-  {
-   "sentence": "И младший королевич на опушке леса повстречал лисицу, которая просила пощадить ее и дала ему ___.",
-   "lemma": "совет",
-   "options": [
-    "доброго совета",
-    "добрым советом",
-    "добрый совет",
-    "добром совете"
-   ],
-   "correct": "добрый совет",
-   "case": "Винительный (Accusative)",
-   "explain": "«добрый совет» — the accusative marks the direct object of the verb.",
-   "id": "c17"
   },
   {
    "sentence": "Когда они приблизились к деревне, юноша сошел с хвоста лисицы и последовал ее ___: остановился в плохонькой гостинице, даже и не посмотревши на другую, и преспокойно там переночевал.",
@@ -245,11 +105,11 @@
     "добрым советом",
     "доброму совету",
     "доброго совета",
-    "добрый совет"
+    "добром совете"
    ],
    "correct": "доброму совету",
    "case": "Дательный (Dative)",
-   "explain": "«доброму совету» — the dative marks the indirect object or recipient.",
+   "explain": "«последовал» takes the dative (кому? чему?).",
    "id": "c18"
   },
   {
@@ -263,7 +123,7 @@
    ],
    "correct": "плохонькой гостинице",
    "case": "Предложный (Prepositional)",
-   "explain": "«плохонькой гостинице» — after the preposition «в», for location or topic.",
+   "explain": "«плохонькой гостинице» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c19"
   },
   {
@@ -277,7 +137,7 @@
    ],
    "correct": "золотая птица",
    "case": "Именительный (Nominative)",
-   "explain": "«золотая птица» — the subject of the sentence stands in the nominative.",
+   "explain": "«золотая птица» is the subject of «сидит» — who or what does it — so nominative.",
    "id": "c20"
   },
   {
@@ -291,7 +151,7 @@
    ],
    "correct": "деревянной клетке",
    "case": "Предложный (Prepositional)",
-   "explain": "«деревянной клетке» — after the preposition «в», for location or topic.",
+   "explain": "«деревянной клетке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c21"
   },
   {
@@ -305,7 +165,7 @@
    ],
    "correct": "золотая птица",
    "case": "Именительный (Nominative)",
-   "explain": "«золотая птица» — the subject of the sentence stands in the nominative.",
+   "explain": "«золотая птица» is the subject of «сидела» — who or what does it — so nominative.",
    "id": "c22"
   },
   {
@@ -319,22 +179,8 @@
    ],
    "correct": "деревянной клетке",
    "case": "Предложный (Prepositional)",
-   "explain": "«деревянной клетке» — after the preposition «в», for location or topic.",
+   "explain": "«деревянной клетке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c23"
-  },
-  {
-   "sentence": "Пришел королевич и в ту комнату, где золотая птица сидела в деревянной клетке, а ___ рядом стояла; и три золотые яблока валялись в той же комнате.",
-   "lemma": "клетка",
-   "options": [
-    "золотой клетке",
-    "золотой клетки",
-    "золотая клетка",
-    "золотой клеткой"
-   ],
-   "correct": "золотая клетка",
-   "case": "Именительный (Nominative)",
-   "explain": "«золотая клетка» — the subject of the sentence stands in the nominative.",
-   "id": "c24"
   },
   {
    "sentence": "И подумал юноша, что было бы странно, если бы он оставил такую чудную птицу в простой и дрянной клетке, когда есть тут же рядом красивая, золотая; поэтому он отпер дверцу ___ и пересадил птицу в золотую.",
@@ -347,36 +193,22 @@
    ],
    "correct": "деревянной клетки",
    "case": "Родительный (Genitive)",
-   "explain": "«деревянной клетки» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«деревянной клетки» depends on the noun «дверцу» (whose? of what?) — genitive.",
    "id": "c25"
   },
   {
    "sentence": "В то же мгновение птица испустила ___; сторожа проснулись, ринулись в ту комнату, схватили юношу и повели его в тюрьму.",
    "lemma": "крик",
    "options": [
-    "пронзительный крик",
     "пронзительном крике",
+    "пронзительным криком",
     "пронзительному крику",
-    "пронзительного крика"
+    "пронзительный крик"
    ],
    "correct": "пронзительный крик",
    "case": "Винительный (Accusative)",
-   "explain": "«пронзительный крик» — the accusative marks the direct object of the verb.",
+   "explain": "«пронзительный крик» is the direct object of «испустила» (кого? что?) — accusative.",
    "id": "c26"
-  },
-  {
-   "sentence": "Королевич пустился в путь-дорогу, однако же горевал и вздыхал, решительно не зная, где ему следует искать этого ___.",
-   "lemma": "конь",
-   "options": [
-    "золотого коня",
-    "золотом коне",
-    "золотой конь",
-    "золотому коню"
-   ],
-   "correct": "золотого коня",
-   "case": "Винительный (Accusative)",
-   "explain": "«золотого коня» — the accusative marks the direct object of the verb.",
-   "id": "c27"
   },
   {
    "sentence": "Но не падай духом, я тебе подсоблю и скажу тебе, как следует добраться до ___.",
@@ -389,50 +221,8 @@
    ],
    "correct": "золотого коня",
    "case": "Родительный (Genitive)",
-   "explain": "«золотого коня» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«золотого коня» — «до» always takes the genitive.",
    "id": "c28"
-  },
-  {
-   "sentence": "Ступай ___ и дойдешь до замка, в котором золотой конь в стойле стоит.",
-   "lemma": "дорога",
-   "options": [
-    "прямой дороги",
-    "прямой дорогой",
-    "прямой дороге",
-    "прямая дорога"
-   ],
-   "correct": "прямой дорогой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«прямой дорогой» — the instrumental marks the means, company, or complement.",
-   "id": "c29"
-  },
-  {
-   "sentence": "Ступай прямой дорогой и дойдешь до замка, в котором ___ в стойле стоит.",
-   "lemma": "конь",
-   "options": [
-    "золотой конь",
-    "золотом коне",
-    "золотого коня",
-    "золотому коню"
-   ],
-   "correct": "золотой конь",
-   "case": "Именительный (Nominative)",
-   "explain": "«золотой конь» — the subject of the sentence stands in the nominative.",
-   "id": "c30"
-  },
-  {
-   "sentence": "Перед конюшней его увидишь конюхов, которые будут лежать ___, но они будут спать и храпеть, и ты можешь себе преспокойно вывести золотого коня из конюшни.",
-   "lemma": "ряд",
-   "options": [
-    "целых рядах",
-    "целые ряды",
-    "целыми рядами",
-    "целым рядам"
-   ],
-   "correct": "целыми рядами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«целыми рядами» — the instrumental marks the means, company, or complement.",
-   "id": "c31"
   },
   {
    "sentence": "Перед конюшней его увидишь конюхов, которые будут лежать целыми рядами, но они будут спать и храпеть, и ты можешь себе преспокойно вывести ___ из конюшни.",
@@ -445,7 +235,7 @@
    ],
    "correct": "золотого коня",
    "case": "Винительный (Accusative)",
-   "explain": "«золотого коня» — the accusative marks the direct object of the verb.",
+   "explain": "«золотого коня» is the direct object of «вывести» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c32"
   },
   {
@@ -459,22 +249,8 @@
    ],
    "correct": "золотого замка",
    "case": "Родительный (Genitive)",
-   "explain": "«золотого замка» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«золотого замка» — «из» always takes the genitive.",
    "id": "c33"
-  },
-  {
-   "sentence": "С грустью в душе пустился юноша в дорогу; однако же на счастье его вскоре повстречался он со своей ___.",
-   "lemma": "лисица",
-   "options": [
-    "верной лисицей",
-    "верной лисице",
-    "верной лисицы",
-    "верная лисица"
-   ],
-   "correct": "верной лисицей",
-   "case": "Творительный (Instrumental)",
-   "explain": "«верной лисицей» — after the preposition «со», the instrumental marks the means, company, or complement.",
-   "id": "c34"
   },
   {
    "sentence": "Этот путь приведет тебя прямехонько к ___.",
@@ -487,7 +263,7 @@
    ],
    "correct": "золотому замку",
    "case": "Дательный (Dative)",
-   "explain": "«золотому замку» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«золотому замку» — «к» always takes the dative.",
    "id": "c35"
   },
   {
@@ -501,7 +277,7 @@
    ],
    "correct": "золотому замку",
    "case": "Дательный (Dative)",
-   "explain": "«золотому замку» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«золотому замку» — «к» always takes the dative.",
    "id": "c36"
   },
   {
@@ -515,7 +291,7 @@
    ],
    "correct": "благополучный исход",
    "case": "Винительный (Accusative)",
-   "explain": "«благополучный исход» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«благополучный исход» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c37"
   },
   {
@@ -529,22 +305,8 @@
    ],
    "correct": "седьмого дня",
    "case": "Родительный (Genitive)",
-   "explain": "«седьмого дня» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«седьмого дня» depends on the noun «вечер» (whose? of what?) — genitive.",
    "id": "c38"
-  },
-  {
-   "sentence": "В замке того короля все очень обрадуются прибытию королевны и охотно отдадут тебе ___, и даже подведут его к тебе.",
-   "lemma": "конь",
-   "options": [
-    "золотого коня",
-    "золотом коне",
-    "золотой конь",
-    "золотому коню"
-   ],
-   "correct": "золотого коня",
-   "case": "Винительный (Accusative)",
-   "explain": "«золотого коня» — the accusative marks the direct object of the verb.",
-   "id": "c39"
   },
   {
    "sentence": "Все это было успешно выполнено, и королевичу удалось увезти красавицу-королевну на ___.",
@@ -557,7 +319,7 @@
    ],
    "correct": "золотом коне",
    "case": "Предложный (Prepositional)",
-   "explain": "«золотом коне» — after the preposition «на», for location or topic.",
+   "explain": "«золотом коне» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c40"
   },
   {
@@ -571,64 +333,8 @@
    ],
    "correct": "золотом коне",
    "case": "Предложный (Prepositional)",
-   "explain": "«золотом коне» — after the preposition «на», for location or topic.",
+   "explain": "«золотом коне» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c41"
-  },
-  {
-   "sentence": "В деревне была ___, шум и крик, и когда королевич спросил о причине всего этого, ему доложили, что сейчас собираются двух негодяев повесить.",
-   "lemma": "сумятица",
-   "options": [
-    "большая сумятица",
-    "большей сумятице",
-    "большей сумятицей",
-    "большей сумятицы"
-   ],
-   "correct": "большая сумятица",
-   "case": "Именительный (Nominative)",
-   "explain": "«большая сумятица» — the subject of the sentence stands in the nominative.",
-   "id": "c42"
-  },
-  {
-   "sentence": "Но королевич не задумался за них заплатить, и когда их освободили, то они продолжали ___ уже вместе.",
-   "lemma": "путь",
-   "options": [
-    "дальнейшем пути",
-    "дальнейшему пути",
-    "дальнейшего пути",
-    "дальнейший путь"
-   ],
-   "correct": "дальнейший путь",
-   "case": "Винительный (Accusative)",
-   "explain": "«дальнейший путь» — the accusative marks the direct object of the verb.",
-   "id": "c43"
-  },
-  {
-   "sentence": "Но двое его братьев вдруг на него бросились, спихнули его в колодец, завладели его королевной, его ___ и золотым конем и отправились домой к отцу.",
-   "lemma": "птица",
-   "options": [
-    "золотая птица",
-    "золотой птицы",
-    "золотой птицей",
-    "золотой птице"
-   ],
-   "correct": "золотой птицей",
-   "case": "Творительный (Instrumental)",
-   "explain": "«золотой птицей» — the instrumental marks the means, company, or complement.",
-   "id": "c44"
-  },
-  {
-   "sentence": "«Вот мы привезли тебе не только золотую птицу, — сказали они, — но еще и ___ и красавицу-королевну из золотого замка впридачу».",
-   "lemma": "конь",
-   "options": [
-    "золотого коня",
-    "золотом коне",
-    "золотой конь",
-    "золотому коню"
-   ],
-   "correct": "золотого коня",
-   "case": "Винительный (Accusative)",
-   "explain": "«золотого коня» — the accusative marks the direct object of the verb.",
-   "id": "c45"
   },
   {
    "sentence": "«Вот мы привезли тебе не только золотую птицу, — сказали они, — но еще и золотого коня и красавицу-королевну из ___ впридачу».",
@@ -641,7 +347,7 @@
    ],
    "correct": "золотого замка",
    "case": "Родительный (Genitive)",
-   "explain": "«золотого замка» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«золотого замка» — «из» always takes the genitive.",
    "id": "c46"
   },
   {
@@ -655,36 +361,22 @@
    ],
    "correct": "младший-то брат",
    "case": "Именительный (Nominative)",
-   "explain": "«младший-то брат» — the subject of the sentence stands in the nominative.",
+   "explain": "«младший-то брат» is the subject of «погиб» — who or what does it — so nominative.",
    "id": "c47"
   },
   {
    "sentence": "Колодец, на его счастье, был сух, и он упал на ___, не причинив себе никакого вреда; только вот вылезти из колодца самостоятельно он никак не мог.",
    "lemma": "мох",
    "options": [
-    "мягким мхом",
-    "мягком мхе",
     "мягкому мху",
-    "мягкий мох"
+    "мягким мхом",
+    "мягкий мох",
+    "мягкого мха"
    ],
    "correct": "мягкий мох",
    "case": "Винительный (Accusative)",
-   "explain": "«мягкий мох» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«мягкий мох» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c48"
-  },
-  {
-   "sentence": "И в этой беде ___ его не покинула: сошла к нему в колодец вниз и выбранила его за то, что он позабыл ее совет.",
-   "lemma": "лиса",
-   "options": [
-    "верной лисе",
-    "верной лисы",
-    "верной лисой",
-    "верная лиса"
-   ],
-   "correct": "верная лиса",
-   "case": "Именительный (Nominative)",
-   "explain": "«верная лиса» — the subject of the sentence stands in the nominative.",
-   "id": "c49"
   },
   {
    "sentence": "На опушке леса в то время сидел какой-то бедняк; с этим бедняком королевич поменялся своею одеждою и таким образом переодетый пробрался к ___.",
@@ -697,49 +389,21 @@
    ],
    "correct": "королевскому двору",
    "case": "Дательный (Dative)",
-   "explain": "«королевскому двору» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«королевскому двору» — «к» always takes the dative.",
    "id": "c50"
-  },
-  {
-   "sentence": "Никто его и не узнал; но все заметили, что ___ вдруг стала из своей клетки насвистывать, золотой конь стал корм есть, а красавица-королевна перестала проливать слезы.",
-   "lemma": "птица",
-   "options": [
-    "золотой птицей",
-    "золотой птице",
-    "золотой птицы",
-    "золотая птица"
-   ],
-   "correct": "золотая птица",
-   "case": "Именительный (Nominative)",
-   "explain": "«золотая птица» — the subject of the sentence stands in the nominative.",
-   "id": "c51"
-  },
-  {
-   "sentence": "Никто его и не узнал; но все заметили, что золотая птица вдруг стала из своей клетки насвистывать, ___ стал корм есть, а красавица-королевна перестала проливать слезы.",
-   "lemma": "конь",
-   "options": [
-    "золотой конь",
-    "золотом коне",
-    "золотого коня",
-    "золотому коню"
-   ],
-   "correct": "золотой конь",
-   "case": "Именительный (Nominative)",
-   "explain": "«золотой конь» — the subject of the sentence stands in the nominative.",
-   "id": "c52"
   },
   {
    "sentence": "Вместе с другими явился и юный королевич в своих ___; но красавица-королевна его тотчас узнала и бросилась к нему на шею.",
    "lemma": "лохмотья",
    "options": [
-    "нищенские лохмотья",
-    "нищенских лохмотьев",
+    "нищенским лохмотьям",
     "нищенскими лохмотьями",
+    "нищенских лохмотьев",
     "нищенских лохмотьях"
    ],
    "correct": "нищенских лохмотьях",
    "case": "Предложный (Prepositional)",
-   "explain": "«нищенских лохмотьях» — after the preposition «в», for location or topic.",
+   "explain": "«нищенских лохмотьях» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c53"
   },
   {
@@ -753,36 +417,8 @@
    ],
    "correct": "преступных братьев",
    "case": "Винительный (Accusative)",
-   "explain": "«Преступных братьев» — the accusative marks the direct object of the verb.",
+   "explain": "«преступных братьев» is the direct object of «схватили» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c54"
-  },
-  {
-   "sentence": "Ну, а что же с ___ случилось?",
-   "lemma": "лиса",
-   "options": [
-    "бедной лисы",
-    "бедная лиса",
-    "бедной лисе",
-    "бедной лисой"
-   ],
-   "correct": "бедной лисой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«бедной лисой» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c55"
-  },
-  {
-   "sentence": "Королевич исполнил эту просьбу, и едва только выполнил ее, лисица обернулась добрым молодцем, и этот молодец оказался ___ красавицы-королевны, которому удалось-таки избавиться от чар, тяготевших над ним.",
-   "lemma": "брат",
-   "options": [
-    "родному брату",
-    "родный брат",
-    "родным братом",
-    "родном брате"
-   ],
-   "correct": "родным братом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«родным братом» — the instrumental marks the means, company, or complement.",
-   "id": "c56"
   }
  ]
 }

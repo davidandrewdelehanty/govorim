@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Евдоким Захарович Жигалов, отставной ___.",
-   "lemma": "регистратор",
-   "options": [
-    "коллежский регистратор",
-    "коллежского регистратора",
-    "коллежском регистраторе",
-    "коллежскому регистратору"
-   ],
-   "correct": "коллежский регистратор",
-   "case": "Именительный (Nominative)",
-   "explain": "«коллежский регистратор» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Федор Яковлевич Ревунов-Караулов, капитан ___ в отставке.",
    "lemma": "ранг",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "2-го ранга",
    "case": "Родительный (Genitive)",
-   "explain": "«2-го ранга» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«2-го ранга» depends on the noun «капитан» (whose? of what?) — genitive.",
    "id": "c2"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "страхового общества",
    "case": "Родительный (Genitive)",
-   "explain": "«страхового общества» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«страхового общества» depends on the noun «агент» (whose? of what?) — genitive.",
    "id": "c3"
   },
   {
@@ -53,22 +39,8 @@
    ],
    "correct": "добровольного флота",
    "case": "Родительный (Genitive)",
-   "explain": "«Добровольного флота» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«добровольного флота» — «из» always takes the genitive.",
    "id": "c4"
-  },
-  {
-   "sentence": "Чем тревожить меня ___, вы бы лучше шли танцевать.",
-   "lemma": "слово",
-   "options": [
-    "разным словам",
-    "разными словами",
-    "разных словах",
-    "разные слова"
-   ],
-   "correct": "разными словами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«разными словами» — the instrumental marks the means, company, or complement.",
-   "id": "c5"
   },
   {
    "sentence": "В ___ шафер с Дашенькой, в задней Ять со Змеюкиной.",
@@ -81,7 +53,7 @@
    ],
    "correct": "передней паре",
    "case": "Предложный (Prepositional)",
-   "explain": "«передней паре» — after the preposition «в», for location or topic.",
+   "explain": "«передней паре» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c7"
   },
   {
@@ -95,7 +67,7 @@
    ],
    "correct": "последняя пара",
    "case": "Именительный (Nominative)",
-   "explain": "«Последняя пара» — the subject of the sentence stands in the nominative.",
+   "explain": "«последняя пара» is the subject of «отстает» — who or what does it — so nominative.",
    "id": "c8"
   },
   {
@@ -109,22 +81,8 @@
    ],
    "correct": "жестокого создания",
    "case": "Родительный (Genitive)",
-   "explain": "«жестокого создания» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«жестокого создания» — «у» always takes the genitive.",
    "id": "c9"
-  },
-  {
-   "sentence": "У такого жестокого создания, позвольте вам выразиться, и такой чудный, ___!",
-   "lemma": "голос",
-   "options": [
-    "чудному голосу",
-    "чудного голоса",
-    "чудный голос",
-    "чудным голосом"
-   ],
-   "correct": "чудный голос",
-   "case": "Именительный (Nominative)",
-   "explain": "«чудный голос» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
   },
   {
    "sentence": "С таким голосом, извините за выражение, не акушерством заниматься, а концерты петь в ___!",
@@ -137,50 +95,8 @@
    ],
    "correct": "публичных собраниях",
    "case": "Предложный (Prepositional)",
-   "explain": "«публичных собраниях» — after the preposition «в», for location or topic.",
+   "explain": "«публичных собраниях» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c11"
-  },
-  {
-   "sentence": "Какие вы все ___!",
-   "lemma": "скептик",
-   "options": [
-    "противные скептики",
-    "противными скептиками",
-    "противных скептиков",
-    "противным скептикам"
-   ],
-   "correct": "противные скептики",
-   "case": "Именительный (Nominative)",
-   "explain": "«противные скептики» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
-  },
-  {
-   "sentence": "___, Харлампий Спиридоныч, чтоб дело свое не забывать.",
-   "lemma": "действие",
-   "options": [
-    "главного действия",
-    "главным действием",
-    "главном действии",
-    "главное действие"
-   ],
-   "correct": "главное действие",
-   "case": "Именительный (Nominative)",
-   "explain": "«Главное действие» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
-  },
-  {
-   "sentence": "Все шумно усаживаются за стол; ___; музыка играет марш.",
-   "lemma": "пауза",
-   "options": [
-    "минутной паузой",
-    "минутной паузы",
-    "минутная пауза",
-    "минутной паузе"
-   ],
-   "correct": "минутная пауза",
-   "case": "Именительный (Nominative)",
-   "explain": "«минутная пауза» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
   },
   {
    "sentence": "Только знаете, чего не хватает для ___?",
@@ -193,22 +109,8 @@
    ],
    "correct": "полного торжества",
    "case": "Родительный (Genitive)",
-   "explain": "«полного торжества» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«полного торжества» — «для» always takes the genitive.",
    "id": "c18"
-  },
-  {
-   "sentence": "___, извините за выражение!",
-   "lemma": "освещение",
-   "options": [
-    "электрического освещения",
-    "электрическому освещению",
-    "электрическое освещение",
-    "электрическим освещением"
-   ],
-   "correct": "электрического освещения",
-   "case": "Родительный (Genitive)",
-   "explain": "«Электрического освещения» — the genitive here marks possession, absence, or quantity.",
-   "id": "c19"
   },
   {
    "sentence": "Во всех странах уже введено ___, и одна только Россия отстала.",
@@ -221,22 +123,8 @@
    ],
    "correct": "электрическое освещение",
    "case": "Именительный (Nominative)",
-   "explain": "«электрическое освещение» — the subject of the sentence stands in the nominative.",
+   "explain": "«электрическое освещение» is the subject of «введено» — who or what does it — so nominative.",
    "id": "c20"
-  },
-  {
-   "sentence": "А вы, господин ___, чем за жульничество заступаться, лучше бы выпили и другим налили.",
-   "lemma": "человек",
-   "options": [
-    "молодой человек",
-    "молодым человеком",
-    "молодого человека",
-    "молодом человеке"
-   ],
-   "correct": "молодой человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«молодой человек» — the subject of the sentence stands in the nominative.",
-   "id": "c22"
   },
   {
    "sentence": "Я не прочь и сам поговорить о всевозможных открытиях в научном смысле, но ведь на это есть ___!",
@@ -249,7 +137,7 @@
    ],
    "correct": "другое время",
    "case": "Именительный (Nominative)",
-   "explain": "«другое время» — the subject of the sentence stands in the nominative.",
+   "explain": "«другое время» is the subject of «есть» — who or what does it — so nominative.",
    "id": "c25"
   },
   {
@@ -263,22 +151,8 @@
    ],
    "correct": "электрического освещения",
    "case": "Родительный (Genitive)",
-   "explain": "«электрического освещения» — after the preposition «насчет», the genitive here marks possession, absence, or quantity.",
+   "explain": "«электрического освещения» — «насчёт» always takes the genitive.",
    "id": "c27"
-  },
-  {
-   "sentence": "Желаю, чтобы и вы были таким же ___, как я!",
-   "lemma": "человек",
-   "options": [
-    "честного человека",
-    "честном человеке",
-    "честному человеку",
-    "честным человеком"
-   ],
-   "correct": "честным человеком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«честным человеком» — the instrumental marks the means, company, or complement.",
-   "id": "c32"
   },
   {
    "sentence": "Для ___ ничего не пожалею!",
@@ -291,22 +165,8 @@
    ],
    "correct": "хороших людей",
    "case": "Родительный (Genitive)",
-   "explain": "«хороших людей» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«хороших людей» — «для» always takes the genitive.",
    "id": "c33"
-  },
-  {
-   "sentence": "Но я посоветовал бы ей лучше вспомнить наш ___.",
-   "lemma": "разговор",
-   "options": [
-    "недавнем разговоре",
-    "недавнему разговору",
-    "недавним разговором",
-    "недавний разговор"
-   ],
-   "correct": "недавний разговор",
-   "case": "Винительный (Accusative)",
-   "explain": "«недавний разговор» — the accusative marks the direct object of the verb.",
-   "id": "c34"
   },
   {
    "sentence": "По чину он капитан ___, а по-ихнему, морскому, это все равно, что генерал-майор, или в гражданской -- действительный статский советник.",
@@ -319,22 +179,8 @@
    ],
    "correct": "второго ранга",
    "case": "Родительный (Genitive)",
-   "explain": "«второго ранга» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«второго ранга» depends on the noun «капитан» (whose? of what?) — genitive.",
    "id": "c35"
-  },
-  {
-   "sentence": "По чину он капитан второго ранга, а по-ихнему, морскому, это все равно, что генерал-майор, или в гражданской -- действительный ___.",
-   "lemma": "советник",
-   "options": [
-    "статскому советнику",
-    "статского советника",
-    "статским советником",
-    "статский советник"
-   ],
-   "correct": "статский советник",
-   "case": "Именительный (Nominative)",
-   "explain": "«статский советник» — the subject of the sentence stands in the nominative.",
-   "id": "c36"
   },
   {
    "sentence": "Служит, говорю, оценщиком в ___, но вы не подумайте, ваше превосходительство, что это какой-нибудь замухрышка или червонный валет.",
@@ -347,7 +193,7 @@
    ],
    "correct": "ссудной кассе",
    "case": "Предложный (Prepositional)",
-   "explain": "«ссудной кассе» — after the preposition «в», for location or topic.",
+   "explain": "«ссудной кассе» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c37"
   },
   {
@@ -361,7 +207,7 @@
    ],
    "correct": "ссудных кассах",
    "case": "Предложный (Prepositional)",
-   "explain": "«ссудных кассах» — after the preposition «в», for location or topic.",
+   "explain": "«ссудных кассах» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c38"
   },
   {
@@ -375,7 +221,7 @@
    ],
    "correct": "благородные дамы",
    "case": "Именительный (Nominative)",
-   "explain": "«благородные дамы» — the subject of the sentence stands in the nominative.",
+   "explain": "«благородные дамы» is the subject of «служат» — who or what does it — so nominative.",
    "id": "c39"
   },
   {
@@ -389,22 +235,8 @@
    ],
    "correct": "хороших людей",
    "case": "Родительный (Genitive)",
-   "explain": "«хороших людей» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«хороших людей» — «для» always takes the genitive.",
    "id": "c40"
-  },
-  {
-   "sentence": "Для хороших людей у нас ___, мы ничего не пожалеем.",
-   "lemma": "место",
-   "options": [
-    "первому месту",
-    "первого места",
-    "первое место",
-    "первым местом"
-   ],
-   "correct": "первое место",
-   "case": "Именительный (Nominative)",
-   "explain": "«первое место» — the subject of the sentence stands in the nominative.",
-   "id": "c41"
   },
   {
    "sentence": "Иностранец ___ по кондитерской части Харлампий Спиридоныч Дымба!",
@@ -417,22 +249,8 @@
    ],
    "correct": "греческого звания",
    "case": "Родительный (Genitive)",
-   "explain": "«греческого звания» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«греческого звания» depends on the noun «Иностранец» (whose? of what?) — genitive.",
    "id": "c42"
-  },
-  {
-   "sentence": "___ всегда была трудная.",
-   "lemma": "служба",
-   "options": [
-    "морской службой",
-    "морской службы",
-    "морской службе",
-    "морская служба"
-   ],
-   "correct": "морская служба",
-   "case": "Именительный (Nominative)",
-   "explain": "«Морская служба» — the subject of the sentence stands in the nominative.",
-   "id": "c43"
   },
   {
    "sentence": "Всякое ___ имеет, так сказать, свой особый смысл!",
@@ -445,22 +263,8 @@
    ],
    "correct": "незначительное слово",
    "case": "Именительный (Nominative)",
-   "explain": "«незначительное слово» — the subject of the sentence stands in the nominative.",
+   "explain": "«незначительное слово» is the subject of «имеет» — who or what does it — so nominative.",
    "id": "c44"
-  },
-  {
-   "sentence": "Всякое незначительное слово имеет, так сказать, свой ___!",
-   "lemma": "смысл",
-   "options": [
-    "особый смысл",
-    "особым смыслом",
-    "особом смысле",
-    "особого смысла"
-   ],
-   "correct": "особый смысл",
-   "case": "Винительный (Accusative)",
-   "explain": "«особый смысл» — the accusative marks the direct object of the verb.",
-   "id": "c45"
   },
   {
    "sentence": "Вот вы, ваше превосходительство, изволили сейчас выразиться насчет трудностей ___.",
@@ -473,64 +277,22 @@
    ],
    "correct": "флотской службы",
    "case": "Родительный (Genitive)",
-   "explain": "«флотской службы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«флотской службы» depends on the noun «трудностей» (whose? of what?) — genitive.",
    "id": "c46"
   },
   {
    "sentence": "(Стучит вилкой по столу, подражая ___.)",
    "lemma": "станок",
    "options": [
-    "телеграфный станок",
     "телеграфным станком",
     "телеграфном станке",
+    "телеграфного станка",
     "телеграфному станку"
    ],
    "correct": "телеграфному станку",
    "case": "Дательный (Dative)",
-   "explain": "«телеграфному станку» — the dative marks the indirect object or recipient.",
+   "explain": "«подражая» takes the dative (кому? чему?).",
    "id": "c47"
-  },
-  {
-   "sentence": "А вот ежели корабль лежит бейдевинд ___ под всеми парусами и надо сделать через фордевинд.",
-   "lemma": "галс",
-   "options": [
-    "правым галсом",
-    "правом галсе",
-    "правому галсу",
-    "правого галса"
-   ],
-   "correct": "правым галсом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«правым галсом» — the instrumental marks the means, company, or complement.",
-   "id": "c50"
-  },
-  {
-   "sentence": "А ведь приятно, ___!",
-   "lemma": "человек",
-   "options": [
-    "молодой человек",
-    "молодым человеком",
-    "молодого человека",
-    "молодом человеке"
-   ],
-   "correct": "молодой человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«молодой человек» — the subject of the sentence stands in the nominative.",
-   "id": "c51"
-  },
-  {
-   "sentence": "Ведь как только раздалась команда: свистать всех наверх, поворот оверштаг -- словно ___ пробежала по всем.",
-   "lemma": "искра",
-   "options": [
-    "электрической искре",
-    "электрическая искра",
-    "электрической искрой",
-    "электрической искры"
-   ],
-   "correct": "электрическая искра",
-   "case": "Именительный (Nominative)",
-   "explain": "«электрическая искра» — the subject of the sentence stands in the nominative.",
-   "id": "c52"
   },
   {
    "sentence": "На фоковые и гротовые брасы на правую, на крюйсельные брасы на левую, на контра-брасы на левую, командует ___.",
@@ -543,7 +305,7 @@
    ],
    "correct": "старший офицер",
    "case": "Именительный (Nominative)",
-   "explain": "«старший офицер» — the subject of the sentence stands in the nominative.",
+   "explain": "«старший офицер» is the subject of «командует» — who or what does it — so nominative.",
    "id": "c55"
   },
   {
@@ -557,7 +319,7 @@
    ],
    "correct": "2-го ранга",
    "case": "Родительный (Genitive)",
-   "explain": "«2-го ранга» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«2-го ранга» depends on the noun «капитан» (whose? of what?) — genitive.",
    "id": "c56"
   },
   {
@@ -571,22 +333,8 @@
    ],
    "correct": "старого человека",
    "case": "Винительный (Accusative)",
-   "explain": "«старого человека» — the accusative marks the direct object of the verb.",
+   "explain": "«старого человека» is the direct object of «Оскорбить» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c57"
-  },
-  {
-   "sentence": "Будь это ___, я мог бы вызвать на дуэль, а теперь что я могу сделать?",
-   "lemma": "общество",
-   "options": [
-    "порядочному обществу",
-    "порядочным обществом",
-    "порядочное общество",
-    "порядочном обществе"
-   ],
-   "correct": "порядочное общество",
-   "case": "Именительный (Nominative)",
-   "explain": "«порядочное общество» — the subject of the sentence stands in the nominative.",
-   "id": "c58"
   }
  ]
 }

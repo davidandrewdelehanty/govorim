@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Трагик Унылов и ___ Тигров сидели в 37 номере гостиницы «В?нецыя» и пожинали плоды бенефиса.",
-   "lemma": "отец",
-   "options": [
-    "благородный отец",
-    "благородному отцу",
-    "благородного отца",
-    "благородном отце"
-   ],
-   "correct": "благородный отец",
-   "case": "Именительный (Nominative)",
-   "explain": "«благородный отец» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Тигров, толстенький ___, созерцательно глядел на графин и угрюмо безмолвствовал.",
-   "lemma": "человек",
-   "options": [
-    "угреватого человека",
-    "угреватым человеком",
-    "угреватый человек",
-    "угреватому человеку"
-   ],
-   "correct": "угреватый человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«угреватый человек» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
    "sentence": "Держа в одной руке пачку ассигнаций, в ___, он ерзал на стуле, как на иголках, и изливал свою душу.",
    "lemma": "карандаш",
    "options": [
@@ -39,50 +11,8 @@
    ],
    "correct": "другой карандаш",
    "case": "Винительный (Accusative)",
-   "explain": "«другой карандаш» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«другой карандаш» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c3"
-  },
-  {
-   "sentence": "___ уж три года просит прислать что-нибудь.",
-   "lemma": "женщина",
-   "options": [
-    "бедной женщины",
-    "бедная женщина",
-    "бедной женщине",
-    "бедной женщиной"
-   ],
-   "correct": "бедная женщина",
-   "case": "Именительный (Nominative)",
-   "explain": "«Бедная женщина» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
-  },
-  {
-   "sentence": "— Купи, Васечка, револьвер для «___».",
-   "lemma": "огонь",
-   "options": [
-    "блуждающих огней",
-    "блуждающие огни",
-    "блуждающими огнями",
-    "блуждающим огням"
-   ],
-   "correct": "блуждающих огней",
-   "case": "Родительный (Genitive)",
-   "explain": "«Блуждающих огней» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
-   "id": "c7"
-  },
-  {
-   "sentence": "___ теперь в моде.",
-   "lemma": "воротник",
-   "options": [
-    "стоячими воротниками",
-    "стоячие воротники",
-    "стоячих воротниках",
-    "стоячим воротникам"
-   ],
-   "correct": "стоячие воротники",
-   "case": "Именительный (Nominative)",
-   "explain": "«Стоячие воротники» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
   },
   {
    "sentence": "В крыловских пьесах нельзя без ___.",
@@ -95,36 +25,8 @@
    ],
    "correct": "пикейной жилетки",
    "case": "Родительный (Genitive)",
-   "explain": "«пикейной жилетки» — after the preposition «без», the genitive here marks possession, absence, or quantity.",
+   "explain": "«пикейной жилетки» — «без» always takes the genitive.",
    "id": "c10"
-  },
-  {
-   "sentence": "___ и вдруг наплевать!",
-   "lemma": "родственник",
-   "options": [
-    "единственному родственнику",
-    "единственный родственник",
-    "единственного родственника",
-    "единственном родственнике"
-   ],
-   "correct": "единственный родственник",
-   "case": "Именительный (Nominative)",
-   "explain": "«Единственный родственник» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
-  },
-  {
-   "sentence": "Будь ___, накажи меня бог, купил бы.",
-   "lemma": "сбор",
-   "options": [
-    "полный сбор",
-    "полному сбору",
-    "полном сборе",
-    "полного сбора"
-   ],
-   "correct": "полный сбор",
-   "case": "Именительный (Nominative)",
-   "explain": "«полный сбор» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
   },
   {
    "sentence": "Придя на вокзал, приятели уселись в зале ___ и задымили сигарами.",
@@ -137,21 +39,21 @@
    ],
    "correct": "первого класса",
    "case": "Родительный (Genitive)",
-   "explain": "«первого класса» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«первого класса» depends on the noun «зале» (whose? of what?) — genitive.",
    "id": "c15"
   },
   {
    "sentence": "Еще ___ не было, так что тебе нечего спешить.",
    "lemma": "звонок",
    "options": [
-    "первый звонок",
     "первому звонку",
     "первом звонке",
+    "первым звонком",
     "первого звонка"
    ],
    "correct": "первого звонка",
    "case": "Родительный (Genitive)",
-   "explain": "«первого звонка» — the genitive here marks possession, absence, or quantity.",
+   "explain": "What is absent after «не было» — genitive.",
    "id": "c16"
   }
  ]

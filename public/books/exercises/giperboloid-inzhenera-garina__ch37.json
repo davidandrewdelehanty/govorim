@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Не открывая глаз, достал из-под подушки ___ и решительно высморкался, выгоняя из себя вместе с остатками сна вчерашнюю труху ночных развлечений.",
-   "lemma": "платок",
-   "options": [
-    "носовой платок",
-    "носового платка",
-    "носовом платке",
-    "носовым платком"
-   ],
-   "correct": "носовой платок",
-   "case": "Винительный (Accusative)",
-   "explain": "«носовой платок» — the accusative marks the direct object of the verb.",
-   "id": "c1"
-  },
-  {
    "sentence": "Не открывая глаз, достал из-под подушки носовой платок и решительно высморкался, выгоняя из себя вместе с остатками сна вчерашнюю труху ___.",
    "lemma": "развлечение",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "ночных развлечений",
    "case": "Родительный (Genitive)",
-   "explain": "«ночных развлечений» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«ночных развлечений» depends on the noun «труху» (whose? of what?) — genitive.",
    "id": "c2"
   },
   {
@@ -39,36 +25,8 @@
    ],
    "correct": "тихая паника",
    "case": "Именительный (Nominative)",
-   "explain": "«тихая паника» — the subject of the sentence stands in the nominative.",
+   "explain": "«тихая паника» is the subject of «шла» — who or what does it — so nominative.",
    "id": "c3"
-  },
-  {
-   "sentence": "На лице секретаря было написано ___ злу.",
-   "lemma": "непротивление",
-   "options": [
-    "полное непротивление",
-    "полным непротивлением",
-    "полном непротивлении",
-    "полного непротивления"
-   ],
-   "correct": "полное непротивление",
-   "case": "Именительный (Nominative)",
-   "explain": "«полное непротивление» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
-  },
-  {
-   "sentence": "«У мистера Роллинга ___ сегодня», — сообщали они шепотом.",
-   "lemma": "настроение",
-   "options": [
-    "неважному настроению",
-    "неважного настроения",
-    "неважное настроение",
-    "неважным настроением"
-   ],
-   "correct": "неважное настроение",
-   "case": "Именительный (Nominative)",
-   "explain": "«неважное настроение» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
   },
   {
    "sentence": "За эти ужасные четверть часа у секретаря в ___ появились два седых волоса.",
@@ -81,36 +39,8 @@
    ],
    "correct": "блестящем проборе",
    "case": "Предложный (Prepositional)",
-   "explain": "«блестящем проборе» — after the preposition «в», for location or topic.",
+   "explain": "«блестящем проборе» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c7"
-  },
-  {
-   "sentence": "На красных ___ вдоль четырех стен за узкими сплошными столами сидели постоянные посетители — из делового мира Больших бульваров, женщин — немного.",
-   "lemma": "диван",
-   "options": [
-    "кожаных диванах",
-    "кожаных диванов",
-    "кожаным диванам",
-    "кожаные диваны"
-   ],
-   "correct": "кожаных диванах",
-   "case": "Предложный (Prepositional)",
-   "explain": "«кожаных диванах» — after the preposition «за», for location or topic.",
-   "id": "c8"
-  },
-  {
-   "sentence": "На красных кожаных диванах вдоль четырех стен за узкими ___ сидели постоянные посетители — из делового мира Больших бульваров, женщин — немного.",
-   "lemma": "стол",
-   "options": [
-    "сплошным столам",
-    "сплошных столов",
-    "сплошных столах",
-    "сплошными столами"
-   ],
-   "correct": "сплошными столами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«сплошными столами» — the instrumental marks the means, company, or complement.",
-   "id": "c9"
   },
   {
    "sentence": "На красных кожаных диванах вдоль четырех стен за узкими сплошными столами сидели ___ — из делового мира Больших бульваров, женщин — немного.",
@@ -123,7 +53,7 @@
    ],
    "correct": "постоянные посетители",
    "case": "Именительный (Nominative)",
-   "explain": "«постоянные посетители» — the subject of the sentence stands in the nominative.",
+   "explain": "«постоянные посетители» is the subject of «сидели» — who or what does it — so nominative.",
    "id": "c10"
   },
   {
@@ -137,7 +67,7 @@
    ],
    "correct": "делового мира",
    "case": "Родительный (Genitive)",
-   "explain": "«делового мира» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«делового мира» — «из» always takes the genitive.",
    "id": "c11"
   },
   {
@@ -151,22 +81,8 @@
    ],
    "correct": "больших бульваров",
    "case": "Родительный (Genitive)",
-   "explain": "«Больших бульваров» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«больших бульваров» depends on the noun «мира» (whose? of what?) — genitive.",
    "id": "c12"
-  },
-  {
-   "sentence": "Возражать в этом случае мог бы только патагонец, питающийся ___.",
-   "lemma": "крыса",
-   "options": [
-    "водяными крысами",
-    "водяным крысам",
-    "водяные крысы",
-    "водяных крыс"
-   ],
-   "correct": "водяными крысами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«водяными крысами» — the instrumental marks the means, company, or complement.",
-   "id": "c13"
   },
   {
    "sentence": "Мосье Грифон не подбежал, как можно было предполагать, с униженной торопливостью к прибору ___.",
@@ -179,22 +95,8 @@
    ],
    "correct": "химического короля",
    "case": "Родительный (Genitive)",
-   "explain": "«химического короля» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«химического короля» depends on the noun «прибору» (whose? of what?) — genitive.",
    "id": "c14"
-  },
-  {
-   "sentence": "Здесь, в академии пищеварения, миллиардер, и ___, и тот, кто сунул мокрый зонтик швейцару, и тот, кто, сопя, вылез из рольс-ройса, пропахшего гаванами, — платили один и тот же счет.",
-   "lemma": "бухгалтер",
-   "options": [
-    "мелкий бухгалтер",
-    "мелкому бухгалтеру",
-    "мелком бухгалтере",
-    "мелким бухгалтером"
-   ],
-   "correct": "мелкий бухгалтер",
-   "case": "Именительный (Nominative)",
-   "explain": "«мелкий бухгалтер» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
   },
   {
    "sentence": "Здесь, в академии пищеварения, миллиардер, и мелкий бухгалтер, и тот, кто сунул ___ швейцару, и тот, кто, сопя, вылез из рольс-ройса, пропахшего гаванами, — платили один и тот же счет.",
@@ -207,22 +109,8 @@
    ],
    "correct": "мокрый зонтик",
    "case": "Винительный (Accusative)",
-   "explain": "«мокрый зонтик» — the accusative marks the direct object of the verb.",
+   "explain": "«мокрый зонтик» is the direct object of «сунул» (кого? что?) — accusative.",
    "id": "c16"
-  },
-  {
-   "sentence": "Мосье Грифон отступил, на секунду в глазах его мелькнули изумление, страх, отвращение: клиент начинает с водки, оглушающей ___ в полости рта, и продолжает шампанским, от которого пучит желудок.",
-   "lemma": "пупырышек",
-   "options": [
-    "вкусовых пупырышках",
-    "вкусовые пупырышки",
-    "вкусовыми пупырышками",
-    "вкусовым пупырышкам"
-   ],
-   "correct": "вкусовые пупырышки",
-   "case": "Винительный (Accusative)",
-   "explain": "«вкусовые пупырышки» — the accusative marks the direct object of the verb.",
-   "id": "c17"
   },
   {
    "sentence": "После ___ виски Роллинг начал мять салфетку.",
@@ -235,36 +123,8 @@
    ],
    "correct": "третьего стакана",
    "case": "Родительный (Genitive)",
-   "explain": "«третьего стакана» — after the preposition «после», the genitive here marks possession, absence, or quantity.",
+   "explain": "«третьего стакана» — «после» always takes the genitive.",
    "id": "c18"
-  },
-  {
-   "sentence": "В мозгу Роллинга, в желтых парах виски, рождались, скрещивались, извивались чрезвычайно изысканные ___ мщения.",
-   "lemma": "идея",
-   "options": [
-    "болезненные идеи",
-    "болезненными идеями",
-    "болезненных идей",
-    "болезненных идеях"
-   ],
-   "correct": "болезненные идеи",
-   "case": "Винительный (Accusative)",
-   "explain": "«болезненные идеи» — the accusative marks the direct object of the verb.",
-   "id": "c19"
-  },
-  {
-   "sentence": "Роллинг схватил стакан и жадно выпил его, — ___ стукнули о стекло.",
-   "lemma": "зуб",
-   "options": [
-    "золотых зубов",
-    "золотых зубах",
-    "золотыми зубами",
-    "золотые зубы"
-   ],
-   "correct": "золотые зубы",
-   "case": "Именительный (Nominative)",
-   "explain": "«золотые зубы» — the subject of the sentence stands in the nominative.",
-   "id": "c20"
   }
  ]
 }

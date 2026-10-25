@@ -1,101 +1,17 @@
 {
  "cases": [
   {
-   "sentence": "Лошадь императора удостоилась ___, по одной на каждую ногу.",
-   "lemma": "подкова",
-   "options": [
-    "золотых подковах",
-    "золотых подков",
-    "золотые подковы",
-    "золотыми подковами"
-   ],
-   "correct": "золотых подков",
-   "case": "Родительный (Genitive)",
-   "explain": "«золотых подков» — the genitive here marks possession, absence, or quantity.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Она была чудо как красива, с ___, умными глазами и шелковистою гривою, ниспадавшей на её шею длинною мантией.",
-   "lemma": "нога",
-   "options": [
-    "тонкие ноги",
-    "тонких ногах",
-    "тонкими ногами",
-    "тонким ногам"
-   ],
-   "correct": "тонкими ногами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«тонкими ногами» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Она была чудо как красива, с тонкими ногами, ___ и шелковистою гривою, ниспадавшей на её шею длинною мантией.",
-   "lemma": "глаз",
-   "options": [
-    "умным глазам",
-    "умные глаза",
-    "умными глазами",
-    "умных глаз"
-   ],
-   "correct": "умными глазами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«умными глазами» — the instrumental marks the means, company, or complement.",
-   "id": "c3"
-  },
-  {
-   "sentence": "Она защищалась от них на жизнь и смерть, одним прыжком перескочила со своим всадником через упавшую лошадь врага и тем спасла золотую корону императора и самую жизнь его, что подороже ___.",
-   "lemma": "корона",
-   "options": [
-    "золотой короной",
-    "золотой короны",
-    "золотая корона",
-    "золотой короне"
-   ],
-   "correct": "золотой короны",
-   "case": "Родительный (Genitive)",
-   "explain": "«золотой короны» — the genitive here marks possession, absence, or quantity.",
-   "id": "c4"
-  },
-  {
-   "sentence": "Вот за что она и удостоилась ___, по одной на каждую ногу.",
-   "lemma": "подкова",
-   "options": [
-    "золотых подковах",
-    "золотых подков",
-    "золотые подковы",
-    "золотыми подковами"
-   ],
-   "correct": "золотых подков",
-   "case": "Родительный (Genitive)",
-   "explain": "«золотых подков» — the genitive here marks possession, absence, or quantity.",
-   "id": "c5"
-  },
-  {
-   "sentence": "А ___ тут как тут.",
-   "lemma": "жук",
-   "options": [
-    "навозный жук",
-    "навозного жука",
-    "навозному жуку",
-    "навозным жуком"
-   ],
-   "correct": "навозный жук",
-   "case": "Именительный (Nominative)",
-   "explain": "«навозный жук» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
-  },
-  {
    "sentence": "И он протянул свои ___.",
    "lemma": "ножка",
    "options": [
-    "тощим ножкам",
     "тощих ножках",
-    "тощих ножек",
+    "тощими ножками",
+    "тощим ножкам",
     "тощие ножки"
    ],
    "correct": "тощие ножки",
    "case": "Винительный (Accusative)",
-   "explain": "«тощие ножки» — the accusative marks the direct object of the verb.",
+   "explain": "«тощие ножки» is the direct object of «протянул» (кого? что?) — accusative.",
    "id": "c7"
   },
   {
@@ -109,21 +25,21 @@
    ],
    "correct": "царской конюшни",
    "case": "Родительный (Genitive)",
-   "explain": "«царской конюшни» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«царской конюшни» — «из» always takes the genitive.",
    "id": "c8"
   },
   {
    "sentence": "— Да за что лошади дают ___?",
    "lemma": "подкова",
    "options": [
+    "золотыми подковами",
+    "золотые подковы",
     "золотым подковам",
-    "золотых подков",
-    "золотых подковах",
-    "золотые подковы"
+    "золотых подковах"
    ],
    "correct": "золотые подковы",
    "case": "Винительный (Accusative)",
-   "explain": "«золотые подковы» — the accusative marks the direct object of the verb.",
+   "explain": "«золотые подковы» is the direct object of «дают» (кого? что?) — accusative.",
    "id": "c9"
   },
   {
@@ -137,7 +53,7 @@
    ],
    "correct": "навозной кучи",
    "case": "Родительный (Genitive)",
-   "explain": "«навозной кучи» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«навозной кучи» depends on the noun «кучи» (whose? of what?) — genitive.",
    "id": "c10"
   },
   {
@@ -151,7 +67,7 @@
    ],
    "correct": "большого левкоя",
    "case": "Родительный (Genitive)",
-   "explain": "«большого левкоя» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«большого левкоя» depends on the noun «сень» (whose? of what?) — genitive.",
    "id": "c11"
   },
   {
@@ -165,7 +81,7 @@
    ],
    "correct": "царской конюшни",
    "case": "Родительный (Genitive)",
-   "explain": "«царской конюшни» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«царской конюшни» — «из» always takes the genitive.",
    "id": "c12"
   },
   {
@@ -179,36 +95,22 @@
    ],
    "correct": "мокрого холста",
    "case": "Родительный (Genitive)",
-   "explain": "«мокрого холста» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«мокрого холста» depends on the noun «складку» (whose? of what?) — genitive.",
    "id": "c13"
   },
   {
    "sentence": "Конечно, это было не то, что зарыться в ___ в конюшне, но лучшего ничего здесь не представлялось, и он остался лежать тут весь день и всю ночь, — дождь всё лил.",
    "lemma": "навоз",
    "options": [
-    "тёплом навозе",
-    "тёплый навоз",
     "тёплым навозом",
-    "тёплому навозу"
+    "тёплый навоз",
+    "тёплому навозу",
+    "тёплого навоза"
    ],
    "correct": "тёплый навоз",
    "case": "Винительный (Accusative)",
-   "explain": "«тёплый навоз» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«тёплый навоз» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c14"
-  },
-  {
-   "sentence": "У меня даже ___ зачесались: так бы вот и поплыла!",
-   "lemma": "нога",
-   "options": [
-    "задние ноги",
-    "задним ногам",
-    "задних ног",
-    "задних ногах"
-   ],
-   "correct": "задние ноги",
-   "case": "Именительный (Nominative)",
-   "explain": "«задние ноги» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
   },
   {
    "sentence": "Право, словно сидишь в ___!",
@@ -221,7 +123,7 @@
    ],
    "correct": "сырой канаве",
    "case": "Предложный (Prepositional)",
-   "explain": "«сырой канаве» — after the preposition «в», for location or topic.",
+   "explain": "«сырой канаве» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c16"
   },
   {
@@ -235,50 +137,8 @@
    ],
    "correct": "царской конюшне",
    "case": "Предложный (Prepositional)",
-   "explain": "«царской конюшне» — after the preposition «в», for location or topic.",
+   "explain": "«царской конюшне» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c17"
-  },
-  {
-   "sentence": "Нет ли здесь в саду хоть парника, где бы ___, вроде меня, могли найти приют и чувствовать себя как дома?",
-   "lemma": "особа",
-   "options": [
-    "знатных особ",
-    "знатным особам",
-    "знатными особами",
-    "знатные особы"
-   ],
-   "correct": "знатные особы",
-   "case": "Именительный (Nominative)",
-   "explain": "«знатные особы» — the subject of the sentence stands in the nominative.",
-   "id": "c18"
-  },
-  {
-   "sentence": "Не правда ли, господин ___?",
-   "lemma": "жук",
-   "options": [
-    "навозный жук",
-    "навозного жука",
-    "навозному жуку",
-    "навозным жуком"
-   ],
-   "correct": "навозный жук",
-   "case": "Именительный (Nominative)",
-   "explain": "«навозный жук» — the subject of the sentence stands in the nominative.",
-   "id": "c19"
-  },
-  {
-   "sentence": "У канавы он встретил своих сродников, таких же ___.",
-   "lemma": "жук",
-   "options": [
-    "навозными жуками",
-    "навозных жуков",
-    "навозных жуках",
-    "навозным жукам"
-   ],
-   "correct": "навозных жуков",
-   "case": "Родительный (Genitive)",
-   "explain": "«навозных жуков» — the genitive here marks possession, absence, or quantity.",
-   "id": "c20"
   },
   {
    "sentence": "— Я из ___; там я родился с золотыми подковами на ногах.",
@@ -291,22 +151,8 @@
    ],
    "correct": "царской конюшни",
    "case": "Родительный (Genitive)",
-   "explain": "«царской конюшни» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«царской конюшни» — «из» always takes the genitive.",
    "id": "c21"
-  },
-  {
-   "sentence": "— Я из царской конюшни; там я родился с ___ на ногах.",
-   "lemma": "подкова",
-   "options": [
-    "золотых подковах",
-    "золотыми подковами",
-    "золотых подков",
-    "золотым подковам"
-   ],
-   "correct": "золотыми подковами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«золотыми подковами» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c22"
   },
   {
    "sentence": "И путешествую я по ___.",
@@ -319,7 +165,7 @@
    ],
    "correct": "секретному поручению",
    "case": "Дательный (Dative)",
-   "explain": "«секретному поручению» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«секретному поручению» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c23"
   },
   {
@@ -333,7 +179,7 @@
    ],
    "correct": "навозный жук",
    "case": "Именительный (Nominative)",
-   "explain": "«навозный жук» — the subject of the sentence stands in the nominative.",
+   "explain": "«навозный жук» is the subject of «уполз» — who or what does it — so nominative.",
    "id": "c24"
   },
   {
@@ -347,36 +193,22 @@
    ],
    "correct": "царской конюшне",
    "case": "Предложный (Prepositional)",
-   "explain": "«царской конюшне» — after the preposition «в», for location or topic.",
+   "explain": "«царской конюшне» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c25"
   },
   {
    "sentence": "И не заговаривайте с ними, если у вас нет ___!..",
    "lemma": "намерение",
    "options": [
-    "серьёзным намерениям",
-    "серьёзные намерения",
+    "серьёзных намерениях",
     "серьёзных намерений",
-    "серьёзными намерениями"
+    "серьёзными намерениями",
+    "серьёзным намерениям"
    ],
    "correct": "серьёзных намерений",
    "case": "Родительный (Genitive)",
-   "explain": "«серьёзных намерений» — the genitive here marks possession, absence, or quantity.",
+   "explain": "What is absent after «нет» — genitive.",
    "id": "c26"
-  },
-  {
-   "sentence": "___ прошёл хорошо, второй — так себе, а на третий уже приходилось подумать о пропитании жены, а, может быть, и деток.",
-   "lemma": "день",
-   "options": [
-    "следующим днём",
-    "следующий день",
-    "следующем дне",
-    "следующего дня"
-   ],
-   "correct": "следующий день",
-   "case": "Винительный (Accusative)",
-   "explain": "«Следующий день» — the accusative marks the direct object of the verb.",
-   "id": "c27"
   },
   {
    "sentence": "Другие ___ объявили, что приняли в семью настоящего бродягу.",
@@ -389,7 +221,7 @@
    ],
    "correct": "навозные жуки",
    "case": "Именительный (Nominative)",
-   "explain": "«навозные жуки» — the subject of the sentence stands in the nominative.",
+   "explain": "«навозные жуки» is the subject of «объявили» — who or what does it — so nominative.",
    "id": "c28"
   },
   {
@@ -397,13 +229,13 @@
    "lemma": "листок",
    "options": [
     "капустном листке",
+    "капустным листком",
     "капустному листку",
-    "капустный листок",
     "капустного листка"
    ],
    "correct": "капустном листке",
    "case": "Предложный (Prepositional)",
-   "explain": "«капустном листке» — after the preposition «на», for location or topic.",
+   "explain": "«капустном листке» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c29"
   },
   {
@@ -417,21 +249,21 @@
    ],
    "correct": "чёрного жука",
    "case": "Винительный (Accusative)",
-   "explain": "«чёрного жука» — the accusative marks the direct object of the verb.",
+   "explain": "«чёрного жука» is the direct object of «видит» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c30"
   },
   {
    "sentence": "— «Аллах видит чёрного жука на ___ чёрной скалы».",
    "lemma": "камень",
    "options": [
-    "чёрным камнем",
+    "чёрного камня",
     "чёрному камню",
-    "чёрный камень",
+    "чёрным камнем",
     "чёрном камне"
    ],
    "correct": "чёрном камне",
    "case": "Предложный (Prepositional)",
-   "explain": "«чёрном камне» — after the preposition «на», for location or topic.",
+   "explain": "«чёрном камне» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c31"
   },
   {
@@ -445,7 +277,7 @@
    ],
    "correct": "чёрной скалы",
    "case": "Родительный (Genitive)",
-   "explain": "«чёрной скалы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«чёрной скалы» depends on the noun «камне» (whose? of what?) — genitive.",
    "id": "c32"
   },
   {
@@ -453,13 +285,13 @@
    "lemma": "учёный",
    "options": [
     "старшим учёным",
-    "старшего учёного",
+    "старшему учёному",
     "старшем учёном",
     "старший учёный"
    ],
    "correct": "старший учёный",
    "case": "Именительный (Nominative)",
-   "explain": "«Старший учёный» — the subject of the sentence stands in the nominative.",
+   "explain": "«старший учёный» is the subject of «советовал» — who or what does it — so nominative.",
    "id": "c33"
   },
   {
@@ -473,7 +305,7 @@
    ],
    "correct": "хорошие экземпляры",
    "case": "Именительный (Nominative)",
-   "explain": "«хорошие экземпляры» — the subject of the sentence stands in the nominative.",
+   "explain": "«хорошие экземпляры» is the subject of «имелись» — who or what does it — so nominative.",
    "id": "c34"
   },
   {
@@ -487,7 +319,7 @@
    ],
    "correct": "самой теплицы",
    "case": "Родительный (Genitive)",
-   "explain": "«самой теплицы» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«самой теплицы» — «до» always takes the genitive.",
    "id": "c35"
   },
   {
@@ -495,70 +327,14 @@
    "lemma": "навоз",
    "options": [
     "свежий навоз",
+    "свежим навозом",
     "свежему навозу",
-    "свежем навозе",
     "свежего навоза"
    ],
    "correct": "свежий навоз",
    "case": "Винительный (Accusative)",
-   "explain": "«свежий навоз» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«свежий навоз» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c36"
-  },
-  {
-   "sentence": "Скоро он заснул и видел во сне, что царская лошадь пала, а ___ навозный жук получил её золотые подковы, причём ему пообещали дать и ещё две.",
-   "lemma": "господин",
-   "options": [
-    "самого господина",
-    "самому господину",
-    "самом господине",
-    "сам господин"
-   ],
-   "correct": "сам господин",
-   "case": "Именительный (Nominative)",
-   "explain": "«сам господин» — the subject of the sentence stands in the nominative.",
-   "id": "c37"
-  },
-  {
-   "sentence": "Скоро он заснул и видел во сне, что царская лошадь пала, а сам господин навозный жук получил её ___, причём ему пообещали дать и ещё две.",
-   "lemma": "подкова",
-   "options": [
-    "золотым подковам",
-    "золотых подков",
-    "золотых подковах",
-    "золотые подковы"
-   ],
-   "correct": "золотые подковы",
-   "case": "Винительный (Accusative)",
-   "explain": "«золотые подковы» — the accusative marks the direct object of the verb.",
-   "id": "c38"
-  },
-  {
-   "sentence": "___ веерами раскинули в вышине свои листья, сквозь которые просвечивало солнце; внизу же всюду зеленела травка, кишмя кишели цветы, огненно-красные, янтарно-жёлтые и белые, как свежевыпавший снег.",
-   "lemma": "пальма",
-   "options": [
-    "огромным пальмам",
-    "огромные пальмы",
-    "огромных пальм",
-    "огромных пальмах"
-   ],
-   "correct": "огромные пальмы",
-   "case": "Именительный (Nominative)",
-   "explain": "«Огромные пальмы» — the subject of the sentence stands in the nominative.",
-   "id": "c39"
-  },
-  {
-   "sentence": "— И жук пополз, думая о своём сне, о павшей лошади и о ___.",
-   "lemma": "подкова",
-   "options": [
-    "золотых подков",
-    "золотых подковах",
-    "золотыми подковами",
-    "золотые подковы"
-   ],
-   "correct": "золотых подковах",
-   "case": "Предложный (Prepositional)",
-   "explain": "«золотых подковах» — after the preposition «о», for location or topic.",
-   "id": "c40"
   },
   {
    "sentence": "Жука завернули в ___ и положили в тёплый карман панталон.",
@@ -567,11 +343,11 @@
     "виноградный листок",
     "виноградного листка",
     "виноградным листком",
-    "виноградном листке"
+    "виноградному листку"
    ],
    "correct": "виноградный листок",
    "case": "Винительный (Accusative)",
-   "explain": "«виноградный листок» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«виноградный листок» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c41"
   },
   {
@@ -579,97 +355,69 @@
    "lemma": "карман",
    "options": [
     "тёплого кармана",
-    "тёплом кармане",
     "тёплым карманом",
-    "тёплый карман"
+    "тёплый карман",
+    "тёплому карману"
    ],
    "correct": "тёплый карман",
    "case": "Винительный (Accusative)",
-   "explain": "«тёплый карман» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«тёплый карман» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c42"
-  },
-  {
-   "sentence": "Он было принялся там вертеться, карабкаться, но мальчик притиснул его рукой и побежал вместе с товарищем в конец сада, к ___.",
-   "lemma": "озеро",
-   "options": [
-    "большим озером",
-    "большого озера",
-    "большому озеру",
-    "большое озеро"
-   ],
-   "correct": "большому озеру",
-   "case": "Дательный (Dative)",
-   "explain": "«большому озеру» — after the preposition «к», the dative marks the indirect object or recipient.",
-   "id": "c43"
   },
   {
    "sentence": "Там они посадили жука в старый сломанный ___, укрепили в середине его щепочку вместо мачты, привязали к ней жука шерстинкой и спустили башмак на воду.",
    "lemma": "башмак",
    "options": [
-    "деревянном башмаке",
+    "деревянного башмака",
+    "деревянным башмаком",
     "деревянному башмаку",
-    "деревянный башмак",
-    "деревянного башмака"
+    "деревянный башмак"
    ],
    "correct": "деревянный башмак",
    "case": "Винительный (Accusative)",
-   "explain": "«деревянный башмак» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«деревянный башмак» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c44"
-  },
-  {
-   "sentence": "Сначала меня обходят ___, потом мне приходится лежать на мокром холсте, стоять на сквозняке, и, наконец, мне навязывают жену!",
-   "lemma": "подкова",
-   "options": [
-    "золотых подковах",
-    "золотыми подковами",
-    "золотых подков",
-    "золотым подковам"
-   ],
-   "correct": "золотыми подковами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«золотыми подковами» — the instrumental marks the means, company, or complement.",
-   "id": "c45"
   },
   {
    "sentence": "Сначала меня обходят золотыми подковами, потом мне приходится лежать на ___, стоять на сквозняке, и, наконец, мне навязывают жену!",
    "lemma": "холст",
    "options": [
-    "мокром холсте",
     "мокрым холстом",
-    "мокрый холст",
-    "мокрого холста"
+    "мокрому холсту",
+    "мокрого холста",
+    "мокром холсте"
    ],
    "correct": "мокром холсте",
    "case": "Предложный (Prepositional)",
-   "explain": "«мокром холсте» — after the preposition «на», for location or topic.",
+   "explain": "«мокром холсте» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c46"
   },
   {
    "sentence": "Едва же я делаю ___ в свет, осматриваюсь и приглядываюсь, является мальчишка и пускает меня связанного в дикое море!",
    "lemma": "шаг",
    "options": [
-    "смелом шаге",
-    "смелый шаг",
     "смелым шагом",
-    "смелого шага"
+    "смелом шаге",
+    "смелому шагу",
+    "смелый шаг"
    ],
    "correct": "смелый шаг",
    "case": "Винительный (Accusative)",
-   "explain": "«смелый шаг» — the accusative marks the direct object of the verb.",
+   "explain": "«смелый шаг» is the direct object of «делаю» (кого? что?) — accusative.",
    "id": "c47"
   },
   {
    "sentence": "Да свет и не достоин знать её, иначе он дал бы ___ мне, когда царская лошадь протянула за ними ноги.",
    "lemma": "подкова",
    "options": [
+    "золотые подковы",
     "золотым подковам",
-    "золотых подков",
-    "золотых подковах",
-    "золотые подковы"
+    "золотыми подковами",
+    "золотых подковах"
    ],
    "correct": "золотые подковы",
    "case": "Винительный (Accusative)",
-   "explain": "«золотые подковы» — the accusative marks the direct object of the verb.",
+   "explain": "«золотые подковы» is the direct object of «протянула» (кого? что?) — accusative.",
    "id": "c48"
   },
   {
@@ -677,28 +425,14 @@
    "lemma": "подкова",
    "options": [
     "золотым подковам",
-    "золотых подков",
     "золотых подковах",
+    "золотыми подковами",
     "золотые подковы"
    ],
    "correct": "золотые подковы",
    "case": "Винительный (Accusative)",
-   "explain": "«золотые подковы» — the accusative marks the direct object of the verb.",
+   "explain": "«золотые подковы» is the direct object of «Получи» (кого? что?) — accusative.",
    "id": "c49"
-  },
-  {
-   "sentence": "Но конец всему, видно, ещё не наступил: на озере появилась лодка, а в ней сидело несколько ___.",
-   "lemma": "девушка",
-   "options": [
-    "молодых девушках",
-    "молодым девушкам",
-    "молодых девушек",
-    "молодые девушки"
-   ],
-   "correct": "молодых девушек",
-   "case": "Родительный (Genitive)",
-   "explain": "«молодых девушек» — the genitive here marks possession, absence, or quantity.",
-   "id": "c50"
   },
   {
    "sentence": "— И ___ привязано крепко-накрепко!",
@@ -711,7 +445,7 @@
    ],
    "correct": "бедное насекомое",
    "case": "Именительный (Nominative)",
-   "explain": "«бедное насекомое» — the subject of the sentence stands in the nominative.",
+   "explain": "«бедное насекомое» is the subject of «привязано» — who or what does it — so nominative.",
    "id": "c51"
   },
   {
@@ -725,64 +459,8 @@
    ],
    "correct": "навозный жук",
    "case": "Именительный (Nominative)",
-   "explain": "«навозный жук» — the subject of the sentence stands in the nominative.",
+   "explain": "«навозный жук» is the subject of «полетел» — who or what does it — so nominative.",
    "id": "c52"
-  },
-  {
-   "sentence": "И навозный жук полетел прямо в открытое окно какого-то ___, а там устало опустился на тонкую, мягкую, длинную гриву любимой царской лошади, стоявшей в конюшне, родной конюшне жука.",
-   "lemma": "строение",
-   "options": [
-    "большого строения",
-    "большом строении",
-    "большое строение",
-    "большому строению"
-   ],
-   "correct": "большого строения",
-   "case": "Родительный (Genitive)",
-   "explain": "«большого строения» — after the preposition «на», the genitive here marks possession, absence, or quantity.",
-   "id": "c53"
-  },
-  {
-   "sentence": "И навозный жук полетел прямо в открытое окно какого-то большого строения, а там устало опустился на тонкую, мягкую, длинную гриву любимой царской лошади, стоявшей в конюшне, ___ жука.",
-   "lemma": "конюшня",
-   "options": [
-    "родной конюшни",
-    "родной конюшней",
-    "родная конюшня",
-    "родной конюшне"
-   ],
-   "correct": "родной конюшне",
-   "case": "Предложный (Prepositional)",
-   "explain": "«родной конюшне» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c54"
-  },
-  {
-   "sentence": "Да и как не быть свету хорошим, если любимая лошадь императора удостоилась ___ ради того только, что на ней ездил верхом навозный жук?",
-   "lemma": "подкова",
-   "options": [
-    "золотых подковах",
-    "золотых подков",
-    "золотые подковы",
-    "золотыми подковами"
-   ],
-   "correct": "золотых подков",
-   "case": "Родительный (Genitive)",
-   "explain": "«золотых подков» — the genitive here marks possession, absence, or quantity.",
-   "id": "c55"
-  },
-  {
-   "sentence": "Да и как не быть свету хорошим, если любимая лошадь императора удостоилась золотых подков ради того только, что на ней ездил верхом ___?",
-   "lemma": "жук",
-   "options": [
-    "навозный жук",
-    "навозного жука",
-    "навозному жуку",
-    "навозным жуком"
-   ],
-   "correct": "навозный жук",
-   "case": "Именительный (Nominative)",
-   "explain": "«навозный жук» — the subject of the sentence stands in the nominative.",
-   "id": "c56"
   },
   {
    "sentence": "— Теперь я поползу к ___ и расскажу, что для меня сделали!",
@@ -795,7 +473,7 @@
    ],
    "correct": "другим жукам",
    "case": "Дательный (Dative)",
-   "explain": "«другим жукам» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«другим жукам» — «к» always takes the dative.",
    "id": "c57"
   },
   {
@@ -809,7 +487,7 @@
    ],
    "correct": "заграничного путешествия",
    "case": "Родительный (Genitive)",
-   "explain": "«заграничного путешествия» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«заграничного путешествия» depends on the noun «прелестях» (whose? of what?) — genitive.",
    "id": "c58"
   },
   {
@@ -817,13 +495,13 @@
    "lemma": "подкова",
    "options": [
     "золотых подковах",
+    "золотыми подковами",
     "золотых подков",
-    "золотые подковы",
-    "золотыми подковами"
+    "золотым подковам"
    ],
    "correct": "золотых подков",
    "case": "Родительный (Genitive)",
-   "explain": "«золотых подков» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«золотых подков» is the object of a negated verb («не износит») — genitive instead of the accusative.",
    "id": "c59"
   }
  ]

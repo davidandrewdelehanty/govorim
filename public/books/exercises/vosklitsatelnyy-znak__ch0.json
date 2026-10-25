@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "В ночь под Рождество Ефим Фомич Перекладин, ___, лег спать обиженный и даже оскорбленный.",
-   "lemma": "секретарь",
-   "options": [
-    "коллежскому секретарю",
-    "коллежским секретарём",
-    "коллежский секретарь",
-    "коллежском секретаре"
-   ],
-   "correct": "коллежский секретарь",
-   "case": "Именительный (Nominative)",
-   "explain": "«коллежский секретарь» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Сначала заговорили о пользе образования вообще, потом же незаметно перешли к ___ служащей братии, причем было высказано много сожалений, упреков и даже насмешек по поводу низкого уровня.",
    "lemma": "ценз",
    "options": [
@@ -25,22 +11,8 @@
    ],
    "correct": "образовательному цензу",
    "case": "Дательный (Dative)",
-   "explain": "«образовательному цензу» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«образовательному цензу» — «к» always takes the dative.",
    "id": "c3"
-  },
-  {
-   "sentence": "Сначала заговорили о пользе образования вообще, потом же незаметно перешли к образовательному цензу служащей братии, причем было высказано много сожалений, упреков и даже насмешек по поводу ___.",
-   "lemma": "уровень",
-   "options": [
-    "низкий уровень",
-    "низкого уровня",
-    "низким уровнем",
-    "низкому уровню"
-   ],
-   "correct": "низкого уровня",
-   "case": "Родительный (Genitive)",
-   "explain": "«низкого уровня» — after the preposition «по», the genitive here marks possession, absence, or quantity.",
-   "id": "c4"
   },
   {
    "sentence": "И тут, как это водится во всех ___, с общих материй перешли к личностям.",
@@ -53,22 +25,8 @@
    ],
    "correct": "российских компаниях",
    "case": "Предложный (Prepositional)",
-   "explain": "«российских компаниях» — after the preposition «во», for location or topic.",
+   "explain": "«российских компаниях» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c5"
-  },
-  {
-   "sentence": "Это ___ и больше ничего.",
-   "lemma": "производство",
-   "options": [
-    "машинное производство",
-    "машинному производству",
-    "машинного производства",
-    "машинным производством"
-   ],
-   "correct": "машинное производство",
-   "case": "Именительный (Nominative)",
-   "explain": "«машинное производство» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
   },
   {
    "sentence": "Перекладин смолчал и даже кротко улыбнулся (юноша был сын ___ и сам имел право на чин X класса), но теперь, ложась спать, он весь обратился в негодование и злобу.",
@@ -81,7 +39,7 @@
    ],
    "correct": "статского советника",
    "case": "Родительный (Genitive)",
-   "explain": "«статского советника» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«статского советника» depends on the noun «сын» (whose? of what?) — genitive.",
    "id": "c9"
   },
   {
@@ -95,7 +53,7 @@
    ],
    "correct": "длинных мест",
    "case": "Родительный (Genitive)",
-   "explain": "«длинных мест» — after the preposition «после», the genitive here marks possession, absence, or quantity.",
+   "explain": "«длинных мест» — «после» always takes the genitive.",
    "id": "c13"
   },
   {
@@ -109,7 +67,7 @@
    ],
    "correct": "самом деле",
    "case": "Предложный (Prepositional)",
-   "explain": "«самом деле» — after the preposition «в», for location or topic.",
+   "explain": "«самом деле» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c16"
   },
   {
@@ -123,7 +81,7 @@
    ],
    "correct": "восклицательные знаки",
    "case": "Именительный (Nominative)",
-   "explain": "«восклицательные знаки» — the subject of the sentence stands in the nominative.",
+   "explain": "«восклицательные знаки» is the subject of «появились» — who or what does it — so nominative.",
    "id": "c18"
   },
   {
@@ -137,7 +95,7 @@
    ],
    "correct": "восклицательного знака",
    "case": "Родительный (Genitive)",
-   "explain": "«восклицательного знака» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«восклицательного знака» is the object of a negated verb («не нашел») — genitive instead of the accusative.",
    "id": "c20"
   },
   {
@@ -151,22 +109,8 @@
    ],
    "correct": "восклицательных знаков",
    "case": "Родительный (Genitive)",
-   "explain": "«восклицательных знаков» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«восклицательных знаков» depends on the noun «ряда» (whose? of what?) — genitive.",
    "id": "c22"
-  },
-  {
-   "sentence": "___ улыбнулись и слились в один большой восклицательный знак.",
-   "lemma": "знак",
-   "options": [
-    "самим знакам",
-    "сами знаки",
-    "самих знаках",
-    "самими знаками"
-   ],
-   "correct": "сами знаки",
-   "case": "Именительный (Nominative)",
-   "explain": "«Сами знаки» — the subject of the sentence stands in the nominative.",
-   "id": "c23"
   },
   {
    "sentence": "Сами знаки улыбнулись и слились в один большой ___.",
@@ -179,7 +123,7 @@
    ],
    "correct": "восклицательный знак",
    "case": "Винительный (Accusative)",
-   "explain": "«восклицательный знак» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«восклицательный знак» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c24"
   },
   {
@@ -193,22 +137,8 @@
    ],
    "correct": "восклицательный знак",
    "case": "Именительный (Nominative)",
-   "explain": "«восклицательный знак» — the subject of the sentence stands in the nominative.",
+   "explain": "«восклицательный знак» is the subject of «ставится» — who or what does it — so nominative.",
    "id": "c26"
-  },
-  {
-   "sentence": "Этот знак ставится при обращениях, восклицаниях и при выражениях восторга, негодования, радости, гнева и ___.",
-   "lemma": "чувство",
-   "options": [
-    "прочими чувствами",
-    "прочих чувств",
-    "прочих чувствах",
-    "прочие чувства"
-   ],
-   "correct": "прочих чувств",
-   "case": "Родительный (Genitive)",
-   "explain": "«прочих чувств» — the genitive here marks possession, absence, or quantity.",
-   "id": "c27"
   },
   {
    "sentence": "Рожа юноши-критика опять выглянула из-за ___ и ехидно улыбнулась.",
@@ -221,7 +151,7 @@
    ],
    "correct": "огненного знака",
    "case": "Родительный (Genitive)",
-   "explain": "«огненного знака» — after the preposition «из-за», the genitive here marks possession, absence, or quantity.",
+   "explain": "«огненного знака» — «из-за» always takes the genitive.",
    "id": "c30"
   },
   {
@@ -235,36 +165,8 @@
    ],
    "correct": "женской руки",
    "case": "Родительный (Genitive)",
-   "explain": "«женской руки» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«женской руки» depends on the noun «присутствием» (whose? of what?) — genitive.",
    "id": "c31"
-  },
-  {
-   "sentence": "Когда Перекладин вышел на улицу и крикнул извозчика, то ему показалось, что вместо извозчика подкатил ___.",
-   "lemma": "знак",
-   "options": [
-    "восклицательный знак",
-    "восклицательному знаку",
-    "восклицательным знаком",
-    "восклицательного знака"
-   ],
-   "correct": "восклицательный знак",
-   "case": "Винительный (Accusative)",
-   "explain": "«восклицательный знак» — the accusative marks the direct object of the verb.",
-   "id": "c33"
-  },
-  {
-   "sentence": "Ручка с пером тоже глядела ___.",
-   "lemma": "знак",
-   "options": [
-    "восклицательного знака",
-    "восклицательным знаком",
-    "восклицательному знаку",
-    "восклицательный знак"
-   ],
-   "correct": "восклицательным знаком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«восклицательным знаком» — the instrumental marks the means, company, or complement.",
-   "id": "c34"
   },
   {
    "sentence": "___ удовлетворился и исчез.",
@@ -277,7 +179,7 @@
    ],
    "correct": "огненный знак",
    "case": "Именительный (Nominative)",
-   "explain": "«Огненный знак» — the subject of the sentence stands in the nominative.",
+   "explain": "«огненный знак» is the subject of «удовлетворился» — who or what does it — so nominative.",
    "id": "c36"
   }
  ]

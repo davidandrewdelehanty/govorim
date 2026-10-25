@@ -1,31 +1,17 @@
 {
  "cases": [
   {
-   "sentence": "Тогда он еще был ___, с глянцевитой нежной шерстью, лебединой шейкой и, как струнки, ровными и тонкими ногами.",
-   "lemma": "сосунок",
-   "options": [
-    "простому сосунку",
-    "простом сосунке",
-    "простого сосунка",
-    "простой сосунок"
-   ],
-   "correct": "простой сосунок",
-   "case": "Именительный (Nominative)",
-   "explain": "«простой сосунок» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Вечером меня загнали в особый денник; я ржал целую ночь, как будто предчувствуя события ___.",
    "lemma": "день",
    "options": [
+    "завтрашний день",
     "завтрашнего дня",
-    "завтрашнем дне",
     "завтрашнему дню",
-    "завтрашним днём"
+    "завтрашнем дне"
    ],
    "correct": "завтрашнего дня",
    "case": "Родительный (Genitive)",
-   "explain": "«завтрашнего дня» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«завтрашнего дня» depends on the noun «события» (whose? of what?) — genitive.",
    "id": "c3"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "страшный крик",
    "case": "Именительный (Nominative)",
-   "explain": "«страшный крик» — the subject of the sentence stands in the nominative.",
+   "explain": "«страшный крик» is the subject of «начался» — who or what does it — so nominative.",
    "id": "c4"
   },
   {
@@ -53,7 +39,7 @@
    ],
    "correct": "страшный вопрос",
    "case": "Именительный (Nominative)",
-   "explain": "«страшный вопрос» — the subject of the sentence stands in the nominative.",
+   "explain": "«страшный вопрос» is the subject of «представлялся» — who or what does it — so nominative.",
    "id": "c6"
   },
   {
@@ -67,36 +53,8 @@
    ],
    "correct": "старой привычке",
    "case": "Дательный (Dative)",
-   "explain": "«старой привычке» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«старой привычке» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c8"
-  },
-  {
-   "sentence": "Я уже и прежде показывал склонность к серьезности и глубокомыслию, теперь же во мне сделался ___.",
-   "lemma": "переворот",
-   "options": [
-    "решительному перевороту",
-    "решительный переворот",
-    "решительном перевороте",
-    "решительного переворота"
-   ],
-   "correct": "решительный переворот",
-   "case": "Именительный (Nominative)",
-   "explain": "«решительный переворот» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
-  },
-  {
-   "sentence": "___ мне не давали корму и не поили меня.",
-   "lemma": "день",
-   "options": [
-    "целый день",
-    "целым днём",
-    "целом дне",
-    "целого дня"
-   ],
-   "correct": "целый день",
-   "case": "Винительный (Accusative)",
-   "explain": "«Целый день» — the accusative marks the direct object of the verb.",
-   "id": "c11"
   },
   {
    "sentence": "-- А что? -- спросил ___.",
@@ -109,22 +67,8 @@
    ],
    "correct": "другой конюх",
    "case": "Именительный (Nominative)",
-   "explain": "«другой конюх» — the subject of the sentence stands in the nominative.",
+   "explain": "«другой конюх» is the subject of «спросил» — who or what does it — so nominative.",
    "id": "c12"
-  },
-  {
-   "sentence": "Генерал так не парывал, всю спину исполосовал, видно, ___ нет.",
-   "lemma": "душа",
-   "options": [
-    "христианской души",
-    "христианской душой",
-    "христианской душе",
-    "христианская душа"
-   ],
-   "correct": "христианской души",
-   "case": "Родительный (Genitive)",
-   "explain": "«христианской души» — the genitive here marks possession, absence, or quantity.",
-   "id": "c13"
   },
   {
    "sentence": "Только гораздо уже после, когда меня отделили от ___, я понял, что это значило.",
@@ -137,22 +81,8 @@
    ],
    "correct": "других лошадей",
    "case": "Родительный (Genitive)",
-   "explain": "«других лошадей» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«других лошадей» — «от» always takes the genitive.",
    "id": "c14"
-  },
-  {
-   "sentence": "Я не переставая думал об этом и только долго после самых ___ с людьми понял, наконец, значение, которое приписывается людьми этим странным словам.",
-   "lemma": "отношение",
-   "options": [
-    "разнообразных отношениях",
-    "разнообразных отношений",
-    "разнообразным отношениям",
-    "разнообразными отношениями"
-   ],
-   "correct": "разнообразных отношений",
-   "case": "Родительный (Genitive)",
-   "explain": "«разнообразных отношений» — after the preposition «после», the genitive here marks possession, absence, or quantity.",
-   "id": "c15"
   },
   {
    "sentence": "Таковые слова, считающиеся очень важными между ними, суть слова: мой, моя, мое, которые они говорят про ___, существа и предметы, даже про землю, про людей и про лошадей.",
@@ -165,22 +95,8 @@
    ],
    "correct": "различные вещи",
    "case": "Винительный (Accusative)",
-   "explain": "«различные вещи» — after the preposition «про», the accusative marks the direct object of the verb.",
+   "explain": "«различные вещи» — «про» always takes the accusative.",
    "id": "c17"
-  },
-  {
-   "sentence": "Делали мне добро опять-таки не они -- те, которые называли меня своей лошадью, а кучера, коновалы и вообще ___.",
-   "lemma": "человек",
-   "options": [
-    "сторонним людям",
-    "сторонними людьми",
-    "сторонних людях",
-    "сторонние люди"
-   ],
-   "correct": "сторонние люди",
-   "case": "Именительный (Nominative)",
-   "explain": "«сторонние люди» — the subject of the sentence stands in the nominative.",
-   "id": "c18"
   },
   {
    "sentence": "Есть люди, которые ___ называют своими, а никогда не видали этих людей; и все отношение их к этим людям состоит в том, что они делают им зло.",
@@ -193,7 +109,7 @@
    ],
    "correct": "других людей",
    "case": "Винительный (Accusative)",
-   "explain": "«других людей» — the accusative marks the direct object of the verb.",
+   "explain": "«других людей» is the direct object of «называют» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c19"
   },
   {
@@ -207,7 +123,7 @@
    ],
    "correct": "существенное различие",
    "case": "Именительный (Nominative)",
-   "explain": "«существенное различие» — the subject of the sentence stands in the nominative.",
+   "explain": "«существенное различие» is the subject of «состоит» — who or what does it — so nominative.",
    "id": "c21"
   },
   {
@@ -221,7 +137,7 @@
    ],
    "correct": "первый раз",
    "case": "Винительный (Accusative)",
-   "explain": "«первый раз» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«первый раз» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c22"
   },
   {
@@ -235,64 +151,8 @@
    ],
    "correct": "первый раз",
    "case": "Винительный (Accusative)",
-   "explain": "«первый раз» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«первый раз» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c24"
-  },
-  {
-   "sentence": "Я помню, как в первый раз ___, который воображал, что я ему принадлежу, с толпою конюхов стали запрягать меня, ожидая от меня буйства или противодействия.",
-   "lemma": "конюший",
-   "options": [
-    "сам конюший",
-    "самим конюшим",
-    "самом конюшем",
-    "самому конюшему"
-   ],
-   "correct": "сам конюший",
-   "case": "Именительный (Nominative)",
-   "explain": "«сам конюший» — the subject of the sentence stands in the nominative.",
-   "id": "c25"
-  },
-  {
-   "sentence": "С каждым днем я делал большие и большие успеха, так что чрез три месяца ___ и многие другие хвалили мой ход.",
-   "lemma": "генерал",
-   "options": [
-    "сам генерал",
-    "самим генералом",
-    "самому генералу",
-    "самого генерала"
-   ],
-   "correct": "сам генерал",
-   "case": "Именительный (Nominative)",
-   "explain": "«сам генерал» — the subject of the sentence stands in the nominative.",
-   "id": "c26"
-  },
-  {
-   "sentence": "Но ___, -- именно потому, что они воображали себе, что я не свой, а конюшего, ход мой получал для них совсем другое значение.",
-   "lemma": "дело",
-   "options": [
-    "странном деле",
-    "странного дела",
-    "странным делом",
-    "странное дело"
-   ],
-   "correct": "странное дело",
-   "case": "Именительный (Nominative)",
-   "explain": "«странное дело» — the subject of the sentence stands in the nominative.",
-   "id": "c27"
-  },
-  {
-   "sentence": "Жеребцов, моих братьев, проезжали на бегу, вымеряли их пронос, выходили смотреть на них, ездили в золоченых дрожках, накидывали на них ___.",
-   "lemma": "попона",
-   "options": [
-    "дорогих попонах",
-    "дорогими попонами",
-    "дорогим попонам",
-    "дорогие попоны"
-   ],
-   "correct": "дорогие попоны",
-   "case": "Винительный (Accusative)",
-   "explain": "«дорогие попоны» — the accusative marks the direct object of the verb.",
-   "id": "c28"
   },
   {
    "sentence": "Завтра, если будем живы, я расскажу вам, какое ___ имело для меня это право собственности, которое воображал себе конюший.",
@@ -305,22 +165,8 @@
    ],
    "correct": "главное последствие",
    "case": "Именительный (Nominative)",
-   "explain": "«главное последствие» — the subject of the sentence stands in the nominative.",
+   "explain": "«главное последствие» is the subject of «имело» — who or what does it — so nominative.",
    "id": "c29"
-  },
-  {
-   "sentence": "Чалый жеребеночек мужика, уже подходя к табуну, заржал, и ___ опять кокетничала.",
-   "lemma": "кобылка",
-   "options": [
-    "бурая кобылка",
-    "бурой кобылкой",
-    "бурой кобылке",
-    "бурой кобылки"
-   ],
-   "correct": "бурая кобылка",
-   "case": "Именительный (Nominative)",
-   "explain": "«бурая кобылка» — the subject of the sentence stands in the nominative.",
-   "id": "c30"
   }
  ]
 }

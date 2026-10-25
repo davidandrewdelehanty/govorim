@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "___ побудило человека нраву крутого, как то был мой приятель, удалиться из Петербурга, и вот что он мне рассказал.",
-   "lemma": "происшествие",
-   "options": [
-    "особливому происшествию",
-    "особливым происшествием",
-    "особливого происшествия",
-    "особливое происшествие"
-   ],
-   "correct": "особливое происшествие",
-   "case": "Именительный (Nominative)",
-   "explain": "«Особливое происшествие» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
    "sentence": "Но, желая поездку мою обратить в пользу, вознамерился съездить в Кронштадт и на Систербек , где, сказывали мне, в последнее время сделаны ___.",
    "lemma": "перемена",
    "options": [
@@ -25,36 +11,22 @@
    ],
    "correct": "великие перемены",
    "case": "Именительный (Nominative)",
-   "explain": "«великие перемены» — the subject of the sentence stands in the nominative.",
+   "explain": "«великие перемены» is the subject of «сделаны» — who or what does it — so nominative.",
    "id": "c3"
   },
   {
    "sentence": "В Кронштадте прожил я два дни с великим удовольствием, насыщался зрением множества ___, каменной одежды крепости Кронштадтской и строений, стремительно возвышающихся.",
    "lemma": "корабль",
    "options": [
-    "иностранные корабли",
+    "иностранных кораблей",
+    "иностранным кораблям",
     "иностранных кораблях",
-    "иностранными кораблями",
-    "иностранных кораблей"
+    "иностранные корабли"
    ],
    "correct": "иностранных кораблей",
    "case": "Родительный (Genitive)",
-   "explain": "«иностранных кораблей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«иностранных кораблей» depends on the noun «множества» (whose? of what?) — genitive.",
    "id": "c5"
-  },
-  {
-   "sentence": "В Кронштадте прожил я два дни с великим удовольствием, насыщался зрением множества иностранных кораблей, ___ крепости Кронштадтской и строений, стремительно возвышающихся.",
-   "lemma": "одежда",
-   "options": [
-    "каменной одеждой",
-    "каменной одежды",
-    "каменной одежде",
-    "каменная одежда"
-   ],
-   "correct": "каменной одежды",
-   "case": "Родительный (Genitive)",
-   "explain": "«каменной одежды» — the genitive here marks possession, absence, or quantity.",
-   "id": "c6"
   },
   {
    "sentence": "Любопытствовал посмотреть нового Кронштадту плана и с удовольствием предусматривал красоту ___; словом, второй день пребывания моего кончился весело и приятно.",
@@ -67,35 +39,21 @@
    ],
    "correct": "намереваемого строения",
    "case": "Родительный (Genitive)",
-   "explain": "«намереваемого строения» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«намереваемого строения» depends on the noun «красоту» (whose? of what?) — genitive.",
    "id": "c7"
-  },
-  {
-   "sentence": "Любопытствовал посмотреть нового Кронштадту плана и с удовольствием предусматривал красоту намереваемого строения; словом, ___ пребывания моего кончился весело и приятно.",
-   "lemma": "день",
-   "options": [
-    "второй день",
-    "втором дне",
-    "второго дня",
-    "вторым днём"
-   ],
-   "correct": "второй день",
-   "case": "Именительный (Nominative)",
-   "explain": "«второй день» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
   },
   {
    "sentence": "Я вознамерился в пользу употребить благость природы и насладиться еще один хотя раз в жизни великолепным зрелищем восхождения солнца, которого на гладком ___ мне еще видеть не удавалось.",
    "lemma": "горизонт",
    "options": [
     "водяным горизонтом",
-    "водяном горизонте",
-    "водяной горизонт",
-    "водяного горизонта"
+    "водяного горизонта",
+    "водяному горизонту",
+    "водяном горизонте"
    ],
    "correct": "водяном горизонте",
    "case": "Предложный (Prepositional)",
-   "explain": "«водяном горизонте» — after the preposition «на», for location or topic.",
+   "explain": "«водяном горизонте» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c10"
   },
   {
@@ -109,7 +67,7 @@
    ],
    "correct": "мгновенного блеска",
    "case": "Родительный (Genitive)",
-   "explain": "«мгновенного блеска» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«мгновенного блеска» — «от» always takes the genitive.",
    "id": "c11"
   },
   {
@@ -123,36 +81,8 @@
    ],
    "correct": "острый свист",
    "case": "Именительный (Nominative)",
-   "explain": "«острый свист» — the subject of the sentence stands in the nominative.",
+   "explain": "«острый свист» is the subject of «разгнал» — who or what does it — so nominative.",
    "id": "c12"
-  },
-  {
-   "sentence": "Я рад был и ___; соглядал величественные черты природы и не в чванство скажу: что других устрашать начинало, то меня веселило.",
-   "lemma": "зрелище",
-   "options": [
-    "сему зрелищу",
-    "сим зрелищем",
-    "сие зрелище",
-    "сего зрелища"
-   ],
-   "correct": "сему зрелищу",
-   "case": "Дательный (Dative)",
-   "explain": "«сему зрелищу» — the dative marks the indirect object or recipient.",
-   "id": "c13"
-  },
-  {
-   "sentence": "Я рад был и сему зрелищу; соглядал ___ природы и не в чванство скажу: что других устрашать начинало, то меня веселило.",
-   "lemma": "черта",
-   "options": [
-    "величественным чертам",
-    "величественных черт",
-    "величественных чертах",
-    "величественные черты"
-   ],
-   "correct": "величественные черты",
-   "case": "Винительный (Accusative)",
-   "explain": "«величественные черты» — the accusative marks the direct object of the verb.",
-   "id": "c14"
   },
   {
    "sentence": "Небо от густоты ___ совсем померкло.",
@@ -165,22 +95,8 @@
    ],
    "correct": "непрозрачных облаков",
    "case": "Родительный (Genitive)",
-   "explain": "«непрозрачных облаков» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«непрозрачных облаков» — «от» always takes the genitive.",
    "id": "c15"
-  },
-  {
-   "sentence": "Сильное стремление валов отнимало у кормила направление, и порывистый ветр, то вознося нас на мокрые хребты, то низвергая в утесистые рытвины водяных зыбей, отнимал у гребущих силу ___.",
-   "lemma": "движение",
-   "options": [
-    "шественным движением",
-    "шественное движение",
-    "шественному движению",
-    "шественного движения"
-   ],
-   "correct": "шественного движения",
-   "case": "Родительный (Genitive)",
-   "explain": "«шественного движения» — the genitive here marks possession, absence, or quantity.",
-   "id": "c16"
   },
   {
    "sentence": "Тогда и берега начали бояться; тогда и то, что бы нас при ___ утешать могло, начинало приводить в отчаяние.",
@@ -193,22 +109,8 @@
    ],
    "correct": "благополучном плавании",
    "case": "Предложный (Prepositional)",
-   "explain": "«благополучном плавании» — after the preposition «при», for location or topic.",
+   "explain": "«благополучном плавании» — «при» always takes the prepositional.",
    "id": "c17"
-  },
-  {
-   "sentence": "Но ___ вместо того, чтоб принести нам отраду, явила нам бедственное наше положение.",
-   "lemma": "заря",
-   "options": [
-    "восходящей зарёй",
-    "восходящей зари",
-    "восходящая заря",
-    "восходящей заре"
-   ],
-   "correct": "восходящая заря",
-   "case": "Именительный (Nominative)",
-   "explain": "«восходящая заря» — the subject of the sentence stands in the nominative.",
-   "id": "c18"
   },
   {
    "sentence": "Мы узрели ясно, что шлюпка наша не на мели находилась, но погрязла между двух ___ и что не было никаких сил для ее избавления оттуда невредимо.",
@@ -221,22 +123,8 @@
    ],
    "correct": "больших камней",
    "case": "Родительный (Genitive)",
-   "explain": "«больших камней» — after the preposition «между», the genitive here marks possession, absence, or quantity.",
+   "explain": "«больших камней» — «между» + genitive: between (the older usage).",
    "id": "c19"
-  },
-  {
-   "sentence": "Среди таковых ___ увидели мы близ противоположного берега, в расстоянии от нас каком то было, точно определить не могу, два пятна черные на воде, которые, казалося, двигалися.",
-   "lemma": "размышление",
-   "options": [
-    "горестными размышлениями",
-    "горестных размышлениях",
-    "горестным размышлениям",
-    "горестных размышлений"
-   ],
-   "correct": "горестных размышлений",
-   "case": "Родительный (Genitive)",
-   "explain": "«горестных размышлений» — the genitive here marks possession, absence, or quantity.",
-   "id": "c21"
   },
   {
    "sentence": "Среди таковых горестных размышлений увидели мы близ ___, в расстоянии от нас каком то было, точно определить не могу, два пятна черные на воде, которые, казалося, двигалися.",
@@ -249,22 +137,8 @@
    ],
    "correct": "противоположного берега",
    "case": "Родительный (Genitive)",
-   "explain": "«противоположного берега» — after the preposition «близ», the genitive here marks possession, absence, or quantity.",
+   "explain": "«противоположного берега» — «близ» always takes the genitive.",
    "id": "c22"
-  },
-  {
-   "sentence": "Отчаяние превратилося в восторг, горесть в восклицание, и опасно было, чтобы ___ и плескания не навлекли нам гибели скорее, нежели мы будем исторгнуты из опасности.",
-   "lemma": "телодвижение",
-   "options": [
-    "радостных телодвижениях",
-    "радостные телодвижения",
-    "радостными телодвижениями",
-    "радостным телодвижениям"
-   ],
-   "correct": "радостные телодвижения",
-   "case": "Именительный (Nominative)",
-   "explain": "«радостные телодвижения» — the subject of the sentence stands in the nominative.",
-   "id": "c23"
   },
   {
    "sentence": "Сие послужило на сей раз к ___.",
@@ -277,7 +151,7 @@
    ],
    "correct": "общей пользе",
    "case": "Дательный (Dative)",
-   "explain": "«общей пользе» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«общей пользе» — «к» always takes the dative.",
    "id": "c24"
   },
   {
@@ -291,7 +165,7 @@
    ],
    "correct": "немалым истощением",
    "case": "Творительный (Instrumental)",
-   "explain": "«немалым истощением» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«немалым истощением» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c25"
   },
   {
@@ -305,7 +179,7 @@
    ],
    "correct": "тамошнего начальника",
    "case": "Родительный (Genitive)",
-   "explain": "«тамошнего начальника» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«тамошнего начальника» — «у» always takes the genitive.",
    "id": "c26"
   },
   {
@@ -319,22 +193,8 @@
    ],
    "correct": "передней комнате",
    "case": "Предложный (Prepositional)",
-   "explain": "«передней комнате» — after the preposition «в», for location or topic.",
+   "explain": "«передней комнате» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c27"
-  },
-  {
-   "sentence": "В передней комнате нашел я ___ сержанта.",
-   "lemma": "команда",
-   "options": [
-    "тамошняя команда",
-    "тамошней командой",
-    "тамошней команде",
-    "тамошней команды"
-   ],
-   "correct": "тамошней команды",
-   "case": "Родительный (Genitive)",
-   "explain": "«тамошней команды» — the genitive here marks possession, absence, or quantity.",
-   "id": "c28"
   },
   {
    "sentence": "Но помня более о вашей опасности, нежели о моей обиде и о жестокосердии начальника с его подчиненным, я побежал к караульной, которая была версты с две расстоянием от ___, из которого меня вытолкнули.",
@@ -347,7 +207,7 @@
    ],
    "correct": "проклятого дома",
    "case": "Родительный (Genitive)",
-   "explain": "«проклятого дома» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«проклятого дома» — «от» always takes the genitive.",
    "id": "c29"
   },
   {
@@ -361,64 +221,8 @@
    ],
    "correct": "последнего часа",
    "case": "Родительный (Genitive)",
-   "explain": "«последнего часа» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«последнего часа» depends on the noun «Ужас» (whose? of what?) — genitive.",
    "id": "c30"
-  },
-  {
-   "sentence": "Возможно? ли, говорил я сам себе, чтоб в наш век, в Европе, подле столицы, в глазах ___ совершалося такое бесчеловечие!",
-   "lemma": "государь",
-   "options": [
-    "великом государе",
-    "великого государя",
-    "великому государю",
-    "великий государь"
-   ],
-   "correct": "великого государя",
-   "case": "Родительный (Genitive)",
-   "explain": "«великого государя» — the genitive here marks possession, absence, or quantity.",
-   "id": "c31"
-  },
-  {
-   "sentence": "Сто делал расположений, как отметить сему ___ не за себя, но за человечество.",
-   "lemma": "начальник",
-   "options": [
-    "зверского начальника",
-    "зверскому начальнику",
-    "зверский начальник",
-    "зверским начальником"
-   ],
-   "correct": "зверскому начальнику",
-   "case": "Дательный (Dative)",
-   "explain": "«зверскому начальнику» — the dative marks the indirect object or recipient.",
-   "id": "c32"
-  },
-  {
-   "sentence": "Но, опомнясь, убедился воспоминовением многих примеров, что мое мщение будет бесплодно, что я же могу прослыть или бешеным, или ___; смирился.",
-   "lemma": "человек",
-   "options": [
-    "злом человеке",
-    "злому человеку",
-    "злой человек",
-    "злым человеком"
-   ],
-   "correct": "злым человеком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«злым человеком» — the instrumental marks the means, company, or complement.",
-   "id": "c33"
-  },
-  {
-   "sentence": "Мы пробыли у него ___, пользуясь его гостеприимством и угощением.",
-   "lemma": "сутки",
-   "options": [
-    "целым суткам",
-    "целыми сутками",
-    "целых сутках",
-    "целые сутки"
-   ],
-   "correct": "целые сутки",
-   "case": "Винительный (Accusative)",
-   "explain": "«целые сутки» — the accusative marks the direct object of the verb.",
-   "id": "c34"
   }
  ]
 }

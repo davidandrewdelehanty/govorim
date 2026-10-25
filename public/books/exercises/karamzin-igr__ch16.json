@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Дядя, по тогдашнему образу мыслей и ___ к семейственным связям, имел во всяком случае право старейшинства и заступал место отца для племянников.",
-   "lemma": "уважение",
-   "options": [
-    "всеобщем уважении",
-    "всеобщему уважению",
-    "всеобщего уважения",
-    "всеобщим уважением"
-   ],
-   "correct": "всеобщему уважению",
-   "case": "Дательный (Dative)",
-   "explain": "«всеобщему уважению» — the dative marks the indirect object or recipient.",
-   "id": "c2"
-  },
-  {
    "sentence": "Дядя, по тогдашнему образу мыслей и всеобщему уважению к ___, имел во всяком случае право старейшинства и заступал место отца для племянников.",
    "lemma": "связь",
    "options": [
@@ -25,22 +11,8 @@
    ],
    "correct": "семейственным связям",
    "case": "Дательный (Dative)",
-   "explain": "«семейственным связям» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«семейственным связям» — «к» always takes the dative.",
    "id": "c3"
-  },
-  {
-   "sentence": "— Сей Государь утвердил Святополка на Княжении Новогородском: ___ Изяславову, Ярополку, отдал Владимир и Туров, а Мономаху Чернигов.",
-   "lemma": "сын",
-   "options": [
-    "другого сына",
-    "другом сыне",
-    "другому сыну",
-    "другим сыном"
-   ],
-   "correct": "другому сыну",
-   "case": "Дательный (Dative)",
-   "explain": "«другому сыну» — the dative marks the indirect object or recipient.",
-   "id": "c4"
   },
   {
    "sentence": "Половцы, его наемники, заключили мир со Всеволодом у Переяславля и на ___ умертвили Романа; а брата его, Олега, неволею отправили в Константинополь.",
@@ -53,7 +25,7 @@
    ],
    "correct": "возвратном пути",
    "case": "Предложный (Prepositional)",
-   "explain": "«возвратном пути» — after the preposition «на», for location or topic.",
+   "explain": "«возвратном пути» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c5"
   },
   {
@@ -67,21 +39,21 @@
    ],
    "correct": "несчастный город",
    "case": "Именительный (Nominative)",
-   "explain": "«несчастный город» — the subject of the sentence stands in the nominative.",
+   "explain": "«несчастный город» is the subject of «пострадал» — who or what does it — so nominative.",
    "id": "c6"
   },
   {
    "sentence": "Но ___ не могли утвердить государственной безопасности, и Князья Российские междоусобием своим усиливали внешних неприятелей.",
    "lemma": "успех",
    "options": [
+    "сии успехи",
+    "сим успехам",
     "сими успехами",
-    "сих успехах",
-    "сих успехов",
-    "сии успехи"
+    "сих успехах"
    ],
    "correct": "сии успехи",
    "case": "Именительный (Nominative)",
-   "explain": "«сии успехи» — the subject of the sentence stands in the nominative.",
+   "explain": "«сии успехи» is the subject of «могли» — who or what does it — so nominative.",
    "id": "c7"
   },
   {
@@ -95,7 +67,7 @@
    ],
    "correct": "внешних неприятелей",
    "case": "Винительный (Accusative)",
-   "explain": "«внешних неприятелей» — the accusative marks the direct object of the verb.",
+   "explain": "«внешних неприятелей» is the direct object of «усиливали» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c8"
   },
   {
@@ -109,36 +81,8 @@
    ],
    "correct": "усердных помощников",
    "case": "Родительный (Genitive)",
-   "explain": "«усердных помощников» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«усердных помощников» depends on the noun «шайки» (whose? of what?) — genitive.",
    "id": "c9"
-  },
-  {
-   "sentence": "Сам Ярополк, облагодетельствованный Всеволодом, не устыдился быть врагом его: Князь слабый, послушный ___ и скоро наказанный за свою безрассудность.",
-   "lemma": "советник",
-   "options": [
-    "коварными советниками",
-    "коварным советникам",
-    "коварных советниках",
-    "коварные советники"
-   ],
-   "correct": "коварным советникам",
-   "case": "Дательный (Dative)",
-   "explain": "«коварным советникам» — the dative marks the indirect object or recipient.",
-   "id": "c10"
-  },
-  {
-   "sentence": "— Но Ярополк, не сыскав заступников вне России, скоро умилостивил Всеволода ___ и, заключив мир с его сыном, Мономахом, в Волынии, получил обратно свое Княжение.",
-   "lemma": "раскаяние",
-   "options": [
-    "искреннему раскаянию",
-    "искренним раскаянием",
-    "искреннее раскаяние",
-    "искреннего раскаяния"
-   ],
-   "correct": "искренним раскаянием",
-   "case": "Творительный (Instrumental)",
-   "explain": "«искренним раскаянием» — the instrumental marks the means, company, or complement.",
-   "id": "c12"
   },
   {
    "sentence": "Ярополк встал, извлек из себя окровавленное железо, громко сказал: «Умираю от ___» — и скончался.",
@@ -151,7 +95,7 @@
    ],
    "correct": "коварного врага",
    "case": "Родительный (Genitive)",
-   "explain": "«коварного врага» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«коварного врага» — «от» always takes the genitive.",
    "id": "c13"
   },
   {
@@ -165,36 +109,8 @@
    ],
    "correct": "иного рода",
    "case": "Родительный (Genitive)",
-   "explain": "«иного рода» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«иного рода» depends on the noun «бедствия» (whose? of what?) — genitive.",
    "id": "c14"
-  },
-  {
-   "sentence": "Воображение несчастных видело во всем ___ гнева Божеского: в самых обыкновенных метеорах, в затмении солнца, в легком бывшем тогда землетрясении.",
-   "lemma": "знамение",
-   "options": [
-    "страшных знамений",
-    "страшных знамениях",
-    "страшные знамения",
-    "страшным знамениям"
-   ],
-   "correct": "страшные знамения",
-   "case": "Винительный (Accusative)",
-   "explain": "«страшные знамения» — the accusative marks the direct object of the verb.",
-   "id": "c15"
-  },
-  {
-   "sentence": "Воображение несчастных видело во всем страшные знамения гнева Божеского: в самых ___, в затмении солнца, в легком бывшем тогда землетрясении.",
-   "lemma": "метеор",
-   "options": [
-    "обыкновенные метеоры",
-    "обыкновенных метеоров",
-    "обыкновенными метеорами",
-    "обыкновенных метеорах"
-   ],
-   "correct": "обыкновенных метеорах",
-   "case": "Предложный (Prepositional)",
-   "explain": "«обыкновенных метеорах» — after the preposition «в», for location or topic.",
-   "id": "c16"
   },
   {
    "sentence": "Наконец Василько Ростиславич, правнук Ярославов, уговорил их оставить Россию и вместе с ним воевать Польшу, ослабленную ___.",
@@ -207,7 +123,7 @@
    ],
    "correct": "внутренними раздорами",
    "case": "Творительный (Instrumental)",
-   "explain": "«внутренними раздорами» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «ослабленную», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c17"
   },
   {
@@ -221,64 +137,8 @@
    ],
    "correct": "второго брака",
    "case": "Родительный (Genitive)",
-   "explain": "«второго брака» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«второго брака» depends on the noun «супругу» (whose? of what?) — genitive.",
    "id": "c18"
-  },
-  {
-   "sentence": "При Всеволоде был Митрополитом Грек Иоанн, муж знаменитый ученостию и ___, ревностный наставник Духовенства и друг несчастных.",
-   "lemma": "добродетель",
-   "options": [
-    "христианскими добродетелями",
-    "христианских добродетелях",
-    "христианским добродетелям",
-    "христианских добродетелей"
-   ],
-   "correct": "христианскими добродетелями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«Христианскими добродетелями» — the instrumental marks the means, company, or complement.",
-   "id": "c19"
-  },
-  {
-   "sentence": "При Всеволоде был Митрополитом Грек Иоанн, муж знаменитый ученостию и Христианскими добродетелями, ___ Духовенства и друг несчастных.",
-   "lemma": "наставник",
-   "options": [
-    "ревностному наставнику",
-    "ревностным наставником",
-    "ревностного наставника",
-    "ревностный наставник"
-   ],
-   "correct": "ревностный наставник",
-   "case": "Именительный (Nominative)",
-   "explain": "«ревностный наставник» — the subject of the sentence stands in the nominative.",
-   "id": "c20"
-  },
-  {
-   "sentence": "___, украсив оную, не захотели уже возвратиться в отечество и кончили жизнь свою в Печерской Обители: доныне показывают там гробы их.",
-   "lemma": "художник",
-   "options": [
-    "византийскими художниками",
-    "византийских художников",
-    "византийских художниках",
-    "византийские художники"
-   ],
-   "correct": "византийские художники",
-   "case": "Именительный (Nominative)",
-   "explain": "«Византийские художники» — the subject of the sentence stands in the nominative.",
-   "id": "c21"
-  },
-  {
-   "sentence": "Нестор сказывает только, что Ефрем, скопец подобно Иоанну, жил в Переяславле, где находилась тогда Митрополия, и что он, создав ___ каменные, первый начал в России строить при церквах крестильницы.",
-   "lemma": "храм",
-   "options": [
-    "многим храмам",
-    "многие храмы",
-    "многих храмов",
-    "многих храмах"
-   ],
-   "correct": "многие храмы",
-   "case": "Винительный (Accusative)",
-   "explain": "«многие храмы» — the accusative marks the direct object of the verb.",
-   "id": "c22"
   },
   {
    "sentence": "Николая из Ликии в ___ Бар: праздник Западной Церкви, отвергаемый Греками, и доказательство, что мы имели тогда дружелюбное сношение с Римом.",
@@ -291,7 +151,7 @@
    ],
    "correct": "италиянский город",
    "case": "Винительный (Accusative)",
-   "explain": "«Италиянский город» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«италиянский город» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c23"
   }
  ]

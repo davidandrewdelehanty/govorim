@@ -1,87 +1,17 @@
 {
  "cases": [
   {
-   "sentence": "— Мой односум-то, — в том же ___ продолжая начатый разговор, переспросил необычно веселый Кудинов.",
-   "lemma": "тон",
-   "options": [
-    "шутливом тоне",
-    "шутливый тон",
-    "шутливым тоном",
-    "шутливому тону"
-   ],
-   "correct": "шутливом тоне",
-   "case": "Предложный (Prepositional)",
-   "explain": "«шутливом тоне» — after the preposition «в», for location or topic.",
-   "id": "c1"
-  },
-  {
-   "sentence": "— ___ и ты шутки не принимаешь?",
-   "lemma": "раз",
-   "options": [
-    "ином разе",
-    "иным разом",
-    "иному разу",
-    "иной раз"
-   ],
-   "correct": "иной раз",
-   "case": "Винительный (Accusative)",
-   "explain": "«Иной раз» — the accusative marks the direct object of the verb.",
-   "id": "c3"
-  },
-  {
-   "sentence": "Есть у меня к тебе и ___.",
-   "lemma": "разговор",
-   "options": [
-    "дельному разговору",
-    "дельным разговором",
-    "дельного разговора",
-    "дельный разговор"
-   ],
-   "correct": "дельный разговор",
-   "case": "Именительный (Nominative)",
-   "explain": "«дельный разговор» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
-  },
-  {
-   "sentence": "А проделаешь — ___ тебе не забудет этого.",
-   "lemma": "войско",
-   "options": [
-    "донское войско",
-    "донскому войску",
-    "донского войска",
-    "донским войском"
-   ],
-   "correct": "донское войско",
-   "case": "Именительный (Nominative)",
-   "explain": "«Донское войско» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
-  },
-  {
-   "sentence": "Как только соединимся со своими, напишу рапорт самому ___.",
-   "lemma": "атаман",
-   "options": [
-    "наказной атаман",
-    "наказному атаману",
-    "наказного атамана",
-    "наказным атаманом"
-   ],
-   "correct": "наказному атаману",
-   "case": "Дательный (Dative)",
-   "explain": "«наказному атаману» — the dative marks the indirect object or recipient.",
-   "id": "c6"
-  },
-  {
    "sentence": "Нынче из Шумилинской прислал нам Кондрат Медведев ___.",
    "lemma": "приказ",
    "options": [
+    "новым приказом",
     "новом приказе",
     "новый приказ",
-    "новым приказом",
-    "нового приказа"
+    "новому приказу"
    ],
    "correct": "новый приказ",
    "case": "Винительный (Accusative)",
-   "explain": "«новый приказ» — the accusative marks the direct object of the verb.",
+   "explain": "«новый приказ» is the direct object of «прислал» (кого? что?) — accusative.",
    "id": "c7"
   },
   {
@@ -95,7 +25,7 @@
    ],
    "correct": "полевой сумки",
    "case": "Родительный (Genitive)",
-   "explain": "«полевой сумки» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«полевой сумки» — «из» always takes the genitive.",
    "id": "c8"
   },
   {
@@ -109,7 +39,7 @@
    ],
    "correct": "интернациональной роты",
    "case": "Родительный (Genitive)",
-   "explain": "«Интернациональной роты» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«интернациональной роты» depends on the noun «комиссара» (whose? of what?) — genitive.",
    "id": "c10"
   },
   {
@@ -123,7 +53,7 @@
    ],
    "correct": "грудном кармане",
    "case": "Предложный (Prepositional)",
-   "explain": "«грудном кармане» — after the preposition «в», for location or topic.",
+   "explain": "«грудном кармане» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c11"
   },
   {
@@ -137,7 +67,7 @@
    ],
    "correct": "достаточные силы",
    "case": "Именительный (Nominative)",
-   "explain": "«достаточные силы» — the subject of the sentence stands in the nominative.",
+   "explain": "«достаточные силы» is the subject of «Сосредоточены» — who or what does it — so nominative.",
    "id": "c12"
   },
   {
@@ -151,35 +81,21 @@
    ],
    "correct": "южного фронта",
    "case": "Родительный (Genitive)",
-   "explain": "«Южного фронта» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«южного фронта» depends on the noun «армиям» (whose? of what?) — genitive.",
    "id": "c13"
-  },
-  {
-   "sentence": "Вся рабоче-крестьянская Россия с отвращением и ненавистью глядит на те Мигулинские, Вешенские, Еланские, Шумилинские банды, которые, подняв обманный ___, помогают черносотенным помещикам: Деникину и Колчаку!",
-   "lemma": "флаг",
-   "options": [
-    "красному флагу",
-    "красный флаг",
-    "красном флаге",
-    "красным флагом"
-   ],
-   "correct": "красный флаг",
-   "case": "Винительный (Accusative)",
-   "explain": "«красный флаг» — the accusative marks the direct object of the verb.",
-   "id": "c14"
   },
   {
    "sentence": "Вся рабоче-крестьянская Россия с отвращением и ненавистью глядит на те Мигулинские, Вешенские, Еланские, Шумилинские банды, которые, подняв обманный красный флаг, помогают ___: Деникину и Колчаку!",
    "lemma": "помещик",
    "options": [
-    "черносотенным помещикам",
     "черносотенные помещики",
-    "черносотенных помещиков",
-    "черносотенными помещиками"
+    "черносотенными помещиками",
+    "черносотенным помещикам",
+    "черносотенных помещиках"
    ],
    "correct": "черносотенным помещикам",
    "case": "Дательный (Dative)",
-   "explain": "«черносотенным помещикам» — the dative marks the indirect object or recipient.",
+   "explain": "«помогают» takes the dative (кому? чему?).",
    "id": "c15"
   },
   {
@@ -193,7 +109,7 @@
    ],
    "correct": "карательных войск",
    "case": "Родительный (Genitive)",
-   "explain": "«карательных войск» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«карательных войск» depends on the noun «комиссары» (whose? of what?) — genitive.",
    "id": "c16"
   },
   {
@@ -207,7 +123,7 @@
    ],
    "correct": "необходимые силы",
    "case": "Именительный (Nominative)",
-   "explain": "«необходимые силы» — the subject of the sentence stands in the nominative.",
+   "explain": "«необходимые силы» is the subject of «сосредоточены» — who or what does it — so nominative.",
    "id": "c17"
   }
  ]

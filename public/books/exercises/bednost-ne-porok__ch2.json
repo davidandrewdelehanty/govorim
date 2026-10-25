@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "___ в доме Торцова, заставленная разного рода шкафами, сундуками и этажерками с посудой и серебром; мебель: диваны, кресла, столы, все очень богато и поставлено тесно.",
-   "lemma": "комната",
-   "options": [
-    "небольшой комнаты",
-    "небольшой комнатой",
-    "небольшой комнате",
-    "небольшая комната"
-   ],
-   "correct": "небольшая комната",
-   "case": "Именительный (Nominative)",
-   "explain": "«Небольшая комната» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Небольшая комната в доме Торцова, заставленная ___ шкафами, сундуками и этажерками с посудой и серебром; мебель: диваны, кресла, столы, все очень богато и поставлено тесно.",
    "lemma": "род",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "разного рода",
    "case": "Родительный (Genitive)",
-   "explain": "«разного рода» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«разного рода» depends on the noun «шкафами» (whose? of what?) — genitive.",
    "id": "c2"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "чужих земель",
    "case": "Родительный (Genitive)",
-   "explain": "«чужих земель» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«чужих земель» — «из» always takes the genitive.",
    "id": "c6"
   },
   {
@@ -53,22 +39,8 @@
    ],
    "correct": "самой поре",
    "case": "Предложный (Prepositional)",
-   "explain": "«самой поре» — after the preposition «в», for location or topic.",
+   "explain": "«самой поре» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c7"
-  },
-  {
-   "sentence": "За что ___ заедаете, в кабалу отдаете?",
-   "lemma": "век",
-   "options": [
-    "девичьего века",
-    "девичий век",
-    "девичьему веку",
-    "девичьим веком"
-   ],
-   "correct": "девичий век",
-   "case": "Именительный (Nominative)",
-   "explain": "«девичий век» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
   },
   {
    "sentence": "Да как же без ___!",
@@ -81,7 +53,7 @@
    ],
    "correct": "отцовского-то благословения",
    "case": "Родительный (Genitive)",
-   "explain": "«отцовского-то благословения» — after the preposition «без», the genitive here marks possession, absence, or quantity.",
+   "explain": "«отцовского-то благословения» — «без» always takes the genitive.",
    "id": "c10"
   },
   {
@@ -95,78 +67,8 @@
    ],
    "correct": "чужой стороне",
    "case": "Предложный (Prepositional)",
-   "explain": "«чужой стороне» — after the preposition «на», for location or topic.",
+   "explain": "«чужой стороне» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c11"
-  },
-  {
-   "sentence": "(Целует у нее руки.) А в Москве ___ в магазинах много, есть что подарить.",
-   "lemma": "вещь",
-   "options": [
-    "хорошие вещи",
-    "хороших вещей",
-    "хороших вещах",
-    "хорошим вещам"
-   ],
-   "correct": "хороших вещей",
-   "case": "Родительный (Genitive)",
-   "explain": "«хороших вещей» — the genitive here marks possession, absence, or quantity.",
-   "id": "c12"
-  },
-  {
-   "sentence": "(Коршунову.) Отчего у осла ___?",
-   "lemma": "ухо",
-   "options": [
-    "длинным ушам",
-    "длинными ушами",
-    "длинных ушах",
-    "длинные уши"
-   ],
-   "correct": "длинные уши",
-   "case": "Именительный (Nominative)",
-   "explain": "«длинные уши» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
-  },
-  {
-   "sentence": "Меня гонят, а он ___, его в передний угол сажают.",
-   "lemma": "гость",
-   "options": [
-    "первый гость",
-    "первым гостем",
-    "первого гостя",
-    "первому гостю"
-   ],
-   "correct": "первый гость",
-   "case": "Именительный (Nominative)",
-   "explain": "«первый гость» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
-  },
-  {
-   "sentence": "И я был богат и славен, в каретах ездил, такие штуки выкидывал, что тебе и в голову не придет, а потом ___ да вниз.",
-   "lemma": "конец",
-   "options": [
-    "верхним концом",
-    "верхнему концу",
-    "верхний конец",
-    "верхнего конца"
-   ],
-   "correct": "верхним концом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«верхним концом» — the instrumental marks the means, company, or complement.",
-   "id": "c20"
-  },
-  {
-   "sentence": "Просите все, кому что нужно: теперь я стал ___.",
-   "lemma": "человек",
-   "options": [
-    "другом человеке",
-    "другой человек",
-    "другого человека",
-    "другому человеку"
-   ],
-   "correct": "другой человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«другой человек» — the subject of the sentence stands in the nominative.",
-   "id": "c22"
   }
  ]
 }

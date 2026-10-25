@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Из кучки охотников, составлявших ___ дяди, выделилось человек десять и пошли вперёд через поле.",
-   "lemma": "штаб",
-   "options": [
-    "главном штабе",
-    "главного штаба",
-    "главному штабу",
-    "главный штаб"
-   ],
-   "correct": "главный штаб",
-   "case": "Винительный (Accusative)",
-   "explain": "«главный штаб» — the accusative marks the direct object of the verb.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Отойдя шагов двести, они остановились и начали поднимать из снега длинное, не очень ___, которое до сей поры нам издалека нельзя было видеть.",
-   "lemma": "бревно",
-   "options": [
-    "толстое бревно",
-    "толстого бревна",
-    "толстом бревне",
-    "толстым бревном"
-   ],
-   "correct": "толстое бревно",
-   "case": "Именительный (Nominative)",
-   "explain": "«толстое бревно» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
    "sentence": "Это происходило как раз у ___, где сидел Сганарель, но она тоже с нашей далёкой позиции была незаметна.",
    "lemma": "яма",
    "options": [
@@ -39,22 +11,8 @@
    ],
    "correct": "самой ямы",
    "case": "Родительный (Genitive)",
-   "explain": "«самой ямы» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«самой ямы» — «у» always takes the genitive.",
    "id": "c3"
-  },
-  {
-   "sentence": "Оно было спущено с таким ___, что зверь без затруднения мог выйти по нём, как по лестнице.",
-   "lemma": "уклон",
-   "options": [
-    "пологому уклону",
-    "пологим уклоном",
-    "пологий уклон",
-    "пологого уклона"
-   ],
-   "correct": "пологим уклоном",
-   "case": "Творительный (Instrumental)",
-   "explain": "«пологим уклоном» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c4"
   },
   {
    "sentence": "___ бревна опирался на край ямы и торчал из неё на аршин.",
@@ -67,63 +25,21 @@
    ],
    "correct": "другой конец",
    "case": "Именительный (Nominative)",
-   "explain": "«Другой конец» — the subject of the sentence stands in the nominative.",
+   "explain": "«другой конец» is the subject of «опирался» — who or what does it — so nominative.",
    "id": "c5"
-  },
-  {
-   "sentence": "Началось гонянье его в яме ___ и шестами с острыми наконечниками, послышался рёв, но зверь не шёл из ямы.",
-   "lemma": "ком",
-   "options": [
-    "снежных комьях",
-    "снежных комьев",
-    "снежными комьями",
-    "снежные комья"
-   ],
-   "correct": "снежными комьями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«снежными комьями» — the instrumental marks the means, company, or complement.",
-   "id": "c6"
-  },
-  {
-   "sentence": "Раздалось несколько ___, направленных прямо в яму, но Сганарель только сердитее зарычал, а всё-таки по-прежнему не показывался.",
-   "lemma": "выстрел",
-   "options": [
-    "холостых выстрелах",
-    "холостым выстрелам",
-    "холостых выстрелов",
-    "холостые выстрелы"
-   ],
-   "correct": "холостых выстрелов",
-   "case": "Родительный (Genitive)",
-   "explain": "«холостых выстрелов» — the genitive here marks possession, absence, or quantity.",
-   "id": "c8"
-  },
-  {
-   "sentence": "Тогда откуда-то из-за цепи вскачь подлетели запряжённые в одну лошадь простые ___, на которых лежала куча сухой ржаной соломы.",
-   "lemma": "дровни",
-   "options": [
-    "навозные дровни",
-    "навозными дровнями",
-    "навозных дровнях",
-    "навозных дровней"
-   ],
-   "correct": "навозные дровни",
-   "case": "Винительный (Accusative)",
-   "explain": "«навозные дровни» — the accusative marks the direct object of the verb.",
-   "id": "c9"
   },
   {
    "sentence": "Трудно, однако, было определить: была ли её теперешняя бодрость остатком прежней молодой удали, или это скорее было порождение страха и отчаяния, внушаемых ___ близким присутствием медведя?",
    "lemma": "конь",
    "options": [
-    "старого коня",
-    "старым конём",
     "старому коню",
+    "старым конём",
+    "старом коне",
     "старый конь"
    ],
    "correct": "старому коню",
    "case": "Дательный (Dative)",
-   "explain": "«старому коню» — the dative marks the indirect object or recipient.",
+   "explain": "«старому коню» is the indirect object of «внушаемых» — to or for whom (кому?) — dative.",
    "id": "c10"
   },
   {
@@ -137,7 +53,7 @@
    ],
    "correct": "близким присутствием",
    "case": "Творительный (Instrumental)",
-   "explain": "«близким присутствием» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «внушаемых», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c11"
   },
   {
@@ -151,7 +67,7 @@
    ],
    "correct": "железных удил",
    "case": "Родительный (Genitive)",
-   "explain": "«железных удил» — after the preposition «кроме», the genitive here marks possession, absence, or quantity.",
+   "explain": "«железных удил» — «кроме» always takes the genitive.",
    "id": "c12"
   },
   {
@@ -165,7 +81,7 @@
    ],
    "correct": "укоризненный говор",
    "case": "Именительный (Nominative)",
-   "explain": "«укоризненный говор» — the subject of the sentence stands in the nominative.",
+   "explain": "«укоризненный говор» is the subject of «послышался» — who or what does it — so nominative.",
    "id": "c13"
   }
  ]

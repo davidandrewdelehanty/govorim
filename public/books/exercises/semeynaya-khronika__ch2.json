@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Один ___ не только над своей землей, но и над чужой.",
-   "lemma": "господин",
-   "options": [
-    "полный господин",
-    "полному господину",
-    "полном господине",
-    "полным господином"
-   ],
-   "correct": "полный господин",
-   "case": "Именительный (Nominative)",
-   "explain": "«полный господин» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Крестьяне тоже как раз привыкли к ___, и полюбилось им оно.",
    "lemma": "место",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "новому месту",
    "case": "Дательный (Dative)",
-   "explain": "«новому месту» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«новому месту» — «к» always takes the dative.",
    "id": "c2"
   },
   {
@@ -39,22 +25,8 @@
    ],
    "correct": "новые места",
    "case": "Винительный (Accusative)",
-   "explain": "«новые места» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«новые места» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c3"
-  },
-  {
-   "sentence": "Со всех сторон потянулись луговая мордва, черемисы, чуваши, татары и мещеряки; ___, казенных крестьян разных ведомств и разнокалиберных помещиков также было немало.",
-   "lemma": "переселенец",
-   "options": [
-    "русских переселенцах",
-    "русские переселенцы",
-    "русскими переселенцами",
-    "русских переселенцев"
-   ],
-   "correct": "русских переселенцев",
-   "case": "Родительный (Genitive)",
-   "explain": "«русских переселенцев» — the genitive here marks possession, absence, or quantity.",
-   "id": "c4"
   },
   {
    "sentence": "Со всех сторон потянулись луговая мордва, черемисы, чуваши, татары и мещеряки; русских переселенцев, казенных крестьян ___ и разнокалиберных помещиков также было немало.",
@@ -67,22 +39,8 @@
    ],
    "correct": "разных ведомств",
    "case": "Родительный (Genitive)",
-   "explain": "«разных ведомств» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«разных ведомств» depends on the noun «крестьян» (whose? of what?) — genitive.",
    "id": "c5"
-  },
-  {
-   "sentence": "Со всех сторон потянулись луговая мордва, черемисы, чуваши, татары и мещеряки; русских переселенцев, казенных крестьян разных ведомств и ___ также было немало.",
-   "lemma": "помещик",
-   "options": [
-    "разнокалиберными помещиками",
-    "разнокалиберным помещикам",
-    "разнокалиберных помещиков",
-    "разнокалиберные помещики"
-   ],
-   "correct": "разнокалиберных помещиков",
-   "case": "Родительный (Genitive)",
-   "explain": "«разнокалиберных помещиков» — the genitive here marks possession, absence, or quantity.",
-   "id": "c6"
   },
   {
    "sentence": "Степан Михайлович сначала поморщился от ___, напоминавшего ему старое Троицкое; но тут вышло совсем другое дело.",
@@ -95,7 +53,7 @@
    ],
    "correct": "близкого соседства",
    "case": "Родительный (Genitive)",
-   "explain": "«близкого соседства» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«близкого соседства» — «от» always takes the genitive.",
    "id": "c8"
   },
   {
@@ -109,7 +67,7 @@
    ],
    "correct": "другое дело",
    "case": "Именительный (Nominative)",
-   "explain": "«другое дело» — the subject of the sentence stands in the nominative.",
+   "explain": "«другое дело» is the subject of «вышло» — who or what does it — so nominative.",
    "id": "c9"
   },
   {
@@ -123,7 +81,7 @@
    ],
    "correct": "первом урожае",
    "case": "Предложный (Prepositional)",
-   "explain": "«первом урожае» — after the preposition «при», for location or topic.",
+   "explain": "«первом урожае» — «при» always takes the prepositional.",
    "id": "c10"
   },
   {
@@ -137,7 +95,7 @@
    ],
    "correct": "семейных ссор",
    "case": "Родительный (Genitive)",
-   "explain": "«семейных ссор» — the genitive here marks possession, absence, or quantity.",
+   "explain": "After «Много», a word of quantity — genitive.",
    "id": "c13"
   },
   {
@@ -151,7 +109,7 @@
    ],
    "correct": "тогдашнего поколения",
    "case": "Родительный (Genitive)",
-   "explain": "«тогдашнего поколения» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«тогдашнего поколения» depends on the noun «правнуков» (whose? of what?) — genitive.",
    "id": "c15"
   },
   {
@@ -165,36 +123,8 @@
    ],
    "correct": "изустных рассказах",
    "case": "Предложный (Prepositional)",
-   "explain": "«изустных рассказах» — after the preposition «в», for location or topic.",
+   "explain": "«изустных рассказах» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c16"
-  },
-  {
-   "sentence": "Я знал внуков, правнуков тогдашнего поколения, благодарной памяти которых в изустных рассказах передан был благодетельный и ___ Степана Михайловича, не забытого еще и теперь.",
-   "lemma": "образ",
-   "options": [
-    "строгого образа",
-    "строгий образ",
-    "строгом образе",
-    "строгому образу"
-   ],
-   "correct": "строгий образ",
-   "case": "Именительный (Nominative)",
-   "explain": "«строгий образ» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
-  },
-  {
-   "sentence": "Много слыхал я простых и вместе ___, сопровождаемых слезами и крестным знамением об упокоении души его.",
-   "lemma": "воспоминание",
-   "options": [
-    "глубоких воспоминаниях",
-    "глубокие воспоминания",
-    "глубокими воспоминаниями",
-    "глубоких воспоминаний"
-   ],
-   "correct": "глубоких воспоминаний",
-   "case": "Родительный (Genitive)",
-   "explain": "«глубоких воспоминаний» — the genitive here marks possession, absence, or quantity.",
-   "id": "c18"
   },
   {
    "sentence": "Много слыхал я простых и вместе глубоких воспоминаний, сопровождаемых слезами и ___ об упокоении души его.",
@@ -207,36 +137,8 @@
    ],
    "correct": "крестным знамением",
    "case": "Творительный (Instrumental)",
-   "explain": "«крестным знамением» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «сопровождаемых», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c19"
-  },
-  {
-   "sentence": "Не удивительно, что крестьяне любили горячо такого барина; но также любили его и ___, при нем служившие, часто переносившие страшные бури его неукротимой вспыльчивости.",
-   "lemma": "человек",
-   "options": [
-    "дворовым людям",
-    "дворовые люди",
-    "дворовыми людьми",
-    "дворовых людей"
-   ],
-   "correct": "дворовые люди",
-   "case": "Именительный (Nominative)",
-   "explain": "«дворовые люди» — the subject of the sentence stands in the nominative.",
-   "id": "c20"
-  },
-  {
-   "sentence": "Не удивительно, что крестьяне любили горячо такого барина; но также любили его и дворовые люди, при нем служившие, часто переносившие ___ его неукротимой вспыльчивости.",
-   "lemma": "буря",
-   "options": [
-    "страшных бурь",
-    "страшными бурями",
-    "страшных бурях",
-    "страшные бури"
-   ],
-   "correct": "страшные бури",
-   "case": "Винительный (Accusative)",
-   "explain": "«страшные бури» — the accusative marks the direct object of the verb.",
-   "id": "c21"
   },
   {
    "sentence": "Долго бушевал дедушка на просторе в ___.",
@@ -249,7 +151,7 @@
    ],
    "correct": "опустелом доме",
    "case": "Предложный (Prepositional)",
-   "explain": "«опустелом доме» — after the preposition «в», for location or topic.",
+   "explain": "«опустелом доме» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c22"
   },
   {
@@ -263,7 +165,7 @@
    ],
    "correct": "глубокий сон",
    "case": "Винительный (Accusative)",
-   "explain": "«глубокий сон» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«глубокий сон» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c23"
   },
   {
@@ -277,7 +179,7 @@
    ],
    "correct": "раннего утра",
    "case": "Родительный (Genitive)",
-   "explain": "«раннего утра» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«раннего утра» — «до» always takes the genitive.",
    "id": "c24"
   },
   {
@@ -291,7 +193,7 @@
    ],
    "correct": "следующего дня",
    "case": "Родительный (Genitive)",
-   "explain": "«следующего дня» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«следующего дня» depends on the noun «утра» (whose? of what?) — genitive.",
    "id": "c25"
   },
   {
@@ -305,22 +207,8 @@
    ],
    "correct": "соседней комнаты",
    "case": "Родительный (Genitive)",
-   "explain": "«соседней комнаты» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«соседней комнаты» — «из» always takes the genitive.",
    "id": "c26"
-  },
-  {
-   "sentence": "— Светел, ясен проснулся на заре Степан Михайлович, весело крикнул свою Аришу, которая сейчас прибежала из соседней комнаты с самым ___, как будто вчерашнего ничего не бывало.",
-   "lemma": "лицо",
-   "options": [
-    "радостным лицом",
-    "радостного лица",
-    "радостном лице",
-    "радостному лицу"
-   ],
-   "correct": "радостным лицом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«радостным лицом» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c27"
   },
   {
    "sentence": "Это была женщина сама с сильным характером, и никакие просьбы не могли ее заставить так скоро броситься с ласкою к вчерашнему ___, да и маленький сын беспрестанно говорил: «Боюсь дедушки, не хочу к нему».",
@@ -333,22 +221,8 @@
    ],
    "correct": "дикому зверю",
    "case": "Дательный (Dative)",
-   "explain": "«дикому зверю» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«дикому зверю» — «к» always takes the dative.",
    "id": "c29"
-  },
-  {
-   "sentence": "Это была женщина сама с сильным характером, и никакие просьбы не могли ее заставить так скоро броситься с ласкою к вчерашнему дикому зверю, да и ___ беспрестанно говорил: «Боюсь дедушки, не хочу к нему».",
-   "lemma": "сын",
-   "options": [
-    "маленького сына",
-    "маленьким сыном",
-    "маленькому сыну",
-    "маленький сын"
-   ],
-   "correct": "маленький сын",
-   "case": "Именительный (Nominative)",
-   "explain": "«маленький сын» — the subject of the sentence stands in the nominative.",
-   "id": "c30"
   },
   {
    "sentence": "Чувствуя себя в ___ нехорошо, она сказалась больною и не пустила сына.",
@@ -361,7 +235,7 @@
    ],
    "correct": "самом деле",
    "case": "Предложный (Prepositional)",
-   "explain": "«самом деле» — after the preposition «в», for location or topic.",
+   "explain": "«самом деле» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c31"
   },
   {
@@ -375,22 +249,8 @@
    ],
    "correct": "новой грозы",
    "case": "Родительный (Genitive)",
-   "explain": "«новой грозы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "With «ждали», a verb of waiting, seeking, asking or wanting, the object can stand in the genitive — as here.",
    "id": "c32"
-  },
-  {
-   "sentence": "«Вот и ___ себя не пожалела, встала, оделась и пришла развеселить старика», — сказал он с нежностью.",
-   "lemma": "невестка",
-   "options": [
-    "больной невестки",
-    "больной невесткой",
-    "больной невестке",
-    "больная невестка"
-   ],
-   "correct": "больная невестка",
-   "case": "Именительный (Nominative)",
-   "explain": "«больная невестка» — the subject of the sentence stands in the nominative.",
-   "id": "c33"
   }
  ]
 }

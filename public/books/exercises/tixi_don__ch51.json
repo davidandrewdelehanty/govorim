@@ -1,60 +1,18 @@
 {
  "cases": [
   {
-   "sentence": "___, на основании приказа штаба дивизии, была послана в распоряжение Третьего армейского пехотного корпуса и, пройдя походным порядком до местечка Пеликалие, выставила посты.",
-   "lemma": "сотня",
-   "options": [
-    "шестой сотни",
-    "шестая сотня",
-    "шестой сотней",
-    "шестой сотне"
-   ],
-   "correct": "шестая сотня",
-   "case": "Именительный (Nominative)",
-   "explain": "«Шестая сотня» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Шестая сотня, на основании приказа штаба дивизии, была послана в распоряжение Третьего армейского ___ и, пройдя походным порядком до местечка Пеликалие, выставила посты.",
    "lemma": "корпус",
    "options": [
     "пехотному корпусу",
-    "пехотным корпусом",
-    "пехотном корпусе",
-    "пехотного корпуса"
+    "пехотный корпус",
+    "пехотного корпуса",
+    "пехотном корпусе"
    ],
    "correct": "пехотного корпуса",
    "case": "Родительный (Genitive)",
-   "explain": "«пехотного корпуса» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«пехотного корпуса» depends on the noun «распоряжение» (whose? of what?) — genitive.",
    "id": "c2"
-  },
-  {
-   "sentence": "Шестая сотня, на основании приказа штаба дивизии, была послана в распоряжение Третьего армейского пехотного корпуса и, пройдя ___ до местечка Пеликалие, выставила посты.",
-   "lemma": "порядок",
-   "options": [
-    "походному порядку",
-    "походного порядка",
-    "походном порядке",
-    "походным порядком"
-   ],
-   "correct": "походным порядком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«походным порядком» — the instrumental marks the means, company, or complement.",
-   "id": "c3"
-  },
-  {
-   "sentence": "Граница еще охранялась нашими ___.",
-   "lemma": "часть",
-   "options": [
-    "пограничных частях",
-    "пограничным частям",
-    "пограничными частями",
-    "пограничных частей"
-   ],
-   "correct": "пограничными частями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«пограничными частями» — the instrumental marks the means, company, or complement.",
-   "id": "c4"
   },
   {
    "sentence": "Подтягивались ___ и артиллерия.",
@@ -67,7 +25,7 @@
    ],
    "correct": "пехотные части",
    "case": "Именительный (Nominative)",
-   "explain": "«пехотные части» — the subject of the sentence stands in the nominative.",
+   "explain": "«пехотные части» is the subject of «Подтягивались» — who or what does it — so nominative.",
    "id": "c5"
   },
   {
@@ -81,22 +39,8 @@
    ],
    "correct": "взводного урядника",
    "case": "Родительный (Genitive)",
-   "explain": "«взводного урядника» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«взводного урядника» depends on the noun «пост» (whose? of what?) — genitive.",
    "id": "c7"
-  },
-  {
-   "sentence": "Девка нагнулась над срубом, выставив туго обтянутый раздвоенный зад, раскорячив красноикрые ___.",
-   "lemma": "нога",
-   "options": [
-    "полными ногами",
-    "полных ногах",
-    "полные ноги",
-    "полных ног"
-   ],
-   "correct": "полные ноги",
-   "case": "Винительный (Accusative)",
-   "explain": "«полные ноги» — the accusative marks the direct object of the verb.",
-   "id": "c9"
   },
   {
    "sentence": "В стороне над чашечкой ___ надсаживался жаворонок.",
@@ -109,22 +53,8 @@
    ],
    "correct": "телеграфного столба",
    "case": "Родительный (Genitive)",
-   "explain": "«телеграфного столба» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«телеграфного столба» depends on the noun «чашечкой» (whose? of what?) — genitive.",
    "id": "c11"
-  },
-  {
-   "sentence": "Хозяин — бритый ___ в белой войлочной шляпе — отвел казаков в стодол, указал, где поставить лошадей.",
-   "lemma": "поляк",
-   "options": [
-    "кривоногим поляком",
-    "кривоногом поляке",
-    "кривоногому поляку",
-    "кривоногий поляк"
-   ],
-   "correct": "кривоногий поляк",
-   "case": "Именительный (Nominative)",
-   "explain": "«кривоногий поляк» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
   },
   {
    "sentence": "Хозяин — бритый кривоногий поляк в белой ___ — отвел казаков в стодол, указал, где поставить лошадей.",
@@ -137,7 +67,7 @@
    ],
    "correct": "войлочной шляпе",
    "case": "Предложный (Prepositional)",
-   "explain": "«войлочной шляпе» — after the preposition «в», for location or topic.",
+   "explain": "«войлочной шляпе» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c14"
   },
   {
@@ -151,7 +81,7 @@
    ],
    "correct": "ближнего леса",
    "case": "Родительный (Genitive)",
-   "explain": "«ближнего леса» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«ближнего леса» — «до» always takes the genitive.",
    "id": "c15"
   },
   {
@@ -165,22 +95,8 @@
    ],
    "correct": "прохладном стодоле",
    "case": "Предложный (Prepositional)",
-   "explain": "«прохладном стодоле» — after the preposition «в», for location or topic.",
+   "explain": "«прохладном стодоле» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c16"
-  },
-  {
-   "sentence": "Пахло там слежавшимся хлебом, пылью мякины, мышиным пометом и сладким ___ земляной ржавчины.",
-   "lemma": "душок",
-   "options": [
-    "плесневелому душку",
-    "плесневелым душком",
-    "плесневелом душке",
-    "плесневелого душка"
-   ],
-   "correct": "плесневелым душком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«плесневелым душком» — the instrumental marks the means, company, or complement.",
-   "id": "c17"
   },
   {
    "sentence": "Пахло там слежавшимся хлебом, пылью мякины, мышиным пометом и сладким плесневелым душком ___.",
@@ -193,7 +109,7 @@
    ],
    "correct": "земляной ржавчины",
    "case": "Родительный (Genitive)",
-   "explain": "«земляной ржавчины» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«земляной ржавчины» depends on the noun «душком» (whose? of what?) — genitive.",
    "id": "c18"
   },
   {
@@ -207,7 +123,7 @@
    ],
    "correct": "широким плечам",
    "case": "Дательный (Dative)",
-   "explain": "«широким плечам» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«широким плечам» — «к» always takes the dative.",
    "id": "c19"
   },
   {
@@ -221,7 +137,7 @@
    ],
    "correct": "сырой земле",
    "case": "Предложный (Prepositional)",
-   "explain": "«сырой земле» — after the preposition «на», for location or topic.",
+   "explain": "«сырой земле» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c20"
   },
   {
@@ -235,134 +151,36 @@
    ],
    "correct": "закатного солнца",
    "case": "Родительный (Genitive)",
-   "explain": "«закатного солнца» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«закатного солнца» depends on the noun «поток» (whose? of what?) — genitive.",
    "id": "c21"
-  },
-  {
-   "sentence": "За местечком в речушке (лежала она голубой ___) кричали купающиеся ребятишки.",
-   "lemma": "дуга",
-   "options": [
-    "нарядная дуга",
-    "нарядной дуге",
-    "нарядной дугой",
-    "нарядной дуги"
-   ],
-   "correct": "нарядной дугой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«нарядной дугой» — the instrumental marks the means, company, or complement.",
-   "id": "c22"
-  },
-  {
-   "sentence": "— Крючков указал черным ___.",
-   "lemma": "палец",
-   "options": [
-    "ногтястого пальца",
-    "ногтястый палец",
-    "ногтястым пальцем",
-    "ногтястом пальце"
-   ],
-   "correct": "ногтястым пальцем",
-   "case": "Творительный (Instrumental)",
-   "explain": "«ногтястым пальцем» — the instrumental marks the means, company, or complement.",
-   "id": "c24"
   },
   {
    "sentence": "Ах, господин козак, верьте ___, нет пива!",
    "lemma": "еврей",
    "options": [
-    "честном еврее",
     "честной еврей",
     "честному еврею",
-    "честного еврея"
+    "честном еврее",
+    "честным евреем"
    ],
    "correct": "честному еврею",
    "case": "Дательный (Dative)",
-   "explain": "«честному еврею» — the dative marks the indirect object or recipient.",
+   "explain": "«верьте» takes the dative (кому? чему?).",
    "id": "c25"
   },
   {
    "sentence": "Около полуночи Иванков услышал ___ по улице местечка.",
    "lemma": "топот",
    "options": [
-    "конского топота",
-    "конским топотом",
     "конский топот",
-    "конскому топоту"
+    "конским топотом",
+    "конскому топоту",
+    "конском топоте"
    ],
    "correct": "конский топот",
    "case": "Винительный (Accusative)",
-   "explain": "«конский топот» — the accusative marks the direct object of the verb.",
+   "explain": "«конский топот» is the direct object of «услышал» (кого? что?) — accusative.",
    "id": "c26"
-  },
-  {
-   "sentence": "По улице, саженях в пятидесяти, хрушко чечекал ___.",
-   "lemma": "говор",
-   "options": [
-    "копытный говор",
-    "копытному говору",
-    "копытным говором",
-    "копытного говора"
-   ],
-   "correct": "копытный говор",
-   "case": "Винительный (Accusative)",
-   "explain": "«копытный говор» — the accusative marks the direct object of the verb.",
-   "id": "c27"
-  },
-  {
-   "sentence": "— Это ___, ваше благородие.",
-   "lemma": "пост",
-   "options": [
-    "казачьего поста",
-    "казачьим постом",
-    "казачьему посту",
-    "казачий пост"
-   ],
-   "correct": "казачий пост",
-   "case": "Именительный (Nominative)",
-   "explain": "«казачий пост» — the subject of the sentence stands in the nominative.",
-   "id": "c28"
-  },
-  {
-   "sentence": "— Наш ___ сняли с границы, — заговорил офицер, пыхая папироской.",
-   "lemma": "полк",
-   "options": [
-    "пограничным полком",
-    "пограничного полка",
-    "пограничный полк",
-    "пограничном полке"
-   ],
-   "correct": "пограничный полк",
-   "case": "Винительный (Accusative)",
-   "explain": "«пограничный полк» — the accusative marks the direct object of the verb.",
-   "id": "c29"
-  },
-  {
-   "sentence": "Тот бурым ___ катился с пригорка и еще издали что-то кричал, махая длинными рукавами пиджака.",
-   "lemma": "заяц",
-   "options": [
-    "неслинявшим зайцем",
-    "неслинявшему зайцу",
-    "неслинявшем зайце",
-    "неслинявшего зайца"
-   ],
-   "correct": "неслинявшим зайцем",
-   "case": "Творительный (Instrumental)",
-   "explain": "«неслинявшим зайцем» — the instrumental marks the means, company, or complement.",
-   "id": "c31"
-  },
-  {
-   "sentence": "Тот бурым неслинявшим зайцем катился с пригорка и еще издали что-то кричал, махая ___ пиджака.",
-   "lemma": "рукав",
-   "options": [
-    "длинным рукавам",
-    "длинными рукавами",
-    "длинных рукавов",
-    "длинные рукава"
-   ],
-   "correct": "длинными рукавами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«длинными рукавами» — the instrumental marks the means, company, or complement.",
-   "id": "c32"
   },
   {
    "sentence": "Он протянул хоботок ___, и Астахов, припавший к биноклю, увидел в окружье стекол далекую густую группу конных.",
@@ -375,7 +193,7 @@
    ],
    "correct": "длинного рукава",
    "case": "Родительный (Genitive)",
-   "explain": "«длинного рукава» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«длинного рукава» depends on the noun «хоботок» (whose? of what?) — genitive.",
    "id": "c33"
   },
   {
@@ -389,7 +207,7 @@
    ],
    "correct": "кочковатой пахоте",
    "case": "Дательный (Dative)",
-   "explain": "«кочковатой пахоте» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«кочковатой пахоте» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c36"
   },
   {
@@ -403,7 +221,7 @@
    ],
    "correct": "русских солдат",
    "case": "Родительный (Genitive)",
-   "explain": "«русских солдат» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«русских солдат» depends on the noun «роту» (whose? of what?) — genitive.",
    "id": "c37"
   },
   {
@@ -417,35 +235,21 @@
    ],
    "correct": "немецкий разъезд",
    "case": "Именительный (Nominative)",
-   "explain": "«немецкий разъезд» — the subject of the sentence stands in the nominative.",
+   "explain": "«немецкий разъезд» is the subject of «идет» — who or what does it — so nominative.",
    "id": "c38"
-  },
-  {
-   "sentence": "— Он повернулся к роте, скомандовал построение и ___ повел солдат.",
-   "lemma": "марш",
-   "options": [
-    "быстрым маршем",
-    "быстрому маршу",
-    "быстром марше",
-    "быстрого марша"
-   ],
-   "correct": "быстрым маршем",
-   "case": "Творительный (Instrumental)",
-   "explain": "«быстрым маршем» — the instrumental marks the means, company, or complement.",
-   "id": "c39"
   },
   {
    "sentence": "Впереди выделялся офицер на светло-рыжем ___.",
    "lemma": "конь",
    "options": [
-    "куцехвостого коня",
     "куцехвостому коню",
+    "куцехвостый конь",
     "куцехвостом коне",
     "куцехвостым конём"
    ],
    "correct": "куцехвостом коне",
    "case": "Предложный (Prepositional)",
-   "explain": "«куцехвостом коне» — after the preposition «на», for location or topic.",
+   "explain": "«куцехвостом коне» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c40"
   },
   {
@@ -459,7 +263,7 @@
    ],
    "correct": "конный пограничник",
    "case": "Именительный (Nominative)",
-   "explain": "«конный пограничник» — the subject of the sentence stands in the nominative.",
+   "explain": "«конный пограничник» is the subject of «отстал» — who or what does it — so nominative.",
    "id": "c42"
   },
   {
@@ -473,22 +277,8 @@
    ],
    "correct": "немецких драгун",
    "case": "Родительный (Genitive)",
-   "explain": "«немецких драгун» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«немецких драгун» depends on the noun «форму» (whose? of what?) — genitive.",
    "id": "c43"
-  },
-  {
-   "sentence": "___ под острым углом повернул влево, и казаки, преследуя их, проскакали саженях в сорока от упавшего немца.",
-   "lemma": "разъезд",
-   "options": [
-    "немецкого разъезда",
-    "немецкий разъезд",
-    "немецком разъезде",
-    "немецкому разъезду"
-   ],
-   "correct": "немецкий разъезд",
-   "case": "Именительный (Nominative)",
-   "explain": "«Немецкий разъезд» — the subject of the sentence stands in the nominative.",
-   "id": "c45"
   },
   {
    "sentence": "Немецкий разъезд под ___ повернул влево, и казаки, преследуя их, проскакали саженях в сорока от упавшего немца.",
@@ -501,7 +291,7 @@
    ],
    "correct": "острым углом",
    "case": "Творительный (Instrumental)",
-   "explain": "«острым углом» — after the preposition «под», the instrumental marks the means, company, or complement.",
+   "explain": "«острым углом» — «под» takes the instrumental here (где? под чем?) — the accusative would mean movement under (куда? под что?).",
    "id": "c46"
   },
   {
@@ -515,7 +305,7 @@
    ],
    "correct": "второго поста",
    "case": "Родительный (Genitive)",
-   "explain": "«второго поста» — after the preposition «против», the genitive here marks possession, absence, or quantity.",
+   "explain": "«второго поста» — «против» always takes the genitive.",
    "id": "c47"
   },
   {
@@ -529,22 +319,8 @@
    ],
    "correct": "задний немец",
    "case": "Именительный (Nominative)",
-   "explain": "«задний немец» — the subject of the sentence stands in the nominative.",
+   "explain": "«задний немец» is the subject of «мотнул» — who or what does it — so nominative.",
    "id": "c48"
-  },
-  {
-   "sentence": "Уже после выяснилось: казаки ушли со второго поста этой ночью, узнав, что ___ в полуверсте от фольварка перерезаны.",
-   "lemma": "провод",
-   "options": [
-    "телеграфных проводах",
-    "телеграфных проводов",
-    "телеграфные провода",
-    "телеграфным проводам"
-   ],
-   "correct": "телеграфные провода",
-   "case": "Именительный (Nominative)",
-   "explain": "«телеграфные провода» — the subject of the sentence stands in the nominative.",
-   "id": "c50"
   },
   {
    "sentence": "И тут только Иванков заметил, что у Астахова шелушится нос, ___ висит на ноздрине.",
@@ -557,50 +333,8 @@
    ],
    "correct": "тонкая шкурка",
    "case": "Именительный (Nominative)",
-   "explain": "«тонкая шкурка» — the subject of the sentence stands in the nominative.",
+   "explain": "«тонкая шкурка» is the subject of «висит» — who or what does it — so nominative.",
    "id": "c51"
-  },
-  {
-   "sentence": "По ту сторону чернела пахота, с этой стороны щетинился бурьянок и ___.",
-   "lemma": "кустарник",
-   "options": [
-    "редкий кустарник",
-    "редкому кустарнику",
-    "редкого кустарника",
-    "редким кустарником"
-   ],
-   "correct": "редкий кустарник",
-   "case": "Именительный (Nominative)",
-   "explain": "«редкий кустарник» — the subject of the sentence stands in the nominative.",
-   "id": "c52"
-  },
-  {
-   "sentence": "Астахов остановил коня, сдвинул фуражку, вытер ___ ладони зернистый пот.",
-   "lemma": "сторона",
-   "options": [
-    "тыльной стороне",
-    "тыльной стороной",
-    "тыльная сторона",
-    "тыльной стороны"
-   ],
-   "correct": "тыльной стороной",
-   "case": "Творительный (Instrumental)",
-   "explain": "«тыльной стороной» — the instrumental marks the means, company, or complement.",
-   "id": "c53"
-  },
-  {
-   "sentence": "Иванков, кирпично-красный, с мокрой-от пота спиной, жадно облизал ___, поехал.",
-   "lemma": "губа",
-   "options": [
-    "зачерствелых губах",
-    "зачерствелыми губами",
-    "зачерствелые губы",
-    "зачерствелым губам"
-   ],
-   "correct": "зачерствелые губы",
-   "case": "Винительный (Accusative)",
-   "explain": "«зачерствелые губы» — the accusative marks the direct object of the verb.",
-   "id": "c54"
   },
   {
    "sentence": "Градом по сердцу — топот ___.",
@@ -613,7 +347,7 @@
    ],
    "correct": "немецких коней",
    "case": "Родительный (Genitive)",
-   "explain": "«немецких коней» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«немецких коней» depends on the noun «топот» (whose? of what?) — genitive.",
    "id": "c55"
   },
   {
@@ -627,7 +361,7 @@
    ],
    "correct": "кривые судороги",
    "case": "Именительный (Nominative)",
-   "explain": "«Кривые судороги» — the subject of the sentence stands in the nominative.",
+   "explain": "«кривые судороги» is the subject of «сводили» — who or what does it — so nominative.",
    "id": "c57"
   },
   {
@@ -641,7 +375,7 @@
    ],
    "correct": "рыжеватый немец",
    "case": "Именительный (Nominative)",
-   "explain": "«рыжеватый немец» — the subject of the sentence stands in the nominative.",
+   "explain": "«рыжеватый немец» is the subject of «догнал» — who or what does it — so nominative.",
    "id": "c58"
   },
   {
@@ -655,7 +389,7 @@
    ],
    "correct": "второй удар",
    "case": "Винительный (Accusative)",
-   "explain": "«второй удар» — the accusative marks the direct object of the verb.",
+   "explain": "«второй удар» is the direct object of «отвел» (кого? что?) — accusative.",
    "id": "c59"
   },
   {
@@ -669,64 +403,8 @@
    ],
    "correct": "чужого лица",
    "case": "Родительный (Genitive)",
-   "explain": "«чужого лица» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«чужого лица» depends on the noun «муть» (whose? of what?) — genitive.",
    "id": "c61"
-  },
-  {
-   "sentence": "С левой стороны над ним вырос драгун, и блекло в глазах метнулся на взлете ___.",
-   "lemma": "палаш",
-   "options": [
-    "разящему палашу",
-    "разящим палашом",
-    "разящем палаше",
-    "разящий палаш"
-   ],
-   "correct": "разящий палаш",
-   "case": "Именительный (Nominative)",
-   "explain": "«разящий палаш» — the subject of the sentence stands in the nominative.",
-   "id": "c63"
-  },
-  {
-   "sentence": "Сзади пикой поддели ему ___, настойчиво срывали его с плеча.",
-   "lemma": "ремень",
-   "options": [
-    "погонным ремнём",
-    "погонном ремне",
-    "погонному ремню",
-    "погонный ремень"
-   ],
-   "correct": "погонный ремень",
-   "case": "Винительный (Accusative)",
-   "explain": "«погонный ремень» — the accusative marks the direct object of the verb.",
-   "id": "c64"
-  },
-  {
-   "sentence": "За вскинутой головой коня маячило потное, разгоряченное лицо веснушчатого ___.",
-   "lemma": "немец",
-   "options": [
-    "немолодому немцу",
-    "немолодым немцем",
-    "немолодом немце",
-    "немолодого немца"
-   ],
-   "correct": "немолодого немца",
-   "case": "Винительный (Accusative)",
-   "explain": "«немолодого немца» — the accusative marks the direct object of the verb.",
-   "id": "c65"
-  },
-  {
-   "sentence": "Палаш не доставал, и немец, кинув его, рвал из пристроченного к седлу желтого чехла карабин, не спуская с Иванкова часто мигающих, напуганных ___.",
-   "lemma": "глаз",
-   "options": [
-    "коричневым глазам",
-    "коричневых глазах",
-    "коричневых глаз",
-    "коричневыми глазами"
-   ],
-   "correct": "коричневых глаз",
-   "case": "Родительный (Genitive)",
-   "explain": "«коричневых глаз» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
-   "id": "c66"
   },
   {
    "sentence": "Возле ___ суглинистой невеселой пахоты грудились, перекипали, колыхаясь в схватке, как под ветром.",
@@ -739,7 +417,7 @@
    ],
    "correct": "небольшого клина",
    "case": "Родительный (Genitive)",
-   "explain": "«небольшого клина» — after the preposition «возле», the genitive here marks possession, absence, or quantity.",
+   "explain": "«небольшого клина» — «возле» always takes the genitive.",
    "id": "c67"
   },
   {
@@ -753,7 +431,7 @@
    ],
    "correct": "смертного ужаса",
    "case": "Родительный (Genitive)",
-   "explain": "«смертного ужаса» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«смертного ужаса» — «от» always takes the genitive.",
    "id": "c68"
   },
   {
@@ -767,7 +445,7 @@
    ],
    "correct": "немецкий офицер",
    "case": "Именительный (Nominative)",
-   "explain": "«немецкий офицер» — the subject of the sentence stands in the nominative.",
+   "explain": "«немецкий офицер» is the subject of «погнался» — who or what does it — so nominative.",
    "id": "c69"
   },
   {
@@ -781,22 +459,8 @@
    ],
    "correct": "нелепыми ударами",
    "case": "Творительный (Instrumental)",
-   "explain": "«нелепыми ударами» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «израненные», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c70"
-  },
-  {
-   "sentence": "Казаки поскакали напрямки к местечку Пеликалие, к сотне; немцы, подняв упавшего с седла ___, уходили к границе.",
-   "lemma": "товарищ",
-   "options": [
-    "раненым товарищем",
-    "раненом товарище",
-    "раненого товарища",
-    "раненому товарищу"
-   ],
-   "correct": "раненого товарища",
-   "case": "Винительный (Accusative)",
-   "explain": "«раненого товарища» — the accusative marks the direct object of the verb.",
-   "id": "c71"
   },
   {
    "sentence": "От фольварка, где находился ___, разбились надвое.",
@@ -809,7 +473,7 @@
    ],
    "correct": "второй пост",
    "case": "Именительный (Nominative)",
-   "explain": "«второй пост» — the subject of the sentence stands in the nominative.",
+   "explain": "«второй пост» is the subject of «находился» — who or what does it — so nominative.",
    "id": "c72"
   },
   {
@@ -823,7 +487,7 @@
    ],
    "correct": "германский офицер",
    "case": "Именительный (Nominative)",
-   "explain": "«германский офицер» — the subject of the sentence stands in the nominative.",
+   "explain": "«германский офицер» is the subject of «убит» — who or what does it — so nominative.",
    "id": "c73"
   }
  ]

@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Они подбирали те отпадавшие листья, которые сами собою сыпались с иссохшего дерева — ___, и иногда трясли это дерево.",
-   "lemma": "войско",
-   "options": [
-    "французскому войску",
-    "французском войске",
-    "французским войском",
-    "французского войска"
-   ],
-   "correct": "французского войска",
-   "case": "Родительный (Genitive)",
-   "explain": "«французского войска» — the genitive here marks possession, absence, or quantity.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Последние числа октября было время самого разгара ___.",
-   "lemma": "война",
-   "options": [
-    "партизанской войны",
-    "партизанской войне",
-    "партизанской войной",
-    "партизанская война"
-   ],
-   "correct": "партизанской войны",
-   "case": "Родительный (Genitive)",
-   "explain": "«партизанской войны» — the genitive here marks possession, absence, or quantity.",
-   "id": "c3"
-  },
-  {
    "sentence": "Мелкие же партизаны, давно уже начавшие свое дело и близко высматривавшие французов, считали возможным то, о чем не смели и думать начальники ___.",
    "lemma": "отряд",
    "options": [
@@ -39,36 +11,8 @@
    ],
    "correct": "больших отрядов",
    "case": "Родительный (Genitive)",
-   "explain": "«больших отрядов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«больших отрядов» depends on the noun «начальники» (whose? of what?) — genitive.",
    "id": "c4"
-  },
-  {
-   "sentence": "— Двое из этих больших отрядных начальников — один поляк, ___ — почти в одно и то же время прислали Денисову приглашение присоединиться, каждый к своему отряду, с тем, чтобы напасть на транспорт.",
-   "lemma": "немец",
-   "options": [
-    "другим немцем",
-    "другого немца",
-    "другому немцу",
-    "другой немец"
-   ],
-   "correct": "другой немец",
-   "case": "Именительный (Nominative)",
-   "explain": "«другой немец» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
-  },
-  {
-   "sentence": "Распорядившись таким образом, Денисов намеревался, без донесения о том высшим начальникам, вместе с Долоховым атаковать и взять этот транспорт своими ___.",
-   "lemma": "сила",
-   "options": [
-    "небольшими силами",
-    "небольшим силам",
-    "небольших сил",
-    "небольших силах"
-   ],
-   "correct": "небольшими силами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«небольшими силами» — the instrumental marks the means, company, or complement.",
-   "id": "c7"
   },
   {
    "sentence": "С левой стороны дороги от Микулина к Шамшеву шли ___, местами подходившие к самой дороге, местами отдалявшиеся от дороги на версту и больше.",
@@ -81,7 +25,7 @@
    ],
    "correct": "большие леса",
    "case": "Именительный (Nominative)",
-   "explain": "«большие леса» — the subject of the sentence stands in the nominative.",
+   "explain": "«большие леса» is the subject of «шли» — who or what does it — so nominative.",
    "id": "c9"
   },
   {
@@ -95,36 +39,22 @@
    ],
    "correct": "самой дороге",
    "case": "Дательный (Dative)",
-   "explain": "«самой дороге» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«самой дороге» — «к» always takes the dative.",
    "id": "c10"
   },
   {
    "sentence": "По ___ целый день, то углубляясь в середину их, то выезжая на опушку, ехал с партией Денисов, не выпуская из виду двигавшихся французов.",
    "lemma": "леса",
    "options": [
+    "этих-то лесах",
     "этими-то лесами",
-    "эти-то леса",
     "этим-то лесам",
     "этих-то лесов"
    ],
    "correct": "этим-то лесам",
    "case": "Дательный (Dative)",
-   "explain": "«этим-то лесам» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«этим-то лесам» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c11"
-  },
-  {
-   "sentence": "По этим-то лесам ___, то углубляясь в середину их, то выезжая на опушку, ехал с партией Денисов, не выпуская из виду двигавшихся французов.",
-   "lemma": "день",
-   "options": [
-    "целым днём",
-    "целого дня",
-    "целом дне",
-    "целый день"
-   ],
-   "correct": "целый день",
-   "case": "Винительный (Accusative)",
-   "explain": "«целый день» — the accusative marks the direct object of the verb.",
-   "id": "c12"
   },
   {
    "sentence": "С тех пор и до ___ партия, не нападая, следила за движением французов.",
@@ -137,7 +67,7 @@
    ],
    "correct": "самого вечера",
    "case": "Родительный (Genitive)",
-   "explain": "«самого вечера» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«самого вечера» — «до» always takes the genitive.",
    "id": "c13"
   },
   {
@@ -151,7 +81,7 @@
    ],
    "correct": "самой дороге",
    "case": "Дательный (Dative)",
-   "explain": "«самой дороге» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«самой дороге» — «к» always takes the dative.",
    "id": "c14"
   },
   {
@@ -165,22 +95,8 @@
    ],
    "correct": "новые колонны",
    "case": "Именительный (Nominative)",
-   "explain": "«новые колонны» — the subject of the sentence stands in the nominative.",
+   "explain": "«новые колонны» is the subject of «покажутся» — who or what does it — so nominative.",
    "id": "c15"
-  },
-  {
-   "sentence": "Впереди Шамшева точно так же Долохов должен был исследовать дорогу, чтобы знать, на каком расстоянии есть еще другие ___.",
-   "lemma": "войско",
-   "options": [
-    "французские войска",
-    "французских войсках",
-    "французскими войсками",
-    "французским войскам"
-   ],
-   "correct": "французские войска",
-   "case": "Именительный (Nominative)",
-   "explain": "«французские войска» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
   }
  ]
 }

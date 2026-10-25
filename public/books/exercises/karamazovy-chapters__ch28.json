@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Хотя госпожа Хохлакова проживала большею частию в другой губернии, где имела поместье, или в Москве, где имела ___, но и в нашем городке у нее был свой дом, доставшийся от отцов и дедов.",
-   "lemma": "дом",
-   "options": [
-    "собственном доме",
-    "собственный дом",
-    "собственному дому",
-    "собственным домом"
-   ],
-   "correct": "собственный дом",
-   "case": "Винительный (Accusative)",
-   "explain": "«собственный дом» — the accusative marks the direct object of the verb.",
-   "id": "c1"
-  },
-  {
    "sentence": "— Maman, это с вами теперь истерика, а не со мной, — прощебетал вдруг в щелочку голосок Lise из ___.",
    "lemma": "комната",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "боковой комнаты",
    "case": "Родительный (Genitive)",
-   "explain": "«боковой комнаты» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«боковой комнаты» — «из» always takes the genitive.",
    "id": "c3"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "мутной воды",
    "case": "Родительный (Genitive)",
-   "explain": "«мутной воды» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«мутной воды» depends on the noun «воды» (whose? of what?) — genitive.",
    "id": "c4"
   },
   {
@@ -53,22 +39,8 @@
    ],
    "correct": "загадочной встрече",
    "case": "Предложный (Prepositional)",
-   "explain": "«загадочной встрече» — after the preposition «о», for location or topic.",
+   "explain": "«загадочной встрече» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c6"
-  },
-  {
-   "sentence": "Однако вы непременно разузнайте мне как-нибудь про этого ___ и мне все расскажите, потому что тут какой-то секрет.",
-   "lemma": "мальчишка",
-   "options": [
-    "скверного мальчишку",
-    "скверного мальчишки",
-    "скверному мальчишке",
-    "скверным мальчишкой"
-   ],
-   "correct": "скверного мальчишку",
-   "case": "Винительный (Accusative)",
-   "explain": "«скверного мальчишку» — the accusative marks the direct object of the verb.",
-   "id": "c8"
   },
   {
    "sentence": "Я так раскаивалась в этой ___ всю ночь.",
@@ -81,7 +53,7 @@
    ],
    "correct": "глупой шутке",
    "case": "Предложный (Prepositional)",
-   "explain": "«глупой шутке» — after the preposition «в», for location or topic.",
+   "explain": "«глупой шутке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c9"
   },
   {
@@ -95,78 +67,8 @@
    ],
    "correct": "законный срок",
    "case": "Именительный (Nominative)",
-   "explain": "«законный срок» — the subject of the sentence stands in the nominative.",
+   "explain": "«законный срок» is the subject of «придет» — who or what does it — so nominative.",
    "id": "c11"
-  },
-  {
-   "sentence": "Ангел мама, вы начинаете говорить чрезвычайно ___.",
-   "lemma": "вещь",
-   "options": [
-    "остроумных вещах",
-    "остроумные вещи",
-    "остроумными вещами",
-    "остроумных вещей"
-   ],
-   "correct": "остроумные вещи",
-   "case": "Винительный (Accusative)",
-   "explain": "«остроумные вещи» — the accusative marks the direct object of the verb.",
-   "id": "c12"
-  },
-  {
-   "sentence": "Это просто ___, Алексей Федорович, я теперь вспомнила имя, но это прекрасная примочка.",
-   "lemma": "примочка",
-   "options": [
-    "свинцовая примочка",
-    "свинцовой примочкой",
-    "свинцовой примочки",
-    "свинцовой примочке"
-   ],
-   "correct": "свинцовая примочка",
-   "case": "Именительный (Nominative)",
-   "explain": "«свинцовая примочка» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
-  },
-  {
-   "sentence": "Это просто свинцовая примочка, Алексей Федорович, я теперь вспомнила имя, но это ___.",
-   "lemma": "примочка",
-   "options": [
-    "прекрасная примочка",
-    "прекрасной примочкой",
-    "прекрасной примочке",
-    "прекрасной примочки"
-   ],
-   "correct": "прекрасная примочка",
-   "case": "Именительный (Nominative)",
-   "explain": "«прекрасная примочка» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
-  },
-  {
-   "sentence": "И Lise все смеялась своим нервным ___, лукаво смотря на Алешу.",
-   "lemma": "смешок",
-   "options": [
-    "мелкий смешок",
-    "мелким смешком",
-    "мелком смешке",
-    "мелкого смешка"
-   ],
-   "correct": "мелким смешком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«мелким смешком» — the instrumental marks the means, company, or complement.",
-   "id": "c15"
-  },
-  {
-   "sentence": "Вашего мальчика укусила ___, и он стал бешеный мальчик и вот кого-нибудь и укусит около себя в свою очередь.",
-   "lemma": "собака",
-   "options": [
-    "бешеной собакой",
-    "бешеной собаке",
-    "бешеная собака",
-    "бешеной собаки"
-   ],
-   "correct": "бешеная собака",
-   "case": "Именительный (Nominative)",
-   "explain": "«бешеная собака» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
   },
   {
    "sentence": "— Ну, довольно, Lise, я, может быть, в самом деле очень поспешно сказала про ___, а ты уж сейчас и вывела.",
@@ -179,7 +81,7 @@
    ],
    "correct": "бешеного мальчика",
    "case": "Винительный (Accusative)",
-   "explain": "«бешеного мальчика» — after the preposition «про», the accusative marks the direct object of the verb.",
+   "explain": "«бешеного мальчика» — «про» always takes the accusative.",
    "id": "c20"
   }
  ]

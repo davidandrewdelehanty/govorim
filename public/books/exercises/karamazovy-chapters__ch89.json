@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "___, спрошенный в свою очередь, резко и настойчиво подтвердил, что считает умственное состояние подсудимого за ненормальное, «даже в высшей степени».",
-   "lemma": "доктор",
-   "options": [
-    "московскому доктору",
-    "московского доктора",
-    "московским доктором",
-    "московский доктор"
-   ],
-   "correct": "московский доктор",
-   "case": "Именительный (Nominative)",
-   "explain": "«Московский доктор» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "— Уже не говорю о том, чего не видал, то есть о ___ и всей этой катастрофе, но даже третьего дня, во время разговора со мной, у него был необъяснимый неподвижный взгляд.",
    "lemma": "преступление",
    "options": [
@@ -25,22 +11,8 @@
    ],
    "correct": "самом преступлении",
    "case": "Предложный (Prepositional)",
-   "explain": "«самом преступлении» — after the preposition «о», for location or topic.",
+   "explain": "«самом преступлении» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c3"
-  },
-  {
-   "sentence": "— Уже не говорю о том, чего не видал, то есть о самом преступлении и всей этой катастрофе, но даже ___, во время разговора со мной, у него был необъяснимый неподвижный взгляд.",
-   "lemma": "день",
-   "options": [
-    "третьего дня",
-    "третьем дне",
-    "третьим днём",
-    "третий день"
-   ],
-   "correct": "третьего дня",
-   "case": "Родительный (Genitive)",
-   "explain": "«третьего дня» — the genitive here marks possession, absence, or quantity.",
-   "id": "c4"
   },
   {
    "sentence": "— Уже не говорю о том, чего не видал, то есть о самом преступлении и всей этой катастрофе, но даже третьего дня, во время разговора со мной, у него был необъяснимый ___.",
@@ -53,36 +25,8 @@
    ],
    "correct": "неподвижный взгляд",
    "case": "Именительный (Nominative)",
-   "explain": "«неподвижный взгляд» — the subject of the sentence stands in the nominative.",
+   "explain": "«неподвижный взгляд» is the subject of «был» — who or what does it — so nominative.",
    "id": "c5"
-  },
-  {
-   "sentence": "___, когда вовсе его не надо.",
-   "lemma": "смех",
-   "options": [
-    "неожиданному смеху",
-    "неожиданном смехе",
-    "неожиданного смеха",
-    "неожиданный смех"
-   ],
-   "correct": "неожиданный смех",
-   "case": "Винительный (Accusative)",
-   "explain": "«Неожиданный смех» — the accusative marks the direct object of the verb.",
-   "id": "c6"
-  },
-  {
-   "sentence": "Но особенный комизм разногласию обоих ученых экспертов придал ___ врача Варвинского, спрошенного после всех.",
-   "lemma": "вывод",
-   "options": [
-    "неожиданном выводе",
-    "неожиданный вывод",
-    "неожиданным выводом",
-    "неожиданному выводу"
-   ],
-   "correct": "неожиданный вывод",
-   "case": "Винительный (Accusative)",
-   "explain": "«неожиданный вывод» — the accusative marks the direct object of the verb.",
-   "id": "c9"
   },
   {
    "sentence": "Но это ___ не могло заключать в себе никакого особенного «аффекта», о котором сейчас говорилось.",
@@ -95,21 +39,21 @@
    ],
    "correct": "нервное состояние",
    "case": "Именительный (Nominative)",
-   "explain": "«нервное состояние» — the subject of the sentence stands in the nominative.",
+   "explain": "«нервное состояние» is the subject of «могло» — who or what does it — so nominative.",
    "id": "c10"
   },
   {
    "sentence": "Митю, конечно, остановили, но мнение ___ имело самое решающее действие как на суд, так и на публику, ибо, как оказалось потом, все с ним согласились.",
    "lemma": "врач",
    "options": [
-    "молодым врачом",
     "молодом враче",
+    "молодому врачу",
     "молодого врача",
-    "молодому врачу"
+    "молодой врач"
    ],
    "correct": "молодого врача",
    "case": "Родительный (Genitive)",
-   "explain": "«молодого врача» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«молодого врача» depends on the noun «мнение» (whose? of what?) — genitive.",
    "id": "c11"
   },
   {
@@ -123,22 +67,8 @@
    ],
    "correct": "молодой человек",
    "case": "Именительный (Nominative)",
-   "explain": "«молодой человек» — the subject of the sentence stands in the nominative.",
+   "explain": "«молодой человек» is the subject of «мог» — who or what does it — so nominative.",
    "id": "c12"
-  },
-  {
-   "sentence": "— И, однако, бедный молодой человек мог получить без сравнения лучшую участь, ибо был ___ и в детстве, и после детства, ибо я знаю это.",
-   "lemma": "сердце",
-   "options": [
-    "хорошим сердцем",
-    "хорошее сердце",
-    "хорошему сердцу",
-    "хорошего сердца"
-   ],
-   "correct": "хорошего сердца",
-   "case": "Родительный (Genitive)",
-   "explain": "«хорошего сердца» — the genitive here marks possession, absence, or quantity.",
-   "id": "c13"
   },
   {
    "sentence": "Какая-то чувствительная и проникновенная нотка послышалась вдруг в голосе ___.",
@@ -151,7 +81,7 @@
    ],
    "correct": "честного старичка",
    "case": "Родительный (Genitive)",
-   "explain": "«честного старичка» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«честного старичка» depends on the noun «голосе» (whose? of what?) — genitive.",
    "id": "c17"
   },
   {
@@ -165,7 +95,7 @@
    ],
    "correct": "главный эффект",
    "case": "Именительный (Nominative)",
-   "explain": "«главный эффект» — the subject of the sentence stands in the nominative.",
+   "explain": "«главный эффект» is the subject of «произведен» — who or what does it — so nominative.",
    "id": "c20"
   }
  ]

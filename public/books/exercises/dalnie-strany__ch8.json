@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Захватив с собой три тысячи ___, тех самых, которые были собраны на акции Трактороцентра, скрылся неизвестно куда главный организатор колхоза — председатель сельсовета Егор Михайлов.",
-   "lemma": "деньга",
-   "options": [
-    "крестьянские деньги",
-    "крестьянских денег",
-    "крестьянских деньгах",
-    "крестьянскими деньгами"
-   ],
-   "correct": "крестьянских денег",
-   "case": "Родительный (Genitive)",
-   "explain": "«крестьянских денег» — the genitive here marks possession, absence, or quantity.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Захватив с собой три тысячи крестьянских денег, тех самых, которые были собраны на акции Трактороцентра, скрылся неизвестно куда ___ колхоза — председатель сельсовета Егор Михайлов.",
-   "lemma": "организатор",
-   "options": [
-    "главном организаторе",
-    "главному организатору",
-    "главного организатора",
-    "главный организатор"
-   ],
-   "correct": "главный организатор",
-   "case": "Именительный (Nominative)",
-   "explain": "«главный организатор» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
    "sentence": "Из района прислали ___, но алешинские мужики отнеслись к нему холодно.",
    "lemma": "человек",
    "options": [
@@ -39,49 +11,21 @@
    ],
    "correct": "нового человека",
    "case": "Винительный (Accusative)",
-   "explain": "«нового человека» — the accusative marks the direct object of the verb.",
+   "explain": "«нового человека» is the direct object of «прислали» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c3"
-  },
-  {
-   "sentence": "Пошли разговоры, что вот, дескать, Егор тоже приехал из района, а три тысячи ___ ухнули.",
-   "lemma": "деньга",
-   "options": [
-    "крестьянские деньги",
-    "крестьянских денег",
-    "крестьянских деньгах",
-    "крестьянскими деньгами"
-   ],
-   "correct": "крестьянских денег",
-   "case": "Родительный (Genitive)",
-   "explain": "«крестьянских денег» — the genitive here marks possession, absence, or quantity.",
-   "id": "c4"
-  },
-  {
-   "sentence": "Его поддерживали братья Шмаковы, ___, давнишние товарищи по партизанскому отряду, в один день с дядей Серафимом поротые когда-то батальоном полковника Марциновского.",
-   "lemma": "мужик",
-   "options": [
-    "многосемейные мужики",
-    "многосемейными мужиками",
-    "многосемейных мужиков",
-    "многосемейных мужиках"
-   ],
-   "correct": "многосемейные мужики",
-   "case": "Именительный (Nominative)",
-   "explain": "«многосемейные мужики» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
   },
   {
    "sentence": "Они тоже негодовали на Егора, удивлялись упорству ___ Серафима и очень жалели Ивана Михайловича.",
    "lemma": "дядя",
    "options": [
-    "тихого дяди",
+    "тихом дяде",
     "тихий дядя",
-    "тихим дядей",
-    "тихого дядю"
+    "тихого дядю",
+    "тихого дяди"
    ],
    "correct": "тихого дяди",
    "case": "Родительный (Genitive)",
-   "explain": "«тихого дяди» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«тихого дяди» depends on the noun «упорству» (whose? of what?) — genitive.",
    "id": "c7"
   },
   {
@@ -95,7 +39,7 @@
    ],
    "correct": "газетной бумаги",
    "case": "Родительный (Genitive)",
-   "explain": "«газетной бумаги» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«газетной бумаги» — «из» always takes the genitive.",
    "id": "c8"
   },
   {
@@ -109,7 +53,7 @@
    ],
    "correct": "грозовые облака",
    "case": "Именительный (Nominative)",
-   "explain": "«грозовые облака» — the subject of the sentence stands in the nominative.",
+   "explain": "«грозовые облака» is the subject of «продвигались» — who or what does it — so nominative.",
    "id": "c10"
   },
   {
@@ -123,7 +67,7 @@
    ],
    "correct": "боевого бронепоезда",
    "case": "Родительный (Genitive)",
-   "explain": "«боевого бронепоезда» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«боевого бронепоезда» depends on the noun «фотография» (whose? of what?) — genitive.",
    "id": "c11"
   },
   {
@@ -137,7 +81,7 @@
    ],
    "correct": "третьи сутки",
    "case": "Винительный (Accusative)",
-   "explain": "«третьи сутки» — the accusative marks the direct object of the verb.",
+   "explain": "«третьи сутки» tells how long or how often, with no preposition — accusative.",
    "id": "c12"
   },
   {
@@ -151,7 +95,7 @@
    ],
    "correct": "бандитским лесам",
    "case": "Дательный (Dative)",
-   "explain": "«бандитским лесам» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«бандитским лесам» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c13"
   },
   {
@@ -165,36 +109,8 @@
    ],
    "correct": "красного шиповника",
    "case": "Родительный (Genitive)",
-   "explain": "«красного шиповника» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«красного шиповника» depends on the noun «веточку» (whose? of what?) — genitive.",
    "id": "c14"
-  },
-  {
-   "sentence": "Сломал он веточку красного шиповника, понюхал ее, воткнул в петлицу ___.",
-   "lemma": "блуза",
-   "options": [
-    "угольной блузы",
-    "угольной блузе",
-    "угольная блуза",
-    "угольной блузой"
-   ],
-   "correct": "угольной блузы",
-   "case": "Родительный (Genitive)",
-   "explain": "«угольной блузы» — the genitive here marks possession, absence, or quantity.",
-   "id": "c15"
-  },
-  {
-   "sentence": "Так ___ — либо молится, либо ругается.",
-   "lemma": "день",
-   "options": [
-    "целого дня",
-    "целым днём",
-    "целый день",
-    "целом дне"
-   ],
-   "correct": "целый день",
-   "case": "Винительный (Accusative)",
-   "explain": "«целый день» — the accusative marks the direct object of the verb.",
-   "id": "c16"
   },
   {
    "sentence": "В Алешине они зашли к ___, но его не застали.",
@@ -207,22 +123,8 @@
    ],
    "correct": "новому председателю",
    "case": "Дательный (Dative)",
-   "explain": "«новому председателю» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«новому председателю» — «к» always takes the dative.",
    "id": "c17"
-  },
-  {
-   "sentence": "Из-за этого луга теперь шла ___.",
-   "lemma": "борьба",
-   "options": [
-    "яростной борьбе",
-    "яростной борьбы",
-    "яростная борьба",
-    "яростной борьбой"
-   ],
-   "correct": "яростная борьба",
-   "case": "Именительный (Nominative)",
-   "explain": "«яростная борьба» — the subject of the sentence stands in the nominative.",
-   "id": "c18"
   },
   {
    "sentence": "Раньше луг был поделен между несколькими дворами, причем ___ принадлежал мельнику Петунину.",
@@ -235,7 +137,7 @@
    ],
    "correct": "больший участок",
    "case": "Именительный (Nominative)",
-   "explain": "«больший участок» — the subject of the sentence stands in the nominative.",
+   "explain": "«больший участок» is the subject of «принадлежал» — who or what does it — so nominative.",
    "id": "c19"
   },
   {
@@ -249,50 +151,8 @@
    ],
    "correct": "прежние хозяева",
    "case": "Именительный (Nominative)",
-   "explain": "«прежние хозяева» — the subject of the sentence stands in the nominative.",
+   "explain": "«прежние хозяева» is the subject of «требовали» — who or what does it — so nominative.",
    "id": "c20"
-  },
-  {
-   "sentence": "Теперь, когда колхоз развалился, прежние хозяева требовали ___ и ссылались на то, что после кражи казенных денег обещанной из района сенокосилки колхозу все равно не дадут и с сенокосом он не управится.",
-   "lemma": "участок",
-   "options": [
-    "прежних участках",
-    "прежними участками",
-    "прежние участки",
-    "прежним участкам"
-   ],
-   "correct": "прежние участки",
-   "case": "Винительный (Accusative)",
-   "explain": "«прежние участки» — the accusative marks the direct object of the verb.",
-   "id": "c21"
-  },
-  {
-   "sentence": "Но оставшиеся в колхозе пятнадцать дворов ни за что не хотели разбивать луг и, главное, уступать Петунину ___.",
-   "lemma": "участок",
-   "options": [
-    "прежнего участка",
-    "прежнем участке",
-    "прежний участок",
-    "прежним участком"
-   ],
-   "correct": "прежний участок",
-   "case": "Винительный (Accusative)",
-   "explain": "«прежний участок» — the accusative marks the direct object of the verb.",
-   "id": "c22"
-  },
-  {
-   "sentence": "Председатель держал сторону колхоза, но многие озлобленные ___ крестьяне вступились за Петунина.",
-   "lemma": "событие",
-   "options": [
-    "последних событий",
-    "последних событиях",
-    "последним событиям",
-    "последними событиями"
-   ],
-   "correct": "последними событиями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«последними событиями» — the instrumental marks the means, company, or complement.",
-   "id": "c23"
   },
   {
    "sentence": "И что от этой бани огонь чуть-чуть не перекинулся на ___, где стоял триер и лежало очищенное зерно.",
@@ -305,22 +165,8 @@
    ],
    "correct": "колхозный сарай",
    "case": "Винительный (Accusative)",
-   "explain": "«колхозный сарай» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«колхозный сарай» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c24"
-  },
-  {
-   "sentence": "— Помню, помню, — скороговоркой ответил Васька, стараясь замять эти ___.",
-   "lemma": "воспоминание",
-   "options": [
-    "неприятные воспоминания",
-    "неприятными воспоминаниями",
-    "неприятных воспоминаниях",
-    "неприятных воспоминаний"
-   ],
-   "correct": "неприятные воспоминания",
-   "case": "Винительный (Accusative)",
-   "explain": "«неприятные воспоминания» — the accusative marks the direct object of the verb.",
-   "id": "c25"
   }
  ]
 }

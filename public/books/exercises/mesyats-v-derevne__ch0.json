@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Аркадий Сергеич Иcлaeв, ___, 36 лет.",
-   "lemma": "помещик",
-   "options": [
-    "богатым помещиком",
-    "богатого помещика",
-    "богатый помещик",
-    "богатому помещику"
-   ],
-   "correct": "богатый помещик",
-   "case": "Именительный (Nominative)",
-   "explain": "«богатый помещик» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Действие происходит в имении Ислаева в начале ___ Между 1 и 2, 2 и 3, 4 и 5 действиями проходит по дню.",
    "lemma": "год",
    "options": [
@@ -25,36 +11,8 @@
    ],
    "correct": "сороковых годов",
    "case": "Родительный (Genitive)",
-   "explain": "«сороковых годов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«сороковых годов» depends on the noun «начале» (whose? of what?) — genitive.",
    "id": "c2"
-  },
-  {
-   "sentence": "Направо ___ и дверь в кабинет, прямо дверь в залу, налево два окна и круглый стол.",
-   "lemma": "стол",
-   "options": [
-    "карточным столом",
-    "карточный стол",
-    "карточного стола",
-    "карточному столу"
-   ],
-   "correct": "карточный стол",
-   "case": "Винительный (Accusative)",
-   "explain": "«карточный стол» — the accusative marks the direct object of the verb.",
-   "id": "c3"
-  },
-  {
-   "sentence": "Направо карточный стол и дверь в кабинет, прямо дверь в залу, налево два окна и ___.",
-   "lemma": "стол",
-   "options": [
-    "круглому столу",
-    "круглом столе",
-    "круглого стола",
-    "круглый стол"
-   ],
-   "correct": "круглый стол",
-   "case": "Винительный (Accusative)",
-   "explain": "«круглый стол» — the accusative marks the direct object of the verb.",
-   "id": "c4"
   },
   {
    "sentence": "За карточным столом Анна Семёновна, Лизавета Богдановна и Шааф играют в преферанс; у ___ сидят Наталья Петровна и Ракитин.",
@@ -67,7 +25,7 @@
    ],
    "correct": "круглого стола",
    "case": "Родительный (Genitive)",
-   "explain": "«круглого стола» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«круглого стола» — «у» always takes the genitive.",
    "id": "c6"
   },
   {
@@ -81,7 +39,7 @@
    ],
    "correct": "стенные часы",
    "case": "Именительный (Nominative)",
-   "explain": "«Стенные часы» — the subject of the sentence stands in the nominative.",
+   "explain": "«стенные часы» is the subject of «показывают» — who or what does it — so nominative.",
    "id": "c7"
   },
   {
@@ -95,50 +53,8 @@
    ],
    "correct": "свежей воды",
    "case": "Родительный (Genitive)",
-   "explain": "«свежей воды» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«свежей воды» depends on the noun «глоток» (whose? of what?) — genitive.",
    "id": "c14"
-  },
-  {
-   "sentence": "О, ___, как вы мало проницательны, хотя и тонки!..",
-   "lemma": "человек",
-   "options": [
-    "тонких людей",
-    "тонких людях",
-    "тонкие люди",
-    "тонким людям"
-   ],
-   "correct": "тонкие люди",
-   "case": "Именительный (Nominative)",
-   "explain": "«тонкие люди» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
-  },
-  {
-   "sentence": "Наталья Петровна глядит на него с едва ___.",
-   "lemma": "усмешка",
-   "options": [
-    "заметная усмешка",
-    "заметной усмешки",
-    "заметной усмешке",
-    "заметной усмешкой"
-   ],
-   "correct": "заметной усмешкой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«заметной усмешкой» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c17"
-  },
-  {
-   "sentence": "Вот ___ для степенных, рассудительных людей, каковы мы с вами!",
-   "lemma": "случай",
-   "options": [
-    "превосходном случае",
-    "превосходным случаем",
-    "превосходный случай",
-    "превосходному случаю"
-   ],
-   "correct": "превосходный случай",
-   "case": "Именительный (Nominative)",
-   "explain": "«превосходный случай» — the subject of the sentence stands in the nominative.",
-   "id": "c18"
   },
   {
    "sentence": "Этот ___ вас занимает.",
@@ -151,7 +67,7 @@
    ],
    "correct": "молодой человек",
    "case": "Именительный (Nominative)",
-   "explain": "«молодой человек» — the subject of the sentence stands in the nominative.",
+   "explain": "«молодой человек» is the subject of «занимает» — who or what does it — so nominative.",
    "id": "c19"
   },
   {
@@ -165,7 +81,7 @@
    ],
    "correct": "большим прилежанием",
    "case": "Творительный (Instrumental)",
-   "explain": "«большим прилежанием» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«большим прилежанием» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c20"
   },
   {
@@ -179,50 +95,8 @@
    ],
    "correct": "круглому столу",
    "case": "Дательный (Dative)",
-   "explain": "«круглому столу» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«круглому столу» — «к» always takes the dative.",
    "id": "c23"
-  },
-  {
-   "sentence": "А впрочем, можно ___ прописать.",
-   "lemma": "капля",
-   "options": [
-    "белых каплях",
-    "белые капли",
-    "белыми каплями",
-    "белых капель"
-   ],
-   "correct": "белые капли",
-   "case": "Винительный (Accusative)",
-   "explain": "«белые капли» — the accusative marks the direct object of the verb.",
-   "id": "c25"
-  },
-  {
-   "sentence": "Начал он её вывозить, стали женихи появляться, между прочими некто Перекузов, худосочный ___, робкий, но с отличными правилами.",
-   "lemma": "человек",
-   "options": [
-    "молодым человеком",
-    "молодой человек",
-    "молодого человека",
-    "молодом человеке"
-   ],
-   "correct": "молодой человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«молодой человек» — the subject of the sentence stands in the nominative.",
-   "id": "c27"
-  },
-  {
-   "sentence": "Наталья Петровна (задумчиво повторяя ___).",
-   "lemma": "слово",
-   "options": [
-    "последних словах",
-    "последних слов",
-    "последние слова",
-    "последними словами"
-   ],
-   "correct": "последние слова",
-   "case": "Винительный (Accusative)",
-   "explain": "«последние слова» — the accusative marks the direct object of the verb.",
-   "id": "c31"
   },
   {
    "sentence": "((Глядя на него, после ___.)) А знаете ли что, Мишель, я не могу вообразить себе человека добрее вас.",
@@ -235,22 +109,8 @@
    ],
    "correct": "небольшого молчания",
    "case": "Родительный (Genitive)",
-   "explain": "«небольшого молчания» — after the preposition «после», the genitive here marks possession, absence, or quantity.",
+   "explain": "«небольшого молчания» — «после» always takes the genitive.",
    "id": "c32"
-  },
-  {
-   "sentence": "((Ходит по комнате.)) ___!",
-   "lemma": "дело",
-   "options": [
-    "странного дела",
-    "странном деле",
-    "странное дело",
-    "странному делу"
-   ],
-   "correct": "странное дело",
-   "case": "Именительный (Nominative)",
-   "explain": "«Странное дело» — the subject of the sentence stands in the nominative.",
-   "id": "c34"
   },
   {
    "sentence": "Вхожу я в людскою, спрашиваю ___, глядь! а мой больной сидит за столом и в обе щеки уписывает блин с луком.",
@@ -263,7 +123,7 @@
    ],
    "correct": "больного кучера",
    "case": "Винительный (Accusative)",
-   "explain": "«больного кучера» — the accusative marks the direct object of the verb.",
+   "explain": "«больного кучера» is the direct object of «спрашиваю» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c46"
   }
  ]

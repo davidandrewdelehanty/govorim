@@ -1,48 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Казаки и гусары не все спали: кое-где слышались, вместе с звуком падающих капель и ___ жевания лошадей, не громкие, как бы шепчущиеся голоса.",
-   "lemma": "звук",
-   "options": [
-    "близким звуком",
-    "близком звуке",
-    "близкому звуку",
-    "близкого звука"
-   ],
-   "correct": "близкого звука",
-   "case": "Родительный (Genitive)",
-   "explain": "«близкого звука» — the genitive here marks possession, absence, or quantity.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Лихачев встал, порылся в вьюках, и Петя скоро услыхал ___ стали и бруска.",
-   "lemma": "звук",
-   "options": [
-    "воинственный звук",
-    "воинственном звуке",
-    "воинственному звуку",
-    "воинственным звуком"
-   ],
-   "correct": "воинственный звук",
-   "case": "Именительный (Nominative)",
-   "explain": "«воинственный звук» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
-   "sentence": "— ___, — сказал человек, который показался Пете гусаром.",
-   "lemma": "дело",
-   "options": [
-    "хорошему делу",
-    "хорошего дела",
-    "хорошим делом",
-    "хорошее дело"
-   ],
-   "correct": "хорошее дело",
-   "case": "Именительный (Nominative)",
-   "explain": "«Хорошее дело» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
-  },
-  {
    "sentence": "Он был в ___, в котором ничего не было похожего на действительность.",
    "lemma": "царство",
    "options": [
@@ -53,22 +11,8 @@
    ],
    "correct": "волшебном царстве",
    "case": "Предложный (Prepositional)",
-   "explain": "«волшебном царстве» — after the preposition «в», for location or topic.",
+   "explain": "«волшебном царстве» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c5"
-  },
-  {
-   "sentence": "___ может быть был огонь, а может быть глаз огромного чудовища.",
-   "lemma": "пятно",
-   "options": [
-    "красному пятну",
-    "красное пятно",
-    "красным пятном",
-    "красного пятна"
-   ],
-   "correct": "красное пятно",
-   "case": "Именительный (Nominative)",
-   "explain": "«Красное пятно» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
   },
   {
    "sentence": "Красное пятно может быть был огонь, а может быть глаз ___.",
@@ -81,22 +25,8 @@
    ],
    "correct": "огромного чудовища",
    "case": "Родительный (Genitive)",
-   "explain": "«огромного чудовища» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«огромного чудовища» depends on the noun «глаз» (whose? of what?) — genitive.",
    "id": "c7"
-  },
-  {
-   "sentence": "Может быть, что под фурой сидит просто казак Лихачев, а очень может быть, что это — самый добрый, храбрый, самый чудесный, самый ___ на свете, которого никто не знает.",
-   "lemma": "человек",
-   "options": [
-    "превосходному человеку",
-    "превосходного человека",
-    "превосходном человеке",
-    "превосходный человек"
-   ],
-   "correct": "превосходный человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«превосходный человек» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
   },
   {
    "sentence": "Он был в ___, в котором всё было возможно.",
@@ -109,7 +39,7 @@
    ],
    "correct": "волшебном царстве",
    "case": "Предложный (Prepositional)",
-   "explain": "«волшебном царстве» — after the preposition «в», for location or topic.",
+   "explain": "«волшебном царстве» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c9"
   },
   {
@@ -123,36 +53,8 @@
    ],
    "correct": "стройный хор",
    "case": "Винительный (Accusative)",
-   "explain": "«стройный хор» — the accusative marks the direct object of the verb.",
+   "explain": "«стройный хор» is the direct object of «услыхал» (кого? что?) — accusative.",
    "id": "c10"
-  },
-  {
-   "sentence": "И вдруг Петя услыхал стройный хор музыки, игравшей какой-то неизвестный, торжественно ___.",
-   "lemma": "гимн",
-   "options": [
-    "сладким гимном",
-    "сладкому гимну",
-    "сладкий гимн",
-    "сладкого гимна"
-   ],
-   "correct": "сладкий гимн",
-   "case": "Винительный (Accusative)",
-   "explain": "«сладкий гимн» — the accusative marks the direct object of the verb.",
-   "id": "c11"
-  },
-  {
-   "sentence": "Он попробовал руководить этим ___ инструментов.",
-   "lemma": "хор",
-   "options": [
-    "огромный хор",
-    "огромным хором",
-    "огромного хора",
-    "огромному хору"
-   ],
-   "correct": "огромным хором",
-   "case": "Творительный (Instrumental)",
-   "explain": "«огромным хором» — the instrumental marks the means, company, or complement.",
-   "id": "c13"
   },
   {
    "sentence": "И из ___ поднимались усиливающиеся, торжественные звуки.",
@@ -165,7 +67,7 @@
    ],
    "correct": "неизвестной глубины",
    "case": "Родительный (Genitive)",
-   "explain": "«неизвестной глубины» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«неизвестной глубины» — «из» always takes the genitive.",
    "id": "c14"
   },
   {
@@ -179,7 +81,7 @@
    ],
    "correct": "торжественном усилии",
    "case": "Предложный (Prepositional)",
-   "explain": "«торжественном усилии» — after the preposition «в», for location or topic.",
+   "explain": "«торжественном усилии» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c15"
   },
   {
@@ -193,7 +95,7 @@
    ],
    "correct": "необычайной красоте",
    "case": "Дательный (Dative)",
-   "explain": "«необычайной красоте» — the dative marks the indirect object or recipient.",
+   "explain": "«внимать» takes the dative (кому? чему?).",
    "id": "c16"
   },
   {
@@ -207,7 +109,7 @@
    ],
    "correct": "ласковый голос",
    "case": "Именительный (Nominative)",
-   "explain": "«ласковый голос» — the subject of the sentence stands in the nominative.",
+   "explain": "«ласковый голос» is the subject of «разбудил» — who or what does it — so nominative.",
    "id": "c18"
   }
  ]

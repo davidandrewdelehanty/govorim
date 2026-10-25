@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Мне нужна была уверенность, что я смогу вести свои ___.",
-   "lemma": "исследование",
-   "options": [
-    "собственными исследованиями",
-    "собственные исследования",
-    "собственным исследованиям",
-    "собственных исследований"
-   ],
-   "correct": "собственные исследования",
-   "case": "Винительный (Accusative)",
-   "explain": "«собственные исследования» — the accusative marks the direct object of the verb.",
-   "id": "c1"
-  },
-  {
    "sentence": "Лаборатория и персонал в твоем ___.",
    "lemma": "распоряжение",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "полном распоряжении",
    "case": "Предложный (Prepositional)",
-   "explain": "«полном распоряжении» — after the preposition «в», for location or topic.",
+   "explain": "«полном распоряжении» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c2"
   },
   {
@@ -39,22 +25,8 @@
    ],
    "correct": "технической стороне",
    "case": "Предложный (Prepositional)",
-   "explain": "«технической стороне» — after the preposition «о», for location or topic.",
+   "explain": "«технической стороне» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c4"
-  },
-  {
-   "sentence": "- Раньше он мог рассчитывать ___ образов, например, что нужно входить только в каждую вторую дверь или в каждую третью, только в красную дверь или только в зеленую.",
-   "lemma": "последовательность",
-   "options": [
-    "простыми последовательностями",
-    "простые последовательности",
-    "простых последовательностей",
-    "простых последовательностях"
-   ],
-   "correct": "простые последовательности",
-   "case": "Винительный (Accusative)",
-   "explain": "«простые последовательности» — the accusative marks the direct object of the verb.",
-   "id": "c5"
   },
   {
    "sentence": "Я взял у Барта список ___, у Немура и Штрауса - их записи и уже собрался уходить, но тут мне в голову пришла странная мысль.",
@@ -67,22 +39,8 @@
    ],
    "correct": "необходимых книг",
    "case": "Родительный (Genitive)",
-   "explain": "«необходимых книг» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«необходимых книг» depends on the noun «список» (whose? of what?) — genitive.",
    "id": "c8"
-  },
-  {
-   "sentence": "Я видел вашу печь для сжигания погибших ___.",
-   "lemma": "животное",
-   "options": [
-    "экспериментальным животным",
-    "экспериментальные животные",
-    "экспериментальных животных",
-    "экспериментальными животными"
-   ],
-   "correct": "экспериментальных животных",
-   "case": "Родительный (Genitive)",
-   "explain": "«экспериментальных животных» — the genitive here marks possession, absence, or quantity.",
-   "id": "c9"
   },
   {
    "sentence": "- Я уверен, что вы с ___ продумали все возможные варианты.",
@@ -95,21 +53,21 @@
    ],
    "correct": "самого начала",
    "case": "Родительный (Genitive)",
-   "explain": "«самого начала» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
+   "explain": "«самого начала» — «с» takes the genitive here (с чего? откуда? с каких пор?): from, off, since — with the instrumental it would mean 'with'.",
    "id": "c10"
   },
   {
    "sentence": "- Я уверен, что вы с самого начала продумали все ___.",
    "lemma": "вариант",
    "options": [
+    "возможным вариантам",
     "возможные варианты",
-    "возможных вариантов",
-    "возможными вариантами",
-    "возможным вариантам"
+    "возможных вариантах",
+    "возможными вариантами"
    ],
    "correct": "возможные варианты",
    "case": "Винительный (Accusative)",
-   "explain": "«возможные варианты» — the accusative marks the direct object of the verb.",
+   "explain": "«возможные варианты» is the direct object of «продумали» (кого? что?) — accusative.",
    "id": "c11"
   },
   {
@@ -123,50 +81,8 @@
    ],
    "correct": "собственная судьба",
    "case": "Именительный (Nominative)",
-   "explain": "«собственная судьба» — the subject of the sentence stands in the nominative.",
+   "explain": "«собственная судьба» is the subject of «входит» — who or what does it — so nominative.",
    "id": "c12"
-  },
-  {
-   "sentence": "На тебе могли оставить отпечаток впечатления и ___, приобретенные уже после операции.",
-   "lemma": "опыт",
-   "options": [
-    "жизненным опытом",
-    "жизненный опыт",
-    "жизненному опыту",
-    "жизненном опыте"
-   ],
-   "correct": "жизненный опыт",
-   "case": "Винительный (Accusative)",
-   "explain": "«жизненный опыт» — the accusative marks the direct object of the verb.",
-   "id": "c14"
-  },
-  {
-   "sentence": "Как будто у меня ___ не хватало.",
-   "lemma": "забота",
-   "options": [
-    "другими заботами",
-    "других заботах",
-    "другим заботам",
-    "других забот"
-   ],
-   "correct": "других забот",
-   "case": "Родительный (Genitive)",
-   "explain": "«других забот» — the genitive here marks possession, absence, or quantity.",
-   "id": "c16"
-  },
-  {
-   "sentence": "Не исключена регрессия и до более ___.",
-   "lemma": "уровень",
-   "options": [
-    "примитивному уровню",
-    "примитивного уровня",
-    "примитивный уровень",
-    "примитивным уровнем"
-   ],
-   "correct": "примитивного уровня",
-   "case": "Родительный (Genitive)",
-   "explain": "«примитивного уровня» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
-   "id": "c17"
   },
   {
    "sentence": "Он же обязался до конца твоей жизни выделять ежемесячно сумму, необходимую для твоих ___.",
@@ -179,50 +95,22 @@
    ],
    "correct": "личных потребностей",
    "case": "Родительный (Genitive)",
-   "explain": "«личных потребностей» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«личных потребностей» — «для» always takes the genitive.",
    "id": "c18"
-  },
-  {
-   "sentence": "Уоррен - самое ___, там я смогу спокойно дожить до глубокой старости.",
-   "lemma": "решение",
-   "options": [
-    "логичное решение",
-    "логичному решению",
-    "логичного решения",
-    "логичным решением"
-   ],
-   "correct": "логичное решение",
-   "case": "Именительный (Nominative)",
-   "explain": "«логичное решение» — the subject of the sentence stands in the nominative.",
-   "id": "c19"
   },
   {
    "sentence": "Как будто я примерял ___.",
    "lemma": "гроб",
    "options": [
-    "собственный гроб",
     "собственном гробе",
-    "собственного гроба",
+    "собственным гробом",
+    "собственный гроб",
     "собственному гробу"
    ],
    "correct": "собственный гроб",
    "case": "Винительный (Accusative)",
-   "explain": "«собственный гроб» — the accusative marks the direct object of the verb.",
+   "explain": "«собственный гроб» is the direct object of «примерял» (кого? что?) — accusative.",
    "id": "c20"
-  },
-  {
-   "sentence": "Я не только некто, но и способ существования этого некто - один из многих способов, и мне необходимо не только знание той дороги, по которой я иду, но и всех ___.",
-   "lemma": "дорога",
-   "options": [
-    "возможных дорог",
-    "возможными дорогами",
-    "возможным дорогам",
-    "возможных дорогах"
-   ],
-   "correct": "возможных дорог",
-   "case": "Родительный (Genitive)",
-   "explain": "«возможных дорог» — the genitive here marks possession, absence, or quantity.",
-   "id": "c21"
   },
   {
    "sentence": "Как будто у меня ___ нет.",
@@ -235,7 +123,7 @@
    ],
    "correct": "других забот",
    "case": "Родительный (Genitive)",
-   "explain": "«других забот» — the genitive here marks possession, absence, or quantity.",
+   "explain": "What is absent after «нет» — genitive.",
    "id": "c23"
   }
  ]

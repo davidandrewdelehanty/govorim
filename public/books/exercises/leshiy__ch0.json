@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Александр Владимирович Серебряков, ___.",
-   "lemma": "профессор",
-   "options": [
-    "отставного профессора",
-    "отставной профессор",
-    "отставному профессору",
-    "отставном профессоре"
-   ],
-   "correct": "отставной профессор",
-   "case": "Именительный (Nominative)",
-   "explain": "«отставной профессор» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Софья Александровна (Соня), его дочь от ___, 20 лет.",
    "lemma": "брак",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "первого брака",
    "case": "Родительный (Genitive)",
-   "explain": "«первого брака» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«первого брака» — «от» always takes the genitive.",
    "id": "c2"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "тайного советника",
    "case": "Родительный (Genitive)",
-   "explain": "«тайного советника» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«тайного советника» depends on the noun «вдова» (whose? of what?) — genitive.",
    "id": "c3"
   },
   {
@@ -53,22 +39,8 @@
    ],
    "correct": "первой жены",
    "case": "Родительный (Genitive)",
-   "explain": "«первой жены» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«первой жены» depends on the noun «мать» (whose? of what?) — genitive.",
    "id": "c4"
-  },
-  {
-   "sentence": "Леонид Степанович Желтухин, не кончивший курса технолог, очень ___.",
-   "lemma": "человек",
-   "options": [
-    "богатым человеком",
-    "богатый человек",
-    "богатом человеке",
-    "богатому человеку"
-   ],
-   "correct": "богатый человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«богатый человек» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
   },
   {
    "sentence": "Михаил Львович Хрущов, помещик, кончивший курс на ___.",
@@ -81,7 +53,7 @@
    ],
    "correct": "медицинском факультете",
    "case": "Предложный (Prepositional)",
-   "explain": "«медицинском факультете» — after the preposition «на», for location or topic.",
+   "explain": "«медицинском факультете» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c6"
   },
   {
@@ -95,106 +67,36 @@
    ],
    "correct": "кислых поцелуев",
    "case": "Родительный (Genitive)",
-   "explain": "«кислых поцелуев» — after the preposition «вместо», the genitive here marks possession, absence, or quantity.",
+   "explain": "«кислых поцелуев» — «вместо» always takes the genitive.",
    "id": "c7"
-  },
-  {
-   "sentence": "А какое у вас ___, Юлия Степановна!",
-   "lemma": "хозяйство",
-   "options": [
-    "превосходного хозяйства",
-    "превосходным хозяйством",
-    "превосходное хозяйство",
-    "превосходном хозяйстве"
-   ],
-   "correct": "превосходное хозяйство",
-   "case": "Именительный (Nominative)",
-   "explain": "«превосходное хозяйство» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
-  },
-  {
-   "sentence": "Еду ли я по вашему полю, гуляю ли под тенью вашего сада, смотрю ли на этот стол, всюду вижу могучую власть вашей ___.",
-   "lemma": "ручка",
-   "options": [
-    "волшебной ручке",
-    "волшебная ручка",
-    "волшебной ручки",
-    "волшебной ручкой"
-   ],
-   "correct": "волшебной ручки",
-   "case": "Родительный (Genitive)",
-   "explain": "«волшебной ручки» — the genitive here marks possession, absence, or quantity.",
-   "id": "c10"
-  },
-  {
-   "sentence": "Моя ___ maman все еще лепечет про женскую эмансипацию; одним глазом смотрит в могилу, а другим ищет в своих умных книжках зарю новой жизни.",
-   "lemma": "галка",
-   "options": [
-    "старая галка",
-    "старой галке",
-    "старой галки",
-    "старой галкой"
-   ],
-   "correct": "старая галка",
-   "case": "Именительный (Nominative)",
-   "explain": "«старая галка» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
   },
   {
    "sentence": "Моя старая галка maman все еще лепечет про женскую эмансипацию; одним глазом смотрит в могилу, а другим ищет в своих ___ зарю новой жизни.",
    "lemma": "книжка",
    "options": [
     "умных книжках",
-    "умные книжки",
+    "умными книжками",
     "умных книжек",
-    "умными книжками"
+    "умным книжкам"
    ],
    "correct": "умных книжках",
    "case": "Предложный (Prepositional)",
-   "explain": "«умных книжках» — after the preposition «в», for location or topic.",
+   "explain": "«умных книжках» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c13"
   },
   {
    "sentence": "Сонечка по-прежнему читает ___ и пишет очень умный дневник.",
    "lemma": "книжка",
    "options": [
-    "умных книжках",
-    "умных книжек",
+    "умные книжки",
     "умным книжкам",
-    "умные книжки"
+    "умными книжками",
+    "умных книжках"
    ],
    "correct": "умные книжки",
    "case": "Винительный (Accusative)",
-   "explain": "«умные книжки» — the accusative marks the direct object of the verb.",
+   "explain": "«умные книжки» is the direct object of «читает» (кого? что?) — accusative.",
    "id": "c14"
-  },
-  {
-   "sentence": "Сонечка по-прежнему читает умные книжки и пишет очень ___.",
-   "lemma": "дневник",
-   "options": [
-    "умного дневника",
-    "умном дневнике",
-    "умному дневнику",
-    "умный дневник"
-   ],
-   "correct": "умный дневник",
-   "case": "Именительный (Nominative)",
-   "explain": "«умный дневник» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
-  },
-  {
-   "sentence": "Живет поневоле в именье своей ___, потому что жить в городе ему не по карману.",
-   "lemma": "жена",
-   "options": [
-    "первой женой",
-    "первая жена",
-    "первой жены",
-    "первой жене"
-   ],
-   "correct": "первой жены",
-   "case": "Родительный (Genitive)",
-   "explain": "«первой жены» — the genitive here marks possession, absence, or quantity.",
-   "id": "c18"
   },
   {
    "sentence": "Не будем говорить о том, что сын ___, бурсак, добился ученых степеней и кафедры, что он его превосходительство, зять сенатора и прочее.",
@@ -207,50 +109,8 @@
    ],
    "correct": "простого дьячка",
    "case": "Родительный (Genitive)",
-   "explain": "«простого дьячка» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«простого дьячка» depends on the noun «сын» (whose? of what?) — genitive.",
    "id": "c19"
-  },
-  {
-   "sentence": "Ни один Дон-Жуан не знал такого ___!",
-   "lemma": "успех",
-   "options": [
-    "полному успеху",
-    "полным успехом",
-    "полного успеха",
-    "полном успехе"
-   ],
-   "correct": "полного успеха",
-   "case": "Родительный (Genitive)",
-   "explain": "«полного успеха» — the genitive here marks possession, absence, or quantity.",
-   "id": "c20"
-  },
-  {
-   "sentence": "Моя мать, его теща, до сих пор обожает его, и до сих пор он внушает ей ___.",
-   "lemma": "ужас",
-   "options": [
-    "священный ужас",
-    "священному ужасу",
-    "священным ужасом",
-    "священном ужасе"
-   ],
-   "correct": "священный ужас",
-   "case": "Винительный (Accusative)",
-   "explain": "«священный ужас» — the accusative marks the direct object of the verb.",
-   "id": "c21"
-  },
-  {
-   "sentence": "Господа, кто изменяет жене или мужу, тот, значит, ___, тот может изменить и отечеству!",
-   "lemma": "человек",
-   "options": [
-    "неверным человеком",
-    "неверном человеке",
-    "неверный человек",
-    "неверного человека"
-   ],
-   "correct": "неверный человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«неверный человек» — the subject of the sentence stands in the nominative.",
-   "id": "c27"
   },
   {
    "sentence": "Из дому выходит Федор Иванович; он в поддевке из ___, в высоких сапогах; на груди у него ордена, медали и массивная золотая цепь с брелоками; на пальцах дорогие перстни.",
@@ -263,22 +123,8 @@
    ],
    "correct": "отличного сукна",
    "case": "Родительный (Genitive)",
-   "explain": "«отличного сукна» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«отличного сукна» — «из» always takes the genitive.",
    "id": "c32"
-  },
-  {
-   "sentence": "Из дому выходит Федор Иванович; он в поддевке из отличного сукна, в высоких сапогах; на груди у него ордена, медали и массивная золотая цепь с брелоками; на пальцах ___.",
-   "lemma": "перстень",
-   "options": [
-    "дорогим перстням",
-    "дорогих перстнях",
-    "дорогими перстнями",
-    "дорогие перстни"
-   ],
-   "correct": "дорогие перстни",
-   "case": "Винительный (Accusative)",
-   "explain": "«дорогие перстни» — the accusative marks the direct object of the verb.",
-   "id": "c34"
   },
   {
    "sentence": "Моя профессия: эксплоатация ___.",
@@ -291,64 +137,22 @@
    ],
    "correct": "бурных стихий",
    "case": "Родительный (Genitive)",
-   "explain": "«бурных стихий» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«бурных стихий» depends on the noun «эксплоатация» (whose? of what?) — genitive.",
    "id": "c37"
   },
   {
    "sentence": "Заставляю ___ вращать колеса мельницы, которую я арендую у моего друга Лешего.",
    "lemma": "волна",
    "options": [
-    "бурным волнам",
-    "бурные волны",
+    "бурными волнами",
     "бурных волнах",
-    "бурных волн"
+    "бурные волны",
+    "бурным волнам"
    ],
    "correct": "бурные волны",
    "case": "Винительный (Accusative)",
-   "explain": "«бурные волны» — the accusative marks the direct object of the verb.",
+   "explain": "«бурные волны» is the direct object of «Заставляю» (кого? что?) — accusative.",
    "id": "c38"
-  },
-  {
-   "sentence": "Всегда с благоговением преклоняюсь (преклоняется) пред ___, украшающими наш отечественный горизонт.",
-   "lemma": "светило",
-   "options": [
-    "научными светилами",
-    "научных светилах",
-    "научных светил",
-    "научным светилам"
-   ],
-   "correct": "научными светилами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«научными светилами» — after the preposition «пред», the instrumental marks the means, company, or complement.",
-   "id": "c39"
-  },
-  {
-   "sentence": "Живу я на этом свете тридцать пять лет, а что-то не встречал таких ___, у которых хватало бы мужества не распечатать письмо.",
-   "lemma": "женщина",
-   "options": [
-    "феноменальные женщины",
-    "феноменальным женщинам",
-    "феноменальных женщин",
-    "феноменальными женщинами"
-   ],
-   "correct": "феноменальных женщин",
-   "case": "Родительный (Genitive)",
-   "explain": "«феноменальных женщин» — the genitive here marks possession, absence, or quantity.",
-   "id": "c46"
-  },
-  {
-   "sentence": "Только вот на войне не был, а водку пил и деньги мотал — ___!",
-   "lemma": "дело",
-   "options": [
-    "страшным делом",
-    "страшному делу",
-    "страшном деле",
-    "страшное дело"
-   ],
-   "correct": "страшное дело",
-   "case": "Именительный (Nominative)",
-   "explain": "«страшное дело» — the subject of the sentence stands in the nominative.",
-   "id": "c47"
   },
   {
    "sentence": "Теперь начнем из ___.",
@@ -361,7 +165,7 @@
    ],
    "correct": "другой оперы",
    "case": "Родительный (Genitive)",
-   "explain": "«другой оперы» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«другой оперы» — «из» always takes the genitive.",
    "id": "c48"
   },
   {
@@ -375,36 +179,8 @@
    ],
    "correct": "правой руке",
    "case": "Предложный (Prepositional)",
-   "explain": "«правой руке» — after the preposition «на», for location or topic.",
+   "explain": "«правой руке» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c49"
-  },
-  {
-   "sentence": "У них процветают науки и искусства, философия их не мрачна, отношения к женщине полны ___.",
-   "lemma": "благородство",
-   "options": [
-    "изящном благородстве",
-    "изящного благородства",
-    "изящным благородством",
-    "изящному благородству"
-   ],
-   "correct": "изящного благородства",
-   "case": "Родительный (Genitive)",
-   "explain": "«изящного благородства» — the genitive here marks possession, absence, or quantity.",
-   "id": "c54"
-  },
-  {
-   "sentence": "Человеку даны разум и ___, чтобы приумножать то, что ему дано, но до сих пор он не творил, а только разрушал.",
-   "lemma": "сила",
-   "options": [
-    "творческой силе",
-    "творческая сила",
-    "творческой силой",
-    "творческой силы"
-   ],
-   "correct": "творческая сила",
-   "case": "Именительный (Nominative)",
-   "explain": "«творческая сила» — the subject of the sentence stands in the nominative.",
-   "id": "c56"
   },
   {
    "sentence": "В ___, Егор Петрович, не будем говорить об этом.",
@@ -417,22 +193,8 @@
    ],
    "correct": "самом деле",
    "case": "Предложный (Prepositional)",
-   "explain": "«самом деле» — after the preposition «в», for location or topic.",
+   "explain": "«самом деле» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c60"
-  },
-  {
-   "sentence": "А теперь, если б вы знали, каким ___ я кажусь себе за то, что глупо проворонил время, когда мог бы иметь все, в чем отказывает мне теперь моя старость!",
-   "lemma": "дурак",
-   "options": [
-    "больший дурак",
-    "большего дурака",
-    "большим дураком",
-    "большему дураку"
-   ],
-   "correct": "большим дураком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«большим дураком» — the instrumental marks the means, company, or complement.",
-   "id": "c63"
   },
   {
    "sentence": "Ты точно обвиняешь в чем-то свои ___.",
@@ -445,7 +207,7 @@
    ],
    "correct": "прежние убеждения",
    "case": "Винительный (Accusative)",
-   "explain": "«прежние убеждения» — the accusative marks the direct object of the verb.",
+   "explain": "«прежние убеждения» is the direct object of «обвиняешь» (кого? что?) — accusative.",
    "id": "c65"
   },
   {
@@ -459,36 +221,8 @@
    ],
    "correct": "благородной игрой",
    "case": "Творительный (Instrumental)",
-   "explain": "«благородной игрой» — the instrumental marks the means, company, or complement.",
+   "explain": "«заниматься» takes the instrumental.",
    "id": "c66"
-  },
-  {
-   "sentence": "Все смотрят на меня с сожалением: несчастная, у нее ___!",
-   "lemma": "муж",
-   "options": [
-    "старому мужу",
-    "старым мужем",
-    "старый муж",
-    "старого мужа"
-   ],
-   "correct": "старый муж",
-   "case": "Именительный (Nominative)",
-   "explain": "«старый муж» — the subject of the sentence stands in the nominative.",
-   "id": "c67"
-  },
-  {
-   "sentence": "Вероятно, Жорж, оттого мы с вами такие друзья, что оба мы нудные, ___!",
-   "lemma": "человек",
-   "options": [
-    "скучным людям",
-    "скучные люди",
-    "скучных людях",
-    "скучных людей"
-   ],
-   "correct": "скучные люди",
-   "case": "Именительный (Nominative)",
-   "explain": "«скучные люди» — the subject of the sentence stands in the nominative.",
-   "id": "c69"
   }
  ]
 }

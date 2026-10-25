@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Галл, здоровый, веселый и легкомысленный, как всегда, угостил Юлиана ___; в особенности хвастал он жирным колхидским фазаном, начиненным фиваидскими свежими финиками.",
-   "lemma": "ужин",
-   "options": [
-    "превосходным ужином",
-    "превосходного ужина",
-    "превосходный ужин",
-    "превосходному ужину"
-   ],
-   "correct": "превосходным ужином",
-   "case": "Творительный (Instrumental)",
-   "explain": "«превосходным ужином» — the instrumental marks the means, company, or complement.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Галл, здоровый, веселый и легкомысленный, как всегда, угостил Юлиана превосходным ужином; в особенности хвастал он жирным ___, начиненным фиваидскими свежими финиками.",
-   "lemma": "фазан",
-   "options": [
-    "колхидским фазаном",
-    "колхидский фазан",
-    "колхидского фазана",
-    "колхидскому фазану"
-   ],
-   "correct": "колхидским фазаном",
-   "case": "Творительный (Instrumental)",
-   "explain": "«колхидским фазаном» — the instrumental marks the means, company, or complement.",
-   "id": "c2"
-  },
-  {
    "sentence": "Галл, здоровый, веселый и легкомысленный, как всегда, угостил Юлиана превосходным ужином; в особенности хвастал он жирным колхидским фазаном, начиненным фиваидскими ___.",
    "lemma": "финик",
    "options": [
@@ -39,22 +11,8 @@
    ],
    "correct": "свежими финиками",
    "case": "Творительный (Instrumental)",
-   "explain": "«свежими финиками» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «начиненным», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c3"
-  },
-  {
-   "sentence": "Лицо Галла изменилось; он опустил пальцы с белым ___ фазана, который подносил ко рту; глаза его наполнились слезами.",
-   "lemma": "кусок",
-   "options": [
-    "сочного куска",
-    "сочный кусок",
-    "сочном куске",
-    "сочным куском"
-   ],
-   "correct": "сочным куском",
-   "case": "Творительный (Instrumental)",
-   "explain": "«сочным куском» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c4"
   },
   {
    "sentence": "Он осушил одним глотком кубок ___.",
@@ -67,22 +25,8 @@
    ],
    "correct": "цельного вина",
    "case": "Родительный (Genitive)",
-   "explain": "«цельного вина» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«цельного вина» depends on the noun «кубок» (whose? of what?) — genitive.",
    "id": "c6"
-  },
-  {
-   "sentence": "Смуглая, рябая, ___; скверные зубы; она, впрочем, избегала смеяться.",
-   "lemma": "рост",
-   "options": [
-    "маленького роста",
-    "маленьким ростом",
-    "маленькому росту",
-    "маленький рост"
-   ],
-   "correct": "маленького роста",
-   "case": "Родительный (Genitive)",
-   "explain": "«маленького роста» — the genitive here marks possession, absence, or quantity.",
-   "id": "c7"
   },
   {
    "sentence": "Говорили, что она мне изменяет – по ночам, будто бы, переодетая, как Мессалина, бегает в конюшню ипподрома к ___.",
@@ -95,7 +39,7 @@
    ],
    "correct": "молодым конюхам",
    "case": "Дательный (Dative)",
-   "explain": "«молодым конюхам» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«молодым конюхам» — «к» always takes the dative.",
    "id": "c8"
   },
   {
@@ -109,7 +53,7 @@
    ],
    "correct": "каменной стеной",
    "case": "Творительный (Instrumental)",
-   "explain": "«каменной стеной» — after the preposition «за», the instrumental marks the means, company, or complement.",
+   "explain": "«каменной стеной» — «за» takes the instrumental here (где? за чем? за кем?) — the accusative would mean motion behind or 'for' (куда? за что?).",
    "id": "c9"
   },
   {
@@ -123,7 +67,7 @@
    ],
    "correct": "приятных воспоминаний",
    "case": "Родительный (Genitive)",
-   "explain": "«приятных воспоминаний» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«приятных воспоминаний» — «от» always takes the genitive.",
    "id": "c10"
   },
   {
@@ -137,50 +81,8 @@
    ],
    "correct": "молодого атлета",
    "case": "Родительный (Genitive)",
-   "explain": "«молодого атлета» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«молодого атлета» depends on the noun «лицо» (whose? of what?) — genitive.",
    "id": "c12"
-  },
-  {
-   "sentence": "Он отнял у меня лучших солдат, мало-помалу, исподволь, для моего же, видишь ли, ___ – все для моего блага?",
-   "lemma": "благо",
-   "options": [
-    "собственное благо",
-    "собственном благе",
-    "собственного блага",
-    "собственному благу"
-   ],
-   "correct": "собственного блага",
-   "case": "Родительный (Genitive)",
-   "explain": "«собственного блага» — the genitive here marks possession, absence, or quantity.",
-   "id": "c13"
-  },
-  {
-   "sentence": "Трибун Скудило, войдя в триклиниум, с подобострастным поклоном объявил, что завтра, в честь прибытия цезаря, в ипподроме Константинополя назначены скачки, в которых будет участвовать ___ Коракс.",
-   "lemma": "наездник",
-   "options": [
-    "знаменитого наездника",
-    "знаменитый наездник",
-    "знаменитом наезднике",
-    "знаменитому наезднику"
-   ],
-   "correct": "знаменитый наездник",
-   "case": "Именительный (Nominative)",
-   "explain": "«знаменитый наездник» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
-  },
-  {
-   "sentence": "Велел приготовить ___, чтобы, в случае победы, собственноручно венчать перед народом любимца своего, Коракса.",
-   "lemma": "венок",
-   "options": [
-    "лавровый венок",
-    "лаврового венка",
-    "лавровым венком",
-    "лавровом венке"
-   ],
-   "correct": "лавровый венок",
-   "case": "Винительный (Accusative)",
-   "explain": "«лавровый венок» — the accusative marks the direct object of the verb.",
-   "id": "c16"
   },
   {
    "sentence": "Галл много пил; от ___ его не было следа; он смеялся откровенным и легкомысленным смехом, как смеются здоровые люди, у которых совесть покойна.",
@@ -193,36 +95,8 @@
    ],
    "correct": "недавнего страха",
    "case": "Родительный (Genitive)",
-   "explain": "«недавнего страха» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«недавнего страха» — «от» always takes the genitive.",
    "id": "c17"
-  },
-  {
-   "sentence": "Галл много пил; от недавнего страха его не было следа; он смеялся откровенным и легкомысленным смехом, как смеются ___, у которых совесть покойна.",
-   "lemma": "человек",
-   "options": [
-    "здоровых людей",
-    "здоровые люди",
-    "здоровыми людьми",
-    "здоровых людях"
-   ],
-   "correct": "здоровые люди",
-   "case": "Именительный (Nominative)",
-   "explain": "«здоровые люди» — the subject of the sentence stands in the nominative.",
-   "id": "c18"
-  },
-  {
-   "sentence": "Только в последнюю минуту прощания крепко обнял Юлиана и заплакал; ___ его беспомощно заморгали.",
-   "lemma": "глаз",
-   "options": [
-    "голубых глаз",
-    "голубых глазах",
-    "голубые глаза",
-    "голубым глазам"
-   ],
-   "correct": "голубые глаза",
-   "case": "Именительный (Nominative)",
-   "explain": "«голубые глаза» — the subject of the sentence stands in the nominative.",
-   "id": "c19"
   },
   {
    "sentence": "Недалеко от ___ встретился ему вновь назначенный в Армению квестор Тавр.",
@@ -235,7 +109,7 @@
    ],
    "correct": "городских ворот",
    "case": "Родительный (Genitive)",
-   "explain": "«городских ворот» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«городских ворот» — «от» always takes the genitive.",
    "id": "c21"
   },
   {
@@ -249,7 +123,7 @@
    ],
    "correct": "государственной почты",
    "case": "Родительный (Genitive)",
-   "explain": "«государственной почты» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«государственной почты» depends on the noun «повозок» (whose? of what?) — genitive.",
    "id": "c22"
   },
   {
@@ -263,22 +137,8 @@
    ],
    "correct": "целыми днями",
    "case": "Творительный (Instrumental)",
-   "explain": "«целыми днями» — the instrumental marks the means, company, or complement.",
+   "explain": "A time of day or season (when?), without a preposition — instrumental, like утром, весной.",
    "id": "c23"
-  },
-  {
-   "sentence": "Галл имел причины бояться этого слишком ___.",
-   "lemma": "спутник",
-   "options": [
-    "внимательный спутник",
-    "внимательного спутника",
-    "внимательному спутнику",
-    "внимательном спутнике"
-   ],
-   "correct": "внимательного спутника",
-   "case": "Родительный (Genitive)",
-   "explain": "«внимательного спутника» — the genitive here marks possession, absence, or quantity.",
-   "id": "c24"
   },
   {
    "sentence": "В Норике встретили их еще два посланных от императора – комес Барбатион и Аподем, с когортой ___ его величества.",
@@ -291,64 +151,8 @@
    ],
    "correct": "собственных солдат",
    "case": "Родительный (Genitive)",
-   "explain": "«собственных солдат» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«собственных солдат» depends on the noun «когортой» (whose? of what?) — genitive.",
    "id": "c26"
-  },
-  {
-   "sentence": "На следующее утро пленника усадили в почтовую деревянную повозку на двух колесах – карпенту, в которой ездили, по служебным надобностям, ___; у карпенты не было верха.",
-   "lemma": "чиновник",
-   "options": [
-    "мелких чиновниках",
-    "мелкие чиновники",
-    "мелкими чиновниками",
-    "мелким чиновникам"
-   ],
-   "correct": "мелкие чиновники",
-   "case": "Именительный (Nominative)",
-   "explain": "«мелкие чиновники» — the subject of the sentence stands in the nominative.",
-   "id": "c28"
-  },
-  {
-   "sentence": "Дул ___, падал мокрый снег.",
-   "lemma": "ветер",
-   "options": [
-    "пронзительный ветер",
-    "пронзительном ветре",
-    "пронзительного ветра",
-    "пронзительным ветром"
-   ],
-   "correct": "пронзительный ветер",
-   "case": "Именительный (Nominative)",
-   "explain": "«пронзительный ветер» — the subject of the sentence stands in the nominative.",
-   "id": "c29"
-  },
-  {
-   "sentence": "Дул пронзительный ветер, падал ___.",
-   "lemma": "снег",
-   "options": [
-    "мокрым снегом",
-    "мокрый снег",
-    "мокром снеге",
-    "мокрому снегу"
-   ],
-   "correct": "мокрый снег",
-   "case": "Именительный (Nominative)",
-   "explain": "«мокрый снег» — the subject of the sentence stands in the nominative.",
-   "id": "c30"
-  },
-  {
-   "sentence": "И, как будто для того, чтобы ощупать подкладку, запустил руку под одежду цезаря, потом в тунику и вдруг с тихим ___ вытащил лезвие кинжала, который Галлу удалось спрятать в складках.",
-   "lemma": "смех",
-   "options": [
-    "вежливого смеха",
-    "вежливом смехе",
-    "вежливым смехом",
-    "вежливый смех"
-   ],
-   "correct": "вежливым смехом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«вежливым смехом» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c31"
   },
   {
    "sentence": "Цезарю казалось, что он видит ___.",
@@ -361,7 +165,7 @@
    ],
    "correct": "отвратительный сон",
    "case": "Винительный (Accusative)",
-   "explain": "«отвратительный сон» — the accusative marks the direct object of the verb.",
+   "explain": "«отвратительный сон» is the direct object of «видит» (кого? что?) — accusative.",
    "id": "c32"
   },
   {
@@ -375,35 +179,35 @@
    ],
    "correct": "адриатического моря",
    "case": "Родительный (Genitive)",
-   "explain": "«Адриатического моря» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«адриатического моря» depends on the noun «берегу» (whose? of what?) — genitive.",
    "id": "c33"
   },
   {
    "sentence": "В этом ___, несколько лет назад, совершилось кровавое злодеяние убийство молодого героя, сына Константина Великого, Криспа.",
    "lemma": "город",
    "options": [
-    "самом городе",
-    "сам город",
+    "самим городом",
     "самого города",
+    "самом городе",
     "самому городу"
    ],
    "correct": "самом городе",
    "case": "Предложный (Prepositional)",
-   "explain": "«самом городе» — after the preposition «в», for location or topic.",
+   "explain": "«самом городе» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c34"
   },
   {
    "sentence": "В этом самом городе, несколько лет назад, совершилось кровавое злодеяние убийство ___, сына Константина Великого, Криспа.",
    "lemma": "герой",
    "options": [
+    "молодой герой",
+    "молодого героя",
     "молодому герою",
-    "молодом герое",
-    "молодым героем",
-    "молодого героя"
+    "молодом герое"
    ],
    "correct": "молодого героя",
    "case": "Родительный (Genitive)",
-   "explain": "«молодого героя» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«молодого героя» depends on the noun «убийство» (whose? of what?) — genitive.",
    "id": "c35"
   },
   {
@@ -417,7 +221,7 @@
    ],
    "correct": "бесконечные казармы",
    "case": "Именительный (Nominative)",
-   "explain": "«Бесконечные казармы» — the subject of the sentence stands in the nominative.",
+   "explain": "«бесконечные казармы» is the subject of «выстроены» — who or what does it — so nominative.",
    "id": "c37"
   },
   {
@@ -431,22 +235,8 @@
    ],
    "correct": "зимний свет",
    "case": "Именительный (Nominative)",
-   "explain": "«зимний свет» — the subject of the sentence stands in the nominative.",
+   "explain": "«зимний свет» is the subject of «падал» — who or what does it — so nominative.",
    "id": "c39"
-  },
-  {
-   "sentence": "– Хорошо, – проговорил он, – я так и донесу императору, что его ___ Константина, супруга бывшего цезаря, виновата во всем.",
-   "lemma": "сестра",
-   "options": [
-    "собственная сестра",
-    "собственной сестры",
-    "собственной сестре",
-    "собственной сестрой"
-   ],
-   "correct": "собственная сестра",
-   "case": "Именительный (Nominative)",
-   "explain": "«собственная сестра» — the subject of the sentence stands in the nominative.",
-   "id": "c40"
   },
   {
    "sentence": "– Хорошо, – проговорил он, – я так и донесу императору, что его собственная сестра Константина, супруга ___, виновата во всем.",
@@ -459,22 +249,8 @@
    ],
    "correct": "бывшего цезаря",
    "case": "Родительный (Genitive)",
-   "explain": "«бывшего цезаря» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«бывшего цезаря» depends on the noun «супруга» (whose? of what?) — genitive.",
    "id": "c41"
-  },
-  {
-   "sentence": "Скоро получен был смертный приговор от императора Констанция, который счел за личную обиду обвинение ___ своей во всех убийствах, совершенных в Антиохии.",
-   "lemma": "сестра",
-   "options": [
-    "покойной сестрой",
-    "покойной сестры",
-    "покойная сестра",
-    "покойной сестре"
-   ],
-   "correct": "покойной сестры",
-   "case": "Родительный (Genitive)",
-   "explain": "«покойной сестры» — the genitive here marks possession, absence, or quantity.",
-   "id": "c43"
   },
   {
    "sentence": "Несчастный до ___ надеялся на помилование.",
@@ -487,92 +263,8 @@
    ],
    "correct": "последней минуты",
    "case": "Родительный (Genitive)",
-   "explain": "«последней минуты» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«последней минуты» — «до» always takes the genitive.",
    "id": "c44"
-  },
-  {
-   "sentence": "Но ходили слухи, что солдаты ___ волнуются и замышляют освобождение Галла.",
-   "lemma": "легион",
-   "options": [
-    "фиванский легион",
-    "фиванском легионе",
-    "фиванского легиона",
-    "фиванскому легиону"
-   ],
-   "correct": "фиванского легиона",
-   "case": "Родительный (Genitive)",
-   "explain": "«фиванского легиона» — the genitive here marks possession, absence, or quantity.",
-   "id": "c45"
-  },
-  {
-   "sentence": "Холодное, мертвое солнце озаряло снег; ___ падал на ярко-белые штукатуреные стены большой залы в казармах, куда привезли Галла.",
-   "lemma": "отблеск",
-   "options": [
-    "ослепительном отблеске",
-    "ослепительным отблеском",
-    "ослепительный отблеск",
-    "ослепительному отблеску"
-   ],
-   "correct": "ослепительный отблеск",
-   "case": "Именительный (Nominative)",
-   "explain": "«ослепительный отблеск» — the subject of the sentence stands in the nominative.",
-   "id": "c46"
-  },
-  {
-   "sentence": "Варвар не умел обращаться с римским мечом и принес ___, вроде двуострой секиры, которым привык на бойне резать свиней и баранов.",
-   "lemma": "топор",
-   "options": [
-    "широкому топору",
-    "широким топором",
-    "широкий топор",
-    "широкого топора"
-   ],
-   "correct": "широкий топор",
-   "case": "Винительный (Accusative)",
-   "explain": "«широкий топор» — the accusative marks the direct object of the verb.",
-   "id": "c48"
-  },
-  {
-   "sentence": "Но, увидев, как мясник, с ___ водит широким лезвием топора, взад и вперед, по мокрому точильному камню, задрожал всеми членами.",
-   "lemma": "звон",
-   "options": [
-    "тихий звон",
-    "тихим звоном",
-    "тихом звоне",
-    "тихому звону"
-   ],
-   "correct": "тихим звоном",
-   "case": "Творительный (Instrumental)",
-   "explain": "«тихим звоном» — after the preposition «по», the instrumental marks the means, company, or complement.",
-   "id": "c49"
-  },
-  {
-   "sentence": "Но, увидев, как мясник, с тихим звоном водит ___ топора, взад и вперед, по мокрому точильному камню, задрожал всеми членами.",
-   "lemma": "лезвие",
-   "options": [
-    "широким лезвием",
-    "широкому лезвию",
-    "широком лезвии",
-    "широкое лезвие"
-   ],
-   "correct": "широким лезвием",
-   "case": "Творительный (Instrumental)",
-   "explain": "«широким лезвием» — the instrumental marks the means, company, or complement.",
-   "id": "c50"
-  },
-  {
-   "sentence": "Но, увидев, как мясник, с тихим звоном водит широким лезвием топора, взад и вперед, по мокрому ___, задрожал всеми членами.",
-   "lemma": "камень",
-   "options": [
-    "точильного камня",
-    "точильному камню",
-    "точильный камень",
-    "точильном камне"
-   ],
-   "correct": "точильному камню",
-   "case": "Дательный (Dative)",
-   "explain": "«точильному камню» — the dative marks the indirect object or recipient.",
-   "id": "c51"
   },
   {
    "sentence": "Его отвели в соседнюю комнату; там цирюльник тщательно, до ___, обрил его мягкие золотистые кудри, красу и гордость молодого цезаря.",
@@ -585,22 +277,8 @@
    ],
    "correct": "самой кожи",
    "case": "Родительный (Genitive)",
-   "explain": "«самой кожи» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«самой кожи» — «до» always takes the genitive.",
    "id": "c52"
-  },
-  {
-   "sentence": "Его отвели в соседнюю комнату; там цирюльник тщательно, до самой кожи, обрил его мягкие ___, красу и гордость молодого цезаря.",
-   "lemma": "кудри",
-   "options": [
-    "золотистых кудрей",
-    "золотистых кудрях",
-    "золотистым кудрям",
-    "золотистые кудри"
-   ],
-   "correct": "золотистые кудри",
-   "case": "Винительный (Accusative)",
-   "explain": "«золотистые кудри» — the accusative marks the direct object of the verb.",
-   "id": "c53"
   },
   {
    "sentence": "Его отвели в соседнюю комнату; там цирюльник тщательно, до самой кожи, обрил его мягкие золотистые кудри, красу и гордость ___.",
@@ -613,7 +291,7 @@
    ],
    "correct": "молодого цезаря",
    "case": "Родительный (Genitive)",
-   "explain": "«молодого цезаря» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«молодого цезаря» depends on the noun «гордость» (whose? of what?) — genitive.",
    "id": "c54"
   },
   {
@@ -627,7 +305,7 @@
    ],
    "correct": "фиванского легиона",
    "case": "Родительный (Genitive)",
-   "explain": "«фиванского легиона» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«фиванского легиона» depends on the noun «солдат» (whose? of what?) — genitive.",
    "id": "c55"
   },
   {
@@ -641,7 +319,7 @@
    ],
    "correct": "мизийского храма",
    "case": "Родительный (Genitive)",
-   "explain": "«Мизийского храма» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«мизийского храма» depends on the noun «сокровищнице» (whose? of what?) — genitive.",
    "id": "c56"
   },
   {
@@ -655,7 +333,7 @@
    ],
    "correct": "фиванского легиона",
    "case": "Родительный (Genitive)",
-   "explain": "«фиванского легиона» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«фиванского легиона» depends on the noun «солдат» (whose? of what?) — genitive.",
    "id": "c57"
   },
   {
@@ -669,7 +347,7 @@
    ],
    "correct": "деревянной колоде",
    "case": "Дательный (Dative)",
-   "explain": "«деревянной колоде» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«деревянной колоде» — «к» always takes the dative.",
    "id": "c58"
   },
   {
@@ -683,22 +361,8 @@
    ],
    "correct": "другому выходу",
    "case": "Дательный (Dative)",
-   "explain": "«другому выходу» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«другому выходу» — «к» always takes the dative.",
    "id": "c59"
-  },
-  {
-   "sentence": "Тогда воткнул он ей в рот палец, зацепил и так понес ту голову, чье мановение заставляло некогда склоняться столько ___.",
-   "lemma": "гол",
-   "options": [
-    "человеческие голы",
-    "человеческих голах",
-    "человеческих голов",
-    "человеческими голами"
-   ],
-   "correct": "человеческих голов",
-   "case": "Родительный (Genitive)",
-   "explain": "«человеческих голов» — the genitive here marks possession, absence, or quantity.",
-   "id": "c60"
   }
  ]
 }

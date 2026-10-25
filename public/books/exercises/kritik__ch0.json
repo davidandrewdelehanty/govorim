@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Старый и сгорбленный «___», с кривым подбородком и малиновым носом, встречается в буфете одного из частных театров со своим старинным приятелем-газетчиком.",
-   "lemma": "отец",
-   "options": [
-    "благородному отцу",
-    "благородным отцом",
-    "благородного отца",
-    "благородный отец"
-   ],
-   "correct": "благородный отец",
-   "case": "Именительный (Nominative)",
-   "explain": "«благородный отец» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Старый и сгорбленный «благородный отец», с ___ и малиновым носом, встречается в буфете одного из частных театров со своим старинным приятелем-газетчиком.",
-   "lemma": "подбородок",
-   "options": [
-    "кривым подбородком",
-    "кривом подбородке",
-    "кривой подбородок",
-    "кривому подбородку"
-   ],
-   "correct": "кривым подбородком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«кривым подбородком» — after the preposition «со», the instrumental marks the means, company, or complement.",
-   "id": "c2"
-  },
-  {
    "sentence": "Старый и сгорбленный «благородный отец», с кривым подбородком и малиновым носом, встречается в буфете одного из ___ со своим старинным приятелем-газетчиком.",
    "lemma": "театр",
    "options": [
@@ -39,7 +11,7 @@
    ],
    "correct": "частных театров",
    "case": "Родительный (Genitive)",
-   "explain": "«частных театров» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«частных театров» — «из» always takes the genitive.",
    "id": "c3"
   },
   {
@@ -53,22 +25,8 @@
    ],
    "correct": "обычных приветствий",
    "case": "Родительный (Genitive)",
-   "explain": "«обычных приветствий» — after the preposition «после», the genitive here marks possession, absence, or quantity.",
+   "explain": "«обычных приветствий» — «после» always takes the genitive.",
    "id": "c5"
-  },
-  {
-   "sentence": "После обычных приветствий, расспросов и вздохов ___ предлагает газетчику выпить по маленькой.",
-   "lemma": "отец",
-   "options": [
-    "благородному отцу",
-    "благородным отцом",
-    "благородного отца",
-    "благородный отец"
-   ],
-   "correct": "благородный отец",
-   "case": "Именительный (Nominative)",
-   "explain": "«благородный отец» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
   },
   {
    "sentence": "___ презрительно машет рукой и ухмыляется.",
@@ -81,50 +39,8 @@
    ],
    "correct": "благородный отец",
    "case": "Именительный (Nominative)",
-   "explain": "«Благородный отец» — the subject of the sentence stands in the nominative.",
+   "explain": "«благородный отец» is the subject of «машет» — who or what does it — so nominative.",
    "id": "c8"
-  },
-  {
-   "sentence": "___ его морщится и издает смеющийся звук.",
-   "lemma": "нос",
-   "options": [
-    "малиновый нос",
-    "малиновому носу",
-    "малиновом носе",
-    "малинового носа"
-   ],
-   "correct": "малиновый нос",
-   "case": "Именительный (Nominative)",
-   "explain": "«Малиновый нос» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
-  },
-  {
-   "sentence": "Снаружи хорош театр, не стану спорить, но насчет ___ — извини.",
-   "lemma": "артист",
-   "options": [
-    "самих артистов",
-    "самими артистами",
-    "самим артистам",
-    "самих артистах"
-   ],
-   "correct": "самих артистов",
-   "case": "Родительный (Genitive)",
-   "explain": "«самих артистов» — the genitive here marks possession, absence, or quantity.",
-   "id": "c10"
-  },
-  {
-   "sentence": "Может быть, они и ___, гении, Дидероты, но с моей точки зрения они для искусства убийцы и больше ничего.",
-   "lemma": "человек",
-   "options": [
-    "хорошим людям",
-    "хорошие люди",
-    "хорошими людьми",
-    "хороших людей"
-   ],
-   "correct": "хорошие люди",
-   "case": "Именительный (Nominative)",
-   "explain": "«хорошие люди» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
   },
   {
    "sentence": "___ протягивает вперед сжатый кулак и издает губами звук, всхлипывающий, как масло на сковороде.",
@@ -137,36 +53,8 @@
    ],
    "correct": "благородный отец",
    "case": "Именительный (Nominative)",
-   "explain": "«Благородный отец» — the subject of the sentence stands in the nominative.",
+   "explain": "«благородный отец» is the subject of «протягивает» — who or what does it — so nominative.",
    "id": "c12"
-  },
-  {
-   "sentence": "Не то что трагик или резонер, а самый ___ из свиты Фортинбраса его не испужается.",
-   "lemma": "пискун",
-   "options": [
-    "последний пискун",
-    "последнего пискуна",
-    "последним пискуном",
-    "последнем пискуне"
-   ],
-   "correct": "последний пискун",
-   "case": "Именительный (Nominative)",
-   "explain": "«последний пискун» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
-  },
-  {
-   "sentence": "— Все-таки, если беспристрастно рассуждать, то труппа у нас приличная, — говорит газетчик, закусывая ___.",
-   "lemma": "капуста",
-   "options": [
-    "красной капусте",
-    "красной капусты",
-    "красная капуста",
-    "красной капустой"
-   ],
-   "correct": "красной капустой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«красной капустой» — the instrumental marks the means, company, or complement.",
-   "id": "c15"
   },
   {
    "sentence": "— Послушай, я с тобой серьезно говорю, а ты шутки шутишь, — обижается ___.",
@@ -179,7 +67,7 @@
    ],
    "correct": "благородный отец",
    "case": "Именительный (Nominative)",
-   "explain": "«благородный отец» — the subject of the sentence stands in the nominative.",
+   "explain": "«благородный отец» is the subject of «обижается» — who or what does it — so nominative.",
    "id": "c18"
   },
   {
@@ -193,7 +81,7 @@
    ],
    "correct": "благородный отец",
    "case": "Именительный (Nominative)",
-   "explain": "«Благородный отец» — the subject of the sentence stands in the nominative.",
+   "explain": "«благородный отец» is the subject of «отступает» — who or what does it — so nominative.",
    "id": "c27"
   },
   {
@@ -207,22 +95,8 @@
    ],
    "correct": "благородный отец",
    "case": "Именительный (Nominative)",
-   "explain": "«благородный отец» — the subject of the sentence stands in the nominative.",
+   "explain": "«благородный отец» is the subject of «бормочет» — who or what does it — so nominative.",
    "id": "c32"
-  },
-  {
-   "sentence": "Скидкой буфетной он пользуется до тех пор, пока ___ не расплывается с его носа по всему лицу и пока у газетчика сам собою не закрывается левый глаз.",
-   "lemma": "краска",
-   "options": [
-    "малиновой краской",
-    "малиновой краске",
-    "малиновая краска",
-    "малиновой краски"
-   ],
-   "correct": "малиновая краска",
-   "case": "Именительный (Nominative)",
-   "explain": "«малиновая краска» — the subject of the sentence stands in the nominative.",
-   "id": "c33"
   },
   {
    "sentence": "Скидкой буфетной он пользуется до тех пор, пока малиновая краска не расплывается с его носа по всему лицу и пока у газетчика сам собою не закрывается ___.",
@@ -235,7 +109,7 @@
    ],
    "correct": "левый глаз",
    "case": "Именительный (Nominative)",
-   "explain": "«левый глаз» — the subject of the sentence stands in the nominative.",
+   "explain": "«левый глаз» is the subject of «закрывается» — who or what does it — so nominative.",
    "id": "c34"
   },
   {
@@ -249,7 +123,7 @@
    ],
    "correct": "благородного отца",
    "case": "Родительный (Genitive)",
-   "explain": "«благородного отца» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«благородного отца» depends on the noun «кулаки» (whose? of what?) — genitive.",
    "id": "c35"
   },
   {
@@ -263,7 +137,7 @@
    ],
    "correct": "настоящая игра",
    "case": "Именительный (Nominative)",
-   "explain": "«настоящая игра» — the subject of the sentence stands in the nominative.",
+   "explain": "«настоящая игра» is the subject of «значит» — who or what does it — so nominative.",
    "id": "c37"
   }
  ]

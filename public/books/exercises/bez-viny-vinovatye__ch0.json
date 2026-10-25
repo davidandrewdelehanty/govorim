@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Елена Ивановна Кручинина, известная ___.",
-   "lemma": "актриса",
-   "options": [
-    "провинциальной актрисы",
-    "провинциальной актрисой",
-    "провинциальная актриса",
-    "провинциальной актрисе"
-   ],
-   "correct": "провинциальная актриса",
-   "case": "Именительный (Nominative)",
-   "explain": "«провинциальная актриса» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Григорий Львович Муров, ___ из губернских чиновников.",
-   "lemma": "человек",
-   "options": [
-    "молодому человеку",
-    "молодого человека",
-    "молодой человек",
-    "молодом человеке"
-   ],
-   "correct": "молодой человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«молодой человек» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
    "sentence": "Григорий Львович Муров, молодой человек из ___.",
    "lemma": "чиновник",
    "options": [
@@ -39,22 +11,8 @@
    ],
    "correct": "губернских чиновников",
    "case": "Родительный (Genitive)",
-   "explain": "«губернских чиновников» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«губернских чиновников» — «из» always takes the genitive.",
    "id": "c3"
-  },
-  {
-   "sentence": "Нил Стратоныч Дудукин, ___.",
-   "lemma": "барин",
-   "options": [
-    "богатый барин",
-    "богатым барином",
-    "богатого барина",
-    "богатому барину"
-   ],
-   "correct": "богатый барин",
-   "case": "Именительный (Nominative)",
-   "explain": "«богатый барин» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
   },
   {
    "sentence": "Любовь Ивановна Отрадина, девица ___.",
@@ -67,36 +25,8 @@
    ],
    "correct": "благородного происхождения",
    "case": "Родительный (Genitive)",
-   "explain": "«благородного происхождения» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«благородного происхождения» depends on the noun «девица» (whose? of what?) — genitive.",
    "id": "c5"
-  },
-  {
-   "sentence": "Григорий Львович Муров, ___ из губернских чиновников.",
-   "lemma": "человек",
-   "options": [
-    "молодому человеку",
-    "молодого человека",
-    "молодой человек",
-    "молодом человеке"
-   ],
-   "correct": "молодой человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«молодой человек» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
-  },
-  {
-   "sentence": "Григорий Львович Муров, молодой человек из ___.",
-   "lemma": "чиновник",
-   "options": [
-    "губернских чиновников",
-    "губернскими чиновниками",
-    "губернским чиновникам",
-    "губернских чиновниках"
-   ],
-   "correct": "губернских чиновников",
-   "case": "Родительный (Genitive)",
-   "explain": "«губернских чиновников» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
-   "id": "c7"
   },
   {
    "sentence": "Комната ___ на самом краю города; двери справа и слева во внутренние комнаты, в глубине окно и входная дверь; мебель простая, но приличная, в комнате чисто и уютно.",
@@ -109,22 +39,8 @@
    ],
    "correct": "небогатой квартиры",
    "case": "Родительный (Genitive)",
-   "explain": "«небогатой квартиры» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«небогатой квартиры» depends on the noun «Комната» (whose? of what?) — genitive.",
    "id": "c8"
-  },
-  {
-   "sentence": "Сами скроили, сами и сшили, не хуже ___.",
-   "lemma": "портниха",
-   "options": [
-    "другой портнихе",
-    "другой портнихи",
-    "другой портнихой",
-    "другая портниха"
-   ],
-   "correct": "другой портнихи",
-   "case": "Родительный (Genitive)",
-   "explain": "«другой портнихи» — the genitive here marks possession, absence, or quantity.",
-   "id": "c10"
   },
   {
    "sentence": "И какое ___ вышло.",
@@ -137,36 +53,8 @@
    ],
    "correct": "бесподобное платье",
    "case": "Именительный (Nominative)",
-   "explain": "«бесподобное платье» — the subject of the sentence stands in the nominative.",
+   "explain": "«бесподобное платье» is the subject of «вышло» — who or what does it — so nominative.",
    "id": "c11"
-  },
-  {
-   "sentence": "Да ведь ___; сколько тут его пошло?",
-   "lemma": "фай",
-   "options": [
-    "белым фаем",
-    "белому фаю",
-    "белый фай",
-    "белом фае"
-   ],
-   "correct": "белый фай",
-   "case": "Именительный (Nominative)",
-   "explain": "«белый фай» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
-  },
-  {
-   "sentence": "Самое ___: деньги ей достались по наследству от богатых родственников.",
-   "lemma": "дело",
-   "options": [
-    "обыкновенному делу",
-    "обыкновенное дело",
-    "обыкновенного дела",
-    "обыкновенном деле"
-   ],
-   "correct": "обыкновенное дело",
-   "case": "Именительный (Nominative)",
-   "explain": "«обыкновенное дело» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
   },
   {
    "sentence": "Самое обыкновенное дело: деньги ей достались по наследству от ___.",
@@ -179,7 +67,7 @@
    ],
    "correct": "богатых родственников",
    "case": "Родительный (Genitive)",
-   "explain": "«богатых родственников» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«богатых родственников» — «от» always takes the genitive.",
    "id": "c14"
   },
   {
@@ -193,64 +81,8 @@
    ],
    "correct": "железной дороге",
    "case": "Дательный (Dative)",
-   "explain": "«железной дороге» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«железной дороге» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c15"
-  },
-  {
-   "sentence": "Нет, таким-то всегда счастье; а ___ жди да пожди.",
-   "lemma": "барышня",
-   "options": [
-    "хороших барышень",
-    "хорошие барышни",
-    "хорошим барышням",
-    "хороших барышнях"
-   ],
-   "correct": "хорошие барышни",
-   "case": "Именительный (Nominative)",
-   "explain": "«хорошие барышни» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
-  },
-  {
-   "sentence": "Вот вы скоро ль дождетесь ___!",
-   "lemma": "жених",
-   "options": [
-    "хорошим женихом",
-    "хорошему жениху",
-    "хорошего жениха",
-    "хороший жених"
-   ],
-   "correct": "хорошего жениха",
-   "case": "Винительный (Accusative)",
-   "explain": "«хорошего жениха» — the accusative marks the direct object of the verb.",
-   "id": "c17"
-  },
-  {
-   "sentence": "Во-первых, она очень ___, а во-вторых, у ней прямых наследников много.",
-   "lemma": "родня",
-   "options": [
-    "дальней родне",
-    "дальняя родня",
-    "дальней родни",
-    "дальней роднёй"
-   ],
-   "correct": "дальняя родня",
-   "case": "Именительный (Nominative)",
-   "explain": "«дальняя родня» — the subject of the sentence stands in the nominative.",
-   "id": "c18"
-  },
-  {
-   "sentence": "Во-первых, она очень дальняя родня, а во-вторых, у ней ___ много.",
-   "lemma": "наследник",
-   "options": [
-    "прямых наследниках",
-    "прямыми наследниками",
-    "прямые наследники",
-    "прямых наследников"
-   ],
-   "correct": "прямых наследников",
-   "case": "Родительный (Genitive)",
-   "explain": "«прямых наследников» — the genitive here marks possession, absence, or quantity.",
-   "id": "c19"
   },
   {
    "sentence": "Они с капиталами при всем своем ___ прожить могут.",
@@ -263,36 +95,8 @@
    ],
    "correct": "полном невежестве",
    "case": "Предложный (Prepositional)",
-   "explain": "«полном невежестве» — after the preposition «при», for location or topic.",
+   "explain": "«полном невежестве» — «при» always takes the prepositional.",
    "id": "c20"
-  },
-  {
-   "sentence": "А не разбогатею, так, может быть, и без приданого ___ возьмет.",
-   "lemma": "человек",
-   "options": [
-    "добрым человеком",
-    "добрый человек",
-    "доброго человека",
-    "доброму человеку"
-   ],
-   "correct": "добрый человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«добрый человек» — after the preposition «без», the subject of the sentence stands in the nominative.",
-   "id": "c21"
-  },
-  {
-   "sentence": "Нет, у него будут и книжки и игрушки, да, игрушки, ___.",
-   "lemma": "игрушка",
-   "options": [
-    "дорогие игрушки",
-    "дорогими игрушками",
-    "дорогих игрушках",
-    "дорогим игрушкам"
-   ],
-   "correct": "дорогие игрушки",
-   "case": "Именительный (Nominative)",
-   "explain": "«дорогие игрушки» — the subject of the sentence stands in the nominative.",
-   "id": "c22"
   },
   {
    "sentence": "Чтобы все, что у ___, то и у него.",
@@ -305,35 +109,21 @@
    ],
    "correct": "других детей",
    "case": "Родительный (Genitive)",
-   "explain": "«других детей» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«других детей» — «у» always takes the genitive.",
    "id": "c23"
-  },
-  {
-   "sentence": "Чего ж ты ждал от меня, какого ___?",
-   "lemma": "ответ",
-   "options": [
-    "другой ответ",
-    "другого ответа",
-    "другому ответу",
-    "другом ответе"
-   ],
-   "correct": "другого ответа",
-   "case": "Родительный (Genitive)",
-   "explain": "«другого ответа» — the genitive here marks possession, absence, or quantity.",
-   "id": "c24"
   },
   {
    "sentence": "Для меня и это хорошо: у меня ___ нет.",
    "lemma": "прииск",
    "options": [
+    "золотым приискам",
     "золотых приисков",
-    "золотые прииски",
-    "золотых приисках",
-    "золотыми приисками"
+    "золотыми приисками",
+    "золотых приисках"
    ],
    "correct": "золотых приисков",
    "case": "Родительный (Genitive)",
-   "explain": "«золотых приисков» — the genitive here marks possession, absence, or quantity.",
+   "explain": "What is absent after «нет» — genitive.",
    "id": "c25"
   },
   {
@@ -347,50 +137,8 @@
    ],
    "correct": "самом деле",
    "case": "Предложный (Prepositional)",
-   "explain": "«самом деле» — after the preposition «в», for location or topic.",
+   "explain": "«самом деле» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c27"
-  },
-  {
-   "sentence": "___ с постели встала, должно быть.",
-   "lemma": "нога",
-   "options": [
-    "левой ногой",
-    "левой ноги",
-    "левой ноге",
-    "левая нога"
-   ],
-   "correct": "левой ногой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«Левой ногой» — the instrumental marks the means, company, or complement.",
-   "id": "c28"
-  },
-  {
-   "sentence": "Я ведь не поцеремонюсь, я его, ___ Григория Львовича, и за дверь вытолкаю.",
-   "lemma": "дружок",
-   "options": [
-    "милом дружке",
-    "милому дружку",
-    "милого дружка",
-    "милым дружком"
-   ],
-   "correct": "милого дружка",
-   "case": "Винительный (Accusative)",
-   "explain": "«милого дружка» — the accusative marks the direct object of the verb.",
-   "id": "c30"
-  },
-  {
-   "sentence": "Отрадина провожает ее до дверей: потом, едва держась на ногах, подходит к столу, опирается на него ___ — и с напряжением смотрит на дверь спальни.",
-   "lemma": "рука",
-   "options": [
-    "правой руке",
-    "правой руки",
-    "правая рука",
-    "правой рукой"
-   ],
-   "correct": "правой рукой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«правой рукой» — the instrumental marks the means, company, or complement.",
-   "id": "c31"
   }
  ]
 }

@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "И рисуется перед ним ___, под лесом речка с бледною лозой, над речкой — бедные соломенные хаты.",
-   "lemma": "лес",
-   "options": [
-    "сосновый лес",
-    "сосновому лесу",
-    "сосновым лесом",
-    "соснового леса"
-   ],
-   "correct": "сосновый лес",
-   "case": "Именительный (Nominative)",
-   "explain": "«сосновый лес» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "И рисуется перед ним сосновый лес, под лесом речка с бледною лозой, над речкой — бедные ___.",
-   "lemma": "хата",
-   "options": [
-    "соломенные хаты",
-    "соломенным хатам",
-    "соломенными хатами",
-    "соломенных хатах"
-   ],
-   "correct": "соломенные хаты",
-   "case": "Именительный (Nominative)",
-   "explain": "«соломенные хаты» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
    "sentence": "И кажется, — вернулся бы назад к ___, родной и знакомой.",
    "lemma": "беда",
    "options": [
@@ -39,7 +11,7 @@
    ],
    "correct": "прежней беде",
    "case": "Дательный (Dative)",
-   "explain": "«прежней беде» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«прежней беде» — «к» always takes the dative.",
    "id": "c3"
   },
   {
@@ -53,22 +25,8 @@
    ],
    "correct": "корабельного носа",
    "case": "Родительный (Genitive)",
-   "explain": "«корабельного носа» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«корабельного носа» — «от» always takes the genitive.",
    "id": "c5"
-  },
-  {
-   "sentence": "От века веков море идет своим ходом, от века встают и падают волны, от века поет море свою собственную песню, непонятную ___, и от века в глубине идет своя собственная жизнь, которой мы не знаем.",
-   "lemma": "ухо",
-   "options": [
-    "человеческое ухо",
-    "человеческому уху",
-    "человеческого уха",
-    "человеческим ухом"
-   ],
-   "correct": "человеческому уху",
-   "case": "Дательный (Dative)",
-   "explain": "«человеческому уху» — the dative marks the indirect object or recipient.",
-   "id": "c6"
   },
   {
    "sentence": "И песня моря дрогнула и изменилась, и волны разрезаны и сбиты, и кто-то в глубине со страхом прислушивается к этому ходу ___ из другого, непонятного мира.",
@@ -81,36 +39,8 @@
    ],
    "correct": "непонятного чудовища",
    "case": "Родительный (Genitive)",
-   "explain": "«непонятного чудовища» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«непонятного чудовища» depends on the noun «ходу» (whose? of what?) — genitive.",
    "id": "c7"
-  },
-  {
-   "sentence": "Конечно, Лозинский не мог бы рассказать все это такими словами, но он чувствовал испуг перед тайной ___.",
-   "lemma": "глубина",
-   "options": [
-    "морская глубина",
-    "морской глубиной",
-    "морской глубины",
-    "морской глубине"
-   ],
-   "correct": "морской глубины",
-   "case": "Родительный (Genitive)",
-   "explain": "«морской глубины» — after the preposition «перед», the genitive here marks possession, absence, or quantity.",
-   "id": "c8"
-  },
-  {
-   "sentence": "Сначала ему показалось, что это маленький ___ запутался между снастями того парохода, на котором они сами плыли.",
-   "lemma": "кораблик",
-   "options": [
-    "игрушечному кораблику",
-    "игрушечный кораблик",
-    "игрушечного кораблика",
-    "игрушечном кораблике"
-   ],
-   "correct": "игрушечный кораблик",
-   "case": "Именительный (Nominative)",
-   "explain": "«игрушечный кораблик» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
   },
   {
    "sentence": "А в другой раз в сильную качку, когда на носу их парохода стояла ___ брызгов, он опять смотрел, как такой же кораблик, весь наклонившись набок, летел, как птица.",
@@ -123,22 +53,8 @@
    ],
    "correct": "целая туча",
    "case": "Именительный (Nominative)",
-   "explain": "«целая туча» — the subject of the sentence stands in the nominative.",
+   "explain": "«целая туча» is the subject of «стояла» — who or what does it — so nominative.",
    "id": "c13"
-  },
-  {
-   "sentence": "Волны вставали и падали, как горы, и порой с замиранием сердца Лозинский и ___ смотрели и не видели больше смелого суденышка.",
-   "lemma": "пассажир",
-   "options": [
-    "другими пассажирами",
-    "других пассажирах",
-    "других пассажиров",
-    "другие пассажиры"
-   ],
-   "correct": "другие пассажиры",
-   "case": "Именительный (Nominative)",
-   "explain": "«другие пассажиры» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
   },
   {
    "sentence": "И ему казалось, что и теперь он уже другой, не тот, что ходил за сохой в Лозищах или в праздник глазел на базар в ___.",
@@ -151,7 +67,7 @@
    ],
    "correct": "соседнем городе",
    "case": "Предложный (Prepositional)",
-   "explain": "«соседнем городе» — after the preposition «в», for location or topic.",
+   "explain": "«соседнем городе» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c15"
   },
   {
@@ -165,63 +81,21 @@
    ],
    "correct": "морской глубины",
    "case": "Родительный (Genitive)",
-   "explain": "«морской глубины» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«морской глубины» depends on the noun «тайну» (whose? of what?) — genitive.",
    "id": "c16"
-  },
-  {
-   "sentence": "То, что его глаз смотрел в тайну морской глубины и что он чувствовал ее в душе и думал о ней и об этих ___, и о себе, когда он приедет к ним, — все это делало его как будто другим человеком.",
-   "lemma": "человек",
-   "options": [
-    "чужих людей",
-    "чужим людям",
-    "чужие люди",
-    "чужих людях"
-   ],
-   "correct": "чужих людях",
-   "case": "Предложный (Prepositional)",
-   "explain": "«чужих людях» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c17"
-  },
-  {
-   "sentence": "То, что его глаз смотрел в тайну морской глубины и что он чувствовал ее в душе и думал о ней и об этих чужих людях, и о себе, когда он приедет к ним, — все это делало его как будто ___.",
-   "lemma": "человек",
-   "options": [
-    "другом человеке",
-    "другому человеку",
-    "другим человеком",
-    "другого человека"
-   ],
-   "correct": "другим человеком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«другим человеком» — after the preposition «об», the instrumental marks the means, company, or complement.",
-   "id": "c18"
-  },
-  {
-   "sentence": "Поищи себе трясцу (лихорадку) или паралича, чтобы тебя разбило вдребезги ___.",
-   "lemma": "гром",
-   "options": [
-    "ясного грома",
-    "ясному грому",
-    "ясный гром",
-    "ясным громом"
-   ],
-   "correct": "ясным громом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«ясным громом» — the instrumental marks the means, company, or complement.",
-   "id": "c19"
   },
   {
    "sentence": "Это оттого, что бедному Дыме в эту минуту был не мил ___.",
    "lemma": "свет",
    "options": [
-    "белым светом",
-    "белый свет",
+    "белом свете",
     "белому свету",
-    "белого света"
+    "белый свет",
+    "белым светом"
    ],
    "correct": "белый свет",
    "case": "Именительный (Nominative)",
-   "explain": "«белый свет» — the subject of the sentence stands in the nominative.",
+   "explain": "«белый свет» is the subject of «мил» — who or what does it — so nominative.",
    "id": "c20"
   },
   {
@@ -235,7 +109,7 @@
    ],
    "correct": "непостоянный характер",
    "case": "Именительный (Nominative)",
-   "explain": "«непостоянный характер» — the subject of the sentence stands in the nominative.",
+   "explain": "«непостоянный характер» is the subject of «оказался» — who or what does it — so nominative.",
    "id": "c21"
   },
   {
@@ -249,22 +123,8 @@
    ],
    "correct": "третьего класса",
    "case": "Родительный (Genitive)",
-   "explain": "«третьего класса» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«третьего класса» depends on the noun «пассажиры» (whose? of what?) — genitive.",
    "id": "c23"
-  },
-  {
-   "sentence": "Тогда пассажиры третьего класса выползали на носовую палубу, долговязый венгерец начинал играть на дудке, ___ на скрипке, а молодежь брала шведских барышень за талью и кружилась, обходя осторожно канаты и цепи.",
-   "lemma": "немец",
-   "options": [
-    "молодой немец",
-    "молодым немцем",
-    "молодом немце",
-    "молодому немцу"
-   ],
-   "correct": "молодой немец",
-   "case": "Именительный (Nominative)",
-   "explain": "«молодой немец» — the subject of the sentence stands in the nominative.",
-   "id": "c24"
   },
   {
    "sentence": "Тогда пассажиры третьего класса выползали на носовую палубу, долговязый венгерец начинал играть на дудке, молодой немец на скрипке, а молодежь брала ___ за талью и кружилась, обходя осторожно канаты и цепи.",
@@ -277,7 +137,7 @@
    ],
    "correct": "шведских барышень",
    "case": "Винительный (Accusative)",
-   "explain": "«шведских барышень» — the accusative marks the direct object of the verb.",
+   "explain": "«шведских барышень» is the direct object of «брала» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c25"
   },
   {
@@ -291,36 +151,8 @@
    ],
    "correct": "старого чеха",
    "case": "Родительный (Genitive)",
-   "explain": "«старого чеха» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«старого чеха» — «у» always takes the genitive.",
    "id": "c26"
-  },
-  {
-   "sentence": "Это, говорит, сделана у них на острове такая ___.",
-   "lemma": "фигура",
-   "options": [
-    "медной фигуре",
-    "медная фигура",
-    "медной фигурой",
-    "медной фигуры"
-   ],
-   "correct": "медная фигура",
-   "case": "Именительный (Nominative)",
-   "explain": "«медная фигура» — the subject of the sentence stands in the nominative.",
-   "id": "c27"
-  },
-  {
-   "sentence": "Стоит выше самых ___ и церквей, подняла руку кверху.",
-   "lemma": "дом",
-   "options": [
-    "высокие дома",
-    "высоких домов",
-    "высоких домах",
-    "высокими домами"
-   ],
-   "correct": "высоких домов",
-   "case": "Родительный (Genitive)",
-   "explain": "«высоких домов» — the genitive here marks possession, absence, or quantity.",
-   "id": "c28"
   },
   {
    "sentence": "И называется эта ___ — свобода.",
@@ -333,22 +165,8 @@
    ],
    "correct": "медная женщина",
    "case": "Именительный (Nominative)",
-   "explain": "«медная женщина» — the subject of the sentence stands in the nominative.",
+   "explain": "«медная женщина» is the subject of «называется» — who or what does it — so nominative.",
    "id": "c29"
-  },
-  {
-   "sentence": "А Матвею почему-то вспоминался все ___ Лозинский-Шуляк, который подарил ему библию.",
-   "lemma": "дед",
-   "options": [
-    "старый дед",
-    "старым дедом",
-    "старому деду",
-    "старого деда"
-   ],
-   "correct": "старый дед",
-   "case": "Именительный (Nominative)",
-   "explain": "«старый дед» — the subject of the sentence stands in the nominative.",
-   "id": "c30"
   }
  ]
 }

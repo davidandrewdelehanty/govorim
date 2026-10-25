@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Иду это я ___ с женой Анфисой тихо, благородно, смотрю — стоит на берегу куча разного народа людей.",
-   "lemma": "число",
-   "options": [
-    "третьему числу",
-    "третьего числа",
-    "третье число",
-    "третьим числом"
-   ],
-   "correct": "третьего числа",
-   "case": "Родительный (Genitive)",
-   "explain": "«третьего числа» — the genitive here marks possession, absence, or quantity.",
-   "id": "c2"
-  },
-  {
    "sentence": "Иду это я третьего числа с женой Анфисой тихо, благородно, смотрю — стоит на берегу куча ___ людей.",
    "lemma": "народ",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "разного народа",
    "case": "Родительный (Genitive)",
-   "explain": "«разного народа» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«разного народа» depends on the noun «куча» (whose? of what?) — genitive.",
    "id": "c3"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "полному праву",
    "case": "Дательный (Dative)",
-   "explain": "«полному праву» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«полному праву» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c4"
   },
   {
@@ -53,22 +39,8 @@
    ],
    "correct": "простого звания",
    "case": "Родительный (Genitive)",
-   "explain": "«простого звания» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«простого звания» depends on the noun «людями» (whose? of what?) — genitive.",
    "id": "c6"
-  },
-  {
-   "sentence": "А мужик — ___, он ничего не понимает и должен меня слушать, потому — для его же пользы.",
-   "lemma": "человек",
-   "options": [
-    "простом человеке",
-    "простого человека",
-    "простой человек",
-    "простому человеку"
-   ],
-   "correct": "простой человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«простой человек» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
   },
   {
    "sentence": "Разгоняю я народ, а на берегу на песочке утоплый труп ___.",
@@ -81,36 +53,8 @@
    ],
    "correct": "мёртвого человека",
    "case": "Родительный (Genitive)",
-   "explain": "«мёртвого человека» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«мёртвого человека» depends on the noun «труп» (whose? of what?) — genitive.",
    "id": "c9"
-  },
-  {
-   "sentence": "Может, этот утоплый покойник ___, а может, тут дело Сибирью пахнет.",
-   "lemma": "утоп",
-   "options": [
-    "самого утопа",
-    "самому утопу",
-    "самим утопом",
-    "сам утоп"
-   ],
-   "correct": "сам утоп",
-   "case": "Именительный (Nominative)",
-   "explain": "«сам утоп» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
-  },
-  {
-   "sentence": "«Я, говорит, ещё вчера дал знать ___».",
-   "lemma": "пристав",
-   "options": [
-    "становой пристав",
-    "становому приставу",
-    "станового пристава",
-    "становым приставом"
-   ],
-   "correct": "становому приставу",
-   "case": "Дательный (Dative)",
-   "explain": "«становому приставу» — the dative marks the indirect object or recipient.",
-   "id": "c12"
   },
   {
    "sentence": "От этих ___ меня даже в жар бросило.",
@@ -123,36 +67,8 @@
    ],
    "correct": "самых слов",
    "case": "Родительный (Genitive)",
-   "explain": "«самых слов» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«самых слов» — «от» always takes the genitive.",
    "id": "c13"
-  },
-  {
-   "sentence": "— Все слыхали, как ты это самое при всём ___: «Мировому судье такие дела не подсудны».",
-   "lemma": "народ",
-   "options": [
-    "простом народе",
-    "простой народ",
-    "простому народу",
-    "простого народа"
-   ],
-   "correct": "простом народе",
-   "case": "Предложный (Prepositional)",
-   "explain": "«простом народе» — after the preposition «при», for location or topic.",
-   "id": "c14"
-  },
-  {
-   "sentence": "Как же, говорю, ты можешь так объяснять про господина ___?",
-   "lemma": "судья",
-   "options": [
-    "мировой судьи",
-    "мировая судья",
-    "мировой судье",
-    "мирового судью"
-   ],
-   "correct": "мирового судью",
-   "case": "Винительный (Accusative)",
-   "explain": "«мирового судью» — the accusative marks the direct object of the verb.",
-   "id": "c16"
   },
   {
    "sentence": "Да ты, говорю, знаешь, что господин мировой судья, ежели пожелают, могут тебя за такие слова в губернское жандармское управление по причине твоего ___?",
@@ -165,7 +81,7 @@
    ],
    "correct": "неблагонадёжного поведения",
    "case": "Родительный (Genitive)",
-   "explain": "«неблагонадёжного поведения» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«неблагонадёжного поведения» depends on the noun «причине» (whose? of what?) — genitive.",
    "id": "c17"
   },
   {
@@ -179,36 +95,8 @@
    ],
    "correct": "политические слова",
    "case": "Винительный (Accusative)",
-   "explain": "«политические слова» — after the preposition «за», the accusative marks the direct object of the verb.",
+   "explain": "«политические слова» — «за» takes the accusative here (куда? за что? за кого?) — the instrumental would mean position behind or at (где? за чем?).",
    "id": "c18"
-  },
-  {
-   "sentence": "Бывало, в Варшаве или когда в швейцарах был в мужской классической прогимназии, то как заслышу какие ___, то гляжу на улицу, не видать ли жандарма: «Поди, говорю, сюда, кавалер», — и всё ему докладываю.",
-   "lemma": "слово",
-   "options": [
-    "неподходящими словами",
-    "неподходящим словам",
-    "неподходящие слова",
-    "неподходящих словах"
-   ],
-   "correct": "неподходящие слова",
-   "case": "Именительный (Nominative)",
-   "explain": "«неподходящие слова» — the subject of the sentence stands in the nominative.",
-   "id": "c19"
-  },
-  {
-   "sentence": "Ежели ___ не побьёшь, то на твоей же душе грех.",
-   "lemma": "человек",
-   "options": [
-    "глупом человеке",
-    "глупым человеком",
-    "глупый человек",
-    "глупого человека"
-   ],
-   "correct": "глупого человека",
-   "case": "Родительный (Genitive)",
-   "explain": "«глупого человека» — the genitive here marks possession, absence, or quantity.",
-   "id": "c21"
   },
   {
    "sentence": "Игнат Сверчок занимается волшебством, и жена его Мавра есть ведьма, по ночам ходит доить ___.",
@@ -221,22 +109,8 @@
    ],
    "correct": "чужих коров",
    "case": "Винительный (Accusative)",
-   "explain": "«чужих коров» — the accusative marks the direct object of the verb.",
+   "explain": "«чужих коров» is the direct object of «доить» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c23"
-  },
-  {
-   "sentence": "Глядит он на мирового, на свидетелей и никак не может понять, отчего это мировой так взволнован и отчего из всех углов камеры слышится то ропот, то ___.",
-   "lemma": "смех",
-   "options": [
-    "сдержанный смех",
-    "сдержанном смехе",
-    "сдержанному смеху",
-    "сдержанным смехом"
-   ],
-   "correct": "сдержанный смех",
-   "case": "Именительный (Nominative)",
-   "explain": "«сдержанный смех» — the subject of the sentence stands in the nominative.",
-   "id": "c24"
   }
  ]
 }

@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "С первым выпавшим снегом большинство работ в ___ прекратилось, за исключением пяти-шести больших приисков, где промывка шла в теплых казармах.",
-   "lemma": "дача",
-   "options": [
-    "кедровской даче",
-    "кедровской дачей",
-    "кедровской дачи",
-    "кедровская дача"
-   ],
-   "correct": "кедровской даче",
-   "case": "Предложный (Prepositional)",
-   "explain": "«Кедровской даче» — after the preposition «в», for location or topic.",
-   "id": "c1"
-  },
-  {
-   "sentence": "С первым выпавшим снегом большинство работ в Кедровской даче прекратилось, за исключением пяти-шести ___, где промывка шла в теплых казармах.",
-   "lemma": "прииск",
-   "options": [
-    "больших приисков",
-    "большими приисками",
-    "большим приискам",
-    "большие прииски"
-   ],
-   "correct": "больших приисков",
-   "case": "Родительный (Genitive)",
-   "explain": "«больших приисков» — the genitive here marks possession, absence, or quantity.",
-   "id": "c2"
-  },
-  {
    "sentence": "От ___ у него оставалось около ста рублей, но на них далеко не уедешь.",
    "lemma": "работа",
    "options": [
@@ -39,22 +11,8 @@
    ],
    "correct": "летней работы",
    "case": "Родительный (Genitive)",
-   "explain": "«летней работы» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«летней работы» — «от» always takes the genitive.",
    "id": "c4"
-  },
-  {
-   "sentence": "Попробовал Кишкин обратиться опять к своему доброхоту, секретарю Каблукову, но получил ___.",
-   "lemma": "отказ",
-   "options": [
-    "сурового отказа",
-    "суровому отказу",
-    "суровый отказ",
-    "суровым отказом"
-   ],
-   "correct": "суровый отказ",
-   "case": "Винительный (Accusative)",
-   "explain": "«суровый отказ» — the accusative marks the direct object of the verb.",
-   "id": "c5"
   },
   {
    "sentence": "Знаменитое дело по доносу Кишкина запало где-то в дебрях ___, потому что ушло на предварительное рассмотрение горного департамента, а потом уже должно было появиться на общих судебных основаниях.",
@@ -67,78 +25,36 @@
    ],
    "correct": "канцелярской волокиты",
    "case": "Родительный (Genitive)",
-   "explain": "«канцелярской волокиты» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«канцелярской волокиты» depends on the noun «дебрях» (whose? of what?) — genitive.",
    "id": "c6"
   },
   {
    "sentence": "Знаменитое дело по доносу Кишкина запало где-то в дебрях канцелярской волокиты, потому что ушло на предварительное рассмотрение ___, а потом уже должно было появиться на общих судебных основаниях.",
    "lemma": "департамент",
    "options": [
-    "горным департаментом",
-    "горного департамента",
+    "горному департаменту",
     "горный департамент",
+    "горного департамента",
     "горном департаменте"
    ],
    "correct": "горного департамента",
    "case": "Родительный (Genitive)",
-   "explain": "«горного департамента» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«горного департамента» depends on the noun «рассмотрение» (whose? of what?) — genitive.",
    "id": "c7"
   },
   {
    "sentence": "Знаменитое дело по доносу Кишкина запало где-то в дебрях канцелярской волокиты, потому что ушло на предварительное рассмотрение горного департамента, а потом уже должно было появиться на общих ___.",
    "lemma": "основание",
    "options": [
-    "судебных основаниях",
     "судебными основаниями",
+    "судебных основаниях",
     "судебных оснований",
-    "судебные основания"
+    "судебным основаниям"
    ],
    "correct": "судебных основаниях",
    "case": "Предложный (Prepositional)",
-   "explain": "«судебных основаниях» — after the preposition «на», for location or topic.",
+   "explain": "«судебных основаниях» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c8"
-  },
-  {
-   "sentence": "На Кишкина напало то глухое молчаливое отчаяние, которое известно только ___, когда все их планы рушатся.",
-   "lemma": "человек",
-   "options": [
-    "деловые люди",
-    "деловыми людьми",
-    "деловых людей",
-    "деловым людям"
-   ],
-   "correct": "деловым людям",
-   "case": "Дательный (Dative)",
-   "explain": "«деловым людям» — the dative marks the indirect object or recipient.",
-   "id": "c9"
-  },
-  {
-   "sentence": "___, сказывают, еще не бывало сроду.",
-   "lemma": "жилка",
-   "options": [
-    "этакой жилки",
-    "этакая жилка",
-    "этакой жилкой",
-    "этакой жилке"
-   ],
-   "correct": "этакой жилки",
-   "case": "Родительный (Genitive)",
-   "explain": "«Этакой жилки» — the genitive here marks possession, absence, or quantity.",
-   "id": "c11"
-  },
-  {
-   "sentence": "Дорогой пьяная оживленность Кожина вдруг сменилась ___ душевных сил.",
-   "lemma": "упадок",
-   "options": [
-    "полный упадок",
-    "полным упадком",
-    "полного упадка",
-    "полном упадке"
-   ],
-   "correct": "полным упадком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«полным упадком» — the instrumental marks the means, company, or complement.",
-   "id": "c12"
   },
   {
    "sentence": "Дорогой пьяная оживленность Кожина вдруг сменилась полным упадком ___.",
@@ -151,7 +67,7 @@
    ],
    "correct": "душевных сил",
    "case": "Родительный (Genitive)",
-   "explain": "«душевных сил» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«душевных сил» depends on the noun «упадком» (whose? of what?) — genitive.",
    "id": "c13"
   },
   {
@@ -165,22 +81,8 @@
    ],
    "correct": "старый приятель",
    "case": "Именительный (Nominative)",
-   "explain": "«старый приятель» — the subject of the sentence stands in the nominative.",
+   "explain": "«старый приятель» is the subject of «пришел» — who or what does it — so nominative.",
    "id": "c14"
-  },
-  {
-   "sentence": "Кожин как-то сразу прочухался от такой ___ и с удивлением посмотрел на своего спутника, который показался ему таким маленьким и жалким.",
-   "lemma": "цифра",
-   "options": [
-    "большая цифра",
-    "большой цифре",
-    "большой цифрой",
-    "большой цифры"
-   ],
-   "correct": "большой цифры",
-   "case": "Родительный (Genitive)",
-   "explain": "«большой цифры» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
-   "id": "c15"
   },
   {
    "sentence": "Нужно было ехать через ___; Кишкин повернул лошадь объездом, чтобы оставить в стороне господский дом.",
@@ -193,36 +95,8 @@
    ],
    "correct": "балчуговский завод",
    "case": "Винительный (Accusative)",
-   "explain": "«Балчуговский завод» — after the preposition «через», the accusative marks the direct object of the verb.",
+   "explain": "«балчуговский завод» — «через» always takes the accusative.",
    "id": "c16"
-  },
-  {
-   "sentence": "Нужно было ехать через Балчуговский завод; Кишкин повернул лошадь объездом, чтобы оставить в стороне ___.",
-   "lemma": "дом",
-   "options": [
-    "господскому дому",
-    "господский дом",
-    "господском доме",
-    "господским домом"
-   ],
-   "correct": "господский дом",
-   "case": "Винительный (Accusative)",
-   "explain": "«господский дом» — the accusative marks the direct object of the verb.",
-   "id": "c17"
-  },
-  {
-   "sentence": "Открытие Мыльниковым ___ произвело потрясающее впечатление.",
-   "lemma": "жилка",
-   "options": [
-    "новой жилкой",
-    "новой жилки",
-    "новой жилке",
-    "новая жилка"
-   ],
-   "correct": "новой жилки",
-   "case": "Родительный (Genitive)",
-   "explain": "«новой жилки» — the genitive here marks possession, absence, or quantity.",
-   "id": "c18"
   },
   {
    "sentence": "В несколько дней выросла ___ об «Оксиной жиле».",
@@ -235,7 +109,7 @@
    ],
    "correct": "целая легенда",
    "case": "Именительный (Nominative)",
-   "explain": "«целая легенда» — the subject of the sentence stands in the nominative.",
+   "explain": "«целая легенда» is the subject of «выросла» — who or what does it — so nominative.",
    "id": "c19"
   },
   {
@@ -249,22 +123,8 @@
    ],
    "correct": "приисковой девицы",
    "case": "Родительный (Genitive)",
-   "explain": "«приисковой девицы» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«приисковой девицы» — «от» always takes the genitive.",
    "id": "c20"
-  },
-  {
-   "sentence": "Сама Окся, сколько ее ни допрашивали, ничего не умела рассказать, а только скалила свои ___ и глупо ухмылялась.",
-   "lemma": "зуб",
-   "options": [
-    "белые зубы",
-    "белых зубов",
-    "белых зубах",
-    "белыми зубами"
-   ],
-   "correct": "белые зубы",
-   "case": "Винительный (Accusative)",
-   "explain": "«белые зубы» — the accusative marks the direct object of the verb.",
-   "id": "c21"
   },
   {
    "sentence": "В несколько дней Мыльников совершенно преобразился: он щеголял в красной ___, в плисовых шароварах, в новой шапке, в новом полушубке и новых пимах (валенках).",
@@ -277,7 +137,7 @@
    ],
    "correct": "кумачовой рубахе",
    "case": "Предложный (Prepositional)",
-   "explain": "«кумачовой рубахе» — after the preposition «в», for location or topic.",
+   "explain": "«кумачовой рубахе» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c22"
   },
   {
@@ -291,7 +151,7 @@
    ],
    "correct": "новой шапке",
    "case": "Предложный (Prepositional)",
-   "explain": "«новой шапке» — after the preposition «в», for location or topic.",
+   "explain": "«новой шапке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c24"
   },
   {
@@ -305,21 +165,21 @@
    ],
    "correct": "новом полушубке",
    "case": "Предложный (Prepositional)",
-   "explain": "«новом полушубке» — after the preposition «в», for location or topic.",
+   "explain": "«новом полушубке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c25"
   },
   {
    "sentence": "Чем существовала Татьяна с ребятишками все это время, как Тарас забросил свое сапожное ремесло, — трудно сказать, как о всех ___.",
    "lemma": "человек",
    "options": [
+    "бедным людям",
     "бедные люди",
     "бедными людьми",
-    "бедных людях",
-    "бедных людей"
+    "бедных людях"
    ],
    "correct": "бедных людях",
    "case": "Предложный (Prepositional)",
-   "explain": "«бедных людях» — after the preposition «о», for location or topic.",
+   "explain": "«бедных людях» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c29"
   },
   {
@@ -333,7 +193,7 @@
    ],
    "correct": "следующий раз",
    "case": "Винительный (Accusative)",
-   "explain": "«следующий раз» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«следующий раз» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c30"
   },
   {
@@ -347,64 +207,22 @@
    ],
    "correct": "полукаменного домика",
    "case": "Родительный (Genitive)",
-   "explain": "«полукаменного домика» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«полукаменного домика» depends on the noun «план» (whose? of what?) — genitive.",
    "id": "c31"
-  },
-  {
-   "sentence": "Их по дороге обогнал Мыльников, у которого в пошевнях сидела целая ватага ___.",
-   "lemma": "мужик",
-   "options": [
-    "пьяных мужиков",
-    "пьяным мужикам",
-    "пьяных мужиках",
-    "пьяные мужики"
-   ],
-   "correct": "пьяных мужиков",
-   "case": "Родительный (Genitive)",
-   "explain": "«пьяных мужиков» — the genitive here marks possession, absence, or quantity.",
-   "id": "c32"
-  },
-  {
-   "sentence": "Вот только ___ разменяю в заведении.",
-   "lemma": "билет",
-   "options": [
-    "четвертного билета",
-    "четвертной билет",
-    "четвертному билету",
-    "четвертным билетом"
-   ],
-   "correct": "четвертной билет",
-   "case": "Именительный (Nominative)",
-   "explain": "«четвертной билет» — the subject of the sentence stands in the nominative.",
-   "id": "c33"
   },
   {
    "sentence": "Ермошка сразу нахмурился и недружелюбно посмотрел на своего ___, расстроившего все его планы семейной жизни.",
    "lemma": "соперник",
    "options": [
-    "счастливого соперника",
-    "счастливом сопернике",
     "счастливым соперником",
+    "счастливому сопернику",
+    "счастливого соперника",
     "счастливый соперник"
    ],
    "correct": "счастливого соперника",
    "case": "Винительный (Accusative)",
-   "explain": "«счастливого соперника» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«счастливого соперника» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c34"
-  },
-  {
-   "sentence": "Пока Кишкин разговаривал с Ястребовым в его комнате, все трое находились в очень ___.",
-   "lemma": "положение",
-   "options": [
-    "неловкого положения",
-    "неловкое положение",
-    "неловкому положению",
-    "неловком положении"
-   ],
-   "correct": "неловком положении",
-   "case": "Предложный (Prepositional)",
-   "explain": "«неловком положении» — after the preposition «в», for location or topic.",
-   "id": "c35"
   }
  ]
 }

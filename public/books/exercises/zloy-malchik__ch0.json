@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Иван Иваныч Лапкин, ___ приятной наружности, и Анна Семеновна Замблицкая, молодая девушка со вздернутым носиком, спустились вниз по крутому берегу и уселись на скамеечке.",
-   "lemma": "человек",
-   "options": [
-    "молодого человека",
-    "молодым человеком",
-    "молодом человеке",
-    "молодой человек"
-   ],
-   "correct": "молодой человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«молодой человек» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Иван Иваныч Лапкин, молодой человек приятной наружности, и Анна Семеновна Замблицкая, ___ со вздернутым носиком, спустились вниз по крутому берегу и уселись на скамеечке.",
-   "lemma": "девушка",
-   "options": [
-    "молодой девушкой",
-    "молодая девушка",
-    "молодой девушки",
-    "молодой девушке"
-   ],
-   "correct": "молодая девушка",
-   "case": "Именительный (Nominative)",
-   "explain": "«молодая девушка» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
    "sentence": "Скамеечка стояла у ___, между густыми кустами молодого ивняка.",
    "lemma": "вода",
    "options": [
@@ -39,50 +11,22 @@
    ],
    "correct": "самой воды",
    "case": "Родительный (Genitive)",
-   "explain": "«самой воды» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«самой воды» — «у» always takes the genitive.",
    "id": "c4"
   },
   {
    "sentence": "Скамеечка стояла у самой воды, между ___ молодого ивняка.",
    "lemma": "куст",
    "options": [
-    "густых кустов",
-    "густыми кустами",
     "густым кустам",
-    "густых кустах"
+    "густых кустах",
+    "густые кусты",
+    "густыми кустами"
    ],
    "correct": "густыми кустами",
    "case": "Творительный (Instrumental)",
-   "explain": "«густыми кустами» — after the preposition «между», the instrumental marks the means, company, or complement.",
+   "explain": "«густыми кустами» — «между» + instrumental: between.",
    "id": "c5"
-  },
-  {
-   "sentence": "___ были вооружены удочками, сачками, банками с червями и прочими рыболовными принадлежностями.",
-   "lemma": "человек",
-   "options": [
-    "молодыми людьми",
-    "молодые люди",
-    "молодых людей",
-    "молодых людях"
-   ],
-   "correct": "молодые люди",
-   "case": "Именительный (Nominative)",
-   "explain": "«Молодые люди» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
-  },
-  {
-   "sentence": "Молодые люди были вооружены удочками, сачками, банками с червями и прочими ___.",
-   "lemma": "принадлежность",
-   "options": [
-    "рыболовными принадлежностями",
-    "рыболовных принадлежностей",
-    "рыболовные принадлежности",
-    "рыболовных принадлежностях"
-   ],
-   "correct": "рыболовными принадлежностями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«рыболовными принадлежностями» — the instrumental marks the means, company, or complement.",
-   "id": "c7"
   },
   {
    "sentence": "Когда ___ целовались, вдруг послышался смех.",
@@ -95,7 +39,7 @@
    ],
    "correct": "молодые люди",
    "case": "Именительный (Nominative)",
-   "explain": "«молодые люди» — the subject of the sentence stands in the nominative.",
+   "explain": "«молодые люди» is the subject of «целовались» — who or what does it — so nominative.",
    "id": "c10"
   },
   {
@@ -109,7 +53,7 @@
    ],
    "correct": "голый мальчик",
    "case": "Именительный (Nominative)",
-   "explain": "«голый мальчик» — the subject of the sentence stands in the nominative.",
+   "explain": "«голый мальчик» is the subject of «стоял» — who or what does it — so nominative.",
    "id": "c11"
   },
   {
@@ -123,50 +67,22 @@
    ],
    "correct": "молодых людей",
    "case": "Винительный (Accusative)",
-   "explain": "«молодых людей» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«молодых людей» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c12"
   },
   {
    "sentence": "И ___ на этот раз уже больше не целовались.",
    "lemma": "человек",
    "options": [
-    "молодые люди",
+    "молодыми людьми",
     "молодых людях",
-    "молодых людей",
-    "молодым людям"
+    "молодым людям",
+    "молодые люди"
    ],
    "correct": "молодые люди",
    "case": "Именительный (Nominative)",
-   "explain": "«молодые люди» — the subject of the sentence stands in the nominative.",
+   "explain": "«молодые люди» is the subject of «целовались» — who or what does it — so nominative.",
    "id": "c16"
-  },
-  {
-   "sentence": "Потом пришлось подарить и запонки с ___.",
-   "lemma": "мордочка",
-   "options": [
-    "собачьим мордочкам",
-    "собачьих мордочках",
-    "собачьими мордочками",
-    "собачьи мордочки"
-   ],
-   "correct": "собачьими мордочками",
-   "case": "Творительный (Instrumental)",
-   "explain": "«собачьими мордочками» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c18"
-  },
-  {
-   "sentence": "— Как мал, и какой уже ___!",
-   "lemma": "подлец",
-   "options": [
-    "большом подлеце",
-    "большой подлец",
-    "большому подлецу",
-    "большим подлецом"
-   ],
-   "correct": "большой подлец",
-   "case": "Именительный (Nominative)",
-   "explain": "«большой подлец» — the subject of the sentence stands in the nominative.",
-   "id": "c19"
   },
   {
    "sentence": "И в таком положении ___ находились до конца августа, до того самого дня, когда, наконец, Лапкин сделал Анне Семеновне предложение.",
@@ -179,7 +95,7 @@
    ],
    "correct": "молодые люди",
    "case": "Именительный (Nominative)",
-   "explain": "«молодые люди» — the subject of the sentence stands in the nominative.",
+   "explain": "«молодые люди» is the subject of «находились» — who or what does it — so nominative.",
    "id": "c21"
   },
   {
@@ -193,7 +109,7 @@
    ],
    "correct": "самого дня",
    "case": "Родительный (Genitive)",
-   "explain": "«самого дня» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«самого дня» — «до» always takes the genitive.",
    "id": "c22"
   },
   {
@@ -207,7 +123,7 @@
    ],
    "correct": "злого мальчика",
    "case": "Винительный (Accusative)",
-   "explain": "«злого мальчика» — the accusative marks the direct object of the verb.",
+   "explain": "«злого мальчика» is the direct object of «схватил» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c24"
   },
   {
@@ -221,7 +137,7 @@
    ],
    "correct": "злого мальчика",
    "case": "Винительный (Accusative)",
-   "explain": "«злого мальчика» — the accusative marks the direct object of the verb.",
+   "explain": "«злого мальчика» is the direct object of «драли» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c25"
   }
  ]

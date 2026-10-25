@@ -1,62 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Дядя Ерошка был заштатный и ___; жена его лет двадцать тому назад, выкрестившись в православные, сбежала от него и вышла замуж за русского фельдфебеля; детей у него не было.",
-   "lemma": "казак",
-   "options": [
-    "одиноким казаком",
-    "одинокого казака",
-    "одинокому казаку",
-    "одинокий казак"
-   ],
-   "correct": "одинокий казак",
-   "case": "Именительный (Nominative)",
-   "explain": "«одинокий казак» — after the preposition «в», the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Он не хвастал, рассказывая про себя, что был в старину ___ в станице.",
-   "lemma": "молодец",
-   "options": [
-    "первый молодец",
-    "первого молодца",
-    "первом молодце",
-    "первому молодцу"
-   ],
-   "correct": "первый молодец",
-   "case": "Именительный (Nominative)",
-   "explain": "«первый молодец» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
-   "sentence": "На столе были брошены ___, половина сдобной лепешки и рядом с ней ощипанная и разорванная галка для прикармливания ястреба.",
-   "lemma": "зипун",
-   "options": [
-    "окровавленный зипун",
-    "окровавленного зипуна",
-    "окровавленному зипуну",
-    "окровавленном зипуне"
-   ],
-   "correct": "окровавленный зипун",
-   "case": "Именительный (Nominative)",
-   "explain": "«окровавленный зипун» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
-  },
-  {
-   "sentence": "В углу, в кадушке с грязною, вонючею водой, размокали ___; тут же стояла винтовка и кобылка.",
-   "lemma": "поршень",
-   "options": [
-    "другими поршнями",
-    "других поршней",
-    "других поршнях",
-    "другие поршни"
-   ],
-   "correct": "другие поршни",
-   "case": "Винительный (Accusative)",
-   "explain": "«другие поршни» — the accusative marks the direct object of the verb.",
-   "id": "c5"
-  },
-  {
    "sentence": "Во всей комнате, и особенно около ___, воздух был пропитан тем сильным, не неприятным, смешанным запахом, который сопутствовал старику.",
    "lemma": "старик",
    "options": [
@@ -67,22 +11,8 @@
    ],
    "correct": "самого старика",
    "case": "Родительный (Genitive)",
-   "explain": "«самого старика» — after the preposition «около», the genitive here marks possession, absence, or quantity.",
+   "explain": "«самого старика» — «около» always takes the genitive.",
    "id": "c7"
-  },
-  {
-   "sentence": "Во всей комнате, и особенно около самого старика, воздух был пропитан тем сильным, не неприятным, ___, который сопутствовал старику.",
-   "lemma": "запах",
-   "options": [
-    "смешанного запаха",
-    "смешанном запахе",
-    "смешанный запах",
-    "смешанным запахом"
-   ],
-   "correct": "смешанным запахом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«смешанным запахом» — the instrumental marks the means, company, or complement.",
-   "id": "c8"
   },
   {
    "sentence": "Старик любил Лукашку и лишь одного его исключал из презрения ко всему ___ казаков.",
@@ -95,7 +25,7 @@
    ],
    "correct": "молодому поколению",
    "case": "Дательный (Dative)",
-   "explain": "«молодому поколению» — after the preposition «ко», the dative marks the indirect object or recipient.",
+   "explain": "«молодому поколению» — «к» always takes the dative.",
    "id": "c10"
   },
   {
@@ -109,22 +39,8 @@
    ],
    "correct": "хозяйственных произведений",
    "case": "Родительный (Genitive)",
-   "explain": "«хозяйственных произведений» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«хозяйственных произведений» — «из» always takes the genitive.",
    "id": "c11"
-  },
-  {
-   "sentence": "Бывало, ___ за штоф водки али за бурку отдаешь.",
-   "lemma": "конь",
-   "options": [
-    "важный конь",
-    "важном коне",
-    "важного коня",
-    "важным конём"
-   ],
-   "correct": "важного коня",
-   "case": "Винительный (Accusative)",
-   "explain": "«важного коня» — the accusative marks the direct object of the verb.",
-   "id": "c14"
   },
   {
    "sentence": "Не такие люди! -- отвечал старик, передразнивая ___. -- Не тот я был казак в твои годы.",
@@ -137,7 +53,7 @@
    ],
    "correct": "молодого казака",
    "case": "Винительный (Accusative)",
-   "explain": "«молодого казака» — the accusative marks the direct object of the verb.",
+   "explain": "«молодого казака» is the direct object of «передразнивая» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c15"
   },
   {
@@ -151,7 +67,7 @@
    ],
    "correct": "нынешние казаки",
    "case": "Именительный (Nominative)",
-   "explain": "«нынешние казаки» — the subject of the sentence stands in the nominative.",
+   "explain": "«нынешние казаки» is the subject of «плюют» — who or what does it — so nominative.",
    "id": "c16"
   },
   {
@@ -165,22 +81,8 @@
    ],
    "correct": "хорошие люди",
    "case": "Именительный (Nominative)",
-   "explain": "«хорошие люди» — the subject of the sentence stands in the nominative.",
+   "explain": "«хорошие люди» is the subject of «сказывали» — who or what does it — so nominative.",
    "id": "c17"
-  },
-  {
-   "sentence": "И старик начал было рассказывать свои ___.",
-   "lemma": "история",
-   "options": [
-    "бесконечные истории",
-    "бесконечным историям",
-    "бесконечных историй",
-    "бесконечных историях"
-   ],
-   "correct": "бесконечные истории",
-   "case": "Винительный (Accusative)",
-   "explain": "«бесконечные истории» — the accusative marks the direct object of the verb.",
-   "id": "c18"
   }
  ]
 }

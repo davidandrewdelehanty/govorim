@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Есть шесть дней, когда можно заниматься делами, но ___ — это суббота полного покоя, день священного собрания.",
-   "lemma": "день",
-   "options": [
-    "седьмого дня",
-    "седьмой день",
-    "седьмому дню",
-    "седьмым днём"
-   ],
-   "correct": "седьмой день",
-   "case": "Именительный (Nominative)",
-   "explain": "«седьмой день» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
    "sentence": "Есть шесть дней, когда можно заниматься делами, но седьмой день — это суббота ___, день священного собрания.",
    "lemma": "покой",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "полного покоя",
    "case": "Родительный (Genitive)",
-   "explain": "«полного покоя» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«полного покоя» depends on the noun «суббота» (whose? of what?) — genitive.",
    "id": "c3"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "священного собрания",
    "case": "Родительный (Genitive)",
-   "explain": "«священного собрания» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«священного собрания» depends on the noun «день» (whose? of what?) — genitive.",
    "id": "c4"
   },
   {
@@ -53,7 +39,7 @@
    ],
    "correct": "первого месяца",
    "case": "Родительный (Genitive)",
-   "explain": "«первого месяца» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«первого месяца» depends on the noun «день» (whose? of what?) — genitive.",
    "id": "c8"
   },
   {
@@ -67,7 +53,7 @@
    ],
    "correct": "господний праздник",
    "case": "Именительный (Nominative)",
-   "explain": "«Господний праздник» — the subject of the sentence stands in the nominative.",
+   "explain": "«господний праздник» is the subject of «начинается» — who or what does it — so nominative.",
    "id": "c10"
   },
   {
@@ -81,7 +67,7 @@
    ],
    "correct": "пресных хлебов",
    "case": "Родительный (Genitive)",
-   "explain": "«Пресных хлебов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«пресных хлебов» depends on the noun «праздник» (whose? of what?) — genitive.",
    "id": "c11"
   },
   {
@@ -95,7 +81,7 @@
    ],
    "correct": "обычных дел",
    "case": "Родительный (Genitive)",
-   "explain": "«обычных дел» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«обычных дел» — «из» always takes the genitive.",
    "id": "c13"
   },
   {
@@ -109,7 +95,7 @@
    ],
    "correct": "самого дня",
    "case": "Родительный (Genitive)",
-   "explain": "«самого дня» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«самого дня» — «до» always takes the genitive.",
    "id": "c17"
   },
   {
@@ -123,7 +109,7 @@
    ],
    "correct": "седьмой субботой",
    "case": "Творительный (Instrumental)",
-   "explain": "«седьмой субботой» — after the preposition «за», the instrumental marks the means, company, or complement.",
+   "explain": "«седьмой субботой» — «за» takes the instrumental here (где? за чем? за кем?) — the accusative would mean motion behind or 'for' (куда? за что?).",
    "id": "c22"
   },
   {
@@ -137,22 +123,8 @@
    ],
    "correct": "нового урожая",
    "case": "Родительный (Genitive)",
-   "explain": "«нового урожая» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«нового урожая» — «из» always takes the genitive.",
    "id": "c23"
-  },
-  {
-   "sentence": "Отовсюду, где бы вы ни жили, приносите Господу как приношение потрясания, как ___, два хлеба, сделанные из двух десятых частей ефы лучшей муки и испеченные с закваской.",
-   "lemma": "плод",
-   "options": [
-    "первым плодам",
-    "первых плодах",
-    "первые плоды",
-    "первых плодов"
-   ],
-   "correct": "первые плоды",
-   "case": "Именительный (Nominative)",
-   "explain": "«первые плоды» — the subject of the sentence stands in the nominative.",
-   "id": "c24"
   },
   {
    "sentence": "Отовсюду, где бы вы ни жили, приносите Господу как приношение потрясания, как первые плоды, два хлеба, сделанные из двух ___ ефы лучшей муки и испеченные с закваской.",
@@ -165,64 +137,8 @@
    ],
    "correct": "десятых частей",
    "case": "Родительный (Genitive)",
-   "explain": "«десятых частей» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«десятых частей» — «из» always takes the genitive.",
    "id": "c25"
-  },
-  {
-   "sentence": "Приносите с этим хлебом семь ___ без изъяна, одного молодого быка и двух баранов.",
-   "lemma": "ягнёнок",
-   "options": [
-    "годовалые ягнята",
-    "годовалым ягнятам",
-    "годовалыми ягнятами",
-    "годовалых ягнят"
-   ],
-   "correct": "годовалых ягнят",
-   "case": "Родительный (Genitive)",
-   "explain": "«годовалых ягнят» — the genitive here marks possession, absence, or quantity.",
-   "id": "c26"
-  },
-  {
-   "sentence": "Приносите с этим хлебом семь годовалых ягнят без изъяна, одного ___ и двух баранов.",
-   "lemma": "бык",
-   "options": [
-    "молодого быка",
-    "молодом быке",
-    "молодой бык",
-    "молодым быком"
-   ],
-   "correct": "молодого быка",
-   "case": "Винительный (Accusative)",
-   "explain": "«молодого быка» — the accusative marks the direct object of the verb.",
-   "id": "c27"
-  },
-  {
-   "sentence": "Они будут всесожжением Господу, вместе с хлебными приношениями и жертвенными возлияниями — ___, благоухание, приятное Господу.",
-   "lemma": "жертва",
-   "options": [
-    "огненная жертва",
-    "огненной жертвы",
-    "огненной жертве",
-    "огненной жертвой"
-   ],
-   "correct": "огненная жертва",
-   "case": "Именительный (Nominative)",
-   "explain": "«огненная жертва» — the subject of the sentence stands in the nominative.",
-   "id": "c28"
-  },
-  {
-   "sentence": "Приносите одного козла в жертву за грех и двух ___ в жертву примирения.",
-   "lemma": "ягнёнок",
-   "options": [
-    "годовалые ягнята",
-    "годовалым ягнятам",
-    "годовалыми ягнятами",
-    "годовалых ягнят"
-   ],
-   "correct": "годовалых ягнят",
-   "case": "Родительный (Genitive)",
-   "explain": "«годовалых ягнят» — the genitive here marks possession, absence, or quantity.",
-   "id": "c29"
   },
   {
    "sentence": "Пусть священник потрясет двух ягнят перед Господом как приношение потрясания вместе с хлебом ___.",
@@ -235,22 +151,8 @@
    ],
    "correct": "первых плодов",
    "case": "Родительный (Genitive)",
-   "explain": "«первых плодов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«первых плодов» depends on the noun «хлебом» (whose? of what?) — genitive.",
    "id": "c30"
-  },
-  {
-   "sentence": "Это ___ Господу для священника.",
-   "lemma": "приношение",
-   "options": [
-    "священного приношения",
-    "священное приношение",
-    "священным приношением",
-    "священному приношению"
-   ],
-   "correct": "священное приношение",
-   "case": "Именительный (Nominative)",
-   "explain": "«священное приношение» — the subject of the sentence stands in the nominative.",
-   "id": "c31"
   },
   {
    "sentence": "В тот же день созовите священное собрание и не занимайтесь ничем из ___.",
@@ -263,22 +165,8 @@
    ],
    "correct": "обычных дел",
    "case": "Родительный (Genitive)",
-   "explain": "«обычных дел» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«обычных дел» — «из» always takes the genitive.",
    "id": "c32"
-  },
-  {
-   "sentence": "Это ___ для грядущих поколений, где бы вы ни жили.",
-   "lemma": "установление",
-   "options": [
-    "вечное установление",
-    "вечному установлению",
-    "вечного установления",
-    "вечном установлении"
-   ],
-   "correct": "вечное установление",
-   "case": "Именительный (Nominative)",
-   "explain": "«вечное установление» — the subject of the sentence stands in the nominative.",
-   "id": "c33"
   },
   {
    "sentence": "Это вечное установление для ___, где бы вы ни жили.",
@@ -291,7 +179,7 @@
    ],
    "correct": "грядущих поколений",
    "case": "Родительный (Genitive)",
-   "explain": "«грядущих поколений» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«грядущих поколений» — «для» always takes the genitive.",
    "id": "c34"
   },
   {
@@ -305,36 +193,8 @@
    ],
    "correct": "седьмого месяца",
    "case": "Родительный (Genitive)",
-   "explain": "«седьмого месяца» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«седьмого месяца» depends on the noun «день» (whose? of what?) — genitive.",
    "id": "c41"
-  },
-  {
-   "sentence": "Это ___ для грядущих поколений, где бы вы ни жили.",
-   "lemma": "установление",
-   "options": [
-    "вечное установление",
-    "вечному установлению",
-    "вечного установления",
-    "вечном установлении"
-   ],
-   "correct": "вечное установление",
-   "case": "Именительный (Nominative)",
-   "explain": "«вечное установление» — the subject of the sentence stands in the nominative.",
-   "id": "c42"
-  },
-  {
-   "sentence": "Это вечное установление для ___, где бы вы ни жили.",
-   "lemma": "поколение",
-   "options": [
-    "грядущим поколениям",
-    "грядущих поколениях",
-    "грядущие поколения",
-    "грядущих поколений"
-   ],
-   "correct": "грядущих поколений",
-   "case": "Родительный (Genitive)",
-   "explain": "«грядущих поколений» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
-   "id": "c43"
   },
   {
    "sentence": "Для вас это суббота ___, и вы должны смирять себя.",
@@ -347,7 +207,7 @@
    ],
    "correct": "полного покоя",
    "case": "Родительный (Genitive)",
-   "explain": "«полного покоя» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«полного покоя» depends on the noun «суббота» (whose? of what?) — genitive.",
    "id": "c44"
   },
   {
@@ -361,7 +221,7 @@
    ],
    "correct": "девятого дня",
    "case": "Родительный (Genitive)",
-   "explain": "«девятого дня» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«девятого дня» depends on the noun «вечера» (whose? of what?) — genitive.",
    "id": "c45"
   },
   {
@@ -375,22 +235,8 @@
    ],
    "correct": "следующего дня",
    "case": "Родительный (Genitive)",
-   "explain": "«следующего дня» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«следующего дня» depends on the noun «вечера» (whose? of what?) — genitive.",
    "id": "c46"
-  },
-  {
-   "sentence": "Первый день — это ___; не занимайтесь ничем из обычных дел.",
-   "lemma": "собрание",
-   "options": [
-    "священное собрание",
-    "священному собранию",
-    "священного собрания",
-    "священном собрании"
-   ],
-   "correct": "священное собрание",
-   "case": "Именительный (Nominative)",
-   "explain": "«священное собрание» — the subject of the sentence stands in the nominative.",
-   "id": "c50"
   },
   {
    "sentence": "Первый день — это священное собрание; не занимайтесь ничем из ___.",
@@ -403,36 +249,8 @@
    ],
    "correct": "обычных дел",
    "case": "Родительный (Genitive)",
-   "explain": "«обычных дел» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«обычных дел» — «из» always takes the genitive.",
    "id": "c51"
-  },
-  {
-   "sentence": "Семь дней приносите Господу огненные жертвы, а на восьмой — созывайте ___ и приносите Господу огненную жертву.",
-   "lemma": "собрание",
-   "options": [
-    "священное собрание",
-    "священному собранию",
-    "священного собрания",
-    "священном собрании"
-   ],
-   "correct": "священное собрание",
-   "case": "Именительный (Nominative)",
-   "explain": "«священное собрание» — the subject of the sentence stands in the nominative.",
-   "id": "c52"
-  },
-  {
-   "sentence": "Это последнее ___; не занимайтесь ничем из обычных дел.",
-   "lemma": "собрание",
-   "options": [
-    "праздничному собранию",
-    "праздничным собранием",
-    "праздничного собрания",
-    "праздничное собрание"
-   ],
-   "correct": "праздничное собрание",
-   "case": "Именительный (Nominative)",
-   "explain": "«праздничное собрание» — the subject of the sentence stands in the nominative.",
-   "id": "c53"
   },
   {
    "sentence": "Это последнее праздничное собрание; не занимайтесь ничем из ___.",
@@ -445,50 +263,8 @@
    ],
    "correct": "обычных дел",
    "case": "Родительный (Genitive)",
-   "explain": "«обычных дел» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«обычных дел» — «из» always takes the genitive.",
    "id": "c54"
-  },
-  {
-   "sentence": "Таковы постоянные ___, когда вы должны созывать священные собрания, чтобы приносить Господу огненные жертвы — всесожжения с хлебными приношениями и жертвы с возлиянием, каждую в свой день.",
-   "lemma": "праздник",
-   "options": [
-    "господних праздниках",
-    "господним праздникам",
-    "господних праздников",
-    "господни праздники"
-   ],
-   "correct": "господни праздники",
-   "case": "Именительный (Nominative)",
-   "explain": "«Господни праздники» — the subject of the sentence stands in the nominative.",
-   "id": "c55"
-  },
-  {
-   "sentence": "Таковы постоянные Господни праздники, когда вы должны созывать ___, чтобы приносить Господу огненные жертвы — всесожжения с хлебными приношениями и жертвы с возлиянием, каждую в свой день.",
-   "lemma": "собрание",
-   "options": [
-    "священные собрания",
-    "священных собраний",
-    "священными собраниями",
-    "священным собраниям"
-   ],
-   "correct": "священные собрания",
-   "case": "Винительный (Accusative)",
-   "explain": "«священные собрания» — the accusative marks the direct object of the verb.",
-   "id": "c56"
-  },
-  {
-   "sentence": "Эти праздники не входят в число Господних суббот, а эти приношения в число ваших даров, всех жертв по обету и ___, которые вы даете Господу.",
-   "lemma": "приношение",
-   "options": [
-    "добровольных приношений",
-    "добровольные приношения",
-    "добровольных приношениях",
-    "добровольным приношениям"
-   ],
-   "correct": "добровольных приношений",
-   "case": "Родительный (Genitive)",
-   "explain": "«добровольных приношений» — the genitive here marks possession, absence, or quantity.",
-   "id": "c57"
   },
   {
    "sentence": "Итак, начиная с пятнадцатого дня ___, собрав с земли урожай, семь дней отмечайте праздник в честь Господа.",
@@ -501,7 +277,7 @@
    ],
    "correct": "седьмого месяца",
    "case": "Родительный (Genitive)",
-   "explain": "«седьмого месяца» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«седьмого месяца» depends on the noun «дня» (whose? of what?) — genitive.",
    "id": "c58"
   },
   {
@@ -515,36 +291,8 @@
    ],
    "correct": "праздничного покоя",
    "case": "Родительный (Genitive)",
-   "explain": "«праздничного покоя» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«праздничного покоя» depends on the noun «день» (whose? of what?) — genitive.",
    "id": "c59"
-  },
-  {
-   "sentence": "Первый день — это день праздничного покоя, и ___ — день праздничного покоя.",
-   "lemma": "день",
-   "options": [
-    "восьмому дню",
-    "восьмом дне",
-    "восьмым днём",
-    "восьмой день"
-   ],
-   "correct": "восьмой день",
-   "case": "Винительный (Accusative)",
-   "explain": "«восьмой день» — the accusative marks the direct object of the verb.",
-   "id": "c60"
-  },
-  {
-   "sentence": "Первый день — это день ___, и восьмой день — день праздничного покоя.",
-   "lemma": "покой",
-   "options": [
-    "праздничного покоя",
-    "праздничным покоем",
-    "праздничном покое",
-    "праздничный покой"
-   ],
-   "correct": "праздничного покоя",
-   "case": "Родительный (Genitive)",
-   "explain": "«праздничного покоя» — the genitive here marks possession, absence, or quantity.",
-   "id": "c61"
   },
   {
    "sentence": "В первый день возьмите лучшие плоды с деревьев и пальмовые ветви, ветви ___ и речных ив и веселитесь перед Господом, вашим Богом, семь дней.",
@@ -557,22 +305,8 @@
    ],
    "correct": "лиственных деревьев",
    "case": "Родительный (Genitive)",
-   "explain": "«лиственных деревьев» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«лиственных деревьев» depends on the noun «ветви» (whose? of what?) — genitive.",
    "id": "c63"
-  },
-  {
-   "sentence": "В первый день возьмите лучшие плоды с деревьев и пальмовые ветви, ветви лиственных деревьев и ___ и веселитесь перед Господом, вашим Богом, семь дней.",
-   "lemma": "ива",
-   "options": [
-    "речных ив",
-    "речным ивам",
-    "речные ивы",
-    "речными ивами"
-   ],
-   "correct": "речных ив",
-   "case": "Родительный (Genitive)",
-   "explain": "«речных ив» — the genitive here marks possession, absence, or quantity.",
-   "id": "c64"
   },
   {
    "sentence": "Это установление для ___ будет вечным.",
@@ -585,7 +319,7 @@
    ],
    "correct": "грядущих поколений",
    "case": "Родительный (Genitive)",
-   "explain": "«грядущих поколений» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«грядущих поколений» — «для» always takes the genitive.",
    "id": "c65"
   },
   {
@@ -599,7 +333,7 @@
    ],
    "correct": "постоянных праздниках",
    "case": "Предложный (Prepositional)",
-   "explain": "«постоянных праздниках» — after the preposition «о», for location or topic.",
+   "explain": "«постоянных праздниках» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c67"
   }
  ]

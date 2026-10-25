@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Дня три кряду моё внимание привлекала эта коренастая, ___ и лицо восточного типа, обрамлённое красивой бородкой.",
-   "lemma": "фигура",
-   "options": [
-    "плотной фигурой",
-    "плотной фигуры",
-    "плотная фигура",
-    "плотной фигуре"
-   ],
-   "correct": "плотная фигура",
-   "case": "Именительный (Nominative)",
-   "explain": "«плотная фигура» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Дня три кряду моё внимание привлекала эта коренастая, плотная фигура и лицо ___, обрамлённое красивой бородкой.",
    "lemma": "тип",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "восточного типа",
    "case": "Родительный (Genitive)",
-   "explain": "«восточного типа» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«восточного типа» depends on the noun «лицо» (whose? of what?) — genitive.",
    "id": "c2"
   },
   {
@@ -39,22 +25,8 @@
    ],
    "correct": "красивой бородкой",
    "case": "Творительный (Instrumental)",
-   "explain": "«красивой бородкой» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «обрамлённое», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c3"
-  },
-  {
-   "sentence": "Он же, как бы нарочно поддразнивая меня, всё чаще и чаще попадался мне на глаза, и, наконец, я привык различать издали его модный, клетчатый, ___ и чёрную шляпу, его ленивую походку и тупой, скучный взгляд.",
-   "lemma": "костюм",
-   "options": [
-    "светлым костюмом",
-    "светлого костюма",
-    "светлый костюм",
-    "светлому костюму"
-   ],
-   "correct": "светлый костюм",
-   "case": "Винительный (Accusative)",
-   "explain": "«светлый костюм» — the accusative marks the direct object of the verb.",
-   "id": "c4"
   },
   {
    "sentence": "Среди ___ медленно расхаживала эта странная фигура с мертвенно-скучным лицом, равнодушная ко всему, всем чужая.",
@@ -67,7 +39,7 @@
    ],
    "correct": "трудовой сутолоки",
    "case": "Родительный (Genitive)",
-   "explain": "«трудовой сутолоки» — after the preposition «среди», the genitive here marks possession, absence, or quantity.",
+   "explain": "«трудовой сутолоки» — «среди» always takes the genitive.",
    "id": "c5"
   },
   {
@@ -81,7 +53,7 @@
    ],
    "correct": "странная фигура",
    "case": "Именительный (Nominative)",
-   "explain": "«странная фигура» — the subject of the sentence stands in the nominative.",
+   "explain": "«странная фигура» is the subject of «расхаживала» — who or what does it — so nominative.",
    "id": "c6"
   },
   {
@@ -95,7 +67,7 @@
    ],
    "correct": "четвёртый день",
    "case": "Винительный (Accusative)",
-   "explain": "«четвёртый день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«четвёртый день» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c8"
   },
   {
@@ -109,7 +81,7 @@
    ],
    "correct": "пшеничного хлеба",
    "case": "Родительный (Genitive)",
-   "explain": "«пшеничного хлеба» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«пшеничного хлеба» depends on the noun «кусок» (whose? of what?) — genitive.",
    "id": "c9"
   },
   {
@@ -123,7 +95,7 @@
    ],
    "correct": "широкой улыбки",
    "case": "Родительный (Genitive)",
-   "explain": "«широкой улыбки» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«широкой улыбки» — «от» always takes the genitive.",
    "id": "c10"
   },
   {
@@ -137,22 +109,8 @@
    ],
    "correct": "посторонних взглядов",
    "case": "Родительный (Genitive)",
-   "explain": "«посторонних взглядов» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«посторонних взглядов» — «от» always takes the genitive.",
    "id": "c11"
-  },
-  {
-   "sentence": "Грузин, князь Шакро Птадзе, один сын у отца, богатого ___, он служил конторщиком на одной из станций Закавказской железной дороги и жил вместе с товарищем.",
-   "lemma": "помещик",
-   "options": [
-    "кутаисский помещик",
-    "кутаисским помещиком",
-    "кутаисском помещике",
-    "кутаисского помещика"
-   ],
-   "correct": "кутаисского помещика",
-   "case": "Родительный (Genitive)",
-   "explain": "«кутаисского помещика» — the genitive here marks possession, absence, or quantity.",
-   "id": "c12"
   },
   {
    "sentence": "Грузин, князь Шакро Птадзе, один сын у отца, богатого кутаисского помещика, он служил конторщиком на одной из станций Закавказской ___ и жил вместе с товарищем.",
@@ -165,22 +123,8 @@
    ],
    "correct": "железной дороги",
    "case": "Родительный (Genitive)",
-   "explain": "«железной дороги» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«железной дороги» depends on the noun «станций» (whose? of what?) — genitive.",
    "id": "c13"
-  },
-  {
-   "sentence": "Тут он заявил полиции о краже, ему обещали найти, он ждал две недели, проел все свои деньги и вот уже ___ не ел ни крошки.",
-   "lemma": "сутки",
-   "options": [
-    "вторых сутках",
-    "вторых суток",
-    "вторые сутки",
-    "вторым суткам"
-   ],
-   "correct": "вторые сутки",
-   "case": "Винительный (Accusative)",
-   "explain": "«вторые сутки» — the accusative marks the direct object of the verb.",
-   "id": "c14"
   },
   {
    "sentence": "Я слушал его рассказ, перемешанный с ругательствами, смотрел на него, верил ему, и мне было жалко мальчика, — ему шёл ___, а по наивности можно было дать ещё меньше.",
@@ -193,7 +137,7 @@
    ],
    "correct": "двадцатый год",
    "case": "Именительный (Nominative)",
-   "explain": "«двадцатый год» — the subject of the sentence stands in the nominative.",
+   "explain": "«двадцатый год» is the subject of «шёл» — who or what does it — so nominative.",
    "id": "c15"
   },
   {
@@ -207,22 +151,8 @@
    ],
    "correct": "крепкой дружбе",
    "case": "Предложный (Prepositional)",
-   "explain": "«крепкой дружбе» — after the preposition «о», for location or topic.",
+   "explain": "«крепкой дружбе» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c17"
-  },
-  {
-   "sentence": "Часто и с глубоким негодованием он упоминал о крепкой дружбе, связывавшей его с вором-товарищем, укравшим такие вещи, за которые ___ Шакро наверное «зарэжет» сына «кынжалом», если сын не найдёт их.",
-   "lemma": "отец",
-   "options": [
-    "суровым отцом",
-    "суровый отец",
-    "суровому отцу",
-    "суровом отце"
-   ],
-   "correct": "суровый отец",
-   "case": "Именительный (Nominative)",
-   "explain": "«суровый отец» — the subject of the sentence stands in the nominative.",
-   "id": "c18"
   },
   {
    "sentence": "Я подумал, что, если не помочь этому малому, ___ засосёт его.",
@@ -235,7 +165,7 @@
    ],
    "correct": "жадный город",
    "case": "Именительный (Nominative)",
-   "explain": "«жадный город» — the subject of the sentence stands in the nominative.",
+   "explain": "«жадный город» is the subject of «засосёт» — who or what does it — so nominative.",
    "id": "c19"
   },
   {
@@ -244,12 +174,12 @@
    "options": [
     "щегольским ботинкам",
     "щегольские ботинки",
-    "щегольских ботинках",
+    "щегольскими ботинками",
     "щегольских ботинок"
    ],
    "correct": "щегольские ботинки",
    "case": "Винительный (Accusative)",
-   "explain": "«щегольские ботинки» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«щегольские ботинки» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c20"
   }
  ]

@@ -11,7 +11,7 @@
    ],
    "correct": "японского моря",
    "case": "Родительный (Genitive)",
-   "explain": "«Японского моря» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«японского моря» — «из» always takes the genitive.",
    "id": "c1"
   },
   {
@@ -25,7 +25,7 @@
    ],
    "correct": "следующий день",
    "case": "Винительный (Accusative)",
-   "explain": "«следующий день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«следующий день» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c2"
   },
   {
@@ -39,36 +39,22 @@
    ],
    "correct": "оманскому заливу",
    "case": "Дательный (Dative)",
-   "explain": "«Оманскому заливу» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«оманскому заливу» — «к» always takes the dative.",
    "id": "c3"
   },
   {
    "sentence": "«Наутилус» направлялся на север-северо-запад, к Оманскому заливу, который находится между Аравией и Индийским полуостровом и служит входом в ___.",
    "lemma": "залив",
    "options": [
+    "персидский залив",
     "персидскому заливу",
     "персидским заливом",
-    "персидском заливе",
-    "персидский залив"
+    "персидского залива"
    ],
    "correct": "персидский залив",
    "case": "Винительный (Accusative)",
-   "explain": "«Персидский залив» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«персидский залив» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c4"
-  },
-  {
-   "sentence": "А впрочем, не дальше ___, если мы туда войдем, так скоро повернем обратно!",
-   "lemma": "залив",
-   "options": [
-    "персидского залива",
-    "персидскому заливу",
-    "персидском заливе",
-    "персидским заливом"
-   ],
-   "correct": "персидского залива",
-   "case": "Родительный (Genitive)",
-   "explain": "«Персидского залива» — the genitive here marks possession, absence, or quantity.",
-   "id": "c5"
   },
   {
    "sentence": "А если из ___ «Наутилус» пойдет в Красное море, так к его услугам Баб-эль-Мандебский пролив, — отвечал я.",
@@ -81,91 +67,63 @@
    ],
    "correct": "персидского залива",
    "case": "Родительный (Genitive)",
-   "explain": "«Персидского залива» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«персидского залива» — «из» always takes the genitive.",
    "id": "c6"
-  },
-  {
-   "sentence": "— Позвольте, профессор, — горячо возразил Нед Ленд, — ведь ___, как и Персидский залив, не имеет другого выхода!",
-   "lemma": "море",
-   "options": [
-    "красному морю",
-    "красное море",
-    "красного моря",
-    "красным морем"
-   ],
-   "correct": "красное море",
-   "case": "Именительный (Nominative)",
-   "explain": "«Красное море» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
   },
   {
    "sentence": "— Позвольте, профессор, — горячо возразил Нед Ленд, — ведь Красное море, как и Персидский залив, не имеет ___!",
    "lemma": "выход",
    "options": [
-    "другому выходу",
-    "другого выхода",
     "другим выходом",
-    "другой выход"
+    "другом выходе",
+    "другому выходу",
+    "другого выхода"
    ],
    "correct": "другого выхода",
    "case": "Родительный (Genitive)",
-   "explain": "«другого выхода» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«другого выхода» is the object of a negated verb («не имеет») — genitive instead of the accusative.",
    "id": "c8"
-  },
-  {
-   "sentence": "Да и будь он прорыт, так такое ___, как «Наутилус», не пойдет по каналам, где на каждом шагу все шлюзы и шлюзы.",
-   "lemma": "судно",
-   "options": [
-    "секретному судну",
-    "секретного судна",
-    "секретное судно",
-    "секретном судне"
-   ],
-   "correct": "секретное судно",
-   "case": "Именительный (Nominative)",
-   "explain": "«секретное судно» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
   },
   {
    "sentence": "Значит, ___ не приведет нас в Европу!",
    "lemma": "море",
    "options": [
-    "красному морю",
     "красное море",
-    "красного моря",
-    "красным морем"
+    "красном море",
+    "красным морем",
+    "красному морю"
    ],
    "correct": "красное море",
    "case": "Именительный (Nominative)",
-   "explain": "«Красное море» — the subject of the sentence stands in the nominative.",
+   "explain": "«красное море» is the subject of «приведет» — who or what does it — so nominative.",
    "id": "c10"
   },
   {
    "sentence": "— Я думаю, что «Наутилус» посетит ___ Аравии и Египта, спустится по Индийскому океану, может, через Мозамбикский пролив, может, мимо Маскаренских островов и достигнет мыса Доброй Надежды.",
    "lemma": "берег",
    "options": [
+    "любопытными берегами",
+    "любопытным берегам",
     "любопытных берегах",
-    "любопытных берегов",
-    "любопытные берега",
-    "любопытными берегами"
+    "любопытные берега"
    ],
    "correct": "любопытные берега",
    "case": "Винительный (Accusative)",
-   "explain": "«любопытные берега» — the accusative marks the direct object of the verb.",
+   "explain": "«любопытные берега» is the direct object of «посетит» (кого? что?) — accusative.",
    "id": "c11"
   },
   {
    "sentence": "— Я думаю, что «Наутилус» посетит любопытные берега Аравии и Египта, спустится по ___, может, через Мозамбикский пролив, может, мимо Маскаренских островов и достигнет мыса Доброй Надежды.",
    "lemma": "океан",
    "options": [
-    "индийского океана",
-    "индийским океаном",
     "индийскому океану",
-    "индийский океан"
+    "индийским океаном",
+    "индийском океане",
+    "индийского океана"
    ],
    "correct": "индийскому океану",
    "case": "Дательный (Dative)",
-   "explain": "«Индийскому океану» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«индийскому океану» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c12"
   },
   {
@@ -179,35 +137,21 @@
    ],
    "correct": "мозамбикский пролив",
    "case": "Винительный (Accusative)",
-   "explain": "«Мозамбикский пролив» — after the preposition «через», the accusative marks the direct object of the verb.",
+   "explain": "«мозамбикский пролив» — «через» always takes the accusative.",
    "id": "c13"
-  },
-  {
-   "sentence": "— Я думаю, что «Наутилус» посетит любопытные берега Аравии и Египта, спустится по Индийскому океану, может, через Мозамбикский пролив, может, мимо ___ и достигнет мыса Доброй Надежды.",
-   "lemma": "остров",
-   "options": [
-    "маскаренским островам",
-    "маскаренские острова",
-    "маскаренских островов",
-    "маскаренских островах"
-   ],
-   "correct": "маскаренских островов",
-   "case": "Родительный (Genitive)",
-   "explain": "«Маскаренских островов» — after the preposition «мимо», the genitive here marks possession, absence, or quantity.",
-   "id": "c14"
   },
   {
    "sentence": "— А тогда мы, может быть, выйдем в ___.",
    "lemma": "океан",
    "options": [
-    "атлантическому океану",
+    "атлантическим океаном",
+    "атлантического океана",
     "атлантический океан",
-    "атлантическом океане",
-    "атлантическим океаном"
+    "атлантическому океану"
    ],
    "correct": "атлантический океан",
    "case": "Винительный (Accusative)",
-   "explain": "«Атлантический океан» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«атлантический океан» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c15"
   },
   {
@@ -221,7 +165,7 @@
    ],
    "correct": "подводное путешествие",
    "case": "Именительный (Nominative)",
-   "explain": "«подводное путешествие» — the subject of the sentence stands in the nominative.",
+   "explain": "«подводное путешествие» is the subject of «надоело» — who or what does it — so nominative.",
    "id": "c16"
   },
   {
@@ -235,7 +179,7 @@
    ],
    "correct": "оманскому заливу",
    "case": "Дательный (Dative)",
-   "explain": "«Оманскому заливу» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«оманскому заливу» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c17"
   },
   {
@@ -249,7 +193,7 @@
    ],
    "correct": "различной глубине",
    "case": "Предложный (Prepositional)",
-   "explain": "«различной глубине» — after the preposition «на», for location or topic.",
+   "explain": "«различной глубине» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c18"
   },
   {
@@ -263,22 +207,8 @@
    ],
    "correct": "оманского залива",
    "case": "Родительный (Genitive)",
-   "explain": "«Оманского залива» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«оманского залива» — «из» always takes the genitive.",
    "id": "c19"
-  },
-  {
-   "sentence": "Выходя из Оманского залива, мы увидели Маскат, ___ Омана.",
-   "lemma": "город",
-   "options": [
-    "главного города",
-    "главному городу",
-    "главным городом",
-    "главный город"
-   ],
-   "correct": "главный город",
-   "case": "Именительный (Nominative)",
-   "explain": "«главный город» — the subject of the sentence stands in the nominative.",
-   "id": "c20"
   },
   {
    "sentence": "Город этот построен среди черных скал, на их фоне резко выделялись ___ и крепость.",
@@ -291,7 +221,7 @@
    ],
    "correct": "белые дома",
    "case": "Именительный (Nominative)",
-   "explain": "«белые дома» — the subject of the sentence stands in the nominative.",
+   "explain": "«белые дома» is the subject of «выделялись» — who or what does it — so nominative.",
    "id": "c21"
   },
   {
@@ -305,7 +235,7 @@
    ],
    "correct": "выпуклые купола",
    "case": "Винительный (Accusative)",
-   "explain": "«выпуклые купола» — the accusative marks the direct object of the verb.",
+   "explain": "«выпуклые купола» is the direct object of «различил» (кого? что?) — accusative.",
    "id": "c22"
   },
   {
@@ -319,7 +249,7 @@
    ],
    "correct": "самому морю",
    "case": "Дательный (Dative)",
-   "explain": "«самому морю» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«самому морю» — «к» always takes the dative.",
    "id": "c23"
   },
   {
@@ -333,7 +263,7 @@
    ],
    "correct": "древних храмов",
    "case": "Родительный (Genitive)",
-   "explain": "«древних храмов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«древних храмов» depends on the noun «развалины» (whose? of what?) — genitive.",
    "id": "c24"
   },
   {
@@ -347,7 +277,7 @@
    ],
    "correct": "баб-эль-мандебского пролива",
    "case": "Родительный (Genitive)",
-   "explain": "«Баб-эль-Мандебского пролива» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«баб-эль-мандебского пролива» depends on the noun «горлышко» (whose? of what?) — genitive.",
    "id": "c25"
   },
   {
@@ -361,7 +291,7 @@
    ],
    "correct": "индийского океана",
    "case": "Родительный (Genitive)",
-   "explain": "«Индийского океана» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«индийского океана» depends on the noun «воды» (whose? of what?) — genitive.",
    "id": "c26"
   },
   {
@@ -375,50 +305,22 @@
    ],
    "correct": "красного моря",
    "case": "Родительный (Genitive)",
-   "explain": "«Красного моря» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«красного моря» depends on the noun «воды» (whose? of what?) — genitive.",
    "id": "c27"
-  },
-  {
-   "sentence": "Город Аден гнездится на скале, далеко выдающейся в море и соединенной с континентом ___, как настоящий аравийский Гибралтар.",
-   "lemma": "перешеек",
-   "options": [
-    "узкий перешеек",
-    "узкого перешейка",
-    "узком перешейке",
-    "узким перешейком"
-   ],
-   "correct": "узким перешейком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«узким перешейком» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c28"
   },
   {
    "sentence": "Я различил ___ и вспомнил, что когда-то, если верить историку Эдризи, этот город был самым оживленным и богатым торговым пунктом на побережье.",
    "lemma": "минарет",
    "options": [
-    "восьмиугольных минаретах",
-    "восьмиугольные минареты",
     "восьмиугольным минаретам",
-    "восьмиугольных минаретов"
+    "восьмиугольные минареты",
+    "восьмиугольных минаретах",
+    "восьмиугольными минаретами"
    ],
    "correct": "восьмиугольные минареты",
    "case": "Винительный (Accusative)",
-   "explain": "«восьмиугольные минареты» — the accusative marks the direct object of the verb.",
+   "explain": "«восьмиугольные минареты» is the direct object of «различил» (кого? что?) — accusative.",
    "id": "c29"
-  },
-  {
-   "sentence": "Я различил восьмиугольные минареты и вспомнил, что когда-то, если верить историку Эдризи, этот город был самым оживленным и богатым ___ на побережье.",
-   "lemma": "пункт",
-   "options": [
-    "торгового пункта",
-    "торговым пунктом",
-    "торговом пункте",
-    "торговый пункт"
-   ],
-   "correct": "торговым пунктом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«торговым пунктом» — the instrumental marks the means, company, or complement.",
-   "id": "c30"
   },
   {
    "sentence": "На ___, 7 февраля, мы вошли в пролив Баб-эль-Мандеб, что значит на арабском языке «Врата слез».",
@@ -431,7 +333,7 @@
    ],
    "correct": "следующий день",
    "case": "Винительный (Accusative)",
-   "explain": "«следующий день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«следующий день» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c31"
   },
   {
@@ -439,13 +341,13 @@
    "lemma": "язык",
    "options": [
     "арабскому языку",
+    "арабского языка",
     "арабском языке",
-    "арабский язык",
-    "арабского языка"
+    "арабским языком"
    ],
    "correct": "арабском языке",
    "case": "Предложный (Prepositional)",
-   "explain": "«арабском языке» — after the preposition «на», for location or topic.",
+   "explain": "«арабском языке» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c32"
   },
   {
@@ -459,21 +361,21 @@
    ],
    "correct": "красного моря",
    "case": "Родительный (Genitive)",
-   "explain": "«Красного моря» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«красного моря» depends on the noun «воды» (whose? of what?) — genitive.",
    "id": "c33"
   },
   {
    "sentence": "Красное море, о котором так часто упоминается в ___, вот оно!",
    "lemma": "предание",
    "options": [
-    "библейских преданий",
-    "библейские предания",
+    "библейскими преданиями",
     "библейским преданиям",
-    "библейских преданиях"
+    "библейских преданиях",
+    "библейских преданий"
    ],
    "correct": "библейских преданиях",
    "case": "Предложный (Prepositional)",
-   "explain": "«библейских преданиях» — after the preposition «в», for location or topic.",
+   "explain": "«библейских преданиях» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c34"
   },
   {
@@ -487,64 +389,8 @@
    ],
    "correct": "красное море",
    "case": "Именительный (Nominative)",
-   "explain": "«Красное море» — the subject of the sentence stands in the nominative.",
+   "explain": "«красное море» is the subject of «имеет» — who or what does it — so nominative.",
    "id": "c35"
-  },
-  {
-   "sentence": "Во времена Птолемеев и ___ оно было, по выражению одного ученого, «главной артерией всемирной торговли».",
-   "lemma": "император",
-   "options": [
-    "римские императоры",
-    "римских императорах",
-    "римских императоров",
-    "римским императорам"
-   ],
-   "correct": "римских императоров",
-   "case": "Родительный (Genitive)",
-   "explain": "«римских императоров» — the genitive here marks possession, absence, or quantity.",
-   "id": "c36"
-  },
-  {
-   "sentence": "Во времена Птолемеев и римских императоров оно было, по выражению одного ученого, «главной артерией ___».",
-   "lemma": "торговля",
-   "options": [
-    "всемирной торговле",
-    "всемирной торговли",
-    "всемирная торговля",
-    "всемирной торговлей"
-   ],
-   "correct": "всемирной торговли",
-   "case": "Родительный (Genitive)",
-   "explain": "«всемирной торговли» — the genitive here marks possession, absence, or quantity.",
-   "id": "c37"
-  },
-  {
-   "sentence": "Возможно, открытие ___ вернет ему его прежнее значение.",
-   "lemma": "канал",
-   "options": [
-    "суэцким каналом",
-    "суэцкого канала",
-    "суэцкому каналу",
-    "суэцком канале"
-   ],
-   "correct": "суэцкого канала",
-   "case": "Родительный (Genitive)",
-   "explain": "«Суэцкого канала» — the genitive here marks possession, absence, or quantity.",
-   "id": "c38"
-  },
-  {
-   "sentence": "Суэцкие ___ уже отчасти сделали это.",
-   "lemma": "дорога",
-   "options": [
-    "железных дорогах",
-    "железные дороги",
-    "железных дорог",
-    "железным дорогам"
-   ],
-   "correct": "железные дороги",
-   "case": "Именительный (Nominative)",
-   "explain": "«железные дороги» — the subject of the sentence stands in the nominative.",
-   "id": "c39"
   },
   {
    "sentence": "Город этот теперь разорен — говорят, стены его рушатся от одного звука ___.",
@@ -557,7 +403,7 @@
    ],
    "correct": "пушечного выстрела",
    "case": "Родительный (Genitive)",
-   "explain": "«пушечного выстрела» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«пушечного выстрела» depends on the noun «звука» (whose? of what?) — genitive.",
    "id": "c40"
   },
   {
@@ -571,7 +417,7 @@
    ],
    "correct": "финиковые пальмы",
    "case": "Именительный (Nominative)",
-   "explain": "«финиковые пальмы» — the subject of the sentence stands in the nominative.",
+   "explain": "«финиковые пальмы» is the subject of «росли» — who or what does it — so nominative.",
    "id": "c41"
   },
   {
@@ -585,78 +431,8 @@
    ],
    "correct": "восточных берегов",
    "case": "Родительный (Genitive)",
-   "explain": "«восточных берегов» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«восточных берегов» — «у» always takes the genitive.",
    "id": "c42"
-  },
-  {
-   "sentence": "Здесь не только под волнами красовались самые ___, но они образовывали живописные гирлянды и над поверхностью моря, возвышаясь саженей на десять.",
-   "lemma": "зоофит",
-   "options": [
-    "редких зоофитов",
-    "редкие зоофиты",
-    "редких зоофитах",
-    "редкими зоофитами"
-   ],
-   "correct": "редкие зоофиты",
-   "case": "Именительный (Nominative)",
-   "explain": "«редкие зоофиты» — the subject of the sentence stands in the nominative.",
-   "id": "c43"
-  },
-  {
-   "sentence": "Здесь не только под волнами красовались самые редкие зоофиты, но они образовывали ___ и над поверхностью моря, возвышаясь саженей на десять.",
-   "lemma": "гирлянда",
-   "options": [
-    "живописные гирлянды",
-    "живописным гирляндам",
-    "живописных гирлянд",
-    "живописными гирляндами"
-   ],
-   "correct": "живописные гирлянды",
-   "case": "Винительный (Accusative)",
-   "explain": "«живописные гирлянды» — the accusative marks the direct object of the verb.",
-   "id": "c44"
-  },
-  {
-   "sentence": "Сколько ___ я провел у иллюминатора!",
-   "lemma": "час",
-   "options": [
-    "приятные часы",
-    "приятных часов",
-    "приятными часами",
-    "приятным часам"
-   ],
-   "correct": "приятных часов",
-   "case": "Родительный (Genitive)",
-   "explain": "«приятных часов» — the genitive here marks possession, absence, or quantity.",
-   "id": "c45"
-  },
-  {
-   "sentence": "Сколько ___ подводных флоры и фауны я видел при свете прожектора!",
-   "lemma": "образец",
-   "options": [
-    "новых образцов",
-    "новых образцах",
-    "новые образцы",
-    "новым образцам"
-   ],
-   "correct": "новых образцов",
-   "case": "Родительный (Genitive)",
-   "explain": "«новых образцов» — the genitive here marks possession, absence, or quantity.",
-   "id": "c46"
-  },
-  {
-   "sentence": "Тут были и ___, актинии аспидного цвета, восьмилучевые кораллы, похожие на флейты, мадрепоровые кораллы, свойственные этому морю, наконец, тысячи видов морской губки.",
-   "lemma": "коралл",
-   "options": [
-    "грибовидные кораллы",
-    "грибовидных кораллах",
-    "грибовидными кораллами",
-    "грибовидных кораллов"
-   ],
-   "correct": "грибовидные кораллы",
-   "case": "Именительный (Nominative)",
-   "explain": "«грибовидные кораллы» — the subject of the sentence stands in the nominative.",
-   "id": "c47"
   },
   {
    "sentence": "Тут были и грибовидные кораллы, актинии аспидного цвета, восьмилучевые кораллы, похожие на флейты, мадрепоровые кораллы, свойственные этому морю, наконец, тысячи видов ___.",
@@ -669,7 +445,7 @@
    ],
    "correct": "морской губки",
    "case": "Родительный (Genitive)",
-   "explain": "«морской губки» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«морской губки» depends on the noun «видов» (whose? of what?) — genitive.",
    "id": "c48"
   },
   {
@@ -683,7 +459,7 @@
    ],
    "correct": "примитивного типа",
    "case": "Родительный (Genitive)",
-   "explain": "«примитивного типа» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«примитивного типа» depends on the noun «животное» (whose? of what?) — genitive.",
    "id": "c49"
   },
   {
@@ -697,7 +473,7 @@
    ],
    "correct": "микроскопических организмов",
    "case": "Родительный (Genitive)",
-   "explain": "«микроскопических организмов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«микроскопических организмов» depends on the noun «колонией» (whose? of what?) — genitive.",
    "id": "c50"
   },
   {
@@ -711,22 +487,8 @@
    ],
    "correct": "пресноводные губки",
    "case": "Именительный (Nominative)",
-   "explain": "«пресноводные губки» — the subject of the sentence stands in the nominative.",
+   "explain": "«пресноводные губки» is the subject of «попадаются» — who or what does it — so nominative.",
    "id": "c51"
-  },
-  {
-   "sentence": "Но ___ они водятся в водах Средиземного моря, около греческого архипелага, у берегов Сирии и Красного моря.",
-   "lemma": "образ",
-   "options": [
-    "главный образ",
-    "главным образом",
-    "главному образу",
-    "главном образе"
-   ],
-   "correct": "главным образом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«главным образом» — the instrumental marks the means, company, or complement.",
-   "id": "c52"
   },
   {
    "sentence": "Но главным образом они водятся в водах ___, около греческого архипелага, у берегов Сирии и Красного моря.",
@@ -739,7 +501,7 @@
    ],
    "correct": "средиземного моря",
    "case": "Родительный (Genitive)",
-   "explain": "«Средиземного моря» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«средиземного моря» depends on the noun «водах» (whose? of what?) — genitive.",
    "id": "c53"
   },
   {
@@ -753,22 +515,8 @@
    ],
    "correct": "греческого архипелага",
    "case": "Родительный (Genitive)",
-   "explain": "«греческого архипелага» — after the preposition «около», the genitive here marks possession, absence, or quantity.",
+   "explain": "«греческого архипелага» — «около» always takes the genitive.",
    "id": "c54"
-  },
-  {
-   "sentence": "Но главным образом они водятся в водах Средиземного моря, около греческого архипелага, у берегов Сирии и ___.",
-   "lemma": "море",
-   "options": [
-    "красному морю",
-    "красным морем",
-    "красного моря",
-    "красное море"
-   ],
-   "correct": "красного моря",
-   "case": "Родительный (Genitive)",
-   "explain": "«Красного моря» — the genitive here marks possession, absence, or quantity.",
-   "id": "c55"
   },
   {
    "sentence": "Там добываются мягкие нежные ___, которые иногда продаются по сто пятьдесят франков за штуку: сирийская губка, твердая берберийская и др.",
@@ -781,22 +529,8 @@
    ],
    "correct": "туалетные губки",
    "case": "Именительный (Nominative)",
-   "explain": "«туалетные губки» — the subject of the sentence stands in the nominative.",
+   "explain": "«туалетные губки» is the subject of «добываются» — who or what does it — so nominative.",
    "id": "c56"
-  },
-  {
-   "sentence": "Там добываются мягкие нежные туалетные губки, которые иногда продаются по сто пятьдесят франков за штуку: ___, твердая берберийская и др.",
-   "lemma": "губка",
-   "options": [
-    "сирийской губке",
-    "сирийской губкой",
-    "сирийской губки",
-    "сирийская губка"
-   ],
-   "correct": "сирийская губка",
-   "case": "Именительный (Nominative)",
-   "explain": "«сирийская губка» — the subject of the sentence stands in the nominative.",
-   "id": "c57"
   },
   {
    "sentence": "Я не мог изучать зоофитов Леванта, от которого мы были отделены ___, и утешался тем, что наблюдал их в водах Красного моря.",
@@ -809,7 +543,7 @@
    ],
    "correct": "суэцким перешейком",
    "case": "Творительный (Instrumental)",
-   "explain": "«Суэцким перешейком» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «отделены», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c58"
   },
   {
@@ -823,7 +557,7 @@
    ],
    "correct": "красного моря",
    "case": "Родительный (Genitive)",
-   "explain": "«Красного моря» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«красного моря» depends on the noun «водах» (whose? of what?) — genitive.",
    "id": "c59"
   },
   {
@@ -837,7 +571,7 @@
    ],
    "correct": "восточного берега",
    "case": "Родительный (Genitive)",
-   "explain": "«восточного берега» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«восточного берега» depends on the noun «утесов» (whose? of what?) — genitive.",
    "id": "c60"
   },
   {
@@ -851,22 +585,8 @@
    ],
    "correct": "всевозможные виды",
    "case": "Именительный (Nominative)",
-   "explain": "«всевозможные виды» — the subject of the sentence stands in the nominative.",
+   "explain": "«всевозможные виды» is the subject of «росли» — who or what does it — so nominative.",
    "id": "c61"
-  },
-  {
-   "sentence": "Из их волокнистой ткани, насыщенной полужидким ___, беспрестанно выделялись тоненькие струйки воды, орошая каждую клеточку, а затем клеточки сжимались и вытесняли оттуда воду.",
-   "lemma": "вещество",
-   "options": [
-    "студенистым веществом",
-    "студенистому веществу",
-    "студенистом веществе",
-    "студенистого вещества"
-   ],
-   "correct": "студенистым веществом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«студенистым веществом» — the instrumental marks the means, company, or complement.",
-   "id": "c62"
   },
   {
    "sentence": "___ разлагается после смерти губки и истлевает, выделяя аммиак.",
@@ -879,7 +599,7 @@
    ],
    "correct": "студенистое вещество",
    "case": "Именительный (Nominative)",
-   "explain": "«Студенистое вещество» — the subject of the sentence stands in the nominative.",
+   "explain": "«студенистое вещество» is the subject of «разлагается» — who or what does it — so nominative.",
    "id": "c63"
   },
   {
@@ -893,7 +613,7 @@
    ],
    "correct": "роговидные волокна",
    "case": "Именительный (Nominative)",
-   "explain": "«роговидные волокна» — the subject of the sentence stands in the nominative.",
+   "explain": "«роговидные волокна» is the subject of «Остаются» — who or what does it — so nominative.",
    "id": "c64"
   },
   {
@@ -902,12 +622,12 @@
    "options": [
     "рыжеватый оттенок",
     "рыжеватому оттенку",
-    "рыжеватом оттенке",
-    "рыжеватого оттенка"
+    "рыжеватым оттенком",
+    "рыжеватом оттенке"
    ],
    "correct": "рыжеватый оттенок",
    "case": "Винительный (Accusative)",
-   "explain": "«рыжеватый оттенок» — the accusative marks the direct object of the verb.",
+   "explain": "«рыжеватый оттенок» is the direct object of «приобретают» (кого? что?) — accusative.",
    "id": "c65"
   },
   {
@@ -921,7 +641,7 @@
    ],
    "correct": "разных целей",
    "case": "Родительный (Genitive)",
-   "explain": "«разных целей» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«разных целей» — «для» always takes the genitive.",
    "id": "c66"
   },
   {
@@ -935,7 +655,7 @@
    ],
    "correct": "подводным скалам",
    "case": "Дательный (Dative)",
-   "explain": "«подводным скалам» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«подводным скалам» — «к» always takes the dative.",
    "id": "c67"
   },
   {
@@ -949,22 +669,8 @@
    ],
    "correct": "коралловые ветви",
    "case": "Именительный (Nominative)",
-   "explain": "«коралловые ветви» — the subject of the sentence stands in the nominative.",
+   "explain": "«коралловые ветви» is the subject of «ползли» — who or what does it — so nominative.",
    "id": "c68"
-  },
-  {
-   "sentence": "Вокруг зарослей губок кишели ___, преимущественно медузы.",
-   "lemma": "зоофит",
-   "options": [
-    "другими зоофитами",
-    "другим зоофитам",
-    "других зоофитов",
-    "другие зоофиты"
-   ],
-   "correct": "другие зоофиты",
-   "case": "Именительный (Nominative)",
-   "explain": "«другие зоофиты» — the subject of the sentence stands in the nominative.",
-   "id": "c69"
   },
   {
    "sentence": "Представителями моллюсков были кальмары и каракатицы, которые, по данным д’Орбиньи, характерны для ___.",
@@ -977,7 +683,7 @@
    ],
    "correct": "красного моря",
    "case": "Родительный (Genitive)",
-   "explain": "«Красного моря» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«красного моря» — «для» always takes the genitive.",
    "id": "c70"
   },
   {
@@ -991,7 +697,7 @@
    ],
    "correct": "морские черепахи",
    "case": "Именительный (Nominative)",
-   "explain": "«морские черепахи» — the subject of the sentence stands in the nominative.",
+   "explain": "«морские черепахи» is the subject of «водились» — who or what does it — so nominative.",
    "id": "c71"
   },
   {
@@ -1005,49 +711,35 @@
    ],
    "correct": "отличным блюдом",
    "case": "Творительный (Instrumental)",
-   "explain": "«отличным блюдом» — the instrumental marks the means, company, or complement.",
+   "explain": "After «стали», what someone or something is or becomes stands in the instrumental.",
    "id": "c72"
-  },
-  {
-   "sentence": "Что касается рыб, то их попадалось множество, и между ними были весьма ___.",
-   "lemma": "образец",
-   "options": [
-    "замечательными образцами",
-    "замечательные образцы",
-    "замечательным образцам",
-    "замечательных образцов"
-   ],
-   "correct": "замечательные образцы",
-   "case": "Именительный (Nominative)",
-   "explain": "«замечательные образцы» — the subject of the sentence stands in the nominative.",
-   "id": "c73"
   },
   {
    "sentence": "Что это за ___, если можно так выразиться!",
    "lemma": "корабль",
    "options": [
-    "умный корабль",
     "умному кораблю",
-    "умным кораблём",
+    "умный корабль",
+    "умного корабля",
     "умном корабле"
    ],
    "correct": "умный корабль",
    "case": "Винительный (Accusative)",
-   "explain": "«умный корабль» — after the preposition «за», the accusative marks the direct object of the verb.",
+   "explain": "«умный корабль» — «за» takes the accusative here (куда? за что? за кого?) — the instrumental would mean position behind or at (где? за чем?).",
    "id": "c74"
   },
   {
    "sentence": "Он не боится ни ___ Красного моря, ни его течений, ни его подводных скал.",
    "lemma": "буря",
    "options": [
-    "страшных бурь",
-    "страшным бурям",
     "страшных бурях",
-    "страшные бури"
+    "страшными бурями",
+    "страшных бурь",
+    "страшным бурям"
    ],
    "correct": "страшных бурь",
    "case": "Родительный (Genitive)",
-   "explain": "«страшных бурь» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«страшных бурь» is the object of a negated verb («не боится») — genitive instead of the accusative.",
    "id": "c75"
   },
   {
@@ -1061,64 +753,22 @@
    ],
    "correct": "красного моря",
    "case": "Родительный (Genitive)",
-   "explain": "«Красного моря» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«красного моря» depends on the noun «бурь» (whose? of what?) — genitive.",
    "id": "c76"
-  },
-  {
-   "sentence": "Он не боится ни страшных бурь Красного моря, ни его течений, ни его ___.",
-   "lemma": "скала",
-   "options": [
-    "подводные скалы",
-    "подводных скал",
-    "подводных скалах",
-    "подводным скалам"
-   ],
-   "correct": "подводных скал",
-   "case": "Родительный (Genitive)",
-   "explain": "«подводных скал» — the genitive here marks possession, absence, or quantity.",
-   "id": "c77"
   },
   {
    "sentence": "— Да, — сказал я, — это море считается одним из самых бурных, если я не ошибаюсь, в ___ у него была самая плохая слава.",
    "lemma": "время",
    "options": [
-    "древние времена",
-    "древних временах",
     "древними временами",
+    "древним временам",
+    "древние времена",
     "древних времён"
    ],
    "correct": "древние времена",
    "case": "Винительный (Accusative)",
-   "explain": "«древние времена» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«древние времена» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c78"
-  },
-  {
-   "sentence": "— Да, — сказал я, — это море считается одним из самых бурных, если я не ошибаюсь, в древние времена у него была самая ___.",
-   "lemma": "слава",
-   "options": [
-    "плохой славой",
-    "плохой славы",
-    "плохой славе",
-    "плохая слава"
-   ],
-   "correct": "плохая слава",
-   "case": "Именительный (Nominative)",
-   "explain": "«плохая слава» — the subject of the sentence stands in the nominative.",
-   "id": "c79"
-  },
-  {
-   "sentence": "Араб Эдризи, который описал его под названием ___, рассказывает, что корабли во множестве погибали, разбиваясь о подводные скалы, и что никто не решался плавать по нему ночью.",
-   "lemma": "залив",
-   "options": [
-    "кользумскому заливу",
-    "кользумском заливе",
-    "кользумский залив",
-    "кользумского залива"
-   ],
-   "correct": "кользумского залива",
-   "case": "Родительный (Genitive)",
-   "explain": "«Кользумского залива» — the genitive here marks possession, absence, or quantity.",
-   "id": "c80"
   },
   {
    "sentence": "Араб Эдризи, который описал его под названием Кользумского залива, рассказывает, что корабли во множестве погибали, разбиваясь о ___, и что никто не решался плавать по нему ночью.",
@@ -1131,7 +781,7 @@
    ],
    "correct": "подводные скалы",
    "case": "Винительный (Accusative)",
-   "explain": "«подводные скалы» — after the preposition «о», the accusative marks the direct object of the verb.",
+   "explain": "«подводные скалы» — «о» + accusative (обо что?): against — striking or touching something.",
    "id": "c81"
   },
   {
@@ -1145,22 +795,8 @@
    ],
    "correct": "страшные ураганы",
    "case": "Именительный (Nominative)",
-   "explain": "«страшные ураганы» — the subject of the sentence stands in the nominative.",
+   "explain": "«страшные ураганы» is the subject of «бушуют» — who or what does it — so nominative.",
    "id": "c82"
-  },
-  {
-   "sentence": "Он говорит, что на этом море беспрестанно бушуют страшные ураганы, оно усеяно ___ и «нет в этом море ничего хорошего, ни в глубине, ни на поверхности».",
-   "lemma": "остров",
-   "options": [
-    "неприступными островами",
-    "неприступным островам",
-    "неприступных островов",
-    "неприступные острова"
-   ],
-   "correct": "неприступными островами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«неприступными островами» — the instrumental marks the means, company, or complement.",
-   "id": "c83"
   },
   {
    "sentence": "— Да, — отвечал я, — ваш «Наутилус» опередил на ___ свое время, может быть, даже на несколько веков.",
@@ -1173,22 +809,8 @@
    ],
    "correct": "целый век",
    "case": "Винительный (Accusative)",
-   "explain": "«целый век» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«целый век» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c84"
-  },
-  {
-   "sentence": "Как жаль, что ___ должно умереть вместе с изобретателем!",
-   "lemma": "открытие",
-   "options": [
-    "подобное открытие",
-    "подобному открытию",
-    "подобного открытия",
-    "подобном открытии"
-   ],
-   "correct": "подобное открытие",
-   "case": "Именительный (Nominative)",
-   "explain": "«подобное открытие» — the subject of the sentence stands in the nominative.",
-   "id": "c85"
   },
   {
    "sentence": "— Мы говорили о ___, которое имели древние о Красном море?",
@@ -1201,7 +823,7 @@
    ],
    "correct": "невыгодном мнении",
    "case": "Предложный (Prepositional)",
-   "explain": "«невыгодном мнении» — after the preposition «о», for location or topic.",
+   "explain": "«невыгодном мнении» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c86"
   },
   {
@@ -1215,7 +837,7 @@
    ],
    "correct": "красном море",
    "case": "Предложный (Prepositional)",
-   "explain": "«Красном море» — after the preposition «о», for location or topic.",
+   "explain": "«красном море» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c87"
   },
   {
@@ -1229,64 +851,8 @@
    ],
    "correct": "современного корабля",
    "case": "Родительный (Genitive)",
-   "explain": "«современного корабля» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«современного корабля» — «для» always takes the genitive.",
    "id": "c88"
-  },
-  {
-   "sentence": "В наше время пароходам, плавающим между Суэцем и ___, нечего бояться этого моря, несмотря на противные ветры.",
-   "lemma": "море",
-   "options": [
-    "южным морям",
-    "южными морями",
-    "южных морей",
-    "южные моря"
-   ],
-   "correct": "южными морями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«южными морями» — the instrumental marks the means, company, or complement.",
-   "id": "c89"
-  },
-  {
-   "sentence": "В наше время пароходам, плавающим между Суэцем и южными морями, нечего бояться этого моря, несмотря на ___.",
-   "lemma": "ветер",
-   "options": [
-    "противных ветров",
-    "противными ветрами",
-    "противным ветрам",
-    "противные ветры"
-   ],
-   "correct": "противные ветры",
-   "case": "Винительный (Accusative)",
-   "explain": "«противные ветры» — the accusative marks the direct object of the verb.",
-   "id": "c90"
-  },
-  {
-   "sentence": "Теперь капитан и пассажиры перед отплытием не приносят ___ и по возвращении не идут в храм благодарить богов, украшая себя гирляндами цветов и золотыми повязками.",
-   "lemma": "жертва",
-   "options": [
-    "очистительными жертвами",
-    "очистительных жертв",
-    "очистительных жертвах",
-    "очистительные жертвы"
-   ],
-   "correct": "очистительных жертв",
-   "case": "Родительный (Genitive)",
-   "explain": "«очистительных жертв» — the genitive here marks possession, absence, or quantity.",
-   "id": "c91"
-  },
-  {
-   "sentence": "Теперь капитан и пассажиры перед отплытием не приносят очистительных жертв и по возвращении не идут в храм благодарить богов, украшая себя гирляндами цветов и ___.",
-   "lemma": "повязка",
-   "options": [
-    "золотых повязках",
-    "золотые повязки",
-    "золотыми повязками",
-    "золотым повязкам"
-   ],
-   "correct": "золотыми повязками",
-   "case": "Творительный (Instrumental)",
-   "explain": "«золотыми повязками» — the instrumental marks the means, company, or complement.",
-   "id": "c92"
   },
   {
    "sentence": "— По этому поводу есть много ___.",
@@ -1299,35 +865,21 @@
    ],
    "correct": "разных толкований",
    "case": "Родительный (Genitive)",
-   "explain": "«разных толкований» — the genitive here marks possession, absence, or quantity.",
+   "explain": "After «много», a word of quantity — genitive.",
    "id": "c93"
-  },
-  {
-   "sentence": "Он говорит: «В знак этого чуда море приняло ___, и никто после этого не мог его иначе называть, как только Красным морем».",
-   "lemma": "цвет",
-   "options": [
-    "алым цветом",
-    "алом цвете",
-    "алый цвет",
-    "алому цвету"
-   ],
-   "correct": "алый цвет",
-   "case": "Винительный (Accusative)",
-   "explain": "«алый цвет» — the accusative marks the direct object of the verb.",
-   "id": "c94"
   },
   {
    "sentence": "Он говорит: «В знак этого чуда море приняло алый цвет, и никто после этого не мог его иначе называть, как только ___».",
    "lemma": "море",
    "options": [
     "красным морем",
-    "красного моря",
     "красному морю",
-    "красное море"
+    "красного моря",
+    "красном море"
    ],
    "correct": "красным морем",
    "case": "Творительный (Instrumental)",
-   "explain": "«Красным морем» — the instrumental marks the means, company, or complement.",
+   "explain": "After «называть» (to call, consider or make someone something), that something is in the instrumental.",
    "id": "c95"
   },
   {
@@ -1341,22 +893,8 @@
    ],
    "correct": "еврейского слова",
    "case": "Родительный (Genitive)",
-   "explain": "«еврейского слова» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«еврейского слова» depends on the noun «перевод» (whose? of what?) — genitive.",
    "id": "c96"
-  },
-  {
-   "sentence": "— Я думаю, что это название — перевод еврейского слова Edom и что древние назвали так море потому, что его воды отличаются ___.",
-   "lemma": "окраска",
-   "options": [
-    "особой окраской",
-    "особой окраски",
-    "особая окраска",
-    "особой окраске"
-   ],
-   "correct": "особой окраской",
-   "case": "Творительный (Instrumental)",
-   "explain": "«особой окраской» — the instrumental marks the means, company, or complement.",
-   "id": "c97"
   },
   {
    "sentence": "— Однако до сих пор я не вижу никакой ___, капитан: волны прозрачны и совершенно такие же, как в других морях.",
@@ -1369,36 +907,22 @@
    ],
    "correct": "особой окраски",
    "case": "Родительный (Genitive)",
-   "explain": "«особой окраски» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«особой окраски» is the object of a negated verb («не вижу») — genitive instead of the accusative.",
    "id": "c98"
   },
   {
    "sentence": "— Однако до сих пор я не вижу никакой особой окраски, капитан: волны прозрачны и совершенно такие же, как в ___.",
    "lemma": "море",
    "options": [
-    "других морях",
+    "другим морям",
     "других морей",
-    "другие моря",
+    "других морях",
     "другими морями"
    ],
    "correct": "других морях",
    "case": "Предложный (Prepositional)",
-   "explain": "«других морях» — after the preposition «в», for location or topic.",
+   "explain": "«других морях» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c99"
-  },
-  {
-   "sentence": "Я помню, в бухте Тор вода однажды была совершенно красной — точно ___.",
-   "lemma": "озеро",
-   "options": [
-    "кровавое озеро",
-    "кровавом озере",
-    "кровавому озеру",
-    "кровавым озером"
-   ],
-   "correct": "кровавое озеро",
-   "case": "Именительный (Nominative)",
-   "explain": "«кровавое озеро» — the subject of the sentence stands in the nominative.",
-   "id": "c100"
   },
   {
    "sentence": "— Чему же вы приписываете эту красноту: присутствию ___?",
@@ -1411,7 +935,7 @@
    ],
    "correct": "микроскопических водорослей",
    "case": "Родительный (Genitive)",
-   "explain": "«микроскопических водорослей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«микроскопических водорослей» depends on the noun «присутствию» (whose? of what?) — genitive.",
    "id": "c101"
   },
   {
@@ -1425,7 +949,7 @@
    ],
    "correct": "микроскопическими растеньицами",
    "case": "Творительный (Instrumental)",
-   "explain": "«микроскопическими растеньицами» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «выделяемое», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c102"
   },
   {
@@ -1439,7 +963,7 @@
    ],
    "correct": "первый раз",
    "case": "Винительный (Accusative)",
-   "explain": "«первый раз» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«первый раз» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c103"
   },
   {
@@ -1453,77 +977,21 @@
    ],
    "correct": "замечательного происшествия",
    "case": "Родительный (Genitive)",
-   "explain": "«замечательного происшествия» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«замечательного происшествия» depends on the noun «место» (whose? of what?) — genitive.",
    "id": "c104"
-  },
-  {
-   "sentence": "— Такую, что именно то ___, где Моисей прошел со своим народом, та́к теперь обмелело, что вода едва покрывает копыта верблюдов.",
-   "lemma": "место",
-   "options": [
-    "самому месту",
-    "самым местом",
-    "самого места",
-    "самое место"
-   ],
-   "correct": "самое место",
-   "case": "Именительный (Nominative)",
-   "explain": "«самое место» — the subject of the sentence stands in the nominative.",
-   "id": "c105"
-  },
-  {
-   "sentence": "— Это место находится немного повыше Суэца, в рукаве, который в те времена, когда ___ простиралось до Горьких озер, образовывал глубокий лиман.",
-   "lemma": "море",
-   "options": [
-    "красному морю",
-    "красное море",
-    "красного моря",
-    "красным морем"
-   ],
-   "correct": "красное море",
-   "case": "Именительный (Nominative)",
-   "explain": "«Красное море» — the subject of the sentence stands in the nominative.",
-   "id": "c106"
-  },
-  {
-   "sentence": "— Это место находится немного повыше Суэца, в рукаве, который в те времена, когда Красное море простиралось до Горьких озер, образовывал ___.",
-   "lemma": "лиман",
-   "options": [
-    "глубоком лимане",
-    "глубоким лиманом",
-    "глубокий лиман",
-    "глубокого лимана"
-   ],
-   "correct": "глубокий лиман",
-   "case": "Винительный (Accusative)",
-   "explain": "«глубокий лиман» — the accusative marks the direct object of the verb.",
-   "id": "c107"
-  },
-  {
-   "sentence": "Надо ли приписать сверхъестественному чуду переход израильтян или нет, это ___, но израильтяне прошли в Землю обетованную, а войско фараона погибло именно здесь.",
-   "lemma": "вопрос",
-   "options": [
-    "другому вопросу",
-    "другой вопрос",
-    "другого вопроса",
-    "другом вопросе"
-   ],
-   "correct": "другой вопрос",
-   "case": "Именительный (Nominative)",
-   "explain": "«другой вопрос» — the subject of the sentence stands in the nominative.",
-   "id": "c108"
   },
   {
    "sentence": "Я полагаю, что при раскопках этих песков нашлось бы множество ___ и инструментов.",
    "lemma": "оружие",
    "options": [
-    "египетского оружия",
     "египетском оружии",
-    "египетским оружием",
+    "египетскому оружию",
+    "египетского оружия",
     "египетское оружие"
    ],
    "correct": "египетского оружия",
    "case": "Родительный (Genitive)",
-   "explain": "«египетского оружия» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«египетского оружия» depends on the noun «множество» (whose? of what?) — genitive.",
    "id": "c109"
   },
   {
@@ -1537,7 +1005,7 @@
    ],
    "correct": "суэцкий канал",
    "case": "Именительный (Nominative)",
-   "explain": "«Суэцкий канал» — the subject of the sentence stands in the nominative.",
+   "explain": "«суэцкий канал» is the subject of «прорыт» — who or what does it — so nominative.",
    "id": "c110"
   },
   {
@@ -1551,22 +1019,8 @@
    ],
    "correct": "целого мира",
    "case": "Родительный (Genitive)",
-   "explain": "«целого мира» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«целого мира» — «для» always takes the genitive.",
    "id": "c111"
-  },
-  {
-   "sentence": "Но им не пришло в голову прорыть ___ через Суэцкий перешеек, и они устроили сообщение через Нил.",
-   "lemma": "канал",
-   "options": [
-    "прямого канала",
-    "прямой канал",
-    "прямому каналу",
-    "прямым каналом"
-   ],
-   "correct": "прямой канал",
-   "case": "Винительный (Accusative)",
-   "explain": "«прямой канал» — the accusative marks the direct object of the verb.",
-   "id": "c112"
   },
   {
    "sentence": "Но им не пришло в голову прорыть прямой канал через ___, и они устроили сообщение через Нил.",
@@ -1579,50 +1033,36 @@
    ],
    "correct": "суэцкий перешеек",
    "case": "Винительный (Accusative)",
-   "explain": "«Суэцкий перешеек» — after the preposition «через», the accusative marks the direct object of the verb.",
+   "explain": "«суэцкий перешеек» — «через» always takes the accusative.",
    "id": "c113"
   },
   {
    "sentence": "Канал, соединявший Нил с ___, если верить преданию, начали строить в царствование Сезостриса.",
    "lemma": "море",
    "options": [
-    "красным морем",
-    "красного моря",
     "красному морю",
-    "красное море"
+    "красное море",
+    "красным морем",
+    "красном море"
    ],
    "correct": "красным морем",
    "case": "Творительный (Instrumental)",
-   "explain": "«Красным морем» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«красным морем» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c114"
   },
   {
    "sentence": "Верно то, что за шестьсот пятнадцать лет до Рождества Христова фараон Нехо велел рыть канал, соединяющий Нил с ___.",
    "lemma": "море",
    "options": [
-    "красным морем",
-    "красного моря",
     "красному морю",
-    "красное море"
+    "красном море",
+    "красное море",
+    "красным морем"
    ],
    "correct": "красным морем",
    "case": "Творительный (Instrumental)",
-   "explain": "«Красным морем» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«красным морем» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c115"
-  },
-  {
-   "sentence": "Страбон видел, как по каналу плавали суда, но ___ от Бубасты до Красного моря привела к тому, что плавать по каналу можно было только несколько месяцев в году.",
-   "lemma": "глубина",
-   "options": [
-    "недостаточной глубиной",
-    "недостаточной глубины",
-    "недостаточной глубине",
-    "недостаточная глубина"
-   ],
-   "correct": "недостаточная глубина",
-   "case": "Именительный (Nominative)",
-   "explain": "«недостаточная глубина» — the subject of the sentence stands in the nominative.",
-   "id": "c116"
   },
   {
    "sentence": "Страбон видел, как по каналу плавали суда, но недостаточная глубина от Бубасты до ___ привела к тому, что плавать по каналу можно было только несколько месяцев в году.",
@@ -1635,36 +1075,8 @@
    ],
    "correct": "красного моря",
    "case": "Родительный (Genitive)",
-   "explain": "«Красного моря» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«красного моря» — «до» always takes the genitive.",
    "id": "c117"
-  },
-  {
-   "sentence": "Канал служил ___ до века Антонинов.",
-   "lemma": "сообщение",
-   "options": [
-    "торгового сообщения",
-    "торговом сообщении",
-    "торговым сообщением",
-    "торговому сообщению"
-   ],
-   "correct": "торговым сообщением",
-   "case": "Творительный (Instrumental)",
-   "explain": "«торговым сообщением» — the instrumental marks the means, company, or complement.",
-   "id": "c118"
-  },
-  {
-   "sentence": "Генерал Бонапарт напал во время своего ___ на следы этого канала в Суэцкой пустыне и, застигнутый приливом, чуть не погиб на том самом месте, где Моисей три тысячи триста лет назад стоял лагерем.",
-   "lemma": "поход",
-   "options": [
-    "египетский поход",
-    "египетского похода",
-    "египетскому походу",
-    "египетском походе"
-   ],
-   "correct": "египетского похода",
-   "case": "Родительный (Genitive)",
-   "explain": "«Египетского похода» — after the preposition «во», the genitive here marks possession, absence, or quantity.",
-   "id": "c119"
   },
   {
    "sentence": "Генерал Бонапарт напал во время своего Египетского похода на следы этого канала в ___ и, застигнутый приливом, чуть не погиб на том самом месте, где Моисей три тысячи триста лет назад стоял лагерем.",
@@ -1677,7 +1089,7 @@
    ],
    "correct": "суэцкой пустыне",
    "case": "Предложный (Prepositional)",
-   "explain": "«Суэцкой пустыне» — after the preposition «в», for location or topic.",
+   "explain": "«суэцкой пустыне» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c120"
   },
   {
@@ -1691,36 +1103,22 @@
    ],
    "correct": "самом месте",
    "case": "Предложный (Prepositional)",
-   "explain": "«самом месте» — after the preposition «на», for location or topic.",
+   "explain": "«самом месте» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c121"
   },
   {
    "sentence": "Он превратит Африку в ___!",
    "lemma": "остров",
    "options": [
-    "громадный остров",
-    "громадном острове",
     "громадного острова",
-    "громадному острову"
+    "громадному острову",
+    "громадным островом",
+    "громадный остров"
    ],
    "correct": "громадный остров",
    "case": "Винительный (Accusative)",
-   "explain": "«громадный остров» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«громадный остров» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c122"
-  },
-  {
-   "sentence": "— А то, что ___ редко интересуют правительства.",
-   "lemma": "предприятие",
-   "options": [
-    "великим предприятиям",
-    "великих предприятиях",
-    "великими предприятиями",
-    "великие предприятия"
-   ],
-   "correct": "великие предприятия",
-   "case": "Именительный (Nominative)",
-   "explain": "«великие предприятия» — the subject of the sentence stands in the nominative.",
-   "id": "c123"
   },
   {
    "sentence": "— К сожалению, профессор, — начал снова капитан Немо, — я не могу провести вас через ___, но послезавтра мы войдем в Средиземное море, и вы оттуда увидите длинную дамбу около Порт-Саида.",
@@ -1733,35 +1131,35 @@
    ],
    "correct": "суэцкий канал",
    "case": "Винительный (Accusative)",
-   "explain": "«Суэцкий канал» — after the preposition «через», the accusative marks the direct object of the verb.",
+   "explain": "«суэцкий канал» — «через» always takes the accusative.",
    "id": "c124"
   },
   {
    "sentence": "Ведь «Наутилус» не поплывет по земле, не пойдет по ___?",
    "lemma": "перешеек",
    "options": [
-    "суэцкому перешейку",
     "суэцким перешейком",
+    "суэцкому перешейку",
     "суэцком перешейке",
-    "суэцкий перешеек"
+    "суэцкого перешейка"
    ],
    "correct": "суэцкому перешейку",
    "case": "Дательный (Dative)",
-   "explain": "«Суэцкому перешейку» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«суэцкому перешейку» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c125"
   },
   {
    "sentence": "Я его назвал ___: он начинается под Суэцем и доходит до Пелусия.",
    "lemma": "тоннель",
    "options": [
-    "аравийский тоннель",
+    "аравийскому тоннелю",
     "аравийским тоннелем",
-    "аравийском тоннеле",
-    "аравийскому тоннелю"
+    "аравийского тоннеля",
+    "аравийском тоннеле"
    ],
    "correct": "аравийским тоннелем",
    "case": "Творительный (Instrumental)",
-   "explain": "«Аравийским тоннелем» — the instrumental marks the means, company, or complement.",
+   "explain": "After «назвал» (to call, consider or make someone something), that something is in the instrumental.",
    "id": "c126"
   },
   {
@@ -1775,7 +1173,7 @@
    ],
    "correct": "наносных песков",
    "case": "Родительный (Genitive)",
-   "explain": "«наносных песков» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«наносных песков» — «из» always takes the genitive.",
    "id": "c127"
   },
   {
@@ -1789,36 +1187,22 @@
    ],
    "correct": "гранитная скала",
    "case": "Именительный (Nominative)",
-   "explain": "«гранитная скала» — the subject of the sentence stands in the nominative.",
+   "explain": "«гранитная скала» is the subject of «лежит» — who or what does it — so nominative.",
    "id": "c128"
   },
   {
    "sentence": "— Не будет ли с моей стороны нескромностью, если я спрошу вас, каким образом вы открыли ___?",
    "lemma": "тоннель",
    "options": [
-    "аравийском тоннеле",
-    "аравийского тоннеля",
+    "аравийскому тоннелю",
     "аравийский тоннель",
-    "аравийским тоннелем"
+    "аравийским тоннелем",
+    "аравийском тоннеле"
    ],
    "correct": "аравийский тоннель",
    "case": "Винительный (Accusative)",
-   "explain": "«Аравийский тоннель» — the accusative marks the direct object of the verb.",
+   "explain": "«аравийский тоннель» is the direct object of «открыли» (кого? что?) — accusative.",
    "id": "c129"
-  },
-  {
-   "sentence": "— Итак, я тоже немного натуралист, и ___ навели меня на мысль о существовании этого прохода.",
-   "lemma": "соображение",
-   "options": [
-    "разным соображениям",
-    "разных соображениях",
-    "разные соображения",
-    "разными соображениями"
-   ],
-   "correct": "разные соображения",
-   "case": "Именительный (Nominative)",
-   "explain": "«разные соображения» — the subject of the sentence stands in the nominative.",
-   "id": "c130"
   },
   {
    "sentence": "Я заметил, что в Красном и Средиземном море попадаются совершенно ___ рыб — ошибни, фиатолы, радужные губаны, долгоперы из семейства щуковидных и некоторые другие.",
@@ -1831,36 +1215,8 @@
    ],
    "correct": "одинаковые виды",
    "case": "Именительный (Nominative)",
-   "explain": "«одинаковые виды» — the subject of the sentence stands in the nominative.",
+   "explain": "«одинаковые виды» is the subject of «попадаются» — who or what does it — so nominative.",
    "id": "c131"
-  },
-  {
-   "sentence": "Я заметил, что в Красном и Средиземном море попадаются совершенно одинаковые виды рыб — ошибни, фиатолы, ___, долгоперы из семейства щуковидных и некоторые другие.",
-   "lemma": "губан",
-   "options": [
-    "радужные губаны",
-    "радужным губанам",
-    "радужных губанов",
-    "радужными губанами"
-   ],
-   "correct": "радужные губаны",
-   "case": "Именительный (Nominative)",
-   "explain": "«радужные губаны» — the subject of the sentence stands in the nominative.",
-   "id": "c132"
-  },
-  {
-   "sentence": "Затем я сказал себе, что если оно существует, то ___ должно идти от Красного моря к Средиземному.",
-   "lemma": "течение",
-   "options": [
-    "подводного течения",
-    "подводное течение",
-    "подводному течению",
-    "подводным течением"
-   ],
-   "correct": "подводное течение",
-   "case": "Именительный (Nominative)",
-   "explain": "«подводное течение» — the subject of the sentence stands in the nominative.",
-   "id": "c133"
   },
   {
    "sentence": "Затем я сказал себе, что если оно существует, то подводное течение должно идти от ___ к Средиземному.",
@@ -1873,7 +1229,7 @@
    ],
    "correct": "красного моря",
    "case": "Родительный (Genitive)",
-   "explain": "«Красного моря» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«красного моря» — «от» always takes the genitive.",
    "id": "c134"
   },
   {
@@ -1887,7 +1243,7 @@
    ],
    "correct": "сирийских берегов",
    "case": "Родительный (Genitive)",
-   "explain": "«сирийских берегов» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«сирийских берегов» — «у» always takes the genitive.",
    "id": "c135"
   }
  ]

@@ -1,76 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Во-первых, у меня голова ___ болела.",
-   "lemma": "день",
-   "options": [
-    "целого дня",
-    "целом дне",
-    "целым днём",
-    "целый день"
-   ],
-   "correct": "целый день",
-   "case": "Винительный (Accusative)",
-   "explain": "«целый день» — the accusative marks the direct object of the verb.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Час-то, видно, был такой, что ___ и быть не могло.",
-   "lemma": "публика",
-   "options": [
-    "другая публика",
-    "другой публикой",
-    "другой публике",
-    "другой публики"
-   ],
-   "correct": "другой публики",
-   "case": "Родительный (Genitive)",
-   "explain": "«другой публики» — the genitive here marks possession, absence, or quantity.",
-   "id": "c3"
-  },
-  {
-   "sentence": "Какие лавки, магазины богатые; всё так и блестит и горит, материя, цветы под стеклами, ___ с лентами.",
-   "lemma": "шляпка",
-   "options": [
-    "разных шляпках",
-    "разными шляпками",
-    "разных шляпок",
-    "разные шляпки"
-   ],
-   "correct": "разные шляпки",
-   "case": "Именительный (Nominative)",
-   "explain": "«разные шляпки» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
-  },
-  {
-   "sentence": "___ такие, стекла, как зеркало, внутри бархат и шелк; лакеи дворянские, в эполетах, при шпаге.",
-   "lemma": "экипаж",
-   "options": [
-    "пышными экипажами",
-    "пышным экипажам",
-    "пышных экипажей",
-    "пышные экипажи"
-   ],
-   "correct": "пышные экипажи",
-   "case": "Именительный (Nominative)",
-   "explain": "«Пышные экипажи» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
-  },
-  {
-   "sentence": "Вы у меня добрая, прекрасная, ученая; отчего же вам такая ___ выпадает на долю?",
-   "lemma": "судьба",
-   "options": [
-    "злой судьбе",
-    "злая судьба",
-    "злой судьбы",
-    "злой судьбой"
-   ],
-   "correct": "злая судьба",
-   "case": "Именительный (Nominative)",
-   "explain": "«злая судьба» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
-  },
-  {
    "sentence": "Взгляда благосклонного вашего генералы ловили бы, — не то что наш брат; ходили бы вы не в холстинковом ___, а в шелку да в золоте.",
    "lemma": "платьице",
    "options": [
@@ -81,7 +11,7 @@
    ],
    "correct": "ветхом платьице",
    "case": "Предложный (Prepositional)",
-   "explain": "«ветхом платьице» — after the preposition «в», for location or topic.",
+   "explain": "«ветхом платьице» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c9"
   },
   {
@@ -95,7 +25,7 @@
    ],
    "correct": "злые люди",
    "case": "Именительный (Nominative)",
-   "explain": "«злые люди» — the subject of the sentence stands in the nominative.",
+   "explain": "«злые люди» is the subject of «погубили» — who or what does it — so nominative.",
    "id": "c10"
   },
   {
@@ -109,36 +39,8 @@
    ],
    "correct": "целый день",
    "case": "Винительный (Accusative)",
-   "explain": "«целый день» — the accusative marks the direct object of the verb.",
+   "explain": "«целый день» tells how long or how often, with no preposition — accusative.",
    "id": "c11"
-  },
-  {
-   "sentence": "И много есть ___, маточка, которые хоть немного зарабатывают по мере и полезности труда своего, но никому не кланяются, ни у кого хлеба не просят.",
-   "lemma": "человек",
-   "options": [
-    "честным людям",
-    "честными людьми",
-    "честных людей",
-    "честные люди"
-   ],
-   "correct": "честных людей",
-   "case": "Родительный (Genitive)",
-   "explain": "«честных людей» — the genitive here marks possession, absence, or quantity.",
-   "id": "c12"
-  },
-  {
-   "sentence": "Стою я, стоят извозчики, девка какая-то, да еще ___, вся такая запачканная.",
-   "lemma": "девочка",
-   "options": [
-    "маленькая девочка",
-    "маленькой девочке",
-    "маленькой девочкой",
-    "маленькой девочки"
-   ],
-   "correct": "маленькая девочка",
-   "case": "Именительный (Nominative)",
-   "explain": "«маленькая девочка» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
   },
   {
    "sentence": "Шарманщик расположился перед ___.",
@@ -151,21 +53,21 @@
    ],
    "correct": "чьими-то окнами",
    "case": "Творительный (Instrumental)",
-   "explain": "«чьими-то окнами» — after the preposition «перед», the instrumental marks the means, company, or complement.",
+   "explain": "«чьими-то окнами» — «перед» always takes the instrumental.",
    "id": "c15"
   },
   {
    "sentence": "Но только то дурно, что зачем эти ___ детей не берегут и полуголых с записками на такой холод посылают.",
    "lemma": "мать",
    "options": [
-    "гадких матерях",
     "гадкие матери",
     "гадким матерям",
-    "гадких матерей"
+    "гадкими матерями",
+    "гадких матерях"
    ],
    "correct": "гадкие матери",
    "case": "Именительный (Nominative)",
-   "explain": "«гадкие матери» — the subject of the sentence stands in the nominative.",
+   "explain": "«гадкие матери» is the subject of «берегут» — who or what does it — so nominative.",
    "id": "c16"
   },
   {
@@ -179,64 +81,22 @@
    ],
    "correct": "бедный мальчик",
    "case": "Именительный (Nominative)",
-   "explain": "«бедный мальчик» — the subject of the sentence stands in the nominative.",
+   "explain": "«бедный мальчик» is the subject of «научится» — who or what does it — so nominative.",
    "id": "c18"
-  },
-  {
-   "sentence": "А если сравнением выразиться, так это, может быть, оттого происходит, что я сам запуган и загнан, как хоть бы и этот ___, что милостыни у меня просил.",
-   "lemma": "мальчик",
-   "options": [
-    "бедненький мальчик",
-    "бедненькому мальчику",
-    "бедненьком мальчике",
-    "бедненького мальчика"
-   ],
-   "correct": "бедненький мальчик",
-   "case": "Именительный (Nominative)",
-   "explain": "«бедненький мальчик» — the subject of the sentence stands in the nominative.",
-   "id": "c21"
-  },
-  {
-   "sentence": "Вдруг, смотрю, входит ко мне Горшков, наш ___.",
-   "lemma": "постоялец",
-   "options": [
-    "бедном постояльце",
-    "бедного постояльца",
-    "бедный постоялец",
-    "бедным постояльцем"
-   ],
-   "correct": "бедный постоялец",
-   "case": "Именительный (Nominative)",
-   "explain": "«бедный постоялец» — the subject of the sentence stands in the nominative.",
-   "id": "c25"
   },
   {
    "sentence": "А всего-то у меня и оставалось двадцать копеек, да я на них рассчитывал: хотел завтра на свои ___ истратить.",
    "lemma": "нужда",
    "options": [
-    "крайними нуждами",
     "крайних нужд",
-    "крайних нуждах",
+    "крайними нуждами",
+    "крайним нуждам",
     "крайние нужды"
    ],
    "correct": "крайние нужды",
    "case": "Винительный (Accusative)",
-   "explain": "«крайние нужды» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«крайние нужды» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c26"
-  },
-  {
-   "sentence": "Ну, я ему и вынул из ящика и отдал свои двадцать копеек, маточка, всё ___!",
-   "lemma": "дело",
-   "options": [
-    "доброму делу",
-    "доброе дело",
-    "добром деле",
-    "добрым делом"
-   ],
-   "correct": "доброе дело",
-   "case": "Именительный (Nominative)",
-   "explain": "«доброе дело» — the subject of the sentence stands in the nominative.",
-   "id": "c27"
   },
   {
    "sentence": "Как вспомню об вас, так точно лекарство приложу к ___ моей, и хоть страдаю за вас, но и страдать за вас мне легко.",
@@ -249,7 +109,7 @@
    ],
    "correct": "больной душе",
    "case": "Дательный (Dative)",
-   "explain": "«больной душе» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«больной душе» — «к» always takes the dative.",
    "id": "c29"
   }
  ]

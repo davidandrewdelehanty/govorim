@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "-- Ты, Ардальон Борисыч, и не будешь никогда быком, потому что ты -- ___.",
-   "lemma": "свинья",
-   "options": [
-    "форменной свиньёй",
-    "форменной свинье",
-    "форменная свинья",
-    "форменной свиньи"
-   ],
-   "correct": "форменная свинья",
-   "case": "Именительный (Nominative)",
-   "explain": "«форменная свинья» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "У Передонова в квартире горели лампы, окна ярко выделялись в ___.",
    "lemma": "темнота",
    "options": [
@@ -25,64 +11,8 @@
    ],
    "correct": "уличной темноте",
    "case": "Предложный (Prepositional)",
-   "explain": "«уличной темноте» — after the preposition «в», for location or topic.",
+   "explain": "«уличной темноте» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c2"
-  },
-  {
-   "sentence": "-- ___, -- сказала она, -- где вы их достаете?",
-   "lemma": "яйцо",
-   "options": [
-    "хороших яйцах",
-    "хорошими яйцами",
-    "хорошим яйцам",
-    "хорошие яйца"
-   ],
-   "correct": "хорошие яйца",
-   "case": "Именительный (Nominative)",
-   "explain": "«Хорошие яйца» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
-   "sentence": "-- Это еще что яйца, а вот в нашем имении у отца курица по два крупных яйца в день ___ несла.",
-   "lemma": "год",
-   "options": [
-    "круглым годом",
-    "круглом годе",
-    "круглый год",
-    "круглому году"
-   ],
-   "correct": "круглый год",
-   "case": "Винительный (Accusative)",
-   "explain": "«круглый год» — the accusative marks the direct object of the verb.",
-   "id": "c4"
-  },
-  {
-   "sentence": "Володин показал пальцами, как будут мотаться ___.",
-   "lemma": "ухо",
-   "options": [
-    "вялых ушах",
-    "вялые уши",
-    "вялых ушей",
-    "вялым ушам"
-   ],
-   "correct": "вялые уши",
-   "case": "Винительный (Accusative)",
-   "explain": "«вялые уши» — the accusative marks the direct object of the verb.",
-   "id": "c5"
-  },
-  {
-   "sentence": "-- Это бывает, -- сладостным и ___ заговорил Преполовенский, -- у меня был один знакомый, так тот иголок боялся, все боялся, что его уколют и иголка уйдет во внутренности.",
-   "lemma": "голос",
-   "options": [
-    "грустного голоса",
-    "грустный голос",
-    "грустном голосе",
-    "грустным голосом"
-   ],
-   "correct": "грустным голосом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«грустным голосом» — the instrumental marks the means, company, or complement.",
-   "id": "c6"
   },
   {
    "sentence": "Потом рассказала слышанную от столичного знакомого историю о любовнице некоего ___, как она ехала по улице и встретила своего покровителя.",
@@ -95,7 +25,7 @@
    ],
    "correct": "высокопоставленного лица",
    "case": "Родительный (Genitive)",
-   "explain": "«высокопоставленного лица» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«высокопоставленного лица» depends on the noun «любовнице» (whose? of what?) — genitive.",
    "id": "c9"
   },
   {
@@ -109,22 +39,8 @@
    ],
    "correct": "будущего инспектора",
    "case": "Родительный (Genitive)",
-   "explain": "«будущего инспектора» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«будущего инспектора» depends on the noun «доме» (whose? of what?) — genitive.",
    "id": "c10"
-  },
-  {
-   "sentence": "Раньше эти книги Передонов держал на виду, чтобы показать, что у него ___.- хотя на самом деле он не имел ни мнений, ни даже охоты к размышлениям.",
-   "lemma": "мнение",
-   "options": [
-    "свободных мнений",
-    "свободным мнениям",
-    "свободными мнениями",
-    "свободные мнения"
-   ],
-   "correct": "свободные мнения",
-   "case": "Именительный (Nominative)",
-   "explain": "«свободные мнения» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
   },
   {
    "sentence": "-- Ой, голубушка, Варвара Дмитриевна, вы так не говорите, -- за это ___ могут быть, коли узнают.",
@@ -137,7 +53,7 @@
    ],
    "correct": "большие неприятности",
    "case": "Именительный (Nominative)",
-   "explain": "«большие неприятности» — the subject of the sentence stands in the nominative.",
+   "explain": "«большие неприятности» is the subject of «могут» — who or what does it — so nominative.",
    "id": "c14"
   },
   {
@@ -151,148 +67,8 @@
    ],
    "correct": "ломберного стола",
    "case": "Родительный (Genitive)",
-   "explain": "«ломберного стола» — after the preposition «вокруг», the genitive here marks possession, absence, or quantity.",
+   "explain": "«ломберного стола» — «вокруг» always takes the genitive.",
    "id": "c15"
-  },
-  {
-   "sentence": "-- Ну, если по дружбе, то я рад, я очень рад, -- говорил Володин с радостным и глупым смехом, сдавая карты, -- ты ___, Ардаша, и я тебя очень даже люблю.",
-   "lemma": "человек",
-   "options": [
-    "хороший человек",
-    "хорошем человеке",
-    "хорошим человеком",
-    "хорошего человека"
-   ],
-   "correct": "хороший человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«хороший человек» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
-  },
-  {
-   "sentence": "А если бы не по дружбе, то это был бы ___.",
-   "lemma": "разговор",
-   "options": [
-    "другой разговор",
-    "другого разговора",
-    "другим разговором",
-    "другом разговоре"
-   ],
-   "correct": "другой разговор",
-   "case": "Именительный (Nominative)",
-   "explain": "«другой разговор» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
-  },
-  {
-   "sentence": "-- ___ язычком заплетается, -- пуз, пуз, карапуз.",
-   "lemma": "инспектор",
-   "options": [
-    "будущему инспектору",
-    "будущего инспектора",
-    "будущий инспектор",
-    "будущем инспекторе"
-   ],
-   "correct": "будущий инспектор",
-   "case": "Именительный (Nominative)",
-   "explain": "«Будущий инспектор» — the subject of the sentence stands in the nominative.",
-   "id": "c18"
-  },
-  {
-   "sentence": "Рутилов непрерывно болтал, сплетничал, рассказывал анекдоты, иногда весьма ___.",
-   "lemma": "содержание",
-   "options": [
-    "щекотливого содержания",
-    "щекотливом содержании",
-    "щекотливое содержание",
-    "щекотливому содержанию"
-   ],
-   "correct": "щекотливого содержания",
-   "case": "Родительный (Genitive)",
-   "explain": "«щекотливого содержания» — the genitive here marks possession, absence, or quantity.",
-   "id": "c19"
-  },
-  {
-   "sentence": "-- Зачем же опиваться! -- обиженно возразил Володин. -- Молоко -- ___.",
-   "lemma": "продукт",
-   "options": [
-    "полезном продукте",
-    "полезный продукт",
-    "полезного продукта",
-    "полезному продукту"
-   ],
-   "correct": "полезный продукт",
-   "case": "Именительный (Nominative)",
-   "explain": "«полезный продукт» — the subject of the sentence stands in the nominative.",
-   "id": "c20"
-  },
-  {
-   "sentence": "Плевали на обои, обливали их пивом, пускали в стены и в потолок ___, запачканные на концах маслом, лепили на потолок чертей из жеваного хлеба.",
-   "lemma": "стрела",
-   "options": [
-    "бумажных стрел",
-    "бумажными стрелами",
-    "бумажных стрелах",
-    "бумажные стрелы"
-   ],
-   "correct": "бумажные стрелы",
-   "case": "Винительный (Accusative)",
-   "explain": "«бумажные стрелы» — the accusative marks the direct object of the verb.",
-   "id": "c21"
-  },
-  {
-   "sentence": "И это ___ для этих двух пьяных и грязных людишек являлось только источником низкого соблазна.",
-   "lemma": "тело",
-   "options": [
-    "восхитительное тело",
-    "восхитительному телу",
-    "восхитительного тела",
-    "восхитительным телом"
-   ],
-   "correct": "восхитительное тело",
-   "case": "Именительный (Nominative)",
-   "explain": "«восхитительное тело» — the subject of the sentence stands in the nominative.",
-   "id": "c23"
-  },
-  {
-   "sentence": "Вот Володин: недаром он все повторяет слова \"___\".",
-   "lemma": "инспектор",
-   "options": [
-    "будущем инспекторе",
-    "будущим инспектором",
-    "будущий инспектор",
-    "будущего инспектора"
-   ],
-   "correct": "будущий инспектор",
-   "case": "Именительный (Nominative)",
-   "explain": "«будущий инспектор» — the subject of the sentence stands in the nominative.",
-   "id": "c27"
-  },
-  {
-   "sentence": "Конечно, заменить самого Передонова Володину трудненько, -- да ведь у дурака, такого, как Володин, могут быть самые ___.",
-   "lemma": "затея",
-   "options": [
-    "нелепыми затеями",
-    "нелепые затеи",
-    "нелепых затеях",
-    "нелепым затеям"
-   ],
-   "correct": "нелепые затеи",
-   "case": "Именительный (Nominative)",
-   "explain": "«нелепые затеи» — the subject of the sentence stands in the nominative.",
-   "id": "c28"
-  },
-  {
-   "sentence": "___ утешиться не можешь?",
-   "lemma": "месяц",
-   "options": [
-    "целому месяцу",
-    "целый месяц",
-    "целого месяца",
-    "целом месяце"
-   ],
-   "correct": "целый месяц",
-   "case": "Винительный (Accusative)",
-   "explain": "«Целый месяц» — the accusative marks the direct object of the verb.",
-   "id": "c29"
   },
   {
    "sentence": "-- И следует, ей-богу, следует, -- с одушевлением сказал Володин. -- Потому как ежели она в ___ не хочет вступать, а между прочим к себе в окно молодых людей пускает, то уж это что ж!",
@@ -305,7 +81,7 @@
    ],
    "correct": "законный брак",
    "case": "Винительный (Accusative)",
-   "explain": "«законный брак» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«законный брак» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c30"
   },
   {
@@ -319,7 +95,7 @@
    ],
    "correct": "молодых людей",
    "case": "Винительный (Accusative)",
-   "explain": "«молодых людей» — the accusative marks the direct object of the verb.",
+   "explain": "«молодых людей» is the direct object of «пускает» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c31"
   }
  ]

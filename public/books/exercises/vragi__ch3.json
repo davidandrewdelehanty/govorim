@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "___ в доме Бардиных.",
-   "lemma": "комната",
-   "options": [
-    "большей комнаты",
-    "большая комната",
-    "большей комнате",
-    "большей комнатой"
-   ],
-   "correct": "большая комната",
-   "case": "Именительный (Nominative)",
-   "explain": "«Большая комната» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "В ___ четыре окна и дверь, выходящие на террасу; за стеклами видны солдаты, жандармы, группа рабочих, среди них Левшин, Греков.",
    "lemma": "стена",
    "options": [
@@ -25,21 +11,21 @@
    ],
    "correct": "задней стене",
    "case": "Предложный (Prepositional)",
-   "explain": "«задней стене» — after the preposition «в», for location or topic.",
+   "explain": "«задней стене» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c2"
   },
   {
    "sentence": "Комната имеет ___: мебели мало, она стара, разнообразна, на стенах отклеились обои.",
    "lemma": "вид",
    "options": [
-    "нежилой вид",
     "нежилым видом",
+    "нежилом виде",
     "нежилому виду",
-    "нежилого вида"
+    "нежилой вид"
    ],
    "correct": "нежилой вид",
    "case": "Винительный (Accusative)",
-   "explain": "«нежилой вид» — the accusative marks the direct object of the verb.",
+   "explain": "«нежилой вид» is the direct object of «имеет» (кого? что?) — accusative.",
    "id": "c3"
   },
   {
@@ -53,7 +39,7 @@
    ],
    "correct": "большой стол",
    "case": "Именительный (Nominative)",
-   "explain": "«большой стол» — the subject of the sentence stands in the nominative.",
+   "explain": "«большой стол» is the subject of «поставлен» — who or what does it — so nominative.",
    "id": "c4"
   },
   {
@@ -67,7 +53,7 @@
    ],
    "correct": "левой стене",
    "case": "Предложный (Prepositional)",
-   "explain": "«левой стене» — after the preposition «в», for location or topic.",
+   "explain": "«левой стене» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c5"
   },
   {
@@ -81,36 +67,22 @@
    ],
    "correct": "служебных обязанностей",
    "case": "Родительный (Genitive)",
-   "explain": "«служебных обязанностей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«служебных обязанностей» depends on the noun «исполнении» (whose? of what?) — genitive.",
    "id": "c6"
   },
   {
    "sentence": "Генерал не кажется мне ___.",
    "lemma": "человек",
    "options": [
-    "остроумному человеку",
+    "остроумного человека",
+    "остроумном человеке",
     "остроумным человеком",
-    "остроумный человек",
-    "остроумном человеке"
+    "остроумному человеку"
    ],
    "correct": "остроумным человеком",
    "case": "Творительный (Instrumental)",
-   "explain": "«остроумным человеком» — the instrumental marks the means, company, or complement.",
+   "explain": "After «кажется», what someone or something is or becomes stands in the instrumental.",
    "id": "c11"
-  },
-  {
-   "sentence": "Вы не замечаете, что мы с вами ___?",
-   "lemma": "душа",
-   "options": [
-    "родственным душам",
-    "родственные души",
-    "родственных душах",
-    "родственных душ"
-   ],
-   "correct": "родственные души",
-   "case": "Винительный (Accusative)",
-   "explain": "«родственные души» — the accusative marks the direct object of the verb.",
-   "id": "c12"
   },
   {
    "sentence": "Ее дядюшка, кажется, человек ___, да?",
@@ -123,49 +95,21 @@
    ],
    "correct": "либеральных взглядов",
    "case": "Родительный (Genitive)",
-   "explain": "«либеральных взглядов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«либеральных взглядов» depends on the noun «человек» (whose? of what?) — genitive.",
    "id": "c28"
-  },
-  {
-   "sentence": "Я не знаю, что такое ___.",
-   "lemma": "человек",
-   "options": [
-    "либеральном человеке",
-    "либерального человека",
-    "либеральным человеком",
-    "либеральный человек"
-   ],
-   "correct": "либеральный человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«либеральный человек» — the subject of the sentence stands in the nominative.",
-   "id": "c29"
-  },
-  {
-   "sentence": "Наслаждался вашей тонкой, удивительно ___!",
-   "lemma": "игра",
-   "options": [
-    "тонкая игра",
-    "тонкой игры",
-    "тонкой игрой",
-    "тонкой игре"
-   ],
-   "correct": "тонкой игрой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«тонкой игрой» — the instrumental marks the means, company, or complement.",
-   "id": "c30"
   },
   {
    "sentence": "Где вы играете ___?",
    "lemma": "сезон",
    "options": [
-    "будущим сезоном",
-    "будущего сезона",
     "будущий сезон",
-    "будущем сезоне"
+    "будущему сезону",
+    "будущем сезоне",
+    "будущим сезоном"
    ],
    "correct": "будущий сезон",
    "case": "Винительный (Accusative)",
-   "explain": "«будущий сезон» — the accusative marks the direct object of the verb.",
+   "explain": "«будущий сезон» is the direct object of «играете» (кого? что?) — accusative.",
    "id": "c34"
   },
   {
@@ -179,148 +123,8 @@
    ],
    "correct": "истинные ценители",
    "case": "Именительный (Nominative)",
-   "explain": "«истинные ценители» — the subject of the sentence stands in the nominative.",
+   "explain": "«истинные ценители» is the subject of «есть» — who or what does it — so nominative.",
    "id": "c35"
-  },
-  {
-   "sentence": "С террасы двое ___ вводят Рябцова.",
-   "lemma": "рабочий",
-   "options": [
-    "пожилым рабочим",
-    "пожилыми рабочими",
-    "пожилых рабочих",
-    "пожилые рабочие"
-   ],
-   "correct": "пожилых рабочих",
-   "case": "Родительный (Genitive)",
-   "explain": "«пожилых рабочих» — the genitive here marks possession, absence, or quantity.",
-   "id": "c39"
-  },
-  {
-   "sentence": "Мы с вами имеем подозрение, что этот мальчишка не ___, а подставное лицо, понимаете?",
-   "lemma": "преступник",
-   "options": [
-    "настоящему преступнику",
-    "настоящим преступником",
-    "настоящего преступника",
-    "настоящий преступник"
-   ],
-   "correct": "настоящий преступник",
-   "case": "Именительный (Nominative)",
-   "explain": "«настоящий преступник» — the subject of the sentence stands in the nominative.",
-   "id": "c41"
-  },
-  {
-   "sentence": "Мы с вами имеем подозрение, что этот мальчишка не настоящий преступник, а ___, понимаете?",
-   "lemma": "лицо",
-   "options": [
-    "подставное лицо",
-    "подставного лица",
-    "подставному лицу",
-    "подставном лице"
-   ],
-   "correct": "подставное лицо",
-   "case": "Именительный (Nominative)",
-   "explain": "«подставное лицо» — the subject of the sentence stands in the nominative.",
-   "id": "c42"
-  },
-  {
-   "sentence": "Так как же ты, ___, лжешь?",
-   "lemma": "человек",
-   "options": [
-    "старого человека",
-    "старому человеку",
-    "старом человеке",
-    "старый человек"
-   ],
-   "correct": "старый человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«старый человек» — the subject of the sentence stands in the nominative.",
-   "id": "c44"
-  },
-  {
-   "sentence": "Вы привлекались к дознанию в Смоленске по делу о ___ среди ремесленников — да?",
-   "lemma": "пропаганда",
-   "options": [
-    "революционная пропаганда",
-    "революционной пропаганды",
-    "революционной пропаганде",
-    "революционной пропагандой"
-   ],
-   "correct": "революционной пропаганде",
-   "case": "Предложный (Prepositional)",
-   "explain": "«революционной пропаганде» — after the preposition «о», for location or topic.",
-   "id": "c45"
-  },
-  {
-   "sentence": "Тут необходимо искать ___.",
-   "lemma": "человек",
-   "options": [
-    "умному человеку",
-    "умного человека",
-    "умным человеком",
-    "умный человек"
-   ],
-   "correct": "умного человека",
-   "case": "Винительный (Accusative)",
-   "explain": "«умного человека» — the accusative marks the direct object of the verb.",
-   "id": "c46"
-  },
-  {
-   "sentence": "Вы видите, какие ___ у этих арестантов?",
-   "lemma": "рожа",
-   "options": [
-    "разбойничьих рож",
-    "разбойничьи рожи",
-    "разбойничьих рожах",
-    "разбойничьими рожами"
-   ],
-   "correct": "разбойничьи рожи",
-   "case": "Именительный (Nominative)",
-   "explain": "«разбойничьи рожи» — the subject of the sentence stands in the nominative.",
-   "id": "c47"
-  },
-  {
-   "sentence": "Рядом с вами ваши ___, а вы их не замечаете!",
-   "lemma": "враг",
-   "options": [
-    "принципиальных врагах",
-    "принципиальными врагами",
-    "принципиальным врагам",
-    "принципиальные враги"
-   ],
-   "correct": "принципиальные враги",
-   "case": "Именительный (Nominative)",
-   "explain": "«принципиальные враги» — the subject of the sentence stands in the nominative.",
-   "id": "c48"
-  },
-  {
-   "sentence": "Татьяна, посмотрев вслед ему, хочет идти за ним, но останавливается, сделав ___ рукой.",
-   "lemma": "жест",
-   "options": [
-    "слабого жеста",
-    "слабый жест",
-    "слабом жесте",
-    "слабому жесту"
-   ],
-   "correct": "слабый жест",
-   "case": "Винительный (Accusative)",
-   "explain": "«слабый жест» — the accusative marks the direct object of the verb.",
-   "id": "c49"
-  },
-  {
-   "sentence": "Когда солдат рекрут, он ___, — хитрое, ленивое и глупое.",
-   "lemma": "животное",
-   "options": [
-    "хитрым животным",
-    "хитрого животного",
-    "хитром животном",
-    "хитрое животное"
-   ],
-   "correct": "хитрое животное",
-   "case": "Именительный (Nominative)",
-   "explain": "«хитрое животное» — the subject of the sentence stands in the nominative.",
-   "id": "c50"
   },
   {
    "sentence": "Они жили на ___, и там их имя было Максим Марков!..",
@@ -333,7 +137,7 @@
    ],
    "correct": "брянском заводе",
    "case": "Предложный (Prepositional)",
-   "explain": "«Брянском заводе» — after the preposition «на», for location or topic.",
+   "explain": "«брянском заводе» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c51"
   },
   {
@@ -347,106 +151,36 @@
    ],
    "correct": "левой руке",
    "case": "Предложный (Prepositional)",
-   "explain": "«левой руке» — after the preposition «на», for location or topic.",
+   "explain": "«левой руке» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c52"
-  },
-  {
-   "sentence": "На левой руке, на ___, у них ногтя нет, я знаю!",
-   "lemma": "палец",
-   "options": [
-    "большим пальцем",
-    "большого пальца",
-    "большому пальцу",
-    "большом пальце"
-   ],
-   "correct": "большом пальце",
-   "case": "Предложный (Prepositional)",
-   "explain": "«большом пальце» — after the preposition «на», for location or topic.",
-   "id": "c53"
-  },
-  {
-   "sentence": "Их соединяет господин Синцов, который со всеми в ___.",
-   "lemma": "отношение",
-   "options": [
-    "хорошими отношениями",
-    "хорошим отношениям",
-    "хороших отношений",
-    "хороших отношениях"
-   ],
-   "correct": "хороших отношениях",
-   "case": "Предложный (Prepositional)",
-   "explain": "«хороших отношениях» — after the preposition «в», for location or topic.",
-   "id": "c56"
-  },
-  {
-   "sentence": "Это личность не похожая на простого человека, с ___.",
-   "lemma": "ум",
-   "options": [
-    "нормальному уму",
-    "нормальный ум",
-    "нормальным умом",
-    "нормальном уме"
-   ],
-   "correct": "нормальным умом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«нормальным умом» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c58"
   },
   {
    "sentence": "Он читает ___ и имеет обо всем свои суждения.",
    "lemma": "книга",
    "options": [
-    "разным книгам",
-    "разных книг",
+    "разных книгах",
     "разными книгами",
+    "разным книгам",
     "разные книги"
    ],
    "correct": "разные книги",
    "case": "Винительный (Accusative)",
-   "explain": "«разные книги» — the accusative marks the direct object of the verb.",
+   "explain": "«разные книги» is the direct object of «читает» (кого? что?) — accusative.",
    "id": "c59"
   },
   {
    "sentence": "___ я прошу уйти!",
    "lemma": "лицо",
    "options": [
-    "посторонних лиц",
-    "посторонние лица",
     "посторонними лицами",
-    "посторонних лицах"
+    "посторонних лицах",
+    "посторонним лицам",
+    "посторонних лиц"
    ],
    "correct": "посторонних лиц",
    "case": "Родительный (Genitive)",
-   "explain": "«Посторонних лиц» — the genitive here marks possession, absence, or quantity.",
+   "explain": "With «прошу», a verb of waiting, seeking, asking or wanting, the object can stand in the genitive — as here.",
    "id": "c61"
-  },
-  {
-   "sentence": "(К столу идет, не торопясь, Акимов, ___, с большими усами.)",
-   "lemma": "парень",
-   "options": [
-    "рыжеватому парню",
-    "рыжеватым парнем",
-    "рыжеватый парень",
-    "рыжеватого парня"
-   ],
-   "correct": "рыжеватый парень",
-   "case": "Именительный (Nominative)",
-   "explain": "«рыжеватый парень» — the subject of the sentence stands in the nominative.",
-   "id": "c63"
-  },
-  {
-   "sentence": "А ведь каким святеньким притворялся этот ___!",
-   "lemma": "старик",
-   "options": [
-    "мерзким стариком",
-    "мерзкий старик",
-    "мерзкого старика",
-    "мерзком старике"
-   ],
-   "correct": "мерзкий старик",
-   "case": "Именительный (Nominative)",
-   "explain": "«мерзкий старик» — the subject of the sentence stands in the nominative.",
-   "id": "c66"
   }
  ]
 }

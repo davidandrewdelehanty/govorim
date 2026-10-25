@@ -1,48 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "С того дня прижился в астаховском курене ___.",
-   "lemma": "покойник",
-   "options": [
-    "невидимого покойника",
-    "невидимому покойнику",
-    "невидимый покойник",
-    "невидимым покойником"
-   ],
-   "correct": "невидимый покойник",
-   "case": "Именительный (Nominative)",
-   "explain": "«невидимый покойник» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Григорий пригонял поить быков, поднимался по спуску, помахивая ___, глядя под ноги.",
-   "lemma": "хворостинка",
-   "options": [
-    "красненькой хворостинкой",
-    "красненькой хворостинке",
-    "красненькой хворостинки",
-    "красненькая хворостинка"
-   ],
-   "correct": "красненькой хворостинкой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«красненькой хворостинкой» — the instrumental marks the means, company, or complement.",
-   "id": "c2"
-  },
-  {
-   "sentence": "После, вспоминая эту встречу, ей стоило ___, чтобы уверить себя, что это было наяву.",
-   "lemma": "усилие",
-   "options": [
-    "немалым усилиям",
-    "немалых усилиях",
-    "немалыми усилиями",
-    "немалых усилий"
-   ],
-   "correct": "немалых усилий",
-   "case": "Родительный (Genitive)",
-   "explain": "«немалых усилий» — the genitive here marks possession, absence, or quantity.",
-   "id": "c3"
-  },
-  {
    "sentence": "На ___ ведер приподнял голову, дрогнул бровями и глупо улыбнулся.",
    "lemma": "скрип",
    "options": [
@@ -53,7 +11,7 @@
    ],
    "correct": "требовательный скрип",
    "case": "Винительный (Accusative)",
-   "explain": "«требовательный скрип» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«требовательный скрип» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c4"
   },
   {
@@ -67,7 +25,7 @@
    ],
    "correct": "песчаной косы",
    "case": "Родительный (Genitive)",
-   "explain": "«песчаной косы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«песчаной косы» depends on the noun «гребень» (whose? of what?) — genitive.",
    "id": "c5"
   },
   {
@@ -81,7 +39,7 @@
    ],
    "correct": "белые чайки-рыболовы",
    "case": "Именительный (Nominative)",
-   "explain": "«Белые чайки-рыболовы» — the subject of the sentence stands in the nominative.",
+   "explain": "«белые чайки-рыболовы» is the subject of «носились» — who or what does it — so nominative.",
    "id": "c6"
   },
   {
@@ -95,7 +53,7 @@
    ],
    "correct": "песчаной косы",
    "case": "Родительный (Genitive)",
-   "explain": "«песчаной косы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«песчаной косы» depends on the noun «белью» (whose? of what?) — genitive.",
    "id": "c7"
   },
   {
@@ -109,78 +67,22 @@
    ],
    "correct": "старых тополей",
    "case": "Родительный (Genitive)",
-   "explain": "«старых тополей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«старых тополей» depends on the noun «вершины» (whose? of what?) — genitive.",
    "id": "c8"
-  },
-  {
-   "sentence": "Поднимая ___ юбку, забрела по колено.",
-   "lemma": "рука",
-   "options": [
-    "левой руки",
-    "левой рукой",
-    "левая рука",
-    "левой руке"
-   ],
-   "correct": "левой рукой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«левой рукой» — the instrumental marks the means, company, or complement.",
-   "id": "c9"
-  },
-  {
-   "sentence": "Аксинья ласкала мутным от прихлынувших слез взором его ___, уверенно попиравшие землю.",
-   "lemma": "нога",
-   "options": [
-    "сильные ноги",
-    "сильных ногах",
-    "сильным ногам",
-    "сильных ног"
-   ],
-   "correct": "сильные ноги",
-   "case": "Винительный (Accusative)",
-   "explain": "«сильные ноги» — the accusative marks the direct object of the verb.",
-   "id": "c11"
-  },
-  {
-   "sentence": "Широкие ___, заправленные в белые шерстяные чулки, алели лампасами.",
-   "lemma": "шаровары",
-   "options": [
-    "гришкиным шароварам",
-    "гришкины шаровары",
-    "гришкиных шаровар",
-    "гришкиных шароварах"
-   ],
-   "correct": "гришкины шаровары",
-   "case": "Именительный (Nominative)",
-   "explain": "«Гришкины шаровары» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
   },
   {
    "sentence": "Широкие Гришкины шаровары, заправленные в белые ___, алели лампасами.",
    "lemma": "чулок",
    "options": [
     "шерстяными чулками",
-    "шерстяных чулок",
     "шерстяные чулки",
-    "шерстяных чулках"
+    "шерстяным чулкам",
+    "шерстяных чулок"
    ],
    "correct": "шерстяные чулки",
    "case": "Винительный (Accusative)",
-   "explain": "«шерстяные чулки» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«шерстяные чулки» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c13"
-  },
-  {
-   "sentence": "На спине его, возле лопатки, трепыхался клочок свежепорванной ___, желтел смуглый треугольник оголенного тела.",
-   "lemma": "рубаха",
-   "options": [
-    "грязной рубахе",
-    "грязной рубахи",
-    "грязной рубахой",
-    "грязная рубаха"
-   ],
-   "correct": "грязной рубахи",
-   "case": "Родительный (Genitive)",
-   "explain": "«грязной рубахи» — the genitive here marks possession, absence, or quantity.",
-   "id": "c14"
   },
   {
    "sentence": "Аксинья целовала глазами этот крохотный, когда-то ей принадлежавший кусочек ___; слезы падали на улыбавшиеся побледневшие губы.",
@@ -193,7 +95,7 @@
    ],
    "correct": "любимого тела",
    "case": "Родительный (Genitive)",
-   "explain": "«любимого тела» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«любимого тела» depends on the noun «кусочек» (whose? of what?) — genitive.",
    "id": "c15"
   },
   {
@@ -207,36 +109,8 @@
    ],
    "correct": "соломенной шляпе",
    "case": "Предложный (Prepositional)",
-   "explain": "«соломенной шляпе» — after the preposition «в», for location or topic.",
+   "explain": "«соломенной шляпе» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c16"
-  },
-  {
-   "sentence": "Стала, словно под ногами увидела ___, поглядела назад и — чуть не рысью под-над Доном к займищу.",
-   "lemma": "яр",
-   "options": [
-    "глубокому яру",
-    "глубоким яром",
-    "глубокий яр",
-    "глубоком яре"
-   ],
-   "correct": "глубокий яр",
-   "case": "Винительный (Accusative)",
-   "explain": "«глубокий яр» — the accusative marks the direct object of the verb.",
-   "id": "c17"
-  },
-  {
-   "sentence": "Вот ___, припоздав, допалывают картофельную делянку; согнутые, в розовых рубахах спины, короткие взлеты мотыг, падающих на серую пахоту.",
-   "lemma": "баба",
-   "options": [
-    "шамилевских баб",
-    "шамилевскими бабами",
-    "шамилевские бабы",
-    "шамилевским бабам"
-   ],
-   "correct": "шамилевские бабы",
-   "case": "Именительный (Nominative)",
-   "explain": "«шамилевские бабы» — the subject of the sentence stands in the nominative.",
-   "id": "c18"
   },
   {
    "sentence": "Аксинья, не переводя духа, дошла до ___.",
@@ -249,22 +123,8 @@
    ],
    "correct": "мелеховского огорода",
    "case": "Родительный (Genitive)",
-   "explain": "«мелеховского огорода» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«мелеховского огорода» — «до» always takes the genitive.",
    "id": "c19"
-  },
-  {
-   "sentence": "Она сидела, не изменив положения, только на ___ ладони вместо одной уже три слезные дробинки катились вперегонку.",
-   "lemma": "сторона",
-   "options": [
-    "тыльной стороной",
-    "тыльная сторона",
-    "тыльной стороны",
-    "тыльной стороне"
-   ],
-   "correct": "тыльной стороне",
-   "case": "Предложный (Prepositional)",
-   "explain": "«тыльной стороне» — after the preposition «вместо», for location or topic.",
-   "id": "c22"
   },
   {
    "sentence": "Аксинья оторвала от ___ руки.",
@@ -277,22 +137,8 @@
    ],
    "correct": "мокрого лица",
    "case": "Родительный (Genitive)",
-   "explain": "«мокрого лица» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«мокрого лица» — «от» always takes the genitive.",
    "id": "c23"
-  },
-  {
-   "sentence": "Григорий ворочал синими ___, отводил глаза в сторону.",
-   "lemma": "белок",
-   "options": [
-    "выпуклыми белками",
-    "выпуклым белкам",
-    "выпуклых белках",
-    "выпуклых белков"
-   ],
-   "correct": "выпуклыми белками",
-   "case": "Творительный (Instrumental)",
-   "explain": "«выпуклыми белками» — the instrumental marks the means, company, or complement.",
-   "id": "c24"
   },
   {
    "sentence": "Григорий вздохнул — с выхрипом вышел вздох — и лег на спину, прижимая лопатки к ___.",
@@ -305,36 +151,8 @@
    ],
    "correct": "горячей земле",
    "case": "Дательный (Dative)",
-   "explain": "«горячей земле» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«горячей земле» — «к» always takes the dative.",
    "id": "c25"
-  },
-  {
-   "sentence": "Струившийся между подсолнухами ___ затрепал на шее завитки золотистого пуха.",
-   "lemma": "ветер",
-   "options": [
-    "горячий ветер",
-    "горячего ветра",
-    "горячему ветру",
-    "горячем ветре"
-   ],
-   "correct": "горячий ветер",
-   "case": "Именительный (Nominative)",
-   "explain": "«горячий ветер» — the subject of the sentence stands in the nominative.",
-   "id": "c26"
-  },
-  {
-   "sentence": "Струившийся между подсолнухами горячий ветер затрепал на шее завитки ___.",
-   "lemma": "пух",
-   "options": [
-    "золотистом пухе",
-    "золотистый пух",
-    "золотистого пуха",
-    "золотистому пуху"
-   ],
-   "correct": "золотистого пуха",
-   "case": "Родительный (Genitive)",
-   "explain": "«золотистого пуха» — the genitive here marks possession, absence, or quantity.",
-   "id": "c27"
   }
  ]
 }

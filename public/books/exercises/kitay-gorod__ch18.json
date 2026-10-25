@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Узость плеч, приподнятых и острых, ___ с кадыком, непомерная длина рук и ног делали его неприятным на взгляд по одной уже фигуре.",
-   "lemma": "шея",
-   "options": [
-    "вытянутой шеей",
-    "вытянутой шее",
-    "вытянутой шеи",
-    "вытянутая шея"
-   ],
-   "correct": "вытянутая шея",
-   "case": "Именительный (Nominative)",
-   "explain": "«вытянутая шея» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Голова подходила к ___: лоб, сдавленный с боков и сверху сжатый, заостренная макушка и выдающийся затылок достаточно говорили о его мозговом устройстве.",
    "lemma": "склад",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "остальному складу",
    "case": "Дательный (Dative)",
-   "explain": "«остальному складу» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«остальному складу» — «к» always takes the dative.",
    "id": "c2"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "мозговом устройстве",
    "case": "Предложный (Prepositional)",
-   "explain": "«мозговом устройстве» — after the preposition «о», for location or topic.",
+   "explain": "«мозговом устройстве» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c3"
   },
   {
@@ -53,35 +39,21 @@
    ],
    "correct": "красные веки",
    "case": "Именительный (Nominative)",
-   "explain": "«Красные веки» — the subject of the sentence stands in the nominative.",
+   "explain": "«красные веки» is the subject of «окружали» — who or what does it — so nominative.",
    "id": "c4"
-  },
-  {
-   "sentence": "Шили на него исключительно два парижских ___: Дюсотуа и Блан.",
-   "lemma": "портной",
-   "options": [
-    "бульварным портным",
-    "бульварных портных",
-    "бульварными портными",
-    "бульварные портные"
-   ],
-   "correct": "бульварных портных",
-   "case": "Родительный (Genitive)",
-   "explain": "«бульварных портных» — the genitive here marks possession, absence, or quantity.",
-   "id": "c5"
   },
   {
    "sentence": "Галстуки, белье, золотые ___ он носил не иначе как лондонские, «точно такие», как принц Галльский, от тех же самых поставщиков.",
    "lemma": "вещь",
    "options": [
     "мелких вещах",
-    "мелкими вещами",
-    "мелких вещей",
-    "мелкие вещи"
+    "мелким вещам",
+    "мелкие вещи",
+    "мелкими вещами"
    ],
    "correct": "мелкие вещи",
    "case": "Винительный (Accusative)",
-   "explain": "«мелкие вещи» — the accusative marks the direct object of the verb.",
+   "explain": "«мелкие вещи» is the direct object of «носил» (кого? что?) — accusative.",
    "id": "c6"
   },
   {
@@ -95,7 +67,7 @@
    ],
    "correct": "стоячие воротнички",
    "case": "Именительный (Nominative)",
-   "explain": "«стоячие воротнички» — the subject of the sentence stands in the nominative.",
+   "explain": "«стоячие воротнички» is the subject of «уходили» — who or what does it — so nominative.",
    "id": "c7"
   },
   {
@@ -109,22 +81,8 @@
    ],
    "correct": "прусского покроя",
    "case": "Родительный (Genitive)",
-   "explain": "«прусского покроя» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«прусского покроя» depends on the noun «панталонах» (whose? of what?) — genitive.",
    "id": "c9"
-  },
-  {
-   "sentence": "Руками своими он любовался, но с ногтями до сих пор не мог сладить — придать им красивую овальную форму и ___, хотя и «лечился» у всех известных «маникуров».",
-   "lemma": "цвет",
-   "options": [
-    "нежного цвета",
-    "нежном цвете",
-    "нежный цвет",
-    "нежным цветом"
-   ],
-   "correct": "нежный цвет",
-   "case": "Винительный (Accusative)",
-   "explain": "«нежный цвет» — the accusative marks the direct object of the verb.",
-   "id": "c11"
   },
   {
    "sentence": "Она пожала, вуалетки не подняла и села на диван у ___.",
@@ -137,7 +95,7 @@
    ],
    "correct": "левой стены",
    "case": "Родительный (Genitive)",
-   "explain": "«левой стены» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«левой стены» — «у» always takes the genitive.",
    "id": "c12"
   },
   {
@@ -151,134 +109,22 @@
    ],
    "correct": "бархатные брови",
    "case": "Именительный (Nominative)",
-   "explain": "«бархатные брови» — the subject of the sentence stands in the nominative.",
+   "explain": "«бархатные брови» is the subject of «поднялись» — who or what does it — so nominative.",
    "id": "c13"
-  },
-  {
-   "sentence": "Улан перекинулся назад всем своим ___.",
-   "lemma": "туловище",
-   "options": [
-    "пухлом туловище",
-    "пухлого туловища",
-    "пухлым туловищем",
-    "пухлому туловищу"
-   ],
-   "correct": "пухлым туловищем",
-   "case": "Творительный (Instrumental)",
-   "explain": "«пухлым туловищем» — the instrumental marks the means, company, or complement.",
-   "id": "c14"
-  },
-  {
-   "sentence": "Он все еще не менял позы, сидел на ребре стола и носком ___ ударял о левую.",
-   "lemma": "нога",
-   "options": [
-    "правой ноги",
-    "правая нога",
-    "правой ноге",
-    "правой ногой"
-   ],
-   "correct": "правой ноги",
-   "case": "Родительный (Genitive)",
-   "explain": "«правой ноги» — the genitive here marks possession, absence, or quantity.",
-   "id": "c15"
-  },
-  {
-   "sentence": "Она знала, что ей всегда можно заставить его опустить свои ___, но она этого не сделала.",
-   "lemma": "ресница",
-   "options": [
-    "рыжим ресницам",
-    "рыжих ресниц",
-    "рыжими ресницами",
-    "рыжие ресницы"
-   ],
-   "correct": "рыжие ресницы",
-   "case": "Винительный (Accusative)",
-   "explain": "«рыжие ресницы» — the accusative marks the direct object of the verb.",
-   "id": "c16"
-  },
-  {
-   "sentence": "Он не знал в точности, чья это ___, но помнил, что в Café de Madrid часто повторяли ее.",
-   "lemma": "фраза",
-   "options": [
-    "исторической фразой",
-    "историческая фраза",
-    "исторической фразы",
-    "исторической фразе"
-   ],
-   "correct": "историческая фраза",
-   "case": "Именительный (Nominative)",
-   "explain": "«историческая фраза» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
-  },
-  {
-   "sentence": "Произношение у него было изломанное, отзывалось ___ с актрисами «Folies Dramatiques» и «Théâtre des Nouveautés».",
-   "lemma": "знакомство",
-   "options": [
-    "близким знакомством",
-    "близкому знакомству",
-    "близкое знакомство",
-    "близкого знакомства"
-   ],
-   "correct": "близким знакомством",
-   "case": "Творительный (Instrumental)",
-   "explain": "«близким знакомством» — the instrumental marks the means, company, or complement.",
-   "id": "c18"
   },
   {
    "sentence": "— Bien bonjour, Анна Серафимовна, — прибавил от себя и дворянин; он по-французски употреблял ___, вроде этого или bien merci.",
    "lemma": "оборот",
    "options": [
-    "московские обороты",
-    "московских оборотов",
     "московским оборотам",
-    "московскими оборотами"
+    "московскими оборотами",
+    "московские обороты",
+    "московских оборотах"
    ],
    "correct": "московские обороты",
    "case": "Винительный (Accusative)",
-   "explain": "«московские обороты» — the accusative marks the direct object of the verb.",
+   "explain": "«московские обороты» is the direct object of «употреблял» (кого? что?) — accusative.",
    "id": "c19"
-  },
-  {
-   "sentence": "По лицу ___ пробегали струйки нервных вздрагиваний.",
-   "lemma": "женщина",
-   "options": [
-    "молодой женщины",
-    "молодой женщиной",
-    "молодая женщина",
-    "молодой женщине"
-   ],
-   "correct": "молодой женщины",
-   "case": "Родительный (Genitive)",
-   "explain": "«молодой женщины» — the genitive here marks possession, absence, or quantity.",
-   "id": "c20"
-  },
-  {
-   "sentence": "По лицу молодой женщины пробегали струйки ___.",
-   "lemma": "вздрагивание",
-   "options": [
-    "нервные вздрагивания",
-    "нервными вздрагиваниями",
-    "нервным вздрагиваниям",
-    "нервных вздрагиваний"
-   ],
-   "correct": "нервных вздрагиваний",
-   "case": "Родительный (Genitive)",
-   "explain": "«нервных вздрагиваний» — the genitive here marks possession, absence, or quantity.",
-   "id": "c21"
-  },
-  {
-   "sentence": "Почти черные волосы, гладкие, густые, причесаны были по-старинному, двумя ___, и только сбоку, на лбу, она позволяла себе несколько завитков: они смягчали строгость очертаний ее лба и линию переносицы.",
-   "lemma": "прядь",
-   "options": [
-    "плоские пряди",
-    "плоским прядям",
-    "плоскими прядями",
-    "плоских прядях"
-   ],
-   "correct": "плоскими прядями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«плоскими прядями» — the instrumental marks the means, company, or complement.",
-   "id": "c22"
   }
  ]
 }

@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Екатерина продала его, отступилась, как отступались помещицы от тяжебного ___, расположенного в далеком и беспокойном месте.",
-   "lemma": "угодье",
-   "options": [
-    "степным угодьем",
-    "степное угодье",
-    "степному угодью",
-    "степного угодья"
-   ],
-   "correct": "степного угодья",
-   "case": "Родительный (Genitive)",
-   "explain": "«степного угодья» — the genitive here marks possession, absence, or quantity.",
-   "id": "c1"
-  },
-  {
    "sentence": "Город Тифлис был беззащитен, а тоска ___ сильнее всякой другой тоски на земле.",
    "lemma": "город",
    "options": [
@@ -25,22 +11,8 @@
    ],
    "correct": "беззащитных городов",
    "case": "Родительный (Genitive)",
-   "explain": "«беззащитных городов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«беззащитных городов» depends on the noun «тоска» (whose? of what?) — genitive.",
    "id": "c2"
-  },
-  {
-   "sentence": "Город Тифлис был беззащитен, а тоска беззащитных городов сильнее всякой ___ на земле.",
-   "lemma": "тоска",
-   "options": [
-    "другой тоской",
-    "другой тоске",
-    "другая тоска",
-    "другой тоски"
-   ],
-   "correct": "другой тоски",
-   "case": "Родительный (Genitive)",
-   "explain": "«другой тоски» — the genitive here marks possession, absence, or quantity.",
-   "id": "c3"
   },
   {
    "sentence": "Тогда курчавый дым шел к небу от Авлабара, похожий на стада баранов, которых бьют, красный и мягкий дым, а вытье женщин, рев детей и плач ___ не были слышны среди звуков пожара.",
@@ -53,22 +25,8 @@
    ],
    "correct": "раненых животных",
    "case": "Родительный (Genitive)",
-   "explain": "«раненых животных» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«раненых животных» depends on the noun «плач» (whose? of what?) — genitive.",
    "id": "c4"
-  },
-  {
-   "sentence": "Шах Ага-Мохамед был мал ростом, с лица плюгав и сморщен, как ___, зад же его был широк, как у старой женщины.",
-   "lemma": "отрок",
-   "options": [
-    "нечистый отрок",
-    "нечистом отроке",
-    "нечистым отроком",
-    "нечистому отроку"
-   ],
-   "correct": "нечистый отрок",
-   "case": "Именительный (Nominative)",
-   "explain": "«нечистый отрок» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
   },
   {
    "sentence": "Шах Ага-Мохамед был мал ростом, с лица плюгав и сморщен, как нечистый отрок, зад же его был широк, как у ___.",
@@ -81,64 +39,22 @@
    ],
    "correct": "старой женщины",
    "case": "Родительный (Genitive)",
-   "explain": "«старой женщины» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«старой женщины» — «у» always takes the genitive.",
    "id": "c6"
-  },
-  {
-   "sentence": "Строение из твердого камня и мрамора, с мраморными ___, удивило его.",
-   "lemma": "бассейн",
-   "options": [
-    "широкие бассейны",
-    "широких бассейнах",
-    "широкими бассейнами",
-    "широким бассейнам"
-   ],
-   "correct": "широкими бассейнами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«широкими бассейнами» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c8"
   },
   {
    "sentence": "Потом, оставив свиту, он вошел в горячий ___ и пробыл в нем полчаса.",
    "lemma": "бассейн",
    "options": [
+    "серному бассейну",
+    "серным бассейном",
     "серного бассейна",
-    "серном бассейне",
-    "серный бассейн",
-    "серному бассейну"
+    "серный бассейн"
    ],
    "correct": "серный бассейн",
    "case": "Винительный (Accusative)",
-   "explain": "«серный бассейн» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«серный бассейн» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c9"
-  },
-  {
-   "sentence": "Выстрелы и ___ были здесь не слышны, потому что стены были очень толстые.",
-   "lemma": "обвал",
-   "options": [
-    "домовыми обвалами",
-    "домовых обвалах",
-    "домовым обвалам",
-    "домовые обвалы"
-   ],
-   "correct": "домовые обвалы",
-   "case": "Именительный (Nominative)",
-   "explain": "«домовые обвалы» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
-  },
-  {
-   "sentence": "Печные трубы, торчавшие со всех сторон как ___, стали снова обрастать стенами.",
-   "lemma": "столб",
-   "options": [
-    "памятным столбам",
-    "памятные столбы",
-    "памятными столбами",
-    "памятных столбов"
-   ],
-   "correct": "памятные столбы",
-   "case": "Винительный (Accusative)",
-   "explain": "«памятные столбы» — the accusative marks the direct object of the verb.",
-   "id": "c11"
   },
   {
    "sentence": "И ___ стали упираться, как до пожара, — тот в лавку сапожника, этот — в дом пекаря.",
@@ -151,63 +67,35 @@
    ],
    "correct": "переулочные горбы",
    "case": "Именительный (Nominative)",
-   "explain": "«переулочные горбы» — the subject of the sentence stands in the nominative.",
+   "explain": "«переулочные горбы» is the subject of «стали» — who or what does it — so nominative.",
    "id": "c12"
-  },
-  {
-   "sentence": "Здесь была его ___, восьмилетние упорные труды.",
-   "lemma": "родина",
-   "options": [
-    "вторая родина",
-    "второй родины",
-    "второй родине",
-    "второй родиной"
-   ],
-   "correct": "вторая родина",
-   "case": "Именительный (Nominative)",
-   "explain": "«вторая родина» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
-  },
-  {
-   "sentence": "Здесь была его вторая родина, восьмилетние ___.",
-   "lemma": "труд",
-   "options": [
-    "упорным трудам",
-    "упорные труды",
-    "упорных трудов",
-    "упорными трудами"
-   ],
-   "correct": "упорные труды",
-   "case": "Винительный (Accusative)",
-   "explain": "«упорные труды» — the accusative marks the direct object of the verb.",
-   "id": "c14"
   },
   {
    "sentence": "После того как в один ___ он бежал из Петербурга, без возраста и без будущего, — он образовался здесь, обрел возраст и оседлость, и город оправлялся от ран, как человек, вместе с ним.",
    "lemma": "день",
    "options": [
-    "памятному дню",
     "памятный день",
-    "памятном дне",
+    "памятным днём",
+    "памятному дню",
     "памятного дня"
    ],
    "correct": "памятный день",
    "case": "Винительный (Accusative)",
-   "explain": "«памятный день» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«памятный день» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c15"
   },
   {
    "sentence": "На майдане, под высоким ___, стучали каблуки продавцов-армян; молчаливые персияне раздували уголья в жаровнях; выступали, повеся голову, ослы с вязанками мелких дров, виноградного хвороста на спине.",
    "lemma": "навес",
    "options": [
-    "дощатого навеса",
     "дощатом навесе",
+    "дощатого навеса",
     "дощатым навесом",
-    "дощатый навес"
+    "дощатому навесу"
    ],
    "correct": "дощатым навесом",
    "case": "Творительный (Instrumental)",
-   "explain": "«дощатым навесом» — after the preposition «под», the instrumental marks the means, company, or complement.",
+   "explain": "«дощатым навесом» — «под» takes the instrumental here (где? под чем?) — the accusative would mean movement under (куда? под что?).",
    "id": "c17"
   },
   {
@@ -221,63 +109,21 @@
    ],
    "correct": "мелких дров",
    "case": "Родительный (Genitive)",
-   "explain": "«мелких дров» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«мелких дров» depends on the noun «вязанками» (whose? of what?) — genitive.",
    "id": "c18"
-  },
-  {
-   "sentence": "На майдане, под высоким дощатым навесом, стучали каблуки продавцов-армян; молчаливые персияне раздували уголья в жаровнях; выступали, повеся голову, ослы с вязанками мелких дров, ___ на спине.",
-   "lemma": "хворост",
-   "options": [
-    "виноградного хвороста",
-    "виноградным хворостом",
-    "виноградному хворосту",
-    "виноградном хворосте"
-   ],
-   "correct": "виноградного хвороста",
-   "case": "Родительный (Genitive)",
-   "explain": "«виноградного хвороста» — the genitive here marks possession, absence, or quantity.",
-   "id": "c19"
-  },
-  {
-   "sentence": "А вечерами выходили на плоские кровли разрумяненные женщины и, как ___, сновали там покрывала, лечаки, — плясали.",
-   "lemma": "мышь",
-   "options": [
-    "летучим мышам",
-    "летучих мышах",
-    "летучие мыши",
-    "летучими мышами"
-   ],
-   "correct": "летучие мыши",
-   "case": "Именительный (Nominative)",
-   "explain": "«летучие мыши» — the subject of the sentence stands in the nominative.",
-   "id": "c21"
-  },
-  {
-   "sentence": "На неопрятных этих балконах, загороженных деревянными балясинами, обедали, ругались, спали, любили, сберегая, как ___, — прохладу.",
-   "lemma": "вино",
-   "options": [
-    "старым вином",
-    "старом вине",
-    "старое вино",
-    "старого вина"
-   ],
-   "correct": "старое вино",
-   "case": "Именительный (Nominative)",
-   "explain": "«старое вино» — the subject of the sentence stands in the nominative.",
-   "id": "c22"
   },
   {
    "sentence": "Он хотел сделать Тифлис ___ и рубил улицы по военной привычке, как лесные просеки.",
    "lemma": "город",
    "options": [
-    "европейским городом",
-    "европейского города",
     "европейскому городу",
-    "европейский город"
+    "европейском городе",
+    "европейским городом",
+    "европейского города"
    ],
    "correct": "европейским городом",
    "case": "Творительный (Instrumental)",
-   "explain": "«европейским городом» — the instrumental marks the means, company, or complement.",
+   "explain": "After «сделать» (to call, consider or make someone something), that something is in the instrumental.",
    "id": "c23"
   },
   {
@@ -291,36 +137,8 @@
    ],
    "correct": "военной привычке",
    "case": "Дательный (Dative)",
-   "explain": "«военной привычке» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«военной привычке» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c24"
-  },
-  {
-   "sentence": "Он хотел сделать Тифлис европейским городом и рубил улицы по военной привычке, как ___.",
-   "lemma": "просек",
-   "options": [
-    "лесных просеках",
-    "лесные просеки",
-    "лесных просеков",
-    "лесными просеками"
-   ],
-   "correct": "лесные просеки",
-   "case": "Именительный (Nominative)",
-   "explain": "«лесные просеки» — the subject of the sentence stands in the nominative.",
-   "id": "c25"
-  },
-  {
-   "sentence": "Как неудавшаяся любовь полководца, возник ___ с темной листвой, с лампионами, с просеками дорожек.",
-   "lemma": "сад",
-   "options": [
-    "городским садом",
-    "городской сад",
-    "городского сада",
-    "городском саде"
-   ],
-   "correct": "городской сад",
-   "case": "Именительный (Nominative)",
-   "explain": "«городской сад» — the subject of the sentence stands in the nominative.",
-   "id": "c26"
   },
   {
    "sentence": "Перила мостов, в ___, имели вид щеголеватых квартальных.",
@@ -333,22 +151,8 @@
    ],
    "correct": "полосатой краске",
    "case": "Предложный (Prepositional)",
-   "explain": "«полосатой краске» — after the preposition «в», for location or topic.",
+   "explain": "«полосатой краске» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c27"
-  },
-  {
-   "sentence": "Трактир Матасси — ___ — был закрыт.",
-   "lemma": "храм",
-   "options": [
-    "асессорским храмом",
-    "асессорский храм",
-    "асессорскому храму",
-    "асессорского храма"
-   ],
-   "correct": "асессорский храм",
-   "case": "Именительный (Nominative)",
-   "explain": "«асессорский храм» — the subject of the sentence stands in the nominative.",
-   "id": "c29"
   },
   {
    "sentence": "У подъезда длинного ___, где увидел когда-то впервые Грибоедов Ермолова, стоял пыльный ряд провиантских ароб.",
@@ -361,7 +165,7 @@
    ],
    "correct": "двухэтажного здания",
    "case": "Родительный (Genitive)",
-   "explain": "«двухэтажного здания» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«двухэтажного здания» depends on the noun «подъезда» (whose? of what?) — genitive.",
    "id": "c30"
   },
   {
@@ -375,22 +179,8 @@
    ],
    "correct": "пыльный ряд",
    "case": "Именительный (Nominative)",
-   "explain": "«пыльный ряд» — the subject of the sentence stands in the nominative.",
+   "explain": "«пыльный ряд» is the subject of «стоял» — who or what does it — so nominative.",
    "id": "c31"
-  },
-  {
-   "sentence": "Но если взять направо, потом идти прямо и все вверх — там был неподалеку ___ в саду.",
-   "lemma": "дом",
-   "options": [
-    "деревянным домом",
-    "деревянный дом",
-    "деревянном доме",
-    "деревянного дома"
-   ],
-   "correct": "деревянный дом",
-   "case": "Именительный (Nominative)",
-   "explain": "«деревянный дом» — the subject of the sentence stands in the nominative.",
-   "id": "c32"
   },
   {
    "sentence": "В большом ___ сохранялось счастье.",
@@ -403,7 +193,7 @@
    ],
    "correct": "деревянном доме",
    "case": "Предложный (Prepositional)",
-   "explain": "«деревянном доме» — after the preposition «в», for location or topic.",
+   "explain": "«деревянном доме» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c33"
   }
  ]

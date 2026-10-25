@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "В то время у нас был ординатором один ___, знающий дело, ласковый, приветливый, которого очень любили арестанты и находили в нем только один недостаток: «слишком уж смирен».",
-   "lemma": "лекарь",
-   "options": [
-    "молоденьким лекарем",
-    "молоденьком лекаре",
-    "молоденькому лекарю",
-    "молоденький лекарь"
-   ],
-   "correct": "молоденький лекарь",
-   "case": "Именительный (Nominative)",
-   "explain": "«молоденький лекарь» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "В ___, он был как-то неразговорчив, даже как будто конфузился нас, чуть не краснел, изменял порции чуть не по первой просьбе больных и даже, кажется, готов был назначать им и лекарства по их же просьбе.",
    "lemma": "дело",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "самом деле",
    "case": "Предложный (Prepositional)",
-   "explain": "«самом деле» — after the preposition «в», for location or topic.",
+   "explain": "«самом деле» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c2"
   },
   {
@@ -39,35 +25,21 @@
    ],
    "correct": "первой просьбе",
    "case": "Дательный (Dative)",
-   "explain": "«первой просьбе» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«первой просьбе» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c3"
-  },
-  {
-   "sentence": "Впрочем, он был славный ___.",
-   "lemma": "человек",
-   "options": [
-    "молодой человек",
-    "молодого человека",
-    "молодым человеком",
-    "молодому человеку"
-   ],
-   "correct": "молодой человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«молодой человек» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
   },
   {
    "sentence": "Надо признаться, много лекарей на Руси пользуются любовью и уважением ___, и это, сколько я заметил, совершенная правда.",
    "lemma": "народ",
    "options": [
-    "простом народе",
+    "простой народ",
     "простому народу",
-    "простого народа",
-    "простым народом"
+    "простом народе",
+    "простого народа"
    ],
    "correct": "простого народа",
    "case": "Родительный (Genitive)",
-   "explain": "«простого народа» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«простого народа» depends on the noun «уважением» (whose? of what?) — genitive.",
    "id": "c5"
   },
   {
@@ -81,7 +53,7 @@
    ],
    "correct": "простого народа",
    "case": "Родительный (Genitive)",
-   "explain": "«простого народа» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«простого народа» depends on the noun «недоверие» (whose? of what?) — genitive.",
    "id": "c6"
   },
   {
@@ -95,7 +67,7 @@
    ],
    "correct": "заморским лекарствам",
    "case": "Дательный (Dative)",
-   "explain": "«заморским лекарствам» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«заморским лекарствам» — «к» always takes the dative.",
    "id": "c7"
   },
   {
@@ -109,22 +81,8 @@
    ],
    "correct": "чужие люди",
    "case": "Именительный (Nominative)",
-   "explain": "«чужие люди» — the subject of the sentence stands in the nominative.",
+   "explain": "«чужие люди» is the subject of «пугают» — who or what does it — so nominative.",
    "id": "c8"
-  },
-  {
-   "sentence": "Но при более ___ с лекарями (хотя и не без исключений, но большею частию) все эти страхи исчезают очень скоро, что, по моему мнению, прямо относится к чести докторов наших, преимущественно молодых.",
-   "lemma": "знакомство",
-   "options": [
-    "близкому знакомству",
-    "близкого знакомства",
-    "близким знакомством",
-    "близком знакомстве"
-   ],
-   "correct": "близком знакомстве",
-   "case": "Предложный (Prepositional)",
-   "explain": "«близком знакомстве» — after the preposition «при», for location or topic.",
-   "id": "c9"
   },
   {
    "sentence": "По крайней мере я пишу о том, что сам видел и испытал неоднократно и во многих местах, и не имею оснований думать, чтоб в ___ слишком часто поступалось иначе.",
@@ -137,36 +95,8 @@
    ],
    "correct": "других местах",
    "case": "Предложный (Prepositional)",
-   "explain": "«других местах» — after the preposition «в», for location or topic.",
+   "explain": "«других местах» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c10"
-  },
-  {
-   "sentence": "Впрочем, я опять отбился от темы; я хотел только сказать, что ___ недоверчив и враждебен более к администрации медицинской, а не у лекарям.",
-   "lemma": "народ",
-   "options": [
-    "простой народ",
-    "простому народу",
-    "простого народа",
-    "простом народе"
-   ],
-   "correct": "простой народ",
-   "case": "Именительный (Nominative)",
-   "explain": "«простой народ» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
-  },
-  {
-   "sentence": "Прочая же обстановка наших лечебниц до сих пор во многом не соответствует духу народа, до сих пор враждебна своими порядками привычками нашего простолюдья и не в состоянии приобрести ___ и уважения народного.",
-   "lemma": "доверие",
-   "options": [
-    "полное доверие",
-    "полного доверия",
-    "полному доверию",
-    "полным доверием"
-   ],
-   "correct": "полного доверия",
-   "case": "Родительный (Genitive)",
-   "explain": "«полного доверия» — the genitive here marks possession, absence, or quantity.",
-   "id": "c12"
   },
   {
    "sentence": "Так мне по крайней мере кажется из некоторых моих ___.",
@@ -179,7 +109,7 @@
    ],
    "correct": "собственных впечатлений",
    "case": "Родительный (Genitive)",
-   "explain": "«собственных впечатлений» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«собственных впечатлений» — «из» always takes the genitive.",
    "id": "c13"
   },
   {
@@ -193,7 +123,7 @@
    ],
    "correct": "обоюдному согласию",
    "case": "Дательный (Dative)",
-   "explain": "«обоюдному согласию» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«обоюдному согласию» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c14"
   },
   {
@@ -207,22 +137,8 @@
    ],
    "correct": "сами арестанты",
    "case": "Именительный (Nominative)",
-   "explain": "«сами арестанты» — the subject of the sentence stands in the nominative.",
+   "explain": "«сами арестанты» is the subject of «переводили» — who or what does it — so nominative.",
    "id": "c15"
-  },
-  {
-   "sentence": "Впрочем, так только говорили, а ___ никаких не брали даже те, у которых койки приходились с ним рядом.",
-   "lemma": "предосторожность",
-   "options": [
-    "особенными предосторожностями",
-    "особенным предосторожностям",
-    "особенных предосторожностей",
-    "особенных предосторожностях"
-   ],
-   "correct": "особенных предосторожностей",
-   "case": "Родительный (Genitive)",
-   "explain": "«особенных предосторожностей» — the genitive here marks possession, absence, or quantity.",
-   "id": "c17"
   },
   {
    "sentence": "Наконец ___ погрозил ему заволокой.",
@@ -235,7 +151,7 @@
    ],
    "correct": "главный доктор",
    "case": "Именительный (Nominative)",
-   "explain": "«главный доктор» — the subject of the sentence stands in the nominative.",
+   "explain": "«главный доктор» is the subject of «погрозил» — who or what does it — so nominative.",
    "id": "c18"
   },
   {
@@ -249,22 +165,8 @@
    ],
    "correct": "медицинские средства",
    "case": "Именительный (Nominative)",
-   "explain": "«медицинские средства» — the subject of the sentence stands in the nominative.",
+   "explain": "«медицинские средства» is the subject of «бывают» — who or what does it — so nominative.",
    "id": "c19"
-  },
-  {
-   "sentence": "Как он попал в солдаты, не знаю; не помню; впрочем, может, он и рассказывал; это был ___ и бродяга.",
-   "lemma": "бегун",
-   "options": [
-    "всегдашний бегун",
-    "всегдашнему бегуну",
-    "всегдашнего бегуна",
-    "всегдашнем бегуне"
-   ],
-   "correct": "всегдашний бегун",
-   "case": "Именительный (Nominative)",
-   "explain": "«всегдашний бегун» — the subject of the sentence stands in the nominative.",
-   "id": "c21"
   },
   {
    "sentence": "Меня и в ___ окрестили и при святом крещении нарекли Александром; ну, а палки все-таки палками остались; хоть бы одну простили; даже обидно мне стало.",
@@ -277,7 +179,7 @@
    ],
    "correct": "самом деле",
    "case": "Предложный (Prepositional)",
-   "explain": "«самом деле» — after the preposition «в», for location or topic.",
+   "explain": "«самом деле» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c22"
   },
   {
@@ -291,7 +193,7 @@
    ],
    "correct": "святом крещении",
    "case": "Предложный (Prepositional)",
-   "explain": "«святом крещении» — after the preposition «при», for location or topic.",
+   "explain": "«святом крещении» — «при» always takes the prepositional.",
    "id": "c23"
   },
   {
@@ -305,22 +207,8 @@
    ],
    "correct": "последнем случае",
    "case": "Предложный (Prepositional)",
-   "explain": "«последнем случае» — after the preposition «в», for location or topic.",
+   "explain": "«последнем случае» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c24"
-  },
-  {
-   "sentence": "Казалось мне иногда, что в этом последнем случае был свой особенный, так сказать, какой-то практический или, лучше, ___ на дело.",
-   "lemma": "взгляд",
-   "options": [
-    "фактический взгляд",
-    "фактического взгляда",
-    "фактическому взгляду",
-    "фактическим взглядом"
-   ],
-   "correct": "фактический взгляд",
-   "case": "Именительный (Nominative)",
-   "explain": "«фактический взгляд» — the subject of the sentence stands in the nominative.",
-   "id": "c25"
   },
   {
    "sentence": "С этим поручиком Жеребятниковым я познакомился еще в первое время моего лежания в больнице, разумеется из ___.",
@@ -333,36 +221,8 @@
    ],
    "correct": "арестантских рассказов",
    "case": "Родительный (Genitive)",
-   "explain": "«арестантских рассказов» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«арестантских рассказов» — «из» always takes the genitive.",
    "id": "c26"
-  },
-  {
-   "sentence": "Это был человек лет под тридцать, росту высокого, толстый, жирный, с румяными, заплывшими жиром щеками, с белыми зубами и с ноздревским ___.",
-   "lemma": "смех",
-   "options": [
-    "раскатистому смеху",
-    "раскатистым смехом",
-    "раскатистый смех",
-    "раскатистом смехе"
-   ],
-   "correct": "раскатистым смехом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«раскатистым смехом» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c28"
-  },
-  {
-   "sentence": "Спешу присовокупить, что на поручика Жеребятникова я уж и тогда смотрел как на урода между своими же, да так смотрели на него и ___.",
-   "lemma": "арестант",
-   "options": [
-    "самими арестантами",
-    "самих арестантах",
-    "самим арестантам",
-    "сами арестанты"
-   ],
-   "correct": "сами арестанты",
-   "case": "Именительный (Nominative)",
-   "explain": "«сами арестанты» — the subject of the sentence stands in the nominative.",
-   "id": "c29"
   },
   {
    "sentence": "Но бо́льшею частию это происходило наивно и без ___.",
@@ -375,22 +235,8 @@
    ],
    "correct": "особого увлечения",
    "case": "Родительный (Genitive)",
-   "explain": "«особого увлечения» — after the preposition «без», the genitive here marks possession, absence, or quantity.",
+   "explain": "«особого увлечения» — «без» always takes the genitive.",
    "id": "c30"
-  },
-  {
-   "sentence": "Несколько ___, в другом тоне и духе, рассказывали у нас об одном поручике Смекалове, исполнявшем должность командира при нашем остроге, прежде еще, чем назначили к этой должности нашего плац-майора.",
-   "lemma": "образ",
-   "options": [
-    "другом образе",
-    "другого образа",
-    "другой образ",
-    "другим образом"
-   ],
-   "correct": "другим образом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«другим образом» — the instrumental marks the means, company, or complement.",
-   "id": "c37"
   },
   {
    "sentence": "Про Жеребятникова хоть и рассказывали довольно равнодушно, без ___, но все-таки не любовались его подвигами, не хвалили его, а видимо им гнушались.",
@@ -403,22 +249,8 @@
    ],
    "correct": "особой злобы",
    "case": "Родительный (Genitive)",
-   "explain": "«особой злобы» — after the preposition «без», the genitive here marks possession, absence, or quantity.",
+   "explain": "«особой злобы» — «без» always takes the genitive.",
    "id": "c39"
-  },
-  {
-   "sentence": "Дело в том, что это вовсе не был какой-нибудь ___ высечь; в нем отнюдь не было чисто жеребятнического элемента.",
-   "lemma": "охотник",
-   "options": [
-    "особенном охотнике",
-    "особенным охотником",
-    "особенный охотник",
-    "особенному охотнику"
-   ],
-   "correct": "особенный охотник",
-   "case": "Именительный (Nominative)",
-   "explain": "«особенный охотник» — the subject of the sentence stands in the nominative.",
-   "id": "c40"
   },
   {
    "sentence": "Но все-таки он был отнюдь не прочь и высечь; в том-то и дело, что ___ его вспоминались у нас с какою-то сладкою любовью, — так умел угодить этот человек арестантам!",
@@ -431,22 +263,8 @@
    ],
    "correct": "самые розги",
    "case": "Именительный (Nominative)",
-   "explain": "«самые розги» — the subject of the sentence stands in the nominative.",
+   "explain": "«самые розги» is the subject of «вспоминались» — who or what does it — so nominative.",
    "id": "c42"
-  },
-  {
-   "sentence": "Правда, наш народ, как, может быть, и весь народ русский, готов забыть ___ за одно ласковое слово; говорю об этом как об факте, не разбирая его на этот раз ни с той, ни с другой стороны.",
-   "lemma": "мука",
-   "options": [
-    "целыми муками",
-    "целых муках",
-    "целым мукам",
-    "целые муки"
-   ],
-   "correct": "целые муки",
-   "case": "Винительный (Accusative)",
-   "explain": "«целые муки» — the accusative marks the direct object of the verb.",
-   "id": "c43"
   },
   {
    "sentence": "«Отца не надо», — говорят, бывало, арестанты и даже вздыхают, сравнивая по воспоминаниям их прежнего ___, Смекалова, с теперешним плац-майором.",
@@ -459,64 +277,8 @@
    ],
    "correct": "временного начальника",
    "case": "Родительный (Genitive)",
-   "explain": "«временного начальника» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«временного начальника» depends on the noun «воспоминаниям» (whose? of what?) — genitive.",
    "id": "c45"
-  },
-  {
-   "sentence": "___: бывают даже из таких и совсем недобрые люди, а между тем приобретают иногда большую популярность.",
-   "lemma": "дело",
-   "options": [
-    "странном деле",
-    "странному делу",
-    "странное дело",
-    "странным делом"
-   ],
-   "correct": "странное дело",
-   "case": "Именительный (Nominative)",
-   "explain": "«Странное дело» — the subject of the sentence stands in the nominative.",
-   "id": "c46"
-  },
-  {
-   "sentence": "Странное дело: бывают даже из таких и совсем ___, а между тем приобретают иногда большую популярность.",
-   "lemma": "человек",
-   "options": [
-    "недобрые люди",
-    "недобрым людям",
-    "недобрых людях",
-    "недобрыми людьми"
-   ],
-   "correct": "недобрые люди",
-   "case": "Именительный (Nominative)",
-   "explain": "«недобрые люди» — after the preposition «из», the subject of the sentence stands in the nominative.",
-   "id": "c47"
-  },
-  {
-   "sentence": "Милосерднейшего человека готов променять даже на самого старого, если этот припахивает ихним собственным ___.",
-   "lemma": "запах",
-   "options": [
-    "посконном запахе",
-    "посконным запахом",
-    "посконного запаха",
-    "посконный запах"
-   ],
-   "correct": "посконным запахом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«посконным запахом» — after the preposition «на», the instrumental marks the means, company, or complement.",
-   "id": "c48"
-  },
-  {
-   "sentence": "По правде, была всего-то одна штучка, одна-единственная, с которой он чуть не ___ у нас пробавлялся; но, может быть, она именно и мила-то была тем, что была единственная.",
-   "lemma": "год",
-   "options": [
-    "целым годом",
-    "целому году",
-    "целом годе",
-    "целый год"
-   ],
-   "correct": "целый год",
-   "case": "Винительный (Accusative)",
-   "explain": "«целый год» — the accusative marks the direct object of the verb.",
-   "id": "c49"
   },
   {
    "sentence": "После ___ известных стихов арестант доходит наконец до слова «на небеси».",
@@ -529,7 +291,7 @@
    ],
    "correct": "первой строчки",
    "case": "Родительный (Genitive)",
-   "explain": "«первой строчки» — after the preposition «после», the genitive here marks possession, absence, or quantity.",
+   "explain": "«первой строчки» — «после» always takes the genitive.",
    "id": "c50"
   },
   {
@@ -543,22 +305,8 @@
    ],
    "correct": "известных стихов",
    "case": "Родительный (Genitive)",
-   "explain": "«известных стихов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«известных стихов» depends on the noun «строчки» (whose? of what?) — genitive.",
    "id": "c51"
-  },
-  {
-   "sentence": "И, смотришь, через полчаса уж рассказывает в остроге, как и теперь, в тридцать ___, была повторена уже тридцать раз прежде всего повторенная шутка.",
-   "lemma": "раз",
-   "options": [
-    "первому разу",
-    "первым разом",
-    "первого раза",
-    "первый раз"
-   ],
-   "correct": "первый раз",
-   "case": "Винительный (Accusative)",
-   "explain": "«первый раз» — the accusative marks the direct object of the verb.",
-   "id": "c53"
   }
  ]
 }

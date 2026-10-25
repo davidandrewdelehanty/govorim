@@ -1,62 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Были ___, разные шумы: лай фальконетов, яркий треск отдираемой драни, музыкальный гул бросаемых балок.",
-   "lemma": "грохот",
-   "options": [
-    "разным грохотам",
-    "разные грохоты",
-    "разных грохотах",
-    "разных грохотов"
-   ],
-   "correct": "разные грохоты",
-   "case": "Именительный (Nominative)",
-   "explain": "«разные грохоты» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Были разные грохоты, ___: лай фальконетов, яркий треск отдираемой драни, музыкальный гул бросаемых балок.",
-   "lemma": "шум",
-   "options": [
-    "разным шумам",
-    "разных шумов",
-    "разные шумы",
-    "разных шумах"
-   ],
-   "correct": "разные шумы",
-   "case": "Именительный (Nominative)",
-   "explain": "«разные шумы» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Были разные грохоты, разные шумы: лай фальконетов, ___ отдираемой драни, музыкальный гул бросаемых балок.",
-   "lemma": "треск",
-   "options": [
-    "яркий треск",
-    "яркого треска",
-    "ярким треском",
-    "яркому треску"
-   ],
-   "correct": "яркий треск",
-   "case": "Именительный (Nominative)",
-   "explain": "«яркий треск» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
-   "sentence": "Были разные грохоты, разные шумы: лай фальконетов, яркий треск отдираемой драни, ___ бросаемых балок.",
-   "lemma": "гул",
-   "options": [
-    "музыкального гула",
-    "музыкальному гулу",
-    "музыкальный гул",
-    "музыкальным гулом"
-   ],
-   "correct": "музыкальный гул",
-   "case": "Именительный (Nominative)",
-   "explain": "«музыкальный гул» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
-  },
-  {
    "sentence": "При этом он сжался таким образом, что все время грудью ощущал ассигнации, сунутые в ___.",
    "lemma": "карман",
    "options": [
@@ -67,7 +11,7 @@
    ],
    "correct": "боковой карман",
    "case": "Винительный (Accusative)",
-   "explain": "«боковой карман» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«боковой карман» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c6"
   },
   {
@@ -81,22 +25,8 @@
    ],
    "correct": "самого окна",
    "case": "Родительный (Genitive)",
-   "explain": "«самого окна» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«самого окна» — «у» always takes the genitive.",
    "id": "c7"
-  },
-  {
-   "sentence": "Были рабочие ___, которые он помнил у персидских грузчиков, когда они выгружали кладь.",
-   "lemma": "крик",
-   "options": [
-    "мерным крикам",
-    "мерные крики",
-    "мерными криками",
-    "мерных криков"
-   ],
-   "correct": "мерные крики",
-   "case": "Именительный (Nominative)",
-   "explain": "«мерные крики» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
   },
   {
    "sentence": "Были рабочие мерные крики, которые он помнил у ___, когда они выгружали кладь.",
@@ -109,7 +39,7 @@
    ],
    "correct": "персидских грузчиков",
    "case": "Родительный (Genitive)",
-   "explain": "«персидских грузчиков» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«персидских грузчиков» — «у» always takes the genitive.",
    "id": "c9"
   },
   {
@@ -123,7 +53,7 @@
    ],
    "correct": "самого окна",
    "case": "Родительный (Genitive)",
-   "explain": "«самого окна» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«самого окна» — «у» always takes the genitive.",
    "id": "c10"
   },
   {
@@ -137,7 +67,7 @@
    ],
    "correct": "тонких досок",
    "case": "Родительный (Genitive)",
-   "explain": "«тонких досок» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«тонких досок» — «от» always takes the genitive.",
    "id": "c11"
   },
   {
@@ -151,22 +81,8 @@
    ],
    "correct": "второго этажа",
    "case": "Родительный (Genitive)",
-   "explain": "«второго этажа» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«второго этажа» depends on the noun «уровне» (whose? of what?) — genitive.",
    "id": "c13"
-  },
-  {
-   "sentence": "___ не прекращался у самого носа, а он ничего не видел, кроме балок.",
-   "lemma": "звук",
-   "options": [
-    "мягкому звуку",
-    "мягком звуке",
-    "мягкого звука",
-    "мягкий звук"
-   ],
-   "correct": "мягкий звук",
-   "case": "Именительный (Nominative)",
-   "explain": "«Мягкий звук» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
   },
   {
    "sentence": "Мягкий звук не прекращался у ___, а он ничего не видел, кроме балок.",
@@ -179,7 +95,7 @@
    ],
    "correct": "самого носа",
    "case": "Родительный (Genitive)",
-   "explain": "«самого носа» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«самого носа» — «у» always takes the genitive.",
    "id": "c15"
   },
   {
@@ -193,22 +109,8 @@
    ],
    "correct": "форменного платья",
    "case": "Родительный (Genitive)",
-   "explain": "«форменного платья» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«форменного платья» depends on the noun «охапкой» (whose? of what?) — genitive.",
    "id": "c16"
-  },
-  {
-   "sentence": "___ была на уровне его ног.",
-   "lemma": "спина",
-   "options": [
-    "желтоватой спины",
-    "желтоватая спина",
-    "желтоватой спиной",
-    "желтоватой спине"
-   ],
-   "correct": "желтоватая спина",
-   "case": "Именительный (Nominative)",
-   "explain": "«Желтоватая спина» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
   },
   {
    "sentence": "Потом, в неизвестный час, у двери завозились, ее отомкнули, кто-то заговорил в ___.",
@@ -221,7 +123,7 @@
    ],
    "correct": "соседней комнате",
    "case": "Предложный (Prepositional)",
-   "explain": "«соседней комнате» — after the preposition «в», for location or topic.",
+   "explain": "«соседней комнате» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c20"
   },
   {
@@ -235,22 +137,8 @@
    ],
    "correct": "незнакомый серхенг",
    "case": "Именительный (Nominative)",
-   "explain": "«Незнакомый серхенг» — the subject of the sentence stands in the nominative.",
+   "explain": "«незнакомый серхенг» is the subject of «вошел» — who or what does it — so nominative.",
    "id": "c21"
-  },
-  {
-   "sentence": "Мальцов услышал ___: маршировали солдаты.",
-   "lemma": "шаг",
-   "options": [
-    "военными шагами",
-    "военные шаги",
-    "военным шагам",
-    "военных шагах"
-   ],
-   "correct": "военные шаги",
-   "case": "Винительный (Accusative)",
-   "explain": "«военные шаги» — the accusative marks the direct object of the verb.",
-   "id": "c22"
   }
  ]
 }

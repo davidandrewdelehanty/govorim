@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Была в одной деревне ___, а у старика, владельца её, было два сына, да таких умных, что и вполовину было бы хорошо.",
-   "lemma": "усадьба",
-   "options": [
-    "старой усадьбы",
-    "старой усадьбой",
-    "старой усадьбе",
-    "старая усадьба"
-   ],
-   "correct": "старая усадьба",
-   "case": "Именительный (Nominative)",
-   "explain": "«старая усадьба» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Один знал наизусть весь ___ и местную газету за три года — одинаково хорошо мог пересказывать и с начала и с конца.",
-   "lemma": "словарь",
-   "options": [
-    "латинского словаря",
-    "латинский словарь",
-    "латинскому словарю",
-    "латинским словарём"
-   ],
-   "correct": "латинский словарь",
-   "case": "Винительный (Accusative)",
-   "explain": "«латинский словарь» — the accusative marks the direct object of the verb.",
-   "id": "c2"
-  },
-  {
    "sentence": "Другой основательно изучил все ___ и всё, что должен знать цеховой старшина; значит, ему ничего не стоило рассуждать и о государственных делах, — думал он.",
    "lemma": "правило",
    "options": [
@@ -39,35 +11,21 @@
    ],
    "correct": "цеховые правила",
    "case": "Винительный (Accusative)",
-   "explain": "«цеховые правила» — the accusative marks the direct object of the verb.",
+   "explain": "«цеховые правила» is the direct object of «изучил» (кого? что?) — accusative.",
    "id": "c3"
-  },
-  {
-   "sentence": "Другой основательно изучил все цеховые правила и всё, что должен знать ___; значит, ему ничего не стоило рассуждать и о государственных делах, — думал он.",
-   "lemma": "старшина",
-   "options": [
-    "цеховому старшине",
-    "цеховым старшиной",
-    "цеховой старшина",
-    "цехового старшину"
-   ],
-   "correct": "цеховой старшина",
-   "case": "Именительный (Nominative)",
-   "explain": "«цеховой старшина» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
   },
   {
    "sentence": "Другой основательно изучил все цеховые правила и всё, что должен знать цеховой старшина; значит, ему ничего не стоило рассуждать и о ___, — думал он.",
    "lemma": "дело",
    "options": [
-    "государственным делам",
-    "государственные дела",
     "государственных делах",
-    "государственных дел"
+    "государственных дел",
+    "государственным делам",
+    "государственными делами"
    ],
    "correct": "государственных делах",
    "case": "Предложный (Prepositional)",
-   "explain": "«государственных делах» — after the preposition «о», for location or topic.",
+   "explain": "«государственных делах» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c5"
   },
   {
@@ -81,21 +39,21 @@
    ],
    "correct": "прекрасному коню",
    "case": "Дательный (Dative)",
-   "explain": "«прекрасному коню» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«прекрасному коню» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c6"
   },
   {
    "sentence": "И вот отец дал каждому по прекрасному коню: тому, что знал наизусть словарь и газеты, вороного, а тому, что обладал ___ и вышивал подтяжки, белого.",
    "lemma": "ум",
    "options": [
-    "государственный ум",
     "государственному уму",
+    "государственным умом",
     "государственном уме",
-    "государственным умом"
+    "государственного ума"
    ],
    "correct": "государственным умом",
    "case": "Творительный (Instrumental)",
-   "explain": "«государственным умом» — the instrumental marks the means, company, or complement.",
+   "explain": "«обладал» takes the instrumental.",
    "id": "c7"
   },
   {
@@ -109,7 +67,7 @@
    ],
    "correct": "молодые господа",
    "case": "Именительный (Nominative)",
-   "explain": "«молодые господа» — the subject of the sentence stands in the nominative.",
+   "explain": "«молодые господа» is the subject of «сядут» — who or what does it — so nominative.",
    "id": "c8"
   },
   {
@@ -123,49 +81,21 @@
    ],
    "correct": "третий брат",
    "case": "Именительный (Nominative)",
-   "explain": "«третий брат» — the subject of the sentence stands in the nominative.",
+   "explain": "«третий брат» is the subject of «является» — who or what does it — so nominative.",
    "id": "c9"
-  },
-  {
-   "sentence": "А братья ехали себе потихоньку, молча; им надо было хорошенько обдумать все ___, которые они собирались подпустить в разговоре с королевной, — тут ведь надо было держать ухо востро.",
-   "lemma": "словцо",
-   "options": [
-    "красными словцами",
-    "красные словца",
-    "красных словцах",
-    "красным словцам"
-   ],
-   "correct": "красные словца",
-   "case": "Винительный (Accusative)",
-   "explain": "«красные словца» — the accusative marks the direct object of the verb.",
-   "id": "c10"
-  },
-  {
-   "sentence": "— Ведь это старый ___, да ещё без верха!",
-   "lemma": "башмак",
-   "options": [
-    "деревянному башмаку",
-    "деревянный башмак",
-    "деревянного башмака",
-    "деревянным башмаком"
-   ],
-   "correct": "деревянный башмак",
-   "case": "Именительный (Nominative)",
-   "explain": "«деревянный башмак» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
   },
   {
    "sentence": "И он набил себе грязью ___.",
    "lemma": "карман",
    "options": [
-    "полным карманом",
     "полный карман",
-    "полного кармана",
+    "полном кармане",
+    "полным карманом",
     "полному карману"
    ],
    "correct": "полный карман",
    "case": "Винительный (Accusative)",
-   "explain": "«полный карман» — the accusative marks the direct object of the verb.",
+   "explain": "«полный карман» is the direct object of «набил» (кого? что?) — accusative.",
    "id": "c12"
   },
   {
@@ -175,11 +105,11 @@
     "целым часом",
     "целого часа",
     "целый час",
-    "целом часе"
+    "целому часу"
    ],
    "correct": "целый час",
    "case": "Винительный (Accusative)",
-   "explain": "«целый час» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«целый час» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c13"
   },
   {
@@ -193,22 +123,8 @@
    ],
    "correct": "городских ворот",
    "case": "Родительный (Genitive)",
-   "explain": "«городских ворот» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«городских ворот» — «у» always takes the genitive.",
    "id": "c14"
-  },
-  {
-   "sentence": "У городских ворот они запаслись, как и все женихи, ___ и стали в ряд.",
-   "lemma": "билет",
-   "options": [
-    "очередными билетами",
-    "очередных билетов",
-    "очередных билетах",
-    "очередные билеты"
-   ],
-   "correct": "очередными билетами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«очередными билетами» — the instrumental marks the means, company, or complement.",
-   "id": "c15"
   },
   {
    "sentence": "Все ___ страны собрались около дворца.",
@@ -221,21 +137,21 @@
    ],
    "correct": "остальные жители",
    "case": "Именительный (Nominative)",
-   "explain": "«остальные жители» — the subject of the sentence stands in the nominative.",
+   "explain": "«остальные жители» is the subject of «собрались» — who or what does it — so nominative.",
    "id": "c16"
   },
   {
    "sentence": "Многие заглядывали в ___, — любопытно было посмотреть, как королевна принимает женихов.",
    "lemma": "окно",
    "options": [
-    "самыми окнами",
-    "самых окнах",
+    "самых окон",
     "самым окнам",
-    "самые окна"
+    "самые окна",
+    "самыми окнами"
    ],
    "correct": "самые окна",
    "case": "Винительный (Accusative)",
-   "explain": "«самые окна» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«самые окна» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c17"
   },
   {
@@ -249,35 +165,21 @@
    ],
    "correct": "старший брат",
    "case": "Именительный (Nominative)",
-   "explain": "«старший брат» — the subject of the sentence stands in the nominative.",
+   "explain": "«старший брат» is the subject of «Вошёл» — who or what does it — so nominative.",
    "id": "c18"
-  },
-  {
-   "sentence": "За ним явился к королевне ___.",
-   "lemma": "брат",
-   "options": [
-    "другому брату",
-    "другой брат",
-    "другом брате",
-    "другого брата"
-   ],
-   "correct": "другой брат",
-   "case": "Именительный (Nominative)",
-   "explain": "«другой брат» — the subject of the sentence stands in the nominative.",
-   "id": "c19"
   },
   {
    "sentence": "И он вытащил из кармана старый ___ и положил в него ворону.",
    "lemma": "башмак",
    "options": [
-    "деревянному башмаку",
+    "деревянным башмаком",
     "деревянный башмак",
-    "деревянного башмака",
-    "деревянным башмаком"
+    "деревянному башмаку",
+    "деревянном башмаке"
    ],
    "correct": "деревянный башмак",
    "case": "Винительный (Accusative)",
-   "explain": "«деревянный башмак» — the accusative marks the direct object of the verb.",
+   "explain": "«деревянный башмак» is the direct object of «вытащил» (кого? что?) — accusative.",
    "id": "c20"
   },
   {
@@ -291,7 +193,7 @@
    ],
    "correct": "муниципальный совет",
    "case": "Именительный (Nominative)",
-   "explain": "«муниципальный совет» — the subject of the sentence stands in the nominative.",
+   "explain": "«муниципальный совет» is the subject of «издаёт» — who or what does it — so nominative.",
    "id": "c21"
   }
  ]

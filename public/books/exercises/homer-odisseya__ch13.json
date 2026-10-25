@@ -1,48 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "___ наблюдал за добром своего господина.",
-   "lemma": "раб",
-   "options": [
-    "царскими рабами",
-    "царские рабы",
-    "царских рабов",
-    "царским рабам"
-   ],
-   "correct": "царских рабов",
-   "case": "Родительный (Genitive)",
-   "explain": "«Царских рабов» — the genitive here marks possession, absence, or quantity.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Колос легко распознаешь ты; ныне ж я ___.",
-   "lemma": "бродяга",
-   "options": [
-    "бедным бродягой",
-    "бедному бродяге",
-    "бедный бродяга",
-    "бедного бродягу"
-   ],
-   "correct": "бедный бродяга",
-   "case": "Именительный (Nominative)",
-   "explain": "«бедный бродяга» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Дал приказание с ___ обозреть всю окрестность.",
-   "lemma": "высота",
-   "options": [
-    "ближних высотах",
-    "ближних высот",
-    "ближними высотами",
-    "ближним высотам"
-   ],
-   "correct": "ближних высот",
-   "case": "Родительный (Genitive)",
-   "explain": "«ближних высот» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
-   "id": "c3"
-  },
-  {
    "sentence": "Час наступил, мне назначенный ими для ___.",
    "lemma": "рабство",
    "options": [
@@ -53,7 +11,7 @@
    ],
    "correct": "жалкого рабства",
    "case": "Родительный (Genitive)",
-   "explain": "«жалкого рабства» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«жалкого рабства» — «для» always takes the genitive.",
    "id": "c4"
   },
   {
@@ -63,25 +21,25 @@
     "жалких лохмотьях",
     "жалкими лохмотьями",
     "жалких лохмотьев",
-    "жалкие лохмотья"
+    "жалким лохмотьям"
    ],
    "correct": "жалких лохмотьях",
    "case": "Предложный (Prepositional)",
-   "explain": "«жалких лохмотьях» — after the preposition «в», for location or topic.",
+   "explain": "«жалких лохмотьях» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c5"
   },
   {
    "sentence": "Вышли, чтоб, сев на ___, там поужинать сладко.",
    "lemma": "песок",
    "options": [
-    "зыбучий песок",
+    "зыбучему песку",
     "зыбучим песком",
     "зыбучем песке",
-    "зыбучему песку"
+    "зыбучего песка"
    ],
    "correct": "зыбучем песке",
    "case": "Предложный (Prepositional)",
-   "explain": "«зыбучем песке» — after the preposition «на», for location or topic.",
+   "explain": "«зыбучем песке» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c6"
   },
   {
@@ -95,7 +53,7 @@
    ],
    "correct": "тягостных уз",
    "case": "Родительный (Genitive)",
-   "explain": "«тягостных уз» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«тягостных уз» — «от» always takes the genitive.",
    "id": "c7"
   },
   {
@@ -109,7 +67,7 @@
    ],
    "correct": "самими богами",
    "case": "Творительный (Instrumental)",
-   "explain": "«самими богами» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «избавлен», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c8"
   },
   {
@@ -123,7 +81,7 @@
    ],
    "correct": "несметно-великим богатством",
    "case": "Творительный (Instrumental)",
-   "explain": "«несметно-великим богатством» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«несметно-великим богатством» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c9"
   },
   {
@@ -137,7 +95,7 @@
    ],
    "correct": "разных прислуг",
    "case": "Родительный (Genitive)",
-   "explain": "«разных прислуг» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«разных прислуг» — «для» always takes the genitive.",
    "id": "c10"
   },
   {
@@ -151,7 +109,7 @@
    ],
    "correct": "тафийских купцов",
    "case": "Родительный (Genitive)",
-   "explain": "«тафийских купцов» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«тафийских купцов» — «у» always takes the genitive.",
    "id": "c11"
   },
   {
@@ -165,35 +123,21 @@
    ],
    "correct": "лакомой пище",
    "case": "Дательный (Dative)",
-   "explain": "«лакомой пище» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«лакомой пище» — «к» always takes the dative.",
    "id": "c12"
-  },
-  {
-   "sentence": "Был завсегда и на ___, и на храброе дело.",
-   "lemma": "совет",
-   "options": [
-    "умному совету",
-    "умном совете",
-    "умного совета",
-    "умный совет"
-   ],
-   "correct": "умный совет",
-   "case": "Винительный (Accusative)",
-   "explain": "«умный совет» — after the preposition «на», the accusative marks the direct object of the verb.",
-   "id": "c13"
   },
   {
    "sentence": "О, для чего я не молод, не силен, как в ___!",
    "lemma": "год",
    "options": [
-    "прежних годах",
-    "прежних годов",
     "прежним годам",
+    "прежними годами",
+    "прежних годов",
     "прежние годы"
    ],
    "correct": "прежние годы",
    "case": "Винительный (Accusative)",
-   "explain": "«прежние годы» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«прежние годы» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c14"
   }
  ]

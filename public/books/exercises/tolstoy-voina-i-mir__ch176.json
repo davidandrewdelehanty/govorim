@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Ясно виднелась та ___, которая заседает всегда по проселочным дорогам, еще мокрая от вчерашнего дождя; висячие ветви берез, тоже мокрые, качались от ветра и роняли в бок от себя светлые капли.",
-   "lemma": "травка",
-   "options": [
-    "курчавой травкой",
-    "курчавая травка",
-    "курчавой травки",
-    "курчавой травке"
-   ],
-   "correct": "курчавая травка",
-   "case": "Именительный (Nominative)",
-   "explain": "«курчавая травка» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Ясно виднелась та курчавая травка, которая заседает всегда по проселочным дорогам, еще мокрая от ___; висячие ветви берез, тоже мокрые, качались от ветра и роняли в бок от себя светлые капли.",
    "lemma": "дождь",
    "options": [
@@ -25,35 +11,21 @@
    ],
    "correct": "вчерашнего дождя",
    "case": "Родительный (Genitive)",
-   "explain": "«вчерашнего дождя» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«вчерашнего дождя» — «от» always takes the genitive.",
    "id": "c2"
-  },
-  {
-   "sentence": "Ясно виднелась та курчавая травка, которая заседает всегда по проселочным дорогам, еще мокрая от вчерашнего дождя; висячие ветви берез, тоже мокрые, качались от ветра и роняли в бок от себя ___.",
-   "lemma": "капля",
-   "options": [
-    "светлым каплям",
-    "светлых капель",
-    "светлые капли",
-    "светлых каплях"
-   ],
-   "correct": "светлые капли",
-   "case": "Винительный (Accusative)",
-   "explain": "«светлые капли» — the accusative marks the direct object of the verb.",
-   "id": "c3"
   },
   {
    "sentence": "Ростов ехал с Ильиным, не отстававшим от него, стороной дороги, между ___ берез.",
    "lemma": "ряд",
    "options": [
-    "двойного ряда",
-    "двойном ряде",
+    "двойному ряду",
     "двойной ряд",
-    "двойным рядом"
+    "двойным рядом",
+    "двойном ряде"
    ],
    "correct": "двойным рядом",
    "case": "Творительный (Instrumental)",
-   "explain": "«двойным рядом» — after the preposition «между», the instrumental marks the means, company, or complement.",
+   "explain": "«двойным рядом» — «между» + instrumental: between.",
    "id": "c4"
   },
   {
@@ -67,7 +39,7 @@
    ],
    "correct": "чистой полосе",
    "case": "Предложный (Prepositional)",
-   "explain": "«чистой полосе» — after the preposition «на», for location or topic.",
+   "explain": "«чистой полосе» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c5"
   },
   {
@@ -81,36 +53,8 @@
    ],
    "correct": "летнего утра",
    "case": "Родительный (Genitive)",
-   "explain": "«летнего утра» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«летнего утра» depends on the noun «грозы» (whose? of what?) — genitive.",
    "id": "c6"
-  },
-  {
-   "sentence": "Давно неслышанный этот звук еще радостнее и возбудительнее подействовал на Ростова, чем ___ стрельбы.",
-   "lemma": "звук",
-   "options": [
-    "прежних звуков",
-    "прежние звуки",
-    "прежних звуках",
-    "прежними звуками"
-   ],
-   "correct": "прежние звуки",
-   "case": "Именительный (Nominative)",
-   "explain": "«прежние звуки» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
-  },
-  {
-   "sentence": "Между ранжевыми уланами на рыжих лошадях и позади их, большею кучей, видны были синие ___ на серых лошадях.",
-   "lemma": "драгун",
-   "options": [
-    "французским драгунам",
-    "французских драгунах",
-    "французские драгуны",
-    "французскими драгунами"
-   ],
-   "correct": "французские драгуны",
-   "case": "Именительный (Nominative)",
-   "explain": "«французские драгуны» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
   },
   {
    "sentence": "Между ранжевыми уланами на рыжих лошадях и позади их, большею кучей, видны были синие французские драгуны на ___.",
@@ -123,7 +67,7 @@
    ],
    "correct": "серых лошадях",
    "case": "Предложный (Prepositional)",
-   "explain": "«серых лошадях» — after the preposition «на», for location or topic.",
+   "explain": "«серых лошадях» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c15"
   }
  ]

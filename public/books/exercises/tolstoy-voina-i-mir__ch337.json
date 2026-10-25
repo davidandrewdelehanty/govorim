@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Свадьба Наташи, вышедшей в 13-м году за Безухова, было последнее ___ в старой семье Ростовых.",
-   "lemma": "событие",
-   "options": [
-    "радостного события",
-    "радостное событие",
-    "радостному событию",
-    "радостным событием"
-   ],
-   "correct": "радостное событие",
-   "case": "Именительный (Nominative)",
-   "explain": "«радостное событие» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Свадьба Наташи, вышедшей в 13-м году за Безухова, было последнее радостное событие в ___ Ростовых.",
    "lemma": "семья",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "старой семье",
    "case": "Предложный (Prepositional)",
-   "explain": "«старой семье» — after the preposition «в», for location or topic.",
+   "explain": "«старой семье» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c2"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "старая семья",
    "case": "Именительный (Nominative)",
-   "explain": "«старая семья» — the subject of the sentence stands in the nominative.",
+   "explain": "«старая семья» is the subject of «распалась» — who or what does it — so nominative.",
    "id": "c3"
   },
   {
@@ -53,7 +39,7 @@
    ],
    "correct": "последнего года",
    "case": "Родительный (Genitive)",
-   "explain": "«последнего года» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«последнего года» depends on the noun «События» (whose? of what?) — genitive.",
    "id": "c4"
   },
   {
@@ -67,7 +53,7 @@
    ],
    "correct": "старого графа",
    "case": "Родительный (Genitive)",
-   "explain": "«старого графа» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«старого графа» depends on the noun «голову» (whose? of what?) — genitive.",
    "id": "c5"
   },
   {
@@ -81,50 +67,22 @@
    ],
    "correct": "денежных дел",
    "case": "Родительный (Genitive)",
-   "explain": "«денежных дел» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«денежных дел» depends on the noun «Положение» (whose? of what?) — genitive.",
    "id": "c8"
-  },
-  {
-   "sentence": "Положение денежных дел через месяц после смерти графа совершенно обозначилось, удивив всех громадностию суммы разных ___, существования которых никто и не подозревал.",
-   "lemma": "долг",
-   "options": [
-    "мелким долгам",
-    "мелкими долгами",
-    "мелких долгов",
-    "мелких долгах"
-   ],
-   "correct": "мелких долгов",
-   "case": "Родительный (Genitive)",
-   "explain": "«мелких долгов» — the genitive here marks possession, absence, or quantity.",
-   "id": "c9"
   },
   {
    "sentence": "Явилось, как это всегда бывает, соревнование — кто прежде получит, — и те самые люди, которые, как Митенька и другие, имели ___ — подарки, явились теперь самыми требовательными кредиторами.",
    "lemma": "вексель",
    "options": [
-    "безденежных векселей",
-    "безденежными векселями",
+    "безденежным векселям",
     "безденежные векселя",
-    "безденежных векселях"
+    "безденежных векселях",
+    "безденежными векселями"
    ],
    "correct": "безденежные векселя",
    "case": "Винительный (Accusative)",
-   "explain": "«безденежные векселя» — the accusative marks the direct object of the verb.",
+   "explain": "«безденежные векселя» is the direct object of «имели» (кого? что?) — accusative.",
    "id": "c10"
-  },
-  {
-   "sentence": "Явилось, как это всегда бывает, соревнование — кто прежде получит, — и те самые люди, которые, как Митенька и другие, имели безденежные векселя — подарки, явились теперь самыми ___.",
-   "lemma": "кредитор",
-   "options": [
-    "требовательными кредиторами",
-    "требовательных кредиторах",
-    "требовательные кредиторы",
-    "требовательных кредиторов"
-   ],
-   "correct": "требовательными кредиторами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«требовательными кредиторами» — the instrumental marks the means, company, or complement.",
-   "id": "c11"
   },
   {
    "sentence": "Соня вела домашнее хозяйство, ухаживала за теткой, читала ей вслух, переносила ее капризы и затаенное нерасположение и помогала Николаю скрывать от ___ то положение нужды, в котором они находились.",
@@ -137,7 +95,7 @@
    ],
    "correct": "старой графини",
    "case": "Родительный (Genitive)",
-   "explain": "«старой графини» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«старой графини» — «от» always takes the genitive.",
    "id": "c13"
   },
   {
@@ -151,7 +109,7 @@
    ],
    "correct": "богатой наследнице",
    "case": "Предложный (Prepositional)",
-   "explain": "«богатой наследнице» — after the preposition «на», for location or topic.",
+   "explain": "«богатой наследнице» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c14"
   },
   {
@@ -165,7 +123,7 @@
    ],
    "correct": "самой глубине",
    "case": "Предложный (Prepositional)",
-   "explain": "«самой глубине» — after the preposition «в», for location or topic.",
+   "explain": "«самой глубине» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c15"
   }
  ]

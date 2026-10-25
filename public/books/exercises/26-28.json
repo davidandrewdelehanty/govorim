@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "id": "c1",
-   "sentence": "Было ко мне слово ___, сын человеческий, скажи правителю Тира.",
-   "lemma": "Господь",
-   "options": [
-    "Господь",
-    "Господа",
-    "Господу",
-    "Господом"
-   ],
-   "correct": "Господа",
-   "case": "Родительный (Genitive)",
-   "explain": "The phrase 'слово Господа' uses the genitive to show possession of the word."
-  },
-  {
    "id": "c2",
    "sentence": "Так говорит владыка Господь, объятый гордыней ты говоришь, я Бог, я сижу на Божьем престоле посреди ___.",
    "lemma": "море",
@@ -26,77 +12,21 @@
    ],
    "correct": "моря",
    "case": "Родительный (Genitive)",
-   "explain": "The preposition 'посреди' (in the middle of) requires the genitive case."
-  },
-  {
-   "id": "c3",
-   "sentence": "Ты думаешь, что ты мудрее ___? Нет, для тебя неведомы тайны.",
-   "lemma": "Даниил",
-   "options": [
-    "Даниила",
-    "Даниилу",
-    "Даниилом",
-    "Даниилах"
-   ],
-   "correct": "Даниила",
-   "case": "Родительный (Genitive)",
-   "explain": "The adjective 'мудрее' (wiser) in the comparative form takes the genitive case for the object of comparison."
-  },
-  {
-   "id": "c4",
-   "sentence": "Мудростью и умом ты приобрел богатство, ты наполнил золотом и серебром свои ___.",
-   "lemma": "кладовая",
-   "options": [
-    "кладовую",
-    "кладовые",
-    "кладовой",
-    "кладовых"
-   ],
-   "correct": "кладовые",
-   "case": "Винительный (Accusative)",
-   "explain": "The verb 'наполнил' (filled) with direct object 'treasuries' requires the accusative plural."
+   "explain": "«моря» — «посреди» always takes the genitive."
   },
   {
    "id": "c5",
    "sentence": "На твои красоту и мудрость они обнажат мечи и осквернят твой ___.",
    "lemma": "блеск",
    "options": [
+    "блеске",
+    "блеском",
     "блеск",
-    "блеска",
-    "блеску",
-    "блеском"
+    "блеску"
    ],
    "correct": "блеск",
    "case": "Винительный (Accusative)",
-   "explain": "The verb 'осквернят' (will defile) with direct object 'splendor' requires the accusative case."
-  },
-  {
-   "id": "c6",
-   "sentence": "Ты был примером совершенства, исполненной мудрости и безупречной ___.",
-   "lemma": "красота",
-   "options": [
-    "красота",
-    "красоты",
-    "красоте",
-    "красотой"
-   ],
-   "correct": "красоты",
-   "case": "Родительный (Genitive)",
-   "explain": "The noun phrase 'примером совершенства, мудрости и красоты' uses the genitive in parallel construction."
-  },
-  {
-   "id": "c7",
-   "sentence": "Ты был в Эдеме, в Божьем ___. Все драгоценные камни тебя украшали.",
-   "lemma": "сад",
-   "options": [
-    "сад",
-    "сада",
-    "саду",
-    "саде"
-   ],
-   "correct": "саду",
-   "case": "Дательный (Dative)",
-   "explain": "The preposition 'в' (in) with location in the dative case: 'в саду' (in the garden)."
+   "explain": "«блеск» is the direct object of «обнажат» (кого? что?) — accusative."
   },
   {
    "id": "c8",
@@ -110,87 +40,7 @@
    ],
    "correct": "камней",
    "case": "Родительный (Genitive)",
-   "explain": "The preposition 'среди' (among) with 'stones' requires the genitive plural: 'среди горящих камней' (among the fiery stones)."
-  }
- ],
- "reading": [
-  {
-   "id": "r1",
-   "ru": "Так говорит владыка Господь, объятый гордыней ты говоришь, я Бог, я сижу на Божьем престоле посреди моря, но ты человек, не Бог.",
-   "question": "What claim does the prince of Tyre make, and what does God correct?",
-   "options": [
-    "The prince claims to be a god on God's throne in the sea, but God says he is only a man, not a god",
-    "The prince claims to be the wisest ruler",
-    "The prince claims to control the seas",
-    "The prince claims to have defeated all enemies"
-   ],
-   "correct": "The prince claims to be a god on God's throne in the sea, but God says he is only a man, not a god",
-   "explain": "The text shows Tyre's pride: 'я Бог, я сижу на Божьем престоле' and God's correction: 'но ты человек, не Бог' — you are man, not God."
-  },
-  {
-   "id": "r2",
-   "ru": "Мудростью и умом ты приобрел богатство, ты наполнил золотом и серебром свои кладовые.",
-   "question": "How did the prince of Tyre gain his wealth?",
-   "options": [
-    "Through wisdom and understanding he gained riches and filled his treasuries with gold and silver",
-    "By conquering other lands",
-    "By robbing neighboring cities",
-    "By inheriting it from his ancestors"
-   ],
-   "correct": "Through wisdom and understanding he gained riches and filled his treasuries with gold and silver",
-   "explain": "The text states: 'Мудростью и умом ты приобрел богатство, ты наполнил золотом и серебром свои кладовые' — through wisdom and understanding you gained wealth and filled your treasuries with gold and silver."
-  },
-  {
-   "id": "r3",
-   "ru": "Ты был примером совершенства, исполненной мудрости и безупречной красоты».",
-   "question": "How is the king of Tyre initially described?",
-   "options": [
-    "The model of perfection, full of wisdom and perfect in beauty",
-    "A tyrant and a cruel ruler",
-    "A fool who lacked understanding",
-    "A merchant without any honor"
-   ],
-   "correct": "The model of perfection, full of wisdom and perfect in beauty",
-   "explain": "The lament describes him: 'примером совершенства, исполненной мудрости и безупречной красоты' — the model of perfection, full of wisdom and flawless beauty."
-  },
-  {
-   "id": "r4",
-   "ru": "Ты был в Эдеме, в Божьем саду. Все драгоценные камни тебя украшали, рубин, топаз, изумруд, хризалит, оникс и яшма, сапфир, бирюза и берил.",
-   "question": "What precious stones adorned the king of Tyre?",
-   "options": [
-    "Ruby, topaz, emerald, chrysolite, onyx, jasper, sapphire, turquoise, and beryl",
-    "Only gold and silver",
-    "Diamonds and pearls",
-    "No precious stones, only fine clothing"
-   ],
-   "correct": "Ruby, topaz, emerald, chrysolite, onyx, jasper, sapphire, turquoise, and beryl",
-   "explain": "The text lists the stones: 'рубин, топаз, изумруд, хризалит, оникс и яшма, сапфир, бирюза и берил' — ruby, topaz, emerald, chrysolite, onyx, jasper, sapphire, turquoise, and beryl."
-  },
-  {
-   "id": "r5",
-   "ru": "От размаха своей торговли ты исполнился неправды и согрешил.",
-   "question": "What caused the king's downfall?",
-   "options": [
-    "From the extent of his commerce he became filled with unrighteousness and sinned",
-    "He was defeated by a military rival",
-    "His people rebelled against him",
-    "He angered the gods through sacrifice"
-   ],
-   "correct": "From the extent of his commerce he became filled with unrighteousness and sinned",
-   "explain": "The moral decline is described: 'От размаха своей торговли ты исполнился неправды и согрешил' — by the vastness of your commerce you became full of unrighteousness and sinned."
-  },
-  {
-   "id": "r6",
-   "ru": "Я вывел из тебя огонь, который тебя поглотил. Я превратил тебя в пепел на земле, на глазах у всех, кто смотрел.",
-   "question": "What is the final judgment that God pronounces upon Tyre?",
-   "options": [
-    "Fire will come out of you and consume you, and you will become ashes on the earth in the sight of all who look",
-    "You will be restored to power",
-    "Your people will be ransomed",
-    "A new king will bring glory to your throne"
-   ],
-   "correct": "Fire will come out of you and consume you, and you will become ashes on the earth in the sight of all who look",
-   "explain": "The final judgment: 'Я вывел из тебя огонь, который тебя поглотил. Я превратил тебя в пепел на земле' — I will bring fire from you that will consume you and turn you to ashes."
+   "explain": "«камней» — «среди» always takes the genitive."
   }
  ]
 }

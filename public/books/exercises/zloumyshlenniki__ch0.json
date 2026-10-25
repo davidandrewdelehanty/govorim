@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Это был солидный, достаточно уже ___, прилично одетый и, по-видимому, благонамеренный.",
-   "lemma": "господин",
-   "options": [
-    "пожилым господином",
-    "пожилому господину",
-    "пожилой господин",
-    "пожилом господине"
-   ],
-   "correct": "пожилой господин",
-   "case": "Именительный (Nominative)",
-   "explain": "«пожилой господин» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
    "sentence": "Мы заметили на нем ___, булавку с жемчужиной, а в касторовой шляпе его лежали перчатки с модными застежками, какие мы видели ранее у вице-губернатора.",
    "lemma": "часы",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "золотые часы",
    "case": "Винительный (Accusative)",
-   "explain": "«золотые часы» — the accusative marks the direct object of the verb.",
+   "explain": "«золотые часы» is the direct object of «заметили» (кого? что?) — accusative.",
    "id": "c4"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "касторовой шляпе",
    "case": "Предложный (Prepositional)",
-   "explain": "«касторовой шляпе» — after the preposition «в», for location or topic.",
+   "explain": "«касторовой шляпе» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c5"
   },
   {
@@ -53,7 +39,7 @@
    ],
    "correct": "левой руке",
    "case": "Предложный (Prepositional)",
-   "explain": "«левой руке» — after the preposition «в», for location or topic.",
+   "explain": "«левой руке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c6"
   },
   {
@@ -67,36 +53,8 @@
    ],
    "correct": "самом деле",
    "case": "Предложный (Prepositional)",
-   "explain": "«самом деле» — after the preposition «на», for location or topic.",
+   "explain": "«самом деле» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c7"
-  },
-  {
-   "sentence": "Этот ___ был одет в шёлковый костюм и тоже имел золотые часы.",
-   "lemma": "господин",
-   "options": [
-    "новому господину",
-    "новом господине",
-    "нового господина",
-    "новый господин"
-   ],
-   "correct": "новый господин",
-   "case": "Именительный (Nominative)",
-   "explain": "«новый господин» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
-  },
-  {
-   "sentence": "Этот новый господин был одет в шёлковый костюм и тоже имел ___.",
-   "lemma": "часы",
-   "options": [
-    "золотые часы",
-    "золотым часам",
-    "золотыми часами",
-    "золотых часах"
-   ],
-   "correct": "золотые часы",
-   "case": "Винительный (Accusative)",
-   "explain": "«золотые часы» — the accusative marks the direct object of the verb.",
-   "id": "c12"
   },
   {
    "sentence": "— Эти балбесы умудряются даже ___ придавать запах тухлятины.",
@@ -109,7 +67,7 @@
    ],
    "correct": "свежей капусте",
    "case": "Дательный (Dative)",
-   "explain": "«свежей капусте» — the dative marks the indirect object or recipient.",
+   "explain": "«свежей капусте» is the indirect object of «придавать» — to or for whom (кому?) — dative.",
    "id": "c13"
   },
   {
@@ -123,7 +81,7 @@
    ],
    "correct": "приличных щей",
    "case": "Родительный (Genitive)",
-   "explain": "«приличных щей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«приличных щей» depends on the noun «порцию» (whose? of what?) — genitive.",
    "id": "c14"
   },
   {
@@ -137,7 +95,7 @@
    ],
    "correct": "другой день",
    "case": "Винительный (Accusative)",
-   "explain": "«другой день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«другой день» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c15"
   },
   {
@@ -151,7 +109,7 @@
    ],
    "correct": "странной формы",
    "case": "Родительный (Genitive)",
-   "explain": "«странной формы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«странной формы» depends on the noun «футлярами» (whose? of what?) — genitive.",
    "id": "c16"
   },
   {
@@ -165,7 +123,7 @@
    ],
    "correct": "местных властей",
    "case": "Родительный (Genitive)",
-   "explain": "«местных властей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«местных властей» depends on the noun «халатности» (whose? of what?) — genitive.",
    "id": "c19"
   },
   {
@@ -179,7 +137,7 @@
    ],
    "correct": "несвоевременного наступления",
    "case": "Родительный (Genitive)",
-   "explain": "«несвоевременного наступления» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«несвоевременного наступления» — «от» always takes the genitive.",
    "id": "c20"
   },
   {
@@ -193,7 +151,7 @@
    ],
    "correct": "следующие события",
    "case": "Именительный (Nominative)",
-   "explain": "«следующие события» — the subject of the sentence stands in the nominative.",
+   "explain": "«следующие события» is the subject of «произошли» — who or what does it — so nominative.",
    "id": "c21"
   },
   {
@@ -207,7 +165,7 @@
    ],
    "correct": "трактирных номерах",
    "case": "Предложный (Prepositional)",
-   "explain": "«трактирных номерах» — after the preposition «в», for location or topic.",
+   "explain": "«трактирных номерах» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c22"
   },
   {
@@ -221,7 +179,7 @@
    ],
    "correct": "многие дамы",
    "case": "Именительный (Nominative)",
-   "explain": "«Многие дамы» — the subject of the sentence stands in the nominative.",
+   "explain": "«многие дамы» is the subject of «выскочили» — who or what does it — so nominative.",
    "id": "c26"
   }
  ]

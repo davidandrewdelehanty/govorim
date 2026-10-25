@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "___ был на соседней улице, и доктор Арнольди пошел пешком.",
-   "lemma": "визит",
-   "options": [
-    "следующий визит",
-    "следующего визита",
-    "следующим визитом",
-    "следующему визиту"
-   ],
-   "correct": "следующий визит",
-   "case": "Именительный (Nominative)",
-   "explain": "«Следующий визит» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Следующий визит был на ___, и доктор Арнольди пошел пешком.",
    "lemma": "улица",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "соседней улице",
    "case": "Предложный (Prepositional)",
-   "explain": "«соседней улице» — after the preposition «на», for location or topic.",
+   "explain": "«соседней улице» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c2"
   },
   {
@@ -39,22 +25,8 @@
    ],
    "correct": "особого волнения",
    "case": "Родительный (Genitive)",
-   "explain": "«особого волнения» — after the preposition «без», the genitive here marks possession, absence, or quantity.",
+   "explain": "«особого волнения» — «без» always takes the genitive.",
    "id": "c4"
-  },
-  {
-   "sentence": "Удавалось ли ему помочь или больной умирал у него на руках, доктор Арнольди был ровно спокоен и шел к другому больному, как ___, который, осмотрев часы, спокойно берется за другой механизм.",
-   "lemma": "мастер",
-   "options": [
-    "часовому мастеру",
-    "часовом мастере",
-    "часовой мастер",
-    "часовым мастером"
-   ],
-   "correct": "часовой мастер",
-   "case": "Именительный (Nominative)",
-   "explain": "«часовой мастер» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
   },
   {
    "sentence": "Удавалось ли ему помочь или больной умирал у него на руках, доктор Арнольди был ровно спокоен и шел к другому больному, как часовой мастер, который, осмотрев часы, спокойно берется за ___.",
@@ -67,36 +39,8 @@
    ],
    "correct": "другой механизм",
    "case": "Винительный (Accusative)",
-   "explain": "«другой механизм» — after the preposition «за», the accusative marks the direct object of the verb.",
+   "explain": "«другой механизм» — «за» takes the accusative here (куда? за что? за кого?) — the instrumental would mean position behind or at (где? за чем?).",
    "id": "c6"
-  },
-  {
-   "sentence": "Запыхавшись больше от своей толщины, чем от жары, он завернул в калитку, перешел маленький ___, пахнущий кожей, и вошел в дом, где его ждали, как Бога.",
-   "lemma": "дворик",
-   "options": [
-    "мещанским двориком",
-    "мещанский дворик",
-    "мещанского дворика",
-    "мещанскому дворику"
-   ],
-   "correct": "мещанский дворик",
-   "case": "Именительный (Nominative)",
-   "explain": "«мещанский дворик» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
-  },
-  {
-   "sentence": "Еще не ___, с лицом испуганным и высохшим от вечных забот, встретила доктора отчаянным взглядом, и по этому знакомому выражению доктор Арнольди понял, что ребенку хуже.",
-   "lemma": "женщина",
-   "options": [
-    "старая женщина",
-    "старой женщиной",
-    "старой женщине",
-    "старой женщины"
-   ],
-   "correct": "старая женщина",
-   "case": "Именительный (Nominative)",
-   "explain": "«старая женщина» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
   },
   {
    "sentence": "Еще не старая женщина, с лицом испуганным и высохшим от ___, встретила доктора отчаянным взглядом, и по этому знакомому выражению доктор Арнольди понял, что ребенку хуже.",
@@ -109,22 +53,8 @@
    ],
    "correct": "вечных забот",
    "case": "Родительный (Genitive)",
-   "explain": "«вечных забот» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«вечных забот» — «от» always takes the genitive.",
    "id": "c9"
-  },
-  {
-   "sentence": "Там посадили елки, и ___ год от года становились зеленее.",
-   "lemma": "деревце",
-   "options": [
-    "молодые деревца",
-    "молодых деревцах",
-    "молодыми деревцами",
-    "молодым деревцам"
-   ],
-   "correct": "молодые деревца",
-   "case": "Именительный (Nominative)",
-   "explain": "«молодые деревца» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
   },
   {
    "sentence": "В маленькой ___, пропитанной чадом и мылом, везде были навалены кучи грязного белья.",
@@ -137,7 +67,7 @@
    ],
    "correct": "грязной комнате",
    "case": "Предложный (Prepositional)",
-   "explain": "«грязной комнате» — after the preposition «в», for location or topic.",
+   "explain": "«грязной комнате» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c12"
   },
   {
@@ -151,92 +81,8 @@
    ],
    "correct": "грязного белья",
    "case": "Родительный (Genitive)",
-   "explain": "«грязного белья» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«грязного белья» depends on the noun «кучи» (whose? of what?) — genitive.",
    "id": "c13"
-  },
-  {
-   "sentence": "Бог даст, все будет по-хорошему, — не глядя пропыхтел ___ и, тяжело вздохнув, переступил порог душной полутемной комнаты, из которой доносился знакомый прерывистый хрип умирающего.",
-   "lemma": "доктор",
-   "options": [
-    "толстым доктором",
-    "толстом докторе",
-    "толстый доктор",
-    "толстого доктора"
-   ],
-   "correct": "толстый доктор",
-   "case": "Именительный (Nominative)",
-   "explain": "«толстый доктор» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
-  },
-  {
-   "sentence": "У кровати, большой, с огромной периной, может быть, той самой, на которой был зачат и рожден этот умирающий ребенок, стоял ___ с блестящими глазами.",
-   "lemma": "мещанин",
-   "options": [
-    "молодого мещанина",
-    "молодому мещанину",
-    "молодым мещанином",
-    "молодой мещанин"
-   ],
-   "correct": "молодой мещанин",
-   "case": "Именительный (Nominative)",
-   "explain": "«молодой мещанин» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
-  },
-  {
-   "sentence": "Еле слышный плач, похожий на писк ___ в когтях совы, раздался в комнате.",
-   "lemma": "зверёк",
-   "options": [
-    "маленьким зверьком",
-    "маленький зверёк",
-    "маленьком зверьке",
-    "маленького зверька"
-   ],
-   "correct": "маленького зверька",
-   "case": "Винительный (Accusative)",
-   "explain": "«маленького зверька» — the accusative marks the direct object of the verb.",
-   "id": "c19"
-  },
-  {
-   "sentence": "Голова, казавшаяся огромной, точно чужая, перекатывалась на тоненькой, будто лишенной костей шее, а ___ было вздуто и красно.",
-   "lemma": "личико",
-   "options": [
-    "крошечного личика",
-    "крошечному личику",
-    "крошечным личиком",
-    "крошечное личико"
-   ],
-   "correct": "крошечное личико",
-   "case": "Именительный (Nominative)",
-   "explain": "«крошечное личико» — the subject of the sentence stands in the nominative.",
-   "id": "c20"
-  },
-  {
-   "sentence": "Невидимая ___ медленно, с непонятной жестокостью все сильнее, точно тешась, сдавливала щуплое птичье горлышко.",
-   "lemma": "рука",
-   "options": [
-    "костлявой рукой",
-    "костлявой руки",
-    "костлявой руке",
-    "костлявая рука"
-   ],
-   "correct": "костлявая рука",
-   "case": "Именительный (Nominative)",
-   "explain": "«костлявая рука» — the subject of the sentence stands in the nominative.",
-   "id": "c21"
-  },
-  {
-   "sentence": "Приготовьте ___ и сбегайте на Сумскую к фельдшеру Швейзону.",
-   "lemma": "вода",
-   "options": [
-    "горячая вода",
-    "горячей воде",
-    "горячей воды",
-    "горячей водой"
-   ],
-   "correct": "горячей воды",
-   "case": "Родительный (Genitive)",
-   "explain": "«горячей воды» — the genitive here marks possession, absence, or quantity.",
-   "id": "c22"
   },
   {
    "sentence": "___ с отчаянным видом схватил картуз и метнулся к двери.",
@@ -249,7 +95,7 @@
    ],
    "correct": "молодой мещанин",
    "case": "Именительный (Nominative)",
-   "explain": "«Молодой мещанин» — the subject of the sentence stands in the nominative.",
+   "explain": "«молодой мещанин» is the subject of «схватил» — who or what does it — so nominative.",
    "id": "c23"
   },
   {
@@ -263,7 +109,7 @@
    ],
    "correct": "ужасное дело",
    "case": "Именительный (Nominative)",
-   "explain": "«ужасное дело» — the subject of the sentence stands in the nominative.",
+   "explain": "«ужасное дело» is the subject of «совершается» — who or what does it — so nominative.",
    "id": "c25"
   },
   {
@@ -272,12 +118,12 @@
    "options": [
     "маленькому человеку",
     "маленький человек",
-    "маленького человека",
+    "маленьком человеке",
     "маленьким человеком"
    ],
    "correct": "маленький человек",
    "case": "Именительный (Nominative)",
-   "explain": "«Маленький человек» — the subject of the sentence stands in the nominative.",
+   "explain": "«маленький человек» is the subject of «понимал» — who or what does it — so nominative.",
    "id": "c26"
   },
   {
@@ -291,22 +137,8 @@
    ],
    "correct": "умирающих детей",
    "case": "Родительный (Genitive)",
-   "explain": "«умирающих детей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«умирающих детей» depends on the noun «кровати» (whose? of what?) — genitive.",
    "id": "c27"
-  },
-  {
-   "sentence": "Если бы доктор Арнольди, рискуя собственной жизнью, что он и собирался сделать, мог спасти или, по крайней мере, облегчить страдания, он не задумался бы ни на минуту и даже не придал бы этому ___.",
-   "lemma": "значение",
-   "options": [
-    "особом значении",
-    "особое значение",
-    "особым значением",
-    "особого значения"
-   ],
-   "correct": "особого значения",
-   "case": "Родительный (Genitive)",
-   "explain": "«особого значения» — the genitive here marks possession, absence, or quantity.",
-   "id": "c28"
   },
   {
    "sentence": "Если бы он знал, кто виновен в этой массе ___, он, старый доктор, с безбоязненным, открытым лицом, встал бы перед ним и проклял бы его.",
@@ -319,50 +151,8 @@
    ],
    "correct": "бесполезных страданий",
    "case": "Родительный (Genitive)",
-   "explain": "«бесполезных страданий» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«бесполезных страданий» depends on the noun «массе» (whose? of what?) — genitive.",
    "id": "c29"
-  },
-  {
-   "sentence": "Если бы он знал, кто виновен в этой массе бесполезных страданий, он, ___, с безбоязненным, открытым лицом, встал бы перед ним и проклял бы его.",
-   "lemma": "доктор",
-   "options": [
-    "старого доктора",
-    "старом докторе",
-    "старый доктор",
-    "старым доктором"
-   ],
-   "correct": "старый доктор",
-   "case": "Именительный (Nominative)",
-   "explain": "«старый доктор» — the subject of the sentence stands in the nominative.",
-   "id": "c30"
-  },
-  {
-   "sentence": "Если бы он знал, кто виновен в этой массе бесполезных страданий, он, старый доктор, с безбоязненным, ___, встал бы перед ним и проклял бы его.",
-   "lemma": "лицо",
-   "options": [
-    "открытого лица",
-    "открытом лице",
-    "открытым лицом",
-    "открытое лицо"
-   ],
-   "correct": "открытым лицом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«открытым лицом» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c31"
-  },
-  {
-   "sentence": "И было легче только от одной мысли: это ___, рожденное для страданий, умирает, еще не научившись бояться смерти, еще не познав прелести этой милой и проклятой человеческой жизни.",
-   "lemma": "существо",
-   "options": [
-    "маленьком существе",
-    "маленькое существо",
-    "маленького существа",
-    "маленьким существом"
-   ],
-   "correct": "маленькое существо",
-   "case": "Именительный (Nominative)",
-   "explain": "«маленькое существо» — the subject of the sentence stands in the nominative.",
-   "id": "c33"
   },
   {
    "sentence": "Доктор Арнольди посмотрел на этого ___, корчившегося на постели, на его тоненькие червеобразные руки и ноги, кривую спинку, желтую налитую голову с тяжелым затылком и узким лбом.",
@@ -375,50 +165,8 @@
    ],
    "correct": "странного паучка",
    "case": "Винительный (Accusative)",
-   "explain": "«странного паучка» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«странного паучка» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c34"
-  },
-  {
-   "sentence": "Доктор Арнольди посмотрел на этого странного паучка, корчившегося на постели, на его тоненькие червеобразные руки и ноги, кривую спинку, желтую налитую голову с тяжелым затылком и ___.",
-   "lemma": "лоб",
-   "options": [
-    "узким лбом",
-    "узкого лба",
-    "узком лбе",
-    "узкому лбу"
-   ],
-   "correct": "узким лбом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«узким лбом» — the instrumental marks the means, company, or complement.",
-   "id": "c35"
-  },
-  {
-   "sentence": "А эти ___ так живучи и плодовиты!",
-   "lemma": "паучок",
-   "options": [
-    "странными паучками",
-    "странные паучки",
-    "странных паучках",
-    "странным паучкам"
-   ],
-   "correct": "странные паучки",
-   "case": "Именительный (Nominative)",
-   "explain": "«странные паучки» — the subject of the sentence stands in the nominative.",
-   "id": "c36"
-  },
-  {
-   "sentence": "___, с умом ясным и смелым, сердцем твердым, потом сказал то слово, перед которым бессильно отступил доктор Арнольди.",
-   "lemma": "человек",
-   "options": [
-    "другой человек",
-    "другом человеке",
-    "другим человеком",
-    "другого человека"
-   ],
-   "correct": "другой человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«Другой человек» — the subject of the sentence stands in the nominative.",
-   "id": "c37"
   },
   {
    "sentence": "— Воду я приготовила, господин доктор, — тихо сказала она, не сводя с лица доктора своих ___ и не двигаясь с места.",
@@ -431,22 +179,8 @@
    ],
    "correct": "странных глаз",
    "case": "Родительный (Genitive)",
-   "explain": "«странных глаз» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«странных глаз» depends on the noun «доктора» (whose? of what?) — genitive.",
    "id": "c38"
-  },
-  {
-   "sentence": "___ доктора беспокойно заморгали.",
-   "lemma": "глазок",
-   "options": [
-    "маленькие глазки",
-    "маленьких глазков",
-    "маленькими глазками",
-    "маленьким глазкам"
-   ],
-   "correct": "маленькие глазки",
-   "case": "Именительный (Nominative)",
-   "explain": "«Маленькие глазки» — the subject of the sentence stands in the nominative.",
-   "id": "c39"
   },
   {
    "sentence": "И в этом шелесте было столько муки и любви, что доктору даже странно показалось, как это минуту тому назад он думал о ___ и безобразии этого Гришеньки, который хорошо делает, что умирает вовремя!",
@@ -459,7 +193,7 @@
    ],
    "correct": "несчастной судьбе",
    "case": "Предложный (Prepositional)",
-   "explain": "«несчастной судьбе» — after the preposition «о», for location or topic.",
+   "explain": "«несчастной судьбе» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c40"
   },
   {
@@ -473,22 +207,8 @@
    ],
    "correct": "бледная женщина",
    "case": "Именительный (Nominative)",
-   "explain": "«Бледная женщина» — the subject of the sentence stands in the nominative.",
+   "explain": "«бледная женщина» is the subject of «подавала» — who or what does it — so nominative.",
    "id": "c41"
-  },
-  {
-   "sentence": "Бледная женщина подавала ему воду, и в каждом ее движении были видны робость и ___ перед его великим знанием.",
-   "lemma": "уважение",
-   "options": [
-    "огромным уважением",
-    "огромное уважение",
-    "огромного уважения",
-    "огромном уважении"
-   ],
-   "correct": "огромное уважение",
-   "case": "Именительный (Nominative)",
-   "explain": "«огромное уважение» — the subject of the sentence stands in the nominative.",
-   "id": "c42"
   },
   {
    "sentence": "Бледная женщина подавала ему воду, и в каждом ее движении были видны робость и огромное уважение перед его ___.",
@@ -501,50 +221,8 @@
    ],
    "correct": "великим знанием",
    "case": "Творительный (Instrumental)",
-   "explain": "«великим знанием» — after the preposition «перед», the instrumental marks the means, company, or complement.",
+   "explain": "«великим знанием» — «перед» always takes the instrumental.",
    "id": "c43"
-  },
-  {
-   "sentence": "Фельдшер, рыжий ___, ловко и деловито приготовлял инструменты, вату и бинты и делал это с таким видом, точно собирался показать какой-то замысловатый фокус.",
-   "lemma": "человек",
-   "options": [
-    "здоровый человек",
-    "здоровому человеку",
-    "здорового человека",
-    "здоровом человеке"
-   ],
-   "correct": "здоровый человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«здоровый человек» — the subject of the sentence stands in the nominative.",
-   "id": "c44"
-  },
-  {
-   "sentence": "Фельдшер, рыжий здоровый человек, ловко и деловито приготовлял инструменты, вату и бинты и делал это с таким видом, точно собирался показать какой-то ___.",
-   "lemma": "фокус",
-   "options": [
-    "замысловатый фокус",
-    "замысловатому фокусу",
-    "замысловатом фокусе",
-    "замысловатого фокуса"
-   ],
-   "correct": "замысловатый фокус",
-   "case": "Винительный (Accusative)",
-   "explain": "«замысловатый фокус» — the accusative marks the direct object of the verb.",
-   "id": "c45"
-  },
-  {
-   "sentence": "___, пачкаясь кровью, легко вошла в темное, булькающее отверстие, и вдруг хриплое, свистящее дыхание прекратилось.",
-   "lemma": "трубка",
-   "options": [
-    "маленькой трубке",
-    "маленькой трубкой",
-    "маленькая трубка",
-    "маленькой трубки"
-   ],
-   "correct": "маленькая трубка",
-   "case": "Именительный (Nominative)",
-   "explain": "«Маленькая трубка» — the subject of the sentence stands in the nominative.",
-   "id": "c46"
   },
   {
    "sentence": "Как будто во всем мире настала ___, и все замерло кругом в созерцании великой тайны.",
@@ -557,22 +235,8 @@
    ],
    "correct": "мгновенная тишина",
    "case": "Именительный (Nominative)",
-   "explain": "«мгновенная тишина» — the subject of the sentence stands in the nominative.",
+   "explain": "«мгновенная тишина» is the subject of «настала» — who or what does it — so nominative.",
    "id": "c47"
-  },
-  {
-   "sentence": "Как будто во всем мире настала мгновенная тишина, и все замерло кругом в созерцании ___.",
-   "lemma": "тайна",
-   "options": [
-    "великой тайны",
-    "великой тайне",
-    "великая тайна",
-    "великой тайной"
-   ],
-   "correct": "великой тайны",
-   "case": "Родительный (Genitive)",
-   "explain": "«великой тайны» — the genitive here marks possession, absence, or quantity.",
-   "id": "c48"
   },
   {
    "sentence": "___ быстро собирал инструменты.",
@@ -585,7 +249,7 @@
    ],
    "correct": "рыжий фельдшер",
    "case": "Именительный (Nominative)",
-   "explain": "«Рыжий фельдшер» — the subject of the sentence stands in the nominative.",
+   "explain": "«рыжий фельдшер» is the subject of «собирал» — who or what does it — so nominative.",
    "id": "c49"
   }
  ]

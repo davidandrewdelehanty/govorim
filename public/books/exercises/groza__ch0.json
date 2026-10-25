@@ -1,90 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "___ на высоком берегу Волги, за Волгой сельский вид.",
-   "lemma": "сад",
-   "options": [
-    "общественного сада",
-    "общественным садом",
-    "общественном саде",
-    "общественный сад"
-   ],
-   "correct": "общественный сад",
-   "case": "Именительный (Nominative)",
-   "explain": "«Общественный сад» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Общественный сад на высоком берегу Волги, за Волгой ___.",
-   "lemma": "вид",
-   "options": [
-    "сельском виде",
-    "сельским видом",
-    "сельский вид",
-    "сельского вида"
-   ],
-   "correct": "сельский вид",
-   "case": "Винительный (Accusative)",
-   "explain": "«сельский вид» — the accusative marks the direct object of the verb.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Он было и ее выписывал, да ___ не пустили, написали, что больна.",
-   "lemma": "родные",
-   "options": [
-    "матушкиных родных",
-    "матушкины родные",
-    "матушкиным родным",
-    "матушкиными родными"
-   ],
-   "correct": "матушкины родные",
-   "case": "Именительный (Nominative)",
-   "explain": "«матушкины родные» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
-  },
-  {
-   "sentence": "___ ко всем придирается.",
-   "lemma": "день",
-   "options": [
-    "целым днём",
-    "целом дне",
-    "целый день",
-    "целого дня"
-   ],
-   "correct": "целый день",
-   "case": "Винительный (Accusative)",
-   "explain": "«Целый день» — the accusative marks the direct object of the verb.",
-   "id": "c6"
-  },
-  {
-   "sentence": "___, сударь, в нашем городе, жестокие!",
-   "lemma": "нрав",
-   "options": [
-    "жестокими нравами",
-    "жестокие нравы",
-    "жестоким нравам",
-    "жестоких нравах"
-   ],
-   "correct": "жестокие нравы",
-   "case": "Винительный (Accusative)",
-   "explain": "«Жестокие нравы» — the accusative marks the direct object of the verb.",
-   "id": "c7"
-  },
-  {
-   "sentence": "Потому что ___ никогда не заработать нам больше насущного хлеба.",
-   "lemma": "труд",
-   "options": [
-    "честному труду",
-    "честным трудом",
-    "честном труде",
-    "честной труд"
-   ],
-   "correct": "честным трудом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«честным трудом» — the instrumental marks the means, company, or complement.",
-   "id": "c8"
-  },
-  {
    "sentence": "Потому что честным трудом никогда не заработать нам больше ___.",
    "lemma": "хлеб",
    "options": [
@@ -95,7 +11,7 @@
    ],
    "correct": "насущного хлеба",
    "case": "Родительный (Genitive)",
-   "explain": "«насущного хлеба» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«насущного хлеба» is the object of a negated verb («не заработать») — genitive instead of the accusative.",
    "id": "c9"
   },
   {
@@ -109,50 +25,8 @@
    ],
    "correct": "пьяных приказных",
    "case": "Родительный (Genitive)",
-   "explain": "«пьяных приказных» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«пьяных приказных» depends on the noun «хоромы» (whose? of what?) — genitive.",
    "id": "c10"
-  },
-  {
-   "sentence": "А ведь тоже из нашего, из ___.",
-   "lemma": "звание",
-   "options": [
-    "простое звание",
-    "простого звания",
-    "простым званием",
-    "простому званию"
-   ],
-   "correct": "простого звания",
-   "case": "Родительный (Genitive)",
-   "explain": "«простого звания» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
-   "id": "c11"
-  },
-  {
-   "sentence": "Входят Феклуша и ___.",
-   "lemma": "женщина",
-   "options": [
-    "другой женщиной",
-    "другой женщине",
-    "другой женщины",
-    "другая женщина"
-   ],
-   "correct": "другая женщина",
-   "case": "Именительный (Nominative)",
-   "explain": "«другая женщина» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
-  },
-  {
-   "sentence": "Мать стара, глупа; ну, а вы, ___, умные, не должны с нас, дураков, и взыскивать.",
-   "lemma": "человек",
-   "options": [
-    "молодым людям",
-    "молодых людей",
-    "молодых людях",
-    "молодые люди"
-   ],
-   "correct": "молодые люди",
-   "case": "Именительный (Nominative)",
-   "explain": "«молодые люди» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
   },
   {
    "sentence": "Ты проворней, в ___, а то знаешь ведь!",
@@ -165,64 +39,22 @@
    ],
    "correct": "самом деле",
    "case": "Предложный (Prepositional)",
-   "explain": "«самом деле» — after the preposition «в», for location or topic.",
+   "explain": "«самом деле» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c15"
-  },
-  {
-   "sentence": "А знаешь: в солнечный день из купола такой ___ вниз идет, и в этом столбе ходит дым, точно облако, и вижу я, бывало, будто ангелы в этом столбе летают и поют.",
-   "lemma": "столб",
-   "options": [
-    "светлый столб",
-    "светлого столба",
-    "светлому столбу",
-    "светлым столбом"
-   ],
-   "correct": "светлый столб",
-   "case": "Именительный (Nominative)",
-   "explain": "«светлый столб» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
   },
   {
    "sentence": "Или храмы золотые, или сады какие-то необыкновенные, и все поют ___, и кипарисом пахнет, и горы и деревья будто не такие, как обыкновенно, а как на образах пишутся.",
    "lemma": "голос",
    "options": [
-    "невидимые голоса",
+    "невидимым голосам",
     "невидимыми голосами",
-    "невидимых голосах",
-    "невидимых голосов"
+    "невидимые голоса",
+    "невидимых голосах"
    ],
    "correct": "невидимые голоса",
    "case": "Винительный (Accusative)",
-   "explain": "«невидимые голоса» — the accusative marks the direct object of the verb.",
+   "explain": "«невидимые голоса» is the direct object of «поют» (кого? что?) — accusative.",
    "id": "c18"
-  },
-  {
-   "sentence": "Ведь это нехорошо, ведь это ___, Варенька, что я другого люблю?",
-   "lemma": "грех",
-   "options": [
-    "страшном грехе",
-    "страшным грехом",
-    "страшного греха",
-    "страшный грех"
-   ],
-   "correct": "страшный грех",
-   "case": "Именительный (Nominative)",
-   "explain": "«страшный грех» — the subject of the sentence stands in the nominative.",
-   "id": "c20"
-  },
-  {
-   "sentence": "На свою бы тебе голову, ___!",
-   "lemma": "карга",
-   "options": [
-    "старая карга",
-    "старой карги",
-    "старой каргой",
-    "старой карге"
-   ],
-   "correct": "старая карга",
-   "case": "Именительный (Nominative)",
-   "explain": "«старая карга» — the subject of the sentence stands in the nominative.",
-   "id": "c23"
   }
  ]
 }

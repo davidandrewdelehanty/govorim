@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "___, большой письменный стол, направо — камин, налево — две двери: одна маленькая — в спальню Софьи, другая — во внутренние комнаты.",
-   "lemma": "кабинет",
-   "options": [
-    "просторным кабинетом",
-    "просторном кабинете",
-    "просторному кабинету",
-    "просторный кабинет"
-   ],
-   "correct": "просторный кабинет",
-   "case": "Именительный (Nominative)",
-   "explain": "«Просторный кабинет» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Просторный кабинет, большой ___, направо — камин, налево — две двери: одна маленькая — в спальню Софьи, другая — во внутренние комнаты.",
-   "lemma": "стол",
-   "options": [
-    "письменном столе",
-    "письменного стола",
-    "письменному столу",
-    "письменный стол"
-   ],
-   "correct": "письменный стол",
-   "case": "Винительный (Accusative)",
-   "explain": "«письменный стол» — the accusative marks the direct object of the verb.",
-   "id": "c2"
-  },
-  {
    "sentence": "В ___ два окна и дверь на террасу.",
    "lemma": "стена",
    "options": [
@@ -39,64 +11,22 @@
    ],
    "correct": "задней стене",
    "case": "Предложный (Prepositional)",
-   "explain": "«задней стене» — after the preposition «в», for location or topic.",
+   "explain": "«задней стене» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c4"
-  },
-  {
-   "sentence": "Осенний ___ смотрит в окна, за стёклами качаются голые сучья.",
-   "lemma": "день",
-   "options": [
-    "серому дню",
-    "серый день",
-    "сером дне",
-    "серым днём"
-   ],
-   "correct": "серый день",
-   "case": "Винительный (Accusative)",
-   "explain": "«серый день» — the accusative marks the direct object of the verb.",
-   "id": "c6"
   },
   {
    "sentence": "Не люблю я старых этих ___.",
    "lemma": "дом",
    "options": [
     "барских домов",
-    "барских домах",
-    "барские дома",
-    "барскими домами"
+    "барским домам",
+    "барскими домами",
+    "барских домах"
    ],
    "correct": "барских домов",
    "case": "Родительный (Genitive)",
-   "explain": "«барских домов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«барских домов» is the object of a negated verb («не люблю») — genitive instead of the accusative.",
    "id": "c9"
-  },
-  {
-   "sentence": "Я, брат, знаю: жизнь наша — ___!",
-   "lemma": "бой",
-   "options": [
-    "кулачному бою",
-    "кулачный бой",
-    "кулачного боя",
-    "кулачном бое"
-   ],
-   "correct": "кулачный бой",
-   "case": "Именительный (Nominative)",
-   "explain": "«кулачный бой» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
-  },
-  {
-   "sentence": "Затевал он тут весьма много полезного по своей части, по лесной, ___ и всё такое.",
-   "lemma": "насаждение",
-   "options": [
-    "новые насаждения",
-    "новых насаждений",
-    "новых насаждениях",
-    "новым насаждениям"
-   ],
-   "correct": "новые насаждения",
-   "case": "Именительный (Nominative)",
-   "explain": "«новые насаждения» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
   },
   {
    "sentence": "Посмотришь, как живёт ___.",
@@ -109,36 +39,8 @@
    ],
    "correct": "столичный город",
    "case": "Именительный (Nominative)",
-   "explain": "«столичный город» — the subject of the sentence stands in the nominative.",
+   "explain": "«столичный город» is the subject of «живёт» — who or what does it — so nominative.",
    "id": "c15"
-  },
-  {
-   "sentence": "Ты — ___, сердце у тебя доброе, людей тебе жалко, — да?",
-   "lemma": "человек",
-   "options": [
-    "молодому человеку",
-    "молодой человек",
-    "молодым человеком",
-    "молодом человеке"
-   ],
-   "correct": "молодой человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«молодой человек» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
-  },
-  {
-   "sentence": "Вы, конечно, не откажете мне в знании России и ___ — я умею видеть много и хорошо!",
-   "lemma": "человек",
-   "options": [
-    "русские люди",
-    "русских людей",
-    "русских людях",
-    "русским людям"
-   ],
-   "correct": "русских людей",
-   "case": "Родительный (Genitive)",
-   "explain": "«русских людей» — the genitive here marks possession, absence, or quantity.",
-   "id": "c23"
   },
   {
    "sentence": "Я восемнадцать лет среди русских, я изучил их, и мой вывод есть такой: Россия страдает прежде всего недостатком ___, умеющих ставить себе ясные цели.",
@@ -151,64 +53,22 @@
    ],
    "correct": "здоровых людей",
    "case": "Родительный (Genitive)",
-   "explain": "«здоровых людей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«здоровых людей» depends on the noun «недостатком» (whose? of what?) — genitive.",
    "id": "c24"
-  },
-  {
-   "sentence": "Я восемнадцать лет среди русских, я изучил их, и мой вывод есть такой: Россия страдает прежде всего недостатком здоровых людей, умеющих ставить себе ___.",
-   "lemma": "цель",
-   "options": [
-    "ясные цели",
-    "ясных целях",
-    "ясных целей",
-    "ясным целям"
-   ],
-   "correct": "ясные цели",
-   "case": "Винительный (Accusative)",
-   "explain": "«ясные цели» — the accusative marks the direct object of the verb.",
-   "id": "c25"
-  },
-  {
-   "sentence": "Я даже думаю о вас аллегорически: Софья Ивановна — это новая, здоровая душою Россия, которая, в условиях, достойных её, может делать всякое дело, может делать очень много ___.",
-   "lemma": "работа",
-   "options": [
-    "культурной работе",
-    "культурной работой",
-    "культурной работы",
-    "культурная работа"
-   ],
-   "correct": "культурной работы",
-   "case": "Родительный (Genitive)",
-   "explain": "«культурной работы» — the genitive here marks possession, absence, or quantity.",
-   "id": "c26"
   },
   {
    "sentence": "И потому союз со мной, который я вам предлагаю, имеет очень ___.",
    "lemma": "смысл",
    "options": [
-    "глубокому смыслу",
-    "глубокий смысл",
     "глубоком смысле",
-    "глубокого смысла"
+    "глубоким смыслом",
+    "глубокому смыслу",
+    "глубокий смысл"
    ],
    "correct": "глубокий смысл",
    "case": "Винительный (Accusative)",
-   "explain": "«глубокий смысл» — the accusative marks the direct object of the verb.",
+   "explain": "«глубокий смысл» is the direct object of «имеет» (кого? что?) — accusative.",
    "id": "c27"
-  },
-  {
-   "sentence": "___ — в саду предводителя дворян, на именинах его, когда был дождь и вы промочили ноги.",
-   "lemma": "раз",
-   "options": [
-    "первым разом",
-    "первый раз",
-    "первом разе",
-    "первого раза"
-   ],
-   "correct": "первый раз",
-   "case": "Винительный (Accusative)",
-   "explain": "«Первый раз» — the accusative marks the direct object of the verb.",
-   "id": "c28"
   },
   {
    "sentence": "Ну, скажем, роли ___.",
@@ -221,50 +81,8 @@
    ],
    "correct": "культурного работника",
    "case": "Родительный (Genitive)",
-   "explain": "«культурного работника» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«культурного работника» depends on the noun «роли» (whose? of what?) — genitive.",
    "id": "c30"
-  },
-  {
-   "sentence": "Потому что вы ___.",
-   "lemma": "хищник",
-   "options": [
-    "мелким хищником",
-    "мелком хищнике",
-    "мелкий хищник",
-    "мелкого хищника"
-   ],
-   "correct": "мелкий хищник",
-   "case": "Именительный (Nominative)",
-   "explain": "«мелкий хищник» — the subject of the sentence stands in the nominative.",
-   "id": "c31"
-  },
-  {
-   "sentence": "Ну, знаете, вы очень ___!",
-   "lemma": "человек",
-   "options": [
-    "наивный человек",
-    "наивным человеком",
-    "наивном человеке",
-    "наивному человеку"
-   ],
-   "correct": "наивный человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«наивный человек» — the subject of the sentence stands in the nominative.",
-   "id": "c34"
-  },
-  {
-   "sentence": "Нашёл ___, усмехнулся и, прищурив глаз, смотрит в дуло.",
-   "lemma": "револьвер",
-   "options": [
-    "маленьким револьвером",
-    "маленький револьвер",
-    "маленького револьвера",
-    "маленьком револьвере"
-   ],
-   "correct": "маленький револьвер",
-   "case": "Винительный (Accusative)",
-   "explain": "«маленький револьвер» — the accusative marks the direct object of the verb.",
-   "id": "c42"
   }
  ]
 }

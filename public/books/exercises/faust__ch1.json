@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Идти без всякой цели ___ по длинной прямой дороге — очень приятно.",
-   "lemma": "шаг",
-   "options": [
-    "быстрыми шагами",
-    "быстрых шагов",
-    "быстрых шагах",
-    "быстрые шаги"
-   ],
-   "correct": "быстрыми шагами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«быстрыми шагами» — the instrumental marks the means, company, or complement.",
-   "id": "c1"
-  },
-  {
    "sentence": "Идти без всякой цели быстрыми шагами по длинной ___ — очень приятно.",
    "lemma": "дорога",
    "options": [
@@ -25,22 +11,8 @@
    ],
    "correct": "прямой дороге",
    "case": "Дательный (Dative)",
-   "explain": "«прямой дороге» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«прямой дороге» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c2"
-  },
-  {
-   "sentence": "Слово за слово: оказывается, что это был Приимков, помнишь, бывший наш ___.",
-   "lemma": "товарищ",
-   "options": [
-    "университетским товарищем",
-    "университетский товарищ",
-    "университетском товарище",
-    "университетскому товарищу"
-   ],
-   "correct": "университетский товарищ",
-   "case": "Именительный (Nominative)",
-   "explain": "«университетский товарищ» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
   },
   {
    "sentence": "Я уже начинал мечтать об отъезде и ждал только, чтобы прошли дядины именины, но в ___ этих именин на бале я увидел Веру Николаевну Ельцову — и остался.",
@@ -53,7 +25,7 @@
    ],
    "correct": "самый день",
    "case": "Винительный (Accusative)",
-   "explain": "«самый день» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«самый день» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c8"
   },
   {
@@ -67,7 +39,7 @@
    ],
    "correct": "маленьком именьице",
    "case": "Предложный (Prepositional)",
-   "explain": "«маленьком именьице» — after the preposition «в», for location or topic.",
+   "explain": "«маленьком именьице» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c9"
   },
   {
@@ -81,7 +53,7 @@
    ],
    "correct": "полковничьего чина",
    "case": "Родительный (Genitive)",
-   "explain": "«полковничьего чина» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«достиг» takes its object in the genitive.",
    "id": "c10"
   },
   {
@@ -95,22 +67,8 @@
    ],
    "correct": "родительского дома",
    "case": "Родительный (Genitive)",
-   "explain": "«родительского дома» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«родительского дома» — «из» always takes the genitive.",
    "id": "c11"
-  },
-  {
-   "sentence": "Я живо помню ее лицо, выразительное, темное, с густыми, поседелыми волосами, большими, строгими, как бы потухшими глазами и прямым ___.",
-   "lemma": "нос",
-   "options": [
-    "тонким носом",
-    "тонкому носу",
-    "тонком носе",
-    "тонкого носа"
-   ],
-   "correct": "тонким носом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«тонким носом» — the instrumental marks the means, company, or complement.",
-   "id": "c12"
   },
   {
    "sentence": "Вера Николаевна не походила на обыкновенных русских барышень: на ней лежал какой-то ___.",
@@ -123,7 +81,7 @@
    ],
    "correct": "особый отпечаток",
    "case": "Именительный (Nominative)",
-   "explain": "«особый отпечаток» — the subject of the sentence stands in the nominative.",
+   "explain": "«особый отпечаток» is the subject of «лежал» — who or what does it — so nominative.",
    "id": "c15"
   },
   {
@@ -137,7 +95,7 @@
    ],
    "correct": "невинной души",
    "case": "Родительный (Genitive)",
-   "explain": "«невинной души» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«невинной души» depends on the noun «ясность» (whose? of what?) — genitive.",
    "id": "c17"
   },
   {
@@ -151,78 +109,36 @@
    ],
    "correct": "семилетней девочки",
    "case": "Родительный (Genitive)",
-   "explain": "«семилетней девочки» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«семилетней девочки» — «у» always takes the genitive.",
    "id": "c19"
-  },
-  {
-   "sentence": "Да, ___ была эта женщина, существо честное, гордое, не без фанатизма и суеверия своего рода.",
-   "lemma": "существо",
-   "options": [
-    "удивительному существу",
-    "удивительным существом",
-    "удивительное существо",
-    "удивительного существа"
-   ],
-   "correct": "удивительное существо",
-   "case": "Именительный (Nominative)",
-   "explain": "«удивительное существо» — the subject of the sentence stands in the nominative.",
-   "id": "c22"
   },
   {
    "sentence": "И точно, она ее боялась, боялась тех ___, на которых построена жизнь и которые изредка, но внезапно пробиваются наружу.",
    "lemma": "сила",
    "options": [
     "тайным силам",
+    "тайными силами",
     "тайных сил",
-    "тайные силы",
     "тайных силах"
    ],
    "correct": "тайных сил",
    "case": "Родительный (Genitive)",
-   "explain": "«тайных сил» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«боялась» takes its object in the genitive.",
    "id": "c23"
   },
   {
    "sentence": "Она до того приучила себя не давать воли своим чувствам, что даже стыдилась выказывать страстную любовь свою к дочери; она ни разу не поцеловала ее при мне, никогда не называла ее ___, всегда — Вера.",
    "lemma": "имя",
    "options": [
-    "уменьшительным именем",
-    "уменьшительном имени",
+    "уменьшительного имени",
     "уменьшительному имени",
-    "уменьшительное имя"
+    "уменьшительном имени",
+    "уменьшительным именем"
    ],
    "correct": "уменьшительным именем",
    "case": "Творительный (Instrumental)",
-   "explain": "«уменьшительным именем» — the instrumental marks the means, company, or complement.",
+   "explain": "After «называла» (to call, consider or make someone something), that something is in the instrumental.",
    "id": "c24"
-  },
-  {
-   "sentence": "Однажды, поглядев на меня внимательно и, по обыкновению своему, тихонько подпершись рукою, она сказала: «Мне сдается, что Б. ___; но положиться на него нельзя».",
-   "lemma": "человек",
-   "options": [
-    "хорошим человеком",
-    "хорошего человека",
-    "хорошем человеке",
-    "хороший человек"
-   ],
-   "correct": "хороший человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«хороший человек» — the subject of the sentence stands in the nominative.",
-   "id": "c27"
-  },
-  {
-   "sentence": "Приимков объявил мне, что посетил меня именно с целью возобновить наше старинное знакомство и что он надеется в самом ___ увидать меня у себя.",
-   "lemma": "время",
-   "options": [
-    "скорого времени",
-    "скорому времени",
-    "скором времени",
-    "скорое время"
-   ],
-   "correct": "скором времени",
-   "case": "Предложный (Prepositional)",
-   "explain": "«скором времени» — after the preposition «в», for location or topic.",
-   "id": "c31"
   },
   {
    "sentence": "Ты, злодей, вероятно, смеешься теперь надо мною, сидя за своим ___; а я все-таки тебе напишу, какое впечатление она произведет на меня.",
@@ -235,7 +151,7 @@
    ],
    "correct": "директорским столом",
    "case": "Творительный (Instrumental)",
-   "explain": "«директорским столом» — after the preposition «за», the instrumental marks the means, company, or complement.",
+   "explain": "«директорским столом» — «за» takes the instrumental here (где? за чем? за кем?) — the accusative would mean motion behind or 'for' (куда? за что?).",
    "id": "c34"
   }
  ]

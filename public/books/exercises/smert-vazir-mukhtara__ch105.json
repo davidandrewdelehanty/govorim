@@ -1,62 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "___, голубые поля с утомленным жнитвом, красные горы, реки хрюкают по ночам: хр-хр-хр.",
-   "lemma": "дорога",
-   "options": [
-    "бледные дороги",
-    "бледных дорог",
-    "бледными дорогами",
-    "бледным дорогам"
-   ],
-   "correct": "бледные дороги",
-   "case": "Именительный (Nominative)",
-   "explain": "«Бледные дороги» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Бледные дороги, ___ с утомленным жнитвом, красные горы, реки хрюкают по ночам: хр-хр-хр.",
-   "lemma": "поле",
-   "options": [
-    "голубых полей",
-    "голубые поля",
-    "голубыми полями",
-    "голубым полям"
-   ],
-   "correct": "голубые поля",
-   "case": "Именительный (Nominative)",
-   "explain": "«голубые поля» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Бледные дороги, голубые поля с утомленным жнитвом, ___, реки хрюкают по ночам: хр-хр-хр.",
-   "lemma": "гора",
-   "options": [
-    "красным горам",
-    "красные горы",
-    "красных горах",
-    "красных гор"
-   ],
-   "correct": "красные горы",
-   "case": "Именительный (Nominative)",
-   "explain": "«красные горы» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
-   "sentence": "___, голая ладонь старого человека, волнообразные горы, как мозоли, как следы долгой работы — работы зель-зелэ, землетрясения.",
-   "lemma": "сторона",
-   "options": [
-    "азиатской стороной",
-    "азиатской стороне",
-    "азиатской стороны",
-    "азиатская сторона"
-   ],
-   "correct": "азиатская сторона",
-   "case": "Именительный (Nominative)",
-   "explain": "«Азиатская сторона» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
-  },
-  {
    "sentence": "Азиатская сторона, голая ладонь ___, волнообразные горы, как мозоли, как следы долгой работы — работы зель-зелэ, землетрясения.",
    "lemma": "человек",
    "options": [
@@ -67,7 +11,7 @@
    ],
    "correct": "старого человека",
    "case": "Родительный (Genitive)",
-   "explain": "«старого человека» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«старого человека» depends on the noun «ладонь» (whose? of what?) — genitive.",
    "id": "c5"
   },
   {
@@ -81,22 +25,8 @@
    ],
    "correct": "долгой работы",
    "case": "Родительный (Genitive)",
-   "explain": "«долгой работы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«долгой работы» depends on the noun «следы» (whose? of what?) — genitive.",
    "id": "c6"
-  },
-  {
-   "sentence": "Ядовитость клопов сильно преувеличена путешественниками ___ и развенчана путешественником сороковых.",
-   "lemma": "год",
-   "options": [
-    "двадцатым годам",
-    "двадцатых годов",
-    "двадцатыми годами",
-    "двадцатых годах"
-   ],
-   "correct": "двадцатых годов",
-   "case": "Родительный (Genitive)",
-   "explain": "«двадцатых годов» — the genitive here marks possession, absence, or quantity.",
-   "id": "c7"
   },
   {
    "sentence": "Дома окнами во двор, глухою стеною к улицам, как человек, ставший спиною к ___.",
@@ -109,22 +39,8 @@
    ],
    "correct": "пыльному ветру",
    "case": "Дательный (Dative)",
-   "explain": "«пыльному ветру» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«пыльному ветру» — «к» always takes the dative.",
    "id": "c8"
-  },
-  {
-   "sentence": "___ ничего не знает о своей старости, потому что в ней живут люди.",
-   "lemma": "страна",
-   "options": [
-    "старая страна",
-    "старой стране",
-    "старой страной",
-    "старой страны"
-   ],
-   "correct": "старая страна",
-   "case": "Именительный (Nominative)",
-   "explain": "«Старая страна» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
   },
   {
    "sentence": "Их очень немного, и слово «каджар» было ругательством у персиян, но в ___ они сменили усталую династию Сефиев, любителей изящного.",
@@ -137,7 +53,7 @@
    ],
    "correct": "восемнадцатом веке",
    "case": "Предложный (Prepositional)",
-   "explain": "«восемнадцатом веке» — after the preposition «в», for location or topic.",
+   "explain": "«восемнадцатом веке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c11"
   },
   {
@@ -151,7 +67,7 @@
    ],
    "correct": "городских ворот",
    "case": "Родительный (Genitive)",
-   "explain": "«городских ворот» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«городских ворот» — «у» always takes the genitive.",
    "id": "c12"
   },
   {
@@ -165,36 +81,8 @@
    ],
    "correct": "маленького племянника",
    "case": "Винительный (Accusative)",
-   "explain": "«маленького племянника» — the accusative marks the direct object of the verb.",
+   "explain": "«маленького племянника» is the direct object of «взял» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c13"
-  },
-  {
-   "sentence": "___ шаха, Мамед-Вали-Мирза, был не чистой крови, матерью его была христианка.",
-   "lemma": "сын",
-   "options": [
-    "старшего сына",
-    "старшему сыну",
-    "старший сын",
-    "старшим сыном"
-   ],
-   "correct": "старший сын",
-   "case": "Именительный (Nominative)",
-   "explain": "«Старший сын» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
-  },
-  {
-   "sentence": "___ шаха, Аббас-Мирза, овладевший Адербиджаном и сидевший в стольном городе Тебризе, был объявлен наследником, шах-заде, велиагдом.",
-   "lemma": "сын",
-   "options": [
-    "третьим сыном",
-    "третьему сыну",
-    "третьего сына",
-    "третий сын"
-   ],
-   "correct": "третий сын",
-   "case": "Именительный (Nominative)",
-   "explain": "«Третий сын» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
   },
   {
    "sentence": "Третий сын шаха, Аббас-Мирза, овладевший Адербиджаном и сидевший в ___ Тебризе, был объявлен наследником, шах-заде, велиагдом.",
@@ -207,22 +95,8 @@
    ],
    "correct": "стольном городе",
    "case": "Предложный (Prepositional)",
-   "explain": "«стольном городе» — after the preposition «в», for location or topic.",
+   "explain": "«стольном городе» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c16"
-  },
-  {
-   "sentence": "Хотя был жив ___, Гуссейн-Али-Мирза, губернатор Шираза, лентяй и сластолюбец.",
-   "lemma": "сын",
-   "options": [
-    "второго сына",
-    "втором сыне",
-    "вторым сыном",
-    "второй сын"
-   ],
-   "correct": "второй сын",
-   "case": "Именительный (Nominative)",
-   "explain": "«второй сын» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
   }
  ]
 }

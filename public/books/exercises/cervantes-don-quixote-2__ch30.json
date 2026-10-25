@@ -1,31 +1,17 @@
 {
  "cases": [
   {
-   "sentence": "«Приветствуем прибытие цвета странствующего рыцарства», восклицали они, обливая Дон-Кихота и хозяев замка ___.",
-   "lemma": "дух",
-   "options": [
-    "дорогие духи",
-    "дорогими духами",
-    "дорогим духам",
-    "дорогих духах"
-   ],
-   "correct": "дорогими духами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«дорогими духами» — the instrumental marks the means, company, or complement.",
-   "id": "c1"
-  },
-  {
    "sentence": "Видя, что его принимают в замке герцога совершенно так, как принимали в ___ рыцарей времен минувших, восхищенный Дон-Кихот впервые кажется почувствовал себя истинным, а не воображаемым странствующим рыцарем.",
    "lemma": "книга",
    "options": [
-    "рыцарских книгах",
-    "рыцарские книги",
+    "рыцарским книгам",
+    "рыцарских книг",
     "рыцарскими книгами",
-    "рыцарским книгам"
+    "рыцарских книгах"
    ],
    "correct": "рыцарских книгах",
    "case": "Предложный (Prepositional)",
-   "explain": "«рыцарских книгах» — after the preposition «в», for location or topic.",
+   "explain": "«рыцарских книгах» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c2"
   },
   {
@@ -39,36 +25,8 @@
    ],
    "correct": "самого осла",
    "case": "Винительный (Accusative)",
-   "explain": "«самого осла» — the accusative marks the direct object of the verb.",
+   "explain": "«самого осла» is the direct object of «отвели» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c3"
-  },
-  {
-   "sentence": "Дон-Кихот ___ прервал своего оруженосца: «Санчо, подумай, прилично-ли говорить здесь подобные вещи?»",
-   "lemma": "голос",
-   "options": [
-    "недовольный голос",
-    "недовольного голоса",
-    "недовольному голосу",
-    "недовольным голосом"
-   ],
-   "correct": "недовольным голосом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«недовольным голосом» — the instrumental marks the means, company, or complement.",
-   "id": "c4"
-  },
-  {
-   "sentence": "Дон-Кихот недовольным голосом прервал своего оруженосца: «Санчо, подумай, прилично-ли говорить здесь ___?»",
-   "lemma": "вещь",
-   "options": [
-    "подобным вещам",
-    "подобные вещи",
-    "подобными вещами",
-    "подобных вещей"
-   ],
-   "correct": "подобные вещи",
-   "case": "Именительный (Nominative)",
-   "explain": "«подобные вещи» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
   },
   {
    "sentence": "Не показывай на каждом шагу из какого ___ ты создан.",
@@ -81,7 +39,7 @@
    ],
    "correct": "грубого материала",
    "case": "Родительный (Genitive)",
-   "explain": "«грубого материала» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«грубого материала» — «из» always takes the genitive.",
    "id": "c6"
   },
   {
@@ -89,13 +47,13 @@
    "lemma": "особа",
    "options": [
     "высоким особам",
-    "высокие особы",
-    "высокими особами",
-    "высоких особ"
+    "высоких особ",
+    "высоких особах",
+    "высокие особы"
    ],
    "correct": "высоких особ",
    "case": "Родительный (Genitive)",
-   "explain": "«высоких особ» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«высоких особ» depends on the noun «преимуществ» (whose? of what?) — genitive.",
    "id": "c7"
   },
   {
@@ -109,7 +67,7 @@
    ],
    "correct": "этому-то разряду",
    "case": "Дательный (Dative)",
-   "explain": "«этому-то разряду» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«этому-то разряду» — «к» always takes the dative.",
    "id": "c8"
   },
   {
@@ -123,21 +81,21 @@
    ],
    "correct": "духовная особа",
    "case": "Именительный (Nominative)",
-   "explain": "«духовная особа» — the subject of the sentence stands in the nominative.",
+   "explain": "«духовная особа» is the subject of «принадлежала» — who or what does it — so nominative.",
    "id": "c9"
   },
   {
    "sentence": "Я не позабыл ваших ___ на счет того, что и когда следует говорить.",
    "lemma": "совет",
    "options": [
-    "недавними советами",
     "недавних советов",
-    "недавних советах",
-    "недавние советы"
+    "недавними советами",
+    "недавним советам",
+    "недавних советах"
    ],
    "correct": "недавних советов",
    "case": "Родительный (Genitive)",
-   "explain": "«недавних советов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«недавних советов» is the object of a negated verb («не позабыл») — genitive instead of the accusative.",
    "id": "c10"
   },
   {
@@ -151,7 +109,7 @@
    ],
    "correct": "хорошим укрытием",
    "case": "Творительный (Instrumental)",
-   "explain": "«хорошим укрытием» — after the preposition «за», the instrumental marks the means, company, or complement.",
+   "explain": "«хорошим укрытием» — «за» takes the instrumental here (где? за чем? за кем?) — the accusative would mean motion behind or 'for' (куда? за что?).",
    "id": "c11"
   },
   {
@@ -165,7 +123,7 @@
    ],
    "correct": "духовная особа",
    "case": "Именительный (Nominative)",
-   "explain": "«духовная особа» — the subject of the sentence stands in the nominative.",
+   "explain": "«духовная особа» is the subject of «отозвалась» — who or what does it — so nominative.",
    "id": "c12"
   },
   {
@@ -179,7 +137,7 @@
    ],
    "correct": "духовная особа",
    "case": "Именительный (Nominative)",
-   "explain": "«духовная особа» — the subject of the sentence stands in the nominative.",
+   "explain": "«духовная особа» is the subject of «воскликнула» — who or what does it — so nominative.",
    "id": "c13"
   },
   {
@@ -193,7 +151,7 @@
    ],
    "correct": "духовная особа",
    "case": "Именительный (Nominative)",
-   "explain": "«духовная особа» — the subject of the sentence stands in the nominative.",
+   "explain": "«духовная особа» is the subject of «воскликнула» — who or what does it — so nominative.",
    "id": "c14"
   },
   {
@@ -203,11 +161,11 @@
     "канатному плясуну",
     "канатном плясуне",
     "канатный плясун",
-    "канатного плясуна"
+    "канатным плясуном"
    ],
    "correct": "канатному плясуну",
    "case": "Дательный (Dative)",
-   "explain": "«канатному плясуну» — the dative marks the indirect object or recipient.",
+   "explain": "«уступит» takes the dative (кому? чему?).",
    "id": "c15"
   }
  ]

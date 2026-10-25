@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Моя бабушка была очень ___.",
-   "lemma": "старушка",
-   "options": [
-    "религиозной старушке",
-    "религиозной старушкой",
-    "религиозная старушка",
-    "религиозной старушки"
-   ],
-   "correct": "религиозная старушка",
-   "case": "Именительный (Nominative)",
-   "explain": "«религиозная старушка» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Женщина ___, она питала неодолимую страсть к путешествиям по этим пустыням.",
    "lemma": "век",
    "options": [
@@ -25,50 +11,8 @@
    ],
    "correct": "старого века",
    "case": "Родительный (Genitive)",
-   "explain": "«старого века» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«старого века» depends on the noun «Женщина» (whose? of what?) — genitive.",
    "id": "c2"
-  },
-  {
-   "sentence": "Она на память знала не только историю каждого из этих уединенных монастырей, но знала все ___, историю икон, чудотворения, какие там оказывали, знала монастырские средства, ризницу и все прочее.",
-   "lemma": "легенда",
-   "options": [
-    "монастырские легенды",
-    "монастырским легендам",
-    "монастырских легендах",
-    "монастырскими легендами"
-   ],
-   "correct": "монастырские легенды",
-   "case": "Винительный (Accusative)",
-   "explain": "«монастырские легенды» — the accusative marks the direct object of the verb.",
-   "id": "c3"
-  },
-  {
-   "sentence": "Она на память знала не только историю каждого из этих уединенных монастырей, но знала все монастырские легенды, историю икон, чудотворения, какие там оказывали, знала ___, ризницу и все прочее.",
-   "lemma": "средство",
-   "options": [
-    "монастырских средствах",
-    "монастырским средствам",
-    "монастырские средства",
-    "монастырскими средствами"
-   ],
-   "correct": "монастырские средства",
-   "case": "Винительный (Accusative)",
-   "explain": "«монастырские средства» — the accusative marks the direct object of the verb.",
-   "id": "c4"
-  },
-  {
-   "sentence": "Это был ветхий, но ___ к святыням нашего края.",
-   "lemma": "указатель",
-   "options": [
-    "живой указатель",
-    "живого указателя",
-    "живом указателе",
-    "живым указателем"
-   ],
-   "correct": "живой указатель",
-   "case": "Винительный (Accusative)",
-   "explain": "«живой указатель» — the accusative marks the direct object of the verb.",
-   "id": "c5"
   },
   {
    "sentence": "В гостиницах П—ской и Л—ской пустыни к ___ и успению всегда оставляли для нее две комнаты.",
@@ -81,7 +25,7 @@
    ],
    "correct": "петрову дню",
    "case": "Дательный (Dative)",
-   "explain": "«Петрову дню» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«петрову дню» — «к» always takes the dative.",
    "id": "c6"
   },
   {
@@ -95,21 +39,21 @@
    ],
    "correct": "первый раз",
    "case": "Винительный (Accusative)",
-   "explain": "«Первый раз» — the accusative marks the direct object of the verb.",
+   "explain": "«первый раз» tells how long or how often, with no preposition — accusative.",
    "id": "c9"
   },
   {
    "sentence": "Первый раз моя бабушка пропускала ___ пустынного храма.",
    "lemma": "праздник",
    "options": [
-    "престольным праздником",
-    "престольный праздник",
+    "престольном празднике",
     "престольному празднику",
-    "престольного праздника"
+    "престольным праздником",
+    "престольный праздник"
    ],
    "correct": "престольный праздник",
    "case": "Винительный (Accusative)",
-   "explain": "«престольный праздник» — the accusative marks the direct object of the verb.",
+   "explain": "«престольный праздник» is the direct object of «пропускала» (кого? что?) — accusative.",
    "id": "c10"
   },
   {
@@ -123,36 +67,8 @@
    ],
    "correct": "пустынного храма",
    "case": "Родительный (Genitive)",
-   "explain": "«пустынного храма» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«пустынного храма» depends on the noun «праздник» (whose? of what?) — genitive.",
    "id": "c11"
-  },
-  {
-   "sentence": "Прогудел три раза большой ___; в церкви замелькала горящая свечечка, с которою служка суетился перед иконостасом, зажигая ставники.",
-   "lemma": "колокол",
-   "options": [
-    "монастырскому колоколу",
-    "монастырский колокол",
-    "монастырском колоколе",
-    "монастырским колоколом"
-   ],
-   "correct": "монастырский колокол",
-   "case": "Именительный (Nominative)",
-   "explain": "«монастырский колокол» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
-  },
-  {
-   "sentence": "Свеженькое дикое или зеленое ситцевое платьице, высокий ___ с дикими лентами и ридикюль с вышитой собачкой — все было свежо и наивно-кокетливо у доброй старушки.",
-   "lemma": "чепчик",
-   "options": [
-    "тюлевого чепчика",
-    "тюлевом чепчике",
-    "тюлевый чепчик",
-    "тюлевым чепчиком"
-   ],
-   "correct": "тюлевый чепчик",
-   "case": "Именительный (Nominative)",
-   "explain": "«тюлевый чепчик» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
   },
   {
    "sentence": "Свеженькое дикое или зеленое ситцевое платьице, высокий тюлевый чепчик с дикими лентами и ридикюль с вышитой собачкой — все было свежо и наивно-кокетливо у ___.",
@@ -165,64 +81,8 @@
    ],
    "correct": "доброй старушки",
    "case": "Родительный (Genitive)",
-   "explain": "«доброй старушки» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«доброй старушки» — «у» always takes the genitive.",
    "id": "c16"
-  },
-  {
-   "sentence": "Ездила она в пустыни в деревенской безрессорной кибитке на паре старых рыжих кобылок очень ___.",
-   "lemma": "порода",
-   "options": [
-    "хорошей породы",
-    "хорошей породой",
-    "хорошая порода",
-    "хорошей породе"
-   ],
-   "correct": "хорошей породы",
-   "case": "Родительный (Genitive)",
-   "explain": "«хорошей породы» — the genitive here marks possession, absence, or quantity.",
-   "id": "c17"
-  },
-  {
-   "sentence": "Я был адъютантом старушки с самого ___.",
-   "lemma": "возраст",
-   "options": [
-    "ранним возрастом",
-    "ранний возраст",
-    "раннего возраста",
-    "раннем возрасте"
-   ],
-   "correct": "раннего возраста",
-   "case": "Родительный (Genitive)",
-   "explain": "«раннего возраста» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
-   "id": "c18"
-  },
-  {
-   "sentence": "А тут постоялый двор, ___, бабы с толстыми брюхами и с фартуками, подвязанными выше грудей, просторные выгоны, по которым можно бегать,— все это пленяло меня и имело для меня обаятельную прелесть.",
-   "lemma": "дворник",
-   "options": [
-    "знакомых дворников",
-    "знакомым дворникам",
-    "знакомые дворники",
-    "знакомыми дворниками"
-   ],
-   "correct": "знакомые дворники",
-   "case": "Именительный (Nominative)",
-   "explain": "«знакомые дворники» — the subject of the sentence stands in the nominative.",
-   "id": "c21"
-  },
-  {
-   "sentence": "Первый — высокий ___ с добрым, но строгим лицом — не пользовался, однако, моею привязанностью; но зато отца казначея я любил от всего моего маленького сердца.",
-   "lemma": "старик",
-   "options": [
-    "бледный старик",
-    "бледного старика",
-    "бледном старике",
-    "бледному старику"
-   ],
-   "correct": "бледный старик",
-   "case": "Именительный (Nominative)",
-   "explain": "«бледный старик» — the subject of the sentence stands in the nominative.",
-   "id": "c23"
   },
   {
    "sentence": "Первый — высокий бледный старик с добрым, но строгим лицом — не пользовался, однако, моею привязанностью; но зато отца казначея я любил от всего моего ___.",
@@ -235,36 +95,22 @@
    ],
    "correct": "маленького сердца",
    "case": "Родительный (Genitive)",
-   "explain": "«маленького сердца» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«маленького сердца» — «от» always takes the genitive.",
    "id": "c24"
   },
   {
    "sentence": "Какие гомерические ___ я помню в монастырских хлебопекарнях.",
    "lemma": "бой",
    "options": [
-    "кулачных боях",
-    "кулачными боями",
     "кулачные бои",
-    "кулачных боёв"
+    "кулачным боям",
+    "кулачных боях",
+    "кулачными боями"
    ],
    "correct": "кулачные бои",
    "case": "Винительный (Accusative)",
-   "explain": "«кулачные бои» — the accusative marks the direct object of the verb.",
+   "explain": "«кулачные бои» is the direct object of «помню» (кого? что?) — accusative.",
    "id": "c26"
-  },
-  {
-   "sentence": "___ в их однообразной жизни была единственным занятием, при котором они могли хоть немножко разгуляться и попробовать крепость своих молодых мышц.",
-   "lemma": "ловля",
-   "options": [
-    "рыбной ловли",
-    "рыбная ловля",
-    "рыбной ловлей",
-    "рыбной ловле"
-   ],
-   "correct": "рыбная ловля",
-   "case": "Именительный (Nominative)",
-   "explain": "«Рыбная ловля» — the subject of the sentence stands in the nominative.",
-   "id": "c29"
   },
   {
    "sentence": "Рыбная ловля в их однообразной жизни была единственным занятием, при котором они могли хоть немножко разгуляться и попробовать крепость своих ___.",
@@ -277,7 +123,7 @@
    ],
    "correct": "молодых мышц",
    "case": "Родительный (Genitive)",
-   "explain": "«молодых мышц» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«молодых мышц» depends on the noun «крепость» (whose? of what?) — genitive.",
    "id": "c31"
   },
   {
@@ -291,7 +137,7 @@
    ],
    "correct": "рыбной ловле",
    "case": "Предложный (Prepositional)",
-   "explain": "«рыбной ловле» — after the preposition «в», for location or topic.",
+   "explain": "«рыбной ловле» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c33"
   },
   {
@@ -305,7 +151,7 @@
    ],
    "correct": "тележной грядки",
    "case": "Родительный (Genitive)",
-   "explain": "«тележной грядки» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«тележной грядки» — «у» always takes the genitive.",
    "id": "c34"
   },
   {
@@ -319,22 +165,8 @@
    ],
    "correct": "крошечной тележке",
    "case": "Предложный (Prepositional)",
-   "explain": "«крошечной тележке» — after the preposition «на», for location or topic.",
+   "explain": "«крошечной тележке» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c35"
-  },
-  {
-   "sentence": "Понемногу, понемногу заберемся, бывало, в лес, сначала запоем: «Как шел по пути ___, а навстречу ему сам Иисус Христос», а там кто-нибудь заведет новую песню, и поем их одна за другою.",
-   "lemma": "монах",
-   "options": [
-    "молодого монаха",
-    "молодой монах",
-    "молодым монахом",
-    "молодому монаху"
-   ],
-   "correct": "молодой монах",
-   "case": "Именительный (Nominative)",
-   "explain": "«молодой монах» — the subject of the sentence stands in the nominative.",
-   "id": "c36"
   },
   {
    "sentence": "У меня еще теперь есть ___ и узорчатый крест его работы.",
@@ -347,7 +179,7 @@
    ],
    "correct": "прекрасная ложка",
    "case": "Именительный (Nominative)",
-   "explain": "«прекрасная ложка» — the subject of the sentence stands in the nominative.",
+   "explain": "«прекрасная ложка» is the subject of «есть» — who or what does it — so nominative.",
    "id": "c38"
   },
   {
@@ -361,36 +193,8 @@
    ],
    "correct": "созерцательном положении",
    "case": "Предложный (Prepositional)",
-   "explain": "«созерцательном положении» — after the preposition «в», for location or topic.",
+   "explain": "«созерцательном положении» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c40"
-  },
-  {
-   "sentence": "Он готов был по целым часам оставаться над озером в созерцательном положении и наблюдать, как летают ___, как ходит осанистая цапля, таская по временам из воды лягушек, выпросивших ее себе в цари у Зевеса.",
-   "lemma": "утка",
-   "options": [
-    "дикими утками",
-    "диким уткам",
-    "дикие утки",
-    "диких уток"
-   ],
-   "correct": "дикие утки",
-   "case": "Именительный (Nominative)",
-   "explain": "«дикие утки» — the subject of the sentence stands in the nominative.",
-   "id": "c41"
-  },
-  {
-   "sentence": "Он готов был по целым часам оставаться над озером в созерцательном положении и наблюдать, как летают дикие утки, как ходит ___, таская по временам из воды лягушек, выпросивших ее себе в цари у Зевеса.",
-   "lemma": "цапля",
-   "options": [
-    "осанистой цапле",
-    "осанистой цаплей",
-    "осанистая цапля",
-    "осанистой цапли"
-   ],
-   "correct": "осанистая цапля",
-   "case": "Именительный (Nominative)",
-   "explain": "«осанистая цапля» — the subject of the sentence stands in the nominative.",
-   "id": "c42"
   },
   {
    "sentence": "Тотчас перед хаткою двух «некнижных» иноков начиналась широкая ___, а за нею озеро.",
@@ -403,7 +207,7 @@
    ],
    "correct": "песчаная полоса",
    "case": "Именительный (Nominative)",
-   "explain": "«песчаная полоса» — the subject of the sentence stands in the nominative.",
+   "explain": "«песчаная полоса» is the subject of «начиналась» — who or what does it — so nominative.",
    "id": "c43"
   },
   {
@@ -417,7 +221,7 @@
    ],
    "correct": "особой скамеечке",
    "case": "Предложный (Prepositional)",
-   "explain": "«особой скамеечке» — after the preposition «на», for location or topic.",
+   "explain": "«особой скамеечке» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c46"
   },
   {
@@ -431,22 +235,8 @@
    ],
    "correct": "королевской яхте",
    "case": "Предложный (Prepositional)",
-   "explain": "«королевской яхте» — after the preposition «на», for location or topic.",
+   "explain": "«королевской яхте» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c47"
-  },
-  {
-   "sentence": "Пока, бывало, разведем огонь, вскипятим котелок воды, засыпем жидкую кашицу, бросив туда несколько ___, пока поедим все это из большой деревянной чашки — уж и полночь.",
-   "lemma": "карась",
-   "options": [
-    "сухих карасей",
-    "сухие караси",
-    "сухими карасями",
-    "сухих карасях"
-   ],
-   "correct": "сухих карасей",
-   "case": "Родительный (Genitive)",
-   "explain": "«сухих карасей» — the genitive here marks possession, absence, or quantity.",
-   "id": "c48"
   },
   {
    "sentence": "Пока, бывало, разведем огонь, вскипятим котелок воды, засыпем жидкую кашицу, бросив туда несколько сухих карасей, пока поедим все это из большой ___ — уж и полночь.",
@@ -459,22 +249,8 @@
    ],
    "correct": "деревянной чашки",
    "case": "Родительный (Genitive)",
-   "explain": "«деревянной чашки» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«деревянной чашки» — «из» always takes the genitive.",
    "id": "c49"
-  },
-  {
-   "sentence": "Особенно много таких рассказов знал Тимофей Невструев, ___, слывший у нас за непобедимого силача и всегда собиравшийся на войну за освобождение христиан, с тем чтобы всех их «под себя подбить».",
-   "lemma": "послушник",
-   "options": [
-    "пожилому послушнику",
-    "пожилого послушника",
-    "пожилой послушник",
-    "пожилым послушником"
-   ],
-   "correct": "пожилой послушник",
-   "case": "Именительный (Nominative)",
-   "explain": "«пожилой послушник» — the subject of the sentence stands in the nominative.",
-   "id": "c50"
   },
   {
    "sentence": "Особенно много таких рассказов знал Тимофей Невструев, пожилой послушник, слывший у нас за ___ и всегда собиравшийся на войну за освобождение христиан, с тем чтобы всех их «под себя подбить».",
@@ -487,7 +263,7 @@
    ],
    "correct": "непобедимого силача",
    "case": "Винительный (Accusative)",
-   "explain": "«непобедимого силача» — after the preposition «за», the accusative marks the direct object of the verb.",
+   "explain": "«непобедимого силача» — «за» takes the accusative here (куда? за что? за кого?) — the instrumental would mean position behind or at (где? за чем?).",
    "id": "c51"
   },
   {
@@ -501,22 +277,8 @@
    ],
    "correct": "окого озера",
    "case": "Родительный (Genitive)",
-   "explain": "«окого озера» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«окого озера» depends on the noun «П—» (whose? of what?) — genitive.",
    "id": "c52"
-  },
-  {
-   "sentence": "Мать его была комедиантка, и он о ней ничего больше не знал; а вырос он у какой-то сердобольной купчихи, пристроившей его ___ в монастырь на послушание.",
-   "lemma": "мальчик",
-   "options": [
-    "девятилетнего мальчика",
-    "девятилетнему мальчику",
-    "девятилетнем мальчике",
-    "девятилетним мальчиком"
-   ],
-   "correct": "девятилетним мальчиком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«девятилетним мальчиком» — the instrumental marks the means, company, or complement.",
-   "id": "c53"
   },
   {
    "sentence": "— Отчего это, братцы мои, нет теперь ___?",
@@ -529,7 +291,7 @@
    ],
    "correct": "хороших разбойников",
    "case": "Родительный (Genitive)",
-   "explain": "«хороших разбойников» — the genitive here marks possession, absence, or quantity.",
+   "explain": "What is absent after «нет» — genitive.",
    "id": "c54"
   },
   {
@@ -543,50 +305,22 @@
    ],
    "correct": "самой деревни",
    "case": "Родительный (Genitive)",
-   "explain": "«самой деревни» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«самой деревни» — «до» always takes the genitive.",
    "id": "c57"
   },
   {
    "sentence": "Становилось нестерпимо интересно, и все обратились в слух о настоящих ___.",
    "lemma": "разбойник",
    "options": [
-    "хороших разбойников",
-    "хорошие разбойники",
+    "хорошим разбойникам",
     "хороших разбойниках",
+    "хорошие разбойники",
     "хорошими разбойниками"
    ],
    "correct": "хороших разбойниках",
    "case": "Предложный (Prepositional)",
-   "explain": "«хороших разбойниках» — after the preposition «о», for location or topic.",
+   "explain": "«хороших разбойниках» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c58"
-  },
-  {
-   "sentence": "___, годов этак тридцати будет, да белая, шельма, румяная, и глаза повелительные.",
-   "lemma": "баба",
-   "options": [
-    "здоровенной бабе",
-    "здоровенная баба",
-    "здоровенной бабой",
-    "здоровенной бабы"
-   ],
-   "correct": "здоровенная баба",
-   "case": "Именительный (Nominative)",
-   "explain": "«Здоровенная баба» — the subject of the sentence stands in the nominative.",
-   "id": "c59"
-  },
-  {
-   "sentence": "Помню редкий пар, поднимающийся с воды, ___ и скользких налимов; помню утомительный полдень, когда все мы как убитые падали на траву, отказываясь от янтарной ухи, приготовленной отцом Сергием «некнижным».",
-   "lemma": "карась",
-   "options": [
-    "золотистыми карасями",
-    "золотистые караси",
-    "золотистым карасям",
-    "золотистых карасей"
-   ],
-   "correct": "золотистых карасей",
-   "case": "Родительный (Genitive)",
-   "explain": "«золотистых карасей» — the genitive here marks possession, absence, or quantity.",
-   "id": "c60"
   }
  ]
 }

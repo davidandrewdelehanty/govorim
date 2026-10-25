@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Тяжело, с хрипом дышавший подле него один дворянин и другой, скрипевший ___, мешали ему ясно слышать.",
-   "lemma": "подошва",
-   "options": [
-    "толстых подошвах",
-    "толстыми подошвами",
-    "толстым подошвам",
-    "толстые подошвы"
-   ],
-   "correct": "толстыми подошвами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«толстыми подошвами» — the instrumental marks the means, company, or complement.",
-   "id": "c1"
-  },
-  {
    "sentence": "Он издалека слышал только мягкий голос предводителя, потом визгливый голос ___ и потом голос Свияжского.",
    "lemma": "дворянин",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "ядовитого дворянина",
    "case": "Родительный (Genitive)",
-   "explain": "«ядовитого дворянина» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«ядовитого дворянина» depends on the noun «голос» (whose? of what?) — genitive.",
    "id": "c2"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "ядовитого дворянина",
    "case": "Родительный (Genitive)",
-   "explain": "«ядовитого дворянина» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«ядовитого дворянина» depends on the noun «речи» (whose? of what?) — genitive.",
    "id": "c3"
   },
   {
@@ -53,64 +39,8 @@
    ],
    "correct": "узком мундире",
    "case": "Предложный (Prepositional)",
-   "explain": "«узком мундире» — after the preposition «в», for location or topic.",
+   "explain": "«узком мундире» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c5"
-  },
-  {
-   "sentence": "Поднялись крики, и на минуту все смешалось, так что ___ должен был просить о порядке.",
-   "lemma": "предводитель",
-   "options": [
-    "губернскому предводителю",
-    "губернским предводителем",
-    "губернский предводитель",
-    "губернского предводителя"
-   ],
-   "correct": "губернский предводитель",
-   "case": "Именительный (Nominative)",
-   "explain": "«губернский предводитель» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
-  },
-  {
-   "sentence": "– А один голос может решить все дело, и надо быть серьезным и последовательным, если хочешь служить ___, – заключил Сергей Иванович.",
-   "lemma": "дело",
-   "options": [
-    "общественного дела",
-    "общественное дело",
-    "общественному делу",
-    "общественном деле"
-   ],
-   "correct": "общественному делу",
-   "case": "Дательный (Dative)",
-   "explain": "«общественному делу» — the dative marks the indirect object or recipient.",
-   "id": "c7"
-  },
-  {
-   "sentence": "Левин вошел в залу, получил ___ и вслед за братом Сергеем Ивановичем подошел к столу, у которого стоял с значительным и ироническим лицом, собирая в кулак бороду и нюхая ее, Свияжский.",
-   "lemma": "шарик",
-   "options": [
-    "беленьким шариком",
-    "беленькому шарику",
-    "беленьком шарике",
-    "беленький шарик"
-   ],
-   "correct": "беленький шарик",
-   "case": "Винительный (Accusative)",
-   "explain": "«беленький шарик» — the accusative marks the direct object of the verb.",
-   "id": "c8"
-  },
-  {
-   "sentence": "Но говорившие замолкли, и ___ его был услышан.",
-   "lemma": "вопрос",
-   "options": [
-    "неприличном вопросе",
-    "неприличный вопрос",
-    "неприличным вопросом",
-    "неприличного вопроса"
-   ],
-   "correct": "неприличный вопрос",
-   "case": "Именительный (Nominative)",
-   "explain": "«неприличный вопрос» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
   },
   {
    "sentence": "Левин покраснел, поспешно сунул под сукно руку и положил направо, так как шар был в ___.",
@@ -123,22 +53,8 @@
    ],
    "correct": "правой руке",
    "case": "Предложный (Prepositional)",
-   "explain": "«правой руке» — after the preposition «в», for location or topic.",
+   "explain": "«правой руке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c10"
-  },
-  {
-   "sentence": "Положив, он вспомнил, что надо было засунуть и левую руку, и засунул ее, но уже поздно, и, еще более сконфузившись, поскорее ушел в самые ___.",
-   "lemma": "ряд",
-   "options": [
-    "задние ряды",
-    "задним рядам",
-    "задних рядах",
-    "задних рядов"
-   ],
-   "correct": "задние ряды",
-   "case": "Винительный (Accusative)",
-   "explain": "«задние ряды» — after the preposition «в», the accusative marks the direct object of the verb.",
-   "id": "c11"
   },
   {
    "sentence": "Левин услыхал, что Снеткова просят баллотироваться, и увидал, что толпа дворян окружала ___, который говорил что-то.",
@@ -151,7 +67,7 @@
    ],
    "correct": "губернского предводителя",
    "case": "Винительный (Accusative)",
-   "explain": "«губернского предводителя» — the accusative marks the direct object of the verb.",
+   "explain": "«губернского предводителя» is the direct object of «окружала» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c12"
   },
   {
@@ -165,7 +81,7 @@
    ],
    "correct": "губернский предводитель",
    "case": "Именительный (Nominative)",
-   "explain": "«губернский предводитель» — the subject of the sentence stands in the nominative.",
+   "explain": "«губернский предводитель» is the subject of «столкнулся» — who or what does it — so nominative.",
    "id": "c13"
   }
  ]

@@ -1,60 +1,18 @@
 {
  "cases": [
   {
-   "sentence": "Под опустившейся листвой ___, стоящей около квартиры тюремного смотрителя Яшкина, за маленьким треногим столом сидят сам Яшкин и его гость, штатный смотритель уездного училища Пимфов.",
-   "lemma": "липа",
-   "options": [
-    "старой липой",
-    "старой липы",
-    "старая липа",
-    "старой липе"
-   ],
-   "correct": "старой липы",
-   "case": "Родительный (Genitive)",
-   "explain": "«старой липы» — the genitive here marks possession, absence, or quantity.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Под опустившейся листвой старой липы, стоящей около квартиры ___ Яшкина, за маленьким треногим столом сидят сам Яшкин и его гость, штатный смотритель уездного училища Пимфов.",
-   "lemma": "смотритель",
-   "options": [
-    "тюремном смотрителе",
-    "тюремному смотрителю",
-    "тюремный смотритель",
-    "тюремного смотрителя"
-   ],
-   "correct": "тюремного смотрителя",
-   "case": "Родительный (Genitive)",
-   "explain": "«тюремного смотрителя» — the genitive here marks possession, absence, or quantity.",
-   "id": "c2"
-  },
-  {
    "sentence": "Под опустившейся листвой старой липы, стоящей около квартиры тюремного смотрителя Яшкина, за маленьким ___ сидят сам Яшкин и его гость, штатный смотритель уездного училища Пимфов.",
    "lemma": "стол",
    "options": [
-    "треногим столом",
     "треногому столу",
-    "треногий стол",
-    "треногом столе"
+    "треногого стола",
+    "треногом столе",
+    "треногим столом"
    ],
    "correct": "треногим столом",
    "case": "Творительный (Instrumental)",
-   "explain": "«треногим столом» — after the preposition «за», the instrumental marks the means, company, or complement.",
+   "explain": "«треногим столом» — «за» takes the instrumental here (где? за чем? за кем?) — the accusative would mean motion behind or 'for' (куда? за что?).",
    "id": "c3"
-  },
-  {
-   "sentence": "Под опустившейся листвой старой липы, стоящей около квартиры тюремного смотрителя Яшкина, за маленьким треногим столом сидят сам Яшкин и его гость, ___ уездного училища Пимфов.",
-   "lemma": "смотритель",
-   "options": [
-    "штатному смотрителю",
-    "штатный смотритель",
-    "штатном смотрителе",
-    "штатного смотрителя"
-   ],
-   "correct": "штатный смотритель",
-   "case": "Именительный (Nominative)",
-   "explain": "«штатный смотритель» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
   },
   {
    "sentence": "Под опустившейся листвой старой липы, стоящей около квартиры тюремного смотрителя Яшкина, за маленьким треногим столом сидят сам Яшкин и его гость, штатный смотритель ___ Пимфов.",
@@ -67,7 +25,7 @@
    ],
    "correct": "уездного училища",
    "case": "Родительный (Genitive)",
-   "explain": "«уездного училища» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«уездного училища» depends on the noun «смотритель» (whose? of what?) — genitive.",
    "id": "c5"
   },
   {
@@ -81,7 +39,7 @@
    ],
    "correct": "лишних знаков",
    "case": "Родительный (Genitive)",
-   "explain": "«лишних знаков» — the genitive here marks possession, absence, or quantity.",
+   "explain": "After «много», a word of quantity — genitive.",
    "id": "c7"
   },
   {
@@ -95,22 +53,8 @@
    ],
    "correct": "помойный плеск",
    "case": "Именительный (Nominative)",
-   "explain": "«помойный плеск» — the subject of the sentence stands in the nominative.",
+   "explain": "«помойный плеск» is the subject of «Слышится» — who or what does it — so nominative.",
    "id": "c10"
-  },
-  {
-   "sentence": "___ Пимфова раскисает еще больше; вот-вот растает от жары и потечет вниз на жилетку.",
-   "lemma": "лицо",
-   "options": [
-    "безжизненному лицу",
-    "безжизненное лицо",
-    "безжизненного лица",
-    "безжизненном лице"
-   ],
-   "correct": "безжизненное лицо",
-   "case": "Именительный (Nominative)",
-   "explain": "«Безжизненное лицо» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
   },
   {
    "sentence": "Он ждет от него ___.",
@@ -123,22 +67,8 @@
    ],
    "correct": "новых ересей",
    "case": "Родительный (Genitive)",
-   "explain": "«новых ересей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "With «ждет», a verb of waiting, seeking, asking or wanting, the object can stand in the genitive — as here.",
    "id": "c12"
-  },
-  {
-   "sentence": "Подходит Феона и, сердито тыкая в стороны своими ___, ставит перед приятелями зеленые щи в миске.",
-   "lemma": "локоть",
-   "options": [
-    "пухлых локтях",
-    "пухлые локти",
-    "пухлым локтям",
-    "пухлыми локтями"
-   ],
-   "correct": "пухлыми локтями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«пухлыми локтями» — the instrumental marks the means, company, or complement.",
-   "id": "c13"
   },
   {
    "sentence": "За щами следует ___, которую Феона ставит с такой злобой, что со стола сыплются ложки и корки.",
@@ -151,7 +81,7 @@
    ],
    "correct": "молочная каша",
    "case": "Именительный (Nominative)",
-   "explain": "«молочная каша» — the subject of the sentence stands in the nominative.",
+   "explain": "«молочная каша» is the subject of «следует» — who or what does it — so nominative.",
    "id": "c14"
   }
  ]

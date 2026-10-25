@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "___ Трои; разбита твердыня ахеян!",
-   "lemma": "воин",
-   "options": [
-    "гордых воинах",
-    "гордых воинов",
-    "гордым воинам",
-    "гордые воины"
-   ],
-   "correct": "гордые воины",
-   "case": "Именительный (Nominative)",
-   "explain": "«Гордые воины» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Нестор и более дух поразил у ___.",
    "lemma": "герой",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "ахейских героев",
    "case": "Родительный (Genitive)",
-   "explain": "«ахейских героев» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«ахейских героев» — «у» always takes the genitive.",
    "id": "c2"
   },
   {
@@ -39,22 +25,8 @@
    ],
    "correct": "большем расстройстве",
    "case": "Предложный (Prepositional)",
-   "explain": "«большем расстройстве» — after the preposition «в», for location or topic.",
+   "explain": "«большем расстройстве» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c3"
-  },
-  {
-   "sentence": "Вдруг до земли и до неба ___ разливался.",
-   "lemma": "дух",
-   "options": [
-    "божественного духа",
-    "божественному духу",
-    "божественный дух",
-    "божественным духом"
-   ],
-   "correct": "божественный дух",
-   "case": "Именительный (Nominative)",
-   "explain": "«божественный дух» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
   },
   {
    "sentence": "К ___ привязала красы велелепной плесницы.",
@@ -67,7 +39,7 @@
    ],
    "correct": "светлым ногам",
    "case": "Дательный (Dative)",
-   "explain": "«светлым ногам» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«светлым ногам» — «к» always takes the dative.",
    "id": "c5"
   },
   {
@@ -81,36 +53,8 @@
    ],
    "correct": "бесплодного моря",
    "case": "Родительный (Genitive)",
-   "explain": "«бесплодного моря» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«бесплодного моря» depends on the noun «волны» (whose? of what?) — genitive.",
    "id": "c6"
-  },
-  {
-   "sentence": "И с улыбкой сокрыла ___ на лоне.",
-   "lemma": "пояс",
-   "options": [
-    "блистательным поясом",
-    "блистательного пояса",
-    "блистательному поясу",
-    "блистательный пояс"
-   ],
-   "correct": "блистательный пояс",
-   "case": "Винительный (Accusative)",
-   "explain": "«блистательный пояс» — the accusative marks the direct object of the verb.",
-   "id": "c7"
-  },
-  {
-   "sentence": "___ Океана, от коего всё родилося.",
-   "lemma": "река",
-   "options": [
-    "древней реки",
-    "древней реке",
-    "древней рекой",
-    "древняя река"
-   ],
-   "correct": "древней реки",
-   "case": "Родительный (Genitive)",
-   "explain": "«Древней реки» — the genitive here marks possession, absence, or quantity.",
-   "id": "c8"
   },
   {
    "sentence": "Так же, как в гневе своем защищал он ___?",
@@ -123,7 +67,7 @@
    ],
    "correct": "любезного сына",
    "case": "Винительный (Accusative)",
-   "explain": "«любезного сына» — the accusative marks the direct object of the verb.",
+   "explain": "«любезного сына» is the direct object of «защищал» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c9"
   },
   {
@@ -137,21 +81,21 @@
    ],
    "correct": "милых родителей",
    "case": "Родительный (Genitive)",
-   "explain": "«милых родителей» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«милых родителей» — «от» always takes the genitive.",
    "id": "c10"
   },
   {
    "sentence": "Боги питали меня и лелеяли в ___.",
    "lemma": "дом",
    "options": [
-    "собственный дом",
-    "собственным домом",
     "собственному дому",
-    "собственном доме"
+    "собственным домом",
+    "собственном доме",
+    "собственного дома"
    ],
    "correct": "собственном доме",
    "case": "Предложный (Prepositional)",
-   "explain": "«собственном доме» — after the preposition «в», for location or topic.",
+   "explain": "«собственном доме» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c11"
   },
   {
@@ -165,7 +109,7 @@
    ],
    "correct": "идейской вершине",
    "case": "Предложный (Prepositional)",
-   "explain": "«Идейской вершине» — after the preposition «на», for location or topic.",
+   "explain": "«идейской вершине» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c12"
   },
   {
@@ -179,22 +123,8 @@
    ],
    "correct": "светлая влага",
    "case": "Именительный (Nominative)",
-   "explain": "«светлая влага» — the subject of the sentence stands in the nominative.",
+   "explain": "«светлая влага» is the subject of «капала» — who or what does it — so nominative.",
    "id": "c13"
-  },
-  {
-   "sentence": "Щит и шелом, и взгремела на нем ___.",
-   "lemma": "броня",
-   "options": [
-    "распещренной бронёй",
-    "распещренной брони",
-    "распещренная броня",
-    "распещренной броне"
-   ],
-   "correct": "распещренная броня",
-   "case": "Именительный (Nominative)",
-   "explain": "«распещренная броня» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
   },
   {
    "sentence": "С ___ и с пышной его колесницей стояли.",
@@ -207,22 +137,8 @@
    ],
    "correct": "храбрым возницей",
    "case": "Творительный (Instrumental)",
-   "explain": "«храбрым возницей» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«храбрым возницей» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c15"
-  },
-  {
-   "sentence": "Более ж всех Пенелею ___ взволновали.",
-   "lemma": "дух",
-   "options": [
-    "воинственном духе",
-    "воинственным духом",
-    "воинственного духа",
-    "воинственный дух"
-   ],
-   "correct": "воинственный дух",
-   "case": "Именительный (Nominative)",
-   "explain": "«воинственный дух» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
   }
  ]
 }

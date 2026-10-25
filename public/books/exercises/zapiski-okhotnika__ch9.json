@@ -1,48 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Верстах в пятнадцати от моего именья живет один мне ___, молодой помещик, гвардейский офицер в отставке, Аркадий Павлыч Пеночкин.",
-   "lemma": "человек",
-   "options": [
-    "знакомым человеком",
-    "знакомому человеку",
-    "знакомый человек",
-    "знакомом человеке"
-   ],
-   "correct": "знакомый человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«знакомый человек» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Верстах в пятнадцати от моего именья живет один мне знакомый человек, ___, гвардейский офицер в отставке, Аркадий Павлыч Пеночкин.",
-   "lemma": "помещик",
-   "options": [
-    "молодой помещик",
-    "молодого помещика",
-    "молодому помещику",
-    "молодым помещиком"
-   ],
-   "correct": "молодой помещик",
-   "case": "Именительный (Nominative)",
-   "explain": "«молодой помещик» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Верстах в пятнадцати от моего именья живет один мне знакомый человек, молодой помещик, ___ в отставке, Аркадий Павлыч Пеночкин.",
-   "lemma": "офицер",
-   "options": [
-    "гвардейском офицере",
-    "гвардейским офицером",
-    "гвардейскому офицеру",
-    "гвардейский офицер"
-   ],
-   "correct": "гвардейский офицер",
-   "case": "Именительный (Nominative)",
-   "explain": "«гвардейский офицер» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
    "sentence": "Дичи у него в поместье водится много, дом построен по плану ___, люди одеты по-английски, обеды задает он отличные, принимает гостей ласково, а все-таки неохотно к нему едешь.",
    "lemma": "архитектор",
    "options": [
@@ -53,50 +11,8 @@
    ],
    "correct": "французского архитектора",
    "case": "Родительный (Genitive)",
-   "explain": "«французского архитектора» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«французского архитектора» depends on the noun «плану» (whose? of what?) — genitive.",
    "id": "c4"
-  },
-  {
-   "sentence": "Одевается он отлично и со вкусом; выписывает ___, рисунки и газеты, но до чтения не большой охотник: «Вечного жида» едва осилил.",
-   "lemma": "книга",
-   "options": [
-    "французскими книгами",
-    "французские книги",
-    "французским книгам",
-    "французских книг"
-   ],
-   "correct": "французские книги",
-   "case": "Винительный (Accusative)",
-   "explain": "«французские книги» — the accusative marks the direct object of the verb.",
-   "id": "c6"
-  },
-  {
-   "sentence": "Одевается он отлично и со вкусом; выписывает французские книги, рисунки и газеты, но до чтения не ___: «Вечного жида» едва осилил.",
-   "lemma": "охотник",
-   "options": [
-    "большим охотником",
-    "большого охотника",
-    "большой охотник",
-    "большому охотнику"
-   ],
-   "correct": "большой охотник",
-   "case": "Именительный (Nominative)",
-   "explain": "«большой охотник» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
-  },
-  {
-   "sentence": "___ Аркадия Павлыча посматривают, правда, что-то исподлобья, — но у нас на Руси угрюмого от заспанного не отличишь.",
-   "lemma": "человек",
-   "options": [
-    "дворовыми людьми",
-    "дворовые люди",
-    "дворовым людям",
-    "дворовых людей"
-   ],
-   "correct": "дворовые люди",
-   "case": "Именительный (Nominative)",
-   "explain": "«Дворовые люди» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
   },
   {
    "sentence": "На ___ я рано поутру велел заложить свою коляску, но он не хотел меня отпустить без завтрака на английский манер и повел к себе в кабинет.",
@@ -109,7 +25,7 @@
    ],
    "correct": "другой день",
    "case": "Винительный (Accusative)",
-   "explain": "«другой день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«другой день» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c9"
   },
   {
@@ -123,7 +39,7 @@
    ],
    "correct": "английский манер",
    "case": "Винительный (Accusative)",
-   "explain": "«английский манер» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«английский манер» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c10"
   },
   {
@@ -132,27 +48,13 @@
    "options": [
     "белыми перчатками",
     "белых перчатках",
-    "белые перчатки",
+    "белых перчаток",
     "белым перчаткам"
    ],
    "correct": "белых перчатках",
    "case": "Предложный (Prepositional)",
-   "explain": "«белых перчатках» — after the preposition «в», for location or topic.",
+   "explain": "«белых перчатках» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c11"
-  },
-  {
-   "sentence": "На Аркадии Павлыче были широкие шелковые шаровары, черная ___, красивый фее с синей кистью и китайские желтые туфли без задков.",
-   "lemma": "куртка",
-   "options": [
-    "бархатная куртка",
-    "бархатной курткой",
-    "бархатной куртки",
-    "бархатной куртке"
-   ],
-   "correct": "бархатная куртка",
-   "case": "Именительный (Nominative)",
-   "explain": "«бархатная куртка» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
   },
   {
    "sentence": "Позавтракавши плотно и с видимым удовольствием, Аркадий Павлыч налил себе рюмку ___, поднес ее к губам и вдруг нахмурился.",
@@ -165,22 +67,8 @@
    ],
    "correct": "красного вина",
    "case": "Родительный (Genitive)",
-   "explain": "«красного вина» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«красного вина» depends on the noun «рюмку» (whose? of what?) — genitive.",
    "id": "c16"
-  },
-  {
-   "sentence": "___ помялся на месте, покрутил салфеткой и не сказал ни слова.",
-   "lemma": "камердинер",
-   "options": [
-    "несчастному камердинеру",
-    "несчастный камердинер",
-    "несчастным камердинером",
-    "несчастного камердинера"
-   ],
-   "correct": "несчастный камердинер",
-   "case": "Именительный (Nominative)",
-   "explain": "«Несчастный камердинер» — the subject of the sentence stands in the nominative.",
-   "id": "c18"
   },
   {
    "sentence": "— Ну, ступай, — прибавил он после ___, поднял брови и позвонил.",
@@ -193,7 +81,7 @@
    ],
    "correct": "небольшого молчания",
    "case": "Родительный (Genitive)",
-   "explain": "«небольшого молчания» — after the preposition «после», the genitive here marks possession, absence, or quantity.",
+   "explain": "«небольшого молчания» — «после» always takes the genitive.",
    "id": "c20"
   },
   {
@@ -202,41 +90,13 @@
    "options": [
     "французский романс",
     "французскому романсу",
-    "французским романсом",
-    "французского романса"
+    "французском романсе",
+    "французским романсом"
    ],
    "correct": "французский романс",
    "case": "Винительный (Accusative)",
-   "explain": "«французский романс» — the accusative marks the direct object of the verb.",
+   "explain": "«французский романс» is the direct object of «запел» (кого? что?) — accusative.",
    "id": "c23"
-  },
-  {
-   "sentence": "Бурмистр у меня там молодец, une forte tete, ___!",
-   "lemma": "человек",
-   "options": [
-    "государственном человеке",
-    "государственному человеку",
-    "государственным человеком",
-    "государственный человек"
-   ],
-   "correct": "государственный человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«государственный человек» — the subject of the sentence stands in the nominative.",
-   "id": "c24"
-  },
-  {
-   "sentence": "Впрочем, путешествие совершилось весьма благополучно; только на одном недавно починенном мостике телега с поваром завалилась, и ___ ему придавило желудок.",
-   "lemma": "колесо",
-   "options": [
-    "заднему колесу",
-    "заднее колесо",
-    "задним колесом",
-    "заднего колеса"
-   ],
-   "correct": "задним колесом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«задним колесом» — the instrumental marks the means, company, or complement.",
-   "id": "c25"
   },
   {
    "sentence": "___ видимо распространялось по селу.",
@@ -249,7 +109,7 @@
    ],
    "correct": "тревожное волнение",
    "case": "Именительный (Nominative)",
-   "explain": "«Тревожное волнение» — the subject of the sentence stands in the nominative.",
+   "explain": "«тревожное волнение» is the subject of «распространялось» — who or what does it — so nominative.",
    "id": "c26"
   },
   {
@@ -263,78 +123,8 @@
    ],
    "correct": "барской ручке",
    "case": "Дательный (Dative)",
-   "explain": "«барской ручке» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«барской ручке» — «к» always takes the dative.",
    "id": "c28"
-  },
-  {
-   "sentence": "Между тем Аркадий Павлыч расспрашивал старосту об урожае, посеве и других ___.",
-   "lemma": "предмет",
-   "options": [
-    "хозяйственных предметах",
-    "хозяйственные предметы",
-    "хозяйственным предметам",
-    "хозяйственными предметами"
-   ],
-   "correct": "хозяйственных предметах",
-   "case": "Предложный (Prepositional)",
-   "explain": "«хозяйственных предметах» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c29"
-  },
-  {
-   "sentence": "Из-за его ___ удалось мне увидеть, как бурмистрова жена в сенях втихомолку колотила какую-то другую бабу.",
-   "lemma": "плечо",
-   "options": [
-    "могущественные плечи",
-    "могущественных плеч",
-    "могущественным плечам",
-    "могущественных плечах"
-   ],
-   "correct": "могущественных плеч",
-   "case": "Родительный (Genitive)",
-   "explain": "«могущественных плеч» — the genitive here marks possession, absence, or quantity.",
-   "id": "c30"
-  },
-  {
-   "sentence": "Этот, по словам Аркадия Павлыча, ___ был роста небольшого, плечист, сед и плотен, с красным носом, маленькими голубыми глазами и бородой в виде веера.",
-   "lemma": "человек",
-   "options": [
-    "государственном человеке",
-    "государственному человеку",
-    "государственным человеком",
-    "государственный человек"
-   ],
-   "correct": "государственный человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«государственный человек» — the subject of the sentence stands in the nominative.",
-   "id": "c31"
-  },
-  {
-   "sentence": "Этот, по словам Аркадия Павлыча, государственный человек был роста небольшого, плечист, сед и плотен, с ___, маленькими голубыми глазами и бородой в виде веера.",
-   "lemma": "нос",
-   "options": [
-    "красный нос",
-    "красным носом",
-    "красном носе",
-    "красному носу"
-   ],
-   "correct": "красным носом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«красным носом» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c32"
-  },
-  {
-   "sentence": "Этот, по словам Аркадия Павлыча, государственный человек был роста небольшого, плечист, сед и плотен, с красным носом, маленькими ___ и бородой в виде веера.",
-   "lemma": "глаз",
-   "options": [
-    "голубым глазам",
-    "голубых глаз",
-    "голубыми глазами",
-    "голубые глаза"
-   ],
-   "correct": "голубыми глазами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«голубыми глазами» — the instrumental marks the means, company, or complement.",
-   "id": "c33"
   },
   {
    "sentence": "На ___ утром мы встали довольно рано.",
@@ -347,7 +137,7 @@
    ],
    "correct": "другой день",
    "case": "Винительный (Accusative)",
-   "explain": "«другой день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«другой день» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c41"
   },
   {
@@ -357,26 +147,12 @@
     "государственный человек",
     "государственного человека",
     "государственному человеку",
-    "государственным человеком"
+    "государственном человеке"
    ],
    "correct": "государственного человека",
    "case": "Родительный (Genitive)",
-   "explain": "«государственного человека» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«государственного человека» depends on the noun «качествах» (whose? of what?) — genitive.",
    "id": "c43"
-  },
-  {
-   "sentence": "На нем был ___, подпоясанный красным кушаком.",
-   "lemma": "армяк",
-   "options": [
-    "синий армяк",
-    "синего армяка",
-    "синем армяке",
-    "синему армяку"
-   ],
-   "correct": "синий армяк",
-   "case": "Именительный (Nominative)",
-   "explain": "«синий армяк» — the subject of the sentence stands in the nominative.",
-   "id": "c44"
   },
   {
    "sentence": "На нем был синий армяк, подпоясанный ___.",
@@ -389,22 +165,8 @@
    ],
    "correct": "красным кушаком",
    "case": "Творительный (Instrumental)",
-   "explain": "«красным кушаком» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «подпоясанный», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c45"
-  },
-  {
-   "sentence": "Мы осмотрели гумно, ригу, овины, сараи, ветряную мельницу, скотный двор, зеленя, конопляники; все было действительно в отличном порядке, одни ___ мужиков приводили меня в некоторое недоумение.",
-   "lemma": "лицо",
-   "options": [
-    "унылыми лицами",
-    "унылые лица",
-    "унылых лиц",
-    "унылым лицам"
-   ],
-   "correct": "унылые лица",
-   "case": "Именительный (Nominative)",
-   "explain": "«унылые лица» — the subject of the sentence stands in the nominative.",
-   "id": "c47"
   },
   {
    "sentence": "Впрочем, в ___ и Софрон и Аркадий Павлыч — оба не чуждались нововведений.",
@@ -417,7 +179,7 @@
    ],
    "correct": "других отношениях",
    "case": "Предложный (Prepositional)",
-   "explain": "«других отношениях» — after the preposition «в», for location or topic.",
+   "explain": "«других отношениях» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c49"
   },
   {
@@ -431,7 +193,7 @@
    ],
    "correct": "последней прогулке",
    "case": "Предложный (Prepositional)",
-   "explain": "«последней прогулке» — after the preposition «на», for location or topic.",
+   "explain": "«последней прогулке» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c50"
   },
   {
@@ -445,78 +207,22 @@
    ],
    "correct": "первый раз",
    "case": "Винительный (Accusative)",
-   "explain": "«первый раз» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«первый раз» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c54"
   },
   {
    "sentence": "Из недоимки не выходит вот уж ___.",
    "lemma": "год-с",
    "options": [
-    "пятого года-с",
-    "пятому году-с",
     "пятом годе-с",
-    "пятый год-с"
+    "пятому году-с",
+    "пятый год-с",
+    "пятым годом-с"
    ],
    "correct": "пятый год-с",
    "case": "Именительный (Nominative)",
-   "explain": "«пятый год-с» — the subject of the sentence stands in the nominative.",
+   "explain": "«пятый год-с» is the subject of «выходит» — who or what does it — so nominative.",
    "id": "c55"
-  },
-  {
-   "sentence": "(Старик разинул было рот.) Знаю я вас, — с запальчивостью продолжал Аркадий Павлыч, — ваше дело пить да на печи лежать, а ___ за вас отвечай.",
-   "lemma": "мужик",
-   "options": [
-    "хорошим мужиком",
-    "хорошего мужика",
-    "хорошему мужику",
-    "хороший мужик"
-   ],
-   "correct": "хороший мужик",
-   "case": "Именительный (Nominative)",
-   "explain": "«хороший мужик» — the subject of the sentence stands in the nominative.",
-   "id": "c57"
-  },
-  {
-   "sentence": "___ распутствует, грубит, а теперь в ногах валяется.",
-   "lemma": "год",
-   "options": [
-    "целый год",
-    "целым годом",
-    "целом годе",
-    "целому году"
-   ],
-   "correct": "целый год",
-   "case": "Винительный (Accusative)",
-   "explain": "«Целый год» — the accusative marks the direct object of the verb.",
-   "id": "c58"
-  },
-  {
-   "sentence": "«Вечно неудовольствия», — проговорил он сквозь зубы и пошел ___ домой.",
-   "lemma": "шаг",
-   "options": [
-    "больших шагов",
-    "большими шагами",
-    "большие шаги",
-    "большим шагам"
-   ],
-   "correct": "большими шагами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«большими шагами» — the instrumental marks the means, company, or complement.",
-   "id": "c60"
-  },
-  {
-   "sentence": "Пеночкине, спросил его, не знает ли он ___.",
-   "lemma": "бурмистр",
-   "options": [
-    "тамошним бурмистром",
-    "тамошнего бурмистра",
-    "тамошнему бурмистру",
-    "тамошнем бурмистре"
-   ],
-   "correct": "тамошнего бурмистра",
-   "case": "Родительный (Genitive)",
-   "explain": "«тамошнего бурмистра» — the genitive here marks possession, absence, or quantity.",
-   "id": "c61"
   },
   {
    "sentence": "Да, поди ты, — прибавил он после ___, — пожалуйся.",
@@ -529,7 +235,7 @@
    ],
    "correct": "небольшого молчания",
    "case": "Родительный (Genitive)",
-   "explain": "«небольшого молчания» — after the preposition «после», the genitive here marks possession, absence, or quantity.",
+   "explain": "«небольшого молчания» — «после» always takes the genitive.",
    "id": "c62"
   }
  ]

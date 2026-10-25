@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Когда мы добрались к себе, я приказал Марте приготовить нам есть, но Рената почти не хотела прикоснуться ни к чему и словно с большим трудом проглотила несколько ___ и отпила не больше двух глотков вина.",
-   "lemma": "боб",
-   "options": [
-    "варёных бобах",
-    "варёные бобы",
-    "варёным бобам",
-    "варёных бобов"
-   ],
-   "correct": "варёных бобов",
-   "case": "Родительный (Genitive)",
-   "explain": "«варёных бобов» — the genitive here marks possession, absence, or quantity.",
-   "id": "c2"
-  },
-  {
    "sentence": "К тому же во время речи Ренаты над её постелью в стене раздавались ___, словно подтверждавшие её показания.",
    "lemma": "постукивание",
    "options": [
@@ -25,35 +11,35 @@
    ],
    "correct": "весёлые постукивания",
    "case": "Именительный (Nominative)",
-   "explain": "«весёлые постукивания» — the subject of the sentence stands in the nominative.",
+   "explain": "«весёлые постукивания» is the subject of «раздавались» — who or what does it — so nominative.",
    "id": "c4"
   },
   {
    "sentence": "Вволю предавался я раздумьям и о страшной связи, существующей между жизнью человеков и жизнью демонов, и о новом пути, на который неожиданно свернули события ___.",
    "lemma": "день",
    "options": [
-    "последних дней",
+    "последним дням",
+    "последние дни",
     "последних днях",
-    "последними днями",
-    "последним дням"
+    "последних дней"
    ],
    "correct": "последних дней",
    "case": "Родительный (Genitive)",
-   "explain": "«последних дней» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«последних дней» depends on the noun «события» (whose? of what?) — genitive.",
    "id": "c6"
   },
   {
    "sentence": "Я вам давал клятву быть верным служителем и усердным братом, но я для вас ещё всегда останусь ___.",
    "lemma": "поклонник",
    "options": [
-    "благоговейный поклонник",
-    "благоговейном поклоннике",
+    "благоговейным поклонником",
     "благоговейного поклонника",
-    "благоговейным поклонником"
+    "благоговейному поклоннику",
+    "благоговейном поклоннике"
    ],
    "correct": "благоговейным поклонником",
    "case": "Творительный (Instrumental)",
-   "explain": "«благоговейным поклонником» — the instrumental marks the means, company, or complement.",
+   "explain": "After «останусь», what someone or something is or becomes stands in the instrumental.",
    "id": "c10"
   },
   {
@@ -67,91 +53,21 @@
    ],
    "correct": "другой женщины",
    "case": "Родительный (Genitive)",
-   "explain": "«другой женщины» — after the preposition «близ», the genitive here marks possession, absence, or quantity.",
+   "explain": "«другой женщины» — «близ» always takes the genitive.",
    "id": "c11"
-  },
-  {
-   "sentence": "Я возвращаюсь в свет, и ты должен исчезнуть, как весь ___ при появлении солнца.",
-   "lemma": "мрак",
-   "options": [
-    "ночному мраку",
-    "ночном мраке",
-    "ночной мрак",
-    "ночного мрака"
-   ],
-   "correct": "ночной мрак",
-   "case": "Именительный (Nominative)",
-   "explain": "«ночной мрак» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
-  },
-  {
-   "sentence": "В этом ты мне должен поклясться ___ нашего Спасителя, и если своей клятве ты изменишь, да будет тебе суд строже, чем Иуде!",
-   "lemma": "мука",
-   "options": [
-    "крестных мук",
-    "крестными муками",
-    "крестным мукам",
-    "крестных муках"
-   ],
-   "correct": "крестными муками",
-   "case": "Творительный (Instrumental)",
-   "explain": "«крестными муками» — the instrumental marks the means, company, or complement.",
-   "id": "c13"
-  },
-  {
-   "sentence": "— А что, если утром, выйдя из дома, вы увидите на пороге мой труп и мой ___ в моей груди?",
-   "lemma": "кинжал",
-   "options": [
-    "собственного кинжала",
-    "собственный кинжал",
-    "собственным кинжалом",
-    "собственном кинжале"
-   ],
-   "correct": "собственный кинжал",
-   "case": "Именительный (Nominative)",
-   "explain": "«собственный кинжал» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
-  },
-  {
-   "sentence": "— Я скажу, что это, вероятно, какой-то ___, и буду рада, когда рейтары уберут тело.",
-   "lemma": "прохожий",
-   "options": [
-    "пьяному прохожему",
-    "пьяным прохожим",
-    "пьяный прохожий",
-    "пьяном прохожем"
-   ],
-   "correct": "пьяный прохожий",
-   "case": "Именительный (Nominative)",
-   "explain": "«пьяный прохожий» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
-  },
-  {
-   "sentence": "Едва мрак сгустился ощутительно, как снова послышались постукивания в стену, и Рената с поспешностью спросила, — это ли наш ___ Элимер.",
-   "lemma": "знакомец",
-   "options": [
-    "вчерашнем знакомце",
-    "вчерашнего знакомца",
-    "вчерашним знакомцем",
-    "вчерашний знакомец"
-   ],
-   "correct": "вчерашний знакомец",
-   "case": "Именительный (Nominative)",
-   "explain": "«вчерашний знакомец» — the subject of the sentence stands in the nominative.",
-   "id": "c18"
   },
   {
    "sentence": "Тогда началось как бы повторение ___, с той только особенностью, что скоро к одному стучащему демону присоединились другие, которые тоже указали нам свои имена: Риций, Ульрих, ещё не упомню.",
    "lemma": "вечер",
    "options": [
-    "вчерашним вечером",
+    "вчерашний вечер",
     "вчерашнего вечера",
     "вчерашнему вечеру",
-    "вчерашний вечер"
+    "вчерашнем вечере"
    ],
    "correct": "вчерашнего вечера",
    "case": "Родительный (Genitive)",
-   "explain": "«вчерашнего вечера» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«вчерашнего вечера» depends on the noun «повторение» (whose? of what?) — genitive.",
    "id": "c19"
   },
   {
@@ -165,36 +81,8 @@
    ],
    "correct": "разных частях",
    "case": "Предложный (Prepositional)",
-   "explain": "«разных частях» — after the preposition «в», for location or topic.",
+   "explain": "«разных частях» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c20"
-  },
-  {
-   "sentence": "Но был я в тот вечер, вместе с Ренатою, захвачен ожидаемым приходом Генриха, и не нашлось во мне столько любознательности, чтобы вести ___.",
-   "lemma": "допрос",
-   "options": [
-    "длинным допросом",
-    "длинном допросе",
-    "длинный допрос",
-    "длинного допроса"
-   ],
-   "correct": "длинный допрос",
-   "case": "Винительный (Accusative)",
-   "explain": "«длинный допрос» — the accusative marks the direct object of the verb.",
-   "id": "c21"
-  },
-  {
-   "sentence": "Мы узнали, что на нём зелёный костюм охотника, какой носят в Баварии, с коричневыми застёжками, зелёный же капюшон, ___, унизанный камнями, и синие сапоги.",
-   "lemma": "пояс",
-   "options": [
-    "светлым поясом",
-    "светлому поясу",
-    "светлом поясе",
-    "светлый пояс"
-   ],
-   "correct": "светлый пояс",
-   "case": "Именительный (Nominative)",
-   "explain": "«светлый пояс» — the subject of the sentence stands in the nominative.",
-   "id": "c23"
   },
   {
    "sentence": "И не знаю, вошёл ли в неё тот демон, с которым мы только что дружески беседовали, или давний её враг, но только вновь был я свидетелем того ___, как в деревенской гостинице.",
@@ -207,7 +95,7 @@
    ],
    "correct": "ужасного мучения",
    "case": "Родительный (Genitive)",
-   "explain": "«ужасного мучения» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«ужасного мучения» depends on the noun «свидетелем» (whose? of what?) — genitive.",
    "id": "c24"
   },
   {
@@ -221,7 +109,7 @@
    ],
    "correct": "деревенской гостинице",
    "case": "Предложный (Prepositional)",
-   "explain": "«деревенской гостинице» — after the preposition «в», for location or topic.",
+   "explain": "«деревенской гостинице» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c25"
   },
   {
@@ -235,7 +123,7 @@
    ],
    "correct": "полной немоте",
    "case": "Предложный (Prepositional)",
-   "explain": "«полной немоте» — after the preposition «в», for location or topic.",
+   "explain": "«полной немоте» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c26"
   },
   {
@@ -249,22 +137,8 @@
    ],
    "correct": "второй день",
    "case": "Именительный (Nominative)",
-   "explain": "«второй день» — the subject of the sentence stands in the nominative.",
+   "explain": "«второй день» is the subject of «кончился» — who or what does it — so nominative.",
    "id": "c27"
-  },
-  {
-   "sentence": "Этим кончился второй день нашего пребывания в Кёльне и ___ моей близости с Ренатой.",
-   "lemma": "день",
-   "options": [
-    "пятому дню",
-    "пятого дня",
-    "пятый день",
-    "пятым днём"
-   ],
-   "correct": "пятый день",
-   "case": "Винительный (Accusative)",
-   "explain": "«пятый день» — the accusative marks the direct object of the verb.",
-   "id": "c28"
   }
  ]
 }

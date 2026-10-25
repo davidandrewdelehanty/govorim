@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "___ показался он мне и тут: и голова, и спина, и плечи — медвежьи, и ставил он ноги широко, не разгибая ступни — тоже по-медвежьему.",
-   "lemma": "медведь",
-   "options": [
-    "совершенного медведя",
-    "совершенным медведем",
-    "совершенном медведе",
-    "совершенный медведь"
-   ],
-   "correct": "совершенным медведем",
-   "case": "Творительный (Instrumental)",
-   "explain": "«Совершенным медведем» — the instrumental marks the means, company, or complement.",
-   "id": "c4"
-  },
-  {
    "sentence": "___ обдувал его со всех сторон, вздымая его склоченные волосы; страшно было видеть, как местами краснело его голое тело сквозь прорехи разорванного платья; страшно было слышать его дикое, хриплое бормотание.",
    "lemma": "ветер",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "резкий ветер",
    "case": "Именительный (Nominative)",
-   "explain": "«Резкий ветер» — the subject of the sentence stands in the nominative.",
+   "explain": "«резкий ветер» is the subject of «обдувал» — who or what does it — so nominative.",
    "id": "c5"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "дворовые девки",
    "case": "Именительный (Nominative)",
-   "explain": "«дворовые девки» — the subject of the sentence stands in the nominative.",
+   "explain": "«дворовые девки» is the subject of «жались» — who or what does it — so nominative.",
    "id": "c6"
   },
   {
@@ -53,22 +39,8 @@
    ],
    "correct": "другого флигеля",
    "case": "Родительный (Genitive)",
-   "explain": "«другого флигеля» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«другого флигеля» depends on the noun «крыльце» (whose? of what?) — genitive.",
    "id": "c7"
-  },
-  {
-   "sentence": "Знакомый мне старик поп стоял без шляпы на крыльце другого флигеля и, схватив ___ обеими руками, время от времени молча и безнадёжно поднимал и как бы показывал его Харлову.",
-   "lemma": "крест",
-   "options": [
-    "медном кресте",
-    "медного креста",
-    "медный крест",
-    "медным крестом"
-   ],
-   "correct": "медный крест",
-   "case": "Винительный (Accusative)",
-   "explain": "«медный крест» — the accusative marks the direct object of the verb.",
-   "id": "c8"
   },
   {
    "sentence": "___ полетела сверху и, перевернувшись раза два на воздухе, брякнулась наземь у самых ног Слеткина.",
@@ -81,7 +53,7 @@
    ],
    "correct": "длинная доска",
    "case": "Именительный (Nominative)",
-   "explain": "«Длинная доска» — the subject of the sentence stands in the nominative.",
+   "explain": "«длинная доска» is the subject of «полетела» — who or what does it — so nominative.",
    "id": "c9"
   },
   {
@@ -95,64 +67,8 @@
    ],
    "correct": "самых ног",
    "case": "Родительный (Genitive)",
-   "explain": "«самых ног» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«самых ног» — «у» always takes the genitive.",
    "id": "c10"
-  },
-  {
-   "sentence": "— С’час убиеть, — проговорил один молодой ___ с придурковатым лицом.",
-   "lemma": "парень",
-   "options": [
-    "белокуром парне",
-    "белокурого парня",
-    "белокурым парнем",
-    "белокурый парень"
-   ],
-   "correct": "белокурый парень",
-   "case": "Именительный (Nominative)",
-   "explain": "«белокурый парень» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
-  },
-  {
-   "sentence": "Но тут с тяжким грохотом бухнула ___, и среди мгновенно взвившегося облака жёлтой пыли Харлов, испустив пронзительный крик и высоко и подняв окровавленные руки, повернулся к нам лицом.",
-   "lemma": "труба",
-   "options": [
-    "последней трубой",
-    "последняя труба",
-    "последней трубе",
-    "последней трубы"
-   ],
-   "correct": "последняя труба",
-   "case": "Именительный (Nominative)",
-   "explain": "«последняя труба» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
-  },
-  {
-   "sentence": "Но тут с тяжким грохотом бухнула последняя труба, и среди мгновенно взвившегося облака жёлтой пыли Харлов, испустив ___ и высоко и подняв окровавленные руки, повернулся к нам лицом.",
-   "lemma": "крик",
-   "options": [
-    "пронзительному крику",
-    "пронзительного крика",
-    "пронзительном крике",
-    "пронзительный крик"
-   ],
-   "correct": "пронзительный крик",
-   "case": "Винительный (Accusative)",
-   "explain": "«пронзительный крик» — the accusative marks the direct object of the verb.",
-   "id": "c16"
-  },
-  {
-   "sentence": "Но тут с тяжким грохотом бухнула последняя труба, и среди мгновенно взвившегося облака жёлтой пыли Харлов, испустив пронзительный крик и высоко и подняв ___, повернулся к нам лицом.",
-   "lemma": "рука",
-   "options": [
-    "окровавленные руки",
-    "окровавленных руках",
-    "окровавленным рукам",
-    "окровавленных рук"
-   ],
-   "correct": "окровавленные руки",
-   "case": "Винительный (Accusative)",
-   "explain": "«окровавленные руки» — the accusative marks the direct object of the verb.",
-   "id": "c17"
   }
  ]
 }

@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Впереди нас круто спускался коричневый ___, а за нашими спинами темнела широкая роща.",
-   "lemma": "берег",
-   "options": [
-    "глинистый берег",
-    "глинистого берега",
-    "глинистым берегом",
-    "глинистому берегу"
-   ],
-   "correct": "глинистый берег",
-   "case": "Именительный (Nominative)",
-   "explain": "«глинистый берег» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Впереди нас круто спускался коричневый глинистый берег, а за нашими спинами темнела ___.",
    "lemma": "роща",
    "options": [
@@ -25,22 +11,8 @@
    ],
    "correct": "широкая роща",
    "case": "Именительный (Nominative)",
-   "explain": "«широкая роща» — the subject of the sentence stands in the nominative.",
+   "explain": "«широкая роща» is the subject of «темнела» — who or what does it — so nominative.",
    "id": "c2"
-  },
-  {
-   "sentence": "___ мы сняли, но двугривенных за хранение их не платили, ибо около нас, слава богу, капельдинеров не было.",
-   "lemma": "пальто",
-   "options": [
-    "весенние пальто",
-    "весенними пальто",
-    "весенних пальто",
-    "весенним пальто"
-   ],
-   "correct": "весенние пальто",
-   "case": "Винительный (Accusative)",
-   "explain": "«Весенние пальто» — the accusative marks the direct object of the verb.",
-   "id": "c3"
   },
   {
    "sentence": "Роща, небо и поле вплоть до самой глубокой дали были залиты ___, а вдали тихо мерцал красный огонек.",
@@ -53,7 +25,7 @@
    ],
    "correct": "лунным светом",
    "case": "Творительный (Instrumental)",
-   "explain": "«лунным светом» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «залиты», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c4"
   },
   {
@@ -67,22 +39,8 @@
    ],
    "correct": "других исполнителей",
    "case": "Винительный (Accusative)",
-   "explain": "«других исполнителей» — the accusative marks the direct object of the verb.",
+   "explain": "«других исполнителей» is the direct object of «слушали» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c5"
-  },
-  {
-   "sentence": "Когда кричали грачи, загалдели и лягушки, живущие в камышах на казенных квартирах, и целые полчаса ___ было полно разнообразных звуков, слившихся скоро в один звук.",
-   "lemma": "пространство",
-   "options": [
-    "концертным пространством",
-    "концертному пространству",
-    "концертное пространство",
-    "концертном пространстве"
-   ],
-   "correct": "концертное пространство",
-   "case": "Именительный (Nominative)",
-   "explain": "«концертное пространство» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
   },
   {
    "sentence": "Когда кричали грачи, загалдели и лягушки, живущие в камышах на казенных квартирах, и целые полчаса концертное пространство было полно ___, слившихся скоро в один звук.",
@@ -95,7 +53,7 @@
    ],
    "correct": "разнообразных звуков",
    "case": "Родительный (Genitive)",
-   "explain": "«разнообразных звуков» — the genitive here marks possession, absence, or quantity.",
+   "explain": "After «полно», a word of quantity — genitive.",
    "id": "c8"
   },
   {
@@ -109,7 +67,7 @@
    ],
    "correct": "речная курочка",
    "case": "Именительный (Nominative)",
-   "explain": "«речная курочка» — the subject of the sentence stands in the nominative.",
+   "explain": "«речная курочка» is the subject of «аккомпанировали» — who or what does it — so nominative.",
    "id": "c9"
   },
   {
@@ -123,22 +81,8 @@
    ],
    "correct": "самой рощей",
    "case": "Творительный (Instrumental)",
-   "explain": "«самой рощей» — after the preposition «над», the instrumental marks the means, company, or complement.",
+   "explain": "«самой рощей» — «над» always takes the instrumental.",
    "id": "c10"
-  },
-  {
-   "sentence": "Согнувшись и придерживая ___ шапку, он тихо крался.",
-   "lemma": "рука",
-   "options": [
-    "левой рукой",
-    "левая рука",
-    "левой руке",
-    "левой руки"
-   ],
-   "correct": "левой рукой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«левой рукой» — the instrumental marks the means, company, or complement.",
-   "id": "c15"
   },
   {
    "sentence": "В ___ его было лукошко.",
@@ -151,7 +95,7 @@
    ],
    "correct": "правой руке",
    "case": "Предложный (Prepositional)",
-   "explain": "«правой руке» — after the preposition «в», for location or topic.",
+   "explain": "«правой руке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c16"
   },
   {
@@ -165,7 +109,7 @@
    ],
    "correct": "графский повар",
    "case": "Именительный (Nominative)",
-   "explain": "«Графский повар» — the subject of the sentence stands in the nominative.",
+   "explain": "«графский повар» is the subject of «шел» — who or what does it — so nominative.",
    "id": "c17"
   },
   {
@@ -179,7 +123,7 @@
    ],
    "correct": "подобного сбора",
    "case": "Родительный (Genitive)",
-   "explain": "«подобного сбора» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«подобного сбора» — «от» always takes the genitive.",
    "id": "c18"
   }
  ]

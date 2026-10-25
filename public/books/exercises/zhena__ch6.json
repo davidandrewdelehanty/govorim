@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Был уже ___ вечера.",
-   "lemma": "час",
-   "options": [
-    "восьмом часе",
-    "восьмому часу",
-    "восьмого часа",
-    "восьмой час"
-   ],
-   "correct": "восьмой час",
-   "case": "Именительный (Nominative)",
-   "explain": "«восьмой час» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Кое-кто из ___ свой век доживает, ну, сиротки разные, которым деваться некуда; есть и такие, что насильно живут, не выгонишь.",
    "lemma": "прислуга",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "старой прислуги",
    "case": "Родительный (Genitive)",
-   "explain": "«старой прислуги» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«старой прислуги» — «из» always takes the genitive.",
    "id": "c3"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "сегодняшнего дня",
    "case": "Родительный (Genitive)",
-   "explain": "«сегодняшнего дня» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«сегодняшнего дня» — «до» always takes the genitive.",
    "id": "c6"
   },
   {
@@ -53,7 +39,7 @@
    ],
    "correct": "докторские котята",
    "case": "Именительный (Nominative)",
-   "explain": "«докторские котята» — the subject of the sentence stands in the nominative.",
+   "explain": "«докторские котята» is the subject of «понеслись» — who or what does it — so nominative.",
    "id": "c7"
   },
   {
@@ -67,36 +53,8 @@
    ],
    "correct": "детских приютах",
    "case": "Предложный (Prepositional)",
-   "explain": "«детских приютах» — after the preposition «в», for location or topic.",
+   "explain": "«детских приютах» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c8"
-  },
-  {
-   "sentence": "Пока наши отношения к народу будут носить характер обычной благотворительности, как в детских приютах или ___, до тех пор мы будем только хитрить, вилять, обманывать себя и больше ничего.",
-   "lemma": "дом",
-   "options": [
-    "инвалидные дома",
-    "инвалидными домами",
-    "инвалидным домам",
-    "инвалидных домах"
-   ],
-   "correct": "инвалидных домах",
-   "case": "Предложный (Prepositional)",
-   "explain": "«инвалидных домах» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c9"
-  },
-  {
-   "sentence": "Если я даю ему теперь по 15 коп. в день, то этим я хочу вернуть его в прежнее положение работника, то есть охраняю прежде всего свои интересы, а между тем эти 15 коп. я почему-то называю помощью, пособием, ___.",
-   "lemma": "дело",
-   "options": [
-    "добрым делом",
-    "доброму делу",
-    "доброго дела",
-    "добром деле"
-   ],
-   "correct": "добрым делом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«добрым делом» — after the preposition «прежде», the instrumental marks the means, company, or complement.",
-   "id": "c10"
   },
   {
    "sentence": "Этой цифрой определяются наши деловые ___ к 1 000 семейств.",
@@ -109,78 +67,8 @@
    ],
    "correct": "обязательные отношения",
    "case": "Именительный (Nominative)",
-   "explain": "«обязательные отношения» — the subject of the sentence stands in the nominative.",
+   "explain": "«обязательные отношения» is the subject of «определяются» — who or what does it — so nominative.",
    "id": "c11"
-  },
-  {
-   "sentence": "А между тем мы даем не 350 в день, а только 10 и говорим, что это пособие, помощь, что за это ваша супруга и все мы исключительно ___, и да здравствует гуманность.",
-   "lemma": "человек",
-   "options": [
-    "прекрасным людям",
-    "прекрасными людьми",
-    "прекрасные люди",
-    "прекрасных людей"
-   ],
-   "correct": "прекрасные люди",
-   "case": "Именительный (Nominative)",
-   "explain": "«прекрасные люди» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
-  },
-  {
-   "sentence": "Она стояла у себя в комнате всё в том же ___ и в той же позе, как бы загораживая от меня свои бумаги.",
-   "lemma": "капот",
-   "options": [
-    "розовом капоте",
-    "розовый капот",
-    "розового капота",
-    "розовым капотом"
-   ],
-   "correct": "розовом капоте",
-   "case": "Предложный (Prepositional)",
-   "explain": "«розовом капоте» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c14"
-  },
-  {
-   "sentence": "От прежнего самого себя я отшатнулся с ужасом, с ужасом, презираю и стыжусь его, а тот ___, который во мне со вчерашнего дня, не пускает меня уехать.",
-   "lemma": "человек",
-   "options": [
-    "нового человека",
-    "новому человеку",
-    "новом человеке",
-    "новый человек"
-   ],
-   "correct": "новый человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«новый человек» — after the preposition «от», the subject of the sentence stands in the nominative.",
-   "id": "c16"
-  },
-  {
-   "sentence": "От прежнего самого себя я отшатнулся с ужасом, с ужасом, презираю и стыжусь его, а тот новый человек, который во мне со ___, не пускает меня уехать.",
-   "lemma": "день",
-   "options": [
-    "вчерашнего дня",
-    "вчерашнему дню",
-    "вчерашний день",
-    "вчерашнем дне"
-   ],
-   "correct": "вчерашнего дня",
-   "case": "Родительный (Genitive)",
-   "explain": "«вчерашнего дня» — after the preposition «со», the genitive here marks possession, absence, or quantity.",
-   "id": "c17"
-  },
-  {
-   "sentence": "Я ни на одну минуту не переставал скучать по вас, и только ___ мешало мне сознаваться в этом.",
-   "lemma": "самолюбие",
-   "options": [
-    "упрямом самолюбии",
-    "упрямое самолюбие",
-    "упрямого самолюбия",
-    "упрямому самолюбию"
-   ],
-   "correct": "упрямое самолюбие",
-   "case": "Именительный (Nominative)",
-   "explain": "«упрямое самолюбие» — the subject of the sentence stands in the nominative.",
-   "id": "c18"
   },
   {
    "sentence": "Через час я уже сидел за столом и писал «Историю ___», и голодающие не мешали мне делать это.",
@@ -193,35 +81,21 @@
    ],
    "correct": "железных дорог",
    "case": "Родительный (Genitive)",
-   "explain": "«железных дорог» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«железных дорог» depends on the noun «Историю» (whose? of what?) — genitive.",
    "id": "c19"
-  },
-  {
-   "sentence": "Ни те беспорядки, которые я видел, когда на днях с женою и с Соболем обходил избы в Пестрове, ни ___, ни ошибки окружающих людей, ни моя близкая старость — ничто не беспокоит меня.",
-   "lemma": "слух",
-   "options": [
-    "зловещие слухи",
-    "зловещих слухов",
-    "зловещим слухам",
-    "зловещих слухах"
-   ],
-   "correct": "зловещие слухи",
-   "case": "Именительный (Nominative)",
-   "explain": "«зловещие слухи» — the subject of the sentence stands in the nominative.",
-   "id": "c20"
   },
   {
    "sentence": "Как летающие ядра и пули на войне не мешают солдатам говорить о своих делах, есть и починять обувь, так и голодающие не мешают мне покойно спать и заниматься своими ___.",
    "lemma": "дело",
    "options": [
-    "личными делами",
-    "личные дела",
+    "личным делам",
+    "личных дел",
     "личных делах",
-    "личным делам"
+    "личными делами"
    ],
    "correct": "личными делами",
    "case": "Творительный (Instrumental)",
-   "explain": "«личными делами» — the instrumental marks the means, company, or complement.",
+   "explain": "«заниматься» takes the instrumental.",
    "id": "c21"
   }
  ]

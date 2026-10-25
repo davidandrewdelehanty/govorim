@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Каждую субботу к Павлу приходили товарищи, каждое собрание являлось ступенью длинной ___, -- она вела куда-то вдаль, медленно поднимая людей.",
-   "lemma": "лестница",
-   "options": [
-    "пологой лестницы",
-    "пологой лестницей",
-    "пологой лестнице",
-    "пологая лестница"
-   ],
-   "correct": "пологой лестницы",
-   "case": "Родительный (Genitive)",
-   "explain": "«пологой лестницы» — the genitive here marks possession, absence, or quantity.",
-   "id": "c1"
-  },
-  {
    "sentence": "В ___ Власовых становилось тесно и душно.",
    "lemma": "комната",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "маленькой комнате",
    "case": "Предложный (Prepositional)",
-   "explain": "«маленькой комнате» — after the preposition «в», for location or topic.",
+   "explain": "«маленькой комнате» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c2"
   },
   {
@@ -39,36 +25,8 @@
    ],
    "correct": "маленькие ноги",
    "case": "Винительный (Accusative)",
-   "explain": "«маленькие ноги» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«маленькие ноги» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c3"
-  },
-  {
-   "sentence": "Как странно, Пелагея Ниловна, -- ___ живет такой трудной, такой обидной жизнью, а ведь у него больше сердца, больше доброты, чем у тех!",
-   "lemma": "народ",
-   "options": [
-    "рабочим народом",
-    "рабочего народа",
-    "рабочему народу",
-    "рабочий народ"
-   ],
-   "correct": "рабочий народ",
-   "case": "Именительный (Nominative)",
-   "explain": "«рабочий народ» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
-  },
-  {
-   "sentence": "У нее побледнело лицо и ___ ярко вспыхнули.",
-   "lemma": "глаз",
-   "options": [
-    "синими глазами",
-    "синие глаза",
-    "синих глаз",
-    "синим глазам"
-   ],
-   "correct": "синие глаза",
-   "case": "Именительный (Nominative)",
-   "explain": "«синие глаза» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
   },
   {
    "sentence": "Матери казалось, что когда он говорит с Наташей или смотрит на нее, -- его ___ блестят мягче, голос звучит ласковее и весь он становится проще.",
@@ -81,50 +39,8 @@
    ],
    "correct": "строгие глаза",
    "case": "Именительный (Nominative)",
-   "explain": "«строгие глаза» — the subject of the sentence stands in the nominative.",
+   "explain": "«строгие глаза» is the subject of «блестят» — who or what does it — so nominative.",
    "id": "c8"
-  },
-  {
-   "sentence": "Иногда вместо Наташи являлся из города Николай Иванович, человек в очках, с маленькой ___, уроженец какой-то дальней губернии, -- он говорил особенным -- на \"о\" -- говорком.",
-   "lemma": "бородка",
-   "options": [
-    "светлая бородка",
-    "светлой бородки",
-    "светлой бородке",
-    "светлой бородкой"
-   ],
-   "correct": "светлой бородкой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«светлой бородкой» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c9"
-  },
-  {
-   "sentence": "Являлись и еще люди из города, чаще других -- высокая ___ с огромными глазами на худом, бледном лице.",
-   "lemma": "барышня",
-   "options": [
-    "стройной барышне",
-    "стройная барышня",
-    "стройной барышней",
-    "стройной барышни"
-   ],
-   "correct": "стройная барышня",
-   "case": "Именительный (Nominative)",
-   "explain": "«стройная барышня» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
-  },
-  {
-   "sentence": "В ее походке и движениях было что-то мужское, она сердито хмурила густые темные брови, а когда говорила -- ___ ее прямого носа вздрагивали.",
-   "lemma": "ноздря",
-   "options": [
-    "тонких ноздрей",
-    "тонких ноздрях",
-    "тонкие ноздри",
-    "тонким ноздрям"
-   ],
-   "correct": "тонкие ноздри",
-   "case": "Именительный (Nominative)",
-   "explain": "«тонкие ноздри» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
   },
   {
    "sentence": "В ее походке и движениях было что-то мужское, она сердито хмурила густые темные брови, а когда говорила -- тонкие ноздри ее ___ вздрагивали.",
@@ -137,7 +53,7 @@
    ],
    "correct": "прямого носа",
    "case": "Родительный (Genitive)",
-   "explain": "«прямого носа» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«прямого носа» depends on the noun «носа» (whose? of what?) — genitive.",
    "id": "c15"
   },
   {
@@ -151,7 +67,7 @@
    ],
    "correct": "страшное слово",
    "case": "Именительный (Nominative)",
-   "explain": "«страшное слово» — the subject of the sentence stands in the nominative.",
+   "explain": "«страшное слово» is the subject of «стало» — who or what does it — so nominative.",
    "id": "c16"
   },
   {
@@ -165,22 +81,8 @@
    ],
    "correct": "непонятных слов",
    "case": "Родительный (Genitive)",
-   "explain": "«непонятных слов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«непонятных слов» depends on the noun «десятки» (whose? of what?) — genitive.",
    "id": "c17"
-  },
-  {
-   "sentence": "Павел, усмехаясь, молчал и смотрел в лицо девушки тем ___, каким ранее он смотрел в лицо Наташи.",
-   "lemma": "взгляд",
-   "options": [
-    "мягком взгляде",
-    "мягкий взгляд",
-    "мягкого взгляда",
-    "мягким взглядом"
-   ],
-   "correct": "мягким взглядом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«мягким взглядом» — the instrumental marks the means, company, or complement.",
-   "id": "c18"
   },
   {
    "sentence": "Обыкновенно это было в те вечера, когда они читали в газетах о ___ за границей.",
@@ -193,7 +95,7 @@
    ],
    "correct": "рабочем народе",
    "case": "Предложный (Prepositional)",
-   "explain": "«рабочем народе» — after the preposition «о», for location or topic.",
+   "explain": "«рабочем народе» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c19"
   },
   {
@@ -207,49 +109,35 @@
    ],
    "correct": "тесной комнате",
    "case": "Предложный (Prepositional)",
-   "explain": "«тесной комнате» — after the preposition «в», for location or topic.",
+   "explain": "«тесной комнате» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c20"
   },
   {
    "sentence": "В тесной комнате рождалось чувство ___ рабочих всей земли.",
    "lemma": "родство",
    "options": [
-    "духовном родстве",
     "духовному родству",
+    "духовное родство",
     "духовного родства",
-    "духовным родством"
+    "духовном родстве"
    ],
    "correct": "духовного родства",
    "case": "Родительный (Genitive)",
-   "explain": "«духовного родства» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«духовного родства» depends on the noun «чувство» (whose? of what?) — genitive.",
    "id": "c21"
-  },
-  {
-   "sentence": "Когда окинешь добрыми глазами землю, когда увидишь, как нас, рабочих, много, сколько силы мы несем, -- такая радость обнимает сердце, такой ___ в груди!",
-   "lemma": "праздник",
-   "options": [
-    "великий праздник",
-    "великому празднику",
-    "великого праздника",
-    "великом празднике"
-   ],
-   "correct": "великий праздник",
-   "case": "Именительный (Nominative)",
-   "explain": "«великий праздник» — the subject of the sentence stands in the nominative.",
-   "id": "c22"
   },
   {
    "sentence": "Мы все -- дети одной матери -- непобедимой мысли о братстве ___ всех стран земли.",
    "lemma": "народ",
    "options": [
-    "рабочему народу",
-    "рабочим народом",
     "рабочего народа",
+    "рабочий народ",
+    "рабочему народу",
     "рабочем народе"
    ],
    "correct": "рабочего народа",
    "case": "Родительный (Genitive)",
-   "explain": "«рабочего народа» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«рабочего народа» depends on the noun «братстве» (whose? of what?) — genitive.",
    "id": "c23"
   },
   {
@@ -263,7 +151,7 @@
    ],
    "correct": "могучей силе",
    "case": "Предложный (Prepositional)",
-   "explain": "«могучей силе» — after the preposition «в», for location or topic.",
+   "explain": "«могучей силе» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c24"
   },
   {
@@ -277,7 +165,7 @@
    ],
    "correct": "звучных словах",
    "case": "Предложный (Prepositional)",
-   "explain": "«звучных словах» — after the preposition «в», for location or topic.",
+   "explain": "«звучных словах» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c25"
   },
   {
@@ -291,7 +179,7 @@
    ],
    "correct": "большая сила",
    "case": "Именительный (Nominative)",
-   "explain": "«большая сила» — the subject of the sentence stands in the nominative.",
+   "explain": "«большая сила» is the subject of «чувствовалась» — who or what does it — so nominative.",
    "id": "c26"
   },
   {
@@ -305,22 +193,8 @@
    ],
    "correct": "новых песен",
    "case": "Родительный (Genitive)",
-   "explain": "«новых песен» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«новых песен» — «из» always takes the genitive.",
    "id": "c27"
-  },
-  {
-   "sentence": "Резкие слова и ___ ее не нравились матери, но за словами и напевом было нечто большее, оно заглушало звук и слово своею силой и будило в сердце предчувствие чего-то необъятного для мысли.",
-   "lemma": "напев",
-   "options": [
-    "суровом напеве",
-    "суровый напев",
-    "сурового напева",
-    "суровым напевом"
-   ],
-   "correct": "суровый напев",
-   "case": "Именительный (Nominative)",
-   "explain": "«суровый напев» — the subject of the sentence stands in the nominative.",
-   "id": "c30"
   },
   {
    "sentence": "Эту песню пели тише других, но она звучала сильнее всех и обнимала людей, как воздух ___ -- первого дня грядущей весны.",
@@ -333,7 +207,7 @@
    ],
    "correct": "мартовского дня",
    "case": "Родительный (Genitive)",
-   "explain": "«мартовского дня» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«мартовского дня» depends on the noun «воздух» (whose? of what?) — genitive.",
    "id": "c31"
   },
   {
@@ -347,7 +221,7 @@
    ],
    "correct": "первого дня",
    "case": "Родительный (Genitive)",
-   "explain": "«первого дня» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«первого дня» depends on the noun «дня» (whose? of what?) — genitive.",
    "id": "c32"
   },
   {
@@ -361,7 +235,7 @@
    ],
    "correct": "грядущей весны",
    "case": "Родительный (Genitive)",
-   "explain": "«грядущей весны» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«грядущей весны» depends on the noun «дня» (whose? of what?) — genitive.",
    "id": "c33"
   },
   {
@@ -375,7 +249,7 @@
    ],
    "correct": "хорошего человека",
    "case": "Родительный (Genitive)",
-   "explain": "«хорошего человека» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«хорошего человека» — «для» always takes the genitive.",
    "id": "c34"
   }
  ]

@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Вот большой ___ с загнутыми рогами погрузился в ил по шею, другие буйволы направились за ним, и вскоре из тины виднелись только их плоские носы.",
-   "lemma": "буйвол",
-   "options": [
-    "синеватом буйволе",
-    "синеватому буйволу",
-    "синеватый буйвол",
-    "синеватым буйволом"
-   ],
-   "correct": "синеватый буйвол",
-   "case": "Именительный (Nominative)",
-   "explain": "«синеватый буйвол» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Вот большой синеватый буйвол с загнутыми рогами погрузился в ил по шею, ___ направились за ним, и вскоре из тины виднелись только их плоские носы.",
-   "lemma": "буйвол",
-   "options": [
-    "другие буйволы",
-    "другим буйволам",
-    "других буйволах",
-    "других буйволов"
-   ],
-   "correct": "другие буйволы",
-   "case": "Именительный (Nominative)",
-   "explain": "«другие буйволы» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
    "sentence": "Вот большой синеватый буйвол с загнутыми рогами погрузился в ил по шею, другие буйволы направились за ним, и вскоре из тины виднелись только их ___.",
    "lemma": "нос",
    "options": [
@@ -39,7 +11,7 @@
    ],
    "correct": "плоские носы",
    "case": "Именительный (Nominative)",
-   "explain": "«плоские носы» — the subject of the sentence stands in the nominative.",
+   "explain": "«плоские носы» is the subject of «виднелись» — who or what does it — so nominative.",
    "id": "c4"
   },
   {
@@ -53,22 +25,8 @@
    ],
    "correct": "старого человека",
    "case": "Винительный (Accusative)",
-   "explain": "«старого человека» — the accusative marks the direct object of the verb.",
+   "explain": "«старого человека» is the direct object of «видел» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c5"
-  },
-  {
-   "sentence": "Рядом с Пирсом этот ___ с острым носом-клювом и совиными глазами.",
-   "lemma": "старик",
-   "options": [
-    "зловещему старику",
-    "зловещим стариком",
-    "зловещем старике",
-    "зловещий старик"
-   ],
-   "correct": "зловещий старик",
-   "case": "Именительный (Nominative)",
-   "explain": "«зловещий старик» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
   },
   {
    "sentence": "И все-таки как мало ___ на свете!..",
@@ -81,7 +39,7 @@
    ],
    "correct": "добрых людей",
    "case": "Родительный (Genitive)",
-   "explain": "«добрых людей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "After «мало», a word of quantity — genitive.",
    "id": "c9"
   },
   {
@@ -95,7 +53,7 @@
    ],
    "correct": "указательный палец",
    "case": "Винительный (Accusative)",
-   "explain": "«указательный палец» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«указательный палец» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c10"
   },
   {
@@ -109,35 +67,21 @@
    ],
    "correct": "левой руки",
    "case": "Родительный (Genitive)",
-   "explain": "«левой руки» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«левой руки» depends on the noun «палец» (whose? of what?) — genitive.",
    "id": "c11"
-  },
-  {
-   "sentence": "Такой ___ не проделывал ни один ярмарочный акробат.",
-   "lemma": "штука",
-   "options": [
-    "замечательная штука",
-    "замечательной штукой",
-    "замечательной штуке",
-    "замечательной штуки"
-   ],
-   "correct": "замечательной штуки",
-   "case": "Родительный (Genitive)",
-   "explain": "«замечательной штуки» — the genitive here marks possession, absence, or quantity.",
-   "id": "c12"
   },
   {
    "sentence": "Такой замечательной штуки не проделывал ни один ___.",
    "lemma": "акробат",
    "options": [
-    "ярмарочном акробате",
-    "ярмарочного акробата",
+    "ярмарочный акробат",
+    "ярмарочному акробату",
     "ярмарочным акробатом",
-    "ярмарочный акробат"
+    "ярмарочном акробате"
    ],
    "correct": "ярмарочный акробат",
    "case": "Именительный (Nominative)",
-   "explain": "«ярмарочный акробат» — the subject of the sentence stands in the nominative.",
+   "explain": "«ярмарочный акробат» is the subject of «проделывал» — who or what does it — so nominative.",
    "id": "c13"
   },
   {
@@ -151,36 +95,8 @@
    ],
    "correct": "синие тучи",
    "case": "Именительный (Nominative)",
-   "explain": "«Синие тучи» — the subject of the sentence stands in the nominative.",
+   "explain": "«синие тучи» is the subject of «стояли» — who or what does it — so nominative.",
    "id": "c14"
-  },
-  {
-   "sentence": "Вдруг ___ подхватил Ариэля, бросил сначала вниз, а потом, завертев, понес вверх, в самую гущу туч.",
-   "lemma": "ветер",
-   "options": [
-    "ураганный ветер",
-    "ураганному ветру",
-    "ураганном ветре",
-    "ураганного ветра"
-   ],
-   "correct": "ураганный ветер",
-   "case": "Именительный (Nominative)",
-   "explain": "«ураганный ветер» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
-  },
-  {
-   "sentence": "Все было покрыто сизой мутью, кругом сверканье, грохот, ___ ливня то сверху, то снизу, то с боков.",
-   "lemma": "порыв",
-   "options": [
-    "неожиданных порывах",
-    "неожиданные порывы",
-    "неожиданных порывов",
-    "неожиданными порывами"
-   ],
-   "correct": "неожиданные порывы",
-   "case": "Именительный (Nominative)",
-   "explain": "«неожиданные порывы» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
   },
   {
    "sentence": "___ кружили и, вертели его, как сорванный лист.",
@@ -193,22 +109,8 @@
    ],
    "correct": "встречные ветры",
    "case": "Именительный (Nominative)",
-   "explain": "«Встречные ветры» — the subject of the sentence stands in the nominative.",
+   "explain": "«встречные ветры» is the subject of «кружили» — who or what does it — so nominative.",
    "id": "c17"
-  },
-  {
-   "sentence": "И вдруг ___ уже низкого солнца осветил какой-то островок.",
-   "lemma": "луч",
-   "options": [
-    "золотому лучу",
-    "золотой луч",
-    "золотого луча",
-    "золотым лучом"
-   ],
-   "correct": "золотой луч",
-   "case": "Именительный (Nominative)",
-   "explain": "«золотой луч» — the subject of the sentence stands in the nominative.",
-   "id": "c18"
   },
   {
    "sentence": "Он видит хижины ___.",
@@ -221,7 +123,7 @@
    ],
    "correct": "убогой деревни",
    "case": "Родительный (Genitive)",
-   "explain": "«убогой деревни» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«убогой деревни» depends on the noun «хижины» (whose? of what?) — genitive.",
    "id": "c19"
   },
   {
@@ -235,7 +137,7 @@
    ],
    "correct": "размытой дороге",
    "case": "Дательный (Dative)",
-   "explain": "«размытой дороге» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«размытой дороге» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c20"
   },
   {
@@ -249,36 +151,22 @@
    ],
    "correct": "человеческому жилью",
    "case": "Дательный (Dative)",
-   "explain": "«человеческому жилью» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«человеческому жилью» — «к» always takes the dative.",
    "id": "c21"
   },
   {
    "sentence": "Ливень смыл ___ забора и столбы ворот.",
    "lemma": "стена",
    "options": [
-    "глиняные стены",
-    "глиняных стенах",
     "глиняными стенами",
-    "глиняных стен"
+    "глиняные стены",
+    "глиняным стенам",
+    "глиняных стенах"
    ],
    "correct": "глиняные стены",
    "case": "Винительный (Accusative)",
-   "explain": "«глиняные стены» — the accusative marks the direct object of the verb.",
+   "explain": "«глиняные стены» is the direct object of «смыл» (кого? что?) — accusative.",
    "id": "c23"
-  },
-  {
-   "sentence": "По полу со звуком «тик-тик» бегают ___.",
-   "lemma": "скорпион",
-   "options": [
-    "маленьких скорпионов",
-    "маленькие скорпионы",
-    "маленьких скорпионах",
-    "маленьким скорпионам"
-   ],
-   "correct": "маленькие скорпионы",
-   "case": "Именительный (Nominative)",
-   "explain": "«маленькие скорпионы» — the subject of the sentence stands in the nominative.",
-   "id": "c24"
   },
   {
    "sentence": "___ ведет на крышу.",
@@ -291,22 +179,8 @@
    ],
    "correct": "узкая лестница",
    "case": "Именительный (Nominative)",
-   "explain": "«Узкая лестница» — the subject of the sentence stands in the nominative.",
+   "explain": "«узкая лестница» is the subject of «ведет» — who or what does it — so nominative.",
    "id": "c25"
-  },
-  {
-   "sentence": "В углу ___, которого можно было принять за статую — так неподвижно он сидел, опустив глаза, в позе глубокого раздумья.",
-   "lemma": "старик",
-   "options": [
-    "голого старика",
-    "голым стариком",
-    "голый старик",
-    "голому старику"
-   ],
-   "correct": "голый старик",
-   "case": "Именительный (Nominative)",
-   "explain": "«голый старик» — the subject of the sentence stands in the nominative.",
-   "id": "c26"
   },
   {
    "sentence": "В углу голый старик, которого можно было принять за статую — так неподвижно он сидел, опустив глаза, в позе ___.",
@@ -319,22 +193,8 @@
    ],
    "correct": "глубокого раздумья",
    "case": "Родительный (Genitive)",
-   "explain": "«глубокого раздумья» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«глубокого раздумья» depends on the noun «позе» (whose? of what?) — genitive.",
    "id": "c27"
-  },
-  {
-   "sentence": "Скелет, обтянутый кожей, с длинной ___.",
-   "lemma": "борода",
-   "options": [
-    "белой бородой",
-    "белой бороды",
-    "белой бороде",
-    "белая борода"
-   ],
-   "correct": "белой бородой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«белой бородой» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c28"
   },
   {
    "sentence": "Только в одной хижине, освещенной ___, двигались четыре белых призрака — это были женщины-обмывательницы, пришедшие к покойнику.",
@@ -347,7 +207,7 @@
    ],
    "correct": "тусклой светильней",
    "case": "Творительный (Instrumental)",
-   "explain": "«тусклой светильней» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «освещенной», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c29"
   },
   {
@@ -361,7 +221,7 @@
    ],
    "correct": "первый раз",
    "case": "Винительный (Accusative)",
-   "explain": "«первый раз» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«первый раз» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c30"
   },
   {
@@ -375,7 +235,7 @@
    ],
    "correct": "последние тучи",
    "case": "Именительный (Nominative)",
-   "explain": "«Последние тучи» — the subject of the sentence stands in the nominative.",
+   "explain": "«последние тучи» is the subject of «уходили» — who or what does it — so nominative.",
    "id": "c31"
   },
   {
@@ -389,22 +249,8 @@
    ],
    "correct": "бездонной синеве",
    "case": "Предложный (Prepositional)",
-   "explain": "«бездонной синеве» — after the preposition «на», for location or topic.",
+   "explain": "«бездонной синеве» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c32"
-  },
-  {
-   "sentence": "Перед Ариэлем на бездонной синеве ___ блеснула яркая звезда.",
-   "lemma": "небо",
-   "options": [
-    "ночного неба",
-    "ночном небе",
-    "ночное небо",
-    "ночному небу"
-   ],
-   "correct": "ночного неба",
-   "case": "Родительный (Genitive)",
-   "explain": "«ночного неба» — the genitive here marks possession, absence, or quantity.",
-   "id": "c33"
   },
   {
    "sentence": "Перед Ариэлем на бездонной синеве ночного неба блеснула ___.",
@@ -417,7 +263,7 @@
    ],
    "correct": "яркая звезда",
    "case": "Именительный (Nominative)",
-   "explain": "«яркая звезда» — the subject of the sentence stands in the nominative.",
+   "explain": "«яркая звезда» is the subject of «блеснула» — who or what does it — so nominative.",
    "id": "c34"
   }
  ]

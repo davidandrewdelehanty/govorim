@@ -1,48 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "___ Шарада было столь велико, что его пришлось поместить в школьную больницу.",
-   "lemma": "потрясение",
-   "options": [
-    "нервного потрясения",
-    "нервное потрясение",
-    "нервном потрясении",
-    "нервному потрясению"
-   ],
-   "correct": "нервное потрясение",
-   "case": "Именительный (Nominative)",
-   "explain": "«Нервное потрясение» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Врач заставил Шарада выпить ___ с водкой, и ребенок уснул, а Ариэль, его невольный проводник, вернулся к себе.",
-   "lemma": "молоко",
-   "options": [
-    "горячее молоко",
-    "горячим молоком",
-    "горячего молока",
-    "горячем молоке"
-   ],
-   "correct": "горячего молока",
-   "case": "Родительный (Genitive)",
-   "explain": "«горячего молока» — the genitive here marks possession, absence, or quantity.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Врач заставил Шарада выпить горячего молока с водкой, и ребенок уснул, а Ариэль, его ___, вернулся к себе.",
-   "lemma": "проводник",
-   "options": [
-    "невольному проводнику",
-    "невольный проводник",
-    "невольного проводника",
-    "невольном проводнике"
-   ],
-   "correct": "невольный проводник",
-   "case": "Именительный (Nominative)",
-   "explain": "«невольный проводник» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
    "sentence": "Вместо грубой ___ Ариэль надел полотняную одежду.",
    "lemma": "рубаха",
    "options": [
@@ -53,7 +11,7 @@
    ],
    "correct": "будничной рубахи",
    "case": "Родительный (Genitive)",
-   "explain": "«будничной рубахи» — after the preposition «вместо», the genitive here marks possession, absence, or quantity.",
+   "explain": "«будничной рубахи» — «вместо» always takes the genitive.",
    "id": "c4"
   },
   {
@@ -67,78 +25,36 @@
    ],
    "correct": "именитых гостей",
    "case": "Родительный (Genitive)",
-   "explain": "«именитых гостей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«именитых гостей» depends on the noun «приезда» (whose? of what?) — genitive.",
    "id": "c5"
-  },
-  {
-   "sentence": "После завтрака преподаватели и ___ собрались в большом зале, уставленном креслами, стульями, скамьями.",
-   "lemma": "воспитанник",
-   "options": [
-    "старших воспитанников",
-    "старшие воспитанники",
-    "старших воспитанниках",
-    "старшим воспитанникам"
-   ],
-   "correct": "старшие воспитанники",
-   "case": "Именительный (Nominative)",
-   "explain": "«старшие воспитанники» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
   },
   {
    "sentence": "В конце ___ возвышалась эстрада, застланная ковром и украшенная гирляндами цветов.",
    "lemma": "зал",
    "options": [
-    "длинному залу",
-    "длинным залом",
     "длинный зал",
+    "длинным залом",
+    "длинном зале",
     "длинного зала"
    ],
    "correct": "длинного зала",
    "case": "Родительный (Genitive)",
-   "explain": "«длинного зала» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«длинного зала» depends on the noun «конце» (whose? of what?) — genitive.",
    "id": "c8"
-  },
-  {
-   "sentence": "Окна были плотно закрыты, и зал освещался ___ в причудливых бронзовых люстрах.",
-   "lemma": "лампа",
-   "options": [
-    "электрических ламп",
-    "электрическими лампами",
-    "электрическим лампам",
-    "электрические лампы"
-   ],
-   "correct": "электрическими лампами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«электрическими лампами» — the instrumental marks the means, company, or complement.",
-   "id": "c9"
   },
   {
    "sentence": "Окна были плотно закрыты, и зал освещался электрическими лампами в причудливых ___.",
    "lemma": "люстра",
    "options": [
-    "бронзовые люстры",
+    "бронзовым люстрам",
+    "бронзовых люстр",
     "бронзовыми люстрами",
-    "бронзовых люстрах",
-    "бронзовых люстр"
+    "бронзовых люстрах"
    ],
    "correct": "бронзовых люстрах",
    "case": "Предложный (Prepositional)",
-   "explain": "«бронзовых люстрах» — after the preposition «в», for location or topic.",
+   "explain": "«бронзовых люстрах» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c10"
-  },
-  {
-   "sentence": "Скоро начали появляться и гости в самых ___.",
-   "lemma": "костюм",
-   "options": [
-    "разнообразных костюмов",
-    "разнообразные костюмы",
-    "разнообразных костюмах",
-    "разнообразными костюмами"
-   ],
-   "correct": "разнообразных костюмах",
-   "case": "Предложный (Prepositional)",
-   "explain": "«разнообразных костюмах» — after the preposition «в», for location or topic.",
-   "id": "c11"
   },
   {
    "sentence": "___ подобострастно ухаживало за ними.",
@@ -151,7 +67,7 @@
    ],
    "correct": "школьное начальство",
    "case": "Именительный (Nominative)",
-   "explain": "«Школьное начальство» — the subject of the sentence stands in the nominative.",
+   "explain": "«школьное начальство» is the subject of «подобострастно» — who or what does it — so nominative.",
    "id": "c13"
   },
   {
@@ -165,7 +81,7 @@
    ],
    "correct": "белый человек",
    "case": "Именительный (Nominative)",
-   "explain": "«белый человек» — the subject of the sentence stands in the nominative.",
+   "explain": "«белый человек» is the subject of «поднялся» — who or what does it — so nominative.",
    "id": "c14"
   },
   {
@@ -179,21 +95,21 @@
    ],
    "correct": "индийском костюме",
    "case": "Предложный (Prepositional)",
-   "explain": "«индийском костюме» — after the preposition «в», for location or topic.",
+   "explain": "«индийском костюме» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c15"
   },
   {
    "sentence": "На чистейшем ___ он приветствовал гостей в изысканнейших выражениях и просил их «оказать честь посмотреть на достижения Дандарата в деле воспитания слуг мира, господа и истины».",
    "lemma": "язык",
    "options": [
-    "английский язык",
-    "английского языка",
+    "английском языке",
     "английским языком",
-    "английском языке"
+    "английского языка",
+    "английскому языку"
    ],
    "correct": "английском языке",
    "case": "Предложный (Prepositional)",
-   "explain": "«английском языке» — after the preposition «на», for location or topic.",
+   "explain": "«английском языке» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c16"
   },
   {
@@ -207,64 +123,36 @@
    ],
    "correct": "талантливых воспитанников",
    "case": "Винительный (Accusative)",
-   "explain": "«талантливых воспитанников» — the accusative marks the direct object of the verb.",
+   "explain": "«талантливых воспитанников» is the direct object of «показывать» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c17"
-  },
-  {
-   "sentence": "Это было похоже на сеансы «профессоров магии и ___».",
-   "lemma": "наука",
-   "options": [
-    "оккультных науках",
-    "оккультными науками",
-    "оккультные науки",
-    "оккультных наук"
-   ],
-   "correct": "оккультных наук",
-   "case": "Родительный (Genitive)",
-   "explain": "«оккультных наук» — the genitive here marks possession, absence, or quantity.",
-   "id": "c18"
   },
   {
    "sentence": "Они воспроизводили ___ и произносили речи под влиянием гипноза, повторяли с необычайной точностью сказанное кем-нибудь из присутствующих.",
    "lemma": "сцена",
    "options": [
-    "целые сцены",
     "целым сценам",
+    "целыми сценами",
     "целых сценах",
-    "целых сцен"
+    "целые сцены"
    ],
    "correct": "целые сцены",
    "case": "Винительный (Accusative)",
-   "explain": "«целые сцены» — the accusative marks the direct object of the verb.",
+   "explain": "«целые сцены» is the direct object of «воспроизводили» (кого? что?) — accusative.",
    "id": "c19"
   },
   {
    "sentence": "Демонстрировались и юноши-феномены, которые якобы вырабатывали в себе сильные ___, зажигающие лампочку накаливания, дающие крупные искры, окружающие ореолом их тела.",
    "lemma": "заряд",
    "options": [
+    "электрических зарядах",
     "электрическими зарядами",
-    "электрическим зарядам",
-    "электрических зарядов",
-    "электрические заряды"
+    "электрические заряды",
+    "электрическим зарядам"
    ],
    "correct": "электрические заряды",
    "case": "Винительный (Accusative)",
-   "explain": "«электрические заряды» — the accusative marks the direct object of the verb.",
+   "explain": "«электрические заряды» is the direct object of «вырабатывали» (кого? что?) — accusative.",
    "id": "c20"
-  },
-  {
-   "sentence": "Демонстрировались и юноши-феномены, которые якобы вырабатывали в себе сильные электрические заряды, зажигающие лампочку накаливания, дающие ___, окружающие ореолом их тела.",
-   "lemma": "искра",
-   "options": [
-    "крупные искры",
-    "крупных искр",
-    "крупным искрам",
-    "крупными искрами"
-   ],
-   "correct": "крупные искры",
-   "case": "Винительный (Accusative)",
-   "explain": "«крупные искры» — the accusative marks the direct object of the verb.",
-   "id": "c21"
   },
   {
    "sentence": "Затем следовали специалисты ___: услышав несколько слов собеседника, наблюдая его лицо, движения, внешние признаки, они безошибочно рассказывали о ближайших событиях его жизни.",
@@ -277,49 +165,21 @@
    ],
    "correct": "иного рода",
    "case": "Родительный (Genitive)",
-   "explain": "«иного рода» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«иного рода» depends on the noun «специалисты» (whose? of what?) — genitive.",
    "id": "c22"
-  },
-  {
-   "sentence": "Затем следовали специалисты иного рода: услышав несколько слов собеседника, наблюдая его лицо, движения, ___, они безошибочно рассказывали о ближайших событиях его жизни.",
-   "lemma": "признак",
-   "options": [
-    "внешними признаками",
-    "внешних признаках",
-    "внешним признакам",
-    "внешние признаки"
-   ],
-   "correct": "внешние признаки",
-   "case": "Именительный (Nominative)",
-   "explain": "«внешние признаки» — the subject of the sentence stands in the nominative.",
-   "id": "c23"
-  },
-  {
-   "sentence": "___, которому он подвергся, было «приятие духа».",
-   "lemma": "испытание",
-   "options": [
-    "последнего испытания",
-    "последним испытанием",
-    "последнее испытание",
-    "последнем испытании"
-   ],
-   "correct": "последним испытанием",
-   "case": "Творительный (Instrumental)",
-   "explain": "«Последним испытанием» — the instrumental marks the means, company, or complement.",
-   "id": "c24"
   },
   {
    "sentence": "Ариэль с внутренним содроганием вспомнил этот ___, выполняемый воспитанниками последних ступеней обучения.",
    "lemma": "обряд",
    "options": [
-    "мрачным обрядом",
-    "мрачному обряду",
+    "мрачном обряде",
     "мрачный обряд",
-    "мрачного обряда"
+    "мрачным обрядом",
+    "мрачному обряду"
    ],
    "correct": "мрачный обряд",
    "case": "Винительный (Accusative)",
-   "explain": "«мрачный обряд» — the accusative marks the direct object of the verb.",
+   "explain": "«мрачный обряд» is the direct object of «вспомнил» (кого? что?) — accusative.",
    "id": "c26"
   },
   {
@@ -333,36 +193,8 @@
    ],
    "correct": "последних ступеней",
    "case": "Родительный (Genitive)",
-   "explain": "«последних ступеней» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«последних ступеней» depends on the noun «воспитанниками» (whose? of what?) — genitive.",
    "id": "c27"
-  },
-  {
-   "sentence": "Здесь должна была происходить раздача дипломов членам теософической «___» из рук самого «учителя учителей» Иисуса-Матерейи.",
-   "lemma": "ложа",
-   "options": [
-    "белой ложей",
-    "белой ложи",
-    "белая ложа",
-    "белой ложе"
-   ],
-   "correct": "белой ложи",
-   "case": "Родительный (Genitive)",
-   "explain": "«Белой ложи» — the genitive here marks possession, absence, or quantity.",
-   "id": "c30"
-  },
-  {
-   "sentence": "___ утопал в зелени и цветах.",
-   "lemma": "зал",
-   "options": [
-    "огромного зала",
-    "огромным залом",
-    "огромному залу",
-    "огромный зал"
-   ],
-   "correct": "огромный зал",
-   "case": "Именительный (Nominative)",
-   "explain": "«Огромный зал» — the subject of the sentence stands in the nominative.",
-   "id": "c31"
   },
   {
    "sentence": "Сквозь открытые окна в зал проникали порывы ___.",
@@ -375,7 +207,7 @@
    ],
    "correct": "знойного ветра",
    "case": "Родительный (Genitive)",
-   "explain": "«знойного ветра» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«знойного ветра» depends on the noun «порывы» (whose? of what?) — genitive.",
    "id": "c32"
   },
   {
@@ -389,7 +221,7 @@
    ],
    "correct": "белых олеандров",
    "case": "Родительный (Genitive)",
-   "explain": "«белых олеандров» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«белых олеандров» — «из» always takes the genitive.",
    "id": "c34"
   },
   {
@@ -403,22 +235,8 @@
    ],
    "correct": "последних звуках",
    "case": "Предложный (Prepositional)",
-   "explain": "«последних звуках» — after the preposition «при», for location or topic.",
+   "explain": "«последних звуках» — «при» always takes the prepositional.",
    "id": "c35"
-  },
-  {
-   "sentence": "Его голова с волнистыми, падающими на плечи волосами и ___ напоминала изображения Христа итальянских художников.",
-   "lemma": "бородка",
-   "options": [
-    "небольшой бородки",
-    "небольшой бородке",
-    "небольшой бородкой",
-    "небольшая бородка"
-   ],
-   "correct": "небольшой бородкой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«небольшой бородкой» — the instrumental marks the means, company, or complement.",
-   "id": "c36"
   },
   {
    "sentence": "Его голова с волнистыми, падающими на плечи волосами и небольшой бородкой напоминала изображения Христа ___.",
@@ -431,7 +249,7 @@
    ],
    "correct": "итальянских художников",
    "case": "Родительный (Genitive)",
-   "explain": "«итальянских художников» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«итальянских художников» depends on the noun «Христа» (whose? of what?) — genitive.",
    "id": "c37"
   },
   {
@@ -445,7 +263,7 @@
    ],
    "correct": "религиозного чувства",
    "case": "Родительный (Genitive)",
-   "explain": "«религиозного чувства» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«религиозного чувства» depends on the noun «тени» (whose? of what?) — genitive.",
    "id": "c38"
   },
   {
@@ -459,64 +277,8 @@
    ],
    "correct": "многочисленными поклонами",
    "case": "Творительный (Instrumental)",
-   "explain": "«многочисленными поклонами» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «сопровождаемая», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c39"
-  },
-  {
-   "sentence": "Потом «учитель учителей» начал говорить и привел слушателей в такую экзальтацию, что послышались ___, многие упали в обморок, другие бились в судорогах.",
-   "lemma": "выкрик",
-   "options": [
-    "истерическим выкрикам",
-    "истерические выкрики",
-    "истерических выкриках",
-    "истерических выкриков"
-   ],
-   "correct": "истерические выкрики",
-   "case": "Именительный (Nominative)",
-   "explain": "«истерические выкрики» — the subject of the sentence stands in the nominative.",
-   "id": "c40"
-  },
-  {
-   "sentence": "Еще раз благословив всех, Матерейя — ___ Будды — ушел.",
-   "lemma": "воплощение",
-   "options": [
-    "новом воплощении",
-    "новым воплощением",
-    "новое воплощение",
-    "новому воплощению"
-   ],
-   "correct": "новое воплощение",
-   "case": "Именительный (Nominative)",
-   "explain": "«новое воплощение» — the subject of the sentence stands in the nominative.",
-   "id": "c41"
-  },
-  {
-   "sentence": "Они прошли в дверь за эстрадой, как люди, всё здесь хорошо знающие, и оказались в комфортабельном, по-европейски ___, даже с камином, в котором в этом климате не было никакой нужды.",
-   "lemma": "кабинет",
-   "options": [
-    "меблированного кабинета",
-    "меблированном кабинете",
-    "меблированным кабинетом",
-    "меблированный кабинет"
-   ],
-   "correct": "меблированном кабинете",
-   "case": "Предложный (Prepositional)",
-   "explain": "«меблированном кабинете» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c42"
-  },
-  {
-   "sentence": "Мистер Пирс, известный в школе под именем Бхаравы, с разрешения миссис Дрейден закурил сигару, взятую с собственного ___, подумал: «Ты сам лучше меня знаешь о школе».",
-   "lemma": "стол",
-   "options": [
-    "письменном столе",
-    "письменному столу",
-    "письменного стола",
-    "письменным столом"
-   ],
-   "correct": "письменного стола",
-   "case": "Родительный (Genitive)",
-   "explain": "«письменного стола» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
-   "id": "c44"
   },
   {
    "sentence": "Религия — один из устоев ___, которой они служили, — давала зловещие трещины, теряла свое обаяние в народных массах.",
@@ -529,50 +291,8 @@
    ],
    "correct": "общественной системы",
    "case": "Родительный (Genitive)",
-   "explain": "«общественной системы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«общественной системы» depends on the noun «устоев» (whose? of what?) — genitive.",
    "id": "c45"
-  },
-  {
-   "sentence": "Религия — один из устоев общественной системы, которой они служили, — давала ___, теряла свое обаяние в народных массах.",
-   "lemma": "трещина",
-   "options": [
-    "зловещие трещины",
-    "зловещим трещинам",
-    "зловещих трещин",
-    "зловещих трещинах"
-   ],
-   "correct": "зловещие трещины",
-   "case": "Винительный (Accusative)",
-   "explain": "«зловещие трещины» — the accusative marks the direct object of the verb.",
-   "id": "c46"
-  },
-  {
-   "sentence": "Нужно было поддержать веру в божество, в дух, поддержать ___.",
-   "lemma": "настроение",
-   "options": [
-    "мистические настроения",
-    "мистических настроениях",
-    "мистических настроений",
-    "мистическими настроениями"
-   ],
-   "correct": "мистические настроения",
-   "case": "Винительный (Accusative)",
-   "explain": "«мистические настроения» — the accusative marks the direct object of the verb.",
-   "id": "c48"
-  },
-  {
-   "sentence": "Нельзя было не использовать Индию, окруженную в глазах европейцев и американцев ореолом таинственности, с ее «___», йогами и факирами.",
-   "lemma": "знание",
-   "options": [
-    "оккультных знаниях",
-    "оккультными знаниями",
-    "оккультных знаний",
-    "оккультные знания"
-   ],
-   "correct": "оккультными знаниями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«оккультными знаниями» — the instrumental marks the means, company, or complement.",
-   "id": "c49"
   },
   {
    "sentence": "Здесь был построен ___ с куполом-полусферой.",
@@ -585,22 +305,8 @@
    ],
    "correct": "великолепный храм",
    "case": "Именительный (Nominative)",
-   "explain": "«великолепный храм» — the subject of the sentence stands in the nominative.",
+   "explain": "«великолепный храм» is the subject of «построен» — who or what does it — so nominative.",
    "id": "c50"
-  },
-  {
-   "sentence": "К этому побуждают не только своеобразный уклад и ___ воспитания, но и некоторые причины более щепетильного свойства.",
-   "lemma": "метод",
-   "options": [
-    "необычные методы",
-    "необычных методов",
-    "необычных методах",
-    "необычным методам"
-   ],
-   "correct": "необычные методы",
-   "case": "Винительный (Accusative)",
-   "explain": "«необычные методы» — the accusative marks the direct object of the verb.",
-   "id": "c51"
   },
   {
    "sentence": "К этому побуждают не только своеобразный уклад и необычные методы воспитания, но и некоторые причины более ___.",
@@ -613,7 +319,7 @@
    ],
    "correct": "щепетильного свойства",
    "case": "Родительный (Genitive)",
-   "explain": "«щепетильного свойства» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«щепетильного свойства» depends on the noun «причины» (whose? of what?) — genitive.",
    "id": "c52"
   },
   {
@@ -627,22 +333,8 @@
    ],
    "correct": "талантливых людей",
    "case": "Родительный (Genitive)",
-   "explain": "«талантливых людей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "After «немало», a word of quantity — genitive.",
    "id": "c53"
-  },
-  {
-   "sentence": "Для этого у Ариэля слишком ___ и, несмотря ни на что, слишком здоровая нервная организация, — добавил он с долей огорчения и даже с виноватым видом.",
-   "lemma": "голова",
-   "options": [
-    "крепкой голове",
-    "крепкая голова",
-    "крепкой головой",
-    "крепкой головы"
-   ],
-   "correct": "крепкая голова",
-   "case": "Именительный (Nominative)",
-   "explain": "«крепкая голова» — the subject of the sentence stands in the nominative.",
-   "id": "c55"
   },
   {
    "sentence": "— У Чарлза Хайда есть ___.",
@@ -655,7 +347,7 @@
    ],
    "correct": "интересные новости",
    "case": "Именительный (Nominative)",
-   "explain": "«интересные новости» — the subject of the sentence stands in the nominative.",
+   "explain": "«интересные новости» is the subject of «есть» — who or what does it — so nominative.",
    "id": "c57"
   },
   {
@@ -669,7 +361,7 @@
    ],
    "correct": "научных сотрудников",
    "case": "Родительный (Genitive)",
-   "explain": "«научных сотрудников» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«научных сотрудников» — «из» always takes the genitive.",
    "id": "c58"
   }
  ]

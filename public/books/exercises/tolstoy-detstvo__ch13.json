@@ -1,62 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "___, в сюртуках, кафтанах, рубашках, без шапок, женщины, в затрапезах, полосатых платках, с детьми на руках, и босоногие ребятишки стояли около крыльца, посматривали на экипажи и разговаривали между собой.",
-   "lemma": "мужчина",
-   "options": [
-    "дворовым мужчинам",
-    "дворовых мужчин",
-    "дворовых мужчинах",
-    "дворовые мужчины"
-   ],
-   "correct": "дворовые мужчины",
-   "case": "Именительный (Nominative)",
-   "explain": "«Дворовые мужчины» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
-   "sentence": "Дворовые мужчины, в сюртуках, кафтанах, рубашках, без шапок, женщины, в затрапезах, полосатых платках, с детьми на руках, и ___ стояли около крыльца, посматривали на экипажи и разговаривали между собой.",
-   "lemma": "ребятишки",
-   "options": [
-    "босоногие ребятишки",
-    "босоногими ребятишками",
-    "босоногим ребятишкам",
-    "босоногих ребятишках"
-   ],
-   "correct": "босоногие ребятишки",
-   "case": "Именительный (Nominative)",
-   "explain": "«босоногие ребятишки» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
-  },
-  {
-   "sentence": "Несколько ___ — одни тяжело дышали, лежа на солнце, другие в тени ходили под коляской и бричкой и вылизывали сало около осей.",
-   "lemma": "собака",
-   "options": [
-    "борзых собак",
-    "борзые собаки",
-    "борзым собакам",
-    "борзыми собаками"
-   ],
-   "correct": "борзых собак",
-   "case": "Родительный (Genitive)",
-   "explain": "«борзых собак» — the genitive here marks possession, absence, or quantity.",
-   "id": "c5"
-  },
-  {
-   "sentence": "Во всем воздухе была какая-то ___, горизонт был серо-лилового цвета; но ни одной тучки не было на небе.",
-   "lemma": "мгла",
-   "options": [
-    "пыльной мгле",
-    "пыльной мглы",
-    "пыльная мгла",
-    "пыльной мглой"
-   ],
-   "correct": "пыльная мгла",
-   "case": "Именительный (Nominative)",
-   "explain": "«пыльная мгла» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
-  },
-  {
    "sentence": "Сильный ___ поднимал столбами пыль с дорог и полей, гнул макушки высоких лип и берез сада и далеко относил падавшие, желтые листья.",
    "lemma": "ветер",
    "options": [
@@ -67,7 +11,7 @@
    ],
    "correct": "западный ветер",
    "case": "Именительный (Nominative)",
-   "explain": "«западный ветер» — the subject of the sentence stands in the nominative.",
+   "explain": "«западный ветер» is the subject of «поднимал» — who or what does it — so nominative.",
    "id": "c7"
   },
   {
@@ -81,7 +25,7 @@
    ],
    "correct": "высоких лип",
    "case": "Родительный (Genitive)",
-   "explain": "«высоких лип» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«высоких лип» depends on the noun «макушки» (whose? of what?) — genitive.",
    "id": "c8"
   },
   {
@@ -95,7 +39,7 @@
    ],
    "correct": "круглого стола",
    "case": "Родительный (Genitive)",
-   "explain": "«круглого стола» — after the preposition «около», the genitive here marks possession, absence, or quantity.",
+   "explain": "«круглого стола» — «около» always takes the genitive.",
    "id": "c9"
   },
   {
@@ -109,22 +53,8 @@
    ],
    "correct": "грустная минута",
    "case": "Именительный (Nominative)",
-   "explain": "«грустная минута» — the subject of the sentence stands in the nominative.",
+   "explain": "«грустная минута» is the subject of «предстоит» — who or what does it — so nominative.",
    "id": "c11"
-  },
-  {
-   "sentence": "Самые ___ бродили в моей голове.",
-   "lemma": "мысль",
-   "options": [
-    "пустые мысли",
-    "пустым мыслям",
-    "пустых мыслях",
-    "пустыми мыслями"
-   ],
-   "correct": "пустые мысли",
-   "case": "Именительный (Nominative)",
-   "explain": "«пустые мысли» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
   },
   {
    "sentence": "— Кому прикажете записку о ___ отдать? сказала вошедшая, с заплаканными глазами и с запиской в руке, Наталья Савишна, обращаясь к maman.",
@@ -137,7 +67,7 @@
    ],
    "correct": "детском белье",
    "case": "Предложный (Prepositional)",
-   "explain": "«детском белье» — after the preposition «о», for location or topic.",
+   "explain": "«детском белье» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c13"
   },
   {
@@ -151,7 +81,7 @@
    ],
    "correct": "седые волосы",
    "case": "Именительный (Nominative)",
-   "explain": "«седые волосы» — the subject of the sentence stands in the nominative.",
+   "explain": "«седые волосы» is the subject of «виднеются» — who or what does it — so nominative.",
    "id": "c15"
   },
   {
@@ -165,7 +95,7 @@
    ],
    "correct": "невозможных пределов",
    "case": "Родительный (Genitive)",
-   "explain": "«невозможных пределов» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«невозможных пределов» — «до» always takes the genitive.",
    "id": "c17"
   },
   {
@@ -173,13 +103,13 @@
    "lemma": "платок",
    "options": [
     "белом платке",
+    "белый платок",
     "белым платком",
-    "белого платка",
-    "белый платок"
+    "белому платку"
    ],
    "correct": "белый платок",
    "case": "Винительный (Accusative)",
-   "explain": "«белый платок» — the accusative marks the direct object of the verb.",
+   "explain": "«белый платок» is the direct object of «увидали» (кого? что?) — accusative.",
    "id": "c22"
   }
  ]

@@ -1,48 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "\"Пустырь\" -- засоренное ___ и заросшее бурьяном дворовое место.",
-   "lemma": "хлам",
-   "options": [
-    "разный хлам",
-    "разному хламу",
-    "разным хламом",
-    "разного хлама"
-   ],
-   "correct": "разным хламом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«разным хламом» — the instrumental marks the means, company, or complement.",
-   "id": "c1"
-  },
-  {
-   "sentence": "В глубине его -- высокий ___.",
-   "lemma": "брандмауер",
-   "options": [
-    "кирпичном брандмауере",
-    "кирпичному брандмауеру",
-    "кирпичным брандмауером",
-    "кирпичный брандмауер"
-   ],
-   "correct": "кирпичный брандмауер",
-   "case": "Именительный (Nominative)",
-   "explain": "«кирпичный брандмауер» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Направо -- темная, бревенчатая стена какой-то ___: сарая или конюшни.",
-   "lemma": "постройка",
-   "options": [
-    "надворной постройке",
-    "надворная постройка",
-    "надворной постройки",
-    "надворной постройкой"
-   ],
-   "correct": "надворной постройки",
-   "case": "Родительный (Genitive)",
-   "explain": "«надворной постройки» — the genitive here marks possession, absence, or quantity.",
-   "id": "c3"
-  },
-  {
    "sentence": "Она стоит наискось, так что ее ___ выходит почти на средину пустыря.",
    "lemma": "угол",
    "options": [
@@ -53,22 +11,8 @@
    ],
    "correct": "задний угол",
    "case": "Именительный (Nominative)",
-   "explain": "«задний угол» — the subject of the sentence stands in the nominative.",
+   "explain": "«задний угол» is the subject of «выходит» — who or what does it — so nominative.",
    "id": "c4"
-  },
-  {
-   "sentence": "Между ею и ___ -- узкий проход.",
-   "lemma": "стена",
-   "options": [
-    "красной стеной",
-    "красной стене",
-    "красная стена",
-    "красной стены"
-   ],
-   "correct": "красной стеной",
-   "case": "Творительный (Instrumental)",
-   "explain": "«красной стеной» — the instrumental marks the means, company, or complement.",
-   "id": "c5"
   },
   {
    "sentence": "В ___ два окна: одно -- в уровень с землей, другое -- аршина на два выше и ближе к брандмауеру.",
@@ -81,7 +25,7 @@
    ],
    "correct": "серой стене",
    "case": "Предложный (Prepositional)",
-   "explain": "«серой стене» — after the preposition «в», for location or topic.",
+   "explain": "«серой стене» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c6"
   },
   {
@@ -95,36 +39,8 @@
    ],
    "correct": "старых досок",
    "case": "Родительный (Genitive)",
-   "explain": "«старых досок» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«старых досок» depends on the noun «стены» (whose? of what?) — genitive.",
    "id": "c7"
-  },
-  {
-   "sentence": "Вечер, заходит солнце, освещая брандмауер ___.",
-   "lemma": "свет",
-   "options": [
-    "красноватый свет",
-    "красноватому свету",
-    "красноватым светом",
-    "красноватом свете"
-   ],
-   "correct": "красноватым светом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«красноватым светом» — the instrumental marks the means, company, or complement.",
-   "id": "c8"
-  },
-  {
-   "sentence": "___, недавно стаял снег.",
-   "lemma": "весна",
-   "options": [
-    "ранняя весна",
-    "ранней весной",
-    "ранней весне",
-    "ранней весны"
-   ],
-   "correct": "ранняя весна",
-   "case": "Именительный (Nominative)",
-   "explain": "«Ранняя весна» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
   },
   {
    "sentence": "Клещ лежит на куче дерева у ___.",
@@ -137,7 +53,7 @@
    ],
    "correct": "правой стены",
    "case": "Родительный (Genitive)",
-   "explain": "«правой стены» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«правой стены» — «у» always takes the genitive.",
    "id": "c10"
   },
   {
@@ -151,50 +67,8 @@
    ],
    "correct": "красной стеной",
    "case": "Творительный (Instrumental)",
-   "explain": "«красной стеной» — after the preposition «за», the instrumental marks the means, company, or complement.",
+   "explain": "«красной стеной» — «за» takes the instrumental here (где? за чем? за кем?) — the accusative would mean motion behind or 'for' (куда? за что?).",
    "id": "c16"
-  },
-  {
-   "sentence": "(Передразнивая Клеща.) \"Я -- ___\".",
-   "lemma": "человек",
-   "options": [
-    "рабочем человеке",
-    "рабочему человеку",
-    "рабочий человек",
-    "рабочим человеком"
-   ],
-   "correct": "рабочий человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«рабочий человек» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
-  },
-  {
-   "sentence": "Ты только почаще напоминай ему, что он ___, чтобы он, значит, не забывал про это!",
-   "lemma": "парень",
-   "options": [
-    "хорошего парня",
-    "хороший парень",
-    "хорошему парню",
-    "хорошем парне"
-   ],
-   "correct": "хороший парень",
-   "case": "Именительный (Nominative)",
-   "explain": "«хороший парень» — the subject of the sentence stands in the nominative.",
-   "id": "c27"
-  },
-  {
-   "sentence": "Ежели тебе ___ бог скажет: \"Михаиле!",
-   "lemma": "господь",
-   "options": [
-    "самого господа",
-    "сам господь",
-    "самом господе",
-    "самим господом"
-   ],
-   "correct": "сам господь",
-   "case": "Именительный (Nominative)",
-   "explain": "«сам господь» — the subject of the sentence stands in the nominative.",
-   "id": "c37"
   },
   {
    "sentence": "Потом -- где-то в проходе рождается ___, хаос звуков.",
@@ -207,22 +81,8 @@
    ],
    "correct": "смутный шум",
    "case": "Именительный (Nominative)",
-   "explain": "«смутный шум» — the subject of the sentence stands in the nominative.",
+   "explain": "«смутный шум» is the subject of «рождается» — who or what does it — so nominative.",
    "id": "c40"
-  },
-  {
-   "sentence": "___ есть -- днем убивать?",
-   "lemma": "закон",
-   "options": [
-    "каким-таким законом",
-    "каком-таком законе",
-    "какому-такому закону",
-    "какой-такой закон"
-   ],
-   "correct": "какой-такой закон",
-   "case": "Именительный (Nominative)",
-   "explain": "«Какой-такой закон» — the subject of the sentence stands in the nominative.",
-   "id": "c42"
   },
   {
    "sentence": "Потом еще несколько ___ мужчин и женщин.",
@@ -235,7 +95,7 @@
    ],
    "correct": "оборванных фигур",
    "case": "Родительный (Genitive)",
-   "explain": "«оборванных фигур» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«оборванных фигур» depends on the noun «фигур» (whose? of what?) — genitive.",
    "id": "c43"
   },
   {
@@ -249,36 +109,8 @@
    ],
    "correct": "красной стены",
    "case": "Родительный (Genitive)",
-   "explain": "«красной стены» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«красной стены» — «у» always takes the genitive.",
    "id": "c44"
-  },
-  {
-   "sentence": "Пепел (выскочив из проулка, он молча ___ расталкивает всех).",
-   "lemma": "движение",
-   "options": [
-    "сильным движениям",
-    "сильными движениями",
-    "сильные движения",
-    "сильных движений"
-   ],
-   "correct": "сильными движениями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«сильными движениями» — the instrumental marks the means, company, or complement.",
-   "id": "c45"
-  },
-  {
-   "sentence": "Костылев падает так, что из-за угла видна только ___ его тела.",
-   "lemma": "половина",
-   "options": [
-    "верхней половине",
-    "верхняя половина",
-    "верхней половины",
-    "верхней половиной"
-   ],
-   "correct": "верхняя половина",
-   "case": "Именительный (Nominative)",
-   "explain": "«верхняя половина» — the subject of the sentence stands in the nominative.",
-   "id": "c46"
   },
   {
    "sentence": "Раздаются ___ вполголоса \"Неужто?\", \"Вот те раз!\", \"Ну-у?\", \"Уйдем-ка, брат!\", \"Ах, черт!\", \"Теперь -- держись!\", \"Айда прочь, покуда полиции нет!\" Толпа становится меньше.",
@@ -291,7 +123,7 @@
    ],
    "correct": "отдельные возгласы",
    "case": "Именительный (Nominative)",
-   "explain": "«отдельные возгласы» — the subject of the sentence stands in the nominative.",
+   "explain": "«отдельные возгласы» is the subject of «Раздаются» — who or what does it — so nominative.",
    "id": "c47"
   }
  ]

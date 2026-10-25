@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "___ она все переставляла, скоблила, мыла, чистила.",
-   "lemma": "день",
-   "options": [
-    "целому дню",
-    "целый день",
-    "целом дне",
-    "целого дня"
-   ],
-   "correct": "целый день",
-   "case": "Винительный (Accusative)",
-   "explain": "«Целый день» — the accusative marks the direct object of the verb.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Она пошла прямо по свежевымытому полу, подошла к Геку и ткнула его ___.",
-   "lemma": "нос",
-   "options": [
-    "холодный нос",
-    "холодному носу",
-    "холодным носом",
-    "холодном носе"
-   ],
-   "correct": "холодным носом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«холодным носом» — the instrumental marks the means, company, or complement.",
-   "id": "c3"
-  },
-  {
    "sentence": "На следующий день было решено готовить к ___ елку.",
    "lemma": "год",
    "options": [
@@ -39,7 +11,7 @@
    ],
    "correct": "новому году",
    "case": "Дательный (Dative)",
-   "explain": "«Новому году» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«новому году» — «к» always takes the dative.",
    "id": "c5"
   },
   {
@@ -53,50 +25,8 @@
    ],
    "correct": "старых журналов",
    "case": "Родительный (Genitive)",
-   "explain": "«старых журналов» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«старых журналов» — «из» always takes the genitive.",
    "id": "c6"
-  },
-  {
-   "sentence": "Вытянули у отца из ящика всю папиросную бумагу и навертели ___.",
-   "lemma": "цвет",
-   "options": [
-    "пышных цветов",
-    "пышными цветами",
-    "пышные цвета",
-    "пышным цветам"
-   ],
-   "correct": "пышных цветов",
-   "case": "Родительный (Genitive)",
-   "explain": "«пышных цветов» — the genitive here marks possession, absence, or quantity.",
-   "id": "c7"
-  },
-  {
-   "sentence": "Уж на что хмур и нелюдим был сторож, а и тот, когда приносил дрова, подолгу останавливался у двери и дивился на их всё новые и ___.",
-   "lemma": "затея",
-   "options": [
-    "новых затеях",
-    "новыми затеями",
-    "новых затей",
-    "новые затеи"
-   ],
-   "correct": "новые затеи",
-   "case": "Винительный (Accusative)",
-   "explain": "«новые затеи» — after the preposition «на», the accusative marks the direct object of the verb.",
-   "id": "c8"
-  },
-  {
-   "sentence": "Он принес им серебряную бумагу от завертки чая и ___ воска, который у него остался от сапожного дела.",
-   "lemma": "кусок",
-   "options": [
-    "большом куске",
-    "большому куску",
-    "большой кусок",
-    "большого куска"
-   ],
-   "correct": "большой кусок",
-   "case": "Именительный (Nominative)",
-   "explain": "«большой кусок» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
   },
   {
    "sentence": "Он принес им серебряную бумагу от завертки чая и большой кусок воска, который у него остался от ___.",
@@ -109,7 +39,7 @@
    ],
    "correct": "сапожного дела",
    "case": "Родительный (Genitive)",
-   "explain": "«сапожного дела» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«сапожного дела» — «от» always takes the genitive.",
    "id": "c10"
   },
   {
@@ -123,7 +53,7 @@
    ],
    "correct": "игрушечная фабрика",
    "case": "Именительный (Nominative)",
-   "explain": "«игрушечная фабрика» — the subject of the sentence stands in the nominative.",
+   "explain": "«игрушечная фабрика» is the subject of «превратилась» — who or what does it — so nominative.",
    "id": "c11"
   },
   {
@@ -137,36 +67,8 @@
    ],
    "correct": "нового года",
    "case": "Родительный (Genitive)",
-   "explain": "«Нового года» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«нового года» depends on the noun «канун» (whose? of what?) — genitive.",
    "id": "c13"
-  },
-  {
-   "sentence": "— Вот они сейчас покажутся на скате той горы, что правей ___, потом опять пропадут в тайге, и тогда через полчаса все будут дома.",
-   "lemma": "вершина",
-   "options": [
-    "большой вершине",
-    "большой вершиной",
-    "большой вершины",
-    "большая вершина"
-   ],
-   "correct": "большой вершины",
-   "case": "Родительный (Genitive)",
-   "explain": "«большой вершины» — the genitive here marks possession, absence, or quantity.",
-   "id": "c15"
-  },
-  {
-   "sentence": "Сначала из-за перевала вылетела собачья упряжка с гружеными санями, а за нею следом пронеслись ___.",
-   "lemma": "лыжник",
-   "options": [
-    "быстроходными лыжниками",
-    "быстроходным лыжникам",
-    "быстроходные лыжники",
-    "быстроходных лыжников"
-   ],
-   "correct": "быстроходные лыжники",
-   "case": "Именительный (Nominative)",
-   "explain": "«быстроходные лыжники» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
   },
   {
    "sentence": "Почуявшие дом ___ лихо вынеслись из леса.",
@@ -179,21 +81,21 @@
    ],
    "correct": "голодные собаки",
    "case": "Именительный (Nominative)",
-   "explain": "«голодные собаки» — the subject of the sentence stands in the nominative.",
+   "explain": "«голодные собаки» is the subject of «вынеслись» — who or what does it — so nominative.",
    "id": "c17"
   },
   {
    "sentence": "И, увидав на крыльце мать, Чука и Гека, они на бегу подняли ___ и громко закричали: «Ура!»",
    "lemma": "палка",
    "options": [
-    "лыжных палок",
+    "лыжным палкам",
     "лыжных палках",
     "лыжные палки",
     "лыжными палками"
    ],
    "correct": "лыжные палки",
    "case": "Винительный (Accusative)",
-   "explain": "«лыжные палки» — the accusative marks the direct object of the verb.",
+   "explain": "«лыжные палки» is the direct object of «подняли» (кого? что?) — accusative.",
    "id": "c18"
   }
  ]

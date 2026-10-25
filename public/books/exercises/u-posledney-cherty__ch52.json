@@ -1,62 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "После смерти актрисы приехал ее ___, какой-то веселый легкомысленный актерик с гвоздикой в петличке и неимоверно надушенный.",
-   "lemma": "брат",
-   "options": [
-    "двоюродным братом",
-    "двоюродного брата",
-    "двоюродному брату",
-    "двоюродный брат"
-   ],
-   "correct": "двоюродный брат",
-   "case": "Именительный (Nominative)",
-   "explain": "«двоюродный брат» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "После смерти актрисы приехал ее двоюродный брат, какой-то веселый ___ с гвоздикой в петличке и неимоверно надушенный.",
-   "lemma": "актерик",
-   "options": [
-    "легкомысленным актериком",
-    "легкомысленном актерике",
-    "легкомысленный актерик",
-    "легкомысленному актерику"
-   ],
-   "correct": "легкомысленный актерик",
-   "case": "Именительный (Nominative)",
-   "explain": "«легкомысленный актерик» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Нелли осталась в своей комнате, а весь ___ заперли и заколотили.",
-   "lemma": "дом",
-   "options": [
-    "остальной дом",
-    "остальном доме",
-    "остальным домом",
-    "остальному дому"
-   ],
-   "correct": "остальной дом",
-   "case": "Винительный (Accusative)",
-   "explain": "«остальной дом» — the accusative marks the direct object of the verb.",
-   "id": "c3"
-  },
-  {
-   "sentence": "По вечерам, когда в саду, облетевшем и темном, шумел ветер и ___ погружался в сырой гудящий мрак, в одном только ее окне блестел огонек и пробуждал у прохожих неприятное суеверное чувство.",
-   "lemma": "дом",
-   "options": [
-    "старым домом",
-    "старого дома",
-    "старый дом",
-    "старому дому"
-   ],
-   "correct": "старый дом",
-   "case": "Именительный (Nominative)",
-   "explain": "«старый дом» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
-  },
-  {
    "sentence": "Потом опять опускал голову и сидел неподвижно, только чуть заметно перебирая пальцами ___, свесившейся с колена.",
    "lemma": "рука",
    "options": [
@@ -67,7 +11,7 @@
    ],
    "correct": "другой руки",
    "case": "Родительный (Genitive)",
-   "explain": "«другой руки» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«другой руки» depends on the noun «пальцами» (whose? of what?) — genitive.",
    "id": "c5"
   },
   {
@@ -81,22 +25,8 @@
    ],
    "correct": "белым одеялом",
    "case": "Творительный (Instrumental)",
-   "explain": "«белым одеялом» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «покрытая», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c6"
-  },
-  {
-   "sentence": "За ней чудились ___, где еще стояли никому не нужные рояль, мебель, висели зеркала и лампы, все в чехлах и пыли.",
-   "lemma": "комната",
-   "options": [
-    "пустых комнат",
-    "пустыми комнатами",
-    "пустых комнатах",
-    "пустые комнаты"
-   ],
-   "correct": "пустые комнаты",
-   "case": "Винительный (Accusative)",
-   "explain": "«пустые комнаты» — the accusative marks the direct object of the verb.",
-   "id": "c7"
   },
   {
    "sentence": "Какие-то ___ долетали до него: то раздавался осторожный скрип, точно кто-то на цыпочках подбирался к самой двери, то резкий, гулкий треск.",
@@ -109,22 +39,8 @@
    ],
    "correct": "странные звуки",
    "case": "Именительный (Nominative)",
-   "explain": "«странные звуки» — the subject of the sentence stands in the nominative.",
+   "explain": "«странные звуки» is the subject of «долетали» — who or what does it — so nominative.",
    "id": "c8"
-  },
-  {
-   "sentence": "Какие-то странные звуки долетали до него: то раздавался ___, точно кто-то на цыпочках подбирался к самой двери, то резкий, гулкий треск.",
-   "lemma": "скрип",
-   "options": [
-    "осторожного скрипа",
-    "осторожным скрипом",
-    "осторожном скрипе",
-    "осторожный скрип"
-   ],
-   "correct": "осторожный скрип",
-   "case": "Именительный (Nominative)",
-   "explain": "«осторожный скрип» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
   },
   {
    "sentence": "Вряд ли он о чем-нибудь связно думал, потому что боялся думать, но горел на ___.",
@@ -137,50 +53,8 @@
    ],
    "correct": "медленном огне",
    "case": "Предложный (Prepositional)",
-   "explain": "«медленном огне» — after the preposition «на», for location or topic.",
+   "explain": "«медленном огне» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c10"
-  },
-  {
-   "sentence": "Вдруг стукнула калитка, послышались на крыльце легкие ___.",
-   "lemma": "шаг",
-   "options": [
-    "быстрым шагам",
-    "быстрых шагах",
-    "быстрые шаги",
-    "быстрыми шагами"
-   ],
-   "correct": "быстрые шаги",
-   "case": "Винительный (Accusative)",
-   "explain": "«быстрые шаги» — the accusative marks the direct object of the verb.",
-   "id": "c11"
-  },
-  {
-   "sentence": "Если бы кто-нибудь увидел его в эту минуту, не понял бы того зловещего и страшного выражения, которое появилось в этих черных, ___ и разгулом воспаленных глазах.",
-   "lemma": "пьянство",
-   "options": [
-    "вечным пьянством",
-    "вечному пьянству",
-    "вечного пьянства",
-    "вечном пьянстве"
-   ],
-   "correct": "вечным пьянством",
-   "case": "Творительный (Instrumental)",
-   "explain": "«вечным пьянством» — the instrumental marks the means, company, or complement.",
-   "id": "c12"
-  },
-  {
-   "sentence": "Нелли молча, сдвинув ___, смотрела на него.",
-   "lemma": "бровь",
-   "options": [
-    "тонкие брови",
-    "тонкими бровями",
-    "тонких бровей",
-    "тонких бровях"
-   ],
-   "correct": "тонкие брови",
-   "case": "Винительный (Accusative)",
-   "explain": "«тонкие брови» — the accusative marks the direct object of the verb.",
-   "id": "c13"
   },
   {
    "sentence": "Он прижался к ней, к небольшой ее груди, под которой слышалось ___ сердца, и замер.",
@@ -193,7 +67,7 @@
    ],
    "correct": "мягкое биение",
    "case": "Именительный (Nominative)",
-   "explain": "«мягкое биение» — the subject of the sentence stands in the nominative.",
+   "explain": "«мягкое биение» is the subject of «слышалось» — who or what does it — so nominative.",
    "id": "c16"
   },
   {
@@ -207,7 +81,7 @@
    ],
    "correct": "внутренние тайны",
    "case": "Именительный (Nominative)",
-   "explain": "«внутренние тайны» — the subject of the sentence stands in the nominative.",
+   "explain": "«внутренние тайны» is the subject of «есть» — who or what does it — so nominative.",
    "id": "c17"
   },
   {
@@ -221,21 +95,21 @@
    ],
    "correct": "реального напоминания",
    "case": "Родительный (Genitive)",
-   "explain": "«реального напоминания» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«реального напоминания» is the object of a negated verb («не вынесли») — genitive instead of the accusative.",
    "id": "c18"
   },
   {
    "sentence": "Арбузов слушал, не сводя с нее ___, не смея пошевелиться, чтобы не испугать ее.",
    "lemma": "взгляд",
    "options": [
-    "восторженный взгляд",
+    "восторженному взгляду",
     "восторженного взгляда",
     "восторженным взглядом",
     "восторженном взгляде"
    ],
    "correct": "восторженного взгляда",
    "case": "Родительный (Genitive)",
-   "explain": "«восторженного взгляда» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«восторженного взгляда» is the object of a negated verb («не сводя») — genitive instead of the accusative.",
    "id": "c19"
   },
   {
@@ -249,36 +123,8 @@
    ],
    "correct": "мрачном лице",
    "case": "Предложный (Prepositional)",
-   "explain": "«мрачном лице» — after the preposition «на», for location or topic.",
+   "explain": "«мрачном лице» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c20"
-  },
-  {
-   "sentence": "На его мрачном лице с тяжелым ___ было отчаянное упрямство, и тени ходили, точно тысячи мыслей, и, как тучи, гонимые ветром, неслись за этим лбом.",
-   "lemma": "лоб",
-   "options": [
-    "белом лбе",
-    "белым лбом",
-    "белый лоб",
-    "белого лба"
-   ],
-   "correct": "белым лбом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«белым лбом» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c21"
-  },
-  {
-   "sentence": "На его мрачном лице с тяжелым белым лбом было ___, и тени ходили, точно тысячи мыслей, и, как тучи, гонимые ветром, неслись за этим лбом.",
-   "lemma": "упрямство",
-   "options": [
-    "отчаянном упрямстве",
-    "отчаянного упрямства",
-    "отчаянному упрямству",
-    "отчаянное упрямство"
-   ],
-   "correct": "отчаянное упрямство",
-   "case": "Именительный (Nominative)",
-   "explain": "«отчаянное упрямство» — the subject of the sentence stands in the nominative.",
-   "id": "c22"
   },
   {
    "sentence": "Не прощаться ты ходила, а посмотреть в ___, убедиться, что все кончено!",
@@ -291,7 +137,7 @@
    ],
    "correct": "последний раз",
    "case": "Винительный (Accusative)",
-   "explain": "«последний раз» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«последний раз» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c23"
   },
   {
@@ -305,7 +151,7 @@
    ],
    "correct": "бесконечной тоске",
    "case": "Предложный (Prepositional)",
-   "explain": "«бесконечной тоске» — after the preposition «в», for location or topic.",
+   "explain": "«бесконечной тоске» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c24"
   }
  ]

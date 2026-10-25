@@ -1,62 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "___ только что начала сбывать.",
-   "lemma": "вода",
-   "options": [
-    "полой воде",
-    "полой водой",
-    "полой воды",
-    "полая вода"
-   ],
-   "correct": "полая вода",
-   "case": "Именительный (Nominative)",
-   "explain": "«Полая вода» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Вербы затопленного ___ чуть приметно зеленели, с ветвей кисточками свисали сережки.",
-   "lemma": "лес",
-   "options": [
-    "обдонским лесом",
-    "обдонского леса",
-    "обдонском лесе",
-    "обдонскому лесу"
-   ],
-   "correct": "обдонского леса",
-   "case": "Родительный (Genitive)",
-   "explain": "«обдонского леса» — the genitive here marks possession, absence, or quantity.",
-   "id": "c2"
-  },
-  {
-   "sentence": "На тополях вот-вот готовы были развернуться почки, у ___ хутора клонились к воде побеги окруженного разливом краснотала.",
-   "lemma": "двор",
-   "options": [
-    "самые дворы",
-    "самых дворах",
-    "самым дворам",
-    "самых дворов"
-   ],
-   "correct": "самых дворов",
-   "case": "Родительный (Genitive)",
-   "explain": "«самых дворов» — the genitive here marks possession, absence, or quantity.",
-   "id": "c3"
-  },
-  {
-   "sentence": "На зорях к огородам подплывали в поисках корма ___, казарки, стаи уток.",
-   "lemma": "гусь",
-   "options": [
-    "диких гусях",
-    "дикими гусями",
-    "диких гусей",
-    "дикие гуси"
-   ],
-   "correct": "дикие гуси",
-   "case": "Именительный (Nominative)",
-   "explain": "«дикие гуси» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
-  },
-  {
    "sentence": "___, растуды ее милость!",
    "lemma": "коза",
    "options": [
@@ -67,22 +11,8 @@
    ],
    "correct": "дикая коза",
    "case": "Именительный (Nominative)",
-   "explain": "«Дикая коза» — the subject of the sentence stands in the nominative.",
+   "explain": "«дикая коза» is the subject of «растуды» — who or what does it — so nominative.",
    "id": "c5"
-  },
-  {
-   "sentence": "Ну ___, да и хорош же!",
-   "lemma": "сын",
-   "options": [
-    "с-с-сукиному сыну",
-    "с-с-сукином сыне",
-    "с-с-сукиного сына",
-    "с-с-сукин сын"
-   ],
-   "correct": "с-с-сукин сын",
-   "case": "Именительный (Nominative)",
-   "explain": "«с-с-сукин сын» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
   },
   {
    "sentence": "У ихнего Гришки плетка из ___.",
@@ -95,7 +25,7 @@
    ],
    "correct": "козлиной ноги",
    "case": "Родительный (Genitive)",
-   "explain": "«козлиной ноги» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«козлиной ноги» — «из» always takes the genitive.",
    "id": "c7"
   },
   {
@@ -109,7 +39,7 @@
    ],
    "correct": "дикой козы",
    "case": "Родительный (Genitive)",
-   "explain": "«дикой козы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«дикой козы» depends on the noun «ножки» (whose? of what?) — genitive.",
    "id": "c9"
   },
   {
@@ -123,7 +53,7 @@
    ],
    "correct": "медной подковкой",
    "case": "Творительный (Instrumental)",
-   "explain": "«медной подковкой» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «украшено», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c10"
   },
   {
@@ -137,7 +67,7 @@
    ],
    "correct": "шестой неделе",
    "case": "Предложный (Prepositional)",
-   "explain": "«шестой неделе» — after the preposition «на», for location or topic.",
+   "explain": "«шестой неделе» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c11"
   },
   {
@@ -151,36 +81,8 @@
    ],
    "correct": "ватной куртке",
    "case": "Предложный (Prepositional)",
-   "explain": "«ватной куртке» — after the preposition «в», for location or topic.",
+   "explain": "«ватной куртке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c12"
-  },
-  {
-   "sentence": "Вентери свои проверил скоро, выбрал из последнего рыбу, опустил, оправил ___ и, тихонько отъехав, решил закурить.",
-   "lemma": "крыло",
-   "options": [
-    "вентерными крыльями",
-    "вентерных крыльев",
-    "вентерных крыльях",
-    "вентерные крылья"
-   ],
-   "correct": "вентерные крылья",
-   "case": "Винительный (Accusative)",
-   "explain": "«вентерные крылья» — the accusative marks the direct object of the verb.",
-   "id": "c14"
-  },
-  {
-   "sentence": "___ на востоке из-под исподу будто обрызгано было кровицей.",
-   "lemma": "небо",
-   "options": [
-    "сумеречно-зеленоватом небе",
-    "сумеречно-зеленоватым небом",
-    "сумеречно-зеленоватому небу",
-    "сумеречно-зеленоватое небо"
-   ],
-   "correct": "сумеречно-зеленоватое небо",
-   "case": "Именительный (Nominative)",
-   "explain": "«Сумеречно-зеленоватое небо» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
   },
   {
    "sentence": "Он курил огромную из ___ цигарку.",
@@ -193,36 +95,8 @@
    ],
    "correct": "газетной бумаги",
    "case": "Родительный (Genitive)",
-   "explain": "«газетной бумаги» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«газетной бумаги» — «из» always takes the genitive.",
    "id": "c16"
-  },
-  {
-   "sentence": "Крик его ___ гулко покатился по воде.",
-   "lemma": "мяч",
-   "options": [
-    "круглому мячу",
-    "круглом мяче",
-    "круглым мячом",
-    "круглый мяч"
-   ],
-   "correct": "круглым мячом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«круглым мячом» — the instrumental marks the means, company, or complement.",
-   "id": "c17"
-  },
-  {
-   "sentence": "___ фуражка прикрывала острые хрящи ушей.",
-   "lemma": "поле",
-   "options": [
-    "висячим полям",
-    "висячих полях",
-    "висячие поля",
-    "висячими полями"
-   ],
-   "correct": "висячими полями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«Висячими полями» — the instrumental marks the means, company, or complement.",
-   "id": "c18"
   },
   {
    "sentence": "Висячими полями фуражка прикрывала ___ ушей.",
@@ -235,7 +109,7 @@
    ],
    "correct": "острые хрящи",
    "case": "Винительный (Accusative)",
-   "explain": "«острые хрящи» — the accusative marks the direct object of the verb.",
+   "explain": "«острые хрящи» is the direct object of «прикрывала» (кого? что?) — accusative.",
    "id": "c19"
   },
   {
@@ -249,7 +123,7 @@
    ],
    "correct": "военно-полевой суд",
    "case": "Именительный (Nominative)",
-   "explain": "«военно-полевой суд» — the subject of the sentence stands in the nominative.",
+   "explain": "«военно-полевой суд» is the subject of «наворачивает» — who or what does it — so nominative.",
    "id": "c21"
   },
   {
@@ -263,64 +137,8 @@
    ],
    "correct": "полошного звона",
    "case": "Родительный (Genitive)",
-   "explain": "«полошного звона» — the genitive here marks possession, absence, or quantity.",
+   "explain": "With «ждали», a verb of waiting, seeking, asking or wanting, the object can stand in the genitive — as here.",
    "id": "c23"
-  },
-  {
-   "sentence": "Кошевой еще раз шевельнул бровью, отвел со лба тяжелый, вытканный из курчавых завитков ___.",
-   "lemma": "чуб",
-   "options": [
-    "золотистый чуб",
-    "золотистым чубом",
-    "золотистого чуба",
-    "золотистому чубу"
-   ],
-   "correct": "золотистый чуб",
-   "case": "Именительный (Nominative)",
-   "explain": "«золотистый чуб» — the subject of the sentence stands in the nominative.",
-   "id": "c24"
-  },
-  {
-   "sentence": "Они шли быстро, каждый звяк колокола хлестал их ___.",
-   "lemma": "удар",
-   "options": [
-    "кнутовым ударом",
-    "кнутовом ударе",
-    "кнутовому удару",
-    "кнутовый удар"
-   ],
-   "correct": "кнутовым ударом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«кнутовым ударом» — the instrumental marks the means, company, or complement.",
-   "id": "c25"
-  },
-  {
-   "sentence": "У школы толпился народ, белели ___ и юбки, густо чернели казачьи спины.",
-   "lemma": "платок",
-   "options": [
-    "бабьих платках",
-    "бабьи платки",
-    "бабьим платкам",
-    "бабьих платков"
-   ],
-   "correct": "бабьи платки",
-   "case": "Винительный (Accusative)",
-   "explain": "«бабьи платки» — the accusative marks the direct object of the verb.",
-   "id": "c26"
-  },
-  {
-   "sentence": "У школы толпился народ, белели бабьи платки и юбки, густо чернели ___.",
-   "lemma": "спина",
-   "options": [
-    "казачьи спины",
-    "казачьим спинам",
-    "казачьими спинами",
-    "казачьих спин"
-   ],
-   "correct": "казачьи спины",
-   "case": "Винительный (Accusative)",
-   "explain": "«казачьи спины» — the accusative marks the direct object of the verb.",
-   "id": "c27"
   },
   {
    "sentence": "От Дона дул ___.",
@@ -333,7 +151,7 @@
    ],
    "correct": "свежий ветерок",
    "case": "Именительный (Nominative)",
-   "explain": "«свежий ветерок» — the subject of the sentence stands in the nominative.",
+   "explain": "«свежий ветерок» is the subject of «дул» — who or what does it — so nominative.",
    "id": "c28"
   },
   {
@@ -347,22 +165,8 @@
    ],
    "correct": "гвардейской батарее",
    "case": "Предложный (Prepositional)",
-   "explain": "«гвардейской батарее» — after the preposition «в», for location or topic.",
+   "explain": "«гвардейской батарее» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c29"
-  },
-  {
-   "sentence": "Мочалковые щетки ходили в их засученных по локоть руках, на закутанные по самые глаза лица сыпались ___.",
-   "lemma": "брызги",
-   "options": [
-    "белые брызги",
-    "белыми брызгами",
-    "белых брызг",
-    "белым брызгам"
-   ],
-   "correct": "белые брызги",
-   "case": "Именительный (Nominative)",
-   "explain": "«белые брызги» — the subject of the sentence stands in the nominative.",
-   "id": "c32"
   },
   {
    "sentence": "___ осыпали его куртку и фуражку.",
@@ -375,7 +179,7 @@
    ],
    "correct": "белые капли",
    "case": "Именительный (Nominative)",
-   "explain": "«Белые капли» — the subject of the sentence stands in the nominative.",
+   "explain": "«белые капли» is the subject of «осыпали» — who or what does it — so nominative.",
    "id": "c33"
   }
  ]

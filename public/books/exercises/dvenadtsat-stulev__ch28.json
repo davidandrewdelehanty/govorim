@@ -1,48 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Среди них двигался Никифор Ляпис, очень ___ с бараньей прической и нескромным взглядом.",
-   "lemma": "человек",
-   "options": [
-    "молодого человека",
-    "молодой человек",
-    "молодому человеку",
-    "молодым человеком"
-   ],
-   "correct": "молодой человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«молодой человек» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Среди них двигался Никифор Ляпис, очень молодой человек с бараньей прической и ___.",
-   "lemma": "взгляд",
-   "options": [
-    "нескромном взгляде",
-    "нескромный взгляд",
-    "нескромному взгляду",
-    "нескромным взглядом"
-   ],
-   "correct": "нескромным взглядом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«нескромным взглядом» — the instrumental marks the means, company, or complement.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Невежды, упрямцы и ___ входили в Дом народов с главного подъезда.",
-   "lemma": "посетитель",
-   "options": [
-    "первичных посетителей",
-    "первичных посетителях",
-    "первичные посетители",
-    "первичными посетителями"
-   ],
-   "correct": "первичные посетители",
-   "case": "Именительный (Nominative)",
-   "explain": "«первичные посетители» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
    "sentence": "В Доме народов он был своим человеком и знал кратчайшие пути к оазисам, где брызжут светлые ключи гонорара под широколиственной сенью ___.",
    "lemma": "журнал",
    "options": [
@@ -53,7 +11,7 @@
    ],
    "correct": "ведомственных журналов",
    "case": "Родительный (Genitive)",
-   "explain": "«ведомственных журналов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«ведомственных журналов» depends on the noun «сенью» (whose? of what?) — genitive.",
    "id": "c5"
   },
   {
@@ -67,21 +25,21 @@
    ],
    "correct": "никелированная касса",
    "case": "Именительный (Nominative)",
-   "explain": "«Никелированная касса» — the subject of the sentence stands in the nominative.",
+   "explain": "«никелированная касса» is the subject of «сыграла» — who or what does it — so nominative.",
    "id": "c6"
   },
   {
    "sentence": "___ он сделал в редакцию ежемесячного охотничьего журнала «Герасим и Муму».",
    "lemma": "визит",
    "options": [
-    "первому визиту",
-    "первый визит",
     "первом визите",
-    "первого визита"
+    "первый визит",
+    "первому визиту",
+    "первым визитом"
    ],
    "correct": "первый визит",
    "case": "Винительный (Accusative)",
-   "explain": "«Первый визит» — the accusative marks the direct object of the verb.",
+   "explain": "«первый визит» is the direct object of «сделал» (кого? что?) — accusative.",
    "id": "c7"
   },
   {
@@ -95,36 +53,8 @@
    ],
    "correct": "охотничьего журнала",
    "case": "Родительный (Genitive)",
-   "explain": "«охотничьего журнала» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«охотничьего журнала» depends on the noun «редакцию» (whose? of what?) — genitive.",
    "id": "c8"
-  },
-  {
-   "sentence": "Товарища Наперникова еще не было, и Никифор Ляпис двинулся в «Гигроскопический вестник», ___, посредством которого работники фармации общались с внешним миром.",
-   "lemma": "рупор",
-   "options": [
-    "еженедельном рупоре",
-    "еженедельный рупор",
-    "еженедельным рупором",
-    "еженедельному рупору"
-   ],
-   "correct": "еженедельный рупор",
-   "case": "Именительный (Nominative)",
-   "explain": "«еженедельный рупор» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
-  },
-  {
-   "sentence": "Начальник для более ___ сущности «Гигроскопического вестника» пошевелил пальцами.",
-   "lemma": "определение",
-   "options": [
-    "тонком определении",
-    "тонкого определения",
-    "тонким определением",
-    "тонкому определению"
-   ],
-   "correct": "тонкого определения",
-   "case": "Родительный (Genitive)",
-   "explain": "«тонкого определения» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
-   "id": "c13"
   },
   {
    "sentence": "Начальник для более тонкого определения сущности «___» пошевелил пальцами.",
@@ -137,7 +67,7 @@
    ],
    "correct": "гигроскопического вестника",
    "case": "Родительный (Genitive)",
-   "explain": "«Гигроскопического вестника» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«гигроскопического вестника» depends on the noun «сущности» (whose? of what?) — genitive.",
    "id": "c14"
   },
   {
@@ -151,7 +81,7 @@
    ],
    "correct": "гигроскопическая персона",
    "case": "Именительный (Nominative)",
-   "explain": "«гигроскопическая персона» — the subject of the sentence stands in the nominative.",
+   "explain": "«гигроскопическая персона» is the subject of «заметила» — who or what does it — so nominative.",
    "id": "c16"
   },
   {
@@ -165,22 +95,8 @@
    ],
    "correct": "популярной форме",
    "case": "Предложный (Prepositional)",
-   "explain": "«популярной форме» — after the preposition «в», for location or topic.",
+   "explain": "«популярной форме» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c17"
-  },
-  {
-   "sentence": "На стене висел сильно увеличенный портрет Тургенева, в пенсне, ___ и с двустволкой наперевес.",
-   "lemma": "сапог",
-   "options": [
-    "болотными сапогами",
-    "болотных сапогах",
-    "болотных сапог",
-    "болотные сапоги"
-   ],
-   "correct": "болотных сапогах",
-   "case": "Предложный (Prepositional)",
-   "explain": "«болотных сапогах» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c19"
   },
   {
    "sentence": "Началась ___ о Гавриле, но уже с охотничьим уклоном.",
@@ -193,7 +109,7 @@
    ],
    "correct": "старая песня",
    "case": "Именительный (Nominative)",
-   "explain": "«старая песня» — the subject of the sentence stands in the nominative.",
+   "explain": "«старая песня» is the subject of «Началась» — who or what does it — so nominative.",
    "id": "c20"
   },
   {
@@ -207,7 +123,7 @@
    ],
    "correct": "белые брюки",
    "case": "Именительный (Nominative)",
-   "explain": "«Белые брюки» — the subject of the sentence stands in the nominative.",
+   "explain": "«белые брюки» is the subject of «мелькали» — who or what does it — so nominative.",
    "id": "c23"
   },
   {
@@ -221,7 +137,7 @@
    ],
    "correct": "деликатной борьбы",
    "case": "Родительный (Genitive)",
-   "explain": "«деликатной борьбы» — after the preposition «после», the genitive here marks possession, absence, or quantity.",
+   "explain": "«деликатной борьбы» — «после» always takes the genitive.",
    "id": "c25"
   },
   {
@@ -235,36 +151,8 @@
    ],
    "correct": "дикой козы",
    "case": "Родительный (Genitive)",
-   "explain": "«дикой козы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«дикой козы» depends on the noun «седло» (whose? of what?) — genitive.",
    "id": "c29"
-  },
-  {
-   "sentence": "Почему у вас в стихотворении «Кантон» пеньюар — это ___?",
-   "lemma": "платье",
-   "options": [
-    "бального платья",
-    "бальное платье",
-    "бальному платью",
-    "бальным платьем"
-   ],
-   "correct": "бальное платье",
-   "case": "Именительный (Nominative)",
-   "explain": "«бальное платье» — the subject of the sentence stands in the nominative.",
-   "id": "c30"
-  },
-  {
-   "sentence": "— Пушкин писал ___ и никогда не был в Турции.",
-   "lemma": "стих",
-   "options": [
-    "турецких стихах",
-    "турецкими стихами",
-    "турецкие стихи",
-    "турецким стихам"
-   ],
-   "correct": "турецкие стихи",
-   "case": "Винительный (Accusative)",
-   "explain": "«турецкие стихи» — the accusative marks the direct object of the verb.",
-   "id": "c31"
   },
   {
    "sentence": "После этой ___ Персицкий потащил упирающегося Ляписа в соседнюю комнату.",
@@ -277,7 +165,7 @@
    ],
    "correct": "виртуозной защиты",
    "case": "Родительный (Genitive)",
-   "explain": "«виртуозной защиты» — after the preposition «после», the genitive here marks possession, absence, or quantity.",
+   "explain": "«виртуозной защиты» — «после» always takes the genitive.",
    "id": "c32"
   },
   {
@@ -291,7 +179,7 @@
    ],
    "correct": "газетная вырезка",
    "case": "Именительный (Nominative)",
-   "explain": "«газетная вырезка» — the subject of the sentence stands in the nominative.",
+   "explain": "«газетная вырезка» is the subject of «висела» — who or what does it — so nominative.",
    "id": "c33"
   },
   {
@@ -305,22 +193,8 @@
    ],
    "correct": "траурной каймой",
    "case": "Творительный (Instrumental)",
-   "explain": "«траурной каймой» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «обведенная», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c34"
-  },
-  {
-   "sentence": "— Это, кажется, ваш ___ в прозе?",
-   "lemma": "опыт",
-   "options": [
-    "первого опыта",
-    "первый опыт",
-    "первому опыту",
-    "первым опытом"
-   ],
-   "correct": "первый опыт",
-   "case": "Именительный (Nominative)",
-   "explain": "«первый опыт» — the subject of the sentence stands in the nominative.",
-   "id": "c36"
   },
   {
    "sentence": "Персицкий притащил из ___ двадцать первый том Брокгауза, от Домиций до Евреинова.",
@@ -333,7 +207,7 @@
    ],
    "correct": "справочного бюро",
    "case": "Родительный (Genitive)",
-   "explain": "«справочного бюро» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«справочного бюро» — «из» always takes the genitive.",
    "id": "c37"
   },
   {
@@ -347,7 +221,7 @@
    ],
    "correct": "искомое слово",
    "case": "Именительный (Nominative)",
-   "explain": "«искомое слово» — the subject of the sentence stands in the nominative.",
+   "explain": "«искомое слово» is the subject of «найдено» — who or what does it — so nominative.",
    "id": "c39"
   },
   {
@@ -361,7 +235,7 @@
    ],
    "correct": "хорошая кормушка",
    "case": "Именительный (Nominative)",
-   "explain": "«хорошая кормушка» — the subject of the sentence stands in the nominative.",
+   "explain": "«хорошая кормушка» is the subject of «случится» — who or what does it — so nominative.",
    "id": "c42"
   }
  ]

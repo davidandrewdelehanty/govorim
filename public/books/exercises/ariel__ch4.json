@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "___ в белом халате и белом колпаке наложил на лицо Ариэля маску с ватой, от которой исходил сильный приторный запах.",
-   "lemma": "человек",
-   "options": [
-    "молодому человеку",
-    "молодой человек",
-    "молодым человеком",
-    "молодом человеке"
-   ],
-   "correct": "молодой человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«Молодой человек» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
-   "sentence": "Молодой человек в белом халате и белом колпаке наложил на лицо Ариэля маску с ватой, от которой исходил сильный ___.",
-   "lemma": "запах",
-   "options": [
-    "приторному запаху",
-    "приторный запах",
-    "приторном запахе",
-    "приторного запаха"
-   ],
-   "correct": "приторный запах",
-   "case": "Именительный (Nominative)",
-   "explain": "«приторный запах» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
-  },
-  {
    "sentence": "Жизнь в Дандарате приучила его к ___.",
    "lemma": "ответ",
    "options": [
@@ -39,7 +11,7 @@
    ],
    "correct": "осторожным ответам",
    "case": "Дательный (Dative)",
-   "explain": "«осторожным ответам» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«осторожным ответам» — «к» always takes the dative.",
    "id": "c6"
   },
   {
@@ -53,50 +25,8 @@
    ],
    "correct": "здоровый человек",
    "case": "Именительный (Nominative)",
-   "explain": "«здоровый человек» — the subject of the sentence stands in the nominative.",
+   "explain": "«здоровый человек» is the subject of «может» — who or what does it — so nominative.",
    "id": "c7"
-  },
-  {
-   "sentence": "Хайд расхохотался, брызгая ___.",
-   "lemma": "слюна",
-   "options": [
-    "красная слюна",
-    "красной слюны",
-    "красной слюной",
-    "красной слюне"
-   ],
-   "correct": "красной слюной",
-   "case": "Творительный (Instrumental)",
-   "explain": "«красной слюной» — the instrumental marks the means, company, or complement.",
-   "id": "c9"
-  },
-  {
-   "sentence": "Ты думал, что стул — ___, вроде помела ведьмы?",
-   "lemma": "аппарат",
-   "options": [
-    "летательному аппарату",
-    "летательным аппаратом",
-    "летательный аппарат",
-    "летательного аппарата"
-   ],
-   "correct": "летательный аппарат",
-   "case": "Именительный (Nominative)",
-   "explain": "«летательный аппарат» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
-  },
-  {
-   "sentence": "___, который может летать без всяких механизмов и крыльев.",
-   "lemma": "человек",
-   "options": [
-    "первым человеком",
-    "первый человек",
-    "первого человека",
-    "первом человеке"
-   ],
-   "correct": "первым человеком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«Первым человеком» — the instrumental marks the means, company, or complement.",
-   "id": "c11"
   },
   {
    "sentence": "Пирс-Бхарава, увидав Ариэля между полом и потолком, широко открыл рот и словно окаменел, Фокс болезненно сжал ___ и изогнулся в виде вопросительного знака.",
@@ -109,78 +39,22 @@
    ],
    "correct": "сухие губы",
    "case": "Винительный (Accusative)",
-   "explain": "«сухие губы» — the accusative marks the direct object of the verb.",
+   "explain": "«сухие губы» is the direct object of «сжал» (кого? что?) — accusative.",
    "id": "c12"
-  },
-  {
-   "sentence": "Пирс-Бхарава, увидав Ариэля между полом и потолком, широко открыл рот и словно окаменел, Фокс болезненно сжал сухие губы и изогнулся в виде ___.",
-   "lemma": "знак",
-   "options": [
-    "вопросительного знака",
-    "вопросительный знак",
-    "вопросительным знаком",
-    "вопросительному знаку"
-   ],
-   "correct": "вопросительного знака",
-   "case": "Родительный (Genitive)",
-   "explain": "«вопросительного знака» — after the preposition «в», the genitive here marks possession, absence, or quantity.",
-   "id": "c13"
-  },
-  {
-   "sentence": "Ариэля заставляли подниматься к потолку, летать по комнате стоя, лежа, «рыбкой», как сказала миссис Дрейден, переворачиваться, совершать ___ высшего пилотажа.",
-   "lemma": "фигура",
-   "options": [
-    "всяческие фигуры",
-    "всяческим фигурам",
-    "всяческими фигурами",
-    "всяческих фигур"
-   ],
-   "correct": "всяческие фигуры",
-   "case": "Винительный (Accusative)",
-   "explain": "«всяческие фигуры» — the accusative marks the direct object of the verb.",
-   "id": "c14"
   },
   {
    "sentence": "Броунлоу, с довольным видом потирая руки, поощрял Ариэля на все новые ___.",
    "lemma": "трюк",
    "options": [
-    "воздушных трюках",
-    "воздушные трюки",
+    "воздушных трюков",
     "воздушными трюками",
-    "воздушных трюков"
+    "воздушным трюкам",
+    "воздушные трюки"
    ],
    "correct": "воздушные трюки",
    "case": "Винительный (Accusative)",
-   "explain": "«воздушные трюки» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«воздушные трюки» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c16"
-  },
-  {
-   "sentence": "Все, кроме Хайда, уселись, и Бхарава, обращаясь к Ариэлю, произнес речь, как всегда высокопарную, изобилующую цитатами и ___.",
-   "lemma": "метафора",
-   "options": [
-    "восточными метафорами",
-    "восточные метафоры",
-    "восточных метафорах",
-    "восточных метафор"
-   ],
-   "correct": "восточными метафорами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«восточными метафорами» — the instrumental marks the means, company, or complement.",
-   "id": "c17"
-  },
-  {
-   "sentence": "Бхарава внушал Ариэлю, устремив на него гипнотический взгляд, беспрекословное, абсолютное повиновение и угрожал ___ за малейшее ослушание.",
-   "lemma": "кара",
-   "options": [
-    "страшные кары",
-    "страшных кар",
-    "страшных карах",
-    "страшными карами"
-   ],
-   "correct": "страшными карами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«страшными карами» — the instrumental marks the means, company, or complement.",
-   "id": "c18"
   },
   {
    "sentence": "Куда бы ты ни улетел — на ___, в темные джунгли, в дикие пустыни или даже на край света, — помни: мы найдем тебя всюду потому, что власть наша безгранична.",
@@ -193,7 +67,7 @@
    ],
    "correct": "высокие горы",
    "case": "Винительный (Accusative)",
-   "explain": "«высокие горы» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«высокие горы» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c19"
   },
   {
@@ -207,7 +81,7 @@
    ],
    "correct": "всевозможных пыток",
    "case": "Родительный (Genitive)",
-   "explain": "«всевозможных пыток» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«всевозможных пыток» depends on the noun «картины» (whose? of what?) — genitive.",
    "id": "c21"
   },
   {
@@ -221,7 +95,7 @@
    ],
    "correct": "крепкой цепочке",
    "case": "Предложный (Prepositional)",
-   "explain": "«крепкой цепочке» — after the preposition «на», for location or topic.",
+   "explain": "«крепкой цепочке» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c22"
   },
   {
@@ -235,7 +109,7 @@
    ],
    "correct": "летучих мышей",
    "case": "Родительный (Genitive)",
-   "explain": "«летучих мышей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«летучих мышей» depends on the noun «веранды» (whose? of what?) — genitive.",
    "id": "c23"
   },
   {
@@ -249,7 +123,7 @@
    ],
    "correct": "летучая кошка",
    "case": "Именительный (Nominative)",
-   "explain": "«летучая кошка» — the subject of the sentence stands in the nominative.",
+   "explain": "«летучая кошка» is the subject of «летела» — who or what does it — so nominative.",
    "id": "c24"
   },
   {
@@ -263,7 +137,7 @@
    ],
    "correct": "внешнего мира",
    "case": "Родительный (Genitive)",
-   "explain": "«внешнего мира» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«внешнего мира» — «от» always takes the genitive.",
    "id": "c26"
   }
  ]

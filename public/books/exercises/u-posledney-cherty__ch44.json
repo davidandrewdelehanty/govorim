@@ -1,48 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "___ вошли за Арбузовым длинный, в длинной кавалерийской шинели корнет Краузе, усатый Тренев, толстый поручик Иванов и сзади всех какой-то молоденький офицер и робкий, смущенный Рысков.",
-   "lemma": "ватага",
-   "options": [
-    "шумной ватаге",
-    "шумная ватага",
-    "шумной ватагой",
-    "шумной ватаги"
-   ],
-   "correct": "шумной ватагой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«Шумной ватагой» — the instrumental marks the means, company, or complement.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Шумной ватагой вошли за Арбузовым длинный, в длинной кавалерийской шинели корнет Краузе, усатый Тренев, ___ Иванов и сзади всех какой-то молоденький офицер и робкий, смущенный Рысков.",
-   "lemma": "поручик",
-   "options": [
-    "толстым поручиком",
-    "толстом поручике",
-    "толстому поручику",
-    "толстый поручик"
-   ],
-   "correct": "толстый поручик",
-   "case": "Именительный (Nominative)",
-   "explain": "«толстый поручик» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Шумной ватагой вошли за Арбузовым длинный, в длинной кавалерийской шинели корнет Краузе, усатый Тренев, толстый поручик Иванов и сзади всех какой-то ___ и робкий, смущенный Рысков.",
-   "lemma": "офицер",
-   "options": [
-    "молоденький офицер",
-    "молоденьком офицере",
-    "молоденького офицера",
-    "молоденькому офицеру"
-   ],
-   "correct": "молоденький офицер",
-   "case": "Именительный (Nominative)",
-   "explain": "«молоденький офицер» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
    "sentence": "Не всем же художниками и покорителями ___ быть!..",
    "lemma": "сердце",
    "options": [
@@ -53,50 +11,8 @@
    ],
    "correct": "женских сердец",
    "case": "Родительный (Genitive)",
-   "explain": "«женских сердец» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«женских сердец» depends on the noun «покорителями» (whose? of what?) — genitive.",
    "id": "c4"
-  },
-  {
-   "sentence": "Он был бледен, на лбу у него ___ проступал пот.",
-   "lemma": "капля",
-   "options": [
-    "крупными каплями",
-    "крупных капель",
-    "крупных каплях",
-    "крупным каплям"
-   ],
-   "correct": "крупными каплями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«крупными каплями» — the instrumental marks the means, company, or complement.",
-   "id": "c5"
-  },
-  {
-   "sentence": "Лицо Лизы с ее непонятными ___ все еще стояло перед ним.",
-   "lemma": "глаз",
-   "options": [
-    "прозрачными глазами",
-    "прозрачных глаз",
-    "прозрачные глаза",
-    "прозрачных глазах"
-   ],
-   "correct": "прозрачными глазами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«прозрачными глазами» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c6"
-  },
-  {
-   "sentence": "Широко расставив ноги и свесив голову с упрямым ___ и воспаленными черными глазами, он долго мрачно всматривался в нею, потом с отвращением поморщился.",
-   "lemma": "лоб",
-   "options": [
-    "широкого лба",
-    "широком лбе",
-    "широким лбом",
-    "широкому лбу"
-   ],
-   "correct": "широким лбом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«широким лбом» — the instrumental marks the means, company, or complement.",
-   "id": "c7"
   },
   {
    "sentence": "— Да у вас медведь живой, — рассудительно заметил поручик Иванов, — нельзя же в комнате ___ держать!",
@@ -109,7 +25,7 @@
    ],
    "correct": "живого медведя",
    "case": "Родительный (Genitive)",
-   "explain": "«живого медведя» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«живого медведя» depends on the noun «комнате» (whose? of what?) — genitive.",
    "id": "c8"
   },
   {
@@ -123,7 +39,7 @@
    ],
    "correct": "живого медведя",
    "case": "Винительный (Accusative)",
-   "explain": "«живого медведя» — the accusative marks the direct object of the verb.",
+   "explain": "«живого медведя» is the direct object of «держать» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c10"
   },
   {
@@ -137,64 +53,22 @@
    ],
    "correct": "первой встрече",
    "case": "Предложный (Prepositional)",
-   "explain": "«первой встрече» — after the preposition «при», for location or topic.",
+   "explain": "«первой встрече» — «при» always takes the prepositional.",
    "id": "c11"
   },
   {
    "sentence": "Михайлов быстро взглянул на Арбузова и вдруг увидел в его пьяных ___ такую откровенную страшную ненависть, что отвернулся.",
    "lemma": "глаз",
    "options": [
-    "мрачных глаз",
-    "мрачные глаза",
     "мрачных глазах",
-    "мрачным глазам"
+    "мрачным глазам",
+    "мрачными глазами",
+    "мрачных глаз"
    ],
    "correct": "мрачных глазах",
    "case": "Предложный (Prepositional)",
-   "explain": "«мрачных глазах» — after the preposition «в», for location or topic.",
+   "explain": "«мрачных глазах» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c12"
-  },
-  {
-   "sentence": "Когда все стихло вдали, в саду Михайлова от старой ___ отделилась едва видная во мраке фигурка в сером платочке на распустившихся мокрых волосах.",
-   "lemma": "яблоня",
-   "options": [
-    "большой яблони",
-    "большая яблоня",
-    "большой яблоне",
-    "большой яблоней"
-   ],
-   "correct": "большой яблони",
-   "case": "Родительный (Genitive)",
-   "explain": "«большой яблони» — the genitive here marks possession, absence, or quantity.",
-   "id": "c13"
-  },
-  {
-   "sentence": "Когда все стихло вдали, в саду Михайлова от старой большой яблони отделилась едва видная во мраке фигурка в сером платочке на распустившихся ___.",
-   "lemma": "волос",
-   "options": [
-    "мокрых волос",
-    "мокрых волосах",
-    "мокрыми волосами",
-    "мокрым волосам"
-   ],
-   "correct": "мокрых волосах",
-   "case": "Предложный (Prepositional)",
-   "explain": "«мокрых волосах» — after the preposition «на», for location or topic.",
-   "id": "c15"
-  },
-  {
-   "sentence": "Все то, что могуче и стихийно росло вместе с ее молодым ___, чтобы распуститься в нежности, ласке и любви, было смято, брошено и втоптано в грязь.",
-   "lemma": "тело",
-   "options": [
-    "сильным телом",
-    "сильное тело",
-    "сильного тела",
-    "сильном теле"
-   ],
-   "correct": "сильным телом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«сильным телом» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c16"
   },
   {
    "sentence": "Звон и гром подъехавших к воротам экипажей и крики ___ заставили ее опомниться.",
@@ -207,7 +81,7 @@
    ],
    "correct": "пьяных голосов",
    "case": "Родительный (Genitive)",
-   "explain": "«пьяных голосов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«пьяных голосов» depends on the noun «крики» (whose? of what?) — genitive.",
    "id": "c17"
   },
   {
@@ -221,22 +95,8 @@
    ],
    "correct": "жуткий мрак",
    "case": "Именительный (Nominative)",
-   "explain": "«жуткий мрак» — after the preposition «вокруг», the subject of the sentence stands in the nominative.",
+   "explain": "«жуткий мрак» is the subject of «смотрел» — who or what does it — so nominative.",
    "id": "c18"
-  },
-  {
-   "sentence": "Деревья слились вокруг в молчаливую черную чашу, и жуткий мрак из-под каждого куста смотрел на Лизу ___.",
-   "lemma": "глаз",
-   "options": [
-    "бездонных глазах",
-    "бездонные глаза",
-    "бездонных глаз",
-    "бездонными глазами"
-   ],
-   "correct": "бездонными глазами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«бездонными глазами» — the instrumental marks the means, company, or complement.",
-   "id": "c19"
   },
   {
    "sentence": "Прямо над головой Лизы одна яркая ___ загадочно шевелила длинными лучами.",
@@ -249,50 +109,8 @@
    ],
    "correct": "большая звезда",
    "case": "Именительный (Nominative)",
-   "explain": "«большая звезда» — the subject of the sentence stands in the nominative.",
+   "explain": "«большая звезда» is the subject of «загадочно» — who or what does it — so nominative.",
    "id": "c20"
-  },
-  {
-   "sentence": "Прямо над головой Лизы одна яркая большая звезда загадочно шевелила ___.",
-   "lemma": "луч",
-   "options": [
-    "длинных лучей",
-    "длинных лучах",
-    "длинные лучи",
-    "длинными лучами"
-   ],
-   "correct": "длинными лучами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«длинными лучами» — the instrumental marks the means, company, or complement.",
-   "id": "c21"
-  },
-  {
-   "sentence": "Лиза задела плечом ветку, и в темноте ее всю обрызгало крупными ___.",
-   "lemma": "капля",
-   "options": [
-    "холодных капель",
-    "холодных каплях",
-    "холодными каплями",
-    "холодные капли"
-   ],
-   "correct": "холодными каплями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«холодными каплями» — the instrumental marks the means, company, or complement.",
-   "id": "c22"
-  },
-  {
-   "sentence": "И при имени Михайлова вся сжалась в ___.",
-   "lemma": "ужас",
-   "options": [
-    "немым ужасом",
-    "немому ужасу",
-    "немого ужаса",
-    "немом ужасе"
-   ],
-   "correct": "немом ужасе",
-   "case": "Предложный (Prepositional)",
-   "explain": "«немом ужасе» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c23"
   },
   {
    "sentence": "В ___, за тучами, еще дальше, еще выше ярко и холодно замигали звезды.",
@@ -305,147 +123,21 @@
    ],
    "correct": "недостижимой высоте",
    "case": "Предложный (Prepositional)",
-   "explain": "«недостижимой высоте» — after the preposition «в», for location or topic.",
+   "explain": "«недостижимой высоте» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c24"
-  },
-  {
-   "sentence": "Медленно прошла Лиза мимо крыльца, по которому час тому назад взбегала с таким ___, и невольно оглянулась на него.",
-   "lemma": "нетерпение",
-   "options": [
-    "радостное нетерпение",
-    "радостного нетерпения",
-    "радостным нетерпением",
-    "радостном нетерпении"
-   ],
-   "correct": "радостным нетерпением",
-   "case": "Творительный (Instrumental)",
-   "explain": "«радостным нетерпением» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c26"
-  },
-  {
-   "sentence": "Лиза остановилась, посмотрела кругом, как выгнанная из дому, и вдруг бросилась на крыльцо, положила голову на грязные, затоптанные ___ ступени и замерла.",
-   "lemma": "толпа",
-   "options": [
-    "пьяной толпе",
-    "пьяная толпа",
-    "пьяной толпой",
-    "пьяной толпы"
-   ],
-   "correct": "пьяной толпой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«пьяной толпой» — the instrumental marks the means, company, or complement.",
-   "id": "c27"
-  },
-  {
-   "sentence": "Что-то мягкое, теплое и мохнатое скользнуло по ее ногам, и горячий ___ ткнулся ей в самое ухо.",
-   "lemma": "нос",
-   "options": [
-    "собачьему носу",
-    "собачий нос",
-    "собачьим носом",
-    "собачьем носе"
-   ],
-   "correct": "собачий нос",
-   "case": "Именительный (Nominative)",
-   "explain": "«собачий нос» — the subject of the sentence stands in the nominative.",
-   "id": "c29"
-  },
-  {
-   "sentence": "___, виляя в темноте хвостом, смотрела на нее, и странная печальная ласка светилась в черных умных глазах, говорящих что-то, чего не могла выговорить немая смешная морда.",
-   "lemma": "собака",
-   "options": [
-    "дворовой собакой",
-    "дворовой собаки",
-    "дворовая собака",
-    "дворовой собаке"
-   ],
-   "correct": "дворовая собака",
-   "case": "Именительный (Nominative)",
-   "explain": "«Дворовая собака» — the subject of the sentence stands in the nominative.",
-   "id": "c30"
-  },
-  {
-   "sentence": "Дворовая собака, виляя в темноте хвостом, смотрела на нее, и странная ___ светилась в черных умных глазах, говорящих что-то, чего не могла выговорить немая смешная морда.",
-   "lemma": "ласка",
-   "options": [
-    "печальная ласка",
-    "печальной ласке",
-    "печальной лаской",
-    "печальной ласки"
-   ],
-   "correct": "печальная ласка",
-   "case": "Именительный (Nominative)",
-   "explain": "«печальная ласка» — the subject of the sentence stands in the nominative.",
-   "id": "c31"
-  },
-  {
-   "sentence": "Дворовая собака, виляя в темноте хвостом, смотрела на нее, и странная печальная ласка светилась в черных ___, говорящих что-то, чего не могла выговорить немая смешная морда.",
-   "lemma": "глаз",
-   "options": [
-    "умные глаза",
-    "умных глазах",
-    "умным глазам",
-    "умных глаз"
-   ],
-   "correct": "умных глазах",
-   "case": "Предложный (Prepositional)",
-   "explain": "«умных глазах» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c32"
-  },
-  {
-   "sentence": "Дворовая собака, виляя в темноте хвостом, смотрела на нее, и странная печальная ласка светилась в черных умных глазах, говорящих что-то, чего не могла выговорить немая ___.",
-   "lemma": "морда",
-   "options": [
-    "смешной морды",
-    "смешной морде",
-    "смешная морда",
-    "смешной мордой"
-   ],
-   "correct": "смешная морда",
-   "case": "Именительный (Nominative)",
-   "explain": "«смешная морда» — the subject of the sentence stands in the nominative.",
-   "id": "c33"
-  },
-  {
-   "sentence": "Ведь она не только женщина, у нее не только это тело, о котором он говорил, у нее вот тут, в груди было что-то светлое, как ___, а теперь там пусто, холодно и так больно, больно!..",
-   "lemma": "солнце",
-   "options": [
-    "маленькое солнце",
-    "маленьким солнцем",
-    "маленьком солнце",
-    "маленькому солнцу"
-   ],
-   "correct": "маленькое солнце",
-   "case": "Именительный (Nominative)",
-   "explain": "«маленькое солнце» — the subject of the sentence stands in the nominative.",
-   "id": "c34"
-  },
-  {
-   "sentence": "Она вся скорчилась на крыльце, точно даже от звезд хотела спрятать свое жалкое, никому не ___.",
-   "lemma": "тело",
-   "options": [
-    "нужное тело",
-    "нужном теле",
-    "нужным телом",
-    "нужного тела"
-   ],
-   "correct": "нужное тело",
-   "case": "Именительный (Nominative)",
-   "explain": "«нужное тело» — the subject of the sentence stands in the nominative.",
-   "id": "c36"
   },
   {
    "sentence": "Она увидела себя с горячим ___, с позорными, просящими ласки глазами, мутную влагу которых она сама тогда почувствовала.",
    "lemma": "лицо",
    "options": [
-    "чувственное лицо",
     "чувственным лицом",
     "чувственному лицу",
-    "чувственного лица"
+    "чувственном лице",
+    "чувственное лицо"
    ],
    "correct": "чувственным лицом",
    "case": "Творительный (Instrumental)",
-   "explain": "«чувственным лицом» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«чувственным лицом» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c37"
   }
  ]

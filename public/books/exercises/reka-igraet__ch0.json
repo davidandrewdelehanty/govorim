@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Закинув несколько голову, я мог видеть в вышине тёмную деревянную церковку, наивно глядевшую на меня из-за ___, с высокой кручи.",
-   "lemma": "дерево",
-   "options": [
-    "зелёных деревьях",
-    "зелёных деревьев",
-    "зелёными деревьями",
-    "зелёные деревья"
-   ],
-   "correct": "зелёных деревьев",
-   "case": "Родительный (Genitive)",
-   "explain": "«зелёных деревьев» — after the preposition «из-за», the genitive here marks possession, absence, or quantity.",
-   "id": "c1"
-  },
-  {
    "sentence": "Этот-то плеск и разбудил меня от ___.",
    "lemma": "сон",
    "options": [
@@ -25,36 +11,8 @@
    ],
    "correct": "сладкого сна",
    "case": "Родительный (Genitive)",
-   "explain": "«сладкого сна» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«сладкого сна» — «от» always takes the genitive.",
    "id": "c2"
-  },
-  {
-   "sentence": "Давно уже он прорывался к моему сознанию беспокоящим шёпотом, точно ласкающий, но вместе ___, который подымает на заре для неизбежного трудового дня.",
-   "lemma": "голос",
-   "options": [
-    "беспощадным голосом",
-    "беспощадный голос",
-    "беспощадному голосу",
-    "беспощадного голоса"
-   ],
-   "correct": "беспощадный голос",
-   "case": "Именительный (Nominative)",
-   "explain": "«беспощадный голос» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
-   "sentence": "Давно уже он прорывался к моему сознанию беспокоящим шёпотом, точно ласкающий, но вместе беспощадный голос, который подымает на заре для неизбежного ___.",
-   "lemma": "день",
-   "options": [
-    "трудовой день",
-    "трудовому дню",
-    "трудового дня",
-    "трудовом дне"
-   ],
-   "correct": "трудового дня",
-   "case": "Родительный (Genitive)",
-   "explain": "«трудового дня» — the genitive here marks possession, absence, or quantity.",
-   "id": "c4"
   },
   {
    "sentence": "Я опять закрыл глаза, чтоб отдать себе, не двигаясь, отчёт в том, как это я очутился здесь, под ___, на берегу плещущей речки, в соседстве этого шалаша и этого столба с простодушным обращением к проходящим.",
@@ -67,7 +25,7 @@
    ],
    "correct": "открытым небом",
    "case": "Творительный (Instrumental)",
-   "explain": "«открытым небом» — after the preposition «под», the instrumental marks the means, company, or complement.",
+   "explain": "«открытым небом» — «под» takes the instrumental here (где? под чем?) — the accusative would mean movement under (куда? под что?).",
    "id": "c5"
   },
   {
@@ -81,7 +39,7 @@
    ],
    "correct": "простодушным обращением",
    "case": "Творительный (Instrumental)",
-   "explain": "«простодушным обращением» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«простодушным обращением» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c6"
   },
   {
@@ -95,7 +53,7 @@
    ],
    "correct": "густой толпе",
    "case": "Предложный (Prepositional)",
-   "explain": "«густой толпе» — after the preposition «в», for location or topic.",
+   "explain": "«густой толпе» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c7"
   },
   {
@@ -109,36 +67,8 @@
    ],
    "correct": "старой часовни",
    "case": "Родительный (Genitive)",
-   "explain": "«старой часовни» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«старой часовни» — «у» always takes the genitive.",
    "id": "c8"
-  },
-  {
-   "sentence": "Вспомнилась ___, с раскрытыми дверями, в которые виднелись жёлтые огоньки у икон, между тем как по синему небу ясная луна тихо плыла и над часовней, и над тёмными, спокойно шептавшимися деревьями.",
-   "lemma": "часовня",
-   "options": [
-    "старой часовни",
-    "старой часовней",
-    "старая часовня",
-    "старой часовне"
-   ],
-   "correct": "старая часовня",
-   "case": "Именительный (Nominative)",
-   "explain": "«старая часовня» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
-  },
-  {
-   "sentence": "Вспомнилась старая часовня, с ___, в которые виднелись жёлтые огоньки у икон, между тем как по синему небу ясная луна тихо плыла и над часовней, и над тёмными, спокойно шептавшимися деревьями.",
-   "lemma": "дверь",
-   "options": [
-    "раскрытым дверям",
-    "раскрытыми дверями",
-    "раскрытых дверях",
-    "раскрытые двери"
-   ],
-   "correct": "раскрытыми дверями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«раскрытыми дверями» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c10"
   },
   {
    "sentence": "Вспомнилась старая часовня, с раскрытыми дверями, в которые виднелись ___ у икон, между тем как по синему небу ясная луна тихо плыла и над часовней, и над тёмными, спокойно шептавшимися деревьями.",
@@ -151,22 +81,8 @@
    ],
    "correct": "жёлтые огоньки",
    "case": "Именительный (Nominative)",
-   "explain": "«жёлтые огоньки» — the subject of the sentence stands in the nominative.",
+   "explain": "«жёлтые огоньки» is the subject of «виднелись» — who or what does it — so nominative.",
    "id": "c11"
-  },
-  {
-   "sentence": "Вспомнилась старая часовня, с раскрытыми дверями, в которые виднелись жёлтые огоньки у икон, между тем как по синему небу ___ тихо плыла и над часовней, и над тёмными, спокойно шептавшимися деревьями.",
-   "lemma": "луна",
-   "options": [
-    "ясной луны",
-    "ясной луне",
-    "ясная луна",
-    "ясной луной"
-   ],
-   "correct": "ясная луна",
-   "case": "Именительный (Nominative)",
-   "explain": "«ясная луна» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
   },
   {
    "sentence": "Точно в ___, при тусклом свете угасающей лампадки, провёл я всю эту бессонную ночь, прислушиваясь, как где-то за стеной кто-то читает мерным голосом заупокойные молитвы над заснувшей навеки народною мыслью.",
@@ -179,7 +95,7 @@
    ],
    "correct": "душном склепе",
    "case": "Предложный (Prepositional)",
-   "explain": "«душном склепе» — after the preposition «в», for location or topic.",
+   "explain": "«душном склепе» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c14"
   },
   {
@@ -193,22 +109,8 @@
    ],
    "correct": "тусклом свете",
    "case": "Предложный (Prepositional)",
-   "explain": "«тусклом свете» — after the preposition «при», for location or topic.",
+   "explain": "«тусклом свете» — «при» always takes the prepositional.",
    "id": "c15"
-  },
-  {
-   "sentence": "Солнце встало уже над лесами и водами Ветлуги, когда я, пройдя около пятнадцати вёрст лесными тропами, вышел к реке и тотчас же свалился на песок, точно мёртвый, от усталости и вынесенных с озера ___.",
-   "lemma": "впечатление",
-   "options": [
-    "суровых впечатлениях",
-    "суровых впечатлений",
-    "суровым впечатлениям",
-    "суровые впечатления"
-   ],
-   "correct": "суровых впечатлений",
-   "case": "Родительный (Genitive)",
-   "explain": "«суровых впечатлений» — the genitive here marks possession, absence, or quantity.",
-   "id": "c17"
   }
  ]
 }

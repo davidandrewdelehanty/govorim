@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Это-то ___ и вынудило его открыть свои карты, так как просить должны были родители.",
-   "lemma": "обстоятельство",
-   "options": [
-    "последнем обстоятельстве",
-    "последнему обстоятельству",
-    "последнее обстоятельство",
-    "последнего обстоятельства"
-   ],
-   "correct": "последнее обстоятельство",
-   "case": "Именительный (Nominative)",
-   "explain": "«последнее обстоятельство» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
    "sentence": "___ продолжалось довольно долго.",
    "lemma": "молчание",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "томительное молчание",
    "case": "Именительный (Nominative)",
-   "explain": "«Томительное молчание» — the subject of the sentence stands in the nominative.",
+   "explain": "«томительное молчание» is the subject of «продолжалось» — who or what does it — so nominative.",
    "id": "c3"
   },
   {
@@ -39,35 +25,21 @@
    ],
    "correct": "жалкого обманщика",
    "case": "Родительный (Genitive)",
-   "explain": "«жалкого обманщика» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«жалкого обманщика» depends on the noun «фигуры» (whose? of what?) — genitive.",
    "id": "c5"
-  },
-  {
-   "sentence": "И это, конечно, поймут и отец, и мать, и это будет для них ___!",
-   "lemma": "укор",
-   "options": [
-    "вечный укор",
-    "вечным укором",
-    "вечном укоре",
-    "вечного укора"
-   ],
-   "correct": "вечным укором",
-   "case": "Творительный (Instrumental)",
-   "explain": "«вечным укором» — the instrumental marks the means, company, or complement.",
-   "id": "c6"
   },
   {
    "sentence": "Тёма точно снова почувствовал ___ матери по лбу.",
    "lemma": "шлепок",
    "options": [
-    "презрительного шлепка",
+    "презрительный шлепок",
+    "презрительном шлепке",
     "презрительному шлепку",
-    "презрительным шлепком",
-    "презрительный шлепок"
+    "презрительным шлепком"
    ],
    "correct": "презрительный шлепок",
    "case": "Винительный (Accusative)",
-   "explain": "«презрительный шлепок» — the accusative marks the direct object of the verb.",
+   "explain": "«презрительный шлепок» is the direct object of «почувствовал» (кого? что?) — accusative.",
    "id": "c7"
   },
   {
@@ -75,13 +47,13 @@
    "lemma": "антракт",
    "options": [
     "маленький антракт",
-    "маленького антракта",
     "маленьком антракте",
+    "маленькому антракту",
     "маленьким антрактом"
    ],
    "correct": "маленький антракт",
    "case": "Винительный (Accusative)",
-   "explain": "«маленький антракт» — the accusative marks the direct object of the verb.",
+   "explain": "«маленький антракт» is the direct object of «сделал» (кого? что?) — accusative.",
    "id": "c9"
   },
   {
@@ -95,36 +67,8 @@
    ],
    "correct": "первый раз",
    "case": "Винительный (Accusative)",
-   "explain": "«первый раз» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«первый раз» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c10"
-  },
-  {
-   "sentence": "Он в первый раз серьёзно вник в положение вещей и почувствовал ___ к смерти.",
-   "lemma": "ужас",
-   "options": [
-    "непреодолимом ужасе",
-    "непреодолимому ужасу",
-    "непреодолимый ужас",
-    "непреодолимым ужасом"
-   ],
-   "correct": "непреодолимый ужас",
-   "case": "Винительный (Accusative)",
-   "explain": "«непреодолимый ужас» — the accusative marks the direct object of the verb.",
-   "id": "c11"
-  },
-  {
-   "sentence": "Это наводило на него какой-то ___.",
-   "lemma": "ужас",
-   "options": [
-    "невыразимый ужас",
-    "невыразимому ужасу",
-    "невыразимого ужаса",
-    "невыразимом ужасе"
-   ],
-   "correct": "невыразимый ужас",
-   "case": "Винительный (Accusative)",
-   "explain": "«невыразимый ужас» — the accusative marks the direct object of the verb.",
-   "id": "c14"
   },
   {
    "sentence": "Отец бросился в столовую и остановился, поражённый ___ сына.",
@@ -137,22 +81,8 @@
    ],
    "correct": "идиотским лицом",
    "case": "Творительный (Instrumental)",
-   "explain": "«идиотским лицом» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «поражённый», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c15"
-  },
-  {
-   "sentence": "___ выбили всех из колеи.",
-   "lemma": "обстоятельство",
-   "options": [
-    "исключительными обстоятельствами",
-    "исключительным обстоятельствам",
-    "исключительные обстоятельства",
-    "исключительных обстоятельств"
-   ],
-   "correct": "исключительные обстоятельства",
-   "case": "Именительный (Nominative)",
-   "explain": "«Исключительные обстоятельства» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
   },
   {
    "sentence": "И снова начинался ___.",
@@ -165,50 +95,22 @@
    ],
    "correct": "бесконечный разговор",
    "case": "Именительный (Nominative)",
-   "explain": "«бесконечный разговор» — the subject of the sentence stands in the nominative.",
+   "explain": "«бесконечный разговор» is the subject of «начинался» — who or what does it — so nominative.",
    "id": "c17"
-  },
-  {
-   "sentence": "Его сейчас же уложили и, под влиянием порошков, он заснул крепким ___.",
-   "lemma": "сон",
-   "options": [
-    "детском сне",
-    "детскому сну",
-    "детским сном",
-    "детский сон"
-   ],
-   "correct": "детским сном",
-   "case": "Творительный (Instrumental)",
-   "explain": "«детским сном» — the instrumental marks the means, company, or complement.",
-   "id": "c18"
   },
   {
    "sentence": "Когда разговор коснулся ___, генерал не утерпел, чтобы не пожаловаться на жену за неправильное воспитание сына.",
    "lemma": "событие",
    "options": [
-    "текущим событиям",
-    "текущие события",
     "текущих событиях",
+    "текущим событиям",
+    "текущими событиями",
     "текущих событий"
    ],
    "correct": "текущих событий",
    "case": "Родительный (Genitive)",
-   "explain": "«текущих событий» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«коснулся» takes its object in the genitive.",
    "id": "c20"
-  },
-  {
-   "sentence": "— ___, — заметил он и забарабанил пальцами по столу.",
-   "lemma": "мальчик",
-   "options": [
-    "славным мальчиком",
-    "славного мальчика",
-    "славном мальчике",
-    "славный мальчик"
-   ],
-   "correct": "славный мальчик",
-   "case": "Именительный (Nominative)",
-   "explain": "«Славный мальчик» — the subject of the sentence stands in the nominative.",
-   "id": "c21"
   },
   {
    "sentence": "— Я на ___ буду отлично заниматься, сяду на первую скамейку и буду первым учеником.",
@@ -221,36 +123,8 @@
    ],
    "correct": "будущий год",
    "case": "Винительный (Accusative)",
-   "explain": "«будущий год» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«будущий год» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c25"
-  },
-  {
-   "sentence": "— Я на будущий год буду отлично заниматься, сяду на первую скамейку и буду ___.",
-   "lemma": "ученик",
-   "options": [
-    "первый ученик",
-    "первого ученика",
-    "первым учеником",
-    "первому ученику"
-   ],
-   "correct": "первым учеником",
-   "case": "Творительный (Instrumental)",
-   "explain": "«первым учеником» — the instrumental marks the means, company, or complement.",
-   "id": "c26"
-  },
-  {
-   "sentence": "Директор, молча, слушал, всматривался в мягкие, горящие ___ глаза Тёмы и в первый раз почувствовал к нему какое-то сожаление.",
-   "lemma": "огонь",
-   "options": [
-    "внутреннем огне",
-    "внутренним огнём",
-    "внутреннему огню",
-    "внутреннего огня"
-   ],
-   "correct": "внутренним огнём",
-   "case": "Творительный (Instrumental)",
-   "explain": "«внутренним огнём» — the instrumental marks the means, company, or complement.",
-   "id": "c27"
   },
   {
    "sentence": "Директор, молча, слушал, всматривался в мягкие, горящие внутренним огнём глаза Тёмы и в ___ почувствовал к нему какое-то сожаление.",
@@ -263,50 +137,8 @@
    ],
    "correct": "первый раз",
    "case": "Винительный (Accusative)",
-   "explain": "«первый раз» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«первый раз» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c28"
-  },
-  {
-   "sentence": "— ___, я перешёл в третий класс.",
-   "lemma": "папа",
-   "options": [
-    "милом папе",
-    "милому папе",
-    "милым папой",
-    "милый папа"
-   ],
-   "correct": "милый папа",
-   "case": "Именительный (Nominative)",
-   "explain": "«Милый папа» — the subject of the sentence stands in the nominative.",
-   "id": "c30"
-  },
-  {
-   "sentence": "Он с наслаждением увидел чисто сервированный стол, самовар, свой собственный сливочник, большую двойную просфору — его ___ к чаю.",
-   "lemma": "лакомство",
-   "options": [
-    "любимого лакомства",
-    "любимому лакомству",
-    "любимое лакомство",
-    "любимым лакомством"
-   ],
-   "correct": "любимое лакомство",
-   "case": "Именительный (Nominative)",
-   "explain": "«любимое лакомство» — the subject of the sentence stands in the nominative.",
-   "id": "c32"
-  },
-  {
-   "sentence": "Он влил в стакан весь сливочник, разломил просфору и с наслаждением откусил, какой только мог, ___.",
-   "lemma": "кусок",
-   "options": [
-    "большой кусок",
-    "большого куска",
-    "большому куску",
-    "большом куске"
-   ],
-   "correct": "большой кусок",
-   "case": "Именительный (Nominative)",
-   "explain": "«большой кусок» — the subject of the sentence stands in the nominative.",
-   "id": "c33"
   },
   {
    "sentence": "Зина, потягиваясь и улыбаясь, вышла из ___.",
@@ -319,22 +151,8 @@
    ],
    "correct": "маленькой комнаты",
    "case": "Родительный (Genitive)",
-   "explain": "«маленькой комнаты» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«маленькой комнаты» — «из» always takes the genitive.",
    "id": "c34"
-  },
-  {
-   "sentence": "— ___ директор, — задумчиво произнесла Аглаида Васильевна, прислушиваясь к словам сына.",
-   "lemma": "человек",
-   "options": [
-    "добрый человек",
-    "доброго человека",
-    "добром человеке",
-    "добрым человеком"
-   ],
-   "correct": "добрый человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«Добрый человек» — the subject of the sentence stands in the nominative.",
-   "id": "c35"
   }
  ]
 }

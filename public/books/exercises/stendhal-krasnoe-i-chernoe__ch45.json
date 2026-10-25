@@ -1,31 +1,17 @@
 {
  "cases": [
   {
-   "sentence": "Сад этот был очень большим, и разбит он был с ___ тому назад несколько лет.",
-   "lemma": "вкус",
-   "options": [
-    "изумительном вкусе",
-    "изумительным вкусом",
-    "изумительному вкусу",
-    "изумительный вкус"
-   ],
-   "correct": "изумительным вкусом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«изумительным вкусом» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c1"
-  },
-  {
    "sentence": "Он с шумом повернул ключ в ___, делая вид, что заперся у себя, потом неслышными шагами пошел посмотреть, что делается в доме, особенно же на четвертом этаже, где жила прислуга.",
    "lemma": "замок",
    "options": [
-    "дверному замку",
-    "дверного замка",
     "дверном замке",
-    "дверной замок"
+    "дверным замком",
+    "дверному замку",
+    "дверного замка"
    ],
    "correct": "дверном замке",
    "case": "Предложный (Prepositional)",
-   "explain": "«дверном замке» — after the preposition «в», for location or topic.",
+   "explain": "«дверном замке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c2"
   },
   {
@@ -39,21 +25,21 @@
    ],
    "correct": "ночной засаде",
    "case": "Предложный (Prepositional)",
-   "explain": "«ночной засаде» — after the preposition «в», for location or topic.",
+   "explain": "«ночной засаде» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c3"
   },
   {
    "sentence": "Никогда в жизни Жюльен не испытывал такого страха: в своем предприятии он видел только ___ и не чувствовал ни малейшего энтузиазма.",
    "lemma": "сторона",
    "options": [
-    "опасных сторон",
+    "опасные стороны",
     "опасных сторонах",
     "опасным сторонам",
-    "опасные стороны"
+    "опасными сторонами"
    ],
    "correct": "опасные стороны",
    "case": "Винительный (Accusative)",
-   "explain": "«опасные стороны» — the accusative marks the direct object of the verb.",
+   "explain": "«опасные стороны» is the direct object of «видел» (кого? что?) — accusative.",
    "id": "c4"
   },
   {
@@ -67,7 +53,7 @@
    ],
    "correct": "глубоком волнении",
    "case": "Предложный (Prepositional)",
-   "explain": "«глубоком волнении» — after the preposition «в», for location or topic.",
+   "explain": "«глубоком волнении» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c5"
   },
   {
@@ -81,22 +67,8 @@
    ],
    "correct": "боковом кармане",
    "case": "Предложный (Prepositional)",
-   "explain": "«боковом кармане» — after the preposition «в», for location or topic.",
+   "explain": "«боковом кармане» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c6"
-  },
-  {
-   "sentence": "— У меня ___ всякого оружия и пистолетов, — ответил Жюльен, не менее довольный, что может что-нибудь сказать.",
-   "lemma": "арсенал",
-   "options": [
-    "целому арсеналу",
-    "целый арсенал",
-    "целого арсенала",
-    "целым арсеналом"
-   ],
-   "correct": "целый арсенал",
-   "case": "Именительный (Nominative)",
-   "explain": "«целый арсенал» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
   },
   {
    "sentence": "— Стекла бить не надо, — возразила Матильда, тщетно стараясь принять тон ___.",
@@ -109,7 +81,7 @@
    ],
    "correct": "обыкновенного разговора",
    "case": "Родительный (Genitive)",
-   "explain": "«обыкновенного разговора» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«обыкновенного разговора» depends on the noun «тон» (whose? of what?) — genitive.",
    "id": "c8"
   },
   {
@@ -123,7 +95,7 @@
    ],
    "correct": "первой ступеньке",
    "case": "Дательный (Dative)",
-   "explain": "«первой ступеньке» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«первой ступеньке» — «к» always takes the dative.",
    "id": "c9"
   },
   {
@@ -137,22 +109,8 @@
    ],
    "correct": "самом деле",
    "case": "Предложный (Prepositional)",
-   "explain": "«самом деле» — after the preposition «на», for location or topic.",
+   "explain": "«самом деле» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c10"
-  },
-  {
-   "sentence": "«___, чтобы убить меня, если кто-нибудь спрятан в комнате Матильды», — подумал он.",
-   "lemma": "случай",
-   "options": [
-    "удобный случай",
-    "удобным случаем",
-    "удобному случаю",
-    "удобном случае"
-   ],
-   "correct": "удобный случай",
-   "case": "Именительный (Nominative)",
-   "explain": "«Удобный случай» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
   },
   {
    "sentence": "Но везде по-прежнему царила ___.",
@@ -165,64 +123,22 @@
    ],
    "correct": "глубокая тишина",
    "case": "Именительный (Nominative)",
-   "explain": "«глубокая тишина» — the subject of the sentence stands in the nominative.",
+   "explain": "«глубокая тишина» is the subject of «царила» — who or what does it — so nominative.",
    "id": "c12"
-  },
-  {
-   "sentence": "Лестница коснулась земли, и Жюльену удалось уложить ее вдоль стены, в клумбу с ___.",
-   "lemma": "цвета",
-   "options": [
-    "экзотическим цветам",
-    "экзотические цвета",
-    "экзотическими цветами",
-    "экзотических цветах"
-   ],
-   "correct": "экзотическими цветами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«экзотическими цветами» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c13"
-  },
-  {
-   "sentence": "— Что скажет моя мать, когда увидит свои ___ измятыми вконец!..",
-   "lemma": "растение",
-   "options": [
-    "прелестными растениями",
-    "прелестным растениям",
-    "прелестные растения",
-    "прелестных растениях"
-   ],
-   "correct": "прелестные растения",
-   "case": "Винительный (Accusative)",
-   "explain": "«прелестные растения» — the accusative marks the direct object of the verb.",
-   "id": "c14"
   },
   {
    "sentence": "Надо бросить веревку, — прибавила она с ___.",
    "lemma": "хладнокровие",
    "options": [
-    "большим хладнокровием",
     "большем хладнокровии",
-    "большего хладнокровия",
-    "большее хладнокровие"
+    "большее хладнокровие",
+    "большим хладнокровием",
+    "большему хладнокровию"
    ],
    "correct": "большим хладнокровием",
    "case": "Творительный (Instrumental)",
-   "explain": "«большим хладнокровием» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«большим хладнокровием» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c15"
-  },
-  {
-   "sentence": "Матильда мучилась ___, положение ее внушало ей отвращение.",
-   "lemma": "страх",
-   "options": [
-    "ужасному страху",
-    "ужасном страхе",
-    "ужасным страхом",
-    "ужасный страх"
-   ],
-   "correct": "ужасным страхом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«ужасным страхом» — the instrumental marks the means, company, or complement.",
-   "id": "c16"
   },
   {
    "sentence": "— ___ спрятано в толстой протестантской Библии, которую вчерашняя вечерняя почта уносит очень далеко отсюда.",
@@ -235,7 +151,7 @@
    ],
    "correct": "первое письмо",
    "case": "Именительный (Nominative)",
-   "explain": "«Первое письмо» — the subject of the sentence stands in the nominative.",
+   "explain": "«первое письмо» is the subject of «спрятано» — who or what does it — so nominative.",
    "id": "c17"
   },
   {
@@ -249,22 +165,8 @@
    ],
    "correct": "вечерняя почта",
    "case": "Именительный (Nominative)",
-   "explain": "«вечерняя почта» — the subject of the sentence stands in the nominative.",
+   "explain": "«вечерняя почта» is the subject of «уносит» — who or what does it — so nominative.",
    "id": "c18"
-  },
-  {
-   "sentence": "Он говорил очень внятно, входя в эти подробности, чтобы его слышали лица, спрятанные, быть может, в тех двух ___ из красного дерева, которые он не решился осмотреть.",
-   "lemma": "шкаф",
-   "options": [
-    "больших шкафах",
-    "большими шкафами",
-    "большим шкафам",
-    "больших шкафов"
-   ],
-   "correct": "больших шкафах",
-   "case": "Предложный (Prepositional)",
-   "explain": "«больших шкафах» — after the preposition «в», for location or topic.",
-   "id": "c19"
   },
   {
    "sentence": "Он говорил очень внятно, входя в эти подробности, чтобы его слышали лица, спрятанные, быть может, в тех двух больших шкафах из ___, которые он не решился осмотреть.",
@@ -277,50 +179,8 @@
    ],
    "correct": "красного дерева",
    "case": "Родительный (Genitive)",
-   "explain": "«красного дерева» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«красного дерева» — «из» always takes the genitive.",
    "id": "c20"
-  },
-  {
-   "sentence": "Порывшись в своей памяти, как некогда в Безансоне в разговорах с Амандой Бине, он процитировал несколько самых ___ из «Новой Элоизы».",
-   "lemma": "фраза",
-   "options": [
-    "красивыми фразами",
-    "красивых фраз",
-    "красивые фразы",
-    "красивым фразам"
-   ],
-   "correct": "красивых фраз",
-   "case": "Родительный (Genitive)",
-   "explain": "«красивых фраз» — the genitive here marks possession, absence, or quantity.",
-   "id": "c21"
-  },
-  {
-   "sentence": "— У тебя ___, — отвечали ему, не особенно слушая его изречения.",
-   "lemma": "сердце",
-   "options": [
-    "мужественное сердце",
-    "мужественном сердце",
-    "мужественного сердца",
-    "мужественным сердцем"
-   ],
-   "correct": "мужественное сердце",
-   "case": "Именительный (Nominative)",
-   "explain": "«мужественное сердце» — the subject of the sentence stands in the nominative.",
-   "id": "c22"
-  },
-  {
-   "sentence": "Твои ___ и твоя решимость показывают, что ты еще отважнее, чем я думала.",
-   "lemma": "подозрение",
-   "options": [
-    "первых подозрений",
-    "первые подозрения",
-    "первых подозрениях",
-    "первыми подозрениями"
-   ],
-   "correct": "первые подозрения",
-   "case": "Именительный (Nominative)",
-   "explain": "«первые подозрения» — the subject of the sentence stands in the nominative.",
-   "id": "c23"
   },
   {
    "sentence": "Правда, он не испытал того ___, которое иногда находил вблизи госпожи де Реналь.",
@@ -333,7 +193,7 @@
    ],
    "correct": "душевного наслаждения",
    "case": "Родительный (Genitive)",
-   "explain": "«душевного наслаждения» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«душевного наслаждения» is the object of a negated verb («не испытал») — genitive instead of the accusative.",
    "id": "c24"
   },
   {
@@ -347,7 +207,7 @@
    ],
    "correct": "первого момента",
    "case": "Родительный (Genitive)",
-   "explain": "«первого момента» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«первого момента» depends on the noun «переживаниях» (whose? of what?) — genitive.",
    "id": "c25"
   },
   {
@@ -361,7 +221,7 @@
    ],
    "correct": "самой госпожи",
    "case": "Родительный (Genitive)",
-   "explain": "«самой госпожи» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«самой госпожи» depends on the noun «комнате» (whose? of what?) — genitive.",
    "id": "c26"
   },
   {
@@ -375,64 +235,22 @@
    ],
    "correct": "ужасном положении",
    "case": "Предложный (Prepositional)",
-   "explain": "«ужасном положении» — after the preposition «в», for location or topic.",
+   "explain": "«ужасном положении» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c27"
-  },
-  {
-   "sentence": "И вот, чтобы выполнить этот долг, она принялась с нежностью только в словах, но отнюдь не в голосе рассказывать ему те ___, к которым она приходила в последние дни.",
-   "lemma": "решение",
-   "options": [
-    "различные решения",
-    "различным решениям",
-    "различных решениях",
-    "различными решениями"
-   ],
-   "correct": "различные решения",
-   "case": "Винительный (Accusative)",
-   "explain": "«различные решения» — the accusative marks the direct object of the verb.",
-   "id": "c28"
   },
   {
    "sentence": "И вот, чтобы выполнить этот долг, она принялась с нежностью только в словах, но отнюдь не в голосе рассказывать ему те различные решения, к которым она приходила в ___.",
    "lemma": "день",
    "options": [
     "последними днями",
-    "последним дням",
-    "последних днях",
-    "последние дни"
+    "последних дней",
+    "последние дни",
+    "последним дням"
    ],
    "correct": "последние дни",
    "case": "Винительный (Accusative)",
-   "explain": "«последние дни» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«последние дни» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c29"
-  },
-  {
-   "sentence": "Она решила, что если он осмелится подняться к ней при помощи ___, как ему было приказано, то она отдастся ему.",
-   "lemma": "лестница",
-   "options": [
-    "садовой лестнице",
-    "садовой лестницей",
-    "садовой лестницы",
-    "садовая лестница"
-   ],
-   "correct": "садовой лестницы",
-   "case": "Родительный (Genitive)",
-   "explain": "«садовой лестницы» — after the preposition «при», the genitive here marks possession, absence, or quantity.",
-   "id": "c30"
-  },
-  {
-   "sentence": "Но кажется, никогда еще столь ___ не говорились более холодным и более учтивым тоном.",
-   "lemma": "вещь",
-   "options": [
-    "нежные вещи",
-    "нежными вещами",
-    "нежных вещей",
-    "нежных вещах"
-   ],
-   "correct": "нежные вещи",
-   "case": "Именительный (Nominative)",
-   "explain": "«нежные вещи» — the subject of the sentence stands in the nominative.",
-   "id": "c31"
   },
   {
    "sentence": "Стоило ли губить свое будущее ради ___?",
@@ -445,22 +263,8 @@
    ],
    "correct": "подобной минуты",
    "case": "Родительный (Genitive)",
-   "explain": "«подобной минуты» — after the preposition «ради», the genitive here marks possession, absence, or quantity.",
+   "explain": "«подобной минуты» — «ради» always takes the genitive.",
    "id": "c32"
-  },
-  {
-   "sentence": "Великий Боже, какая разница с ___, проведенными им в Верьере!",
-   "lemma": "сутки",
-   "options": [
-    "последних суток",
-    "последним суткам",
-    "последними сутками",
-    "последние сутки"
-   ],
-   "correct": "последними сутками",
-   "case": "Творительный (Instrumental)",
-   "explain": "«последними сутками» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c33"
   },
   {
    "sentence": "«Эти прекрасные ___ обладают секретом испортить все, даже саму любовь», — думал он, забыв всякую справедливость.",
@@ -473,7 +277,7 @@
    ],
    "correct": "парижские манеры",
    "case": "Именительный (Nominative)",
-   "explain": "«парижские манеры» — the subject of the sentence stands in the nominative.",
+   "explain": "«парижские манеры» is the subject of «обладают» — who or what does it — so nominative.",
    "id": "c34"
   },
   {
@@ -487,7 +291,7 @@
    ],
    "correct": "больших шкафов",
    "case": "Родительный (Genitive)",
-   "explain": "«больших шкафов» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«больших шкафов» — «из» always takes the genitive.",
    "id": "c35"
   },
   {
@@ -501,7 +305,7 @@
    ],
    "correct": "красного дерева",
    "case": "Родительный (Genitive)",
-   "explain": "«красного дерева» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«красного дерева» depends on the noun «шкафов» (whose? of what?) — genitive.",
    "id": "c36"
   },
   {
@@ -515,7 +319,7 @@
    ],
    "correct": "первом шуме",
    "case": "Предложный (Prepositional)",
-   "explain": "«первом шуме» — after the preposition «при», for location or topic.",
+   "explain": "«первом шуме» — «при» always takes the prepositional.",
    "id": "c37"
   },
   {
@@ -529,22 +333,8 @@
    ],
    "correct": "смежном помещении",
    "case": "Предложный (Prepositional)",
-   "explain": "«смежном помещении» — after the preposition «в», for location or topic.",
+   "explain": "«смежном помещении» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c38"
-  },
-  {
-   "sentence": "Если в душе его не проснулось никакого ___, так это потому, что всем своим поведением Матильда — как это ни покажется странным — исполняла какой-то долг.",
-   "lemma": "чувство",
-   "options": [
-    "нежном чувстве",
-    "нежного чувства",
-    "нежным чувством",
-    "нежному чувству"
-   ],
-   "correct": "нежного чувства",
-   "case": "Родительный (Genitive)",
-   "explain": "«нежного чувства» — the genitive here marks possession, absence, or quantity.",
-   "id": "c39"
   },
   {
    "sentence": "Для нее во всех событиях этой ночи не было ничего неожиданного, кроме горя и стыда, которые она нашла вместо ___, о котором говорится романах.",
@@ -557,7 +347,7 @@
    ],
    "correct": "полного блаженства",
    "case": "Родительный (Genitive)",
-   "explain": "«полного блаженства» — after the preposition «вместо», the genitive here marks possession, absence, or quantity.",
+   "explain": "«полного блаженства» — «вместо» always takes the genitive.",
    "id": "c40"
   }
  ]

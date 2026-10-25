@@ -19,6 +19,8 @@
 #     so the drill shows the Russian sentence alone.
 #
 # Output: public/books/exercises/<slug>__ch<cidx>.json  {"cases":[...]}
+# Then run tools/audit_case_drills.py --apply: it keeps only the drills whose
+# case the sentence proves, rebuilds their options and writes the explanations.
 # Existing files are left alone unless --force.
 
 import argparse, json, os, re, sys, hashlib, random, html

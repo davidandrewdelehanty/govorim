@@ -1,48 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Никаких этих снов или иных ___.",
-   "lemma": "явление",
-   "options": [
-    "болезненными явлениями",
-    "болезненные явления",
-    "болезненным явлениям",
-    "болезненных явлений"
-   ],
-   "correct": "болезненных явлений",
-   "case": "Родительный (Genitive)",
-   "explain": "«болезненных явлений» — the genitive here marks possession, absence, or quantity.",
-   "id": "c1"
-  },
-  {
-   "sentence": "В этом именно ___ моей стихии — математики.",
-   "lemma": "красота",
-   "options": [
-    "божественной красотой",
-    "божественной красоте",
-    "божественная красота",
-    "божественной красоты"
-   ],
-   "correct": "божественная красота",
-   "case": "Именительный (Nominative)",
-   "explain": "«божественная красота» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
-   "sentence": "И вот понимания этой ___ как раз и не хватает той.",
-   "lemma": "красота",
-   "options": [
-    "самой красоте",
-    "сама красота",
-    "самой красоты",
-    "самой красотой"
-   ],
-   "correct": "самой красоты",
-   "case": "Родительный (Genitive)",
-   "explain": "«самой красоты» — the genitive here marks possession, absence, or quantity.",
-   "id": "c3"
-  },
-  {
    "sentence": "Все это — под мерный, метрический стук колес ___ — я про себя скандирую колеса — и стихи R (его вчерашняя книга).",
    "lemma": "дорога",
    "options": [
@@ -53,36 +11,8 @@
    ],
    "correct": "подземной дороги",
    "case": "Родительный (Genitive)",
-   "explain": "«подземной дороги» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«подземной дороги» depends on the noun «колес» (whose? of what?) — genitive.",
    "id": "c4"
-  },
-  {
-   "sentence": "Все это — под мерный, метрический стук колес подземной дороги — я про себя скандирую колеса — и стихи R (его ___).",
-   "lemma": "книга",
-   "options": [
-    "вчерашней книгой",
-    "вчерашней книге",
-    "вчерашней книги",
-    "вчерашняя книга"
-   ],
-   "correct": "вчерашняя книга",
-   "case": "Именительный (Nominative)",
-   "explain": "«вчерашняя книга» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
-  },
-  {
-   "sentence": "Так приятно чувствовать чей-то ___, любовно охраняющий от малейшей ошибки, от малейшего неверного шага.",
-   "lemma": "глаз",
-   "options": [
-    "зорком глазе",
-    "зоркого глаза",
-    "зоркому глазу",
-    "зоркий глаз"
-   ],
-   "correct": "зоркий глаз",
-   "case": "Винительный (Accusative)",
-   "explain": "«зоркий глаз» — the accusative marks the direct object of the verb.",
-   "id": "c6"
   },
   {
    "sentence": "Так приятно чувствовать чей-то зоркий глаз, любовно охраняющий от малейшей ошибки, от малейшего ___.",
@@ -95,22 +25,8 @@
    ],
    "correct": "неверного шага",
    "case": "Родительный (Genitive)",
-   "explain": "«неверного шага» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«неверного шага» — «от» always takes the genitive.",
    "id": "c7"
-  },
-  {
-   "sentence": "Всякий ___ — непременно Колумб.",
-   "lemma": "поэт",
-   "options": [
-    "подлинный поэт",
-    "подлинным поэтом",
-    "подлинном поэте",
-    "подлинного поэта"
-   ],
-   "correct": "подлинный поэт",
-   "case": "Именительный (Nominative)",
-   "explain": "«подлинный поэт» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
   },
   {
    "sentence": "В ___: есть ли где счастье мудрее, безоблачнее, чем в этом чудесном мире.",
@@ -123,21 +39,21 @@
    ],
    "correct": "самом деле",
    "case": "Предложный (Prepositional)",
-   "explain": "«самом деле» — after the preposition «в», for location or topic.",
+   "explain": "«самом деле» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c10"
   },
   {
    "sentence": "В самом деле: есть ли где счастье мудрее, безоблачнее, чем в этом ___.",
    "lemma": "мир",
    "options": [
-    "чудесный мир",
     "чудесном мире",
     "чудесного мира",
+    "чудесным миром",
     "чудесному миру"
    ],
    "correct": "чудесном мире",
    "case": "Предложный (Prepositional)",
-   "explain": "«чудесном мире» — after the preposition «в», for location or topic.",
+   "explain": "«чудесном мире» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c11"
   },
   {
@@ -151,64 +67,8 @@
    ],
    "correct": "вечным законам",
    "case": "Дательный (Dative)",
-   "explain": "«вечным законам» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«вечным законам» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c12"
-  },
-  {
-   "sentence": "Истина — одна, и ___ — один; и эта истина — дважды два, и этот истинный путь — четыре.",
-   "lemma": "путь",
-   "options": [
-    "истинного пути",
-    "истинным путём",
-    "истинном пути",
-    "истинный путь"
-   ],
-   "correct": "истинный путь",
-   "case": "Именительный (Nominative)",
-   "explain": "«истинный путь» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
-  },
-  {
-   "sentence": "Истина — одна, и ___ — один; и эта истина — дважды два, и этот истинный путь — четыре.",
-   "lemma": "путь",
-   "options": [
-    "истинного пути",
-    "истинным путём",
-    "истинном пути",
-    "истинный путь"
-   ],
-   "correct": "истинный путь",
-   "case": "Именительный (Nominative)",
-   "explain": "«истинный путь» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
-  },
-  {
-   "sentence": "Вот был мой путь: от части к целому; часть — R-13, ___ — наш Институт Государственных Поэтов и Писателей.",
-   "lemma": "целое",
-   "options": [
-    "величественного целого",
-    "величественному целому",
-    "величественным целым",
-    "величественное целое"
-   ],
-   "correct": "величественное целое",
-   "case": "Именительный (Nominative)",
-   "explain": "«величественное целое» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
-  },
-  {
-   "sentence": "Огромнейшая ___ художественного слова — тратилась совершенно зря.",
-   "lemma": "сила",
-   "options": [
-    "великолепной силы",
-    "великолепной силе",
-    "великолепная сила",
-    "великолепной силой"
-   ],
-   "correct": "великолепная сила",
-   "case": "Именительный (Nominative)",
-   "explain": "«великолепная сила» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
   },
   {
    "sentence": "Огромнейшая великолепная сила ___ — тратилась совершенно зря.",
@@ -221,36 +81,8 @@
    ],
    "correct": "художественного слова",
    "case": "Родительный (Genitive)",
-   "explain": "«художественного слова» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«художественного слова» depends on the noun «сила» (whose? of what?) — genitive.",
    "id": "c18"
-  },
-  {
-   "sentence": "Так же смешно и нелепо, как то, что море у древних ___ тупо билось о берег, и заключенные в волнах миллионы килограммометров — уходили только на подогревание чувств у влюбленных.",
-   "lemma": "сутки",
-   "options": [
-    "круглыми сутками",
-    "круглых сутках",
-    "круглым суткам",
-    "круглые сутки"
-   ],
-   "correct": "круглые сутки",
-   "case": "Винительный (Accusative)",
-   "explain": "«круглые сутки» — the accusative marks the direct object of the verb.",
-   "id": "c19"
-  },
-  {
-   "sentence": "Мы из влюбленного шепота волн — добыли электричество, из брызжущего ___ зверя — мы сделали домашнее животное: и точно так же у нас приручена и оседлана, когда-то дикая, стихия поэзии.",
-   "lemma": "пена",
-   "options": [
-    "бешеной пене",
-    "бешеной пены",
-    "бешеная пена",
-    "бешеной пеной"
-   ],
-   "correct": "бешеной пеной",
-   "case": "Творительный (Instrumental)",
-   "explain": "«бешеной пеной» — the instrumental marks the means, company, or complement.",
-   "id": "c20"
   },
   {
    "sentence": "Теперь поэзия — уже не беспардонный ___: поэзия — государственная служба, поэзия — полезность.",
@@ -263,22 +95,8 @@
    ],
    "correct": "соловьиный свист",
    "case": "Винительный (Accusative)",
-   "explain": "«соловьиный свист» — the accusative marks the direct object of the verb.",
+   "explain": "«соловьиный свист» is the direct object of «беспардонный» (кого? что?) — accusative.",
    "id": "c21"
-  },
-  {
-   "sentence": "Теперь поэзия — уже не беспардонный соловьиный свист: поэзия — ___, поэзия — полезность.",
-   "lemma": "служба",
-   "options": [
-    "государственной службой",
-    "государственной службы",
-    "государственная служба",
-    "государственной службе"
-   ],
-   "correct": "государственная служба",
-   "case": "Именительный (Nominative)",
-   "explain": "«государственная служба» — the subject of the sentence stands in the nominative.",
-   "id": "c22"
   },
   {
    "sentence": "Кто, прочитав их, не склонится набожно перед ___ этого Нумера из Нумеров?",
@@ -291,7 +109,7 @@
    ],
    "correct": "самоотверженным трудом",
    "case": "Творительный (Instrumental)",
-   "explain": "«самоотверженным трудом» — after the preposition «перед», the instrumental marks the means, company, or complement.",
+   "explain": "«самоотверженным трудом» — «перед» always takes the instrumental.",
    "id": "c29"
   },
   {
@@ -305,22 +123,8 @@
    ],
    "correct": "судебных приговоров",
    "case": "Родительный (Genitive)",
-   "explain": "«Судебных приговоров» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«судебных приговоров» depends on the noun «Цветы» (whose? of what?) — genitive.",
    "id": "c30"
-  },
-  {
-   "sentence": "А ___ «Стансов о половой гигиене»?",
-   "lemma": "книга",
-   "options": [
-    "настольной книге",
-    "настольной книгой",
-    "настольная книга",
-    "настольной книги"
-   ],
-   "correct": "настольная книга",
-   "case": "Именительный (Nominative)",
-   "explain": "«настольная книга» — the subject of the sentence stands in the nominative.",
-   "id": "c31"
   },
   {
    "sentence": "А настольная книга «Стансов о ___»?",
@@ -333,7 +137,7 @@
    ],
    "correct": "половой гигиене",
    "case": "Предложный (Prepositional)",
-   "explain": "«половой гигиене» — after the preposition «о», for location or topic.",
+   "explain": "«половой гигиене» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c32"
   }
  ]

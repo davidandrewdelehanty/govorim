@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Теперь попросим у читателя позволения объяснить ___ повести нашей предыдущими обстоятельствами, кои не успели мы еще рассказать.",
-   "lemma": "происшествие",
-   "options": [
-    "последним происшествиям",
-    "последние происшествия",
-    "последних происшествий",
-    "последних происшествиях"
-   ],
-   "correct": "последние происшествия",
-   "case": "Винительный (Accusative)",
-   "explain": "«последние происшествия» — the accusative marks the direct object of the verb.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Теперь попросим у читателя позволения объяснить последние происшествия повести нашей ___, кои не успели мы еще рассказать.",
-   "lemma": "обстоятельство",
-   "options": [
-    "предыдущими обстоятельствами",
-    "предыдущие обстоятельства",
-    "предыдущих обстоятельств",
-    "предыдущих обстоятельствах"
-   ],
-   "correct": "предыдущими обстоятельствами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«предыдущими обстоятельствами» — the instrumental marks the means, company, or complement.",
-   "id": "c2"
-  },
-  {
    "sentence": "В ней лежал ___, тощее доказательство не весьма достаточного состояния.",
    "lemma": "чемодан",
    "options": [
@@ -39,22 +11,8 @@
    ],
    "correct": "маленький чемодан",
    "case": "Именительный (Nominative)",
-   "explain": "«маленький чемодан» — the subject of the sentence stands in the nominative.",
+   "explain": "«маленький чемодан» is the subject of «лежал» — who or what does it — so nominative.",
    "id": "c4"
-  },
-  {
-   "sentence": "Слуга соскочил с козел, отпер дверцы, и через минуту ___ в военной шинели и в белой фуражке вошел к смотрителю, -- вслед за ним слуга внес шкатулку и поставил ее на окошко.",
-   "lemma": "человек",
-   "options": [
-    "молодого человека",
-    "молодом человеке",
-    "молодому человеку",
-    "молодой человек"
-   ],
-   "correct": "молодой человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«молодой человек» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
   },
   {
    "sentence": "Слуга соскочил с козел, отпер дверцы, и через минуту молодой человек в военной шинели и в ___ вошел к смотрителю, -- вслед за ним слуга внес шкатулку и поставил ее на окошко.",
@@ -67,7 +25,7 @@
    ],
    "correct": "белой фуражке",
    "case": "Предложный (Prepositional)",
-   "explain": "«белой фуражке» — after the preposition «в», for location or topic.",
+   "explain": "«белой фуражке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c7"
   },
   {
@@ -81,7 +39,7 @@
    ],
    "correct": "молодой человек",
    "case": "Именительный (Nominative)",
-   "explain": "«Молодой человек» — the subject of the sentence stands in the nominative.",
+   "explain": "«молодой человек» is the subject of «стал» — who or what does it — so nominative.",
    "id": "c9"
   },
   {
@@ -95,7 +53,7 @@
    ],
    "correct": "молодой человек",
    "case": "Именительный (Nominative)",
-   "explain": "«Молодой человек» — the subject of the sentence stands in the nominative.",
+   "explain": "«молодой человек» is the subject of «заговорил» — who or what does it — so nominative.",
    "id": "c10"
   },
   {
@@ -109,64 +67,8 @@
    ],
    "correct": "здешних помещиков",
    "case": "Родительный (Genitive)",
-   "explain": "«здешних помещиков» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«здешних помещиков» — «из» always takes the genitive.",
    "id": "c12"
-  },
-  {
-   "sentence": "Француз, все еще не веря своим ушам, протянул бумаги свои ___, который быстро их пересмотрел.",
-   "lemma": "офицер",
-   "options": [
-    "молодым офицером",
-    "молодом офицере",
-    "молодому офицеру",
-    "молодой офицер"
-   ],
-   "correct": "молодому офицеру",
-   "case": "Дательный (Dative)",
-   "explain": "«молодому офицеру» — the dative marks the indirect object or recipient.",
-   "id": "c14"
-  },
-  {
-   "sentence": "Вам поверят и дадут ___.",
-   "lemma": "свидетельство",
-   "options": [
-    "нужные свидетельства",
-    "нужным свидетельствам",
-    "нужными свидетельствами",
-    "нужных свидетельствах"
-   ],
-   "correct": "нужные свидетельства",
-   "case": "Винительный (Accusative)",
-   "explain": "«нужные свидетельства» — the accusative marks the direct object of the verb.",
-   "id": "c16"
-  },
-  {
-   "sentence": "Но кипы ассигнаций были тут, у него в кармане, и красноречиво твердили ему о существенности ___.",
-   "lemma": "происшествие",
-   "options": [
-    "удивительного происшествия",
-    "удивительным происшествием",
-    "удивительному происшествию",
-    "удивительное происшествие"
-   ],
-   "correct": "удивительного происшествия",
-   "case": "Родительный (Genitive)",
-   "explain": "«удивительного происшествия» — the genitive here marks possession, absence, or quantity.",
-   "id": "c17"
-  },
-  {
-   "sentence": "Ямщик был в таком же изумлении от его щедрости, как и ___ от предложения Дубровского.",
-   "lemma": "француз",
-   "options": [
-    "самом французе",
-    "самому французу",
-    "сам француз",
-    "самим французом"
-   ],
-   "correct": "сам француз",
-   "case": "Именительный (Nominative)",
-   "explain": "«сам француз» — the subject of the sentence stands in the nominative.",
-   "id": "c18"
   },
   {
    "sentence": "Там провел он целую ночь, а на другой день утром на ___ отправился восвояси без брички и без чемодана, с пухлым лицом и красными глазами.",
@@ -179,36 +81,8 @@
    ],
    "correct": "порожней тройке",
    "case": "Предложный (Prepositional)",
-   "explain": "«порожней тройке» — after the preposition «на», for location or topic.",
+   "explain": "«порожней тройке» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c20"
-  },
-  {
-   "sentence": "Там провел он целую ночь, а на другой день утром на порожней тройке отправился восвояси без брички и без чемодана, с пухлым лицом и ___.",
-   "lemma": "глаз",
-   "options": [
-    "красные глаза",
-    "красных глаз",
-    "красных глазах",
-    "красными глазами"
-   ],
-   "correct": "красными глазами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«красными глазами» — the instrumental marks the means, company, or complement.",
-   "id": "c22"
-  },
-  {
-   "sentence": "Каковы ни были его ___ (мы их узнаем после), но в его поведении не оказалось ничего предосудительного.",
-   "lemma": "намерение",
-   "options": [
-    "тайные намерения",
-    "тайных намерениях",
-    "тайным намерениям",
-    "тайных намерений"
-   ],
-   "correct": "тайные намерения",
-   "case": "Именительный (Nominative)",
-   "explain": "«тайные намерения» — the subject of the sentence stands in the nominative.",
-   "id": "c23"
   },
   {
    "sentence": "Ночуя в одной комнате с человеком, коего мог он почесть личным своим врагом и одним из ___ его бедствия, Дубровский не мог удержаться от искушения.",
@@ -221,22 +95,8 @@
    ],
    "correct": "главных виновников",
    "case": "Родительный (Genitive)",
-   "explain": "«главных виновников» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«главных виновников» — «из» always takes the genitive.",
    "id": "c24"
-  },
-  {
-   "sentence": "После чаю и ___ прочие гости начали разъезжаться, вскоре Покровское опустело, и все вошло в обыкновенный порядок.",
-   "lemma": "завтрак",
-   "options": [
-    "прощального завтрака",
-    "прощальному завтраку",
-    "прощальным завтраком",
-    "прощальном завтраке"
-   ],
-   "correct": "прощального завтрака",
-   "case": "Родительный (Genitive)",
-   "explain": "«прощального завтрака» — the genitive here marks possession, absence, or quantity.",
-   "id": "c25"
   },
   {
    "sentence": "После чаю и прощального завтрака ___ начали разъезжаться, вскоре Покровское опустело, и все вошло в обыкновенный порядок.",
@@ -249,7 +109,7 @@
    ],
    "correct": "прочие гости",
    "case": "Именительный (Nominative)",
-   "explain": "«прочие гости» — the subject of the sentence stands in the nominative.",
+   "explain": "«прочие гости» is the subject of «начали» — who or what does it — so nominative.",
    "id": "c26"
   }
  ]

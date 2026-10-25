@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Для этой цели первый указанный нами путь – ___ по частям, по деталям – недостаточно удобен.",
-   "lemma": "проработка",
-   "options": [
-    "непосредственная проработка",
-    "непосредственной проработки",
-    "непосредственной проработке",
-    "непосредственной проработкой"
-   ],
-   "correct": "непосредственной проработки",
-   "case": "Родительный (Genitive)",
-   "explain": "«непосредственной проработки» — the genitive here marks possession, absence, or quantity.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Между тем при чтении ___ с незнакомым содержанием мы находимся в довольно сходном положении.",
-   "lemma": "книга",
-   "options": [
-    "новой книге",
-    "новой книги",
-    "новая книга",
-    "новой книгой"
-   ],
-   "correct": "новой книги",
-   "case": "Родительный (Genitive)",
-   "explain": "«новой книги» — the genitive here marks possession, absence, or quantity.",
-   "id": "c3"
-  },
-  {
    "sentence": "Между тем при чтении новой книги с ___ мы находимся в довольно сходном положении.",
    "lemma": "содержание",
    "options": [
@@ -39,36 +11,8 @@
    ],
    "correct": "незнакомым содержанием",
    "case": "Творительный (Instrumental)",
-   "explain": "«незнакомым содержанием» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«незнакомым содержанием» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c4"
-  },
-  {
-   "sentence": "Между тем при чтении новой книги с незнакомым содержанием мы находимся в довольно ___.",
-   "lemma": "положение",
-   "options": [
-    "сходным положением",
-    "сходном положении",
-    "сходного положения",
-    "сходному положению"
-   ],
-   "correct": "сходном положении",
-   "case": "Предложный (Prepositional)",
-   "explain": "«сходном положении» — after the preposition «в», for location or topic.",
-   "id": "c5"
-  },
-  {
-   "sentence": "Для нас обычен ___ восприятия предметов: от общего впечатления к подробностям.",
-   "lemma": "путь",
-   "options": [
-    "другого пути",
-    "другому пути",
-    "другой путь",
-    "другом пути"
-   ],
-   "correct": "другой путь",
-   "case": "Именительный (Nominative)",
-   "explain": "«другой путь» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
   },
   {
    "sentence": "Для нас обычен другой путь восприятия предметов: от ___ к подробностям.",
@@ -81,21 +25,21 @@
    ],
    "correct": "общего впечатления",
    "case": "Родительный (Genitive)",
-   "explain": "«общего впечатления» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«общего впечатления» — «от» always takes the genitive.",
    "id": "c7"
   },
   {
    "sentence": "Видя незнакомую картину, мы сперва схватываем ___ ее и общее содержание, потом переходим к деталям.",
    "lemma": "вид",
    "options": [
-    "общего вида",
-    "общим видом",
     "общий вид",
+    "общим видом",
+    "общему виду",
     "общем виде"
    ],
    "correct": "общий вид",
    "case": "Винительный (Accusative)",
-   "explain": "«общий вид» — the accusative marks the direct object of the verb.",
+   "explain": "«общий вид» is the direct object of «схватываем» (кого? что?) — accusative.",
    "id": "c8"
   },
   {
@@ -109,7 +53,7 @@
    ],
    "correct": "настоящим чтением",
    "case": "Творительный (Instrumental)",
-   "explain": "«настоящим чтением» — after the preposition «перед», the instrumental marks the means, company, or complement.",
+   "explain": "«настоящим чтением» — «перед» always takes the instrumental.",
    "id": "c9"
   },
   {
@@ -123,50 +67,8 @@
    ],
    "correct": "общем виде",
    "case": "Предложный (Prepositional)",
-   "explain": "«общем виде» — after the preposition «в», for location or topic.",
+   "explain": "«общем виде» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c10"
-  },
-  {
-   "sentence": "Для этого надо узнать тему ее; задачи, которые ставит себе автор; его точку зрения на предмет; план или схему содержания книги; ___ ее, основные факты, приведенные в ней, и т. п.",
-   "lemma": "мысль",
-   "options": [
-    "основных мыслях",
-    "основные мысли",
-    "основным мыслям",
-    "основными мыслями"
-   ],
-   "correct": "основные мысли",
-   "case": "Именительный (Nominative)",
-   "explain": "«основные мысли» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
-  },
-  {
-   "sentence": "Для этого надо узнать тему ее; задачи, которые ставит себе автор; его точку зрения на предмет; план или схему содержания книги; основные мысли ее, ___, приведенные в ней, и т. п.",
-   "lemma": "факт",
-   "options": [
-    "основных фактов",
-    "основные факты",
-    "основными фактами",
-    "основным фактам"
-   ],
-   "correct": "основные факты",
-   "case": "Именительный (Nominative)",
-   "explain": "«основные факты» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
-  },
-  {
-   "sentence": "Но обыкновенно главную мысль и все остальное приходится искать ___ – в предисловии, введении, оглавлении, заключении книги.",
-   "lemma": "путь",
-   "options": [
-    "другие пути",
-    "других путях",
-    "другим путям",
-    "другими путями"
-   ],
-   "correct": "другими путями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«другими путями» — the instrumental marks the means, company, or complement.",
-   "id": "c14"
   },
   {
    "sentence": "Между тем в нем часто содержатся очень ___.",
@@ -179,7 +81,7 @@
    ],
    "correct": "важные указания",
    "case": "Именительный (Nominative)",
-   "explain": "«важные указания» — the subject of the sentence stands in the nominative.",
+   "explain": "«важные указания» is the subject of «содержатся» — who or what does it — so nominative.",
    "id": "c15"
   },
   {
@@ -193,22 +95,8 @@
    ],
    "correct": "первом чтении",
    "case": "Предложный (Prepositional)",
-   "explain": "«первом чтении» — after the preposition «при», for location or topic.",
+   "explain": "«первом чтении» — «при» always takes the prepositional.",
    "id": "c16"
-  },
-  {
-   "sentence": "Для нас здесь особенно важно то, что нередко в конце введения намечается, а иногда и обосновывается ___ изложения книги и метод изложения.",
-   "lemma": "план",
-   "options": [
-    "общему плану",
-    "общего плана",
-    "общий план",
-    "общем плане"
-   ],
-   "correct": "общий план",
-   "case": "Именительный (Nominative)",
-   "explain": "«общий план» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
   },
   {
    "sentence": "Само собою ясно, как важно это для ___ с книгою.",
@@ -221,78 +109,22 @@
    ],
    "correct": "предварительного ознакомления",
    "case": "Родительный (Genitive)",
-   "explain": "«предварительного ознакомления» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«предварительного ознакомления» — «для» always takes the genitive.",
    "id": "c18"
-  },
-  {
-   "sentence": "Обыкновенно с его помощью мы можем, еще не читая книги, узнать ___ ее, основные рубрики, общее содержание, основные темы, в ней затронутые.",
-   "lemma": "план",
-   "options": [
-    "общему плану",
-    "общего плана",
-    "общий план",
-    "общем плане"
-   ],
-   "correct": "общий план",
-   "case": "Винительный (Accusative)",
-   "explain": "«общий план» — the accusative marks the direct object of the verb.",
-   "id": "c19"
-  },
-  {
-   "sentence": "Обыкновенно с его помощью мы можем, еще не читая книги, узнать общий план ее, ___, общее содержание, основные темы, в ней затронутые.",
-   "lemma": "рубрика",
-   "options": [
-    "основным рубрикам",
-    "основными рубриками",
-    "основных рубрик",
-    "основные рубрики"
-   ],
-   "correct": "основные рубрики",
-   "case": "Именительный (Nominative)",
-   "explain": "«основные рубрики» — the subject of the sentence stands in the nominative.",
-   "id": "c20"
-  },
-  {
-   "sentence": "Обыкновенно с его помощью мы можем, еще не читая книги, узнать общий план ее, основные рубрики, общее содержание, ___, в ней затронутые.",
-   "lemma": "тема",
-   "options": [
-    "основным темам",
-    "основных тем",
-    "основные темы",
-    "основных темах"
-   ],
-   "correct": "основные темы",
-   "case": "Именительный (Nominative)",
-   "explain": "«основные темы» — the subject of the sentence stands in the nominative.",
-   "id": "c21"
   },
   {
    "sentence": "Совершенно иное должно сказать об оглавлении ___.",
    "lemma": "книга",
    "options": [
-    "научными книгами",
+    "научных книгах",
     "научные книги",
     "научных книг",
-    "научных книгах"
+    "научным книгам"
    ],
    "correct": "научных книг",
    "case": "Родительный (Genitive)",
-   "explain": "«научных книг» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«научных книг» depends on the noun «оглавлении» (whose? of what?) — genitive.",
    "id": "c23"
-  },
-  {
-   "sentence": "Оглавление ___ имеет гораздо большее значение.",
-   "lemma": "книга",
-   "options": [
-    "научной книге",
-    "научной книгой",
-    "научной книги",
-    "научная книга"
-   ],
-   "correct": "научной книги",
-   "case": "Родительный (Genitive)",
-   "explain": "«научной книги» — the genitive here marks possession, absence, or quantity.",
-   "id": "c24"
   },
   {
    "sentence": "План помогает общей ориентировке в ___.",
@@ -305,22 +137,8 @@
    ],
    "correct": "новом месте",
    "case": "Предложный (Prepositional)",
-   "explain": "«новом месте» — after the preposition «в», for location or topic.",
+   "explain": "«новом месте» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c25"
-  },
-  {
-   "sentence": "Так же полезно просмотреть оглавление ___ перед ее чтением.",
-   "lemma": "книга",
-   "options": [
-    "новой книге",
-    "новой книги",
-    "новая книга",
-    "новой книгой"
-   ],
-   "correct": "новой книги",
-   "case": "Родительный (Genitive)",
-   "explain": "«новой книги» — the genitive here marks possession, absence, or quantity.",
-   "id": "c26"
   },
   {
    "sentence": "У нас тогда получится ___ содержания книги, мы можем получить знание о предмете незнакомой нам науки.",
@@ -333,7 +151,7 @@
    ],
    "correct": "общая картина",
    "case": "Именительный (Nominative)",
-   "explain": "«общая картина» — the subject of the sentence stands in the nominative.",
+   "explain": "«общая картина» is the subject of «получится» — who or what does it — so nominative.",
    "id": "c27"
   },
   {
@@ -347,21 +165,21 @@
    ],
    "correct": "основные темы",
    "case": "Именительный (Nominative)",
-   "explain": "«основные темы» — the subject of the sentence stands in the nominative.",
+   "explain": "«основные темы» is the subject of «указываются» — who or what does it — so nominative.",
    "id": "c28"
   },
   {
    "sentence": "Отметим здесь, что во многих оглавлениях указываются только основные темы глав; в некоторых дается кроме этого и перечень содержания ___.",
    "lemma": "глава",
    "options": [
-    "самими главами",
     "самих главах",
+    "самим главам",
     "самих глав",
-    "самим главам"
+    "сами главы"
    ],
    "correct": "самих глав",
    "case": "Родительный (Genitive)",
-   "explain": "«самих глав» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«самих глав» depends on the noun «содержания» (whose? of what?) — genitive.",
    "id": "c29"
   },
   {
@@ -375,7 +193,7 @@
    ],
    "correct": "предварительном ознакомлении",
    "case": "Предложный (Prepositional)",
-   "explain": "«предварительном ознакомлении» — after the preposition «при», for location or topic.",
+   "explain": "«предварительном ознакомлении» — «при» always takes the prepositional.",
    "id": "c30"
   },
   {
@@ -389,7 +207,7 @@
    ],
    "correct": "самого чтения",
    "case": "Родительный (Genitive)",
-   "explain": "«самого чтения» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«самого чтения» depends on the noun «процессе» (whose? of what?) — genitive.",
    "id": "c31"
   },
   {
@@ -403,36 +221,8 @@
    ],
    "correct": "краткому конспекту",
    "case": "Дательный (Dative)",
-   "explain": "«краткому конспекту» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«краткому конспекту» — «к» always takes the dative.",
    "id": "c32"
-  },
-  {
-   "sentence": "При таких ___ необходимо хорошенько в них разобраться, разобраться в частях, в отделах книги; отдать себе отчет, в каком отношении находится данная глава ко всему отделу, ко всей книге.",
-   "lemma": "оглавление",
-   "options": [
-    "подробными оглавлениями",
-    "подробные оглавления",
-    "подробных оглавлений",
-    "подробных оглавлениях"
-   ],
-   "correct": "подробных оглавлениях",
-   "case": "Предложный (Prepositional)",
-   "explain": "«подробных оглавлениях» — after the preposition «при», for location or topic.",
-   "id": "c33"
-  },
-  {
-   "sentence": "___ тогда будет рассмотрением, углублением, разъяснением уже намеченных мыслей.",
-   "lemma": "чтение",
-   "options": [
-    "само чтение",
-    "самом чтении",
-    "самого чтения",
-    "самим чтением"
-   ],
-   "correct": "само чтение",
-   "case": "Именительный (Nominative)",
-   "explain": "«Само чтение» — the subject of the sentence stands in the nominative.",
-   "id": "c34"
   },
   {
    "sentence": "___ книги часто содержат в себе чрезвычайно важные указания на главную мысль книги, на ее задачи, подводят итог выполненной в ней работе, иногда содержат резюме основного содержания книги.",
@@ -445,21 +235,21 @@
    ],
    "correct": "заключительные строчки",
    "case": "Именительный (Nominative)",
-   "explain": "«Заключительные строчки» — the subject of the sentence stands in the nominative.",
+   "explain": "«заключительные строчки» is the subject of «содержат» — who or what does it — so nominative.",
    "id": "c35"
   },
   {
    "sentence": "Заключительные строчки книги часто содержат в себе чрезвычайно ___ на главную мысль книги, на ее задачи, подводят итог выполненной в ней работе, иногда содержат резюме основного содержания книги.",
    "lemma": "указание",
    "options": [
-    "важных указаний",
-    "важными указаниями",
+    "важные указания",
+    "важным указаниям",
     "важных указаниях",
-    "важные указания"
+    "важными указаниями"
    ],
    "correct": "важные указания",
    "case": "Винительный (Accusative)",
-   "explain": "«важные указания» — the accusative marks the direct object of the verb.",
+   "explain": "«важные указания» is the direct object of «содержат» (кого? что?) — accusative.",
    "id": "c36"
   },
   {
@@ -473,7 +263,7 @@
    ],
    "correct": "основного содержания",
    "case": "Родительный (Genitive)",
-   "explain": "«основного содержания» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«основного содержания» depends on the noun «резюме» (whose? of what?) — genitive.",
    "id": "c37"
   },
   {
@@ -487,92 +277,8 @@
    ],
    "correct": "предварительном ознакомлении",
    "case": "Предложный (Prepositional)",
-   "explain": "«предварительном ознакомлении» — after the preposition «при», for location or topic.",
+   "explain": "«предварительном ознакомлении» — «при» always takes the prepositional.",
    "id": "c38"
-  },
-  {
-   "sentence": "Не посмотреть конец книги при предварительном ознакомлении с нею – значит сделать ___.",
-   "lemma": "промах",
-   "options": [
-    "большой промах",
-    "большому промаху",
-    "большого промаха",
-    "большом промахе"
-   ],
-   "correct": "большой промах",
-   "case": "Винительный (Accusative)",
-   "explain": "«большой промах» — the accusative marks the direct object of the verb.",
-   "id": "c39"
-  },
-  {
-   "sentence": "Чем больше читатель знаком с той областью науки, к которой относится книга, тем больше дает ему такой ___ ее.",
-   "lemma": "обзор",
-   "options": [
-    "предварительном обзоре",
-    "предварительному обзору",
-    "предварительного обзора",
-    "предварительный обзор"
-   ],
-   "correct": "предварительный обзор",
-   "case": "Винительный (Accusative)",
-   "explain": "«предварительный обзор» — the accusative marks the direct object of the verb.",
-   "id": "c40"
-  },
-  {
-   "sentence": "___ книги перед изучением ее – прекрасная школа просматривания вообще.",
-   "lemma": "просмотр",
-   "options": [
-    "предварительному просмотру",
-    "предварительный просмотр",
-    "предварительным просмотром",
-    "предварительного просмотра"
-   ],
-   "correct": "предварительный просмотр",
-   "case": "Именительный (Nominative)",
-   "explain": "«Предварительный просмотр» — the subject of the sentence stands in the nominative.",
-   "id": "c41"
-  },
-  {
-   "sentence": "Предварительный просмотр книги перед изучением ее – ___ просматривания вообще.",
-   "lemma": "школа",
-   "options": [
-    "прекрасная школа",
-    "прекрасной школы",
-    "прекрасной школой",
-    "прекрасной школе"
-   ],
-   "correct": "прекрасная школа",
-   "case": "Именительный (Nominative)",
-   "explain": "«прекрасная школа» — the subject of the sentence stands in the nominative.",
-   "id": "c42"
-  },
-  {
-   "sentence": "Когда мы станем потом прорабатывать книгу, то увидим все недочеты предварительного ее обзора, и это укажет ___ в нашем способе просматривания.",
-   "lemma": "недостаток",
-   "options": [
-    "главные недостатки",
-    "главных недостатках",
-    "главным недостаткам",
-    "главными недостатками"
-   ],
-   "correct": "главные недостатки",
-   "case": "Винительный (Accusative)",
-   "explain": "«главные недостатки» — the accusative marks the direct object of the verb.",
-   "id": "c43"
-  },
-  {
-   "sentence": "Так что и в этом отношении можно рекомендовать ___*.",
-   "lemma": "просмотр",
-   "options": [
-    "предварительный просмотр",
-    "предварительном просмотре",
-    "предварительным просмотром",
-    "предварительного просмотра"
-   ],
-   "correct": "предварительный просмотр",
-   "case": "Винительный (Accusative)",
-   "explain": "«предварительный просмотр» — the accusative marks the direct object of the verb.",
-   "id": "c44"
   },
   {
    "sentence": "Если в книге имеются чертежи и рисунки, то ознакомление с ними тоже помогает ___ с содержанием книги.",
@@ -585,22 +291,8 @@
    ],
    "correct": "предварительному ознакомлению",
    "case": "Дательный (Dative)",
-   "explain": "«предварительному ознакомлению» — the dative marks the indirect object or recipient.",
+   "explain": "«помогает» takes the dative (кому? чему?).",
    "id": "c45"
-  },
-  {
-   "sentence": "Но и в этом случае полезно начинать с обзора, то есть с чтения предисловия, введения, особенно конца его, и ___ книги, ознакомиться с оглавлением, а затем уже перелистывать и просматривать самую книгу.",
-   "lemma": "строка",
-   "options": [
-    "заключительные строки",
-    "заключительным строкам",
-    "заключительных строк",
-    "заключительными строками"
-   ],
-   "correct": "заключительных строк",
-   "case": "Родительный (Genitive)",
-   "explain": "«заключительных строк» — the genitive here marks possession, absence, or quantity.",
-   "id": "c46"
   }
  ]
 }

@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Девушка, о которой зашла речь, прибыла в Лисс с ___.",
-   "lemma": "поезд",
-   "options": [
-    "ночным поездом",
-    "ночному поезду",
-    "ночной поезд",
-    "ночном поезде"
-   ],
-   "correct": "ночным поездом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«ночным поездом» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c1"
-  },
-  {
    "sentence": "Ей было девятнадцать лет — почти полных, так как девятнадцать ровно должно было прийти на ___, в десять часов вечера.",
    "lemma": "день",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "другой день",
    "case": "Винительный (Accusative)",
-   "explain": "«другой день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«другой день» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c2"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "беспечных условиях",
    "case": "Предложный (Prepositional)",
-   "explain": "«беспечных условиях» — after the preposition «в», for location or topic.",
+   "explain": "«беспечных условиях» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c3"
   },
   {
@@ -53,78 +39,8 @@
    ],
    "correct": "сладким пирогом",
    "case": "Творительный (Instrumental)",
-   "explain": "«сладким пирогом» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «отмечен», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c4"
-  },
-  {
-   "sentence": "Между тем на ее объявление в «___» последовало письмо Торпа, предлагающее место компаньонки и чтицы.",
-   "lemma": "газета",
-   "options": [
-    "лисской газетой",
-    "лисская газета",
-    "лисской газеты",
-    "лисской газете"
-   ],
-   "correct": "лисской газете",
-   "case": "Предложный (Prepositional)",
-   "explain": "«Лисской газете» — after the preposition «в», for location or topic.",
-   "id": "c5"
-  },
-  {
-   "sentence": "«Тави», — сказала она простосердечно, краснея тем тонким и обаятельно ___, какой не продается под золотой пломбой, ни вызывается искусственным душевным движением.",
-   "lemma": "румянец",
-   "options": [
-    "чистым румянцем",
-    "чистого румянца",
-    "чистому румянцу",
-    "чистый румянец"
-   ],
-   "correct": "чистым румянцем",
-   "case": "Творительный (Instrumental)",
-   "explain": "«чистым румянцем» — the instrumental marks the means, company, or complement.",
-   "id": "c6"
-  },
-  {
-   "sentence": "«Тави», — сказала она простосердечно, краснея тем тонким и обаятельно чистым румянцем, какой не продается под золотой пломбой, ни вызывается искусственным ___.",
-   "lemma": "движение",
-   "options": [
-    "душевным движением",
-    "душевному движению",
-    "душевном движении",
-    "душевного движения"
-   ],
-   "correct": "душевным движением",
-   "case": "Творительный (Instrumental)",
-   "explain": "«душевным движением» — the instrumental marks the means, company, or complement.",
-   "id": "c7"
-  },
-  {
-   "sentence": "«А ваша фамилия?» Полумесяцем вознеся левую бровь, девушка взглянула на него с сердцем, выпалив «Тум» так, что оно прозвучало, как «Бум», — стальным тоном ___ прекратить разговор.",
-   "lemma": "желание",
-   "options": [
-    "ясном желании",
-    "ясного желания",
-    "ясным желанием",
-    "ясное желание"
-   ],
-   "correct": "ясного желания",
-   "case": "Родительный (Genitive)",
-   "explain": "«ясного желания» — the genitive here marks possession, absence, or quantity.",
-   "id": "c9"
-  },
-  {
-   "sentence": "___ еще распространял свою вездесущую машинную желтизну, но к его застывшему блеску примешивался уже день, отсвечивая на полу и лицах свежим пятном.",
-   "lemma": "свет",
-   "options": [
-    "электрическом свете",
-    "электрического света",
-    "электрическим светом",
-    "электрический свет"
-   ],
-   "correct": "электрический свет",
-   "case": "Винительный (Accusative)",
-   "explain": "«Электрический свет» — the accusative marks the direct object of the verb.",
-   "id": "c10"
   },
   {
    "sentence": "За окнами из паровоза хлестал пар, рассеиваясь по крышам ___; на сером стекле синие облака и зеленая полоса раннего неба окутывали восход, готовый двинуться над просыпавшимся Лиссом.",
@@ -137,7 +53,7 @@
    ],
    "correct": "станционных строений",
    "case": "Родительный (Genitive)",
-   "explain": "«станционных строений» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«станционных строений» depends on the noun «крышам» (whose? of what?) — genitive.",
    "id": "c12"
   },
   {
@@ -151,36 +67,8 @@
    ],
    "correct": "сером стекле",
    "case": "Предложный (Prepositional)",
-   "explain": "«сером стекле» — after the preposition «на», for location or topic.",
+   "explain": "«сером стекле» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c13"
-  },
-  {
-   "sentence": "За окнами из паровоза хлестал пар, рассеиваясь по крышам станционных строений; на сером стекле синие облака и зеленая полоса ___ окутывали восход, готовый двинуться над просыпавшимся Лиссом.",
-   "lemma": "небо",
-   "options": [
-    "раннем небе",
-    "раннее небо",
-    "раннему небу",
-    "раннего неба"
-   ],
-   "correct": "раннего неба",
-   "case": "Родительный (Genitive)",
-   "explain": "«раннего неба» — the genitive here marks possession, absence, or quantity.",
-   "id": "c14"
-  },
-  {
-   "sentence": "Как было ей все равно, куда идти, она пошла прямо и скоро заметила ___.",
-   "lemma": "сквер",
-   "options": [
-    "небольшом сквере",
-    "небольшим сквером",
-    "небольшого сквера",
-    "небольшой сквер"
-   ],
-   "correct": "небольшой сквер",
-   "case": "Винительный (Accusative)",
-   "explain": "«небольшой сквер» — the accusative marks the direct object of the verb.",
-   "id": "c15"
   },
   {
    "sentence": "Каково лезть на высоту восьмидесяти футов, ночью, по веревочной лестнице, не зная, ждет вверху ___ или удар?",
@@ -193,7 +81,7 @@
    ],
    "correct": "дружеская рука",
    "case": "Именительный (Nominative)",
-   "explain": "«дружеская рука» — the subject of the sentence stands in the nominative.",
+   "explain": "«дружеская рука» is the subject of «ждет» — who or what does it — so nominative.",
    "id": "c16"
   },
   {
@@ -207,7 +95,7 @@
    ],
    "correct": "сонных фигур",
    "case": "Родительный (Genitive)",
-   "explain": "«сонных фигур» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«сонных фигур» — «от» always takes the genitive.",
    "id": "c18"
   },
   {
@@ -221,7 +109,7 @@
    ],
    "correct": "алюминиевой клетке",
    "case": "Предложный (Prepositional)",
-   "explain": "«алюминиевой клетке» — after the preposition «в», for location or topic.",
+   "explain": "«алюминиевой клетке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c19"
   },
   {
@@ -235,7 +123,7 @@
    ],
    "correct": "современной улицей",
    "case": "Творительный (Instrumental)",
-   "explain": "«современной улицей» — after the preposition «над», the instrumental marks the means, company, or complement.",
+   "explain": "«современной улицей» — «над» always takes the instrumental.",
    "id": "c20"
   },
   {
@@ -249,50 +137,8 @@
    ],
    "correct": "кофейной мельницы",
    "case": "Родительный (Genitive)",
-   "explain": "«кофейной мельницы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«кофейной мельницы» depends on the noun «светом» (whose? of what?) — genitive.",
    "id": "c21"
-  },
-  {
-   "sentence": "— Я сзывал их звуком ___, короткой трелью; заслышав сигнал, они возвращались немедленно.",
-   "lemma": "свисток",
-   "options": [
-    "особый свисток",
-    "особом свистке",
-    "особого свистка",
-    "особым свистком"
-   ],
-   "correct": "особого свистка",
-   "case": "Родительный (Genitive)",
-   "explain": "«особого свистка» — the genitive here marks possession, absence, or quantity.",
-   "id": "c22"
-  },
-  {
-   "sentence": "— Вот тоже, — ___, пустые внутри, любят, если поводишь магнетизированной палочкой, — они плывут и расходятся, как живые.",
-   "lemma": "лебедь",
-   "options": [
-    "восковым лебедям",
-    "восковые лебеди",
-    "восковыми лебедями",
-    "восковых лебедях"
-   ],
-   "correct": "восковые лебеди",
-   "case": "Именительный (Nominative)",
-   "explain": "«восковые лебеди» — the subject of the sentence stands in the nominative.",
-   "id": "c23"
-  },
-  {
-   "sentence": "За решеткой сквера слились тени, ___, блеск стекол.",
-   "lemma": "стена",
-   "options": [
-    "белым стенам",
-    "белые стены",
-    "белых стенах",
-    "белыми стенами"
-   ],
-   "correct": "белые стены",
-   "case": "Именительный (Nominative)",
-   "explain": "«белые стены» — the subject of the sentence stands in the nominative.",
-   "id": "c24"
   },
   {
    "sentence": "— Это я сплю среди ___, — сказала Тави, оторопев и протирая глаза.",
@@ -305,7 +151,7 @@
    ],
    "correct": "белого дня",
    "case": "Родительный (Genitive)",
-   "explain": "«белого дня» — after the preposition «среди», the genitive here marks possession, absence, or quantity.",
+   "explain": "«белого дня» — «среди» always takes the genitive.",
    "id": "c25"
   },
   {
@@ -319,22 +165,8 @@
    ],
    "correct": "пустякового разговора",
    "case": "Родительный (Genitive)",
-   "explain": "«пустякового разговора» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«пустякового разговора» — «от» always takes the genitive.",
    "id": "c26"
-  },
-  {
-   "sentence": "Толкнув его дверь, девушка перескочила через полосу сора, подметавшегося ___, заняла столик и стала пить чай, просматривая газеты.",
-   "lemma": "прислуга",
-   "options": [
-    "сонной прислугой",
-    "сонной прислуги",
-    "сонная прислуга",
-    "сонной прислуге"
-   ],
-   "correct": "сонной прислугой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«сонной прислугой» — the instrumental marks the means, company, or complement.",
-   "id": "c27"
   }
  ]
 }

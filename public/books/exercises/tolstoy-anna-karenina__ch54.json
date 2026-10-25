@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "___, балаган из досок, была построена подле самого гипподрома, и туда вчера должна была быть приведена его лошадь.",
-   "lemma": "конюшня",
-   "options": [
-    "временной конюшней",
-    "временная конюшня",
-    "временной конюшни",
-    "временной конюшне"
-   ],
-   "correct": "временная конюшня",
-   "case": "Именительный (Nominative)",
-   "explain": "«Временная конюшня» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Временная конюшня, балаган из досок, была построена подле ___, и туда вчера должна была быть приведена его лошадь.",
    "lemma": "гипподром",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "самого гипподрома",
    "case": "Родительный (Genitive)",
-   "explain": "«самого гипподрома» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«самого гипподрома» depends on the noun «подле» (whose? of what?) — genitive.",
    "id": "c2"
   },
   {
@@ -33,28 +19,14 @@
    "lemma": "день",
    "options": [
     "последних дней",
-    "последними днями",
-    "последних днях",
-    "последние дни"
+    "последним дням",
+    "последние дни",
+    "последними днями"
    ],
    "correct": "последние дни",
    "case": "Винительный (Accusative)",
-   "explain": "«последние дни» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«последние дни» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c3"
-  },
-  {
-   "sentence": "___ в высоких сапогах и в короткой жакетке, с клочком волос, оставленным только под подбородком, неумелою походкой жокеев, растопыривая локти и раскачиваясь, вышел навстречу.",
-   "lemma": "англичанин",
-   "options": [
-    "сухим англичанином",
-    "сухому англичанину",
-    "сухом англичанине",
-    "сухой англичанин"
-   ],
-   "correct": "сухой англичанин",
-   "case": "Именительный (Nominative)",
-   "explain": "«Сухой англичанин» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
   },
   {
    "sentence": "Сухой англичанин в ___ и в короткой жакетке, с клочком волос, оставленным только под подбородком, неумелою походкой жокеев, растопыривая локти и раскачиваясь, вышел навстречу.",
@@ -67,7 +39,7 @@
    ],
    "correct": "высоких сапогах",
    "case": "Предложный (Prepositional)",
-   "explain": "«высоких сапогах» — after the preposition «в», for location or topic.",
+   "explain": "«высоких сапогах» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c5"
   },
   {
@@ -81,7 +53,7 @@
    ],
    "correct": "короткой жакетке",
    "case": "Предложный (Prepositional)",
-   "explain": "«короткой жакетке» — after the preposition «в», for location or topic.",
+   "explain": "«короткой жакетке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c6"
   },
   {
@@ -95,22 +67,8 @@
    ],
    "correct": "чистой куртке",
    "case": "Предложный (Prepositional)",
-   "explain": "«чистой куртке» — after the preposition «в», for location or topic.",
+   "explain": "«чистой куртке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c7"
-  },
-  {
-   "sentence": "Дежурный, в чистой куртке, нарядный, ___, с метлой в руке, встретил входивших и пошел за ними.",
-   "lemma": "мальчик",
-   "options": [
-    "молодцеватого мальчика",
-    "молодцеватому мальчику",
-    "молодцеватый мальчик",
-    "молодцеватым мальчиком"
-   ],
-   "correct": "молодцеватый мальчик",
-   "case": "Именительный (Nominative)",
-   "explain": "«молодцеватый мальчик» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
   },
   {
    "sentence": "В бараке стояло пять лошадей по денникам, и Вронский знал, что тут же нынче должен быть приведен и стоит его ___, рыжий пятивершковый Гладиатор Махотина.",
@@ -123,22 +81,8 @@
    ],
    "correct": "главный соперник",
    "case": "Именительный (Nominative)",
-   "explain": "«главный соперник» — the subject of the sentence stands in the nominative.",
+   "explain": "«главный соперник» is the subject of «стоит» — who or what does it — so nominative.",
    "id": "c9"
-  },
-  {
-   "sentence": "В бараке стояло пять лошадей по денникам, и Вронский знал, что тут же нынче должен быть приведен и стоит его главный соперник, ___ Гладиатор Махотина.",
-   "lemma": "пятивершковый",
-   "options": [
-    "рыжий пятивершковый",
-    "рыжему пятивершковому",
-    "рыжим пятивершковым",
-    "рыжем пятивершковом"
-   ],
-   "correct": "рыжий пятивершковый",
-   "case": "Именительный (Nominative)",
-   "explain": "«рыжий пятивершковый» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
   },
   {
    "sentence": "Еще более, чем свою лошадь, Вронскому хотелось видеть Гладиатора, которого он не видал; но Вронский знал, что, по законам приличия ___, не только нельзя видеть его, но неприлично и расспрашивать про него.",
@@ -151,22 +95,8 @@
    ],
    "correct": "конской охоты",
    "case": "Родительный (Genitive)",
-   "explain": "«конской охоты» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«конской охоты» depends on the noun «приличия» (whose? of what?) — genitive.",
    "id": "c11"
-  },
-  {
-   "sentence": "– А вы верно знаете, что не нужно было ___?",
-   "lemma": "потнение",
-   "options": [
-    "большего потнения",
-    "большем потнении",
-    "большим потнением",
-    "большему потнению"
-   ],
-   "correct": "большего потнения",
-   "case": "Родительный (Genitive)",
-   "explain": "«большего потнения» — the genitive here marks possession, absence, or quantity.",
-   "id": "c12"
   },
   {
    "sentence": "В деннике, перебирая ногами по ___, стояла караковая лошадь с намордником.",
@@ -179,50 +109,8 @@
    ],
    "correct": "свежей соломе",
    "case": "Дательный (Dative)",
-   "explain": "«свежей соломе» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«свежей соломе» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c13"
-  },
-  {
-   "sentence": "Оглядевшись в полусвете денника, Вронский опять невольно обнял одним ___ все стати своей любимой лошади.",
-   "lemma": "взгляд",
-   "options": [
-    "общего взгляда",
-    "общим взглядом",
-    "общий взгляд",
-    "общему взгляду"
-   ],
-   "correct": "общим взглядом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«общим взглядом» — the instrumental marks the means, company, or complement.",
-   "id": "c14"
-  },
-  {
-   "sentence": "Фру-Фру была ___ лошадь и по статям не безукоризненная.",
-   "lemma": "рост",
-   "options": [
-    "среднему росту",
-    "средним ростом",
-    "среднем росте",
-    "среднего роста"
-   ],
-   "correct": "среднего роста",
-   "case": "Родительный (Genitive)",
-   "explain": "«среднего роста» — the genitive here marks possession, absence, or quantity.",
-   "id": "c15"
-  },
-  {
-   "sentence": "Мышцы задних и ___ не были особенно крупны; но зато в подпруге лошадь была необыкновенно широкая, что особенно поражало теперь, при ее выдержке и поджаром животе.",
-   "lemma": "нога",
-   "options": [
-    "передними ногами",
-    "передних ногах",
-    "передних ног",
-    "передние ноги"
-   ],
-   "correct": "передних ног",
-   "case": "Родительный (Genitive)",
-   "explain": "«передних ног» — after the preposition «в», the genitive here marks possession, absence, or quantity.",
-   "id": "c16"
   },
   {
    "sentence": "___ ее с выпуклыми блестящими, веселыми глазами расширялась у храпа в выдающиеся ноздри с налитою внутри кровью перепонкой.",
@@ -235,7 +123,7 @@
    ],
    "correct": "сухая голова",
    "case": "Именительный (Nominative)",
-   "explain": "«Сухая голова» — the subject of the sentence stands in the nominative.",
+   "explain": "«сухая голова» is the subject of «расширялась» — who or what does it — so nominative.",
    "id": "c18"
   },
   {
@@ -249,77 +137,21 @@
    ],
    "correct": "выдающиеся ноздри",
    "case": "Винительный (Accusative)",
-   "explain": "«выдающиеся ноздри» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«выдающиеся ноздри» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c19"
-  },
-  {
-   "sentence": "Во всей фигуре и в особенности в голове ее было определенное энергическое и вместе ___.",
-   "lemma": "выражение",
-   "options": [
-    "нежное выражение",
-    "нежным выражением",
-    "нежного выражения",
-    "нежном выражении"
-   ],
-   "correct": "нежное выражение",
-   "case": "Именительный (Nominative)",
-   "explain": "«нежное выражение» — the subject of the sentence stands in the nominative.",
-   "id": "c20"
-  },
-  {
-   "sentence": "Она была одно из тех животных, которые, кажется, не говорят только потому, что ___ их рта не позволяет им этого.",
-   "lemma": "устройство",
-   "options": [
-    "механическое устройство",
-    "механическому устройству",
-    "механического устройства",
-    "механическом устройстве"
-   ],
-   "correct": "механическое устройство",
-   "case": "Именительный (Nominative)",
-   "explain": "«механическое устройство» — the subject of the sentence stands in the nominative.",
-   "id": "c21"
-  },
-  {
-   "sentence": "– Успокойся, милая, успокойся! – сказал он, погладив ее еще рукой по заду, и с радостным сознанием, что лошадь в самом ___, вышел из денника.",
-   "lemma": "состояние",
-   "options": [
-    "хорошее состояние",
-    "хорошем состоянии",
-    "хорошим состоянием",
-    "хорошему состоянию"
-   ],
-   "correct": "хорошем состоянии",
-   "case": "Предложный (Prepositional)",
-   "explain": "«хорошем состоянии» — after the preposition «в», for location or topic.",
-   "id": "c24"
-  },
-  {
-   "sentence": "– ___ быть спокойным пред ездой, – сказал он, – не будьте не в духе и ничем не расстраивайтесь.",
-   "lemma": "дело",
-   "options": [
-    "первым делом",
-    "первому делу",
-    "первое дело",
-    "первого дела"
-   ],
-   "correct": "первое дело",
-   "case": "Именительный (Nominative)",
-   "explain": "«Первое дело» — the subject of the sentence stands in the nominative.",
-   "id": "c25"
   },
   {
    "sentence": "Все, его мать, его брат, все находили нужным вмешиваться в его ___.",
    "lemma": "дело",
    "options": [
-    "сердечных делах",
     "сердечных дел",
+    "сердечным делам",
     "сердечные дела",
-    "сердечным делам"
+    "сердечными делами"
    ],
    "correct": "сердечные дела",
    "case": "Винительный (Accusative)",
-   "explain": "«сердечные дела» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«сердечные дела» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c26"
   },
   {
@@ -333,22 +165,8 @@
    ],
    "correct": "светские связи",
    "case": "Именительный (Nominative)",
-   "explain": "«светские связи» — the subject of the sentence stands in the nominative.",
+   "explain": "«светские связи» is the subject of «проходят» — who or what does it — so nominative.",
    "id": "c28"
-  },
-  {
-   "sentence": "Он чувствовал, что любовь, связывавшая его с Анной, не была минутное увлечение, которое пройдет, как проходят светские связи, не оставив других следов в жизни того и другого, кроме приятных или ___.",
-   "lemma": "воспоминание",
-   "options": [
-    "неприятных воспоминаний",
-    "неприятным воспоминаниям",
-    "неприятных воспоминаниях",
-    "неприятные воспоминания"
-   ],
-   "correct": "неприятных воспоминаний",
-   "case": "Родительный (Genitive)",
-   "explain": "«неприятных воспоминаний» — the genitive here marks possession, absence, or quantity.",
-   "id": "c30"
   }
  ]
 }

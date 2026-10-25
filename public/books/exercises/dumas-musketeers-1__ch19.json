@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Он рассудил, что через несколько минут кардинал будет извещен обо всем ___, который, повидимому, был его агентом, и совершенно основательно решил, что нельзя было терять ни минуты.",
-   "lemma": "незнакомец",
-   "options": [
-    "проклятый незнакомец",
-    "проклятому незнакомцу",
-    "проклятого незнакомца",
-    "проклятым незнакомцем"
-   ],
-   "correct": "проклятым незнакомцем",
-   "case": "Творительный (Instrumental)",
-   "explain": "«проклятым незнакомцем» — after the preposition «обо», the instrumental marks the means, company, or complement.",
-   "id": "c1"
-  },
-  {
    "sentence": "Сердце ___ было переполнено радостью.",
    "lemma": "человек",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "молодого человека",
    "case": "Родительный (Genitive)",
-   "explain": "«молодого человека» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«молодого человека» depends on the noun «Сердце» (whose? of what?) — genitive.",
    "id": "c2"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "первого раза",
    "case": "Родительный (Genitive)",
-   "explain": "«первого раза» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«первого раза» — «для» always takes the genitive.",
    "id": "c3"
   },
   {
@@ -53,36 +39,8 @@
    ],
    "correct": "обыкновенной свитой",
    "case": "Творительный (Instrumental)",
-   "explain": "«обыкновенной свитой» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «окруженный», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c4"
-  },
-  {
-   "sentence": "Д’Артаньян, как коротко знакомый в доме, прошел прямо в кабинет и велел предупредить де-Тревиля, что он ждет его по очень ___.",
-   "lemma": "дело",
-   "options": [
-    "важному делу",
-    "важном деле",
-    "важного дела",
-    "важное дело"
-   ],
-   "correct": "важному делу",
-   "case": "Дательный (Dative)",
-   "explain": "«важному делу» — after the preposition «по», the dative marks the indirect object or recipient.",
-   "id": "c5"
-  },
-  {
-   "sentence": "С ___, видя радостное выражение лица д’Артаньяна, почтенный капитан понял, что действительно произошло что-нибудь новое.",
-   "lemma": "взгляд",
-   "options": [
-    "первый взгляд",
-    "первого взгляда",
-    "первым взглядом",
-    "первому взгляду"
-   ],
-   "correct": "первого взгляда",
-   "case": "Родительный (Genitive)",
-   "explain": "«первого взгляда» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
-   "id": "c6"
   },
   {
    "sentence": "С первого взгляда, видя радостное выражение лица д’Артаньяна, ___ понял, что действительно произошло что-нибудь новое.",
@@ -95,22 +53,8 @@
    ],
    "correct": "почтенный капитан",
    "case": "Именительный (Nominative)",
-   "explain": "«почтенный капитан» — the subject of the sentence stands in the nominative.",
+   "explain": "«почтенный капитан» is the subject of «понял» — who or what does it — so nominative.",
    "id": "c7"
-  },
-  {
-   "sentence": "В продолжение всей дороги д’Артаньян спрашивал себя, следует ли довериться де-Тревилю, или только попросить достать ему ___ для одного секретного дела.",
-   "lemma": "пропуск",
-   "options": [
-    "свободном пропуске",
-    "свободному пропуску",
-    "свободным пропуском",
-    "свободный пропуск"
-   ],
-   "correct": "свободный пропуск",
-   "case": "Винительный (Accusative)",
-   "explain": "«свободный пропуск» — the accusative marks the direct object of the verb.",
-   "id": "c8"
   },
   {
    "sentence": "В продолжение всей дороги д’Артаньян спрашивал себя, следует ли довериться де-Тревилю, или только попросить достать ему свободный пропуск для одного ___.",
@@ -123,7 +67,7 @@
    ],
    "correct": "секретного дела",
    "case": "Родительный (Genitive)",
-   "explain": "«секретного дела» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«секретного дела» — «для» always takes the genitive.",
    "id": "c9"
   },
   {
@@ -137,22 +81,8 @@
    ],
    "correct": "молодой человек",
    "case": "Именительный (Nominative)",
-   "explain": "«молодой человек» — the subject of the sentence stands in the nominative.",
+   "explain": "«молодой человек» is the subject of «решился» — who or what does it — so nominative.",
    "id": "c10"
-  },
-  {
-   "sentence": "— Вы меня хотели видеть, мой ___? спросил де-Тревиль.",
-   "lemma": "друг",
-   "options": [
-    "юному другу",
-    "юный друг",
-    "юного друга",
-    "юном друге"
-   ],
-   "correct": "юный друг",
-   "case": "Именительный (Nominative)",
-   "explain": "«юный друг» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
   },
   {
    "sentence": "— Да, капитан, отвечал д’Артаньян, — и, надеюсь, вы меня извините, что я потревожил вас, когда узнаете, по какому ___ я пришел.",
@@ -165,92 +95,8 @@
    ],
    "correct": "важному делу",
    "case": "Дательный (Dative)",
-   "explain": "«важному делу» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«важному делу» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c12"
-  },
-  {
-   "sentence": "— Что вы говорите? спросил де-Тревиль, осматриваясь кругом, чтобы удостовериться, что они были совершенно одни, и снова останавливая ___ на д’Артаньяне.",
-   "lemma": "взгляд",
-   "options": [
-    "вопросительном взгляде",
-    "вопросительному взгляду",
-    "вопросительный взгляд",
-    "вопросительным взглядом"
-   ],
-   "correct": "вопросительный взгляд",
-   "case": "Винительный (Accusative)",
-   "explain": "«вопросительный взгляд» — the accusative marks the direct object of the verb.",
-   "id": "c13"
-  },
-  {
-   "sentence": "— Которую вы сохраните, надеюсь, ___, до вашей смерти.",
-   "lemma": "человек",
-   "options": [
-    "молодом человеке",
-    "молодого человека",
-    "молодому человеку",
-    "молодой человек"
-   ],
-   "correct": "молодой человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«молодой человек» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
-  },
-  {
-   "sentence": "— Сохраните вашу тайну, ___, и скажите, чего вы желаете?",
-   "lemma": "человек",
-   "options": [
-    "молодом человеке",
-    "молодого человека",
-    "молодому человеку",
-    "молодой человек"
-   ],
-   "correct": "молодой человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«молодой человек» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
-  },
-  {
-   "sentence": "— Поверьте мне, продолжал де-Тревиль: — что в ___ предприятиях надо быть четверым, чтобы доехать одному.",
-   "lemma": "род",
-   "options": [
-    "подобный род",
-    "подобного рода",
-    "подобным родом",
-    "подобном роде"
-   ],
-   "correct": "подобного рода",
-   "case": "Родительный (Genitive)",
-   "explain": "«подобного рода» — the genitive here marks possession, absence, or quantity.",
-   "id": "c16"
-  },
-  {
-   "sentence": "С самого своего приезда в Париж он не мог нахвалиться этим превосходным, вполне достойным уважения, ___.",
-   "lemma": "человек",
-   "options": [
-    "благородном человеке",
-    "благородного человека",
-    "благородному человеку",
-    "благородным человеком"
-   ],
-   "correct": "благородным человеком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«благородным человеком» — the instrumental marks the means, company, or complement.",
-   "id": "c17"
-  },
-  {
-   "sentence": "Раньше всего д’Артаньян отправился к Арамису; он еще не был у своего друга с того ___, как преследовал г-жу Бонасье.",
-   "lemma": "вечер",
-   "options": [
-    "самого вечера",
-    "самому вечеру",
-    "сам вечер",
-    "самом вечере"
-   ],
-   "correct": "самого вечера",
-   "case": "Родительный (Genitive)",
-   "explain": "«самого вечера» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
-   "id": "c18"
   },
   {
    "sentence": "Августина по-латыни и приготовить эту работу к ___, что его очень озабочивает.",
@@ -263,7 +109,7 @@
    ],
    "correct": "следующей неделе",
    "case": "Дательный (Dative)",
-   "explain": "«следующей неделе» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«следующей неделе» — «к» always takes the dative.",
    "id": "c19"
   },
   {
@@ -277,50 +123,8 @@
    ],
    "correct": "двухнедельного путешествия",
    "case": "Родительный (Genitive)",
-   "explain": "«двухнедельного путешествия» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«двухнедельного путешествия» — «для» always takes the genitive.",
    "id": "c20"
-  },
-  {
-   "sentence": "— С женщиной, которая была здесь, с женщиной с ___?",
-   "lemma": "платок",
-   "options": [
-    "вышитым платком",
-    "вышитому платку",
-    "вышитом платке",
-    "вышитый платок"
-   ],
-   "correct": "вышитым платком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«вышитым платком» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c21"
-  },
-  {
-   "sentence": "Успокоившись относительно этого ___, Арамис продолжал путь вместе с д’Артаньяном, и оба скоро пришли к Атосу.",
-   "lemma": "обстоятельство",
-   "options": [
-    "важном обстоятельстве",
-    "важное обстоятельство",
-    "важного обстоятельства",
-    "важному обстоятельству"
-   ],
-   "correct": "важного обстоятельства",
-   "case": "Родительный (Genitive)",
-   "explain": "«важного обстоятельства» — after the preposition «относительно», the genitive here marks possession, absence, or quantity.",
-   "id": "c22"
-  },
-  {
-   "sentence": "— ___, сам хорошо не знаю этого, заметил Атос: — спроси об этом у д’Артаньяна.",
-   "lemma": "слово",
-   "options": [
-    "честном слове",
-    "честному слову",
-    "честное слово",
-    "честным словом"
-   ],
-   "correct": "честное слово",
-   "case": "Именительный (Nominative)",
-   "explain": "«Честное слово» — the subject of the sentence stands in the nominative.",
-   "id": "c23"
   },
   {
    "sentence": "— Эй, Гримо, Плянше, Мускетон, Базен! закричали ___ своим слугам, — смажьте нам салом сапоги и приведите из гостиницы лошадей.",
@@ -333,35 +137,21 @@
    ],
    "correct": "молодые люди",
    "case": "Именительный (Nominative)",
-   "explain": "«молодые люди» — the subject of the sentence stands in the nominative.",
+   "explain": "«молодые люди» is the subject of «закричали» — who or what does it — so nominative.",
    "id": "c24"
-  },
-  {
-   "sentence": "— В Кале, отвечал д’Артаньян: — это самый ___ в Лондон.",
-   "lemma": "путь",
-   "options": [
-    "краткий путь",
-    "краткому пути",
-    "кратким путём",
-    "кратком пути"
-   ],
-   "correct": "краткий путь",
-   "case": "Именительный (Nominative)",
-   "explain": "«краткий путь» — the subject of the sentence stands in the nominative.",
-   "id": "c25"
   },
   {
    "sentence": "— Господа, заметил Атос, — я держусь мнения, что не следует в ___ вмешивать слуг: секрет может быть случайно выдан дворянином, но почти всегда продан слугой.",
    "lemma": "дело",
    "options": [
-    "подобные дела",
-    "подобным делам",
+    "подобными делами",
     "подобных дел",
-    "подобных делах"
+    "подобным делам",
+    "подобные дела"
    ],
    "correct": "подобные дела",
    "case": "Винительный (Accusative)",
-   "explain": "«подобные дела» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«подобные дела» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c26"
   }
  ]

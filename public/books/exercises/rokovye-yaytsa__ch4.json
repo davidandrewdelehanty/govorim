@@ -1,88 +1,18 @@
 {
  "cases": [
   {
-   "sentence": "Хлопнула серенькая покосившаяся калитка, бабьи ___ прошлепали по пыльным горбам улицы, и мокрая от слез попадья повела Матрену на свой птичий двор.",
-   "lemma": "нога",
-   "options": [
-    "босые ноги",
-    "босых ног",
-    "босых ногах",
-    "босым ногам"
-   ],
-   "correct": "босые ноги",
-   "case": "Винительный (Accusative)",
-   "explain": "«босые ноги» — the accusative marks the direct object of the verb.",
-   "id": "c4"
-  },
-  {
-   "sentence": "Хлопнула серенькая покосившаяся калитка, бабьи босые ноги прошлепали по пыльным горбам улицы, и мокрая от слез попадья повела Матрену на свой ___.",
-   "lemma": "двор",
-   "options": [
-    "птичьем дворе",
-    "птичьим двором",
-    "птичий двор",
-    "птичьего двора"
-   ],
-   "correct": "птичий двор",
-   "case": "Винительный (Accusative)",
-   "explain": "«птичий двор» — after the preposition «на», the accusative marks the direct object of the verb.",
-   "id": "c5"
-  },
-  {
-   "sentence": "Лишь только вдовьины дела пошли в гору, вдову обложили таким налогом, что куроводство чуть-чуть не прекратилось, кабы не ___.",
-   "lemma": "человек",
-   "options": [
-    "добрые люди",
-    "добрым людям",
-    "добрых людях",
-    "добрыми людьми"
-   ],
-   "correct": "добрые люди",
-   "case": "Именительный (Nominative)",
-   "explain": "«добрые люди» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
-  },
-  {
    "sentence": "Они надоумили вдову подать ___ заявление о том, что она, вдова, основывает трудовую куроводную артель.",
    "lemma": "власть",
    "options": [
+    "местных властей",
+    "местными властями",
     "местных властях",
-    "местные власти",
-    "местным властям",
-    "местных властей"
+    "местным властям"
    ],
    "correct": "местным властям",
    "case": "Дательный (Dative)",
-   "explain": "«местным властям» — the dative marks the indirect object or recipient.",
+   "explain": "«местным властям» is the indirect object of «подать» — to or for whom (кому?) — dative.",
    "id": "c7"
-  },
-  {
-   "sentence": "В состав артели вошла сама Дроздова, ___ ее Матрешка и вдовьина глухая племянница.",
-   "lemma": "прислуга",
-   "options": [
-    "верной прислуги",
-    "верная прислуга",
-    "верной прислуге",
-    "верной прислугой"
-   ],
-   "correct": "верная прислуга",
-   "case": "Именительный (Nominative)",
-   "explain": "«верная прислуга» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
-  },
-  {
-   "sentence": "В состав артели вошла сама Дроздова, верная прислуга ее Матрешка и вдовьина ___.",
-   "lemma": "племянница",
-   "options": [
-    "глухой племянницы",
-    "глухая племянница",
-    "глухой племянницей",
-    "глухой племяннице"
-   ],
-   "correct": "глухая племянница",
-   "case": "Именительный (Nominative)",
-   "explain": "«глухая племянница» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
   },
   {
    "sentence": "Это и были последние ___ бедной хохлатке.",
@@ -95,22 +25,8 @@
    ],
    "correct": "напутственные слова",
    "case": "Именительный (Nominative)",
-   "explain": "«напутственные слова» — the subject of the sentence stands in the nominative.",
+   "explain": "«напутственные слова» is the predicate after «были» — what someone or something is: the nominative of the predicate (the instrumental is also possible after быть, so it is not offered).",
    "id": "c15"
-  },
-  {
-   "sentence": "Словам ее ответил громкий ___ и затем из курятника выдрался как-то боком, точно беспокойный пьяница из пивного заведения, обдерганный поджарый петух.",
-   "lemma": "крик",
-   "options": [
-    "петушином крике",
-    "петушиным криком",
-    "петушиный крик",
-    "петушиного крика"
-   ],
-   "correct": "петушиный крик",
-   "case": "Винительный (Accusative)",
-   "explain": "«петушиный крик» — the accusative marks the direct object of the verb.",
-   "id": "c17"
   },
   {
    "sentence": "Словам ее ответил громкий петушиный крик и затем из курятника выдрался как-то боком, точно беспокойный пьяница из ___, обдерганный поджарый петух.",
@@ -123,22 +39,8 @@
    ],
    "correct": "пивного заведения",
    "case": "Родительный (Genitive)",
-   "explain": "«пивного заведения» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«пивного заведения» — «из» always takes the genitive.",
    "id": "c18"
-  },
-  {
-   "sentence": "На третьем круге он остановился и его стошнило, потом он стал харкать и хрипеть, наплевал вокруг себя ___, перевернулся, и лапы его уставились к солнцу, как мачты.",
-   "lemma": "пятно",
-   "options": [
-    "кровавых пятен",
-    "кровавыми пятнами",
-    "кровавые пятна",
-    "кровавых пятнах"
-   ],
-   "correct": "кровавых пятен",
-   "case": "Родительный (Genitive)",
-   "explain": "«кровавых пятен» — the genitive here marks possession, absence, or quantity.",
-   "id": "c20"
   },
   {
    "sentence": "В шесть часов вечера, когда солнце сидело низко огненною рожею между рожами ___, на дворе куроводства отец Сергий, настоятель соборного храма, закончив молебен, вылезал из епитрахили.",
@@ -151,7 +53,7 @@
    ],
    "correct": "молодых подсолнухов",
    "case": "Родительный (Genitive)",
-   "explain": "«молодых подсолнухов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«молодых подсолнухов» depends on the noun «рожами» (whose? of what?) — genitive.",
    "id": "c23"
   },
   {
@@ -165,7 +67,7 @@
    ],
    "correct": "соборного храма",
    "case": "Родительный (Genitive)",
-   "explain": "«соборного храма» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«соборного храма» depends on the noun «настоятель» (whose? of what?) — genitive.",
    "id": "c24"
   },
   {
@@ -179,64 +81,8 @@
    ],
    "correct": "любопытные головы",
    "case": "Именительный (Nominative)",
-   "explain": "«Любопытные головы» — the subject of the sentence stands in the nominative.",
+   "explain": "«любопытные головы» is the subject of «торчали» — who or what does it — so nominative.",
    "id": "c25"
-  },
-  {
-   "sentence": "___, приложившаяся к кресту, густо смочила канареечный рваный рубль слезами и вручила его отцу Сергию, на что тот, вздыхая, заметил что-то насчет того, что вот, мол, господь прогневался на нас.",
-   "lemma": "попадья",
-   "options": [
-    "скорбной попадьи",
-    "скорбной попадье",
-    "скорбная попадья",
-    "скорбной попадьёй"
-   ],
-   "correct": "скорбная попадья",
-   "case": "Именительный (Nominative)",
-   "explain": "«Скорбная попадья» — the subject of the sentence stands in the nominative.",
-   "id": "c27"
-  },
-  {
-   "sentence": "Скорбная попадья, приложившаяся к кресту, густо смочила канареечный ___ слезами и вручила его отцу Сергию, на что тот, вздыхая, заметил что-то насчет того, что вот, мол, господь прогневался на нас.",
-   "lemma": "рубль",
-   "options": [
-    "рваном рубле",
-    "рваный рубль",
-    "рваным рублём",
-    "рваному рублю"
-   ],
-   "correct": "рваный рубль",
-   "case": "Винительный (Accusative)",
-   "explain": "«рваный рубль» — the accusative marks the direct object of the verb.",
-   "id": "c28"
-  },
-  {
-   "sentence": "Фамилия Дроздовой попала в местную газету «___» в статье под заголовком: «Неужели куриная чума?», а оттуда пронеслось в Москву.",
-   "lemma": "боец",
-   "options": [
-    "красный боец",
-    "красным бойцом",
-    "красного бойца",
-    "красном бойце"
-   ],
-   "correct": "красный боец",
-   "case": "Именительный (Nominative)",
-   "explain": "«Красный Боец» — the subject of the sentence stands in the nominative.",
-   "id": "c30"
-  },
-  {
-   "sentence": "Фамилия Дроздовой попала в местную газету «Красный Боец» в статье под заголовком: «Неужели ___?», а оттуда пронеслось в Москву.",
-   "lemma": "чума",
-   "options": [
-    "куриной чумы",
-    "куриная чума",
-    "куриной чумой",
-    "куриной чуме"
-   ],
-   "correct": "куриная чума",
-   "case": "Именительный (Nominative)",
-   "explain": "«куриная чума» — the subject of the sentence stands in the nominative.",
-   "id": "c31"
   },
   {
    "sentence": "Профессор на крыше, на ___, закрывался кулаками от фиолетового луча.",
@@ -249,7 +95,7 @@
    ],
    "correct": "белом экране",
    "case": "Предложный (Prepositional)",
-   "explain": "«белом экране» — after the preposition «на», for location or topic.",
+   "explain": "«белом экране» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c32"
   },
   {
@@ -263,36 +109,22 @@
    ],
    "correct": "фиолетового луча",
    "case": "Родительный (Genitive)",
-   "explain": "«фиолетового луча» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«фиолетового луча» — «от» always takes the genitive.",
    "id": "c33"
   },
   {
    "sentence": "И точно: мимо храма Христа, по Волхонке, проскочил ___ и в нем барахтался профессор, и физиономия у него была, как у затравленного волка.",
    "lemma": "автомобиль",
    "options": [
-    "зыбкого автомобиля",
     "зыбкий автомобиль",
-    "зыбком автомобиле",
-    "зыбким автомобилем"
+    "зыбкому автомобилю",
+    "зыбким автомобилем",
+    "зыбком автомобиле"
    ],
    "correct": "зыбкий автомобиль",
    "case": "Винительный (Accusative)",
-   "explain": "«зыбкий автомобиль» — the accusative marks the direct object of the verb.",
+   "explain": "«зыбкий автомобиль» is the direct object of «проскочил» (кого? что?) — accusative.",
    "id": "c34"
-  },
-  {
-   "sentence": "Профессор хотел разодрать записки, но остановился, потому что против одного из номеров увидал приписку: «___ здравоохранения».",
-   "lemma": "комиссар",
-   "options": [
-    "народному комиссару",
-    "народного комиссара",
-    "народном комиссаре",
-    "народный комиссар"
-   ],
-   "correct": "народный комиссар",
-   "case": "Именительный (Nominative)",
-   "explain": "«Народный комиссар» — the subject of the sentence stands in the nominative.",
-   "id": "c35"
   },
   {
    "sentence": "Принял его профессор, благодаря ___, на которой было изображено (без имени и фамилии): «Полномочный шеф торговых отделов иностранных представительств при Республике советов».",
@@ -305,22 +137,8 @@
    ],
    "correct": "визитной карточке",
    "case": "Дательный (Dative)",
-   "explain": "«визитной карточке» — after the preposition «благодаря», the dative marks the indirect object or recipient.",
+   "explain": "«визитной карточке» — «благодаря» always takes the dative.",
    "id": "c36"
-  },
-  {
-   "sentence": "Принял его профессор, благодаря визитной карточке, на которой было изображено (без имени и фамилии): «___ торговых отделов иностранных представительств при Республике советов».",
-   "lemma": "шеф",
-   "options": [
-    "полномочным шефом",
-    "полномочного шефа",
-    "полномочный шеф",
-    "полномочному шефу"
-   ],
-   "correct": "полномочный шеф",
-   "case": "Именительный (Nominative)",
-   "explain": "«Полномочный шеф» — the subject of the sentence stands in the nominative.",
-   "id": "c37"
   },
   {
    "sentence": "Принял его профессор, благодаря визитной карточке, на которой было изображено (без имени и фамилии): «Полномочный шеф ___ иностранных представительств при Республике советов».",
@@ -333,7 +151,7 @@
    ],
    "correct": "торговых отделов",
    "case": "Родительный (Genitive)",
-   "explain": "«торговых отделов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«торговых отделов» depends on the noun «шеф» (whose? of what?) — genitive.",
    "id": "c38"
   },
   {
@@ -347,36 +165,8 @@
    ],
    "correct": "иностранных представительств",
    "case": "Родительный (Genitive)",
-   "explain": "«иностранных представительств» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«иностранных представительств» depends on the noun «отделов» (whose? of what?) — genitive.",
    "id": "c39"
-  },
-  {
-   "sentence": "Тот весь светился лаком и ___ и в правом глазу у него сидел монокль.",
-   "lemma": "камень",
-   "options": [
-    "драгоценных камнях",
-    "драгоценных камней",
-    "драгоценными камнями",
-    "драгоценные камни"
-   ],
-   "correct": "драгоценными камнями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«драгоценными камнями» — the instrumental marks the means, company, or complement.",
-   "id": "c40"
-  },
-  {
-   "sentence": "«Какая ___», почему-то подумал Персиков.",
-   "lemma": "рожа",
-   "options": [
-    "гнусной рожи",
-    "гнусной рожей",
-    "гнусная рожа",
-    "гнусной роже"
-   ],
-   "correct": "гнусная рожа",
-   "case": "Именительный (Nominative)",
-   "explain": "«гнусная рожа» — the subject of the sentence stands in the nominative.",
-   "id": "c41"
   },
   {
    "sentence": "Одно ___ предлагает профессору Персикову совершенно бескорыстно помощь в его лабораторных работах.",
@@ -389,7 +179,7 @@
    ],
    "correct": "иностранное государство",
    "case": "Именительный (Nominative)",
-   "explain": "«иностранное государство» — the subject of the sentence stands in the nominative.",
+   "explain": "«иностранное государство» is the subject of «предлагает» — who or what does it — so nominative.",
    "id": "c44"
   },
   {
@@ -397,13 +187,13 @@
    "lemma": "работа",
    "options": [
     "лабораторными работами",
-    "лабораторные работы",
+    "лабораторным работам",
     "лабораторных работ",
     "лабораторных работах"
    ],
    "correct": "лабораторных работах",
    "case": "Предложный (Prepositional)",
-   "explain": "«лабораторных работах» — after the preposition «в», for location or topic.",
+   "explain": "«лабораторных работах» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c45"
   },
   {
@@ -417,50 +207,8 @@
    ],
    "correct": "домовый комитет",
    "case": "Винительный (Accusative)",
-   "explain": "«домовый комитет» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«домовый комитет» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c51"
-  },
-  {
-   "sentence": "Пусть за него какой-нибудь грамотный ___ распишется!",
-   "lemma": "сын",
-   "options": [
-    "сукиным сыном",
-    "сукин сын",
-    "сукиному сыну",
-    "сукином сыне"
-   ],
-   "correct": "сукин сын",
-   "case": "Именительный (Nominative)",
-   "explain": "«сукин сын» — the subject of the sentence stands in the nominative.",
-   "id": "c53"
-  },
-  {
-   "sentence": "Затем какая-то мысль омрачила его ___.",
-   "lemma": "лоб",
-   "options": [
-    "крутом лбе",
-    "крутому лбу",
-    "крутого лба",
-    "крутой лоб"
-   ],
-   "correct": "крутой лоб",
-   "case": "Именительный (Nominative)",
-   "explain": "«крутой лоб» — the subject of the sentence stands in the nominative.",
-   "id": "c54"
-  },
-  {
-   "sentence": "Трубка вдруг резко оборвала разговор, Персиков обошел, ворча сквозь зубы какие-то ___.",
-   "lemma": "слово",
-   "options": [
-    "бранные слова",
-    "бранными словами",
-    "бранных слов",
-    "бранных словах"
-   ],
-   "correct": "бранные слова",
-   "case": "Винительный (Accusative)",
-   "explain": "«бранные слова» — the accusative marks the direct object of the verb.",
-   "id": "c55"
   },
   {
    "sentence": "Ровно через десять минут профессор принимал у себя в кабинете ___.",
@@ -473,36 +221,8 @@
    ],
    "correct": "новых гостей",
    "case": "Родительный (Genitive)",
-   "explain": "«новых гостей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«новых гостей» depends on the noun «кабинете» (whose? of what?) — genitive.",
    "id": "c56"
-  },
-  {
-   "sentence": "Один из них приятный, круглый и очень вежливый, был в скромном, защитном ___ и рейтузах.",
-   "lemma": "френч",
-   "options": [
-    "военным френчем",
-    "военного френча",
-    "военном френче",
-    "военному френчу"
-   ],
-   "correct": "военном френче",
-   "case": "Предложный (Prepositional)",
-   "explain": "«военном френче» — after the preposition «в», for location or topic.",
-   "id": "c57"
-  },
-  {
-   "sentence": "На носу у него сидело, как ___, пенснэ.",
-   "lemma": "бабочка",
-   "options": [
-    "хрустальной бабочки",
-    "хрустальная бабочка",
-    "хрустальной бабочкой",
-    "хрустальной бабочке"
-   ],
-   "correct": "хрустальная бабочка",
-   "case": "Именительный (Nominative)",
-   "explain": "«хрустальная бабочка» — the subject of the sentence stands in the nominative.",
-   "id": "c58"
   },
   {
    "sentence": "___ повел себя особенно, он не вошел в кабинет профессора, а остался в полутемной передней.",
@@ -515,7 +235,7 @@
    ],
    "correct": "третий гость",
    "case": "Именительный (Nominative)",
-   "explain": "«Третий гость» — the subject of the sentence stands in the nominative.",
+   "explain": "«третий гость» is the subject of «повел» — who or what does it — so nominative.",
    "id": "c60"
   },
   {
@@ -529,7 +249,7 @@
    ],
    "correct": "табачного дыма",
    "case": "Родительный (Genitive)",
-   "explain": "«табачного дыма» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«табачного дыма» depends on the noun «струями» (whose? of what?) — genitive.",
    "id": "c61"
   },
   {
@@ -543,22 +263,8 @@
    ],
    "correct": "газетной бумаге",
    "case": "Предложный (Prepositional)",
-   "explain": "«газетной бумаге» — after the preposition «в», for location or topic.",
+   "explain": "«газетной бумаге» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c62"
-  },
-  {
-   "sentence": "Телефон выбросил ___ и женский голос предложил профессору, если он желает жениться на вдове интересной и пылкой, квартиру в семь комнат.",
-   "lemma": "кружочек",
-   "options": [
-    "огненному кружочку",
-    "огненного кружочка",
-    "огненный кружочек",
-    "огненным кружочком"
-   ],
-   "correct": "огненный кружочек",
-   "case": "Винительный (Accusative)",
-   "explain": "«огненный кружочек» — the accusative marks the direct object of the verb.",
-   "id": "c64"
   },
   {
    "sentence": "Телефон выбросил огненный кружочек и ___ предложил профессору, если он желает жениться на вдове интересной и пылкой, квартиру в семь комнат.",
@@ -571,7 +277,7 @@
    ],
    "correct": "женский голос",
    "case": "Именительный (Nominative)",
-   "explain": "«женский голос» — the subject of the sentence stands in the nominative.",
+   "explain": "«женский голос» is the subject of «предложил» — who or what does it — so nominative.",
    "id": "c65"
   },
   {
@@ -585,7 +291,7 @@
    ],
    "correct": "верхней квартире",
    "case": "Предложный (Prepositional)",
-   "explain": "«верхней квартире» — after the preposition «в», for location or topic.",
+   "explain": "«верхней квартире» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c67"
   },
   {
@@ -599,22 +305,8 @@
    ],
    "correct": "суконного треста",
    "case": "Родительный (Genitive)",
-   "explain": "«суконного треста» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«суконного треста» depends on the noun «директора» (whose? of what?) — genitive.",
    "id": "c68"
-  },
-  {
-   "sentence": "Тогда в верхней квартире загремели страшные трубы и полетели вопли Валкирий, — радиоприемник у директора суконного треста принял ___ в Большом театре.",
-   "lemma": "концерт",
-   "options": [
-    "вагнеровском концерте",
-    "вагнеровским концертом",
-    "вагнеровскому концерту",
-    "вагнеровский концерт"
-   ],
-   "correct": "вагнеровский концерт",
-   "case": "Винительный (Accusative)",
-   "explain": "«вагнеровский концерт» — the accusative marks the direct object of the verb.",
-   "id": "c69"
   },
   {
    "sentence": "Тогда в верхней квартире загремели страшные трубы и полетели вопли Валкирий, — радиоприемник у директора суконного треста принял вагнеровский концерт в ___.",
@@ -627,7 +319,7 @@
    ],
    "correct": "большом театре",
    "case": "Предложный (Prepositional)",
-   "explain": "«Большом театре» — after the preposition «в», for location or topic.",
+   "explain": "«большом театре» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c70"
   },
   {
@@ -641,7 +333,7 @@
    ],
    "correct": "знаменитого пианиста",
    "case": "Родительный (Genitive)",
-   "explain": "«знаменитого пианиста» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«знаменитого пианиста» depends on the noun «клавишей» (whose? of what?) — genitive.",
    "id": "c71"
   },
   {
@@ -655,7 +347,7 @@
    ],
    "correct": "большого театра",
    "case": "Родительный (Genitive)",
-   "explain": "«Большого театра» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«большого театра» — «из» always takes the genitive.",
    "id": "c72"
   },
   {
@@ -669,7 +361,7 @@
    ],
    "correct": "следующий день",
    "case": "Винительный (Accusative)",
-   "explain": "«следующий день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«следующий день» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c73"
   },
   {
@@ -683,7 +375,7 @@
    ],
    "correct": "красных кольцах",
    "case": "Предложный (Prepositional)",
-   "explain": "«красных кольцах» — after the preposition «в», for location or topic.",
+   "explain": "«красных кольцах» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c77"
   },
   {
@@ -697,36 +389,8 @@
    ],
    "correct": "остроконечной шляпе",
    "case": "Дательный (Dative)",
-   "explain": "«остроконечной шляпе» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«остроконечной шляпе» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c78"
-  },
-  {
-   "sentence": "— Пару минуточек, ___, — заговорил Бронский, напрягая голос с тротуара, — я только один вопросик и чисто зоологический.",
-   "lemma": "профессор",
-   "options": [
-    "дорогом профессоре",
-    "дорогой профессор",
-    "дорогого профессора",
-    "дорогому профессору"
-   ],
-   "correct": "дорогой профессор",
-   "case": "Именительный (Nominative)",
-   "explain": "«дорогой профессор» — the subject of the sentence stands in the nominative.",
-   "id": "c79"
-  },
-  {
-   "sentence": "— Что вы скажете за кур, ___?",
-   "lemma": "профессор",
-   "options": [
-    "дорогом профессоре",
-    "дорогой профессор",
-    "дорогого профессора",
-    "дорогому профессору"
-   ],
-   "correct": "дорогой профессор",
-   "case": "Именительный (Nominative)",
-   "explain": "«дорогой профессор» — the subject of the sentence stands in the nominative.",
-   "id": "c80"
   },
   {
    "sentence": "___ взметнулись в глазах Персикова.",
@@ -739,7 +403,7 @@
    ],
    "correct": "победные искры",
    "case": "Именительный (Nominative)",
-   "explain": "«Победные искры» — the subject of the sentence stands in the nominative.",
+   "explain": "«победные искры» is the subject of «взметнулись» — who or what does it — so nominative.",
    "id": "c81"
   },
   {
@@ -753,36 +417,8 @@
    ],
    "correct": "куриных болезней",
    "case": "Родительный (Genitive)",
-   "explain": "«куриных болезней» — after the preposition «насчет», the genitive here marks possession, absence, or quantity.",
+   "explain": "«куриных болезней» — «насчёт» always takes the genitive.",
    "id": "c90"
-  },
-  {
-   "sentence": "Бронский вытер пот со лба цветным ___.",
-   "lemma": "платок",
-   "options": [
-    "носовому платку",
-    "носового платка",
-    "носовом платке",
-    "носовым платком"
-   ],
-   "correct": "носовым платком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«носовым платком» — the instrumental marks the means, company, or complement.",
-   "id": "c94"
-  },
-  {
-   "sentence": "Он подчеркнул острым, лакированным пальцем невероятнейшей величины заголовок через всю страницу газеты: «___ в республике».",
-   "lemma": "мор",
-   "options": [
-    "куриный мор",
-    "курином море",
-    "куриного мора",
-    "куриным мором"
-   ],
-   "correct": "куриный мор",
-   "case": "Именительный (Nominative)",
-   "explain": "«Куриный мор» — the subject of the sentence stands in the nominative.",
-   "id": "c96"
   }
  ]
 }

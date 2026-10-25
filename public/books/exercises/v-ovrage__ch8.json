@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Больница, новая, недавно построенная, с ___, стояла высоко на горе; она вся светилась от заходившего солнца и, казалось, горела внутри.",
-   "lemma": "окно",
-   "options": [
-    "больших окнах",
-    "большим окнам",
-    "большими окнами",
-    "большие окна"
-   ],
-   "correct": "большими окнами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«большими окнами» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c1"
-  },
-  {
    "sentence": "Липа спустилась по дороге и, не доходя до поселка, села у ___.",
    "lemma": "пруд",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "маленького пруда",
    "case": "Родительный (Genitive)",
-   "explain": "«маленького пруда» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«маленького пруда» — «у» always takes the genitive.",
    "id": "c2"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "красной рубахе",
    "case": "Предложный (Prepositional)",
-   "explain": "«красной рубахе» — after the preposition «в», for location or topic.",
+   "explain": "«красной рубахе» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c3"
   },
   {
@@ -53,36 +39,22 @@
    ],
    "correct": "самой воды",
    "case": "Родительный (Genitive)",
-   "explain": "«самой воды» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«самой воды» — «у» always takes the genitive.",
    "id": "c4"
   },
   {
    "sentence": "Мальчик в красной рубахе, сидя у самой воды, мыл ___.",
    "lemma": "сапог",
    "options": [
-    "отцовские сапоги",
-    "отцовских сапог",
     "отцовским сапогам",
-    "отцовскими сапогами"
+    "отцовских сапогах",
+    "отцовскими сапогами",
+    "отцовские сапоги"
    ],
    "correct": "отцовские сапоги",
    "case": "Винительный (Accusative)",
-   "explain": "«отцовские сапоги» — the accusative marks the direct object of the verb.",
+   "explain": "«отцовские сапоги» is the direct object of «мыл» (кого? что?) — accusative.",
    "id": "c5"
-  },
-  {
-   "sentence": "Солнце легло спать и укрылось багряной золотой парчой, и ___, красные и лиловые, сторожили его покой, протянувшись по небу.",
-   "lemma": "облако",
-   "options": [
-    "длинным облакам",
-    "длинные облака",
-    "длинных облаков",
-    "длинных облаках"
-   ],
-   "correct": "длинные облака",
-   "case": "Именительный (Nominative)",
-   "explain": "«длинные облака» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
   },
   {
    "sentence": "Крик этой ___ слышали каждую весну, но не знали, какая она и где живет.",
@@ -95,7 +67,7 @@
    ],
    "correct": "таинственной птицы",
    "case": "Родительный (Genitive)",
-   "explain": "«таинственной птицы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«таинственной птицы» depends on the noun «Крик» (whose? of what?) — genitive.",
    "id": "c7"
   },
   {
@@ -109,7 +81,7 @@
    ],
    "correct": "самого пруда",
    "case": "Родительный (Genitive)",
-   "explain": "«самого пруда» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«самого пруда» — «у» always takes the genitive.",
    "id": "c8"
   },
   {
@@ -123,36 +95,8 @@
    ],
    "correct": "весенний вечер",
    "case": "Винительный (Accusative)",
-   "explain": "«весенний вечер» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«весенний вечер» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c9"
-  },
-  {
-   "sentence": "Казалось, что все эти твари кричали и пели нарочно, чтобы никто не спал в этот весенний вечер, чтобы все, даже ___, дорожили и наслаждались каждой минутой: ведь жизнь дается только один раз!",
-   "lemma": "лягушка",
-   "options": [
-    "сердитых лягушках",
-    "сердитыми лягушками",
-    "сердитым лягушкам",
-    "сердитые лягушки"
-   ],
-   "correct": "сердитые лягушки",
-   "case": "Именительный (Nominative)",
-   "explain": "«сердитые лягушки» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
-  },
-  {
-   "sentence": "На небе светил ___, было много звезд.",
-   "lemma": "полумесяц",
-   "options": [
-    "серебряный полумесяц",
-    "серебряном полумесяце",
-    "серебряного полумесяца",
-    "серебряному полумесяцу"
-   ],
-   "correct": "серебряный полумесяц",
-   "case": "Винительный (Accusative)",
-   "explain": "«серебряный полумесяц» — the accusative marks the direct object of the verb.",
-   "id": "c11"
   },
   {
    "sentence": "Впереди, у ___, горел костер; пламени уже не было, светились одни красные уголья.",
@@ -165,7 +109,7 @@
    ],
    "correct": "самой дороги",
    "case": "Родительный (Genitive)",
-   "explain": "«самой дороги» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«самой дороги» — «у» always takes the genitive.",
    "id": "c12"
   },
   {
@@ -179,7 +123,7 @@
    ],
    "correct": "красные уголья",
    "case": "Именительный (Nominative)",
-   "explain": "«красные уголья» — the subject of the sentence stands in the nominative.",
+   "explain": "«красные уголья» is the subject of «светились» — who or what does it — so nominative.",
    "id": "c13"
   },
   {
@@ -193,7 +137,7 @@
    ],
    "correct": "самом месте",
    "case": "Предложный (Prepositional)",
-   "explain": "«самом месте» — after the preposition «на», for location or topic.",
+   "explain": "«самом месте» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c14"
   },
   {
@@ -207,7 +151,7 @@
    ],
    "correct": "большой человек",
    "case": "Именительный (Nominative)",
-   "explain": "«большой человек» — the subject of the sentence stands in the nominative.",
+   "explain": "«большой человек» is the subject of «мучается» — who or what does it — so nominative.",
    "id": "c15"
   },
   {
@@ -221,7 +165,7 @@
    ],
    "correct": "сильном гневе",
    "case": "Предложный (Prepositional)",
-   "explain": "«сильном гневе» — after the preposition «в», for location or topic.",
+   "explain": "«сильном гневе» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c18"
   }
  ]

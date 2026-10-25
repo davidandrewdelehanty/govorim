@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "___ Георгия с Изяславом.",
-   "lemma": "вражда",
-   "options": [
-    "первой враждой",
-    "первой вражды",
-    "первой вражде",
-    "первая вражда"
-   ],
-   "correct": "первая вражда",
-   "case": "Именительный (Nominative)",
-   "explain": "«Первая вражда» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Юный Князь их, Ростислав, представлял им обязанность вступиться за честь Мономахова Дому; но думая о выгодах ___ более, нежели о чести Княжеской, они не хотели вооружиться.",
    "lemma": "торговля",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "мирной торговли",
    "case": "Родительный (Genitive)",
-   "explain": "«мирной торговли» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«мирной торговли» depends on the noun «выгодах» (whose? of what?) — genitive.",
    "id": "c3"
   },
   {
@@ -39,21 +25,21 @@
    ],
    "correct": "сии люди",
    "case": "Именительный (Nominative)",
-   "explain": "«Сии люди» — the subject of the sentence stands in the nominative.",
+   "explain": "«сии люди» is the subject of «выгоняли» — who or what does it — so nominative.",
    "id": "c4"
   },
   {
    "sentence": "Князь и любимцы его также питали дух несогласия и мстили ___: некоторых знатных Бояр сослали в Киев или заключили в оковы; другие бежали в Суздаль.",
    "lemma": "враг",
    "options": [
-    "личных врагов",
-    "личных врагах",
+    "личные враги",
     "личным врагам",
-    "личными врагами"
+    "личными врагами",
+    "личных врагах"
    ],
    "correct": "личным врагам",
    "case": "Дательный (Dative)",
-   "explain": "«личным врагам» — the dative marks the indirect object or recipient.",
+   "explain": "«мстили» takes the dative (кому? чему?).",
    "id": "c5"
   },
   {
@@ -67,92 +53,8 @@
    ],
    "correct": "мятежного отечества",
    "case": "Родительный (Genitive)",
-   "explain": "«мятежного отечества» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«мятежного отечества» — «от» always takes the genitive.",
    "id": "c6"
-  },
-  {
-   "sentence": "«Иди в свою отчину, Переяславль, — говорили ему Послы Всеволодовы: — Туров есть ___ Киевский, отдаю его моему сыну».",
-   "lemma": "город",
-   "options": [
-    "древнему городу",
-    "древнего города",
-    "древний город",
-    "древнем городе"
-   ],
-   "correct": "древний город",
-   "case": "Именительный (Nominative)",
-   "explain": "«древний город» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
-  },
-  {
-   "sentence": "Вячеслав слышал стон людей, смотрел на дым пылающих весей и сидел праздно в городе, ожидая защиты от Всеволода и своих ___, Мстиславичей.",
-   "lemma": "племянник",
-   "options": [
-    "храбрых племянниках",
-    "храбрым племянникам",
-    "храбрые племянники",
-    "храбрых племянников"
-   ],
-   "correct": "храбрых племянников",
-   "case": "Винительный (Accusative)",
-   "explain": "«храбрых племянников» — the accusative marks the direct object of the verb.",
-   "id": "c10"
-  },
-  {
-   "sentence": "Великий Князь отдал Игорю Юрьев и Рогачев, Святославу Черториск и Клецк, а Давидовичам Брест и Дрогичин, ___ уничтожив опасный союз сих Князей с его братьями.",
-   "lemma": "образ",
-   "options": [
-    "хитрого образа",
-    "хитрый образ",
-    "хитрому образу",
-    "хитрым образом"
-   ],
-   "correct": "хитрым образом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«хитрым образом» — the instrumental marks the means, company, or complement.",
-   "id": "c12"
-  },
-  {
-   "sentence": "Великий Князь отдал Игорю Юрьев и Рогачев, Святославу Черториск и Клецк, а Давидовичам Брест и Дрогичин, хитрым образом уничтожив ___ сих Князей с его братьями.",
-   "lemma": "союз",
-   "options": [
-    "опасный союз",
-    "опасному союзу",
-    "опасного союза",
-    "опасным союзом"
-   ],
-   "correct": "опасный союз",
-   "case": "Винительный (Accusative)",
-   "explain": "«опасный союз» — the accusative marks the direct object of the verb.",
-   "id": "c13"
-  },
-  {
-   "sentence": "Новгород успокоился: купеческие суда его ходили за море, привозили ___ в Россию ив 1142 году мужественно отразили флот Шведского Короля, выехавшего на разбой с шестидесятью ладиями и с Епископом.",
-   "lemma": "товар",
-   "options": [
-    "иноземные товары",
-    "иноземным товарам",
-    "иноземными товарами",
-    "иноземных товарах"
-   ],
-   "correct": "иноземные товары",
-   "case": "Винительный (Accusative)",
-   "explain": "«иноземные товары» — the accusative marks the direct object of the verb.",
-   "id": "c16"
-  },
-  {
-   "sentence": "Всеволод искал переправы: Князь Галицкий, не выпуская его из вида, шел ___ и в седьмой день стал на горах, ожидая нападения; но Всеволод не хотел сразиться: ибо место благоприятствовало его противнику.",
-   "lemma": "берег",
-   "options": [
-    "другого берега",
-    "другим берегом",
-    "другому берегу",
-    "другом береге"
-   ],
-   "correct": "другим берегом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«другим берегом» — the instrumental marks the means, company, or complement.",
-   "id": "c17"
   },
   {
    "sentence": "Пользуясь отсутствием Владимирка, уехавшего в Тисменицу для ___, Галичане призвали к себе Иоанна и единодушно объявили своим Князем.",
@@ -165,7 +67,7 @@
    ],
    "correct": "звериной ловли",
    "case": "Родительный (Genitive)",
-   "explain": "«звериной ловли» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«звериной ловли» — «для» always takes the genitive.",
    "id": "c19"
   },
   {
@@ -179,7 +81,7 @@
    ],
    "correct": "ночной вылазке",
    "case": "Предложный (Prepositional)",
-   "explain": "«ночной вылазке» — after the preposition «в», for location or topic.",
+   "explain": "«ночной вылазке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c20"
   },
   {
@@ -193,22 +95,8 @@
    ],
    "correct": "городских ворот",
    "case": "Родительный (Genitive)",
-   "explain": "«городских ворот» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«городских ворот» — «от» always takes the genitive.",
    "id": "c21"
-  },
-  {
-   "sentence": "Успокоенный сим ___, Всеволод начал говорить о делах Польских.",
-   "lemma": "обряд",
-   "options": [
-    "торжественном обряде",
-    "торжественным обрядом",
-    "торжественного обряда",
-    "торжественному обряду"
-   ],
-   "correct": "торжественным обрядом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«торжественным обрядом» — the instrumental marks the means, company, or complement.",
-   "id": "c22"
   },
   {
    "sentence": "Всеволод отступил и возвратился в Киев, где скоро начал готовиться к ___, сведав, что Владимирко взял Прилуку.",
@@ -221,22 +109,8 @@
    ],
    "correct": "новой войне",
    "case": "Дательный (Dative)",
-   "explain": "«новой войне» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«новой войне» — «к» always takes the dative.",
    "id": "c23"
-  },
-  {
-   "sentence": "Достигнув престола Киевского, он хотел устройства тишины; исполнял данное слово, любил справедливость и повелевал с твердостию; одним словом, был лучшим из Князей Олегова ___.",
-   "lemma": "род",
-   "options": [
-    "мятежном роде",
-    "мятежному роду",
-    "мятежного рода",
-    "мятежный род"
-   ],
-   "correct": "мятежного рода",
-   "case": "Родительный (Genitive)",
-   "explain": "«мятежного рода» — the genitive here marks possession, absence, or quantity.",
-   "id": "c24"
   }
  ]
 }

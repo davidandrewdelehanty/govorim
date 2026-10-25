@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "___ тебе послано было пятьсот пятьдесят рублей ассигнациями: ты тогда писал, чтобы не посылать.",
-   "lemma": "раз",
-   "options": [
-    "последним разом",
-    "последнем разе",
-    "последнему разу",
-    "последний раз"
-   ],
-   "correct": "последний раз",
-   "case": "Винительный (Accusative)",
-   "explain": "«Последний раз» — the accusative marks the direct object of the verb.",
-   "id": "c3"
-  },
-  {
-   "sentence": "Долго глядела она на ее ___, на задумчивую улыбку.",
-   "lemma": "глаз",
-   "options": [
-    "томные глаза",
-    "томных глазах",
-    "томными глазами",
-    "томных глаз"
-   ],
-   "correct": "томные глаза",
-   "case": "Винительный (Accusative)",
-   "explain": "«томные глаза» — the accusative marks the direct object of the verb.",
-   "id": "c5"
-  },
-  {
    "sentence": "Она совала ему другие большие ___, но он устранил их рукой.",
    "lemma": "тетрадь",
    "options": [
@@ -39,7 +11,7 @@
    ],
    "correct": "шнуровые тетради",
    "case": "Винительный (Accusative)",
-   "explain": "«шнуровые тетради» — the accusative marks the direct object of the verb.",
+   "explain": "«шнуровые тетради» is the direct object of «совала» (кого? что?) — accusative.",
    "id": "c6"
   },
   {
@@ -53,64 +25,22 @@
    ],
    "correct": "непосредственном владении",
    "case": "Предложный (Prepositional)",
-   "explain": "«непосредственном владении» — after the preposition «в», for location or topic.",
+   "explain": "«непосредственном владении» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c7"
-  },
-  {
-   "sentence": "— А эти ___, эти пузатые чайники?",
-   "lemma": "чашка",
-   "options": [
-    "саксонские чашки",
-    "саксонскими чашками",
-    "саксонских чашках",
-    "саксонских чашек"
-   ],
-   "correct": "саксонские чашки",
-   "case": "Именительный (Nominative)",
-   "explain": "«саксонские чашки» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
-  },
-  {
-   "sentence": "— А эти саксонские чашки, эти ___?",
-   "lemma": "чайник",
-   "options": [
-    "пузатыми чайниками",
-    "пузатых чайниках",
-    "пузатые чайники",
-    "пузатым чайникам"
-   ],
-   "correct": "пузатые чайники",
-   "case": "Именительный (Nominative)",
-   "explain": "«пузатые чайники» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
   },
   {
    "sentence": "— Чашки возьму, — шептала она, — и чайники, еще вон этот диванчик возьму и ___, да эту скатерть, где вышита Диана с собаками.",
    "lemma": "кресельцо",
    "options": [
     "маленьких кресельцах",
-    "маленькими кресельцами",
     "маленькие кресельца",
-    "маленьких креселец"
+    "маленькими кресельцами",
+    "маленьким кресельцам"
    ],
    "correct": "маленькие кресельца",
    "case": "Винительный (Accusative)",
-   "explain": "«маленькие кресельца» — the accusative marks the direct object of the verb.",
+   "explain": "«маленькие кресельца» is the direct object of «возьму» (кого? что?) — accusative.",
    "id": "c13"
-  },
-  {
-   "sentence": "— Возьму, только чтоб и Верочка ___ согласилась взять.",
-   "lemma": "дом",
-   "options": [
-    "старом доме",
-    "старого дома",
-    "старым домом",
-    "старый дом"
-   ],
-   "correct": "старый дом",
-   "case": "Винительный (Accusative)",
-   "explain": "«старый дом» — the accusative marks the direct object of the verb.",
-   "id": "c14"
   },
   {
    "sentence": "Через четверть часа вошел в комнату, боком, пожилой, лет сорока пяти мужик, сложенный плотно, будто из одних ___, и оттого казавшийся толстым, хотя жиру у него не было ни золотника.",
@@ -123,22 +53,8 @@
    ],
    "correct": "широких костей",
    "case": "Родительный (Genitive)",
-   "explain": "«широких костей» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«широких костей» — «из» always takes the genitive.",
    "id": "c16"
-  },
-  {
-   "sentence": "Оп был мрачен лицом, с нависшими бровями, ___, которые поднимал медленно, и даром не тратил ни взглядов, ни слов.",
-   "lemma": "век",
-   "options": [
-    "широких веках",
-    "широких веков",
-    "широким векам",
-    "широкими веками"
-   ],
-   "correct": "широкими веками",
-   "case": "Творительный (Instrumental)",
-   "explain": "«широкими веками» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c17"
   },
   {
    "sentence": "___ совершается у него тяжело: когда он старается выговорить свою мысль, то помогает себе бровями, складками на лбу и отчасти указательным пальцем.",
@@ -151,64 +67,8 @@
    ],
    "correct": "мысленная работа",
    "case": "Именительный (Nominative)",
-   "explain": "«Мысленная работа» — the subject of the sentence stands in the nominative.",
+   "explain": "«мысленная работа» is the subject of «совершается» — who or what does it — so nominative.",
    "id": "c18"
-  },
-  {
-   "sentence": "Мысленная работа совершается у него тяжело: когда он старается выговорить свою мысль, то помогает себе бровями, складками на лбу и отчасти ___.",
-   "lemma": "палец",
-   "options": [
-    "указательному пальцу",
-    "указательным пальцем",
-    "указательный палец",
-    "указательного пальца"
-   ],
-   "correct": "указательным пальцем",
-   "case": "Творительный (Instrumental)",
-   "explain": "«указательным пальцем» — the instrumental marks the means, company, or complement.",
-   "id": "c19"
-  },
-  {
-   "sentence": "— Бабушка! это ___ — это правда! вы философ!",
-   "lemma": "заметка",
-   "options": [
-    "жизненной заметки",
-    "жизненной заметке",
-    "жизненная заметка",
-    "жизненной заметкой"
-   ],
-   "correct": "жизненная заметка",
-   "case": "Именительный (Nominative)",
-   "explain": "«жизненная заметка» — the subject of the sentence stands in the nominative.",
-   "id": "c22"
-  },
-  {
-   "sentence": "А Нил Андреич все-таки ___, что ни говори: узнает, что ты так небрежно имением распоряжаешься, — осудит!",
-   "lemma": "человек",
-   "options": [
-    "почтенный человек",
-    "почтенном человеке",
-    "почтенному человеку",
-    "почтенным человеком"
-   ],
-   "correct": "почтенный человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«почтенный человек» — the subject of the sentence stands in the nominative.",
-   "id": "c23"
-  },
-  {
-   "sentence": "Мне бы хотелось побольше маленьких братьев и сестер или хоть ___.",
-   "lemma": "деточка",
-   "options": [
-    "чужих деточках",
-    "чужим деточкам",
-    "чужие деточки",
-    "чужих деточек"
-   ],
-   "correct": "чужих деточек",
-   "case": "Родительный (Genitive)",
-   "explain": "«чужих деточек» — the genitive here marks possession, absence, or quantity.",
-   "id": "c24"
   }
  ]
 }

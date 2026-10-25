@@ -1,62 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Большая, полутемная комната; в ее ___ окно и дверь, выходящие на террасу; в углу — лестница наверх, где живет Лиза; в глубине комнаты арка, за ней столовая; в правом углу — двери к Елене.",
-   "lemma": "стена",
-   "options": [
-    "левой стены",
-    "левой стене",
-    "левой стеной",
-    "левая стена"
-   ],
-   "correct": "левой стене",
-   "case": "Предложный (Prepositional)",
-   "explain": "«левой стене» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c3"
-  },
-  {
-   "sentence": "Книжные шкафы, тяжелая, старинная мебель, на столах — ___, на стенах — портреты ученых натуралистов.",
-   "lemma": "издание",
-   "options": [
-    "дорогими изданиями",
-    "дорогим изданиям",
-    "дорогих изданий",
-    "дорогие издания"
-   ],
-   "correct": "дорогие издания",
-   "case": "Именительный (Nominative)",
-   "explain": "«дорогие издания» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
-  },
-  {
-   "sentence": "У окна налево — большой ___; перед ним сидит Протасов, перелистывает какую-то брошюру и смотрит, как на спиртовой лампочке греется колба с какой-то жидкостью.",
-   "lemma": "стол",
-   "options": [
-    "круглый стол",
-    "круглым столом",
-    "круглом столе",
-    "круглому столу"
-   ],
-   "correct": "круглый стол",
-   "case": "Именительный (Nominative)",
-   "explain": "«круглый стол» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
-  },
-  {
-   "sentence": "Лиза, посмотри, здесь у меня ___.",
-   "lemma": "дрожжи",
-   "options": [
-    "простые дрожжи",
-    "простых дрожжей",
-    "простыми дрожжами",
-    "простым дрожжам"
-   ],
-   "correct": "простые дрожжи",
-   "case": "Именительный (Nominative)",
-   "explain": "«простые дрожжи» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
-  },
-  {
    "sentence": "Да на этой же логике построены все ___!",
    "lemma": "закон",
    "options": [
@@ -67,22 +11,8 @@
    ],
    "correct": "карательные законы",
    "case": "Именительный (Nominative)",
-   "explain": "«карательные законы» — the subject of the sentence stands in the nominative.",
+   "explain": "«карательные законы» is the subject of «построены» — who or what does it — so nominative.",
    "id": "c13"
-  },
-  {
-   "sentence": "Право, потвоему, я должен ___ и говорить всем, что хорошо и что нехорошо: Пойми, это не мое дело!",
-   "lemma": "день",
-   "options": [
-    "целым днём",
-    "целый день",
-    "целого дня",
-    "целом дне"
-   ],
-   "correct": "целый день",
-   "case": "Винительный (Accusative)",
-   "explain": "«целый день» — the accusative marks the direct object of the verb.",
-   "id": "c17"
   },
   {
    "sentence": "Она еще мало развита, сравнительно с другими, но уже и теперь она представляется мне каким-то ___.",
@@ -91,40 +21,12 @@
     "всевидящего ока",
     "всевидящим оком",
     "всевидящему оку",
-    "всевидящее око"
+    "всевидящем оке"
    ],
    "correct": "всевидящим оком",
    "case": "Творительный (Instrumental)",
-   "explain": "«всевидящим оком» — the instrumental marks the means, company, or complement.",
+   "explain": "After «представляется», what someone or something is or becomes stands in the instrumental.",
    "id": "c20"
-  },
-  {
-   "sentence": "Ее зоркий, смелый взгляд проникает и в огненную массу солнца, и во тьму ___, в невидимые частицы вашего сердца (Мелания вздыхает) , в тайны строения камня и в безмолвную жизнь дерева.",
-   "lemma": "кора",
-   "options": [
-    "земной коры",
-    "земной коре",
-    "земной корой",
-    "земная кора"
-   ],
-   "correct": "земной коры",
-   "case": "Родительный (Genitive)",
-   "explain": "«земной коры» — the genitive here marks possession, absence, or quantity.",
-   "id": "c21"
-  },
-  {
-   "sentence": "Вы бы, ___, шли себе до вашего дому, а?",
-   "lemma": "человек",
-   "options": [
-    "доброму человеку",
-    "доброго человека",
-    "добрым человеком",
-    "добрый человек"
-   ],
-   "correct": "добрый человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«добрый человек» — the subject of the sentence stands in the nominative.",
-   "id": "c37"
   },
   {
    "sentence": "Нужно взять ___, Павел.",
@@ -137,7 +39,7 @@
    ],
    "correct": "другого слесаря",
    "case": "Винительный (Accusative)",
-   "explain": "«другого слесаря» — the accusative marks the direct object of the verb.",
+   "explain": "«другого слесаря» is the direct object of «взять» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c38"
   },
   {
@@ -151,36 +53,8 @@
    ],
    "correct": "красных слов",
    "case": "Родительный (Genitive)",
-   "explain": "«красных слов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«красных слов» depends on the noun «языке» (whose? of what?) — genitive.",
    "id": "c46"
-  },
-  {
-   "sentence": "Это не глупости, ___!",
-   "lemma": "слово",
-   "options": [
-    "честным словом",
-    "честного слова",
-    "честному слову",
-    "честное слово"
-   ],
-   "correct": "честное слово",
-   "case": "Именительный (Nominative)",
-   "explain": "«честное слово» — the subject of the sentence stands in the nominative.",
-   "id": "c54"
-  },
-  {
-   "sentence": "Возможна ли такая жизнь, когда вокруг нас всюду ___?",
-   "lemma": "человек",
-   "options": [
-    "дикими людьми",
-    "диким людям",
-    "диких людей",
-    "дикие люди"
-   ],
-   "correct": "дикие люди",
-   "case": "Именительный (Nominative)",
-   "explain": "«дикие люди» — the subject of the sentence stands in the nominative.",
-   "id": "c60"
   }
  ]
 }

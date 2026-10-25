@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Со станции Бологое, Николаевской ___, трогается пассажирский поезд.",
-   "lemma": "дорога",
-   "options": [
-    "железная дорога",
-    "железной дорогой",
-    "железной дороги",
-    "железной дороге"
-   ],
-   "correct": "железной дороги",
-   "case": "Родительный (Genitive)",
-   "explain": "«железной дороги» — the genitive here marks possession, absence, or quantity.",
-   "id": "c1"
-  },
-  {
    "sentence": "Со станции Бологое, Николаевской железной дороги, трогается ___.",
    "lemma": "поезд",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "пассажирский поезд",
    "case": "Именительный (Nominative)",
-   "explain": "«пассажирский поезд» — the subject of the sentence stands in the nominative.",
+   "explain": "«пассажирский поезд» is the subject of «трогается» — who or what does it — so nominative.",
    "id": "c2"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "второго класса",
    "case": "Родительный (Genitive)",
-   "explain": "«второго класса» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«второго класса» depends on the noun «вагонов» (whose? of what?) — genitive.",
    "id": "c3"
   },
   {
@@ -53,7 +39,7 @@
    ],
    "correct": "рыжей шляпе",
    "case": "Предложный (Prepositional)",
-   "explain": "«рыжей шляпе» — after the preposition «в», for location or topic.",
+   "explain": "«рыжей шляпе» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c4"
   },
   {
@@ -67,7 +53,7 @@
    ],
    "correct": "второго звонка",
    "case": "Родительный (Genitive)",
-   "explain": "«второго звонка» — after the preposition «после», the genitive here marks possession, absence, or quantity.",
+   "explain": "«второго звонка» — «после» always takes the genitive.",
    "id": "c6"
   },
   {
@@ -81,50 +67,8 @@
    ],
    "correct": "счастливых дураков",
    "case": "Винительный (Accusative)",
-   "explain": "«счастливых дураков» — the accusative marks the direct object of the verb.",
+   "explain": "«счастливых дураков» is the direct object of «видали» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c8"
-  },
-  {
-   "sentence": "— Должно быть, у меня теперь ужасно ___!",
-   "lemma": "лицо",
-   "options": [
-    "глупым лицом",
-    "глупое лицо",
-    "глупого лица",
-    "глупому лицу"
-   ],
-   "correct": "глупое лицо",
-   "case": "Именительный (Nominative)",
-   "explain": "«глупое лицо» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
-  },
-  {
-   "sentence": "___, и больше ничего!",
-   "lemma": "холостяк",
-   "options": [
-    "сухим холостякам",
-    "сухие холостяки",
-    "сухими холостяками",
-    "сухих холостяках"
-   ],
-   "correct": "сухие холостяки",
-   "case": "Именительный (Nominative)",
-   "explain": "«Сухие холостяки» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
-  },
-  {
-   "sentence": "Иван Алексеевич крутит головой и закатывается ___.",
-   "lemma": "смех",
-   "options": [
-    "счастливого смеха",
-    "счастливом смехе",
-    "счастливому смеху",
-    "счастливым смехом"
-   ],
-   "correct": "счастливым смехом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«счастливым смехом» — the instrumental marks the means, company, or complement.",
-   "id": "c12"
   },
   {
    "sentence": "— А для ___ или, как там в романах говорят, для большей иллюзии, пойдешь к буфету и опрокидонтом рюмочки две-три.",
@@ -137,22 +81,8 @@
    ],
    "correct": "большего идиотства",
    "case": "Родительный (Genitive)",
-   "explain": "«большего идиотства» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«большего идиотства» — «для» always takes the genitive.",
    "id": "c14"
-  },
-  {
-   "sentence": "— ___, — обращается к нему новобрачный, — как будете проходить через вагон № 209, то найдите там даму в серой шляпке с белой птицей и скажите ей, что я здесь!",
-   "lemma": "человек",
-   "options": [
-    "милого человека",
-    "милому человеку",
-    "милый человек",
-    "милом человеке"
-   ],
-   "correct": "милый человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«Милый человек» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
   },
   {
    "sentence": "— Милый человек, — обращается к нему новобрачный, — как будете проходить через вагон № 209, то найдите там даму в ___ с белой птицей и скажите ей, что я здесь!",
@@ -165,7 +95,7 @@
    ],
    "correct": "серой шляпке",
    "case": "Предложный (Prepositional)",
-   "explain": "«серой шляпке» — after the preposition «в», for location or topic.",
+   "explain": "«серой шляпке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c16"
   },
   {
@@ -179,22 +109,8 @@
    ],
    "correct": "счастливого человека",
    "case": "Винительный (Accusative)",
-   "explain": "«счастливого человека» — the accusative marks the direct object of the verb.",
+   "explain": "«счастливого человека» is the direct object of «видеть» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c18"
-  },
-  {
-   "sentence": "Человек есть ___ своего собственного счастия.",
-   "lemma": "творец",
-   "options": [
-    "самому творцу",
-    "самим творцом",
-    "самом творце",
-    "сам творец"
-   ],
-   "correct": "сам творец",
-   "case": "Именительный (Nominative)",
-   "explain": "«сам творец» — the subject of the sentence stands in the nominative.",
-   "id": "c22"
   },
   {
    "sentence": "Человек есть сам творец своего ___.",
@@ -207,22 +123,8 @@
    ],
    "correct": "собственного счастия",
    "case": "Родительный (Genitive)",
-   "explain": "«собственного счастия» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«собственного счастия» depends on the noun «творец» (whose? of what?) — genitive.",
    "id": "c23"
-  },
-  {
-   "sentence": "Какой к чёрту он творец, если достаточно ___ или злой тещи, чтоб счастье его полетело вверх тормашкой?",
-   "lemma": "зуб",
-   "options": [
-    "больной зуб",
-    "больного зуба",
-    "больному зубу",
-    "больном зубе"
-   ],
-   "correct": "больного зуба",
-   "case": "Родительный (Genitive)",
-   "explain": "«больного зуба» — the genitive here marks possession, absence, or quantity.",
-   "id": "c25"
   }
  ]
 }

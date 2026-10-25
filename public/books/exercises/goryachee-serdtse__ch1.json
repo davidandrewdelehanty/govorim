@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Сидоренко, ___, он же и письмоводитель городничего.",
-   "lemma": "унтер-офицер",
-   "options": [
-    "полицейский унтер-офицер",
-    "полицейским унтер-офицером",
-    "полицейскому унтер-офицеру",
-    "полицейского унтер-офицера"
-   ],
-   "correct": "полицейский унтер-офицер",
-   "case": "Именительный (Nominative)",
-   "explain": "«полицейский унтер-офицер» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Декорация ___. 10-й час.",
    "lemma": "действие",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "первого действия",
    "case": "Родительный (Genitive)",
-   "explain": "«первого действия» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«первого действия» depends on the noun «Декорация» (whose? of what?) — genitive.",
    "id": "c2"
   },
   {
@@ -39,36 +25,8 @@
    ],
    "correct": "чувствительного сердца",
    "case": "Родительный (Genitive)",
-   "explain": "«чувствительного сердца» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«чувствительного сердца» — «от» always takes the genitive.",
    "id": "c3"
-  },
-  {
-   "sentence": "Это ___, а второе дело разговаривать нужно уметь.",
-   "lemma": "дело",
-   "options": [
-    "первому делу",
-    "первое дело",
-    "первого дела",
-    "первым делом"
-   ],
-   "correct": "первое дело",
-   "case": "Именительный (Nominative)",
-   "explain": "«первое дело» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
-  },
-  {
-   "sentence": "Об чем, ___, разговаривать?",
-   "lemma": "друг",
-   "options": [
-    "милым другом",
-    "милом друге",
-    "милого друга",
-    "милый друг"
-   ],
-   "correct": "милый друг",
-   "case": "Именительный (Nominative)",
-   "explain": "«милый друг» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
   },
   {
    "sentence": "Другая и у ___ живет, а все мне ее жалко что-то; а уж если у дурных, так и говорить нечего; каждый миг у меня за нее сердце болит, как бы ее не обидел кто.",
@@ -81,92 +39,36 @@
    ],
    "correct": "хороших родителей",
    "case": "Родительный (Genitive)",
-   "explain": "«хороших родителей» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«хороших родителей» — «у» always takes the genitive.",
    "id": "c7"
-  },
-  {
-   "sentence": "Начинал, ___, пробовал, только я от робости ничего этого, как следует, не выговорю, только мямлю.",
-   "lemma": "друг",
-   "options": [
-    "милым другом",
-    "милом друге",
-    "милого друга",
-    "милый друг"
-   ],
-   "correct": "милый друг",
-   "case": "Именительный (Nominative)",
-   "explain": "«милый друг» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
   },
   {
    "sentence": "Как же вы эти ___ брали?",
    "lemma": "крепость",
    "options": [
-    "самыми крепостями",
-    "самых крепостей",
     "самые крепости",
-    "самым крепостям"
+    "самыми крепостями",
+    "самым крепостям",
+    "самых крепостях"
    ],
    "correct": "самые крепости",
    "case": "Винительный (Accusative)",
-   "explain": "«самые крепости» — the accusative marks the direct object of the verb.",
+   "explain": "«самые крепости» is the direct object of «брали» (кого? что?) — accusative.",
    "id": "c11"
-  },
-  {
-   "sentence": "Вот что, ___, ты бы пошла по хозяйству присмотрела; все-таки свой-то глаз лучше.",
-   "lemma": "дама",
-   "options": [
-    "милая дама",
-    "милой дамы",
-    "милой даме",
-    "милой дамой"
-   ],
-   "correct": "милая дама",
-   "case": "Именительный (Nominative)",
-   "explain": "«милая дама» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
   },
   {
    "sentence": "Ну, уж ты эти свои ___ оставь!",
    "lemma": "подход",
    "options": [
     "дьявольские подходы",
+    "дьявольским подходам",
     "дьявольскими подходами",
-    "дьявольских подходов",
     "дьявольских подходах"
    ],
    "correct": "дьявольские подходы",
    "case": "Винительный (Accusative)",
-   "explain": "«дьявольские подходы» — the accusative marks the direct object of the verb.",
+   "explain": "«дьявольские подходы» is the direct object of «оставь» (кого? что?) — accusative.",
    "id": "c13"
-  },
-  {
-   "sentence": "Уж самое это ___: с бабой разговаривать.",
-   "lemma": "занятие",
-   "options": [
-    "последним занятием",
-    "последнее занятие",
-    "последнего занятия",
-    "последнем занятии"
-   ],
-   "correct": "последнее занятие",
-   "case": "Именительный (Nominative)",
-   "explain": "«последнее занятие» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
-  },
-  {
-   "sentence": "Оставь, молчи лучше, а то она такую понесет околесную, что только разве ___ уймешь.",
-   "lemma": "труба",
-   "options": [
-    "пожарной трубой",
-    "пожарной трубы",
-    "пожарной трубе",
-    "пожарная труба"
-   ],
-   "correct": "пожарной трубой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«пожарной трубой» — the instrumental marks the means, company, or complement.",
-   "id": "c15"
   },
   {
    "sentence": "Силан (тащит Курослепова, ему помогают ___).",
@@ -179,22 +81,8 @@
    ],
    "correct": "другие дворники",
    "case": "Именительный (Nominative)",
-   "explain": "«другие дворники» — the subject of the sentence stands in the nominative.",
+   "explain": "«другие дворники» is the subject of «помогают» — who or what does it — so nominative.",
    "id": "c17"
-  },
-  {
-   "sentence": "___ полтораста рублей; а у меня две тысячи пропало.",
-   "lemma": "дело",
-   "options": [
-    "важному делу",
-    "важным делом",
-    "важного дела",
-    "важное дело"
-   ],
-   "correct": "важное дело",
-   "case": "Именительный (Nominative)",
-   "explain": "«Важное дело» — the subject of the sentence stands in the nominative.",
-   "id": "c19"
   }
  ]
 }

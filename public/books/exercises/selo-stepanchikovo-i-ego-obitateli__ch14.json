@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Фома занимал две большие и прекрасные комнаты; они были даже и отделаны лучше, чем все ___ в доме.",
-   "lemma": "комната",
-   "options": [
-    "другим комнатам",
-    "другими комнатами",
-    "другие комнаты",
-    "других комнат"
-   ],
-   "correct": "другие комнаты",
-   "case": "Именительный (Nominative)",
-   "explain": "«другие комнаты» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "___ окружал великого человека.",
    "lemma": "комфорт",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "полный комфорт",
    "case": "Именительный (Nominative)",
-   "explain": "«Полный комфорт» — the subject of the sentence stands in the nominative.",
+   "explain": "«полный комфорт» is the subject of «окружал» — who or what does it — so nominative.",
    "id": "c2"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "великого человека",
    "case": "Винительный (Accusative)",
-   "explain": "«великого человека» — the accusative marks the direct object of the verb.",
+   "explain": "«великого человека» is the direct object of «окружал» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c3"
   },
   {
@@ -53,7 +39,7 @@
    ],
    "correct": "большой стол",
    "case": "Именительный (Nominative)",
-   "explain": "«большой стол» — the subject of the sentence stands in the nominative.",
+   "explain": "«большой стол» is the subject of «находился» — who or what does it — so nominative.",
    "id": "c4"
   },
   {
@@ -67,50 +53,22 @@
    ],
    "correct": "красным сукном",
    "case": "Творительный (Instrumental)",
-   "explain": "«красным сукном» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «покрытый», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c5"
-  },
-  {
-   "sentence": "Прекрасная ___ и куча перьев, которыми заведовал Видоплясов, — все это вместе должно было свидетельствовать о тугих умственных работах Фомы Фомича.",
-   "lemma": "чернильница",
-   "options": [
-    "бронзовой чернильнице",
-    "бронзовой чернильницей",
-    "бронзовая чернильница",
-    "бронзовой чернильницы"
-   ],
-   "correct": "бронзовая чернильница",
-   "case": "Именительный (Nominative)",
-   "explain": "«бронзовая чернильница» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
   },
   {
    "sentence": "Прекрасная бронзовая чернильница и куча перьев, которыми заведовал Видоплясов, — все это вместе должно было свидетельствовать о тугих ___ Фомы Фомича.",
    "lemma": "работа",
    "options": [
-    "умственные работы",
-    "умственных работах",
     "умственными работами",
+    "умственных работах",
+    "умственным работам",
     "умственных работ"
    ],
    "correct": "умственных работах",
    "case": "Предложный (Prepositional)",
-   "explain": "«умственных работах» — after the preposition «о», for location or topic.",
+   "explain": "«умственных работах» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c7"
-  },
-  {
-   "sentence": "А между тем Фома Фомич заставлял дядю тратить ежегодно ___ на выписку книг и журналов.",
-   "lemma": "деньга",
-   "options": [
-    "больших деньгах",
-    "большим деньгам",
-    "больших денег",
-    "большие деньги"
-   ],
-   "correct": "большие деньги",
-   "case": "Винительный (Accusative)",
-   "explain": "«большие деньги» — the accusative marks the direct object of the verb.",
-   "id": "c8"
   },
   {
    "sentence": "В ___ кабинета находилась стеклянная дверь, которая вела во двор дома.",
@@ -123,7 +81,7 @@
    ],
    "correct": "задней стене",
    "case": "Предложный (Prepositional)",
-   "explain": "«задней стене» — after the preposition «в», for location or topic.",
+   "explain": "«задней стене» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c9"
   },
   {
@@ -137,7 +95,7 @@
    ],
    "correct": "покойном кресле",
    "case": "Предложный (Prepositional)",
-   "explain": "«покойном кресле» — after the preposition «в», for location or topic.",
+   "explain": "«покойном кресле» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c10"
   },
   {
@@ -151,7 +109,7 @@
    ],
    "correct": "красной рубашечке",
    "case": "Предложный (Prepositional)",
-   "explain": "«красной рубашечке» — after the preposition «в», for location or topic.",
+   "explain": "«красной рубашечке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c11"
   },
   {
@@ -165,7 +123,7 @@
    ],
    "correct": "приезжей гостьи",
    "case": "Родительный (Genitive)",
-   "explain": "«приезжей гостьи» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«приезжей гостьи» — «у» always takes the genitive.",
    "id": "c13"
   },
   {
@@ -179,36 +137,8 @@
    ],
    "correct": "великим сочувствием",
    "case": "Творительный (Instrumental)",
-   "explain": "«великим сочувствием» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«великим сочувствием» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c14"
-  },
-  {
-   "sentence": "— Илюша, брат, стихи приготовил — вот неожиданность, ___!",
-   "lemma": "сюрприз",
-   "options": [
-    "настоящий сюрприз",
-    "настоящего сюрприза",
-    "настоящим сюрпризом",
-    "настоящему сюрпризу"
-   ],
-   "correct": "настоящий сюрприз",
-   "case": "Именительный (Nominative)",
-   "explain": "«настоящий сюрприз» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
-  },
-  {
-   "sentence": "— Не беспокойтесь обо мне, полковник, — отвечал Фома ___, голосом человека, прощающего врагам своим.",
-   "lemma": "голос",
-   "options": [
-    "слабого голоса",
-    "слабому голосу",
-    "слабым голосом",
-    "слабый голос"
-   ],
-   "correct": "слабым голосом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«слабым голосом» — the instrumental marks the means, company, or complement.",
-   "id": "c16"
   },
   {
    "sentence": "— Это, папочка, шуточные стихи, — вскричала она, ужасно радуясь своей ___, — это уж нарочно так, сам сочинитель сочинил, чтоб всем смешно было, папочка.",
@@ -221,7 +151,7 @@
    ],
    "correct": "детской затее",
    "case": "Дательный (Dative)",
-   "explain": "«детской затее» — the dative marks the indirect object or recipient.",
+   "explain": "«радуясь» takes the dative (кому? чему?).",
    "id": "c19"
   },
   {
@@ -235,36 +165,8 @@
    ],
    "correct": "сам сочинитель",
    "case": "Именительный (Nominative)",
-   "explain": "«сам сочинитель» — the subject of the sentence stands in the nominative.",
+   "explain": "«сам сочинитель» is the subject of «сочинил» — who or what does it — so nominative.",
    "id": "c20"
-  },
-  {
-   "sentence": "Это, видите, маменька, такие ___, которые иногда пишут сочинители, — не правда ли, Сергей, ведь пишут?",
-   "lemma": "стих",
-   "options": [
-    "комических стихах",
-    "комическим стихам",
-    "комическими стихами",
-    "комические стихи"
-   ],
-   "correct": "комические стихи",
-   "case": "Именительный (Nominative)",
-   "explain": "«комические стихи» — the subject of the sentence stands in the nominative.",
-   "id": "c21"
-  },
-  {
-   "sentence": "Там ведь у них ___, что ли?..",
-   "lemma": "орден",
-   "options": [
-    "разными орденами",
-    "разных орденах",
-    "разные ордена",
-    "разных орденов"
-   ],
-   "correct": "разные ордена",
-   "case": "Именительный (Nominative)",
-   "explain": "«разные ордена» — the subject of the sentence stands in the nominative.",
-   "id": "c23"
   },
   {
    "sentence": "— Должно быть, ___ написал, — не правда ль, Фома?",
@@ -277,22 +179,8 @@
    ],
    "correct": "умный поэт",
    "case": "Именительный (Nominative)",
-   "explain": "«умный поэт» — the subject of the sentence stands in the nominative.",
+   "explain": "«умный поэт» is the subject of «написал» — who or what does it — so nominative.",
    "id": "c26"
-  },
-  {
-   "sentence": "Во все время чтения стихов едкая, ___ не покидала губ его.",
-   "lemma": "улыбка",
-   "options": [
-    "насмешливой улыбке",
-    "насмешливой улыбкой",
-    "насмешливая улыбка",
-    "насмешливой улыбки"
-   ],
-   "correct": "насмешливая улыбка",
-   "case": "Именительный (Nominative)",
-   "explain": "«насмешливая улыбка» — the subject of the sentence stands in the nominative.",
-   "id": "c27"
   },
   {
    "sentence": "___! все в стихах изображают!",
@@ -305,36 +193,8 @@
    ],
    "correct": "славные ребята",
    "case": "Именительный (Nominative)",
-   "explain": "«Славные ребята» — the subject of the sentence stands in the nominative.",
+   "explain": "«славные ребята» is the subject of «изображают» — who or what does it — so nominative.",
    "id": "c29"
-  },
-  {
-   "sentence": "Вольтер был только ___; смеялся над предубежденииями; а вольтерьянцем никогда не бывал!",
-   "lemma": "писатель",
-   "options": [
-    "острому писателю",
-    "остром писателе",
-    "острый писатель",
-    "острого писателя"
-   ],
-   "correct": "острый писатель",
-   "case": "Именительный (Nominative)",
-   "explain": "«острый писатель» — the subject of the sentence stands in the nominative.",
-   "id": "c31"
-  },
-  {
-   "sentence": "Снова раздалось ___ Фомы Фомича.",
-   "lemma": "хихиканье",
-   "options": [
-    "ядовитым хихиканьем",
-    "ядовитом хихиканье",
-    "ядовитое хихиканье",
-    "ядовитому хихиканью"
-   ],
-   "correct": "ядовитое хихиканье",
-   "case": "Именительный (Nominative)",
-   "explain": "«ядовитое хихиканье» — the subject of the sentence stands in the nominative.",
-   "id": "c33"
   },
   {
    "sentence": "Не знаю, что именно приготовлялся сделать Фома после этой ___ дяди, но в эту минуту появился Гаврила и, понурив голову, стал у порога.",
@@ -347,22 +207,8 @@
    ],
    "correct": "новой выходки",
    "case": "Родительный (Genitive)",
-   "explain": "«новой выходки» — after the preposition «после», the genitive here marks possession, absence, or quantity.",
+   "explain": "«новой выходки» — «после» always takes the genitive.",
    "id": "c39"
-  },
-  {
-   "sentence": "— Я сбираюсь покинуть ваш дом, полковник, — проговорил Фома самым ___.",
-   "lemma": "голос",
-   "options": [
-    "спокойный голос",
-    "спокойном голосе",
-    "спокойным голосом",
-    "спокойному голосу"
-   ],
-   "correct": "спокойным голосом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«спокойным голосом» — the instrumental marks the means, company, or complement.",
-   "id": "c42"
   }
  ]
 }

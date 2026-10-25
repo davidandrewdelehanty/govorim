@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Между бровями на лбу появилась небольшая ___, придававшая милому лицу ее вид сосредоточенной в себе задумчивости, почти даже суровой на первый взгляд.",
-   "lemma": "морщинка",
-   "options": [
-    "вертикальная морщинка",
-    "вертикальной морщинке",
-    "вертикальной морщинкой",
-    "вертикальной морщинки"
-   ],
-   "correct": "вертикальная морщинка",
-   "case": "Именительный (Nominative)",
-   "explain": "«вертикальная морщинка» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
    "sentence": "Между бровями на лбу появилась небольшая вертикальная морщинка, придававшая милому лицу ее вид сосредоточенной в себе задумчивости, почти даже суровой на ___.",
    "lemma": "взгляд",
    "options": [
@@ -25,36 +11,8 @@
    ],
    "correct": "первый взгляд",
    "case": "Винительный (Accusative)",
-   "explain": "«первый взгляд» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«первый взгляд» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c4"
-  },
-  {
-   "sentence": "Она была уже дома; с полчаса как воротилась от Мити, и уже по тому ___, с которым она вскочила с кресел из-за стола к нему навстречу, он заключил, что ждала она его с большим нетерпением.",
-   "lemma": "движение",
-   "options": [
-    "быстрому движению",
-    "быстрое движение",
-    "быстром движении",
-    "быстрым движением"
-   ],
-   "correct": "быстрому движению",
-   "case": "Дательный (Dative)",
-   "explain": "«быстрому движению» — the dative marks the indirect object or recipient.",
-   "id": "c5"
-  },
-  {
-   "sentence": "Она была уже дома; с полчаса как воротилась от Мити, и уже по тому быстрому движению, с которым она вскочила с кресел из-за стола к нему навстречу, он заключил, что ждала она его с ___.",
-   "lemma": "нетерпение",
-   "options": [
-    "большее нетерпение",
-    "большему нетерпению",
-    "большим нетерпением",
-    "большем нетерпении"
-   ],
-   "correct": "большим нетерпением",
-   "case": "Творительный (Instrumental)",
-   "explain": "«большим нетерпением» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c6"
   },
   {
    "sentence": "Старика передернуло от ее улыбки, и губы его задрожали от ___.",
@@ -67,22 +25,8 @@
    ],
    "correct": "благодарного плача",
    "case": "Родительный (Genitive)",
-   "explain": "«благодарного плача» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«благодарного плача» — «от» always takes the genitive.",
    "id": "c10"
-  },
-  {
-   "sentence": "Грушеньку же с этой ___ строго заказал слугам не принимать вовсе, а коли придет, то говорить ей: «Приказывает, дескать, вам долго в веселии жить, а их совсем позабыть».",
-   "lemma": "минута",
-   "options": [
-    "самой минуты",
-    "самой минутой",
-    "сама минута",
-    "самой минуте"
-   ],
-   "correct": "самой минуты",
-   "case": "Родительный (Genitive)",
-   "explain": "«самой минуты» — after the preposition «в», the genitive here marks possession, absence, or quantity.",
-   "id": "c11"
   },
   {
    "sentence": "К Кузьме даже раз на ___ приревновал.",
@@ -95,7 +39,7 @@
    ],
    "correct": "прошлой неделе",
    "case": "Предложный (Prepositional)",
-   "explain": "«прошлой неделе» — after the preposition «на», for location or topic.",
+   "explain": "«прошлой неделе» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c12"
   },
   {
@@ -109,7 +53,7 @@
    ],
    "correct": "самого выздоровления",
    "case": "Родительный (Genitive)",
-   "explain": "«самого выздоровления» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
+   "explain": "«самого выздоровления» — «с» takes the genitive here (с чего? откуда? с каких пор?): from, off, since — with the instrumental it would mean 'with'.",
    "id": "c14"
   },
   {
@@ -123,78 +67,8 @@
    ],
    "correct": "первым письмом",
    "case": "Творительный (Instrumental)",
-   "explain": "«первым письмом» — after the preposition «за», the instrumental marks the means, company, or complement.",
+   "explain": "«первым письмом» — «за» takes the instrumental here (где? за чем? за кем?) — the accusative would mean motion behind or 'for' (куда? за что?).",
    "id": "c15"
-  },
-  {
-   "sentence": "За этим первым письмом последовало на другой день второе, в котором пан Муссялович просил ссудить его двумя тысячами рублей на самый ___.",
-   "lemma": "срок",
-   "options": [
-    "короткий срок",
-    "коротком сроке",
-    "короткому сроку",
-    "короткого срока"
-   ],
-   "correct": "короткий срок",
-   "case": "Винительный (Accusative)",
-   "explain": "«короткий срок» — after the preposition «на», the accusative marks the direct object of the verb.",
-   "id": "c17"
-  },
-  {
-   "sentence": "Удивило, однако же, Грушеньку, что встретили ее оба пана с заносчивою важностью и независимостью, с величайшим этикетом, с ___.",
-   "lemma": "речь",
-   "options": [
-    "раздутые речи",
-    "раздутым речам",
-    "раздутых речах",
-    "раздутыми речами"
-   ],
-   "correct": "раздутыми речами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«раздутыми речами» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c18"
-  },
-  {
-   "sentence": "Адвокат Фетюкович больше бы взял, да дело это получило огласку по всей России, во всех газетах и журналах о нем говорят, Фетюкович и согласился больше для славы приехать, потому что слишком уж ___ стало.",
-   "lemma": "дело",
-   "options": [
-    "знаменитое дело",
-    "знаменитого дела",
-    "знаменитом деле",
-    "знаменитым делом"
-   ],
-   "correct": "знаменитое дело",
-   "case": "Именительный (Nominative)",
-   "explain": "«знаменитое дело» — the subject of the sentence stands in the nominative.",
-   "id": "c20"
-  },
-  {
-   "sentence": "— Да, это, может быть, самое ___ против брата, — проговорил Алеша.",
-   "lemma": "показание",
-   "options": [
-    "сильном показании",
-    "сильное показание",
-    "сильному показанию",
-    "сильным показанием"
-   ],
-   "correct": "сильное показание",
-   "case": "Именительный (Nominative)",
-   "explain": "«сильное показание» — the subject of the sentence stands in the nominative.",
-   "id": "c21"
-  },
-  {
-   "sentence": "И знаешь, Алеша, все я на него дивлюсь: впереди такой страх, а он даже ___ таким пустякам хохочет, точно сам-то дитя.",
-   "lemma": "раз",
-   "options": [
-    "иного раза",
-    "ином разе",
-    "иному разу",
-    "иной раз"
-   ],
-   "correct": "иной раз",
-   "case": "Винительный (Accusative)",
-   "explain": "«иной раз» — the accusative marks the direct object of the verb.",
-   "id": "c22"
   }
  ]
 }

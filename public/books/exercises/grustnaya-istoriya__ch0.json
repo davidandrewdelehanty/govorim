@@ -1,62 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "И он был молод, — вот его ___.",
-   "lemma": "достоинство",
-   "options": [
-    "главном достоинстве",
-    "главным достоинством",
-    "главное достоинство",
-    "главному достоинству"
-   ],
-   "correct": "главное достоинство",
-   "case": "Именительный (Nominative)",
-   "explain": "«главное достоинство» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Я начинаю с того времени, когда он, посещая свою музу, вдохновлялся, целуя её ___, пунцовые губки, голубые глазки, беленькие ручки, — вот как красочно я пишу его музу!..",
-   "lemma": "щёчка",
-   "options": [
-    "розовых щёчек",
-    "розовые щёчки",
-    "розовым щёчкам",
-    "розовыми щёчками"
-   ],
-   "correct": "розовые щёчки",
-   "case": "Винительный (Accusative)",
-   "explain": "«розовые щёчки» — the accusative marks the direct object of the verb.",
-   "id": "c3"
-  },
-  {
-   "sentence": "Я начинаю с того времени, когда он, посещая свою музу, вдохновлялся, целуя её розовые щёчки, пунцовые губки, ___, беленькие ручки, — вот как красочно я пишу его музу!..",
-   "lemma": "глазок",
-   "options": [
-    "голубые глазки",
-    "голубых глазков",
-    "голубых глазках",
-    "голубыми глазками"
-   ],
-   "correct": "голубые глазки",
-   "case": "Именительный (Nominative)",
-   "explain": "«голубые глазки» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
-  },
-  {
-   "sentence": "Он шёл, а на его лице ещё порхали ___ — её поцелуи, в его сердце ярко пылало могучее пламя вдохновения, и сама собой слагалась светлая и могучая песнь во славу любви и в утешение вам.",
-   "lemma": "мотылёк",
-   "options": [
-    "огненных мотыльках",
-    "огненные мотыльки",
-    "огненных мотыльков",
-    "огненным мотылькам"
-   ],
-   "correct": "огненные мотыльки",
-   "case": "Именительный (Nominative)",
-   "explain": "«огненные мотыльки» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
-  },
-  {
    "sentence": "Он был одет в изящный широкий летний костюм, и в этом ___ таилось его несчастье, — в чём вы скоро убедитесь.",
    "lemma": "костюм",
    "options": [
@@ -67,7 +11,7 @@
    ],
    "correct": "широком костюме",
    "case": "Предложный (Prepositional)",
-   "explain": "«широком костюме» — after the preposition «в», for location or topic.",
+   "explain": "«широком костюме» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c6"
   },
   {
@@ -81,7 +25,7 @@
    ],
    "correct": "мрачного леса",
    "case": "Родительный (Genitive)",
-   "explain": "«мрачного леса» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«мрачного леса» — «из» always takes the genitive.",
    "id": "c9"
   },
   {
@@ -95,7 +39,7 @@
    ],
    "correct": "великих идей",
    "case": "Родительный (Genitive)",
-   "explain": "«великих идей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«великих идей» depends on the noun «цикл» (whose? of what?) — genitive.",
    "id": "c10"
   },
   {
@@ -109,36 +53,8 @@
    ],
    "correct": "человеческой души",
    "case": "Родительный (Genitive)",
-   "explain": "«человеческой души» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«человеческой души» depends on the noun «величием» (whose? of what?) — genitive.",
    "id": "c11"
-  },
-  {
-   "sentence": "Только подавленная обилием практики земская акушерка может понять вас, ___ Аполлона!",
-   "lemma": "дочь",
-   "options": [
-    "несчастные дочери",
-    "несчастным дочерям",
-    "несчастных дочерей",
-    "несчастными дочерьми"
-   ],
-   "correct": "несчастные дочери",
-   "case": "Именительный (Nominative)",
-   "explain": "«несчастные дочери» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
-  },
-  {
-   "sentence": "И тот человек, чей ___, уловив в каждой отдельной форме одно и то же истинное и общее всем им содержание, даст всей жизни твёрдую форму, тот сделает жизнь доступной пониманию всех людей.",
-   "lemma": "ум",
-   "options": [
-    "могучим умом",
-    "могучем уме",
-    "могучий ум",
-    "могучего ума"
-   ],
-   "correct": "могучий ум",
-   "case": "Именительный (Nominative)",
-   "explain": "«могучий ум» — the subject of the sentence stands in the nominative.",
-   "id": "c20"
   },
   {
    "sentence": "И тот человек, чей могучий ум, уловив в каждой ___ одно и то же истинное и общее всем им содержание, даст всей жизни твёрдую форму, тот сделает жизнь доступной пониманию всех людей.",
@@ -151,7 +67,7 @@
    ],
    "correct": "отдельной форме",
    "case": "Предложный (Prepositional)",
-   "explain": "«отдельной форме» — after the preposition «в», for location or topic.",
+   "explain": "«отдельной форме» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c21"
   },
   {
@@ -165,22 +81,8 @@
    ],
    "correct": "холодный пот",
    "case": "Именительный (Nominative)",
-   "explain": "«холодный пот» — the subject of the sentence stands in the nominative.",
+   "explain": "«холодный пот» is the subject of «выступает» — who or what does it — so nominative.",
    "id": "c25"
-  },
-  {
-   "sentence": "___, не знающее сострадания, насмешливое, холодное и злое!..",
-   "lemma": "чудовище",
-   "options": [
-    "коварным чудовищем",
-    "коварном чудовище",
-    "коварное чудовище",
-    "коварного чудовища"
-   ],
-   "correct": "коварное чудовище",
-   "case": "Именительный (Nominative)",
-   "explain": "«Коварное чудовище» — the subject of the sentence stands in the nominative.",
-   "id": "c26"
   },
   {
    "sentence": "Ты увидала во мне ___ твоей разнузданности и победила меня в то время, как я собирался вступить в битву с тобой!",
@@ -193,7 +95,7 @@
    ],
    "correct": "непримиримого врага",
    "case": "Винительный (Accusative)",
-   "explain": "«непримиримого врага» — the accusative marks the direct object of the verb.",
+   "explain": "«непримиримого врага» is the direct object of «увидала» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c27"
   },
   {
@@ -207,7 +109,7 @@
    ],
    "correct": "человеческого духа",
    "case": "Родительный (Genitive)",
-   "explain": "«человеческого духа» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«человеческого духа» depends on the noun «гордость» (whose? of what?) — genitive.",
    "id": "c28"
   },
   {
@@ -221,22 +123,8 @@
    ],
    "correct": "всесокрушающей силы",
    "case": "Родительный (Genitive)",
-   "explain": "«всесокрушающей силы» — after the preposition «против», the genitive here marks possession, absence, or quantity.",
+   "explain": "«всесокрушающей силы» — «против» always takes the genitive.",
    "id": "c29"
-  },
-  {
-   "sentence": "Где почерпну я ___ для битвы с ней?",
-   "lemma": "дух",
-   "options": [
-    "гордый дух",
-    "гордого духа",
-    "гордым духом",
-    "гордом духе"
-   ],
-   "correct": "гордого духа",
-   "case": "Родительный (Genitive)",
-   "explain": "«гордого духа» — the genitive here marks possession, absence, or quantity.",
-   "id": "c30"
   },
   {
    "sentence": "Мне ли ничтожною крупицею мозга проникнуть в ___ её намерений?",
@@ -249,36 +137,8 @@
    ],
    "correct": "тайный смысл",
    "case": "Винительный (Accusative)",
-   "explain": "«тайный смысл» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«тайный смысл» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c31"
-  },
-  {
-   "sentence": "О жизнь, ___ без сострадания и любви к детям твоим!",
-   "lemma": "чудовище",
-   "options": [
-    "таинственному чудовищу",
-    "таинственное чудовище",
-    "таинственном чудовище",
-    "таинственным чудовищем"
-   ],
-   "correct": "таинственное чудовище",
-   "case": "Именительный (Nominative)",
-   "explain": "«таинственное чудовище» — the subject of the sentence stands in the nominative.",
-   "id": "c32"
-  },
-  {
-   "sentence": "Увы! где нужна ___, там ничто самые роскошные цветы риторики!..",
-   "lemma": "ромашка",
-   "options": [
-    "персидская ромашка",
-    "персидской ромашки",
-    "персидской ромашке",
-    "персидской ромашкой"
-   ],
-   "correct": "персидская ромашка",
-   "case": "Именительный (Nominative)",
-   "explain": "«персидская ромашка» — the subject of the sentence stands in the nominative.",
-   "id": "c33"
   },
   {
    "sentence": "И видел ещё много ___.",
@@ -291,7 +151,7 @@
    ],
    "correct": "подобных ужасов",
    "case": "Родительный (Genitive)",
-   "explain": "«подобных ужасов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "After «много», a word of quantity — genitive.",
    "id": "c35"
   },
   {
@@ -305,36 +165,8 @@
    ],
    "correct": "симпатичного таланта",
    "case": "Родительный (Genitive)",
-   "explain": "«симпатичного таланта» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«симпатичного таланта» depends on the noun «душе» (whose? of what?) — genitive.",
    "id": "c39"
-  },
-  {
-   "sentence": "Вот почему ___ так обильны и громки!..",
-   "lemma": "песнопение",
-   "options": [
-    "печальных песнопений",
-    "печальные песнопения",
-    "печальным песнопениям",
-    "печальными песнопениями"
-   ],
-   "correct": "печальные песнопения",
-   "case": "Именительный (Nominative)",
-   "explain": "«печальные песнопения» — the subject of the sentence stands in the nominative.",
-   "id": "c40"
-  },
-  {
-   "sentence": "Я — ___ истины, он — поэт.",
-   "lemma": "слуга",
-   "options": [
-    "покорного слуги",
-    "покорный слуга",
-    "покорного слугу",
-    "покорному слуге"
-   ],
-   "correct": "покорный слуга",
-   "case": "Именительный (Nominative)",
-   "explain": "«покорный слуга» — the subject of the sentence stands in the nominative.",
-   "id": "c41"
   }
  ]
 }

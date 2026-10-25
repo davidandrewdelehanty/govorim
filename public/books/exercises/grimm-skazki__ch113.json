@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Жила-была старушка престарая, предряхлая; жила она со своим стадом гусей в глуши между горами, и был у нее ___.",
-   "lemma": "домик",
-   "options": [
-    "небольшого домика",
-    "небольшой домик",
-    "небольшому домику",
-    "небольшим домиком"
-   ],
-   "correct": "небольшой домик",
-   "case": "Именительный (Nominative)",
-   "explain": "«небольшой домик» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Однажды утром ___ проходил через тот лес.",
    "lemma": "юноша",
    "options": [
@@ -25,78 +11,8 @@
    ],
    "correct": "красивый юноша",
    "case": "Именительный (Nominative)",
-   "explain": "«красивый юноша» — the subject of the sentence stands in the nominative.",
+   "explain": "«красивый юноша» is the subject of «проходил» — who or what does it — so nominative.",
    "id": "c2"
-  },
-  {
-   "sentence": "___ травы уже был у нее навязан на спине, да еще рядом стояли две корзинки, полнехоньки дикими грушами и яблоками.",
-   "lemma": "узел",
-   "options": [
-    "большого узла",
-    "большим узлом",
-    "большому узлу",
-    "большой узел"
-   ],
-   "correct": "большой узел",
-   "case": "Именительный (Nominative)",
-   "explain": "«Большой узел» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
-   "sentence": "Большой узел травы уже был у нее навязан на спине, да еще рядом стояли две корзинки, полнехоньки ___ и яблоками.",
-   "lemma": "груша",
-   "options": [
-    "дикими грушами",
-    "дикие груши",
-    "диких грушах",
-    "диких груш"
-   ],
-   "correct": "дикими грушами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«дикими грушами» — the instrumental marks the means, company, or complement.",
-   "id": "c4"
-  },
-  {
-   "sentence": "«Хоть отец мой и не мужик, а ___, но я готов снести ваш узел, чтобы показать, что не одни мужики умеют таскать тяжести».",
-   "lemma": "граф",
-   "options": [
-    "богатому графу",
-    "богатый граф",
-    "богатом графе",
-    "богатого графа"
-   ],
-   "correct": "богатый граф",
-   "case": "Именительный (Nominative)",
-   "explain": "«богатый граф» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
-  },
-  {
-   "sentence": "Пока он шел по ___, то это еще было сносно; но когда они пришли к горе и должны были подниматься, и камни, словно живые, катились из-под его ног, тогда это уж было свыше сил его.",
-   "lemma": "место",
-   "options": [
-    "ровного места",
-    "ровном месте",
-    "ровное место",
-    "ровному месту"
-   ],
-   "correct": "ровному месту",
-   "case": "Дательный (Dative)",
-   "explain": "«ровному месту» — after the preposition «из-под», the dative marks the indirect object or recipient.",
-   "id": "c6"
-  },
-  {
-   "sentence": "И вдруг старуха приостановилась, вспрыгнула наверх узла и преспокойно там уселась; и несмотря на то, что она была суха, как хворостина, а оказалась тяжелее всякой толстой ___.",
-   "lemma": "девка",
-   "options": [
-    "деревенской девки",
-    "деревенской девке",
-    "деревенской девкой",
-    "деревенская девка"
-   ],
-   "correct": "деревенской девки",
-   "case": "Родительный (Genitive)",
-   "explain": "«деревенской девки» — the genitive here marks possession, absence, or quantity.",
-   "id": "c7"
   },
   {
    "sentence": "С ___ поднялся он на гору и, наконец, добрел до дома старухи как раз в то время, когда уже готов был упасть.",
@@ -109,22 +25,8 @@
    ],
    "correct": "непрерывающимся оханьем",
    "case": "Творительный (Instrumental)",
-   "explain": "«непрерывающимся оханьем» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«непрерывающимся оханьем» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c8"
-  },
-  {
-   "sentence": "Между тем, старуха ласкала и гладила своих гусей, как ___, и затем вошла в дом со своею дочерью; а юноша растянулся на скамье под дикой яблоней.",
-   "lemma": "ребёночек",
-   "options": [
-    "милые детки",
-    "милых деток",
-    "милыми детками",
-    "милых детках"
-   ],
-   "correct": "милых деток",
-   "case": "Винительный (Accusative)",
-   "explain": "«милых деток» — the accusative marks the direct object of the verb.",
-   "id": "c9"
   },
   {
    "sentence": "Между тем, старуха ласкала и гладила своих гусей, как милых деток, и затем вошла в дом со своею дочерью; а юноша растянулся на скамье под ___.",
@@ -137,35 +39,21 @@
    ],
    "correct": "дикой яблоней",
    "case": "Творительный (Instrumental)",
-   "explain": "«дикой яблоней» — after the preposition «под», the instrumental marks the means, company, or complement.",
+   "explain": "«дикой яблоней» — «под» takes the instrumental here (где? под чем?) — the accusative would mean movement under (куда? под что?).",
    "id": "c10"
-  },
-  {
-   "sentence": "Уж он ___ пути прошел, а все еще издали доносился до него веселый крик гусей.",
-   "lemma": "кусок",
-   "options": [
-    "порядочным куском",
-    "порядочном куске",
-    "порядочному куску",
-    "порядочный кусок"
-   ],
-   "correct": "порядочный кусок",
-   "case": "Именительный (Nominative)",
-   "explain": "«порядочный кусок» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
   },
   {
    "sentence": "Затем пришел он в ___, и так как никто его не знал там, то он и был приведен в королевский замок, в зал, где король и королева сидели на троне.",
    "lemma": "город",
    "options": [
     "большим городом",
+    "большого города",
     "большому городу",
-    "большой город",
-    "большом городе"
+    "большой город"
    ],
    "correct": "большой город",
    "case": "Винительный (Accusative)",
-   "explain": "«большой город» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«большой город» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c12"
   },
   {
@@ -174,27 +62,13 @@
    "options": [
     "королевским замком",
     "королевский замок",
-    "королевском замке",
+    "королевскому замку",
     "королевского замка"
    ],
    "correct": "королевский замок",
    "case": "Винительный (Accusative)",
-   "explain": "«королевский замок» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«королевский замок» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c13"
-  },
-  {
-   "sentence": "Граф опустился на колено, вынул ___, подаренный ему старухою, и положил его к ногам королевы.",
-   "lemma": "сосуд",
-   "options": [
-    "изумрудному сосуду",
-    "изумрудном сосуде",
-    "изумрудный сосуд",
-    "изумрудного сосуда"
-   ],
-   "correct": "изумрудный сосуд",
-   "case": "Винительный (Accusative)",
-   "explain": "«изумрудный сосуд» — the accusative marks the direct object of the verb.",
-   "id": "c14"
   },
   {
    "sentence": "Графа схватили ___ и собирались вести в темницу; но королева открыла глаза и приказала его освободить.",
@@ -207,78 +81,36 @@
    ],
    "correct": "королевские слуги",
    "case": "Именительный (Nominative)",
-   "explain": "«королевские слуги» — the subject of the sentence stands in the nominative.",
+   "explain": "«королевские слуги» is the subject of «схватили» — who or what does it — so nominative.",
    "id": "c15"
-  },
-  {
-   "sentence": "Не знаю я, когда настанет мой ___, но я хочу сегодня же определить, что каждая из вас должна будет получить по смерти моей.",
-   "lemma": "час",
-   "options": [
-    "последний час",
-    "последнем часе",
-    "последнему часу",
-    "последнего часа"
-   ],
-   "correct": "последний час",
-   "case": "Именительный (Nominative)",
-   "explain": "«последний час» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
   },
   {
    "sentence": "И разделил королевство пополам между двумя ___, а младшей приказал навязать на спину мешок с солью, и двое слуг должны были вывести ее в дремучий лес.",
    "lemma": "дочь",
    "options": [
+    "старших дочерях",
+    "старшим дочерям",
     "старшими дочерьми",
-    "старших дочерей",
-    "старшие дочери",
-    "старшим дочерям"
+    "старшие дочери"
    ],
    "correct": "старшими дочерьми",
    "case": "Творительный (Instrumental)",
-   "explain": "«старшими дочерьми» — after the preposition «между», the instrumental marks the means, company, or complement.",
+   "explain": "«старшими дочерьми» — «между» + instrumental: between.",
    "id": "c17"
   },
   {
    "sentence": "И разделил королевство пополам между двумя старшими дочерьми, а младшей приказал навязать на спину мешок с солью, и двое слуг должны были вывести ее в ___.",
    "lemma": "лес",
    "options": [
+    "дремучего леса",
     "дремучему лесу",
-    "дремучий лес",
-    "дремучем лесе",
-    "дремучего леса"
+    "дремучим лесом",
+    "дремучий лес"
    ],
    "correct": "дремучий лес",
    "case": "Винительный (Accusative)",
-   "explain": "«дремучий лес» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«дремучий лес» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c18"
-  },
-  {
-   "sentence": "Присела дочь на лавку, взяла свою прялку и так проворно стала сучить свою нитку, словно ___.",
-   "lemma": "девушка",
-   "options": [
-    "молоденькой девушке",
-    "молоденькой девушкой",
-    "молоденькая девушка",
-    "молоденькой девушки"
-   ],
-   "correct": "молоденькая девушка",
-   "case": "Именительный (Nominative)",
-   "explain": "«молоденькая девушка» — the subject of the sentence stands in the nominative.",
-   "id": "c19"
-  },
-  {
-   "sentence": "То была старая ___, которая трижды крикнула: «Угу!» — и исчезла.",
-   "lemma": "сова",
-   "options": [
-    "ночной совой",
-    "ночной сове",
-    "ночная сова",
-    "ночной совы"
-   ],
-   "correct": "ночная сова",
-   "case": "Именительный (Nominative)",
-   "explain": "«ночная сова» — the subject of the sentence stands in the nominative.",
-   "id": "c20"
   },
   {
    "sentence": "Умывшись, она и кожу с лица окунула в воду и потом разложила ее на лугу, чтобы она опять могла высохнуть и побелеть при ___.",
@@ -291,64 +123,8 @@
    ],
    "correct": "лунном свете",
    "case": "Предложный (Prepositional)",
-   "explain": "«лунном свете» — after the preposition «при», for location or topic.",
+   "explain": "«лунном свете» — «при» always takes the prepositional.",
    "id": "c21"
-  },
-  {
-   "sentence": "Как скинула с головы беспорядочную копну ___, пряди ее собственных золотистых волос, блиставших, как солнечные лучи, рассыпались и покрыли ее всю, словно плащом.",
-   "lemma": "волос",
-   "options": [
-    "накладных волосах",
-    "накладные волосы",
-    "накладными волосами",
-    "накладных волос"
-   ],
-   "correct": "накладных волос",
-   "case": "Родительный (Genitive)",
-   "explain": "«накладных волос» — the genitive here marks possession, absence, or quantity.",
-   "id": "c22"
-  },
-  {
-   "sentence": "Как скинула с головы беспорядочную копну накладных волос, пряди ее собственных ___, блиставших, как солнечные лучи, рассыпались и покрыли ее всю, словно плащом.",
-   "lemma": "волос",
-   "options": [
-    "золотистых волос",
-    "золотистыми волосами",
-    "золотистые волосы",
-    "золотистых волосах"
-   ],
-   "correct": "золотистых волос",
-   "case": "Родительный (Genitive)",
-   "explain": "«золотистых волос» — the genitive here marks possession, absence, or quantity.",
-   "id": "c23"
-  },
-  {
-   "sentence": "Как скинула с головы беспорядочную копну накладных волос, пряди ее собственных золотистых волос, блиставших, как ___, рассыпались и покрыли ее всю, словно плащом.",
-   "lemma": "луч",
-   "options": [
-    "солнечные лучи",
-    "солнечным лучам",
-    "солнечных лучах",
-    "солнечными лучами"
-   ],
-   "correct": "солнечные лучи",
-   "case": "Именительный (Nominative)",
-   "explain": "«солнечные лучи» — the subject of the sentence stands in the nominative.",
-   "id": "c24"
-  },
-  {
-   "sentence": "Только очи ее, что звездочки, мерцали из-под этого покрова волос, да щечки горели ___.",
-   "lemma": "румянец",
-   "options": [
-    "яркий румянец",
-    "ярким румянцем",
-    "ярком румянце",
-    "яркому румянцу"
-   ],
-   "correct": "ярким румянцем",
-   "case": "Творительный (Instrumental)",
-   "explain": "«ярким румянцем» — the instrumental marks the means, company, or complement.",
-   "id": "c25"
   },
   {
    "sentence": "Присела она у колодца и стала плакать: одна слеза за другою выкатывались из глаз ее и среди ___ падали на землю.",
@@ -361,49 +137,35 @@
    ],
    "correct": "золотистых прядей",
    "case": "Родительный (Genitive)",
-   "explain": "«золотистых прядей» — after the preposition «среди», the genitive here marks possession, absence, or quantity.",
+   "explain": "«золотистых прядей» — «среди» always takes the genitive.",
    "id": "c26"
   },
   {
    "sentence": "На ___ ему показалось, что он попал на настоящую дорогу.",
    "lemma": "день",
    "options": [
-    "другом дне",
-    "другим днём",
+    "другому дню",
     "другой день",
+    "другим днём",
     "другого дня"
    ],
    "correct": "другой день",
    "case": "Винительный (Accusative)",
-   "explain": "«другой день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«другой день» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c27"
-  },
-  {
-   "sentence": "Немного пройдя, он в темноте увидел, что по лугу бредут две другие ___.",
-   "lemma": "фигура",
-   "options": [
-    "человеческими фигурами",
-    "человеческие фигуры",
-    "человеческих фигур",
-    "человеческим фигурам"
-   ],
-   "correct": "человеческие фигуры",
-   "case": "Винительный (Accusative)",
-   "explain": "«человеческие фигуры» — the accusative marks the direct object of the verb.",
-   "id": "c28"
   },
   {
    "sentence": "С ___ пошли они далее и вскоре пришли к избушке: кругом ее сидели гуси рядами, подвернув головы под крылья, и спали, и ни один из них не шевельнулся.",
    "lemma": "чувство",
    "options": [
-    "радостным чувством",
-    "радостное чувство",
     "радостному чувству",
-    "радостного чувства"
+    "радостном чувстве",
+    "радостным чувством",
+    "радостное чувство"
    ],
    "correct": "радостным чувством",
    "case": "Творительный (Instrumental)",
-   "explain": "«радостным чувством» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«радостным чувством» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c29"
   },
   {
@@ -417,36 +179,8 @@
    ],
    "correct": "смежной комнаты",
    "case": "Родительный (Genitive)",
-   "explain": "«смежной комнаты» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«смежной комнаты» depends on the noun «двери» (whose? of what?) — genitive.",
    "id": "c30"
-  },
-  {
-   "sentence": "Дверь отворилась, и королевна вышла оттуда в своей шелковой одежде, с рассыпанными по плечам ___ и ясными очами — словно ангел слетел с неба.",
-   "lemma": "волос",
-   "options": [
-    "золотистыми волосами",
-    "золотистым волосам",
-    "золотистых волосах",
-    "золотистые волосы"
-   ],
-   "correct": "золотистыми волосами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«золотистыми волосами» — the instrumental marks the means, company, or complement.",
-   "id": "c31"
-  },
-  {
-   "sentence": "Дверь отворилась, и королевна вышла оттуда в своей шелковой одежде, с рассыпанными по плечам золотистыми волосами и ___ — словно ангел слетел с неба.",
-   "lemma": "око",
-   "options": [
-    "ясные очи",
-    "ясным очам",
-    "ясными очами",
-    "ясных очах"
-   ],
-   "correct": "ясными очами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«ясными очами» — the instrumental marks the means, company, or complement.",
-   "id": "c32"
   },
   {
    "sentence": "___ стоял с ними рядом, и когда королевна его увидала, то, сама не зная почему, зарделась, как роза.",
@@ -459,7 +193,7 @@
    ],
    "correct": "молодой граф",
    "case": "Именительный (Nominative)",
-   "explain": "«Молодой граф» — the subject of the sentence stands in the nominative.",
+   "explain": "«молодой граф» is the subject of «стоял» — who or what does it — so nominative.",
    "id": "c33"
   },
   {
@@ -473,7 +207,7 @@
    ],
    "correct": "прекрасная королевна",
    "case": "Именительный (Nominative)",
-   "explain": "«прекрасная королевна» — the subject of the sentence stands in the nominative.",
+   "explain": "«прекрасная королевна» is the subject of «вышла» — who or what does it — so nominative.",
    "id": "c34"
   }
  ]

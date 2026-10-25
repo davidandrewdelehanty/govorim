@@ -1,31 +1,17 @@
 {
  "cases": [
   {
-   "sentence": "Друзья исправно посещали Берга, абонировались в библиотеке, читая книги вроде «___», «Трех мушкетеров», «Тайн французской революции», «Королевы Марго», «Графа Монте-Кристо».",
-   "lemma": "жид",
-   "options": [
-    "вечный жид",
-    "вечного жида",
-    "вечным жидом",
-    "вечному жиду"
-   ],
-   "correct": "вечного жида",
-   "case": "Родительный (Genitive)",
-   "explain": "«Вечного жида» — after the preposition «вроде», the genitive here marks possession, absence, or quantity.",
-   "id": "c1"
-  },
-  {
    "sentence": "Но, собственно, настоящее увлечение ___ той жизнью, какою теперь зажили Карташев и Шацкий, уже прошло у Карташева.",
    "lemma": "день",
    "options": [
-    "первые дни",
-    "первых днях",
     "первых дней",
-    "первыми днями"
+    "первым дням",
+    "первых днях",
+    "первые дни"
    ],
    "correct": "первых дней",
    "case": "Родительный (Genitive)",
-   "explain": "«первых дней» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«первых дней» depends on the noun «увлечение» (whose? of what?) — genitive.",
    "id": "c3"
   },
   {
@@ -39,106 +25,8 @@
    ],
    "correct": "радужных бумажек",
    "case": "Родительный (Genitive)",
-   "explain": "«радужных бумажек» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«радужных бумажек» depends on the noun «портфеля» (whose? of what?) — genitive.",
    "id": "c5"
-  },
-  {
-   "sentence": "Я считал тебя более ___.",
-   "lemma": "мальчик",
-   "options": [
-    "приличного мальчика",
-    "приличным мальчиком",
-    "приличном мальчике",
-    "приличный мальчик"
-   ],
-   "correct": "приличным мальчиком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«приличным мальчиком» — the instrumental marks the means, company, or complement.",
-   "id": "c6"
-  },
-  {
-   "sentence": "И Шацкий убегал от унылого Карташева, бегал по коридорам, выкрикивал свое «дзин-ла-ла», останавливался вдруг, расставляя свои ___, и смотрел, вытянув шею.",
-   "lemma": "нога",
-   "options": [
-    "длинные ноги",
-    "длинных ногах",
-    "длинным ногам",
-    "длинными ногами"
-   ],
-   "correct": "длинные ноги",
-   "case": "Винительный (Accusative)",
-   "explain": "«длинные ноги» — the accusative marks the direct object of the verb.",
-   "id": "c8"
-  },
-  {
-   "sentence": "Между Карташевым и им происходили нередко грубые и резкие стычки, причем Шацкий спокойно язвил Карташева, задевая самые ___ его, а Карташев, сделавшись вспыльчивым, как порох, кричал и ругался.",
-   "lemma": "место",
-   "options": [
-    "больных местах",
-    "больные места",
-    "больных мест",
-    "больным местам"
-   ],
-   "correct": "больные места",
-   "case": "Винительный (Accusative)",
-   "explain": "«больные места» — the accusative marks the direct object of the verb.",
-   "id": "c10"
-  },
-  {
-   "sentence": "Вид и ___ букета целый день навевали какое-то приятное очарование.",
-   "lemma": "аромат",
-   "options": [
-    "нежному аромату",
-    "нежном аромате",
-    "нежного аромата",
-    "нежный аромат"
-   ],
-   "correct": "нежный аромат",
-   "case": "Именительный (Nominative)",
-   "explain": "«нежный аромат» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
-  },
-  {
-   "sentence": "Точно ___ была уже у них в комнате, точно у них были настоящие связи со всем этим закулисным миром, как у тех постоянных посетителей первых рядов и литерных лож, которых они ежедневно встречали в театре.",
-   "lemma": "итальянка",
-   "options": [
-    "самой итальянки",
-    "самой итальянке",
-    "сама итальянка",
-    "самой итальянкой"
-   ],
-   "correct": "сама итальянка",
-   "case": "Именительный (Nominative)",
-   "explain": "«сама итальянка» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
-  },
-  {
-   "sentence": "Точно сама итальянка была уже у них в комнате, точно у них были настоящие связи со всем этим ___, как у тех постоянных посетителей первых рядов и литерных лож, которых они ежедневно встречали в театре.",
-   "lemma": "мир",
-   "options": [
-    "закулисным миром",
-    "закулисном мире",
-    "закулисный мир",
-    "закулисному миру"
-   ],
-   "correct": "закулисным миром",
-   "case": "Творительный (Instrumental)",
-   "explain": "«закулисным миром» — the instrumental marks the means, company, or complement.",
-   "id": "c14"
-  },
-  {
-   "sentence": "Точно сама итальянка была уже у них в комнате, точно у них были настоящие связи со всем этим закулисным миром, как у тех ___ первых рядов и литерных лож, которых они ежедневно встречали в театре.",
-   "lemma": "посетитель",
-   "options": [
-    "постоянным посетителям",
-    "постоянными посетителями",
-    "постоянных посетителей",
-    "постоянных посетителях"
-   ],
-   "correct": "постоянных посетителей",
-   "case": "Родительный (Genitive)",
-   "explain": "«постоянных посетителей» — after the preposition «со», the genitive here marks possession, absence, or quantity.",
-   "id": "c15"
   },
   {
    "sentence": "Точно сама итальянка была уже у них в комнате, точно у них были настоящие связи со всем этим закулисным миром, как у тех постоянных посетителей ___ и литерных лож, которых они ежедневно встречали в театре.",
@@ -151,22 +39,8 @@
    ],
    "correct": "первых рядов",
    "case": "Родительный (Genitive)",
-   "explain": "«первых рядов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«первых рядов» depends on the noun «посетителей» (whose? of what?) — genitive.",
    "id": "c16"
-  },
-  {
-   "sentence": "Точно сама итальянка была уже у них в комнате, точно у них были настоящие связи со всем этим закулисным миром, как у тех постоянных посетителей первых рядов и ___, которых они ежедневно встречали в театре.",
-   "lemma": "ложа",
-   "options": [
-    "литерными ложами",
-    "литерные ложи",
-    "литерных ложах",
-    "литерных лож"
-   ],
-   "correct": "литерных лож",
-   "case": "Родительный (Genitive)",
-   "explain": "«литерных лож» — the genitive here marks possession, absence, or quantity.",
-   "id": "c17"
   },
   {
    "sentence": "Подавленный, сидел он перед спущенной занавесью ___, и ему не хотелось оставаться в театре, не хотелось уходить, не хотелось думать, смотреть, жить.",
@@ -179,7 +53,7 @@
    ],
    "correct": "первого антракта",
    "case": "Родительный (Genitive)",
-   "explain": "«первого антракта» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«первого антракта» depends on the noun «занавесью» (whose? of what?) — genitive.",
    "id": "c20"
   },
   {
@@ -193,7 +67,7 @@
    ],
    "correct": "самом деле",
    "case": "Предложный (Prepositional)",
-   "explain": "«самом деле» — after the preposition «на», for location or topic.",
+   "explain": "«самом деле» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c21"
   },
   {
@@ -207,7 +81,7 @@
    ],
    "correct": "знакомый сумбур",
    "case": "Именительный (Nominative)",
-   "explain": "«знакомый сумбур» — the subject of the sentence stands in the nominative.",
+   "explain": "«знакомый сумбур» is the subject of «начался» — who or what does it — so nominative.",
    "id": "c23"
   },
   {
@@ -221,22 +95,8 @@
    ],
    "correct": "ясные мысли",
    "case": "Именительный (Nominative)",
-   "explain": "«ясные мысли» — the subject of the sentence stands in the nominative.",
+   "explain": "«ясные мысли» is the subject of «ворвались» — who or what does it — so nominative.",
    "id": "c24"
-  },
-  {
-   "sentence": "Томясь и тоскуя, он то пил чай, то лежал, то ходил и все мучился, что ___ так-таки и пропадет у него даром.",
-   "lemma": "вечер",
-   "options": [
-    "сегодняшним вечером",
-    "сегодняшнего вечера",
-    "сегодняшний вечер",
-    "сегодняшнем вечере"
-   ],
-   "correct": "сегодняшний вечер",
-   "case": "Именительный (Nominative)",
-   "explain": "«сегодняшний вечер» — the subject of the sentence stands in the nominative.",
-   "id": "c25"
   },
   {
    "sentence": "А на ___ он опять был у Берга и опять по-прежнему стал ходить каждый вечер.",
@@ -249,22 +109,8 @@
    ],
    "correct": "другой день",
    "case": "Винительный (Accusative)",
-   "explain": "«другой день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«другой день» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c26"
-  },
-  {
-   "sentence": "Карташев чувствовал унижение и, всматриваясь, уже как ___, не мог не признавать, что лицо ее загоралось настоящим счастьем, когда в ложе появлялся красавец юноша в гусарской форме.",
-   "lemma": "зритель",
-   "options": [
-    "постороннего зрителя",
-    "постороннем зрителе",
-    "посторонним зрителем",
-    "посторонний зритель"
-   ],
-   "correct": "посторонний зритель",
-   "case": "Именительный (Nominative)",
-   "explain": "«посторонний зритель» — the subject of the sentence stands in the nominative.",
-   "id": "c27"
   },
   {
    "sentence": "Карташев чувствовал унижение и, всматриваясь, уже как посторонний зритель, не мог не признавать, что лицо ее загоралось настоящим счастьем, когда в ложе появлялся красавец юноша в ___.",
@@ -277,7 +123,7 @@
    ],
    "correct": "гусарской форме",
    "case": "Предложный (Prepositional)",
-   "explain": "«гусарской форме» — after the preposition «в», for location or topic.",
+   "explain": "«гусарской форме» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c28"
   },
   {
@@ -291,22 +137,8 @@
    ],
    "correct": "пажеский корпус",
    "case": "Винительный (Accusative)",
-   "explain": "«пажеский корпус» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«пажеский корпус» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c29"
-  },
-  {
-   "sentence": "Шацкий и дальше стал давать по мелочам, — водил его с собой в театр, но от выдачи на руки более ___ под разными предлогами уклонялся.",
-   "lemma": "сумма",
-   "options": [
-    "крупной сумме",
-    "крупная сумма",
-    "крупной суммой",
-    "крупной суммы"
-   ],
-   "correct": "крупной суммы",
-   "case": "Родительный (Genitive)",
-   "explain": "«крупной суммы» — the genitive here marks possession, absence, or quantity.",
-   "id": "c30"
   },
   {
    "sentence": "Шацкий и дальше стал давать по мелочам, — водил его с собой в театр, но от выдачи на руки более крупной суммы под ___ уклонялся.",
@@ -319,78 +151,22 @@
    ],
    "correct": "разными предлогами",
    "case": "Творительный (Instrumental)",
-   "explain": "«разными предлогами» — after the preposition «под», the instrumental marks the means, company, or complement.",
+   "explain": "«разными предлогами» — «под» takes the instrumental here (где? под чем?) — the accusative would mean movement under (куда? под что?).",
    "id": "c31"
   },
   {
    "sentence": "Но что такое оперетка? ведь это просто балаган, даже ___ нет.",
    "lemma": "удовольствие",
    "options": [
-    "физического удовольствия",
-    "физическим удовольствием",
     "физическому удовольствию",
-    "физическое удовольствие"
+    "физическим удовольствием",
+    "физического удовольствия",
+    "физическом удовольствии"
    ],
    "correct": "физического удовольствия",
    "case": "Родительный (Genitive)",
-   "explain": "«физического удовольствия» — the genitive here marks possession, absence, or quantity.",
+   "explain": "What is absent after «нет» — genitive.",
    "id": "c32"
-  },
-  {
-   "sentence": "— Мало того, что мы ___?",
-   "lemma": "классик",
-   "options": [
-    "самих классиков",
-    "самих классиках",
-    "сами классики",
-    "самим классикам"
-   ],
-   "correct": "сами классики",
-   "case": "Именительный (Nominative)",
-   "explain": "«сами классики» — the subject of the sentence stands in the nominative.",
-   "id": "c33"
-  },
-  {
-   "sentence": "— Какие же мы ___?",
-   "lemma": "классик",
-   "options": [
-    "самих классиков",
-    "самих классиках",
-    "сами классики",
-    "самим классикам"
-   ],
-   "correct": "сами классики",
-   "case": "Именительный (Nominative)",
-   "explain": "«сами классики» — the subject of the sentence stands in the nominative.",
-   "id": "c34"
-  },
-  {
-   "sentence": "— Во-вторых, оставьте нас, ___, лучше в покое.",
-   "lemma": "человек",
-   "options": [
-    "маленьких людях",
-    "маленькими людьми",
-    "маленькие люди",
-    "маленьких людей"
-   ],
-   "correct": "маленьких людей",
-   "case": "Винительный (Accusative)",
-   "explain": "«маленьких людей» — the accusative marks the direct object of the verb.",
-   "id": "c35"
-  },
-  {
-   "sentence": "— Что ж ты наконец, — сказал он, поднимаясь, — ___?",
-   "lemma": "разбойник",
-   "options": [
-    "окончательным разбойником",
-    "окончательного разбойника",
-    "окончательный разбойник",
-    "окончательном разбойнике"
-   ],
-   "correct": "окончательный разбойник",
-   "case": "Именительный (Nominative)",
-   "explain": "«окончательный разбойник» — the subject of the sentence stands in the nominative.",
-   "id": "c36"
   },
   {
    "sentence": "На ___ они оба не сказали ни слова друг другу, — вечером Шацкий отправился к Бергу, а Карташев в Мариинский театр.",
@@ -403,22 +179,8 @@
    ],
    "correct": "другой день",
    "case": "Винительный (Accusative)",
-   "explain": "«другой день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«другой день» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c37"
-  },
-  {
-   "sentence": "Карташев открыл форточку, вынул ___, показал Корневу и весело швырнул его за окно.",
-   "lemma": "портсигар",
-   "options": [
-    "кожаному портсигару",
-    "кожаный портсигар",
-    "кожаным портсигаром",
-    "кожаного портсигара"
-   ],
-   "correct": "кожаный портсигар",
-   "case": "Винительный (Accusative)",
-   "explain": "«кожаный портсигар» — the accusative marks the direct object of the verb.",
-   "id": "c39"
   },
   {
    "sentence": "На ___ Карташев прямо от Корнева отправился на Петербургскую сторону искать квартиру, все в том же возбужденном, удовлетворенном настроении.",
@@ -431,7 +193,7 @@
    ],
    "correct": "другой день",
    "case": "Винительный (Accusative)",
-   "explain": "«другой день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«другой день» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c40"
   }
  ]

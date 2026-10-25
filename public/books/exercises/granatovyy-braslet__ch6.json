@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Только над головой большие звезды дрожали своими ресницами среди черной ночи, да голубой луч от маяка подымался прямо вверх ___ и точно расплескивался там о небесный купол жидким, туманным, светлым кругом.",
-   "lemma": "столб",
-   "options": [
-    "тонкий столб",
-    "тонкому столбу",
-    "тонким столбом",
-    "тонкого столба"
-   ],
-   "correct": "тонким столбом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«тонким столбом» — the instrumental marks the means, company, or complement.",
-   "id": "c2"
-  },
-  {
    "sentence": "___ бились о стеклянные колпаки свечей.",
    "lemma": "бабочка",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "ночные бабочки",
    "case": "Именительный (Nominative)",
-   "explain": "«Ночные бабочки» — the subject of the sentence stands in the nominative.",
+   "explain": "«ночные бабочки» is the subject of «бились» — who or what does it — so nominative.",
    "id": "c4"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "белого табака",
    "case": "Родительный (Genitive)",
-   "explain": "«белого табака» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«белого табака» depends on the noun «цветы» (whose? of what?) — genitive.",
    "id": "c6"
   },
   {
@@ -53,7 +39,7 @@
    ],
    "correct": "красного вина",
    "case": "Родительный (Genitive)",
-   "explain": "«красного вина» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«красного вина» depends on the noun «бутылка» (whose? of what?) — genitive.",
    "id": "c7"
   },
   {
@@ -67,78 +53,8 @@
    ],
    "correct": "старый комендант",
    "case": "Именительный (Nominative)",
-   "explain": "«Старый комендант» — the subject of the sentence stands in the nominative.",
+   "explain": "«старый комендант» is the subject of «хмурился» — who or what does it — so nominative.",
    "id": "c8"
-  },
-  {
-   "sentence": "Вера вынула из вазочки две маленькие розы, розовую и карминную, и вдела их в петлицу ___.",
-   "lemma": "пальто",
-   "options": [
-    "генеральским пальто",
-    "генеральского пальто",
-    "генеральском пальто",
-    "генеральское пальто"
-   ],
-   "correct": "генеральского пальто",
-   "case": "Родительный (Genitive)",
-   "explain": "«генеральского пальто» — the genitive here marks possession, absence, or quantity.",
-   "id": "c9"
-  },
-  {
-   "sentence": "— Аносов нагнул голову к борту шинели, понюхал цветы и вдруг улыбнулся славной ___.",
-   "lemma": "улыбка",
-   "options": [
-    "старческой улыбкой",
-    "старческой улыбке",
-    "старческой улыбки",
-    "старческая улыбка"
-   ],
-   "correct": "старческой улыбкой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«старческой улыбкой» — the instrumental marks the means, company, or complement.",
-   "id": "c10"
-  },
-  {
-   "sentence": "Вдруг повеял на меня сильный розовый запах, я остановился и увидал, что между двух солдат стоит прекрасный ___ с розовым маслом.",
-   "lemma": "флакон",
-   "options": [
-    "хрустальный флакон",
-    "хрустальному флакону",
-    "хрустального флакона",
-    "хрустальным флаконом"
-   ],
-   "correct": "хрустальный флакон",
-   "case": "Именительный (Nominative)",
-   "explain": "«хрустальный флакон» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
-  },
-  {
-   "sentence": "Они смазали уже им сапоги и также ___.",
-   "lemma": "замок",
-   "options": [
-    "ружейные замки",
-    "ружейными замками",
-    "ружейных замков",
-    "ружейным замкам"
-   ],
-   "correct": "ружейные замки",
-   "case": "Винительный (Accusative)",
-   "explain": "«ружейные замки» — the accusative marks the direct object of the verb.",
-   "id": "c13"
-  },
-  {
-   "sentence": "Ты не верь, пожалуйста, тому, кто тебе скажет, что не боялся и что свист пуль для него самая ___.",
-   "lemma": "музыка",
-   "options": [
-    "сладкой музыкой",
-    "сладкая музыка",
-    "сладкой музыки",
-    "сладкой музыке"
-   ],
-   "correct": "сладкая музыка",
-   "case": "Именительный (Nominative)",
-   "explain": "«сладкая музыка» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
   },
   {
    "sentence": "Они до сих пор слушали рассказы Аносова с тем же восторгом, как и в их ___.",
@@ -151,35 +67,21 @@
    ],
    "correct": "раннем детстве",
    "case": "Предложный (Prepositional)",
-   "explain": "«раннем детстве» — after the preposition «в», for location or topic.",
+   "explain": "«раннем детстве» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c15"
-  },
-  {
-   "sentence": "И ___ фраз, которыми он передавал свои военные воспоминания, принимали у него невольно странный, неуклюжий, несколько книжный характер.",
-   "lemma": "оборот",
-   "options": [
-    "самых оборотах",
-    "самых оборотов",
-    "самыми оборотами",
-    "самые обороты"
-   ],
-   "correct": "самые обороты",
-   "case": "Именительный (Nominative)",
-   "explain": "«самые обороты» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
   },
   {
    "sentence": "И самые обороты фраз, которыми он передавал свои ___, принимали у него невольно странный, неуклюжий, несколько книжный характер.",
    "lemma": "воспоминание",
    "options": [
-    "военных воспоминаний",
     "военным воспоминаниям",
-    "военные воспоминания",
-    "военными воспоминаниями"
+    "военными воспоминаниями",
+    "военных воспоминаниях",
+    "военные воспоминания"
    ],
    "correct": "военные воспоминания",
    "case": "Винительный (Accusative)",
-   "explain": "«военные воспоминания» — the accusative marks the direct object of the verb.",
+   "explain": "«военные воспоминания» is the direct object of «передавал» (кого? что?) — accusative.",
    "id": "c17"
   },
   {
@@ -193,22 +95,8 @@
    ],
    "correct": "книжный характер",
    "case": "Винительный (Accusative)",
-   "explain": "«книжный характер» — the accusative marks the direct object of the verb.",
+   "explain": "«книжный характер» is the direct object of «принимали» (кого? что?) — accusative.",
    "id": "c18"
-  },
-  {
-   "sentence": "Точно он рассказывал по какому-то милому, ___.",
-   "lemma": "стереотип",
-   "options": [
-    "древнему стереотипу",
-    "древним стереотипом",
-    "древнего стереотипа",
-    "древний стереотип"
-   ],
-   "correct": "древнему стереотипу",
-   "case": "Дательный (Dative)",
-   "explain": "«древнему стереотипу» — the dative marks the indirect object or recipient.",
-   "id": "c19"
   },
   {
    "sentence": "Вот тут-то со мною и случилось ___.",
@@ -221,36 +109,8 @@
    ],
    "correct": "страшное приключение",
    "case": "Именительный (Nominative)",
-   "explain": "«страшное приключение» — the subject of the sentence stands in the nominative.",
+   "explain": "«страшное приключение» is the subject of «случилось» — who or what does it — so nominative.",
    "id": "c20"
-  },
-  {
-   "sentence": "Вот в этом же Букаресте был очень ___.",
-   "lemma": "случай",
-   "options": [
-    "трогательный случай",
-    "трогательного случая",
-    "трогательному случаю",
-    "трогательным случаем"
-   ],
-   "correct": "трогательный случай",
-   "case": "Именительный (Nominative)",
-   "explain": "«трогательный случай» — the subject of the sentence stands in the nominative.",
-   "id": "c21"
-  },
-  {
-   "sentence": "Увидев меня, она стала притворяться, что перебирает ___ роз, которые, надо сказать, тамошние жители собирают целыми мешками.",
-   "lemma": "лепесток",
-   "options": [
-    "сухими лепестками",
-    "сухих лепестков",
-    "сухие лепестки",
-    "сухих лепестках"
-   ],
-   "correct": "сухие лепестки",
-   "case": "Винительный (Accusative)",
-   "explain": "«сухие лепестки» — the accusative marks the direct object of the verb.",
-   "id": "c22"
   },
   {
    "sentence": "Увидев меня, она стала притворяться, что перебирает сухие лепестки роз, которые, надо сказать, ___ собирают целыми мешками.",
@@ -263,22 +123,8 @@
    ],
    "correct": "тамошние жители",
    "case": "Именительный (Nominative)",
-   "explain": "«тамошние жители» — the subject of the sentence stands in the nominative.",
+   "explain": "«тамошние жители» is the subject of «собирают» — who or what does it — so nominative.",
    "id": "c23"
-  },
-  {
-   "sentence": "Увидев меня, она стала притворяться, что перебирает сухие лепестки роз, которые, надо сказать, тамошние жители собирают ___.",
-   "lemma": "мешок",
-   "options": [
-    "целых мешков",
-    "целыми мешками",
-    "целые мешки",
-    "целых мешках"
-   ],
-   "correct": "целыми мешками",
-   "case": "Творительный (Instrumental)",
-   "explain": "«целыми мешками» — the instrumental marks the means, company, or complement.",
-   "id": "c24"
   },
   {
    "sentence": "— Нет, Яков Михайлович, вы меня извините — это не любовь, а просто бивуачное приключение ___.",
@@ -291,7 +137,7 @@
    ],
    "correct": "армейского офицера",
    "case": "Родительный (Genitive)",
-   "explain": "«армейского офицера» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«армейского офицера» depends on the noun «приключение» (whose? of what?) — genitive.",
    "id": "c25"
   }
  ]

@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "___ номер такой-то мчится на всех парах от станции «Веселый Трах-Тарарах» до станции «Спасайся, кто может!».",
-   "lemma": "поезд",
-   "options": [
-    "почтовому поезду",
-    "почтовом поезде",
-    "почтовый поезд",
-    "почтового поезда"
-   ],
-   "correct": "почтовый поезд",
-   "case": "Именительный (Nominative)",
-   "explain": "«Почтовый поезд» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "По вагонам вместе с карманолюбцами гуляют ___.",
    "lemma": "ветер",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "сквозные ветры",
    "case": "Именительный (Nominative)",
-   "explain": "«сквозные ветры» — the subject of the sentence stands in the nominative.",
+   "explain": "«сквозные ветры» is the subject of «гуляют» — who or what does it — so nominative.",
    "id": "c2"
   },
   {
@@ -39,36 +25,8 @@
    ],
    "correct": "задний карман",
    "case": "Винительный (Accusative)",
-   "explain": "«задний карман» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«задний карман» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c3"
-  },
-  {
-   "sentence": "На нем ___ и темно-серая блуза.",
-   "lemma": "шляпа",
-   "options": [
-    "соломенной шляпы",
-    "соломенная шляпа",
-    "соломенной шляпой",
-    "соломенной шляпе"
-   ],
-   "correct": "соломенная шляпа",
-   "case": "Именительный (Nominative)",
-   "explain": "«соломенная шляпа» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
-  },
-  {
-   "sentence": "У буфета теснится публика и ___.",
-   "lemma": "бригада",
-   "options": [
-    "поездная бригада",
-    "поездной бригады",
-    "поездной бригаде",
-    "поездной бригадой"
-   ],
-   "correct": "поездная бригада",
-   "case": "Именительный (Nominative)",
-   "explain": "«поездная бригада» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
   },
   {
    "sentence": "___ хочет что-то сказать и не может: поперек горла остановился у него годовалый бутерброд.",
@@ -81,22 +39,8 @@
    ],
    "correct": "толстый господин",
    "case": "Именительный (Nominative)",
-   "explain": "«Толстый господин» — the subject of the sentence stands in the nominative.",
+   "explain": "«толстый господин» is the subject of «хочет» — who or what does it — so nominative.",
    "id": "c8"
-  },
-  {
-   "sentence": "Толстый господин хочет что-то сказать и не может: поперек горла остановился у него ___.",
-   "lemma": "бутерброд",
-   "options": [
-    "годовалого бутерброда",
-    "годовалый бутерброд",
-    "годовалому бутерброду",
-    "годовалым бутербродом"
-   ],
-   "correct": "годовалый бутерброд",
-   "case": "Именительный (Nominative)",
-   "explain": "«годовалый бутерброд» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
   },
   {
    "sentence": "У одного из вагонов ___ стоит господин с кокардой и указывает публике на свои ноги.",
@@ -109,21 +53,21 @@
    ],
    "correct": "первого класса",
    "case": "Родительный (Genitive)",
-   "explain": "«первого класса» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«первого класса» depends on the noun «вагонов» (whose? of what?) — genitive.",
    "id": "c10"
   },
   {
    "sentence": "В моем вагоне всё то же: тьма, храп, табачный и сивушный запахи, пахнет ___.",
    "lemma": "дух",
    "options": [
+    "русским духом",
+    "русском духе",
     "русскому духу",
-    "русского духа",
-    "русский дух",
-    "русским духом"
+    "русского духа"
    ],
    "correct": "русским духом",
    "case": "Творительный (Instrumental)",
-   "explain": "«русским духом» — the instrumental marks the means, company, or complement.",
+   "explain": "«пахнет» takes the instrumental.",
    "id": "c11"
   },
   {
@@ -137,7 +81,7 @@
    ],
    "correct": "богатырским сном",
    "case": "Творительный (Instrumental)",
-   "explain": "«богатырским сном» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «спит», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c15"
   },
   {
@@ -151,7 +95,7 @@
    ],
    "correct": "настоящий билет",
    "case": "Именительный (Nominative)",
-   "explain": "«настоящий билет» — the subject of the sentence stands in the nominative.",
+   "explain": "«настоящий билет» is the subject of «есть» — who or what does it — so nominative.",
    "id": "c16"
   },
   {
@@ -165,78 +109,22 @@
    ],
    "correct": "маленький кондуктор",
    "case": "Именительный (Nominative)",
-   "explain": "«маленький кондуктор» — the subject of the sentence stands in the nominative.",
+   "explain": "«маленький кондуктор» is the subject of «Входит» — who or what does it — so nominative.",
    "id": "c17"
-  },
-  {
-   "sentence": "Ведь вот уж и ___!",
-   "lemma": "звонок",
-   "options": [
-    "третьем звонке",
-    "третий звонок",
-    "третьему звонку",
-    "третьим звонком"
-   ],
-   "correct": "третий звонок",
-   "case": "Именительный (Nominative)",
-   "explain": "«третий звонок» — the subject of the sentence stands in the nominative.",
-   "id": "c19"
-  },
-  {
-   "sentence": "Такой ___, а ревешь!",
-   "lemma": "болван",
-   "options": [
-    "здорового болвана",
-    "здоровым болваном",
-    "здоровом болване",
-    "здоровый болван"
-   ],
-   "correct": "здоровый болван",
-   "case": "Именительный (Nominative)",
-   "explain": "«здоровый болван» — the subject of the sentence stands in the nominative.",
-   "id": "c20"
-  },
-  {
-   "sentence": "___ ворочается и во всеуслышание сердится на свои непослушные ноги.",
-   "lemma": "шляпа",
-   "options": [
-    "соломенной шляпы",
-    "соломенной шляпой",
-    "соломенная шляпа",
-    "соломенной шляпе"
-   ],
-   "correct": "соломенная шляпа",
-   "case": "Именительный (Nominative)",
-   "explain": "«Соломенная шляпа» — the subject of the sentence stands in the nominative.",
-   "id": "c21"
   },
   {
    "sentence": "Соломенная шляпа ворочается и во всеуслышание сердится на свои ___.",
    "lemma": "нога",
    "options": [
-    "непослушных ног",
-    "непослушных ногах",
     "непослушные ноги",
+    "непослушных ног",
+    "непослушными ногами",
     "непослушным ногам"
    ],
    "correct": "непослушные ноги",
    "case": "Винительный (Accusative)",
-   "explain": "«непослушные ноги» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«непослушные ноги» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c22"
-  },
-  {
-   "sentence": "Направо от меня сидит ___ из породы «само собою разумеется».",
-   "lemma": "барыня",
-   "options": [
-    "высокая барыня",
-    "высокой барыни",
-    "высокой барыне",
-    "высокой барыней"
-   ],
-   "correct": "высокая барыня",
-   "case": "Именительный (Nominative)",
-   "explain": "«высокая барыня» — the subject of the sentence stands in the nominative.",
-   "id": "c24"
   }
  ]
 }

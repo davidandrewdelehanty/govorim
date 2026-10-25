@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Она не любила больших комнат и всегда была или в кабинете мужа, или у себя в комнате, где у нее были киоты, полученные в приданое, и висел на стене тот ___, который так понравился ей на выставке.",
-   "lemma": "пейзаж",
-   "options": [
-    "самым пейзажем",
-    "самом пейзаже",
-    "самого пейзажа",
-    "самый пейзаж"
-   ],
-   "correct": "самый пейзаж",
-   "case": "Именительный (Nominative)",
-   "explain": "«самый пейзаж» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
    "sentence": "Старик Федор Степаныч видел очень плохо и уже не бывал в амбаре, и ___ говорили, что он скоро ослепнет; Федор тоже почему-то перестал бывать в амбаре, а сидел всё время дома и что-то писал.",
    "lemma": "врач",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "глазные врачи",
    "case": "Именительный (Nominative)",
-   "explain": "«глазные врачи» — the subject of the sentence stands in the nominative.",
+   "explain": "«глазные врачи» is the subject of «говорили» — who or what does it — so nominative.",
    "id": "c3"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "незнакомая дама",
    "case": "Именительный (Nominative)",
-   "explain": "«незнакомая дама» — the subject of the sentence stands in the nominative.",
+   "explain": "«незнакомая дама» is the subject of «пришла» — who or what does it — so nominative.",
    "id": "c6"
   },
   {
@@ -53,7 +39,7 @@
    ],
    "correct": "новое занятие",
    "case": "Именительный (Nominative)",
-   "explain": "«новое занятие» — the subject of the sentence stands in the nominative.",
+   "explain": "«новое занятие» is the subject of «приносило» — who or what does it — so nominative.",
    "id": "c10"
   },
   {
@@ -67,7 +53,7 @@
    ],
    "correct": "вечерним чаем",
    "case": "Творительный (Instrumental)",
-   "explain": "«вечерним чаем» — after the preposition «перед», the instrumental marks the means, company, or complement.",
+   "explain": "«вечерним чаем» — «перед» always takes the instrumental.",
    "id": "c11"
   },
   {
@@ -81,7 +67,7 @@
    ],
    "correct": "купеческого рода",
    "case": "Родительный (Genitive)",
-   "explain": "«купеческого рода» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«купеческого рода» depends on the noun «представители» (whose? of what?) — genitive.",
    "id": "c13"
   },
   {
@@ -95,50 +81,8 @@
    ],
    "correct": "именитый род",
    "case": "Именительный (Nominative)",
-   "explain": "«именитый род» — the subject of the sentence stands in the nominative.",
+   "explain": "«именитый род» is the subject of «дал» — who or what does it — so nominative.",
    "id": "c16"
-  },
-  {
-   "sentence": "О, если бы дал бог, нами кончился бы этот именитый ___!",
-   "lemma": "род",
-   "options": [
-    "купеческом роде",
-    "купеческого рода",
-    "купеческому роду",
-    "купеческий род"
-   ],
-   "correct": "купеческий род",
-   "case": "Именительный (Nominative)",
-   "explain": "«купеческий род» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
-  },
-  {
-   "sentence": "— ___ для нашего дела не годятся.",
-   "lemma": "человек",
-   "options": [
-    "университетских людей",
-    "университетскими людьми",
-    "университетские люди",
-    "университетским людям"
-   ],
-   "correct": "университетские люди",
-   "case": "Именительный (Nominative)",
-   "explain": "«Университетские люди» — the subject of the sentence stands in the nominative.",
-   "id": "c20"
-  },
-  {
-   "sentence": "— Да, не принадлежи я к вашему ___, будь у меня хоть на грош воли и смелости, я давно бы швырнул от себя эти доходы и пошел бы зарабатывать себе хлеб.",
-   "lemma": "род",
-   "options": [
-    "именитому роду",
-    "именитым родом",
-    "именитый род",
-    "именитого рода"
-   ],
-   "correct": "именитому роду",
-   "case": "Дательный (Dative)",
-   "explain": "«именитому роду» — the dative marks the indirect object or recipient.",
-   "id": "c21"
   },
   {
    "sentence": "— Я забыл расположение комнат, — сказал он в ___.",
@@ -151,50 +95,8 @@
    ],
    "correct": "сильном замешательстве",
    "case": "Предложный (Prepositional)",
-   "explain": "«сильном замешательстве» — after the preposition «в», for location or topic.",
+   "explain": "«сильном замешательстве» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c22"
-  },
-  {
-   "sentence": "Не правда ли, ___?",
-   "lemma": "дом",
-   "options": [
-    "странный дом",
-    "странным домом",
-    "странному дому",
-    "странного дома"
-   ],
-   "correct": "странный дом",
-   "case": "Именительный (Nominative)",
-   "explain": "«странный дом» — the subject of the sentence stands in the nominative.",
-   "id": "c23"
-  },
-  {
-   "sentence": "Лаптев сам побежал в столовую, взял в буфете, что первое попалось ему под руки, — это была высокая ___, — налил воды и принес брату.",
-   "lemma": "кружка",
-   "options": [
-    "пивная кружка",
-    "пивной кружкой",
-    "пивной кружке",
-    "пивной кружки"
-   ],
-   "correct": "пивная кружка",
-   "case": "Именительный (Nominative)",
-   "explain": "«пивная кружка» — the subject of the sentence stands in the nominative.",
-   "id": "c24"
-  },
-  {
-   "sentence": "И Лаптев, никогда раньше не видавший ___, в смущении и испуге стоял и не знал, что делать.",
-   "lemma": "мужчина",
-   "options": [
-    "плачущих мужчинах",
-    "плачущие мужчины",
-    "плачущими мужчинами",
-    "плачущих мужчин"
-   ],
-   "correct": "плачущих мужчин",
-   "case": "Винительный (Accusative)",
-   "explain": "«плачущих мужчин» — the accusative marks the direct object of the verb.",
-   "id": "c25"
   },
   {
    "sentence": "Вернувшись домой, Лаптев застал жену в сильном ___.",
@@ -207,22 +109,8 @@
    ],
    "correct": "нервном возбуждении",
    "case": "Предложный (Prepositional)",
-   "explain": "«нервном возбуждении» — after the preposition «в», for location or topic.",
+   "explain": "«нервном возбуждении» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c26"
-  },
-  {
-   "sentence": "Она не плакала, но была очень бледна и металась в постели и цепко хваталась ___ за одеяло, за подушку, за руки мужа.",
-   "lemma": "палец",
-   "options": [
-    "холодным пальцам",
-    "холодных пальцев",
-    "холодных пальцах",
-    "холодными пальцами"
-   ],
-   "correct": "холодными пальцами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«холодными пальцами» — the instrumental marks the means, company, or complement.",
-   "id": "c27"
   },
   {
    "sentence": "___ потом он чувствовал себя разбитым, тупым, ни о чем не думал и вяло бродил по комнатам.",
@@ -235,7 +123,7 @@
    ],
    "correct": "целый день",
    "case": "Винительный (Accusative)",
-   "explain": "«Целый день» — the accusative marks the direct object of the verb.",
+   "explain": "«целый день» tells how long or how often, with no preposition — accusative.",
    "id": "c28"
   }
  ]

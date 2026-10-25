@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "На улице около дома послышался ___ лошади, и Оленин охлепью на красивом, невысохшем, глянцевито-мокром темно-сером коне подъехал к воротам.",
-   "lemma": "шаг",
-   "options": [
-    "бойким шагом",
-    "бойкому шагу",
-    "бойкого шага",
-    "бойкий шаг"
-   ],
-   "correct": "бойкий шаг",
-   "case": "Именительный (Nominative)",
-   "explain": "«бойкий шаг» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "___ Марьяны, повязанная одним красным платком (называемым сорочкой), высунулась из клети и снова скрылась.",
-   "lemma": "голова",
-   "options": [
-    "красивой голове",
-    "красивой головой",
-    "красивой головы",
-    "красивая голова"
-   ],
-   "correct": "красивая голова",
-   "case": "Именительный (Nominative)",
-   "explain": "«Красивая голова» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
    "sentence": "Красивая голова Марьяны, повязанная одним ___ (называемым сорочкой), высунулась из клети и снова скрылась.",
    "lemma": "платок",
    "options": [
@@ -39,50 +11,8 @@
    ],
    "correct": "красным платком",
    "case": "Творительный (Instrumental)",
-   "explain": "«красным платком» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «повязанная», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c3"
-  },
-  {
-   "sentence": "На Оленине была красная ___, белая черкеска, стянутая ремнем с кинжалом, и высокая шапка.",
-   "lemma": "рубаха",
-   "options": [
-    "канаусовой рубахе",
-    "канаусовая рубаха",
-    "канаусовой рубахи",
-    "канаусовой рубахой"
-   ],
-   "correct": "канаусовая рубаха",
-   "case": "Именительный (Nominative)",
-   "explain": "«канаусовая рубаха» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
-  },
-  {
-   "sentence": "На Оленине была красная канаусовая рубаха, ___, стянутая ремнем с кинжалом, и высокая шапка.",
-   "lemma": "черкеска",
-   "options": [
-    "белой черкеской",
-    "белой черкеске",
-    "белой черкески",
-    "белая черкеска"
-   ],
-   "correct": "белая черкеска",
-   "case": "Именительный (Nominative)",
-   "explain": "«белая черкеска» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
-  },
-  {
-   "sentence": "На Оленине была красная канаусовая рубаха, белая черкеска, стянутая ремнем с кинжалом, и ___.",
-   "lemma": "шапка",
-   "options": [
-    "высокой шапке",
-    "высокой шапки",
-    "высокой шапкой",
-    "высокая шапка"
-   ],
-   "correct": "высокая шапка",
-   "case": "Именительный (Nominative)",
-   "explain": "«высокая шапка» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
   },
   {
    "sentence": "Он несколько изысканно сидел на ___ сытой лошади и, придерживая ружье за спиной, нагнулся, чтоб отворить ворота.",
@@ -95,7 +25,7 @@
    ],
    "correct": "мокрой спине",
    "case": "Предложный (Prepositional)",
-   "explain": "«мокрой спине» — after the preposition «на», for location or topic.",
+   "explain": "«мокрой спине» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c7"
   },
   {
@@ -109,7 +39,7 @@
    ],
    "correct": "опытного кавказца",
    "case": "Родительный (Genitive)",
-   "explain": "«опытного кавказца» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«опытного кавказца» depends on the noun «взгляд» (whose? of what?) — genitive.",
    "id": "c8"
   },
   {
@@ -123,50 +53,8 @@
    ],
    "correct": "красивая голова",
    "case": "Именительный (Nominative)",
-   "explain": "«красивая голова» — the subject of the sentence stands in the nominative.",
+   "explain": "«красивая голова» is the subject of «смотрит» — who or what does it — so nominative.",
    "id": "c9"
-  },
-  {
-   "sentence": "Хотя и хмурились ___, но в глазах выражалось удовольствие и чувство своей красоты.",
-   "lemma": "бровь",
-   "options": [
-    "тонкими бровями",
-    "тонким бровям",
-    "тонких бровях",
-    "тонкие брови"
-   ],
-   "correct": "тонкие брови",
-   "case": "Винительный (Accusative)",
-   "explain": "«тонкие брови» — the accusative marks the direct object of the verb.",
-   "id": "c10"
-  },
-  {
-   "sentence": "-- Ей-богу, вы ___! -- сказал он.",
-   "lemma": "человек",
-   "options": [
-    "странному человеку",
-    "странном человеке",
-    "странный человек",
-    "странным человеком"
-   ],
-   "correct": "странный человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«странный человек» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
-  },
-  {
-   "sentence": "Ерошка -- ___; с ним у нас общая страсть -- охота.",
-   "lemma": "дело",
-   "options": [
-    "другое дело",
-    "другом деле",
-    "другого дела",
-    "другим делом"
-   ],
-   "correct": "другое дело",
-   "case": "Именительный (Nominative)",
-   "explain": "«другое дело» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
   },
   {
    "sentence": "Мне говорили, что ___ пойдет, -- сказал Оленин.",
@@ -179,7 +67,7 @@
    ],
    "correct": "восьмая рота",
    "case": "Именительный (Nominative)",
-   "explain": "«восьмая рота» — the subject of the sentence stands in the nominative.",
+   "explain": "«восьмая рота» is the subject of «пойдет» — who or what does it — so nominative.",
    "id": "c16"
   },
   {
@@ -193,7 +81,7 @@
    ],
    "correct": "крутой лесенке",
    "case": "Дательный (Dative)",
-   "explain": "«крутой лесенке» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«крутой лесенке» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c18"
   },
   {
@@ -207,36 +95,8 @@
    ],
    "correct": "лицевой стены",
    "case": "Родительный (Genitive)",
-   "explain": "«лицевой стены» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«лицевой стены» — «у» always takes the genitive.",
    "id": "c20"
-  },
-  {
-   "sentence": "Тут же, на ___, висели медные тазы и оружие; под лавкой лежали арбузы и тыквы.",
-   "lemma": "стена",
-   "options": [
-    "боковыми стенами",
-    "боковых стен",
-    "боковым стенам",
-    "боковых стенах"
-   ],
-   "correct": "боковых стенах",
-   "case": "Предложный (Prepositional)",
-   "explain": "«боковых стенах» — after the preposition «на», for location or topic.",
-   "id": "c21"
-  },
-  {
-   "sentence": "Тут же, на боковых стенах, висели ___ и оружие; под лавкой лежали арбузы и тыквы.",
-   "lemma": "таз",
-   "options": [
-    "медными тазами",
-    "медным тазам",
-    "медных тазов",
-    "медные тазы"
-   ],
-   "correct": "медные тазы",
-   "case": "Именительный (Nominative)",
-   "explain": "«медные тазы» — the subject of the sentence stands in the nominative.",
-   "id": "c22"
   },
   {
    "sentence": "Во ___ была большая печь, стол, лавки и староверческие иконы.",
@@ -249,22 +109,8 @@
    ],
    "correct": "второй комнате",
    "case": "Предложный (Prepositional)",
-   "explain": "«второй комнате» — after the preposition «во», for location or topic.",
+   "explain": "«второй комнате» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c23"
-  },
-  {
-   "sentence": "Во второй комнате была большая печь, стол, лавки и ___.",
-   "lemma": "икона",
-   "options": [
-    "староверческие иконы",
-    "староверческих иконах",
-    "староверческим иконам",
-    "староверческих икон"
-   ],
-   "correct": "староверческие иконы",
-   "case": "Винительный (Accusative)",
-   "explain": "«староверческие иконы» — the accusative marks the direct object of the verb.",
-   "id": "c24"
   },
   {
    "sentence": "Действительно, выглянув в окно, они увидели необыкновенную суетню в ___.",
@@ -277,7 +123,7 @@
    ],
    "correct": "хозяйской хате",
    "case": "Предложный (Prepositional)",
-   "explain": "«хозяйской хате» — after the preposition «в», for location or topic.",
+   "explain": "«хозяйской хате» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c25"
   },
   {
@@ -291,7 +137,7 @@
    ],
    "correct": "звонкий хохот",
    "case": "Именительный (Nominative)",
-   "explain": "«звонкий хохот» — the subject of the sentence stands in the nominative.",
+   "explain": "«звонкий хохот» is the subject of «послышался» — who or what does it — so nominative.",
    "id": "c26"
   },
   {
@@ -305,7 +151,7 @@
    ],
    "correct": "старый солдат",
    "case": "Именительный (Nominative)",
-   "explain": "«старый солдат» — the subject of the sentence stands in the nominative.",
+   "explain": "«старый солдат» is the subject of «спросил» — who or what does it — so nominative.",
    "id": "c27"
   },
   {
@@ -319,7 +165,7 @@
    ],
    "correct": "девичьей хате",
    "case": "Предложный (Prepositional)",
-   "explain": "«девичьей хате» — after the preposition «в», for location or topic.",
+   "explain": "«девичьей хате» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c28"
   },
   {
@@ -333,22 +179,8 @@
    ],
    "correct": "нарядных бешметах",
    "case": "Предложный (Prepositional)",
-   "explain": "«нарядных бешметах» — after the preposition «в», for location or topic.",
+   "explain": "«нарядных бешметах» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c29"
-  },
-  {
-   "sentence": "Оленин невольно заметил, как загорелая, по ___ Марьянки захватила два круглые мятные и один коричневый пряник, не зная, что с ними делать.",
-   "lemma": "рука",
-   "options": [
-    "небольшой руки",
-    "небольшой рукой",
-    "небольшая рука",
-    "небольшой руке"
-   ],
-   "correct": "небольшая рука",
-   "case": "Именительный (Nominative)",
-   "explain": "«небольшая рука» — after the preposition «по», the subject of the sentence stands in the nominative.",
-   "id": "c31"
   }
  ]
 }

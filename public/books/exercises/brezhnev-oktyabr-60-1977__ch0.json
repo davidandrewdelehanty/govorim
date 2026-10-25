@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "В эти дни ___, коммунисты всех стран, все прогрессивное человечество торжественно отмечают величайший праздник.",
-   "lemma": "народ",
-   "options": [
-    "советским народом",
-    "советскому народу",
-    "советский народ",
-    "советском народе"
-   ],
-   "correct": "советский народ",
-   "case": "Именительный (Nominative)",
-   "explain": "«советский народ» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Незабываемые ___ всколыхнули всю планету.",
    "lemma": "день",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "октябрьские дни",
    "case": "Именительный (Nominative)",
-   "explain": "«октябрьские дни» — the subject of the sentence stands in the nominative.",
+   "explain": "«октябрьские дни» is the subject of «всколыхнули» — who or what does it — so nominative.",
    "id": "c2"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "историческая эпоха",
    "case": "Именительный (Nominative)",
-   "explain": "«историческая эпоха» — the subject of the sentence stands in the nominative.",
+   "explain": "«историческая эпоха» is the subject of «Началась» — who or what does it — so nominative.",
    "id": "c3"
   },
   {
@@ -53,7 +39,7 @@
    ],
    "correct": "революционного обновления",
    "case": "Родительный (Genitive)",
-   "explain": "«революционного обновления» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«революционного обновления» depends on the noun «эпоха» (whose? of what?) — genitive.",
    "id": "c4"
   },
   {
@@ -67,7 +53,7 @@
    ],
    "correct": "враждебного окружения",
    "case": "Родительный (Genitive)",
-   "explain": "«враждебного окружения» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«враждебного окружения» depends on the noun «кольце» (whose? of what?) — genitive.",
    "id": "c5"
   },
   {
@@ -81,22 +67,8 @@
    ],
    "correct": "гражданской войны",
    "case": "Родительный (Genitive)",
-   "explain": "«гражданской войны» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«гражданской войны» depends on the noun «годы» (whose? of what?) — genitive.",
    "id": "c7"
-  },
-  {
-   "sentence": "Мы победили в суровые, огненные годы Великой ___, когда решался вопрос — сможет ли социализм устоять под натиском ударных сил мирового империализма, спасти человечество от фашистского порабощения.",
-   "lemma": "война",
-   "options": [
-    "отечественной войны",
-    "отечественная война",
-    "отечественной войной",
-    "отечественной войне"
-   ],
-   "correct": "отечественной войны",
-   "case": "Родительный (Genitive)",
-   "explain": "«Отечественной войны» — the genitive here marks possession, absence, or quantity.",
-   "id": "c8"
   },
   {
    "sentence": "Мы победили в суровые, огненные годы Великой Отечественной войны, когда решался вопрос — сможет ли социализм устоять под натиском ___ мирового империализма, спасти человечество от фашистского порабощения.",
@@ -109,7 +81,7 @@
    ],
    "correct": "ударных сил",
    "case": "Родительный (Genitive)",
-   "explain": "«ударных сил» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«ударных сил» depends on the noun «натиском» (whose? of what?) — genitive.",
    "id": "c9"
   },
   {
@@ -123,7 +95,7 @@
    ],
    "correct": "мирового империализма",
    "case": "Родительный (Genitive)",
-   "explain": "«мирового империализма» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«мирового империализма» depends on the noun «сил» (whose? of what?) — genitive.",
    "id": "c10"
   },
   {
@@ -137,50 +109,8 @@
    ],
    "correct": "фашистского порабощения",
    "case": "Родительный (Genitive)",
-   "explain": "«фашистского порабощения» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«фашистского порабощения» — «от» always takes the genitive.",
    "id": "c11"
-  },
-  {
-   "sentence": "Мы победили и в сложные, напряженные ___.",
-   "lemma": "год",
-   "options": [
-    "послевоенным годам",
-    "послевоенных годов",
-    "послевоенные годы",
-    "послевоенных годах"
-   ],
-   "correct": "послевоенные годы",
-   "case": "Именительный (Nominative)",
-   "explain": "«послевоенные годы» — after the preposition «в», the subject of the sentence stands in the nominative.",
-   "id": "c12"
-  },
-  {
-   "sentence": "В обстановке «___» и атомного шантажа было быстро восстановлено разрушенное хозяйство, завоеваны передовые рубежи экономического и научно-технического прогресса.",
-   "lemma": "война",
-   "options": [
-    "холодной войной",
-    "холодной войны",
-    "холодной войне",
-    "холодная война"
-   ],
-   "correct": "холодной войны",
-   "case": "Родительный (Genitive)",
-   "explain": "«холодной войны» — the genitive here marks possession, absence, or quantity.",
-   "id": "c13"
-  },
-  {
-   "sentence": "В обстановке «холодной войны» и ___ было быстро восстановлено разрушенное хозяйство, завоеваны передовые рубежи экономического и научно-технического прогресса.",
-   "lemma": "шантаж",
-   "options": [
-    "атомного шантажа",
-    "атомным шантажом",
-    "атомный шантаж",
-    "атомном шантаже"
-   ],
-   "correct": "атомного шантажа",
-   "case": "Родительный (Genitive)",
-   "explain": "«атомного шантажа» — the genitive here marks possession, absence, or quantity.",
-   "id": "c14"
   },
   {
    "sentence": "В обстановке «холодной войны» и атомного шантажа было быстро восстановлено разрушенное хозяйство, завоеваны ___ экономического и научно-технического прогресса.",
@@ -193,7 +123,7 @@
    ],
    "correct": "передовые рубежи",
    "case": "Именительный (Nominative)",
-   "explain": "«передовые рубежи» — the subject of the sentence stands in the nominative.",
+   "explain": "«передовые рубежи» is the subject of «завоеваны» — who or what does it — so nominative.",
    "id": "c15"
   },
   {
@@ -207,22 +137,8 @@
    ],
    "correct": "советская страна",
    "case": "Именительный (Nominative)",
-   "explain": "«Советская страна» — the subject of the sentence stands in the nominative.",
+   "explain": "«советская страна» is the subject of «живет» — who or what does it — so nominative.",
    "id": "c16"
-  },
-  {
-   "sentence": "Создано, существует и совершенствуется развитое ___ — результат исторического творчества масс.",
-   "lemma": "общество",
-   "options": [
-    "социалистическое общество",
-    "социалистического общества",
-    "социалистическом обществе",
-    "социалистическому обществу"
-   ],
-   "correct": "социалистическое общество",
-   "case": "Именительный (Nominative)",
-   "explain": "«социалистическое общество» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
   },
   {
    "sentence": "Создано, существует и совершенствуется развитое социалистическое общество — результат ___ масс.",
@@ -235,21 +151,21 @@
    ],
    "correct": "исторического творчества",
    "case": "Родительный (Genitive)",
-   "explain": "«исторического творчества» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«исторического творчества» depends on the noun «результат» (whose? of what?) — genitive.",
    "id": "c18"
   },
   {
    "sentence": "Честь и слава всем поколениям ___, мужчинам и женщинам, коммунистам и беспартийным, которые, не щадя сил, энергии, а когда надо — и самой жизни, подняли Родину к вершинам социального прогресса!",
    "lemma": "человек",
    "options": [
-    "советских людей",
     "советским людям",
-    "советскими людьми",
-    "советские люди"
+    "советских людей",
+    "советские люди",
+    "советских людях"
    ],
    "correct": "советских людей",
    "case": "Родительный (Genitive)",
-   "explain": "«советских людей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«советских людей» depends on the noun «поколениям» (whose? of what?) — genitive.",
    "id": "c20"
   },
   {
@@ -263,7 +179,7 @@
    ],
    "correct": "социального прогресса",
    "case": "Родительный (Genitive)",
-   "explain": "«социального прогресса» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«социального прогресса» depends on the noun «вершинам» (whose? of what?) — genitive.",
    "id": "c21"
   }
  ]

@@ -1,48 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Весенние ___ были закончены, фруктовый сад перекопан и полит, — настало пустое время до Петрова дня, до покоса.",
-   "lemma": "работа",
-   "options": [
-    "полевым работам",
-    "полевых работах",
-    "полевых работ",
-    "полевые работы"
-   ],
-   "correct": "полевые работы",
-   "case": "Именительный (Nominative)",
-   "explain": "«полевые работы» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Весенние полевые работы были закончены, ___ перекопан и полит, — настало пустое время до Петрова дня, до покоса.",
-   "lemma": "сад",
-   "options": [
-    "фруктового сада",
-    "фруктовый сад",
-    "фруктовым садом",
-    "фруктовому саду"
-   ],
-   "correct": "фруктовый сад",
-   "case": "Именительный (Nominative)",
-   "explain": "«фруктовый сад» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Весенние полевые работы были закончены, фруктовый сад перекопан и полит, — настало ___ до Петрова дня, до покоса.",
-   "lemma": "время",
-   "options": [
-    "пустому времени",
-    "пустого времени",
-    "пустым временем",
-    "пустое время"
-   ],
-   "correct": "пустое время",
-   "case": "Именительный (Nominative)",
-   "explain": "«пустое время» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
    "sentence": "___ выгнали в табун, и они ходили за прудом, на сочных лугах, где по утрам стоял голубоватый туман и огромные одинокие осокори, казалось, росли из мглистого воздуха, — висели над землей.",
    "lemma": "лошадь",
    "options": [
@@ -53,7 +11,7 @@
    ],
    "correct": "рабочих лошадей",
    "case": "Винительный (Accusative)",
-   "explain": "«Рабочих лошадей» — the accusative marks the direct object of the verb.",
+   "explain": "«рабочих лошадей» is the direct object of «выгнали» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c4"
   },
   {
@@ -67,22 +25,8 @@
    ],
    "correct": "голубоватый туман",
    "case": "Именительный (Nominative)",
-   "explain": "«голубоватый туман» — the subject of the sentence stands in the nominative.",
+   "explain": "«голубоватый туман» is the subject of «стоял» — who or what does it — so nominative.",
    "id": "c6"
-  },
-  {
-   "sentence": "Рабочих лошадей выгнали в табун, и они ходили за прудом, на сочных лугах, где по утрам стоял голубоватый туман и огромные одинокие осокори, казалось, росли из ___, — висели над землей.",
-   "lemma": "воздух",
-   "options": [
-    "мглистым воздухом",
-    "мглистом воздухе",
-    "мглистого воздуха",
-    "мглистый воздух"
-   ],
-   "correct": "мглистого воздуха",
-   "case": "Родительный (Genitive)",
-   "explain": "«мглистого воздуха» — the genitive here marks possession, absence, or quantity.",
-   "id": "c7"
   },
   {
    "sentence": "Он ездил на высоком ___, вдев в стремена босые ноги, заваливался и болтал локтями.",
@@ -95,36 +39,8 @@
    ],
    "correct": "казацком седле",
    "case": "Предложный (Prepositional)",
-   "explain": "«казацком седле» — after the preposition «на», for location or topic.",
+   "explain": "«казацком седле» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c8"
-  },
-  {
-   "sentence": "Он ездил на высоком казацком седле, вдев в стремена ___, заваливался и болтал локтями.",
-   "lemma": "нога",
-   "options": [
-    "босым ногам",
-    "босых ног",
-    "босые ноги",
-    "босыми ногами"
-   ],
-   "correct": "босые ноги",
-   "case": "Винительный (Accusative)",
-   "explain": "«босые ноги» — the accusative marks the direct object of the verb.",
-   "id": "c9"
-  },
-  {
-   "sentence": "К нему подошла хлебница, тонконогая ___ Звезда, караковая в яблоках, наставила ушки и бархатными губами искала хлеба.",
-   "lemma": "кобыла",
-   "options": [
-    "балованная кобыла",
-    "балованной кобыле",
-    "балованной кобылы",
-    "балованной кобылой"
-   ],
-   "correct": "балованная кобыла",
-   "case": "Именительный (Nominative)",
-   "explain": "«балованная кобыла» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
   },
   {
    "sentence": "Мишка огладил ее, провел ладонью вдоль ___, — Звезда тревожно переступила, — он схватился за холку и вспрыгнул на нее.",
@@ -137,22 +53,8 @@
    ],
    "correct": "атласной спины",
    "case": "Родительный (Genitive)",
-   "explain": "«атласной спины» — after the preposition «вдоль», the genitive here marks possession, absence, or quantity.",
+   "explain": "«атласной спины» — «вдоль» always takes the genitive.",
    "id": "c13"
-  },
-  {
-   "sentence": "— Прямо в хворост скинула ___, — сказал он, — а ты так не можешь, в тебе жиру много.",
-   "lemma": "кобылешка",
-   "options": [
-    "проклятой кобылешки",
-    "проклятой кобылешке",
-    "проклятая кобылешка",
-    "проклятой кобылешкой"
-   ],
-   "correct": "проклятая кобылешка",
-   "case": "Именительный (Nominative)",
-   "explain": "«проклятая кобылешка» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
   },
   {
    "sentence": "— Слышишь, — сказала она, — я тебя прошу даже близко не подходить к ___, — и она с мольбой взглянула на Василия Никитьевича.",
@@ -165,7 +67,7 @@
    ],
    "correct": "неезженным лошадям",
    "case": "Дательный (Dative)",
-   "explain": "«неезженным лошадям» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«неезженным лошадям» — «к» always takes the dative.",
    "id": "c15"
   },
   {
@@ -179,50 +81,8 @@
    ],
    "correct": "крупный разговор",
    "case": "Именительный (Nominative)",
-   "explain": "«крупный разговор» — the subject of the sentence stands in the nominative.",
+   "explain": "«крупный разговор» is the subject of «шел» — who or what does it — so nominative.",
    "id": "c17"
-  },
-  {
-   "sentence": "Лошадь должна быть в холе, в чистоте, тогда ты — ___.",
-   "lemma": "кавалерист",
-   "options": [
-    "хорошему кавалеристу",
-    "хорошего кавалериста",
-    "хорошем кавалеристе",
-    "хороший кавалерист"
-   ],
-   "correct": "хороший кавалерист",
-   "case": "Именительный (Nominative)",
-   "explain": "«хороший кавалерист» — the subject of the sentence stands in the nominative.",
-   "id": "c18"
-  },
-  {
-   "sentence": "Клопик был рыжий, хорошо вычищенный, курбатенький, плотный меринок, в чулках, с темным ___ и темной же гривой.",
-   "lemma": "хвост",
-   "options": [
-    "густым хвостом",
-    "густого хвоста",
-    "густому хвосту",
-    "густом хвосте"
-   ],
-   "correct": "густым хвостом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«густым хвостом» — the instrumental marks the means, company, or complement.",
-   "id": "c21"
-  },
-  {
-   "sentence": "— Надувается, — сказал Сергей Иванович, — ___, брюхо надувает, — и он шлепнул ладонью Клопику по животу; мерин выдохнул воздух, Никита затянул подпруги.",
-   "lemma": "животное",
-   "options": [
-    "хитром животном",
-    "хитрому животному",
-    "хитрым животным",
-    "хитрое животное"
-   ],
-   "correct": "хитрое животное",
-   "case": "Именительный (Nominative)",
-   "explain": "«хитрое животное» — the subject of the sentence stands in the nominative.",
-   "id": "c23"
   },
   {
    "sentence": "— В левую руку поводья, заходи спереди лошади, с ___.",
@@ -235,22 +95,8 @@
    ],
    "correct": "левого плеча",
    "case": "Родительный (Genitive)",
-   "explain": "«левого плеча» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
+   "explain": "«левого плеча» — «с» takes the genitive here (с чего? откуда? с каких пор?): from, off, since — with the instrumental it would mean 'with'.",
    "id": "c24"
-  },
-  {
-   "sentence": "— Свинья, ___, дурак несчастный!..",
-   "lemma": "свинья",
-   "options": [
-    "настоящей свинье",
-    "настоящая свинья",
-    "настоящей свиньёй",
-    "настоящей свиньи"
-   ],
-   "correct": "настоящая свинья",
-   "case": "Именительный (Nominative)",
-   "explain": "«настоящая свинья» — the subject of the sentence stands in the nominative.",
-   "id": "c25"
   },
   {
    "sentence": "Наконец Клопика обуздали, и Никита гарцевал на нем собачьим галопом вдоль ___.",
@@ -263,7 +109,7 @@
    ],
    "correct": "скотных дворов",
    "case": "Родительный (Genitive)",
-   "explain": "«скотных дворов» — after the preposition «вдоль», the genitive here marks possession, absence, or quantity.",
+   "explain": "«скотных дворов» — «вдоль» always takes the genitive.",
    "id": "c26"
   },
   {
@@ -277,50 +123,8 @@
    ],
    "correct": "белом платье",
    "case": "Предложный (Prepositional)",
-   "explain": "«белом платье» — after the preposition «в», for location or topic.",
+   "explain": "«белом платье» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c27"
-  },
-  {
-   "sentence": "С крыльца спустилась Александра Леонтьевна в белом платье и, раскрывая ___, с тревогой смотрела на гарцевавшего вдалеке Никиту.",
-   "lemma": "зонтик",
-   "options": [
-    "белым зонтиком",
-    "белого зонтика",
-    "белый зонтик",
-    "белом зонтике"
-   ],
-   "correct": "белый зонтик",
-   "case": "Винительный (Accusative)",
-   "explain": "«белый зонтик» — the accusative marks the direct object of the verb.",
-   "id": "c28"
-  },
-  {
-   "sentence": "Караковые ___, просясь на тугих удилах, легко понесли коляску, простучали по мостику, пристяжные пошли в галоп, завились.",
-   "lemma": "зверь",
-   "options": [
-    "великолепными зверями",
-    "великолепным зверям",
-    "великолепных зверях",
-    "великолепные звери"
-   ],
-   "correct": "великолепные звери",
-   "case": "Именительный (Nominative)",
-   "explain": "«великолепные звери» — the subject of the sentence stands in the nominative.",
-   "id": "c29"
-  },
-  {
-   "sentence": "Лорд Байрон наставил уши и пошел выкидывать ___, пристяжные разостлались над травой, Клопик перешел в галоп, но коляска уходила, ион, рассердившись, скакал теперь что было силы — старался ужасно.",
-   "lemma": "нога",
-   "options": [
-    "железными ногами",
-    "железным ногам",
-    "железных ногах",
-    "железных ног"
-   ],
-   "correct": "железными ногами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«железными ногами» — after the preposition «в», the instrumental marks the means, company, or complement.",
-   "id": "c30"
   }
  ]
 }

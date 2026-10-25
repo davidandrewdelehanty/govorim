@@ -1,48 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Дом, к которому шел Розанов, несколько напоминал собою и покинутые ___, и острог, и складочный пакгауз, и богадельню.",
-   "lemma": "хоромы",
-   "options": [
-    "барские хоромы",
-    "барских хором",
-    "барским хоромам",
-    "барских хоромах"
-   ],
-   "correct": "барские хоромы",
-   "case": "Винительный (Accusative)",
-   "explain": "«барские хоромы» — the accusative marks the direct object of the verb.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Весь дом был когда-то густо выбелен мелом, но побелка на нем отстала и обнаружила ___ желтобурой охры.",
-   "lemma": "пятно",
-   "options": [
-    "огромные пятна",
-    "огромных пятнах",
-    "огромным пятнам",
-    "огромных пятен"
-   ],
-   "correct": "огромные пятна",
-   "case": "Винительный (Accusative)",
-   "explain": "«огромные пятна» — the accusative marks the direct object of the verb.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Весь дом был когда-то густо выбелен мелом, но побелка на нем отстала и обнаружила огромные пятна ___.",
-   "lemma": "охра",
-   "options": [
-    "желтобурой охрой",
-    "желтобурой охре",
-    "желтобурой охры",
-    "желтобурая охра"
-   ],
-   "correct": "желтобурой охры",
-   "case": "Родительный (Genitive)",
-   "explain": "«желтобурой охры» — the genitive here marks possession, absence, or quantity.",
-   "id": "c3"
-  },
-  {
    "sentence": "По низу, почти над ___, в доме было прорезано девять узких параллелограммов без стекол, но с крепкими железными решетками, скрепленными кольчатою вязью.",
    "lemma": "тротуар",
    "options": [
@@ -53,36 +11,8 @@
    ],
    "correct": "самым тротуаром",
    "case": "Творительный (Instrumental)",
-   "explain": "«самым тротуаром» — after the preposition «над», the instrumental marks the means, company, or complement.",
+   "explain": "«самым тротуаром» — «над» always takes the instrumental.",
    "id": "c4"
-  },
-  {
-   "sentence": "По низу, почти над самым тротуаром, в доме было прорезано девять ___ без стекол, но с крепкими железными решетками, скрепленными кольчатою вязью.",
-   "lemma": "параллелограмм",
-   "options": [
-    "узкие параллелограммы",
-    "узких параллелограммов",
-    "узкими параллелограммами",
-    "узким параллелограммам"
-   ],
-   "correct": "узких параллелограммов",
-   "case": "Родительный (Genitive)",
-   "explain": "«узких параллелограммов» — the genitive here marks possession, absence, or quantity.",
-   "id": "c5"
-  },
-  {
-   "sentence": "Над этим подвальным этажом аршина на два вверх начинался другой, уже ___ с оконными рамами, до которых тоже нельзя было дотронуться иначе, как сквозь крепкие железные решетки.",
-   "lemma": "этаж",
-   "options": [
-    "жилым этажом",
-    "жилом этаже",
-    "жилой этаж",
-    "жилому этажу"
-   ],
-   "correct": "жилой этаж",
-   "case": "Именительный (Nominative)",
-   "explain": "«жилой этаж» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
   },
   {
    "sentence": "Здесь, кроме камер с дырами, выходившими на свет божий, шел ___, в который луч солнечного света не западал с тех пор, как последний кирпич заключил собою тяжелые своды этих подземных нор.",
@@ -95,7 +25,7 @@
    ],
    "correct": "целый лабиринт",
    "case": "Именительный (Nominative)",
-   "explain": "«целый лабиринт» — the subject of the sentence stands in the nominative.",
+   "explain": "«целый лабиринт» is the subject of «шел» — who or what does it — so nominative.",
    "id": "c8"
   },
   {
@@ -109,22 +39,8 @@
    ],
    "correct": "солнечного света",
    "case": "Родительный (Genitive)",
-   "explain": "«солнечного света» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«солнечного света» depends on the noun «луч» (whose? of what?) — genitive.",
    "id": "c9"
-  },
-  {
-   "sentence": "Здесь, кроме камер с дырами, выходившими на свет божий, шел целый лабиринт, в который луч солнечного света не западал с тех пор, как ___ заключил собою тяжелые своды этих подземных нор.",
-   "lemma": "кирпич",
-   "options": [
-    "последний кирпич",
-    "последнем кирпиче",
-    "последнего кирпича",
-    "последнему кирпичу"
-   ],
-   "correct": "последний кирпич",
-   "case": "Именительный (Nominative)",
-   "explain": "«последний кирпич» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
   },
   {
    "sentence": "Здесь, кроме камер с дырами, выходившими на свет божий, шел целый лабиринт, в который луч солнечного света не западал с тех пор, как последний кирпич заключил собою тяжелые своды этих ___.",
@@ -137,7 +53,7 @@
    ],
    "correct": "подземных нор",
    "case": "Родительный (Genitive)",
-   "explain": "«подземных нор» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«подземных нор» depends on the noun «своды» (whose? of what?) — genitive.",
    "id": "c11"
   },
   {
@@ -151,7 +67,7 @@
    ],
    "correct": "каменные уступы",
    "case": "Именительный (Nominative)",
-   "explain": "«каменные уступы» — the subject of the sentence stands in the nominative.",
+   "explain": "«каменные уступы» is the subject of «выдавались» — who or what does it — so nominative.",
    "id": "c12"
   },
   {
@@ -165,36 +81,8 @@
    ],
    "correct": "жилой этаж",
    "case": "Именительный (Nominative)",
-   "explain": "«жилой этаж» — the subject of the sentence stands in the nominative.",
+   "explain": "«жилой этаж» is the subject of «представлял» — who or what does it — so nominative.",
    "id": "c13"
-  },
-  {
-   "sentence": "Один, тотчас из ворот, по каменному ___ с далеко выдающимся навесом вел в большие комнаты, удобные скорее для солдатской швальни, чем для жилого помещения.",
-   "lemma": "крыльцо",
-   "options": [
-    "безобразным крыльцом",
-    "безобразного крыльца",
-    "безобразному крыльцу",
-    "безобразное крыльцо"
-   ],
-   "correct": "безобразному крыльцу",
-   "case": "Дательный (Dative)",
-   "explain": "«безобразному крыльцу» — the dative marks the indirect object or recipient.",
-   "id": "c14"
-  },
-  {
-   "sentence": "Один, тотчас из ворот, по каменному безобразному крыльцу с далеко ___ вел в большие комнаты, удобные скорее для солдатской швальни, чем для жилого помещения.",
-   "lemma": "навес",
-   "options": [
-    "выдающемся навесе",
-    "выдающимся навесом",
-    "выдающегося навеса",
-    "выдающийся навес"
-   ],
-   "correct": "выдающимся навесом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«выдающимся навесом» — the instrumental marks the means, company, or complement.",
-   "id": "c15"
   },
   {
    "sentence": "Один, тотчас из ворот, по каменному безобразному крыльцу с далеко выдающимся навесом вел в большие комнаты, удобные скорее для ___, чем для жилого помещения.",
@@ -207,22 +95,8 @@
    ],
    "correct": "солдатской швальни",
    "case": "Родительный (Genitive)",
-   "explain": "«солдатской швальни» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«солдатской швальни» — «для» always takes the genitive.",
    "id": "c17"
-  },
-  {
-   "sentence": "Один, тотчас из ворот, по каменному безобразному крыльцу с далеко выдающимся навесом вел в большие комнаты, удобные скорее для солдатской швальни, чем для ___.",
-   "lemma": "помещение",
-   "options": [
-    "жилое помещение",
-    "жилым помещением",
-    "жилому помещению",
-    "жилого помещения"
-   ],
-   "correct": "жилого помещения",
-   "case": "Родительный (Genitive)",
-   "explain": "«жилого помещения» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
-   "id": "c18"
   },
   {
    "sentence": "С другого крылечка можно было входить в огромную низкую кухню, соединявшуюся с рядом меньших покоев ___.",
@@ -235,7 +109,7 @@
    ],
    "correct": "первого этажа",
    "case": "Родительный (Genitive)",
-   "explain": "«первого этажа» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«первого этажа» depends on the noun «покоев» (whose? of what?) — genitive.",
    "id": "c20"
   },
   {
@@ -249,7 +123,7 @@
    ],
    "correct": "пустых казарм",
    "case": "Родительный (Genitive)",
-   "explain": "«пустых казарм» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«пустых казарм» depends on the noun «виду» (whose? of what?) — genitive.",
    "id": "c21"
   },
   {
@@ -263,7 +137,7 @@
    ],
    "correct": "просторных сеней",
    "case": "Родительный (Genitive)",
-   "explain": "«просторных сеней» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«просторных сеней» — «из» always takes the genitive.",
    "id": "c22"
   },
   {
@@ -277,22 +151,8 @@
    ],
    "correct": "каменная лестница",
    "case": "Именительный (Nominative)",
-   "explain": "«каменная лестница» — the subject of the sentence stands in the nominative.",
+   "explain": "«каменная лестница» is the subject of «шла» — who or what does it — so nominative.",
    "id": "c23"
-  },
-  {
-   "sentence": "Из просторных сеней этого этажа шла наверх каменная лестница без перил и с довольно выбитыми ___.",
-   "lemma": "ступень",
-   "options": [
-    "кирпичных ступеней",
-    "кирпичными ступенями",
-    "кирпичных ступенях",
-    "кирпичные ступени"
-   ],
-   "correct": "кирпичными ступенями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«кирпичными ступенями» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c24"
   },
   {
    "sentence": "Наверху тоже было восемь комнат, представлявших гораздо более удобства для ___.",
@@ -305,7 +165,7 @@
    ],
    "correct": "жилого помещения",
    "case": "Родительный (Genitive)",
-   "explain": "«жилого помещения» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«жилого помещения» — «для» always takes the genitive.",
    "id": "c25"
   },
   {
@@ -319,7 +179,7 @@
    ],
    "correct": "спорном иске",
    "case": "Предложный (Prepositional)",
-   "explain": "«спорном иске» — after the preposition «в», for location or topic.",
+   "explain": "«спорном иске» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c27"
   },
   {
@@ -333,7 +193,7 @@
    ],
    "correct": "враждебного запустения",
    "case": "Родительный (Genitive)",
-   "explain": "«враждебного запустения» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«враждебного запустения» depends on the noun «печать» (whose? of what?) — genitive.",
    "id": "c28"
   },
   {
@@ -347,36 +207,8 @@
    ],
    "correct": "верхнего этажа",
    "case": "Родительный (Genitive)",
-   "explain": "«верхнего этажа» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«верхнего этажа» depends on the noun «окно» (whose? of what?) — genitive.",
    "id": "c29"
-  },
-  {
-   "sentence": "Калитка быстро отскочила и открыла перед Розановым большой ___ и серый мрачный подъезд с растворенными настежь желтыми дверями.",
-   "lemma": "двор",
-   "options": [
-    "мокрый двор",
-    "мокрого двора",
-    "мокром дворе",
-    "мокрому двору"
-   ],
-   "correct": "мокрый двор",
-   "case": "Именительный (Nominative)",
-   "explain": "«мокрый двор» — the subject of the sentence stands in the nominative.",
-   "id": "c30"
-  },
-  {
-   "sentence": "Калитка быстро отскочила и открыла перед Розановым большой мокрый двор и серый ___ с растворенными настежь желтыми дверями.",
-   "lemma": "подъезд",
-   "options": [
-    "мрачному подъезду",
-    "мрачном подъезде",
-    "мрачный подъезд",
-    "мрачным подъездом"
-   ],
-   "correct": "мрачный подъезд",
-   "case": "Именительный (Nominative)",
-   "explain": "«мрачный подъезд» — the subject of the sentence stands in the nominative.",
-   "id": "c31"
   },
   {
    "sentence": "Розанов взошел на крыльцо, взглянул в отворенную дверь ___ и остановился.",
@@ -389,64 +221,8 @@
    ],
    "correct": "нижнего этажа",
    "case": "Родительный (Genitive)",
-   "explain": "«нижнего этажа» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«нижнего этажа» depends on the noun «дверь» (whose? of what?) — genitive.",
    "id": "c32"
-  },
-  {
-   "sentence": "Он опять подумал на мгновение и с ___ стал подниматься по лестнице.",
-   "lemma": "стук",
-   "options": [
-    "нарочитым стуком",
-    "нарочитому стуку",
-    "нарочитый стук",
-    "нарочитом стуке"
-   ],
-   "correct": "нарочитым стуком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«нарочитым стуком» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c33"
-  },
-  {
-   "sentence": "Вверху лестницы была довольно ___, выстланная дурно отесанными плитами; одна узенькая дверь, выбеленная мелом, и другая, обитая войлоком и старою поспенною клеенкою.",
-   "lemma": "платформа",
-   "options": [
-    "широкой платформы",
-    "широкой платформе",
-    "широкая платформа",
-    "широкой платформой"
-   ],
-   "correct": "широкая платформа",
-   "case": "Именительный (Nominative)",
-   "explain": "«широкая платформа» — the subject of the sentence stands in the nominative.",
-   "id": "c34"
-  },
-  {
-   "sentence": "В зале лежало несколько ___, увязанных в простыни и ватные одеяла.",
-   "lemma": "узел",
-   "options": [
-    "огромные узлы",
-    "огромными узлами",
-    "огромным узлам",
-    "огромных узлов"
-   ],
-   "correct": "огромных узлов",
-   "case": "Родительный (Genitive)",
-   "explain": "«огромных узлов» — the genitive here marks possession, absence, or quantity.",
-   "id": "c35"
-  },
-  {
-   "sentence": "В зале лежало несколько огромных узлов, увязанных в простыни и ___.",
-   "lemma": "одеяло",
-   "options": [
-    "ватными одеялами",
-    "ватных одеялах",
-    "ватных одеял",
-    "ватные одеяла"
-   ],
-   "correct": "ватные одеяла",
-   "case": "Винительный (Accusative)",
-   "explain": "«ватные одеяла» — the accusative marks the direct object of the verb.",
-   "id": "c36"
   },
   {
    "sentence": "Розанов молча отошел к ___ и стал смотреть на грязную улицу.",
@@ -459,7 +235,7 @@
    ],
    "correct": "другому окну",
    "case": "Дательный (Dative)",
-   "explain": "«другому окну» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«другому окну» — «к» always takes the dative.",
    "id": "c38"
   },
   {
@@ -473,7 +249,7 @@
    ],
    "correct": "деревянной чашки",
    "case": "Родительный (Genitive)",
-   "explain": "«деревянной чашки» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«деревянной чашки» — «из» always takes the genitive.",
    "id": "c39"
   },
   {
@@ -487,22 +263,8 @@
    ],
    "correct": "деревянной табуретке",
    "case": "Предложный (Prepositional)",
-   "explain": "«деревянной табуретке» — after the preposition «на», for location or topic.",
+   "explain": "«деревянной табуретке» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c40"
-  },
-  {
-   "sentence": "С ними вместе помещался на белой деревянной табуретке, обедал и, по-видимому, очень их смешил ___ в коричневом домашнем архалучке.",
-   "lemma": "человек",
-   "options": [
-    "молодого человека",
-    "молодой человек",
-    "молодом человеке",
-    "молодому человеку"
-   ],
-   "correct": "молодой человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«молодой человек» — the subject of the sentence stands in the nominative.",
-   "id": "c41"
   },
   {
    "sentence": "С ними вместе помещался на белой деревянной табуретке, обедал и, по-видимому, очень их смешил молодой человек в коричневом ___.",
@@ -515,22 +277,8 @@
    ],
    "correct": "домашнем архалучке",
    "case": "Предложный (Prepositional)",
-   "explain": "«домашнем архалучке» — after the preposition «в», for location or topic.",
+   "explain": "«домашнем архалучке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c42"
-  },
-  {
-   "sentence": "— ___; никогда и не встретились.",
-   "lemma": "дело",
-   "options": [
-    "удивительного дела",
-    "удивительном деле",
-    "удивительное дело",
-    "удивительным делом"
-   ],
-   "correct": "удивительное дело",
-   "case": "Именительный (Nominative)",
-   "explain": "«Удивительное дело» — the subject of the sentence stands in the nominative.",
-   "id": "c43"
   },
   {
    "sentence": "— В ___, Дмитрий Петрович.",
@@ -543,22 +291,8 @@
    ],
    "correct": "разных сторонах",
    "case": "Предложный (Prepositional)",
-   "explain": "«разных сторонах» — after the preposition «в», for location or topic.",
+   "explain": "«разных сторонах» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c44"
-  },
-  {
-   "sentence": "— За какого-то ___ Альтерзона.",
-   "lemma": "барон",
-   "options": [
-    "австрийский барон",
-    "австрийским бароном",
-    "австрийском бароне",
-    "австрийского барона"
-   ],
-   "correct": "австрийского барона",
-   "case": "Винительный (Accusative)",
-   "explain": "«австрийского барона» — after the preposition «за», the accusative marks the direct object of the verb.",
-   "id": "c45"
   },
   {
    "sentence": "— В ___, как же вы живете?",
@@ -571,22 +305,8 @@
    ],
    "correct": "самом деле",
    "case": "Предложный (Prepositional)",
-   "explain": "«самом деле» — after the preposition «в», for location or topic.",
+   "explain": "«самом деле» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c46"
-  },
-  {
-   "sentence": "— Я ___ этой счастливой части.",
-   "lemma": "врач",
-   "options": [
-    "полицейскому врачу",
-    "полицейский врач",
-    "полицейского врача",
-    "полицейском враче"
-   ],
-   "correct": "полицейский врач",
-   "case": "Именительный (Nominative)",
-   "explain": "«полицейский врач» — the subject of the sentence stands in the nominative.",
-   "id": "c47"
   },
   {
    "sentence": "— Если заботиться только о своей ___, то везде можно отлично устроиться.",
@@ -599,22 +319,8 @@
    ],
    "correct": "собственной особе",
    "case": "Предложный (Prepositional)",
-   "explain": "«собственной особе» — after the preposition «о», for location or topic.",
+   "explain": "«собственной особе» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c48"
-  },
-  {
-   "sentence": "Он вошел тихо, медленно опустился в кресло и, взяв с окна гипсовую статуэтку Гарибальди, ___ левого мизинца начал вычищать пыль, набившуюся в углубляющихся местах фигуры.",
-   "lemma": "ноготь",
-   "options": [
-    "длинного ногтя",
-    "длинному ногтю",
-    "длинный ноготь",
-    "длинным ногтем"
-   ],
-   "correct": "длинным ногтем",
-   "case": "Творительный (Instrumental)",
-   "explain": "«длинным ногтем» — the instrumental marks the means, company, or complement.",
-   "id": "c49"
   },
   {
    "sentence": "Он вошел тихо, медленно опустился в кресло и, взяв с окна гипсовую статуэтку Гарибальди, длинным ногтем ___ начал вычищать пыль, набившуюся в углубляющихся местах фигуры.",
@@ -627,22 +333,8 @@
    ],
    "correct": "левого мизинца",
    "case": "Родительный (Genitive)",
-   "explain": "«левого мизинца» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«левого мизинца» depends on the noun «ногтем» (whose? of what?) — genitive.",
    "id": "c50"
-  },
-  {
-   "sentence": "— ___ и зеленая жена в лохмотьях повернут ваши понятия о семейном быте.",
-   "lemma": "ребёнок",
-   "options": [
-    "голодным детям",
-    "голодных детях",
-    "голодными детьми",
-    "голодные дети"
-   ],
-   "correct": "голодные дети",
-   "case": "Именительный (Nominative)",
-   "explain": "«Голодные дети» — the subject of the sentence stands in the nominative.",
-   "id": "c51"
   },
   {
    "sentence": "— Голодные дети и зеленая жена в лохмотьях повернут ваши понятия о ___.",
@@ -655,22 +347,8 @@
    ],
    "correct": "семейном быте",
    "case": "Предложный (Prepositional)",
-   "explain": "«семейном быте» — after the preposition «о», for location or topic.",
+   "explain": "«семейном быте» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c52"
-  },
-  {
-   "sentence": "Неужто вы находите, что и взаимная любовь, и отцовская забота о семье, и ___ о детях безнравственны?",
-   "lemma": "попечение",
-   "options": [
-    "материнскими попечениями",
-    "материнские попечения",
-    "материнских попечений",
-    "материнским попечениям"
-   ],
-   "correct": "материнские попечения",
-   "case": "Именительный (Nominative)",
-   "explain": "«материнские попечения» — the subject of the sentence stands in the nominative.",
-   "id": "c53"
   },
   {
    "sentence": "Вы, человек, живший в области ___, говорите такие вещи.",
@@ -683,22 +361,8 @@
    ],
    "correct": "чистого искусства",
    "case": "Родительный (Genitive)",
-   "explain": "«чистого искусства» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«чистого искусства» depends on the noun «области» (whose? of what?) — genitive.",
    "id": "c54"
-  },
-  {
-   "sentence": "По-моему, в тысячу раз лучше, если над этим ребенком сядет не мать с своею сентиментальною нежностью, а простая, ___, умеющая ходить за больными.",
-   "lemma": "сиделка",
-   "options": [
-    "опытной сиделки",
-    "опытной сиделке",
-    "опытной сиделкой",
-    "опытная сиделка"
-   ],
-   "correct": "опытная сиделка",
-   "case": "Именительный (Nominative)",
-   "explain": "«опытная сиделка» — the subject of the sentence stands in the nominative.",
-   "id": "c55"
   },
   {
    "sentence": "Мать, целуя ребенка, только удовлетворяет в ___ своим чувственным стремлениям.",
@@ -711,7 +375,7 @@
    ],
    "correct": "известной мере",
    "case": "Предложный (Prepositional)",
-   "explain": "«известной мере» — after the preposition «в», for location or topic.",
+   "explain": "«известной мере» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c56"
   },
   {
@@ -725,7 +389,7 @@
    ],
    "correct": "умный человек",
    "case": "Именительный (Nominative)",
-   "explain": "«умный человек» — the subject of the sentence stands in the nominative.",
+   "explain": "«умный человек» is the subject of «скажет» — who or what does it — so nominative.",
    "id": "c57"
   },
   {
@@ -739,22 +403,8 @@
    ],
    "correct": "дикой толпе",
    "case": "Предложный (Prepositional)",
-   "explain": "«дикой толпе» — after the preposition «о», for location or topic.",
+   "explain": "«дикой толпе» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c59"
-  },
-  {
-   "sentence": "— Ну, слава богу, что собралось вместе столько ___, — отвечал, удерживаясь от улыбки, Розанов, — но ведь это один дом.",
-   "lemma": "человек",
-   "options": [
-    "хорошим людям",
-    "хороших людей",
-    "хорошими людьми",
-    "хорошие люди"
-   ],
-   "correct": "хороших людей",
-   "case": "Родительный (Genitive)",
-   "explain": "«хороших людей» — the genitive here marks possession, absence, or quantity.",
-   "id": "c60"
   }
  ]
 }

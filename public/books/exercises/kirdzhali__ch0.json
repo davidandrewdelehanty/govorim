@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Оригинал здесь: Русская ___.",
-   "lemma": "библиотека",
-   "options": [
-    "виртуальная библиотека",
-    "виртуальной библиотеке",
-    "виртуальной библиотекой",
-    "виртуальной библиотеки"
-   ],
-   "correct": "виртуальная библиотека",
-   "case": "Именительный (Nominative)",
-   "explain": "«виртуальная библиотека» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "После ___, где погиб цвет греческого юношества, Иордаки Олимбиоти присоветовал ему удалиться и сам заступил его место.",
    "lemma": "сражение",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "несчастного сражения",
    "case": "Родительный (Genitive)",
-   "explain": "«несчастного сражения» — after the preposition «после», the genitive here marks possession, absence, or quantity.",
+   "explain": "«несчастного сражения» — «после» always takes the genitive.",
    "id": "c3"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "греческого юношества",
    "case": "Родительный (Genitive)",
-   "explain": "«греческого юношества» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«греческого юношества» depends on the noun «цвет» (whose? of what?) — genitive.",
    "id": "c4"
   },
   {
@@ -53,7 +39,7 @@
    ],
    "correct": "русского начальства",
    "case": "Родительный (Genitive)",
-   "explain": "«русского начальства» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«русского начальства» — «у» always takes the genitive.",
    "id": "c5"
   },
   {
@@ -67,7 +53,7 @@
    ],
    "correct": "турецкой конницы",
    "case": "Родительный (Genitive)",
-   "explain": "«турецкой конницы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«турецкой конницы» depends on the noun «отступающих» (whose? of what?) — genitive.",
    "id": "c7"
   },
   {
@@ -75,13 +61,13 @@
    "lemma": "начальство",
    "options": [
     "русского начальства",
-    "русским начальством",
+    "русском начальстве",
     "русское начальство",
-    "русском начальстве"
+    "русскому начальству"
    ],
    "correct": "русского начальства",
    "case": "Родительный (Genitive)",
-   "explain": "«русского начальства» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«русского начальства» depends on the noun «позволения» (whose? of what?) — genitive.",
    "id": "c8"
   },
   {
@@ -95,22 +81,8 @@
    ],
    "correct": "военной службе",
    "case": "Предложный (Prepositional)",
-   "explain": "«военной службе» — after the preposition «в», for location or topic.",
+   "explain": "«военной службе» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c9"
-  },
-  {
-   "sentence": "Делибаши, увидя это, повернулись и ускакали, а за ними и весь ___.",
-   "lemma": "отряд",
-   "options": [
-    "турецком отряде",
-    "турецкому отряду",
-    "турецкий отряд",
-    "турецким отрядом"
-   ],
-   "correct": "турецкий отряд",
-   "case": "Именительный (Nominative)",
-   "explain": "«турецкий отряд» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
   },
   {
    "sentence": "На ___, однако ж, турки атаковали этеристов.",
@@ -123,22 +95,8 @@
    ],
    "correct": "другой день",
    "case": "Винительный (Accusative)",
-   "explain": "«другой день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«другой день» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c11"
-  },
-  {
-   "sentence": "Не смея употреблять ни картечи, ни ядер, они решились, вопреки своему обыкновению, действовать ___.",
-   "lemma": "оружие",
-   "options": [
-    "холодного оружия",
-    "холодному оружию",
-    "холодном оружии",
-    "холодным оружием"
-   ],
-   "correct": "холодным оружием",
-   "case": "Творительный (Instrumental)",
-   "explain": "«холодным оружием» — the instrumental marks the means, company, or complement.",
-   "id": "c12"
   },
   {
    "sentence": "Их можно всегда было видеть в кофейнях полутурецкой Бессарабии, с длинными чубуками во рту, прихлебывающих кофейную гущу из ___.",
@@ -151,22 +109,8 @@
    ],
    "correct": "маленьких чашечек",
    "case": "Родительный (Genitive)",
-   "explain": "«маленьких чашечек» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«маленьких чашечек» — «из» always takes the genitive.",
    "id": "c14"
-  },
-  {
-   "sentence": "Их узорные куртки и красные ___ начинали уж изнашиваться, но хохлатая скуфейка все же еще надета была набекрень, а атаганы и пистолеты все еще торчали из-за широких поясов.",
-   "lemma": "туфля",
-   "options": [
-    "востроносых туфель",
-    "востроносых туфлях",
-    "востроносым туфлям",
-    "востроносые туфли"
-   ],
-   "correct": "востроносые туфли",
-   "case": "Именительный (Nominative)",
-   "explain": "«востроносые туфли» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
   },
   {
    "sentence": "Их узорные куртки и красные востроносые туфли начинали уж изнашиваться, но хохлатая скуфейка все же еще надета была набекрень, а атаганы и пистолеты все еще торчали из-за ___.",
@@ -179,22 +123,8 @@
    ],
    "correct": "широких поясов",
    "case": "Родительный (Genitive)",
-   "explain": "«широких поясов» — after the preposition «из-за», the genitive here marks possession, absence, or quantity.",
+   "explain": "«широких поясов» — «из-за» always takes the genitive.",
    "id": "c16"
-  },
-  {
-   "sentence": "Нельзя было и подумать, чтоб эти ___ были известнейшие клефты Молдавии, товарищи грозного Кирджали, и чтоб он сам находился между ими.",
-   "lemma": "бедняк",
-   "options": [
-    "мирных бедняков",
-    "мирных бедняках",
-    "мирными бедняками",
-    "мирные бедняки"
-   ],
-   "correct": "мирные бедняки",
-   "case": "Именительный (Nominative)",
-   "explain": "«мирные бедняки» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
   },
   {
    "sentence": "Паша, начальствовавший в Яссах, о том узнал и на основании ___ потребовал от русского начальства выдачи разбойника.",
@@ -207,7 +137,7 @@
    ],
    "correct": "мирных договоров",
    "case": "Родительный (Genitive)",
-   "explain": "«мирных договоров» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«мирных договоров» depends on the noun «основании» (whose? of what?) — genitive.",
    "id": "c18"
   },
   {
@@ -221,7 +151,7 @@
    ],
    "correct": "русского начальства",
    "case": "Родительный (Genitive)",
-   "explain": "«русского начальства» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«русского начальства» — «от» always takes the genitive.",
    "id": "c19"
   },
   {
@@ -235,7 +165,7 @@
    ],
    "correct": "самом деле",
    "case": "Предложный (Prepositional)",
-   "explain": "«самом деле» — after the preposition «в», for location or topic.",
+   "explain": "«самом деле» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c20"
   },
   {
@@ -249,22 +179,8 @@
    ],
    "correct": "беглого монаха",
    "case": "Родительный (Genitive)",
-   "explain": "«беглого монаха» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«беглого монаха» depends on the noun «доме» (whose? of what?) — genitive.",
    "id": "c21"
-  },
-  {
-   "sentence": "Он не стал скрывать истины и признался, что он Кирджали. \"Но, -- прибавил он, -- с тех пор, как я перешел за Прут, я не тронул ни волоса чужого добра, не обидел и ___.",
-   "lemma": "цыган",
-   "options": [
-    "последнему цыгану",
-    "последнем цыгане",
-    "последний цыган",
-    "последнего цыгана"
-   ],
-   "correct": "последнего цыгана",
-   "case": "Винительный (Accusative)",
-   "explain": "«последнего цыгана» — the accusative marks the direct object of the verb.",
-   "id": "c23"
   },
   {
    "sentence": "Когда Сафьянос, расстреляв всю свою картечь, пришел к нам в карантин, отбирая у раненых для ___ пуговицы, гвозди, цепочки и набалдашники с атаганов, я отдал ему двадцать бешлыков и остался без денег.",
@@ -277,36 +193,8 @@
    ],
    "correct": "последних зарядов",
    "case": "Родительный (Genitive)",
-   "explain": "«последних зарядов» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«последних зарядов» — «для» always takes the genitive.",
    "id": "c24"
-  },
-  {
-   "sentence": "Начальство, не обязанное смотреть на разбойников с их ___ и убежденное в справедливости требования, повелело отправить Кирджали в Яссы.",
-   "lemma": "сторона",
-   "options": [
-    "романтической стороны",
-    "романтическая сторона",
-    "романтической стороной",
-    "романтической стороне"
-   ],
-   "correct": "романтической стороны",
-   "case": "Родительный (Genitive)",
-   "explain": "«романтической стороны» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
-   "id": "c25"
-  },
-  {
-   "sentence": "Человек с умом и сердцем, в то время неизвестный ___, ныне занимающий важное место, живо описывал мне его отъезд.",
-   "lemma": "чиновник",
-   "options": [
-    "молодом чиновнике",
-    "молодому чиновнику",
-    "молодым чиновником",
-    "молодой чиновник"
-   ],
-   "correct": "молодой чиновник",
-   "case": "Именительный (Nominative)",
-   "explain": "«молодой чиновник» — the subject of the sentence stands in the nominative.",
-   "id": "c26"
   },
   {
    "sentence": "Молдаван в усах и в ___, сидя верхом на одной из них, поминутно кричал и хлопал бичом, и клячонки его бежали рысью довольно крупной.",
@@ -319,7 +207,7 @@
    ],
    "correct": "бараньей шапке",
    "case": "Предложный (Prepositional)",
-   "explain": "«бараньей шапке» — after the preposition «в», for location or topic.",
+   "explain": "«бараньей шапке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c27"
   },
   {
@@ -333,7 +221,7 @@
    ],
    "correct": "обратном пути",
    "case": "Предложный (Prepositional)",
-   "explain": "«обратном пути» — after the preposition «на», for location or topic.",
+   "explain": "«обратном пути» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c29"
   },
   {
@@ -347,36 +235,8 @@
    ],
    "correct": "последних чисел",
    "case": "Родительный (Genitive)",
-   "explain": "«последних чисел» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«последних чисел» — «из» always takes the genitive.",
    "id": "c30"
-  },
-  {
-   "sentence": "Жидовки, спустя рукава и шлепая туфлями, арнауты в своем оборванном и ___, стройные молдаванки с черноглазыми ребятами на руках окружали каруцу.",
-   "lemma": "наряд",
-   "options": [
-    "живописным нарядом",
-    "живописном наряде",
-    "живописный наряд",
-    "живописному наряду"
-   ],
-   "correct": "живописном наряде",
-   "case": "Предложный (Prepositional)",
-   "explain": "«живописном наряде» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c31"
-  },
-  {
-   "sentence": "Ворота отворились, и несколько ___ вышли на улицу; за ними двое солдат вывели скованного Кирджали.",
-   "lemma": "офицер",
-   "options": [
-    "полицейских офицеров",
-    "полицейские офицеры",
-    "полицейским офицерам",
-    "полицейскими офицерами"
-   ],
-   "correct": "полицейских офицеров",
-   "case": "Родительный (Genitive)",
-   "explain": "«полицейских офицеров» — the genitive here marks possession, absence, or quantity.",
-   "id": "c33"
   },
   {
    "sentence": "Он был высокого росту, широкоплеч, и вообще в нем изображалась необыкновенная ___.",
@@ -389,64 +249,8 @@
    ],
    "correct": "физическая сила",
    "case": "Именительный (Nominative)",
-   "explain": "«физическая сила» — the subject of the sentence stands in the nominative.",
+   "explain": "«физическая сила» is the subject of «изображалась» — who or what does it — so nominative.",
    "id": "c34"
-  },
-  {
-   "sentence": "Пестрая чалма наискось покрывала его голову, ___ обхватывал тонкую поясницу; долиман из толстого синего сукна, широкие складки рубахи, падающие выше колен, и красивые туфли составляли остальной его наряд.",
-   "lemma": "пояс",
-   "options": [
-    "широкого пояса",
-    "широким поясом",
-    "широкий пояс",
-    "широком поясе"
-   ],
-   "correct": "широкий пояс",
-   "case": "Именительный (Nominative)",
-   "explain": "«широкий пояс» — the subject of the sentence stands in the nominative.",
-   "id": "c35"
-  },
-  {
-   "sentence": "Пестрая чалма наискось покрывала его голову, широкий пояс обхватывал тонкую поясницу; долиман из толстого ___, широкие складки рубахи, падающие выше колен, и красивые туфли составляли остальной его наряд.",
-   "lemma": "сукно",
-   "options": [
-    "синем сукне",
-    "синим сукном",
-    "синего сукна",
-    "синему сукну"
-   ],
-   "correct": "синего сукна",
-   "case": "Родительный (Genitive)",
-   "explain": "«синего сукна» — the genitive here marks possession, absence, or quantity.",
-   "id": "c36"
-  },
-  {
-   "sentence": "Пестрая чалма наискось покрывала его голову, широкий пояс обхватывал тонкую поясницу; долиман из толстого синего сукна, ___ рубахи, падающие выше колен, и красивые туфли составляли остальной его наряд.",
-   "lemma": "складка",
-   "options": [
-    "широким складкам",
-    "широких складках",
-    "широкими складками",
-    "широкие складки"
-   ],
-   "correct": "широкие складки",
-   "case": "Именительный (Nominative)",
-   "explain": "«широкие складки» — the subject of the sentence stands in the nominative.",
-   "id": "c37"
-  },
-  {
-   "sentence": "Пестрая чалма наискось покрывала его голову, широкий пояс обхватывал тонкую поясницу; долиман из толстого синего сукна, широкие складки рубахи, падающие выше колен, и ___ составляли остальной его наряд.",
-   "lemma": "туфля",
-   "options": [
-    "красивые туфли",
-    "красивых туфлях",
-    "красивых туфель",
-    "красивыми туфлями"
-   ],
-   "correct": "красивые туфли",
-   "case": "Именительный (Nominative)",
-   "explain": "«красивые туфли» — the subject of the sentence stands in the nominative.",
-   "id": "c38"
   },
   {
    "sentence": "Тогда Кирджали обратился к нему и сказал ему несколько слов на молдавском языке; голос его дрожал, лицо изменилось; он заплакал и повалился в ноги ___, загремев своими цепями.",
@@ -459,7 +263,7 @@
    ],
    "correct": "полицейского чиновника",
    "case": "Родительный (Genitive)",
-   "explain": "«полицейского чиновника» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«полицейского чиновника» depends on the noun «ноги» (whose? of what?) — genitive.",
    "id": "c40"
   },
   {
@@ -473,7 +277,7 @@
    ],
    "correct": "молодой чиновник",
    "case": "Именительный (Nominative)",
-   "explain": "«молодой чиновник» — the subject of the sentence stands in the nominative.",
+   "explain": "«молодой чиновник» is the subject of «спросил» — who or what does it — so nominative.",
    "id": "c41"
   },
   {
@@ -487,7 +291,7 @@
    ],
    "correct": "болгарской деревне",
    "case": "Предложный (Prepositional)",
-   "explain": "«болгарской деревне» — after the preposition «в», for location or topic.",
+   "explain": "«болгарской деревне» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c42"
   },
   {
@@ -501,21 +305,21 @@
    ],
    "correct": "молодого чиновника",
    "case": "Родительный (Genitive)",
-   "explain": "«молодого чиновника» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«молодого чиновника» depends on the noun «Рассказ» (whose? of what?) — genitive.",
    "id": "c43"
   },
   {
    "sentence": "Невольника стерегли семеро турок (люди простые и в душе такие же разбойники, как и Кирджали); они уважали его и с жадностию, общею всему Востоку, слушали его ___.",
    "lemma": "рассказ",
    "options": [
-    "чудных рассказов",
-    "чудных рассказах",
     "чудными рассказами",
-    "чудные рассказы"
+    "чудным рассказам",
+    "чудные рассказы",
+    "чудных рассказах"
    ],
    "correct": "чудные рассказы",
    "case": "Винительный (Accusative)",
-   "explain": "«чудные рассказы» — the accusative marks the direct object of the verb.",
+   "explain": "«чудные рассказы» is the direct object of «слушали» (кого? что?) — accusative.",
    "id": "c45"
   },
   {
@@ -529,7 +333,7 @@
    ],
    "correct": "широкого камня",
    "case": "Родительный (Genitive)",
-   "explain": "«широкого камня» — after the preposition «близ», the genitive here marks possession, absence, or quantity.",
+   "explain": "«широкого камня» — «близ» always takes the genitive.",
    "id": "c46"
   },
   {
@@ -543,7 +347,7 @@
    ],
    "correct": "самого господаря",
    "case": "Родительный (Genitive)",
-   "explain": "«самого господаря» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«самого господаря» — «до» always takes the genitive.",
    "id": "c47"
   }
  ]

@@ -1,102 +1,32 @@
 {
  "cases": [
   {
-   "sentence": "___ строили жители Иерихона, а рядом с ними строил Заккур, сын Имрия.",
-   "lemma": "участок",
-   "options": [
-    "соседнему участку",
-    "соседнем участке",
-    "соседним участком",
-    "соседний участок"
-   ],
-   "correct": "соседний участок",
-   "case": "Винительный (Accusative)",
-   "explain": "«Соседний участок» — the accusative marks the direct object of the verb.",
-   "id": "c1"
-  },
-  {
-   "sentence": "___ были отстроены сыновьями Сенаи.",
-   "lemma": "ворота",
-   "options": [
-    "рыбным воротам",
-    "рыбные ворота",
-    "рыбных воротах",
-    "рыбных ворот"
-   ],
-   "correct": "рыбные ворота",
-   "case": "Именительный (Nominative)",
-   "explain": "«Рыбные ворота» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
    "sentence": "Меремоф, сын Урии, сына Гаккоца, восстановил ___.",
    "lemma": "участок",
    "options": [
     "следующим участком",
-    "следующем участке",
+    "следующему участку",
     "следующий участок",
-    "следующего участка"
+    "следующем участке"
    ],
    "correct": "следующий участок",
    "case": "Винительный (Accusative)",
-   "explain": "«следующий участок» — the accusative marks the direct object of the verb.",
+   "explain": "«следующий участок» is the direct object of «восстановил» (кого? что?) — accusative.",
    "id": "c3"
-  },
-  {
-   "sentence": "___ стены был восстановлен жителями Текоа, но их знать не подставила плечи под работу для своего Владыки .",
-   "lemma": "участок",
-   "options": [
-    "следующему участку",
-    "следующим участком",
-    "следующем участке",
-    "следующий участок"
-   ],
-   "correct": "следующий участок",
-   "case": "Именительный (Nominative)",
-   "explain": "«Следующий участок» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
-  },
-  {
-   "sentence": "___ были восстановлены Иоиадой, сыном Пасеаха, и Мешулламом, сыном Бесодии.",
-   "lemma": "ворота",
-   "options": [
-    "старыми воротами",
-    "старых воротах",
-    "старых ворот",
-    "старые ворота"
-   ],
-   "correct": "старые ворота",
-   "case": "Именительный (Nominative)",
-   "explain": "«Старые ворота» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
   },
   {
    "sentence": "Уззиил, сын Харгаии, из ювелиров, восстановил ___ стены, а рядом с ним — Ханания, из составителей благовоний.",
    "lemma": "участок",
    "options": [
     "следующим участком",
+    "следующему участку",
     "следующем участке",
-    "следующий участок",
-    "следующего участка"
+    "следующий участок"
    ],
    "correct": "следующий участок",
    "case": "Винительный (Accusative)",
-   "explain": "«следующий участок» — the accusative marks the direct object of the verb.",
+   "explain": "«следующий участок» is the direct object of «восстановил» (кого? что?) — accusative.",
    "id": "c6"
-  },
-  {
-   "sentence": "Они восстановили Иерусалим до самой ___.",
-   "lemma": "стена",
-   "options": [
-    "широкой стены",
-    "широкой стене",
-    "широкой стеной",
-    "широкая стена"
-   ],
-   "correct": "широкой стены",
-   "case": "Родительный (Genitive)",
-   "explain": "«Широкой стены» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
-   "id": "c7"
   },
   {
    "sentence": "Рефаия, сын Хура, правитель половины ___, восстановил следующий участок.",
@@ -109,36 +39,8 @@
    ],
    "correct": "иерусалимского округа",
    "case": "Родительный (Genitive)",
-   "explain": "«Иерусалимского округа» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«иерусалимского округа» depends on the noun «половины» (whose? of what?) — genitive.",
    "id": "c8"
-  },
-  {
-   "sentence": "Рефаия, сын Хура, правитель половины Иерусалимского округа, восстановил ___.",
-   "lemma": "участок",
-   "options": [
-    "следующим участком",
-    "следующем участке",
-    "следующий участок",
-    "следующего участка"
-   ],
-   "correct": "следующий участок",
-   "case": "Винительный (Accusative)",
-   "explain": "«следующий участок» — the accusative marks the direct object of the verb.",
-   "id": "c9"
-  },
-  {
-   "sentence": "Малхия, сын Харима, и Хашшув, сын Пахат-Моава, восстановили ___ и Печную башню.",
-   "lemma": "участок",
-   "options": [
-    "следующим участком",
-    "следующем участке",
-    "следующий участок",
-    "следующего участка"
-   ],
-   "correct": "следующий участок",
-   "case": "Винительный (Accusative)",
-   "explain": "«следующий участок» — the accusative marks the direct object of the verb.",
-   "id": "c10"
   },
   {
    "sentence": "Шаллум, сын Аллохеша, правитель ___ Иерусалимского округа, с помощью своих дочерей восстановил следующий участок.",
@@ -151,7 +53,7 @@
    ],
    "correct": "второй половины",
    "case": "Родительный (Genitive)",
-   "explain": "«второй половины» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«второй половины» depends on the noun «правитель» (whose? of what?) — genitive.",
    "id": "c11"
   },
   {
@@ -165,50 +67,22 @@
    ],
    "correct": "иерусалимского округа",
    "case": "Родительный (Genitive)",
-   "explain": "«Иерусалимского округа» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«иерусалимского округа» depends on the noun «половины» (whose? of what?) — genitive.",
    "id": "c12"
   },
   {
    "sentence": "Шаллум, сын Аллохеша, правитель второй половины Иерусалимского округа, с помощью своих дочерей восстановил ___.",
    "lemma": "участок",
    "options": [
-    "следующим участком",
+    "следующему участку",
     "следующем участке",
     "следующий участок",
-    "следующего участка"
+    "следующим участком"
    ],
    "correct": "следующий участок",
    "case": "Винительный (Accusative)",
-   "explain": "«следующий участок» — the accusative marks the direct object of the verb.",
+   "explain": "«следующий участок» is the direct object of «восстановил» (кого? что?) — accusative.",
    "id": "c13"
-  },
-  {
-   "sentence": "Еще они восстановили тысячу локтей стены до самых ___.",
-   "lemma": "ворота",
-   "options": [
-    "навозных ворот",
-    "навозным воротам",
-    "навозные ворота",
-    "навозными воротами"
-   ],
-   "correct": "навозных ворот",
-   "case": "Родительный (Genitive)",
-   "explain": "«Навозных ворот» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
-   "id": "c14"
-  },
-  {
-   "sentence": "___ были восстановлены Малхией, сыном Рехава, правителем округа Бет-Карем.",
-   "lemma": "ворота",
-   "options": [
-    "навозными воротами",
-    "навозных воротах",
-    "навозные ворота",
-    "навозным воротам"
-   ],
-   "correct": "навозные ворота",
-   "case": "Именительный (Nominative)",
-   "explain": "«Навозные ворота» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
   },
   {
    "sentence": "Еще он восстановил стену у пруда Силоам , у ___, до самых ступеней, что спускаются из Города Давида .",
@@ -221,7 +95,7 @@
    ],
    "correct": "царского сада",
    "case": "Родительный (Genitive)",
-   "explain": "«Царского сада» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«царского сада» — «у» always takes the genitive.",
    "id": "c16"
   },
   {
@@ -235,7 +109,7 @@
    ],
    "correct": "самых ступеней",
    "case": "Родительный (Genitive)",
-   "explain": "«самых ступеней» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«самых ступеней» — «до» always takes the genitive.",
    "id": "c17"
   },
   {
@@ -249,22 +123,8 @@
    ],
    "correct": "второй половины",
    "case": "Родительный (Genitive)",
-   "explain": "«второй половины» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«второй половины» depends on the noun «правителя» (whose? of what?) — genitive.",
    "id": "c18"
-  },
-  {
-   "sentence": "Рядом с которым ___ — от места напротив подъема к оружейной до самого угла — восстановил Эзер, сын Иисуса, правитель Мицпы.",
-   "lemma": "участок",
-   "options": [
-    "следующим участком",
-    "следующем участке",
-    "следующий участок",
-    "следующего участка"
-   ],
-   "correct": "следующий участок",
-   "case": "Именительный (Nominative)",
-   "explain": "«следующий участок» — the subject of the sentence stands in the nominative.",
-   "id": "c19"
   },
   {
    "sentence": "Рядом с которым следующий участок — от места напротив подъема к оружейной до ___ — восстановил Эзер, сын Иисуса, правитель Мицпы.",
@@ -277,22 +137,8 @@
    ],
    "correct": "самого угла",
    "case": "Родительный (Genitive)",
-   "explain": "«самого угла» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«самого угла» — «до» always takes the genitive.",
    "id": "c20"
-  },
-  {
-   "sentence": "Возле него ___ — от угла до входа в дом первосвященника Элиашива — ревностно восстановил Барух, сын Заббая.",
-   "lemma": "участок",
-   "options": [
-    "следующим участком",
-    "следующем участке",
-    "следующий участок",
-    "следующего участка"
-   ],
-   "correct": "следующий участок",
-   "case": "Именительный (Nominative)",
-   "explain": "«следующий участок» — the subject of the sentence stands in the nominative.",
-   "id": "c21"
   },
   {
    "sentence": "За ними — напротив своего дома — восстанавливал Цадок, сын Иммера, а за ним — Шемая, сын Шекании, сторож ___.",
@@ -305,36 +151,8 @@
    ],
    "correct": "восточных ворот",
    "case": "Родительный (Genitive)",
-   "explain": "«Восточных ворот» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«восточных ворот» depends on the noun «сторож» (whose? of what?) — genitive.",
    "id": "c25"
-  },
-  {
-   "sentence": "За ним ___ восстанавливали Ханания, сын Шелемии, и Ханун, шестой сын Цалафа.",
-   "lemma": "участок",
-   "options": [
-    "следующим участком",
-    "следующем участке",
-    "следующий участок",
-    "следующего участка"
-   ],
-   "correct": "следующий участок",
-   "case": "Винительный (Accusative)",
-   "explain": "«следующий участок» — the accusative marks the direct object of the verb.",
-   "id": "c26"
-  },
-  {
-   "sentence": "За ним следующий участок восстанавливали Ханания, сын Шелемии, и Ханун, ___ Цалафа.",
-   "lemma": "сын",
-   "options": [
-    "шестому сыну",
-    "шестой сын",
-    "шестого сына",
-    "шестым сыном"
-   ],
-   "correct": "шестой сын",
-   "case": "Именительный (Nominative)",
-   "explain": "«шестой сын» — the subject of the sentence stands in the nominative.",
-   "id": "c27"
   },
   {
    "sentence": "За ним — до ___ храмовых слуг и купцов, что напротив Смотровых ворот, и до самой комнаты над углом — восстанавливал Малхия, из ювелиров.",
@@ -347,22 +165,8 @@
    ],
    "correct": "самого дома",
    "case": "Родительный (Genitive)",
-   "explain": "«самого дома» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«самого дома» — «до» always takes the genitive.",
    "id": "c28"
-  },
-  {
-   "sentence": "За ним — до самого дома храмовых слуг и купцов, что напротив ___, и до самой комнаты над углом — восстанавливал Малхия, из ювелиров.",
-   "lemma": "ворота",
-   "options": [
-    "смотровых ворот",
-    "смотровых воротах",
-    "смотровыми воротами",
-    "смотровые ворота"
-   ],
-   "correct": "смотровых ворот",
-   "case": "Родительный (Genitive)",
-   "explain": "«Смотровых ворот» — after the preposition «напротив», the genitive here marks possession, absence, or quantity.",
-   "id": "c29"
   },
   {
    "sentence": "За ним — до самого дома храмовых слуг и купцов, что напротив Смотровых ворот, и до ___ над углом — восстанавливал Малхия, из ювелиров.",
@@ -375,7 +179,7 @@
    ],
    "correct": "самой комнаты",
    "case": "Родительный (Genitive)",
-   "explain": "«самой комнаты» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«самой комнаты» — «до» always takes the genitive.",
    "id": "c30"
   }
  ]

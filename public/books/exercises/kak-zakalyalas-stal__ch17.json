@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Только теперь Павел понял, что быть стойким, когда владеешь ___ и юностью, было довольно легко и просто, но устоять теперь, когда жизнь сжимает железным обручем, — дело чести.",
-   "lemma": "тело",
-   "options": [
-    "сильного тела",
-    "сильном теле",
-    "сильным телом",
-    "сильное тело"
-   ],
-   "correct": "сильным телом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«сильным телом» — the instrumental marks the means, company, or complement.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Только теперь Павел понял, что быть стойким, когда владеешь сильным телом и юностью, было довольно легко и просто, но устоять теперь, когда жизнь сжимает ___, — дело чести.",
-   "lemma": "обруч",
-   "options": [
-    "железным обручем",
-    "железному обручу",
-    "железный обруч",
-    "железного обруча"
-   ],
-   "correct": "железным обручем",
-   "case": "Творительный (Instrumental)",
-   "explain": "«железным обручем» — the instrumental marks the means, company, or complement.",
-   "id": "c2"
-  },
-  {
    "sentence": "В ___, когда прекратится воспаление, хирургия попытается оперировать зрачки.",
    "lemma": "будущее",
    "options": [
@@ -39,7 +11,7 @@
    ],
    "correct": "туманном будущем",
    "case": "Предложный (Prepositional)",
-   "explain": "«туманном будущем» — after the preposition «в», for location or topic.",
+   "explain": "«туманном будущем» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c3"
   },
   {
@@ -53,7 +25,7 @@
    ],
    "correct": "страшных часов",
    "case": "Родительный (Genitive)",
-   "explain": "«страшных часов» — after the preposition «после», the genitive here marks possession, absence, or quantity.",
+   "explain": "«страшных часов» — «после» always takes the genitive.",
    "id": "c5"
   },
   {
@@ -67,36 +39,22 @@
    ],
    "correct": "оконные рамы",
    "case": "Винительный (Accusative)",
-   "explain": "«оконные рамы» — the accusative marks the direct object of the verb.",
+   "explain": "«оконные рамы» is the direct object of «открыла» (кого? что?) — accusative.",
    "id": "c6"
   },
   {
    "sentence": "Прожить столько месяцев в окружении ___, среди стонов и причитаний обреченных людей было несравненно труднее, чем переносить свои личные страдания.",
    "lemma": "страдание",
    "options": [
-    "человеческими страданиями",
-    "человеческие страдания",
     "человеческих страданиях",
+    "человеческим страданиям",
+    "человеческие страдания",
     "человеческих страданий"
    ],
    "correct": "человеческих страданий",
    "case": "Родительный (Genitive)",
-   "explain": "«человеческих страданий» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«человеческих страданий» depends on the noun «окружении» (whose? of what?) — genitive.",
    "id": "c7"
-  },
-  {
-   "sentence": "Прожить столько месяцев в окружении человеческих страданий, среди стонов и причитаний обреченных людей было несравненно труднее, чем переносить свои ___.",
-   "lemma": "страдание",
-   "options": [
-    "личные страдания",
-    "личных страданиях",
-    "личными страданиями",
-    "личным страданиям"
-   ],
-   "correct": "личные страдания",
-   "case": "Винительный (Accusative)",
-   "explain": "«личные страдания» — the accusative marks the direct object of the verb.",
-   "id": "c8"
   },
   {
    "sentence": "___ в тихом переулке Кропоткинской улицы показалась верхом роскоши.",
@@ -109,7 +67,7 @@
    ],
    "correct": "скромная комната",
    "case": "Именительный (Nominative)",
-   "explain": "«Скромная комната» — the subject of the sentence stands in the nominative.",
+   "explain": "«скромная комната» is the subject of «показалась» — who or what does it — so nominative.",
    "id": "c10"
   },
   {
@@ -123,50 +81,8 @@
    ],
    "correct": "кропоткинской улицы",
    "case": "Родительный (Genitive)",
-   "explain": "«Кропоткинской улицы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«кропоткинской улицы» depends on the noun «переулке» (whose? of what?) — genitive.",
    "id": "c12"
-  },
-  {
-   "sentence": "Я долго искал выхода и нашел — вырезанные из картона полоски не дадут моему карандашу выходить из рамок ___.",
-   "lemma": "строка",
-   "options": [
-    "прямая строка",
-    "прямой строке",
-    "прямой строкой",
-    "прямой строки"
-   ],
-   "correct": "прямой строки",
-   "case": "Родительный (Genitive)",
-   "explain": "«прямой строки» — the genitive here marks possession, absence, or quantity.",
-   "id": "c14"
-  },
-  {
-   "sentence": "В процессе работы ему приходилось по памяти читать ___, иногда даже главы, и матери порой казалось, что сын сошел с ума.",
-   "lemma": "страница",
-   "options": [
-    "целых страницах",
-    "целые страницы",
-    "целых страниц",
-    "целыми страницами"
-   ],
-   "correct": "целые страницы",
-   "case": "Винительный (Accusative)",
-   "explain": "«целые страницы» — the accusative marks the direct object of the verb.",
-   "id": "c15"
-  },
-  {
-   "sentence": "Павел послал их в Одессу старым котовцам для оценки и скоро получил от них письмо с ___, но рукопись на обратном пути была потеряна почтой.",
-   "lemma": "отзыв",
-   "options": [
-    "положительные отзывы",
-    "положительных отзывах",
-    "положительными отзывами",
-    "положительным отзывам"
-   ],
-   "correct": "положительными отзывами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«положительными отзывами» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c16"
   },
   {
    "sentence": "Павел послал их в Одессу старым котовцам для оценки и скоро получил от них письмо с положительными отзывами, но рукопись на ___ была потеряна почтой.",
@@ -179,7 +95,7 @@
    ],
    "correct": "обратном пути",
    "case": "Предложный (Prepositional)",
-   "explain": "«обратном пути» — after the preposition «на», for location or topic.",
+   "explain": "«обратном пути» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c17"
   },
   {
@@ -187,28 +103,14 @@
    "lemma": "потрясение",
    "options": [
     "большим потрясением",
-    "большее потрясение",
     "большем потрясении",
+    "большему потрясению",
     "большего потрясения"
    ],
    "correct": "большим потрясением",
    "case": "Творительный (Instrumental)",
-   "explain": "«большим потрясением» — the instrumental marks the means, company, or complement.",
+   "explain": "After «было», what someone or something is or becomes stands in the instrumental.",
    "id": "c18"
-  },
-  {
-   "sentence": "Горько пожалел он, что послал ___, не оставив себе копии.",
-   "lemma": "экземпляр",
-   "options": [
-    "единственному экземпляру",
-    "единственный экземпляр",
-    "единственном экземпляре",
-    "единственного экземпляра"
-   ],
-   "correct": "единственный экземпляр",
-   "case": "Винительный (Accusative)",
-   "explain": "«единственный экземпляр» — the accusative marks the direct object of the verb.",
-   "id": "c19"
   },
   {
    "sentence": "___, Александр, работал секретарем одного из городских райкомов комсомола.",
@@ -221,36 +123,8 @@
    ],
    "correct": "старший сын",
    "case": "Именительный (Nominative)",
-   "explain": "«Старший сын» — the subject of the sentence stands in the nominative.",
+   "explain": "«старший сын» is the subject of «работал» — who or what does it — so nominative.",
    "id": "c21"
-  },
-  {
-   "sentence": "Это ведь не то, что писать для отца ___ о поддержании в квартирах чистоты.",
-   "lemma": "циркуляр",
-   "options": [
-    "скучных циркулярах",
-    "скучные циркуляры",
-    "скучным циркулярам",
-    "скучными циркулярами"
-   ],
-   "correct": "скучные циркуляры",
-   "case": "Винительный (Accusative)",
-   "explain": "«скучные циркуляры» — the accusative marks the direct object of the verb.",
-   "id": "c24"
-  },
-  {
-   "sentence": "В доме она была почти ___, который верил в работу Павла, остальным казалось, что ничего не получится и он только старается чем-нибудь заполнить свое вынужденное бездействие.",
-   "lemma": "человек",
-   "options": [
-    "единственным человеком",
-    "единственного человека",
-    "единственный человек",
-    "единственном человеке"
-   ],
-   "correct": "единственным человеком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«единственным человеком» — the instrumental marks the means, company, or complement.",
-   "id": "c25"
   },
   {
    "sentence": "После ___ начинал писать сам.",
@@ -263,22 +137,8 @@
    ],
    "correct": "неудачных страниц",
    "case": "Родительный (Genitive)",
-   "explain": "«неудачных страниц» — after the preposition «после», the genitive here marks possession, absence, or quantity.",
+   "explain": "«неудачных страниц» — «после» always takes the genitive.",
    "id": "c28"
-  },
-  {
-   "sentence": "Скованный ___ транспаранта, иногда не выдерживал — бросал.",
-   "lemma": "полоса",
-   "options": [
-    "узкой полосе",
-    "узкой полосой",
-    "узкой полосы",
-    "узкая полоса"
-   ],
-   "correct": "узкой полосой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«узкой полосой» — the instrumental marks the means, company, or complement.",
-   "id": "c29"
   },
   {
    "sentence": "Запрещены были грусть и вереница простых ___, горячих и нежных, имеющих право на жизнь почти для каждого, но не для него.",
@@ -291,50 +151,8 @@
    ],
    "correct": "человеческих чувств",
    "case": "Родительный (Genitive)",
-   "explain": "«человеческих чувств» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«человеческих чувств» depends on the noun «вереница» (whose? of what?) — genitive.",
    "id": "c30"
-  },
-  {
-   "sentence": "Если рукопись будет разгромлена, это будут его ___.",
-   "lemma": "сумерки",
-   "options": [
-    "последними сумерками",
-    "последних сумерек",
-    "последних сумерках",
-    "последние сумерки"
-   ],
-   "correct": "последние сумерки",
-   "case": "Именительный (Nominative)",
-   "explain": "«последние сумерки» — the subject of the sentence stands in the nominative.",
-   "id": "c31"
-  },
-  {
-   "sentence": "Если же неудача будет частичной, такой, которую можно устранить ___ над собой, он немедленно начнет новое наступление.",
-   "lemma": "работа",
-   "options": [
-    "дальнейшей работы",
-    "дальнейшей работой",
-    "дальнейшая работа",
-    "дальнейшей работе"
-   ],
-   "correct": "дальнейшей работой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«дальнейшей работой» — the instrumental marks the means, company, or complement.",
-   "id": "c32"
-  },
-  {
-   "sentence": "Никогда еще в своей жизни Корчагин не ждал писем с таким ___, как в эти дни.",
-   "lemma": "нетерпение",
-   "options": [
-    "мучительного нетерпения",
-    "мучительном нетерпении",
-    "мучительное нетерпение",
-    "мучительным нетерпением"
-   ],
-   "correct": "мучительным нетерпением",
-   "case": "Творительный (Instrumental)",
-   "explain": "«мучительным нетерпением» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c33"
   },
   {
    "sentence": "Павел жил от ___ до вечерней.",
@@ -347,22 +165,8 @@
    ],
    "correct": "утренней почты",
    "case": "Родительный (Genitive)",
-   "explain": "«утренней почты» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«утренней почты» — «от» always takes the genitive.",
    "id": "c34"
-  },
-  {
-   "sentence": "С каждым днем предчувствие поражения усиливалось, и Корчагин сознался себе, что ___ книги будет его гибелью.",
-   "lemma": "отвод",
-   "options": [
-    "безоговорочному отводу",
-    "безоговорочного отвода",
-    "безоговорочный отвод",
-    "безоговорочном отводе"
-   ],
-   "correct": "безоговорочный отвод",
-   "case": "Именительный (Nominative)",
-   "explain": "«безоговорочный отвод» — the subject of the sentence stands in the nominative.",
-   "id": "c35"
   },
   {
    "sentence": "«Все ли сделал ты, чтобы вырваться из ___, чтобы вернуться в строй, сделать свою жизнь полезной?»",
@@ -375,22 +179,8 @@
    ],
    "correct": "железного кольца",
    "case": "Родительный (Genitive)",
-   "explain": "«железного кольца» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«железного кольца» — «из» always takes the genitive.",
    "id": "c37"
-  },
-  {
-   "sentence": "Вот она, ___, ставшая действительностью!",
-   "lemma": "мечта",
-   "options": [
-    "заветная мечта",
-    "заветной мечте",
-    "заветной мечтой",
-    "заветной мечты"
-   ],
-   "correct": "заветная мечта",
-   "case": "Именительный (Nominative)",
-   "explain": "«заветная мечта» — the subject of the sentence stands in the nominative.",
-   "id": "c39"
   },
   {
    "sentence": "Разорвано ___, и он опять — уже с новым оружием — возвращался в строй и к жизни.",
@@ -403,7 +193,7 @@
    ],
    "correct": "железное кольцо",
    "case": "Именительный (Nominative)",
-   "explain": "«железное кольцо» — the subject of the sentence stands in the nominative.",
+   "explain": "«железное кольцо» is the subject of «Разорвано» — who or what does it — so nominative.",
    "id": "c40"
   }
  ]

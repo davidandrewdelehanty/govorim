@@ -1,87 +1,17 @@
 {
  "cases": [
   {
-   "sentence": "Четвертый день гремят орудия, а лазутчики донесли — подошел от Майкопа к неприятелю ___ с конницей, пехотой и артиллерией.",
-   "lemma": "генерал",
-   "options": [
-    "нового генерала",
-    "новом генерале",
-    "новым генералом",
-    "новый генерал"
-   ],
-   "correct": "новый генерал",
-   "case": "Именительный (Nominative)",
-   "explain": "«новый генерал» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "С последним снарядом в два часа ночи ___, полкам ворваться в окопы.",
-   "lemma": "атака",
-   "options": [
-    "общей атаки",
-    "общей атаке",
-    "общей атакой",
-    "общая атака"
-   ],
-   "correct": "общая атака",
-   "case": "Именительный (Nominative)",
-   "explain": "«общая атака» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
-  },
-  {
-   "sentence": "Ни одного выстрела, а ___ и ночи орудийный и ружейный огонь не смолкал.",
-   "lemma": "день",
-   "options": [
-    "прошлые дни",
-    "прошлых дней",
-    "прошлым дням",
-    "прошлых днях"
-   ],
-   "correct": "прошлые дни",
-   "case": "Именительный (Nominative)",
-   "explain": "«прошлые дни» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
-  },
-  {
-   "sentence": "В избу вошел адъютант, за ним два солдата с винтовками, а между ними безоружный бледный ___.",
-   "lemma": "солдатик",
-   "options": [
-    "низенькому солдатику",
-    "низенький солдатик",
-    "низенького солдатика",
-    "низеньком солдатике"
-   ],
-   "correct": "низенький солдатик",
-   "case": "Именительный (Nominative)",
-   "explain": "«низенький солдатик» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
-  },
-  {
-   "sentence": "Если хочешь пощады, то есть за свой поступок отделаться только ___, тогда я приказываю тебе исполнить мой приказ следующего содержания: сегодня же сложить все оружие на ст.",
-   "lemma": "рота",
-   "options": [
-    "арестантским ротам",
-    "арестантские роты",
-    "арестантских ротах",
-    "арестантскими ротами"
-   ],
-   "correct": "арестантскими ротами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«арестантскими ротами» — the instrumental marks the means, company, or complement.",
-   "id": "c8"
-  },
-  {
    "sentence": "Если хочешь пощады, то есть за свой поступок отделаться только арестантскими ротами, тогда я приказываю тебе исполнить мой приказ ___: сегодня же сложить все оружие на ст.",
    "lemma": "содержание",
    "options": [
-    "следующего содержания",
-    "следующему содержанию",
+    "следующим содержанием",
     "следующем содержании",
-    "следующим содержанием"
+    "следующего содержания",
+    "следующее содержание"
    ],
    "correct": "следующего содержания",
    "case": "Родительный (Genitive)",
-   "explain": "«следующего содержания» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«следующего содержания» depends on the noun «приказ» (whose? of what?) — genitive.",
    "id": "c9"
   },
   {
@@ -95,7 +25,7 @@
    ],
    "correct": "вторая колонна",
    "case": "Именительный (Nominative)",
-   "explain": "«вторая колонна» — the subject of the sentence stands in the nominative.",
+   "explain": "«вторая колонна» is the subject of «подходит» — who or what does it — so nominative.",
    "id": "c10"
   },
   {
@@ -109,7 +39,7 @@
    ],
    "correct": "богатого казака",
    "case": "Родительный (Genitive)",
-   "explain": "«богатого казака» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«богатого казака» depends on the noun «избу» (whose? of what?) — genitive.",
    "id": "c11"
   },
   {
@@ -123,7 +53,7 @@
    ],
    "correct": "богатырский рост",
    "case": "Винительный (Accusative)",
-   "explain": "«богатырский рост» — after the preposition «во», the accusative marks the direct object of the verb.",
+   "explain": "«богатырский рост» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c12"
   },
   {
@@ -131,28 +61,14 @@
    "lemma": "костюм",
    "options": [
     "матросском костюме",
-    "матросским костюмом",
-    "матросский костюм",
-    "матросского костюма"
+    "матросского костюма",
+    "матросскому костюму",
+    "матросским костюмом"
    ],
    "correct": "матросском костюме",
    "case": "Предложный (Prepositional)",
-   "explain": "«матросском костюме» — after the preposition «на», for location or topic.",
+   "explain": "«матросском костюме» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c14"
-  },
-  {
-   "sentence": "— Здорово, братушка, — сказал он бархатно-густым, ___, глядя сверху вниз, вовсе не желая этим обидеть Кожуха.",
-   "lemma": "бас",
-   "options": [
-    "круглым басом",
-    "круглый бас",
-    "круглого баса",
-    "круглом басе"
-   ],
-   "correct": "круглым басом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«круглым басом» — the instrumental marks the means, company, or complement.",
-   "id": "c15"
   },
   {
    "sentence": "— ___ входит в станицу, я сам сейчас видел.",
@@ -165,49 +81,21 @@
    ],
    "correct": "вторая колонна",
    "case": "Именительный (Nominative)",
-   "explain": "«Вторая колонна» — the subject of the sentence stands in the nominative.",
+   "explain": "«вторая колонна» is the subject of «входит» — who or what does it — so nominative.",
    "id": "c17"
-  },
-  {
-   "sentence": "Започемукал, — густым ___ сказал тот.",
-   "lemma": "бас",
-   "options": [
-    "красивый бас",
-    "красивом басе",
-    "красивым басом",
-    "красивого баса"
-   ],
-   "correct": "красивым басом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«красивым басом» — the instrumental marks the means, company, or complement.",
-   "id": "c18"
-  },
-  {
-   "sentence": "Он прошелся из угла в угол, и на всей ___ и на добродушном пред этим лице легло выражение бычьего упорства, — теперь его хоть оглоблей расшибай.",
-   "lemma": "фигура",
-   "options": [
-    "громадной фигуры",
-    "громадной фигурой",
-    "громадной фигуре",
-    "громадная фигура"
-   ],
-   "correct": "громадной фигуре",
-   "case": "Предложный (Prepositional)",
-   "explain": "«громадной фигуре» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c19"
   },
   {
    "sentence": "Он прошелся из угла в угол, и на всей громадной фигуре и на добродушном пред этим лице легло выражение ___, — теперь его хоть оглоблей расшибай.",
    "lemma": "упорство",
    "options": [
     "бычье упорство",
-    "бычьим упорством",
+    "бычьем упорстве",
     "бычьего упорства",
     "бычьему упорству"
    ],
    "correct": "бычьего упорства",
    "case": "Родительный (Genitive)",
-   "explain": "«бычьего упорства» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«бычьего упорства» depends on the noun «выражение» (whose? of what?) — genitive.",
    "id": "c20"
   },
   {
@@ -221,50 +109,8 @@
    ],
    "correct": "маленьким нажимом",
    "case": "Творительный (Instrumental)",
-   "explain": "«маленьким нажимом» — after the preposition «перед», the instrumental marks the means, company, or complement.",
+   "explain": "«маленьким нажимом» — «перед» always takes the instrumental.",
    "id": "c21"
-  },
-  {
-   "sentence": "Тысячи по-звериному ___ наполняли тьму, но в казачьих окопах неподвижно и немо.",
-   "lemma": "глаз",
-   "options": [
-    "острым глазам",
-    "острыми глазами",
-    "острые глаза",
-    "острых глаз"
-   ],
-   "correct": "острых глаз",
-   "case": "Родительный (Genitive)",
-   "explain": "«острых глаз» — the genitive here marks possession, absence, or quantity.",
-   "id": "c23"
-  },
-  {
-   "sentence": "А невидимые в ночи ___ огненно обозначались прерывисто рвущимся ожерельем ослепительных шрапнельных разрывов, которые повторным треском тоже обозначали невидимо извилистую линию, где умирали люди.",
-   "lemma": "окоп",
-   "options": [
-    "казачьим окопам",
-    "казачьих окопах",
-    "казачьи окопы",
-    "казачьими окопами"
-   ],
-   "correct": "казачьи окопы",
-   "case": "Именительный (Nominative)",
-   "explain": "«казачьи окопы» — the subject of the sentence stands in the nominative.",
-   "id": "c25"
-  },
-  {
-   "sentence": "А невидимые в ночи казачьи окопы огненно обозначались прерывисто рвущимся ожерельем ослепительных шрапнельных разрывов, которые ___ тоже обозначали невидимо извилистую линию, где умирали люди.",
-   "lemma": "треск",
-   "options": [
-    "повторного треска",
-    "повторным треском",
-    "повторном треске",
-    "повторный треск"
-   ],
-   "correct": "повторным треском",
-   "case": "Творительный (Instrumental)",
-   "explain": "«повторным треском» — the instrumental marks the means, company, or complement.",
-   "id": "c26"
   },
   {
    "sentence": "Генерал Покровский собрал остатки ___, пластунских, офицерских батальонов и повел обессиленных и ничего не понимающих на Екатеринодар, совершенно очистив «босякам» дорогу.",
@@ -277,22 +123,8 @@
    ],
    "correct": "казачьих сотен",
    "case": "Родительный (Genitive)",
-   "explain": "«казачьих сотен» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«казачьих сотен» depends on the noun «остатки» (whose? of what?) — genitive.",
    "id": "c28"
-  },
-  {
-   "sentence": "Генерал Покровский собрал остатки казачьих сотен, пластунских, ___ и повел обессиленных и ничего не понимающих на Екатеринодар, совершенно очистив «босякам» дорогу.",
-   "lemma": "батальон",
-   "options": [
-    "офицерских батальонов",
-    "офицерскими батальонами",
-    "офицерские батальоны",
-    "офицерским батальонам"
-   ],
-   "correct": "офицерских батальонов",
-   "case": "Родительный (Genitive)",
-   "explain": "«офицерских батальонов» — the genitive here marks possession, absence, or quantity.",
-   "id": "c29"
   }
  ]
 }

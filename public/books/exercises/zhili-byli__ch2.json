@@ -1,48 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Солнце лило в палату ___ света и так пригревало, что приходилось от него прятаться, как летом, и не верилось, что за тонкими стеклами окон воздух холоден, свеж и сыр.",
-   "lemma": "поток",
-   "options": [
-    "целых потоках",
-    "целых потоков",
-    "целым потокам",
-    "целые потоки"
-   ],
-   "correct": "целые потоки",
-   "case": "Винительный (Accusative)",
-   "explain": "«целые потоки» — the accusative marks the direct object of the verb.",
-   "id": "c1"
-  },
-  {
-   "sentence": "___, с ее высокими потолками, казалась при этом свете узким и душным закоулком, в котором нельзя протянуть руки, чтобы не наткнуться на стену.",
-   "lemma": "палата",
-   "options": [
-    "сама палата",
-    "самой палатой",
-    "самой палаты",
-    "самой палате"
-   ],
-   "correct": "сама палата",
-   "case": "Именительный (Nominative)",
-   "explain": "«Сама палата» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Сама палата, с ее ___, казалась при этом свете узким и душным закоулком, в котором нельзя протянуть руки, чтобы не наткнуться на стену.",
-   "lemma": "потолок",
-   "options": [
-    "высокие потолки",
-    "высоких потолков",
-    "высокими потолками",
-    "высоких потолках"
-   ],
-   "correct": "высокими потолками",
-   "case": "Творительный (Instrumental)",
-   "explain": "«высокими потолками» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c3"
-  },
-  {
    "sentence": "Голос улицы не проникал в клинику сквозь ___, но когда по утрам в палате открывали большую откидную фортку — внезапно, без переходов, врывался в нее пьяно-веселый и шумный крик воробьев.",
    "lemma": "рама",
    "options": [
@@ -53,7 +11,7 @@
    ],
    "correct": "двойные рамы",
    "case": "Винительный (Accusative)",
-   "explain": "«двойные рамы» — after the preposition «сквозь», the accusative marks the direct object of the verb.",
+   "explain": "«двойные рамы» — «сквозь» always takes the accusative.",
    "id": "c4"
   },
   {
@@ -67,22 +25,8 @@
    ],
    "correct": "остальные звуки",
    "case": "Именительный (Nominative)",
-   "explain": "«остальные звуки» — the subject of the sentence stands in the nominative.",
+   "explain": "«остальные звуки» is the subject of «затихали» — who or what does it — so nominative.",
    "id": "c5"
-  },
-  {
-   "sentence": "Это был низенький и на вид довольно еще ___, разбитый параличом; ходил он переваливаясь, одним плечом вперед, и всем больным рассказывал одну и ту же историю: о крещении Руси при Владимире Святом.",
-   "lemma": "старичок",
-   "options": [
-    "свежим старичком",
-    "свежему старичку",
-    "свежем старичке",
-    "свежий старичок"
-   ],
-   "correct": "свежий старичок",
-   "case": "Именительный (Nominative)",
-   "explain": "«свежий старичок» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
   },
   {
    "sentence": "И все так же регулярно приходили доктора в своих ___ и студенты, выслушивали и выстукивали и говорили между собою.",
@@ -95,7 +39,7 @@
    ],
    "correct": "белых балахонах",
    "case": "Предложный (Prepositional)",
-   "explain": "«белых балахонах» — after the preposition «в», for location or topic.",
+   "explain": "«белых балахонах» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c8"
   },
   {
@@ -109,36 +53,8 @@
    ],
    "correct": "пятой неделе",
    "case": "Предложный (Prepositional)",
-   "explain": "«пятой неделе» — after the preposition «на», for location or topic.",
+   "explain": "«пятой неделе» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c9"
-  },
-  {
-   "sentence": "В пятницу, на пятой неделе ___, о. дьякона водили на лекцию, и вернулся он из аудитории возбужденный и разговорчивый.",
-   "lemma": "пост",
-   "options": [
-    "великом посте",
-    "великим постом",
-    "великого поста",
-    "великому посту"
-   ],
-   "correct": "великого поста",
-   "case": "Родительный (Genitive)",
-   "explain": "«великого поста» — the genitive here marks possession, absence, or quantity.",
-   "id": "c10"
-  },
-  {
-   "sentence": "Невидимым ___ и тьмою повеяло от веселого дьякона, и, когда с новым всхлипыванием он скрылся под одеялом, Торбецкий нервно потер похолодевшие руки, а Лаврентий Петрович грубо рассмеялся и закашлялся.",
-   "lemma": "холод",
-   "options": [
-    "страшным холодом",
-    "страшный холод",
-    "страшному холоду",
-    "страшном холоде"
-   ],
-   "correct": "страшным холодом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«страшным холодом» — the instrumental marks the means, company, or complement.",
-   "id": "c11"
   },
   {
    "sentence": "Невидимым страшным холодом и тьмою повеяло от веселого дьякона, и, когда с ___ он скрылся под одеялом, Торбецкий нервно потер похолодевшие руки, а Лаврентий Петрович грубо рассмеялся и закашлялся.",
@@ -151,7 +67,7 @@
    ],
    "correct": "новым всхлипыванием",
    "case": "Творительный (Instrumental)",
-   "explain": "«новым всхлипыванием» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«новым всхлипыванием» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c12"
   },
   {
@@ -165,7 +81,7 @@
    ],
    "correct": "ежедневном осмотре",
    "case": "Предложный (Prepositional)",
-   "explain": "«ежедневном осмотре» — after the preposition «при», for location or topic.",
+   "explain": "«ежедневном осмотре» — «при» always takes the prepositional.",
    "id": "c13"
   },
   {
@@ -179,7 +95,7 @@
    ],
    "correct": "новая отметка",
    "case": "Именительный (Nominative)",
-   "explain": "«новая отметка» — the subject of the sentence stands in the nominative.",
+   "explain": "«новая отметка» is the subject of «появилась» — who or what does it — so nominative.",
    "id": "c14"
   },
   {
@@ -193,22 +109,8 @@
    ],
    "correct": "свежего воздуха",
    "case": "Родительный (Genitive)",
-   "explain": "«свежего воздуха» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«свежего воздуха» — «от» always takes the genitive.",
    "id": "c15"
-  },
-  {
-   "sentence": "И он показывал четвертую страницу письма, на которой неумелыми, дрожащими линиями был обведен контур растопыренной ___, и посередине, как раз на ладони, было написано: «Тосик руку приложил».",
-   "lemma": "рука",
-   "options": [
-    "детской руки",
-    "детской руке",
-    "детская рука",
-    "детской рукой"
-   ],
-   "correct": "детской руки",
-   "case": "Родительный (Genitive)",
-   "explain": "«детской руки» — the genitive here marks possession, absence, or quantity.",
-   "id": "c16"
   },
   {
    "sentence": "— В восторге от ___, отец дьякон хлопал себя руками по коленям и сгибался от приступа неудержимого, тихого смеха.",
@@ -221,7 +123,7 @@
    ],
    "correct": "остроумной шутки",
    "case": "Родительный (Genitive)",
-   "explain": "«остроумной шутки» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«остроумной шутки» — «от» always takes the genitive.",
    "id": "c17"
   },
   {
@@ -235,78 +137,8 @@
    ],
    "correct": "здорового человека",
    "case": "Родительный (Genitive)",
-   "explain": "«здорового человека» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«здорового человека» depends on the noun «лицом» (whose? of what?) — genitive.",
    "id": "c18"
-  },
-  {
-   "sentence": "Пришел он оттуда взволнованный, с дрожащими руками и ___, сердито оттолкнул няньку, помогавшую ему ложиться в постель, и тотчас же закрыл глаза.",
-   "lemma": "усмешка",
-   "options": [
-    "кривой усмешке",
-    "кривая усмешка",
-    "кривой усмешки",
-    "кривой усмешкой"
-   ],
-   "correct": "кривой усмешкой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«кривой усмешкой» — the instrumental marks the means, company, or complement.",
-   "id": "c19"
-  },
-  {
-   "sentence": "Он лежал на спине и мечтательно глядел в потолок, на котором играл неведомо откуда отраженный ___.",
-   "lemma": "луч",
-   "options": [
-    "солнечном луче",
-    "солнечным лучом",
-    "солнечный луч",
-    "солнечному лучу"
-   ],
-   "correct": "солнечный луч",
-   "case": "Именительный (Nominative)",
-   "explain": "«солнечный луч» — the subject of the sentence stands in the nominative.",
-   "id": "c21"
-  },
-  {
-   "sentence": "Так иного-то незадачливого покойника ___ таскают, перетаскать не могут.",
-   "lemma": "год",
-   "options": [
-    "целый год",
-    "целом годе",
-    "целого года",
-    "целым годом"
-   ],
-   "correct": "целый год",
-   "case": "Винительный (Accusative)",
-   "explain": "«целый год» — the accusative marks the direct object of the verb.",
-   "id": "c22"
-  },
-  {
-   "sentence": "Затем он поднял кверху свой огромный буроватый кулак и, печально полюбовавшись его ___, продолжал: — Вот, глянь-ка!",
-   "lemma": "очертание",
-   "options": [
-    "массивными очертаниями",
-    "массивным очертаниям",
-    "массивные очертания",
-    "массивных очертаниях"
-   ],
-   "correct": "массивными очертаниями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«массивными очертаниями» — the instrumental marks the means, company, or complement.",
-   "id": "c23"
-  },
-  {
-   "sentence": "Разве вот на том свете нас с тобой ___ попарят, — это, отчего же, очень возможно.",
-   "lemma": "веник",
-   "options": [
-    "горячих веников",
-    "горячими вениками",
-    "горячие веники",
-    "горячих вениках"
-   ],
-   "correct": "горячими вениками",
-   "case": "Творительный (Instrumental)",
-   "explain": "«горячими вениками» — the instrumental marks the means, company, or complement.",
-   "id": "c24"
   },
   {
    "sentence": "Торбецкий делал вид, что смотрит в окно на улицу так, от безделья, но в действительности старался заглянуть влево, где находился ___, и прижимался лбом к самому стеклу.",
@@ -319,7 +151,7 @@
    ],
    "correct": "невидимый подъезд",
    "case": "Именительный (Nominative)",
-   "explain": "«невидимый подъезд» — the subject of the sentence stands in the nominative.",
+   "explain": "«невидимый подъезд» is the subject of «находился» — who or what does it — so nominative.",
    "id": "c25"
   },
   {
@@ -333,7 +165,7 @@
    ],
    "correct": "самому стеклу",
    "case": "Дательный (Dative)",
-   "explain": "«самому стеклу» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«самому стеклу» — «к» always takes the dative.",
    "id": "c26"
   }
  ]

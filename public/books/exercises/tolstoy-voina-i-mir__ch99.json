@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Борис вопросительно посмотрел на своего генерала и тотчас же понял, что это было ___.",
-   "lemma": "испытание",
-   "options": [
-    "шуточного испытания",
-    "шуточному испытанию",
-    "шуточном испытании",
-    "шуточное испытание"
-   ],
-   "correct": "шуточное испытание",
-   "case": "Именительный (Nominative)",
-   "explain": "«шуточное испытание» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
    "sentence": "Во время свидания в Тильзите он расспрашивал об именах тех лиц, которые приехали с Наполеоном, о мундирах, которые были на них надеты, и внимательно прислушивался к словам, которые были сказаны ___.",
    "lemma": "лицо",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "важными лицами",
    "case": "Творительный (Instrumental)",
-   "explain": "«важными лицами» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «сказаны», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c3"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "других фактов",
    "case": "Родительный (Genitive)",
-   "explain": "«других фактов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«других фактов» depends on the noun «числе» (whose? of what?) — genitive.",
    "id": "c4"
   },
   {
@@ -53,7 +39,7 @@
    ],
    "correct": "самому государю",
    "case": "Дательный (Dative)",
-   "explain": "«самому государю» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«самому государю» — «к» always takes the dative.",
    "id": "c5"
   },
   {
@@ -67,50 +53,8 @@
    ],
    "correct": "другим адъютантом",
    "case": "Творительный (Instrumental)",
-   "explain": "«другим адъютантом» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«другим адъютантом» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c6"
-  },
-  {
-   "sentence": "Борис жил с другим адъютантом, ___ Жилинским.",
-   "lemma": "граф",
-   "options": [
-    "польском графе",
-    "польским графом",
-    "польскому графу",
-    "польского графа"
-   ],
-   "correct": "польским графом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«польским графом» — the instrumental marks the means, company, or complement.",
-   "id": "c7"
-  },
-  {
-   "sentence": "На ужине этом был почетный гость, один адъютант Наполеона, несколько офицеров французской гвардии и ___ старой аристократической французской фамилии, паж Наполеона.",
-   "lemma": "мальчик",
-   "options": [
-    "молодого мальчика",
-    "молодым мальчиком",
-    "молодом мальчике",
-    "молодой мальчик"
-   ],
-   "correct": "молодой мальчик",
-   "case": "Именительный (Nominative)",
-   "explain": "«молодой мальчик» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
-  },
-  {
-   "sentence": "В этот ___ Ростов, пользуясь темнотой, чтобы не быть узнанным, в статском платье, приехал в Тильзит и вошел в квартиру Жилинского и Бориса.",
-   "lemma": "день",
-   "options": [
-    "самому дню",
-    "самого дня",
-    "самый день",
-    "самом дне"
-   ],
-   "correct": "самый день",
-   "case": "Винительный (Accusative)",
-   "explain": "«самый день» — the accusative marks the direct object of the verb.",
-   "id": "c10"
   },
   {
    "sentence": "В Ростове, так же как и во всей армии, из которой он приехал, еще далеко не совершился в отношении Наполеона и французов, из врагов сделавшихся друзьями, тот переворот, который произошел в ___ и в Борисе.",
@@ -123,49 +67,35 @@
    ],
    "correct": "главной квартире",
    "case": "Предложный (Prepositional)",
-   "explain": "«главной квартире» — after the preposition «в», for location or topic.",
+   "explain": "«главной квартире» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c11"
-  },
-  {
-   "sentence": "Еще недавно Ростов, разговаривая с Платовским ___, спорил о том, что ежели бы Наполеон был взят в плен, с ним обратились бы не как с государем, а как с преступником.",
-   "lemma": "офицер",
-   "options": [
-    "казачьего офицера",
-    "казачьему офицеру",
-    "казачьем офицере",
-    "казачьим офицером"
-   ],
-   "correct": "казачьим офицером",
-   "case": "Творительный (Instrumental)",
-   "explain": "«казачьим офицером» — the instrumental marks the means, company, or complement.",
-   "id": "c12"
   },
   {
    "sentence": "Еще недавно на дороге, встретившись с французским ___, Ростов разгорячился, доказывая ему, что не может быть мира между законным государем и преступником-Бонапарте.",
    "lemma": "полковник",
    "options": [
-    "раненого полковника",
-    "раненым полковником",
+    "раненый полковник",
+    "раненому полковнику",
     "раненом полковнике",
-    "раненому полковнику"
+    "раненым полковником"
    ],
    "correct": "раненым полковником",
    "case": "Творительный (Instrumental)",
-   "explain": "«раненым полковником» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«раненым полковником» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c13"
   },
   {
    "sentence": "Еще недавно на дороге, встретившись с французским раненым полковником, Ростов разгорячился, доказывая ему, что не может быть мира между ___ и преступником-Бонапарте.",
    "lemma": "государь",
    "options": [
-    "законным государем",
     "законному государю",
+    "законным государем",
     "законный государь",
-    "законного государя"
+    "законном государе"
    ],
    "correct": "законным государем",
    "case": "Творительный (Instrumental)",
-   "explain": "«законным государем» — after the preposition «между», the instrumental marks the means, company, or complement.",
+   "explain": "«законным государем» — «между» + instrumental: between.",
    "id": "c14"
   },
   {
@@ -179,7 +109,7 @@
    ],
    "correct": "французских офицеров",
    "case": "Родительный (Genitive)",
-   "explain": "«французских офицеров» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«французских офицеров» depends on the noun «вид» (whose? of what?) — genitive.",
    "id": "c15"
   },
   {
@@ -193,7 +123,7 @@
    ],
    "correct": "самых мундирах",
    "case": "Предложный (Prepositional)",
-   "explain": "«самых мундирах» — after the preposition «в», for location or topic.",
+   "explain": "«самых мундирах» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c16"
   },
   {
@@ -207,64 +137,8 @@
    ],
    "correct": "французского офицера",
    "case": "Родительный (Genitive)",
-   "explain": "«французского офицера» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«французского офицера» depends on the noun «двери» (whose? of what?) — genitive.",
    "id": "c17"
-  },
-  {
-   "sentence": "Борис, заслышав ___ в передней, вышел к нему навстречу.",
-   "lemma": "голос",
-   "options": [
-    "чужого голоса",
-    "чужим голосом",
-    "чужой голос",
-    "чужому голосу"
-   ],
-   "correct": "чужой голос",
-   "case": "Винительный (Accusative)",
-   "explain": "«чужой голос» — the accusative marks the direct object of the verb.",
-   "id": "c18"
-  },
-  {
-   "sentence": "Глаза Бориса, спокойно и твердо глядевшие на Ростова, были как будто застланы чем-то, как будто какая-то заслонка — ___ общежития — были надеты на них.",
-   "lemma": "очки",
-   "options": [
-    "синих очках",
-    "синих очков",
-    "синие очки",
-    "синим очкам"
-   ],
-   "correct": "синие очки",
-   "case": "Именительный (Nominative)",
-   "explain": "«синие очки» — the subject of the sentence stands in the nominative.",
-   "id": "c20"
-  },
-  {
-   "sentence": "— Борис ввел его в комнату, где был накрыт ужин, познакомил с гостями, назвав его и объяснив, что он был не статский, но ___, его старый приятель.",
-   "lemma": "офицер",
-   "options": [
-    "гусарском офицере",
-    "гусарским офицером",
-    "гусарскому офицеру",
-    "гусарский офицер"
-   ],
-   "correct": "гусарский офицер",
-   "case": "Именительный (Nominative)",
-   "explain": "«гусарский офицер» — the subject of the sentence stands in the nominative.",
-   "id": "c21"
-  },
-  {
-   "sentence": "— Борис ввел его в комнату, где был накрыт ужин, познакомил с гостями, назвав его и объяснив, что он был не статский, но гусарский офицер, его ___.",
-   "lemma": "приятель",
-   "options": [
-    "старому приятелю",
-    "старом приятеле",
-    "старого приятеля",
-    "старый приятель"
-   ],
-   "correct": "старый приятель",
-   "case": "Именительный (Nominative)",
-   "explain": "«старый приятель» — the subject of the sentence stands in the nominative.",
-   "id": "c22"
   },
   {
    "sentence": "Борис, казалось, не замечал происшедшего стеснения от ___ и с тем же приятным спокойствием и застланностью в глазах, с которыми он встретил Ростова, старался оживить разговор.",
@@ -277,36 +151,8 @@
    ],
    "correct": "нового лица",
    "case": "Родительный (Genitive)",
-   "explain": "«нового лица» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«нового лица» — «от» always takes the genitive.",
    "id": "c23"
-  },
-  {
-   "sentence": "Борис, казалось, не замечал происшедшего стеснения от нового лица и с тем же ___ и застланностью в глазах, с которыми он встретил Ростова, старался оживить разговор.",
-   "lemma": "спокойствие",
-   "options": [
-    "приятном спокойствии",
-    "приятное спокойствие",
-    "приятным спокойствием",
-    "приятному спокойствию"
-   ],
-   "correct": "приятным спокойствием",
-   "case": "Творительный (Instrumental)",
-   "explain": "«приятным спокойствием» — the instrumental marks the means, company, or complement.",
-   "id": "c24"
-  },
-  {
-   "sentence": "И действительно он мешал всем и один оставался вне вновь завязавшегося ___.",
-   "lemma": "разговор",
-   "options": [
-    "общего разговора",
-    "общим разговором",
-    "общему разговору",
-    "общий разговор"
-   ],
-   "correct": "общего разговора",
-   "case": "Родительный (Genitive)",
-   "explain": "«общего разговора» — the genitive here marks possession, absence, or quantity.",
-   "id": "c25"
   }
  ]
 }

@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Грош цена нашему строительству, если не будет в нем красного ___.",
-   "lemma": "огонь",
-   "options": [
-    "кузнечного огня",
-    "кузнечному огню",
-    "кузнечном огне",
-    "кузнечный огонь"
-   ],
-   "correct": "кузнечного огня",
-   "case": "Родительный (Genitive)",
-   "explain": "«кузнечного огня» — the genitive here marks possession, absence, or quantity.",
-   "id": "c2"
-  },
-  {
    "sentence": "И Лухава в искрах ___, в огне глаз летел и туда и туда, и волосы его издали пыхали черными языками пламени.",
    "lemma": "кожа",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "бронзовой кожи",
    "case": "Родительный (Genitive)",
-   "explain": "«бронзовой кожи» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«бронзовой кожи» depends on the noun «искрах» (whose? of what?) — genitive.",
    "id": "c4"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "слесарном цехе",
    "case": "Предложный (Prepositional)",
-   "explain": "«слесарном цехе» — after the preposition «в», for location or topic.",
+   "explain": "«слесарном цехе» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c5"
   },
   {
@@ -53,7 +39,7 @@
    ],
    "correct": "иная работа",
    "case": "Именительный (Nominative)",
-   "explain": "«иная работа» — the subject of the sentence stands in the nominative.",
+   "explain": "«иная работа» is the subject of «шла» — who or what does it — so nominative.",
    "id": "c6"
   },
   {
@@ -67,22 +53,8 @@
    ],
    "correct": "железного скрежета",
    "case": "Родительный (Genitive)",
-   "explain": "«железного скрежета» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«железного скрежета» depends on the noun «вихре» (whose? of what?) — genitive.",
    "id": "c7"
-  },
-  {
-   "sentence": "___ в слесарном цехе.",
-   "lemma": "вихрь",
-   "options": [
-    "металлический вихрь",
-    "металлического вихря",
-    "металлическим вихрем",
-    "металлическому вихрю"
-   ],
-   "correct": "металлический вихрь",
-   "case": "Именительный (Nominative)",
-   "explain": "«Металлический вихрь» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
   },
   {
    "sentence": "Металлический вихрь в ___.",
@@ -95,21 +67,21 @@
    ],
    "correct": "слесарном цехе",
    "case": "Предложный (Prepositional)",
-   "explain": "«слесарном цехе» — after the preposition «в», for location or topic.",
+   "explain": "«слесарном цехе» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c10"
   },
   {
    "sentence": "Важный, молчаливый, с провалами в глазах, инженер Клейст исследовал ___.",
    "lemma": "бремсберг",
    "options": [
+    "старые бремсберги",
     "старыми бремсбергами",
-    "старых бремсбергов",
     "старых бремсбергах",
-    "старые бремсберги"
+    "старым бремсбергам"
    ],
    "correct": "старые бремсберги",
    "case": "Винительный (Accusative)",
-   "explain": "«старые бремсберги» — the accusative marks the direct object of the verb.",
+   "explain": "«старые бремсберги» is the direct object of «исследовал» (кого? что?) — accusative.",
    "id": "c12"
   },
   {
@@ -123,7 +95,7 @@
    ],
    "correct": "старых служак",
    "case": "Родительный (Genitive)",
-   "explain": "«старых служак» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«старых служак» — «из» always takes the genitive.",
    "id": "c13"
   },
   {
@@ -137,7 +109,7 @@
    ],
    "correct": "былым традициям",
    "case": "Дательный (Dative)",
-   "explain": "«былым традициям» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«былым традициям» — «к» always takes the dative.",
    "id": "c14"
   },
   {
@@ -151,22 +123,8 @@
    ],
    "correct": "верхней площадки",
    "case": "Родительный (Genitive)",
-   "explain": "«верхней площадки» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«верхней площадки» — «от» always takes the genitive.",
    "id": "c15"
-  },
-  {
-   "sentence": "Бондарный цех сейчас—просто ___: стеклянная крыша побита камнями — шалость ребят.",
-   "lemma": "сарай",
-   "options": [
-    "ненужному сараю",
-    "ненужного сарая",
-    "ненужный сарай",
-    "ненужным сараем"
-   ],
-   "correct": "ненужный сарай",
-   "case": "Винительный (Accusative)",
-   "explain": "«ненужный сарай» — the accusative marks the direct object of the verb.",
-   "id": "c16"
   },
   {
    "sentence": "Бондарный цех сейчас—просто ненужный сарай: ___ побита камнями — шалость ребят.",
@@ -179,7 +137,7 @@
    ],
    "correct": "стеклянная крыша",
    "case": "Именительный (Nominative)",
-   "explain": "«стеклянная крыша» — the subject of the sentence stands in the nominative.",
+   "explain": "«стеклянная крыша» is the subject of «побита» — who or what does it — so nominative.",
    "id": "c17"
   },
   {
@@ -193,22 +151,8 @@
    ],
    "correct": "золотые стружки",
    "case": "Именительный (Nominative)",
-   "explain": "«золотые стружки» — the subject of the sentence stands in the nominative.",
+   "explain": "«золотые стружки» is the subject of «горели» — who or what does it — so nominative.",
    "id": "c18"
-  },
-  {
-   "sentence": "Раньше здесь золотые стружки горели ___, и бондаря, сами в стружках и искрах опилок, были пьяны и веселы от винного запаха дерева и сиренного пения пил.",
-   "lemma": "спираль",
-   "options": [
-    "огненным спиралям",
-    "огненными спиралями",
-    "огненных спиралей",
-    "огненные спирали"
-   ],
-   "correct": "огненными спиралями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«огненными спиралями» — the instrumental marks the means, company, or complement.",
-   "id": "c19"
   },
   {
    "sentence": "Раньше здесь золотые стружки горели огненными спиралями, и бондаря, сами в стружках и искрах опилок, были пьяны и веселы от ___ дерева и сиренного пения пил.",
@@ -221,50 +165,8 @@
    ],
    "correct": "винного запаха",
    "case": "Родительный (Genitive)",
-   "explain": "«винного запаха» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«винного запаха» — «от» always takes the genitive.",
    "id": "c20"
-  },
-  {
-   "sentence": "Сидел он спиной к Глебу за своим старым верстаком, оглядывал его, играл ногой со станком, пробовал прочность, бил кулаком, а он скрипел, кашлял, как ___.",
-   "lemma": "старик",
-   "options": [
-    "дряхлого старика",
-    "дряхлом старике",
-    "дряхлому старику",
-    "дряхлый старик"
-   ],
-   "correct": "дряхлый старик",
-   "case": "Именительный (Nominative)",
-   "explain": "«дряхлый старик» — the subject of the sentence stands in the nominative.",
-   "id": "c22"
-  },
-  {
-   "sentence": "Зашагал босявкой к пилам и гладил ___ широкой лапой, а они звенели ему далекими вздохами, будто сквозь сон.",
-   "lemma": "диск",
-   "options": [
-    "льдистых дисков",
-    "льдистые диски",
-    "льдистыми дисками",
-    "льдистых дисках"
-   ],
-   "correct": "льдистые диски",
-   "case": "Винительный (Accusative)",
-   "explain": "«льдистые диски» — the accusative marks the direct object of the verb.",
-   "id": "c23"
-  },
-  {
-   "sentence": "Детина — с медведя, и никак его не уколупнешь ни матом, ни лаской, а здесь, в этом ___, он причитает и шепчет, как шкет, который втюрился в девку.",
-   "lemma": "сарай",
-   "options": [
-    "проклятого сарая",
-    "проклятым сараем",
-    "проклятый сарай",
-    "проклятом сарае"
-   ],
-   "correct": "проклятом сарае",
-   "case": "Предложный (Prepositional)",
-   "explain": "«проклятом сарае» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c25"
   }
  ]
 }

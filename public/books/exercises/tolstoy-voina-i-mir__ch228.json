@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Мужики, бабы и дети мужицкой ___ теснились в черной избе через сени.",
-   "lemma": "семья",
-   "options": [
-    "большой семьёй",
-    "большая семья",
-    "большой семьи",
-    "большой семье"
-   ],
-   "correct": "большой семьи",
-   "case": "Родительный (Genitive)",
-   "explain": "«большой семьи» — the genitive here marks possession, absence, or quantity.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Одна только внучка Андрея, Малаша, ___, которой светлейший, приласкав ее, дал за чаем кусок сахара, оставалась на печи в большой избе.",
-   "lemma": "девочка",
-   "options": [
-    "шестилетней девочке",
-    "шестилетней девочкой",
-    "шестилетняя девочка",
-    "шестилетней девочки"
-   ],
-   "correct": "шестилетняя девочка",
-   "case": "Именительный (Nominative)",
-   "explain": "«шестилетняя девочка» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
    "sentence": "Одна только внучка Андрея, Малаша, шестилетняя девочка, которой светлейший, приласкав ее, дал за чаем кусок сахара, оставалась на печи в ___.",
    "lemma": "изба",
    "options": [
@@ -39,36 +11,8 @@
    ],
    "correct": "большой избе",
    "case": "Предложный (Prepositional)",
-   "explain": "«большой избе» — after the preposition «в», for location or topic.",
+   "explain": "«большой избе» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c3"
-  },
-  {
-   "sentence": "___, как внутренно называла Малаша Кутузова, сидел от них особо, в темном углу за печкой.",
-   "lemma": "дедушка",
-   "options": [
-    "самого дедушки",
-    "самим дедушкой",
-    "самого дедушку",
-    "сам дедушка"
-   ],
-   "correct": "сам дедушка",
-   "case": "Именительный (Nominative)",
-   "explain": "«Сам дедушка» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
-  },
-  {
-   "sentence": "Вокруг мужицкого ___, на котором лежали карты, планы, карандаши, бумаги, собралось так много народа, что денщики принесли еще лавку и поставили у стола.",
-   "lemma": "стол",
-   "options": [
-    "елового стола",
-    "еловый стол",
-    "еловым столом",
-    "еловому столу"
-   ],
-   "correct": "елового стола",
-   "case": "Родительный (Genitive)",
-   "explain": "«елового стола» — the genitive here marks possession, absence, or quantity.",
-   "id": "c6"
   },
   {
    "sentence": "Под самыми образами на ___ сидел с Георгием на шее, с бледным, болезненным лицом и с своим высоким лбом, сливающимся с голой головою, Барклай-де-Толли.",
@@ -81,77 +25,21 @@
    ],
    "correct": "первом месте",
    "case": "Предложный (Prepositional)",
-   "explain": "«первом месте» — after the preposition «на», for location or topic.",
+   "explain": "«первом месте» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c8"
-  },
-  {
-   "sentence": "Под самыми образами на первом месте сидел с Георгием на шее, с бледным, болезненным лицом и с своим ___, сливающимся с голой головою, Барклай-де-Толли.",
-   "lemma": "лоб",
-   "options": [
-    "высокому лбу",
-    "высоком лбе",
-    "высокий лоб",
-    "высоким лбом"
-   ],
-   "correct": "высоким лбом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«высоким лбом» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c9"
-  },
-  {
-   "sentence": "Рядом с ним сидел Уваров и ___ (как и все говорили) что-то, быстро делая жесты, сообщал Барклаю.",
-   "lemma": "голос",
-   "options": [
-    "негромком голосе",
-    "негромкий голос",
-    "негромким голосом",
-    "негромкому голосу"
-   ],
-   "correct": "негромким голосом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«негромким голосом» — the instrumental marks the means, company, or complement.",
-   "id": "c10"
-  },
-  {
-   "sentence": "С другой стороны сидел, облокотивши на руку свою широкую с смелыми чертами и ___ голову, граф Остерман-Толстой и казался погруженным в свои мысли.",
-   "lemma": "глаз",
-   "options": [
-    "блестящих глазах",
-    "блестящих глаз",
-    "блестящими глазами",
-    "блестящие глаза"
-   ],
-   "correct": "блестящими глазами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«блестящими глазами» — the instrumental marks the means, company, or complement.",
-   "id": "c13"
-  },
-  {
-   "sentence": "Раевский с выражением нетерпения, ___ наперед курчавя свои черные волосы на висках, поглядывал то на Кутузова, то на входную дверь.",
-   "lemma": "жест",
-   "options": [
-    "привычном жесте",
-    "привычный жест",
-    "привычного жеста",
-    "привычным жестом"
-   ],
-   "correct": "привычным жестом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«привычным жестом» — the instrumental marks the means, company, or complement.",
-   "id": "c14"
   },
   {
    "sentence": "Все ждали Бенигсена, который доканчивал свой ___ под предлогом нового осмотра позиции.",
    "lemma": "обед",
    "options": [
-    "вкусному обеду",
-    "вкусного обеда",
+    "вкусный обед",
+    "вкусным обедом",
     "вкусном обеде",
-    "вкусный обед"
+    "вкусному обеду"
    ],
    "correct": "вкусный обед",
    "case": "Винительный (Accusative)",
-   "explain": "«вкусный обед» — the accusative marks the direct object of the verb.",
+   "explain": "«вкусный обед» is the direct object of «доканчивал» (кого? что?) — accusative.",
    "id": "c15"
   },
   {
@@ -165,50 +53,8 @@
    ],
    "correct": "нового осмотра",
    "case": "Родительный (Genitive)",
-   "explain": "«нового осмотра» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«нового осмотра» depends on the noun «предлогом» (whose? of what?) — genitive.",
    "id": "c16"
-  },
-  {
-   "sentence": "Его ждали от четырех до шести часов, и во всё это время не приступали к совещанию и ___ вели посторонние разговоры.",
-   "lemma": "голос",
-   "options": [
-    "тихим голосам",
-    "тихими голосами",
-    "тихих голосах",
-    "тихих голосов"
-   ],
-   "correct": "тихими голосами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«тихими голосами» — the instrumental marks the means, company, or complement.",
-   "id": "c17"
-  },
-  {
-   "sentence": "Его ждали от четырех до шести часов, и во всё это время не приступали к совещанию и тихими голосами вели ___.",
-   "lemma": "разговор",
-   "options": [
-    "посторонних разговоров",
-    "посторонних разговорах",
-    "посторонние разговоры",
-    "посторонним разговорам"
-   ],
-   "correct": "посторонние разговоры",
-   "case": "Винительный (Accusative)",
-   "explain": "«посторонние разговоры» — the accusative marks the direct object of the verb.",
-   "id": "c18"
-  },
-  {
-   "sentence": "Бенигсен открыл совет вопросом: «оставить ли без боя священную и древнюю столицу России или защищать ее?» Последовало долгое и ___.",
-   "lemma": "молчание",
-   "options": [
-    "общем молчании",
-    "общим молчанием",
-    "общего молчания",
-    "общее молчание"
-   ],
-   "correct": "общее молчание",
-   "case": "Именительный (Nominative)",
-   "explain": "«общее молчание» — the subject of the sentence stands in the nominative.",
-   "id": "c19"
   },
   {
    "sentence": "— Позвольте вам сказать, ваше сиятельство, что вопрос этот не имеет смысла для ___.",
@@ -221,7 +67,7 @@
    ],
    "correct": "русского человека",
    "case": "Родительный (Genitive)",
-   "explain": "«русского человека» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«русского человека» — «для» always takes the genitive.",
    "id": "c20"
   },
   {
@@ -235,7 +81,7 @@
    ],
    "correct": "остальные генералы",
    "case": "Именительный (Nominative)",
-   "explain": "«Остальные генералы» — the subject of the sentence stands in the nominative.",
+   "explain": "«остальные генералы» is the subject of «понимали» — who or what does it — so nominative.",
    "id": "c21"
   },
   {
@@ -249,7 +95,7 @@
    ],
    "correct": "личной борьбе",
    "case": "Предложный (Prepositional)",
-   "explain": "«личной борьбе» — after the preposition «в», for location or topic.",
+   "explain": "«личной борьбе» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c22"
   }
  ]

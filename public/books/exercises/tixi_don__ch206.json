@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Большинство дезертиров присуждалось к телесному наказанию розгами, которое производили калмыки в специально отведенном для этой цели ___.",
-   "lemma": "дом",
-   "options": [
-    "нежилым домом",
-    "нежилой дом",
-    "нежилом доме",
-    "нежилому дому"
-   ],
-   "correct": "нежилом доме",
-   "case": "Предложный (Prepositional)",
-   "explain": "«нежилом доме» — after the preposition «в», for location or topic.",
-   "id": "c1"
-  },
-  {
    "sentence": "Взволнованный и бледный, стоял он перед ___, держа руки по швам.",
    "lemma": "стол",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "судейским столом",
    "case": "Творительный (Instrumental)",
-   "explain": "«судейским столом» — after the preposition «перед», the instrumental marks the means, company, or complement.",
+   "explain": "«судейским столом» — «перед» always takes the instrumental.",
    "id": "c2"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "старого тела",
    "case": "Родительный (Genitive)",
-   "explain": "«старого тела» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«старого тела» — «от» always takes the genitive.",
    "id": "c3"
   },
   {
@@ -53,7 +39,7 @@
    ],
    "correct": "молодым казакам",
    "case": "Дательный (Dative)",
-   "explain": "«молодым казакам» — the dative marks the indirect object or recipient.",
+   "explain": "«молодым казакам» is the indirect object of «подаете» — to or for whom (кому?) — dative.",
    "id": "c5"
   },
   {
@@ -67,7 +53,7 @@
    ],
    "correct": "телесному наказанию",
    "case": "Дательный (Dative)",
-   "explain": "«телесному наказанию» — the dative marks the indirect object or recipient.",
+   "explain": "«телесному наказанию» is the indirect object of «подвергнуть» — to or for whom (кому?) — dative.",
    "id": "c6"
   },
   {
@@ -81,78 +67,22 @@
    ],
    "correct": "офицерскому чину",
    "case": "Дательный (Dative)",
-   "explain": "«офицерскому чину» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«офицерскому чину» — «к» always takes the dative.",
    "id": "c7"
-  },
-  {
-   "sentence": "— ___ был, ваше благородие.",
-   "lemma": "урядник",
-   "options": [
-    "младшим урядником",
-    "младшему уряднику",
-    "младший урядник",
-    "младшего урядника"
-   ],
-   "correct": "младшим урядником",
-   "case": "Творительный (Instrumental)",
-   "explain": "«Младшим урядником» — the instrumental marks the means, company, or complement.",
-   "id": "c8"
   },
   {
    "sentence": "Доложи командиру сотни, что решением ___ ты лишен звания урядника.",
    "lemma": "суд",
    "options": [
     "военно-полевого суда",
-    "военно-полевым судом",
     "военно-полевом суде",
-    "военно-полевой суд"
+    "военно-полевой суд",
+    "военно-полевому суду"
    ],
    "correct": "военно-полевого суда",
    "case": "Родительный (Genitive)",
-   "explain": "«военно-полевого суда» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«военно-полевого суда» depends on the noun «решением» (whose? of what?) — genitive.",
    "id": "c9"
-  },
-  {
-   "sentence": "Скрип колес, конское ржание, людские окрики, топот множества копыт, блеяние овец, ___ — все это наполняло спокойные просторы степи неумолчным и тревожным шумом.",
-   "lemma": "плач",
-   "options": [
-    "детском плаче",
-    "детского плача",
-    "детскому плачу",
-    "детский плач"
-   ],
-   "correct": "детский плач",
-   "case": "Именительный (Nominative)",
-   "explain": "«детский плач» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
-  },
-  {
-   "sentence": "Скрип колес, конское ржание, людские окрики, топот множества копыт, блеяние овец, детский плач — все это наполняло ___ степи неумолчным и тревожным шумом.",
-   "lemma": "простор",
-   "options": [
-    "спокойными просторами",
-    "спокойные просторы",
-    "спокойных просторах",
-    "спокойным просторам"
-   ],
-   "correct": "спокойные просторы",
-   "case": "Именительный (Nominative)",
-   "explain": "«спокойные просторы» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
-  },
-  {
-   "sentence": "Скрип колес, конское ржание, людские окрики, топот множества копыт, блеяние овец, детский плач — все это наполняло спокойные просторы степи неумолчным и ___.",
-   "lemma": "шум",
-   "options": [
-    "тревожном шуме",
-    "тревожного шума",
-    "тревожным шумом",
-    "тревожный шум"
-   ],
-   "correct": "тревожным шумом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«тревожным шумом» — the instrumental marks the means, company, or complement.",
-   "id": "c13"
   }
  ]
 }

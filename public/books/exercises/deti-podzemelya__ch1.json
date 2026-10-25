@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "- Плохо, ___, плохо!",
-   "lemma": "человек",
-   "options": [
-    "молодого человека",
-    "молодым человеком",
-    "молодом человеке",
-    "молодой человек"
-   ],
-   "correct": "молодой человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«молодой человек» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "- Плохо, ___, — вы в дурном обществе!..",
-   "lemma": "человек",
-   "options": [
-    "молодого человека",
-    "молодым человеком",
-    "молодом человеке",
-    "молодой человек"
-   ],
-   "correct": "молодой человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«молодой человек» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
    "sentence": "Жаль, очень жаль сына ___.",
    "lemma": "родитель",
    "options": [
@@ -39,64 +11,22 @@
    ],
    "correct": "почтенных родителей",
    "case": "Родительный (Genitive)",
-   "explain": "«почтенных родителей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«почтенных родителей» depends on the noun «сына» (whose? of what?) — genitive.",
    "id": "c4"
-  },
-  {
-   "sentence": "Действительно, с тех пор как умерла моя мать, а ___ отца стало еще угрюмее, меня очень редко видели дома.",
-   "lemma": "лицо",
-   "options": [
-    "суровом лице",
-    "сурового лица",
-    "суровому лицу",
-    "суровое лицо"
-   ],
-   "correct": "суровое лицо",
-   "case": "Именительный (Nominative)",
-   "explain": "«суровое лицо» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
   },
   {
    "sentence": "В поздние ___ я прокрадывался по саду, как молодой волчонок, избегая встречи с отцом, отворял посредством особых приспособлений свое окно, полузакрытое густою зеленью сирени, и тихо ложился в постель.",
    "lemma": "вечер",
    "options": [
-    "летних вечерах",
-    "летних вечеров",
+    "летними вечерами",
+    "летние вечера",
     "летним вечерам",
-    "летние вечера"
+    "летних вечеров"
    ],
    "correct": "летние вечера",
    "case": "Винительный (Accusative)",
-   "explain": "«летние вечера» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«летние вечера» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c6"
-  },
-  {
-   "sentence": "В поздние летние вечера я прокрадывался по саду, как ___, избегая встречи с отцом, отворял посредством особых приспособлений свое окно, полузакрытое густою зеленью сирени, и тихо ложился в постель.",
-   "lemma": "волчонок",
-   "options": [
-    "молодой волчонок",
-    "молодом волчонке",
-    "молодым волчонком",
-    "молодому волчонку"
-   ],
-   "correct": "молодой волчонок",
-   "case": "Именительный (Nominative)",
-   "explain": "«молодой волчонок» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
-  },
-  {
-   "sentence": "В поздние летние вечера я прокрадывался по саду, как молодой волчонок, избегая встречи с отцом, отворял посредством ___ свое окно, полузакрытое густою зеленью сирени, и тихо ложился в постель.",
-   "lemma": "приспособление",
-   "options": [
-    "особых приспособлений",
-    "особым приспособлениям",
-    "особых приспособлениях",
-    "особые приспособления"
-   ],
-   "correct": "особых приспособлений",
-   "case": "Родительный (Genitive)",
-   "explain": "«особых приспособлений» — after the preposition «посредством», the genitive here marks possession, absence, or quantity.",
-   "id": "c8"
   },
   {
    "sentence": "Если маленькая сестренка еще не спала в своей качалке в ___, я подходил к ней, и мы тихо ласкали друг друга и играли, стараясь не разбудить ворчливую старую няньку.",
@@ -109,22 +39,8 @@
    ],
    "correct": "соседней комнате",
    "case": "Предложный (Prepositional)",
-   "explain": "«соседней комнате» — after the preposition «в», for location or topic.",
+   "explain": "«соседней комнате» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c9"
-  },
-  {
-   "sentence": "За ними медленно и солидно трогались ___, внутри мельницы начинали грохотать шестерни, шуршали жернова, и белая мучная пыль тучами поднималась из щелей старого-престарого мельничного здания.",
-   "lemma": "вал",
-   "options": [
-    "толстых валах",
-    "толстым валам",
-    "толстыми валами",
-    "толстые валы"
-   ],
-   "correct": "толстые валы",
-   "case": "Винительный (Accusative)",
-   "explain": "«толстые валы» — the accusative marks the direct object of the verb.",
-   "id": "c11"
   },
   {
    "sentence": "За ними медленно и солидно трогались толстые валы, внутри мельницы начинали грохотать шестерни, шуршали жернова, и белая мучная пыль тучами поднималась из щелей старого-престарого ___.",
@@ -137,7 +53,7 @@
    ],
    "correct": "мельничного здания",
    "case": "Родительный (Genitive)",
-   "explain": "«мельничного здания» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«мельничного здания» depends on the noun «щелей» (whose? of what?) — genitive.",
    "id": "c12"
   },
   {
@@ -151,22 +67,8 @@
    ],
    "correct": "загородной роще",
    "case": "Дательный (Dative)",
-   "explain": "«загородной роще» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«загородной роще» — «к» always takes the dative.",
    "id": "c13"
-  },
-  {
-   "sentence": "Я успевал совершить ___, и все же в городе то и дело встречались мне заспанные фигуры, отворявшие ставни домов.",
-   "lemma": "обход",
-   "options": [
-    "дальний обход",
-    "дальнего обхода",
-    "дальнем обходе",
-    "дальнему обходу"
-   ],
-   "correct": "дальний обход",
-   "case": "Винительный (Accusative)",
-   "explain": "«дальний обход» — the accusative marks the direct object of the verb.",
-   "id": "c14"
   },
   {
    "sentence": "Но вот солнце поднялось уже над горой, из-за прудов слышится ___, сзывающий гимназистов, и голод зовет меня домой к утреннему чаю.",
@@ -179,7 +81,7 @@
    ],
    "correct": "крикливый звонок",
    "case": "Именительный (Nominative)",
-   "explain": "«крикливый звонок» — the subject of the sentence stands in the nominative.",
+   "explain": "«крикливый звонок» is the subject of «слышится» — who or what does it — so nominative.",
    "id": "c15"
   },
   {
@@ -193,21 +95,21 @@
    ],
    "correct": "утреннему чаю",
    "case": "Дательный (Dative)",
-   "explain": "«утреннему чаю» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«утреннему чаю» — «к» always takes the dative.",
    "id": "c16"
   },
   {
    "sentence": "Вообще все меня звали бродягой, негодным мальчишкой и так часто укоряли в разных ___, что я наконец и сам проникся этим убеждением.",
    "lemma": "наклонность",
    "options": [
-    "дурных наклонностей",
     "дурным наклонностям",
-    "дурные наклонности",
+    "дурными наклонностями",
+    "дурных наклонностей",
     "дурных наклонностях"
    ],
    "correct": "дурных наклонностях",
    "case": "Предложный (Prepositional)",
-   "explain": "«дурных наклонностях» — after the preposition «в», for location or topic.",
+   "explain": "«дурных наклонностях» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c17"
   },
   {
@@ -221,7 +123,7 @@
    ],
    "correct": "общей утрате",
    "case": "Предложный (Prepositional)",
-   "explain": "«общей утрате» — after the preposition «о», for location or topic.",
+   "explain": "«общей утрате» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c18"
   },
   {
@@ -235,7 +137,7 @@
    ],
    "correct": "нежные руки",
    "case": "Винительный (Accusative)",
-   "explain": "«нежные руки» — the accusative marks the direct object of the verb.",
+   "explain": "«нежные руки» is the direct object of «искал» (кого? что?) — accusative.",
    "id": "c19"
   },
   {
@@ -249,35 +151,21 @@
    ],
    "correct": "открытым окном",
    "case": "Творительный (Instrumental)",
-   "explain": "«открытым окном» — after the preposition «перед», the instrumental marks the means, company, or complement.",
+   "explain": "«открытым окном» — «перед» always takes the instrumental.",
    "id": "c20"
-  },
-  {
-   "sentence": "Порой, спрятавшись в кустах, я наблюдал за ним; я видел, как он шагал по аллеям, все ускоряя походку, и глухо стонал от нестерпимой ___.",
-   "lemma": "мука",
-   "options": [
-    "душевная мука",
-    "душевной муки",
-    "душевной мукой",
-    "душевной муке"
-   ],
-   "correct": "душевной муки",
-   "case": "Родительный (Genitive)",
-   "explain": "«душевной муки» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
-   "id": "c22"
   },
   {
    "sentence": "Не мудрено поэтому, что скоро я прекратил всякие попытки занимать Соню моими ___, а еще через некоторое время мне стало тесно в доме и в садике, где я не встречал ни в ком привета и ласки.",
    "lemma": "игра",
    "options": [
-    "преступных играх",
-    "преступные игры",
+    "преступных игр",
+    "преступным играм",
     "преступными играми",
-    "преступным играм"
+    "преступных играх"
    ],
    "correct": "преступными играми",
    "case": "Творительный (Instrumental)",
-   "explain": "«преступными играми» — the instrumental marks the means, company, or complement.",
+   "explain": "After «стало», what someone or something is or becomes stands in the instrumental.",
    "id": "c23"
   },
   {
@@ -291,50 +179,22 @@
    ],
    "correct": "маленьком садике",
    "case": "Предложный (Prepositional)",
-   "explain": "«маленьком садике» — after the preposition «в», for location or topic.",
+   "explain": "«маленьком садике» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c24"
-  },
-  {
-   "sentence": "Я стал инстинктивно бегать и от няньки с ее перьями, и от знакомого ленивого шепота яблоней в нашем маленьком садике, и от ___ ножей, рубивших на кухне котлеты.",
-   "lemma": "стук",
-   "options": [
-    "глупый стук",
-    "глупом стуке",
-    "глупого стука",
-    "глупым стуком"
-   ],
-   "correct": "глупого стука",
-   "case": "Родительный (Genitive)",
-   "explain": "«глупого стука» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
-   "id": "c25"
   },
   {
    "sentence": "С тех пор к прочим нелестным моим эпитетам прибавились названия ___ и бродяги, но я не обращал на это внимания.",
    "lemma": "мальчишка",
    "options": [
-    "уличным мальчишкой",
     "уличного мальчишки",
     "уличному мальчишке",
+    "уличного мальчишку",
     "уличном мальчишке"
    ],
    "correct": "уличного мальчишки",
    "case": "Родительный (Genitive)",
-   "explain": "«уличного мальчишки» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«уличного мальчишки» depends on the noun «названия» (whose? of what?) — genitive.",
    "id": "c26"
-  },
-  {
-   "sentence": "Я притерпелся к упрекам и выносил их, как выносил внезапно налетевший дождь или ___.",
-   "lemma": "зной",
-   "options": [
-    "солнечному зною",
-    "солнечного зноя",
-    "солнечный зной",
-    "солнечным зноем"
-   ],
-   "correct": "солнечный зной",
-   "case": "Именительный (Nominative)",
-   "explain": "«солнечный зной» — the subject of the sentence stands in the nominative.",
-   "id": "c27"
   },
   {
    "sentence": "Когда все углы города стали мне известны до последних ___, тогда я стал заглядываться на видневшуюся вдали, на горе, часовню.",
@@ -347,7 +207,7 @@
    ],
    "correct": "грязных закоулков",
    "case": "Родительный (Genitive)",
-   "explain": "«грязных закоулков» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«грязных закоулков» — «до» always takes the genitive.",
    "id": "c30"
   },
   {
@@ -361,7 +221,7 @@
    ],
    "correct": "дурной славой",
    "case": "Творительный (Instrumental)",
-   "explain": "«дурной славой» — the instrumental marks the means, company, or complement.",
+   "explain": "«пользовавшуюся» takes the instrumental.",
    "id": "c32"
   },
   {
@@ -375,22 +235,8 @@
    ],
    "correct": "тихие могилы",
    "case": "Именительный (Nominative)",
-   "explain": "«тихие могилы» — the subject of the sentence stands in the nominative.",
+   "explain": "«тихие могилы» is the subject of «выступали» — who or what does it — so nominative.",
    "id": "c33"
-  },
-  {
-   "sentence": "Нигде не было видно признаков какого-либо жилья и ___.",
-   "lemma": "присутствие",
-   "options": [
-    "человеческого присутствия",
-    "человеческое присутствие",
-    "человеческим присутствием",
-    "человеческому присутствию"
-   ],
-   "correct": "человеческого присутствия",
-   "case": "Родительный (Genitive)",
-   "explain": "«человеческого присутствия» — the genitive here marks possession, absence, or quantity.",
-   "id": "c34"
   },
   {
    "sentence": "Только ___ глядела, насупившись, пустыми окнами, точно думала какую-то грустную думу.",
@@ -403,36 +249,8 @@
    ],
    "correct": "самая часовня",
    "case": "Именительный (Nominative)",
-   "explain": "«самая часовня» — the subject of the sentence stands in the nominative.",
+   "explain": "«самая часовня» is the subject of «думала» — who or what does it — so nominative.",
    "id": "c35"
-  },
-  {
-   "sentence": "Только самая часовня глядела, насупившись, ___, точно думала какую-то грустную думу.",
-   "lemma": "окно",
-   "options": [
-    "пустым окнам",
-    "пустых окон",
-    "пустыми окнами",
-    "пустые окна"
-   ],
-   "correct": "пустыми окнами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«пустыми окнами» — the instrumental marks the means, company, or complement.",
-   "id": "c36"
-  },
-  {
-   "sentence": "Но так как одному было бы и страшно и неудобно предпринимать подобную экскурсию, то я собрал на улицах города ___ из трех сорванцов, привлеченных обещанием булок и яблоков из нашего сада.",
-   "lemma": "отряд",
-   "options": [
-    "небольшому отряду",
-    "небольшом отряде",
-    "небольшой отряд",
-    "небольшого отряда"
-   ],
-   "correct": "небольшой отряд",
-   "case": "Именительный (Nominative)",
-   "explain": "«небольшой отряд» — the subject of the sentence stands in the nominative.",
-   "id": "c37"
   }
  ]
 }

@@ -1,73 +1,17 @@
 {
  "cases": [
   {
-   "sentence": "Шли с набережной, бежали со стороны ___, сбивались в кучки, поглядывали на невысокое солнце, пустившее сквозь облака широкие лучи.",
-   "lemma": "остров",
-   "options": [
-    "петровского острова",
-    "петровским островом",
-    "петровский остров",
-    "петровскому острову"
-   ],
-   "correct": "петровского острова",
-   "case": "Родительный (Genitive)",
-   "explain": "«Петровского острова» — after the preposition «со», the genitive here marks possession, absence, or quantity.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Шли с набережной, бежали со стороны Петровского острова, сбивались в кучки, поглядывали на невысокое солнце, пустившее сквозь облака ___.",
-   "lemma": "луч",
-   "options": [
-    "широкие лучи",
-    "широких лучей",
-    "широких лучах",
-    "широкими лучами"
-   ],
-   "correct": "широкие лучи",
-   "case": "Винительный (Accusative)",
-   "explain": "«широкие лучи» — the accusative marks the direct object of the verb.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Тут в самом деле ___, а вы, леший знает, что несете.",
-   "lemma": "событие",
-   "options": [
-    "историческим событием",
-    "историческому событию",
-    "историческое событие",
-    "историческом событии"
-   ],
-   "correct": "историческое событие",
-   "case": "Именительный (Nominative)",
-   "explain": "«историческое событие» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
-  },
-  {
-   "sentence": "— Извините, сейчас один тут говорил: двадцать пять пудов погрузили они одной ___.",
-   "lemma": "литература",
-   "options": [
-    "агитационная литература",
-    "агитационной литературе",
-    "агитационной литературы",
-    "агитационной литературой"
-   ],
-   "correct": "агитационной литературы",
-   "case": "Родительный (Genitive)",
-   "explain": "«агитационной литературы» — the genitive here marks possession, absence, or quantity.",
-   "id": "c7"
-  },
-  {
    "sentence": "— Совершенно верно, — для пополнения ___.",
    "lemma": "фонд",
    "options": [
-    "золотым фондом",
-    "золотом фонде",
     "золотому фонду",
-    "золотого фонда"
+    "золотой фонд",
+    "золотого фонда",
+    "золотом фонде"
    ],
    "correct": "золотого фонда",
    "case": "Родительный (Genitive)",
-   "explain": "«золотого фонда» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«золотого фонда» depends on the noun «пополнения» (whose? of what?) — genitive.",
    "id": "c8"
   },
   {
@@ -81,22 +25,8 @@
    ],
    "correct": "разные разговоры",
    "case": "Именительный (Nominative)",
-   "explain": "«разные разговоры» — the subject of the sentence stands in the nominative.",
+   "explain": "«разные разговоры» is the subject of «шли» — who or what does it — so nominative.",
    "id": "c9"
-  },
-  {
-   "sentence": "___ багровым светом разлился на полнеба.",
-   "lemma": "закат",
-   "options": [
-    "тусклый закат",
-    "тусклому закату",
-    "тусклом закате",
-    "тусклого заката"
-   ],
-   "correct": "тусклый закат",
-   "case": "Именительный (Nominative)",
-   "explain": "«Тусклый закат» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
   },
   {
    "sentence": "И вот, медленно раздвигая толпу, появился ___ Губисполкома.",
@@ -109,7 +39,7 @@
    ],
    "correct": "большой автомобиль",
    "case": "Именительный (Nominative)",
-   "explain": "«большой автомобиль» — the subject of the sentence stands in the nominative.",
+   "explain": "«большой автомобиль» is the subject of «появился» — who or what does it — so nominative.",
    "id": "c13"
   },
   {
@@ -123,7 +53,7 @@
    ],
    "correct": "яйцевидный аппарат",
    "case": "Именительный (Nominative)",
-   "explain": "«яйцевидный аппарат» — the subject of the sentence stands in the nominative.",
+   "explain": "«яйцевидный аппарат» is the subject of «стоял» — who or what does it — so nominative.",
    "id": "c14"
   },
   {
@@ -137,7 +67,7 @@
    ],
    "correct": "фотографические снимки",
    "case": "Именительный (Nominative)",
-   "explain": "«фотографические снимки» — the subject of the sentence stands in the nominative.",
+   "explain": "«фотографические снимки» is the subject of «сделаны» — who or what does it — so nominative.",
    "id": "c15"
   },
   {
@@ -151,22 +81,8 @@
    ],
    "correct": "воздушных кораблей",
    "case": "Родительный (Genitive)",
-   "explain": "«воздушных кораблей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«воздушных кораблей» depends on the noun «сотни» (whose? of what?) — genitive.",
    "id": "c16"
-  },
-  {
-   "sentence": "Лось вдруг оборвал, ___ оглянул провожающих, — все слушали его с недоумением.",
-   "lemma": "взор",
-   "options": [
-    "странному взору",
-    "странный взор",
-    "странным взором",
-    "странного взора"
-   ],
-   "correct": "странным взором",
-   "case": "Творительный (Instrumental)",
-   "explain": "«странным взором» — the instrumental marks the means, company, or complement.",
-   "id": "c17"
   },
   {
    "sentence": "— Товарищи, я передам энтим на Марсе пламенный привет от ___.",
@@ -179,22 +95,8 @@
    ],
    "correct": "советской республики",
    "case": "Родительный (Genitive)",
-   "explain": "«Советской республики» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«советской республики» — «от» always takes the genitive.",
    "id": "c18"
-  },
-  {
-   "sentence": "Взрывы слились в сплошной вой, и четырехсаженное яйцо, наискось, как ракета, взвилось над толпой, устремилось к западу, ширкнуло ___ и исчезло в багровом, тусклом зареве туч.",
-   "lemma": "полоса",
-   "options": [
-    "огненной полосе",
-    "огненная полоса",
-    "огненной полосы",
-    "огненной полосой"
-   ],
-   "correct": "огненной полосой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«огненной полосой» — the instrumental marks the means, company, or complement.",
-   "id": "c20"
   }
  ]
 }

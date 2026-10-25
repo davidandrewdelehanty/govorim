@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Маялся некогда на свете ___, работая с утра до поздней ночи.",
-   "lemma": "дровосек",
-   "options": [
-    "бедный дровосек",
-    "бедному дровосеку",
-    "бедном дровосеке",
-    "бедным дровосеком"
-   ],
-   "correct": "бедный дровосек",
-   "case": "Именительный (Nominative)",
-   "explain": "«бедный дровосек» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Пройдя и еще одну школу, но не во всем еще добившись ___, юноша затратил весь бедный достаток отца и должен был к нему вернуться.",
    "lemma": "знание",
    "options": [
@@ -25,21 +11,21 @@
    ],
    "correct": "полного знания",
    "case": "Родительный (Genitive)",
-   "explain": "«полного знания» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«полного знания» is the object of a negated verb («не добившись») — genitive instead of the accusative.",
    "id": "c2"
   },
   {
    "sentence": "Пройдя и еще одну школу, но не во всем еще добившись полного знания, юноша затратил весь ___ отца и должен был к нему вернуться.",
    "lemma": "достаток",
    "options": [
-    "бедным достатком",
-    "бедный достаток",
+    "бедном достатке",
     "бедному достатку",
-    "бедного достатка"
+    "бедный достаток",
+    "бедным достатком"
    ],
    "correct": "бедный достаток",
    "case": "Винительный (Accusative)",
-   "explain": "«бедный достаток» — the accusative marks the direct object of the verb.",
+   "explain": "«бедный достаток» is the direct object of «затратил» (кого? что?) — accusative.",
    "id": "c3"
   },
   {
@@ -53,21 +39,21 @@
    ],
    "correct": "нынешней дороговизне",
    "case": "Дательный (Dative)",
-   "explain": "«нынешней дороговизне» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«нынешней дороговизне» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c4"
   },
   {
    "sentence": "«Жаль, — сказал отец с грустью, — жаль, что ничего более не могу тебе дать и по нынешней дороговизне не могу отложить ни грошика; зарабатываю только на ___».",
    "lemma": "хлеб",
    "options": [
-    "насущный хлеб",
-    "насущном хлебе",
     "насущного хлеба",
-    "насущным хлебом"
+    "насущным хлебом",
+    "насущному хлебу",
+    "насущный хлеб"
    ],
    "correct": "насущный хлеб",
    "case": "Винительный (Accusative)",
-   "explain": "«насущный хлеб» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«насущный хлеб» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c5"
   },
   {
@@ -81,50 +67,8 @@
    ],
    "correct": "ветвистый дуб",
    "case": "Винительный (Accusative)",
-   "explain": "«ветвистый дуб» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«ветвистый дуб» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c6"
-  },
-  {
-   "sentence": "Стал прислушиваться и, точно, услышал, как кто-то говорил ___: «Выпусти меня, выпусти меня».",
-   "lemma": "голос",
-   "options": [
-    "глухой голос",
-    "глухом голосе",
-    "глухим голосом",
-    "глухому голосу"
-   ],
-   "correct": "глухим голосом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«глухим голосом» — the instrumental marks the means, company, or complement.",
-   "id": "c7"
-  },
-  {
-   "sentence": "Тотчас же вышел из нее какой-то дух и начал расти, расти так быстро, что в несколько мгновений перед изумленным юношей предстало ___, ростом с полдуба.",
-   "lemma": "чудовище",
-   "options": [
-    "страшному чудовищу",
-    "страшное чудовище",
-    "страшного чудовища",
-    "страшном чудовище"
-   ],
-   "correct": "страшное чудовище",
-   "case": "Именительный (Nominative)",
-   "explain": "«страшное чудовище» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
-  },
-  {
-   "sentence": "«А знаешь ли ты, — воскликнуло чудовище ___, — чем вознагражу я тебя за то, что ты меня оттуда выпустил?» — «А почем мне знать?» — бесстрашно отвечал юноша.",
-   "lemma": "голос",
-   "options": [
-    "страшный голос",
-    "страшным голосом",
-    "страшного голоса",
-    "страшному голосу"
-   ],
-   "correct": "страшным голосом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«страшным голосом» — the instrumental marks the means, company, or complement.",
-   "id": "c9"
   },
   {
    "sentence": "Еще прежде-то я должен знать, точно ли ты сидел в этой ___ и действительно ли ты тот самый дух?",
@@ -137,36 +81,8 @@
    ],
    "correct": "небольшой склянке",
    "case": "Предложный (Prepositional)",
-   "explain": "«небольшой склянке» — after the preposition «в», for location or topic.",
+   "explain": "«небольшой склянке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c10"
-  },
-  {
-   "sentence": "Сын взял топор и снес его в город к ___ мастеру; тот попробовал серебро, положил топор на весы и сказал: «Топор стоит четыреста талеров, столько у меня и наличных денег нет».",
-   "lemma": "дело",
-   "options": [
-    "золотых дел",
-    "золотых делах",
-    "золотым делам",
-    "золотыми делами"
-   ],
-   "correct": "золотых дел",
-   "case": "Родительный (Genitive)",
-   "explain": "«золотых дел» — after the preposition «к», the genitive here marks possession, absence, or quantity.",
-   "id": "c11"
-  },
-  {
-   "sentence": "И вот, с ___ он вновь возвратился в ту же школу, где обучался, и стал продолжать ученье, а так как он своим пластырем мог лечить все раны, то со временем он стал самым знаменитым во всем свете врачом.",
-   "lemma": "деньга",
-   "options": [
-    "остальными деньгами",
-    "остальных денег",
-    "остальные деньги",
-    "остальных деньгах"
-   ],
-   "correct": "остальными деньгами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«остальными деньгами» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c12"
   }
  ]
 }

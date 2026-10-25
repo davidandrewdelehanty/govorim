@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "— Суди меня там Бог и ___!",
-   "lemma": "государь",
-   "options": [
-    "великий государь",
-    "великого государя",
-    "великом государе",
-    "великим государем"
-   ],
-   "correct": "великий государь",
-   "case": "Именительный (Nominative)",
-   "explain": "«великий государь» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Вечер разгулялся; около ___ два офицера с юнкером играли в свайку, со смехом засаживая редьки в рыхлую грязную землю.",
-   "lemma": "землянка",
-   "options": [
-    "соседней землянки",
-    "соседней землянкой",
-    "соседней землянке",
-    "соседняя землянка"
-   ],
-   "correct": "соседней землянки",
-   "case": "Родительный (Genitive)",
-   "explain": "«соседней землянки» — after the preposition «около», the genitive here marks possession, absence, or quantity.",
-   "id": "c3"
-  },
-  {
    "sentence": "— Немного позади гусар ехал Денисов, сопутствуемый двумя ___, с которыми он о чем-то разговаривал.",
    "lemma": "офицер",
    "options": [
@@ -39,36 +11,8 @@
    ],
    "correct": "пехотными офицерами",
    "case": "Творительный (Instrumental)",
-   "explain": "«пехотными офицерами» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «сопутствуемый», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c5"
-  },
-  {
-   "sentence": "— К чорту марш ___, пока цел.",
-   "lemma": "шаг",
-   "options": [
-    "скорым шагом",
-    "скорому шагу",
-    "скорого шага",
-    "скорый шаг"
-   ],
-   "correct": "скорым шагом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«скорым шагом» — the instrumental marks the means, company, or complement.",
-   "id": "c8"
-  },
-  {
-   "sentence": "— Собака на заборе, ___ на заборе, — сказал Денисов ему вслед — высшую насмешку кавалериста над верховым пехотным, и, подъехав к Ростову, расхохотался.",
-   "lemma": "собака",
-   "options": [
-    "живой собаке",
-    "живой собаки",
-    "живой собакой",
-    "живая собака"
-   ],
-   "correct": "живая собака",
-   "case": "Именительный (Nominative)",
-   "explain": "«живая собака» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
   },
   {
    "sentence": "Денисов прямо от ___ поохал в штаб, с искренним желанием исполнить его совет.",
@@ -81,22 +25,8 @@
    ],
    "correct": "полкового командира",
    "case": "Родительный (Genitive)",
-   "explain": "«полкового командира» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«полкового командира» — «от» always takes the genitive.",
    "id": "c12"
-  },
-  {
-   "sentence": "Когда Ростов спрашивал его, что с ним, он только хриплым и ___ произносил непонятные ругательства и угрозы.",
-   "lemma": "голос",
-   "options": [
-    "слабым голосом",
-    "слабого голоса",
-    "слабому голосу",
-    "слабом голосе"
-   ],
-   "correct": "слабым голосом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«слабым голосом» — the instrumental marks the means, company, or complement.",
-   "id": "c14"
   },
   {
    "sentence": "Когда Ростов спрашивал его, что с ним, он только хриплым и слабым голосом произносил ___ и угрозы.",
@@ -109,7 +39,7 @@
    ],
    "correct": "непонятные ругательства",
    "case": "Винительный (Accusative)",
-   "explain": "«непонятные ругательства» — the accusative marks the direct object of the verb.",
+   "explain": "«непонятные ругательства» is the direct object of «произносил» (кого? что?) — accusative.",
    "id": "c15"
   },
   {
@@ -123,7 +53,7 @@
    ],
    "correct": "полковой лекарь",
    "case": "Именительный (Nominative)",
-   "explain": "«полковой лекарь» — the subject of the sentence stands in the nominative.",
+   "explain": "«полковой лекарь» is the subject of «сказал» — who or what does it — so nominative.",
    "id": "c16"
   },
   {
@@ -137,36 +67,8 @@
    ],
    "correct": "глубокая тарелка",
    "case": "Именительный (Nominative)",
-   "explain": "«Глубокая тарелка» — the subject of the sentence stands in the nominative.",
+   "explain": "«глубокая тарелка» is the subject of «вышла» — who or what does it — so nominative.",
    "id": "c17"
-  },
-  {
-   "sentence": "Зато натешился, могу сказать, — кричал Денисов, радостно и злобно из-под черных усов оскаливая свои ___.",
-   "lemma": "зуб",
-   "options": [
-    "белыми зубами",
-    "белых зубов",
-    "белым зубам",
-    "белые зубы"
-   ],
-   "correct": "белые зубы",
-   "case": "Винительный (Accusative)",
-   "explain": "«белые зубы» — the accusative marks the direct object of the verb.",
-   "id": "c18"
-  },
-  {
-   "sentence": "Накануне этого дня Платов делал рекогносцировку неприятеля с двумя ___ и двумя эскадронами гусар.",
-   "lemma": "полка",
-   "options": [
-    "казачьих полок",
-    "казачьих полках",
-    "казачьим полкам",
-    "казачьими полками"
-   ],
-   "correct": "казачьими полками",
-   "case": "Творительный (Instrumental)",
-   "explain": "«казачьими полками» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c20"
   },
   {
    "sentence": "Одна из пуль, пущенных ___, попала ему в мякоть верхней части ноги.",
@@ -179,7 +81,7 @@
    ],
    "correct": "французскими стрелками",
    "case": "Творительный (Instrumental)",
-   "explain": "«французскими стрелками» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «пущенных», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c21"
   }
  ]

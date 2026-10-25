@@ -1,62 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Механик — ___ — плавным толчком поднял крылатую лодку в небо.",
-   "lemma": "мальчик",
-   "options": [
-    "краснокожий мальчик",
-    "краснокожему мальчику",
-    "краснокожим мальчиком",
-    "краснокожего мальчика"
-   ],
-   "correct": "краснокожий мальчик",
-   "case": "Именительный (Nominative)",
-   "explain": "«краснокожий мальчик» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Белая, как снег, шубка Аэлиты была пропитана грозовой свежестью, ___.",
-   "lemma": "холод",
-   "options": [
-    "горного холода",
-    "горным холодом",
-    "горном холоде",
-    "горный холод"
-   ],
-   "correct": "горным холодом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«горным холодом» — the instrumental marks the means, company, or complement.",
-   "id": "c3"
-  },
-  {
-   "sentence": "На кольце, на цепочке, висел у нее ___.",
-   "lemma": "флакончик",
-   "options": [
-    "каменный флакончик",
-    "каменным флакончиком",
-    "каменном флакончике",
-    "каменному флакончику"
-   ],
-   "correct": "каменный флакончик",
-   "case": "Именительный (Nominative)",
-   "explain": "«каменный флакончик» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
-  },
-  {
-   "sentence": "___ Аэлиты подернулись влагой.",
-   "lemma": "глаз",
-   "options": [
-    "серых глазах",
-    "серые глаза",
-    "серыми глазами",
-    "серых глаз"
-   ],
-   "correct": "серые глаза",
-   "case": "Именительный (Nominative)",
-   "explain": "«Серые глаза» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
-  },
-  {
    "sentence": "— Когда настанет ___ одиночества, я снова почувствую тебя в этой капельке.",
    "lemma": "час",
    "options": [
@@ -67,7 +11,7 @@
    ],
    "correct": "страшный час",
    "case": "Именительный (Nominative)",
-   "explain": "«страшный час» — the subject of the sentence stands in the nominative.",
+   "explain": "«страшный час» is the subject of «настанет» — who or what does it — so nominative.",
    "id": "c6"
   },
   {
@@ -81,7 +25,7 @@
    ],
    "correct": "тускубовой усадьбы",
    "case": "Родительный (Genitive)",
-   "explain": "«Тускубовой усадьбы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«тускубовой усадьбы» depends on the noun «высотой» (whose? of what?) — genitive.",
    "id": "c8"
   },
   {
@@ -95,22 +39,8 @@
    ],
    "correct": "пустых зрачках",
    "case": "Предложный (Prepositional)",
-   "explain": "«пустых зрачках» — after the preposition «в», for location or topic.",
+   "explain": "«пустых зрачках» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c10"
-  },
-  {
-   "sentence": "___ ее глядели в океан небесного света.",
-   "lemma": "глаз",
-   "options": [
-    "восторженных глазах",
-    "восторженных глаз",
-    "восторженные глаза",
-    "восторженным глазам"
-   ],
-   "correct": "восторженные глаза",
-   "case": "Именительный (Nominative)",
-   "explain": "«Восторженные глаза» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
   },
   {
    "sentence": "Восторженные глаза ее глядели в океан ___.",
@@ -123,36 +53,8 @@
    ],
    "correct": "небесного света",
    "case": "Родительный (Genitive)",
-   "explain": "«небесного света» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«небесного света» depends on the noun «океан» (whose? of what?) — genitive.",
    "id": "c12"
-  },
-  {
-   "sentence": "Мальчик-механик уткнул в воротник ___ и принялся беззвучно смеяться.",
-   "lemma": "нос",
-   "options": [
-    "острый нос",
-    "острого носа",
-    "остром носе",
-    "острым носом"
-   ],
-   "correct": "острый нос",
-   "case": "Винительный (Accusative)",
-   "explain": "«острый нос» — the accusative marks the direct object of the verb.",
-   "id": "c13"
-  },
-  {
-   "sentence": "В первый раз Лось увидел комнаты Аэлиты, — низкие ___, стены, покрытые теневыми изображениями, будто фигурками на китайском зонтике, почувствовал кружащий голову горьковатый теплый запах.",
-   "lemma": "свод",
-   "options": [
-    "золотыми сводами",
-    "золотых сводах",
-    "золотые своды",
-    "золотых сводов"
-   ],
-   "correct": "золотые своды",
-   "case": "Именительный (Nominative)",
-   "explain": "«золотые своды» — the subject of the sentence stands in the nominative.",
-   "id": "c19"
   },
   {
    "sentence": "В первый раз Лось увидел комнаты Аэлиты, — низкие золотые своды, стены, покрытые ___, будто фигурками на китайском зонтике, почувствовал кружащий голову горьковатый теплый запах.",
@@ -165,7 +67,7 @@
    ],
    "correct": "теневыми изображениями",
    "case": "Творительный (Instrumental)",
-   "explain": "«теневыми изображениями» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «покрытые», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c20"
   },
   {
@@ -179,7 +81,7 @@
    ],
    "correct": "китайском зонтике",
    "case": "Предложный (Prepositional)",
-   "explain": "«китайском зонтике» — after the preposition «на», for location or topic.",
+   "explain": "«китайском зонтике» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c21"
   },
   {
@@ -193,7 +95,7 @@
    ],
    "correct": "детских снов",
    "case": "Родительный (Genitive)",
-   "explain": "«детских снов» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«детских снов» — «из» always takes the genitive.",
    "id": "c22"
   },
   {
@@ -207,7 +109,7 @@
    ],
    "correct": "худенькому лицу",
    "case": "Дательный (Dative)",
-   "explain": "«худенькому лицу» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«худенькому лицу» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c23"
   },
   {
@@ -221,7 +123,7 @@
    ],
    "correct": "интересные истории",
    "case": "Винительный (Accusative)",
-   "explain": "«интересные истории» — the accusative marks the direct object of the verb.",
+   "explain": "«интересные истории» is the direct object of «рассказывать» (кого? что?) — accusative.",
    "id": "c24"
   },
   {
@@ -235,7 +137,7 @@
    ],
    "correct": "страшных кометах",
    "case": "Предложный (Prepositional)",
-   "explain": "«страшных кометах» — after the preposition «о», for location or topic.",
+   "explain": "«страшных кометах» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c25"
   },
   {
@@ -249,7 +151,7 @@
    ],
    "correct": "воздушных кораблей",
    "case": "Родительный (Genitive)",
-   "explain": "«воздушных кораблей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«воздушных кораблей» depends on the noun «битве» (whose? of what?) — genitive.",
    "id": "c26"
   },
   {
@@ -263,22 +165,8 @@
    ],
    "correct": "прекрасной страны",
    "case": "Родительный (Genitive)",
-   "explain": "«прекрасной страны» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«прекрасной страны» depends on the noun «гибели» (whose? of what?) — genitive.",
    "id": "c27"
-  },
-  {
-   "sentence": "Вдруг в полумраке комнаты раздался тихий свист, и сейчас же вспыхнул ___ овал на туалетном столике.",
-   "lemma": "свет",
-   "options": [
-    "облачному свету",
-    "облачным светом",
-    "облачном свете",
-    "облачный свет"
-   ],
-   "correct": "облачным светом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«облачным светом» — the instrumental marks the means, company, or complement.",
-   "id": "c29"
   }
  ]
 }

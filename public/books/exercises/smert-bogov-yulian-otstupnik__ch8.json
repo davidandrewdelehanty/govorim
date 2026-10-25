@@ -1,48 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Это ___, тени смерти.",
-   "lemma": "тень",
-   "options": [
-    "вечерним теням",
-    "вечерних теней",
-    "вечерние тени",
-    "вечерних тенях"
-   ],
-   "correct": "вечерние тени",
-   "case": "Именительный (Nominative)",
-   "explain": "«вечерние тени» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Скоро не будет ни одной ___, ни одного куска мрамора, озаренного солнцем.",
-   "lemma": "одежда",
-   "options": [
-    "белой одежды",
-    "белой одеждой",
-    "белой одежде",
-    "белая одежда"
-   ],
-   "correct": "белой одежды",
-   "case": "Родительный (Genitive)",
-   "explain": "«белой одежды» — the genitive here marks possession, absence, or quantity.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Так говорил ___ Антонин, сын египетской пророчицы Созипатры и неоплатоника Эдезия.",
-   "lemma": "софист",
-   "options": [
-    "юном софисте",
-    "юным софистом",
-    "юного софиста",
-    "юный софист"
-   ],
-   "correct": "юный софист",
-   "case": "Именительный (Nominative)",
-   "explain": "«юный софист» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
    "sentence": "Так говорил юный софист Антонин, сын ___ Созипатры и неоплатоника Эдезия.",
    "lemma": "пророчица",
    "options": [
@@ -53,7 +11,7 @@
    ],
    "correct": "египетской пророчицы",
    "case": "Родительный (Genitive)",
-   "explain": "«египетской пророчицы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«египетской пророчицы» depends on the noun «сын» (whose? of what?) — genitive.",
    "id": "c4"
   },
   {
@@ -67,7 +25,7 @@
    ],
    "correct": "голубым небом",
    "case": "Творительный (Instrumental)",
-   "explain": "«голубым небом» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «окруженной», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c5"
   },
   {
@@ -81,7 +39,7 @@
    ],
    "correct": "крылатых коней",
    "case": "Родительный (Genitive)",
-   "explain": "«крылатых коней» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«крылатых коней» depends on the noun «копыта» (whose? of what?) — genitive.",
    "id": "c6"
   },
   {
@@ -95,7 +53,7 @@
    ],
    "correct": "древних богов",
    "case": "Винительный (Accusative)",
-   "explain": "«древних богов» — the accusative marks the direct object of the verb.",
+   "explain": "«древних богов» is the direct object of «победили» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c7"
   },
   {
@@ -109,22 +67,8 @@
    ],
    "correct": "новые боги",
    "case": "Именительный (Nominative)",
-   "explain": "«новые боги» — the subject of the sentence stands in the nominative.",
+   "explain": "«новые боги» is the subject of «победят» — who or what does it — so nominative.",
    "id": "c8"
-  },
-  {
-   "sentence": "Он был одет, как ___.",
-   "lemma": "послушник",
-   "options": [
-    "христианских послушниках",
-    "христианскими послушниками",
-    "христианские послушники",
-    "христианских послушников"
-   ],
-   "correct": "христианские послушники",
-   "case": "Именительный (Nominative)",
-   "explain": "«христианские послушники» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
   },
   {
    "sentence": "И сам, день за днем, месяц за месяцем, жил в ___ смерти.",
@@ -137,7 +81,7 @@
    ],
    "correct": "постоянном ожидании",
    "case": "Предложный (Prepositional)",
-   "explain": "«постоянном ожидании» — after the preposition «в», for location or topic.",
+   "explain": "«постоянном ожидании» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c10"
   },
   {
@@ -151,7 +95,7 @@
    ],
    "correct": "страстного нетерпения",
    "case": "Родительный (Genitive)",
-   "explain": "«страстного нетерпения» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«страстного нетерпения» — «от» always takes the genitive.",
    "id": "c12"
   },
   {
@@ -165,7 +109,7 @@
    ],
    "correct": "подземном храме",
    "case": "Предложный (Prepositional)",
-   "explain": "«подземном храме» — after the preposition «в», for location or topic.",
+   "explain": "«подземном храме» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c13"
   }
  ]

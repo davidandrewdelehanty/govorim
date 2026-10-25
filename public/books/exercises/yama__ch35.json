@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Подарила Маньке Беленькой ___, медальон на тоненькой цепочке со своей фотографией и серебряный нашейный крестик.",
-   "lemma": "браслет",
-   "options": [
-    "золотом браслете",
-    "золотого браслета",
-    "золотым браслетом",
-    "золотой браслет"
-   ],
-   "correct": "золотой браслет",
-   "case": "Винительный (Accusative)",
-   "explain": "«золотой браслет» — the accusative marks the direct object of the verb.",
-   "id": "c2"
-  },
-  {
    "sentence": "Подарила Маньке Беленькой золотой браслет, медальон на ___ со своей фотографией и серебряный нашейный крестик.",
    "lemma": "цепочка",
    "options": [
@@ -25,22 +11,8 @@
    ],
    "correct": "тоненькой цепочке",
    "case": "Предложный (Prepositional)",
-   "explain": "«тоненькой цепочке» — after the preposition «на», for location or topic.",
+   "explain": "«тоненькой цепочке» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c3"
-  },
-  {
-   "sentence": "Подарила Маньке Беленькой золотой браслет, медальон на тоненькой цепочке со своей фотографией и серебряный ___.",
-   "lemma": "крестик",
-   "options": [
-    "нашейному крестику",
-    "нашейного крестика",
-    "нашейный крестик",
-    "нашейном крестике"
-   ],
-   "correct": "нашейный крестик",
-   "case": "Винительный (Accusative)",
-   "explain": "«нашейный крестик» — the accusative marks the direct object of the verb.",
-   "id": "c4"
   },
   {
    "sentence": "Точно на какой-то ___.",
@@ -53,36 +25,22 @@
    ],
    "correct": "старой-престарой картине",
    "case": "Предложный (Prepositional)",
-   "explain": "«старой-престарой картине» — after the preposition «на», for location or topic.",
+   "explain": "«старой-престарой картине» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c6"
   },
   {
    "sentence": "Попала я сюда из-за любви: спуталась с одним ___ и делала с ним вместе революцию.",
    "lemma": "человек",
    "options": [
-    "молодого человека",
     "молодом человеке",
     "молодой человек",
+    "молодому человеку",
     "молодым человеком"
    ],
    "correct": "молодым человеком",
    "case": "Творительный (Instrumental)",
-   "explain": "«молодым человеком» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«молодым человеком» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c8"
-  },
-  {
-   "sentence": "Ты не гляди на меня, что я такая приличная и скромная и могу казаться ___.",
-   "lemma": "девица",
-   "options": [
-    "воспитанная девица",
-    "воспитанной девицей",
-    "воспитанной девице",
-    "воспитанной девицы"
-   ],
-   "correct": "воспитанной девицей",
-   "case": "Творительный (Instrumental)",
-   "explain": "«воспитанной девицей» — the instrumental marks the means, company, or complement.",
-   "id": "c9"
   },
   {
    "sentence": "Ты умна, ты оригинальна, у тебя есть та ___, перед которой так охотно ползают и пресмыкаются мужчины.",
@@ -95,7 +53,7 @@
    ],
    "correct": "особенная сила",
    "case": "Именительный (Nominative)",
-   "explain": "«особенная сила» — the subject of the sentence stands in the nominative.",
+   "explain": "«особенная сила» is the subject of «есть» — who or what does it — so nominative.",
    "id": "c10"
   },
   {
@@ -109,7 +67,7 @@
    ],
    "correct": "долгого молчания",
    "case": "Родительный (Genitive)",
-   "explain": "«долгого молчания» — after the preposition «после», the genitive here marks possession, absence, or quantity.",
+   "explain": "«долгого молчания» — «после» always takes the genitive.",
    "id": "c11"
   },
   {
@@ -123,22 +81,8 @@
    ],
    "correct": "живой огонь",
    "case": "Именительный (Nominative)",
-   "explain": "«Живой огонь» — the subject of the sentence stands in the nominative.",
+   "explain": "«живой огонь» is the subject of «погас» — who or what does it — so nominative.",
    "id": "c14"
-  },
-  {
-   "sentence": "Живой огонь погас в них, и они казались мутными, точно выцветшими, с белками, как ___.",
-   "lemma": "камень",
-   "options": [
-    "лунным камнем",
-    "лунного камня",
-    "лунном камне",
-    "лунный камень"
-   ],
-   "correct": "лунный камень",
-   "case": "Именительный (Nominative)",
-   "explain": "«лунный камень» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
   },
   {
    "sentence": "И, уходя из ___, она как будто невзначай обняла ее за плечо и ласково погладила.",
@@ -151,36 +95,8 @@
    ],
    "correct": "тамариной комнаты",
    "case": "Родительный (Genitive)",
-   "explain": "«Тамариной комнаты» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«тамариной комнаты» — «из» always takes the genitive.",
    "id": "c16"
-  },
-  {
-   "sentence": "Доктор Клименко - ___ - приготовлял в зале все необходимое для осмотра: раствор сулемы, вазелин и другие вещи, и все это расставлял на отдельном маленьком столике.",
-   "lemma": "врач",
-   "options": [
-    "городском враче",
-    "городского врача",
-    "городской врач",
-    "городским врачом"
-   ],
-   "correct": "городской врач",
-   "case": "Именительный (Nominative)",
-   "explain": "«городской врач» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
-  },
-  {
-   "sentence": "Доктор Клименко - городской врач - приготовлял в зале все необходимое для осмотра: раствор сулемы, вазелин и ___, и все это расставлял на отдельном маленьком столике.",
-   "lemma": "вещь",
-   "options": [
-    "другим вещам",
-    "другими вещами",
-    "другие вещи",
-    "других вещей"
-   ],
-   "correct": "другие вещи",
-   "case": "Винительный (Accusative)",
-   "explain": "«другие вещи» — the accusative marks the direct object of the verb.",
-   "id": "c18"
   },
   {
    "sentence": "Доктор Клименко - городской врач - приготовлял в зале все необходимое для осмотра: раствор сулемы, вазелин и другие вещи, и все это расставлял на отдельном ___.",
@@ -193,22 +109,8 @@
    ],
    "correct": "маленьком столике",
    "case": "Предложный (Prepositional)",
-   "explain": "«маленьком столике» — after the preposition «на», for location or topic.",
+   "explain": "«маленьком столике» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c19"
-  },
-  {
-   "sentence": "Здесь же у него лежали и ___ девушек, заменявшие им паспорта, и общий алфавитный список.",
-   "lemma": "бланк",
-   "options": [
-    "белых бланках",
-    "белыми бланками",
-    "белые бланки",
-    "белых бланков"
-   ],
-   "correct": "белые бланки",
-   "case": "Именительный (Nominative)",
-   "explain": "«белые бланки» — the subject of the sentence stands in the nominative.",
-   "id": "c20"
   },
   {
    "sentence": "Ближе к столу стояла ___ - Анна Марковна, а немножко сзади ее - Эмма Эдуардовна и Зося.",
@@ -221,7 +123,7 @@
    ],
    "correct": "сама хозяйка",
    "case": "Именительный (Nominative)",
-   "explain": "«сама хозяйка» — the subject of the sentence stands in the nominative.",
+   "explain": "«сама хозяйка» is the subject of «стояла» — who or what does it — so nominative.",
    "id": "c21"
   },
   {
@@ -235,36 +137,8 @@
    ],
    "correct": "оборотной стороне",
    "case": "Предложный (Prepositional)",
-   "explain": "«оборотной стороне» — after the preposition «на», for location or topic.",
+   "explain": "«оборотной стороне» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c23"
-  },
-  {
-   "sentence": "Думал ли он когда-нибудь о том, что перед ним ___, или о том, что он является последним и самым главным звеном той страшной цепи, которая называется узаконенной проституцией?..",
-   "lemma": "человек",
-   "options": [
-    "живых людей",
-    "живые люди",
-    "живыми людьми",
-    "живых людях"
-   ],
-   "correct": "живые люди",
-   "case": "Именительный (Nominative)",
-   "explain": "«живые люди» — the subject of the sentence stands in the nominative.",
-   "id": "c25"
-  },
-  {
-   "sentence": "Думал ли он когда-нибудь о том, что перед ним живые люди, или о том, что он является последним и самым ___ той страшной цепи, которая называется узаконенной проституцией?..",
-   "lemma": "звено",
-   "options": [
-    "главным звеном",
-    "главное звено",
-    "главном звене",
-    "главному звену"
-   ],
-   "correct": "главным звеном",
-   "case": "Творительный (Instrumental)",
-   "explain": "«главным звеном» — the instrumental marks the means, company, or complement.",
-   "id": "c26"
   },
   {
    "sentence": "Если и испытывал, то, должно быть, в ___ своей карьеры.",
@@ -277,78 +151,8 @@
    ],
    "correct": "самом начале",
    "case": "Предложный (Prepositional)",
-   "explain": "«самом начале» — after the preposition «в», for location or topic.",
+   "explain": "«самом начале» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c27"
-  },
-  {
-   "sentence": "Теперь перед ним были только ___, голые спины и открытые рты.",
-   "lemma": "живот",
-   "options": [
-    "голых животах",
-    "голые животы",
-    "голых животов",
-    "голым животам"
-   ],
-   "correct": "голые животы",
-   "case": "Именительный (Nominative)",
-   "explain": "«голые животы» — the subject of the sentence stands in the nominative.",
-   "id": "c28"
-  },
-  {
-   "sentence": "Теперь перед ним были только голые животы, голые спины и ___.",
-   "lemma": "рот",
-   "options": [
-    "открытыми ртами",
-    "открытых ртов",
-    "открытых ртах",
-    "открытые рты"
-   ],
-   "correct": "открытые рты",
-   "case": "Винительный (Accusative)",
-   "explain": "«открытые рты» — the accusative marks the direct object of the verb.",
-   "id": "c29"
-  },
-  {
-   "sentence": "Ни одного экземпляра из этого ежесубботнего ___ он не узнал бы впоследствии на улице.",
-   "lemma": "стадо",
-   "options": [
-    "безликое стадо",
-    "безликому стаду",
-    "безликом стаде",
-    "безликого стада"
-   ],
-   "correct": "безликого стада",
-   "case": "Родительный (Genitive)",
-   "explain": "«безликого стада» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
-   "id": "c30"
-  },
-  {
-   "sentence": "Сквозь щель двери ___ он прощупал внутреннюю задвижку, обстругал немного лезвием края щели и расширил ее так, что мог просунуть, наконец, туда кончик ножа, и стал понемногу отскребать назад задвижку.",
-   "lemma": "нож",
-   "options": [
-    "столового ножа",
-    "столовый нож",
-    "столовому ножу",
-    "столовым ножом"
-   ],
-   "correct": "столовым ножом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«столовым ножом» — the instrumental marks the means, company, or complement.",
-   "id": "c32"
-  },
-  {
-   "sentence": "Тело ее, уже неподвижное после недолгой агонии, медленно раскачивалось в воздухе и описывало вокруг своей вертикальной оси едва ___ влево и вправо.",
-   "lemma": "оборот",
-   "options": [
-    "заметными оборотами",
-    "заметных оборотов",
-    "заметных оборотах",
-    "заметные обороты"
-   ],
-   "correct": "заметные обороты",
-   "case": "Именительный (Nominative)",
-   "explain": "«заметные обороты» — the subject of the sentence stands in the nominative.",
-   "id": "c33"
   },
   {
    "sentence": "Кто-то истерически завизжал, и все девушки, как испуганное стадо, толпясь и толкая друг друга в ___, голося и давясь истерическими рыданиями, кинулись бежать.",
@@ -361,7 +165,7 @@
    ],
    "correct": "узком коридоре",
    "case": "Предложный (Prepositional)",
-   "explain": "«узком коридоре» — after the preposition «в», for location or topic.",
+   "explain": "«узком коридоре» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c34"
   },
   {
@@ -375,7 +179,7 @@
    ],
    "correct": "городского врача",
    "case": "Родительный (Genitive)",
-   "explain": "«городского врача» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«городского врача» depends on the noun «практику» (whose? of what?) — genitive.",
    "id": "c35"
   },
   {
@@ -389,21 +193,21 @@
    ],
    "correct": "человеческим страданиям",
    "case": "Дательный (Dative)",
-   "explain": "«человеческим страданиям» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«человеческим страданиям» — «к» always takes the dative.",
    "id": "c36"
   },
   {
    "sentence": "Опять пришел Кербеш, опять долго шептался с хозяйкой в ее ___ и опять захрустел в кармане новой сторублевкой.",
    "lemma": "кабинетик",
    "options": [
-    "маленьком кабинетике",
-    "маленький кабинетик",
     "маленьким кабинетиком",
-    "маленькому кабинетику"
+    "маленьком кабинетике",
+    "маленькому кабинетику",
+    "маленького кабинетика"
    ],
    "correct": "маленьком кабинетике",
    "case": "Предложный (Prepositional)",
-   "explain": "«маленьком кабинетике» — after the preposition «в», for location or topic.",
+   "explain": "«маленьком кабинетике» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c37"
   }
  ]

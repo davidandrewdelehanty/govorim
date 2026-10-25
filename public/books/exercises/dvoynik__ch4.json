@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Ночь была ужасная, ноябрьская, — мокрая, туманная, дождливая, снежливая, чреватая флюсами, насморками, лихорадками, жабами, горячками всех ___ и сортов — одним словом, всеми дарами петербургского ноября.",
-   "lemma": "роды",
-   "options": [
-    "возможными родами",
-    "возможных родов",
-    "возможным родам",
-    "возможные роды"
-   ],
-   "correct": "возможных родов",
-   "case": "Родительный (Genitive)",
-   "explain": "«возможных родов» — the genitive here marks possession, absence, or quantity.",
-   "id": "c2"
-  },
-  {
    "sentence": "Прорываемые ветром струи ___ прыскали чуть-чуть не горизонтально, словно из пожарной трубы, и кололи и секли лицо несчастного господина Голядкина, как тысячи булавок и шпилек.",
    "lemma": "вода",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "дождевой воды",
    "case": "Родительный (Genitive)",
-   "explain": "«дождевой воды» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«дождевой воды» depends on the noun «струи» (whose? of what?) — genitive.",
    "id": "c3"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "пожарной трубы",
    "case": "Родительный (Genitive)",
-   "explain": "«пожарной трубы» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«пожарной трубы» — «из» always takes the genitive.",
    "id": "c4"
   },
   {
@@ -53,7 +39,7 @@
    ],
    "correct": "ночного безмолвия",
    "case": "Родительный (Genitive)",
-   "explain": "«ночного безмолвия» — after the preposition «среди», the genitive here marks possession, absence, or quantity.",
+   "explain": "«ночного безмолвия» — «среди» always takes the genitive.",
    "id": "c5"
   },
   {
@@ -67,7 +53,7 @@
    ],
    "correct": "гранитный помост",
    "case": "Винительный (Accusative)",
-   "explain": "«гранитный помост» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«гранитный помост» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c6"
   },
   {
@@ -81,7 +67,7 @@
    ],
    "correct": "пушечный выстрел",
    "case": "Именительный (Nominative)",
-   "explain": "«пушечный выстрел» — the subject of the sentence stands in the nominative.",
+   "explain": "«пушечный выстрел» is the subject of «раздался» — who or what does it — so nominative.",
    "id": "c11"
   },
   {
@@ -95,7 +81,7 @@
    ],
    "correct": "снежной метелице",
    "case": "Предложный (Prepositional)",
-   "explain": "«снежной метелице» — after the preposition «в», for location or topic.",
+   "explain": "«снежной метелице» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c13"
   },
   {
@@ -109,36 +95,8 @@
    ],
    "correct": "запоздалого товарища",
    "case": "Винительный (Accusative)",
-   "explain": "«запоздалого товарища» — the accusative marks the direct object of the verb.",
+   "explain": "«запоздалого товарища» is the direct object of «разглядеть» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c15"
-  },
-  {
-   "sentence": "Так, человек был, как и все, порядочный, разумеется, как и все люди порядочные, и, может быть, имел там кое-какие и даже довольно ___, — одним словом, был сам по себе человек.",
-   "lemma": "достоинство",
-   "options": [
-    "значительные достоинства",
-    "значительных достоинствах",
-    "значительными достоинствами",
-    "значительным достоинствам"
-   ],
-   "correct": "значительные достоинства",
-   "case": "Именительный (Nominative)",
-   "explain": "«значительные достоинства» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
-  },
-  {
-   "sentence": "Какая-то ___, вся мокрая и издрогшая, увязалась за господином Голядкиным и тоже бежала около него бочком, торопливо, поджав хвост и уши, по временам робко и понятливо на него поглядывая.",
-   "lemma": "собачонка",
-   "options": [
-    "затерянной собачонке",
-    "затерянной собачонкой",
-    "затерянной собачонки",
-    "затерянная собачонка"
-   ],
-   "correct": "затерянная собачонка",
-   "case": "Именительный (Nominative)",
-   "explain": "«затерянная собачонка» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
   },
   {
    "sentence": "Послышался звон колокольчика, и почти в то же время скрип ___.",
@@ -151,22 +109,8 @@
    ],
    "correct": "железной задвижки",
    "case": "Родительный (Genitive)",
-   "explain": "«железной задвижки» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«железной задвижки» depends on the noun «скрип» (whose? of what?) — genitive.",
    "id": "c18"
-  },
-  {
-   "sentence": "Не слушая заворчавшего дворника, запыхавшись, вбежал он на двор и тотчас же увидел своего ___, на минуту потерянного.",
-   "lemma": "спутник",
-   "options": [
-    "интересного спутника",
-    "интересному спутнику",
-    "интересный спутник",
-    "интересным спутником"
-   ],
-   "correct": "интересного спутника",
-   "case": "Родительный (Genitive)",
-   "explain": "«интересного спутника» — the genitive here marks possession, absence, or quantity.",
-   "id": "c19"
   },
   {
    "sentence": "Господин Голядкин совершенно узнал своего ___.",
@@ -179,7 +123,7 @@
    ],
    "correct": "ночного приятеля",
    "case": "Винительный (Accusative)",
-   "explain": "«ночного приятеля» — the accusative marks the direct object of the verb.",
+   "explain": "«ночного приятеля» is the direct object of «узнал» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c21"
   }
  ]

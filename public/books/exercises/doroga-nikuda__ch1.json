@@ -1,46 +1,18 @@
 {
  "cases": [
   {
-   "sentence": "___ Футроза был мой приятель.",
-   "lemma": "садовник",
-   "options": [
-    "прежнем садовнике",
-    "прежнего садовника",
-    "прежнему садовнику",
-    "прежний садовник"
-   ],
-   "correct": "прежний садовник",
-   "case": "Именительный (Nominative)",
-   "explain": "«Прежний садовник» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Давенант скрыл от него истину, так как повар имел ___.",
    "lemma": "ум",
    "options": [
-    "насмешливом уме",
     "насмешливый ум",
-    "насмешливым умом",
-    "насмешливого ума"
+    "насмешливому уму",
+    "насмешливом уме",
+    "насмешливым умом"
    ],
    "correct": "насмешливый ум",
    "case": "Винительный (Accusative)",
-   "explain": "«насмешливый ум» — the accusative marks the direct object of the verb.",
+   "explain": "«насмешливый ум» is the direct object of «имел» (кого? что?) — accusative.",
    "id": "c2"
-  },
-  {
-   "sentence": "Ваш хозяин, как я слышал, — ___.",
-   "lemma": "оригинал",
-   "options": [
-    "занятному оригиналу",
-    "занятного оригинала",
-    "занятным оригиналом",
-    "занятный оригинал"
-   ],
-   "correct": "занятный оригинал",
-   "case": "Именительный (Nominative)",
-   "explain": "«занятный оригинал» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
   },
   {
    "sentence": "Барабан гремел в ___, но нигде не было огней.",
@@ -53,7 +25,7 @@
    ],
    "correct": "ночной тьме",
    "case": "Предложный (Prepositional)",
-   "explain": "«ночной тьме» — after the preposition «в», for location or topic.",
+   "explain": "«ночной тьме» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c5"
   },
   {
@@ -67,36 +39,8 @@
    ],
    "correct": "вспомогательная работа",
    "case": "Именительный (Nominative)",
-   "explain": "«вспомогательная работа» — the subject of the sentence stands in the nominative.",
+   "explain": "«вспомогательная работа» is the subject of «найдется» — who or what does it — so nominative.",
    "id": "c7"
-  },
-  {
-   "sentence": "Это — хорошие, но очень ___.",
-   "lemma": "ребёнок",
-   "options": [
-    "коварные дети",
-    "коварными детьми",
-    "коварных детях",
-    "коварных детей"
-   ],
-   "correct": "коварные дети",
-   "case": "Именительный (Nominative)",
-   "explain": "«коварные дети» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
-  },
-  {
-   "sentence": "Так спокоен, как ___ горных озер.",
-   "lemma": "вода",
-   "options": [
-    "тихой воде",
-    "тихая вода",
-    "тихой воды",
-    "тихой водой"
-   ],
-   "correct": "тихая вода",
-   "case": "Именительный (Nominative)",
-   "explain": "«тихая вода» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
   },
   {
    "sentence": "— Я вижу, что у нас найдется ___, — Элли подмигнула сестре.",
@@ -109,22 +53,8 @@
    ],
    "correct": "общая почва",
    "case": "Именительный (Nominative)",
-   "explain": "«общая почва» — the subject of the sentence stands in the nominative.",
+   "explain": "«общая почва» is the subject of «найдется» — who or what does it — so nominative.",
    "id": "c10"
-  },
-  {
-   "sentence": "Они обменялись ___ и несколько успокоились.",
-   "lemma": "знак",
-   "options": [
-    "таинственными знаками",
-    "таинственные знаки",
-    "таинственных знаков",
-    "таинственным знакам"
-   ],
-   "correct": "таинственными знаками",
-   "case": "Творительный (Instrumental)",
-   "explain": "«таинственными знаками» — the instrumental marks the means, company, or complement.",
-   "id": "c11"
   },
   {
    "sentence": "И вот, теперь изгнанник возвращается к ___.",
@@ -137,50 +67,22 @@
    ],
    "correct": "домашнему очагу",
    "case": "Дательный (Dative)",
-   "explain": "«домашнему очагу» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«домашнему очагу» — «к» always takes the dative.",
    "id": "c12"
   },
   {
    "sentence": "Он вернулся в свой ___.",
    "lemma": "лес",
    "options": [
-    "диком лесе",
     "дикого леса",
     "диким лесом",
-    "дикий лес"
+    "дикий лес",
+    "дикому лесу"
    ],
    "correct": "дикий лес",
    "case": "Винительный (Accusative)",
-   "explain": "«дикий лес» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«дикий лес» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c13"
-  },
-  {
-   "sentence": "Давенант слышал не вальс, а ___.",
-   "lemma": "хор",
-   "options": [
-    "небесный хор",
-    "небесным хором",
-    "небесного хора",
-    "небесному хору"
-   ],
-   "correct": "небесный хор",
-   "case": "Именительный (Nominative)",
-   "explain": "«небесный хор» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
-  },
-  {
-   "sentence": "Роэна окончила звуками, напоминающими ___ часов, и встала.",
-   "lemma": "бой",
-   "options": [
-    "медленного боя",
-    "медленном бое",
-    "медленный бой",
-    "медленным боем"
-   ],
-   "correct": "медленный бой",
-   "case": "Винительный (Accusative)",
-   "explain": "«медленный бой» — the accusative marks the direct object of the verb.",
-   "id": "c15"
   },
   {
    "sentence": "Галеран ушел, а Давенант приступил к ___.",
@@ -193,7 +95,7 @@
    ],
    "correct": "обычной работе",
    "case": "Дательный (Dative)",
-   "explain": "«обычной работе» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«обычной работе» — «к» always takes the dative.",
    "id": "c17"
   },
   {
@@ -207,35 +109,21 @@
    ],
    "correct": "горький пьяница",
    "case": "Именительный (Nominative)",
-   "explain": "«горький пьяница» — the subject of the sentence stands in the nominative.",
+   "explain": "«горький пьяница» is the subject of «открыл» — who or what does it — so nominative.",
    "id": "c18"
-  },
-  {
-   "sentence": "Тебе открыл горький пьяница, ___.",
-   "lemma": "студент",
-   "options": [
-    "бывший студент",
-    "бывшего студента",
-    "бывшим студентом",
-    "бывшему студенту"
-   ],
-   "correct": "бывший студент",
-   "case": "Именительный (Nominative)",
-   "explain": "«бывший студент» — the subject of the sentence stands in the nominative.",
-   "id": "c19"
   },
   {
    "sentence": "Но мое ___ тоже еще не сказано.",
    "lemma": "слово",
    "options": [
-    "последнее слово",
     "последним словом",
-    "последнего слова",
-    "последнем слове"
+    "последнее слово",
+    "последнем слове",
+    "последнему слову"
    ],
    "correct": "последнее слово",
    "case": "Именительный (Nominative)",
-   "explain": "«последнее слово» — the subject of the sentence stands in the nominative.",
+   "explain": "«последнее слово» is the subject of «сказано» — who or what does it — so nominative.",
    "id": "c20"
   },
   {
@@ -249,7 +137,7 @@
    ],
    "correct": "верная идея",
    "case": "Именительный (Nominative)",
-   "explain": "«верная идея» — the subject of the sentence stands in the nominative.",
+   "explain": "«верная идея» is the subject of «Будет» — who or what does it — so nominative.",
    "id": "c21"
   }
  ]

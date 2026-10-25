@@ -1,48 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Наступила весна, и ___ огласилась громким говором, скрипом колес и грязным топотом людей, переносящих тяжести.",
-   "lemma": "дача",
-   "options": [
-    "тихая дача",
-    "тихой дачей",
-    "тихой дачи",
-    "тихой даче"
-   ],
-   "correct": "тихая дача",
-   "case": "Именительный (Nominative)",
-   "explain": "«тихая дача» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Наступила весна, и тихая дача огласилась громким говором, скрипом колес и ___ людей, переносящих тяжести.",
-   "lemma": "топот",
-   "options": [
-    "грязным топотом",
-    "грязный топот",
-    "грязном топоте",
-    "грязному топоту"
-   ],
-   "correct": "грязным топотом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«грязным топотом» — the instrumental marks the means, company, or complement.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Приехали из города дачники, целая веселая ватага взрослых, подростков и детей, опьяненных воздухом, теплом и светом; кто-то кричал, кто-то пел, смеялся высоким ___.",
-   "lemma": "голос",
-   "options": [
-    "женский голос",
-    "женского голоса",
-    "женским голосом",
-    "женском голосе"
-   ],
-   "correct": "женским голосом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«женским голосом» — the instrumental marks the means, company, or complement.",
-   "id": "c3"
-  },
-  {
    "sentence": "Первой, с кем познакомилась собака, была хорошенькая девушка в коричневом ___, выбежавшая в сад.",
    "lemma": "платье",
    "options": [
@@ -53,7 +11,7 @@
    ],
    "correct": "форменном платье",
    "case": "Предложный (Prepositional)",
-   "explain": "«форменном платье» — after the preposition «в», for location or topic.",
+   "explain": "«форменном платье» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c5"
   },
   {
@@ -67,22 +25,8 @@
    ],
    "correct": "горячему солнцу",
    "case": "Дательный (Dative)",
-   "explain": "«горячему солнцу» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«горячему солнцу» — «к» always takes the dative.",
    "id": "c6"
-  },
-  {
-   "sentence": "Пахло людьми, и в открытые окна приносились ___ короткого дыхания.",
-   "lemma": "звук",
-   "options": [
-    "тихие звуки",
-    "тихих звуках",
-    "тихих звуков",
-    "тихим звукам"
-   ],
-   "correct": "тихие звуки",
-   "case": "Винительный (Accusative)",
-   "explain": "«тихие звуки» — the accusative marks the direct object of the verb.",
-   "id": "c9"
   },
   {
    "sentence": "Пахло людьми, и в открытые окна приносились тихие звуки ___.",
@@ -95,64 +39,8 @@
    ],
    "correct": "короткого дыхания",
    "case": "Родительный (Genitive)",
-   "explain": "«короткого дыхания» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«короткого дыхания» depends on the noun «звуки» (whose? of what?) — genitive.",
    "id": "c10"
-  },
-  {
-   "sentence": "Люди спали, были беспомощны и не страшны, и собака ревниво сторожила их: спала одним глазом и при каждом шорохе вытягивала голову с двумя ___ фосфорически светящихся глаз.",
-   "lemma": "огонёк",
-   "options": [
-    "неподвижными огоньками",
-    "неподвижные огоньки",
-    "неподвижным огонькам",
-    "неподвижных огоньках"
-   ],
-   "correct": "неподвижными огоньками",
-   "case": "Творительный (Instrumental)",
-   "explain": "«неподвижными огоньками» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c11"
-  },
-  {
-   "sentence": "Приехавшие дачники были очень ___, а то, что они были далеко от города, дышали хорошим воздухом, видели вокруг себя все зеленым, голубым и беззлобным, делало их еще добрее.",
-   "lemma": "человек",
-   "options": [
-    "добрых людей",
-    "добрыми людьми",
-    "добрые люди",
-    "добрых людях"
-   ],
-   "correct": "добрыми людьми",
-   "case": "Творительный (Instrumental)",
-   "explain": "«добрыми людьми» — the instrumental marks the means, company, or complement.",
-   "id": "c13"
-  },
-  {
-   "sentence": "Приехавшие дачники были очень добрыми людьми, а то, что они были далеко от города, дышали ___, видели вокруг себя все зеленым, голубым и беззлобным, делало их еще добрее.",
-   "lemma": "воздух",
-   "options": [
-    "хорошем воздухе",
-    "хороший воздух",
-    "хорошим воздухом",
-    "хорошего воздуха"
-   ],
-   "correct": "хорошим воздухом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«хорошим воздухом» — the instrumental marks the means, company, or complement.",
-   "id": "c14"
-  },
-  {
-   "sentence": "И это ___ «Кусака» так и осталось за ней.",
-   "lemma": "имя",
-   "options": [
-    "новое имя",
-    "новом имени",
-    "нового имени",
-    "новым именем"
-   ],
-   "correct": "новое имя",
-   "case": "Именительный (Nominative)",
-   "explain": "«новое имя» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
   },
   {
    "sentence": "И осторожно, похлопывая себя руками и говоря так ласково, как это можно было при ___ и красивом лице, Леля подвигалась к собаке и сама боялась: вдруг укусит.",
@@ -165,50 +53,8 @@
    ],
    "correct": "красивом голосе",
    "case": "Предложный (Prepositional)",
-   "explain": "«красивом голосе» — after the preposition «при», for location or topic.",
+   "explain": "«красивом голосе» — «при» always takes the prepositional.",
    "id": "c17"
-  },
-  {
-   "sentence": "И осторожно, похлопывая себя руками и говоря так ласково, как это можно было при красивом голосе и ___, Леля подвигалась к собаке и сама боялась: вдруг укусит.",
-   "lemma": "лицо",
-   "options": [
-    "красивого лица",
-    "красивым лицом",
-    "красивом лице",
-    "красивое лицо"
-   ],
-   "correct": "красивом лице",
-   "case": "Предложный (Prepositional)",
-   "explain": "«красивом лице» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c18"
-  },
-  {
-   "sentence": "У тебя такой ___ и такие выразительные глазки.",
-   "lemma": "носик",
-   "options": [
-    "хорошеньким носиком",
-    "хорошенького носика",
-    "хорошенький носик",
-    "хорошенькому носику"
-   ],
-   "correct": "хорошенький носик",
-   "case": "Именительный (Nominative)",
-   "explain": "«хорошенький носик» — the subject of the sentence stands in the nominative.",
-   "id": "c19"
-  },
-  {
-   "sentence": "Брови Лели поднялись, и у самой у нее был такой ___ и такие выразительные глаза, что солнце поступило умно, расцеловав горячо, до красноты щек, все ее молоденькое, наивно-прелестное личико.",
-   "lemma": "носик",
-   "options": [
-    "хорошеньким носиком",
-    "хорошенького носика",
-    "хорошенький носик",
-    "хорошенькому носику"
-   ],
-   "correct": "хорошенький носик",
-   "case": "Именительный (Nominative)",
-   "explain": "«хорошенький носик» — the subject of the sentence stands in the nominative.",
-   "id": "c20"
   },
   {
    "sentence": "И Кусачка ___ в своей жизни перевернулась на спину и закрыла глаза, не зная наверно, ударят ее или приласкают.",
@@ -221,7 +67,7 @@
    ],
    "correct": "второй раз",
    "case": "Винительный (Accusative)",
-   "explain": "«второй раз» — the accusative marks the direct object of the verb.",
+   "explain": "«второй раз» tells how long or how often, with no preposition — accusative.",
    "id": "c21"
   },
   {
@@ -235,7 +81,7 @@
    ],
    "correct": "непривычной ласки",
    "case": "Родительный (Genitive)",
-   "explain": "«непривычной ласки» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«непривычной ласки» — «от» always takes the genitive.",
    "id": "c22"
   }
  ]

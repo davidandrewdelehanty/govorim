@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "___ он заслонил блюдо от Зины, а правой запихнул салфетку за воротник и стал похож на клиента в парикмахерской.",
-   "lemma": "рука",
-   "options": [
-    "левой рукой",
-    "левая рука",
-    "левой руке",
-    "левой руки"
-   ],
-   "correct": "левой рукой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«Левой рукой» — the instrumental marks the means, company, or complement.",
-   "id": "c1"
-  },
-  {
    "sentence": "Шариковский рот тронула едва заметная ___, и он разлил водку по рюмкам.",
    "lemma": "улыбка",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "сатирическая улыбка",
    "case": "Именительный (Nominative)",
-   "explain": "«сатирическая улыбка» — the subject of the sentence stands in the nominative.",
+   "explain": "«сатирическая улыбка» is the subject of «тронула» — who or what does it — so nominative.",
    "id": "c3"
   },
   {
@@ -39,36 +25,8 @@
    ],
    "correct": "царском режиме",
    "case": "Предложный (Prepositional)",
-   "explain": "«царском режиме» — after the preposition «при», for location or topic.",
+   "explain": "«царском режиме» — «при» always takes the prepositional.",
    "id": "c4"
-  },
-  {
-   "sentence": "Борменталь налил Филиппу Филипповичу ___ и предложил Шарикову.",
-   "lemma": "вино",
-   "options": [
-    "красном вине",
-    "красному вину",
-    "красным вином",
-    "красного вина"
-   ],
-   "correct": "красного вина",
-   "case": "Родительный (Genitive)",
-   "explain": "«красного вина» — the genitive here marks possession, absence, or quantity.",
-   "id": "c5"
-  },
-  {
-   "sentence": "В голове у него вдруг мелькнула картина: ___, пальма, человек в звериной шкуре и колпаке.",
-   "lemma": "остров",
-   "options": [
-    "необитаемом острове",
-    "необитаемого острова",
-    "необитаемый остров",
-    "необитаемому острову"
-   ],
-   "correct": "необитаемый остров",
-   "case": "Именительный (Nominative)",
-   "explain": "«необитаемый остров» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
   },
   {
    "sentence": "В голове у него вдруг мелькнула картина: необитаемый остров, пальма, человек в ___ и колпаке.",
@@ -81,7 +39,7 @@
    ],
    "correct": "звериной шкуре",
    "case": "Предложный (Prepositional)",
-   "explain": "«звериной шкуре» — after the preposition «в», for location or topic.",
+   "explain": "«звериной шкуре» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c7"
   },
   {
@@ -95,63 +53,35 @@
    ],
    "correct": "белого мяса",
    "case": "Родительный (Genitive)",
-   "explain": "«белого мяса» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«белого мяса» depends on the noun «куском» (whose? of what?) — genitive.",
    "id": "c8"
-  },
-  {
-   "sentence": "– ___, – ответил Шариков, испугавшись, – это за что такое?",
-   "lemma": "дело",
-   "options": [
-    "хорошенького дела",
-    "хорошенькое дело",
-    "хорошеньком деле",
-    "хорошеньким делом"
-   ],
-   "correct": "хорошенькое дело",
-   "case": "Именительный (Nominative)",
-   "explain": "«Хорошенькое дело» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
   },
   {
    "sentence": "– За кран и за кота, – рявкнул вдруг Филипп Филиппович, выходя из состояния ___.",
    "lemma": "спокойствие",
    "options": [
-    "ироническому спокойствию",
-    "ироническом спокойствии",
     "иронического спокойствия",
-    "ироническим спокойствием"
+    "ироническом спокойствии",
+    "ироническое спокойствие",
+    "ироническому спокойствию"
    ],
    "correct": "иронического спокойствия",
    "case": "Родительный (Genitive)",
-   "explain": "«иронического спокойствия» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«иронического спокойствия» depends on the noun «состояния» (whose? of what?) — genitive.",
    "id": "c11"
-  },
-  {
-   "sentence": "– Вы, Шариков, ___ укусили даму на лестнице, – подлетел Борменталь.",
-   "lemma": "день",
-   "options": [
-    "третьим днём",
-    "третьего дня",
-    "третьему дню",
-    "третьем дне"
-   ],
-   "correct": "третьего дня",
-   "case": "Родительный (Genitive)",
-   "explain": "«третьего дня» — the genitive here marks possession, absence, or quantity.",
-   "id": "c12"
   },
   {
    "sentence": "Учиться и стараться стать хоть сколько-нибудь ___ социалистического общества.",
    "lemma": "член",
    "options": [
-    "приемлемому члену",
     "приемлемым членом",
+    "приемлемого члена",
     "приемлемом члене",
-    "приемлемый член"
+    "приемлемому члену"
    ],
    "correct": "приемлемым членом",
    "case": "Творительный (Instrumental)",
-   "explain": "«приемлемым членом» — the instrumental marks the means, company, or complement.",
+   "explain": "After «стать», what someone or something is or becomes stands in the instrumental.",
    "id": "c14"
   },
   {
@@ -165,7 +95,7 @@
    ],
    "correct": "социалистического общества",
    "case": "Родительный (Genitive)",
-   "explain": "«социалистического общества» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«социалистического общества» depends on the noun «членом» (whose? of what?) — genitive.",
    "id": "c15"
   },
   {
@@ -179,64 +109,22 @@
    ],
    "correct": "сегодняшний случай",
    "case": "Именительный (Nominative)",
-   "explain": "«Сегодняшний случай» — the subject of the sentence stands in the nominative.",
+   "explain": "«сегодняшний случай» is the subject of «показывает» — who or what does it — so nominative.",
    "id": "c16"
   },
   {
    "sentence": "Филипп Филиппович в свою очередь отправил ему ___ и умолк.",
    "lemma": "взгляд",
    "options": [
-    "косого взгляда",
     "косому взгляду",
-    "косой взгляд",
-    "косым взглядом"
+    "косым взглядом",
+    "косом взгляде",
+    "косой взгляд"
    ],
    "correct": "косой взгляд",
    "case": "Винительный (Accusative)",
-   "explain": "«косой взгляд» — the accusative marks the direct object of the verb.",
+   "explain": "«косой взгляд» is the direct object of «отправил» (кого? что?) — accusative.",
    "id": "c17"
-  },
-  {
-   "sentence": "Долго и жарко светился кончик сигары ___.",
-   "lemma": "огонь",
-   "options": [
-    "бледно-зелёным огнём",
-    "бледно-зелёном огне",
-    "бледно-зелёный огонь",
-    "бледно-зелёного огня"
-   ],
-   "correct": "бледно-зелёным огнём",
-   "case": "Творительный (Instrumental)",
-   "explain": "«бледно-зелёным огнём» — the instrumental marks the means, company, or complement.",
-   "id": "c21"
-  },
-  {
-   "sentence": "Из шкафа, с третьей ___ Филипп Филиппович вынул узкую банку и стал, нахмурившись, рассматривать её на свет огней.",
-   "lemma": "полка",
-   "options": [
-    "стеклянной полки",
-    "стеклянная полка",
-    "стеклянной полке",
-    "стеклянной полкой"
-   ],
-   "correct": "стеклянной полки",
-   "case": "Родительный (Genitive)",
-   "explain": "«стеклянной полки» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
-   "id": "c22"
-  },
-  {
-   "sentence": "В прозрачной и тяжкой жидкости плавал, не падая на дно, малый ___, извлечённый из недр Шарикова мозга.",
-   "lemma": "комочек",
-   "options": [
-    "беленький комочек",
-    "беленькому комочку",
-    "беленьким комочком",
-    "беленьком комочке"
-   ],
-   "correct": "беленький комочек",
-   "case": "Именительный (Nominative)",
-   "explain": "«беленький комочек» — the subject of the sentence stands in the nominative.",
-   "id": "c23"
   },
   {
    "sentence": "Пожимая плечами, кривя губы и хмыкая, Филипп Филиппович пожирал его глазами, как будто в белом нетонущем комке хотел разглядеть причину удивительных событий, перевернувших вверх дном жизнь в ___.",
@@ -249,36 +137,8 @@
    ],
    "correct": "пречистенской квартире",
    "case": "Предложный (Prepositional)",
-   "explain": "«пречистенской квартире» — after the preposition «в», for location or topic.",
+   "explain": "«пречистенской квартире» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c25"
-  },
-  {
-   "sentence": "Очень возможно, что ___ её и разглядел.",
-   "lemma": "человек",
-   "options": [
-    "высокоученым человеком",
-    "высокоученый человек",
-    "высокоученого человека",
-    "высокоученом человеке"
-   ],
-   "correct": "высокоученый человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«высокоученый человек» — the subject of the sentence stands in the nominative.",
-   "id": "c26"
-  },
-  {
-   "sentence": "Редко-редко звучали ___ запоздавшего пешехода, они постукивали где-то за шторами и угасали.",
-   "lemma": "шаг",
-   "options": [
-    "отдалённым шагам",
-    "отдалённых шагов",
-    "отдалённые шаги",
-    "отдалённых шагах"
-   ],
-   "correct": "отдалённые шаги",
-   "case": "Именительный (Nominative)",
-   "explain": "«отдалённые шаги» — the subject of the sentence stands in the nominative.",
-   "id": "c28"
   }
  ]
 }

@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Однако, с некоторых пор в этом сне опять начинали мелькать ___.",
-   "lemma": "видение",
-   "options": [
-    "странных видениях",
-    "странными видениями",
-    "странные видения",
-    "странных видений"
-   ],
-   "correct": "странные видения",
-   "case": "Именительный (Nominative)",
-   "explain": "«странные видения» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Раза два, точно грузные спины ___, тяжело проползли мониторы с башенками над самой водой.",
    "lemma": "чудовище",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "морских чудовищ",
    "case": "Родительный (Genitive)",
-   "explain": "«морских чудовищ» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«морских чудовищ» depends on the noun «спины» (whose? of what?) — genitive.",
    "id": "c2"
   },
   {
@@ -39,22 +25,8 @@
    ],
    "correct": "самой водой",
    "case": "Творительный (Instrumental)",
-   "explain": "«самой водой» — after the preposition «над», the instrumental marks the means, company, or complement.",
+   "explain": "«самой водой» — «над» always takes the instrumental.",
    "id": "c3"
-  },
-  {
-   "sentence": "Диац смотрел на них ___, в котором порой пробивалось удивление.",
-   "lemma": "взгляд",
-   "options": [
-    "тусклым взглядом",
-    "тусклому взгляду",
-    "тусклый взгляд",
-    "тусклом взгляде"
-   ],
-   "correct": "тусклым взглядом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«тусклым взглядом» — the instrumental marks the means, company, or complement.",
-   "id": "c4"
   },
   {
    "sentence": "Один раз длинная ___ монитора продвинулась к дальнему берегу, и несколько коротких оборванных ударов толкнулось с моря в его окно.",
@@ -67,7 +39,7 @@
    ],
    "correct": "чёрная полоса",
    "case": "Именительный (Nominative)",
-   "explain": "«чёрная полоса» — the subject of the sentence stands in the nominative.",
+   "explain": "«чёрная полоса» is the subject of «продвинулась» — who or what does it — so nominative.",
    "id": "c5"
   },
   {
@@ -81,50 +53,8 @@
    ],
    "correct": "дальнему берегу",
    "case": "Дательный (Dative)",
-   "explain": "«дальнему берегу» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«дальнему берегу» — «к» always takes the dative.",
    "id": "c6"
-  },
-  {
-   "sentence": "Один раз длинная чёрная полоса монитора продвинулась к дальнему берегу, и несколько коротких ___ толкнулось с моря в его окно.",
-   "lemma": "удар",
-   "options": [
-    "оборванных ударов",
-    "оборванными ударами",
-    "оборванные удары",
-    "оборванным ударам"
-   ],
-   "correct": "оборванных ударов",
-   "case": "Родительный (Genitive)",
-   "explain": "«оборванных ударов» — the genitive here marks possession, absence, or quantity.",
-   "id": "c7"
-  },
-  {
-   "sentence": "Прибой заводил свою глубокую песню, берег отвечал ___ и гулом.",
-   "lemma": "стон",
-   "options": [
-    "глубоким стонам",
-    "глубоких стонах",
-    "глубокие стоны",
-    "глубокими стонами"
-   ],
-   "correct": "глубокими стонами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«глубокими стонами» — the instrumental marks the means, company, or complement.",
-   "id": "c8"
-  },
-  {
-   "sentence": "Пусть море говорит, что хочет; пусть как хочет выбирается из беспорядочной груды валов и эта ___, которую он заметил в окно.",
-   "lemma": "лодка",
-   "options": [
-    "запоздалая лодка",
-    "запоздалой лодке",
-    "запоздалой лодки",
-    "запоздалой лодкой"
-   ],
-   "correct": "запоздалая лодка",
-   "case": "Именительный (Nominative)",
-   "explain": "«запоздалая лодка» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
   },
   {
    "sentence": "Когда сторож испанец в ___ принёс фонарь и вставил его из коридора в отверстие над запертой дверью, то свет его озарил лежащую фигуру и бледное лицо с закрытыми глазами.",
@@ -137,7 +67,7 @@
    ],
    "correct": "обычный час",
    "case": "Винительный (Accusative)",
-   "explain": "«обычный час» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«обычный час» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c10"
   },
   {
@@ -151,64 +81,22 @@
    ],
    "correct": "полной тьме",
    "case": "Предложный (Prepositional)",
-   "explain": "«полной тьме» — after the preposition «в», for location or topic.",
+   "explain": "«полной тьме» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c12"
-  },
-  {
-   "sentence": "Но в окне было черно, море бесновалось в полной тьме, и были слышны ___ убегавшего шквала.",
-   "lemma": "крик",
-   "options": [
-    "смешанные крики",
-    "смешанных криках",
-    "смешанными криками",
-    "смешанных криков"
-   ],
-   "correct": "смешанные крики",
-   "case": "Именительный (Nominative)",
-   "explain": "«смешанные крики» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
   },
   {
    "sentence": "Хотя такие бури бывали не часто, но все же он хорошо знал и этот грохот, и свист, и шипенье, и подземное дрожанье ___.",
    "lemma": "берег",
    "options": [
+    "каменный берег",
     "каменного берега",
-    "каменным берегом",
-    "каменному берегу",
-    "каменном береге"
+    "каменном береге",
+    "каменному берегу"
    ],
    "correct": "каменного берега",
    "case": "Родительный (Genitive)",
-   "explain": "«каменного берега» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«каменного берега» depends on the noun «дрожанье» (whose? of what?) — genitive.",
    "id": "c14"
-  },
-  {
-   "sentence": "___ весь был поглощён тяжёлою мглою.",
-   "lemma": "берег",
-   "options": [
-    "дальнего берега",
-    "дальний берег",
-    "дальним берегом",
-    "дальнему берегу"
-   ],
-   "correct": "дальний берег",
-   "case": "Именительный (Nominative)",
-   "explain": "«Дальний берег» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
-  },
-  {
-   "sentence": "Налетел ещё шквал, опять пронеслись сверкающие брызги, и опять из-под шипенья и плеска послышался ___, незнакомый и ласковый.",
-   "lemma": "звук",
-   "options": [
-    "прежний звук",
-    "прежнего звука",
-    "прежним звуком",
-    "прежнем звуке"
-   ],
-   "correct": "прежний звук",
-   "case": "Именительный (Nominative)",
-   "explain": "«прежний звук» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
   },
   {
    "sentence": "Диац кинулся к решётке и, в порыве ___, сильно затряс её.",
@@ -221,7 +109,7 @@
    ],
    "correct": "странного одушевления",
    "case": "Родительный (Genitive)",
-   "explain": "«странного одушевления» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«странного одушевления» depends on the noun «порыве» (whose? of what?) — genitive.",
    "id": "c17"
   }
  ]

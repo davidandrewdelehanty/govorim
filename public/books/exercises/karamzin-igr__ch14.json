@@ -1,31 +1,17 @@
 {
  "cases": [
   {
-   "sentence": "Бортные знаки и ___.",
-   "lemma": "столп",
-   "options": [
-    "межевых столпах",
-    "межевые столпы",
-    "межевыми столпами",
-    "межевым столпам"
-   ],
-   "correct": "межевые столпы",
-   "case": "Винительный (Accusative)",
-   "explain": "«межевые столпы» — the accusative marks the direct object of the verb.",
-   "id": "c1"
-  },
-  {
    "sentence": "Мы уже имели случай заметить, что Россияне получили свои ___ от Скандинавов.",
    "lemma": "устав",
    "options": [
-    "гражданских уставов",
     "гражданским уставам",
     "гражданских уставах",
+    "гражданскими уставами",
     "гражданские уставы"
    ],
    "correct": "гражданские уставы",
    "case": "Винительный (Accusative)",
-   "explain": "«гражданские уставы» — the accusative marks the direct object of the verb.",
+   "explain": "«гражданские уставы» is the direct object of «получили» (кого? что?) — accusative.",
    "id": "c2"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "государственного могущества",
    "case": "Родительный (Genitive)",
-   "explain": "«государственного могущества» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«государственного могущества» — «для» always takes the genitive.",
    "id": "c3"
   },
   {
@@ -53,7 +39,7 @@
    ],
    "correct": "денежная пеня",
    "case": "Именительный (Nominative)",
-   "explain": "«денежная пеня» — the subject of the sentence stands in the nominative.",
+   "explain": "«денежная пеня» is the subject of «может» — who or what does it — so nominative.",
    "id": "c4"
   },
   {
@@ -67,21 +53,21 @@
    ],
    "correct": "уголовная статья",
    "case": "Именительный (Nominative)",
-   "explain": "«уголовная статья» — the subject of the sentence stands in the nominative.",
+   "explain": "«уголовная статья» is the subject of «представляет» — who or what does it — so nominative.",
    "id": "c5"
   },
   {
    "sentence": "Сия уголовная статья весьма ясно представляет нам ___ древней России.",
    "lemma": "степень",
    "options": [
-    "гражданских степеней",
     "гражданских степенях",
+    "гражданским степеням",
     "гражданскими степенями",
     "гражданские степени"
    ],
    "correct": "гражданские степени",
    "case": "Винительный (Accusative)",
-   "explain": "«гражданские степени» — the accusative marks the direct object of the verb.",
+   "explain": "«гражданские степени» is the direct object of «представляет» (кого? что?) — accusative.",
    "id": "c6"
   },
   {
@@ -95,22 +81,8 @@
    ],
    "correct": "разные причины",
    "case": "Именительный (Nominative)",
-   "explain": "«разные причины» — the subject of the sentence stands in the nominative.",
+   "explain": "«разные причины» is the subject of «могли» — who or what does it — so nominative.",
    "id": "c8"
-  },
-  {
-   "sentence": "Следственно, гораздо неизвинительнее было ударить голою рукою, легкою чашею или стаканом, нежели тяжелою палицею или самым ___.",
-   "lemma": "меч",
-   "options": [
-    "острый меч",
-    "острым мечом",
-    "острому мечу",
-    "острого меча"
-   ],
-   "correct": "острым мечом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«острым мечом» — the instrumental marks the means, company, or complement.",
-   "id": "c10"
   },
   {
    "sentence": "— Большая часть ___, как видим, шла обыкновенно в Казну: ибо всякое нарушение порядка считалось оскорблением Государя, блюстителя общей безопасности.",
@@ -123,22 +95,8 @@
    ],
    "correct": "денежной пени",
    "case": "Родительный (Genitive)",
-   "explain": "«денежной пени» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«денежной пени» depends on the noun «часть» (whose? of what?) — genitive.",
    "id": "c11"
-  },
-  {
-   "sentence": "Столь уважаем был конь, ___ человеку на войне, в земледелии и в путешествиях!",
-   "lemma": "слуга",
-   "options": [
-    "верный слуга",
-    "верного слуги",
-    "верного слугу",
-    "верном слуге"
-   ],
-   "correct": "верный слуга",
-   "case": "Именительный (Nominative)",
-   "explain": "«верный слуга» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
   },
   {
    "sentence": "Древние ___ осуждали на смерть всякого, кто уведет чужую лошадь.",
@@ -151,35 +109,21 @@
    ],
    "correct": "саксонские законы",
    "case": "Именительный (Nominative)",
-   "explain": "«Саксонские законы» — the subject of the sentence stands in the nominative.",
+   "explain": "«саксонские законы» is the subject of «осуждали» — who or what does it — so nominative.",
    "id": "c13"
-  },
-  {
-   "sentence": "Сими именами означались мелкие ___, ходившие в России и в Ливонии.",
-   "lemma": "монета",
-   "options": [
-    "кожаных монет",
-    "кожаные монеты",
-    "кожаным монетам",
-    "кожаных монетах"
-   ],
-   "correct": "кожаные монеты",
-   "case": "Винительный (Accusative)",
-   "explain": "«кожаные монеты» — the accusative marks the direct object of the verb.",
-   "id": "c14"
   },
   {
    "sentence": "Здесь говорится о бобрах племянных, с коими хозяин лишался всего ___.",
    "lemma": "приплод",
    "options": [
+    "возможном приплоде",
     "возможному приплоду",
-    "возможный приплод",
-    "возможного приплода",
-    "возможном приплоде"
+    "возможным приплодом",
+    "возможного приплода"
    ],
    "correct": "возможного приплода",
    "case": "Родительный (Genitive)",
-   "explain": "«возможного приплода» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«лишался» takes its object in the genitive.",
    "id": "c15"
   },
   {
@@ -193,7 +137,7 @@
    ],
    "correct": "воровской ловли",
    "case": "Родительный (Genitive)",
-   "explain": "«воровской ловли» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«воровской ловли» depends on the noun «признаки» (whose? of what?) — genitive.",
    "id": "c16"
   },
   {
@@ -207,7 +151,7 @@
    ],
    "correct": "чужого коня",
    "case": "Винительный (Accusative)",
-   "explain": "«чужого коня» — the accusative marks the direct object of the verb.",
+   "explain": "«чужого коня» is the direct object of «зарежет» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c17"
   },
   {
@@ -221,22 +165,8 @@
    ],
    "correct": "мелкого судна",
    "case": "Родительный (Genitive)",
-   "explain": "«мелкого судна» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«мелкого судна» depends on the noun «краев» (whose? of what?) — genitive.",
    "id": "c19"
-  },
-  {
-   "sentence": "Но ежели ссылка пойдет на жителей уездных, то истцу взять за украденное деньги с ___, который идет с поличным далее, и наконец отысканный вор платит за все по закону.",
-   "lemma": "ответчик",
-   "options": [
-    "третьему ответчику",
-    "третьем ответчике",
-    "третьего ответчика",
-    "третий ответчик"
-   ],
-   "correct": "третьего ответчика",
-   "case": "Родительный (Genitive)",
-   "explain": "«третьего ответчика» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
-   "id": "c20"
   },
   {
    "sentence": "«Кто возьмет ___ в кабалу, тот лишается данных холопу денег или должен присягнуть, что он считал его свободным: в таком случае господин выкупает раба и берет все имение, приобретенное сим рабом».",
@@ -249,50 +179,22 @@
    ],
    "correct": "чужого холопа",
    "case": "Винительный (Accusative)",
-   "explain": "«чужого холопа» — the accusative marks the direct object of the verb.",
+   "explain": "«чужого холопа» is the direct object of «возьмет» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c21"
-  },
-  {
-   "sentence": "Сей закон елово в слово есть повторение древнего Ютландского и еще более доказывает, что ___ Норманов были основанием Российских.",
-   "lemma": "устав",
-   "options": [
-    "гражданских уставов",
-    "гражданским уставам",
-    "гражданских уставах",
-    "гражданские уставы"
-   ],
-   "correct": "гражданские уставы",
-   "case": "Именительный (Nominative)",
-   "explain": "«гражданские уставы» — the subject of the sentence stands in the nominative.",
-   "id": "c23"
   },
   {
    "sentence": "Мы не знаем, в чем состояли те и другие, основанные на всеобщем обыкновении ___; но ясно, что последние были гораздо тягостнее и что законодатель хотел облегчить судьбу должников.",
    "lemma": "время",
    "options": [
-    "тогдашним временем",
-    "тогдашнего времени",
+    "тогдашнее время",
     "тогдашнему времени",
-    "тогдашнем времени"
+    "тогдашнем времени",
+    "тогдашнего времени"
    ],
    "correct": "тогдашнего времени",
    "case": "Родительный (Genitive)",
-   "explain": "«тогдашнего времени» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«тогдашнего времени» depends on the noun «обыкновении» (whose? of what?) — genitive.",
    "id": "c24"
-  },
-  {
-   "sentence": "Древнейшие законы всех народов были уголовные; но Ярославовы определяют и ___ наследственности.",
-   "lemma": "право",
-   "options": [
-    "важные права",
-    "важными правами",
-    "важных прав",
-    "важным правам"
-   ],
-   "correct": "важные права",
-   "case": "Винительный (Accusative)",
-   "explain": "«важные права» — the accusative marks the direct object of the verb.",
-   "id": "c27"
   },
   {
    "sentence": "— Дети ___ наследуют ее достояние или вено, назначенное отцом для их матери.",
@@ -305,36 +207,8 @@
    ],
    "correct": "первой жены",
    "case": "Родительный (Genitive)",
-   "explain": "«первой жены» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«первой жены» depends on the noun «Дети» (whose? of what?) — genitive.",
    "id": "c28"
-  },
-  {
-   "sentence": "Главою правосудия вообще был Князь, а Двор Княжеский ___ суда.",
-   "lemma": "место",
-   "options": [
-    "обыкновенному месту",
-    "обыкновенном месте",
-    "обыкновенное место",
-    "обыкновенным местом"
-   ],
-   "correct": "обыкновенным местом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«обыкновенным местом» — the instrumental marks the means, company, or complement.",
-   "id": "c29"
-  },
-  {
-   "sentence": "— Чиновники, которым надлежало решить ___, назывались Вирниками, и каждый судья имел помощника, или Отрока, Метельника, или писца.",
-   "lemma": "дело",
-   "options": [
-    "уголовные дела",
-    "уголовных дел",
-    "уголовными делами",
-    "уголовным делам"
-   ],
-   "correct": "уголовные дела",
-   "case": "Винительный (Accusative)",
-   "explain": "«уголовные дела» — the accusative marks the direct object of the verb.",
-   "id": "c30"
   },
   {
    "sentence": "Так было и в Скандинавии, откуда сей ___ перешел в Великобританию.",
@@ -347,7 +221,7 @@
    ],
    "correct": "мудрый устав",
    "case": "Именительный (Nominative)",
-   "explain": "«мудрый устав» — the subject of the sentence stands in the nominative.",
+   "explain": "«мудрый устав» is the subject of «перешел» — who or what does it — so nominative.",
    "id": "c31"
   },
   {
@@ -361,7 +235,7 @@
    ],
    "correct": "древнего законодательства",
    "case": "Родительный (Genitive)",
-   "explain": "«древнего законодательства» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«древнего законодательства» depends on the noun «систему» (whose? of what?) — genitive.",
    "id": "c32"
   },
   {
@@ -375,35 +249,21 @@
    ],
    "correct": "гражданских обществ",
    "case": "Родительный (Genitive)",
-   "explain": "«гражданских обществ» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«гражданских обществ» depends on the noun «начале» (whose? of what?) — genitive.",
    "id": "c35"
-  },
-  {
-   "sentence": "Не упоминается также о многих условиях и сделках, весьма обыкновенных в самом начале гражданских обществ; но ___ быть верным в слове и честь служили вместо законов.",
-   "lemma": "польза",
-   "options": [
-    "взаимной пользе",
-    "взаимная польза",
-    "взаимной пользы",
-    "взаимной пользой"
-   ],
-   "correct": "взаимная польза",
-   "case": "Именительный (Nominative)",
-   "explain": "«взаимная польза» — the subject of the sentence stands in the nominative.",
-   "id": "c36"
   },
   {
    "sentence": "— Но так называемый Церковный Устав Ярославов, о коем упоминают новейшие Летописцы и коего имеем ___, есть без сомнения подложный, сочиненный около XIV столетия.",
    "lemma": "список",
    "options": [
-    "разные списки",
-    "разных списков",
+    "разных списках",
     "разными списками",
-    "разных списках"
+    "разным спискам",
+    "разные списки"
    ],
    "correct": "разные списки",
    "case": "Винительный (Accusative)",
-   "explain": "«разные списки» — the accusative marks the direct object of the verb.",
+   "explain": "«разные списки» is the direct object of «имеем» (кого? что?) — accusative.",
    "id": "c37"
   }
  ]

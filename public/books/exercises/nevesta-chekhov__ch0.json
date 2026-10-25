@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Было уже часов десять вечера, и над садом светила ___.",
-   "lemma": "луна",
-   "options": [
-    "полной луны",
-    "полной луной",
-    "полной луне",
-    "полная луна"
-   ],
-   "correct": "полная луна",
-   "case": "Именительный (Nominative)",
-   "explain": "«полная луна» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "В саду было тихо, прохладно, и темные ___ лежали на земле.",
    "lemma": "тень",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "покойные тени",
    "case": "Именительный (Nominative)",
-   "explain": "«покойные тени» — the subject of the sentence stands in the nominative.",
+   "explain": "«покойные тени» is the subject of «лежали» — who or what does it — so nominative.",
    "id": "c2"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "подвального этажа",
    "case": "Родительный (Genitive)",
-   "explain": "«подвального этажа» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«подвального этажа» — «из» always takes the genitive.",
    "id": "c4"
   },
   {
@@ -53,64 +39,22 @@
    ],
    "correct": "жареной индейкой",
    "case": "Творительный (Instrumental)",
-   "explain": "«жареной индейкой» — the instrumental marks the means, company, or complement.",
+   "explain": "«пахло» takes the instrumental.",
    "id": "c5"
-  },
-  {
-   "sentence": "Когда-то давно к бабушке хаживала за подаяньем ее ___, Марья Петровна, обедневшая дворянка-вдова, маленькая, худенькая, больная.",
-   "lemma": "родственница",
-   "options": [
-    "дальней родственницы",
-    "дальняя родственница",
-    "дальней родственницей",
-    "дальней родственнице"
-   ],
-   "correct": "дальняя родственница",
-   "case": "Именительный (Nominative)",
-   "explain": "«дальняя родственница» — after the preposition «за», the subject of the sentence stands in the nominative.",
-   "id": "c6"
   },
   {
    "sentence": "И сорочка была неглаженая, и весь он имел какой-то ___.",
    "lemma": "вид",
    "options": [
-    "несвежего вида",
     "несвежим видом",
     "несвежий вид",
-    "несвежему виду"
+    "несвежему виду",
+    "несвежем виде"
    ],
    "correct": "несвежий вид",
    "case": "Винительный (Accusative)",
-   "explain": "«несвежий вид» — the accusative marks the direct object of the verb.",
+   "explain": "«несвежий вид» is the direct object of «имел» (кого? что?) — accusative.",
    "id": "c8"
-  },
-  {
-   "sentence": "Очень худой, с большими глазами, с длинными ___, бородатый, темный и все-таки красивый.",
-   "lemma": "палец",
-   "options": [
-    "худыми пальцами",
-    "худых пальцах",
-    "худые пальцы",
-    "худым пальцам"
-   ],
-   "correct": "худыми пальцами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«худыми пальцами» — the instrumental marks the means, company, or complement.",
-   "id": "c10"
-  },
-  {
-   "sentence": "У моей мамы, конечно, есть слабости, — добавила она, помолчав, — но всё же она ___.",
-   "lemma": "женщина",
-   "options": [
-    "необыкновенной женщиной",
-    "необыкновенной женщины",
-    "необыкновенной женщине",
-    "необыкновенная женщина"
-   ],
-   "correct": "необыкновенная женщина",
-   "case": "Именительный (Nominative)",
-   "explain": "«необыкновенная женщина» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
   },
   {
    "sentence": "Ей принадлежали ___ на ярмарке и старинный дом с колоннами и садом, но она каждое утро молилась, чтобы бог спас ее от разорения, и при этом плакала.",
@@ -123,22 +67,8 @@
    ],
    "correct": "торговые ряды",
    "case": "Именительный (Nominative)",
-   "explain": "«торговые ряды» — the subject of the sentence stands in the nominative.",
+   "explain": "«торговые ряды» is the subject of «принадлежали» — who or what does it — so nominative.",
    "id": "c15"
-  },
-  {
-   "sentence": "Вот уж подлинно, как есть, ___.",
-   "lemma": "сын",
-   "options": [
-    "блудный сын",
-    "блудного сына",
-    "блудным сыном",
-    "блудному сыну"
-   ],
-   "correct": "блудный сын",
-   "case": "Именительный (Nominative)",
-   "explain": "«блудный сын» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
   },
   {
    "sentence": "— Хотя я и не смею спорить с вами, — сказала она, — но согласитесь, в жизни так много ___!",
@@ -151,7 +81,7 @@
    ],
    "correct": "неразрешимых загадок",
    "case": "Родительный (Genitive)",
-   "explain": "«неразрешимых загадок» — the genitive here marks possession, absence, or quantity.",
+   "explain": "After «много», a word of quantity — genitive.",
    "id": "c17"
   },
   {
@@ -165,7 +95,7 @@
    ],
    "correct": "нижний этаж",
    "case": "Винительный (Accusative)",
-   "explain": "«нижний этаж» — the accusative marks the direct object of the verb.",
+   "explain": "«нижний этаж» is the direct object of «занимала» (кого? что?) — accusative.",
    "id": "c18"
   }
  ]

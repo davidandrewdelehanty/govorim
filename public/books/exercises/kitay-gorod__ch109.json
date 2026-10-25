@@ -1,48 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Сошли в залу: ___, американец, дерптский кандидат и помещица с дочерью, Пирожков сообщил им, в чем дело.",
-   "lemma": "девица-дворянка",
-   "options": [
-    "старой девице-дворянке",
-    "старая девица-дворянка",
-    "старой девицей-дворянкой",
-    "старой девицы-дворянки"
-   ],
-   "correct": "старая девица-дворянка",
-   "case": "Именительный (Nominative)",
-   "explain": "«старая девица-дворянка» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
-   "sentence": "Сошли в залу: старая девица-дворянка, американец, ___ и помещица с дочерью, Пирожков сообщил им, в чем дело.",
-   "lemma": "кандидат",
-   "options": [
-    "дерптский кандидат",
-    "дерптского кандидата",
-    "дерптскому кандидату",
-    "дерптском кандидате"
-   ],
-   "correct": "дерптский кандидат",
-   "case": "Именительный (Nominative)",
-   "explain": "«дерптский кандидат» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
-  },
-  {
-   "sentence": "Мать с дочерью разахались, вторила им ___, кандидат стал по-русски рассматривать дело с юридической точки зрения.",
-   "lemma": "девица",
-   "options": [
-    "старой девицы",
-    "старая девица",
-    "старой девице",
-    "старой девицей"
-   ],
-   "correct": "старая девица",
-   "case": "Именительный (Nominative)",
-   "explain": "«старая девица» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
-  },
-  {
    "sentence": "Кончилось слезами, дамы тоже заговорили, обиделись, ___ старался найти «законную почву», Пирожков не знал, куда ему деваться.",
    "lemma": "кандидат",
    "options": [
@@ -53,22 +11,8 @@
    ],
    "correct": "дерптский кандидат",
    "case": "Именительный (Nominative)",
-   "explain": "«дерптский кандидат» — the subject of the sentence stands in the nominative.",
+   "explain": "«дерптский кандидат» is the subject of «старался» — who or what does it — so nominative.",
    "id": "c7"
-  },
-  {
-   "sentence": "Он наделал всю эту кутерьму; особенно брюзжала ___.",
-   "lemma": "дворянка",
-   "options": [
-    "старой дворянке",
-    "старой дворянки",
-    "старой дворянкой",
-    "старая дворянка"
-   ],
-   "correct": "старая дворянка",
-   "case": "Именительный (Nominative)",
-   "explain": "«старая дворянка» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
   },
   {
    "sentence": "Пирожков сел у кровати и старался толком расспросить ее: имеет ли она хоть какие-нибудь ___ на инвентарь?",
@@ -81,7 +25,7 @@
    ],
    "correct": "фактические права",
    "case": "Винительный (Accusative)",
-   "explain": "«фактические права» — the accusative marks the direct object of the verb.",
+   "explain": "«фактические права» is the direct object of «имеет» (кого? что?) — accusative.",
    "id": "c9"
   },
   {
@@ -95,7 +39,7 @@
    ],
    "correct": "пьяный повар",
    "case": "Именительный (Nominative)",
-   "explain": "«пьяный повар» — the subject of the sentence stands in the nominative.",
+   "explain": "«пьяный повар» is the subject of «бушевал» — who or what does it — so nominative.",
    "id": "c10"
   },
   {
@@ -109,22 +53,8 @@
    ],
    "correct": "кухонного мужика",
    "case": "Винительный (Accusative)",
-   "explain": "«кухонного мужика» — the accusative marks the direct object of the verb.",
+   "explain": "«кухонного мужика» is the direct object of «послал» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c11"
-  },
-  {
-   "sentence": "___ сошла сверху осведомиться, будет ли завтра утром какой-нибудь завтрак.",
-   "lemma": "дворянка",
-   "options": [
-    "старая дворянка",
-    "старой дворянки",
-    "старой дворянкой",
-    "старой дворянке"
-   ],
-   "correct": "старая дворянка",
-   "case": "Именительный (Nominative)",
-   "explain": "«Старая дворянка» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
   },
   {
    "sentence": "В истории его ___ француженки опять он, опять Гордей Парамоныч.",
@@ -137,22 +67,8 @@
    ],
    "correct": "квартирной хозяйки",
    "case": "Родительный (Genitive)",
-   "explain": "«квартирной хозяйки» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«квартирной хозяйки» depends on the noun «истории» (whose? of what?) — genitive.",
    "id": "c15"
-  },
-  {
-   "sentence": "Еще месяц, два — и зима прошла, то есть ___; а все что-то притягивает к этой мужицкой и купеческой Москве.",
-   "lemma": "год",
-   "options": [
-    "целому году",
-    "целого года",
-    "целым годом",
-    "целый год"
-   ],
-   "correct": "целый год",
-   "case": "Именительный (Nominative)",
-   "explain": "«целый год» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
   }
  ]
 }

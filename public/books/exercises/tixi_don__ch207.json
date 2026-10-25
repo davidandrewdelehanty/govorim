@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "С утра 18-го ___ загремели от устья Медведицы до станицы Казанской.",
-   "lemma": "батарея",
-   "options": [
-    "красным батареям",
-    "красных батарей",
-    "красные батареи",
-    "красными батареями"
-   ],
-   "correct": "красные батареи",
-   "case": "Именительный (Nominative)",
-   "explain": "«красные батареи» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "После короткой ___ пехота заняла обдонские хутора и станицы Букановскую, Еланскую, Вешенскую.",
    "lemma": "подготовка",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "артиллерийской подготовки",
    "case": "Родительный (Genitive)",
-   "explain": "«артиллерийской подготовки» — after the preposition «после», the genitive here marks possession, absence, or quantity.",
+   "explain": "«артиллерийской подготовки» — «после» always takes the genitive.",
    "id": "c2"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "казачьи сотни",
    "case": "Именительный (Nominative)",
-   "explain": "«Казачьи сотни» — the subject of the sentence stands in the nominative.",
+   "explain": "«казачьи сотни» is the subject of «отступили» — who or what does it — so nominative.",
    "id": "c3"
   },
   {
@@ -53,7 +39,7 @@
    ],
    "correct": "красная пехота",
    "case": "Именительный (Nominative)",
-   "explain": "«красная пехота» — the subject of the sentence stands in the nominative.",
+   "explain": "«красная пехота» is the subject of «вступала» — who or what does it — so nominative.",
    "id": "c4"
   },
   {
@@ -67,64 +53,22 @@
    ],
    "correct": "левой стороны",
    "case": "Родительный (Genitive)",
-   "explain": "«левой стороны» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«левой стороны» depends on the noun «станицы» (whose? of what?) — genitive.",
    "id": "c5"
-  },
-  {
-   "sentence": "Противников разделяла река, ___ которой в то время не превышала восьмидесяти саженей, а местами доходила до тридцати.",
-   "lemma": "ширина",
-   "options": [
-    "максимальной ширины",
-    "максимальной шириной",
-    "максимальной ширине",
-    "максимальная ширина"
-   ],
-   "correct": "максимальная ширина",
-   "case": "Именительный (Nominative)",
-   "explain": "«максимальная ширина» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
   },
   {
    "sentence": "___ к переправе красные не предпринимали; кое-где на бродах они пробовали перейти Дон, но были отбиты.",
    "lemma": "попытка",
    "options": [
-    "активные попытки",
-    "активных попыток",
     "активными попытками",
-    "активным попыткам"
+    "активных попытках",
+    "активным попыткам",
+    "активных попыток"
    ],
    "correct": "активных попыток",
    "case": "Родительный (Genitive)",
-   "explain": "«Активных попыток» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«активных попыток» is the object of a negated verb («не предпринимали») — genitive instead of the accusative.",
    "id": "c7"
-  },
-  {
-   "sentence": "— Плыви сюда, ___, мы тебе жару в мотню насыпем.",
-   "lemma": "курва",
-   "options": [
-    "белой курвой",
-    "белой курвы",
-    "белая курва",
-    "белой курве"
-   ],
-   "correct": "белая курва",
-   "case": "Именительный (Nominative)",
-   "explain": "«белая курва» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
-  },
-  {
-   "sentence": "Вскоре переправился через Дон и 2-й ___.",
-   "lemma": "корпус",
-   "options": [
-    "коноваловскому корпусу",
-    "коноваловского корпуса",
-    "коноваловским корпусом",
-    "коноваловский корпус"
-   ],
-   "correct": "коноваловский корпус",
-   "case": "Именительный (Nominative)",
-   "explain": "«коноваловский корпус» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
   },
   {
    "sentence": "Преобладание конницы в его составе дало ему возможность глубоко внедриться в расположение противника и нанести ряд ___.",
@@ -137,50 +81,8 @@
    ],
    "correct": "сокрушительных ударов",
    "case": "Родительный (Genitive)",
-   "explain": "«сокрушительных ударов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«сокрушительных ударов» depends on the noun «ряд» (whose? of what?) — genitive.",
    "id": "c10"
-  },
-  {
-   "sentence": "За неделю красные были выбиты с ___ Дона вплоть до станицы Вешенской.",
-   "lemma": "берег",
-   "options": [
-    "левом береге",
-    "левого берега",
-    "левый берег",
-    "левому берегу"
-   ],
-   "correct": "левого берега",
-   "case": "Родительный (Genitive)",
-   "explain": "«левого берега» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
-   "id": "c11"
-  },
-  {
-   "sentence": "Угроза окружения встала перед 2-й и 23-й левофланговыми ___.",
-   "lemma": "дивизия",
-   "options": [
-    "красными дивизиями",
-    "красных дивизий",
-    "красным дивизиям",
-    "красных дивизиях"
-   ],
-   "correct": "красными дивизиями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«красными дивизиями» — after the preposition «перед», the instrumental marks the means, company, or complement.",
-   "id": "c12"
-  },
-  {
-   "sentence": "Однако, как ни велики были успехи Донской армии в октябре, но в настроении казаков уже отсутствовала та уверенность, которая окрыляла их весной, во время ___ к северным границам области.",
-   "lemma": "движение",
-   "options": [
-    "победоносном движении",
-    "победоносное движение",
-    "победоносного движения",
-    "победоносным движением"
-   ],
-   "correct": "победоносного движения",
-   "case": "Родительный (Genitive)",
-   "explain": "«победоносного движения» — after the preposition «во», the genitive here marks possession, absence, or quantity.",
-   "id": "c14"
   },
   {
    "sentence": "Однако, как ни велики были успехи Донской армии в октябре, но в настроении казаков уже отсутствовала та уверенность, которая окрыляла их весной, во время победоносного движения к ___ области.",
@@ -193,7 +95,7 @@
    ],
    "correct": "северным границам",
    "case": "Дательный (Dative)",
-   "explain": "«северным границам» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«северным границам» — «к» always takes the dative.",
    "id": "c15"
   }
  ]

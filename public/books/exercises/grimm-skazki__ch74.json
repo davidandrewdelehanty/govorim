@@ -1,59 +1,17 @@
 {
  "cases": [
   {
-   "sentence": "Тысячу лет тому назад жил на свете король, ___ охоты.",
-   "lemma": "любитель",
-   "options": [
-    "большой любитель",
-    "большого любителя",
-    "большому любителю",
-    "большим любителем"
-   ],
-   "correct": "большой любитель",
-   "case": "Именительный (Nominative)",
-   "explain": "«большой любитель» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Тогда и младшая, указывая на того, кто ехал по левую руку короля, тоже воскликнула: «А коли мне этот в мужья не достанется, так мне и никакого не надобно!» А эти двое были ___.",
-   "lemma": "министр",
-   "options": [
-    "королевские министры",
-    "королевскими министрами",
-    "королевских министрах",
-    "королевским министрам"
-   ],
-   "correct": "королевские министры",
-   "case": "Именительный (Nominative)",
-   "explain": "«королевские министры» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Вскоре она и родила мальчика, у которого во лбу была ___.",
-   "lemma": "звезда",
-   "options": [
-    "красной звездой",
-    "красная звезда",
-    "красной звезде",
-    "красной звезды"
-   ],
-   "correct": "красная звезда",
-   "case": "Именительный (Nominative)",
-   "explain": "«красная звезда» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
    "sentence": "Тогда обе ее сестры, сговорившись между собою, решили бросить этого ___ в воду.",
    "lemma": "младенец",
    "options": [
-    "милого младенца",
+    "милом младенце",
     "милый младенец",
-    "милым младенцем",
+    "милого младенца",
     "милому младенцу"
    ],
    "correct": "милого младенца",
    "case": "Винительный (Accusative)",
-   "explain": "«милого младенца» — the accusative marks the direct object of the verb.",
+   "explain": "«милого младенца» is the direct object of «бросить» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c4"
   },
   {
@@ -67,7 +25,7 @@
    ],
    "correct": "многие годы",
    "case": "Винительный (Accusative)",
-   "explain": "«многие годы» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«многие годы» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c5"
   },
   {
@@ -81,7 +39,7 @@
    ],
    "correct": "другими ребятами",
    "case": "Творительный (Instrumental)",
-   "explain": "«другими ребятами» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«другими ребятами» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c6"
   },
   {
@@ -95,7 +53,7 @@
    ],
    "correct": "старого рыбака",
    "case": "Родительный (Genitive)",
-   "explain": "«старого рыбака» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«старого рыбака» — «у» always takes the genitive.",
    "id": "c7"
   },
   {
@@ -109,7 +67,7 @@
    ],
    "correct": "рыбной ловле",
    "case": "Предложный (Prepositional)",
-   "explain": "«рыбной ловле» — after the preposition «на», for location or topic.",
+   "explain": "«рыбной ловле» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c8"
   },
   {
@@ -123,50 +81,8 @@
    ],
    "correct": "водного пространства",
    "case": "Родительный (Genitive)",
-   "explain": "«водного пространства» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«водного пространства» depends on the noun «берег» (whose? of what?) — genitive.",
    "id": "c9"
-  },
-  {
-   "sentence": "«___, тетушка!» — сказал он.",
-   "lemma": "день",
-   "options": [
-    "добрым днём",
-    "доброго дня",
-    "добрый день",
-    "доброму дню"
-   ],
-   "correct": "добрый день",
-   "case": "Именительный (Nominative)",
-   "explain": "«Добрый день» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
-  },
-  {
-   "sentence": "Год спустя и ___ задумал пойти на поиски своего брата.",
-   "lemma": "королевич",
-   "options": [
-    "второго королевича",
-    "второй королевич",
-    "вторым королевичем",
-    "втором королевиче"
-   ],
-   "correct": "второй королевич",
-   "case": "Именительный (Nominative)",
-   "explain": "«второй королевич» — after the preposition «спустя», the subject of the sentence stands in the nominative.",
-   "id": "c11"
-  },
-  {
-   "sentence": "Вот и она пришла к тому же берегу и сказала старухе: «___, тетушка».",
-   "lemma": "день",
-   "options": [
-    "добрым днём",
-    "доброго дня",
-    "добрый день",
-    "доброму дню"
-   ],
-   "correct": "добрый день",
-   "case": "Именительный (Nominative)",
-   "explain": "«Добрый день» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
   },
   {
    "sentence": "Придешь к ___, на пороге оброни прутик и проходи через весь замок на противоположную сторону; там есть старый колодец, а над ним растет большое дерево, и на нем висит клетка с птицей.",
@@ -179,49 +95,21 @@
    ],
    "correct": "большому замку",
    "case": "Дательный (Dative)",
-   "explain": "«большому замку» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«большому замку» — «к» always takes the dative.",
    "id": "c13"
-  },
-  {
-   "sentence": "Придешь к большому замку, на пороге оброни прутик и проходи через весь замок на противоположную сторону; там есть ___, а над ним растет большое дерево, и на нем висит клетка с птицей.",
-   "lemma": "колодец",
-   "options": [
-    "старым колодцем",
-    "старому колодцу",
-    "старом колодце",
-    "старый колодец"
-   ],
-   "correct": "старый колодец",
-   "case": "Именительный (Nominative)",
-   "explain": "«старый колодец» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
-  },
-  {
-   "sentence": "Придешь к большому замку, на пороге оброни прутик и проходи через весь замок на противоположную сторону; там есть старый колодец, а над ним растет ___, и на нем висит клетка с птицей.",
-   "lemma": "дерево",
-   "options": [
-    "большим деревом",
-    "большое дерево",
-    "большому дереву",
-    "большого дерева"
-   ],
-   "correct": "большое дерево",
-   "case": "Именительный (Nominative)",
-   "explain": "«большое дерево» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
   },
   {
    "sentence": "Девочка нашла на пути своем все точно так, как ей сказала старуха, а на ___ нашла и обоих своих братьев, которые полсвета обошли, разыскивая друг друга.",
    "lemma": "путь",
    "options": [
     "обратным путём",
-    "обратный путь",
-    "обратном пути",
-    "обратному пути"
+    "обратному пути",
+    "обратного пути",
+    "обратном пути"
    ],
    "correct": "обратном пути",
    "case": "Предложный (Prepositional)",
-   "explain": "«обратном пути» — after the preposition «на», for location or topic.",
+   "explain": "«обратном пути» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c16"
   },
   {
@@ -235,35 +123,35 @@
    ],
    "correct": "старому рыбаку",
    "case": "Дательный (Dative)",
-   "explain": "«старому рыбаку» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«старому рыбаку» — «к» always takes the dative.",
    "id": "c17"
   },
   {
    "sentence": "Но ___ никак не мог усидеть дома; взял он тугой лук и отправился на охоту.",
    "lemma": "королевич",
    "options": [
-    "второго королевича",
     "второй королевич",
+    "второму королевичу",
     "вторым королевичем",
     "втором королевиче"
    ],
    "correct": "второй королевич",
    "case": "Именительный (Nominative)",
-   "explain": "«второй королевич» — the subject of the sentence stands in the nominative.",
+   "explain": "«второй королевич» is the subject of «мог» — who or what does it — so nominative.",
    "id": "c18"
   },
   {
    "sentence": "Но второй королевич никак не мог усидеть дома; взял он ___ и отправился на охоту.",
    "lemma": "лук",
    "options": [
-    "тугой лук",
     "тугом луке",
     "тугим луком",
-    "тугого лука"
+    "тугому луку",
+    "тугой лук"
    ],
    "correct": "тугой лук",
    "case": "Винительный (Accusative)",
-   "explain": "«тугой лук» — the accusative marks the direct object of the verb.",
+   "explain": "«тугой лук» is the direct object of «взял» (кого? что?) — accusative.",
    "id": "c19"
   },
   {
@@ -277,7 +165,7 @@
    ],
    "correct": "старого колодца",
    "case": "Родительный (Genitive)",
-   "explain": "«старого колодца» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«старого колодца» — «из» always takes the genitive.",
    "id": "c20"
   }
  ]

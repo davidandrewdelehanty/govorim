@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Доктор Андрей Ефимыч Рагин – ___ в своем роде.",
-   "lemma": "человек",
-   "options": [
-    "замечательного человека",
-    "замечательном человеке",
-    "замечательный человек",
-    "замечательному человеку"
-   ],
-   "correct": "замечательный человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«замечательный человек» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Набожности он не проявлял и на духовную особу в начале своей ___ походил так же мало, как теперь.",
    "lemma": "карьера",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "врачебной карьеры",
    "case": "Родительный (Genitive)",
-   "explain": "«врачебной карьеры» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«врачебной карьеры» depends on the noun «начале» (whose? of what?) — genitive.",
    "id": "c4"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "большой дороге",
    "case": "Предложный (Prepositional)",
-   "explain": "«большой дороге» — after the preposition «на», for location or topic.",
+   "explain": "«большой дороге» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c5"
   },
   {
@@ -53,7 +39,7 @@
    ],
    "correct": "синими жилками",
    "case": "Творительный (Instrumental)",
-   "explain": "«синими жилками» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «покрыто», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c6"
   },
   {
@@ -67,22 +53,8 @@
    ],
    "correct": "высоком росте",
    "case": "Предложный (Prepositional)",
-   "explain": "«высоком росте» — after the preposition «при», for location or topic.",
+   "explain": "«высоком росте» — «при» always takes the prepositional.",
    "id": "c7"
-  },
-  {
-   "sentence": "При высоком росте и ___ у него громадные руки и ноги; кажется, хватит кулаком – дух вон.",
-   "lemma": "плечо",
-   "options": [
-    "широким плечам",
-    "широких плеч",
-    "широкими плечами",
-    "широких плечах"
-   ],
-   "correct": "широких плечах",
-   "case": "Предложный (Prepositional)",
-   "explain": "«широких плечах» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c8"
   },
   {
    "sentence": "Когда Андрей Ефимыч приехал в город, чтобы принять должность, «___» находилось в ужасном состоянии.",
@@ -95,7 +67,7 @@
    ],
    "correct": "богоугодное заведение",
    "case": "Именительный (Nominative)",
-   "explain": "«богоугодное заведение» — the subject of the sentence stands in the nominative.",
+   "explain": "«богоугодное заведение» is the subject of «находилось» — who or what does it — so nominative.",
    "id": "c9"
   },
   {
@@ -109,7 +81,7 @@
    ],
    "correct": "больничные мужики",
    "case": "Именительный (Nominative)",
-   "explain": "«Больничные мужики» — the subject of the sentence stands in the nominative.",
+   "explain": "«больничные мужики» is the subject of «спали» — who or what does it — so nominative.",
    "id": "c12"
   },
   {
@@ -123,50 +95,8 @@
    ],
    "correct": "хирургическом отделении",
    "case": "Предложный (Prepositional)",
-   "explain": "«хирургическом отделении» — after the preposition «в», for location or topic.",
+   "explain": "«хирургическом отделении» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c13"
-  },
-  {
-   "sentence": "А ___ не открывало лечебницы ни в городе, ни возле, ссылаясь на то, что город уже имеет свою больницу.",
-   "lemma": "земство",
-   "options": [
-    "молодого земства",
-    "молодое земство",
-    "молодом земстве",
-    "молодым земством"
-   ],
-   "correct": "молодое земство",
-   "case": "Именительный (Nominative)",
-   "explain": "«молодое земство» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
-  },
-  {
-   "sentence": "Он попросил только ___ и сиделок не ночевать в палатах и поставил два шкапа с инструментами; смотритель же, кастелянша, фельдшер и хирургическая рожа остались на своих местах.",
-   "lemma": "мужик",
-   "options": [
-    "больничными мужиками",
-    "больничных мужиков",
-    "больничные мужики",
-    "больничным мужикам"
-   ],
-   "correct": "больничных мужиков",
-   "case": "Винительный (Accusative)",
-   "explain": "«больничных мужиков» — the accusative marks the direct object of the verb.",
-   "id": "c15"
-  },
-  {
-   "sentence": "Он попросил только больничных мужиков и сиделок не ночевать в палатах и поставил два шкапа с инструментами; смотритель же, кастелянша, фельдшер и ___ остались на своих местах.",
-   "lemma": "рожа",
-   "options": [
-    "хирургической рожи",
-    "хирургической рожей",
-    "хирургической роже",
-    "хирургическая рожа"
-   ],
-   "correct": "хирургическая рожа",
-   "case": "Именительный (Nominative)",
-   "explain": "«хирургическая рожа» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
   },
   {
    "sentence": "Он принимал ежедневно с утра до обеда, делал операции и даже занимался ___.",
@@ -179,7 +109,7 @@
    ],
    "correct": "акушерской практикой",
    "case": "Творительный (Instrumental)",
-   "explain": "«акушерской практикой» — the instrumental marks the means, company, or complement.",
+   "explain": "«занимался» takes the instrumental.",
    "id": "c17"
   }
  ]

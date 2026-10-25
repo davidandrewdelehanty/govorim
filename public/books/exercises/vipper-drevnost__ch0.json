@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Чем глубже ученый заходит в старину, тем труднее ему найти ___ о событиях, тем меньше исторических источников.",
-   "lemma": "известие",
-   "options": [
-    "точных известиях",
-    "точным известиям",
-    "точные известия",
-    "точными известиями"
-   ],
-   "correct": "точные известия",
-   "case": "Винительный (Accusative)",
-   "explain": "«точные известия» — the accusative marks the direct object of the verb.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Чем глубже ученый заходит в старину, тем труднее ему найти точные известия о событиях, тем меньше ___.",
-   "lemma": "источник",
-   "options": [
-    "историческим источникам",
-    "исторических источниках",
-    "исторических источников",
-    "историческими источниками"
-   ],
-   "correct": "исторических источников",
-   "case": "Родительный (Genitive)",
-   "explain": "«исторических источников» — the genitive here marks possession, absence, or quantity.",
-   "id": "c3"
-  },
-  {
    "sentence": "___ может считать себя счастливым, если у него есть предшественник, уже раньше позаботившийся собрать все сведения о своем народе, какие только сохранились.",
    "lemma": "историк",
    "options": [
@@ -39,22 +11,8 @@
    ],
    "correct": "нынешний историк",
    "case": "Именительный (Nominative)",
-   "explain": "«Нынешний историк» — the subject of the sentence stands in the nominative.",
+   "explain": "«нынешний историк» is the subject of «может» — who or what does it — so nominative.",
    "id": "c4"
-  },
-  {
-   "sentence": "Для русской истории ___ исторических известий был летописец, живший в Киеве около 1050 года после Рождества Христова, при великом князе Ярослав.",
-   "lemma": "собиратель",
-   "options": [
-    "первым собирателем",
-    "первому собирателю",
-    "первом собирателе",
-    "первого собирателя"
-   ],
-   "correct": "первым собирателем",
-   "case": "Творительный (Instrumental)",
-   "explain": "«первым собирателем» — the instrumental marks the means, company, or complement.",
-   "id": "c5"
   },
   {
    "sentence": "Для русской истории первым собирателем ___ был летописец, живший в Киеве около 1050 года после Рождества Христова, при великом князе Ярослав.",
@@ -67,7 +25,7 @@
    ],
    "correct": "исторических известий",
    "case": "Родительный (Genitive)",
-   "explain": "«исторических известий» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«исторических известий» depends on the noun «собирателем» (whose? of what?) — genitive.",
    "id": "c6"
   },
   {
@@ -81,7 +39,7 @@
    ],
    "correct": "великом князе",
    "case": "Предложный (Prepositional)",
-   "explain": "«великом князе» — after the preposition «при», for location or topic.",
+   "explain": "«великом князе» — «при» always takes the prepositional.",
    "id": "c7"
   },
   {
@@ -89,13 +47,13 @@
    "lemma": "сведение",
    "options": [
     "точными сведениями",
-    "точные сведения",
     "точных сведений",
-    "точных сведениях"
+    "точных сведениях",
+    "точным сведениям"
    ],
    "correct": "точных сведений",
    "case": "Родительный (Genitive)",
-   "explain": "«точных сведений» — the genitive here marks possession, absence, or quantity.",
+   "explain": "With «искать», a verb of waiting, seeking, asking or wanting, the object can stand in the genitive — as here.",
    "id": "c8"
   },
   {
@@ -109,22 +67,8 @@
    ],
    "correct": "старинных людях",
    "case": "Предложный (Prepositional)",
-   "explain": "«старинных людях» — after the preposition «о», for location or topic.",
+   "explain": "«старинных людях» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c10"
-  },
-  {
-   "sentence": "Предания вплетают в рассказ о старинных людях разные чудеса, например: Илья Муромец, по былинам, сражается с чудовищами, с исполинами, побеждает ___ воинов.",
-   "lemma": "рать",
-   "options": [
-    "целых ратях",
-    "целых ратей",
-    "целыми ратями",
-    "целые рати"
-   ],
-   "correct": "целые рати",
-   "case": "Винительный (Accusative)",
-   "explain": "«целые рати» — the accusative marks the direct object of the verb.",
-   "id": "c11"
   },
   {
    "sentence": "Но, даже рассказывая о событиях правдоподобных, предание приписывает одному ___ то, что сделали общими силами многие люди.",
@@ -133,40 +77,26 @@
     "необыкновенным человеком",
     "необыкновенный человек",
     "необыкновенному человеку",
-    "необыкновенного человека"
+    "необыкновенном человеке"
    ],
    "correct": "необыкновенному человеку",
    "case": "Дательный (Dative)",
-   "explain": "«необыкновенному человеку» — the dative marks the indirect object or recipient.",
+   "explain": "«необыкновенному человеку» is the indirect object of «сделали» — to or for whom (кому?) — dative.",
    "id": "c12"
   },
   {
    "sentence": "Но, даже рассказывая о событиях правдоподобных, предание приписывает одному необыкновенному человеку то, что сделали ___ многие люди.",
    "lemma": "сила",
    "options": [
+    "общих сил",
+    "общим силам",
     "общих силах",
-    "общие силы",
-    "общими силами",
-    "общих сил"
+    "общими силами"
    ],
    "correct": "общими силами",
    "case": "Творительный (Instrumental)",
-   "explain": "«общими силами» — the instrumental marks the means, company, or complement.",
+   "explain": "After «сделали» (to call, consider or make someone something), that something is in the instrumental.",
    "id": "c13"
-  },
-  {
-   "sentence": "Но, даже рассказывая о событиях правдоподобных, предание приписывает одному необыкновенному человеку то, что сделали общими силами ___.",
-   "lemma": "человек",
-   "options": [
-    "многим людям",
-    "многими людьми",
-    "многие люди",
-    "многих людях"
-   ],
-   "correct": "многие люди",
-   "case": "Именительный (Nominative)",
-   "explain": "«многие люди» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
   },
   {
    "sentence": "В поисках известий о прошлом, ученые обращаются еще к одному виду источников, именно, к остаткам ___.",
@@ -179,36 +109,22 @@
    ],
    "correct": "человеческого быта",
    "case": "Родительный (Genitive)",
-   "explain": "«человеческого быта» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«человеческого быта» depends on the noun «остаткам» (whose? of what?) — genitive.",
    "id": "c15"
   },
   {
    "sentence": "В наших ___, Москве, Новгороде, Пскове, Смоленске, Ростове, Казани, стоят до сих пор кремли, т. е. обведенные стеной древние крепости, в которых население защищалось от нападения врага.",
    "lemma": "город",
    "options": [
-    "старые города",
-    "старых городах",
     "старым городам",
+    "старых городах",
+    "старыми городами",
     "старых городов"
    ],
    "correct": "старых городах",
    "case": "Предложный (Prepositional)",
-   "explain": "«старых городах» — after the preposition «в», for location or topic.",
+   "explain": "«старых городах» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c16"
-  },
-  {
-   "sentence": "Но по большей части ___ разрушены, предметы обихода прежних людей разбиты и растеряны.",
-   "lemma": "постройка",
-   "options": [
-    "старинным постройкам",
-    "старинных построек",
-    "старинных постройках",
-    "старинные постройки"
-   ],
-   "correct": "старинные постройки",
-   "case": "Именительный (Nominative)",
-   "explain": "«старинные постройки» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
   },
   {
    "sentence": "Но по большей части старинные постройки разрушены, предметы обихода ___ разбиты и растеряны.",
@@ -221,7 +137,7 @@
    ],
    "correct": "прежних людей",
    "case": "Родительный (Genitive)",
-   "explain": "«прежних людей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«прежних людей» depends on the noun «обихода» (whose? of what?) — genitive.",
    "id": "c18"
   },
   {
@@ -235,7 +151,7 @@
    ],
    "correct": "верхнего слоя",
    "case": "Родительный (Genitive)",
-   "explain": "«верхнего слоя» — after the preposition «из-под», the genitive here marks possession, absence, or quantity.",
+   "explain": "«верхнего слоя» — «из-под» always takes the genitive.",
    "id": "c20"
   },
   {
@@ -249,7 +165,7 @@
    ],
    "correct": "римского императора",
    "case": "Родительный (Genitive)",
-   "explain": "«римского императора» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«римского императора» depends on the noun «времена» (whose? of what?) — genitive.",
    "id": "c21"
   },
   {
@@ -263,7 +179,7 @@
    ],
    "correct": "нынешних итальянцев",
    "case": "Родительный (Genitive)",
-   "explain": "«нынешних итальянцев» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«нынешних итальянцев» depends on the noun «предки» (whose? of what?) — genitive.",
    "id": "c22"
   },
   {
@@ -277,22 +193,8 @@
    ],
    "correct": "средиземного моря",
    "case": "Родительный (Genitive)",
-   "explain": "«Средиземного моря» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«средиземного моря» depends on the noun «кругом» (whose? of what?) — genitive.",
    "id": "c23"
-  },
-  {
-   "sentence": "В нашей стране очень ___ были сделаны в курганах, т. е. больших старинных могильных насыпях.",
-   "lemma": "находка",
-   "options": [
-    "интересными находками",
-    "интересные находки",
-    "интересных находок",
-    "интересных находках"
-   ],
-   "correct": "интересные находки",
-   "case": "Именительный (Nominative)",
-   "explain": "«интересные находки» — the subject of the sentence stands in the nominative.",
-   "id": "c24"
   },
   {
    "sentence": "В 1862 г. русские ученые раскопали большой ___, расположенный на верховьях речки Чертомлык, впадающей в Днепр, в нижнем его течении.",
@@ -305,50 +207,8 @@
    ],
    "correct": "чертомлыцкий курган",
    "case": "Винительный (Accusative)",
-   "explain": "«Чертомлыцкий курган» — the accusative marks the direct object of the verb.",
+   "explain": "«чертомлыцкий курган» is the direct object of «раскопали» (кого? что?) — accusative.",
    "id": "c25"
-  },
-  {
-   "sentence": "На вершине кургана стояло большое, выше ___, каменное изображение воителя (народ зовет такие фигуры „каменными ба вами 1).",
-   "lemma": "рост",
-   "options": [
-    "человеческом росте",
-    "человеческого роста",
-    "человеческому росту",
-    "человеческим ростом"
-   ],
-   "correct": "человеческого роста",
-   "case": "Родительный (Genitive)",
-   "explain": "«человеческого роста» — the genitive here marks possession, absence, or quantity.",
-   "id": "c26"
-  },
-  {
-   "sentence": "На вершине кургана стояло большое, выше человеческого роста, ___ воителя (народ зовет такие фигуры „каменными ба вами 1).",
-   "lemma": "изображение",
-   "options": [
-    "каменного изображения",
-    "каменным изображением",
-    "каменное изображение",
-    "каменном изображении"
-   ],
-   "correct": "каменное изображение",
-   "case": "Именительный (Nominative)",
-   "explain": "«каменное изображение» — the subject of the sentence stands in the nominative.",
-   "id": "c27"
-  },
-  {
-   "sentence": "Ученые, разбиравшие эти останки, выяснили, что ___ должны принадлежать скифам, народу, кочевавшему в нынешней южной России по низовьям Днепра и.Дона за две слишком тысячи лет до нашего времени.",
-   "lemma": "могила",
-   "options": [
-    "громадным могилам",
-    "громадными могилами",
-    "громадные могилы",
-    "громадных могилах"
-   ],
-   "correct": "громадные могилы",
-   "case": "Именительный (Nominative)",
-   "explain": "«громадные могилы» — the subject of the sentence stands in the nominative.",
-   "id": "c28"
   },
   {
    "sentence": "Еще более ___ раскрываются перед нами благодаря разысканиям в пещерах южной Франции и северной Испании, служивших жилищами древних охотников 40—50 тысяч лет тому назад.",
@@ -361,7 +221,7 @@
    ],
    "correct": "ранние времена",
    "case": "Именительный (Nominative)",
-   "explain": "«ранние времена» — the subject of the sentence stands in the nominative.",
+   "explain": "«ранние времена» is the subject of «раскрываются» — who or what does it — so nominative.",
    "id": "c29"
   },
   {
@@ -375,7 +235,7 @@
    ],
    "correct": "древних охотников",
    "case": "Родительный (Genitive)",
-   "explain": "«древних охотников» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«древних охотников» depends on the noun «жилищами» (whose? of what?) — genitive.",
    "id": "c30"
   },
   {
@@ -389,7 +249,7 @@
    ],
    "correct": "историческом рассказе",
    "case": "Предложный (Prepositional)",
-   "explain": "«историческом рассказе» — after the preposition «в», for location or topic.",
+   "explain": "«историческом рассказе» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c31"
   },
   {
@@ -403,7 +263,7 @@
    ],
    "correct": "греческого слова",
    "case": "Родительный (Genitive)",
-   "explain": "«греческого слова» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«греческого слова» — «от» always takes the genitive.",
    "id": "c32"
   },
   {
@@ -417,7 +277,7 @@
    ],
    "correct": "разных народов",
    "case": "Родительный (Genitive)",
-   "explain": "«разных народов» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«разных народов» — «у» always takes the genitive.",
    "id": "c33"
   },
   {
@@ -431,22 +291,8 @@
    ],
    "correct": "наследственного царя",
    "case": "Винительный (Accusative)",
-   "explain": "«наследственного царя» — the accusative marks the direct object of the verb.",
+   "explain": "«наследственного царя» is the direct object of «изгнал» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c34"
-  },
-  {
-   "sentence": "У мусульман, последователей учения Мохамеда, этой служит бегство этого пророка из Бекки и основание им в Медине первой ___: по христианскому счету это выходит 622 год после Рождества Христова.",
-   "lemma": "община",
-   "options": [
-    "правоверной общине",
-    "правоверная община",
-    "правоверной общиной",
-    "правоверной общины"
-   ],
-   "correct": "правоверной общины",
-   "case": "Родительный (Genitive)",
-   "explain": "«правоверной общины» — the genitive here marks possession, absence, or quantity.",
-   "id": "c35"
   },
   {
    "sentence": "Кроме ___ событий по годам мы считаем еще веками, или столетиями; например: бегство Мохамеда приходится на седьмой век по Р. X.",
@@ -459,7 +305,7 @@
    ],
    "correct": "точного обозначения",
    "case": "Родительный (Genitive)",
-   "explain": "«точного обозначения» — after the preposition «кроме», the genitive here marks possession, absence, or quantity.",
+   "explain": "«точного обозначения» — «кроме» always takes the genitive.",
    "id": "c36"
   },
   {
@@ -467,27 +313,27 @@
    "lemma": "смысл",
    "options": [
     "другим смыслом",
-    "другому смыслу",
+    "другом смысле",
     "другой смысл",
-    "другого смысла"
+    "другому смыслу"
    ],
    "correct": "другой смысл",
    "case": "Винительный (Accusative)",
-   "explain": "«другой смысл» — the accusative marks the direct object of the verb.",
+   "explain": "«другой смысл» is the direct object of «имеет» (кого? что?) — accusative.",
    "id": "c38"
   },
   {
    "sentence": "Они различают века сообразно характеру орудий, употреблявшихся людьми: раннее время называют ___, позднее металлическим.",
    "lemma": "век",
    "options": [
-    "каменный век",
-    "каменного века",
     "каменным веком",
-    "каменному веку"
+    "каменному веку",
+    "каменном веке",
+    "каменного века"
    ],
    "correct": "каменным веком",
    "case": "Творительный (Instrumental)",
-   "explain": "«каменным веком» — the instrumental marks the means, company, or complement.",
+   "explain": "After «называют» (to call, consider or make someone something), that something is in the instrumental.",
    "id": "c39"
   }
  ]

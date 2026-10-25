@@ -1,90 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "У меня есть сосед, ___ и молодой охотник.",
-   "lemma": "хозяин",
-   "options": [
-    "молодом хозяине",
-    "молодой хозяин",
-    "молодым хозяином",
-    "молодому хозяину"
-   ],
-   "correct": "молодой хозяин",
-   "case": "Именительный (Nominative)",
-   "explain": "«молодой хозяин» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "У меня есть сосед, молодой хозяин и ___.",
-   "lemma": "охотник",
-   "options": [
-    "молодом охотнике",
-    "молодым охотником",
-    "молодой охотник",
-    "молодого охотника"
-   ],
-   "correct": "молодой охотник",
-   "case": "Именительный (Nominative)",
-   "explain": "«молодой охотник» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
-   "sentence": "«Только, — говорит, — поедемте по моим мелочам, к Зуше; я кстати посмотрю Чаплыгино; вы знаете, мой ___? у меня его рубят».",
-   "lemma": "лес",
-   "options": [
-    "дубовом лесе",
-    "дубовый лес",
-    "дубового леса",
-    "дубовому лесу"
-   ],
-   "correct": "дубовый лес",
-   "case": "Именительный (Nominative)",
-   "explain": "«дубовый лес» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
-   "sentence": "Оно досталось ему в наследство от тетки, статской советницы Кардой-Катаевой, необыкновенно ___, которая, даже лежа в постеле, продолжительной жалобно кряхтела.",
-   "lemma": "женщина",
-   "options": [
-    "толстой женщины",
-    "толстая женщина",
-    "толстой женщиной",
-    "толстой женщине"
-   ],
-   "correct": "толстой женщины",
-   "case": "Родительный (Genitive)",
-   "explain": "«толстой женщины» — the genitive here marks possession, absence, or quantity.",
-   "id": "c4"
-  },
-  {
-   "sentence": "Весь этот лес состоял из каких-нибудь двух- или трехсот ___ и ясеней.",
-   "lemma": "дуб",
-   "options": [
-    "огромными дубами",
-    "огромных дубов",
-    "огромных дубах",
-    "огромным дубам"
-   ],
-   "correct": "огромных дубов",
-   "case": "Родительный (Genitive)",
-   "explain": "«огромных дубов» — the genitive here marks possession, absence, or quantity.",
-   "id": "c5"
-  },
-  {
-   "sentence": "Весело проводил я время в Чаплыгине, и оттого, признаюсь, не без ___ въехал я теперь в слишком знакомый мне лес.",
-   "lemma": "чувство",
-   "options": [
-    "грустным чувством",
-    "грустное чувство",
-    "грустном чувстве",
-    "грустного чувства"
-   ],
-   "correct": "грустного чувства",
-   "case": "Родительный (Genitive)",
-   "explain": "«грустного чувства» — after the preposition «в», the genitive here marks possession, absence, or quantity.",
-   "id": "c7"
-  },
-  {
    "sentence": "Ведь за них теперь против прежнего ___ не дадут.",
    "lemma": "доля",
    "options": [
@@ -95,7 +11,7 @@
    ],
    "correct": "десятой доли",
    "case": "Родительный (Genitive)",
-   "explain": "«десятой доли» — after the preposition «против», the genitive here marks possession, absence, or quantity.",
+   "explain": "«десятой доли» — «против» always takes the genitive.",
    "id": "c8"
   },
   {
@@ -109,7 +25,7 @@
    ],
    "correct": "молодой мужик",
    "case": "Именительный (Nominative)",
-   "explain": "«молодой мужик» — the subject of the sentence stands in the nominative.",
+   "explain": "«молодой мужик» is the subject of «выскочил» — who or what does it — so nominative.",
    "id": "c9"
   },
   {
@@ -123,92 +39,8 @@
    ],
    "correct": "молодой липы",
    "case": "Родительный (Genitive)",
-   "explain": "«молодой липы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«молодой липы» depends on the noun «тень» (whose? of what?) — genitive.",
    "id": "c10"
-  },
-  {
-   "sentence": "(Он так бы и остался в овине, да ___ его полуживого вытащил: окунулся в кадку с водой, да с разбега и вышиб дверь под пылавшим навесом.) Я зашел к нему в избу.",
-   "lemma": "мещанин",
-   "options": [
-    "заезжий мещанин",
-    "заезжим мещанином",
-    "заезжем мещанине",
-    "заезжему мещанину"
-   ],
-   "correct": "заезжий мещанин",
-   "case": "Именительный (Nominative)",
-   "explain": "«заезжий мещанин» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
-  },
-  {
-   "sentence": "«А вон, батюшка, на лежанке», — отвечает мне нараспев ___.",
-   "lemma": "баба",
-   "options": [
-    "подгорюнившейся бабы",
-    "подгорюнившаяся баба",
-    "подгорюнившейся бабе",
-    "подгорюнившейся бабой"
-   ],
-   "correct": "подгорюнившаяся баба",
-   "case": "Именительный (Nominative)",
-   "explain": "«подгорюнившаяся баба» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
-  },
-  {
-   "sentence": "В сенях ходят, стучат, разговаривают: ___ капусту рубит.",
-   "lemma": "жена",
-   "options": [
-    "братниной женой",
-    "братниной жене",
-    "братниной жены",
-    "братнина жена"
-   ],
-   "correct": "братнина жена",
-   "case": "Именительный (Nominative)",
-   "explain": "«братнина жена» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
-  },
-  {
-   "sentence": "А то, помнится, завернул я однажды в больницу села Красногорья, к знакомому мне фельдшеру Капитону, ___.",
-   "lemma": "охотник",
-   "options": [
-    "страстный охотник",
-    "страстного охотника",
-    "страстным охотником",
-    "страстному охотнику"
-   ],
-   "correct": "страстному охотнику",
-   "case": "Дательный (Dative)",
-   "explain": "«страстному охотнику» — the dative marks the indirect object or recipient.",
-   "id": "c15"
-  },
-  {
-   "sentence": "Кроме его, при больнице состояло два человека: подверженный сумасшествию резчик Павел и ___ Меликитриса, занимавшая должность кухарки.",
-   "lemma": "баба",
-   "options": [
-    "сухорукой бабы",
-    "сухорукой бабе",
-    "сухорукая баба",
-    "сухорукой бабой"
-   ],
-   "correct": "сухорукая баба",
-   "case": "Именительный (Nominative)",
-   "explain": "«сухорукая баба» — the subject of the sentence stands in the nominative.",
-   "id": "c19"
-  },
-  {
-   "sentence": "___ был на вид угрюм и скуп на слова; по ночам пел песню «о прекрасной Венере» и к каждому проезжему подходил с просьбой позволить ему жениться на какой-то девке Маланье, давно уже умершей.",
-   "lemma": "резчик",
-   "options": [
-    "сумасшедший резчик",
-    "сумасшедшего резчика",
-    "сумасшедшим резчиком",
-    "сумасшедшем резчике"
-   ],
-   "correct": "сумасшедший резчик",
-   "case": "Именительный (Nominative)",
-   "explain": "«Сумасшедший резчик» — the subject of the sentence stands in the nominative.",
-   "id": "c20"
   },
   {
    "sentence": "___ била его и заставляла стеречь индюшек.",
@@ -221,7 +53,7 @@
    ],
    "correct": "сухорукая баба",
    "case": "Именительный (Nominative)",
-   "explain": "«Сухорукая баба» — the subject of the sentence stands in the nominative.",
+   "explain": "«сухорукая баба» is the subject of «била» — who or what does it — so nominative.",
    "id": "c21"
   },
   {
@@ -235,7 +67,7 @@
    ],
    "correct": "плотный мужик",
    "case": "Именительный (Nominative)",
-   "explain": "«плотный мужик» — the subject of the sentence stands in the nominative.",
+   "explain": "«плотный мужик» is the subject of «сидел» — who or what does it — so nominative.",
    "id": "c22"
   },
   {
@@ -249,7 +81,7 @@
    ],
    "correct": "русские люди",
    "case": "Именительный (Nominative)",
-   "explain": "«русские люди» — the subject of the sentence stands in the nominative.",
+   "explain": "«русские люди» is the subject of «умирают» — who or what does it — so nominative.",
    "id": "c26"
   },
   {
@@ -257,42 +89,14 @@
    "lemma": "кресло",
    "options": [
     "вольтеровских креслах",
-    "вольтеровские кресла",
     "вольтеровским креслам",
+    "вольтеровских кресел",
     "вольтеровскими креслами"
    ],
    "correct": "вольтеровских креслах",
    "case": "Предложный (Prepositional)",
-   "explain": "«вольтеровских креслах» — after the preposition «в», for location or topic.",
+   "explain": "«вольтеровских креслах» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c31"
-  },
-  {
-   "sentence": "Светлое ___ весело синело над темно-бурою грядой обнаженных лип; кое-где шевелились и лепетали на них последние, ярко-золотые листья.",
-   "lemma": "небо",
-   "options": [
-    "осеннему небу",
-    "осенним небом",
-    "осеннего неба",
-    "осеннее небо"
-   ],
-   "correct": "осеннее небо",
-   "case": "Именительный (Nominative)",
-   "explain": "«осеннее небо» — the subject of the sentence stands in the nominative.",
-   "id": "c32"
-  },
-  {
-   "sentence": "Прохваченная морозом земля потела и оттаивала на солнце; его косые ___ били вскользь по бледной траве; в воздухе чудился легкий треск; ясно и внятно звучали в саду голоса работников.",
-   "lemma": "луч",
-   "options": [
-    "румяные лучи",
-    "румяных лучах",
-    "румяных лучей",
-    "румяным лучам"
-   ],
-   "correct": "румяные лучи",
-   "case": "Именительный (Nominative)",
-   "explain": "«румяные лучи» — the subject of the sentence stands in the nominative.",
-   "id": "c33"
   },
   {
    "sentence": "Прохваченная морозом земля потела и оттаивала на солнце; его косые румяные лучи били вскользь по ___; в воздухе чудился легкий треск; ясно и внятно звучали в саду голоса работников.",
@@ -305,36 +109,8 @@
    ],
    "correct": "бледной траве",
    "case": "Дательный (Dative)",
-   "explain": "«бледной траве» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«бледной траве» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c34"
-  },
-  {
-   "sentence": "На Авенире был ветхий ___; зеленый шейный платок бросал мертвенный оттенок на его страшно исхудавшее лицо.",
-   "lemma": "халат",
-   "options": [
-    "бухарский халат",
-    "бухарскому халату",
-    "бухарским халатом",
-    "бухарского халата"
-   ],
-   "correct": "бухарский халат",
-   "case": "Именительный (Nominative)",
-   "explain": "«бухарский халат» — the subject of the sentence stands in the nominative.",
-   "id": "c35"
-  },
-  {
-   "sentence": "Сорокоумов никогда, как говорится, не «следил» за наукой, но любопытствовал знать, что, дескать, до чего дошли теперь ___?",
-   "lemma": "ум",
-   "options": [
-    "великих умов",
-    "великие умы",
-    "великих умах",
-    "великими умами"
-   ],
-   "correct": "великие умы",
-   "case": "Именительный (Nominative)",
-   "explain": "«великие умы» — the subject of the sentence stands in the nominative.",
-   "id": "c37"
   },
   {
    "sentence": "Я к ___ привык.",
@@ -347,7 +123,7 @@
    ],
    "correct": "здешнему дому",
    "case": "Дательный (Dative)",
-   "explain": "«здешнему дому» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«здешнему дому» — «к» always takes the dative.",
    "id": "c41"
   },
   {
@@ -361,7 +137,7 @@
    ],
    "correct": "русские люди",
    "case": "Именительный (Nominative)",
-   "explain": "«русские люди» — the subject of the sentence stands in the nominative.",
+   "explain": "«русские люди» is the subject of «умирают» — who or what does it — so nominative.",
    "id": "c43"
   }
  ]

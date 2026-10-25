@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Верхушки деревьев и ___ маленького, стоящего на возвышенности, городка купались в золоте заходившего светила.",
-   "lemma": "постройка",
-   "options": [
-    "каменные постройки",
-    "каменных постройках",
-    "каменными постройками",
-    "каменным постройкам"
-   ],
-   "correct": "каменные постройки",
-   "case": "Именительный (Nominative)",
-   "explain": "«каменные постройки» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Около солнца и над ним не было ни одного облачка; ___ обещало прекрасную ночь.",
    "lemma": "обстоятельство",
    "options": [
@@ -25,50 +11,8 @@
    ],
    "correct": "последнее обстоятельство",
    "case": "Именительный (Nominative)",
-   "explain": "«последнее обстоятельство» — the subject of the sentence stands in the nominative.",
+   "explain": "«последнее обстоятельство» is the subject of «обещало» — who or what does it — so nominative.",
    "id": "c2"
-  },
-  {
-   "sentence": "Старого толстяка и хорошенькой ___ возле него уже не было.",
-   "lemma": "девочка",
-   "options": [
-    "белокурой девочки",
-    "белокурой девочкой",
-    "белокурая девочка",
-    "белокурой девочке"
-   ],
-   "correct": "белокурой девочки",
-   "case": "Родительный (Genitive)",
-   "explain": "«белокурой девочки» — the genitive here marks possession, absence, or quantity.",
-   "id": "c3"
-  },
-  {
-   "sentence": "Вы ___, который обошелся с нами по-человечески.",
-   "lemma": "человек",
-   "options": [
-    "первым человеком",
-    "первому человеку",
-    "первого человека",
-    "первый человек"
-   ],
-   "correct": "первый человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«первый человек» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
-  },
-  {
-   "sentence": "Зато — вы ___, о котором я буду вспоминать не с горьким чувством, а с наслаждением.",
-   "lemma": "человек",
-   "options": [
-    "первым человеком",
-    "первому человеку",
-    "первого человека",
-    "первый человек"
-   ],
-   "correct": "первый человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«первый человек» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
   },
   {
    "sentence": "Зато — вы первый человек, о котором я буду вспоминать не с ___, а с наслаждением.",
@@ -81,7 +25,7 @@
    ],
    "correct": "горьким чувством",
    "case": "Творительный (Instrumental)",
-   "explain": "«горьким чувством» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«горьким чувством» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c7"
   },
   {
@@ -95,36 +39,8 @@
    ],
    "correct": "записной книжки",
    "case": "Родительный (Genitive)",
-   "explain": "«записной книжки» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«записной книжки» — «из» always takes the genitive.",
    "id": "c10"
-  },
-  {
-   "sentence": "Барон вынул из записной книжки ___ и написал: «Получено от девочки в тюльпане 13-го июня».",
-   "lemma": "карандашик",
-   "options": [
-    "оловянного карандашика",
-    "оловянным карандашиком",
-    "оловянный карандашик",
-    "оловянном карандашике"
-   ],
-   "correct": "оловянный карандашик",
-   "case": "Именительный (Nominative)",
-   "explain": "«оловянный карандашик» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
-  },
-  {
-   "sentence": "Сложив это письмо вдвое, он спрятал его в карман ___.",
-   "lemma": "книжка",
-   "options": [
-    "записной книжки",
-    "записной книжкой",
-    "записной книжке",
-    "записная книжка"
-   ],
-   "correct": "записной книжки",
-   "case": "Родительный (Genitive)",
-   "explain": "«записной книжки» — the genitive here marks possession, absence, or quantity.",
-   "id": "c12"
   },
   {
    "sentence": "Просека тянулась почти до ___.",
@@ -137,22 +53,8 @@
    ],
    "correct": "самого городка",
    "case": "Родительный (Genitive)",
-   "explain": "«самого городка» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«самого городка» — «до» always takes the genitive.",
    "id": "c13"
-  },
-  {
-   "sentence": "На средине она пересекалась ___.",
-   "lemma": "дорога",
-   "options": [
-    "железной дороги",
-    "железной дороге",
-    "железная дорога",
-    "железной дорогой"
-   ],
-   "correct": "железной дорогой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«железной дорогой» — the instrumental marks the means, company, or complement.",
-   "id": "c14"
   },
   {
    "sentence": "Недалеко от перекрестка, образуемого просекой и полотном ___, стоит дом лесничего Блаухера.",
@@ -165,7 +67,7 @@
    ],
    "correct": "железной дороги",
    "case": "Родительный (Genitive)",
-   "explain": "«железной дороги» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«железной дороги» depends on the noun «полотном» (whose? of what?) — genitive.",
    "id": "c15"
   },
   {
@@ -179,22 +81,8 @@
    ],
    "correct": "знатные господа",
    "case": "Именительный (Nominative)",
-   "explain": "«знатные господа» — the subject of the sentence stands in the nominative.",
+   "explain": "«знатные господа» is the subject of «ходят» — who or what does it — so nominative.",
    "id": "c19"
-  },
-  {
-   "sentence": "А генерал Фрехтельзак — совсем ___!",
-   "lemma": "дело",
-   "options": [
-    "другом деле",
-    "другого дела",
-    "другое дело",
-    "другому делу"
-   ],
-   "correct": "другое дело",
-   "case": "Именительный (Nominative)",
-   "explain": "«другое дело» — the subject of the sentence stands in the nominative.",
-   "id": "c21"
   },
   {
    "sentence": "Темные ___ уже ложились на землю.",
@@ -207,7 +95,7 @@
    ],
    "correct": "вечерние тени",
    "case": "Именительный (Nominative)",
-   "explain": "«вечерние тени» — the subject of the sentence stands in the nominative.",
+   "explain": "«вечерние тени» is the subject of «ложились» — who or what does it — so nominative.",
    "id": "c23"
   },
   {
@@ -221,36 +109,8 @@
    ],
    "correct": "дачного поезда",
    "case": "Родительный (Genitive)",
-   "explain": "«дачного поезда» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«дачного поезда» — «от» always takes the genitive.",
    "id": "c25"
-  },
-  {
-   "sentence": "От всей ее фигуры так и веяло воистину ___.",
-   "lemma": "величие",
-   "options": [
-    "герцогскому величию",
-    "герцогское величие",
-    "герцогским величием",
-    "герцогском величии"
-   ],
-   "correct": "герцогским величием",
-   "case": "Творительный (Instrumental)",
-   "explain": "«герцогским величием» — the instrumental marks the means, company, or complement.",
-   "id": "c26"
-  },
-  {
-   "sentence": "В ее руках был тот ___, который в полдень рассек губу Цвибуша.",
-   "lemma": "хлыст",
-   "options": [
-    "самого хлыста",
-    "самому хлысту",
-    "самым хлыстом",
-    "самый хлыст"
-   ],
-   "correct": "самый хлыст",
-   "case": "Именительный (Nominative)",
-   "explain": "«самый хлыст» — the subject of the sentence stands in the nominative.",
-   "id": "c27"
   },
   {
    "sentence": "— Я узнала вас при ___, — сказала она, подавая Артуру руку.",
@@ -263,7 +123,7 @@
    ],
    "correct": "первом взгляде",
    "case": "Предложный (Prepositional)",
-   "explain": "«первом взгляде» — after the preposition «при», for location or topic.",
+   "explain": "«первом взгляде» — «при» always takes the prepositional.",
    "id": "c28"
   },
   {
@@ -277,35 +137,21 @@
    ],
    "correct": "красивых мужчин",
    "case": "Родительный (Genitive)",
-   "explain": "«красивых мужчин» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«красивых мужчин» depends on the noun «любительница» (whose? of what?) — genitive.",
    "id": "c32"
-  },
-  {
-   "sentence": "___ показал мне, что я сделала страшную ошибку.",
-   "lemma": "опыт",
-   "options": [
-    "двухлетнего опыта",
-    "двухлетний опыт",
-    "двухлетнему опыту",
-    "двухлетним опытом"
-   ],
-   "correct": "двухлетний опыт",
-   "case": "Именительный (Nominative)",
-   "explain": "«Двухлетний опыт» — the subject of the sentence stands in the nominative.",
-   "id": "c33"
   },
   {
    "sentence": "Как, однако, странно меняются обстоятельства на этом ___!",
    "lemma": "свет",
    "options": [
-    "скучным светом",
     "скучного света",
-    "скучный свет",
-    "скучном свете"
+    "скучном свете",
+    "скучному свету",
+    "скучным светом"
    ],
    "correct": "скучном свете",
    "case": "Предложный (Prepositional)",
-   "explain": "«скучном свете» — after the preposition «на», for location or topic.",
+   "explain": "«скучном свете» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c34"
   }
  ]

@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Там были военачальники Персии и Мидии, ___ и наместники провинций.",
-   "lemma": "человек",
-   "options": [
-    "знатными людьми",
-    "знатных людях",
-    "знатным людям",
-    "знатные люди"
-   ],
-   "correct": "знатные люди",
-   "case": "Именительный (Nominative)",
-   "explain": "«знатные люди» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Когда эти дни минули, царь устроил для всех, от малого до великого, кто только был в крепости Сузы, ___ в закрытом саду царского дворца.",
-   "lemma": "пир",
-   "options": [
-    "семидневный пир",
-    "семидневном пире",
-    "семидневного пира",
-    "семидневному пиру"
-   ],
-   "correct": "семидневный пир",
-   "case": "Именительный (Nominative)",
-   "explain": "«семидневный пир» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
    "sentence": "Когда эти дни минули, царь устроил для всех, от малого до великого, кто только был в крепости Сузы, семидневный пир в закрытом саду ___.",
    "lemma": "дворец",
    "options": [
@@ -39,7 +11,7 @@
    ],
    "correct": "царского дворца",
    "case": "Родительный (Genitive)",
-   "explain": "«царского дворца» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«царского дворца» depends on the noun «саду» (whose? of what?) — genitive.",
    "id": "c4"
   },
   {
@@ -53,78 +25,22 @@
    ],
    "correct": "серебряным кольцам",
    "case": "Дательный (Dative)",
-   "explain": "«серебряным кольцам» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«серебряным кольцам» — «к» always takes the dative.",
    "id": "c5"
-  },
-  {
-   "sentence": "Золотые и серебряные ложа стояли на помосте, выстланном порфиром, мрамором, перламутром и другими ___.",
-   "lemma": "камень",
-   "options": [
-    "дорогие камни",
-    "дорогих камнях",
-    "дорогими камнями",
-    "дорогих камней"
-   ],
-   "correct": "дорогими камнями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«дорогими камнями» — the instrumental marks the means, company, or complement.",
-   "id": "c7"
-  },
-  {
-   "sentence": "Вино подавалось в золотых кубках, среди которых не было двух одинаковых, и ___ было по щедрости царя в изобилии.",
-   "lemma": "вино",
-   "options": [
-    "царским вином",
-    "царское вино",
-    "царского вина",
-    "царском вине"
-   ],
-   "correct": "царского вина",
-   "case": "Родительный (Genitive)",
-   "explain": "«царского вина» — the genitive here marks possession, absence, or quantity.",
-   "id": "c9"
-  },
-  {
-   "sentence": "Сегодня же ___ Персии и Мидии, услышав о поступке царицы, взбунтуются против своих мужей, и тогда презрению жен и гневу мужей не будет конца!",
-   "lemma": "женщина",
-   "options": [
-    "знатные женщины",
-    "знатным женщинам",
-    "знатных женщин",
-    "знатными женщинами"
-   ],
-   "correct": "знатные женщины",
-   "case": "Именительный (Nominative)",
-   "explain": "«знатные женщины» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
   },
   {
    "sentence": "И пусть царь отдаст ее ___ другой, которая будет лучше нее.",
    "lemma": "сан",
    "options": [
-    "царском сане",
     "царскому сану",
-    "царского сана",
-    "царский сан"
+    "царский сан",
+    "царским саном",
+    "царском сане"
    ],
    "correct": "царский сан",
    "case": "Винительный (Accusative)",
-   "explain": "«царский сан» — the accusative marks the direct object of the verb.",
+   "explain": "«царский сан» is the direct object of «отдаст» (кого? что?) — accusative.",
    "id": "c12"
-  },
-  {
-   "sentence": "И когда ___ будет провозглашен по всему огромному царству, все женщины будут чтить своих мужей, от малого до великого.",
-   "lemma": "указ",
-   "options": [
-    "царский указ",
-    "царскому указу",
-    "царского указа",
-    "царским указом"
-   ],
-   "correct": "царский указ",
-   "case": "Именительный (Nominative)",
-   "explain": "«царский указ» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
   },
   {
    "sentence": "И когда царский указ будет провозглашен по всему ___, все женщины будут чтить своих мужей, от малого до великого.",
@@ -137,7 +53,7 @@
    ],
    "correct": "огромному царству",
    "case": "Дательный (Dative)",
-   "explain": "«огромному царству» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«огромному царству» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c14"
   }
  ]

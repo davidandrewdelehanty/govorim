@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Теперь третий ___ нашего монастыря — наш корпусный доктор Зеленский.",
-   "lemma": "инок",
-   "options": [
-    "постоянным иноком",
-    "постоянного инока",
-    "постоянный инок",
-    "постоянному иноку"
-   ],
-   "correct": "постоянный инок",
-   "case": "Именительный (Nominative)",
-   "explain": "«постоянный инок» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Теперь третий постоянный инок нашего монастыря — наш ___ Зеленский.",
-   "lemma": "доктор",
-   "options": [
-    "корпусному доктору",
-    "корпусный доктор",
-    "корпусным доктором",
-    "корпусном докторе"
-   ],
-   "correct": "корпусный доктор",
-   "case": "Именительный (Nominative)",
-   "explain": "«корпусный доктор» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
    "sentence": "Этот даже превзошел двух первых тем, что жил в лазарете, в ___.",
    "lemma": "комната",
    "options": [
@@ -39,22 +11,8 @@
    ],
    "correct": "последней комнате",
    "case": "Предложный (Prepositional)",
-   "explain": "«последней комнате» — after the preposition «в», for location or topic.",
+   "explain": "«последней комнате» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c3"
-  },
-  {
-   "sentence": "Если же случался ___, так Зеленский и вовсе его не оставлял — тут и отдыхал возле больного на соседней койке.",
-   "lemma": "кадет",
-   "options": [
-    "труднобольном кадете",
-    "труднобольному кадету",
-    "труднобольным кадетом",
-    "труднобольной кадет"
-   ],
-   "correct": "труднобольной кадет",
-   "case": "Именительный (Nominative)",
-   "explain": "«труднобольной кадет» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
   },
   {
    "sentence": "Если же случался труднобольной кадет, так Зеленский и вовсе его не оставлял — тут и отдыхал возле больного на ___.",
@@ -67,7 +25,7 @@
    ],
    "correct": "соседней койке",
    "case": "Предложный (Prepositional)",
-   "explain": "«соседней койке» — after the preposition «на», for location or topic.",
+   "explain": "«соседней койке» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c5"
   },
   {
@@ -81,22 +39,8 @@
    ],
    "correct": "великий князь",
    "case": "Именительный (Nominative)",
-   "explain": "«великий князь» — the subject of the sentence stands in the nominative.",
+   "explain": "«великий князь» is the subject of «приехал» — who or what does it — so nominative.",
    "id": "c6"
-  },
-  {
-   "sentence": "Его высочество посетил одну статс-даму, которую застал в страшном горе: у нее был очень болен ___, которому не могли помочь тогдашние лучшие доктора столицы.",
-   "lemma": "сын",
-   "options": [
-    "маленький сын",
-    "маленьком сыне",
-    "маленькому сыну",
-    "маленького сына"
-   ],
-   "correct": "маленький сын",
-   "case": "Именительный (Nominative)",
-   "explain": "«маленький сын» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
   },
   {
    "sentence": "Огорченная его отказом статс-дама сказала об этом ___, и Константин Павлович, будучи шефом Первого кадетского корпуса, изволил приказать Зеленскому поехать в дом этой дамы и вылечить ее ребенка.",
@@ -104,12 +48,12 @@
    "options": [
     "великий князь",
     "великим князем",
-    "великого князя",
-    "великому князю"
+    "великому князю",
+    "великом князе"
    ],
    "correct": "великому князю",
    "case": "Дательный (Dative)",
-   "explain": "«великому князю» — the dative marks the indirect object or recipient.",
+   "explain": "«великому князю» is the indirect object of «сказала» — to or for whom (кому?) — dative.",
    "id": "c8"
   },
   {
@@ -123,7 +67,7 @@
    ],
    "correct": "кадетского корпуса",
    "case": "Родительный (Genitive)",
-   "explain": "«кадетского корпуса» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«кадетского корпуса» depends on the noun «шефом» (whose? of what?) — genitive.",
    "id": "c9"
   }
  ]

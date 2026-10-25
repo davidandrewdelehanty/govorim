@@ -1,48 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "От него зависела жизнь и смерть всех ___, жизнь и медленная смерть разжалованных за декабрь людей, о которых он писал донесения императору.",
-   "lemma": "армия",
-   "options": [
-    "русских армий",
-    "русскими армиями",
-    "русские армии",
-    "русским армиям"
-   ],
-   "correct": "русских армий",
-   "case": "Родительный (Genitive)",
-   "explain": "«русских армий» — the genitive here marks possession, absence, or quantity.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Этот ___ появился на свет, когда молодой Паскевич был сделан пажом, а раньше его не было.",
-   "lemma": "предок",
-   "options": [
-    "генеалогическом предке",
-    "генеалогический предок",
-    "генеалогическим предком",
-    "генеалогического предка"
-   ],
-   "correct": "генеалогический предок",
-   "case": "Именительный (Nominative)",
-   "explain": "«генеалогический предок» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
-   "sentence": "И именно он, а не Чалый Пасько обладал смелостью и ___, которые передал сыну-полководцу.",
-   "lemma": "капитал",
-   "options": [
-    "денежном капитале",
-    "денежный капитал",
-    "денежного капитала",
-    "денежным капиталом"
-   ],
-   "correct": "денежным капиталом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«денежным капиталом» — the instrumental marks the means, company, or complement.",
-   "id": "c3"
-  },
-  {
    "sentence": "Мещанин Федор Паскевич со товарищи взял при Екатерине поставку соли из крымских озер и через ___ добился от казны многомиллионных задатков «во ограждение от падежа волов».",
    "lemma": "человек",
    "options": [
@@ -53,22 +11,8 @@
    ],
    "correct": "сильного человека",
    "case": "Винительный (Accusative)",
-   "explain": "«сильного человека» — after the preposition «через», the accusative marks the direct object of the verb.",
+   "explain": "«сильного человека» — «через» always takes the accusative.",
    "id": "c4"
-  },
-  {
-   "sentence": "В Петербурге он выказал такое ласкательство, такое ___ и быстроту денежного действия, что и ему и товарищам его простили и недоставленную соль и миллионы.",
-   "lemma": "проникновение",
-   "options": [
-    "придворного проникновения",
-    "придворное проникновение",
-    "придворным проникновением",
-    "придворном проникновении"
-   ],
-   "correct": "придворное проникновение",
-   "case": "Именительный (Nominative)",
-   "explain": "«придворное проникновение» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
   },
   {
    "sentence": "В Петербурге он выказал такое ласкательство, такое придворное проникновение и быстроту ___, что и ему и товарищам его простили и недоставленную соль и миллионы.",
@@ -81,22 +25,8 @@
    ],
    "correct": "денежного действия",
    "case": "Родительный (Genitive)",
-   "explain": "«денежного действия» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«денежного действия» depends on the noun «быстроту» (whose? of what?) — genitive.",
    "id": "c7"
-  },
-  {
-   "sentence": "И вся Полтава праздновала победу Паскевича, потому что это был подлинно ___: почти все обыватели Полтавы участвовали в соляной поставке.",
-   "lemma": "бой",
-   "options": [
-    "полтавскому бою",
-    "полтавский бой",
-    "полтавским боем",
-    "полтавского боя"
-   ],
-   "correct": "полтавский бой",
-   "case": "Именительный (Nominative)",
-   "explain": "«Полтавский бой» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
   },
   {
    "sentence": "И вся Полтава праздновала победу Паскевича, потому что это был подлинно Полтавский бой: почти все обыватели Полтавы участвовали в ___.",
@@ -109,22 +39,8 @@
    ],
    "correct": "соляной поставке",
    "case": "Предложный (Prepositional)",
-   "explain": "«соляной поставке» — after the preposition «в», for location or topic.",
+   "explain": "«соляной поставке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c9"
-  },
-  {
-   "sentence": "Как ___ с простым чутьем, он понял, что высший секрет придворных успехов вовсе не в тонкости и лести, а в грубости.",
-   "lemma": "человек",
-   "options": [
-    "новым человеком",
-    "новом человеке",
-    "новый человек",
-    "новому человеку"
-   ],
-   "correct": "новый человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«новый человек» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
   },
   {
    "sentence": "Как новый человек с простым чутьем, он понял, что высший секрет ___ вовсе не в тонкости и лести, а в грубости.",
@@ -137,7 +53,7 @@
    ],
    "correct": "придворных успехов",
    "case": "Родительный (Genitive)",
-   "explain": "«придворных успехов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«придворных успехов» depends on the noun «секрет» (whose? of what?) — genitive.",
    "id": "c11"
   },
   {
@@ -151,7 +67,7 @@
    ],
    "correct": "великого князя",
    "case": "Винительный (Accusative)",
-   "explain": "«великого князя» — the accusative marks the direct object of the verb.",
+   "explain": "«великого князя» is the direct object of «сопровождал» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c13"
   },
   {
@@ -165,50 +81,8 @@
    ],
    "correct": "военной удачи",
    "case": "Родительный (Genitive)",
-   "explain": "«военной удачи» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«военной удачи» depends on the noun «человек» (whose? of what?) — genitive.",
    "id": "c14"
-  },
-  {
-   "sentence": "Он был человек отличной военной удачи, с грубым голосом и повелительными, ___.",
-   "lemma": "жест",
-   "options": [
-    "короткие жесты",
-    "короткими жестами",
-    "коротким жестам",
-    "коротких жестах"
-   ],
-   "correct": "короткими жестами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«короткими жестами» — the instrumental marks the means, company, or complement.",
-   "id": "c16"
-  },
-  {
-   "sentence": "Он был вовсе не бездарен как ___.",
-   "lemma": "человек",
-   "options": [
-    "военному человеку",
-    "военном человеке",
-    "военный человек",
-    "военным человеком"
-   ],
-   "correct": "военный человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«военный человек» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
-  },
-  {
-   "sentence": "Он был и неглуп по-своему — он понимал, как люди смотрят на него, и знал императора лучше, чем ___.",
-   "lemma": "император",
-   "options": [
-    "сам император",
-    "самом императоре",
-    "самого императора",
-    "самому императору"
-   ],
-   "correct": "сам император",
-   "case": "Именительный (Nominative)",
-   "explain": "«сам император» — the subject of the sentence stands in the nominative.",
-   "id": "c18"
   },
   {
    "sentence": "В петровское время ___ Куракин сказал бы о нем: «Превеликий нежелатель добра никому».",
@@ -221,50 +95,8 @@
    ],
    "correct": "умный князь",
    "case": "Именительный (Nominative)",
-   "explain": "«умный князь» — the subject of the sentence stands in the nominative.",
+   "explain": "«умный князь» is the subject of «сказал» — who or what does it — so nominative.",
    "id": "c19"
-  },
-  {
-   "sentence": "Так, ___ Михаила звали «рыжим Мишкой», когда ему было сорок лет.",
-   "lemma": "князь",
-   "options": [
-    "великим князем",
-    "великому князю",
-    "великом князе",
-    "великого князя"
-   ],
-   "correct": "великого князя",
-   "case": "Родительный (Genitive)",
-   "explain": "«великого князя» — the genitive here marks possession, absence, or quantity.",
-   "id": "c21"
-  },
-  {
-   "sentence": "А у Ермолова не было ни одной победы, и он был ___.",
-   "lemma": "полководец",
-   "options": [
-    "великому полководцу",
-    "великом полководце",
-    "великого полководца",
-    "великий полководец"
-   ],
-   "correct": "великий полководец",
-   "case": "Именительный (Nominative)",
-   "explain": "«великий полководец» — the subject of the sentence stands in the nominative.",
-   "id": "c22"
-  },
-  {
-   "sentence": "Небольшой, розовый, колбаской нос, заботливо отпущенные лихие усы и баки и ___.",
-   "lemma": "глаз",
-   "options": [
-    "выпуклым глазам",
-    "выпуклых глазах",
-    "выпуклые глаза",
-    "выпуклыми глазами"
-   ],
-   "correct": "выпуклые глаза",
-   "case": "Именительный (Nominative)",
-   "explain": "«выпуклые глаза» — the subject of the sentence stands in the nominative.",
-   "id": "c23"
   },
   {
    "sentence": "Он был из ___, ему не хватало лишних черт, которые создают героев.",
@@ -277,49 +109,35 @@
    ],
    "correct": "посредственного теста",
    "case": "Родительный (Genitive)",
-   "explain": "«посредственного теста» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«посредственного теста» — «из» always takes the genitive.",
    "id": "c24"
-  },
-  {
-   "sentence": "Он был из посредственного теста, ему не хватало ___, которые создают героев.",
-   "lemma": "черта",
-   "options": [
-    "лишним чертам",
-    "лишних черт",
-    "лишними чертами",
-    "лишних чертах"
-   ],
-   "correct": "лишних черт",
-   "case": "Родительный (Genitive)",
-   "explain": "«лишних черт» — the genitive here marks possession, absence, or quantity.",
-   "id": "c25"
   },
   {
    "sentence": "Был нерешителен, колебался во всех ___, а жесты его были короче и повелительнее, чем надо бы, и крики на подчиненных грубее, чем у человека власти.",
    "lemma": "план",
    "options": [
-    "военные планы",
-    "военных планах",
+    "военных планов",
     "военным планам",
-    "военных планов"
+    "военными планами",
+    "военных планах"
    ],
    "correct": "военных планах",
    "case": "Предложный (Prepositional)",
-   "explain": "«военных планах» — after the preposition «во», for location or topic.",
+   "explain": "«военных планах» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c27"
   },
   {
    "sentence": "Он растерял свои ___, свою военную память на этой недоверчивости и боялся неудачи, когда у него случались только удачи.",
    "lemma": "познание",
    "options": [
-    "военным познаниям",
-    "военных познаний",
     "военные познания",
+    "военными познаниями",
+    "военным познаниям",
     "военных познаниях"
    ],
    "correct": "военные познания",
    "case": "Винительный (Accusative)",
-   "explain": "«военные познания» — the accusative marks the direct object of the verb.",
+   "explain": "«военные познания» is the direct object of «растерял» (кого? что?) — accusative.",
    "id": "c28"
   },
   {
@@ -333,22 +151,8 @@
    ],
    "correct": "военной выправки",
    "case": "Родительный (Genitive)",
-   "explain": "«военной выправки» — after the preposition «против», the genitive here marks possession, absence, or quantity.",
+   "explain": "«военной выправки» — «против» always takes the genitive.",
    "id": "c29"
-  },
-  {
-   "sentence": "Он забыл, что сам восставал против излишней военной выправки, и недоверчиво косился на строй, требуя выправки, потому что придирчивость — ___ и заставляет забывать о человеке, который придирается.",
-   "lemma": "свойство",
-   "options": [
-    "грозного свойства",
-    "грозному свойству",
-    "грозное свойство",
-    "грозном свойстве"
-   ],
-   "correct": "грозное свойство",
-   "case": "Именительный (Nominative)",
-   "explain": "«грозное свойство» — the subject of the sentence stands in the nominative.",
-   "id": "c30"
   }
  ]
 }

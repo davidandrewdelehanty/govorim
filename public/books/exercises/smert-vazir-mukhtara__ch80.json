@@ -1,31 +1,17 @@
 {
  "cases": [
   {
-   "sentence": "Ресторация под названием «___ Кавказа».",
-   "lemma": "вид",
-   "options": [
-    "прекрасный вид",
-    "прекрасного вида",
-    "прекрасному виду",
-    "прекрасным видом"
-   ],
-   "correct": "прекрасный вид",
-   "case": "Именительный (Nominative)",
-   "explain": "«Прекрасный вид» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Большое развитие ___ среди чиновников, передающееся туземному женскому населению. NB.",
    "lemma": "болезнь",
    "options": [
     "любострастных болезней",
-    "любострастными болезнями",
     "любострастных болезнях",
+    "любострастным болезням",
     "любострастные болезни"
    ],
    "correct": "любострастных болезней",
    "case": "Родительный (Genitive)",
-   "explain": "«любострастных болезней» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«любострастных болезней» depends on the noun «развитие» (whose? of what?) — genitive.",
    "id": "c3"
   },
   {
@@ -39,36 +25,8 @@
    ],
    "correct": "женскому населению",
    "case": "Дательный (Dative)",
-   "explain": "«женскому населению» — the dative marks the indirect object or recipient.",
+   "explain": "«женскому населению» is the indirect object of «передающееся» — to or for whom (кому?) — dative.",
    "id": "c4"
-  },
-  {
-   "sentence": "___ кавказские 3 р. сер.",
-   "lemma": "туфля",
-   "options": [
-    "ночные туфли",
-    "ночными туфлями",
-    "ночных туфель",
-    "ночных туфлях"
-   ],
-   "correct": "ночные туфли",
-   "case": "Именительный (Nominative)",
-   "explain": "«Ночные туфли» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
-  },
-  {
-   "sentence": "Я: «В. пр-во уверены в том, что у рака есть столь ___?» Система ускользнула у Шеллинга, а русские генералы ныне занимаются магнетизмом.",
-   "lemma": "дух",
-   "options": [
-    "сильного духа",
-    "сильном духе",
-    "сильный дух",
-    "сильному духу"
-   ],
-   "correct": "сильный дух",
-   "case": "Именительный (Nominative)",
-   "explain": "«сильный дух» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
   },
   {
    "sentence": "Я: «В. пр-во уверены в том, что у рака есть столь сильный дух?» Система ускользнула у Шеллинга, а ___ ныне занимаются магнетизмом.",
@@ -81,22 +39,8 @@
    ],
    "correct": "русские генералы",
    "case": "Именительный (Nominative)",
-   "explain": "«русские генералы» — the subject of the sentence stands in the nominative.",
+   "explain": "«русские генералы» is the subject of «занимаются» — who or what does it — so nominative.",
    "id": "c7"
-  },
-  {
-   "sentence": "После рака вопрос медицинский, о ___.",
-   "lemma": "сила",
-   "options": [
-    "мужская сила",
-    "мужской силе",
-    "мужской силой",
-    "мужской силы"
-   ],
-   "correct": "мужской силе",
-   "case": "Предложный (Prepositional)",
-   "explain": "«мужской силе» — after the preposition «о», for location or topic.",
-   "id": "c8"
   },
   {
    "sentence": "Был в ___ разврата.",
@@ -109,21 +53,21 @@
    ],
    "correct": "привратном доме",
    "case": "Предложный (Prepositional)",
-   "explain": "«привратном доме» — after the preposition «в», for location or topic.",
+   "explain": "«привратном доме» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c9"
   },
   {
    "sentence": "Преимущество ___ над неясными.",
    "lemma": "цель",
    "options": [
+    "простым целям",
     "простых целей",
-    "простые цели",
-    "простыми целями",
-    "простых целях"
+    "простых целях",
+    "простые цели"
    ],
    "correct": "простых целей",
    "case": "Родительный (Genitive)",
-   "explain": "«простых целей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«простых целей» depends on the noun «Преимущество» (whose? of what?) — genitive.",
    "id": "c11"
   },
   {
@@ -137,36 +81,8 @@
    ],
    "correct": "длинных ступнях",
    "case": "Предложный (Prepositional)",
-   "explain": "«длинных ступнях» — after the preposition «при», for location or topic.",
+   "explain": "«длинных ступнях» — «при» always takes the prepositional.",
    "id": "c13"
-  },
-  {
-   "sentence": "___ трактиров — признак растущей цивилизованности.",
-   "lemma": "рост",
-   "options": [
-    "быстрый рост",
-    "быстрым ростом",
-    "быстрого роста",
-    "быстрому росту"
-   ],
-   "correct": "быстрый рост",
-   "case": "Именительный (Nominative)",
-   "explain": "«Быстрый рост» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
-  },
-  {
-   "sentence": "Замечаю, что во время войны люди, не подверженные ___ и вдалеке, очень много говорят и испытывают как бы некоторое удовольствие опьянения.",
-   "lemma": "опасность",
-   "options": [
-    "военные опасности",
-    "военным опасностям",
-    "военными опасностями",
-    "военных опасностях"
-   ],
-   "correct": "военным опасностям",
-   "case": "Дательный (Dative)",
-   "explain": "«военным опасностям» — the dative marks the indirect object or recipient.",
-   "id": "c16"
   },
   {
    "sentence": "Лукреций: «Я со сладострастием взирал, стоя на безопасном берегу, на пловцов, кои гибнут в ___». Inde (1) — патриотизм и красноречие.",
@@ -179,50 +95,8 @@
    ],
    "correct": "открытом море",
    "case": "Предложный (Prepositional)",
-   "explain": "«открытом море» — after the preposition «в», for location or topic.",
+   "explain": "«открытом море» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c17"
-  },
-  {
-   "sentence": "Из Индии в Турцию принесена ___ — колера морбус, происхождение и течение неизвестно + существующая уже чума.",
-   "lemma": "зараза",
-   "options": [
-    "новая зараза",
-    "новой заразы",
-    "новой заразой",
-    "новой заразе"
-   ],
-   "correct": "новая зараза",
-   "case": "Именительный (Nominative)",
-   "explain": "«новая зараза» — the subject of the sentence stands in the nominative.",
-   "id": "c18"
-  },
-  {
-   "sentence": "Слуга Александр — развратный ___, коего не то что везти в Персию, но должно бы выгнать из дому тотчас же.",
-   "lemma": "человек",
-   "options": [
-    "молодым человеком",
-    "молодой человек",
-    "молодому человеку",
-    "молодого человека"
-   ],
-   "correct": "молодой человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«молодой человек» — the subject of the sentence stands in the nominative.",
-   "id": "c21"
-  },
-  {
-   "sentence": "Едва ли не ___ слуги и вздорный его характер.",
-   "lemma": "неприличие",
-   "options": [
-    "самым неприличием",
-    "самое неприличие",
-    "самого неприличия",
-    "самом неприличии"
-   ],
-   "correct": "самое неприличие",
-   "case": "Именительный (Nominative)",
-   "explain": "«самое неприличие» — the subject of the sentence stands in the nominative.",
-   "id": "c22"
   },
   {
    "sentence": "Был угощен добрым ___.",
@@ -235,7 +109,7 @@
    ],
    "correct": "немецким пивом",
    "case": "Творительный (Instrumental)",
-   "explain": "«немецким пивом» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «угощен», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c23"
   },
   {
@@ -249,7 +123,7 @@
    ],
    "correct": "молодая девица",
    "case": "Именительный (Nominative)",
-   "explain": "«молодая девица» — the subject of the sentence stands in the nominative.",
+   "explain": "«молодая девица» is the subject of «находилась» — who or what does it — so nominative.",
    "id": "c24"
   },
   {
@@ -263,50 +137,8 @@
    ],
    "correct": "персидского плена",
    "case": "Родительный (Genitive)",
-   "explain": "«персидского плена» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«персидского плена» — «из» always takes the genitive.",
    "id": "c25"
-  },
-  {
-   "sentence": "___, в семействе чужая.",
-   "lemma": "вид",
-   "options": [
-    "пасмурный вид",
-    "пасмурным видом",
-    "пасмурному виду",
-    "пасмурного вида"
-   ],
-   "correct": "пасмурный вид",
-   "case": "Именительный (Nominative)",
-   "explain": "«Пасмурный вид» — the subject of the sentence stands in the nominative.",
-   "id": "c26"
-  },
-  {
-   "sentence": "С негодованием отвергает ___ и со слезами вспоминает жизнь в гареме.",
-   "lemma": "достаток",
-   "options": [
-    "скудный достаток",
-    "скудному достатку",
-    "скудным достатком",
-    "скудном достатке"
-   ],
-   "correct": "скудный достаток",
-   "case": "Винительный (Accusative)",
-   "explain": "«скудный достаток» — the accusative marks the direct object of the verb.",
-   "id": "c27"
-  },
-  {
-   "sentence": "Спросил о петербургских словах: «___».",
-   "lemma": "государство",
-   "options": [
-    "несуществующее государство",
-    "несуществующему государству",
-    "несуществующего государства",
-    "несуществующим государством"
-   ],
-   "correct": "несуществующее государство",
-   "case": "Именительный (Nominative)",
-   "explain": "«несуществующее государство» — the subject of the sentence stands in the nominative.",
-   "id": "c31"
   },
   {
    "sentence": "Слуга Александр был открыт в ___, где имел обыкновение ночевать, и, по просьбе графини, высечен, но, по просьбе А.",
@@ -319,7 +151,7 @@
    ],
    "correct": "девичьей комнате",
    "case": "Предложный (Prepositional)",
-   "explain": "«девичьей комнате» — after the preposition «в», for location or topic.",
+   "explain": "«девичьей комнате» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c32"
   },
   {
@@ -333,7 +165,7 @@
    ],
    "correct": "собственного сочинения",
    "case": "Родительный (Genitive)",
-   "explain": "«собственного сочинения» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«собственного сочинения» depends on the noun «вальс» (whose? of what?) — genitive.",
    "id": "c33"
   },
   {
@@ -347,7 +179,7 @@
    ],
    "correct": "сами пальцы",
    "case": "Именительный (Nominative)",
-   "explain": "«сами пальцы» — the subject of the sentence stands in the nominative.",
+   "explain": "«сами пальцы» is the subject of «набрели» — who or what does it — so nominative.",
    "id": "c34"
   },
   {
@@ -361,64 +193,22 @@
    ],
    "correct": "многообразных сведениях",
    "case": "Предложный (Prepositional)",
-   "explain": "«многообразных сведениях» — after the preposition «при», for location or topic.",
+   "explain": "«многообразных сведениях» — «при» always takes the prepositional.",
    "id": "c35"
-  },
-  {
-   "sentence": "— Почему при ваших многообразных сведениях вы остаетесь неизвестны, мой ___?",
-   "lemma": "доктор",
-   "options": [
-    "милому доктору",
-    "милым доктором",
-    "милого доктора",
-    "милый доктор"
-   ],
-   "correct": "милый доктор",
-   "case": "Именительный (Nominative)",
-   "explain": "«милый доктор» — the subject of the sentence stands in the nominative.",
-   "id": "c36"
-  },
-  {
-   "sentence": "— Доктор, вы не понимаете: я люблю дорогу, ___, простую дорогу.",
-   "lemma": "шинель",
-   "options": [
-    "серых шинелях",
-    "серые шинели",
-    "серых шинелей",
-    "серым шинелям"
-   ],
-   "correct": "серые шинели",
-   "case": "Винительный (Accusative)",
-   "explain": "«серые шинели» — the accusative marks the direct object of the verb.",
-   "id": "c37"
   },
   {
    "sentence": "Жаркое лето и множество ___.",
    "lemma": "развлечение",
    "options": [
-    "театральных развлечений",
-    "театральными развлечениями",
     "театральным развлечениям",
-    "театральных развлечениях"
+    "театральные развлечения",
+    "театральных развлечениях",
+    "театральных развлечений"
    ],
    "correct": "театральных развлечений",
    "case": "Родительный (Genitive)",
-   "explain": "«театральных развлечений» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«театральных развлечений» depends on the noun «множество» (whose? of what?) — genitive.",
    "id": "c39"
-  },
-  {
-   "sentence": "С. в разговоре о Персии: «мое ___». 100 р. сер. + прежде бывших 150 = 250.",
-   "lemma": "изгнание",
-   "options": [
-    "политическое изгнание",
-    "политическому изгнанию",
-    "политическим изгнанием",
-    "политическом изгнании"
-   ],
-   "correct": "политическое изгнание",
-   "case": "Именительный (Nominative)",
-   "explain": "«политическое изгнание» — the subject of the sentence stands in the nominative.",
-   "id": "c40"
   }
  ]
 }

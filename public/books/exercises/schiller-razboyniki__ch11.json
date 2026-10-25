@@ -1,90 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Вы все-таки мой ___.",
-   "lemma": "барин",
-   "options": [
-    "дорогим барином",
-    "дорогого барина",
-    "дорогому барину",
-    "дорогой барин"
-   ],
-   "correct": "дорогой барин",
-   "case": "Именительный (Nominative)",
-   "explain": "«дорогой барин» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Бог прости вас — ___ вы были.",
-   "lemma": "дитя",
-   "options": [
-    "упрямого дитяти",
-    "упрямое дитя",
-    "упрямым дитятей",
-    "упрямом дитяти"
-   ],
-   "correct": "упрямое дитя",
-   "case": "Именительный (Nominative)",
-   "explain": "«упрямое дитя» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Но вы все-таки мой ___!",
-   "lemma": "господин",
-   "options": [
-    "дорогом господине",
-    "дорогого господина",
-    "дорогой господин",
-    "дорогому господину"
-   ],
-   "correct": "дорогой господин",
-   "case": "Именительный (Nominative)",
-   "explain": "«дорогой господин» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
-   "sentence": "И мне, ___, такая радость!",
-   "lemma": "грешник",
-   "options": [
-    "старому грешнику",
-    "старого грешника",
-    "старом грешнике",
-    "старый грешник"
-   ],
-   "correct": "старому грешнику",
-   "case": "Дательный (Dative)",
-   "explain": "«старому грешнику» — the dative marks the indirect object or recipient.",
-   "id": "c4"
-  },
-  {
-   "sentence": "___ понапрасну только плакал.",
-   "lemma": "граф",
-   "options": [
-    "покойному графу",
-    "покойным графом",
-    "покойном графе",
-    "покойный граф"
-   ],
-   "correct": "покойный граф",
-   "case": "Именительный (Nominative)",
-   "explain": "«Покойный граф» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
-  },
-  {
-   "sentence": "На покой, на покой, ___, дряхлые кости, убирайтесь с радостью в могилу!",
-   "lemma": "голова",
-   "options": [
-    "седая голова",
-    "седой голове",
-    "седой головой",
-    "седой головы"
-   ],
-   "correct": "седая голова",
-   "case": "Именительный (Nominative)",
-   "explain": "«седая голова» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
-  },
-  {
    "sentence": "И я сдержу то, что обещал тебе: возьми это себе, ___, за верховую лошадь.",
    "lemma": "старик",
    "options": [
@@ -95,7 +11,7 @@
    ],
    "correct": "честный старик",
    "case": "Именительный (Nominative)",
-   "explain": "«честный старик» — the subject of the sentence stands in the nominative.",
+   "explain": "«честный старик» is the subject of «возьми» — who or what does it — so nominative.",
    "id": "c7"
   },
   {
@@ -103,13 +19,13 @@
    "lemma": "раз",
    "options": [
     "другим разом",
-    "другом разе",
+    "другого раза",
     "другой раз",
     "другому разу"
    ],
    "correct": "другой раз",
    "case": "Винительный (Accusative)",
-   "explain": "«другой раз» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«другой раз» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c8"
   },
   {
@@ -123,36 +39,8 @@
    ],
    "correct": "жестокие люди",
    "case": "Именительный (Nominative)",
-   "explain": "«жестокие люди» — the subject of the sentence stands in the nominative.",
+   "explain": "«жестокие люди» is the subject of «есть» — who or what does it — so nominative.",
    "id": "c9"
-  },
-  {
-   "sentence": "О, говорю вам, есть жестокие люди, ___, жестокие господа; но я, за все золото моего господина, не хочу быть жестоким слугою.",
-   "lemma": "брат",
-   "options": [
-    "жестокие братья",
-    "жестоких братьях",
-    "жестокими братьями",
-    "жестоким братьям"
-   ],
-   "correct": "жестокие братья",
-   "case": "Именительный (Nominative)",
-   "explain": "«жестокие братья» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
-  },
-  {
-   "sentence": "О, говорю вам, есть жестокие люди, жестокие братья, ___; но я, за все золото моего господина, не хочу быть жестоким слугою.",
-   "lemma": "господин",
-   "options": [
-    "жестоких господ",
-    "жестокими господами",
-    "жестокие господа",
-    "жестоких господах"
-   ],
-   "correct": "жестокие господа",
-   "case": "Именительный (Nominative)",
-   "explain": "«жестокие господа» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
   },
   {
    "sentence": "Ваш братец был после ___ единственным наследником.",
@@ -165,50 +53,8 @@
    ],
    "correct": "покойного графа",
    "case": "Родительный (Genitive)",
-   "explain": "«покойного графа» — after the preposition «после», the genitive here marks possession, absence, or quantity.",
+   "explain": "«покойного графа» — «после» always takes the genitive.",
    "id": "c12"
-  },
-  {
-   "sentence": "Ваш братец был после покойного графа ___.",
-   "lemma": "наследник",
-   "options": [
-    "единственным наследником",
-    "единственный наследник",
-    "единственному наследнику",
-    "единственного наследника"
-   ],
-   "correct": "единственным наследником",
-   "case": "Творительный (Instrumental)",
-   "explain": "«единственным наследником» — the instrumental marks the means, company, or complement.",
-   "id": "c13"
-  },
-  {
-   "sentence": "Старик, что ты бормочешь там, как будто ___ вертится на языке твоем и не хочет с него сорваться?",
-   "lemma": "тайна",
-   "options": [
-    "чудовищная тайна",
-    "чудовищной тайной",
-    "чудовищной тайны",
-    "чудовищной тайне"
-   ],
-   "correct": "чудовищная тайна",
-   "case": "Именительный (Nominative)",
-   "explain": "«чудовищная тайна» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
-  },
-  {
-   "sentence": "Но я скорей соглашусь с голода глодать ___ и с жажды пить собственную воду, чем заслужить счастие и изобилие убийством.",
-   "lemma": "кость",
-   "options": [
-    "собственным костям",
-    "собственные кости",
-    "собственными костями",
-    "собственных костей"
-   ],
-   "correct": "собственные кости",
-   "case": "Винительный (Accusative)",
-   "explain": "«собственные кости» — the accusative marks the direct object of the verb.",
-   "id": "c15"
   },
   {
    "sentence": "Моор, выходя из ___.",
@@ -221,36 +67,8 @@
    ],
    "correct": "ужасного оцепенения",
    "case": "Родительный (Genitive)",
-   "explain": "«ужасного оцепенения» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«ужасного оцепенения» — «из» always takes the genitive.",
    "id": "c16"
-  },
-  {
-   "sentence": "О, я слепой, слепой, ___!",
-   "lemma": "глупец",
-   "options": [
-    "слепого глупца",
-    "слепой глупец",
-    "слепом глупце",
-    "слепому глупцу"
-   ],
-   "correct": "слепой глупец",
-   "case": "Именительный (Nominative)",
-   "explain": "«слепой глупец» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
-  },
-  {
-   "sentence": "Один ___ — и я убийца, разбойник!",
-   "lemma": "обман",
-   "options": [
-    "подлому обману",
-    "подлый обман",
-    "подлом обмане",
-    "подлого обмана"
-   ],
-   "correct": "подлый обман",
-   "case": "Именительный (Nominative)",
-   "explain": "«подлый обман» — the subject of the sentence stands in the nominative.",
-   "id": "c18"
   },
   {
    "sentence": "Косинский только десять минут, подожди меня у ___ — и мы в дороге.",
@@ -263,7 +81,7 @@
    ],
    "correct": "садовой калитки",
    "case": "Родительный (Genitive)",
-   "explain": "«садовой калитки» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«садовой калитки» — «у» always takes the genitive.",
    "id": "c19"
   }
  ]

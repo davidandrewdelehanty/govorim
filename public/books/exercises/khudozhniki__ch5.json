@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "И кажется мне ещё, что это — моя ___.",
-   "lemma": "картина",
-   "options": [
-    "последней картины",
-    "последняя картина",
-    "последней картиной",
-    "последней картине"
-   ],
-   "correct": "последняя картина",
-   "case": "Именительный (Nominative)",
-   "explain": "«последняя картина» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Его совсем не было бы видно, если бы не свет, проходящий сквозь ___, просверленные для заклёпок.",
    "lemma": "дыра",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "круглые дыры",
    "case": "Винительный (Accusative)",
-   "explain": "«круглые дыры» — after the preposition «сквозь», the accusative marks the direct object of the verb.",
+   "explain": "«круглые дыры» — «сквозь» always takes the accusative.",
    "id": "c2"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "невероятной позе",
    "case": "Предложный (Prepositional)",
-   "explain": "«невероятной позе» — after the preposition «в», for location or topic.",
+   "explain": "«невероятной позе» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c3"
   },
   {
@@ -53,7 +39,7 @@
    ],
    "correct": "пыльные стёкла",
    "case": "Винительный (Accusative)",
-   "explain": "«пыльные стёкла» — after the preposition «сквозь», the accusative marks the direct object of the verb.",
+   "explain": "«пыльные стёкла» — «сквозь» always takes the accusative.",
    "id": "c4"
   },
   {
@@ -67,36 +53,22 @@
    ],
    "correct": "немецкие актёры",
    "case": "Именительный (Nominative)",
-   "explain": "«немецкие актёры» — the subject of the sentence stands in the nominative.",
+   "explain": "«немецкие актёры» is the subject of «изображают» — who or what does it — so nominative.",
    "id": "c5"
   },
   {
    "sentence": "Рецензенты, прислушиваясь к ним, будут чиркать карандашиками в своих ___.",
    "lemma": "книжка",
    "options": [
-    "записные книжки",
-    "записным книжкам",
     "записных книжках",
-    "записных книжек"
+    "записными книжками",
+    "записных книжек",
+    "записным книжкам"
    ],
    "correct": "записных книжках",
    "case": "Предложный (Prepositional)",
-   "explain": "«записных книжках» — after the preposition «в», for location or topic.",
+   "explain": "«записных книжках» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c6"
-  },
-  {
-   "sentence": "___ Л. с яростью набросится на бедного глухаря, будет кричать: но где же тут изящное, скажите, где тут изящное?",
-   "lemma": "критик",
-   "options": [
-    "художественным критиком",
-    "художественному критику",
-    "художественный критик",
-    "художественном критике"
-   ],
-   "correct": "художественный критик",
-   "case": "Именительный (Nominative)",
-   "explain": "«Художественный критик» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
   },
   {
    "sentence": "Художественный критик Л. с яростью набросится на ___, будет кричать: но где же тут изящное, скажите, где тут изящное?",
@@ -109,50 +81,8 @@
    ],
    "correct": "бедного глухаря",
    "case": "Винительный (Accusative)",
-   "explain": "«бедного глухаря» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«бедного глухаря» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c8"
-  },
-  {
-   "sentence": "___ с бычьими глазами поглазеют, потупят взоры в каталог, испустят не то мычание, не то сопенье и благополучно проследуют далее.",
-   "lemma": "господин",
-   "options": [
-    "солидным господам",
-    "солидными господами",
-    "солидных господах",
-    "солидные господа"
-   ],
-   "correct": "солидные господа",
-   "case": "Именительный (Nominative)",
-   "explain": "«Солидные господа» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
-  },
-  {
-   "sentence": "Первая ___: девушка срывает розу.",
-   "lemma": "сцена",
-   "options": [
-    "любовной сценой",
-    "любовная сцена",
-    "любовной сцене",
-    "любовной сцены"
-   ],
-   "correct": "любовная сцена",
-   "case": "Именительный (Nominative)",
-   "explain": "«любовная сцена» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
-  },
-  {
-   "sentence": "Вторая ___: девушка нюхает розу.",
-   "lemma": "сцена",
-   "options": [
-    "любовной сценой",
-    "любовная сцена",
-    "любовной сцене",
-    "любовной сцены"
-   ],
-   "correct": "любовная сцена",
-   "case": "Именительный (Nominative)",
-   "explain": "«любовная сцена» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
   }
  ]
 }

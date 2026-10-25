@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Стук сапогов раздался в передней — а там послышался обычный ___, уведомляющий о прибытии подчинённого лица.",
-   "lemma": "кашель",
-   "options": [
-    "сдержанному кашлю",
-    "сдержанном кашле",
-    "сдержанного кашля",
-    "сдержанный кашель"
-   ],
-   "correct": "сдержанный кашель",
-   "case": "Именительный (Nominative)",
-   "explain": "«сдержанный кашель» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Стук сапогов раздался в передней — а там послышался обычный сдержанный кашель, уведомляющий о прибытии ___.",
-   "lemma": "лицо",
-   "options": [
-    "подчинённом лице",
-    "подчинённого лица",
-    "подчинённое лицо",
-    "подчинённому лицу"
-   ],
-   "correct": "подчинённого лица",
-   "case": "Родительный (Genitive)",
-   "explain": "«подчинённого лица» — the genitive here marks possession, absence, or quantity.",
-   "id": "c2"
-  },
-  {
    "sentence": "Онисим вышел и тотчас же вернулся в сопровождении крошечного ___ с старушечьим лицом, в изношенной до желтизны и заплатанной шинели, без брюк и без галстука.",
    "lemma": "солдат",
    "options": [
@@ -39,7 +11,7 @@
    ],
    "correct": "гарнизонного солдата",
    "case": "Родительный (Genitive)",
-   "explain": "«гарнизонного солдата» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«гарнизонного солдата» depends on the noun «сопровождении» (whose? of what?) — genitive.",
    "id": "c3"
   },
   {
@@ -53,36 +25,8 @@
    ],
    "correct": "старушечьим лицом",
    "case": "Творительный (Instrumental)",
-   "explain": "«старушечьим лицом» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«старушечьим лицом» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c4"
-  },
-  {
-   "sentence": "Петушков встрепенулся — а солдат вытянулся, пожелал ему «здравья» и вручил ему ___, запечатанный казённой печатью.",
-   "lemma": "конверт",
-   "options": [
-    "большой конверт",
-    "большого конверта",
-    "большим конвертом",
-    "большом конверте"
-   ],
-   "correct": "большой конверт",
-   "case": "Винительный (Accusative)",
-   "explain": "«большой конверт» — the accusative marks the direct object of the verb.",
-   "id": "c5"
-  },
-  {
-   "sentence": "Майор этот был человек лет шестидесяти, тучный и неуклюжий, с отёкшим и ___, с короткой шеей, с постоянной дрожью в пальцах, происходившей от излишнего употребления водки.",
-   "lemma": "лицо",
-   "options": [
-    "красному лицу",
-    "красное лицо",
-    "красного лица",
-    "красным лицом"
-   ],
-   "correct": "красным лицом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«красным лицом» — the instrumental marks the means, company, or complement.",
-   "id": "c7"
   },
   {
    "sentence": "Майор этот был человек лет шестидесяти, тучный и неуклюжий, с отёкшим и красным лицом, с короткой шеей, с постоянной дрожью в пальцах, происходившей от ___ водки.",
@@ -95,22 +39,8 @@
    ],
    "correct": "излишнего употребления",
    "case": "Родительный (Genitive)",
-   "explain": "«излишнего употребления» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«излишнего употребления» — «от» always takes the genitive.",
    "id": "c9"
-  },
-  {
-   "sentence": "Иван Афанасьич явился к нему во время ___.",
-   "lemma": "период",
-   "options": [
-    "холерическим периодом",
-    "холерический период",
-    "холерическом периоде",
-    "холерического периода"
-   ],
-   "correct": "холерического периода",
-   "case": "Родительный (Genitive)",
-   "explain": "«холерического периода» — after the preposition «во», the genitive here marks possession, absence, or quantity.",
-   "id": "c10"
   },
   {
    "sentence": "Толстый ___ поместился с ним рядом.",
@@ -123,7 +53,7 @@
    ],
    "correct": "корноухий кот",
    "case": "Именительный (Nominative)",
-   "explain": "«корноухий кот» — the subject of the sentence stands in the nominative.",
+   "explain": "«корноухий кот» is the subject of «поместился» — who or what does it — so nominative.",
    "id": "c11"
   }
  ]

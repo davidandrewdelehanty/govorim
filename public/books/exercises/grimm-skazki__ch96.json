@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Много лег тому назад жила-была на свете ___, да притом еще колдунья; и была у ней дочка, первая красавица на всем свете.",
-   "lemma": "королева",
-   "options": [
-    "старой королевой",
-    "старая королева",
-    "старой королеве",
-    "старой королевы"
-   ],
-   "correct": "старая королева",
-   "case": "Именительный (Nominative)",
-   "explain": "«старая королева» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Много лег тому назад жила-была на свете старая королева, да притом еще колдунья; и была у ней дочка, ___ на всем свете.",
-   "lemma": "красавица",
-   "options": [
-    "первой красавицы",
-    "первая красавица",
-    "первой красавице",
-    "первой красавицей"
-   ],
-   "correct": "первая красавица",
-   "case": "Именительный (Nominative)",
-   "explain": "«первая красавица» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
    "sentence": "Прослышал о ___ и еще один королевич и сказал своему отцу: «Отпусти меня, я хочу тоже к этой красавице посвататься».",
    "lemma": "красавица",
    "options": [
@@ -39,21 +11,21 @@
    ],
    "correct": "дивной красавице",
    "case": "Предложный (Prepositional)",
-   "explain": "«дивной красавице» — after the preposition «о», for location or topic.",
+   "explain": "«дивной красавице» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c3"
   },
   {
    "sentence": "«К чему же это ты так внимательно прислушиваешься?» — «Прислушиваюсь к тому, что на ___ творится; потому от слуха моего ничто не укроется: я слышу даже, как трава растет».",
    "lemma": "свет",
    "options": [
-    "белым светом",
     "белому свету",
-    "белый свет",
-    "белом свете"
+    "белым светом",
+    "белом свете",
+    "белого света"
    ],
    "correct": "белом свете",
    "case": "Предложный (Prepositional)",
-   "explain": "«белом свете» — after the preposition «на», for location or topic.",
+   "explain": "«белом свете» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c4"
   },
   {
@@ -67,7 +39,7 @@
    ],
    "correct": "старой королевы",
    "case": "Родительный (Genitive)",
-   "explain": "«старой королевы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«старой королевы» depends on the noun «дворе» (whose? of what?) — genitive.",
    "id": "c5"
   },
   {
@@ -81,36 +53,8 @@
    ],
    "correct": "чьих-то ног",
    "case": "Родительный (Genitive)",
-   "explain": "«чьих-то ног» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«чьих-то ног» depends on the noun «начало» (whose? of what?) — genitive.",
    "id": "c6"
-  },
-  {
-   "sentence": "Проехав далее, увидели они на земле пару ступней и начало чьих-то ног, а далее не могли видеть; только проехав еще порядочный конец дороги, увидели они и тело, и голову этого ___.",
-   "lemma": "человек",
-   "options": [
-    "долговязому человеку",
-    "долговязый человек",
-    "долговязого человека",
-    "долговязым человеком"
-   ],
-   "correct": "долговязого человека",
-   "case": "Родительный (Genitive)",
-   "explain": "«долговязого человека» — the genitive here marks possession, absence, or quantity.",
-   "id": "c7"
-  },
-  {
-   "sentence": "Королевич спросил его: «Куда это ты так пристально смотришь?» — «У меня такие ___, — сказал этот человек, — что я через леса и горы, через поля и долины, от края до края света могу видеть».",
-   "lemma": "око",
-   "options": [
-    "ясные очи",
-    "ясным очам",
-    "ясными очами",
-    "ясных очей"
-   ],
-   "correct": "ясные очи",
-   "case": "Именительный (Nominative)",
-   "explain": "«ясные очи» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
   },
   {
    "sentence": "Вот и вступил королевич со своими шестью слугами в тот город, где жила ___.",
@@ -123,92 +67,8 @@
    ],
    "correct": "старая королева",
    "case": "Именительный (Nominative)",
-   "explain": "«старая королева» — the subject of the sentence stands in the nominative.",
+   "explain": "«старая королева» is the subject of «жила» — who or what does it — so nominative.",
    "id": "c9"
-  },
-  {
-   "sentence": "— «А какая будет ___?» — «Добудь мне кольцо, которое я в Красное море обронила».",
-   "lemma": "задача",
-   "options": [
-    "первой задачей",
-    "первая задача",
-    "первой задачи",
-    "первой задаче"
-   ],
-   "correct": "первая задача",
-   "case": "Именительный (Nominative)",
-   "explain": "«первая задача» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
-  },
-  {
-   "sentence": "Пошел королевич домой к своим слугам и сказал: «Нелегка ___!» И рассказал он им, в чем дело.",
-   "lemma": "задача",
-   "options": [
-    "первой задачей",
-    "первая задача",
-    "первой задачи",
-    "первой задаче"
-   ],
-   "correct": "первая задача",
-   "case": "Именительный (Nominative)",
-   "explain": "«первая задача» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
-  },
-  {
-   "sentence": "Вот и сказал ему тот, что с ___: «Посмотрю, где оно лежит, — и тотчас добавил: — Вон оно лежит на камне».",
-   "lemma": "око",
-   "options": [
-    "ясными очами",
-    "ясным очам",
-    "ясных очах",
-    "ясных очей"
-   ],
-   "correct": "ясными очами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«ясными очами» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c12"
-  },
-  {
-   "sentence": "Видишь, вон там на лугу перед моим замком пасутся триста ___?",
-   "lemma": "вол",
-   "options": [
-    "жирные волы",
-    "жирных волов",
-    "жирных волах",
-    "жирным волам"
-   ],
-   "correct": "жирных волов",
-   "case": "Родительный (Genitive)",
-   "explain": "«жирных волов» — the genitive here marks possession, absence, or quantity.",
-   "id": "c13"
-  },
-  {
-   "sentence": "С наступлением ночи пришла старуха со своей дочкой и подвела ее к королевичу, и тогда долговязый сплелся вокруг них кольцом, а толстяк загородил собою дверь, так что ни одна ___ не могла войти в ту комнату.",
-   "lemma": "душа",
-   "options": [
-    "живой душой",
-    "живая душа",
-    "живой душе",
-    "живой души"
-   ],
-   "correct": "живая душа",
-   "case": "Именительный (Nominative)",
-   "explain": "«живая душа» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
-  },
-  {
-   "sentence": "Так и сидели королевич с красавицей обнявшись, и красавица не обмолвилась ни ___; но месяц освещал ее лицо, и королевич надивиться не мог ее красоте.",
-   "lemma": "слово",
-   "options": [
-    "едином слове",
-    "единого слова",
-    "единым словом",
-    "единое слово"
-   ],
-   "correct": "единым словом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«единым словом» — the instrumental marks the means, company, or complement.",
-   "id": "c15"
   },
   {
    "sentence": "Так и проспали они до четверти ___, когда уже чары не могли более действовать, и все они снова проснулись.",
@@ -221,7 +81,7 @@
    ],
    "correct": "двенадцатого часа",
    "case": "Родительный (Genitive)",
-   "explain": "«двенадцатого часа» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«двенадцатого часа» depends on the noun «четверти» (whose? of what?) — genitive.",
    "id": "c16"
   },
   {
@@ -235,7 +95,7 @@
    ],
    "correct": "старая колдунья",
    "case": "Именительный (Nominative)",
-   "explain": "«старая колдунья» — the subject of the sentence stands in the nominative.",
+   "explain": "«старая колдунья» is the subject of «проскользнула» — who or what does it — so nominative.",
    "id": "c17"
   },
   {
@@ -249,35 +109,21 @@
    ],
    "correct": "гордой девушки",
    "case": "Родительный (Genitive)",
-   "explain": "«гордой девушки» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«гордой девушки» depends on the noun «сердце» (whose? of what?) — genitive.",
    "id": "c18"
-  },
-  {
-   "sentence": "Но ушастый навострил уши и услышал те ___ старухи.",
-   "lemma": "речь",
-   "options": [
-    "тайные речи",
-    "тайными речами",
-    "тайных речей",
-    "тайным речам"
-   ],
-   "correct": "тайные речи",
-   "case": "Винительный (Accusative)",
-   "explain": "«тайные речи» — the accusative marks the direct object of the verb.",
-   "id": "c19"
   },
   {
    "sentence": "И остановился он с нею в гостинице, и шепнул ___, чтобы они ночью унесли от нее ее богатые одежды.",
    "lemma": "человек",
    "options": [
-    "тамошним людям",
-    "тамошних людей",
     "тамошние люди",
+    "тамошним людям",
+    "тамошними людьми",
     "тамошних людях"
    ],
    "correct": "тамошним людям",
    "case": "Дательный (Dative)",
-   "explain": "«тамошним людям» — the dative marks the indirect object or recipient.",
+   "explain": "«тамошним людям» is the indirect object of «шепнул» — to or for whom (кому?) — dative.",
    "id": "c20"
   },
   {
@@ -291,22 +137,8 @@
    ],
    "correct": "добрые люди",
    "case": "Именительный (Nominative)",
-   "explain": "«добрые люди» — the subject of the sentence stands in the nominative.",
+   "explain": "«добрые люди» is the subject of «пришли» — who or what does it — so nominative.",
    "id": "c21"
-  },
-  {
-   "sentence": "Но ей сказали: «Пойдем, мы отведем тебя к твоему мужу» — и привели ее в замок; а когда она вошла в залу, то увидела своего мужа в ___.",
-   "lemma": "одежда",
-   "options": [
-    "королевской одежде",
-    "королевской одежды",
-    "королевская одежда",
-    "королевской одеждой"
-   ],
-   "correct": "королевской одежде",
-   "case": "Предложный (Prepositional)",
-   "explain": "«королевской одежде» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c22"
   }
  ]
 }

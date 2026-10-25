@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Граф Фалькони, очень ___.",
-   "lemma": "человек",
-   "options": [
-    "толстому человеку",
-    "толстым человеком",
-    "толстый человек",
-    "толстом человеке"
-   ],
-   "correct": "толстый человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«толстый человек» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Невинна и добродетельна, но не настолько, чтобы стесняться в выборе ___.",
    "lemma": "костюм",
    "options": [
@@ -25,64 +11,22 @@
    ],
    "correct": "мужского костюма",
    "case": "Родительный (Genitive)",
-   "explain": "«мужского костюма» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«мужского костюма» depends on the noun «выборе» (whose? of what?) — genitive.",
    "id": "c5"
-  },
-  {
-   "sentence": "Барабанщики, факиры, монахини, лягушки, бык из папье-маше, один ___, тысяча надежд, злые гении и проч.",
-   "lemma": "художник",
-   "options": [
-    "лишнему художнику",
-    "лишний художник",
-    "лишним художником",
-    "лишнем художнике"
-   ],
-   "correct": "лишний художник",
-   "case": "Именительный (Nominative)",
-   "explain": "«лишний художник» — the subject of the sentence stands in the nominative.",
-   "id": "c6"
-  },
-  {
-   "sentence": "Барабанщики, факиры, монахини, лягушки, бык из папье-маше, один лишний художник, тысяча надежд, ___ и проч.",
-   "lemma": "гений",
-   "options": [
-    "злые гении",
-    "злым гениям",
-    "злыми гениями",
-    "злых гениях"
-   ],
-   "correct": "злые гении",
-   "case": "Именительный (Nominative)",
-   "explain": "«злые гении» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
   },
   {
    "sentence": "Иван, подай мне сюда ___!",
    "lemma": "нож",
    "options": [
-    "другого ножа",
+    "другом ноже",
+    "другой нож",
     "другому ножу",
-    "другим ножом",
-    "другой нож"
+    "другим ножом"
    ],
    "correct": "другой нож",
    "case": "Винительный (Accusative)",
-   "explain": "«другой нож» — the accusative marks the direct object of the verb.",
+   "explain": "«другой нож» is the direct object of «подай» (кого? что?) — accusative.",
    "id": "c8"
-  },
-  {
-   "sentence": "Какой ___ (заглядывается на Сиротку).",
-   "lemma": "мальчишка",
-   "options": [
-    "хороший мальчишка",
-    "хорошего мальчишки",
-    "хорошим мальчишкой",
-    "хорошему мальчишке"
-   ],
-   "correct": "хороший мальчишка",
-   "case": "Именительный (Nominative)",
-   "explain": "«хороший мальчишка» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
   },
   {
    "sentence": "Процессия: толпа людей, одетых лягушками, несет ___ и две бочки.",
@@ -95,7 +39,7 @@
    ],
    "correct": "бумажного быка",
    "case": "Винительный (Accusative)",
-   "explain": "«бумажного быка» — the accusative marks the direct object of the verb.",
+   "explain": "«бумажного быка» is the direct object of «несет» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c15"
   },
   {
@@ -109,7 +53,7 @@
    ],
    "correct": "самом месте",
    "case": "Предложный (Prepositional)",
-   "explain": "«самом месте» — after the preposition «на», for location or topic.",
+   "explain": "«самом месте» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c16"
   },
   {
@@ -123,7 +67,7 @@
    ],
    "correct": "новые оперетки",
    "case": "Именительный (Nominative)",
-   "explain": "«новые оперетки» — the subject of the sentence stands in the nominative.",
+   "explain": "«новые оперетки» is the subject of «стоят» — who or what does it — so nominative.",
    "id": "c18"
   }
  ]

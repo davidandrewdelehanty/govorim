@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Называется городом, но на город столько же похож, сколько ___ на город.",
-   "lemma": "деревня",
-   "options": [
-    "плохой деревни",
-    "плохой деревней",
-    "плохой деревне",
-    "плохая деревня"
-   ],
-   "correct": "плохая деревня",
-   "case": "Именительный (Nominative)",
-   "explain": "«плохая деревня» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
-   "sentence": "___ много, но ведь женский пол статистами в большинстве случаев во внимание не принимается.",
-   "lemma": "пол",
-   "options": [
-    "женский пол",
-    "женском поле",
-    "женского пола",
-    "женскому полу"
-   ],
-   "correct": "женского пола",
-   "case": "Родительный (Genitive)",
-   "explain": "«Женского пола» — the genitive here marks possession, absence, or quantity.",
-   "id": "c3"
-  },
-  {
    "sentence": "Женского пола много, но ведь ___ статистами в большинстве случаев во внимание не принимается.",
    "lemma": "пол",
    "options": [
@@ -39,22 +11,8 @@
    ],
    "correct": "женский пол",
    "case": "Именительный (Nominative)",
-   "explain": "«женский пол» — the subject of the sentence stands in the nominative.",
+   "explain": "«женский пол» is the subject of «принимается» — who or what does it — so nominative.",
    "id": "c4"
-  },
-  {
-   "sentence": "Из всех закоулочков, щёлочек и уголков веет ___.",
-   "lemma": "дух",
-   "options": [
-    "меркантильным духом",
-    "меркантильному духу",
-    "меркантильный дух",
-    "меркантильном духе"
-   ],
-   "correct": "меркантильным духом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«меркантильным духом» — the instrumental marks the means, company, or complement.",
-   "id": "c6"
   },
   {
    "sentence": "Два ряда балаганов тянутся по ___ от начала до конца и загромождают собой всю площадь, в которую вливается главная улица.",
@@ -67,7 +25,7 @@
    ],
    "correct": "главной улице",
    "case": "Дательный (Dative)",
-   "explain": "«главной улице» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«главной улице» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c7"
   },
   {
@@ -81,7 +39,7 @@
    ],
    "correct": "главная улица",
    "case": "Именительный (Nominative)",
-   "explain": "«главная улица» — the subject of the sentence stands in the nominative.",
+   "explain": "«главная улица» is the subject of «вливается» — who or what does it — so nominative.",
    "id": "c8"
   },
   {
@@ -95,7 +53,7 @@
    ],
    "correct": "церковной ограде",
    "case": "Предложный (Prepositional)",
-   "explain": "«церковной ограде» — after the preposition «в», for location or topic.",
+   "explain": "«церковной ограде» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c9"
   },
   {
@@ -109,22 +67,8 @@
    ],
    "correct": "вавилонская башня",
    "case": "Именительный (Nominative)",
-   "explain": "«вавилонская башня» — the subject of the sentence stands in the nominative.",
+   "explain": "«вавилонская башня» is the subject of «строится» — who or what does it — so nominative.",
    "id": "c11"
-  },
-  {
-   "sentence": "Проданная лошадь передаётся при помощи полы, из чего явствует, что ___ лошадей ни продавать, ни покупать не может.",
-   "lemma": "человек",
-   "options": [
-    "бесполому человеку",
-    "бесполом человеке",
-    "бесполого человека",
-    "бесполый человек"
-   ],
-   "correct": "бесполый человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«бесполый человек» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
   },
   {
    "sentence": "___ кружится вокруг красного товара и балаганов с пряниками.",
@@ -137,7 +81,7 @@
    ],
    "correct": "женский пол",
    "case": "Именительный (Nominative)",
-   "explain": "«Женский пол» — the subject of the sentence stands in the nominative.",
+   "explain": "«женский пол» is the subject of «кружится» — who or what does it — so nominative.",
    "id": "c15"
   },
   {
@@ -151,22 +95,8 @@
    ],
    "correct": "красного товара",
    "case": "Родительный (Genitive)",
-   "explain": "«красного товара» — after the preposition «вокруг», the genitive here marks possession, absence, or quantity.",
+   "explain": "«красного товара» — «вокруг» always takes the genitive.",
    "id": "c16"
-  },
-  {
-   "sentence": "___ наложило печать на эти пряники.",
-   "lemma": "время",
-   "options": [
-    "неумолимое время",
-    "неумолимым временем",
-    "неумолимом времени",
-    "неумолимого времени"
-   ],
-   "correct": "неумолимое время",
-   "case": "Именительный (Nominative)",
-   "explain": "«Неумолимое время» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
   },
   {
    "sentence": "Они покрыты ___ и плесенью.",
@@ -179,7 +109,7 @@
    ],
    "correct": "сладкой ржавчиной",
    "case": "Творительный (Instrumental)",
-   "explain": "«сладкой ржавчиной» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «покрыты», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c18"
   },
   {
@@ -193,7 +123,7 @@
    ],
    "correct": "несчастные баранки",
    "case": "Именительный (Nominative)",
-   "explain": "«Несчастные баранки» — the subject of the sentence stands in the nominative.",
+   "explain": "«несчастные баранки» is the subject of «покрыты» — who or what does it — so nominative.",
    "id": "c19"
   },
   {
@@ -207,36 +137,8 @@
    ],
    "correct": "иной смельчак",
    "case": "Именительный (Nominative)",
-   "explain": "«Иной смельчак» — the subject of the sentence stands in the nominative.",
+   "explain": "«иной смельчак» is the subject of «возьмёт» — who or what does it — so nominative.",
    "id": "c20"
-  },
-  {
-   "sentence": "Купите вы какому-нибудь Федюшке, Петре, Васютке пистолетик или льва с коровьей мордой и ___ на спине — и вы наполните его сердце безграничнейшею радостью.",
-   "lemma": "полоса",
-   "options": [
-    "чёрными полосами",
-    "чёрные полосы",
-    "чёрных полос",
-    "чёрным полосам"
-   ],
-   "correct": "чёрными полосами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«чёрными полосами» — the instrumental marks the means, company, or complement.",
-   "id": "c23"
-  },
-  {
-   "sentence": "Детей вы увидите около мороженщиков, которые продают «сахарное» и очень ___.",
-   "lemma": "мороженое",
-   "options": [
-    "плохим мороженым",
-    "плохому мороженому",
-    "плохого мороженого",
-    "плохое мороженое"
-   ],
-   "correct": "плохое мороженое",
-   "case": "Именительный (Nominative)",
-   "explain": "«плохое мороженое» — the subject of the sentence stands in the nominative.",
-   "id": "c25"
   },
   {
    "sentence": "У кого есть копейка, тот ест из ___, ест долго, с чувством, толком, расстановкою, боясь не уловить минуты блаженства, чавкая, облизываясь, облизывая пальцы.",
@@ -249,7 +151,7 @@
    ],
    "correct": "зелёной рюмочки",
    "case": "Родительный (Genitive)",
-   "explain": "«зелёной рюмочки» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«зелёной рюмочки» — «из» always takes the genitive.",
    "id": "c26"
   },
   {
@@ -263,7 +165,7 @@
    ],
    "correct": "сахарном мороженом",
    "case": "Предложный (Prepositional)",
-   "explain": "«сахарном мороженом» — after the preposition «о», for location or topic.",
+   "explain": "«сахарном мороженом» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c29"
   },
   {
@@ -277,7 +179,7 @@
    ],
    "correct": "отцовском картузе",
    "case": "Предложный (Prepositional)",
-   "explain": "«отцовском картузе» — after the preposition «в», for location or topic.",
+   "explain": "«отцовском картузе» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c30"
   },
   {
@@ -291,22 +193,8 @@
    ],
    "correct": "едкой сатиры",
    "case": "Родительный (Genitive)",
-   "explain": "«едкой сатиры» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«едкой сатиры» depends on the noun «носителями» (whose? of what?) — genitive.",
    "id": "c31"
-  },
-  {
-   "sentence": "Во время оно головы их были носителями едкой сатиры и ___, теперь же остроумие их приводит в недоумение, а бедность таланта соперничает с бедностью балаганной обстановки.",
-   "lemma": "истина",
-   "options": [
-    "заморских истин",
-    "заморскими истинами",
-    "заморским истинам",
-    "заморских истинах"
-   ],
-   "correct": "заморских истин",
-   "case": "Родительный (Genitive)",
-   "explain": "«заморских истин» — the genitive here marks possession, absence, or quantity.",
-   "id": "c32"
   },
   {
    "sentence": "Во время оно головы их были носителями едкой сатиры и заморских истин, теперь же остроумие их приводит в недоумение, а бедность таланта соперничает с бедностью ___.",
@@ -319,36 +207,8 @@
    ],
    "correct": "балаганной обстановки",
    "case": "Родительный (Genitive)",
-   "explain": "«балаганной обстановки» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«балаганной обстановки» depends on the noun «бедностью» (whose? of what?) — genitive.",
    "id": "c33"
-  },
-  {
-   "sentence": "Не странствующие артисты перед вами, а голодные ___.",
-   "lemma": "волк",
-   "options": [
-    "двуногие волки",
-    "двуногими волками",
-    "двуногих волках",
-    "двуногих волков"
-   ],
-   "correct": "двуногие волки",
-   "case": "Именительный (Nominative)",
-   "explain": "«двуногие волки» — the subject of the sentence stands in the nominative.",
-   "id": "c34"
-  },
-  {
-   "sentence": "Получается не ___, а пошлая: смесь апатии с деланной, привычной, ничего не выражающей гримасой.",
-   "lemma": "рожа",
-   "options": [
-    "идиотской рожи",
-    "идиотской рожей",
-    "идиотская рожа",
-    "идиотской роже"
-   ],
-   "correct": "идиотская рожа",
-   "case": "Именительный (Nominative)",
-   "explain": "«идиотская рожа» — the subject of the sentence stands in the nominative.",
-   "id": "c35"
   },
   {
    "sentence": "К ___, свободному времени, лёгкому «подшофе» недостаёт только смеха.",
@@ -361,22 +221,8 @@
    ],
    "correct": "плохим пряникам",
    "case": "Дательный (Dative)",
-   "explain": "«плохим пряникам» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«плохим пряникам» — «к» always takes the dative.",
    "id": "c36"
-  },
-  {
-   "sentence": "К плохим пряникам, ___, лёгкому «подшофе» недостаёт только смеха.",
-   "lemma": "время",
-   "options": [
-    "свободному времени",
-    "свободным временем",
-    "свободного времени",
-    "свободном времени"
-   ],
-   "correct": "свободному времени",
-   "case": "Дательный (Dative)",
-   "explain": "«свободному времени» — the dative marks the indirect object or recipient.",
-   "id": "c37"
   },
   {
    "sentence": "В обоих каждые четверть часа даются ___.",
@@ -389,7 +235,7 @@
    ],
    "correct": "блистательные представления",
    "case": "Именительный (Nominative)",
-   "explain": "«блистательные представления» — the subject of the sentence stands in the nominative.",
+   "explain": "«блистательные представления» is the subject of «даются» — who or what does it — so nominative.",
    "id": "c38"
   },
   {
@@ -403,22 +249,8 @@
    ],
    "correct": "особенные представления",
    "case": "Именительный (Nominative)",
-   "explain": "«особенные представления» — the subject of the sentence stands in the nominative.",
+   "explain": "«особенные представления» is the subject of «даются» — who or what does it — so nominative.",
    "id": "c39"
-  },
-  {
-   "sentence": "Самое ___ было дано перед отъездом артистов из города, в первое воскресенье после ярмарочного дня.",
-   "lemma": "представление",
-   "options": [
-    "блистательным представлением",
-    "блистательного представления",
-    "блистательное представление",
-    "блистательном представлении"
-   ],
-   "correct": "блистательное представление",
-   "case": "Именительный (Nominative)",
-   "explain": "«блистательное представление» — the subject of the sentence stands in the nominative.",
-   "id": "c40"
   },
   {
    "sentence": "Самое блистательное представление было дано перед отъездом артистов из города, в первое воскресенье после ___.",
@@ -431,22 +263,8 @@
    ],
    "correct": "ярмарочного дня",
    "case": "Родительный (Genitive)",
-   "explain": "«ярмарочного дня» — after the preposition «после», the genitive here marks possession, absence, or quantity.",
+   "explain": "«ярмарочного дня» — «после» always takes the genitive.",
    "id": "c41"
-  },
-  {
-   "sentence": "___ бескостей или Каучук Мин у которава все члены гибки подобны резинки.",
-   "lemma": "человек",
-   "options": [
-    "английского человека",
-    "английскому человеку",
-    "английским человеком",
-    "английский человек"
-   ],
-   "correct": "английский человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«Английский человек» — the subject of the sentence stands in the nominative.",
-   "id": "c42"
   },
   {
    "sentence": "Билеты продаёт ___, личность довольно типичная.",
@@ -459,36 +277,8 @@
    ],
    "correct": "сам хозяин",
    "case": "Именительный (Nominative)",
-   "explain": "«сам хозяин» — the subject of the sentence stands in the nominative.",
+   "explain": "«сам хозяин» is the subject of «продаёт» — who or what does it — so nominative.",
    "id": "c44"
-  },
-  {
-   "sentence": "Мы заплатили, вошли и заняли ___.",
-   "lemma": "место",
-   "options": [
-    "первые места",
-    "первых местах",
-    "первым местам",
-    "первыми местами"
-   ],
-   "correct": "первые места",
-   "case": "Винительный (Accusative)",
-   "explain": "«первые места» — the accusative marks the direct object of the verb.",
-   "id": "c45"
-  },
-  {
-   "sentence": "Их покрывают ___ и измазывают их физиономии одному сажей, другому клейстером.",
-   "lemma": "одеяло",
-   "options": [
-    "грязного одеяла",
-    "грязным одеялом",
-    "грязному одеялу",
-    "грязное одеяло"
-   ],
-   "correct": "грязным одеялом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«грязным одеялом» — the instrumental marks the means, company, or complement.",
-   "id": "c46"
   }
  ]
 }

@@ -1,90 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "На нем были блестящие ___ и вместо галстука красный шнурок с шариками, и на плечах висело пальто, не надетое в рукава, тоже новое.",
-   "lemma": "калоша",
-   "options": [
-    "резиновых калош",
-    "резиновыми калошами",
-    "резиновые калоши",
-    "резиновых калошах"
-   ],
-   "correct": "резиновые калоши",
-   "case": "Именительный (Nominative)",
-   "explain": "«резиновые калоши» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "На нем были блестящие резиновые калоши и вместо галстука ___ с шариками, и на плечах висело пальто, не надетое в рукава, тоже новое.",
-   "lemma": "шнурок",
-   "options": [
-    "красном шнурке",
-    "красному шнурку",
-    "красный шнурок",
-    "красным шнурком"
-   ],
-   "correct": "красный шнурок",
-   "case": "Винительный (Accusative)",
-   "explain": "«красный шнурок» — the accusative marks the direct object of the verb.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Степенно помолившись богу, он поздоровался с отцом и дал ему десять ___ и десять полтинников; и Варваре дал столько же, Аксинье -- двадцать четвертаков.",
-   "lemma": "рубль",
-   "options": [
-    "серебряные рубли",
-    "серебряным рублям",
-    "серебряных рублях",
-    "серебряных рублей"
-   ],
-   "correct": "серебряных рублей",
-   "case": "Родительный (Genitive)",
-   "explain": "«серебряных рублей» — the genitive here marks possession, absence, or quantity.",
-   "id": "c3"
-  },
-  {
-   "sentence": "___ за упокой души заказывали у кондитера, по два с полтиной с персоны.",
-   "lemma": "обед",
-   "options": [
-    "поминальном обеде",
-    "поминальный обед",
-    "поминальным обедом",
-    "поминального обеда"
-   ],
-   "correct": "поминальный обед",
-   "case": "Винительный (Accusative)",
-   "explain": "«Поминальный обед» — the accusative marks the direct object of the verb.",
-   "id": "c5"
-  },
-  {
-   "sentence": "Это был прохладный, но ясный, веселый ___.",
-   "lemma": "день",
-   "options": [
-    "апрельском дне",
-    "апрельский день",
-    "апрельскому дню",
-    "апрельского дня"
-   ],
-   "correct": "апрельский день",
-   "case": "Именительный (Nominative)",
-   "explain": "«апрельский день» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
-  },
-  {
-   "sentence": "Варвару то и дело окликали, чего-нибудь требовали, и она с растерянным видом, тяжело дыша, бегала в кухню, где с рассвета работал повар от Костюкова и ___ от Хрыминых Младших.",
-   "lemma": "кухарка",
-   "options": [
-    "белой кухаркой",
-    "белая кухарка",
-    "белой кухарке",
-    "белой кухарки"
-   ],
-   "correct": "белая кухарка",
-   "case": "Именительный (Nominative)",
-   "explain": "«белая кухарка» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
-  },
-  {
    "sentence": "Аксинья, завитая, без платья, в корсете, в новых ___, носилась по двору как вихрь, и только мелькали ее голые колени и грудь.",
    "lemma": "ботинок",
    "options": [
@@ -95,7 +11,7 @@
    ],
    "correct": "скрипучих ботинках",
    "case": "Предложный (Prepositional)",
-   "explain": "«скрипучих ботинках» — after the preposition «в», for location or topic.",
+   "explain": "«скрипучих ботинках» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c12"
   },
   {
@@ -109,36 +25,8 @@
    ],
    "correct": "открытых ворот",
    "case": "Родительный (Genitive)",
-   "explain": "«открытых ворот» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«открытых ворот» depends on the noun «настежь» (whose? of what?) — genitive.",
    "id": "c13"
-  },
-  {
-   "sentence": "Анисим, в черном сюртуке, с ___ вместо галстука, задумался, глядя в одну точку, и когда певчие громко вскрикивали, быстро крестился.",
-   "lemma": "шнурок",
-   "options": [
-    "красном шнурке",
-    "красному шнурку",
-    "красным шнурком",
-    "красный шнурок"
-   ],
-   "correct": "красным шнурком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«красным шнурком» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c14"
-  },
-  {
-   "sentence": "-- ___, унеси меня отсюда, касатка!",
-   "lemma": "мамка",
-   "options": [
-    "милой мамкой",
-    "милой мамки",
-    "милая мамка",
-    "милой мамке"
-   ],
-   "correct": "милая мамка",
-   "case": "Именительный (Nominative)",
-   "explain": "«Милая мамка» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
   },
   {
    "sentence": "Он был родом из ___, но с молодых лет работал в Уклееве на фабриках и в уезде и прижился тут.",
@@ -151,7 +39,7 @@
    ],
    "correct": "егорьевского уезда",
    "case": "Родительный (Genitive)",
-   "explain": "«Егорьевского уезда» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«егорьевского уезда» — «из» always takes the genitive.",
    "id": "c20"
   },
   {
@@ -165,22 +53,8 @@
    ],
    "correct": "других деревень",
    "case": "Родительный (Genitive)",
-   "explain": "«других деревень» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«других деревень» — «из» always takes the genitive.",
    "id": "c21"
-  },
-  {
-   "sentence": "Жена писаря, женщина исхудалая, косая, привела с собой всех своих детей и, точно ___, косилась на тарелки, и хватала всё, что попадалось под руку, и прятала себе и детям в карманы.",
-   "lemma": "птица",
-   "options": [
-    "хищная птица",
-    "хищной птице",
-    "хищной птицы",
-    "хищной птицей"
-   ],
-   "correct": "хищная птица",
-   "case": "Именительный (Nominative)",
-   "explain": "«хищная птица» — the subject of the sentence stands in the nominative.",
-   "id": "c22"
   },
   {
    "sentence": "У Аксиньи были серые ___, которые редко мигали, и на лице постоянно играла наивная улыбка.",
@@ -193,7 +67,7 @@
    ],
    "correct": "наивные глаза",
    "case": "Именительный (Nominative)",
-   "explain": "«наивные глаза» — the subject of the sentence stands in the nominative.",
+   "explain": "«наивные глаза» is the subject of «были» — who or what does it — so nominative.",
    "id": "c23"
   },
   {
@@ -207,7 +81,7 @@
    ],
    "correct": "наивная улыбка",
    "case": "Именительный (Nominative)",
-   "explain": "«наивная улыбка» — the subject of the sentence stands in the nominative.",
+   "explain": "«наивная улыбка» is the subject of «играла» — who or what does it — so nominative.",
    "id": "c24"
   },
   {
@@ -221,7 +95,7 @@
    ],
    "correct": "близких отношениях",
    "case": "Предложный (Prepositional)",
-   "explain": "«близких отношениях» — after the preposition «в», for location or topic.",
+   "explain": "«близких отношениях» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c25"
   }
  ]

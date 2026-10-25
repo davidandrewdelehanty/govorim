@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "В годы царствования Петра I шла однажды в Азов по Дону государева баржа с сухарями и ___.",
-   "lemma": "зелье",
-   "options": [
-    "огнестрельным зельем",
-    "огнестрельного зелья",
-    "огнестрельному зелью",
-    "огнестрельном зелье"
-   ],
-   "correct": "огнестрельным зельем",
-   "case": "Творительный (Instrumental)",
-   "explain": "«огнестрельным зельем» — the instrumental marks the means, company, or complement.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Лет десять спустя на том месте, где раньше дымились курени ___, поселились пришлые казаки и те, что уцелели от разгрома.",
-   "lemma": "станица",
-   "options": [
-    "чигонацкой станице",
-    "чигонацкой станицы",
-    "чигонацкой станицей",
-    "чигонацкая станица"
-   ],
-   "correct": "чигонацкой станицы",
-   "case": "Родительный (Genitive)",
-   "explain": "«Чигонацкой станицы» — the genitive here marks possession, absence, or quantity.",
-   "id": "c2"
-  },
-  {
    "sentence": "Лет десять спустя на том месте, где раньше дымились курени Чигонацкой станицы, поселились ___ и те, что уцелели от разгрома.",
    "lemma": "казак",
    "options": [
@@ -39,22 +11,8 @@
    ],
    "correct": "пришлые казаки",
    "case": "Именительный (Nominative)",
-   "explain": "«пришлые казаки» — the subject of the sentence stands in the nominative.",
+   "explain": "«пришлые казаки» is the subject of «поселились» — who or what does it — so nominative.",
    "id": "c3"
-  },
-  {
-   "sentence": "Вновь выросла и опоясалась ___ станица.",
-   "lemma": "вал",
-   "options": [
-    "боевым валам",
-    "боевых валах",
-    "боевыми валами",
-    "боевых валов"
-   ],
-   "correct": "боевыми валами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«боевыми валами» — the instrumental marks the means, company, or complement.",
-   "id": "c4"
   },
   {
    "sentence": "С той-то поры и пришел в нее из ___ царев досмотрщик и глаз — мужик Мохов Никишка.",
@@ -67,22 +25,8 @@
    ],
    "correct": "воронежского указа",
    "case": "Родительный (Genitive)",
-   "explain": "«Воронежского указа» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«воронежского указа» — «из» always takes the genitive.",
    "id": "c6"
-  },
-  {
-   "sentence": "От этого-то Мохова Никишки и повелся ___ Моховых.",
-   "lemma": "род",
-   "options": [
-    "купеческий род",
-    "купеческом роде",
-    "купеческому роду",
-    "купеческим родом"
-   ],
-   "correct": "купеческий род",
-   "case": "Винительный (Accusative)",
-   "explain": "«купеческий род» — the accusative marks the direct object of the verb.",
-   "id": "c7"
   },
   {
    "sentence": "Крепко поосели они на ___.",
@@ -95,7 +39,7 @@
    ],
    "correct": "казачьей земле",
    "case": "Предложный (Prepositional)",
-   "explain": "«казачьей земле» — after the preposition «на», for location or topic.",
+   "explain": "«казачьей земле» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c8"
   },
   {
@@ -109,64 +53,22 @@
    ],
    "correct": "левобережных станиц",
    "case": "Родительный (Genitive)",
-   "explain": "«левобережных станиц» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«левобережных станиц» — «из» always takes the genitive.",
    "id": "c11"
-  },
-  {
-   "sentence": "Из левобережных станиц, где бесплодна и жестка песчаная с ___ земля, на правую сторону Дона по распоряжению войскового правительства стали переселяться казаки целыми хуторами.",
-   "lemma": "суглинок",
-   "options": [
-    "каменный суглинок",
-    "каменным суглинком",
-    "каменному суглинку",
-    "каменном суглинке"
-   ],
-   "correct": "каменным суглинком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«каменным суглинком» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c12"
   },
   {
    "sentence": "Из левобережных станиц, где бесплодна и жестка песчаная с каменным суглинком земля, на правую сторону Дона по распоряжению ___ стали переселяться казаки целыми хуторами.",
    "lemma": "правительство",
    "options": [
     "войскового правительства",
-    "войсковым правительством",
-    "войсковом правительстве",
-    "войсковое правительство"
+    "войсковое правительство",
+    "войсковому правительству",
+    "войсковом правительстве"
    ],
    "correct": "войскового правительства",
    "case": "Родительный (Genitive)",
-   "explain": "«войскового правительства» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«войскового правительства» depends on the noun «распоряжению» (whose? of what?) — genitive.",
    "id": "c13"
-  },
-  {
-   "sentence": "За товаром ездили верст за пятьдесят и больше, а тут вот она — лавка со свежими ___, туго набитыми пахучим красным товаром.",
-   "lemma": "полка",
-   "options": [
-    "сосновых полках",
-    "сосновые полки",
-    "сосновых полок",
-    "сосновыми полками"
-   ],
-   "correct": "сосновыми полками",
-   "case": "Творительный (Instrumental)",
-   "explain": "«сосновыми полками» — after the preposition «со», the instrumental marks the means, company, or complement.",
-   "id": "c15"
-  },
-  {
-   "sentence": "За товаром ездили верст за пятьдесят и больше, а тут вот она — лавка со свежими сосновыми полками, туго набитыми пахучим ___.",
-   "lemma": "товар",
-   "options": [
-    "красным товаром",
-    "красный товар",
-    "красному товару",
-    "красного товара"
-   ],
-   "correct": "красным товаром",
-   "case": "Творительный (Instrumental)",
-   "explain": "«красным товаром» — the instrumental marks the means, company, or complement.",
-   "id": "c16"
   },
   {
    "sentence": "Широко, как трехрядную гармонь, развернул Сергей Платонович дело, помимо ___ торговал всем, что надо в сельском немудром хозяйстве: кожевенный товар, соль, керосин, галантерея.",
@@ -179,7 +81,7 @@
    ],
    "correct": "красного товара",
    "case": "Родительный (Genitive)",
-   "explain": "«красного товара» — after the preposition «помимо», the genitive here marks possession, absence, or quantity.",
+   "explain": "«красного товара» — «помимо» always takes the genitive.",
    "id": "c17"
   },
   {
@@ -193,64 +95,8 @@
    ],
    "correct": "немудром хозяйстве",
    "case": "Предложный (Prepositional)",
-   "explain": "«немудром хозяйстве» — after the preposition «в», for location or topic.",
+   "explain": "«немудром хозяйстве» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c18"
-  },
-  {
-   "sentence": "Широко, как трехрядную гармонь, развернул Сергей Платонович дело, помимо красного товара торговал всем, что надо в сельском немудром хозяйстве: ___, соль, керосин, галантерея.",
-   "lemma": "товар",
-   "options": [
-    "кожевенном товаре",
-    "кожевенного товара",
-    "кожевенному товару",
-    "кожевенный товар"
-   ],
-   "correct": "кожевенный товар",
-   "case": "Именительный (Nominative)",
-   "explain": "«кожевенный товар» — the subject of the sentence stands in the nominative.",
-   "id": "c19"
-  },
-  {
-   "sentence": "В последнее время даже ___ снабжал.",
-   "lemma": "машина",
-   "options": [
-    "сельскохозяйственные машины",
-    "сельскохозяйственных машинах",
-    "сельскохозяйственным машинам",
-    "сельскохозяйственными машинами"
-   ],
-   "correct": "сельскохозяйственными машинами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«сельскохозяйственными машинами» — the instrumental marks the means, company, or complement.",
-   "id": "c20"
-  },
-  {
-   "sentence": "С Аксайского завода косилки, сеялки, рядовки, плуги, веялки, сортировки ___ стояли возле зеленостворчатой, прохладной в летнюю пору лавки.",
-   "lemma": "порядок",
-   "options": [
-    "чинном порядке",
-    "чинного порядка",
-    "чинным порядком",
-    "чинному порядку"
-   ],
-   "correct": "чинным порядком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«чинным порядком» — the instrumental marks the means, company, or complement.",
-   "id": "c22"
-  },
-  {
-   "sentence": "Через три года открыл он хлебную ссыпку, а на другой год после смерти ___ взялся за постройку паровой мельницы.",
-   "lemma": "жена",
-   "options": [
-    "первая жена",
-    "первой жены",
-    "первой женой",
-    "первой жене"
-   ],
-   "correct": "первой жены",
-   "case": "Родительный (Genitive)",
-   "explain": "«первой жены» — the genitive here marks possession, absence, or quantity.",
-   "id": "c25"
   },
   {
    "sentence": "Через три года открыл он хлебную ссыпку, а на другой год после смерти первой жены взялся за постройку ___.",
@@ -263,7 +109,7 @@
    ],
    "correct": "паровой мельницы",
    "case": "Родительный (Genitive)",
-   "explain": "«паровой мельницы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«паровой мельницы» depends on the noun «постройку» (whose? of what?) — genitive.",
    "id": "c26"
   },
   {
@@ -277,22 +123,8 @@
    ],
    "correct": "первой жены",
    "case": "Родительный (Genitive)",
-   "explain": "«первой жены» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«первой жены» — «от» always takes the genitive.",
    "id": "c27"
-  },
-  {
-   "sentence": "___ — сухая, узконосая Анна Ивановна — оказалась бездетной.",
-   "lemma": "жена",
-   "options": [
-    "второй женой",
-    "вторая жена",
-    "второй жене",
-    "второй жены"
-   ],
-   "correct": "вторая жена",
-   "case": "Именительный (Nominative)",
-   "explain": "«Вторая жена» — the subject of the sentence stands in the nominative.",
-   "id": "c28"
   },
   {
    "sentence": "Нечуткая Анна Ивановна не пыталась проникать в тайники ___, не до этого было за большим хозяйством, — оттого и выросли брат с сестрой чуждые друг другу, разные по характерам, непохожие на родных.",
@@ -305,36 +137,8 @@
    ],
    "correct": "детских душ",
    "case": "Родительный (Genitive)",
-   "explain": "«детских душ» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«детских душ» depends on the noun «тайники» (whose? of what?) — genitive.",
    "id": "c30"
-  },
-  {
-   "sentence": "Нечуткая Анна Ивановна не пыталась проникать в тайники детских душ, не до этого было за ___, — оттого и выросли брат с сестрой чуждые друг другу, разные по характерам, непохожие на родных.",
-   "lemma": "хозяйство",
-   "options": [
-    "большем хозяйстве",
-    "большему хозяйству",
-    "большего хозяйства",
-    "большим хозяйством"
-   ],
-   "correct": "большим хозяйством",
-   "case": "Творительный (Instrumental)",
-   "explain": "«большим хозяйством» — after the preposition «по», the instrumental marks the means, company, or complement.",
-   "id": "c31"
-  },
-  {
-   "sentence": "Женщины будили в ней нездоровое любопытство, и она — тогда еще угловатый и застенчивый подросток, — предоставленная самой себе, росла, как в лесу куст дикой ___.",
-   "lemma": "ягода",
-   "options": [
-    "волчьей ягоде",
-    "волчьей ягодой",
-    "волчья ягода",
-    "волчьей ягоды"
-   ],
-   "correct": "волчьей ягоды",
-   "case": "Родительный (Genitive)",
-   "explain": "«волчьей ягоды» — the genitive here marks possession, absence, or quantity.",
-   "id": "c33"
   },
   {
    "sentence": "Осторожно обходя кучи бычачьего помета и подводы, рассыпанные по двору, Владимир дошел до калитки и вспомнил, что не был в ___.",
@@ -347,36 +151,8 @@
    ],
    "correct": "машинном отделении",
    "case": "Предложный (Prepositional)",
-   "explain": "«машинном отделении» — after the preposition «в», for location or topic.",
+   "explain": "«машинном отделении» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c35"
-  },
-  {
-   "sentence": "Он чувствовал к вечно улыбающемуся Давыдке, к его ___, даже к белым зубам непреодолимую неприязнь.",
-   "lemma": "тон",
-   "options": [
-    "пренебрежительного тона",
-    "пренебрежительным тоном",
-    "пренебрежительному тону",
-    "пренебрежительном тоне"
-   ],
-   "correct": "пренебрежительному тону",
-   "case": "Дательный (Dative)",
-   "explain": "«пренебрежительному тону» — after the preposition «к», the dative marks the indirect object or recipient.",
-   "id": "c36"
-  },
-  {
-   "sentence": "Он чувствовал к вечно улыбающемуся Давыдке, к его пренебрежительному тону, даже к ___ непреодолимую неприязнь.",
-   "lemma": "зуб",
-   "options": [
-    "белых зубах",
-    "белым зубам",
-    "белых зубов",
-    "белыми зубами"
-   ],
-   "correct": "белым зубам",
-   "case": "Дательный (Dative)",
-   "explain": "«белым зубам» — after the preposition «к», the dative marks the indirect object or recipient.",
-   "id": "c37"
   },
   {
    "sentence": "С чувством облегчения он зашагал около ___.",
@@ -389,7 +165,7 @@
    ],
    "correct": "белого частокола",
    "case": "Родительный (Genitive)",
-   "explain": "«белого частокола» — after the preposition «около», the genitive here marks possession, absence, or quantity.",
+   "explain": "«белого частокола» — «около» always takes the genitive.",
    "id": "c38"
   },
   {
@@ -403,7 +179,7 @@
    ],
    "correct": "мельничного двора",
    "case": "Родительный (Genitive)",
-   "explain": "«мельничного двора» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«мельничного двора» depends on the noun «углу» (whose? of what?) — genitive.",
    "id": "c39"
   },
   {
@@ -417,7 +193,7 @@
    ],
    "correct": "звенящей наковальне",
    "case": "Дательный (Dative)",
-   "explain": "«звенящей наковальне» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«звенящей наковальне» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c40"
   },
   {
@@ -431,7 +207,7 @@
    ],
    "correct": "пожарного сарая",
    "case": "Родительный (Genitive)",
-   "explain": "«пожарного сарая» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«пожарного сарая» depends on the noun «крыши» (whose? of what?) — genitive.",
    "id": "c41"
   },
   {
@@ -445,22 +221,8 @@
    ],
    "correct": "дикого винограда",
    "case": "Родительный (Genitive)",
-   "explain": "«дикого винограда» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«дикого винограда» depends on the noun «листва» (whose? of what?) — genitive.",
    "id": "c42"
-  },
-  {
-   "sentence": "Владимир взошел на крыльцо, над ним заколыхалась листва дикого винограда, буйно заплетавшая крыльцо и террасу, висевшая с голубой резьбы карниза зелеными ___.",
-   "lemma": "шапка",
-   "options": [
-    "пенистых шапок",
-    "пенистыми шапками",
-    "пенистых шапках",
-    "пенистым шапкам"
-   ],
-   "correct": "пенистыми шапками",
-   "case": "Творительный (Instrumental)",
-   "explain": "«пенистыми шапками» — the instrumental marks the means, company, or complement.",
-   "id": "c43"
   },
   {
    "sentence": "— Читаю его и, несмотря на то, что я сын казака-хлебороба и ко всем ___ питаю вполне естественную злобу, тут, представьте, я до чертиков жалею это отмирающее сословие.",
@@ -473,7 +235,7 @@
    ],
    "correct": "привилегированным классам",
    "case": "Дательный (Dative)",
-   "explain": "«привилегированным классам» — after the preposition «ко», the dative marks the indirect object or recipient.",
+   "explain": "«привилегированным классам» — «к» always takes the dative.",
    "id": "c44"
   },
   {
@@ -487,120 +249,8 @@
    ],
    "correct": "русского богатства",
    "case": "Родительный (Genitive)",
-   "explain": "«Русского богатства» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«русского богатства» depends on the noun «книжку» (whose? of what?) — genitive.",
    "id": "c45"
-  },
-  {
-   "sentence": "Изредка наезжал из своего имения гостивший у отца — помещика и дворянина — ___ Евгений Листницкий.",
-   "lemma": "сотник",
-   "options": [
-    "молодым сотником",
-    "молодой сотник",
-    "молодом сотнике",
-    "молодому сотнику"
-   ],
-   "correct": "молодой сотник",
-   "case": "Именительный (Nominative)",
-   "explain": "«молодой сотник» — the subject of the sentence stands in the nominative.",
-   "id": "c46"
-  },
-  {
-   "sentence": "По вечерам пили на террасе чай, тянули никчемные разговоры, и, когда обрывались вялые ___, кто-либо из гостей заводил дорогой, в инкрустациях хозяйский граммофон.",
-   "lemma": "нить",
-   "options": [
-    "разговорными нитями",
-    "разговорных нитях",
-    "разговорные нити",
-    "разговорным нитям"
-   ],
-   "correct": "разговорные нити",
-   "case": "Винительный (Accusative)",
-   "explain": "«разговорные нити» — the accusative marks the direct object of the verb.",
-   "id": "c47"
-  },
-  {
-   "sentence": "Изредка, в большие праздники, любил Сергей Платонович пустить пыль в глаза: созывал гостей и угощал ___, свежей осетровой икрой, ради этого случая выписанной из Батайска, лучшими закусками.",
-   "lemma": "вино",
-   "options": [
-    "дорогих вин",
-    "дорогими винами",
-    "дорогим винам",
-    "дорогие вина"
-   ],
-   "correct": "дорогими винами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«дорогими винами» — the instrumental marks the means, company, or complement.",
-   "id": "c49"
-  },
-  {
-   "sentence": "Изредка, в большие праздники, любил Сергей Платонович пустить пыль в глаза: созывал гостей и угощал дорогими винами, свежей ___, ради этого случая выписанной из Батайска, лучшими закусками.",
-   "lemma": "икра",
-   "options": [
-    "осетровой икре",
-    "осетровая икра",
-    "осетровой икрой",
-    "осетровой икры"
-   ],
-   "correct": "осетровой икрой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«осетровой икрой» — the instrumental marks the means, company, or complement.",
-   "id": "c50"
-  },
-  {
-   "sentence": "Емельян Константинович успевал одеться к концу молитвы, выходил, щуря щелки ___, по-архирейски вытягивал мясистую голую руку.",
-   "lemma": "глаз",
-   "options": [
-    "капустные глаза",
-    "капустных глазах",
-    "капустными глазами",
-    "капустных глаз"
-   ],
-   "correct": "капустных глаз",
-   "case": "Родительный (Genitive)",
-   "explain": "«капустных глаз» — the genitive here marks possession, absence, or quantity.",
-   "id": "c52"
-  },
-  {
-   "sentence": "Читал «___», без нужды ущемляя шишкастый нос в золотое пенсне.",
-   "lemma": "ведомость",
-   "options": [
-    "биржевых ведомостях",
-    "биржевые ведомости",
-    "биржевым ведомостям",
-    "биржевыми ведомостями"
-   ],
-   "correct": "биржевые ведомости",
-   "case": "Именительный (Nominative)",
-   "explain": "«Биржевые ведомости» — the subject of the sentence stands in the nominative.",
-   "id": "c54"
-  },
-  {
-   "sentence": "«___ Мохов С.П. и Атепин Е.К.»",
-   "lemma": "дом",
-   "options": [
-    "торгового дома",
-    "торговым домом",
-    "торговый дом",
-    "торговому дому"
-   ],
-   "correct": "торговый дом",
-   "case": "Именительный (Nominative)",
-   "explain": "«Торговый дом» — the subject of the sentence stands in the nominative.",
-   "id": "c56"
-  },
-  {
-   "sentence": "К магазину примыкал низкорослый, длинный, с подвалом, сарай, саженях в двадцати от него — ___ церковной ограды и церковь с куполом, похожим на вызревшую зеленую луковицу.",
-   "lemma": "перстень",
-   "options": [
-    "кирпичным перстнем",
-    "кирпичному перстню",
-    "кирпичный перстень",
-    "кирпичном перстне"
-   ],
-   "correct": "кирпичный перстень",
-   "case": "Именительный (Nominative)",
-   "explain": "«кирпичный перстень» — the subject of the sentence stands in the nominative.",
-   "id": "c57"
   },
   {
    "sentence": "К магазину примыкал низкорослый, длинный, с подвалом, сарай, саженях в двадцати от него — кирпичный перстень ___ и церковь с куполом, похожим на вызревшую зеленую луковицу.",
@@ -613,22 +263,8 @@
    ],
    "correct": "церковной ограды",
    "case": "Родительный (Genitive)",
-   "explain": "«церковной ограды» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«церковной ограды» depends on the noun «перстень» (whose? of what?) — genitive.",
    "id": "c58"
-  },
-  {
-   "sentence": "С угла на угол двухэтажный, несуразный ___ Атепина, за ним почта, соломенные и железные крыши казачьих куреней, покатая спина мельницы с жестяными ржавыми петухами на крыше.",
-   "lemma": "домик",
-   "options": [
-    "тонкого домика",
-    "тонком домике",
-    "тонким домиком",
-    "тонкий домик"
-   ],
-   "correct": "тонкий домик",
-   "case": "Винительный (Accusative)",
-   "explain": "«тонкий домик» — the accusative marks the direct object of the verb.",
-   "id": "c59"
   },
   {
    "sentence": "С угла на угол двухэтажный, несуразный тонкий домик Атепина, за ним почта, соломенные и железные крыши ___, покатая спина мельницы с жестяными ржавыми петухами на крыше.",
@@ -641,36 +277,22 @@
    ],
    "correct": "казачьих куреней",
    "case": "Родительный (Genitive)",
-   "explain": "«казачьих куреней» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«казачьих куреней» depends on the noun «крыши» (whose? of what?) — genitive.",
    "id": "c60"
   },
   {
    "sentence": "С угла на угол двухэтажный, несуразный тонкий домик Атепина, за ним почта, соломенные и железные крыши казачьих куреней, покатая спина мельницы с жестяными ___ на крыше.",
    "lemma": "петух",
    "options": [
-    "ржавыми петухами",
+    "ржавых петухах",
+    "ржавым петухам",
     "ржавые петухи",
-    "ржавых петухов",
-    "ржавым петухам"
+    "ржавыми петухами"
    ],
    "correct": "ржавыми петухами",
    "case": "Творительный (Instrumental)",
-   "explain": "«ржавыми петухами» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«ржавыми петухами» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c61"
-  },
-  {
-   "sentence": "Жили, закрывшись от всего ___ наружными и внутренними, на болтах, ставнями.",
-   "lemma": "мир",
-   "options": [
-    "синим миром",
-    "синем мире",
-    "синего мира",
-    "синий мир"
-   ],
-   "correct": "синего мира",
-   "case": "Родительный (Genitive)",
-   "explain": "«синего мира» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
-   "id": "c62"
   },
   {
    "sentence": "С вечера, если не шли в гости, зачековывали болты, спускали с привязи ___, и по немому хутору тарахтела лишь деревянным языком стукотушка ночного сторожа.",
@@ -683,36 +305,8 @@
    ],
    "correct": "цепных собак",
    "case": "Родительный (Genitive)",
-   "explain": "«цепных собак» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«цепных собак» depends on the noun «привязи» (whose? of what?) — genitive.",
    "id": "c63"
-  },
-  {
-   "sentence": "С вечера, если не шли в гости, зачековывали болты, спускали с привязи цепных собак, и по немому хутору тарахтела лишь ___ стукотушка ночного сторожа.",
-   "lemma": "язык",
-   "options": [
-    "деревянному языку",
-    "деревянного языка",
-    "деревянном языке",
-    "деревянным языком"
-   ],
-   "correct": "деревянным языком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«деревянным языком» — the instrumental marks the means, company, or complement.",
-   "id": "c64"
-  },
-  {
-   "sentence": "С вечера, если не шли в гости, зачековывали болты, спускали с привязи цепных собак, и по немому хутору тарахтела лишь деревянным языком стукотушка ___.",
-   "lemma": "сторож",
-   "options": [
-    "ночного сторожа",
-    "ночной сторож",
-    "ночном стороже",
-    "ночным сторожем"
-   ],
-   "correct": "ночного сторожа",
-   "case": "Родительный (Genitive)",
-   "explain": "«ночного сторожа» — the genitive here marks possession, absence, or quantity.",
-   "id": "c65"
   }
  ]
 }

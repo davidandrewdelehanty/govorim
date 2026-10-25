@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Какой же ты ___!",
-   "lemma": "человек",
-   "options": [
-    "недобросовестный человек",
-    "недобросовестного человека",
-    "недобросовестному человеку",
-    "недобросовестным человеком"
-   ],
-   "correct": "недобросовестный человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«недобросовестный человек» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
-  },
-  {
    "sentence": "Сколько раз не сдерживал ты данного мне ___!",
    "lemma": "слово",
    "options": [
@@ -25,64 +11,8 @@
    ],
    "correct": "честного слова",
    "case": "Родительный (Genitive)",
-   "explain": "«честного слова» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«честного слова» is the object of a negated verb («не сдерживал») — genitive instead of the accusative.",
    "id": "c6"
-  },
-  {
-   "sentence": "Я не какая-нибудь ___ для тебя, неотесанная, грубая душа!",
-   "lemma": "девчонка",
-   "options": [
-    "простая девчонка",
-    "простой девчонкой",
-    "простой девчонке",
-    "простой девчонки"
-   ],
-   "correct": "простая девчонка",
-   "case": "Именительный (Nominative)",
-   "explain": "«простая девчонка» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
-  },
-  {
-   "sentence": "Я не какая-нибудь простая девчонка для тебя, неотесанная, ___!",
-   "lemma": "душа",
-   "options": [
-    "грубой души",
-    "грубой душой",
-    "грубой душе",
-    "грубая душа"
-   ],
-   "correct": "грубая душа",
-   "case": "Именительный (Nominative)",
-   "explain": "«грубая душа» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
-  },
-  {
-   "sentence": "Этот ___ твое несчастье, твое minimum, твоя гибель!",
-   "lemma": "узел",
-   "options": [
-    "беззаконного узла",
-    "беззаконным узлом",
-    "беззаконному узлу",
-    "беззаконный узел"
-   ],
-   "correct": "беззаконный узел",
-   "case": "Именительный (Nominative)",
-   "explain": "«беззаконный узел» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
-  },
-  {
-   "sentence": "Зачем же ты, ___, шел тогда ко мне, если ты знал, что мы убьем его?",
-   "lemma": "трус",
-   "options": [
-    "малодушном трусе",
-    "малодушный трус",
-    "малодушным трусом",
-    "малодушному трусу"
-   ],
-   "correct": "малодушный трус",
-   "case": "Именительный (Nominative)",
-   "explain": "«малодушный трус» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
   },
   {
    "sentence": "У него было такое же ___, как у тебя теперь!",
@@ -95,36 +25,8 @@
    ],
    "correct": "противное лицо",
    "case": "Именительный (Nominative)",
-   "explain": "«противное лицо» — the subject of the sentence stands in the nominative.",
+   "explain": "«противное лицо» is the subject of «было» — who or what does it — so nominative.",
    "id": "c14"
-  },
-  {
-   "sentence": "___, что ты говоришь?",
-   "lemma": "человек",
-   "options": [
-    "честный человек",
-    "честным человеком",
-    "честному человеку",
-    "честного человека"
-   ],
-   "correct": "честный человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«Честный человек» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
-  },
-  {
-   "sentence": "Счастья своего ты не понимаешь, ___!",
-   "lemma": "человек",
-   "options": [
-    "глупый человек",
-    "глупым человеком",
-    "глупом человеке",
-    "глупого человека"
-   ],
-   "correct": "глупый человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«глупый человек» — the subject of the sentence stands in the nominative.",
-   "id": "c18"
   },
   {
    "sentence": "Завтра же ты будешь ___, свежим, новым!",
@@ -137,7 +39,7 @@
    ],
    "correct": "другим человеком",
    "case": "Творительный (Instrumental)",
-   "explain": "«другим человеком» — the instrumental marks the means, company, or complement.",
+   "explain": "After «будешь», what someone or something is or becomes stands in the instrumental.",
    "id": "c19"
   },
   {
@@ -151,120 +53,22 @@
    ],
    "correct": "статского советника",
    "case": "Родительный (Genitive)",
-   "explain": "«статского советника» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«статского советника» depends on the noun «дочери» (whose? of what?) — genitive.",
    "id": "c25"
-  },
-  {
-   "sentence": "Люблю я вас, ___!..",
-   "lemma": "солдатик",
-   "options": [
-    "старые солдатики",
-    "старых солдатиках",
-    "старых солдатиков",
-    "старым солдатикам"
-   ],
-   "correct": "старых солдатиков",
-   "case": "Винительный (Accusative)",
-   "explain": "«старых солдатиков» — the accusative marks the direct object of the verb.",
-   "id": "c27"
-  },
-  {
-   "sentence": "Дон-Жуан и ___ в одном теле.",
-   "lemma": "трус",
-   "options": [
-    "жалкого труса",
-    "жалкий трус",
-    "жалком трусе",
-    "жалкому трусу"
-   ],
-   "correct": "жалкий трус",
-   "case": "Именительный (Nominative)",
-   "explain": "«жалкий трус» — the subject of the sentence stands in the nominative.",
-   "id": "c32"
-  },
-  {
-   "sentence": "Впрочем, для чего отягощать вас ___?",
-   "lemma": "слово",
-   "options": [
-    "честного слова",
-    "честное слово",
-    "честным словом",
-    "честному слову"
-   ],
-   "correct": "честным словом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«честным словом» — the instrumental marks the means, company, or complement.",
-   "id": "c33"
   },
   {
    "sentence": "(Идут к окну.) Прощайтесь с вашим ___!",
    "lemma": "вино",
    "options": [
-    "вкусного вина",
     "вкусному вину",
-    "вкусное вино",
-    "вкусным вином"
+    "вкусным вином",
+    "вкусном вине",
+    "вкусное вино"
    ],
    "correct": "вкусным вином",
    "case": "Творительный (Instrumental)",
-   "explain": "«вкусным вином» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«вкусным вином» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c34"
-  },
-  {
-   "sentence": "Не терплю я этих ___!",
-   "lemma": "герой",
-   "options": [
-    "романическим героям",
-    "романических героев",
-    "романические герои",
-    "романическими героями"
-   ],
-   "correct": "романических героев",
-   "case": "Винительный (Accusative)",
-   "explain": "«романических героев» — the accusative marks the direct object of the verb.",
-   "id": "c35"
-  },
-  {
-   "sentence": "Живите, ___, как люди живут!",
-   "lemma": "человек",
-   "options": [
-    "глупый человек",
-    "глупым человеком",
-    "глупом человеке",
-    "глупого человека"
-   ],
-   "correct": "глупый человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«глупый человек» — the subject of the sentence stands in the nominative.",
-   "id": "c36"
-  },
-  {
-   "sentence": "Что вы за архангел такой, что вам не живется, не дышится и не сидится так, как ___?",
-   "lemma": "смертный",
-   "options": [
-    "обыкновенном смертном",
-    "обыкновенный смертный",
-    "обыкновенным смертным",
-    "обыкновенному смертному"
-   ],
-   "correct": "обыкновенным смертным",
-   "case": "Творительный (Instrumental)",
-   "explain": "«обыкновенным смертным» — the instrumental marks the means, company, or complement.",
-   "id": "c37"
-  },
-  {
-   "sentence": "Буду помнить, моя мать, моя ___!..",
-   "lemma": "фея",
-   "options": [
-    "хорошей фее",
-    "хорошей феи",
-    "хорошей феей",
-    "хорошая фея"
-   ],
-   "correct": "хорошая фея",
-   "case": "Именительный (Nominative)",
-   "explain": "«хорошая фея» — the subject of the sentence stands in the nominative.",
-   "id": "c40"
   },
   {
    "sentence": "___, а после пути счастья!",
@@ -277,106 +81,8 @@
    ],
    "correct": "счастливого пути",
    "case": "Родительный (Genitive)",
-   "explain": "«Счастливого пути» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«счастливого пути» depends on the noun «пути» (whose? of what?) — genitive.",
    "id": "c42"
-  },
-  {
-   "sentence": "(Ложится на диван.) Прощай, ___!..",
-   "lemma": "женщина",
-   "options": [
-    "милой женщиной",
-    "милой женщины",
-    "милая женщина",
-    "милой женщине"
-   ],
-   "correct": "милая женщина",
-   "case": "Именительный (Nominative)",
-   "explain": "«милая женщина» — the subject of the sentence stands in the nominative.",
-   "id": "c47"
-  },
-  {
-   "sentence": "Чему и кому обязан посещением такой ___?",
-   "lemma": "персона",
-   "options": [
-    "важной персоны",
-    "важной персоной",
-    "важная персона",
-    "важной персоне"
-   ],
-   "correct": "важной персоны",
-   "case": "Родительный (Genitive)",
-   "explain": "«важной персоны» — the genitive here marks possession, absence, or quantity.",
-   "id": "c48"
-  },
-  {
-   "sentence": "На лице у тебя написаны все десять ___!",
-   "lemma": "казнь",
-   "options": [
-    "египетским казням",
-    "египетских казнях",
-    "египетских казней",
-    "египетскими казнями"
-   ],
-   "correct": "египетских казней",
-   "case": "Родительный (Genitive)",
-   "explain": "«египетских казней» — the genitive here marks possession, absence, or quantity.",
-   "id": "c49"
-  },
-  {
-   "sentence": "Ударьте меня по щеке за то, что я ___!",
-   "lemma": "человек",
-   "options": [
-    "вредному человеку",
-    "вредного человека",
-    "вредным человеком",
-    "вредный человек"
-   ],
-   "correct": "вредный человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«вредный человек» — the subject of the sentence stands in the nominative.",
-   "id": "c51"
-  },
-  {
-   "sentence": "За что ты вредишь им, ___, как болезнь, как шальной огонь?",
-   "lemma": "душа",
-   "options": [
-    "подлой душой",
-    "подлой души",
-    "подлой душе",
-    "подлая душа"
-   ],
-   "correct": "подлая душа",
-   "case": "Именительный (Nominative)",
-   "explain": "«подлая душа» — the subject of the sentence stands in the nominative.",
-   "id": "c52"
-  },
-  {
-   "sentence": "За что ты вредишь им, подлая душа, как болезнь, как ___?",
-   "lemma": "огонь",
-   "options": [
-    "шальном огне",
-    "шальным огнём",
-    "шальной огонь",
-    "шальному огню"
-   ],
-   "correct": "шальной огонь",
-   "case": "Именительный (Nominative)",
-   "explain": "«шальной огонь» — the subject of the sentence stands in the nominative.",
-   "id": "c53"
-  },
-  {
-   "sentence": "Плюньте мне в глаза за то, что я ___!",
-   "lemma": "человек",
-   "options": [
-    "вредному человеку",
-    "вредного человека",
-    "вредным человеком",
-    "вредный человек"
-   ],
-   "correct": "вредный человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«вредный человек» — the subject of the sentence stands in the nominative.",
-   "id": "c54"
   },
   {
    "sentence": "Зачем к вам сегодня ___ приходила?",
@@ -389,64 +95,8 @@
    ],
    "correct": "молодая барыня",
    "case": "Именительный (Nominative)",
-   "explain": "«молодая барыня» — the subject of the sentence stands in the nominative.",
+   "explain": "«молодая барыня» is the subject of «приходила» — who or what does it — so nominative.",
    "id": "c56"
-  },
-  {
-   "sentence": "И вы не ___ после этого?",
-   "lemma": "человек",
-   "options": [
-    "вредному человеку",
-    "вредного человека",
-    "вредным человеком",
-    "вредный человек"
-   ],
-   "correct": "вредный человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«вредный человек» — the subject of the sentence stands in the nominative.",
-   "id": "c57"
-  },
-  {
-   "sentence": "В спину только не бей, ___, в грудь бей!",
-   "lemma": "животное",
-   "options": [
-    "железное животное",
-    "железном животном",
-    "железному животному",
-    "железного животного"
-   ],
-   "correct": "железное животное",
-   "case": "Именительный (Nominative)",
-   "explain": "«железное животное» — the subject of the sentence stands in the nominative.",
-   "id": "c58"
-  },
-  {
-   "sentence": "Какой же он ___!",
-   "lemma": "человек",
-   "options": [
-    "подлом человеке",
-    "подлый человек",
-    "подлому человеку",
-    "подлым человеком"
-   ],
-   "correct": "подлый человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«подлый человек» — the subject of the sentence stands in the nominative.",
-   "id": "c59"
-  },
-  {
-   "sentence": "Береги, Саша, моего ___!",
-   "lemma": "человечек",
-   "options": [
-    "маленький человечек",
-    "маленьким человечком",
-    "маленьком человечке",
-    "маленького человечка"
-   ],
-   "correct": "маленького человечка",
-   "case": "Винительный (Accusative)",
-   "explain": "«маленького человечка» — the accusative marks the direct object of the verb.",
-   "id": "c60"
   },
   {
    "sentence": "___ об этом слышишь?",
@@ -459,36 +109,8 @@
    ],
    "correct": "первый раз",
    "case": "Винительный (Accusative)",
-   "explain": "«Первый раз» — the accusative marks the direct object of the verb.",
+   "explain": "«первый раз» tells how long or how often, with no preposition — accusative.",
    "id": "c62"
-  },
-  {
-   "sentence": "Бог тебя накажет, ___!",
-   "lemma": "человек",
-   "options": [
-    "бессовестным человеком",
-    "бессовестный человек",
-    "бессовестному человеку",
-    "бессовестном человеке"
-   ],
-   "correct": "бессовестный человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«бессовестный человек» — the subject of the sentence stands in the nominative.",
-   "id": "c64"
-  },
-  {
-   "sentence": "Теперь все тебя будут считать ___!",
-   "lemma": "человек",
-   "options": [
-    "подлый человек",
-    "подлому человеку",
-    "подлым человеком",
-    "подлого человека"
-   ],
-   "correct": "подлым человеком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«подлым человеком» — the instrumental marks the means, company, or complement.",
-   "id": "c68"
   },
   {
    "sentence": "Платонов встает и медленно идет в ___ комнаты.",
@@ -501,22 +123,8 @@
    ],
    "correct": "другой угол",
    "case": "Винительный (Accusative)",
-   "explain": "«другой угол» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«другой угол» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c70"
-  },
-  {
-   "sentence": "Вопрос мой для меня ___!",
-   "lemma": "вопрос",
-   "options": [
-    "жизненном вопросе",
-    "жизненный вопрос",
-    "жизненным вопросом",
-    "жизненного вопроса"
-   ],
-   "correct": "жизненный вопрос",
-   "case": "Именительный (Nominative)",
-   "explain": "«жизненный вопрос» — the subject of the sentence stands in the nominative.",
-   "id": "c72"
   },
   {
    "sentence": "Я нахожусь в ___!",
@@ -529,22 +137,8 @@
    ],
    "correct": "страшном положении",
    "case": "Предложный (Prepositional)",
-   "explain": "«страшном положении» — after the preposition «в», for location or topic.",
+   "explain": "«страшном положении» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c73"
-  },
-  {
-   "sentence": "Она ___, Михаил Васильич?",
-   "lemma": "женщина",
-   "options": [
-    "честной женщине",
-    "честной женщины",
-    "честная женщина",
-    "честной женщиной"
-   ],
-   "correct": "честная женщина",
-   "case": "Именительный (Nominative)",
-   "explain": "«честная женщина» — the subject of the sentence stands in the nominative.",
-   "id": "c76"
   },
   {
    "sentence": "Если грешить, то грешить на чужой, а не на ___!",
@@ -557,7 +151,7 @@
    ],
    "correct": "родной земле",
    "case": "Предложный (Prepositional)",
-   "explain": "«родной земле» — after the preposition «на», for location or topic.",
+   "explain": "«родной земле» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c78"
   }
  ]

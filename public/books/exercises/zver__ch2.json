@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "___ был страстный любитель псовой охоты.",
-   "lemma": "дядя",
-   "options": [
-    "покойного дядю",
-    "покойному дяде",
-    "покойного дяди",
-    "покойный дядя"
-   ],
-   "correct": "покойный дядя",
-   "case": "Именительный (Nominative)",
-   "explain": "«Покойный дядя» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Покойный дядя был ___ псовой охоты.",
-   "lemma": "любитель",
-   "options": [
-    "страстного любителя",
-    "страстном любителе",
-    "страстный любитель",
-    "страстному любителю"
-   ],
-   "correct": "страстный любитель",
-   "case": "Именительный (Nominative)",
-   "explain": "«страстный любитель» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
    "sentence": "Покойный дядя был страстный любитель ___.",
    "lemma": "охота",
    "options": [
@@ -39,7 +11,7 @@
    ],
    "correct": "псовой охоты",
    "case": "Родительный (Genitive)",
-   "explain": "«псовой охоты» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«псовой охоты» depends on the noun «любитель» (whose? of what?) — genitive.",
    "id": "c3"
   },
   {
@@ -53,7 +25,7 @@
    ],
    "correct": "особенные собаки",
    "case": "Именительный (Nominative)",
-   "explain": "«особенные собаки» — the subject of the sentence stands in the nominative.",
+   "explain": "«особенные собаки» is the subject of «были» — who or what does it — so nominative.",
    "id": "c4"
   },
   {
@@ -67,22 +39,8 @@
    ],
    "correct": "ужасной лапы",
    "case": "Родительный (Genitive)",
-   "explain": "«ужасной лапы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«ужасной лапы» depends on the noun «ударом» (whose? of what?) — genitive.",
    "id": "c5"
-  },
-  {
-   "sentence": "Когда случалось овладевать целым ___, то из берлоги брали и привозили маленьких медвежат.",
-   "lemma": "гнездо",
-   "options": [
-    "медвежьим гнездом",
-    "медвежьему гнезду",
-    "медвежье гнездо",
-    "медвежьем гнезде"
-   ],
-   "correct": "медвежьим гнездом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«медвежьим гнездом» — the instrumental marks the means, company, or complement.",
-   "id": "c6"
   },
   {
    "sentence": "Когда случалось овладевать целым медвежьим гнездом, то из берлоги брали и привозили ___.",
@@ -95,21 +53,21 @@
    ],
    "correct": "маленьких медвежат",
    "case": "Винительный (Accusative)",
-   "explain": "«маленьких медвежат» — the accusative marks the direct object of the verb.",
+   "explain": "«маленьких медвежат» is the direct object of «привозили» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c7"
   },
   {
    "sentence": "Их обыкновенно держали в большом ___ с маленькими окнами, проделанными под самой крышей.",
    "lemma": "сарай",
    "options": [
-    "каменным сараем",
-    "каменный сарай",
     "каменном сарае",
-    "каменного сарая"
+    "каменным сараем",
+    "каменного сарая",
+    "каменному сараю"
    ],
    "correct": "каменном сарае",
    "case": "Предложный (Prepositional)",
-   "explain": "«каменном сарае» — after the preposition «в», for location or topic.",
+   "explain": "«каменном сарае» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c8"
   },
   {
@@ -123,50 +81,8 @@
    ],
    "correct": "самой крышей",
    "case": "Творительный (Instrumental)",
-   "explain": "«самой крышей» — after the preposition «под», the instrumental marks the means, company, or complement.",
+   "explain": "«самой крышей» — «под» takes the instrumental here (где? под чем?) — the accusative would mean movement under (куда? под что?).",
    "id": "c10"
-  },
-  {
-   "sentence": "Окна эти были без стёкол, с одними толстыми ___.",
-   "lemma": "решётка",
-   "options": [
-    "железных решёток",
-    "железными решётками",
-    "железным решёткам",
-    "железные решётки"
-   ],
-   "correct": "железными решётками",
-   "case": "Творительный (Instrumental)",
-   "explain": "«железными решётками» — the instrumental marks the means, company, or complement.",
-   "id": "c11"
-  },
-  {
-   "sentence": "За медведями смотрел и кормил их ___, по имени Ферапонт; но, как это имя было трудно для простонародного выговора, то его произносили «Храпон» или, ещё чаще, «Храпошка».",
-   "lemma": "доезжачий",
-   "options": [
-    "молодому доезжачему",
-    "молодом доезжачем",
-    "молодой доезжачий",
-    "молодого доезжачего"
-   ],
-   "correct": "молодой доезжачий",
-   "case": "Именительный (Nominative)",
-   "explain": "«молодой доезжачий» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
-  },
-  {
-   "sentence": "Я его очень хорошо помню: Храпошка был ___, очень ловкий, сильный и смелый парень лет двадцати пяти.",
-   "lemma": "рост",
-   "options": [
-    "средним ростом",
-    "среднему росту",
-    "среднем росте",
-    "среднего роста"
-   ],
-   "correct": "среднего роста",
-   "case": "Родительный (Genitive)",
-   "explain": "«среднего роста» — the genitive here marks possession, absence, or quantity.",
-   "id": "c14"
   },
   {
    "sentence": "На вершине этой мачты был прилажен ___ или, как его называли, «беседочка».",
@@ -179,36 +95,8 @@
    ],
    "correct": "маленький помостик",
    "case": "Именительный (Nominative)",
-   "explain": "«маленький помостик» — the subject of the sentence stands in the nominative.",
+   "explain": "«маленький помостик» is the subject of «прилажен» — who or what does it — so nominative.",
    "id": "c16"
-  },
-  {
-   "sentence": "Такого отделяли от прочих собратий и он жил на воле, то есть ему дозволялось ходить по двору и по парку, но ___ он должен был содержать караульный пост у столба перед воротами.",
-   "lemma": "образ",
-   "options": [
-    "главного образа",
-    "главном образе",
-    "главный образ",
-    "главным образом"
-   ],
-   "correct": "главным образом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«главным образом» — the instrumental marks the means, company, or complement.",
-   "id": "c17"
-  },
-  {
-   "sentence": "Такого отделяли от прочих собратий и он жил на воле, то есть ему дозволялось ходить по двору и по парку, но главным образом он должен был содержать ___ у столба перед воротами.",
-   "lemma": "пост",
-   "options": [
-    "караульным постом",
-    "караульного поста",
-    "караульному посту",
-    "караульный пост"
-   ],
-   "correct": "караульный пост",
-   "case": "Винительный (Accusative)",
-   "explain": "«караульный пост» — the accusative marks the direct object of the verb.",
-   "id": "c18"
   },
   {
    "sentence": "Тут он и проводил большую часть своего времени или лёжа на соломе у ___, или же взбирался по ней вверх до «беседки» и здесь сидел или тоже спал, чтобы к нему не приставали ни докучные люди, ни собаки.",
@@ -221,21 +109,21 @@
    ],
    "correct": "самой мачты",
    "case": "Родительный (Genitive)",
-   "explain": "«самой мачты» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«самой мачты» — «у» always takes the genitive.",
    "id": "c19"
   },
   {
    "sentence": "Тут он и проводил большую часть своего времени или лёжа на соломе у самой мачты, или же взбирался по ней вверх до «беседки» и здесь сидел или тоже спал, чтобы к нему не приставали ни ___, ни собаки.",
    "lemma": "человек",
    "options": [
-    "докучными людьми",
-    "докучным людям",
+    "докучных людях",
     "докучные люди",
-    "докучных людей"
+    "докучным людям",
+    "докучными людьми"
    ],
    "correct": "докучные люди",
    "case": "Именительный (Nominative)",
-   "explain": "«докучные люди» — the subject of the sentence stands in the nominative.",
+   "explain": "«докучные люди» is the subject of «приставали» — who or what does it — so nominative.",
    "id": "c20"
   }
  ]

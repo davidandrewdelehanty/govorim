@@ -1,62 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Например, ___ суждения „Птицы суть позвоночные животных“ такой: птицы— суть часть-—-позвоночных животных.",
-   "lemma": "смысл",
-   "options": [
-    "логическом смысле",
-    "логическому смыслу",
-    "логическим смыслом",
-    "логический смысл"
-   ],
-   "correct": "логический смысл",
-   "case": "Именительный (Nominative)",
-   "explain": "«логический смысл» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Об'ем понятия (или ___) „птицы“ — входит как часть— в обе понятия (класе) позвоночные.",
-   "lemma": "класс",
-   "options": [
-    "логическом классе",
-    "логическому классу",
-    "логического класса",
-    "логический класс"
-   ],
-   "correct": "логический класс",
-   "case": "Именительный (Nominative)",
-   "explain": "«логический класс» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Суть его в том, что наименьшее ло об’ему понятие „негры“ входит (как мы видим нз ___) в об’ем понятия „люди“, а это последнее (как удостоверяет первая посылка) есть по об’ему часть понятия „емертиые существа“.",
-   "lemma": "посылка",
-   "options": [
-    "вторая посылка",
-    "второй посылки",
-    "второй посылке",
-    "второй посылкой"
-   ],
-   "correct": "второй посылки",
-   "case": "Родительный (Genitive)",
-   "explain": "«второй посылки» — the genitive here marks possession, absence, or quantity.",
-   "id": "c3"
-  },
-  {
-   "sentence": "Суть его в том, что наименьшее ло об’ему понятие „негры“ входит (как мы видим нз второй посылки) в об’ем понятия „люди“, а это последнее (как удостоверяет ___) есть по об’ему часть понятия „емертиые существа“.",
-   "lemma": "посылка",
-   "options": [
-    "первая посылка",
-    "первой посылкой",
-    "первой посылке",
-    "первой посылки"
-   ],
-   "correct": "первая посылка",
-   "case": "Именительный (Nominative)",
-   "explain": "«первая посылка» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
-  },
-  {
    "sentence": "Следовательно (делаем мы вывод, согласно акспоме)— „негры— суть часть— ___; негры— смертные существа.",
    "lemma": "существо",
    "options": [
@@ -67,7 +11,7 @@
    ],
    "correct": "смертных существ",
    "case": "Родительный (Genitive)",
-   "explain": "«смертных существ» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«смертных существ» depends on the noun «часть—» (whose? of what?) — genitive.",
    "id": "c5"
   },
   {
@@ -81,7 +25,7 @@
    ],
    "correct": "аттрибутивная логика",
    "case": "Именительный (Nominative)",
-   "explain": "«Аттрибутивная логика» — the subject of the sentence stands in the nominative.",
+   "explain": "«аттрибутивная логика» is the subject of «пытается» — who or what does it — so nominative.",
    "id": "c6"
   },
   {
@@ -95,7 +39,7 @@
    ],
    "correct": "логический смысл",
    "case": "Винительный (Accusative)",
-   "explain": "«логический смысл» — the accusative marks the direct object of the verb.",
+   "explain": "«логический смысл» is the direct object of «имеет» (кого? что?) — accusative.",
    "id": "c7"
   },
   {
@@ -109,7 +53,7 @@
    ],
    "correct": "логический смысл",
    "case": "Винительный (Accusative)",
-   "explain": "«логический смысл» — the accusative marks the direct object of the verb.",
+   "explain": "«логический смысл» is the direct object of «получит» (кого? что?) — accusative.",
    "id": "c8"
   },
   {
@@ -123,7 +67,7 @@
    ],
    "correct": "крупных представителей",
    "case": "Винительный (Accusative)",
-   "explain": "«крупных представителей» — the accusative marks the direct object of the verb.",
+   "explain": "«крупных представителей» is the direct object of «имеет» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c9"
   },
   {
@@ -137,22 +81,8 @@
    ],
    "correct": "емлющего типа",
    "case": "Родительный (Genitive)",
-   "explain": "«емлющего типа» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«емлющего типа» depends on the noun «всеоб» (whose? of what?) — genitive.",
    "id": "c11"
-  },
-  {
-   "sentence": "Например, ___ суждения „золото— элемент“ есть: „золото— указывает на элемент“.",
-   "lemma": "смысл",
-   "options": [
-    "логическом смысле",
-    "логическому смыслу",
-    "логическим смыслом",
-    "логический смысл"
-   ],
-   "correct": "логический смысл",
-   "case": "Именительный (Nominative)",
-   "explain": "«логический смысл» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
   }
  ]
 }

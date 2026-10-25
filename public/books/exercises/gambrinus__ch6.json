@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Так же праздновали ___ белуги и лобана рыбаки в сапогах-великанах, так же плясали воровские подруги, и Сашка по-прежнему играл матросские песни, привезенные из всех гаваней земного шара.",
-   "lemma": "улов",
-   "options": [
-    "счастливого улова",
-    "счастливому улову",
-    "счастливом улове",
-    "счастливый улов"
-   ],
-   "correct": "счастливый улов",
-   "case": "Винительный (Accusative)",
-   "explain": "«счастливый улов» — the accusative marks the direct object of the verb.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Так же праздновали счастливый улов белуги и лобана рыбаки в сапогах-великанах, так же плясали воровские подруги, и Сашка по-прежнему играл ___, привезенные из всех гаваней земного шара.",
-   "lemma": "песня",
-   "options": [
-    "матросскими песнями",
-    "матросским песням",
-    "матросские песни",
-    "матросских песен"
-   ],
-   "correct": "матросские песни",
-   "case": "Винительный (Accusative)",
-   "explain": "«матросские песни» — the accusative marks the direct object of the verb.",
-   "id": "c2"
-  },
-  {
    "sentence": "Так же праздновали счастливый улов белуги и лобана рыбаки в сапогах-великанах, так же плясали воровские подруги, и Сашка по-прежнему играл матросские песни, привезенные из всех гаваней ___.",
    "lemma": "шар",
    "options": [
@@ -39,7 +11,7 @@
    ],
    "correct": "земного шара",
    "case": "Родительный (Genitive)",
-   "explain": "«земного шара» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«земного шара» depends on the noun «гаваней» (whose? of what?) — genitive.",
    "id": "c3"
   },
   {
@@ -53,22 +25,8 @@
    ],
    "correct": "белые листки",
    "case": "Именительный (Nominative)",
-   "explain": "«белые листки» — the subject of the sentence stands in the nominative.",
+   "explain": "«белые листки» is the subject of «ходили» — who or what does it — so nominative.",
    "id": "c5"
-  },
-  {
-   "sentence": "Маленькие белые листки ходили по рукам вместе с чудесным словом: «свобода», которое в этот вечер без числа повторяла вся необъятная, ___.",
-   "lemma": "страна",
-   "options": [
-    "доверчивой страны",
-    "доверчивой стране",
-    "доверчивая страна",
-    "доверчивой страной"
-   ],
-   "correct": "доверчивая страна",
-   "case": "Именительный (Nominative)",
-   "explain": "«доверчивая страна» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
   },
   {
    "sentence": "Не все было понятно в этих словах, но от этой ___ и великой любви, которая в них звучала, трепетало сердце и раскрывалось им на встречу.",
@@ -81,7 +39,7 @@
    ],
    "correct": "пламенной надежды",
    "case": "Родительный (Genitive)",
-   "explain": "«пламенной надежды» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«пламенной надежды» — «от» always takes the genitive.",
    "id": "c8"
   },
   {
@@ -95,22 +53,8 @@
    ],
    "correct": "бесконечные процессии",
    "case": "Именительный (Nominative)",
-   "explain": "«бесконечные процессии» — the subject of the sentence stands in the nominative.",
+   "explain": "«бесконечные процессии» is the subject of «ходили» — who or what does it — so nominative.",
    "id": "c9"
-  },
-  {
-   "sentence": "На женщинах алели ___ и красные цветы.",
-   "lemma": "ленточка",
-   "options": [
-    "красных ленточек",
-    "красным ленточкам",
-    "красные ленточки",
-    "красными ленточками"
-   ],
-   "correct": "красные ленточки",
-   "case": "Винительный (Accusative)",
-   "explain": "«красные ленточки» — the accusative marks the direct object of the verb.",
-   "id": "c11"
   },
   {
    "sentence": "Но вся эта радость мгновенно исчезла, точно ее смыло, как следы ___ на морском побережье.",
@@ -123,7 +67,7 @@
    ],
    "correct": "детских ножек",
    "case": "Родительный (Genitive)",
-   "explain": "«детских ножек» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«детских ножек» depends on the noun «следы» (whose? of what?) — genitive.",
    "id": "c12"
   },
   {
@@ -137,35 +81,21 @@
    ],
    "correct": "самому носу",
    "case": "Дательный (Dative)",
-   "explain": "«самому носу» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«самому носу» — «к» always takes the dative.",
    "id": "c14"
-  },
-  {
-   "sentence": "Полицейский посизел, приблизил к самому носу Сашки ___, поднятый вверх, и грозно покачал им влево и вправо.",
-   "lemma": "палец",
-   "options": [
-    "указательном пальце",
-    "указательным пальцем",
-    "указательному пальцу",
-    "указательный палец"
-   ],
-   "correct": "указательный палец",
-   "case": "Винительный (Accusative)",
-   "explain": "«указательный палец» — the accusative marks the direct object of the verb.",
-   "id": "c15"
   },
   {
    "sentence": "Говорили с осторожностью, боялись выдать себя взглядом, пугались своей тени, страшились ___.",
    "lemma": "мысль",
    "options": [
+    "собственными мыслями",
+    "собственным мыслям",
     "собственных мыслях",
-    "собственных мыслей",
-    "собственные мысли",
-    "собственным мыслям"
+    "собственных мыслей"
    ],
    "correct": "собственных мыслей",
    "case": "Родительный (Genitive)",
-   "explain": "«собственных мыслей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«страшились» takes its object in the genitive.",
    "id": "c16"
   },
   {
@@ -173,13 +103,13 @@
    "lemma": "испражнение",
    "options": [
     "ядовитые испражнения",
-    "ядовитых испражнениях",
     "ядовитым испражнениям",
-    "ядовитых испражнений"
+    "ядовитыми испражнениями",
+    "ядовитых испражнениях"
    ],
    "correct": "ядовитые испражнения",
    "case": "Винительный (Accusative)",
-   "explain": "«ядовитые испражнения» — the accusative marks the direct object of the verb.",
+   "explain": "«ядовитые испражнения» is the direct object of «выбрасывал» (кого? что?) — accusative.",
    "id": "c18"
   },
   {
@@ -193,22 +123,8 @@
    ],
    "correct": "великолепных магазинов",
    "case": "Родительный (Genitive)",
-   "explain": "«великолепных магазинов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«великолепных магазинов» depends on the noun «окна» (whose? of what?) — genitive.",
    "id": "c20"
-  },
-  {
-   "sentence": "Город забивал щитами зеркальные окна своих великолепных магазинов, охранял патрулями ___ и расставлял на всякий случай по дворам прекрасных домов артиллерию.",
-   "lemma": "памятник",
-   "options": [
-    "гордые памятники",
-    "гордых памятниках",
-    "гордым памятникам",
-    "гордыми памятниками"
-   ],
-   "correct": "гордые памятники",
-   "case": "Винительный (Accusative)",
-   "explain": "«гордые памятники» — the accusative marks the direct object of the verb.",
-   "id": "c21"
   },
   {
    "sentence": "Город забивал щитами зеркальные окна своих великолепных магазинов, охранял патрулями гордые памятники и расставлял на всякий случай по дворам ___ артиллерию.",
@@ -221,21 +137,21 @@
    ],
    "correct": "прекрасных домов",
    "case": "Родительный (Genitive)",
-   "explain": "«прекрасных домов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«прекрасных домов» depends on the noun «дворам» (whose? of what?) — genitive.",
    "id": "c22"
   },
   {
    "sentence": "Внизу, около моря, в улицах, похожих на темные ___, совершалась тайная работа.",
    "lemma": "кишка",
    "options": [
+    "липких кишок",
     "липким кишкам",
-    "липкие кишки",
-    "липких кишках",
-    "липких кишок"
+    "липкими кишками",
+    "липкие кишки"
    ],
    "correct": "липкие кишки",
    "case": "Винительный (Accusative)",
-   "explain": "«липкие кишки» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«липкие кишки» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c23"
   },
   {
@@ -249,7 +165,7 @@
    ],
    "correct": "тайная работа",
    "case": "Именительный (Nominative)",
-   "explain": "«тайная работа» — the subject of the sentence stands in the nominative.",
+   "explain": "«тайная работа» is the subject of «совершалась» — who or what does it — so nominative.",
    "id": "c24"
   },
   {
@@ -263,36 +179,8 @@
    ],
    "correct": "слабого человека",
    "case": "Винительный (Accusative)",
-   "explain": "«слабого человека» — the accusative marks the direct object of the verb.",
+   "explain": "«слабого человека» is the direct object of «охраняет» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c25"
-  },
-  {
-   "sentence": "Он в эту хмельную, безумную, бредовую секунду готов был убить кого-угодно — отца, сестру, священника, даже самого ___, но также был готов, как ребенок, послушаться приказаний каждой твердой воли.",
-   "lemma": "бог",
-   "options": [
-    "православным богом",
-    "православного бога",
-    "православный бог",
-    "православном боге"
-   ],
-   "correct": "православного бога",
-   "case": "Родительный (Genitive)",
-   "explain": "«православного бога» — the genitive here marks possession, absence, or quantity.",
-   "id": "c26"
-  },
-  {
-   "sentence": "Но вдруг в глаза ему бросилась белая ___, которая, дрожа, терлась около Сашки.",
-   "lemma": "собачка",
-   "options": [
-    "нервная собачка",
-    "нервной собачкой",
-    "нервной собачки",
-    "нервной собачке"
-   ],
-   "correct": "нервная собачка",
-   "case": "Именительный (Nominative)",
-   "explain": "«нервная собачка» — the subject of the sentence stands in the nominative.",
-   "id": "c27"
   },
   {
    "sentence": "На сапоги Сашки брызнул мозг из ___.",
@@ -305,7 +193,7 @@
    ],
    "correct": "белочкиной головы",
    "case": "Родительный (Genitive)",
-   "explain": "«Белочкиной головы» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«белочкиной головы» — «из» always takes the genitive.",
    "id": "c29"
   }
  ]

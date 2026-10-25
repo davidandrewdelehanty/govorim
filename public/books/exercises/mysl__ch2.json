@@ -1,48 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Теперь вы понимаете, что это за ___ случился со мною на вечере у Каргановых.",
-   "lemma": "припадок",
-   "options": [
-    "страшному припадку",
-    "страшного припадка",
-    "страшном припадке",
-    "страшный припадок"
-   ],
-   "correct": "страшный припадок",
-   "case": "Именительный (Nominative)",
-   "explain": "«страшный припадок» — after the preposition «за», the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Это был мой ___, удавшийся даже сверх ожиданий.",
-   "lemma": "опыт",
-   "options": [
-    "первым опытом",
-    "первого опыта",
-    "первому опыту",
-    "первый опыт"
-   ],
-   "correct": "первый опыт",
-   "case": "Именительный (Nominative)",
-   "explain": "«первый опыт» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Точно уже все заранее знали, что так это со мной и будет, точно ___ вполне здорового человека в их глазах кажется чем-то естественным, таким, чего можно всегда ожидать.",
-   "lemma": "сумасшествие",
-   "options": [
-    "внезапное сумасшествие",
-    "внезапном сумасшествии",
-    "внезапным сумасшествием",
-    "внезапному сумасшествию"
-   ],
-   "correct": "внезапное сумасшествие",
-   "case": "Именительный (Nominative)",
-   "explain": "«внезапное сумасшествие» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
    "sentence": "Точно уже все заранее знали, что так это со мной и будет, точно внезапное сумасшествие вполне ___ в их глазах кажется чем-то естественным, таким, чего можно всегда ожидать.",
    "lemma": "человек",
    "options": [
@@ -53,22 +11,8 @@
    ],
    "correct": "здорового человека",
    "case": "Родительный (Genitive)",
-   "explain": "«здорового человека» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«здорового человека» depends on the noun «сумасшествие» (whose? of what?) — genitive.",
    "id": "c4"
-  },
-  {
-   "sentence": "Никто не удивился, и все наперебой расцвечивали мою игру игрой собственной фантазии,— у редкого гастролера подбирается такая ___, как эти наивные, глупые и доверчивые люди.",
-   "lemma": "труппа",
-   "options": [
-    "прекрасная труппа",
-    "прекрасной труппы",
-    "прекрасной труппе",
-    "прекрасной труппой"
-   ],
-   "correct": "прекрасная труппа",
-   "case": "Именительный (Nominative)",
-   "explain": "«прекрасная труппа» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
   },
   {
    "sentence": "Как холодный,— да, именно ___ покрывал мое чело?",
@@ -81,7 +25,7 @@
    ],
    "correct": "холодный пот",
    "case": "Именительный (Nominative)",
-   "explain": "«холодный пот» — the subject of the sentence stands in the nominative.",
+   "explain": "«холодный пот» is the subject of «покрывал» — who or what does it — so nominative.",
    "id": "c6"
   },
   {
@@ -95,22 +39,8 @@
    ],
    "correct": "первый раз",
    "case": "Винительный (Accusative)",
-   "explain": "«первый раз» — the accusative marks the direct object of the verb.",
+   "explain": "«первый раз» tells how long or how often, with no preposition — accusative.",
    "id": "c7"
-  },
-  {
-   "sentence": "___ был поразительно груб, даже глуп, но на это именно я и рассчитывал.",
-   "lemma": "фокус",
-   "options": [
-    "самому фокусу",
-    "самым фокусом",
-    "самый фокус",
-    "самого фокуса"
-   ],
-   "correct": "самый фокус",
-   "case": "Именительный (Nominative)",
-   "explain": "«Самый фокус» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
   },
   {
    "sentence": "Более ___ они не поняли бы.",
@@ -123,50 +53,8 @@
    ],
    "correct": "тонкой штуки",
    "case": "Родительный (Genitive)",
-   "explain": "«тонкой штуки» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«тонкой штуки» is the object of a negated verb («не поняли») — genitive instead of the accusative.",
    "id": "c9"
-  },
-  {
-   "sentence": "И в следующую минуту, когда он с ___ поднес к губам рюмку портвейна, я — раз!— выбил рюмку из-под самого его носа, два!— трахнул кулаком по тарелке.",
-   "lemma": "вид",
-   "options": [
-    "блаженному виду",
-    "блаженным видом",
-    "блаженном виде",
-    "блаженный вид"
-   ],
-   "correct": "блаженным видом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«блаженным видом» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c10"
-  },
-  {
-   "sentence": "— У Каргановых.— ___:— Вы знаете, дорогой доктор, кто такая Ирина Павловна Карганова?",
-   "lemma": "голос",
-   "options": [
-    "сладким голосом",
-    "сладкому голосу",
-    "сладкого голоса",
-    "сладком голосе"
-   ],
-   "correct": "сладким голосом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«Сладким голосом» — the instrumental marks the means, company, or complement.",
-   "id": "c12"
-  },
-  {
-   "sentence": "— У Каргановых.— Сладким голосом:— Вы знаете, ___, кто такая Ирина Павловна Карганова?",
-   "lemma": "доктор",
-   "options": [
-    "дорогого доктора",
-    "дорогом докторе",
-    "дорогой доктор",
-    "дорогому доктору"
-   ],
-   "correct": "дорогой доктор",
-   "case": "Именительный (Nominative)",
-   "explain": "«дорогой доктор» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
   },
   {
    "sentence": "Положительно они были слишком мелки для ___!",
@@ -179,7 +67,7 @@
    ],
    "correct": "хорошей игры",
    "case": "Родительный (Genitive)",
-   "explain": "«хорошей игры» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«хорошей игры» — «для» always takes the genitive.",
    "id": "c14"
   },
   {
@@ -193,7 +81,7 @@
    ],
    "correct": "минутного молчания",
    "case": "Родительный (Genitive)",
-   "explain": "«минутного молчания» — after the preposition «после», the genitive here marks possession, absence, or quantity.",
+   "explain": "«минутного молчания» — «после» always takes the genitive.",
    "id": "c15"
   },
   {
@@ -207,7 +95,7 @@
    ],
    "correct": "долгого молчания",
    "case": "Родительный (Genitive)",
-   "explain": "«долгого молчания» — after the preposition «после», the genitive here marks possession, absence, or quantity.",
+   "explain": "«долгого молчания» — «после» always takes the genitive.",
    "id": "c16"
   },
   {
@@ -221,7 +109,7 @@
    ],
    "correct": "второй припадок",
    "case": "Именительный (Nominative)",
-   "explain": "«Второй припадок» — the subject of the sentence stands in the nominative.",
+   "explain": "«второй припадок» is the subject of «случился» — who or what does it — so nominative.",
    "id": "c17"
   },
   {
@@ -235,7 +123,7 @@
    ],
    "correct": "общего плана",
    "case": "Родительный (Genitive)",
-   "explain": "«общего плана» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«общего плана» depends on the noun «существовании» (whose? of what?) — genitive.",
    "id": "c18"
   }
  ]

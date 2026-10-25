@@ -1,87 +1,17 @@
 {
  "cases": [
   {
-   "sentence": "Редкие ___, словно на островах, угнездились на крохотных участках твердой супесной земли, а замощенные хворостом улицы и проулки были проложены по невылазной болотистой топи.",
-   "lemma": "двор",
-   "options": [
-    "казачьи дворы",
-    "казачьих дворов",
-    "казачьим дворам",
-    "казачьими дворами"
-   ],
-   "correct": "казачьи дворы",
-   "case": "Именительный (Nominative)",
-   "explain": "«казачьи дворы» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Редкие казачьи дворы, словно на островах, угнездились на крохотных участках твердой ___, а замощенные хворостом улицы и проулки были проложены по невылазной болотистой топи.",
-   "lemma": "земля",
-   "options": [
-    "супесной земли",
-    "супесной земле",
-    "супесная земля",
-    "супесной землёй"
-   ],
-   "correct": "супесной земли",
-   "case": "Родительный (Genitive)",
-   "explain": "«супесной земли» — the genitive here marks possession, absence, or quantity.",
-   "id": "c3"
-  },
-  {
-   "sentence": "Цепью пошли стрелки 1-го Московского сквозь хутор, но едва миновали ___ и вошли в ольшаник, как обнаружилось, что цепью пересечь ольшаник нельзя.",
-   "lemma": "двор",
-   "options": [
-    "первых дворов",
-    "первым дворам",
-    "первыми дворами",
-    "первые дворы"
-   ],
-   "correct": "первые дворы",
-   "case": "Именительный (Nominative)",
-   "explain": "«первые дворы» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
-  },
-  {
-   "sentence": "Командир 2-го батальона — ___ — не слушал доводов ротного, еле выручившего из глубокого просова свою застрявшую лошадь, скомандовал: «Вперед!» — и первый смело побрел по зыбкой покачивающейся почве.",
-   "lemma": "латыш",
-   "options": [
-    "упрямым латышом",
-    "упрямому латышу",
-    "упрямый латыш",
-    "упрямом латыше"
-   ],
-   "correct": "упрямый латыш",
-   "case": "Именительный (Nominative)",
-   "explain": "«упрямый латыш» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
-  },
-  {
-   "sentence": "В этом бою самодельной ___ был ранен в ногу Иван Алексеевич.",
-   "lemma": "пуля",
-   "options": [
-    "повстанческой пуле",
-    "повстанческой пулей",
-    "повстанческая пуля",
-    "повстанческой пули"
-   ],
-   "correct": "повстанческой пулей",
-   "case": "Творительный (Instrumental)",
-   "explain": "«повстанческой пулей» — the instrumental marks the means, company, or complement.",
-   "id": "c7"
-  },
-  {
    "sentence": "Поражение губительно отозвалось на исходе наступления всех ___, продвигавшихся по левой стороне Дона.",
    "lemma": "часть",
    "options": [
     "красноармейских частей",
-    "красноармейскими частями",
     "красноармейские части",
-    "красноармейским частям"
+    "красноармейским частям",
+    "красноармейских частях"
    ],
    "correct": "красноармейских частей",
    "case": "Родительный (Genitive)",
-   "explain": "«красноармейских частей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«красноармейских частей» depends on the noun «наступления» (whose? of what?) — genitive.",
    "id": "c8"
   },
   {
@@ -95,7 +25,7 @@
    ],
    "correct": "левой стороне",
    "case": "Дательный (Dative)",
-   "explain": "«левой стороне» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«левой стороне» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c9"
   },
   {
@@ -109,7 +39,7 @@
    ],
    "correct": "сердобский полк",
    "case": "Именительный (Nominative)",
-   "explain": "«Сердобский полк» — the subject of the sentence stands in the nominative.",
+   "explain": "«сердобский полк» is the subject of «прибыл» — who or what does it — so nominative.",
    "id": "c10"
   },
   {
@@ -123,7 +53,7 @@
    ],
    "correct": "обозной двуколки",
    "case": "Родительный (Genitive)",
-   "explain": "«обозной двуколки» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«обозной двуколки» is the object of a negated verb («не оставил») — genitive instead of the accusative.",
    "id": "c11"
   },
   {
@@ -137,22 +67,8 @@
    ],
    "correct": "сердобский полк",
    "case": "Именительный (Nominative)",
-   "explain": "«Сердобский полк» — the subject of the sentence stands in the nominative.",
+   "explain": "«сердобский полк» is the subject of «сформировался» — who or what does it — so nominative.",
    "id": "c12"
-  },
-  {
-   "sentence": "Среди красноармейцев — сплошь ___ поздних возрастов — явно намечались настроения, ничуть не способствовавшие поднятию боевого духа.",
-   "lemma": "крестьянин",
-   "options": [
-    "саратовских крестьян",
-    "саратовских крестьянах",
-    "саратовские крестьяне",
-    "саратовскими крестьянами"
-   ],
-   "correct": "саратовских крестьян",
-   "case": "Родительный (Genitive)",
-   "explain": "«саратовских крестьян» — the genitive here marks possession, absence, or quantity.",
-   "id": "c13"
   },
   {
    "sentence": "Среди красноармейцев — сплошь саратовских крестьян ___ — явно намечались настроения, ничуть не способствовавшие поднятию боевого духа.",
@@ -165,22 +81,8 @@
    ],
    "correct": "поздних возрастов",
    "case": "Родительный (Genitive)",
-   "explain": "«поздних возрастов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«поздних возрастов» depends on the noun «крестьян» (whose? of what?) — genitive.",
    "id": "c14"
-  },
-  {
-   "sentence": "Он заслонил собою щупленького Горигасова, напирал на Штокмана, заложив куцые ___ за спину, играя глазами.",
-   "lemma": "рука",
-   "options": [
-    "сильных рук",
-    "сильными руками",
-    "сильным рукам",
-    "сильные руки"
-   ],
-   "correct": "сильные руки",
-   "case": "Винительный (Accusative)",
-   "explain": "«сильные руки» — the accusative marks the direct object of the verb.",
-   "id": "c16"
   },
   {
    "sentence": "Комиссар выслушал его, почесывая огненно-рыжую бородку, нерешительно поправляя очки в черной ___.",
@@ -193,7 +95,7 @@
    ],
    "correct": "роговой оправе",
    "case": "Предложный (Prepositional)",
-   "explain": "«роговой оправе» — after the preposition «в», for location or topic.",
+   "explain": "«роговой оправе» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c17"
   },
   {
@@ -207,50 +109,8 @@
    ],
    "correct": "данной обстановке",
    "case": "Предложный (Prepositional)",
-   "explain": "«данной обстановке» — after the preposition «в», for location or topic.",
+   "explain": "«данной обстановке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c18"
-  },
-  {
-   "sentence": "Ведь такие разговоры — ___!",
-   "lemma": "измена",
-   "options": [
-    "прямой измене",
-    "прямая измена",
-    "прямой изменой",
-    "прямой измены"
-   ],
-   "correct": "прямая измена",
-   "case": "Именительный (Nominative)",
-   "explain": "«прямая измена» — the subject of the sentence stands in the nominative.",
-   "id": "c19"
-  },
-  {
-   "sentence": "— Да, но это может вызвать ___ и даже восстание.",
-   "lemma": "эксцесс",
-   "options": [
-    "нежелательные эксцессы",
-    "нежелательным эксцессам",
-    "нежелательными эксцессами",
-    "нежелательных эксцессах"
-   ],
-   "correct": "нежелательные эксцессы",
-   "case": "Винительный (Accusative)",
-   "explain": "«нежелательные эксцессы» — the accusative marks the direct object of the verb.",
-   "id": "c20"
-  },
-  {
-   "sentence": "Надо принять ___ по локализации этой опасности.",
-   "lemma": "мера",
-   "options": [
-    "срочными мерами",
-    "срочных мер",
-    "срочные меры",
-    "срочных мерах"
-   ],
-   "correct": "срочные меры",
-   "case": "Винительный (Accusative)",
-   "explain": "«срочные меры» — the accusative marks the direct object of the verb.",
-   "id": "c21"
   },
   {
    "sentence": "Мишка вышел, благополучно отвязал от коновязи одну из лучших лошадей ___, шагом миновал заставу, все время держа указательный палец на спуске новенького кавалерийского карабина, — бездорожно выбрался на шлях.",
@@ -263,7 +123,7 @@
    ],
    "correct": "конной разведки",
    "case": "Родительный (Genitive)",
-   "explain": "«конной разведки» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«конной разведки» depends on the noun «лошадей» (whose? of what?) — genitive.",
    "id": "c23"
   },
   {
@@ -277,7 +137,7 @@
    ],
    "correct": "кавалерийского карабина",
    "case": "Родительный (Genitive)",
-   "explain": "«кавалерийского карабина» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«кавалерийского карабина» depends on the noun «спуске» (whose? of what?) — genitive.",
    "id": "c24"
   }
  ]

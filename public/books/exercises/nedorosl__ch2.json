@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Самый ___ ведет его во всякое преступление.",
-   "lemma": "подвиг",
-   "options": [
-    "мелком подвиге",
-    "мелкий подвиг",
-    "мелким подвигом",
-    "мелкого подвига"
-   ],
-   "correct": "мелкий подвиг",
-   "case": "Именительный (Nominative)",
-   "explain": "«мелкий подвиг» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
    "sentence": "Сердце моё кипит ещё негодованием на недостойный поступок ___.",
    "lemma": "хозяин",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "здешних хозяев",
    "case": "Родительный (Genitive)",
-   "explain": "«здешних хозяев» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«здешних хозяев» depends on the noun «поступок» (whose? of what?) — genitive.",
    "id": "c6"
   },
   {
@@ -39,22 +25,8 @@
    ],
    "correct": "случайного отца",
    "case": "Родительный (Genitive)",
-   "explain": "«случайного отца» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«случайного отца» depends on the noun «сын» (whose? of what?) — genitive.",
    "id": "c10"
-  },
-  {
-   "sentence": "Он был по службе меня моложе, сын случайного отца , воспитан в большом свете и имел ___ научиться тому, что в наше воспитание еще и не входило.",
-   "lemma": "случай",
-   "options": [
-    "особливым случаем",
-    "особливый случай",
-    "особливом случае",
-    "особливому случаю"
-   ],
-   "correct": "особливый случай",
-   "case": "Винительный (Accusative)",
-   "explain": "«особливый случай» — the accusative marks the direct object of the verb.",
-   "id": "c12"
   },
   {
    "sentence": "Тут увидел я, что между людьми случайными и людьми почтенными бывает иногда неизмеримая разница, что в большом свете водятся премелкие души и что с ___ можно быть великому скареду .",
@@ -67,36 +39,8 @@
    ],
    "correct": "великим просвещением",
    "case": "Творительный (Instrumental)",
-   "explain": "«великим просвещением» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«великим просвещением» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c15"
-  },
-  {
-   "sentence": "Тут увидел я, что между людьми случайными и людьми почтенными бывает иногда неизмеримая разница, что в большом свете водятся премелкие души и что с великим просвещением можно быть ___ .",
-   "lemma": "скаред",
-   "options": [
-    "великому скареду",
-    "великий скаред",
-    "великом скареде",
-    "великим скаредом"
-   ],
-   "correct": "великому скареду",
-   "case": "Дательный (Dative)",
-   "explain": "«великому скареду» — the dative marks the indirect object or recipient.",
-   "id": "c16"
-  },
-  {
-   "sentence": "___ имел я отличить себя.",
-   "lemma": "случай",
-   "options": [
-    "многими случаями",
-    "многие случаи",
-    "многих случаях",
-    "многим случаям"
-   ],
-   "correct": "многие случаи",
-   "case": "Винительный (Accusative)",
-   "explain": "«Многие случаи» — the accusative marks the direct object of the verb.",
-   "id": "c17"
   },
   {
    "sentence": "Не умел я остеречься от ___ раздраженного моего любочестия.",
@@ -109,7 +53,7 @@
    ],
    "correct": "первых движений",
    "case": "Родительный (Genitive)",
-   "explain": "«первых движений» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«первых движений» — «от» always takes the genitive.",
    "id": "c18"
   },
   {
@@ -123,7 +67,7 @@
    ],
    "correct": "прямой пользы",
    "case": "Родительный (Genitive)",
-   "explain": "«прямой пользы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«прямой пользы» is the object of a negated verb («не приносит») — genitive instead of the accusative.",
    "id": "c19"
   },
   {
@@ -137,7 +81,7 @@
    ],
    "correct": "слепой случай",
    "case": "Именительный (Nominative)",
-   "explain": "«слепой случай» — the subject of the sentence stands in the nominative.",
+   "explain": "«слепой случай» is the subject of «завел» — who or what does it — so nominative.",
    "id": "c20"
   },
   {
@@ -151,7 +95,7 @@
    ],
    "correct": "прямой дороге",
    "case": "Дательный (Dative)",
-   "explain": "«прямой дороге» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«прямой дороге» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c21"
   },
   {
@@ -161,54 +105,12 @@
     "настоящему часу",
     "настоящем часе",
     "настоящим часом",
-    "настоящий час"
+    "настоящего часа"
    ],
    "correct": "настоящем часе",
    "case": "Предложный (Prepositional)",
-   "explain": "«настоящем часе» — after the preposition «об», for location or topic.",
+   "explain": "«настоящем часе» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c22"
-  },
-  {
-   "sentence": "Последуй ___, никогда богат не будешь.",
-   "lemma": "мнение",
-   "options": [
-    "людскими мнениями",
-    "людским мнениям",
-    "людских мнений",
-    "людские мнения"
-   ],
-   "correct": "людским мнениям",
-   "case": "Дательный (Dative)",
-   "explain": "«людским мнениям» — the dative marks the indirect object or recipient.",
-   "id": "c24"
-  },
-  {
-   "sentence": "Умны будут — без него обойдутся; а ___ не в помощь богатство.",
-   "lemma": "сын",
-   "options": [
-    "глупым сыном",
-    "глупому сыну",
-    "глупый сын",
-    "глупом сыне"
-   ],
-   "correct": "глупому сыну",
-   "case": "Дательный (Dative)",
-   "explain": "«глупому сыну» — the dative marks the indirect object or recipient.",
-   "id": "c25"
-  },
-  {
-   "sentence": "Одно почтение должно быть лестно человеку — душевное; а ___ достоин только тот, кто в чинах не по деньгам, а в знати не по чинам.",
-   "lemma": "почтение",
-   "options": [
-    "душевное почтение",
-    "душевного почтения",
-    "душевном почтении",
-    "душевным почтением"
-   ],
-   "correct": "душевного почтения",
-   "case": "Родительный (Genitive)",
-   "explain": "«душевного почтения» — the genitive here marks possession, absence, or quantity.",
-   "id": "c28"
   },
   {
    "sentence": "Как в ___ приехал!",
@@ -221,36 +123,8 @@
    ],
    "correct": "пустой дом",
    "case": "Винительный (Accusative)",
-   "explain": "«пустой дом» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«пустой дом» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c29"
-  },
-  {
-   "sentence": "Разве у меня в доме, кроме твоей ___, и служанок нет?",
-   "lemma": "харя",
-   "options": [
-    "скверная харя",
-    "скверной харей",
-    "скверной харе",
-    "скверной хари"
-   ],
-   "correct": "скверной хари",
-   "case": "Родительный (Genitive)",
-   "explain": "«скверной хари» — the genitive here marks possession, absence, or quantity.",
-   "id": "c30"
-  },
-  {
-   "sentence": "Мне представлен в женихи ее некто ___ больших достоинств.",
-   "lemma": "человек",
-   "options": [
-    "молодым человеком",
-    "молодому человеку",
-    "молодого человека",
-    "молодой человек"
-   ],
-   "correct": "молодой человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«молодой человек» — the subject of the sentence stands in the nominative.",
-   "id": "c31"
   },
   {
    "sentence": "Мне представлен в женихи ее некто молодой человек ___.",
@@ -263,7 +137,7 @@
    ],
    "correct": "больших достоинств",
    "case": "Родительный (Genitive)",
-   "explain": "«больших достоинств» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«больших достоинств» depends on the noun «человек» (whose? of what?) — genitive.",
    "id": "c32"
   },
   {
@@ -277,7 +151,7 @@
    ],
    "correct": "достойного человека",
    "case": "Родительный (Genitive)",
-   "explain": "«достойного человека» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«достойного человека» depends on the noun «выбор» (whose? of what?) — genitive.",
    "id": "c33"
   },
   {
@@ -291,7 +165,7 @@
    ],
    "correct": "истинного друга",
    "case": "Винительный (Accusative)",
-   "explain": "«истинного друга» — after the preposition «б», the accusative marks the direct object of the verb.",
+   "explain": "«истинного друга» is the direct object of «иметь» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c34"
   },
   {
@@ -305,7 +179,7 @@
    ],
    "correct": "медного котлика",
    "case": "Родительный (Genitive)",
-   "explain": "«медного котлика» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«медного котлика» — «из» always takes the genitive.",
    "id": "c36"
   },
   {
@@ -319,7 +193,7 @@
    ],
    "correct": "святой неделе",
    "case": "Предложный (Prepositional)",
-   "explain": "«святой неделе» — after the preposition «о», for location or topic.",
+   "explain": "«святой неделе» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c37"
   },
   {
@@ -333,36 +207,8 @@
    ],
    "correct": "родительский долг",
    "case": "Винительный (Accusative)",
-   "explain": "«родительский долг» — the accusative marks the direct object of the verb.",
+   "explain": "«родительский долг» is the direct object of «исполнили» (кого? что?) — accusative.",
    "id": "c39"
-  },
-  {
-   "sentence": "Я сам видал здесь ___ в сутки сряду часа по три.",
-   "lemma": "огонь",
-   "options": [
-    "беглый огонь",
-    "беглым огнём",
-    "беглом огне",
-    "беглому огню"
-   ],
-   "correct": "беглый огонь",
-   "case": "Именительный (Nominative)",
-   "explain": "«беглый огонь» — the subject of the sentence stands in the nominative.",
-   "id": "c42"
-  },
-  {
-   "sentence": "Бьюсь с ним ___: трех перечесть не умеет.",
-   "lemma": "год",
-   "options": [
-    "третьего года",
-    "третьим годом",
-    "третий год",
-    "третьему году"
-   ],
-   "correct": "третий год",
-   "case": "Винительный (Accusative)",
-   "explain": "«третий год» — the accusative marks the direct object of the verb.",
-   "id": "c43"
   },
   {
    "sentence": "По сесть час, кроме задов, ___ не разберет; да и зады мямлит, прости господи, без складу по складам, без толку по толкам.",
@@ -375,36 +221,8 @@
    ],
    "correct": "новой строки",
    "case": "Родительный (Genitive)",
-   "explain": "«новой строки» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«новой строки» is the object of a negated verb («не разберет») — genitive instead of the accusative.",
    "id": "c44"
-  },
-  {
-   "sentence": "Поучусь; только чтоб это был ___ и чтоб сегодни ж быть сговору.",
-   "lemma": "раз",
-   "options": [
-    "последним разом",
-    "последний раз",
-    "последнем разе",
-    "последнего раза"
-   ],
-   "correct": "последний раз",
-   "case": "Винительный (Accusative)",
-   "explain": "«последний раз» — the accusative marks the direct object of the verb.",
-   "id": "c45"
-  },
-  {
-   "sentence": "У нас ___: собака лает, ветер носит.",
-   "lemma": "пословица",
-   "options": [
-    "российской пословице",
-    "российской пословицы",
-    "российской пословицей",
-    "российская пословица"
-   ],
-   "correct": "российская пословица",
-   "case": "Именительный (Nominative)",
-   "explain": "«российская пословица» — the subject of the sentence stands in the nominative.",
-   "id": "c46"
   },
   {
    "sentence": "Не учись этой ___.",
@@ -417,36 +235,8 @@
    ],
    "correct": "дурацкой науке",
    "case": "Дательный (Dative)",
-   "explain": "«дурацкой науке» — the dative marks the indirect object or recipient.",
+   "explain": "«учись» takes the dative (кому? чему?).",
    "id": "c47"
-  },
-  {
-   "sentence": "Не крушинься, мая матушка, не крушинься; какоф тфой ___, таких на сфете миллионы, миллионы.",
-   "lemma": "сын",
-   "options": [
-    "тражайшем сыне",
-    "тражайшего сына",
-    "тражайший сын",
-    "тражайшему сыну"
-   ],
-   "correct": "тражайший сын",
-   "case": "Именительный (Nominative)",
-   "explain": "«тражайший сын» — the subject of the sentence stands in the nominative.",
-   "id": "c49"
-  },
-  {
-   "sentence": "(Вслух.) Ты, матушка, снаешь, што сматреть фсегта ___.",
-   "lemma": "зповыша",
-   "options": [
-    "лофче зповыше",
-    "лофче зповыши",
-    "лофче зповыша",
-    "лофче зповышей"
-   ],
-   "correct": "лофче зповыши",
-   "case": "Родительный (Genitive)",
-   "explain": "«лофче зповыши» — the genitive here marks possession, absence, or quantity.",
-   "id": "c50"
   },
   {
    "sentence": "___ знает, куда взлезть.",
@@ -459,22 +249,8 @@
    ],
    "correct": "умный человек",
    "case": "Именительный (Nominative)",
-   "explain": "«Умный человек» — the subject of the sentence stands in the nominative.",
+   "explain": "«умный человек» is the subject of «знает» — who or what does it — so nominative.",
    "id": "c51"
-  },
-  {
-   "sentence": "Ваш ___ также на сфете как-нипудь фсмаститца, лютей пасматреть и сепя покасать.",
-   "lemma": "сын",
-   "options": [
-    "трашайшего сына",
-    "трашайший сын",
-    "трашайшем сыне",
-    "трашайшему сыну"
-   ],
-   "correct": "трашайший сын",
-   "case": "Именительный (Nominative)",
-   "explain": "«трашайший сын» — the subject of the sentence stands in the nominative.",
-   "id": "c52"
   }
  ]
 }

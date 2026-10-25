@@ -1,48 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "___ гетмана во дворце.",
-   "lemma": "кабинет",
-   "options": [
-    "рабочего кабинета",
-    "рабочем кабинете",
-    "рабочему кабинету",
-    "рабочий кабинет"
-   ],
-   "correct": "рабочий кабинет",
-   "case": "Именительный (Nominative)",
-   "explain": "«Рабочий кабинет» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Громадный ___, на нем телефонные аппараты.",
-   "lemma": "стол",
-   "options": [
-    "письменным столом",
-    "письменном столе",
-    "письменного стола",
-    "письменный стол"
-   ],
-   "correct": "письменный стол",
-   "case": "Именительный (Nominative)",
-   "explain": "«письменный стол» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
-   "sentence": "На стене ___ в раме.",
-   "lemma": "карта",
-   "options": [
-    "огромной карты",
-    "огромной картой",
-    "огромная карта",
-    "огромной карте"
-   ],
-   "correct": "огромная карта",
-   "case": "Именительный (Nominative)",
-   "explain": "«огромная карта» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
    "sentence": "Только они забрали свою зубную щетку, полотенце и мыло из ___.",
    "lemma": "комната",
    "options": [
@@ -53,22 +11,8 @@
    ],
    "correct": "адъютантской комнаты",
    "case": "Родительный (Genitive)",
-   "explain": "«адъютантской комнаты» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«адъютантской комнаты» — «из» always takes the genitive.",
    "id": "c5"
-  },
-  {
-   "sentence": "За сценой ___: «Смирно!» — потом многоголосый крик караула: «Здравия желаем, ваша светлость!»",
-   "lemma": "команда",
-   "options": [
-    "глухой команде",
-    "глухая команда",
-    "глухой команды",
-    "глухой командой"
-   ],
-   "correct": "глухая команда",
-   "case": "Именительный (Nominative)",
-   "explain": "«глухая команда» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
   },
   {
    "sentence": "Он в богатейшей черкеске, малиновых шароварах и сапогах без каблуков ___ и без шпор.",
@@ -81,7 +25,7 @@
    ],
    "correct": "кавказского типа",
    "case": "Родительный (Genitive)",
-   "explain": "«кавказского типа» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«кавказского типа» depends on the noun «каблуков» (whose? of what?) — genitive.",
    "id": "c8"
   },
   {
@@ -95,36 +39,8 @@
    ],
    "correct": "германского командования",
    "case": "Родительный (Genitive)",
-   "explain": "«германского командования» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«германского командования» depends on the noun «представители» (whose? of what?) — genitive.",
    "id": "c9"
-  },
-  {
-   "sentence": "Я давно уже хотел поставить на вид вам и ___, что следует говорить по-украински.",
-   "lemma": "адъютант",
-   "options": [
-    "других адъютантов",
-    "других адъютантах",
-    "другими адъютантами",
-    "другим адъютантам"
-   ],
-   "correct": "другим адъютантам",
-   "case": "Дательный (Dative)",
-   "explain": "«другим адъютантам» — the dative marks the indirect object or recipient.",
-   "id": "c11"
-  },
-  {
-   "sentence": "Будет знать, как ___ по телефону разговаривать.",
-   "lemma": "голос",
-   "options": [
-    "чужим голосам",
-    "чужих голосов",
-    "чужих голосах",
-    "чужими голосами"
-   ],
-   "correct": "чужими голосами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«чужими голосами» — the instrumental marks the means, company, or complement.",
-   "id": "c13"
   },
   {
    "sentence": "Да я его расстреляю сейчас, здесь же, у ___.",
@@ -137,7 +53,7 @@
    ],
    "correct": "дворцового парапета",
    "case": "Родительный (Genitive)",
-   "explain": "«дворцового парапета» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«дворцового парапета» — «у» always takes the genitive.",
    "id": "c14"
   },
   {
@@ -151,7 +67,7 @@
    ],
    "correct": "германского командования",
    "case": "Родительный (Genitive)",
-   "explain": "«германского командования» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«германского командования» depends on the noun «штабом» (whose? of what?) — genitive.",
    "id": "c16"
   },
   {
@@ -165,7 +81,7 @@
    ],
    "correct": "германского командования",
    "case": "Родительный (Genitive)",
-   "explain": "«германского командования» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«германского командования» depends on the noun «Представители» (whose? of what?) — genitive.",
    "id": "c17"
   },
   {
@@ -179,21 +95,21 @@
    ],
    "correct": "петлюровская конница",
    "case": "Именительный (Nominative)",
-   "explain": "«петлюровская конница» — the subject of the sentence stands in the nominative.",
+   "explain": "«петлюровская конница» is the subject of «прорвала» — who or what does it — so nominative.",
    "id": "c19"
   },
   {
    "sentence": "Мне сейчас стало известно, что петлюровская конница прорвала ___.",
    "lemma": "фронт",
    "options": [
-    "городской фронт",
+    "городским фронтом",
     "городском фронте",
     "городскому фронту",
-    "городского фронта"
+    "городской фронт"
    ],
    "correct": "городской фронт",
    "case": "Винительный (Accusative)",
-   "explain": "«городской фронт» — the accusative marks the direct object of the verb.",
+   "explain": "«городской фронт» is the direct object of «прорвала» (кого? что?) — accusative.",
    "id": "c20"
   },
   {
@@ -207,7 +123,7 @@
    ],
    "correct": "русского командования",
    "case": "Родительный (Genitive)",
-   "explain": "«русского командования» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«русского командования» depends on the noun «штаба» (whose? of what?) — genitive.",
    "id": "c21"
   },
   {
@@ -221,22 +137,8 @@
    ],
    "correct": "невероятные известия",
    "case": "Винительный (Accusative)",
-   "explain": "«невероятные известия» — the accusative marks the direct object of the verb.",
+   "explain": "«невероятные известия» is the direct object of «имею» (кого? что?) — accusative.",
    "id": "c22"
-  },
-  {
-   "sentence": "Физически невозможно есть. Erstens, во-первых, по нашим сведениям, Петлюра имеет двести ___, великолепно вооружен.",
-   "lemma": "войско",
-   "options": [
-    "тисч войска",
-    "тисч войсками",
-    "тисч войсках",
-    "тисч войск"
-   ],
-   "correct": "тисч войск",
-   "case": "Родительный (Genitive)",
-   "explain": "«тисч войск» — the genitive here marks possession, absence, or quantity.",
-   "id": "c23"
   },
   {
    "sentence": "Значит, меня, армию и правительство ___ внезапно оставляет на произвол судьбы?",
@@ -249,7 +151,7 @@
    ],
    "correct": "германское командование",
    "case": "Именительный (Nominative)",
-   "explain": "«германское командование» — the subject of the sentence stands in the nominative.",
+   "explain": "«германское командование» is the subject of «оставляет» — who or what does it — so nominative.",
    "id": "c24"
   },
   {
@@ -263,7 +165,7 @@
    ],
    "correct": "германское командование",
    "case": "Именительный (Nominative)",
-   "explain": "«германское командование» — the subject of the sentence stands in the nominative.",
+   "explain": "«германское командование» is the subject of «эвакуировало» — who or what does it — so nominative.",
    "id": "c25"
   },
   {
@@ -277,36 +179,8 @@
    ],
    "correct": "германское правительство",
    "case": "Именительный (Nominative)",
-   "explain": "«Германское правительство» — the subject of the sentence stands in the nominative.",
+   "explain": "«германское правительство» is the subject of «ощущает» — who or what does it — so nominative.",
    "id": "c26"
-  },
-  {
-   "sentence": "В моем распоряжении только десять ___, после этого я раздеваю с себя ответственность за жизнь вашей светлости.",
-   "lemma": "минута",
-   "options": [
-    "маленькими минутами",
-    "маленьких минут",
-    "маленькие минуты",
-    "маленьким минутам"
-   ],
-   "correct": "маленьких минут",
-   "case": "Родительный (Genitive)",
-   "explain": "«маленьких минут» — the genitive here marks possession, absence, or quantity.",
-   "id": "c27"
-  },
-  {
-   "sentence": "Входит в р а ч германской армии с ящиком и ___.",
-   "lemma": "сумка",
-   "options": [
-    "медицинская сумка",
-    "медицинской сумки",
-    "медицинской сумке",
-    "медицинской сумкой"
-   ],
-   "correct": "медицинской сумкой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«медицинской сумкой» — the instrumental marks the means, company, or complement.",
-   "id": "c29"
   },
   {
    "sentence": "На обнаженном участке появилась ___.",
@@ -319,36 +193,8 @@
    ],
    "correct": "неприятельская конница",
    "case": "Именительный (Nominative)",
-   "explain": "«неприятельская конница» — the subject of the sentence stands in the nominative.",
+   "explain": "«неприятельская конница» is the subject of «появилась» — who or what does it — so nominative.",
    "id": "c30"
-  },
-  {
-   "sentence": "(Решительно, Шратту.) Ваше превосходительство, покорнейше прошу взять меня с гетманом, я его ___.",
-   "lemma": "адъютант",
-   "options": [
-    "личным адъютантом",
-    "личному адъютанту",
-    "личный адъютант",
-    "личного адъютанта"
-   ],
-   "correct": "личный адъютант",
-   "case": "Именительный (Nominative)",
-   "explain": "«личный адъютант» — the subject of the sentence stands in the nominative.",
-   "id": "c31"
-  },
-  {
-   "sentence": "Если вы хотите ехайть, отправляйтесь станцию наш ___.",
-   "lemma": "поезд",
-   "options": [
-    "штабном поезде",
-    "штабного поезда",
-    "штабной поезд",
-    "штабному поезду"
-   ],
-   "correct": "штабной поезд",
-   "case": "Именительный (Nominative)",
-   "explain": "«штабной поезд» — the subject of the sentence stands in the nominative.",
-   "id": "c32"
   },
   {
    "sentence": "Предупреждаю — никаких мест нет, там уж есть ___.",
@@ -361,22 +207,8 @@
    ],
    "correct": "личный адъютант",
    "case": "Именительный (Nominative)",
-   "explain": "«личный адъютант» — the subject of the sentence stands in the nominative.",
+   "explain": "«личный адъютант» is the subject of «есть» — who or what does it — so nominative.",
    "id": "c33"
-  },
-  {
-   "sentence": "(За столом.) Бумаг мы никаких палить не будем, за исключением ___.",
-   "lemma": "список",
-   "options": [
-    "адъютантский список",
-    "адъютантского списка",
-    "адъютантскому списку",
-    "адъютантским списком"
-   ],
-   "correct": "адъютантского списка",
-   "case": "Родительный (Genitive)",
-   "explain": "«адъютантского списка» — after the preposition «за», the genitive here marks possession, absence, or quantity.",
-   "id": "c35"
   },
   {
    "sentence": "Федор, принесите мне из ___ мое полотенце, бритву и мыло.",
@@ -389,7 +221,7 @@
    ],
    "correct": "адъютантской комнаты",
    "case": "Родительный (Genitive)",
-   "explain": "«адъютантской комнаты» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«адъютантской комнаты» — «из» always takes the genitive.",
    "id": "c36"
   }
  ]

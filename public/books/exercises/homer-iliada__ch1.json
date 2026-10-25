@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Сон послать обманчивый ___ Атрея.",
-   "lemma": "сын",
-   "options": [
-    "мощному сыну",
-    "мощным сыном",
-    "мощный сын",
-    "мощном сыне"
-   ],
-   "correct": "мощному сыну",
-   "case": "Дательный (Dative)",
-   "explain": "«мощному сыну» — the dative marks the indirect object or recipient.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Он и с ___ о тебе, милосердый, печется.",
-   "lemma": "небо",
-   "options": [
-    "высоким небесам",
-    "высокими небесами",
-    "высокие небеса",
-    "высоких небес"
-   ],
-   "correct": "высоких небес",
-   "case": "Родительный (Genitive)",
-   "explain": "«высоких небес» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
-   "id": "c2"
-  },
-  {
    "sentence": "Всех в ___, и не слышавших речи советной.",
    "lemma": "толпа",
    "options": [
@@ -39,22 +11,8 @@
    ],
    "correct": "многолюдной толпе",
    "case": "Предложный (Prepositional)",
-   "explain": "«многолюдной толпе» — after the preposition «в», for location or topic.",
+   "explain": "«многолюдной толпе» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c3"
-  },
-  {
-   "sentence": "Коего в узах я бы привел, как ___?",
-   "lemma": "аргивянин",
-   "options": [
-    "другого аргивянина",
-    "другим аргивянином",
-    "другом аргивянине",
-    "другой аргивянин"
-   ],
-   "correct": "другой аргивянин",
-   "case": "Именительный (Nominative)",
-   "explain": "«другой аргивянин» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
   },
   {
    "sentence": "Держат и ___, и волны мятежного моря.",
@@ -67,7 +25,7 @@
    ],
    "correct": "зимние вьюги",
    "case": "Именительный (Nominative)",
-   "explain": "«зимние вьюги» — the subject of the sentence stands in the nominative.",
+   "explain": "«зимние вьюги» is the subject of «Держат» — who or what does it — so nominative.",
    "id": "c5"
   },
   {
@@ -81,7 +39,7 @@
    ],
    "correct": "мятежного моря",
    "case": "Родительный (Genitive)",
-   "explain": "«мятежного моря» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«мятежного моря» depends on the noun «волны» (whose? of what?) — genitive.",
    "id": "c6"
   },
   {
@@ -95,49 +53,21 @@
    ],
    "correct": "блестящая влага",
    "case": "Именительный (Nominative)",
-   "explain": "«блестящая влага» — the subject of the sentence stands in the nominative.",
+   "explain": "«блестящая влага» is the subject of «била» — who or what does it — so nominative.",
    "id": "c7"
-  },
-  {
-   "sentence": "Всех дракон их пожрал, испускающих ___.",
-   "lemma": "крик",
-   "options": [
-    "жалкие крики",
-    "жалких криков",
-    "жалкими криками",
-    "жалких криках"
-   ],
-   "correct": "жалкие крики",
-   "case": "Винительный (Accusative)",
-   "explain": "«жалкие крики» — the accusative marks the direct object of the verb.",
-   "id": "c8"
-  },
-  {
-   "sentence": "___ богов при священных явилося жертвах.",
-   "lemma": "чудо",
-   "options": [
-    "страшному чуду",
-    "страшное чудо",
-    "страшным чудом",
-    "страшном чуде"
-   ],
-   "correct": "страшное чудо",
-   "case": "Именительный (Nominative)",
-   "explain": "«Страшное чудо» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
   },
   {
    "sentence": "Слабые, коим и думы о ___ незнакомы.",
    "lemma": "дело",
    "options": [
     "бранных делах",
-    "бранные дела",
-    "бранных дел",
-    "бранным делам"
+    "бранными делами",
+    "бранным делам",
+    "бранных дел"
    ],
    "correct": "бранных делах",
    "case": "Предложный (Prepositional)",
-   "explain": "«бранных делах» — after the preposition «о», for location or topic.",
+   "explain": "«бранных делах» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c10"
   },
   {
@@ -151,22 +81,8 @@
    ],
    "correct": "кровавые битвы",
    "case": "Винительный (Accusative)",
-   "explain": "«кровавые битвы» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«кровавые битвы» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c11"
-  },
-  {
-   "sentence": "Зная ___ и как он в душе озабочен.",
-   "lemma": "брат",
-   "options": [
-    "любезном брате",
-    "любезному брату",
-    "любезного брата",
-    "любезным братом"
-   ],
-   "correct": "любезного брата",
-   "case": "Винительный (Accusative)",
-   "explain": "«любезного брата» — the accusative marks the direct object of the verb.",
-   "id": "c12"
   },
   {
    "sentence": "Жили в Лилее, при ___ Кефисского тока.",
@@ -179,7 +95,7 @@
    ],
    "correct": "шумном исходе",
    "case": "Предложный (Prepositional)",
-   "explain": "«шумном исходе» — after the preposition «при», for location or topic.",
+   "explain": "«шумном исходе» — «при» always takes the prepositional.",
    "id": "c13"
   },
   {
@@ -193,7 +109,7 @@
    ],
    "correct": "кефисского тока",
    "case": "Родительный (Genitive)",
-   "explain": "«Кефисского тока» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«кефисского тока» depends on the noun «исходе» (whose? of what?) — genitive.",
    "id": "c14"
   },
   {
@@ -207,36 +123,8 @@
    ],
    "correct": "левом крыле",
    "case": "Предложный (Prepositional)",
-   "explain": "«левом крыле» — after the preposition «на», for location or topic.",
+   "explain": "«левом крыле» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c15"
-  },
-  {
-   "sentence": "К песням ___ и искусство бряцать на кифаре.",
-   "lemma": "дар",
-   "options": [
-    "божественного дара",
-    "божественном даре",
-    "божественным даром",
-    "божественный дар"
-   ],
-   "correct": "божественный дар",
-   "case": "Винительный (Accusative)",
-   "explain": "«божественный дар» — the accusative marks the direct object of the verb.",
-   "id": "c16"
-  },
-  {
-   "sentence": "___ Агасфена, народов царя Авгеида.",
-   "lemma": "сын",
-   "options": [
-    "доблестном сыне",
-    "доблестным сыном",
-    "доблестный сын",
-    "доблестному сыну"
-   ],
-   "correct": "доблестный сын",
-   "case": "Именительный (Nominative)",
-   "explain": "«Доблестный сын» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
   },
   {
    "sentence": "Осмьдесят черных судов принеслося под ___.",
@@ -249,7 +137,7 @@
    ],
    "correct": "критской дружиной",
    "case": "Творительный (Instrumental)",
-   "explain": "«критской дружиной» — after the preposition «под», the instrumental marks the means, company, or complement.",
+   "explain": "«критской дружиной» — «под» takes the instrumental here (где? под чем?) — the accusative would mean movement under (куда? под что?).",
    "id": "c18"
   },
   {
@@ -263,7 +151,7 @@
    ],
    "correct": "многие грады",
    "case": "Именительный (Nominative)",
-   "explain": "«Многие грады» — the subject of the sentence stands in the nominative.",
+   "explain": "«многие грады» is the subject of «рассыпал» — who or what does it — so nominative.",
    "id": "c19"
   },
   {
@@ -277,7 +165,7 @@
    ],
    "correct": "пагубной гидрой",
    "case": "Творительный (Instrumental)",
-   "explain": "«пагубной гидрой» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «нанесенною», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c20"
   },
   {
@@ -291,36 +179,8 @@
    ],
    "correct": "мирные дни",
    "case": "Винительный (Accusative)",
-   "explain": "«мирные дни» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«мирные дни» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c21"
-  },
-  {
-   "sentence": "Но ___ — могилою быстрой Мирины.",
-   "lemma": "бог",
-   "options": [
-    "бессмертные боги",
-    "бессмертным богам",
-    "бессмертных богах",
-    "бессмертных богов"
-   ],
-   "correct": "бессмертные боги",
-   "case": "Именительный (Nominative)",
-   "explain": "«бессмертные боги» — the subject of the sentence stands in the nominative.",
-   "id": "c22"
-  },
-  {
-   "sentence": "Пандар, которого Феб одарил ___.",
-   "lemma": "лук",
-   "options": [
-    "сокрушительного лука",
-    "сокрушительном луке",
-    "сокрушительным луком",
-    "сокрушительный лук"
-   ],
-   "correct": "сокрушительным луком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«сокрушительным луком» — the instrumental marks the means, company, or complement.",
-   "id": "c23"
   },
   {
    "sentence": "В ___, где троян и других истреблял он, могучий.",
@@ -333,7 +193,7 @@
    ],
    "correct": "бурной реке",
    "case": "Предложный (Prepositional)",
-   "explain": "«бурной реке» — after the preposition «в», for location or topic.",
+   "explain": "«бурной реке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c24"
   },
   {
@@ -347,7 +207,7 @@
    ],
    "correct": "бурной реке",
    "case": "Предложный (Prepositional)",
-   "explain": "«бурной реке» — after the preposition «в», for location or topic.",
+   "explain": "«бурной реке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c25"
   }
  ]

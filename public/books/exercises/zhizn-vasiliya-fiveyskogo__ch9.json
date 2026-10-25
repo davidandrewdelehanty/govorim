@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Все долгие ___ о.",
-   "lemma": "вечер",
-   "options": [
-    "зимних вечерах",
-    "зимним вечерам",
-    "зимних вечеров",
-    "зимние вечера"
-   ],
-   "correct": "зимние вечера",
-   "case": "Именительный (Nominative)",
-   "explain": "«зимние вечера» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "От прошлого он сохранил любовь к ___ -- и на столе, нагревая комнату, белым огнем пылала большая лампа с пузатым стеклом.",
    "lemma": "свет",
    "options": [
@@ -25,22 +11,8 @@
    ],
    "correct": "яркому свету",
    "case": "Дательный (Dative)",
-   "explain": "«яркому свету» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«яркому свету» — «к» always takes the dative.",
    "id": "c2"
-  },
-  {
-   "sentence": "От прошлого он сохранил любовь к яркому свету -- и на столе, нагревая комнату, белым огнем пылала ___ с пузатым стеклом.",
-   "lemma": "лампа",
-   "options": [
-    "большая лампа",
-    "большей лампы",
-    "большей лампе",
-    "большей лампой"
-   ],
-   "correct": "большая лампа",
-   "case": "Именительный (Nominative)",
-   "explain": "«большая лампа» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
   },
   {
    "sentence": "От прошлого он сохранил любовь к яркому свету -- и на столе, нагревая комнату, белым огнем пылала большая лампа с ___.",
@@ -53,78 +25,8 @@
    ],
    "correct": "пузатым стеклом",
    "case": "Творительный (Instrumental)",
-   "explain": "«пузатым стеклом» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«пузатым стеклом» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c4"
-  },
-  {
-   "sentence": "___ она облегала дом, давила на него сверху, искала отверстия, куда бы пропустить свой серый коготь, и не находила.",
-   "lemma": "кольцо",
-   "options": [
-    "безграничного кольца",
-    "безграничному кольцу",
-    "безграничном кольце",
-    "безграничным кольцом"
-   ],
-   "correct": "безграничным кольцом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«Безграничным кольцом» — the instrumental marks the means, company, or complement.",
-   "id": "c5"
-  },
-  {
-   "sentence": "Безграничным кольцом она облегала дом, давила на него сверху, искала отверстия, куда бы пропустить свой ___, и не находила.",
-   "lemma": "коготь",
-   "options": [
-    "сером когте",
-    "серым когтем",
-    "серый коготь",
-    "серого когтя"
-   ],
-   "correct": "серый коготь",
-   "case": "Винительный (Accusative)",
-   "explain": "«серый коготь» — the accusative marks the direct object of the verb.",
-   "id": "c6"
-  },
-  {
-   "sentence": "Огонь ___ проточил кружок в пушистой броне, и заблестело мокрое стекло, и снаружи она прильнула к нему серым бесцветным глазом.",
-   "lemma": "лампа",
-   "options": [
-    "большой лампы",
-    "большой лампой",
-    "большая лампа",
-    "большой лампе"
-   ],
-   "correct": "большой лампы",
-   "case": "Родительный (Genitive)",
-   "explain": "«большой лампы» — the genitive here marks possession, absence, or quantity.",
-   "id": "c8"
-  },
-  {
-   "sentence": "Огонь большой лампы проточил кружок в пушистой броне, и заблестело мокрое стекло, и снаружи она прильнула к нему серым ___.",
-   "lemma": "глаз",
-   "options": [
-    "бесцветного глаза",
-    "бесцветному глазу",
-    "бесцветном глазе",
-    "бесцветным глазом"
-   ],
-   "correct": "бесцветным глазом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«бесцветным глазом» — the instrumental marks the means, company, or complement.",
-   "id": "c9"
-  },
-  {
-   "sentence": "Ободранные ___ с блестящими капельками янтарной смолы, сияющая пустота воздуха н люди.",
-   "lemma": "стена",
-   "options": [
-    "голых стен",
-    "голым стенам",
-    "голыми стенами",
-    "голые стены"
-   ],
-   "correct": "голые стены",
-   "case": "Именительный (Nominative)",
-   "explain": "«голые стены» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
   },
   {
    "sentence": "Ободранные голые стены с блестящими капельками ___, сияющая пустота воздуха н люди.",
@@ -137,7 +39,7 @@
    ],
    "correct": "янтарной смолы",
    "case": "Родительный (Genitive)",
-   "explain": "«янтарной смолы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«янтарной смолы» depends on the noun «капельками» (whose? of what?) — genitive.",
    "id": "c12"
   },
   {
@@ -151,36 +53,8 @@
    ],
    "correct": "длинной ручки",
    "case": "Родительный (Genitive)",
-   "explain": "«длинной ручки» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«длинной ручки» depends on the noun «кончик» (whose? of what?) — genitive.",
    "id": "c13"
-  },
-  {
-   "sentence": "Изредка он поднимал голову и ___ из-под узких звериных век смотрел в освещенное пространство комнаты.",
-   "lemma": "взгляд",
-   "options": [
-    "неподвижному взгляду",
-    "неподвижном взгляде",
-    "неподвижным взглядом",
-    "неподвижный взгляд"
-   ],
-   "correct": "неподвижным взглядом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«неподвижным взглядом» — after the preposition «из-под», the instrumental marks the means, company, or complement.",
-   "id": "c15"
-  },
-  {
-   "sentence": "Они вились над ним, паутиной пробегали по лицу и входили в голову -- шуршание, шорох и протяжные, ___.",
-   "lemma": "вздох",
-   "options": [
-    "длительным вздохам",
-    "длительные вздохи",
-    "длительными вздохами",
-    "длительных вздохах"
-   ],
-   "correct": "длительные вздохи",
-   "case": "Именительный (Nominative)",
-   "explain": "«длительные вздохи» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
   },
   {
    "sentence": "Василий отрывал глаза от ___.",
@@ -193,50 +67,8 @@
    ],
    "correct": "белых страниц",
    "case": "Родительный (Genitive)",
-   "explain": "«белых страниц» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«белых страниц» — «от» always takes the genitive.",
    "id": "c17"
-  },
-  {
-   "sentence": "Мелькало все, как видение -- и снова перед опущенными глазами развертывался непостижимый мир чудесного, мир любви, мир кроткой жалости и ___.",
-   "lemma": "жертва",
-   "options": [
-    "прекрасной жертве",
-    "прекрасной жертвы",
-    "прекрасной жертвой",
-    "прекрасная жертва"
-   ],
-   "correct": "прекрасной жертвы",
-   "case": "Родительный (Genitive)",
-   "explain": "«прекрасной жертвы» — the genitive here marks possession, absence, or quantity.",
-   "id": "c18"
-  },
-  {
-   "sentence": "Но скоро бросил их -- и, уставившись ___, оттопырив большие уши, терпеливо ловил бегающие звуки.",
-   "lemma": "глаз",
-   "options": [
-    "неподвижные глаза",
-    "неподвижных глазах",
-    "неподвижных глаз",
-    "неподвижными глазами"
-   ],
-   "correct": "неподвижными глазами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«неподвижными глазами» — the instrumental marks the means, company, or complement.",
-   "id": "c21"
-  },
-  {
-   "sentence": "Но скоро бросил их -- и, уставившись неподвижными глазами, оттопырив ___, терпеливо ловил бегающие звуки.",
-   "lemma": "ухо",
-   "options": [
-    "большим ушам",
-    "больших ушах",
-    "большие уши",
-    "большими ушами"
-   ],
-   "correct": "большие уши",
-   "case": "Винительный (Accusative)",
-   "explain": "«большие уши» — the accusative marks the direct object of the verb.",
-   "id": "c22"
   },
   {
    "sentence": "Она садилась на бревна ___, качалась н бахалась в снег, и тихо кралась в угол, и рыла там могилу для чужих, для чужих.",
@@ -249,22 +81,8 @@
    ],
    "correct": "покинутого сруба",
    "case": "Родительный (Genitive)",
-   "explain": "«покинутого сруба» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«покинутого сруба» depends on the noun «бревна» (whose? of what?) — genitive.",
    "id": "c23"
-  },
-  {
-   "sentence": "И с радостью взметывала вверх и раскидывала широкие ___, высматривая; камнем падала вниз и, кружась, проносилась в темные окна заиндевевшего сруба, с визгом и свистом.",
-   "lemma": "крыло",
-   "options": [
-    "серым крыльям",
-    "серыми крыльями",
-    "серые крылья",
-    "серых крыльях"
-   ],
-   "correct": "серые крылья",
-   "case": "Винительный (Accusative)",
-   "explain": "«серые крылья» — the accusative marks the direct object of the verb.",
-   "id": "c24"
   },
   {
    "sentence": "На минуту перед ним встают ___, и злобно-испуганное лицо идиота, и визг разыгравшейся вьюги -- и наполняют душу его мучительным восторгом.",
@@ -277,35 +95,21 @@
    ],
    "correct": "голые стены",
    "case": "Именительный (Nominative)",
-   "explain": "«голые стены» — the subject of the sentence stands in the nominative.",
+   "explain": "«голые стены» is the subject of «встают» — who or what does it — so nominative.",
    "id": "c25"
-  },
-  {
-   "sentence": "На минуту перед ним встают голые стены, и злобно-испуганное лицо идиота, и визг разыгравшейся вьюги -- и наполняют душу его ___.",
-   "lemma": "восторг",
-   "options": [
-    "мучительного восторга",
-    "мучительный восторг",
-    "мучительном восторге",
-    "мучительным восторгом"
-   ],
-   "correct": "мучительным восторгом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«мучительным восторгом» — the instrumental marks the means, company, or complement.",
-   "id": "c26"
   },
   {
    "sentence": "Один за другим они крадутся к идиоту -- по полу, по потолку, по стенам, -- заглядывают в его ___, шепчутся, смеются и начинают играть.",
    "lemma": "глаз",
    "options": [
-    "звериные глаза",
+    "звериными глазами",
+    "звериных глаз",
     "звериным глазам",
-    "звериных глазах",
-    "звериных глаз"
+    "звериные глаза"
    ],
    "correct": "звериные глаза",
    "case": "Винительный (Accusative)",
-   "explain": "«звериные глаза» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«звериные глаза» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c27"
   },
   {
@@ -319,106 +123,8 @@
    ],
    "correct": "красные пальцы",
    "case": "Именительный (Nominative)",
-   "explain": "«красные пальцы» — the subject of the sentence stands in the nominative.",
+   "explain": "«красные пальцы» is the subject of «могут» — who or what does it — so nominative.",
    "id": "c28"
-  },
-  {
-   "sentence": "Тугие красные пальцы никак не могут перевернуть ___.",
-   "lemma": "страница",
-   "options": [
-    "белая страница",
-    "белой страницы",
-    "белой страницей",
-    "белой странице"
-   ],
-   "correct": "белой страницы",
-   "case": "Родительный (Genitive)",
-   "explain": "«белой страницы» — the genitive here marks possession, absence, or quantity.",
-   "id": "c29"
-  },
-  {
-   "sentence": "Он дует на них, трет одну о другую, и снова шуршат тихо страницы, и все исчезает: ___, отвратительная маска идиота и равномерные, глухие звуки колокола.",
-   "lemma": "стена",
-   "options": [
-    "голых стен",
-    "голым стенам",
-    "голыми стенами",
-    "голые стены"
-   ],
-   "correct": "голые стены",
-   "case": "Именительный (Nominative)",
-   "explain": "«голые стены» — the subject of the sentence stands in the nominative.",
-   "id": "c30"
-  },
-  {
-   "sentence": "Он дует на них, трет одну о другую, и снова шуршат тихо страницы, и все исчезает: голые стены, ___ идиота и равномерные, глухие звуки колокола.",
-   "lemma": "маска",
-   "options": [
-    "отвратительной маске",
-    "отвратительной маски",
-    "отвратительной маской",
-    "отвратительная маска"
-   ],
-   "correct": "отвратительная маска",
-   "case": "Именительный (Nominative)",
-   "explain": "«отвратительная маска» — the subject of the sentence stands in the nominative.",
-   "id": "c31"
-  },
-  {
-   "sentence": "Он дует на них, трет одну о другую, и снова шуршат тихо страницы, и все исчезает: голые стены, отвратительная маска идиота и равномерные, ___ колокола.",
-   "lemma": "звук",
-   "options": [
-    "глухие звуки",
-    "глухими звуками",
-    "глухим звукам",
-    "глухих звуков"
-   ],
-   "correct": "глухие звуки",
-   "case": "Именительный (Nominative)",
-   "explain": "«глухие звуки» — the subject of the sentence stands in the nominative.",
-   "id": "c32"
-  },
-  {
-   "sentence": "Снова ___ горит его лицо.",
-   "lemma": "восторг",
-   "options": [
-    "безумный восторг",
-    "безумном восторге",
-    "безумного восторга",
-    "безумным восторгом"
-   ],
-   "correct": "безумным восторгом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«безумным восторгом» — the instrumental marks the means, company, or complement.",
-   "id": "c33"
-  },
-  {
-   "sentence": "Она ловит его гулкие, ___, обвивает их шипением и свистом, рвет, разбрасывает -- тяжело катит их в поле, зарывает в снег и прислушивается, склонив голову набок.",
-   "lemma": "звук",
-   "options": [
-    "толстых звуках",
-    "толстым звукам",
-    "толстые звуки",
-    "толстых звуков"
-   ],
-   "correct": "толстые звуки",
-   "case": "Именительный (Nominative)",
-   "explain": "«толстые звуки» — the subject of the sentence stands in the nominative.",
-   "id": "c34"
-  },
-  {
-   "sentence": "И снова бежит навстречу ___, неутомимая, злая и такая хитрая, как бес.",
-   "lemma": "звук",
-   "options": [
-    "новым звукам",
-    "новых звуках",
-    "новые звуки",
-    "новыми звуками"
-   ],
-   "correct": "новым звукам",
-   "case": "Дательный (Dative)",
-   "explain": "«новым звукам» — the dative marks the indirect object or recipient.",
-   "id": "c35"
   },
   {
    "sentence": "Он молчит и смотрит тихо, улыбающимся взглядом, точно не хочет он расстаться с этим ___, который был слеп от рождения, не видел лица друга и не думал, как близка к нему божественная милость.",
@@ -431,22 +137,8 @@
    ],
    "correct": "бедным человеком",
    "case": "Творительный (Instrumental)",
-   "explain": "«бедным человеком» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«бедным человеком» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c37"
-  },
-  {
-   "sentence": "И его ___ пронизывают тихое шипение, и шорох, и свист, и растянутый, разорванный, блуждающий гул задохнувшегося колокола.",
-   "lemma": "звук",
-   "options": [
-    "широкие звуки",
-    "широких звуков",
-    "широкими звуками",
-    "широким звукам"
-   ],
-   "correct": "широкие звуки",
-   "case": "Именительный (Nominative)",
-   "explain": "«широкие звуки» — the subject of the sentence stands in the nominative.",
-   "id": "c38"
   },
   {
    "sentence": "Идиоту весело от ___, от блестящих глаз, от шума, свиста и гула.",
@@ -459,7 +151,7 @@
    ],
    "correct": "огненного голоса",
    "case": "Родительный (Genitive)",
-   "explain": "«огненного голоса» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«огненного голоса» — «от» always takes the genitive.",
    "id": "c39"
   },
   {
@@ -473,64 +165,22 @@
    ],
    "correct": "блестящих глаз",
    "case": "Родительный (Genitive)",
-   "explain": "«блестящих глаз» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«блестящих глаз» — «от» always takes the genitive.",
    "id": "c40"
-  },
-  {
-   "sentence": "Он хлопает себя по оттопыренным ушам, мычит, и ___ двумя грязными рукавами ползет по низкому подбородку.",
-   "lemma": "слюна",
-   "options": [
-    "густой слюне",
-    "густая слюна",
-    "густой слюны",
-    "густой слюной"
-   ],
-   "correct": "густая слюна",
-   "case": "Именительный (Nominative)",
-   "explain": "«густая слюна» — the subject of the sentence stands in the nominative.",
-   "id": "c41"
-  },
-  {
-   "sentence": "Он хлопает себя по оттопыренным ушам, мычит, и густая слюна двумя ___ ползет по низкому подбородку.",
-   "lemma": "рукав",
-   "options": [
-    "грязными рукавами",
-    "грязным рукавам",
-    "грязные рукава",
-    "грязных рукавов"
-   ],
-   "correct": "грязными рукавами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«грязными рукавами» — the instrumental marks the means, company, or complement.",
-   "id": "c42"
   },
   {
    "sentence": "И она качается на его черных ___ и поет: их двое, двое, двое!",
    "lemma": "звук",
    "options": [
-    "слепыми звуками",
+    "слепым звукам",
     "слепых звуках",
-    "слепые звуки",
-    "слепых звуков"
+    "слепых звуков",
+    "слепыми звуками"
    ],
    "correct": "слепых звуках",
    "case": "Предложный (Prepositional)",
-   "explain": "«слепых звуках» — after the preposition «на», for location or topic.",
+   "explain": "«слепых звуках» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c44"
-  },
-  {
-   "sentence": "Бессмысленный ___ разодрал до ушей неподвижную огромную маску, и в широкое отверстие рта неудержимо рвался странно-пустой, прыгающий хохот: \"Гу-гу-гу!",
-   "lemma": "смех",
-   "options": [
-    "зловещим смехом",
-    "зловещий смех",
-    "зловещему смеху",
-    "зловещего смеха"
-   ],
-   "correct": "зловещий смех",
-   "case": "Именительный (Nominative)",
-   "explain": "«зловещий смех» — the subject of the sentence stands in the nominative.",
-   "id": "c45"
   }
  ]
 }

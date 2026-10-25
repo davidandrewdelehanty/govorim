@@ -1,48 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Где ты там, ___?",
-   "lemma": "дурак",
-   "options": [
-    "старого дурака",
-    "старому дураку",
-    "старом дураке",
-    "старый дурак"
-   ],
-   "correct": "старый дурак",
-   "case": "Именительный (Nominative)",
-   "explain": "«старый дурак» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
-   "sentence": "— Да, еще ___ я не видывал, как ваш родственник, — продолжал Тарантьев.",
-   "lemma": "свинья",
-   "options": [
-    "этакой свиньёй",
-    "этакой свиньи",
-    "этакой свинье",
-    "этакая свинья"
-   ],
-   "correct": "этакой свиньи",
-   "case": "Родительный (Genitive)",
-   "explain": "«этакой свиньи» — the genitive here marks possession, absence, or quantity.",
-   "id": "c2"
-  },
-  {
-   "sentence": "«___, самому надо!» Как будто мне не надо!",
-   "lemma": "человек",
-   "options": [
-    "бедному человеку",
-    "бедного человека",
-    "бедным человеком",
-    "бедный человек"
-   ],
-   "correct": "бедный человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«Бедный человек» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
    "sentence": "Он задумчиво сидел в креслах, в своей ___, не замечая, что вокруг него делалось, не слушая, что говорилось.",
    "lemma": "поза",
    "options": [
@@ -53,7 +11,7 @@
    ],
    "correct": "лениво-красивой позе",
    "case": "Предложный (Prepositional)",
-   "explain": "«лениво-красивой позе» — after the preposition «в», for location or topic.",
+   "explain": "«лениво-красивой позе» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c4"
   },
   {
@@ -67,7 +25,7 @@
    ],
    "correct": "следующей субботе",
    "case": "Дательный (Dative)",
-   "explain": "«следующей субботе» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«следующей субботе» — «к» always takes the dative.",
    "id": "c5"
   },
   {
@@ -81,22 +39,8 @@
    ],
    "correct": "английском магазине",
    "case": "Предложный (Prepositional)",
-   "explain": "«английском магазине» — after the preposition «в», for location or topic.",
+   "explain": "«английском магазине» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c6"
-  },
-  {
-   "sentence": "Там кума моя живет: у ней свой дом, с ___.",
-   "lemma": "огород",
-   "options": [
-    "больших огородах",
-    "большие огороды",
-    "большими огородами",
-    "большим огородам"
-   ],
-   "correct": "большими огородами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«большими огородами» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c8"
   },
   {
    "sentence": "Она женщина благородная, вдова, с двумя детьми; с ней живет ___: голова, не то что вот эта, что тут в углу сидит, — сказал он, указывая на Алексеева, — нас с тобой за пояс заткнет!",
@@ -109,7 +53,7 @@
    ],
    "correct": "холостой брат",
    "case": "Именительный (Nominative)",
-   "explain": "«холостой брат» — the subject of the sentence stands in the nominative.",
+   "explain": "«холостой брат» is the subject of «живет» — who or what does it — so nominative.",
    "id": "c9"
   },
   {
@@ -123,36 +67,8 @@
    ],
    "correct": "постоялом дворе",
    "case": "Предложный (Prepositional)",
-   "explain": "«постоялом дворе» — after the preposition «на», for location or topic.",
+   "explain": "«постоялом дворе» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c10"
-  },
-  {
-   "sentence": "Да какие светленькие, ___!",
-   "lemma": "комната",
-   "options": [
-    "славные комнаты",
-    "славным комнатам",
-    "славных комнатах",
-    "славных комнат"
-   ],
-   "correct": "славные комнаты",
-   "case": "Именительный (Nominative)",
-   "explain": "«славные комнаты» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
-  },
-  {
-   "sentence": "— Этому ___, — продолжал Тарантьев, — ни о чем и подумать не придется: на всем готовом будешь жить.",
-   "lemma": "пёс",
-   "options": [
-    "старом псе",
-    "старый пёс",
-    "старого пса",
-    "старому псу"
-   ],
-   "correct": "старому псу",
-   "case": "Дательный (Dative)",
-   "explain": "«старому псу» — the dative marks the indirect object or recipient.",
-   "id": "c13"
   },
   {
    "sentence": "Главное, спокойствие-то какое тебе будет: все равно как у ___.",
@@ -165,22 +81,8 @@
    ],
    "correct": "родной сестры",
    "case": "Родительный (Genitive)",
-   "explain": "«родной сестры» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«родной сестры» — «у» always takes the genitive.",
    "id": "c16"
-  },
-  {
-   "sentence": "Я слышал, что в наших местах, в Шумиловой вотчине, ___ все долги уплатили, а у тебя вдруг засуха да неурожай.",
-   "lemma": "урожай",
-   "options": [
-    "прошлогоднем урожае",
-    "прошлогодним урожаем",
-    "прошлогоднего урожая",
-    "прошлогодний урожай"
-   ],
-   "correct": "прошлогодним урожаем",
-   "case": "Творительный (Instrumental)",
-   "explain": "«прошлогодним урожаем» — the instrumental marks the means, company, or complement.",
-   "id": "c18"
   },
   {
    "sentence": "Вот, например, — продолжал он, указывая на Алексеева, — сидит ___, овца овцой, а напишет ли он натурально?",
@@ -193,7 +95,7 @@
    ],
    "correct": "честная душа",
    "case": "Именительный (Nominative)",
-   "explain": "«честная душа» — the subject of the sentence stands in the nominative.",
+   "explain": "«честная душа» is the subject of «сидит» — who or what does it — so nominative.",
    "id": "c19"
   },
   {
@@ -207,7 +109,7 @@
    ],
    "correct": "русский человек",
    "case": "Именительный (Nominative)",
-   "explain": "«русский человек» — the subject of the sentence stands in the nominative.",
+   "explain": "«русский человек» is the subject of «станет» — who or what does it — so nominative.",
    "id": "c24"
   },
   {
@@ -221,7 +123,7 @@
    ],
    "correct": "русский человек",
    "case": "Именительный (Nominative)",
-   "explain": "«Русский человек» — the subject of the sentence stands in the nominative.",
+   "explain": "«русский человек» is the subject of «выберет» — who or what does it — so nominative.",
    "id": "c25"
   },
   {
@@ -235,7 +137,7 @@
    ],
    "correct": "добрых людей",
    "case": "Родительный (Genitive)",
-   "explain": "«добрых людей» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«добрых людей» — «из» always takes the genitive.",
    "id": "c28"
   },
   {
@@ -249,7 +151,7 @@
    ],
    "correct": "немецкой школе",
    "case": "Предложный (Prepositional)",
-   "explain": "«немецкой школе» — after the preposition «в», for location or topic.",
+   "explain": "«немецкой школе» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c29"
   },
   {
@@ -263,7 +165,7 @@
    ],
    "correct": "русских денег",
    "case": "Родительный (Genitive)",
-   "explain": "«русских денег» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«русских денег» — «для» always takes the genitive.",
    "id": "c30"
   },
   {
@@ -277,7 +179,7 @@
    ],
    "correct": "смирительный дом",
    "case": "Винительный (Accusative)",
-   "explain": "«смирительный дом» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«смирительный дом» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c32"
   },
   {
@@ -291,22 +193,8 @@
    ],
    "correct": "смирительный дом",
    "case": "Винительный (Accusative)",
-   "explain": "«смирительный дом» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«смирительный дом» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c33"
-  },
-  {
-   "sentence": "— Пусть прежде они принесут назад жилет да нашу рубашку: ___ гостит там.",
-   "lemma": "месяц",
-   "options": [
-    "пятому месяцу",
-    "пятым месяцем",
-    "пятый месяц",
-    "пятом месяце"
-   ],
-   "correct": "пятый месяц",
-   "case": "Винительный (Accusative)",
-   "explain": "«пятый месяц» — the accusative marks the direct object of the verb.",
-   "id": "c34"
   }
  ]
 }

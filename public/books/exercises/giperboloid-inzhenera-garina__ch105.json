@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Низкая комфортабельная, отделанная кожей и лакированным деревом капитанская каюта — ___ одинокого моряка — была насыщена присутствием молодой женщины.",
-   "lemma": "жилище",
-   "options": [
-    "строгое жилище",
-    "строгого жилища",
-    "строгим жилищем",
-    "строгому жилищу"
-   ],
-   "correct": "строгое жилище",
-   "case": "Именительный (Nominative)",
-   "explain": "«строгое жилище» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Низкая комфортабельная, отделанная кожей и лакированным деревом капитанская каюта — строгое жилище ___ — была насыщена присутствием молодой женщины.",
    "lemma": "моряк",
    "options": [
@@ -25,36 +11,8 @@
    ],
    "correct": "одинокого моряка",
    "case": "Родительный (Genitive)",
-   "explain": "«одинокого моряка» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«одинокого моряка» depends on the noun «жилище» (whose? of what?) — genitive.",
    "id": "c2"
-  },
-  {
-   "sentence": "Низкая комфортабельная, отделанная кожей и лакированным деревом капитанская каюта — строгое жилище одинокого моряка — была насыщена присутствием ___.",
-   "lemma": "женщина",
-   "options": [
-    "молодой женщины",
-    "молодая женщина",
-    "молодой женщиной",
-    "молодой женщине"
-   ],
-   "correct": "молодой женщины",
-   "case": "Родительный (Genitive)",
-   "explain": "«молодой женщины» — the genitive here marks possession, absence, or quantity.",
-   "id": "c3"
-  },
-  {
-   "sentence": "На спинку стула небрежно кинула фланелевую юбку и ___.",
-   "lemma": "свитер",
-   "options": [
-    "золотистому свитеру",
-    "золотистый свитер",
-    "золотистом свитере",
-    "золотистым свитером"
-   ],
-   "correct": "золотистый свитер",
-   "case": "Винительный (Accusative)",
-   "explain": "«золотистый свитер» — the accusative marks the direct object of the verb.",
-   "id": "c4"
   },
   {
    "sentence": "Лицо, осмугленное ___, казалось спокойным, невинным.",
@@ -67,7 +25,7 @@
    ],
    "correct": "морским ветром",
    "case": "Творительный (Instrumental)",
-   "explain": "«морским ветром» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «осмугленное», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c5"
   },
   {
@@ -81,22 +39,8 @@
    ],
    "correct": "голая рука",
    "case": "Именительный (Nominative)",
-   "explain": "«Голая рука» — the subject of the sentence stands in the nominative.",
+   "explain": "«голая рука» is the subject of «закинута» — who or what does it — so nominative.",
    "id": "c6"
-  },
-  {
-   "sentence": "Тяжелым испытанием было для Янсена это ___ мадам Ламоль поселиться вместе с ним в капитанской каюте.",
-   "lemma": "решение",
-   "options": [
-    "воинственному решению",
-    "воинственном решении",
-    "воинственного решения",
-    "воинственное решение"
-   ],
-   "correct": "воинственное решение",
-   "case": "Именительный (Nominative)",
-   "explain": "«воинственное решение» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
   },
   {
    "sentence": "Тяжелым испытанием было для Янсена это воинственное решение мадам Ламоль поселиться вместе с ним в ___.",
@@ -109,7 +53,7 @@
    ],
    "correct": "капитанской каюте",
    "case": "Предложный (Prepositional)",
-   "explain": "«капитанской каюте» — after the preposition «в», for location or topic.",
+   "explain": "«капитанской каюте» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c8"
   },
   {
@@ -123,7 +67,7 @@
    ],
    "correct": "золотого острова",
    "case": "Родительный (Genitive)",
-   "explain": "«Золотого острова» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«золотого острова» depends on the noun «королевы» (whose? of what?) — genitive.",
    "id": "c10"
   },
   {
@@ -137,21 +81,21 @@
    ],
    "correct": "портовых кабаков",
    "case": "Родительный (Genitive)",
-   "explain": "«портовых кабаков» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«портовых кабаков» — «из» always takes the genitive.",
    "id": "c11"
   },
   {
    "sentence": "Сколько там ни объясняй, любовь — темная история, Янсен видывал и девчонок из портовых кабаков и великолепных леди на пароходах, от скуки и любопытства падавших в его ___.",
    "lemma": "объятие",
    "options": [
-    "морских объятий",
-    "морских объятиях",
     "морские объятия",
-    "морским объятиям"
+    "морским объятиям",
+    "морских объятий",
+    "морскими объятиями"
    ],
    "correct": "морские объятия",
    "case": "Винительный (Accusative)",
-   "explain": "«морские объятия» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«морские объятия» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c12"
   },
   {
@@ -165,21 +109,21 @@
    ],
    "correct": "спокойной вахты",
    "case": "Родительный (Genitive)",
-   "explain": "«спокойной вахты» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«спокойной вахты» depends on the noun «часы» (whose? of what?) — genitive.",
    "id": "c13"
   },
   {
    "sentence": "Так и в Неаполе, когда Янсен дожидался в курительной звонка мадам Ламоль, было еще что-то похожее на его ___.",
    "lemma": "похождение",
    "options": [
-    "прежние похождения",
-    "прежних похождениях",
+    "прежних похождений",
+    "прежним похождениям",
     "прежними похождениями",
-    "прежним похождениям"
+    "прежние похождения"
    ],
    "correct": "прежние похождения",
    "case": "Винительный (Accusative)",
-   "explain": "«прежние похождения» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«прежние похождения» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c14"
   },
   {
@@ -193,7 +137,7 @@
    ],
    "correct": "тихая гроза",
    "case": "Именительный (Nominative)",
-   "explain": "«тихая гроза» — the subject of the sentence stands in the nominative.",
+   "explain": "«тихая гроза» is the subject of «разражалась» — who or what does it — so nominative.",
    "id": "c16"
   },
   {
@@ -207,22 +151,8 @@
    ],
    "correct": "золотого острова",
    "case": "Родительный (Genitive)",
-   "explain": "«Золотого острова» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«золотого острова» depends on the noun «королеву» (whose? of what?) — genitive.",
    "id": "c17"
-  },
-  {
-   "sentence": "У такой мачты Янсен-пращур и пел о синих волнах, о ___, о светловолосой деве, о той далекой, что ждет у берега моря и глядит вдаль, — проходят годы, и глаза ее как синее море, как грозовые тучи.",
-   "lemma": "туча",
-   "options": [
-    "грозовыми тучами",
-    "грозовых тучах",
-    "грозовых туч",
-    "грозовым тучам"
-   ],
-   "correct": "грозовых тучах",
-   "case": "Предложный (Prepositional)",
-   "explain": "«грозовых тучах» — after the preposition «о», for location or topic.",
-   "id": "c19"
   },
   {
    "sentence": "Пращур пел давнюю песню о ___.",
@@ -235,7 +165,7 @@
    ],
    "correct": "прекрасной деве",
    "case": "Предложный (Prepositional)",
-   "explain": "«прекрасной деве» — after the preposition «о», for location or topic.",
+   "explain": "«прекрасной деве» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c20"
   }
  ]

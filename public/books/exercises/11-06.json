@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "В четыреста восьмидесятом году после выхода израильтян из Египта, в четвертый год своего правления Израилем, в месяце зив, ___ , Соломон начал строить дом Господу.",
-   "lemma": "месяц",
-   "options": [
-    "вторым месяцем",
-    "втором месяце",
-    "второго месяца",
-    "второй месяц"
-   ],
-   "correct": "втором месяце",
-   "case": "Предложный (Prepositional)",
-   "explain": "«втором месяце» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c1"
-  },
-  {
    "sentence": "Притвор перед ___ дома был двадцать локтей в ширину, соответственно ширине дома, и отходил от дома на десять локтей .",
    "lemma": "помещение",
    "options": [
@@ -25,36 +11,8 @@
    ],
    "correct": "главным помещением",
    "case": "Творительный (Instrumental)",
-   "explain": "«главным помещением» — after the preposition «перед», the instrumental marks the means, company, or complement.",
+   "explain": "«главным помещением» — «перед» always takes the instrumental.",
    "id": "c2"
-  },
-  {
-   "sentence": "Он сделал пристройку вокруг стен дома и ___.",
-   "lemma": "святилище",
-   "options": [
-    "внутреннего святилища",
-    "внутреннем святилище",
-    "внутреннее святилище",
-    "внутреннему святилищу"
-   ],
-   "correct": "внутреннего святилища",
-   "case": "Родительный (Genitive)",
-   "explain": "«внутреннего святилища» — the genitive here marks possession, absence, or quantity.",
-   "id": "c3"
-  },
-  {
-   "sentence": "___ был пять локтей в ширину, второй — шесть локтей , и третий — семь локтей .",
-   "lemma": "этаж",
-   "options": [
-    "первого этажа",
-    "первым этажом",
-    "первый этаж",
-    "первом этаже"
-   ],
-   "correct": "первый этаж",
-   "case": "Именительный (Nominative)",
-   "explain": "«Первый этаж» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
   },
   {
    "sentence": "Вход на ___ находился на южной стороне дома.",
@@ -67,7 +25,7 @@
    ],
    "correct": "первый этаж",
    "case": "Винительный (Accusative)",
-   "explain": "«первый этаж» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«первый этаж» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c6"
   },
   {
@@ -81,7 +39,7 @@
    ],
    "correct": "южной стороне",
    "case": "Предложный (Prepositional)",
-   "explain": "«южной стороне» — after the preposition «на», for location or topic.",
+   "explain": "«южной стороне» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c7"
   },
   {
@@ -89,42 +47,14 @@
    "lemma": "комната",
    "options": [
     "боковые комнаты",
-    "боковыми комнатами",
+    "боковых комнатах",
     "боковым комнатам",
-    "боковых комнат"
+    "боковыми комнатами"
    ],
    "correct": "боковые комнаты",
    "case": "Винительный (Accusative)",
-   "explain": "«боковые комнаты» — the accusative marks the direct object of the verb.",
+   "explain": "«боковые комнаты» is the direct object of «построил» (кого? что?) — accusative.",
    "id": "c9"
-  },
-  {
-   "sentence": "Соломон обшил стены с внутренней стороны кедровыми досками, забрав их от пола дома до стропил потолка, и покрыл пол дома ___.",
-   "lemma": "доска",
-   "options": [
-    "кипарисовым доскам",
-    "кипарисовых досках",
-    "кипарисовые доски",
-    "кипарисовыми досками"
-   ],
-   "correct": "кипарисовыми досками",
-   "case": "Творительный (Instrumental)",
-   "explain": "«кипарисовыми досками» — the instrumental marks the means, company, or complement.",
-   "id": "c11"
-  },
-  {
-   "sentence": "В глубине дома он отгородил ___ от пола до стропил двадцать локтей , чтобы сделать в доме внутреннее святилище, Святое Святых.",
-   "lemma": "доска",
-   "options": [
-    "кедровых досках",
-    "кедровых досок",
-    "кедровые доски",
-    "кедровыми досками"
-   ],
-   "correct": "кедровыми досками",
-   "case": "Творительный (Instrumental)",
-   "explain": "«кедровыми досками» — the instrumental marks the means, company, or complement.",
-   "id": "c12"
   },
   {
    "sentence": "Внутри дом был обшит ___, на котором были вырезаны подобия тыкв и распустившиеся цветы.",
@@ -137,36 +67,8 @@
    ],
    "correct": "кедровым деревом",
    "case": "Творительный (Instrumental)",
-   "explain": "«кедровым деревом» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «обшит», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c13"
-  },
-  {
-   "sentence": "Он приготовил внутреннее святилище в доме, чтобы поместить там ковчег ___.",
-   "lemma": "завет",
-   "options": [
-    "господний завет",
-    "господнем завете",
-    "господнего завета",
-    "господнему завету"
-   ],
-   "correct": "господнего завета",
-   "case": "Родительный (Genitive)",
-   "explain": "«Господнего завета» — the genitive here marks possession, absence, or quantity.",
-   "id": "c14"
-  },
-  {
-   "sentence": "___ было двадцать локтей в длину, двадцать в ширину и двадцать в высоту .",
-   "lemma": "святилище",
-   "options": [
-    "внутреннему святилищу",
-    "внутреннего святилища",
-    "внутренним святилищем",
-    "внутреннее святилище"
-   ],
-   "correct": "внутреннее святилище",
-   "case": "Именительный (Nominative)",
-   "explain": "«Внутреннее святилище» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
   },
   {
    "sentence": "Он покрыл ___ чистым золотом и обшил жертвенник, находящийся перед Святым Святых, кедром.",
@@ -179,22 +81,8 @@
    ],
    "correct": "внутренние поверхности",
    "case": "Винительный (Accusative)",
-   "explain": "«внутренние поверхности» — the accusative marks the direct object of the verb.",
+   "explain": "«внутренние поверхности» is the direct object of «покрыл» (кого? что?) — accusative.",
    "id": "c16"
-  },
-  {
-   "sentence": "Он покрыл внутренние поверхности ___ и обшил жертвенник, находящийся перед Святым Святых, кедром.",
-   "lemma": "золото",
-   "options": [
-    "чистого золота",
-    "чистое золото",
-    "чистому золоту",
-    "чистым золотом"
-   ],
-   "correct": "чистым золотом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«чистым золотом» — the instrumental marks the means, company, or complement.",
-   "id": "c17"
   },
   {
    "sentence": "Соломон покрыл ___ дома чистым золотом и перетянул золотыми цепями вход во внутреннее святилище, которое было покрыто золотом.",
@@ -207,22 +95,8 @@
    ],
    "correct": "внутренние поверхности",
    "case": "Винительный (Accusative)",
-   "explain": "«внутренние поверхности» — the accusative marks the direct object of the verb.",
+   "explain": "«внутренние поверхности» is the direct object of «покрыл» (кого? что?) — accusative.",
    "id": "c18"
-  },
-  {
-   "sentence": "Соломон покрыл внутренние поверхности дома чистым золотом и перетянул ___ вход во внутреннее святилище, которое было покрыто золотом.",
-   "lemma": "цепь",
-   "options": [
-    "золотым цепям",
-    "золотыми цепями",
-    "золотых цепях",
-    "золотых цепей"
-   ],
-   "correct": "золотыми цепями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«золотыми цепями» — the instrumental marks the means, company, or complement.",
-   "id": "c20"
   },
   {
    "sentence": "Еще он покрыл золотом жертвенник, который принадлежал к ___.",
@@ -235,7 +109,7 @@
    ],
    "correct": "внутреннему святилищу",
    "case": "Дательный (Dative)",
-   "explain": "«внутреннему святилищу» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«внутреннему святилищу» — «к» always takes the dative.",
    "id": "c21"
   },
   {
@@ -249,7 +123,7 @@
    ],
    "correct": "масличного дерева",
    "case": "Родительный (Genitive)",
-   "explain": "«масличного дерева» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«масличного дерева» — «из» always takes the genitive.",
    "id": "c23"
   },
   {
@@ -263,36 +137,8 @@
    ],
    "correct": "первого херувима",
    "case": "Родительный (Genitive)",
-   "explain": "«первого херувима» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«первого херувима» depends on the noun «Крыло» (whose? of what?) — genitive.",
    "id": "c24"
-  },
-  {
-   "sentence": "___ также был десяти локтей, так как оба херувима были одного размера и вида.",
-   "lemma": "херувим",
-   "options": [
-    "второй херувим",
-    "второму херувиму",
-    "втором херувиме",
-    "вторым херувимом"
-   ],
-   "correct": "второй херувим",
-   "case": "Именительный (Nominative)",
-   "explain": "«Второй херувим» — the subject of the sentence stands in the nominative.",
-   "id": "c25"
-  },
-  {
-   "sentence": "Крыло одного херувима касалось одной стены, крыло второго — противоположной стены, а ___ херувимов соприкасались посередине комнаты.",
-   "lemma": "крыло",
-   "options": [
-    "другие крылья",
-    "других крыльев",
-    "другими крыльями",
-    "другим крыльям"
-   ],
-   "correct": "другие крылья",
-   "case": "Именительный (Nominative)",
-   "explain": "«другие крылья» — the subject of the sentence stands in the nominative.",
-   "id": "c26"
   },
   {
    "sentence": "Для входа во внутреннее святилище он сделал двери из ___ с пятиугольными косяками.",
@@ -305,7 +151,7 @@
    ],
    "correct": "масличного дерева",
    "case": "Родительный (Genitive)",
-   "explain": "«масличного дерева» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«масличного дерева» — «из» always takes the genitive.",
    "id": "c27"
   },
   {
@@ -319,7 +165,7 @@
    ],
    "correct": "масличного дерева",
    "case": "Родительный (Genitive)",
-   "explain": "«масличного дерева» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«масличного дерева» — «из» always takes the genitive.",
    "id": "c29"
   },
   {
@@ -333,7 +179,7 @@
    ],
    "correct": "масличного дерева",
    "case": "Родительный (Genitive)",
-   "explain": "«масличного дерева» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«масличного дерева» — «из» always takes the genitive.",
    "id": "c30"
   },
   {
@@ -347,35 +193,21 @@
    ],
    "correct": "кипарисового дерева",
    "case": "Родительный (Genitive)",
-   "explain": "«кипарисового дерева» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«кипарисового дерева» — «из» always takes the genitive.",
    "id": "c31"
-  },
-  {
-   "sentence": "Еще он сделал две двери из кипарисового дерева, каждую с двумя ___.",
-   "lemma": "створка",
-   "options": [
-    "подвижными створками",
-    "подвижным створкам",
-    "подвижных створках",
-    "подвижных створок"
-   ],
-   "correct": "подвижными створками",
-   "case": "Творительный (Instrumental)",
-   "explain": "«подвижными створками» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c32"
   },
   {
    "sentence": "Он построил ___ из трех рядов обтесанного камня и ряда кедровых балок.",
    "lemma": "двор",
    "options": [
-    "внутренним двором",
     "внутреннем дворе",
+    "внутреннему двору",
     "внутренний двор",
-    "внутреннего двора"
+    "внутренним двором"
    ],
    "correct": "внутренний двор",
    "case": "Винительный (Accusative)",
-   "explain": "«внутренний двор» — the accusative marks the direct object of the verb.",
+   "explain": "«внутренний двор» is the direct object of «построил» (кого? что?) — accusative.",
    "id": "c33"
   },
   {
@@ -389,7 +221,7 @@
    ],
    "correct": "кедровых балок",
    "case": "Родительный (Genitive)",
-   "explain": "«кедровых балок» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«кедровых балок» depends on the noun «ряда» (whose? of what?) — genitive.",
    "id": "c34"
   }
  ]

@@ -1,48 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Мы жили в доме Немчинова, где-то недалеко от «___».",
-   "lemma": "собор",
-   "options": [
-    "маленьком соборе",
-    "маленькому собору",
-    "маленького собора",
-    "маленький собор"
-   ],
-   "correct": "маленького собора",
-   "case": "Родительный (Genitive)",
-   "explain": "«маленького собора» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Теперь я не могу разобрать, где именно стоял этот высокий деревянный дом, но помню, что из его сада был просторный вид за широкий и глубокий овраг с обрывистыми краями, прорезанными пластами ___.",
-   "lemma": "глина",
-   "options": [
-    "красная глина",
-    "красной глины",
-    "красной глине",
-    "красной глиной"
-   ],
-   "correct": "красной глины",
-   "case": "Родительный (Genitive)",
-   "explain": "«красной глины» — the genitive here marks possession, absence, or quantity.",
-   "id": "c4"
-  },
-  {
-   "sentence": "За оврагом расстилался ___, на котором стояли казённые магазины, а возле них летом всегда учились солдаты.",
-   "lemma": "выгон",
-   "options": [
-    "большого выгона",
-    "большим выгоном",
-    "большом выгоне",
-    "большой выгон"
-   ],
-   "correct": "большой выгон",
-   "case": "Именительный (Nominative)",
-   "explain": "«большой выгон» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
-  },
-  {
    "sentence": "За оврагом расстилался большой выгон, на котором стояли ___, а возле них летом всегда учились солдаты.",
    "lemma": "магазин",
    "options": [
@@ -53,22 +11,8 @@
    ],
    "correct": "казённые магазины",
    "case": "Именительный (Nominative)",
-   "explain": "«казённые магазины» — the subject of the sentence stands in the nominative.",
+   "explain": "«казённые магазины» is the subject of «стояли» — who or what does it — so nominative.",
    "id": "c6"
-  },
-  {
-   "sentence": "Чтобы это не часто повторялось, моя няня, престарелая ___ — Марина Борисовна, уводила меня гулять в городской сад.",
-   "lemma": "солдатка",
-   "options": [
-    "московской солдаткой",
-    "московская солдатка",
-    "московской солдатке",
-    "московской солдатки"
-   ],
-   "correct": "московская солдатка",
-   "case": "Именительный (Nominative)",
-   "explain": "«московская солдатка» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
   },
   {
    "sentence": "Здесь мы садились над мелководной Окой и глядели, как в ней купались и играли ___, свободе которых я тогда очень завидовал.",
@@ -81,7 +25,7 @@
    ],
    "correct": "маленькие дети",
    "case": "Именительный (Nominative)",
-   "explain": "«маленькие дети» — the subject of the sentence stands in the nominative.",
+   "explain": "«маленькие дети» is the subject of «играли» — who or what does it — so nominative.",
    "id": "c9"
   },
   {
@@ -95,7 +39,7 @@
    ],
    "correct": "главная выгода",
    "case": "Именительный (Nominative)",
-   "explain": "«Главная выгода» — the subject of the sentence stands in the nominative.",
+   "explain": "«главная выгода» is the subject of «состояла» — who or what does it — so nominative.",
    "id": "c10"
   },
   {
@@ -109,49 +53,21 @@
    ],
    "correct": "небольших мешков",
    "case": "Родительный (Genitive)",
-   "explain": "«небольших мешков» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«небольших мешков» depends on the noun «вид» (whose? of what?) — genitive.",
    "id": "c11"
-  },
-  {
-   "sentence": "Она так мала, что её нельзя чистить, и это признавалось ___ к тому, чтобы её варить и есть нечищеною.",
-   "lemma": "основание",
-   "options": [
-    "достаточным основанием",
-    "достаточного основания",
-    "достаточному основанию",
-    "достаточное основание"
-   ],
-   "correct": "достаточным основанием",
-   "case": "Творительный (Instrumental)",
-   "explain": "«достаточным основанием» — the instrumental marks the means, company, or complement.",
-   "id": "c12"
-  },
-  {
-   "sentence": "Я никогда не имел отваги узнать её вкус, но ловля её, производившаяся ___, казалась мне верхом счастия, каким мальчика моих тогдашних лет могла утешить свобода.",
-   "lemma": "рыбак",
-   "options": [
-    "крохотных рыбаков",
-    "крохотными рыбаками",
-    "крохотные рыбаки",
-    "крохотных рыбаках"
-   ],
-   "correct": "крохотными рыбаками",
-   "case": "Творительный (Instrumental)",
-   "explain": "«крохотными рыбаками» — the instrumental marks the means, company, or complement.",
-   "id": "c13"
   },
   {
    "sentence": "Няня, впрочем, знала ___, что мне такая свобода была бы совершенно неприлична.",
    "lemma": "довод",
    "options": [
-    "хорошим доводам",
+    "хорошими доводами",
     "хороших доводах",
-    "хорошие доводы",
-    "хороших доводов"
+    "хорошим доводам",
+    "хорошие доводы"
    ],
    "correct": "хорошие доводы",
    "case": "Винительный (Accusative)",
-   "explain": "«хорошие доводы» — the accusative marks the direct object of the verb.",
+   "explain": "«хорошие доводы» is the direct object of «знала» (кого? что?) — accusative.",
    "id": "c14"
   },
   {
@@ -165,36 +81,8 @@
    ],
    "correct": "благородных родителей",
    "case": "Родительный (Genitive)",
-   "explain": "«благородных родителей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«благородных родителей» depends on the noun «дитя» (whose? of what?) — genitive.",
    "id": "c15"
-  },
-  {
-   "sentence": "— ___, — говорила няня, — если бы это было в деревне.",
-   "lemma": "дело",
-   "options": [
-    "другому делу",
-    "другого дела",
-    "другим делом",
-    "другое дело"
-   ],
-   "correct": "другое дело",
-   "case": "Именительный (Nominative)",
-   "explain": "«Другое дело» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
-  },
-  {
-   "sentence": "Там, при простых, серых мужиках, и мне, пожалуй, можно было бы позволить наслаждаться кой-чем в том же ___.",
-   "lemma": "род",
-   "options": [
-    "свободным родом",
-    "свободном роде",
-    "свободного рода",
-    "свободному роду"
-   ],
-   "correct": "свободном роде",
-   "case": "Предложный (Prepositional)",
-   "explain": "«свободном роде» — after the preposition «в», for location or topic.",
-   "id": "c17"
   },
   {
    "sentence": "Кажется, от этих именно сдерживающих рассуждений меня стало сильно и томительно манить в деревню, и восторг мой не знал пределов, когда родители мои купили небольшое именьице в ___.",
@@ -207,7 +95,7 @@
    ],
    "correct": "кромском уезде",
    "case": "Предложный (Prepositional)",
-   "explain": "«Кромском уезде» — after the preposition «в», for location or topic.",
+   "explain": "«кромском уезде» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c18"
   },
   {
@@ -221,22 +109,8 @@
    ],
    "correct": "городского дома",
    "case": "Родительный (Genitive)",
-   "explain": "«городского дома» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«городского дома» — «из» always takes the genitive.",
    "id": "c19"
-  },
-  {
-   "sentence": "Тем же летом мы переехали из большого городского дома в очень уютный, но маленький ___ с балконом, под соломенною крышею.",
-   "lemma": "дом",
-   "options": [
-    "деревенский дом",
-    "деревенским домом",
-    "деревенского дома",
-    "деревенскому дому"
-   ],
-   "correct": "деревенский дом",
-   "case": "Именительный (Nominative)",
-   "explain": "«деревенский дом» — the subject of the sentence stands in the nominative.",
-   "id": "c20"
   },
   {
    "sentence": "Лес в ___ и тогда был дорог и редок.",
@@ -249,22 +123,8 @@
    ],
    "correct": "кромском уезде",
    "case": "Предложный (Prepositional)",
-   "explain": "«Кромском уезде» — after the preposition «в», for location or topic.",
+   "explain": "«кромском уезде» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c21"
-  },
-  {
-   "sentence": "Это местность степная и хлебородная, и притом она хорошо орошена маленькими, но ___.",
-   "lemma": "речка",
-   "options": [
-    "чистым речкам",
-    "чистыми речками",
-    "чистых речках",
-    "чистых речек"
-   ],
-   "correct": "чистыми речками",
-   "case": "Творительный (Instrumental)",
-   "explain": "«чистыми речками» — the instrumental marks the means, company, or complement.",
-   "id": "c22"
   }
  ]
 }

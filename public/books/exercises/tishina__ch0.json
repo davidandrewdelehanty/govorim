@@ -1,48 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Отворив дверь на балкон, мы почувствовали упоительную прохладу раннего ___.",
-   "lemma": "утро",
-   "options": [
-    "осеннему утру",
-    "осеннего утра",
-    "осеннее утро",
-    "осеннем утре"
-   ],
-   "correct": "осеннего утра",
-   "case": "Родительный (Genitive)",
-   "explain": "«осеннего утра» — the genitive here marks possession, absence, or quantity.",
-   "id": "c1"
-  },
-  {
-   "sentence": "В улицах таял ___ с озера, солнце тускло, но уже бодро блистало в тумане, а влажный ветер тихо покачивал кроваво-красные листья дикого винограда на столбах балкона.",
-   "lemma": "туман",
-   "options": [
-    "молочному туману",
-    "молочным туманом",
-    "молочный туман",
-    "молочного тумана"
-   ],
-   "correct": "молочный туман",
-   "case": "Именительный (Nominative)",
-   "explain": "«молочный туман» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
-   "sentence": "В улицах таял молочный туман с озера, солнце тускло, но уже бодро блистало в тумане, а ___ тихо покачивал кроваво-красные листья дикого винограда на столбах балкона.",
-   "lemma": "ветер",
-   "options": [
-    "влажному ветру",
-    "влажным ветром",
-    "влажный ветер",
-    "влажного ветра"
-   ],
-   "correct": "влажный ветер",
-   "case": "Именительный (Nominative)",
-   "explain": "«влажный ветер» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
    "sentence": "В улицах таял молочный туман с озера, солнце тускло, но уже бодро блистало в тумане, а влажный ветер тихо покачивал кроваво-красные листья ___ на столбах балкона.",
    "lemma": "виноград",
    "options": [
@@ -53,7 +11,7 @@
    ],
    "correct": "дикого винограда",
    "case": "Родительный (Genitive)",
-   "explain": "«дикого винограда» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«дикого винограда» depends on the noun «листья» (whose? of what?) — genitive.",
    "id": "c4"
   },
   {
@@ -67,78 +25,22 @@
    ],
    "correct": "крепким сном",
    "case": "Творительный (Instrumental)",
-   "explain": "«крепким сном» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «освеженные», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c5"
-  },
-  {
-   "sentence": "Мы умылись и оделись быстро и вышли из отеля, освеженные крепким сном, готовые на какие угодно скитания и с ___ чего-то хорошего, что сулит нам день.",
-   "lemma": "предчувствие",
-   "options": [
-    "молодое предчувствие",
-    "молодому предчувствию",
-    "молодым предчувствием",
-    "молодом предчувствии"
-   ],
-   "correct": "молодым предчувствием",
-   "case": "Творительный (Instrumental)",
-   "explain": "«молодым предчувствием» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c6"
-  },
-  {
-   "sentence": "— ___ опять послал нам Бог!",
-   "lemma": "утро",
-   "options": [
-    "славном утре",
-    "славное утро",
-    "славным утром",
-    "славного утра"
-   ],
-   "correct": "славное утро",
-   "case": "Именительный (Nominative)",
-   "explain": "«Славное утро» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
-  },
-  {
-   "sentence": "— Ты заметил, что ___ после нашего приезда куда-нибудь — непременно погожий?",
-   "lemma": "день",
-   "options": [
-    "первому дню",
-    "первого дня",
-    "первым днём",
-    "первый день"
-   ],
-   "correct": "первый день",
-   "case": "Именительный (Nominative)",
-   "explain": "«первый день» — the subject of the sentence stands in the nominative.",
-   "id": "c8"
   },
   {
    "sentence": "Вдалеке нее было в легком ___, а мостовая в конце улицы блестела под солнцем, как золотая.",
    "lemma": "туман",
    "options": [
-    "светлому туману",
     "светлом тумане",
-    "светлый туман",
-    "светлого тумана"
+    "светлого тумана",
+    "светлым туманом",
+    "светлому туману"
    ],
    "correct": "светлом тумане",
    "case": "Предложный (Prepositional)",
-   "explain": "«светлом тумане» — after the preposition «в», for location or topic.",
+   "explain": "«светлом тумане» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c9"
-  },
-  {
-   "sentence": "Но долины, озеро и дальние ___ еще дышали холодом.",
-   "lemma": "гора",
-   "options": [
-    "савойских гор",
-    "савойскими горами",
-    "савойских горах",
-    "савойские горы"
-   ],
-   "correct": "савойские горы",
-   "case": "Именительный (Nominative)",
-   "explain": "«Савойские горы» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
   },
   {
    "sentence": "Вблизи, в ___ долины, в прохладной и влажной свежести тумана, лежало голубое, прозрачное и глубокое озеро.",
@@ -151,50 +53,22 @@
    ],
    "correct": "огромном пространстве",
    "case": "Предложный (Prepositional)",
-   "explain": "«огромном пространстве» — after the preposition «в», for location or topic.",
+   "explain": "«огромном пространстве» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c11"
   },
   {
    "sentence": "Пока испарялся туман, мы сходили в город, купили в кабачке вина и сыру, полюбовались чистотой и приветливостью улиц, живописными тополями и платанами в тихих ___.",
    "lemma": "сад",
    "options": [
-    "золотые сады",
     "золотых садах",
-    "золотыми садами",
-    "золотым садам"
+    "золотых садов",
+    "золотым садам",
+    "золотыми садами"
    ],
    "correct": "золотых садах",
    "case": "Предложный (Prepositional)",
-   "explain": "«золотых садах» — after the preposition «в», for location or topic.",
+   "explain": "«золотых садах» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c14"
-  },
-  {
-   "sentence": "___ стало уже ярко и чисто над ними.",
-   "lemma": "небо",
-   "options": [
-    "бирюзовому небу",
-    "бирюзового неба",
-    "бирюзовое небо",
-    "бирюзовом небе"
-   ],
-   "correct": "бирюзовое небо",
-   "case": "Именительный (Nominative)",
-   "explain": "«Бирюзовое небо» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
-  },
-  {
-   "sentence": "А вон Савойя — родина тех самых мальчиков-савояров с обезьянками, о которых читал в детстве такие ___!",
-   "lemma": "история",
-   "options": [
-    "трогательным историям",
-    "трогательные истории",
-    "трогательными историями",
-    "трогательных историй"
-   ],
-   "correct": "трогательные истории",
-   "case": "Винительный (Accusative)",
-   "explain": "«трогательные истории» — the accusative marks the direct object of the verb.",
-   "id": "c17"
   },
   {
    "sentence": "В голубой ___ видны были песчаное дно, сваи и кили лодок.",
@@ -207,7 +81,7 @@
    ],
    "correct": "прозрачной воде",
    "case": "Предложный (Prepositional)",
-   "explain": "«прозрачной воде» — after the preposition «в», for location or topic.",
+   "explain": "«прозрачной воде» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c18"
   },
   {
@@ -221,7 +95,7 @@
    ],
    "correct": "летнее утро",
    "case": "Именительный (Nominative)",
-   "explain": "«летнее утро» — the subject of the sentence stands in the nominative.",
+   "explain": "«летнее утро» is the subject of «Было» — who or what does it — so nominative.",
    "id": "c20"
   },
   {
@@ -235,7 +109,7 @@
    ],
    "correct": "последних дней",
    "case": "Родительный (Genitive)",
-   "explain": "«последних дней» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«последних дней» depends on the noun «спокойствие» (whose? of what?) — genitive.",
    "id": "c22"
   },
   {
@@ -249,7 +123,7 @@
    ],
    "correct": "покатых гор",
    "case": "Родительный (Genitive)",
-   "explain": "«покатых гор» — after the preposition «среди», the genitive here marks possession, absence, or quantity.",
+   "explain": "«покатых гор» — «среди» always takes the genitive.",
    "id": "c23"
   },
   {
@@ -263,77 +137,21 @@
    ],
    "correct": "глубокая тишина",
    "case": "Именительный (Nominative)",
-   "explain": "«глубокая тишина» — the subject of the sentence stands in the nominative.",
+   "explain": "«глубокая тишина» is the subject of «наступила» — who or what does it — so nominative.",
    "id": "c24"
-  },
-  {
-   "sentence": "— Я проснулся раньше тебя еще ___ чуть брезжила, — стал у раскрытого окна и долго слушал, как он одиноко и звонко кричал над своим старым городом.",
-   "lemma": "заря",
-   "options": [
-    "утренняя заря",
-    "утренней зари",
-    "утренней заре",
-    "утренней зарёй"
-   ],
-   "correct": "утренняя заря",
-   "case": "Именительный (Nominative)",
-   "explain": "«утренняя заря» — the subject of the sentence stands in the nominative.",
-   "id": "c26"
-  },
-  {
-   "sentence": "— Я проснулся раньше тебя еще утренняя заря чуть брезжила, — стал у раскрытого окна и долго слушал, как он одиноко и звонко кричал над своим ___.",
-   "lemma": "город",
-   "options": [
-    "старым городом",
-    "старом городе",
-    "старый город",
-    "старого города"
-   ],
-   "correct": "старым городом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«старым городом» — after the preposition «у», the instrumental marks the means, company, or complement.",
-   "id": "c27"
-  },
-  {
-   "sentence": "— Мне кажется, что когда-нибудь я сольюсь с этой ___, у преддверия которой мы стоим, и что счастье только в ней.",
-   "lemma": "тишина",
-   "options": [
-    "предвечная тишина",
-    "предвечной тишины",
-    "предвечной тишине",
-    "предвечной тишиной"
-   ],
-   "correct": "предвечной тишиной",
-   "case": "Творительный (Instrumental)",
-   "explain": "«предвечной тишиной» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c41"
-  },
-  {
-   "sentence": "Красота новой для нас природы, красота искусства и религии всюду волновала нас ___ возвысить до нее нашу жизнь, наполнить ее истинными радостями и разделить эти радости с людьми.",
-   "lemma": "жажда",
-   "options": [
-    "юношеской жажды",
-    "юношеской жаждой",
-    "юношеской жажде",
-    "юношеская жажда"
-   ],
-   "correct": "юношеской жаждой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«юношеской жаждой» — the instrumental marks the means, company, or complement.",
-   "id": "c43"
   },
   {
    "sentence": "Товарищу, с которым я пережил так много в пути, одному из немногих, которых я люблю, посвящаю эти ___.",
    "lemma": "строка",
    "options": [
-    "немногих строк",
-    "немногими строками",
     "немногие строки",
+    "немногим строкам",
+    "немногими строками",
     "немногих строках"
    ],
    "correct": "немногие строки",
    "case": "Винительный (Accusative)",
-   "explain": "«немногие строки» — the accusative marks the direct object of the verb.",
+   "explain": "«немногие строки» is the direct object of «посвящаю» (кого? что?) — accusative.",
    "id": "c45"
   }
  ]

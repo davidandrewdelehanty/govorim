@@ -1,60 +1,18 @@
 {
  "cases": [
   {
-   "id": "c1",
-   "sentence": "Сильный город у нас, Бог возводит спасение, точно стены и ___.",
-   "lemma": "вал",
-   "options": [
-    "вал",
-    "вала",
-    "валу",
-    "валом"
-   ],
-   "correct": "вал",
-   "case": "Именительный (Nominative)",
-   "explain": "The noun is in the nominative case as it represents what God has set up (parallel structure with 'walls')."
-  },
-  {
-   "id": "c2",
-   "sentence": "Откройте ворота, пусть войдет праведный народ, народ, что остался верным ___ .",
-   "lemma": "Бог",
-   "options": [
-    "Боге",
-    "Бога",
-    "Богу",
-    "Богом"
-   ],
-   "correct": "Богу",
-   "case": "Дательный (Dative)",
-   "explain": "The preposition верным (faithful to) with the dative expresses the object of faithfulness."
-  },
-  {
-   "id": "c3",
-   "sentence": "Твердого духом ты хранишь в совершенном мире, потому что он верит ___.",
-   "lemma": "ты",
-   "options": [
-    "тебе",
-    "тебя",
-    "тобой",
-    "те"
-   ],
-   "correct": "тебе",
-   "case": "Дательный (Dative)",
-   "explain": "The verb верит (believes in/trusts) requires the dative case."
-  },
-  {
    "id": "c4",
    "sentence": "Верьте Господу, потому что Господь — скала, неколебимая во всех ___.",
    "lemma": "век",
    "options": [
+    "веками",
+    "векам",
     "веках",
-    "века",
-    "веком",
     "веков"
    ],
    "correct": "веках",
    "case": "Предложный (Prepositional)",
-   "explain": "The preposition во (in) requires the prepositional case."
+   "explain": "«веках» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?)."
   },
   {
    "id": "c5",
@@ -62,41 +20,13 @@
    "lemma": "праведник",
    "options": [
     "праведников",
-    "праведник",
-    "праведникам",
-    "праведниками"
+    "праведниках",
+    "праведниками",
+    "праведникам"
    ],
    "correct": "праведников",
    "case": "Родительный (Genitive)",
-   "explain": "The preposition для (for) requires the genitive case."
-  },
-  {
-   "id": "c6",
-   "sentence": "Да, Господь, идущие по стезе твоих законов, мы ждем ___.",
-   "lemma": "ты",
-   "options": [
-    "тебя",
-    "тебе",
-    "тобой",
-    "те"
-   ],
-   "correct": "тебя",
-   "case": "Винительный (Accusative)",
-   "explain": "The direct object of the transitive verb ждем (wait for) requires the accusative case."
-  },
-  {
-   "id": "c7",
-   "sentence": "Мертвы они, не оживут, ведь духи умерших не поднимутся, Ты покарал, погубил их, изгладил память о ___.",
-   "lemma": "они",
-   "options": [
-    "них",
-    "они",
-    "им",
-    "ними"
-   ],
-   "correct": "них",
-   "case": "Предложный (Prepositional)",
-   "explain": "The preposition о (about) requires the prepositional case."
+   "explain": "«праведников» — «для» always takes the genitive."
   },
   {
    "id": "c8",
@@ -110,74 +40,7 @@
    ],
    "correct": "праха",
    "case": "Родительный (Genitive)",
-   "explain": "The phrase обитатели праха (inhabitants of the dust) uses the genitive to show what they dwell in."
-  }
- ],
- "reading": [
-  {
-   "id": "r1",
-   "ru": "В тот день в земле иудеи будут петь такую песнь. Сильный город у нас.",
-   "question": "What will the people of Judah sing about?",
-   "options": [
-    "They will sing about their strong city",
-    "They will sing about their weakness",
-    "They will sing about their enemies",
-    "They will sing about their riches"
-   ],
-   "correct": "They will sing about their strong city",
-   "explain": "The verse says они будут петь такую песнь о сильном городе (they will sing this song: We have a strong city)."
-  },
-  {
-   "id": "r2",
-   "ru": "Откройте ворота, пусть войдет праведный народ, народ, что остался верным.",
-   "question": "Who should enter through the open gates?",
-   "options": [
-    "The righteous nation, those who remain faithful",
-    "All people without exception",
-    "The wealthy and powerful",
-    "The warriors and soldiers"
-   ],
-   "correct": "The righteous nation, those who remain faithful",
-   "explain": "The gates are opened for праведный народ, народ, что остался верным (the righteous nation, the people who have kept faith)."
-  },
-  {
-   "id": "r3",
-   "ru": "Твердого духом ты хранишь в совершенном мире, потому что он верит тебе.",
-   "question": "Who does God keep in perfect peace?",
-   "options": [
-    "Those steadfast in mind who trust in God",
-    "All people regardless of faith",
-    "Only the wealthy",
-    "Only those in power"
-   ],
-   "correct": "Those steadfast in mind who trust in God",
-   "explain": "God keeps твердого духом (the one whose mind is steadfast) in совершенном мире (perfect peace) потому что верит (because he trusts)."
-  },
-  {
-   "id": "r4",
-   "ru": "Мертвы они, не оживут, ведь духи умерших не поднимутся.",
-   "question": "What is said about the dead?",
-   "options": [
-    "They will not rise again",
-    "They will live forever",
-    "They will return to earth",
-    "They will become alive again"
-   ],
-   "correct": "They will not rise again",
-   "explain": "The verse explicitly states Мертвы они, не оживут (The dead shall not live) and духи умерших не поднимутся (the departed spirits shall not rise)."
-  },
-  {
-   "id": "r5",
-   "ru": "Оживут твои мертвецы, поднимутся их тела, обитатели праха. Вставайте и пойте от радости.",
-   "question": "In contrast to those who won't rise, what will happen to God's people?",
-   "options": [
-    "God's dead will rise and sing with joy",
-    "They will sleep forever",
-    "They will become dust",
-    "They will disappear"
-   ],
-   "correct": "God's dead will rise and sing with joy",
-   "explain": "The verse proclaims Оживут твои мертвецы (Your dead shall live), поднимутся их тела (their bodies shall rise), and Вставайте и пойте (awake and sing for joy)."
+   "explain": "«праха» depends on the noun «обитатели» (whose? of what?) — genitive."
   }
  ]
 }

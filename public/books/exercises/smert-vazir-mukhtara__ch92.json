@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "___ Херсонского полка, которым командовал начальник траншей полковник Иван Григорьевич Бурцев, был добряк.",
-   "lemma": "квартирмейстер",
-   "options": [
-    "полковым квартирмейстером",
-    "полковой квартирмейстер",
-    "полковому квартирмейстеру",
-    "полковом квартирмейстере"
-   ],
-   "correct": "полковой квартирмейстер",
-   "case": "Именительный (Nominative)",
-   "explain": "«Полковой квартирмейстер» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Он любил своего ___, как, верно, никогда не любил ни одной сговорчивой девы.",
    "lemma": "жеребец",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "арабского жеребца",
    "case": "Винительный (Accusative)",
-   "explain": "«арабского жеребца» — the accusative marks the direct object of the verb.",
+   "explain": "«арабского жеребца» is the direct object of «любил» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c2"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "сговорчивой девы",
    "case": "Родительный (Genitive)",
-   "explain": "«сговорчивой девы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«сговорчивой девы» is the object of a negated verb («не любил») — genitive instead of the accusative.",
    "id": "c3"
   },
   {
@@ -47,42 +33,14 @@
    "lemma": "язык",
    "options": [
     "конском языке",
-    "конского языка",
+    "конскому языку",
     "конский язык",
-    "конскому языку"
+    "конским языком"
    ],
    "correct": "конский язык",
    "case": "Винительный (Accusative)",
-   "explain": "«конский язык» — the accusative marks the direct object of the verb.",
+   "explain": "«конский язык» is the direct object of «понимал» (кого? что?) — accusative.",
    "id": "c4"
-  },
-  {
-   "sentence": "Жеребец ржал, цыган ржал, квартирмейстер посапывал ___, глядя на них.",
-   "lemma": "нос",
-   "options": [
-    "сизый нос",
-    "сизом носе",
-    "сизому носу",
-    "сизым носом"
-   ],
-   "correct": "сизым носом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«сизым носом» — the instrumental marks the means, company, or complement.",
-   "id": "c5"
-  },
-  {
-   "sentence": "Конь храпел тихо и музыкально и, подняв кверху ___, плыл, цыган горланил носом и глоткой.",
-   "lemma": "ноздря",
-   "options": [
-    "синими ноздрями",
-    "синие ноздри",
-    "синих ноздрях",
-    "синим ноздрям"
-   ],
-   "correct": "синие ноздри",
-   "case": "Винительный (Accusative)",
-   "explain": "«синие ноздри» — the accusative marks the direct object of the verb.",
-   "id": "c6"
   },
   {
    "sentence": "Цыган гулял на травке, и под ним гуляли бледные бедра цыганского ___.",
@@ -95,7 +53,7 @@
    ],
    "correct": "терпкого цвета",
    "case": "Родительный (Genitive)",
-   "explain": "«терпкого цвета» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«терпкого цвета» depends on the noun «бедра» (whose? of what?) — genitive.",
    "id": "c8"
   },
   {
@@ -109,22 +67,8 @@
    ],
    "correct": "незнакомый офицер",
    "case": "Именительный (Nominative)",
-   "explain": "«незнакомый офицер» — the subject of the sentence stands in the nominative.",
+   "explain": "«незнакомый офицер» is the subject of «лежал» — who or what does it — so nominative.",
    "id": "c9"
-  },
-  {
-   "sentence": "Увидев лежащего на полу незнакомого ___, пьющего из бутылки водку, он подумал, что это ему снится, повернулся на другой бок и захрапел.",
-   "lemma": "офицер",
-   "options": [
-    "полуголым офицером",
-    "полуголого офицера",
-    "полуголом офицере",
-    "полуголому офицеру"
-   ],
-   "correct": "полуголого офицера",
-   "case": "Винительный (Accusative)",
-   "explain": "«полуголого офицера» — the accusative marks the direct object of the verb.",
-   "id": "c10"
   },
   {
    "sentence": "Он скрылся, и больше его никто не видел ни в реальном, ни в каком ___.",
@@ -137,7 +81,7 @@
    ],
    "correct": "другом виде",
    "case": "Предложный (Prepositional)",
-   "explain": "«другом виде» — after the preposition «в», for location or topic.",
+   "explain": "«другом виде» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c12"
   },
   {
@@ -151,7 +95,7 @@
    ],
    "correct": "маленьких детей",
    "case": "Родительный (Genitive)",
-   "explain": "«маленьких детей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«маленьких детей» depends on the noun «прокорма» (whose? of what?) — genitive.",
    "id": "c13"
   },
   {
@@ -165,50 +109,8 @@
    ],
    "correct": "маленьких детей",
    "case": "Винительный (Accusative)",
-   "explain": "«маленьких детей» — the accusative marks the direct object of the verb.",
+   "explain": "«маленьких детей» is the direct object of «оставили» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c14"
-  },
-  {
-   "sentence": "___, прикрытые соломой, кишели людьми, и там спали вповалку.",
-   "lemma": "балаган",
-   "options": [
-    "карантинными балаганами",
-    "карантинные балаганы",
-    "карантинных балаганах",
-    "карантинных балаганов"
-   ],
-   "correct": "карантинные балаганы",
-   "case": "Именительный (Nominative)",
-   "explain": "«Карантинные балаганы» — the subject of the sentence stands in the nominative.",
-   "id": "c15"
-  },
-  {
-   "sentence": "Лохмотья, ведра, кувшины, пестрые одеяла, а среди них сидели злые и испуганные женщины и ___.",
-   "lemma": "ребёнок",
-   "options": [
-    "крикливым детям",
-    "крикливых детей",
-    "крикливыми детьми",
-    "крикливые дети"
-   ],
-   "correct": "крикливые дети",
-   "case": "Именительный (Nominative)",
-   "explain": "«крикливые дети» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
-  },
-  {
-   "sentence": "Сойти с места и дать знать ___ он не имел права.",
-   "lemma": "офицер",
-   "options": [
-    "дежурным офицером",
-    "дежурного офицера",
-    "дежурном офицере",
-    "дежурному офицеру"
-   ],
-   "correct": "дежурному офицеру",
-   "case": "Дательный (Dative)",
-   "explain": "«дежурному офицеру» — the dative marks the indirect object or recipient.",
-   "id": "c18"
   },
   {
    "sentence": "Он велел часовому, не прикасаясь ни к чему руками, шестом достать из землянки одеяло и прикрыть ___, которые тряслись, кричали и стучали зубами.",
@@ -221,7 +123,7 @@
    ],
    "correct": "голых детей",
    "case": "Винительный (Accusative)",
-   "explain": "«голых детей» — the accusative marks the direct object of the verb.",
+   "explain": "«голых детей» is the direct object of «прикрыть» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c19"
   }
  ]

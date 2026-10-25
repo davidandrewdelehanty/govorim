@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Только у локтя трепетал, словно ___, угол простыни, и жители заброшенного городка с недоумением следили за полетом невиданной белой птицы.",
-   "lemma": "крыло",
-   "options": [
-    "белое крыло",
-    "белом крыле",
-    "белым крылом",
-    "белому крылу"
-   ],
-   "correct": "белое крыло",
-   "case": "Именительный (Nominative)",
-   "explain": "«белое крыло» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Только у локтя трепетал, словно белое крыло, угол простыни, и жители заброшенного городка с недоумением следили за полетом невиданной ___.",
    "lemma": "птица",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "белой птицы",
    "case": "Родительный (Genitive)",
-   "explain": "«белой птицы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«белой птицы» depends on the noun «полетом» (whose? of what?) — genitive.",
    "id": "c2"
   },
   {
@@ -39,22 +25,8 @@
    ],
    "correct": "плоские крыши",
    "case": "Именительный (Nominative)",
-   "explain": "«плоские крыши» — the subject of the sentence stands in the nominative.",
+   "explain": "«плоские крыши» is the subject of «виднелись» — who or what does it — so nominative.",
    "id": "c3"
-  },
-  {
-   "sentence": "Внизу виднелись плоские крыши, узкие извилистые улицы и сады, за городом — гора, поросшая лесом, за горой — ___, еще дальше темнела зелень лесов.",
-   "lemma": "долина",
-   "options": [
-    "песчаная долина",
-    "песчаной долиной",
-    "песчаной долине",
-    "песчаной долины"
-   ],
-   "correct": "песчаная долина",
-   "case": "Именительный (Nominative)",
-   "explain": "«песчаная долина» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
   },
   {
    "sentence": "С левой стороны подул сильный ___, который начал относить Ариэля в сторону, мешая полету.",
@@ -67,7 +39,7 @@
    ],
    "correct": "горячий ветер",
    "case": "Именительный (Nominative)",
-   "explain": "«горячий ветер» — the subject of the sentence stands in the nominative.",
+   "explain": "«горячий ветер» is the subject of «подул» — who or what does it — so nominative.",
    "id": "c6"
   },
   {
@@ -81,7 +53,7 @@
    ],
    "correct": "голубой дымкой",
    "case": "Творительный (Instrumental)",
-   "explain": "«голубой дымкой» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «окутанного», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c7"
   },
   {
@@ -95,7 +67,7 @@
    ],
    "correct": "дымчато-сизых туч",
    "case": "Родительный (Genitive)",
-   "explain": "«дымчато-сизых туч» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«дымчато-сизых туч» depends on the noun «клубы» (whose? of what?) — genitive.",
    "id": "c8"
   },
   {
@@ -109,50 +81,8 @@
    ],
    "correct": "железнодорожного пути",
    "case": "Родительный (Genitive)",
-   "explain": "«железнодорожного пути» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«железнодорожного пути» depends on the noun «рельсы» (whose? of what?) — genitive.",
    "id": "c9"
-  },
-  {
-   "sentence": "Блестели рельсы железнодорожного пути, среди высоких красных ___ поднимались фабричные трубы, вокруг зданий жалкие лачуги рабочего поселка.",
-   "lemma": "здание",
-   "options": [
-    "кирпичным зданиям",
-    "кирпичных зданий",
-    "кирпичные здания",
-    "кирпичных зданиях"
-   ],
-   "correct": "кирпичных зданий",
-   "case": "Родительный (Genitive)",
-   "explain": "«кирпичных зданий» — the genitive here marks possession, absence, or quantity.",
-   "id": "c10"
-  },
-  {
-   "sentence": "Блестели рельсы железнодорожного пути, среди высоких красных кирпичных зданий поднимались ___, вокруг зданий жалкие лачуги рабочего поселка.",
-   "lemma": "труба",
-   "options": [
-    "фабричными трубами",
-    "фабричным трубам",
-    "фабричные трубы",
-    "фабричных труб"
-   ],
-   "correct": "фабричные трубы",
-   "case": "Именительный (Nominative)",
-   "explain": "«фабричные трубы» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
-  },
-  {
-   "sentence": "___, у горизонта темные пятна леса, серебряная излучина реки.",
-   "lemma": "поле",
-   "options": [
-    "бесконечным полям",
-    "бесконечные поля",
-    "бесконечными полями",
-    "бесконечных полях"
-   ],
-   "correct": "бесконечные поля",
-   "case": "Именительный (Nominative)",
-   "explain": "«Бесконечные поля» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
   },
   {
    "sentence": "Ариэль увидел ___, который летел над ним так низко, что обдавал ветром и оглушал.",
@@ -165,36 +95,8 @@
    ],
    "correct": "огромного орла",
    "case": "Винительный (Accusative)",
-   "explain": "«огромного орла» — the accusative marks the direct object of the verb.",
+   "explain": "«огромного орла» is the direct object of «увидел» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c13"
-  },
-  {
-   "sentence": "Его ___ были устремлены на Ариэля, кривой хищный клюв приоткрыт, выставлены огромные когти.",
-   "lemma": "глаз",
-   "options": [
-    "блестящих глазах",
-    "блестящими глазами",
-    "блестящих глаз",
-    "блестящие глаза"
-   ],
-   "correct": "блестящие глаза",
-   "case": "Именительный (Nominative)",
-   "explain": "«блестящие глаза» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
-  },
-  {
-   "sentence": "Его блестящие глаза были устремлены на Ариэля, кривой ___ приоткрыт, выставлены огромные когти.",
-   "lemma": "клюв",
-   "options": [
-    "хищном клюве",
-    "хищный клюв",
-    "хищным клювом",
-    "хищного клюва"
-   ],
-   "correct": "хищный клюв",
-   "case": "Винительный (Accusative)",
-   "explain": "«хищный клюв» — the accusative marks the direct object of the verb.",
-   "id": "c15"
   },
   {
    "sentence": "Его блестящие глаза были устремлены на Ариэля, кривой хищный клюв приоткрыт, выставлены ___.",
@@ -207,36 +109,8 @@
    ],
    "correct": "огромные когти",
    "case": "Именительный (Nominative)",
-   "explain": "«огромные когти» — the subject of the sentence stands in the nominative.",
+   "explain": "«огромные когти» is the subject of «выставлены» — who or what does it — so nominative.",
    "id": "c16"
-  },
-  {
-   "sentence": "Орел стремительно падал, человек с такой же стремительностью уклонялся от ударов и, сделав ___, пытался сверху схватить птицу за крылья или за шею.",
-   "lemma": "полукруг",
-   "options": [
-    "небольшого полукруга",
-    "небольшом полукруге",
-    "небольшой полукруг",
-    "небольшому полукругу"
-   ],
-   "correct": "небольшой полукруг",
-   "case": "Винительный (Accusative)",
-   "explain": "«небольшой полукруг» — the accusative marks the direct object of the verb.",
-   "id": "c17"
-  },
-  {
-   "sentence": "___ и человек, кувыркаясь, поднимались все выше и выше.",
-   "lemma": "птица",
-   "options": [
-    "огромной птицы",
-    "огромная птица",
-    "огромной птицей",
-    "огромной птице"
-   ],
-   "correct": "огромная птица",
-   "case": "Именительный (Nominative)",
-   "explain": "«Огромная птица» — the subject of the sentence stands in the nominative.",
-   "id": "c19"
   },
   {
    "sentence": "Они опустились на ___ невдалеке от реки.",
@@ -249,22 +123,8 @@
    ],
    "correct": "лесной поляне",
    "case": "Предложный (Prepositional)",
-   "explain": "«лесной поляне» — after the preposition «на», for location or topic.",
+   "explain": "«лесной поляне» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c21"
-  },
-  {
-   "sentence": "Орел, тяжело рухнувший в густую траву, некоторое время лежал с распростертыми крыльями, открывая и закрывая клюв и неподвижно глядя перед собой ___.",
-   "lemma": "глаз",
-   "options": [
-    "одурелых глазах",
-    "одурелыми глазами",
-    "одурелых глаз",
-    "одурелые глаза"
-   ],
-   "correct": "одурелыми глазами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«одурелыми глазами» — the instrumental marks the means, company, or complement.",
-   "id": "c22"
   }
  ]
 }

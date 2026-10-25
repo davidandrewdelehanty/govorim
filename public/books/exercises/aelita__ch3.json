@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "За четыре года дожди и ___ сильно попортили его внутренность.",
-   "lemma": "вьюга",
-   "options": [
-    "зимних вьюг",
-    "зимними вьюгами",
-    "зимние вьюги",
-    "зимних вьюгах"
-   ],
-   "correct": "зимние вьюги",
-   "case": "Именительный (Nominative)",
-   "explain": "«зимние вьюги» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "На потолке, среди ___ и облаков, летела пышная женщина с улыбкой во все лицо, кругом — крылатые младенцы.",
    "lemma": "резьба",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "золотой резьбы",
    "case": "Родительный (Genitive)",
-   "explain": "«золотой резьбы» — after the preposition «среди», the genitive here marks possession, absence, or quantity.",
+   "explain": "«золотой резьбы» — «среди» always takes the genitive.",
    "id": "c2"
   },
   {
@@ -39,22 +25,8 @@
    ],
    "correct": "пышная женщина",
    "case": "Именительный (Nominative)",
-   "explain": "«пышная женщина» — the subject of the sentence stands in the nominative.",
+   "explain": "«пышная женщина» is the subject of «летела» — who or what does it — so nominative.",
    "id": "c3"
-  },
-  {
-   "sentence": "На потолке, среди золотой резьбы и облаков, летела пышная женщина с улыбкой во все лицо, кругом — ___.",
-   "lemma": "младенец",
-   "options": [
-    "крылатым младенцам",
-    "крылатые младенцы",
-    "крылатых младенцах",
-    "крылатых младенцев"
-   ],
-   "correct": "крылатые младенцы",
-   "case": "Именительный (Nominative)",
-   "explain": "«крылатые младенцы» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
   },
   {
    "sentence": "Через комнату была протянута ___ железной печечки, закоптившей стену.",
@@ -67,21 +39,21 @@
    ],
    "correct": "железная труба",
    "case": "Именительный (Nominative)",
-   "explain": "«железная труба» — the subject of the sentence stands in the nominative.",
+   "explain": "«железная труба» is the subject of «протянута» — who or what does it — so nominative.",
    "id": "c6"
   },
   {
    "sentence": "Издалека ветер донес ___ часов, — пробило два.",
    "lemma": "перезвон",
    "options": [
-    "печальном перезвоне",
-    "печального перезвона",
     "печальным перезвоном",
+    "печальному перезвону",
+    "печальном перезвоне",
     "печальный перезвон"
    ],
    "correct": "печальный перезвон",
    "case": "Винительный (Accusative)",
-   "explain": "«печальный перезвон» — the accusative marks the direct object of the verb.",
+   "explain": "«печальный перезвон» is the direct object of «донес» (кого? что?) — accusative.",
    "id": "c7"
   },
   {
@@ -95,7 +67,7 @@
    ],
    "correct": "чудной комнате",
    "case": "Предложный (Prepositional)",
-   "explain": "«чудной комнате» — after the preposition «в», for location or topic.",
+   "explain": "«чудной комнате» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c8"
   },
   {
@@ -109,7 +81,7 @@
    ],
    "correct": "прежней воли",
    "case": "Родительный (Genitive)",
-   "explain": "«прежней воли» — after the preposition «без», the genitive here marks possession, absence, or quantity.",
+   "explain": "«прежней воли» — «без» always takes the genitive.",
    "id": "c9"
   },
   {
@@ -123,7 +95,7 @@
    ],
    "correct": "золотой клин",
    "case": "Именительный (Nominative)",
-   "explain": "«золотой клин» — the subject of the sentence stands in the nominative.",
+   "explain": "«золотой клин» is the subject of «есть» — who or what does it — so nominative.",
    "id": "c11"
   },
   {
@@ -137,22 +109,8 @@
    ],
    "correct": "уличного фонаря",
    "case": "Родительный (Genitive)",
-   "explain": "«уличного фонаря» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«уличного фонаря» depends on the noun «свет» (whose? of what?) — genitive.",
    "id": "c13"
-  },
-  {
-   "sentence": "В одно из окон в залу пробирался свет уличного фонаря и слабо освещал пузырчатыми пятнами несколько ___.",
-   "lemma": "колонна",
-   "options": [
-    "низкие колонны",
-    "низких колонн",
-    "низким колоннам",
-    "низких колоннах"
-   ],
-   "correct": "низких колонн",
-   "case": "Родительный (Genitive)",
-   "explain": "«низких колонн» — the genitive here marks possession, absence, or quantity.",
-   "id": "c14"
   },
   {
    "sentence": "Она вслушивалась, — шаги теперь отдалялись: старичок, видимо, уходил по ___ вниз.",
@@ -165,7 +123,7 @@
    ],
    "correct": "парадной лестнице",
    "case": "Дательный (Dative)",
-   "explain": "«парадной лестнице» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«парадной лестнице» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c16"
   },
   {
@@ -179,7 +137,7 @@
    ],
    "correct": "мятежному сердцу",
    "case": "Дательный (Dative)",
-   "explain": "«мятежному сердцу» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«мятежному сердцу» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c18"
   }
  ]

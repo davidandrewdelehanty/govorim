@@ -1,46 +1,18 @@
 {
  "cases": [
   {
-   "sentence": "Семенов, который поступал в один факультет со мной, в математический, до конца экзаменов все-таки дичился всех, сидел молча один, облокотясь на руки и засунув пальцы в свои ___, и экзаменовался отлично.",
-   "lemma": "волос",
-   "options": [
-    "седых волос",
-    "седым волосам",
-    "седых волосах",
-    "седые волосы"
-   ],
-   "correct": "седые волосы",
-   "case": "Винительный (Accusative)",
-   "explain": "«седые волосы» — after the preposition «в», the accusative marks the direct object of the verb.",
-   "id": "c3"
-  },
-  {
    "sentence": "Это был высокий ___, весьма бледный, с подвязанной черным галстуком щекой и покрытым прыщами лбом.",
    "lemma": "брюнет",
    "options": [
-    "худощавый брюнет",
-    "худощавому брюнету",
     "худощавого брюнета",
-    "худощавым брюнетом"
+    "худощавому брюнету",
+    "худощавом брюнете",
+    "худощавый брюнет"
    ],
    "correct": "худощавый брюнет",
    "case": "Именительный (Nominative)",
-   "explain": "«худощавый брюнет» — the subject of the sentence stands in the nominative.",
+   "explain": "«худощавый брюнет» is the predicate after «был» — what someone or something is: the nominative of the predicate (the instrumental is also possible after быть, so it is not offered).",
    "id": "c4"
-  },
-  {
-   "sentence": "Руки у него были худые, красные, с чрезвычайно ___, и ногти обкусаны так, что концы пальцев его казались перевязаны ниточками.",
-   "lemma": "палец",
-   "options": [
-    "длинными пальцами",
-    "длинные пальцы",
-    "длинным пальцам",
-    "длинных пальцах"
-   ],
-   "correct": "длинными пальцами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«длинными пальцами» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c5"
   },
   {
    "sentence": "Все это мне казалось прекрасным и таким, каким должно было быть у ___.",
@@ -53,7 +25,7 @@
    ],
    "correct": "первого гимназиста",
    "case": "Родительный (Genitive)",
-   "explain": "«первого гимназиста» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«первого гимназиста» — «у» always takes the genitive.",
    "id": "c6"
   },
   {
@@ -67,7 +39,7 @@
    ],
    "correct": "шумной комнате",
    "case": "Предложный (Prepositional)",
-   "explain": "«шумной комнате» — after the preposition «в», for location or topic.",
+   "explain": "«шумной комнате» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c7"
   },
   {
@@ -81,7 +53,7 @@
    ],
    "correct": "второго курса",
    "case": "Родительный (Genitive)",
-   "explain": "«второго курса» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«второго курса» depends on the noun «студенты» (whose? of what?) — genitive.",
    "id": "c8"
   },
   {
@@ -95,7 +67,7 @@
    ],
    "correct": "второго курса",
    "case": "Родительный (Genitive)",
-   "explain": "«второго курса» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«второго курса» depends on the noun «студентами» (whose? of what?) — genitive.",
    "id": "c9"
   },
   {
@@ -109,36 +81,8 @@
    ],
    "correct": "самодовольно-кротком расположении",
    "case": "Предложный (Prepositional)",
-   "explain": "«самодовольно-кротком расположении» — after the preposition «в», for location or topic.",
+   "explain": "«самодовольно-кротком расположении» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c11"
-  },
-  {
-   "sentence": "Иконин с тем же ___, как и в прошедший экзамен, раскачнувшись всем боком, не выбирая, взял верхний билет, взглянул на него и сердито нахмурился.",
-   "lemma": "жест",
-   "options": [
-    "смелому жесту",
-    "смелым жестом",
-    "смелом жесте",
-    "смелый жест"
-   ],
-   "correct": "смелым жестом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«смелым жестом» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c13"
-  },
-  {
-   "sentence": "Иконин с тем же смелым жестом, как и в прошедший экзамен, раскачнувшись всем боком, не выбирая, взял ___, взглянул на него и сердито нахмурился.",
-   "lemma": "билет",
-   "options": [
-    "верхнему билету",
-    "верхним билетом",
-    "верхнем билете",
-    "верхний билет"
-   ],
-   "correct": "верхний билет",
-   "case": "Винительный (Accusative)",
-   "explain": "«верхний билет» — the accusative marks the direct object of the verb.",
-   "id": "c14"
   },
   {
    "sentence": "\"Ну, все пропало! -- подумал я. -- Вместо ___, который я думал сделать, я навеки покроюсь срамом, хуже Иконина\".",
@@ -151,22 +95,8 @@
    ],
    "correct": "блестящего экзамена",
    "case": "Родительный (Genitive)",
-   "explain": "«блестящего экзамена» — after the preposition «вместо», the genitive here marks possession, absence, or quantity.",
+   "explain": "«блестящего экзамена» — «вместо» always takes the genitive.",
    "id": "c15"
-  },
-  {
-   "sentence": "Профессор был не ___, с приятным, умным выражением, которое особенно давала ему чрезвычайно выпуклая нижняя часть лба.",
-   "lemma": "человек",
-   "options": [
-    "старый человек",
-    "старому человеку",
-    "старом человеке",
-    "старого человека"
-   ],
-   "correct": "старый человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«старый человек» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
   }
  ]
 }

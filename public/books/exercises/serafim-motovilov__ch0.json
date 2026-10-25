@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Снегу было на четверть на земле, а сверху порошила довольно густая ___, когда батюшка о.",
-   "lemma": "крупа",
-   "options": [
-    "снежной крупой",
-    "снежная крупа",
-    "снежной крупе",
-    "снежной крупы"
-   ],
-   "correct": "снежная крупа",
-   "case": "Именительный (Nominative)",
-   "explain": "«снежная крупа» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "Серафим начал беседу со мной на ___ своей, возле той же его ближней пустыньки против речки Саровки, у горы, подходящей близко к берегам ее.",
    "lemma": "пажинка",
    "options": [
@@ -25,22 +11,8 @@
    ],
    "correct": "ближней пажинке",
    "case": "Предложный (Prepositional)",
-   "explain": "«ближней пажинке» — after the preposition «на», for location or topic.",
+   "explain": "«ближней пажинке» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c2"
-  },
-  {
-   "sentence": "Я должен сказать тут, что с ___ меня эта мысль неотступно тревожила, и я действительно ко многим из духовных лиц обращался с этим вопросом, но ответы их меня не удовлетворяли.",
-   "lemma": "возраст",
-   "options": [
-    "12-летнем возрасте",
-    "12-летнего возраста",
-    "12-летним возрастом",
-    "12-летнему возрасту"
-   ],
-   "correct": "12-летнего возраста",
-   "case": "Родительный (Genitive)",
-   "explain": "«12-летнего возраста» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
-   "id": "c3"
   },
   {
    "sentence": "Я должен сказать тут, что с 12-летнего возраста меня эта мысль неотступно тревожила, и я действительно ко многим из ___ обращался с этим вопросом, но ответы их меня не удовлетворяли.",
@@ -53,22 +25,8 @@
    ],
    "correct": "духовных лиц",
    "case": "Родительный (Genitive)",
-   "explain": "«духовных лиц» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«духовных лиц» — «из» always takes the genitive.",
    "id": "c4"
-  },
-  {
-   "sentence": "Молитва, пост, бдение и всякие другие дела христианские, сколь ни хороши они сами по себе, однако не в делании только их состоит цель нашей христианской жизни, хотя они и служат ___ для достижения ее.",
-   "lemma": "средство",
-   "options": [
-    "необходимые средства",
-    "необходимыми средствами",
-    "необходимым средствам",
-    "необходимых средствах"
-   ],
-   "correct": "необходимыми средствами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«необходимыми средствами» — the instrumental marks the means, company, or complement.",
-   "id": "c5"
   },
   {
    "sentence": "Все же не ради Христа делаемое, хотя и доброе, но мзды в жизни ___ нам не представляет да и в здешней жизни благодати Божией тоже не дает.",
@@ -81,49 +39,35 @@
    ],
    "correct": "будущего века",
    "case": "Родительный (Genitive)",
-   "explain": "«будущего века» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«будущего века» depends on the noun «жизни» (whose? of what?) — genitive.",
    "id": "c6"
-  },
-  {
-   "sentence": "Итак, Господь все Свои ___ употребляет, чтобы доставить такому человеку возможность за свои добрые дела не лишиться награды в жизни паки бытия.",
-   "lemma": "средство",
-   "options": [
-    "божественных средств",
-    "божественные средства",
-    "божественными средствами",
-    "божественным средствам"
-   ],
-   "correct": "божественные средства",
-   "case": "Винительный (Accusative)",
-   "explain": "«Божественные средства» — the accusative marks the direct object of the verb.",
-   "id": "c7"
   },
   {
    "sentence": "Итак, Господь все Свои Божественные средства употребляет, чтобы доставить такому человеку возможность за свои ___ не лишиться награды в жизни паки бытия.",
    "lemma": "дело",
    "options": [
-    "добрыми делами",
     "добрым делам",
+    "добрых дел",
     "добрые дела",
     "добрых делах"
    ],
    "correct": "добрые дела",
    "case": "Винительный (Accusative)",
-   "explain": "«добрые дела» — after the preposition «за», the accusative marks the direct object of the verb.",
+   "explain": "«добрые дела» — «за» takes the accusative here (куда? за что? за кого?) — the instrumental would mean position behind or at (где? за чем?).",
    "id": "c8"
   },
   {
    "sentence": "Ведь вы, ваше боголюбие, понимаете, что такое в ___ стяжание?",
    "lemma": "смысл",
    "options": [
-    "мирском смысле",
-    "мирским смыслом",
+    "мирскому смыслу",
     "мирского смысла",
-    "мирской смысл"
+    "мирским смыслом",
+    "мирском смысле"
    ],
    "correct": "мирском смысле",
    "case": "Предложный (Prepositional)",
-   "explain": "«мирском смысле» — after the preposition «в», for location or topic.",
+   "explain": "«мирском смысле» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c9"
   },
   {
@@ -137,50 +81,22 @@
    ],
    "correct": "обыкновенных людей",
    "case": "Родительный (Genitive)",
-   "explain": "«обыкновенных людей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«обыкновенных людей» depends on the noun «жизни» (whose? of what?) — genitive.",
    "id": "c10"
-  },
-  {
-   "sentence": "Цель жизни мирской обыкновенных людей есть стяжание, или наживание денег, а у дворян сверх того — получение почестей, отличий и ___ за государственные заслуги.",
-   "lemma": "награда",
-   "options": [
-    "других наград",
-    "другими наградами",
-    "другим наградам",
-    "другие награды"
-   ],
-   "correct": "других наград",
-   "case": "Родительный (Genitive)",
-   "explain": "«других наград» — the genitive here marks possession, absence, or quantity.",
-   "id": "c11"
   },
   {
    "sentence": "Цель жизни мирской обыкновенных людей есть стяжание, или наживание денег, а у дворян сверх того — получение почестей, отличий и других наград за ___.",
    "lemma": "заслуга",
    "options": [
-    "государственными заслугами",
+    "государственных заслугах",
     "государственные заслуги",
-    "государственным заслугам",
-    "государственных заслуг"
+    "государственных заслуг",
+    "государственным заслугам"
    ],
    "correct": "государственные заслуги",
    "case": "Винительный (Accusative)",
-   "explain": "«государственные заслуги» — after the preposition «за», the accusative marks the direct object of the verb.",
+   "explain": "«государственные заслуги» — «за» takes the accusative here (куда? за что? за кого?) — the instrumental would mean position behind or at (где? за чем?).",
    "id": "c12"
-  },
-  {
-   "sentence": "___ это — добродетели, делаемые Христа ради, доставляющие нам благодать Всесвятого Духа.",
-   "lemma": "товар",
-   "options": [
-    "земных товаров",
-    "земных товарах",
-    "земные товары",
-    "земным товарам"
-   ],
-   "correct": "земные товары",
-   "case": "Именительный (Nominative)",
-   "explain": "«Земные товары» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
   },
   {
    "sentence": "Некоторые говорят, что недостаток елея у ___ знаменует недостаток у них прижизненных добрых дел.",
@@ -193,50 +109,22 @@
    ],
    "correct": "юродивых дев",
    "case": "Родительный (Genitive)",
-   "explain": "«юродивых дев» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«юродивых дев» — «у» always takes the genitive.",
    "id": "c14"
-  },
-  {
-   "sentence": "Некоторые говорят, что недостаток елея у юродивых дев знаменует недостаток у них прижизненных ___.",
-   "lemma": "дело",
-   "options": [
-    "добрых делах",
-    "добрыми делами",
-    "добрым делам",
-    "добрых дел"
-   ],
-   "correct": "добрых дел",
-   "case": "Родительный (Genitive)",
-   "explain": "«добрых дел» — the genitive here marks possession, absence, or quantity.",
-   "id": "c15"
   },
   {
    "sentence": "Какой же это у них недостаток в ___, когда они хоть юродивыми, все же девами называются?",
    "lemma": "дело",
    "options": [
     "добрым делам",
-    "добрых делах",
+    "добрыми делами",
     "добрых дел",
-    "добрые дела"
+    "добрых делах"
    ],
    "correct": "добрых делах",
    "case": "Предложный (Prepositional)",
-   "explain": "«добрых делах» — after the preposition «в», for location or topic.",
+   "explain": "«добрых делах» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c16"
-  },
-  {
-   "sentence": "И вот эта-то третья ___ и научает человека или не делать никаких добродетелей, или делать их из тщеславия или для одного добра, а не ради Христа.",
-   "lemma": "воля",
-   "options": [
-    "вражеская воля",
-    "вражеской волей",
-    "вражеской воле",
-    "вражеской воли"
-   ],
-   "correct": "вражеская воля",
-   "case": "Именительный (Nominative)",
-   "explain": "«вражеская воля» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
   },
   {
    "sentence": "Оно-то, это стяжание Духа Святого, собственно и называется тем елеем, которого недоставало у ___.",
@@ -249,7 +137,7 @@
    ],
    "correct": "юродивых дев",
    "case": "Родительный (Genitive)",
-   "explain": "«юродивых дев» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«юродивых дев» — «у» always takes the genitive.",
    "id": "c18"
   },
   {
@@ -263,7 +151,7 @@
    ],
    "correct": "мудрых дев",
    "case": "Родительный (Genitive)",
-   "explain": "«мудрых дев» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«мудрых дев» — «у» always takes the genitive.",
    "id": "c19"
   },
   {
@@ -277,7 +165,7 @@
    ],
    "correct": "молитвенной беседе",
    "case": "Предложный (Prepositional)",
-   "explain": "«молитвенной беседе» — after the preposition «при», for location or topic.",
+   "explain": "«молитвенной беседе» — «при» always takes the prepositional.",
    "id": "c20"
   },
   {
@@ -291,7 +179,7 @@
    ],
    "correct": "мирских дел",
    "case": "Родительный (Genitive)",
-   "explain": "«мирских дел» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«мирских дел» — «от» always takes the genitive.",
    "id": "c21"
   },
   {
@@ -305,36 +193,8 @@
    ],
    "correct": "полном безмолвии",
    "case": "Предложный (Prepositional)",
-   "explain": "«полном безмолвии» — after the preposition «в», for location or topic.",
+   "explain": "«полном безмолвии» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c22"
-  },
-  {
-   "sentence": "Надлежит при том быть в ___ и души и духа и в целомудренной чистоте плоти.",
-   "lemma": "трезвение",
-   "options": [
-    "полного трезвения",
-    "полное трезвение",
-    "полном трезвении",
-    "полному трезвению"
-   ],
-   "correct": "полном трезвении",
-   "case": "Предложный (Prepositional)",
-   "explain": "«полном трезвении» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c23"
-  },
-  {
-   "sentence": "— Ну, а как же, батюшка, быть с ___, творимыми ради Христа, для стяжания благодати Духа Святого?",
-   "lemma": "добродетель",
-   "options": [
-    "других добродетелей",
-    "другие добродетели",
-    "других добродетелях",
-    "другими добродетелями"
-   ],
-   "correct": "другими добродетелями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«другими добродетелями» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c24"
   },
   {
    "sentence": "Родом я из ___.",
@@ -347,7 +207,7 @@
    ],
    "correct": "курских купцов",
    "case": "Родительный (Genitive)",
-   "explain": "«курских купцов» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«курских купцов» — «из» always takes the genitive.",
    "id": "c25"
   },
   {
@@ -357,11 +217,11 @@
     "приснонеоскудевающим источником",
     "приснонеоскудевающий источник",
     "приснонеоскудевающем источнике",
-    "приснонеоскудевающего источника"
+    "приснонеоскудевающему источнику"
    ],
    "correct": "приснонеоскудевающий источник",
    "case": "Винительный (Accusative)",
-   "explain": "«приснонеоскудевающий источник» — the accusative marks the direct object of the verb.",
+   "explain": "«приснонеоскудевающий источник» is the direct object of «стяжали» (кого? что?) — accusative.",
    "id": "c26"
   },
   {
@@ -369,41 +229,27 @@
    "lemma": "суд",
    "options": [
     "страшным судом",
-    "страшном суде",
+    "страшного суда",
     "страшный суд",
-    "страшного суда"
+    "страшному суду"
    ],
    "correct": "страшный суд",
    "case": "Винительный (Accusative)",
-   "explain": "«страшный суд» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«страшный суд» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c27"
-  },
-  {
-   "sentence": "Раздавайте дары благодати Духа Святого требующим по примеру свещи возженной, которая и сама светит, горя земным огнем, и ___, не умаляя своего собственного огня, зажигает во светение всем в других местах.",
-   "lemma": "свещь",
-   "options": [
-    "другим свещам",
-    "других свещей",
-    "других свещах",
-    "другие свещи"
-   ],
-   "correct": "другие свещи",
-   "case": "Именительный (Nominative)",
-   "explain": "«другие свещи» — the subject of the sentence stands in the nominative.",
-   "id": "c28"
   },
   {
    "sentence": "Раздавайте дары благодати Духа Святого требующим по примеру свещи возженной, которая и сама светит, горя земным огнем, и другие свещи, не умаляя своего ___, зажигает во светение всем в других местах.",
    "lemma": "огонь",
    "options": [
+    "собственным огнём",
     "собственному огню",
-    "собственный огонь",
-    "собственного огня",
-    "собственным огнём"
+    "собственном огне",
+    "собственного огня"
    ],
    "correct": "собственного огня",
    "case": "Родительный (Genitive)",
-   "explain": "«собственного огня» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«собственного огня» is the object of a negated verb («не умаляя») — genitive instead of the accusative.",
    "id": "c29"
   },
   {
@@ -411,55 +257,41 @@
    "lemma": "место",
    "options": [
     "других местах",
-    "другие места",
-    "другим местам",
-    "другими местами"
+    "другими местами",
+    "других мест",
+    "другим местам"
    ],
    "correct": "других местах",
    "case": "Предложный (Prepositional)",
-   "explain": "«других местах» — after the preposition «в», for location or topic.",
+   "explain": "«других местах» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c30"
-  },
-  {
-   "sentence": "___ видны, а разве Дух Святый может быть виден?",
-   "lemma": "дело",
-   "options": [
-    "добрые дела",
-    "добрых делах",
-    "добрых дел",
-    "добрыми делами"
-   ],
-   "correct": "добрые дела",
-   "case": "Именительный (Nominative)",
-   "explain": "«Добрые дела» — the subject of the sentence stands in the nominative.",
-   "id": "c31"
   },
   {
    "sentence": "Неоднократно и в ___ Священного Писания говорится о явлении Бога человекам.",
    "lemma": "место",
    "options": [
+    "другими местами",
     "других местах",
-    "другие места",
     "другим местам",
-    "другими местами"
+    "других мест"
    ],
    "correct": "других местах",
    "case": "Предложный (Prepositional)",
-   "explain": "«других местах» — after the preposition «в», for location or topic.",
+   "explain": "«других местах» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c32"
   },
   {
    "sentence": "И все любовалось на него как на ___ творений Божиих.",
    "lemma": "венец",
    "options": [
-    "всесовершенном венце",
+    "всесовершенным венцом",
     "всесовершенному венцу",
     "всесовершенный венец",
     "всесовершенного венца"
    ],
    "correct": "всесовершенный венец",
    "case": "Винительный (Accusative)",
-   "explain": "«всесовершенный венец» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«всесовершенный венец» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c33"
   },
   {
@@ -473,77 +305,21 @@
    ],
    "correct": "многие тайны",
    "case": "Именительный (Nominative)",
-   "explain": "«многие тайны» — the subject of the sentence stands in the nominative.",
+   "explain": "«многие тайны» is the subject of «открыты» — who or what does it — so nominative.",
    "id": "c34"
-  },
-  {
-   "sentence": "Симеону Богоприимцу, Богоотцам Иоакиму и Анне и многим ___ Божиим бывали постоянные, разнообразные въяве Божественные явления, гласы откровения, оправдывавшиеся очевидными чудесными событиями.",
-   "lemma": "раб",
-   "options": [
-    "бесчисленных рабах",
-    "бесчисленных рабов",
-    "бесчисленным рабам",
-    "бесчисленными рабами"
-   ],
-   "correct": "бесчисленным рабам",
-   "case": "Дательный (Dative)",
-   "explain": "«бесчисленным рабам» — the dative marks the indirect object or recipient.",
-   "id": "c35"
-  },
-  {
-   "sentence": "Симеону Богоприимцу, Богоотцам Иоакиму и Анне и многим бесчисленным рабам Божиим бывали постоянные, разнообразные въяве ___, гласы откровения, оправдывавшиеся очевидными чудесными событиями.",
-   "lemma": "явление",
-   "options": [
-    "божественными явлениями",
-    "божественные явления",
-    "божественных явлениях",
-    "божественным явлениям"
-   ],
-   "correct": "божественные явления",
-   "case": "Винительный (Accusative)",
-   "explain": "«Божественные явления» — the accusative marks the direct object of the verb.",
-   "id": "c36"
-  },
-  {
-   "sentence": "Симеону Богоприимцу, Богоотцам Иоакиму и Анне и многим бесчисленным рабам Божиим бывали постоянные, разнообразные въяве Божественные явления, гласы откровения, оправдывавшиеся очевидными ___.",
-   "lemma": "событие",
-   "options": [
-    "чудесными событиями",
-    "чудесных событиях",
-    "чудесным событиям",
-    "чудесные события"
-   ],
-   "correct": "чудесными событиями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«чудесными событиями» — the instrumental marks the means, company, or complement.",
-   "id": "c37"
-  },
-  {
-   "sentence": "___ все это было от падения Адама до пришествия Господа нашего Иисуса Христа во плоти в мир.",
-   "lemma": "образ",
-   "options": [
-    "таком-то образе",
-    "такого-то образа",
-    "таким-то образом",
-    "такому-то образу"
-   ],
-   "correct": "таким-то образом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«Таким-то образом» — the instrumental marks the means, company, or complement.",
-   "id": "c38"
   },
   {
    "sentence": "По этому самому Божие Матерь и называется «язвою бесов», ибо нет возможности бесу погубить человека, лишь бы только ___ не отступил от прибегания к помощи Божией Матери.",
    "lemma": "человек",
    "options": [
-    "сам человек",
-    "самого человека",
     "самом человеке",
+    "сам человек",
+    "самому человеку",
     "самим человеком"
    ],
    "correct": "сам человек",
    "case": "Именительный (Nominative)",
-   "explain": "«сам человек» — the subject of the sentence stands in the nominative.",
+   "explain": "«сам человек» is the subject of «отступил» — who or what does it — so nominative.",
    "id": "c39"
   },
   {
@@ -557,36 +333,8 @@
    ],
    "correct": "самом деле",
    "case": "Предложный (Prepositional)",
-   "explain": "«самом деле» — after the preposition «на», for location or topic.",
+   "explain": "«самом деле» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c40"
-  },
-  {
-   "sentence": "И на самом деле Господь неоднократно проявлял для многих свидетелей действие благодати Духа Святого на тех людях, которых Он освящал и просвещал ___ Его.",
-   "lemma": "наитие",
-   "options": [
-    "великим наитиям",
-    "великими наитиями",
-    "великих наитиях",
-    "великих наитий"
-   ],
-   "correct": "великими наитиями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«великими наитиями» — the instrumental marks the means, company, or complement.",
-   "id": "c41"
-  },
-  {
-   "sentence": "Люди не могли смотреть на него, так сиял он ___, окружавшим лицо его.",
-   "lemma": "свет",
-   "options": [
-    "необыкновенный свет",
-    "необыкновенному свету",
-    "необыкновенным светом",
-    "необыкновенного света"
-   ],
-   "correct": "необыкновенным светом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«необыкновенным светом» — the instrumental marks the means, company, or complement.",
-   "id": "c42"
   },
   {
    "sentence": "___ объял Его, и «быша ризы Его, блещущие яко снега, и ученицы Его от страха падоша ниц».",
@@ -599,36 +347,22 @@
    ],
    "correct": "великий свет",
    "case": "Именительный (Nominative)",
-   "explain": "«Великий свет» — the subject of the sentence stands in the nominative.",
+   "explain": "«великий свет» is the subject of «объял» — who or what does it — so nominative.",
    "id": "c43"
   },
   {
    "sentence": "И ___ благодать Всесвятого Духа Божие является в неизреченном свете для всех, которым Бог являет действие ее.",
    "lemma": "образ",
    "options": [
-    "такого-то образа",
-    "такой-то образ",
     "таким-то образом",
-    "таком-то образе"
+    "таком-то образе",
+    "такому-то образу",
+    "такого-то образа"
    ],
    "correct": "таким-то образом",
    "case": "Творительный (Instrumental)",
-   "explain": "«таким-то образом» — the instrumental marks the means, company, or complement.",
+   "explain": "After «является», what someone or something is or becomes stands in the instrumental.",
    "id": "c44"
-  },
-  {
-   "sentence": "Я взглянул после этих слов в лицо его, и напал на меня еще больший ___.",
-   "lemma": "ужас",
-   "options": [
-    "благоговейным ужасом",
-    "благоговейный ужас",
-    "благоговейному ужасу",
-    "благоговейном ужасе"
-   ],
-   "correct": "благоговейный ужас",
-   "case": "Винительный (Accusative)",
-   "explain": "«благоговейный ужас» — the accusative marks the direct object of the verb.",
-   "id": "c45"
   },
   {
    "sentence": "Представьте себе в середине солнца, в самой блистательной яркости его ___, лицо человека, с вами разговаривающего.",
@@ -641,7 +375,7 @@
    ],
    "correct": "полуденных лучей",
    "case": "Родительный (Genitive)",
-   "explain": "«полуденных лучей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«полуденных лучей» depends on the noun «яркости» (whose? of what?) — genitive.",
    "id": "c46"
   },
   {
@@ -655,21 +389,21 @@
    ],
    "correct": "земного благоухания",
    "case": "Родительный (Genitive)",
-   "explain": "«земного благоухания» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«земного благоухания» depends on the noun «приятность» (whose? of what?) — genitive.",
    "id": "c47"
   },
   {
    "sentence": "Ею-то согреваемые пустынники и пустынницы не боялись ___, будучи одеваемы, как в теплые шубы, в благодатную одежду, от Святого Духа истканную.",
    "lemma": "мраз",
    "options": [
-    "зимний мраз",
-    "зимним мразом",
+    "зимнего мраза",
     "зимнем мразе",
-    "зимнего мраза"
+    "зимним мразом",
+    "зимнему мразу"
    ],
    "correct": "зимнего мраза",
    "case": "Родительный (Genitive)",
-   "explain": "«зимнего мраза» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«зимнего мраза» is the object of a negated verb («не боялись») — genitive instead of the accusative.",
    "id": "c48"
   },
   {
@@ -683,120 +417,8 @@
    ],
    "correct": "самом деле",
    "case": "Предложный (Prepositional)",
-   "explain": "«самом деле» — after the preposition «на», for location or topic.",
+   "explain": "«самом деле» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c49"
-  },
-  {
-   "sentence": "Наше ___ есть то самое, про которое Апостол говорит: «Царствие Божие несть пища и питие, но правда и мир о Дусе Святе».",
-   "lemma": "положение",
-   "options": [
-    "теперешнего положения",
-    "теперешнем положении",
-    "теперешнее положение",
-    "теперешнему положению"
-   ],
-   "correct": "теперешнее положение",
-   "case": "Именительный (Nominative)",
-   "explain": "«теперешнее положение» — the subject of the sentence stands in the nominative.",
-   "id": "c50"
-  },
-  {
-   "sentence": "Вот в ___ мы с вами теперь и находимся.",
-   "lemma": "состояние",
-   "options": [
-    "этим-то состоянием",
-    "это-то состояние",
-    "этому-то состоянию",
-    "этом-то состоянии"
-   ],
-   "correct": "этом-то состоянии",
-   "case": "Предложный (Prepositional)",
-   "explain": "«этом-то состоянии» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c51"
-  },
-  {
-   "sentence": "Что же касается до того, батюшка, что я монах, а вы ___, то об этом думать нечего: у Бога взыскуется правая вера в Него и Сына Его Единородного.",
-   "lemma": "человек",
-   "options": [
-    "мирского человека",
-    "мирскому человеку",
-    "мирском человеке",
-    "мирской человек"
-   ],
-   "correct": "мирской человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«мирской человек» — the subject of the sentence stands in the nominative.",
-   "id": "c52"
-  },
-  {
-   "sentence": "Что же касается до того, батюшка, что я монах, а вы мирской человек, то об этом думать нечего: у Бога взыскуется ___ в Него и Сына Его Единородного.",
-   "lemma": "вера",
-   "options": [
-    "правой веры",
-    "правой вере",
-    "правая вера",
-    "правой верой"
-   ],
-   "correct": "правая вера",
-   "case": "Именительный (Nominative)",
-   "explain": "«правая вера» — the subject of the sentence stands in the nominative.",
-   "id": "c53"
-  },
-  {
-   "sentence": "Господь ищет сердца, преисполненного любовью к Богу и ближнему, — вот престол, на котором Он любит восседать и на котором Он является в полноте Своей ___.",
-   "lemma": "слава",
-   "options": [
-    "пренебесная слава",
-    "пренебесной славой",
-    "пренебесной славы",
-    "пренебесной славе"
-   ],
-   "correct": "пренебесной славы",
-   "case": "Родительный (Genitive)",
-   "explain": "«пренебесной славы» — the genitive here marks possession, absence, or quantity.",
-   "id": "c54"
-  },
-  {
-   "sentence": "Господь равно слушает и монаха и мирянина — ___, лишь бы оба были православные и оба любили Бога из глубины душ своих и оба имели в Него веру, хотя бы «яко зерно горушно» и оба двинут горы.",
-   "lemma": "христианин",
-   "options": [
-    "простого христианина",
-    "простом христианине",
-    "простому христианину",
-    "простой христианин"
-   ],
-   "correct": "простого христианина",
-   "case": "Родительный (Genitive)",
-   "explain": "«простого христианина» — the genitive here marks possession, absence, or quantity.",
-   "id": "c55"
-  },
-  {
-   "sentence": "И во время всей беседы этой, с того ___, как лицо о.",
-   "lemma": "время",
-   "options": [
-    "самим временем",
-    "самому времени",
-    "само время",
-    "самого времени"
-   ],
-   "correct": "самого времени",
-   "case": "Родительный (Genitive)",
-   "explain": "«самого времени» — the genitive here marks possession, absence, or quantity.",
-   "id": "c56"
-  },
-  {
-   "sentence": "Исходившее же от него неизреченное блистание света видел я сам своими ___, что готов подтвердить и присягою.",
-   "lemma": "глаз",
-   "options": [
-    "собственных глазах",
-    "собственных глаз",
-    "собственные глаза",
-    "собственными глазами"
-   ],
-   "correct": "собственными глазами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«собственными глазами» — the instrumental marks the means, company, or complement.",
-   "id": "c57"
   }
  ]
 }

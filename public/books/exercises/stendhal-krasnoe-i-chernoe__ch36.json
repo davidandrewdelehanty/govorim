@@ -1,48 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Читатель, пожалуй, будет удивлен этим свободным и почти ___.",
-   "lemma": "тон",
-   "options": [
-    "дружескому тону",
-    "дружеский тон",
-    "дружеским тоном",
-    "дружеского тона"
-   ],
-   "correct": "дружеским тоном",
-   "case": "Творительный (Instrumental)",
-   "explain": "«дружеским тоном» — the instrumental marks the means, company, or complement.",
-   "id": "c1"
-  },
-  {
-   "sentence": "Вскоре ___ был в состоянии самостоятельно выбирать наиболее интересные места.",
-   "lemma": "секретарь",
-   "options": [
-    "молодому секретарю",
-    "молодым секретарём",
-    "молодом секретаре",
-    "молодой секретарь"
-   ],
-   "correct": "молодой секретарь",
-   "case": "Именительный (Nominative)",
-   "explain": "«молодой секретарь» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Вскоре молодой секретарь был в состоянии самостоятельно выбирать наиболее ___.",
-   "lemma": "место",
-   "options": [
-    "интересным местам",
-    "интересных местах",
-    "интересными местами",
-    "интересные места"
-   ],
-   "correct": "интересные места",
-   "case": "Винительный (Accusative)",
-   "explain": "«интересные места» — the accusative marks the direct object of the verb.",
-   "id": "c3"
-  },
-  {
    "sentence": "Маркиз не выносил одной ___; он клялся никогда ее нн читать и каждый день говорил о ней.",
    "lemma": "газета",
    "options": [
@@ -53,50 +11,22 @@
    ],
    "correct": "новой газеты",
    "case": "Родительный (Genitive)",
-   "explain": "«новой газеты» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«новой газеты» is the object of a negated verb («не выносил») — genitive instead of the accusative.",
    "id": "c4"
-  },
-  {
-   "sentence": "Раздраженный современной печатью, маркиз заставлял читать себе Тита Ливия; его занимал перевод экспромтом ___.",
-   "lemma": "текст",
-   "options": [
-    "латинскому тексту",
-    "латинского текста",
-    "латинский текст",
-    "латинским текстом"
-   ],
-   "correct": "латинского текста",
-   "case": "Родительный (Genitive)",
-   "explain": "«латинского текста» — the genitive here marks possession, absence, or quantity.",
-   "id": "c5"
   },
   {
    "sentence": "Жюльен не вполне понимал, к чему маркиз ведет; тот же вечер он поспешил к нему в ___. Maркиз держал себя с ним как с равным.",
    "lemma": "фрак",
    "options": [
+    "синего фрака",
+    "синему фраку",
     "синем фраке",
-    "синим фраком",
-    "синий фрак",
-    "синему фраку"
+    "синим фраком"
    ],
    "correct": "синем фраке",
    "case": "Предложный (Prepositional)",
-   "explain": "«синем фраке» — after the preposition «в», for location or topic.",
+   "explain": "«синем фраке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c6"
-  },
-  {
-   "sentence": "«Какой ___!» — говорил себе Жюльен.",
-   "lemma": "талант",
-   "options": [
-    "удивительном таланте",
-    "удивительному таланту",
-    "удивительным талантом",
-    "удивительный талант"
-   ],
-   "correct": "удивительный талант",
-   "case": "Именительный (Nominative)",
-   "explain": "«удивительный талант» — the subject of the sentence stands in the nominative.",
-   "id": "c7"
   },
   {
    "sentence": "Эта ___ заняла его.",
@@ -109,7 +39,7 @@
    ],
    "correct": "странная выдумка",
    "case": "Именительный (Nominative)",
-   "explain": "«странная выдумка» — the subject of the sentence stands in the nominative.",
+   "explain": "«странная выдумка» is the subject of «заняла» — who or what does it — so nominative.",
    "id": "c8"
   },
   {
@@ -123,7 +53,7 @@
    ],
    "correct": "следующий день",
    "case": "Винительный (Accusative)",
-   "explain": "«следующий день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«следующий день» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c9"
   },
   {
@@ -137,7 +67,7 @@
    ],
    "correct": "синем одеянии",
    "case": "Предложный (Prepositional)",
-   "explain": "«синем одеянии» — after the preposition «в», for location or topic.",
+   "explain": "«синем одеянии» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c10"
   },
   {
@@ -151,50 +81,36 @@
    ],
    "correct": "маленькое приключение",
    "case": "Именительный (Nominative)",
-   "explain": "«маленькое приключение» — the subject of the sentence stands in the nominative.",
+   "explain": "«маленькое приключение» is the subject of «случилось» — who or what does it — so nominative.",
    "id": "c11"
   },
   {
    "sentence": "Маркиз де Ла Моль заинтересовался этим ___.",
    "lemma": "характер",
    "options": [
-    "особенный характер",
-    "особенного характера",
+    "особенном характере",
     "особенному характеру",
+    "особенного характера",
     "особенным характером"
    ],
    "correct": "особенным характером",
    "case": "Творительный (Instrumental)",
-   "explain": "«особенным характером» — the instrumental marks the means, company, or complement.",
+   "explain": "«заинтересовался» takes the instrumental.",
    "id": "c12"
   },
   {
    "sentence": "Вначале он поощрял ___ Жюльена в целях развлечения; вскоре же он нашел более выгодным осторожно исправлять ложные взгляды этого молодого человека.",
    "lemma": "выходка",
    "options": [
-    "забавные выходки",
     "забавными выходками",
-    "забавным выходкам",
-    "забавных выходок"
+    "забавных выходках",
+    "забавные выходки",
+    "забавным выходкам"
    ],
    "correct": "забавные выходки",
    "case": "Винительный (Accusative)",
-   "explain": "«забавные выходки» — the accusative marks the direct object of the verb.",
+   "explain": "«забавные выходки» is the direct object of «поощрял» (кого? что?) — accusative.",
    "id": "c13"
-  },
-  {
-   "sentence": "Вначале он поощрял забавные выходки Жюльена в целях развлечения; вскоре же он нашел более выгодным осторожно исправлять ___ этого молодого человека.",
-   "lemma": "взгляд",
-   "options": [
-    "ложными взглядами",
-    "ложных взглядах",
-    "ложным взглядам",
-    "ложные взгляды"
-   ],
-   "correct": "ложные взгляды",
-   "case": "Винительный (Accusative)",
-   "explain": "«ложные взгляды» — the accusative marks the direct object of the verb.",
-   "id": "c14"
   },
   {
    "sentence": "Жестокие ___ затянули приступ подагры и он продолжался несколько месяцев.",
@@ -207,7 +123,7 @@
    ],
    "correct": "зимние холода",
    "case": "Именительный (Nominative)",
-   "explain": "«зимние холода» — the subject of the sentence stands in the nominative.",
+   "explain": "«зимние холода» is the subject of «затянули» — who or what does it — so nominative.",
    "id": "c15"
   },
   {
@@ -221,204 +137,78 @@
    ],
    "correct": "юному аббату",
    "case": "Дательный (Dative)",
-   "explain": "«юному аббату» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«юному аббату» — «к» always takes the dative.",
    "id": "c16"
-  },
-  {
-   "sentence": "Жюльен с ужасом заметил, что ему приходится получать от этого ___ по одному и тому же поводу решения, часто совершенно противоположные.",
-   "lemma": "вельможа",
-   "options": [
-    "знатного вельможи",
-    "знатного вельможу",
-    "знатному вельможе",
-    "знатном вельможе"
-   ],
-   "correct": "знатного вельможи",
-   "case": "Родительный (Genitive)",
-   "explain": "«знатного вельможи» — after the preposition «по», the genitive here marks possession, absence, or quantity.",
-   "id": "c17"
-  },
-  {
-   "sentence": "Эти мероприятия настолько разъяснили маркизу его ___, что он мог позволить себе удовольствие принять участие в двух-трех новых спекуляциях без помощи подставного лица, бессовестно обкрадывавшего маркиза.",
-   "lemma": "дело",
-   "options": [
-    "денежным делам",
-    "денежными делами",
-    "денежные дела",
-    "денежных делах"
-   ],
-   "correct": "денежные дела",
-   "case": "Винительный (Accusative)",
-   "explain": "«денежные дела» — the accusative marks the direct object of the verb.",
-   "id": "c18"
   },
   {
    "sentence": "Эти мероприятия настолько разъяснили маркизу его денежные дела, что он мог позволить себе удовольствие принять участие в двух-трех ___ без помощи подставного лица, бессовестно обкрадывавшего маркиза.",
    "lemma": "спекуляция",
    "options": [
-    "новые спекуляции",
     "новым спекуляциям",
-    "новыми спекуляциями",
-    "новых спекуляциях"
+    "новых спекуляциях",
+    "новых спекуляций",
+    "новыми спекуляциями"
    ],
    "correct": "новых спекуляциях",
    "case": "Предложный (Prepositional)",
-   "explain": "«новых спекуляциях» — after the preposition «в», for location or topic.",
+   "explain": "«новых спекуляциях» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c19"
-  },
-  {
-   "sentence": "— Возьмите себе три тысячи франков, — сказал он однажды своему ___.",
-   "lemma": "министр",
-   "options": [
-    "молодой министр",
-    "молодом министре",
-    "молодому министру",
-    "молодым министром"
-   ],
-   "correct": "молодому министру",
-   "case": "Дательный (Dative)",
-   "explain": "«молодому министру» — the dative marks the indirect object or recipient.",
-   "id": "c20"
-  },
-  {
-   "sentence": "Маркиз со ___ маркиза де Монкада, выслушивающего отчеты своего управляющего господина де Пуассона, записал свое решение.",
-   "lemma": "мина",
-   "options": [
-    "скучающей миной",
-    "скучающая мина",
-    "скучающей мины",
-    "скучающей мине"
-   ],
-   "correct": "скучающей миной",
-   "case": "Творительный (Instrumental)",
-   "explain": "«скучающей миной» — after the preposition «со», the instrumental marks the means, company, or complement.",
-   "id": "c21"
   },
   {
    "sentence": "По вечерам, когда Жюльен приходил в ___, о делах речь не заходила.",
    "lemma": "фрак",
    "options": [
+    "синему фраку",
     "синем фраке",
     "синим фраком",
-    "синий фрак",
-    "синему фраку"
+    "синего фрака"
    ],
    "correct": "синем фраке",
    "case": "Предложный (Prepositional)",
-   "explain": "«синем фраке» — after the preposition «в», for location or topic.",
+   "explain": "«синем фраке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c22"
-  },
-  {
-   "sentence": "___ маркиза так льстила вечно страждущему самолюбию нашего героя, что вскоре он невольно почувствовал нечто вроде привязанности к этому любезному старику.",
-   "lemma": "доброта",
-   "options": [
-    "бесконечной доброте",
-    "бесконечной добротой",
-    "бесконечной доброты",
-    "бесконечная доброта"
-   ],
-   "correct": "бесконечная доброта",
-   "case": "Именительный (Nominative)",
-   "explain": "«Бесконечная доброта» — the subject of the sentence stands in the nominative.",
-   "id": "c23"
-  },
-  {
-   "sentence": "Бесконечная доброта маркиза так льстила вечно страждущему самолюбию нашего героя, что вскоре он невольно почувствовал нечто вроде привязанности к этому ___.",
-   "lemma": "старик",
-   "options": [
-    "любезным стариком",
-    "любезному старику",
-    "любезный старик",
-    "любезного старика"
-   ],
-   "correct": "любезному старику",
-   "case": "Дательный (Dative)",
-   "explain": "«любезному старику» — after the preposition «к», the dative marks the indirect object or recipient.",
-   "id": "c24"
   },
   {
    "sentence": "Это нельзя было объяснить чувствительностью, как понимают это слово в Париже; просто он не был извергом, и, кроме того, никто после смерти старого ___ не говорил с ним с такой добротой.",
    "lemma": "врач",
    "options": [
-    "полковым врачом",
     "полкового врача",
-    "полковому врачу",
-    "полковом враче"
+    "полковой врач",
+    "полковом враче",
+    "полковым врачом"
    ],
    "correct": "полкового врача",
    "case": "Родительный (Genitive)",
-   "explain": "«полкового врача» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«полкового врача» depends on the noun «смерти» (whose? of what?) — genitive.",
    "id": "c25"
-  },
-  {
-   "sentence": "Он с удивлением замечал, что маркиз в своей любезности более щадил его самолюбие, чем ___, из чего он вывел заключение, что лекарь более гордился своим орденом, чем маркиз своей синей лентой.",
-   "lemma": "хирург",
-   "options": [
-    "старого хирурга",
-    "старым хирургом",
-    "старый хирург",
-    "старом хирурге"
-   ],
-   "correct": "старый хирург",
-   "case": "Именительный (Nominative)",
-   "explain": "«старый хирург» — the subject of the sentence stands in the nominative.",
-   "id": "c26"
-  },
-  {
-   "sentence": "Он с удивлением замечал, что маркиз в своей любезности более щадил его самолюбие, чем старый хирург, из чего он вывел заключение, что лекарь более гордился своим орденом, чем маркиз своей ___.",
-   "lemma": "лента",
-   "options": [
-    "синяя лента",
-    "синей ленты",
-    "синей лентой",
-    "синей ленте"
-   ],
-   "correct": "синей лентой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«синей лентой» — the instrumental marks the means, company, or complement.",
-   "id": "c27"
   },
   {
    "sentence": "Он предназначается не человеку в черном фраке, а потому только испортил бы обращение, которое с такой добротой вами установлено к человеку в ___.",
    "lemma": "фрак",
    "options": [
     "синем фраке",
-    "синим фраком",
-    "синий фрак",
-    "синему фраку"
+    "синему фраку",
+    "синего фрака",
+    "синим фраком"
    ],
    "correct": "синем фраке",
    "case": "Предложный (Prepositional)",
-   "explain": "«синем фраке» — after the preposition «в», for location or topic.",
+   "explain": "«синем фраке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c28"
   },
   {
    "sentence": "Он поклонился с ___ и, не взглянув на маркиза, вышел из комнаты.",
    "lemma": "почтение",
    "options": [
+    "глубокому почтению",
+    "глубоком почтении",
     "глубокое почтение",
-    "глубокого почтения",
-    "глубоким почтением",
-    "глубокому почтению"
+    "глубоким почтением"
    ],
    "correct": "глубоким почтением",
    "case": "Творительный (Instrumental)",
-   "explain": "«глубоким почтением» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«глубоким почтением» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c29"
-  },
-  {
-   "sentence": "— Надо вам признаться наконец в одном, мой ___.",
-   "lemma": "аббат",
-   "options": [
-    "дорогой аббат",
-    "дорогом аббате",
-    "дорогим аббатом",
-    "дорогого аббата"
-   ],
-   "correct": "дорогой аббат",
-   "case": "Именительный (Nominative)",
-   "explain": "«дорогой аббат» — the subject of the sentence stands in the nominative.",
-   "id": "c30"
   },
   {
    "sentence": "Проезжая на почтовых по дороге в Кале, Жюльен удивлялся ничтожности ___, для которых его посылал маркиз.",
@@ -431,22 +221,8 @@
    ],
    "correct": "мнимых дел",
    "case": "Родительный (Genitive)",
-   "explain": "«мнимых дел» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«мнимых дел» depends on the noun «ничтожности» (whose? of what?) — genitive.",
    "id": "c31"
-  },
-  {
-   "sentence": "Читателю уже известно его ___ Бонапартом.",
-   "lemma": "увлечение",
-   "options": [
-    "безумным увлечением",
-    "безумному увлечению",
-    "безумное увлечение",
-    "безумного увлечения"
-   ],
-   "correct": "безумное увлечение",
-   "case": "Именительный (Nominative)",
-   "explain": "«безумное увлечение» — the subject of the sentence stands in the nominative.",
-   "id": "c32"
   },
   {
    "sentence": "— Вы предопределены ___, мой милый Сорель, — говорили они ему.",
@@ -459,78 +235,8 @@
    ],
    "correct": "самой судьбой",
    "case": "Творительный (Instrumental)",
-   "explain": "«самой судьбой» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «предопределены», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c33"
-  },
-  {
-   "sentence": "___, это единственное правило нашей эпохи.",
-   "lemma": "слово",
-   "options": [
-    "честное слово",
-    "честному слову",
-    "честном слове",
-    "честным словом"
-   ],
-   "correct": "честное слово",
-   "case": "Именительный (Nominative)",
-   "explain": "«Честное слово» — the subject of the sentence stands in the nominative.",
-   "id": "c34"
-  },
-  {
-   "sentence": "Честное слово, это ___ нашей эпохи.",
-   "lemma": "правило",
-   "options": [
-    "единственном правиле",
-    "единственного правила",
-    "единственным правилом",
-    "единственное правило"
-   ],
-   "correct": "единственное правило",
-   "case": "Именительный (Nominative)",
-   "explain": "«единственное правило» — the subject of the sentence stands in the nominative.",
-   "id": "c35"
-  },
-  {
-   "sentence": "Жюльен среди двух десятков собравшихся держался так, что ___ посольства в Лондоне вспоминают об этом и поныне.",
-   "lemma": "секретарь",
-   "options": [
-    "молодых секретарях",
-    "молодым секретарям",
-    "молодые секретари",
-    "молодыми секретарями"
-   ],
-   "correct": "молодые секретари",
-   "case": "Именительный (Nominative)",
-   "explain": "«молодые секретари» — the subject of the sentence stands in the nominative.",
-   "id": "c36"
-  },
-  {
-   "sentence": "Несмотря на протесты его друзей-денди, ему захотелось повидать знаменитого Филиппа Вена, ___, бывшего в Англии после Локка.",
-   "lemma": "философ",
-   "options": [
-    "единственному философу",
-    "единственным философом",
-    "единственного философа",
-    "единственном философе"
-   ],
-   "correct": "единственного философа",
-   "case": "Родительный (Genitive)",
-   "explain": "«единственного философа» — the genitive here marks possession, absence, or quantity.",
-   "id": "c37"
-  },
-  {
-   "sentence": "Он нашел его за решеткой, отбывающим ___ тюремного заключения.",
-   "lemma": "год",
-   "options": [
-    "седьмому году",
-    "седьмым годом",
-    "седьмого года",
-    "седьмой год"
-   ],
-   "correct": "седьмой год",
-   "case": "Винительный (Accusative)",
-   "explain": "«седьмой год» — the accusative marks the direct object of the verb.",
-   "id": "c38"
   },
   {
    "sentence": "Он нашел его за решеткой, отбывающим седьмой год ___.",
@@ -543,36 +249,8 @@
    ],
    "correct": "тюремного заключения",
    "case": "Родительный (Genitive)",
-   "explain": "«тюремного заключения» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«тюремного заключения» depends on the noun «год» (whose? of what?) — genitive.",
    "id": "c39"
-  },
-  {
-   "sentence": "— Во-первых, — сказал Жюльен, — самый ___ сходит с ума на один час ежедневно; его навещает демон самоубийства, бог всей страны.",
-   "lemma": "англичанин",
-   "options": [
-    "умного англичанина",
-    "умным англичанином",
-    "умному англичанину",
-    "умный англичанин"
-   ],
-   "correct": "умный англичанин",
-   "case": "Именительный (Nominative)",
-   "explain": "«умный англичанин» — the subject of the sentence stands in the nominative.",
-   "id": "c40"
-  },
-  {
-   "sentence": "В-третьих, нет ничего в мире красивее, удивительнее и трогательнее, чем ___.",
-   "lemma": "ландшафт",
-   "options": [
-    "английского ландшафта",
-    "английском ландшафте",
-    "английскому ландшафту",
-    "английский ландшафт"
-   ],
-   "correct": "английский ландшафт",
-   "case": "Именительный (Nominative)",
-   "explain": "«английский ландшафт» — the subject of the sentence stands in the nominative.",
-   "id": "c41"
   },
   {
    "sentence": "— Во-первых, зачем вы сказали на балу у ___ что во Франции есть триста тысяч молодых людей в возрасте двадцати пяти лет, которые страстно желают войны?",
@@ -585,7 +263,7 @@
    ],
    "correct": "русского посланника",
    "case": "Родительный (Genitive)",
-   "explain": "«русского посланника» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«русского посланника» — «у» always takes the genitive.",
    "id": "c42"
   },
   {
@@ -599,21 +277,21 @@
    ],
    "correct": "молодых людей",
    "case": "Родительный (Genitive)",
-   "explain": "«молодых людей» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«молодых людей» depends on the noun «тысяч» (whose? of what?) — genitive.",
    "id": "c43"
   },
   {
    "sentence": "— Прямо не знаешь, как говорить с нашими ___, — сказал Жюльен.",
    "lemma": "дипломат",
    "options": [
-    "великих дипломатах",
     "великими дипломатами",
+    "великим дипломатам",
     "великие дипломаты",
-    "великих дипломатов"
+    "великих дипломатах"
    ],
    "correct": "великими дипломатами",
    "case": "Творительный (Instrumental)",
-   "explain": "«великими дипломатами» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«великими дипломатами» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c44"
   },
   {
@@ -627,77 +305,35 @@
    ],
    "correct": "королевского посланника",
    "case": "Родительный (Genitive)",
-   "explain": "«королевского посланника» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«королевского посланника» — «у» always takes the genitive.",
    "id": "c45"
-  },
-  {
-   "sentence": "— Я не могу вас заставить бросить черный фрак, не я привык к более ___, который у меня установился с человеком в синем фраке.",
-   "lemma": "тон",
-   "options": [
-    "занятным тоном",
-    "занятный тон",
-    "занятного тона",
-    "занятному тону"
-   ],
-   "correct": "занятному тону",
-   "case": "Дательный (Dative)",
-   "explain": "«занятному тону» — after the preposition «к», the dative marks the indirect object or recipient.",
-   "id": "c46"
   },
   {
    "sentence": "— Я не могу вас заставить бросить черный фрак, не я привык к более занятному тону, который у меня установился с человеком в ___.",
    "lemma": "фрак",
    "options": [
-    "синем фраке",
+    "синему фраку",
     "синим фраком",
-    "синий фрак",
-    "синему фраку"
+    "синего фрака",
+    "синем фраке"
    ],
    "correct": "синем фраке",
    "case": "Предложный (Prepositional)",
-   "explain": "«синем фраке» — after the preposition «в», for location or topic.",
+   "explain": "«синем фраке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c47"
-  },
-  {
-   "sentence": "Это ___ и несчастие как для покровителя, так и для его протеже.",
-   "lemma": "ошибка",
-   "options": [
-    "всегдашняя ошибка",
-    "всегдашней ошибке",
-    "всегдашней ошибки",
-    "всегдашней ошибкой"
-   ],
-   "correct": "всегдашняя ошибка",
-   "case": "Именительный (Nominative)",
-   "explain": "«всегдашняя ошибка» — the subject of the sentence stands in the nominative.",
-   "id": "c48"
-  },
-  {
-   "sentence": "Когда мои тяжбы вам наскучат или вы не будете подходить мне более, я попрошу для вас ___ вроде того, как у нашего друга аббата Пирара, и н_и_ч_е_г_о б_о_л_е_е, — добавил маркиз сухо.",
-   "lemma": "приход",
-   "options": [
-    "хорошему приходу",
-    "хорошем приходе",
-    "хорошим приходом",
-    "хороший приход"
-   ],
-   "correct": "хороший приход",
-   "case": "Именительный (Nominative)",
-   "explain": "«хороший приход» — the subject of the sentence stands in the nominative.",
-   "id": "c49"
   },
   {
    "sentence": "Этот же орден снискал ему посещение барона де Вально, приехавшего в Париж благодарить министра за ___ и получить от него указания.",
    "lemma": "титул",
    "options": [
-    "баронскому титулу",
-    "баронским титулом",
+    "баронского титула",
     "баронский титул",
-    "баронского титула"
+    "баронском титуле",
+    "баронскому титулу"
    ],
    "correct": "баронский титул",
    "case": "Винительный (Accusative)",
-   "explain": "«баронский титул» — after the preposition «за», the accusative marks the direct object of the verb.",
+   "explain": "«баронский титул» — «за» takes the accusative here (куда? за что? за кого?) — the instrumental would mean position behind or at (где? за чем?).",
    "id": "c50"
   },
   {
@@ -711,22 +347,8 @@
    ],
    "correct": "новый барон",
    "case": "Именительный (Nominative)",
-   "explain": "«новый барон» — the subject of the sentence stands in the nominative.",
+   "explain": "«новый барон» is the subject of «являлся» — who or what does it — so nominative.",
    "id": "c51"
-  },
-  {
-   "sentence": "— По правде сказать, я слишком ___ в доме господина де Ла Моля, чтобы представлять кого-нибудь.",
-   "lemma": "особа",
-   "options": [
-    "ничтожная особа",
-    "ничтожной особы",
-    "ничтожной особе",
-    "ничтожной особой"
-   ],
-   "correct": "ничтожная особа",
-   "case": "Именительный (Nominative)",
-   "explain": "«ничтожная особа» — the subject of the sentence stands in the nominative.",
-   "id": "c52"
   },
   {
    "sentence": "Он будет одним из наших ___.",
@@ -739,22 +361,8 @@
    ],
    "correct": "новых префектов",
    "case": "Родительный (Genitive)",
-   "explain": "«новых префектов» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«новых префектов» — «из» always takes the genitive.",
    "id": "c53"
-  },
-  {
-   "sentence": "Узнав от господина де Вально, что заведывавший Верьерским лотерейным бюро недавно умер, Жюльен нашел забавным предоставить это место ___ Шолену, прошение которого он как-то нашел в комнате госпожи де Ла Моль.",
-   "lemma": "дурак",
-   "options": [
-    "старом дураке",
-    "старым дураком",
-    "старому дураку",
-    "старого дурака"
-   ],
-   "correct": "старому дураку",
-   "case": "Дательный (Dative)",
-   "explain": "«старому дураку» — the dative marks the indirect object or recipient.",
-   "id": "c54"
   }
  ]
 }

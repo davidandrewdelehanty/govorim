@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "В течение ___ вы не однажды напоминали мне, любезный Н<иколай> А<лексеевич>, обещание мое поговорить подробнее в вашем журнале о прекрасной книге С.",
-   "lemma": "лето",
-   "options": [
-    "нынешним летом",
-    "нынешнем лете",
-    "нынешнему лету",
-    "нынешнего лета"
-   ],
-   "correct": "нынешнего лета",
-   "case": "Родительный (Genitive)",
-   "explain": "«нынешнего лета» — after the preposition «в», the genitive here marks possession, absence, or quantity.",
-   "id": "c2"
-  },
-  {
    "sentence": "В течение нынешнего лета вы не однажды напоминали мне, любезный Н<иколай> А<лексеевич>, обещание мое поговорить подробнее в вашем журнале о ___ С.",
    "lemma": "книга",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "прекрасной книге",
    "case": "Предложный (Prepositional)",
-   "explain": "«прекрасной книге» — after the preposition «о», for location or topic.",
+   "explain": "«прекрасной книге» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c3"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "победоносного снега",
    "case": "Родительный (Genitive)",
-   "explain": "«победоносного снега» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«победоносного снега» depends on the noun «белизне» (whose? of what?) — genitive.",
    "id": "c7"
   },
   {
@@ -53,22 +39,8 @@
    ],
    "correct": "пороховой мерке",
    "case": "Предложный (Prepositional)",
-   "explain": "«пороховой мерке» — after the preposition «о», for location or topic.",
+   "explain": "«пороховой мерке» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c8"
-  },
-  {
-   "sentence": "А-в старался исправить ___, напечатанным в «Московских ведомостях».",
-   "lemma": "объявление",
-   "options": [
-    "особого объявления",
-    "особому объявлению",
-    "особым объявлением",
-    "особом объявлении"
-   ],
-   "correct": "особым объявлением",
-   "case": "Творительный (Instrumental)",
-   "explain": "«особым объявлением» — the instrumental marks the means, company, or complement.",
-   "id": "c9"
   },
   {
    "sentence": "Мы от себя прибавим только то, что «Записки ___» не книга вроде «Chasseur au chien d’arret» Эльзеара Блаза, которая почитается классическим сочинением для французской охоты.",
@@ -81,22 +53,8 @@
    ],
    "correct": "оренбургского охотника",
    "case": "Родительный (Genitive)",
-   "explain": "«оренбургского охотника» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«оренбургского охотника» depends on the noun «Записки» (whose? of what?) — genitive.",
    "id": "c11"
-  },
-  {
-   "sentence": "Мы от себя прибавим только то, что «Записки оренбургского охотника» не книга вроде «Chasseur au chien d’arret» Эльзеара Блаза, которая почитается ___ для французской охоты.",
-   "lemma": "сочинение",
-   "options": [
-    "классическим сочинением",
-    "классическое сочинение",
-    "классическому сочинению",
-    "классическом сочинении"
-   ],
-   "correct": "классическим сочинением",
-   "case": "Творительный (Instrumental)",
-   "explain": "«классическим сочинением» — the instrumental marks the means, company, or complement.",
-   "id": "c12"
   },
   {
    "sentence": "Мы от себя прибавим только то, что «Записки оренбургского охотника» не книга вроде «Chasseur au chien d’arret» Эльзеара Блаза, которая почитается классическим сочинением для ___.",
@@ -109,36 +67,8 @@
    ],
    "correct": "французской охоты",
    "case": "Родительный (Genitive)",
-   "explain": "«французской охоты» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "explain": "«французской охоты» — «для» always takes the genitive.",
    "id": "c13"
-  },
-  {
-   "sentence": "А-ва не ___ в строгом смысле, они не могут служить полным руководством для начинающего охотника, хотя драгоценные замечания и советы попадаются на каждой почти странице; сам автор это чувствует.",
-   "lemma": "книга",
-   "options": [
-    "охотничьей книге",
-    "охотничьей книги",
-    "охотничья книга",
-    "охотничьей книгой"
-   ],
-   "correct": "охотничья книга",
-   "case": "Именительный (Nominative)",
-   "explain": "«охотничья книга» — the subject of the sentence stands in the nominative.",
-   "id": "c14"
-  },
-  {
-   "sentence": "А-ва не охотничья книга в строгом смысле, они не могут служить ___ для начинающего охотника, хотя драгоценные замечания и советы попадаются на каждой почти странице; сам автор это чувствует.",
-   "lemma": "руководство",
-   "options": [
-    "полного руководства",
-    "полным руководством",
-    "полное руководство",
-    "полном руководстве"
-   ],
-   "correct": "полным руководством",
-   "case": "Творительный (Instrumental)",
-   "explain": "«полным руководством» — the instrumental marks the means, company, or complement.",
-   "id": "c16"
   },
   {
    "sentence": "А-ва не охотничья книга в строгом смысле, они не могут служить полным руководством для начинающего охотника, хотя драгоценные замечания и советы попадаются на каждой почти странице; ___ это чувствует.",
@@ -151,50 +81,8 @@
    ],
    "correct": "сам автор",
    "case": "Именительный (Nominative)",
-   "explain": "«сам автор» — the subject of the sentence stands in the nominative.",
+   "explain": "«сам автор» is the subject of «чувствует» — who or what does it — so nominative.",
    "id": "c17"
-  },
-  {
-   "sentence": "Действительно, в течение двадцати пяти лет, которые протекли с тех пор, как ___.",
-   "lemma": "г",
-   "options": [
-    "почтенном г",
-    "почтенным г",
-    "почтенный г",
-    "почтенного г"
-   ],
-   "correct": "почтенный г",
-   "case": "Именительный (Nominative)",
-   "explain": "«почтенный г» — the subject of the sentence stands in the nominative.",
-   "id": "c18"
-  },
-  {
-   "sentence": "(Gevelot), которые, кроме того, что никогда не осекаются (английские, с ___, даже можно перед выстрелом класть в воду) и не разлетаются, подобно австрийским, с буквами S.",
-   "lemma": "дно",
-   "options": [
-    "двойным дном",
-    "двойном дне",
-    "двойное дно",
-    "двойному дну"
-   ],
-   "correct": "двойным дном",
-   "case": "Творительный (Instrumental)",
-   "explain": "«двойным дном» — after the preposition «подобно», the instrumental marks the means, company, or complement.",
-   "id": "c20"
-  },
-  {
-   "sentence": "В., ___ Sellier и Bellot, или нашим доморощенным безыменным колпачком, которые осекаются даже в сухую погоду и своими осколками то и дело, наносят стрелку раны в руку или щеку.",
-   "lemma": "фабрика",
-   "options": [
-    "известной фабрики",
-    "известной фабрике",
-    "известной фабрикой",
-    "известная фабрика"
-   ],
-   "correct": "известной фабрики",
-   "case": "Родительный (Genitive)",
-   "explain": "«известной фабрики» — the genitive here marks possession, absence, or quantity.",
-   "id": "c21"
   },
   {
    "sentence": "А-в не одобрял парфорсов и прочих штук и фокусов ___, которая господствовала в то время.",
@@ -207,22 +95,8 @@
    ],
    "correct": "немецкой дрессировки",
    "case": "Родительный (Genitive)",
-   "explain": "«немецкой дрессировки» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«немецкой дрессировки» depends on the noun «фокусов» (whose? of what?) — genitive.",
    "id": "c22"
-  },
-  {
-   "sentence": "Его ___: «Никогда не думать о том, что дашь промах», напоминает мне поговорку одного старого московского охотника, давно уже умершего, Л.",
-   "lemma": "правило",
-   "options": [
-    "первое правило",
-    "первым правилом",
-    "первом правиле",
-    "первому правилу"
-   ],
-   "correct": "первое правило",
-   "case": "Именительный (Nominative)",
-   "explain": "«первое правило» — the subject of the sentence stands in the nominative.",
-   "id": "c24"
   },
   {
    "sentence": "Его первое правило: «Никогда не думать о том, что дашь промах», напоминает мне поговорку одного старого ___, давно уже умершего, Л.",
@@ -235,7 +109,7 @@
    ],
    "correct": "московского охотника",
    "case": "Родительный (Genitive)",
-   "explain": "«московского охотника» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«московского охотника» depends on the noun «поговорку» (whose? of what?) — genitive.",
    "id": "c25"
   },
   {
@@ -249,22 +123,8 @@
    ],
    "correct": "благородному занятию",
    "case": "Дательный (Dative)",
-   "explain": "«благородному занятию» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«благородному занятию» — «к» always takes the dative.",
    "id": "c26"
-  },
-  {
-   "sentence": "Палицу держал он в руках из ___.",
-   "lemma": "железо",
-   "options": [
-    "несокрушимом железе",
-    "несокрушимого железа",
-    "несокрушимому железу",
-    "несокрушимое железо"
-   ],
-   "correct": "несокрушимого железа",
-   "case": "Родительный (Genitive)",
-   "explain": "«несокрушимого железа» — the genitive here marks possession, absence, or quantity.",
-   "id": "c28"
   },
   {
    "sentence": "И ___ с незапамятных времен любили охоту.",
@@ -277,36 +137,8 @@
    ],
    "correct": "русские люди",
    "case": "Именительный (Nominative)",
-   "explain": "«русские люди» — the subject of the sentence stands in the nominative.",
+   "explain": "«русские люди» is the subject of «любили» — who or what does it — so nominative.",
    "id": "c29"
-  },
-  {
-   "sentence": "Витязи времен Владимира стреляли белых лебедей и ___ на заповедных лугах.",
-   "lemma": "утка",
-   "options": [
-    "серые утки",
-    "серым уткам",
-    "серых уток",
-    "серыми утками"
-   ],
-   "correct": "серых уток",
-   "case": "Родительный (Genitive)",
-   "explain": "«серых уток» — the genitive here marks possession, absence, or quantity.",
-   "id": "c30"
-  },
-  {
-   "sentence": "Мономах в завещании своем оставил нам описание своих битв с турами и медведями; ___ великого сына, один из мудрейших русских царей, Алексей Михайлович, страстно любил охоту.",
-   "lemma": "отец",
-   "options": [
-    "достойный отец",
-    "достойного отца",
-    "достойным отцом",
-    "достойному отцу"
-   ],
-   "correct": "достойный отец",
-   "case": "Именительный (Nominative)",
-   "explain": "«достойный отец» — the subject of the sentence stands in the nominative.",
-   "id": "c32"
   },
   {
    "sentence": "Мономах в завещании своем оставил нам описание своих битв с турами и медведями; достойный отец ___, один из мудрейших русских царей, Алексей Михайлович, страстно любил охоту.",
@@ -319,92 +151,8 @@
    ],
    "correct": "великого сына",
    "case": "Родительный (Genitive)",
-   "explain": "«великого сына» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«великого сына» depends on the noun «отец» (whose? of what?) — genitive.",
    "id": "c33"
-  },
-  {
-   "sentence": "Мономах в завещании своем оставил нам описание своих битв с турами и медведями; достойный отец великого сына, один из мудрейших ___, Алексей Михайлович, страстно любил охоту.",
-   "lemma": "царь",
-   "options": [
-    "русские цари",
-    "русских царях",
-    "русским царям",
-    "русских царей"
-   ],
-   "correct": "русских царей",
-   "case": "Родительный (Genitive)",
-   "explain": "«русских царей» — the genitive here marks possession, absence, or quantity.",
-   "id": "c34"
-  },
-  {
-   "sentence": "Вообще охота свойственна ___: дайте мужику ружье, хоть веревками связанное, да горсточку пороху, и пойдет он бродить, в одних лаптишках, по болотам да по лесам, с утра до вечера.",
-   "lemma": "человек",
-   "options": [
-    "русскому человеку",
-    "русском человеке",
-    "русский человек",
-    "русского человека"
-   ],
-   "correct": "русскому человеку",
-   "case": "Дательный (Dative)",
-   "explain": "«русскому человеку» — the dative marks the indirect object or recipient.",
-   "id": "c35"
-  },
-  {
-   "sentence": "Между тем такого рода воззрение совершенно не согласно с истинным смыслом природы, с ее ___.",
-   "lemma": "направление",
-   "options": [
-    "основного направления",
-    "основное направление",
-    "основному направлению",
-    "основным направлением"
-   ],
-   "correct": "основным направлением",
-   "case": "Творительный (Instrumental)",
-   "explain": "«основным направлением» — the instrumental marks the means, company, or complement.",
-   "id": "c37"
-  },
-  {
-   "sentence": "То же самое должно сказать о гусе, утке, вальдшнепе, — словом, обо всех ___, с которыми он нас знакомит.",
-   "lemma": "порода",
-   "options": [
-    "птичьим породам",
-    "птичьими породами",
-    "птичьих породах",
-    "птичьих пород"
-   ],
-   "correct": "птичьих породах",
-   "case": "Предложный (Prepositional)",
-   "explain": "«птичьих породах» — after the preposition «обо», for location or topic.",
-   "id": "c38"
-  },
-  {
-   "sentence": "Немцы считают гуся, эту обдуманную осторожную птицу, глупым; ___, напротив, заметил, что даже гром обращает на себя внимание гуся; действительно, при каждом ударе он, скривив голову, смотрит в небо.",
-   "lemma": "человек",
-   "options": [
-    "русский человек",
-    "русскому человеку",
-    "русского человека",
-    "русским человеком"
-   ],
-   "correct": "русский человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«русский человек» — the subject of the sentence stands in the nominative.",
-   "id": "c39"
-  },
-  {
-   "sentence": "Гремите, не сходя с места, всеми громами риторики: вам ___ это не будет стоить; попробуйте понять и выразить, что происходит хотя бы в птице, которая смолкает перед дождем, и вы увидите, как это нелегко.",
-   "lemma": "труд",
-   "options": [
-    "большим трудом",
-    "большой труд",
-    "большого труда",
-    "большому труду"
-   ],
-   "correct": "большого труда",
-   "case": "Родительный (Genitive)",
-   "explain": "«большого труда» — the genitive here marks possession, absence, or quantity.",
-   "id": "c40"
   },
   {
    "sentence": "В силу всех ___ я воображаю, что всякий естествоиспытатель с истинным наслаждением перечтет книгу г.",
@@ -417,7 +165,7 @@
    ],
    "correct": "вышеизложенных причин",
    "case": "Родительный (Genitive)",
-   "explain": "«вышеизложенных причин» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«вышеизложенных причин» depends on the noun «силу» (whose? of what?) — genitive.",
    "id": "c41"
   },
   {
@@ -431,22 +179,8 @@
    ],
    "correct": "истинным наслаждением",
    "case": "Творительный (Instrumental)",
-   "explain": "«истинным наслаждением» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«истинным наслаждением» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c42"
-  },
-  {
-   "sentence": "Знаете ли вы, например, что одной из самых ___ в естественной истории почитаются верные изображения наружного вида и цвета птиц?",
-   "lemma": "трудность",
-   "options": [
-    "великих трудностях",
-    "великих трудностей",
-    "великие трудности",
-    "великими трудностями"
-   ],
-   "correct": "великих трудностей",
-   "case": "Родительный (Genitive)",
-   "explain": "«великих трудностей» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
-   "id": "c43"
   },
   {
    "sentence": "Знаете ли вы, например, что одной из самых великих трудностей в естественной истории почитаются ___ наружного вида и цвета птиц?",
@@ -459,21 +193,21 @@
    ],
    "correct": "верные изображения",
    "case": "Именительный (Nominative)",
-   "explain": "«верные изображения» — the subject of the sentence stands in the nominative.",
+   "explain": "«верные изображения» is the subject of «почитаются» — who or what does it — so nominative.",
    "id": "c44"
   },
   {
    "sentence": "Знаете ли вы, например, что одной из самых великих трудностей в естественной истории почитаются верные изображения ___ и цвета птиц?",
    "lemma": "вид",
    "options": [
+    "наружного вида",
     "наружному виду",
     "наружном виде",
-    "наружным видом",
-    "наружного вида"
+    "наружный вид"
    ],
    "correct": "наружного вида",
    "case": "Родительный (Genitive)",
-   "explain": "«наружного вида» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«наружного вида» depends on the noun «изображения» (whose? of what?) — genitive.",
    "id": "c45"
   },
   {
@@ -487,7 +221,7 @@
    ],
    "correct": "апрельской книжке",
    "case": "Предложный (Prepositional)",
-   "explain": "«апрельской книжке» — after the preposition «в», for location or topic.",
+   "explain": "«апрельской книжке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c46"
   },
   {
@@ -501,7 +235,7 @@
    ],
    "correct": "общего впечатления",
    "case": "Родительный (Genitive)",
-   "explain": "«общего впечатления» — after the preposition «насчет», the genitive here marks possession, absence, or quantity.",
+   "explain": "«общего впечатления» — «насчёт» always takes the genitive.",
    "id": "c47"
   },
   {
@@ -515,7 +249,7 @@
    ],
    "correct": "подобным личностям",
    "case": "Дательный (Dative)",
-   "explain": "«подобным личностям» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«подобным личностям» — «к» always takes the dative.",
    "id": "c48"
   },
   {
@@ -529,36 +263,8 @@
    ],
    "correct": "самой природе",
    "case": "Предложный (Prepositional)",
-   "explain": "«самой природе» — after the preposition «в», for location or topic.",
+   "explain": "«самой природе» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c49"
-  },
-  {
-   "sentence": "Впрочем, они имели перед нами преимущество великое: в их ___ поэзия впервые заговорила звучным и сладким языком о человеке и природе.",
-   "lemma": "уста",
-   "options": [
-    "счастливым устам",
-    "счастливые уста",
-    "счастливых устах",
-    "счастливых уст"
-   ],
-   "correct": "счастливых устах",
-   "case": "Предложный (Prepositional)",
-   "explain": "«счастливых устах» — the prepositional is used only after a preposition, for location or topic.",
-   "id": "c53"
-  },
-  {
-   "sentence": "Впрочем, они имели перед нами преимущество великое: в их счастливых устах поэзия впервые заговорила звучным и ___ о человеке и природе.",
-   "lemma": "язык",
-   "options": [
-    "сладкий язык",
-    "сладком языке",
-    "сладкого языка",
-    "сладким языком"
-   ],
-   "correct": "сладким языком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«сладким языком» — after the preposition «в», the instrumental marks the means, company, or complement.",
-   "id": "c54"
   },
   {
    "sentence": "(Признаюсь, я не умею сочувствовать литературам, предшествовавшим греческой.) Оттого ничего не может сравниться с бессмертной молодостью, с свежестью и силой ___, которыми веет нам от песней Гомера.",
@@ -571,7 +277,7 @@
    ],
    "correct": "первых впечатлений",
    "case": "Родительный (Genitive)",
-   "explain": "«первых впечатлений» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«первых впечатлений» depends on the noun «силой» (whose? of what?) — genitive.",
    "id": "c55"
   },
   {
@@ -585,22 +291,8 @@
    ],
    "correct": "поэтических образов",
    "case": "Родительный (Genitive)",
-   "explain": "«поэтических образов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«поэтических образов» depends on the noun «смелости» (whose? of what?) — genitive.",
    "id": "c56"
-  },
-  {
-   "sentence": "Одна ты, печалишь ___.",
-   "lemma": "день",
-   "options": [
-    "ликующего дня",
-    "ликующим днём",
-    "ликующий день",
-    "ликующему дню"
-   ],
-   "correct": "ликующий день",
-   "case": "Винительный (Accusative)",
-   "explain": "«ликующий день» — the accusative marks the direct object of the verb.",
-   "id": "c59"
   },
   {
    "sentence": "Отложу все это до ___, которое вы получите вскоре.",
@@ -613,36 +305,22 @@
    ],
    "correct": "другого письма",
    "case": "Родительный (Genitive)",
-   "explain": "«другого письма» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«другого письма» — «до» always takes the genitive.",
    "id": "c60"
   },
   {
    "sentence": "___ Оберона не перестанет звучать для «имеющих ухо», и Вебер не последний великий музыкант, которого вдохновит поэзия охоты!",
    "lemma": "рог",
    "options": [
-    "волшебный рог",
-    "волшебного рога",
+    "волшебным рогом",
     "волшебному рогу",
-    "волшебным рогом"
+    "волшебный рог",
+    "волшебном роге"
    ],
    "correct": "волшебный рог",
    "case": "Именительный (Nominative)",
-   "explain": "«Волшебный рог» — the subject of the sentence stands in the nominative.",
+   "explain": "«волшебный рог» is the subject of «перестанет» — who or what does it — so nominative.",
    "id": "c61"
-  },
-  {
-   "sentence": "Волшебный рог Оберона не перестанет звучать для «имеющих ухо», и Вебер не последний ___, которого вдохновит поэзия охоты!",
-   "lemma": "музыкант",
-   "options": [
-    "великому музыканту",
-    "великим музыкантом",
-    "великом музыканте",
-    "великий музыкант"
-   ],
-   "correct": "великий музыкант",
-   "case": "Именительный (Nominative)",
-   "explain": "«великий музыкант» — after the preposition «для», the subject of the sentence stands in the nominative.",
-   "id": "c62"
   },
   {
    "sentence": "Я слышал, что «Записок ___» готовится другое издание — успех их предупредил мои похвалы; тем лучше!",
@@ -655,22 +333,8 @@
    ],
    "correct": "ружейного охотника",
    "case": "Родительный (Genitive)",
-   "explain": "«ружейного охотника» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«ружейного охотника» depends on the noun «Записок» (whose? of what?) — genitive.",
    "id": "c64"
-  },
-  {
-   "sentence": "Я слышал, что «Записок ружейного охотника» готовится ___ — успех их предупредил мои похвалы; тем лучше!",
-   "lemma": "издание",
-   "options": [
-    "другим изданием",
-    "другому изданию",
-    "другого издания",
-    "другое издание"
-   ],
-   "correct": "другое издание",
-   "case": "Именительный (Nominative)",
-   "explain": "«другое издание» — the subject of the sentence stands in the nominative.",
-   "id": "c65"
   },
   {
    "sentence": "О «Записках ___» С.",
@@ -683,7 +347,7 @@
    ],
    "correct": "ружейного охотника",
    "case": "Родительный (Genitive)",
-   "explain": "«ружейного охотника» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«ружейного охотника» depends on the noun «Записках» (whose? of what?) — genitive.",
    "id": "c66"
   }
  ]

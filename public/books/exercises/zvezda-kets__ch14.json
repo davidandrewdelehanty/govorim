@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Тяжесть на Кэце была меньше, чем на Луне, и я, как балерина, едва касаясь носками пола, порхал наподобие ___.",
-   "lemma": "рыба",
-   "options": [
-    "летучей рыбы",
-    "летучей рыбой",
-    "летучая рыба",
-    "летучей рыбе"
-   ],
-   "correct": "летучей рыбы",
-   "case": "Родительный (Genitive)",
-   "explain": "«летучей рыбы» — the genitive here marks possession, absence, or quantity.",
-   "id": "c3"
-  },
-  {
    "sentence": "Из-за двери выглянула ___.",
    "lemma": "девушка",
    "options": [
@@ -25,49 +11,21 @@
    ],
    "correct": "незнакомая девушка",
    "case": "Именительный (Nominative)",
-   "explain": "«незнакомая девушка» — the subject of the sentence stands in the nominative.",
+   "explain": "«незнакомая девушка» is the subject of «выглянула» — who or what does it — so nominative.",
    "id": "c4"
-  },
-  {
-   "sentence": "___ обрамляли ее лицо с большими серыми глазами.",
-   "lemma": "волос",
-   "options": [
-    "каштановым волосам",
-    "каштановых волос",
-    "каштановыми волосами",
-    "каштановые волосы"
-   ],
-   "correct": "каштановые волосы",
-   "case": "Именительный (Nominative)",
-   "explain": "«Каштановые волосы» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
-  },
-  {
-   "sentence": "Каштановые волосы обрамляли ее лицо с большими ___.",
-   "lemma": "глаз",
-   "options": [
-    "серые глаза",
-    "серым глазам",
-    "серых глазах",
-    "серыми глазами"
-   ],
-   "correct": "серыми глазами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«серыми глазами» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c6"
   },
   {
    "sentence": "А я здесь веду очень ___ в лаборатории абсолютного холода.",
    "lemma": "работа",
    "options": [
+    "интересными работами",
     "интересные работы",
-    "интересных работ",
     "интересным работам",
     "интересных работах"
    ],
    "correct": "интересные работы",
    "case": "Винительный (Accusative)",
-   "explain": "«интересные работы» — the accusative marks the direct object of the verb.",
+   "explain": "«интересные работы» is the direct object of «веду» (кого? что?) — accusative.",
    "id": "c7"
   },
   {
@@ -81,7 +39,7 @@
    ],
    "correct": "абсолютного холода",
    "case": "Родительный (Genitive)",
-   "explain": "«абсолютного холода» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«абсолютного холода» depends on the noun «лаборатории» (whose? of what?) — genitive.",
    "id": "c8"
   },
   {
@@ -95,22 +53,8 @@
    ],
    "correct": "теневой стороны",
    "case": "Родительный (Genitive)",
-   "explain": "«теневой стороны» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«теневой стороны» depends on the noun «стороны» (whose? of what?) — genitive.",
    "id": "c9"
-  },
-  {
-   "sentence": "Но зато ___, что называется, под рукой.",
-   "lemma": "холод",
-   "options": [
-    "абсолютному холоду",
-    "абсолютного холода",
-    "абсолютный холод",
-    "абсолютном холоде"
-   ],
-   "correct": "абсолютный холод",
-   "case": "Именительный (Nominative)",
-   "explain": "«абсолютный холод» — the subject of the sentence stands in the nominative.",
-   "id": "c11"
   },
   {
    "sentence": "Но говорила она больше о своих ___.",
@@ -123,7 +67,7 @@
    ],
    "correct": "научных работах",
    "case": "Предложный (Prepositional)",
-   "explain": "«научных работах» — after the preposition «о», for location or topic.",
+   "explain": "«научных работах» — «о» + prepositional (о ком? о чём?): about.",
    "id": "c12"
   },
   {
@@ -137,7 +81,7 @@
    ],
    "correct": "молодой человек",
    "case": "Именительный (Nominative)",
-   "explain": "«молодой человек» — the subject of the sentence stands in the nominative.",
+   "explain": "«молодой человек» is the subject of «остановил» — who or what does it — so nominative.",
    "id": "c13"
   },
   {
@@ -151,7 +95,7 @@
    ],
    "correct": "первых людей",
    "case": "Родительный (Genitive)",
-   "explain": "«первых людей» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«первых людей» — «из» always takes the genitive.",
    "id": "c14"
   },
   {
@@ -165,7 +109,7 @@
    ],
    "correct": "молодой человек",
    "case": "Именительный (Nominative)",
-   "explain": "«молодой человек» — the subject of the sentence stands in the nominative.",
+   "explain": "«молодой человек» is the subject of «стоял» — who or what does it — so nominative.",
    "id": "c16"
   },
   {
@@ -179,7 +123,7 @@
    ],
    "correct": "земные кэцовцы",
    "case": "Именительный (Nominative)",
-   "explain": "«Земные кэцовцы» — the subject of the sentence stands in the nominative.",
+   "explain": "«земные кэцовцы» is the subject of «просят» — who or what does it — so nominative.",
    "id": "c18"
   },
   {
@@ -193,7 +137,7 @@
    ],
    "correct": "аэрологические записи",
    "case": "Винительный (Accusative)",
-   "explain": "«аэрологические записи» — the accusative marks the direct object of the verb.",
+   "explain": "«аэрологические записи» is the direct object of «производит» (кого? что?) — accusative.",
    "id": "c19"
   },
   {
@@ -207,22 +151,8 @@
    ],
    "correct": "космических излучений",
    "case": "Родительный (Genitive)",
-   "explain": "«космических излучений» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«космических излучений» depends on the noun «интенсивность» (whose? of what?) — genitive.",
    "id": "c20"
-  },
-  {
-   "sentence": "И она падает на автоматически раскрывающемся парашюте в строго определенной точке, на площадке в один ___.",
-   "lemma": "метр",
-   "options": [
-    "квадратный метр",
-    "квадратном метре",
-    "квадратным метром",
-    "квадратного метра"
-   ],
-   "correct": "квадратный метр",
-   "case": "Винительный (Accusative)",
-   "explain": "«квадратный метр» — after the preposition «в», the accusative marks the direct object of the verb.",
-   "id": "c22"
   },
   {
    "sentence": "Весь кабинет его был наполнен ___ с очень мелкой листвой.",
@@ -235,22 +165,8 @@
    ],
    "correct": "вьющимися растениями",
    "case": "Творительный (Instrumental)",
-   "explain": "«вьющимися растениями» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «наполнен», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c24"
-  },
-  {
-   "sentence": "Весь кабинет его был наполнен вьющимися растениями с очень ___.",
-   "lemma": "листва",
-   "options": [
-    "мелкой листвы",
-    "мелкой листвой",
-    "мелкая листва",
-    "мелкой листве"
-   ],
-   "correct": "мелкой листвой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«мелкой листвой» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c25"
   },
   {
    "sentence": "Это была как бы зеленая пещера, освещенная ___ солнца.",
@@ -263,7 +179,7 @@
    ],
    "correct": "яркими лучами",
    "case": "Творительный (Instrumental)",
-   "explain": "«яркими лучами» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «освещенная», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c26"
   },
   {
@@ -277,36 +193,8 @@
    ],
    "correct": "сонные веки",
    "case": "Именительный (Nominative)",
-   "explain": "«сонные веки» — the subject of the sentence stands in the nominative.",
+   "explain": "«сонные веки» is the subject of «поднялись» — who or what does it — so nominative.",
    "id": "c27"
-  },
-  {
-   "sentence": "Когда я появился, сонные веки поднялись, и я увидел серые, очень живые ___.",
-   "lemma": "глаз",
-   "options": [
-    "умных глазах",
-    "умные глаза",
-    "умным глазам",
-    "умными глазами"
-   ],
-   "correct": "умные глаза",
-   "case": "Именительный (Nominative)",
-   "explain": "«умные глаза» — the subject of the sentence stands in the nominative.",
-   "id": "c28"
-  },
-  {
-   "sentence": "Их живость не гармонировала с его ___.",
-   "lemma": "движение",
-   "options": [
-    "медлительным движениям",
-    "медлительных движениях",
-    "медлительные движения",
-    "медлительными движениями"
-   ],
-   "correct": "медлительными движениями",
-   "case": "Творительный (Instrumental)",
-   "explain": "«медлительными движениями» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c29"
   },
   {
    "sentence": "Образчик мха уже лежал возле него на длинном ___.",
@@ -319,22 +207,8 @@
    ],
    "correct": "алюминиевом столике",
    "case": "Предложный (Prepositional)",
-   "explain": "«алюминиевом столике» — after the preposition «на», for location or topic.",
+   "explain": "«алюминиевом столике» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c30"
-  },
-  {
-   "sentence": "— Споры бактерий, споры ___, известных на Земле, могут переносить очень низкую температуру, до двухсот пятидесяти градусов ниже нуля, сохраняя жизнеспособность.",
-   "lemma": "грибок",
-   "options": [
-    "плесневых грибках",
-    "плесневые грибки",
-    "плесневым грибкам",
-    "плесневых грибков"
-   ],
-   "correct": "плесневых грибков",
-   "case": "Родительный (Genitive)",
-   "explain": "«плесневых грибков» — the genitive here marks possession, absence, or quantity.",
-   "id": "c31"
   },
   {
    "sentence": "Затем очищение воздуха и воды, и наконец, материал отбросов, который мы должны утилизировать до ___.",
@@ -347,22 +221,8 @@
    ],
    "correct": "последней молекулы",
    "case": "Родительный (Genitive)",
-   "explain": "«последней молекулы» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«последней молекулы» — «до» always takes the genitive.",
    "id": "c32"
-  },
-  {
-   "sentence": "Здесь нет ни заморозков, ни засухи, ни ожогов ___, ни суховеев.",
-   "lemma": "луч",
-   "options": [
-    "солнечных лучей",
-    "солнечными лучами",
-    "солнечных лучах",
-    "солнечные лучи"
-   ],
-   "correct": "солнечными лучами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«солнечными лучами» — the instrumental marks the means, company, or complement.",
-   "id": "c33"
   },
   {
    "sentence": "Температура, влажность, состав почвы и воздуха, сила ___ — все в наших руках.",
@@ -375,7 +235,7 @@
    ],
    "correct": "солнечного излучения",
    "case": "Родительный (Genitive)",
-   "explain": "«солнечного излучения» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«солнечного излучения» depends on the noun «сила» (whose? of what?) — genitive.",
    "id": "c34"
   },
   {
@@ -389,7 +249,7 @@
    ],
    "correct": "ультрафиолетовые лучи",
    "case": "Именительный (Nominative)",
-   "explain": "«ультрафиолетовые лучи» — the subject of the sentence stands in the nominative.",
+   "explain": "«ультрафиолетовые лучи» is the subject of «есть» — who or what does it — so nominative.",
    "id": "c35"
   },
   {
@@ -403,7 +263,7 @@
    ],
    "correct": "земного притяжения",
    "case": "Родительный (Genitive)",
-   "explain": "«земного притяжения» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«земного притяжения» depends on the noun «силы» (whose? of what?) — genitive.",
    "id": "c37"
   },
   {
@@ -417,36 +277,8 @@
    ],
    "correct": "большой оранжерее",
    "case": "Предложный (Prepositional)",
-   "explain": "«Большой оранжерее» — after the preposition «в», for location or topic.",
+   "explain": "«большой оранжерее» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c38"
-  },
-  {
-   "sentence": "В Большой оранжерее работает ассистент Крамер, в лаборатории вам будет помогать ___ Зорина.",
-   "lemma": "сотрудница",
-   "options": [
-    "новой сотруднице",
-    "новая сотрудница",
-    "новой сотрудницы",
-    "новой сотрудницей"
-   ],
-   "correct": "новая сотрудница",
-   "case": "Именительный (Nominative)",
-   "explain": "«новая сотрудница» — the subject of the sentence stands in the nominative.",
-   "id": "c39"
-  },
-  {
-   "sentence": "У нас удивительно ___ над животными.",
-   "lemma": "работа",
-   "options": [
-    "интересные работы",
-    "интересных работ",
-    "интересным работам",
-    "интересных работах"
-   ],
-   "correct": "интересные работы",
-   "case": "Именительный (Nominative)",
-   "explain": "«интересные работы» — the subject of the sentence stands in the nominative.",
-   "id": "c40"
   }
  ]
 }

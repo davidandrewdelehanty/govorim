@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Пред ним на столе разложили миллион, ___.",
-   "lemma": "миллион",
-   "options": [
-    "настоящему миллиону",
-    "настоящим миллионом",
-    "настоящий миллион",
-    "настоящем миллионе"
-   ],
-   "correct": "настоящий миллион",
-   "case": "Винительный (Accusative)",
-   "explain": "«настоящий миллион» — the accusative marks the direct object of the verb.",
-   "id": "c2"
-  },
-  {
    "sentence": "Графиня сидела на одном из ___ в отдалении от зрителей и не отрывала глаз от подсудимого.",
    "lemma": "кресло",
    "options": [
@@ -25,21 +11,21 @@
    ],
    "correct": "задних кресел",
    "case": "Родительный (Genitive)",
-   "explain": "«задних кресел» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«задних кресел» — «из» always takes the genitive.",
    "id": "c7"
   },
   {
    "sentence": "И только тогда, когда она, выслушав речь прокурора, проговорила вслух: «Как это глупо!» — Илька узнала ее по ее ___.",
    "lemma": "голос",
    "options": [
-    "мелодическом голосе",
     "мелодическим голосом",
-    "мелодический голос",
+    "мелодического голоса",
+    "мелодическом голосе",
     "мелодическому голосу"
    ],
    "correct": "мелодическому голосу",
    "case": "Дательный (Dative)",
-   "explain": "«мелодическому голосу» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "explain": "«мелодическому голосу» — «по» + dative (по чему? по кому?): its usual case — along, around, through, by, according to, or missing someone.",
    "id": "c8"
   },
   {
@@ -53,78 +39,8 @@
    ],
    "correct": "любимый человек",
    "case": "Именительный (Nominative)",
-   "explain": "«любимый человек» — the subject of the sentence stands in the nominative.",
+   "explain": "«любимый человек» is the subject of «отнят» — who or what does it — so nominative.",
    "id": "c9"
-  },
-  {
-   "sentence": "Он был слегка пьян — ___ так и сыпались с его языка.",
-   "lemma": "острота",
-   "options": [
-    "злые остроты",
-    "злыми остротами",
-    "злых остротах",
-    "злых острот"
-   ],
-   "correct": "злые остроты",
-   "case": "Именительный (Nominative)",
-   "explain": "«злые остроты» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
-  },
-  {
-   "sentence": "Прокурор был его ___, но не пощадил его в своей речи.",
-   "lemma": "товарищ",
-   "options": [
-    "университетским товарищем",
-    "университетскому товарищу",
-    "университетского товарища",
-    "университетский товарищ"
-   ],
-   "correct": "университетским товарищем",
-   "case": "Творительный (Instrumental)",
-   "explain": "«университетским товарищем» — the instrumental marks the means, company, or complement.",
-   "id": "c11"
-  },
-  {
-   "sentence": "— Она поступила, как ___!",
-   "lemma": "гражданка",
-   "options": [
-    "примерная гражданка",
-    "примерной гражданкой",
-    "примерной гражданке",
-    "примерной гражданки"
-   ],
-   "correct": "примерная гражданка",
-   "case": "Именительный (Nominative)",
-   "explain": "«примерная гражданка» — the subject of the sentence stands in the nominative.",
-   "id": "c12"
-  },
-  {
-   "sentence": "Только это и было сказано серьезно и искренно, остальное же, что говорил Артур, вызывало смех и ___.",
-   "lemma": "звонок",
-   "options": [
-    "председательские звонки",
-    "председательским звонкам",
-    "председательскими звонками",
-    "председательских звонках"
-   ],
-   "correct": "председательские звонки",
-   "case": "Винительный (Accusative)",
-   "explain": "«Председательские звонки» — the accusative marks the direct object of the verb.",
-   "id": "c13"
-  },
-  {
-   "sentence": "В саду под навесом, устроенным из флагов, вьющегося винограда и ___, стояло несколько столиков.",
-   "lemma": "цвет",
-   "options": [
-    "живых цветов",
-    "живых цветах",
-    "живым цветам",
-    "живые цвета"
-   ],
-   "correct": "живых цветов",
-   "case": "Родительный (Genitive)",
-   "explain": "«живых цветов» — the genitive here marks possession, absence, or quantity.",
-   "id": "c18"
   },
   {
    "sentence": "Когда она проходила ___, глаза их встретились.",
@@ -137,7 +53,7 @@
    ],
    "correct": "третий раз",
    "case": "Винительный (Accusative)",
-   "explain": "«третий раз» — the accusative marks the direct object of the verb.",
+   "explain": "«третий раз» tells how long or how often, with no preposition — accusative.",
    "id": "c21"
   },
   {
@@ -151,50 +67,8 @@
    ],
    "correct": "великому удовольствию",
    "case": "Дательный (Dative)",
-   "explain": "«великому удовольствию» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "explain": "«великому удовольствию» — «к» always takes the dative.",
    "id": "c22"
-  },
-  {
-   "sentence": "— Я хочу пожертвовать в пользу школы одну маленькую вещь, — сказала она и, не дожидаясь ответа, сунула в руки графини ___.",
-   "lemma": "медальон",
-   "options": [
-    "золотому медальону",
-    "золотом медальоне",
-    "золотым медальоном",
-    "золотой медальон"
-   ],
-   "correct": "золотой медальон",
-   "case": "Винительный (Accusative)",
-   "explain": "«золотой медальон» — the accusative marks the direct object of the verb.",
-   "id": "c23"
-  },
-  {
-   "sentence": "Она, не привыкшая к ___ стычкам, сконфузилась и отошла от столика.",
-   "lemma": "род",
-   "options": [
-    "подобным родом",
-    "подобному роду",
-    "подобный род",
-    "подобного рода"
-   ],
-   "correct": "подобного рода",
-   "case": "Родительный (Genitive)",
-   "explain": "«подобного рода» — after the preposition «к», the genitive here marks possession, absence, or quantity.",
-   "id": "c24"
-  },
-  {
-   "sentence": "— Позвольте пройти, — сказала она ___, которые стеной остановились перед ней и с любопытством смотрели на нее.",
-   "lemma": "человек",
-   "options": [
-    "молодых людях",
-    "молодые люди",
-    "молодым людям",
-    "молодых людей"
-   ],
-   "correct": "молодым людям",
-   "case": "Дательный (Dative)",
-   "explain": "«молодым людям» — the dative marks the indirect object or recipient.",
-   "id": "c25"
   },
   {
    "sentence": "___ почему-то вдруг засмеялись.",
@@ -207,7 +81,7 @@
    ],
    "correct": "молодые люди",
    "case": "Именительный (Nominative)",
-   "explain": "«Молодые люди» — the subject of the sentence stands in the nominative.",
+   "explain": "«молодые люди» is the subject of «засмеялись» — who or what does it — so nominative.",
    "id": "c26"
   },
   {
@@ -221,7 +95,7 @@
    ],
    "correct": "пивная пробка",
    "case": "Именительный (Nominative)",
-   "explain": "«пивная пробка» — the subject of the sentence stands in the nominative.",
+   "explain": "«пивная пробка» is the subject of «ударилась» — who or what does it — so nominative.",
    "id": "c27"
   },
   {
@@ -235,7 +109,7 @@
    ],
    "correct": "маленькой комнате",
    "case": "Предложный (Prepositional)",
-   "explain": "«маленькой комнате» — after the preposition «в», for location or topic.",
+   "explain": "«маленькой комнате» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c30"
   },
   {
@@ -249,22 +123,8 @@
    ],
    "correct": "малиновым бархатом",
    "case": "Творительный (Instrumental)",
-   "explain": "«малиновым бархатом» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «обитой», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c31"
-  },
-  {
-   "sentence": "Из портмоне Илька вынула ___, в котором был морфий.",
-   "lemma": "флакончик",
-   "options": [
-    "маленькому флакончику",
-    "маленьком флакончике",
-    "маленьким флакончиком",
-    "маленький флакончик"
-   ],
-   "correct": "маленький флакончик",
-   "case": "Именительный (Nominative)",
-   "explain": "«маленький флакончик» — the subject of the sentence stands in the nominative.",
-   "id": "c32"
   },
   {
    "sentence": "Илька увидела пред своим лицом ___ и два розовых пятна на щеках.",
@@ -277,7 +137,7 @@
    ],
    "correct": "блестящие глаза",
    "case": "Винительный (Accusative)",
-   "explain": "«блестящие глаза» — the accusative marks the direct object of the verb.",
+   "explain": "«блестящие глаза» is the direct object of «увидела» (кого? что?) — accusative.",
    "id": "c34"
   },
   {
@@ -291,22 +151,8 @@
    ],
    "correct": "нежного голоса",
    "case": "Родительный (Genitive)",
-   "explain": "«нежного голоса» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«нежного голоса» depends on the noun «звуки» (whose? of what?) — genitive.",
    "id": "c36"
-  },
-  {
-   "sentence": "В Венгрии он узнал о смерти ___.",
-   "lemma": "женщина",
-   "options": [
-    "любимая женщина",
-    "любимой женщине",
-    "любимой женщины",
-    "любимой женщиной"
-   ],
-   "correct": "любимой женщины",
-   "case": "Родительный (Genitive)",
-   "explain": "«любимой женщины» — the genitive here marks possession, absence, or quantity.",
-   "id": "c38"
   }
  ]
 }

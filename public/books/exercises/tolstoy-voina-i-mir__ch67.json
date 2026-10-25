@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Большинство присутствовавших были старые, почтенные люди с широкими, самоуверенными лицами, ___, твердыми движениями и голосами.",
-   "lemma": "палец",
-   "options": [
-    "толстых пальцев",
-    "толстым пальцам",
-    "толстыми пальцами",
-    "толстые пальцы"
-   ],
-   "correct": "толстыми пальцами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«толстыми пальцами» — the instrumental marks the means, company, or complement.",
-   "id": "c1"
-  },
-  {
    "sentence": "Малая часть присутствовавших состояла из ___ — преимущественно молодежи, в числе которой были Денисов, Ростов и Долохов, который был опять семеновским офицером.",
    "lemma": "гость",
    "options": [
@@ -25,22 +11,8 @@
    ],
    "correct": "случайных гостей",
    "case": "Родительный (Genitive)",
-   "explain": "«случайных гостей» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«случайных гостей» — «из» always takes the genitive.",
    "id": "c2"
-  },
-  {
-   "sentence": "Несвицкий был тут же, как ___ клуба.",
-   "lemma": "член",
-   "options": [
-    "старого члена",
-    "старый член",
-    "старом члене",
-    "старым членом"
-   ],
-   "correct": "старый член",
-   "case": "Именительный (Nominative)",
-   "explain": "«старый член» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
   },
   {
    "sentence": "Старики из самых значительных составляли центр кружков, к которым почтительно приближались даже незнакомые, чтобы послушать ___.",
@@ -53,35 +25,21 @@
    ],
    "correct": "известных людей",
    "case": "Винительный (Accusative)",
-   "explain": "«известных людей» — the accusative marks the direct object of the verb.",
+   "explain": "«известных людей» is the direct object of «послушать» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c4"
-  },
-  {
-   "sentence": "___ составлялись около графа Растопчина, Валуева и Нарышкина.",
-   "lemma": "кружка",
-   "options": [
-    "бо́льшие кружки",
-    "бо́льших кружек",
-    "бо́льших кружках",
-    "бо́льшим кружкам"
-   ],
-   "correct": "бо́льшие кружки",
-   "case": "Именительный (Nominative)",
-   "explain": "«Бо́льшие кружки» — the subject of the sentence stands in the nominative.",
-   "id": "c5"
   },
   {
    "sentence": "В третьем кружке Нарышкин говорил о заседании австрийского ___, в котором Суворов закричал петухом в ответ на глупость австрийских генералов.",
    "lemma": "совет",
    "options": [
+    "военном совете",
     "военного совета",
-    "военный совет",
-    "военным советом",
-    "военном совете"
+    "военному совету",
+    "военный совет"
    ],
    "correct": "военного совета",
    "case": "Родительный (Genitive)",
-   "explain": "«военного совета» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«военного совета» depends on the noun «заседании» (whose? of what?) — genitive.",
    "id": "c6"
   },
   {
@@ -95,7 +53,7 @@
    ],
    "correct": "австрийских генералов",
    "case": "Родительный (Genitive)",
-   "explain": "«австрийских генералов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«австрийских генералов» depends on the noun «глупость» (whose? of what?) — genitive.",
    "id": "c7"
   },
   {
@@ -109,36 +67,8 @@
    ],
    "correct": "старый граф",
    "case": "Именительный (Nominative)",
-   "explain": "«Старый граф» — the subject of the sentence stands in the nominative.",
+   "explain": "«старый граф» is the subject of «подошел» — who or what does it — so nominative.",
    "id": "c8"
-  },
-  {
-   "sentence": "На лице его было что-то наивно-праздничное, дававшее, в соединении с его твердыми, ___, даже несколько комическое выражение его лицу.",
-   "lemma": "черта",
-   "options": [
-    "мужественными чертами",
-    "мужественные черты",
-    "мужественных черт",
-    "мужественным чертам"
-   ],
-   "correct": "мужественными чертами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«мужественными чертами» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c12"
-  },
-  {
-   "sentence": "Беклешов и Федор Петрович Уваров, приехавшие с ним вместе, остановились в дверях, желая, чтоб он, как ___, прошел вперед их.",
-   "lemma": "гость",
-   "options": [
-    "главному гостю",
-    "главного гостя",
-    "главный гость",
-    "главным гостем"
-   ],
-   "correct": "главный гость",
-   "case": "Именительный (Nominative)",
-   "explain": "«главный гость» — the subject of the sentence stands in the nominative.",
-   "id": "c13"
   },
   {
    "sentence": "Старшины встретили его у первой двери, сказав ему несколько слов о радости видеть столь ___, и не дождавшись его ответа, как бы завладев им, окружили его и повели в гостиную.",
@@ -151,35 +81,21 @@
    ],
    "correct": "дорогого гостя",
    "case": "Винительный (Accusative)",
-   "explain": "«дорогого гостя» — the accusative marks the direct object of the verb.",
+   "explain": "«дорогого гостя» is the direct object of «видеть» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c14"
-  },
-  {
-   "sentence": "В дверях гостиной не было возможности пройти от столпившихся членов и гостей, давивших друг друга и через плечи друг друга старавшихся, как ___, рассмотреть Багратиона.",
-   "lemma": "зверь",
-   "options": [
-    "редком звере",
-    "редким зверем",
-    "редкому зверю",
-    "редкого зверя"
-   ],
-   "correct": "редкого зверя",
-   "case": "Винительный (Accusative)",
-   "explain": "«редкого зверя» — the accusative marks the direct object of the verb.",
-   "id": "c15"
   },
   {
    "sentence": "Граф Илья Андреич, проталкиваясь опять через толпу, вышел из гостиной и с ___ через минуту явился, неся большое серебряное блюдо, которое он поднес князю Багратиону.",
    "lemma": "старшина",
    "options": [
+    "другим старшиной",
+    "другом старшине",
     "другому старшине",
-    "другой старшина",
-    "другого старшину",
-    "другим старшиной"
+    "другой старшина"
    ],
    "correct": "другим старшиной",
    "case": "Творительный (Instrumental)",
-   "explain": "«другим старшиной» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "explain": "«другим старшиной» — «с» takes the instrumental here (с кем? с чем?): with — with the genitive it would mean 'from, off'.",
    "id": "c17"
   },
   {
@@ -193,7 +109,7 @@
    ],
    "correct": "сам сочинитель",
    "case": "Именительный (Nominative)",
-   "explain": "«Сам сочинитель» — the subject of the sentence stands in the nominative.",
+   "explain": "«сам сочинитель» is the subject of «взял» — who or what does it — so nominative.",
    "id": "c18"
   },
   {
@@ -207,36 +123,8 @@
    ],
    "correct": "самым обедом",
    "case": "Творительный (Instrumental)",
-   "explain": "«самым обедом» — after the preposition «перед», the instrumental marks the means, company, or complement.",
+   "explain": "«самым обедом» — «перед» always takes the instrumental.",
    "id": "c20"
-  },
-  {
-   "sentence": "Николай Ростов с Денисовым и ___ Долоховым сели вместе почти на середине стола.",
-   "lemma": "знакомец",
-   "options": [
-    "новым знакомцем",
-    "новом знакомце",
-    "новый знакомец",
-    "нового знакомца"
-   ],
-   "correct": "новым знакомцем",
-   "case": "Творительный (Instrumental)",
-   "explain": "«новым знакомцем» — the instrumental marks the means, company, or complement.",
-   "id": "c21"
-  },
-  {
-   "sentence": "___ молодого Ростова был слышен из за всех 300 голосов.",
-   "lemma": "голос",
-   "options": [
-    "восторженного голоса",
-    "восторженным голосом",
-    "восторженному голосу",
-    "восторженный голос"
-   ],
-   "correct": "восторженный голос",
-   "case": "Именительный (Nominative)",
-   "explain": "«Восторженный голос» — the subject of the sentence stands in the nominative.",
-   "id": "c26"
   },
   {
    "sentence": "И долго продолжались ___.",
@@ -249,7 +137,7 @@
    ],
    "correct": "громкие крики",
    "case": "Именительный (Nominative)",
-   "explain": "«громкие крики» — the subject of the sentence stands in the nominative.",
+   "explain": "«громкие крики» is the subject of «продолжались» — who or what does it — so nominative.",
    "id": "c27"
   }
  ]

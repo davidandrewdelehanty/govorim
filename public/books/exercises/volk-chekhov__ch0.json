@@ -1,60 +1,18 @@
 {
  "cases": [
   {
-   "sentence": "Помещик Нилов, плотный, крепкий мужчина, славящийся на всю губернию своей необыкновенной ___, и следователь Куприянов, возвращаясь однажды вечером с охоты, завернули на мельницу к старику Максиму.",
-   "lemma": "сила",
-   "options": [
-    "физической силе",
-    "физической силой",
-    "физической силы",
-    "физическая сила"
-   ],
-   "correct": "физической силой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«физической силой» — the instrumental marks the means, company, or complement.",
-   "id": "c1"
-  },
-  {
    "sentence": "До усадьбы Нилова оставалось только две версты, но охотники так утомились, что идти дальше не захотели и порешили сделать на мельнице ___.",
    "lemma": "привал",
    "options": [
-    "продолжительному привалу",
     "продолжительный привал",
     "продолжительного привала",
-    "продолжительном привале"
+    "продолжительным привалом",
+    "продолжительному привалу"
    ],
    "correct": "продолжительный привал",
    "case": "Винительный (Accusative)",
-   "explain": "«продолжительный привал» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«продолжительный привал» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c2"
-  },
-  {
-   "sentence": "Это решение имело тем ___, что у Максима водились чай и сахар, а при охотниках имелся приличный запас водки, коньяку и разной домашней снеди.",
-   "lemma": "смысл",
-   "options": [
-    "большем смысле",
-    "больший смысл",
-    "большему смыслу",
-    "большим смыслом"
-   ],
-   "correct": "больший смысл",
-   "case": "Винительный (Accusative)",
-   "explain": "«больший смысл» — the accusative marks the direct object of the verb.",
-   "id": "c3"
-  },
-  {
-   "sentence": "Это решение имело тем больший смысл, что у Максима водились чай и сахар, а при охотниках имелся ___ водки, коньяку и разной домашней снеди.",
-   "lemma": "запас",
-   "options": [
-    "приличному запасу",
-    "приличном запасе",
-    "приличный запас",
-    "приличным запасом"
-   ],
-   "correct": "приличный запас",
-   "case": "Именительный (Nominative)",
-   "explain": "«приличный запас» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
   },
   {
    "sentence": "Шут его знает, откуда ___ взялся.",
@@ -67,7 +25,7 @@
    ],
    "correct": "бешеный волк",
    "case": "Именительный (Nominative)",
-   "explain": "«бешеный волк» — the subject of the sentence stands in the nominative.",
+   "explain": "«бешеный волк» is the subject of «взялся» — who or what does it — so nominative.",
    "id": "c5"
   },
   {
@@ -81,22 +39,8 @@
    ],
    "correct": "бешеного человека",
    "case": "Винительный (Accusative)",
-   "explain": "«бешеного человека» — the accusative marks the direct object of the verb.",
+   "explain": "«бешеного человека» is the direct object of «увидеть» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c8"
-  },
-  {
-   "sentence": "Идет человек здоровый, покойный, ни о чем не думает, и вдруг ни с того ни с сего — цап его ___!",
-   "lemma": "собака",
-   "options": [
-    "бешеной собаке",
-    "бешеная собака",
-    "бешеной собакой",
-    "бешеной собаки"
-   ],
-   "correct": "бешеная собака",
-   "case": "Именительный (Nominative)",
-   "explain": "«бешеная собака» — the subject of the sentence stands in the nominative.",
-   "id": "c9"
   },
   {
    "sentence": "На дворе давно уже кончились сумерки и наступил ___.",
@@ -109,7 +53,7 @@
    ],
    "correct": "настоящий вечер",
    "case": "Именительный (Nominative)",
-   "explain": "«настоящий вечер» — the subject of the sentence stands in the nominative.",
+   "explain": "«настоящий вечер» is the subject of «наступил» — who or what does it — so nominative.",
    "id": "c11"
   },
   {
@@ -123,7 +67,7 @@
    ],
    "correct": "лунным светом",
    "case": "Творительный (Instrumental)",
-   "explain": "«лунным светом» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «залитой», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c12"
   },
   {
@@ -137,50 +81,8 @@
    ],
    "correct": "правой руке",
    "case": "Предложный (Prepositional)",
-   "explain": "«правой руке» — after the preposition «в», for location or topic.",
+   "explain": "«правой руке» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c14"
-  },
-  {
-   "sentence": "Тогда Нилов ___ схватил его за правую лапу, сжал ее у самой подмышки, потом быстро отнял свою правую руку от затылка волка и, сжавши ею левую подмышку, поднял волка на воздух.",
-   "lemma": "рука",
-   "options": [
-    "левой руке",
-    "левой руки",
-    "левая рука",
-    "левой рукой"
-   ],
-   "correct": "левой рукой",
-   "case": "Творительный (Instrumental)",
-   "explain": "«левой рукой» — the instrumental marks the means, company, or complement.",
-   "id": "c16"
-  },
-  {
-   "sentence": "Тогда Нилов левой рукой схватил его за правую лапу, сжал ее у ___, потом быстро отнял свою правую руку от затылка волка и, сжавши ею левую подмышку, поднял волка на воздух.",
-   "lemma": "подмышка",
-   "options": [
-    "сама подмышка",
-    "самой подмышке",
-    "самой подмышки",
-    "самой подмышкой"
-   ],
-   "correct": "самой подмышки",
-   "case": "Родительный (Genitive)",
-   "explain": "«самой подмышки» — the genitive here marks possession, absence, or quantity.",
-   "id": "c17"
-  },
-  {
-   "sentence": "Он начал пятиться, но не прошел и двух аршин, как почувствовал, что его ___ слабеет и отекает.",
-   "lemma": "рука",
-   "options": [
-    "правой руке",
-    "правой руки",
-    "правой рукой",
-    "правая рука"
-   ],
-   "correct": "правая рука",
-   "case": "Именительный (Nominative)",
-   "explain": "«правая рука» — the subject of the sentence stands in the nominative.",
-   "id": "c23"
   },
   {
    "sentence": "Следователь начал было утешать и обнадеживать, но после тех ___, на которые он был так щедр, когда раньше описывал водобоязнь, всякие утешительные речи были бы неуместны, а потому он почел за лучшее молчать.",
@@ -193,36 +95,8 @@
    ],
    "correct": "густых красок",
    "case": "Родительный (Genitive)",
-   "explain": "«густых красок» — after the preposition «после», the genitive here marks possession, absence, or quantity.",
+   "explain": "«густых красок» — «после» always takes the genitive.",
    "id": "c29"
-  },
-  {
-   "sentence": "Следователь начал было утешать и обнадеживать, но после тех густых красок, на которые он был так щедр, когда раньше описывал водобоязнь, всякие ___ были бы неуместны, а потому он почел за лучшее молчать.",
-   "lemma": "речь",
-   "options": [
-    "утешительные речи",
-    "утешительных речах",
-    "утешительными речами",
-    "утешительным речам"
-   ],
-   "correct": "утешительные речи",
-   "case": "Именительный (Nominative)",
-   "explain": "«утешительные речи» — the subject of the sentence stands in the nominative.",
-   "id": "c30"
-  },
-  {
-   "sentence": "Я вас спрашиваю толком, ___: что мне делать?",
-   "lemma": "язык",
-   "options": [
-    "русским языком",
-    "русскому языку",
-    "русского языка",
-    "русском языке"
-   ],
-   "correct": "русским языком",
-   "case": "Творительный (Instrumental)",
-   "explain": "«русским языком» — the instrumental marks the means, company, or complement.",
-   "id": "c33"
   },
   {
    "sentence": "Не понимаю этого ___!",
@@ -235,36 +109,8 @@
    ],
    "correct": "возмутительного равнодушия",
    "case": "Родительный (Genitive)",
-   "explain": "«возмутительного равнодушия» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«возмутительного равнодушия» is the object of a negated verb («не понимаю») — genitive instead of the accusative.",
    "id": "c34"
-  },
-  {
-   "sentence": "Овчинников взял с полки книгу и, пропуская ___, стал читать Нилову главу о водобоязни.",
-   "lemma": "место",
-   "options": [
-    "страшные места",
-    "страшными местами",
-    "страшных мест",
-    "страшных местах"
-   ],
-   "correct": "страшные места",
-   "case": "Винительный (Accusative)",
-   "explain": "«страшные места» — the accusative marks the direct object of the verb.",
-   "id": "c37"
-  },
-  {
-   "sentence": "— Ко всему этому прибавьте еще, что нам с вами неизвестно, был ли то ___ или здоровый.",
-   "lemma": "волк",
-   "options": [
-    "бешеного волка",
-    "бешеным волком",
-    "бешеный волк",
-    "бешеному волку"
-   ],
-   "correct": "бешеный волк",
-   "case": "Именительный (Nominative)",
-   "explain": "«бешеный волк» — the subject of the sentence stands in the nominative.",
-   "id": "c38"
   },
   {
    "sentence": "Потом на него напал ___, к которому так склонны добродушные, физически сильные люди.",
@@ -277,22 +123,8 @@
    ],
    "correct": "мальчишеский задор",
    "case": "Именительный (Nominative)",
-   "explain": "«мальчишеский задор» — the subject of the sentence stands in the nominative.",
+   "explain": "«мальчишеский задор» is the subject of «напал» — who or what does it — so nominative.",
    "id": "c40"
-  },
-  {
-   "sentence": "Потом на него напал мальчишеский задор, к которому так склонны добродушные, физически ___.",
-   "lemma": "человек",
-   "options": [
-    "сильные люди",
-    "сильных людей",
-    "сильных людях",
-    "сильным людям"
-   ],
-   "correct": "сильные люди",
-   "case": "Именительный (Nominative)",
-   "explain": "«сильные люди» — the subject of the sentence stands in the nominative.",
-   "id": "c41"
   }
  ]
 }

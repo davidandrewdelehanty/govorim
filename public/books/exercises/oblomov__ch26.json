@@ -1,48 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Тот прочитал доверенность, объявил, что в ней есть один ___, и взялся прояснить.",
-   "lemma": "пункт",
-   "options": [
-    "неясному пункту",
-    "неясном пункте",
-    "неясный пункт",
-    "неясного пункта"
-   ],
-   "correct": "неясный пункт",
-   "case": "Именительный (Nominative)",
-   "explain": "«неясный пункт» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Если есть симпатия душ, если ___ чуют друг друга издалека, то никогда это не доказывалось так очевидно, как на симпатии Агафьи Матвеевны и Анисьи.",
-   "lemma": "сердце",
-   "options": [
-    "родственным сердцам",
-    "родственные сердца",
-    "родственных сердцах",
-    "родственных сердец"
-   ],
-   "correct": "родственные сердца",
-   "case": "Именительный (Nominative)",
-   "explain": "«родственные сердца» — the subject of the sentence stands in the nominative.",
-   "id": "c4"
-  },
-  {
-   "sentence": "Илья Ильич встанет утром часов в девять, иногда увидит сквозь решетку забора мелькнувший ___ под мышкой уходящего в должность братца, потом примется за кофе.",
-   "lemma": "пакет",
-   "options": [
-    "бумажный пакет",
-    "бумажном пакете",
-    "бумажного пакета",
-    "бумажному пакету"
-   ],
-   "correct": "бумажный пакет",
-   "case": "Винительный (Accusative)",
-   "explain": "«бумажный пакет» — the accusative marks the direct object of the verb.",
-   "id": "c7"
-  },
-  {
    "sentence": "Редко-редко заберется в глушь разносчик и, остановясь перед ___, с полчаса горланит: «Яблоки, арбузы астраханские» — так, что нехотя купишь что-нибудь.",
    "lemma": "забор",
    "options": [
@@ -53,7 +11,7 @@
    ],
    "correct": "решетчатым забором",
    "case": "Творительный (Instrumental)",
-   "explain": "«решетчатым забором» — after the preposition «перед», the instrumental marks the means, company, or complement.",
+   "explain": "«решетчатым забором» — «перед» always takes the instrumental.",
    "id": "c8"
   },
   {
@@ -67,22 +25,8 @@
    ],
    "correct": "кофейной мельницы",
    "case": "Родительный (Genitive)",
-   "explain": "«кофейной мельницы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«кофейной мельницы» depends on the noun «ручку» (whose? of what?) — genitive.",
    "id": "c9"
-  },
-  {
-   "sentence": "— Вам бы замуж надо выйти, — сказал Обломов, — вы ___.",
-   "lemma": "хозяйка",
-   "options": [
-    "славной хозяйки",
-    "славной хозяйке",
-    "славная хозяйка",
-    "славной хозяйкой"
-   ],
-   "correct": "славная хозяйка",
-   "case": "Именительный (Nominative)",
-   "explain": "«славная хозяйка» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
   },
   {
    "sentence": "Иногда сквозь двери просунется ___ с тарелкой — просят попробовать хозяйского пирога.",
@@ -95,7 +39,7 @@
    ],
    "correct": "голая рука",
    "case": "Именительный (Nominative)",
-   "explain": "«голая рука» — the subject of the sentence stands in the nominative.",
+   "explain": "«голая рука» is the subject of «просунется» — who or what does it — so nominative.",
    "id": "c11"
   },
   {
@@ -109,7 +53,7 @@
    ],
    "correct": "неположенные дни",
    "case": "Винительный (Accusative)",
-   "explain": "«неположенные дни» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«неположенные дни» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c12"
   },
   {
@@ -123,36 +67,8 @@
    ],
    "correct": "ничтожного разговора",
    "case": "Родительный (Genitive)",
-   "explain": "«ничтожного разговора» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "explain": "«ничтожного разговора» — «от» always takes the genitive.",
    "id": "c15"
-  },
-  {
-   "sentence": "Он стал разбирать ___, который вдруг потерял краски, как только заговорил о нем Захар.",
-   "lemma": "миг",
-   "options": [
-    "поэтический миг",
-    "поэтическим мигом",
-    "поэтическом миге",
-    "поэтического мига"
-   ],
-   "correct": "поэтический миг",
-   "case": "Винительный (Accusative)",
-   "explain": "«поэтический миг» — the accusative marks the direct object of the verb.",
-   "id": "c18"
-  },
-  {
-   "sentence": "Вот что значит свидания наедине, поэзия утренних и вечерних зорь, ___ и обаятельное пение!",
-   "lemma": "взгляд",
-   "options": [
-    "страстных взглядах",
-    "страстным взглядам",
-    "страстные взгляды",
-    "страстных взглядов"
-   ],
-   "correct": "страстные взгляды",
-   "case": "Именительный (Nominative)",
-   "explain": "«страстные взгляды» — the subject of the sentence stands in the nominative.",
-   "id": "c19"
   },
   {
    "sentence": "Надо прежде стать под венец и тогда плавать в ___!..",
@@ -165,64 +81,8 @@
    ],
    "correct": "розовой атмосфере",
    "case": "Предложный (Prepositional)",
-   "explain": "«розовой атмосфере» — after the preposition «в», for location or topic.",
+   "explain": "«розовой атмосфере» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c20"
-  },
-  {
-   "sentence": "— Как ты мог сделать такой ___ барину?",
-   "lemma": "вопрос",
-   "options": [
-    "несообразным вопросом",
-    "несообразном вопросе",
-    "несообразного вопроса",
-    "несообразный вопрос"
-   ],
-   "correct": "несообразный вопрос",
-   "case": "Винительный (Accusative)",
-   "explain": "«несообразный вопрос» — the accusative marks the direct object of the verb.",
-   "id": "c22"
-  },
-  {
-   "sentence": "«Свадьба, свадьба», — начнут говорить ___, разные женщины, дети, по лакейским, по магазинам, по рынкам.",
-   "lemma": "человек",
-   "options": [
-    "праздные люди",
-    "праздным людям",
-    "праздными людьми",
-    "праздных людях"
-   ],
-   "correct": "праздные люди",
-   "case": "Именительный (Nominative)",
-   "explain": "«праздные люди» — the subject of the sentence stands in the nominative.",
-   "id": "c25"
-  },
-  {
-   "sentence": "«Свадьба, свадьба», — начнут говорить праздные люди, ___, дети, по лакейским, по магазинам, по рынкам.",
-   "lemma": "женщина",
-   "options": [
-    "разными женщинами",
-    "разных женщин",
-    "разные женщины",
-    "разным женщинам"
-   ],
-   "correct": "разные женщины",
-   "case": "Именительный (Nominative)",
-   "explain": "«разные женщины» — the subject of the sentence stands in the nominative.",
-   "id": "c26"
-  },
-  {
-   "sentence": "Ты мастер распускать ___, так узнай, почему они фальшивые.",
-   "lemma": "слух",
-   "options": [
-    "фальшивыми слухами",
-    "фальшивым слухам",
-    "фальшивых слухах",
-    "фальшивые слухи"
-   ],
-   "correct": "фальшивые слухи",
-   "case": "Винительный (Accusative)",
-   "explain": "«фальшивые слухи» — the accusative marks the direct object of the verb.",
-   "id": "c27"
   },
   {
    "sentence": "___ на рынок ходит!",
@@ -235,22 +95,8 @@
    ],
    "correct": "сама барыня",
    "case": "Именительный (Nominative)",
-   "explain": "«Сама барыня» — the subject of the sentence stands in the nominative.",
+   "explain": "«сама барыня» is the subject of «ходит» — who or what does it — so nominative.",
    "id": "c29"
-  },
-  {
-   "sentence": "Захар мигал ___ и на цыпочках уходил было к двери.",
-   "lemma": "глаз",
-   "options": [
-    "испуганными глазами",
-    "испуганные глаза",
-    "испуганных глаз",
-    "испуганным глазам"
-   ],
-   "correct": "испуганными глазами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«испуганными глазами» — the instrumental marks the means, company, or complement.",
-   "id": "c30"
   }
  ]
 }

@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "В десять часов вечера под светлое воскресенье утих наш ___.",
-   "lemma": "коридор",
-   "options": [
-    "проклятому коридору",
-    "проклятого коридора",
-    "проклятый коридор",
-    "проклятым коридором"
-   ],
-   "correct": "проклятый коридор",
-   "case": "Именительный (Nominative)",
-   "explain": "«проклятый коридор» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "В ___ родилась у меня жгучая мысль о том, что исполнилось мое мечтанье, и бабка Павловна, торгующая папиросами, умерла.",
    "lemma": "тишина",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "блаженной тишине",
    "case": "Предложный (Prepositional)",
-   "explain": "«блаженной тишине» — after the preposition «в», for location or topic.",
+   "explain": "«блаженной тишине» — «в» takes the prepositional here (где? в чём?) — the accusative would mean movement into (куда? во что?).",
    "id": "c2"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "неожиданного появления",
    "case": "Родительный (Genitive)",
-   "explain": "«неожиданного появления» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«неожиданного появления» depends on the noun «факт» (whose? of what?) — genitive.",
    "id": "c3"
   },
   {
@@ -53,36 +39,22 @@
    ],
    "correct": "непрерывный вопль",
    "case": "Именительный (Nominative)",
-   "explain": "«непрерывный вопль» — the subject of the sentence stands in the nominative.",
+   "explain": "«непрерывный вопль» is the subject of «начался» — who or what does it — so nominative.",
    "id": "c4"
   },
   {
    "sentence": "Это был непрерывный ___ в до-диезной душевной боли и отчаяния, предсмертный тяжкий вой.",
    "lemma": "вой",
    "options": [
-    "басовый вой",
-    "басовым воем",
     "басового воя",
+    "басовый вой",
+    "басовому вою",
     "басовом вое"
    ],
    "correct": "басовый вой",
    "case": "Именительный (Nominative)",
-   "explain": "«басовый вой» — the subject of the sentence stands in the nominative.",
+   "explain": "«басовый вой» is the predicate after «был» — what someone or something is: the nominative of the predicate (the instrumental is also possible after быть, so it is not offered).",
    "id": "c5"
-  },
-  {
-   "sentence": "Это был непрерывный басовый вой в до-диезной душевной боли и отчаяния, предсмертный ___.",
-   "lemma": "вой",
-   "options": [
-    "тяжкому вою",
-    "тяжким воем",
-    "тяжкого воя",
-    "тяжкий вой"
-   ],
-   "correct": "тяжкий вой",
-   "case": "Винительный (Accusative)",
-   "explain": "«тяжкий вой» — the accusative marks the direct object of the verb.",
-   "id": "c6"
   },
   {
    "sentence": "В коридоре под лампочкой, в тесном кольце изумленных жителей ___, стоял неизвестный мне гражданин.",
@@ -95,36 +67,8 @@
    ],
    "correct": "знаменитого коридора",
    "case": "Родительный (Genitive)",
-   "explain": "«знаменитого коридора» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«знаменитого коридора» depends on the noun «жителей» (whose? of what?) — genitive.",
    "id": "c8"
-  },
-  {
-   "sentence": "— Так-то, — хрипло давился и завывал ___, обливаясь крупными слезами, — Христос воскресе!",
-   "lemma": "гражданин",
-   "options": [
-    "неизвестный гражданин",
-    "неизвестному гражданину",
-    "неизвестного гражданина",
-    "неизвестным гражданином"
-   ],
-   "correct": "неизвестный гражданин",
-   "case": "Именительный (Nominative)",
-   "explain": "«неизвестный гражданин» — the subject of the sentence stands in the nominative.",
-   "id": "c10"
-  },
-  {
-   "sentence": "— Так-то, — хрипло давился и завывал неизвестный гражданин, обливаясь ___, — Христос воскресе!",
-   "lemma": "слеза",
-   "options": [
-    "крупными слезами",
-    "крупных слёз",
-    "крупным слезам",
-    "крупных слезах"
-   ],
-   "correct": "крупными слезами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«крупными слезами» — the instrumental marks the means, company, or complement.",
-   "id": "c11"
   },
   {
    "sentence": "Но на лице у петуха была написана ___.",
@@ -137,7 +81,7 @@
    ],
    "correct": "нечеловеческая мука",
    "case": "Именительный (Nominative)",
-   "explain": "«нечеловеческая мука» — the subject of the sentence stands in the nominative.",
+   "explain": "«нечеловеческая мука» is the subject of «написана» — who or what does it — so nominative.",
    "id": "c12"
   },
   {
@@ -151,22 +95,8 @@
    ],
    "correct": "цепких рук",
    "case": "Родительный (Genitive)",
-   "explain": "«цепких рук» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«цепких рук» — «из» always takes the genitive.",
    "id": "c13"
-  },
-  {
-   "sentence": "Сцену обдирания ___ они видели, как и я, впервые.",
-   "lemma": "петух",
-   "options": [
-    "живому петуху",
-    "живого петуха",
-    "живой петух",
-    "живым петухом"
-   ],
-   "correct": "живого петуха",
-   "case": "Винительный (Accusative)",
-   "explain": "«живого петуха» — the accusative marks the direct object of the verb.",
-   "id": "c15"
   },
   {
    "sentence": "Квартхоз квартиры No 50 Василий Иванович криво и отчаянно улыбался, хватая петуха то за неуловимое крыло, то за ноги, пытался вырвать его у ___.",
@@ -179,22 +109,8 @@
    ],
    "correct": "неизвестного гражданина",
    "case": "Родительный (Genitive)",
-   "explain": "«неизвестного гражданина» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "explain": "«неизвестного гражданина» — «у» always takes the genitive.",
    "id": "c16"
-  },
-  {
-   "sentence": "В гробовом молчании разошлись все обитатели самой ___ в Москве.",
-   "lemma": "квартира",
-   "options": [
-    "знаменитой квартире",
-    "знаменитой квартиры",
-    "знаменитой квартирой",
-    "знаменитая квартира"
-   ],
-   "correct": "знаменитой квартиры",
-   "case": "Родительный (Genitive)",
-   "explain": "«знаменитой квартиры» — the genitive here marks possession, absence, or quantity.",
-   "id": "c18"
   },
   {
    "sentence": "— Пошел мой ___ (читай: квартхоз — муж Катерины Ивановны), как добрый, за покупками.",
@@ -207,22 +123,8 @@
    ],
    "correct": "сукин сын",
    "case": "Именительный (Nominative)",
-   "explain": "«сукин сын» — the subject of the sentence stands in the nominative.",
+   "explain": "«сукин сын» is the subject of «Пошел» — who or what does it — so nominative.",
    "id": "c19"
-  },
-  {
-   "sentence": "Ему лично, шоферу и дуськину мужу пришлось обезоруживать Василь Иваныча, причем он порезал себе руку (Василь Иваныч после слов председателя вооружился ___, чтобы резать Катерину Ивановну: «Так я ж ей покажу»).",
-   "lemma": "нож",
-   "options": [
-    "кухонный нож",
-    "кухонного ножа",
-    "кухонным ножом",
-    "кухонном ноже"
-   ],
-   "correct": "кухонным ножом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«кухонным ножом» — the instrumental marks the means, company, or complement.",
-   "id": "c22"
   },
   {
    "sentence": "Если мне отравят существование, я не могу писать фельетоны, а если я не буду писать фельетоны, то произойдет ___.",
@@ -235,22 +137,8 @@
    ],
    "correct": "финансовый крах",
    "case": "Именительный (Nominative)",
-   "explain": "«финансовый крах» — the subject of the sentence stands in the nominative.",
+   "explain": "«финансовый крах» is the subject of «произойдет» — who or what does it — so nominative.",
    "id": "c23"
-  },
-  {
-   "sentence": "И вдруг Сидорыч заговорил на эсперанто (кстати: удивительно ___).",
-   "lemma": "язык",
-   "options": [
-    "противном языке",
-    "противный язык",
-    "противному языку",
-    "противным языком"
-   ],
-   "correct": "противный язык",
-   "case": "Именительный (Nominative)",
-   "explain": "«противный язык» — the subject of the sentence stands in the nominative.",
-   "id": "c24"
   },
   {
    "sentence": "Не знаю, что прочел эсперантист в моих глазах, но только он вдруг съежился, странные ___, похожие на помесь латинско-русских слов, стали обрываться, и Иван Сидорыч перешел на общедоступный язык.",
@@ -263,7 +151,7 @@
    ],
    "correct": "кургузые слова",
    "case": "Именительный (Nominative)",
-   "explain": "«кургузые слова» — the subject of the sentence stands in the nominative.",
+   "explain": "«кургузые слова» is the subject of «стали» — who or what does it — so nominative.",
    "id": "c25"
   },
   {
@@ -277,7 +165,7 @@
    ],
    "correct": "младший дворник",
    "case": "Именительный (Nominative)",
-   "explain": "«младший дворник» — the subject of the sentence stands in the nominative.",
+   "explain": "«младший дворник» is the subject of «пришел» — who or what does it — so nominative.",
    "id": "c28"
   },
   {
@@ -291,22 +179,8 @@
    ],
    "correct": "сивушных масел",
    "case": "Родительный (Genitive)",
-   "explain": "«сивушных масел» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«сивушных масел» depends on the noun «запахом» (whose? of what?) — genitive.",
    "id": "c30"
-  },
-  {
-   "sentence": "___ в течение 24 часов и никаких замен штрафом.",
-   "lemma": "разбирательство",
-   "options": [
-    "судебное разбирательство",
-    "судебным разбирательством",
-    "судебному разбирательству",
-    "судебного разбирательства"
-   ],
-   "correct": "судебное разбирательство",
-   "case": "Именительный (Nominative)",
-   "explain": "«Судебное разбирательство» — the subject of the sentence stands in the nominative.",
-   "id": "c31"
   }
  ]
 }

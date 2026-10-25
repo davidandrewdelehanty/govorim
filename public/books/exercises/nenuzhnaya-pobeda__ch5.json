@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Через неделю после встречи с бароном фон Зайниц, в один из самых ___, они сидели под навесом железнодорожной станции.",
-   "lemma": "полдень",
-   "options": [
-    "жаркими полуднями",
-    "жаркие полудни",
-    "жарким полудням",
-    "жарких полудней"
-   ],
-   "correct": "жарких полудней",
-   "case": "Родительный (Genitive)",
-   "explain": "«жарких полудней» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
-   "id": "c1"
-  },
-  {
    "sentence": "Зал ___ был наполнен пьющими офицерами.",
    "lemma": "класс",
    "options": [
@@ -25,7 +11,7 @@
    ],
    "correct": "первого класса",
    "case": "Родительный (Genitive)",
-   "explain": "«первого класса» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«первого класса» depends on the noun «Зал» (whose? of what?) — genitive.",
    "id": "c4"
   },
   {
@@ -39,7 +25,7 @@
    ],
    "correct": "пьющими офицерами",
    "case": "Творительный (Instrumental)",
-   "explain": "«пьющими офицерами» — the instrumental marks the means, company, or complement.",
+   "explain": "After the passive «наполнен», the doer or the means (by whom? with what?) is in the instrumental.",
    "id": "c5"
   },
   {
@@ -53,7 +39,7 @@
    ],
    "correct": "третьего класса",
    "case": "Родительный (Genitive)",
-   "explain": "«третьего класса» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«третьего класса» depends on the noun «зале» (whose? of what?) — genitive.",
    "id": "c6"
   },
   {
@@ -67,7 +53,7 @@
    ],
    "correct": "военной музыки",
    "case": "Родительный (Genitive)",
-   "explain": "«военной музыки» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«военной музыки» depends on the noun «оркестр» (whose? of what?) — genitive.",
    "id": "c7"
   },
   {
@@ -81,7 +67,7 @@
    ],
    "correct": "десятичных весов",
    "case": "Родительный (Genitive)",
-   "explain": "«десятичных весов» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«десятичных весов» depends on the noun «площадке» (whose? of what?) — genitive.",
    "id": "c8"
   },
   {
@@ -95,7 +81,7 @@
    ],
    "correct": "пьяные офицеры",
    "case": "Именительный (Nominative)",
-   "explain": "«пьяные офицеры» — the subject of the sentence stands in the nominative.",
+   "explain": "«пьяные офицеры» is the subject of «прохаживались» — who or what does it — so nominative.",
    "id": "c9"
   },
   {
@@ -109,50 +95,22 @@
    ],
    "correct": "скверный оркестр",
    "case": "Именительный (Nominative)",
-   "explain": "«скверный оркестр» — the subject of the sentence stands in the nominative.",
+   "explain": "«скверный оркестр» is the subject of «молчит» — who or what does it — so nominative.",
    "id": "c12"
-  },
-  {
-   "sentence": "Ты только мешаешь своим ___!",
-   "lemma": "голос",
-   "options": [
-    "козлиный голос",
-    "козлиным голосом",
-    "козлиному голосу",
-    "козлиного голоса"
-   ],
-   "correct": "козлиным голосом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«козлиным голосом» — the instrumental marks the means, company, or complement.",
-   "id": "c13"
   },
   {
    "sentence": "На все ___ она всегда отвечала до сих пор отказом.",
    "lemma": "предложение",
    "options": [
-    "подобных предложениях",
-    "подобным предложениям",
+    "подобными предложениями",
     "подобные предложения",
-    "подобными предложениями"
+    "подобных предложений",
+    "подобным предложениям"
    ],
    "correct": "подобные предложения",
    "case": "Винительный (Accusative)",
-   "explain": "«подобные предложения» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "explain": "«подобные предложения» — «на» takes the accusative here (куда? на что? на сколько?) — the prepositional would mean where something is (где? на чём?).",
    "id": "c17"
-  },
-  {
-   "sentence": "Но ___ была неумолима.",
-   "lemma": "девчонка",
-   "options": [
-    "упрямой девчонке",
-    "упрямая девчонка",
-    "упрямой девчонкой",
-    "упрямой девчонки"
-   ],
-   "correct": "упрямая девчонка",
-   "case": "Именительный (Nominative)",
-   "explain": "«упрямая девчонка» — the subject of the sentence stands in the nominative.",
-   "id": "c21"
   },
   {
    "sentence": "Отец, бледный, вспотевший, с дрожащими пальцами и губами, забился в ___ вагона и, закрыв глаза, молился богу.",
@@ -165,50 +123,8 @@
    ],
    "correct": "дальний угол",
    "case": "Винительный (Accusative)",
-   "explain": "«дальний угол» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "explain": "«дальний угол» — «в» takes the accusative here (куда? во что? когда?) — the prepositional would mean where something is (где? в чём?).",
    "id": "c22"
-  },
-  {
-   "sentence": "Он не узнавал в этой веселой, слушающей ___ Ильке свою кроткую, часто плачущую Ильку.",
-   "lemma": "пошлость",
-   "options": [
-    "офицерских пошлостей",
-    "офицерские пошлости",
-    "офицерским пошлостям",
-    "офицерскими пошлостями"
-   ],
-   "correct": "офицерские пошлости",
-   "case": "Винительный (Accusative)",
-   "explain": "«офицерские пошлости» — the accusative marks the direct object of the verb.",
-   "id": "c23"
-  },
-  {
-   "sentence": "Непонятны, загадочны эти ___!",
-   "lemma": "девчонка",
-   "options": [
-    "глупых девчонок",
-    "глупые девчонки",
-    "глупыми девчонками",
-    "глупых девчонках"
-   ],
-   "correct": "глупые девчонки",
-   "case": "Именительный (Nominative)",
-   "explain": "«глупые девчонки» — the subject of the sentence stands in the nominative.",
-   "id": "c24"
-  },
-  {
-   "sentence": "Ей и ее отцу предложили ___, но они не дотронулись до него.",
-   "lemma": "завтрак",
-   "options": [
-    "роскошном завтраке",
-    "роскошному завтраку",
-    "роскошным завтраком",
-    "роскошный завтрак"
-   ],
-   "correct": "роскошный завтрак",
-   "case": "Винительный (Accusative)",
-   "explain": "«роскошный завтрак» — the accusative marks the direct object of the verb.",
-   "id": "c25"
   },
   {
    "sentence": "Таков был первый шаг на ___, от которого глупая Илька ждала миллион.",
@@ -221,7 +137,7 @@
    ],
    "correct": "новом поприще",
    "case": "Предложный (Prepositional)",
-   "explain": "«новом поприще» — after the preposition «на», for location or topic.",
+   "explain": "«новом поприще» — «на» takes the prepositional here (где? на чём?) — the accusative would mean movement onto (куда? на что?).",
    "id": "c28"
   },
   {
@@ -235,7 +151,7 @@
    ],
    "correct": "первого класса",
    "case": "Родительный (Genitive)",
-   "explain": "«первого класса» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«первого класса» depends on the noun «вагоне» (whose? of what?) — genitive.",
    "id": "c29"
   },
   {
@@ -249,22 +165,8 @@
    ],
    "correct": "молодых девушек",
    "case": "Родительный (Genitive)",
-   "explain": "«молодых девушек» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«молодых девушек» depends on the noun «вагоне» (whose? of what?) — genitive.",
    "id": "c30"
-  },
-  {
-   "sentence": "Она бежала в вагоне первого класса в обществе пяти молодых девушек, старухи с большим ___ и толстого немца с большой лысиной.",
-   "lemma": "нос",
-   "options": [
-    "орлином носе",
-    "орлиный нос",
-    "орлиным носом",
-    "орлиному носу"
-   ],
-   "correct": "орлиным носом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«орлиным носом» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c31"
   },
   {
    "sentence": "На пути немец раздавал свои ___, на которых было написано: «Иосиф Кельтер, содержатель оркестра и венгерского хора в Триесте».",
@@ -277,36 +179,8 @@
    ],
    "correct": "визитные карточки",
    "case": "Винительный (Accusative)",
-   "explain": "«визитные карточки» — the accusative marks the direct object of the verb.",
+   "explain": "«визитные карточки» is the direct object of «раздавал» (кого? что?) — accusative.",
    "id": "c33"
-  },
-  {
-   "sentence": "На пути немец раздавал свои визитные карточки, на которых было написано: «Иосиф Кельтер, содержатель оркестра и ___ в Триесте».",
-   "lemma": "хор",
-   "options": [
-    "венгерском хоре",
-    "венгерский хор",
-    "венгерскому хору",
-    "венгерского хора"
-   ],
-   "correct": "венгерского хора",
-   "case": "Родительный (Genitive)",
-   "explain": "«венгерского хора» — the genitive here marks possession, absence, or quantity.",
-   "id": "c34"
-  },
-  {
-   "sentence": "Старуха с ___ была его компаньонка.",
-   "lemma": "нос",
-   "options": [
-    "орлином носе",
-    "орлиный нос",
-    "орлиным носом",
-    "орлиному носу"
-   ],
-   "correct": "орлиным носом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«орлиным носом» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c35"
   }
  ]
 }

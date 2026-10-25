@@ -1,60 +1,18 @@
 {
  "cases": [
   {
-   "sentence": "Тимофей Петрович Жазиков, ___.",
-   "lemma": "человек",
-   "options": [
-    "молодой человек",
-    "молодом человеке",
-    "молодому человеку",
-    "молодого человека"
-   ],
-   "correct": "молодой человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«молодой человек» — the subject of the sentence stands in the nominative.",
-   "id": "c2"
-  },
-  {
-   "sentence": "Василий Васильевич Блинов, ___, сосед Жазикова.",
-   "lemma": "помещик",
-   "options": [
-    "степного помещика",
-    "степным помещиком",
-    "степном помещике",
-    "степной помещик"
-   ],
-   "correct": "степной помещик",
-   "case": "Именительный (Nominative)",
-   "explain": "«степной помещик» — the subject of the sentence stands in the nominative.",
-   "id": "c3"
-  },
-  {
    "sentence": "(Матвей уходит.) Этот ___ решительно никуда не годится; надобно выписать себе другого, помоложе.",
    "lemma": "дурак",
    "options": [
     "старый дурак",
-    "старого дурака",
     "старом дураке",
-    "старому дураку"
+    "старому дураку",
+    "старым дураком"
    ],
    "correct": "старый дурак",
    "case": "Именительный (Nominative)",
-   "explain": "«старый дурак» — the subject of the sentence stands in the nominative.",
+   "explain": "«старый дурак» is the subject of «годится» — who or what does it — so nominative.",
    "id": "c6"
-  },
-  {
-   "sentence": "Матвей (вынимая из кармана сверточек ___).",
-   "lemma": "бумага",
-   "options": [
-    "серая бумага",
-    "серой бумагой",
-    "серой бумаге",
-    "серой бумаги"
-   ],
-   "correct": "серой бумаги",
-   "case": "Родительный (Genitive)",
-   "explain": "«серой бумаги» — the genitive here marks possession, absence, or quantity.",
-   "id": "c9"
   },
   {
    "sentence": "Терпеть не могу ___.",
@@ -67,176 +25,8 @@
    ],
    "correct": "русской работы",
    "case": "Родительный (Genitive)",
-   "explain": "«русской работы» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«русской работы» is the object of a negated verb («не могу») — genitive instead of the accusative.",
    "id": "c12"
-  },
-  {
-   "sentence": "___ (после некоторого молчания).",
-   "lemma": "голос",
-   "options": [
-    "другому голосу",
-    "другой голос",
-    "другом голосе",
-    "другого голоса"
-   ],
-   "correct": "другой голос",
-   "case": "Именительный (Nominative)",
-   "explain": "«Другой голос» — the subject of the sentence stands in the nominative.",
-   "id": "c17"
-  },
-  {
-   "sentence": "(Садится за стол и пишет.) Какие ___!",
-   "lemma": "перо",
-   "options": [
-    "мерзкими перьями",
-    "мерзким перьям",
-    "мерзких перьев",
-    "мерзкие перья"
-   ],
-   "correct": "мерзкие перья",
-   "case": "Именительный (Nominative)",
-   "explain": "«мерзкие перья» — the subject of the sentence stands in the nominative.",
-   "id": "c18"
-  },
-  {
-   "sentence": "Он ___ и меня любит.",
-   "lemma": "человек",
-   "options": [
-    "хорошего человека",
-    "хороший человек",
-    "хорошим человеком",
-    "хорошем человеке"
-   ],
-   "correct": "хороший человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«хороший человек» — the subject of the sentence stands in the nominative.",
-   "id": "c20"
-  },
-  {
-   "sentence": "Да, именно грустно; Пушкин ___.",
-   "lemma": "поэт",
-   "options": [
-    "великом поэте",
-    "великому поэту",
-    "великий поэт",
-    "великим поэтом"
-   ],
-   "correct": "великий поэт",
-   "case": "Именительный (Nominative)",
-   "explain": "«великий поэт» — the subject of the sentence stands in the nominative.",
-   "id": "c21"
-  },
-  {
-   "sentence": "Да пришел какой-то собачник; вас спрашивает; говорит, что вы, дескать, ___ приказали ему прийти к вам на квартиру.",
-   "lemma": "день",
-   "options": [
-    "третий день",
-    "третьего дня",
-    "третьем дне",
-    "третьему дню"
-   ],
-   "correct": "третьего дня",
-   "case": "Родительный (Genitive)",
-   "explain": "«третьего дня» — the genitive here marks possession, absence, or quantity.",
-   "id": "c25"
-  },
-  {
-   "sentence": "(Собака робко взглядывает на своего хозяина и судорожно шевелит ___.)",
-   "lemma": "хвост",
-   "options": [
-    "куцем хвосте",
-    "куцему хвосту",
-    "куцым хвостом",
-    "куцый хвост"
-   ],
-   "correct": "куцым хвостом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«куцым хвостом» — the instrumental marks the means, company, or complement.",
-   "id": "c26"
-  },
-  {
-   "sentence": "Уж мы ___ не держим.",
-   "lemma": "собака",
-   "options": [
-    "другие собаки",
-    "других собак",
-    "другими собаками",
-    "другим собакам"
-   ],
-   "correct": "других собак",
-   "case": "Винительный (Accusative)",
-   "explain": "«других собак» — the accusative marks the direct object of the verb.",
-   "id": "c27"
-  },
-  {
-   "sentence": "___ — сорок рублей; извольте — за сорок рублей отдам.",
-   "lemma": "цена",
-   "options": [
-    "крайняя цена",
-    "крайней цене",
-    "крайней цены",
-    "крайней ценой"
-   ],
-   "correct": "крайняя цена",
-   "case": "Именительный (Nominative)",
-   "explain": "«Крайняя цена» — the subject of the sentence stands in the nominative.",
-   "id": "c28"
-  },
-  {
-   "sentence": "(Начинает ходить по комнате) — Экое ___!..",
-   "lemma": "животное",
-   "options": [
-    "грубого животного",
-    "грубое животное",
-    "грубом животном",
-    "грубому животному"
-   ],
-   "correct": "грубое животное",
-   "case": "Именительный (Nominative)",
-   "explain": "«грубое животное» — the subject of the sentence stands in the nominative.",
-   "id": "c29"
-  },
-  {
-   "sentence": "Тимофей Петрович, позвольте мне, ___, слово молвить.",
-   "lemma": "дурак",
-   "options": [
-    "старого дурака",
-    "старым дураком",
-    "старый дурак",
-    "старому дураку"
-   ],
-   "correct": "старому дураку",
-   "case": "Дательный (Dative)",
-   "explain": "«старому дураку» — the dative marks the indirect object or recipient.",
-   "id": "c31"
-  },
-  {
-   "sentence": "Вы, батюшка, наш ___; вы, батюшка, столбовой помещик; охота же вам проживать в городе — в нужде, да в хлопотах.",
-   "lemma": "господин",
-   "options": [
-    "природном господине",
-    "природный господин",
-    "природного господина",
-    "природным господином"
-   ],
-   "correct": "природный господин",
-   "case": "Именительный (Nominative)",
-   "explain": "«природный господин» — the subject of the sentence stands in the nominative.",
-   "id": "c32"
-  },
-  {
-   "sentence": "Дедушка-то ваш, вечная ему память, Тимофей Лукич, ведь с косую сажень был ростом! как изволит осерчать, бывало, да как крикнет ___ — так от него, голубчика, рад в землю уйти!",
-   "lemma": "голос",
-   "options": [
-    "зычному голосу",
-    "зычном голосе",
-    "зычным голосом",
-    "зычный голос"
-   ],
-   "correct": "зычным голосом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«зычным голосом» — the instrumental marks the means, company, or complement.",
-   "id": "c33"
   },
   {
    "sentence": "А я, брат, буду тебе благодарен до ___.",
@@ -249,78 +39,8 @@
    ],
    "correct": "гробовой доски",
    "case": "Родительный (Genitive)",
-   "explain": "«гробовой доски» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "explain": "«гробовой доски» — «до» always takes the genitive.",
    "id": "c36"
-  },
-  {
-   "sentence": "Ну, а насчет девушек — известное дело: всякая девушка ___, лепи из нее, что хочешь.",
-   "lemma": "воск",
-   "options": [
-    "мягком воске",
-    "мягким воском",
-    "мягкий воск",
-    "мягкому воску"
-   ],
-   "correct": "мягкий воск",
-   "case": "Винительный (Accusative)",
-   "explain": "«мягкий воск» — the accusative marks the direct object of the verb.",
-   "id": "c37"
-  },
-  {
-   "sentence": "Вот уж никак не ожидал я такой ___!",
-   "lemma": "разлука",
-   "options": [
-    "скорой разлуке",
-    "скорой разлукой",
-    "скорой разлуки",
-    "скорая разлука"
-   ],
-   "correct": "скорой разлуки",
-   "case": "Родительный (Genitive)",
-   "explain": "«скорой разлуки» — the genitive here marks possession, absence, or quantity.",
-   "id": "c41"
-  },
-  {
-   "sentence": "(Входит Жазиков и Василий Васильевич Блинов, ___, с огромными крашеными усами и пухлым лицом.)",
-   "lemma": "помещик",
-   "options": [
-    "степного помещика",
-    "степным помещиком",
-    "степном помещике",
-    "степной помещик"
-   ],
-   "correct": "степной помещик",
-   "case": "Именительный (Nominative)",
-   "explain": "«степной помещик» — the subject of the sentence stands in the nominative.",
-   "id": "c43"
-  },
-  {
-   "sentence": "(Входит Жазиков и Василий Васильевич Блинов, степной помещик, с огромными ___ и пухлым лицом.)",
-   "lemma": "ус",
-   "options": [
-    "крашеных усов",
-    "крашеным усам",
-    "крашеные усы",
-    "крашеными усами"
-   ],
-   "correct": "крашеными усами",
-   "case": "Творительный (Instrumental)",
-   "explain": "«крашеными усами» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c44"
-  },
-  {
-   "sentence": "(Входит Жазиков и Василий Васильевич Блинов, степной помещик, с огромными крашеными усами и ___.)",
-   "lemma": "лицо",
-   "options": [
-    "пухлому лицу",
-    "пухлом лице",
-    "пухлого лица",
-    "пухлым лицом"
-   ],
-   "correct": "пухлым лицом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«пухлым лицом» — the instrumental marks the means, company, or complement.",
-   "id": "c45"
   },
   {
    "sentence": "Ведь этакой ___ завелся!",
@@ -333,36 +53,8 @@
    ],
    "correct": "проклятый сосед",
    "case": "Именительный (Nominative)",
-   "explain": "«проклятый сосед» — the subject of the sentence stands in the nominative.",
+   "explain": "«проклятый сосед» is the subject of «завелся» — who or what does it — so nominative.",
    "id": "c50"
-  },
-  {
-   "sentence": "(Глядя вслед Блинову вздыхает.) Прошло ты, ___! перевелось ты, дворянское племечко!",
-   "lemma": "времечко",
-   "options": [
-    "золотом времечке",
-    "золотому времечку",
-    "золотого времечка",
-    "золотое времечко"
-   ],
-   "correct": "золотое времечко",
-   "case": "Именительный (Nominative)",
-   "explain": "«золотое времечко» — the subject of the sentence stands in the nominative.",
-   "id": "c54"
-  },
-  {
-   "sentence": "(Глядя вслед Блинову вздыхает.) Прошло ты, золотое времечко! перевелось ты, ___!",
-   "lemma": "племечко",
-   "options": [
-    "дворянское племечко",
-    "дворянским племечком",
-    "дворянском племечке",
-    "дворянскому племечку"
-   ],
-   "correct": "дворянское племечко",
-   "case": "Именительный (Nominative)",
-   "explain": "«дворянское племечко» — the subject of the sentence stands in the nominative.",
-   "id": "c55"
   }
  ]
 }

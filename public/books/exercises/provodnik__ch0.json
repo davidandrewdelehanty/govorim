@@ -1,34 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Скучно стало нам — доктору Полканову и мне — шагать ___ по горячему песку берега ленивой Оки, мимо небогатых рязанских полей, под солнцем последних дней мая; слишком усердное в этом году, оно угрожало засухой.",
-   "lemma": "день",
-   "options": [
-    "втором дне",
-    "второй день",
-    "второму дню",
-    "вторым днём"
-   ],
-   "correct": "второй день",
-   "case": "Винительный (Accusative)",
-   "explain": "«второй день» — the accusative marks the direct object of the verb.",
-   "id": "c3"
-  },
-  {
-   "sentence": "Скучно стало нам — доктору Полканову и мне — шагать второй день по горячему песку берега ленивой Оки, мимо небогатых ___, под солнцем последних дней мая; слишком усердное в этом году, оно угрожало засухой.",
-   "lemma": "поле",
-   "options": [
-    "рязанским полям",
-    "рязанских полей",
-    "рязанских полях",
-    "рязанскими полями"
-   ],
-   "correct": "рязанских полей",
-   "case": "Родительный (Genitive)",
-   "explain": "«рязанских полей» — the genitive here marks possession, absence, or quantity.",
-   "id": "c5"
-  },
-  {
    "sentence": "Скучно стало нам — доктору Полканову и мне — шагать второй день по горячему песку берега ленивой Оки, мимо небогатых рязанских полей, под солнцем ___ мая; слишком усердное в этом году, оно угрожало засухой.",
    "lemma": "день",
    "options": [
@@ -39,7 +11,7 @@
    ],
    "correct": "последних дней",
    "case": "Родительный (Genitive)",
-   "explain": "«последних дней» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«последних дней» depends on the noun «солнцем» (whose? of what?) — genitive.",
    "id": "c6"
   },
   {
@@ -53,7 +25,7 @@
    ],
    "correct": "малые деньги",
    "case": "Винительный (Accusative)",
-   "explain": "«малые деньги» — after the preposition «за», the accusative marks the direct object of the verb.",
+   "explain": "«малые деньги» — «за» takes the accusative here (куда? за что? за кого?) — the instrumental would mean position behind or at (где? за чем?).",
    "id": "c8"
   },
   {
@@ -67,7 +39,7 @@
    ],
    "correct": "игрушечной речкой",
    "case": "Творительный (Instrumental)",
-   "explain": "«игрушечной речкой» — after the preposition «над», the instrumental marks the means, company, or complement.",
+   "explain": "«игрушечной речкой» — «над» always takes the instrumental.",
    "id": "c9"
   },
   {
@@ -81,36 +53,8 @@
    ],
    "correct": "мощных сосен",
    "case": "Родительный (Genitive)",
-   "explain": "«мощных сосен» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«мощных сосен» depends on the noun «стволами» (whose? of what?) — genitive.",
    "id": "c14"
-  },
-  {
-   "sentence": "Сначала шли по дороге между стволами мощных сосен, их корни, пересекая ___, размятый колесами телег, затейливыми изгибами лежали, как серые, мертвые змеи.",
-   "lemma": "песок",
-   "options": [
-    "глубокого песка",
-    "глубокому песку",
-    "глубокий песок",
-    "глубоком песке"
-   ],
-   "correct": "глубокий песок",
-   "case": "Винительный (Accusative)",
-   "explain": "«глубокий песок» — the accusative marks the direct object of the verb.",
-   "id": "c15"
-  },
-  {
-   "sentence": "И все-таки было так тихо, что даже доктор Полканов догадался: в этой тишине самые ___ звучали бы неуместно.",
-   "lemma": "слово",
-   "options": [
-    "умным словам",
-    "умными словами",
-    "умные слова",
-    "умных словах"
-   ],
-   "correct": "умные слова",
-   "case": "Именительный (Nominative)",
-   "explain": "«умные слова» — the subject of the sentence stands in the nominative.",
-   "id": "c16"
   },
   {
    "sentence": "Это ___ показалось мне излишним.",
@@ -123,36 +67,8 @@
    ],
    "correct": "странное добавление",
    "case": "Именительный (Nominative)",
-   "explain": "«странное добавление» — the subject of the sentence stands in the nominative.",
+   "explain": "«странное добавление» is the subject of «показалось» — who or what does it — so nominative.",
    "id": "c19"
-  },
-  {
-   "sentence": "Тут, видите, под Елатьмой, жила на даче одна женщина вдовая, из Москвы; с обезьяной жила, и ___ эта сбежала от нее.",
-   "lemma": "зверюшка",
-   "options": [
-    "окаянная зверюшка",
-    "окаянной зверюшкой",
-    "окаянной зверюшки",
-    "окаянной зверюшке"
-   ],
-   "correct": "окаянная зверюшка",
-   "case": "Именительный (Nominative)",
-   "explain": "«окаянная зверюшка» — the subject of the sentence stands in the nominative.",
-   "id": "c22"
-  },
-  {
-   "sentence": "Он для меня, ученый этот, оказался тоже вроде обезьяны, хотя — ___, с бородой.",
-   "lemma": "человек",
-   "options": [
-    "солидного человека",
-    "солидный человек",
-    "солидным человеком",
-    "солидному человеку"
-   ],
-   "correct": "солидный человек",
-   "case": "Именительный (Nominative)",
-   "explain": "«солидный человек» — the subject of the sentence stands in the nominative.",
-   "id": "c23"
   }
  ]
 }

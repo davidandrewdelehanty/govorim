@@ -1,20 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Анна Павловна кашляла несколько дней, у нее был грипп, как она говорила (грипп был тогда ___, употреблявшееся только редкими).",
-   "lemma": "слово",
-   "options": [
-    "новому слову",
-    "новое слово",
-    "новым словом",
-    "нового слова"
-   ],
-   "correct": "новое слово",
-   "case": "Именительный (Nominative)",
-   "explain": "«новое слово» — the subject of the sentence stands in the nominative.",
-   "id": "c1"
-  },
-  {
    "sentence": "В середине разговора про ___ Анна Павловна разгорячилась.",
    "lemma": "действие",
    "options": [
@@ -25,22 +11,8 @@
    ],
    "correct": "политические действия",
    "case": "Винительный (Accusative)",
-   "explain": "«политические действия» — after the preposition «про», the accusative marks the direct object of the verb.",
+   "explain": "«политические действия» — «про» always takes the accusative.",
    "id": "c9"
-  },
-  {
-   "sentence": "Англия с своим ___ не поймет и не может понять всю высоту души императора Александра.",
-   "lemma": "дух",
-   "options": [
-    "коммерческий дух",
-    "коммерческим духом",
-    "коммерческом духе",
-    "коммерческому духу"
-   ],
-   "correct": "коммерческим духом",
-   "case": "Творительный (Instrumental)",
-   "explain": "«коммерческим духом» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c10"
   },
   {
    "sentence": "Я верю в одного Бога и в высокую судьбу нашего ___.",
@@ -53,7 +25,7 @@
    ],
    "correct": "милого императора",
    "case": "Родительный (Genitive)",
-   "explain": "«милого императора» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«милого императора» depends on the noun «судьбу» (whose? of what?) — genitive.",
    "id": "c12"
   },
   {
@@ -67,7 +39,7 @@
    ],
    "correct": "прусского короля",
    "case": "Родительный (Genitive)",
-   "explain": "«прусского короля» — the genitive here marks possession, absence, or quantity.",
+   "explain": "«прусского короля» depends on the noun «согласие» (whose? of what?) — genitive.",
    "id": "c13"
   },
   {
@@ -81,50 +53,8 @@
    ],
    "correct": "хороших эмигрантов",
    "case": "Родительный (Genitive)",
-   "explain": "«хороших эмигрантов» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "explain": "«хороших эмигрантов» — «из» always takes the genitive.",
    "id": "c14"
-  },
-  {
-   "sentence": "За что́ вам судьба дала таких двух ___ (исключая Анатоля, вашего меньшого, я его не люблю, — вставила она безапелляционно, приподняв брови) — таких прелестных детей?",
-   "lemma": "ребёнок",
-   "options": [
-    "славных детей",
-    "славным детям",
-    "славных детях",
-    "славными детьми"
-   ],
-   "correct": "славных детей",
-   "case": "Родительный (Genitive)",
-   "explain": "«славных детей» — the genitive here marks possession, absence, or quantity.",
-   "id": "c15"
-  },
-  {
-   "sentence": "За что́ вам судьба дала таких двух славных детей (исключая Анатоля, вашего меньшого, я его не люблю, — вставила она безапелляционно, приподняв брови) — таких ___?",
-   "lemma": "ребёнок",
-   "options": [
-    "прелестных детях",
-    "прелестным детям",
-    "прелестных детей",
-    "прелестные дети"
-   ],
-   "correct": "прелестных детей",
-   "case": "Родительный (Genitive)",
-   "explain": "«прелестных детей» — the genitive here marks possession, absence, or quantity.",
-   "id": "c16"
-  },
-  {
-   "sentence": "Ипполит, по крайней мере, ___, а Анатоль — беспокойный.",
-   "lemma": "дурак",
-   "options": [
-    "покойный дурак",
-    "покойным дураком",
-    "покойного дурака",
-    "покойном дураке"
-   ],
-   "correct": "покойный дурак",
-   "case": "Именительный (Nominative)",
-   "explain": "«покойный дурак» — after the preposition «по», the subject of the sentence stands in the nominative.",
-   "id": "c17"
   },
   {
    "sentence": "— Он помолчал, выражая жестом свою покорность ___.",
@@ -137,7 +67,7 @@
    ],
    "correct": "жестокой судьбе",
    "case": "Дательный (Dative)",
-   "explain": "«жестокой судьбе» — the dative marks the indirect object or recipient.",
+   "explain": "«жестокой судьбе» is the indirect object of «выражая» — to or for whom (кому?) — dative.",
    "id": "c19"
   },
   {
@@ -151,36 +81,8 @@
    ],
    "correct": "блудного сына",
    "case": "Винительный (Accusative)",
-   "explain": "«блудного сына» — the accusative marks the direct object of the verb.",
+   "explain": "«блудного сына» is the direct object of «женить» (кого? что?) — accusative (animate: the accusative has the genitive's ending).",
    "id": "c20"
-  },
-  {
-   "sentence": "— Князь Василий не отвечал, хотя с свойственною ___ быстротой соображения и памяти показал движением головы, что он принял к соображению эти сведения.",
-   "lemma": "человек",
-   "options": [
-    "светских людях",
-    "светским людям",
-    "светскими людьми",
-    "светских людей"
-   ],
-   "correct": "светским людям",
-   "case": "Дательный (Dative)",
-   "explain": "«светским людям» — after the preposition «с», the dative marks the indirect object or recipient.",
-   "id": "c22"
-  },
-  {
-   "sentence": "— Нет, вы знаете ли, что этот Анатоль мне сто́ит 40 000 в год, — сказал он, видимо, не в силах удерживать ___ своих мыслей.",
-   "lemma": "ход",
-   "options": [
-    "печальный ход",
-    "печального хода",
-    "печальному ходу",
-    "печальным ходом"
-   ],
-   "correct": "печальный ход",
-   "case": "Винительный (Accusative)",
-   "explain": "«печальный ход» — the accusative marks the direct object of the verb.",
-   "id": "c23"
   },
   {
    "sentence": "Знаете, этот ___ Болконский, отставленный еще при покойном императоре и прозванный «прусским королем».",
@@ -193,7 +95,7 @@
    ],
    "correct": "известный князь",
    "case": "Именительный (Nominative)",
-   "explain": "«известный князь» — the subject of the sentence stands in the nominative.",
+   "explain": "«известный князь» is the subject of «отставленный» — who or what does it — so nominative.",
    "id": "c24"
   },
   {
@@ -207,7 +109,7 @@
    ],
    "correct": "покойном императоре",
    "case": "Предложный (Prepositional)",
-   "explain": "«покойном императоре» — after the preposition «при», for location or topic.",
+   "explain": "«покойном императоре» — «при» always takes the prepositional.",
    "id": "c25"
   }
  ]
