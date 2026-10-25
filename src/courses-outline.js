@@ -1361,7 +1361,7 @@ export default [
    {
     "id": "f1-imperative-practice",
     "title": "Practice 1: The imperative: читай, пусть, давайте",
-    "n": 14
+    "n": 13
    },
    {
     "id": "f1-imperative-practice-2",
@@ -1436,7 +1436,7 @@ export default [
    {
     "id": "f8-gerund-imperfective-practice",
     "title": "Practice: Imperfective деепричастия: читая, говоря",
-    "n": 17
+    "n": 16
    },
    {
     "id": "f9-gerund-perfective",
@@ -1496,7 +1496,7 @@ export default [
    {
     "id": "i01-acc-or-gen-practice-5",
     "title": "Practice 5: Accusative or genitive?",
-    "n": 12
+    "n": 11
    },
    {
     "id": "i01-acc-or-gen-practice-6",
@@ -1506,7 +1506,7 @@ export default [
    {
     "id": "i01-acc-or-gen-practice-7",
     "title": "Practice 7: Accusative or genitive?",
-    "n": 17
+    "n": 16
    },
    {
     "id": "i01-acc-or-gen-practice-8",
@@ -1751,7 +1751,7 @@ export default [
    {
     "id": "i14-gerunds-practice-2",
     "title": "Practice 2: Деепричастия",
-    "n": 20
+    "n": 19
    },
    {
     "id": "i15-passive",
@@ -1906,7 +1906,7 @@ export default [
    {
     "id": "c1-comparative-practice-2",
     "title": "Practice 2: The comparative: новее, интереснее",
-    "n": 19
+    "n": 17
    },
    {
     "id": "c1-comparative-practice-3",
@@ -1941,17 +1941,17 @@ export default [
    {
     "id": "c1-comparative-practice-9",
     "title": "Practice 9: The comparative: новее, интереснее",
-    "n": 19
+    "n": 17
    },
    {
     "id": "c1-comparative-practice-10",
     "title": "Practice 10: The comparative: новее, интереснее",
-    "n": 20
+    "n": 19
    },
    {
     "id": "c1-comparative-practice-11",
     "title": "Practice 11: The comparative: новее, интереснее",
-    "n": 20
+    "n": 19
    },
    {
     "id": "c1-comparative-practice-12",
@@ -1976,7 +1976,7 @@ export default [
    {
     "id": "c1-comparative-practice-16",
     "title": "Practice 16: The comparative: новее, интереснее",
-    "n": 19
+    "n": 18
    },
    {
     "id": "c1-comparative-practice-17",
@@ -1986,17 +1986,17 @@ export default [
    {
     "id": "c1-comparative-practice-18",
     "title": "Practice 18: The comparative: новее, интереснее",
-    "n": 18
+    "n": 16
    },
    {
     "id": "c1-comparative-practice-19",
     "title": "Practice 19: The comparative: новее, интереснее",
-    "n": 20
+    "n": 19
    },
    {
     "id": "c1-comparative-practice-20",
     "title": "Practice 20: The comparative: новее, интереснее",
-    "n": 20
+    "n": 19
    },
    {
     "id": "c1-comparative-practice-21",
@@ -2186,7 +2186,7 @@ export default [
    {
     "id": "c6-eishiy-practice-8",
     "title": "Practice 8: -ейший, and лучше всех",
-    "n": 19
+    "n": 18
    },
    {
     "id": "c6-eishiy-practice-9",
@@ -2281,7 +2281,7 @@ export default [
    {
     "id": "c7-short-practice-5",
     "title": "Practice 5: Short adjectives: занят, готов, рад",
-    "n": 19
+    "n": 18
    },
    {
     "id": "c7-short-practice-6",
@@ -2291,17 +2291,17 @@ export default [
    {
     "id": "c7-short-practice-7",
     "title": "Practice 7: Short adjectives: занят, готов, рад",
-    "n": 20
+    "n": 19
    },
    {
     "id": "c7-short-practice-8",
     "title": "Practice 8: Short adjectives: занят, готов, рад",
-    "n": 19
+    "n": 18
    },
    {
     "id": "c7-short-practice-9",
     "title": "Practice 9: Short adjectives: занят, готов, рад",
-    "n": 20
+    "n": 19
    },
    {
     "id": "c7-short-practice-10",
@@ -2311,7 +2311,7 @@ export default [
    {
     "id": "c7-short-practice-11",
     "title": "Practice 11: Short adjectives: занят, готов, рад",
-    "n": 19
+    "n": 17
    },
    {
     "id": "c7-short-practice-12",
@@ -2326,12 +2326,12 @@ export default [
    {
     "id": "c7-short-practice-14",
     "title": "Practice 14: Short adjectives: занят, готов, рад",
-    "n": 20
+    "n": 19
    },
    {
     "id": "c7-short-practice-15",
     "title": "Practice 15: Short adjectives: занят, готов, рад",
-    "n": 19
+    "n": 18
    },
    {
     "id": "c7-short-practice-16",
@@ -2356,7 +2356,7 @@ export default [
    {
     "id": "c7-short-practice-20",
     "title": "Practice 20: Short adjectives: занят, готов, рад",
-    "n": 19
+    "n": 18
    },
    {
     "id": "c7-short-practice-21",
@@ -2386,12 +2386,12 @@ export default [
    {
     "id": "i20-comparison-practice-4",
     "title": "Practice 4: Expressing comparison",
-    "n": 9
+    "n": 8
    },
    {
     "id": "i20-comparison-practice-5",
     "title": "Practice 5: Expressing comparison",
-    "n": 10
+    "n": 9
    },
    {
     "id": "i20-comparison-practice-6",
@@ -2461,12 +2461,12 @@ export default [
    {
     "id": "i20-comparison-practice-19",
     "title": "Practice 19: Expressing comparison",
-    "n": 20
+    "n": 18
    },
    {
     "id": "i20-comparison-practice-20",
     "title": "Practice 20: Expressing comparison",
-    "n": 20
+    "n": 19
    },
    {
     "id": "i20-comparison-practice-21",
@@ -2491,7 +2491,7 @@ export default [
    {
     "id": "i22-negation-practice-2",
     "title": "Practice 2: Expressing negation",
-    "n": 16
+    "n": 15
    },
    {
     "id": "i22-negation-practice-3",
@@ -2696,7 +2696,7 @@ export default [
    {
     "id": "v06-no-subject-practice-5",
     "title": "Practice 5: Sentences without a subject",
-    "n": 18
+    "n": 17
    },
    {
     "id": "v06-no-subject-practice-6",
@@ -3314,7 +3314,7 @@ export default [
    {
     "id": "m01-pairs-practice-7",
     "title": "Practice 7: Two verbs for every way of going",
-    "n": 14
+    "n": 13
    },
    {
     "id": "m01-pairs-practice-8",
@@ -3394,7 +3394,7 @@ export default [
    {
     "id": "m03-now-and-lets-go-practice-5",
     "title": "Practice 5: The present for the future, and «let's go»",
-    "n": 19
+    "n": 17
    },
    {
     "id": "m03-now-and-lets-go-practice-6",
@@ -3549,7 +3549,7 @@ export default [
    {
     "id": "m06-po-practice-4",
     "title": "Practice 4: Setting out: пойти, поехать — and сходить, съездить",
-    "n": 20
+    "n": 19
    },
    {
     "id": "m06-po-practice-5",
