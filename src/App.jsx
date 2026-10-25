@@ -16582,7 +16582,7 @@ export default function App() {
           "A verb with a conjugation table on Wiktionary, and a person and number in a tense \u2014 or a gender in the past. Type the form. Right answers count on the leaderboard.",
           function(){ fdStart("conj"); })}
         {!termDrill && card("Numeral practice",
-          "A number in English words (seventy-third), a case, and singular or plural and gender where it matters \u2014 type it in Russian words: \u0434\u0432\u0430\u0434\u0446\u0430\u0442\u0438 \u043f\u044f\u0442\u0438. Cardinals and ordinals. A miss comes back a few times until you have it right twice more.",
+          "Cardinals and ordinals: put a number into the case given, in Russian words. Misses come back until you have them.",
           function(){ fdStart("num"); })}
         {!termDrill && card("Clock practice",
           "Every time of the day: the words to set as digits on a 24-hour clock, or the clock to put into words \u2014 \u043f\u044f\u0442\u044c \u043c\u0438\u043d\u0443\u0442 \u0442\u0440\u0435\u0442\u044c\u0435\u0433\u043e, \u0431\u0435\u0437 \u0434\u0435\u0441\u044f\u0442\u0438 \u0442\u0440\u0438. A miss comes back a few times until you have it right twice more.",
