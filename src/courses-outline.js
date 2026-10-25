@@ -413,7 +413,7 @@ export default [
    {
     "id": "k9-adjectives-singular",
     "title": "Adjectives and possessives, singular",
-    "n": 3
+    "n": 2
    },
    {
     "id": "k9-adjectives-singular-practice",
