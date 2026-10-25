@@ -822,7 +822,9 @@ def rewrite(e, want_cases=(), mixed=False):
         g = p0.tag.gender
         decl = " · ".join(par.get((c, number, g, None)) or par.get((c, number, None, None)) or "—" for c in CASES)
         newq = q[:m.start()] + "___ (" + p0.normal_form + ", " + label + ")" + q[m.end():]
-        why = "**%s → %s** (%s). Declension: %s.  %s  — %s." % (p0.normal_form, aw[0].lower(), label, decl, R["pron"], DICT)
+        # the н- rule belongs only where it applies: a third-person pronoun right after a preposition (к нему), not «мне» or «тебе» on their own
+        npref = norm(p0.normal_form) in ("он", "она", "оно", "они") and governing_cases(q[:m.start()]) is not None
+        why = "**%s → %s** (%s). Declension: %s.%s  — %s." % (p0.normal_form, aw[0].lower(), label, decl, ("  " + R["pron"]) if npref else "", DICT)
         _check(e, pair, case, number)
         return newq, why
     if not nouns and len(parses) == 1 and parses[0].tag.POS in ("ADJF", "PRTF"):
@@ -989,6 +991,14 @@ def main(argv=None):
                         st["unlabelled"] += 1
                     continue
                 newq, why = r
+                if not mixed and want0:
+                    lab = re.search(r"___ \([^)]*?,\s*(nom|gen|dat|acc|instr|prep)\.\s*(?:sg|pl)\.", newq)
+                    lc = {"nom": "nomn", "gen": "gent", "dat": "datv", "acc": "accs", "instr": "ablt", "prep": "loct"}[lab.group(1)] if lab else None
+                    if lc and lc not in want0:
+                        # the sentence puts the word in a case this lesson is not about: «Буддистские монахи бреют голову» in the dative lesson
+                        dropped.append(e)
+                        st["dropped_other_case"] += 1
+                        continue
                 gk = e.pop("_gov", None)
                 if gk and "  " + TAIL in why:
                     why = why.replace("  " + TAIL, "  " + R[gk] + "  " + TAIL)

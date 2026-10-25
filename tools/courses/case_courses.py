@@ -253,19 +253,9 @@ def _c(id, title, short, mark, blurb, secs):
              "license": "CC BY-SA 4.0 · CC BY 2.0 FR · public domain", "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/"}, secs)
 
 
-COURSE_DEFS = [
-    _c("case-nom", "The Nominative Case", "Nominative", "И", "The subject, это…, and the dictionary form — with real sentences to practise.", NOM),
-    _c("case-gen", "The Genitive Case", "Genitive", "Р", "Whose, of what, none, how many, and the twenty prepositions and the verbs that take the genitive — "
-       "practised on real sentences.", GEN),
-    _c("case-dat", "The Dative Case", "Dative", "Д", "To whom, мне нравится and мне нужно, к and по, and the verbs that take the dative — "
-       "practised on real sentences.", DAT),
-    _c("case-acc", "The Accusative Case", "Accusative", "В", "The direct object, where to (в, на, за, под), через and про, and time — "
-       "practised on real sentences.", ACC),
-    _c("case-ins", "The Instrumental Case", "Instrumental", "Т", "With, by means of, being and becoming, над, под, за, перед, между, and the verbs "
-       "that take it — practised on real sentences.", INS),
-    _c("case-prp", "The Prepositional Case", "Prepositional", "П", "Where (в, на), about (о), в лесу and на берегу, при, and time — "
-       "practised on real sentences.", PRP),
-]
+# The six single-case courses (case-nom … case-prp) were retired Oct 25 2026: "Nouns and Adjectives in Cases" covers every case.
+# Their lesson tables above (NOM … PRP) are kept as source text for the time course only.
+COURSE_DEFS = []
 
 # ── More time expressions, for the Time course ──
 TIME_MORE = [

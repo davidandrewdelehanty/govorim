@@ -234,6 +234,11 @@ def feats_full(e, prefer=()):
     return f
 
 
+# the single-case courses were retired (Oct 25 2026): their patterns are no longer mined
+for _k in [k for k in FACETS if k.startswith("case-")]:
+    del FACETS[_k]
+
+
 def ok(want, f):
     """pertinence.ok with the extra terms."""
     rest = []
@@ -269,6 +274,31 @@ def ok(want, f):
         else:
             rest.append(term)
     return P.ok(" ".join(rest), f) if rest else True
+
+
+def strong_case(sentence, w, case):
+    """True when the blanked word can only be read as `case` here. The picker used to accept any reading pymorphy lists, however rare
+    (голову as a surname in the dative, консервативным as a dative plural next to its far likelier instrumental singular), so lessons
+    on one case carried exercises in another. A word counts only when its wanted reading is the clearly likely one, no other case
+    competes, and a preposition just before it, if there is one, allows exactly that case."""
+    import case_explain as CE
+    low = w.lower()
+    sc = defaultdict(float)
+    for x in P.M.parse(low):
+        if x.tag.case and x.tag.POS in ("NOUN", "ADJF", "PRTF", "NPRO", "NUMR"):
+            sc[CE._cn(x.tag.case)] += x.score
+    if not sc:
+        return False
+    m = None
+    for m in re.finditer(r"(?<![А-Яа-яЁё])" + re.escape(w) + r"(?![А-Яа-яЁё])", sentence):
+        break
+    before = sentence[:m.start()] if m else ""
+    gov = CE.governing_cases(before)
+    rivals = {c for c, v in sc.items() if v >= 0.2 and c != case}
+    if gov is not None:
+        return case in gov and sc.get(case, 0) > 0 and not (rivals & (gov - {case}))     # the preposition itself settles which of its cases this is
+    rivals.discard("loct")                      # a prepositional form needs a preposition: none here, so it is not a rival
+    return sc.get(case, 0) >= 0.35 and not rivals
 
 
 def load_course(course):
@@ -494,6 +524,8 @@ def mine(a, budget=400000):
                     continue                 # a pattern named by its sentence (пусть, если бы) is explicit enough
                 if not ok(want, f):
                     continue
+                if course == "cases" and cw and cw[0] in ("datv", "ablt") and not strong_case(s, w, cw[0]):
+                    continue                 # the word could be read as another case: not one for a lesson on this one
                 if (course, sec, s) in seen:
                     continue
                 seen.add((course, sec, s))

@@ -25,11 +25,14 @@ CASES = ["nomn", "gent", "datv", "accs", "ablt", "loct"]
 NOUN_MODELS = [
     ("студент", "masc", True), ("дом", "masc", False), ("стол", "masc", False), ("учитель", "masc", True),
     ("автомобиль", "masc", False), ("словарь", "masc", False), ("трамвай", "masc", False), ("андрей", "masc", True),
-    ("окно", "neut", False), ("слово", "neut", False), ("поле", "neut", False), ("море", "neut", False), ("здание", "neut", False), ("имя", "neut", False),
+    ("окно", "neut", False), ("слово", "neut", False), ("поле", "neut", False), ("море", "neut", False), ("здание", "neut", False),
     ("сестра", "femn", True), ("газета", "femn", False), ("книга", "femn", False), ("тётя", "femn", True), ("неделя", "femn", False),
     ("батарея", "femn", False), ("армия", "femn", False), ("лекция", "femn", False), ("семья", "femn", False), ("часть", "femn", False), ("тетрадь", "femn", False),
     ("ключ", "masc", False),
 ]
+# Never a model: имя (and the other ten nouns in -мя) takes -ен- before every ending. Models whose PLURAL is irregular
+# (дом → дома, учитель → учителя) are cited for singular forms only.
+IRREGULAR_PLURAL = {"дом", "учитель"}
 ADJ_MODELS = [("новый", "hard"), ("синий", "soft"), ("русский", "guttural"), ("хороший", "sibilant")]
 POSS_MODELS = [("мой", "мой"), ("наш", "наш")]
 
@@ -160,6 +163,8 @@ def match_noun(M, tpar, tnom, gender, anim, number, case):
         for shown, mpar, soft, mg, man in noun_models(M):
             if mg != eff or (man == t_anim) != same:
                 continue
+            if number == "plur" and shown in IRREGULAR_PLURAL:
+                continue                                  # дом → дома, учитель → учителя: a plural of its own, no model for other nouns
             mnom = mpar.get(("nomn", "sing"))
             if not mpar.get(("nomn", number)):
                 continue

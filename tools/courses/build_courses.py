@@ -138,18 +138,7 @@ if os.path.exists(os.path.join(HERE, "dli_a.py")):
     })
 
 
-import tables_course
-COURSES.append({
-    "id": "tables", "title": "Grammar Tables", "short": "Tables", "mark": "\u2630",
-    "blurb": "",
-    "credit": "Rules quoted from the Defense Language Institute Russian Basic Course, Grammar Reference Book "
-              "(a US Government work in the public domain); every Russian form generated from the OpenCorpora "
-              "dictionary (CC BY-SA 4.0) by tools/courses/gen_tables.py; the sixteen conjugation classes follow "
-              "the scheme in Wiktionary's Appendix:Russian verbs (CC BY-SA 4.0), after Zaliznyak",
-    "creditUrl": DLI_URL,
-    "license": "Public domain \u00b7 CC BY-SA 4.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "modules": ["tables_course"], "order": None,
-})
+# The «Grammar Tables» course (tables_course) was removed from the site on request.
 
 
 import numerals_course
