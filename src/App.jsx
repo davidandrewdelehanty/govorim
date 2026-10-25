@@ -12652,6 +12652,35 @@ export default function App() {
   var fdNumMode = useRef("both");                      // "card" | "ord" | "both"
   var [fdMode, setFdMode] = useState("both");
   var FD_CASE_EN = { nomn: "nominative", gent: "genitive", datv: "dative", accs: "accusative", ablt: "instrumental", loct: "prepositional" };
+  // The number written out in English (seventy-third, two hundred and five): the ordinal/cardinal choice is made
+  // with the buttons above the drill, so the question itself only needs the English words, the case, number and gender.
+  var fdEnNum = function(n, ord) {
+    var ones = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen",
+                "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"];
+    var tens = ["", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"];
+    var under100 = function(x) { return x < 20 ? ones[x] : tens[Math.floor(x / 10)] + (x % 10 ? "-" + ones[x % 10] : ""); };
+    var under1000 = function(x) {
+      var h = Math.floor(x / 100), r = x % 100, out = [];
+      if (h) out.push(ones[h] + " hundred");
+      if (r) out.push((h ? "and " : "") + under100(r));
+      return out.join(" ");
+    };
+    var words;
+    if (n === 0) words = "zero";
+    else {
+      var parts = [], units = [[1000000000, "billion"], [1000000, "million"], [1000, "thousand"]], rest = n;
+      units.forEach(function(u) {
+        if (rest >= u[0]) { parts.push(under1000(Math.floor(rest / u[0])) + " " + u[1]); rest = rest % u[0]; }
+      });
+      if (rest) parts.push((parts.length && rest < 100 ? "and " : "") + under1000(rest));
+      words = parts.join(" ");
+    }
+    if (!ord) return words;
+    var irregular = { one: "first", two: "second", three: "third", five: "fifth", eight: "eighth", nine: "ninth", twelve: "twelfth" };
+    return words.replace(/([a-z]+)$/, function(w) {
+      return irregular[w] || (/y$/.test(w) ? w.slice(0, -1) + "ieth" : w + "th");
+    });
+  };
   var fdMakeNum = function() {
     var load = fdNumRef.current ? Promise.resolve(fdNumRef.current)
       : fetch("/vocab/numeral-forms.json").then(function(r){ return r.json(); }).then(function(j){ fdNumRef.current = j; return j; });
@@ -12664,8 +12693,7 @@ export default function App() {
       var ask = [FD_CASE_EN[it[1]] + (it[4] === "a" ? " (animate)" : it[4] === "i" ? " (inanimate)" : "")];
       if (it[3]) ask.push(it[3] === "p" ? "plural" : "singular");
       if (it[2]) ask.push({ m: "masculine", f: "feminine", n: "neuter" }[it[2]]);
-      ask.push(ord ? "ordinal" : "cardinal");
-      return { kind: "num", word: it[0] >= 10000 ? String(it[0]).replace(/\B(?=(\d{3})+(?!\d))/g, "\u2009") : String(it[0]), en: "", ask: ask.join(" "), answers: it[5].map(fdNorm), shown: it[5].join(", "), note: "" };
+      return { kind: "num", word: fdEnNum(it[0], ord), en: "", ask: ask.join(" "), answers: it[5].map(fdNorm), shown: it[5].join(", "), note: "" };
     }).catch(function(){ return { err: "The numeral forms could not be loaded." }; });
   };
   var fdSetNumMode = function(m) {
@@ -12674,6 +12702,37 @@ export default function App() {
     fdRepeat.current = [];
     fdNext.current = null;
     fdLoad("num");
+  };
+  // Clock practice: a time of the day, asked one of two ways — the words to be typed as digits, or the clock to be put into words.
+  // public/vocab/clock-times.json is written by tools/courses/gen_clock_drill.py (dictionary forms put together by the DLI rules).
+  var fdClockRef = useRef(null);
+  var fdMakeClock = function() {
+    var load = fdClockRef.current ? Promise.resolve(fdClockRef.current)
+      : fetch("/vocab/clock-times.json").then(function(r){ return r.json(); }).then(function(j){ fdClockRef.current = j; return j; });
+    return load.then(function(j){
+      var it = j.t[Math.floor(Math.random() * j.t.length)];
+      var rule = ((j.why && j.why[it[1]]) || "") + " " + ((j.why && j.why.h24) || "");
+      if (!it[8] && Math.random() < 0.5) {
+        var ans = [];
+        it[3].forEach(function(a){ ans.push(fdNorm(a)); it[4].forEach(function(pd){ ans.push(fdNorm(a + " " + pd)); }); });
+        it[5].forEach(function(a){ ans.push(fdNorm(a)); });
+        return { kind: "clock", mode: "say", face: it[6], pod: it[7], word: "", en: "", ask: "Write this time in words, the way it is said (\u043f\u044f\u0442\u044c \u043c\u0438\u043d\u0443\u0442 \u0442\u0440\u0435\u0442\u044c\u0435\u0433\u043e). You may leave off \u0443\u0442\u0440\u0430 / \u0434\u043d\u044f / \u0432\u0435\u0447\u0435\u0440\u0430 / \u043d\u043e\u0447\u0438; the 24-hour way (\u0447\u0435\u0442\u044b\u0440\u043d\u0430\u0434\u0446\u0430\u0442\u044c \u043f\u044f\u0442\u044c) counts too.",
+                 answers: ans, shown: it[3][0] + " " + it[7], rule: rule, note: "" };
+      }
+      return { kind: "clock", mode: "set", word: it[2][Math.floor(Math.random() * it[2].length)], en: "", ask: "Type this time as digits on a 24-hour clock, like 20:35.",
+               answers: [it[0].replace(":", "")], shown: it[0], rule: rule, note: "" };
+    }).catch(function(){ return { err: "The clock times could not be loaded." }; });
+  };
+  // Fractions practice: a fraction in digits, to be written in words. public/vocab/fractions.json is written by tools/courses/gen_fraction_drill.py.
+  var fdFracRef = useRef(null);
+  var fdMakeFrac = function() {
+    var load = fdFracRef.current ? Promise.resolve(fdFracRef.current)
+      : fetch("/vocab/fractions.json").then(function(r){ return r.json(); }).then(function(j){ fdFracRef.current = j; return j; });
+    return load.then(function(j){
+      var it = j.t[Math.floor(Math.random() * j.t.length)];
+      return { kind: "frac", word: it[0], en: "", ask: "Write this fraction in words, the way it is said.",
+               answers: it[1].map(fdNorm), shown: it[2], rule: j.rule || "", note: "" };
+    }).catch(function(){ return { err: "The fractions could not be loaded." }; });
   };
   var fdMakeDecl = function() {
     return fdBank().then(async function(bank){
@@ -12774,7 +12833,7 @@ export default function App() {
       return { err: reached ? "No verb with a table could be found just now — try again." : "Wiktionary could not be reached just now — try again in a moment." };
     });
   };
-  var fdMake = function(kind) { return kind === "decl" ? fdMakeDecl() : kind === "num" ? fdMakeNum() : fdMakeConj(); };
+  var fdMake = function(kind) { return kind === "decl" ? fdMakeDecl() : kind === "num" ? fdMakeNum() : kind === "clock" ? fdMakeClock() : kind === "frac" ? fdMakeFrac() : fdMakeConj(); };
   var fdPrefetch = function(kind) {
     fdMake(kind).then(function(q){ if (q && !q.err) fdNext.current = q; }).catch(function(){});
   };
@@ -12828,6 +12887,7 @@ export default function App() {
   var fdCheck = function() {
     if (!fd || !fd.q || fd.checked) return;
     var given = fdNorm(fd.input);
+    if (fd.kind === "clock" && fd.q.mode === "set") { given = String(fd.input || "").replace(/\D/g, ""); if (given.length === 3) given = "0" + given; }
     if (!given) return;
     var right = fd.q.answers.indexOf(given) >= 0;
     var fix = !right && fd.kind === "conj";
@@ -12840,7 +12900,7 @@ export default function App() {
     setFd(Object.assign({}, fd, { checked: true, right: right, fix: fix, fixInput: "", steps: steps,
       n: fd.n + (rep ? 0 : 1), nRight: fd.nRight + (!rep && right ? 1 : 0) }));
     if (rep) return;
-    if (fd.kind === "num") { bumpToday("practiced", 1); bumpToday("numbers", 1); bumpToday("drills", 1); return; }
+    if (fd.kind === "num" || fd.kind === "clock" || fd.kind === "frac") { bumpToday("practiced", 1); bumpToday("numbers", 1); bumpToday("drills", 1); return; }
     recordFormDrill(fd.kind, right);
   };
   // The Case drills, opened from the same menu.
@@ -16520,8 +16580,14 @@ export default function App() {
           "A verb with a conjugation table on Wiktionary, and a person and number in a tense \u2014 or a gender in the past. Type the form. Right answers count on the leaderboard.",
           function(){ fdStart("conj"); })}
         {!termDrill && card("Numeral practice",
-          "A number in digits, a case, and singular or plural where it matters \u2014 type the number in words: \u0434\u0432\u0430\u0434\u0446\u0430\u0442\u0438 \u043f\u044f\u0442\u0438. Cardinals and ordinals. A miss comes back a few times until you have it right twice more.",
+          "A number in English words (seventy-third), a case, and singular or plural and gender where it matters \u2014 type it in Russian words: \u0434\u0432\u0430\u0434\u0446\u0430\u0442\u0438 \u043f\u044f\u0442\u0438. Cardinals and ordinals. A miss comes back a few times until you have it right twice more.",
           function(){ fdStart("num"); })}
+        {!termDrill && card("Clock practice",
+          "Every time of the day: the words to set as digits on a 24-hour clock, or the clock to put into words \u2014 \u043f\u044f\u0442\u044c \u043c\u0438\u043d\u0443\u0442 \u0442\u0440\u0435\u0442\u044c\u0435\u0433\u043e, \u0431\u0435\u0437 \u0434\u0435\u0441\u044f\u0442\u0438 \u0442\u0440\u0438. A miss comes back a few times until you have it right twice more.",
+          function(){ fdStart("clock"); })}
+        {!termDrill && card("Fractions practice",
+          "A fraction in digits \u2014 write it in words: \u0442\u0440\u0438 \u0432\u043e\u0441\u044c\u043c\u044b\u0445, \u043f\u044f\u0442\u044c \u0441 \u043f\u043e\u043b\u043e\u0432\u0438\u043d\u043e\u0439. Numerators are cardinal, denominators ordinal. A miss comes back a few times until you have it right twice more.",
+          function(){ fdStart("frac"); })}
         {!termDrill && card("Case drills",
           "Sentences from every book in the library with one word missing: pick its right case from four. Right answers count on the leaderboard.",
           openCaseDrills)}
@@ -16838,15 +16904,19 @@ quizMode ? (
               // ── Declension / conjugation practice ───────────────────────
               <>
                 <div className="phdr">
-                  <span className="pti">{fd.kind === "decl" ? "Declension practice" : fd.kind === "num" ? "Numeral practice" : "Conjugation practice"}</span>
+                  <span className="pti">{fd.kind === "decl" ? "Declension practice" : fd.kind === "num" ? "Numeral practice" : fd.kind === "clock" ? "Clock practice" : fd.kind === "frac" ? "Fractions practice" : "Conjugation practice"}</span>
                   <button className="ab" onClick={fdStop}>← Back</button>
                 </div>
                 <div className="fd-wrap">
                   <p className="fd-lead">
                     {fd.kind === "decl"
                       ? "A noun — from the words you saved in the library when there are any, else one of the commonest — and a case to put it in. Type the form; Wiktionary's table is the answer key."
+                      : fd.kind === "frac"
+                      ? "A fraction in digits \u2014 write it in words: \u0442\u0440\u0438 \u0432\u043e\u0441\u044c\u043c\u044b\u0445, \u043f\u044f\u0442\u044c \u0441 \u043f\u043e\u043b\u043e\u0432\u0438\u043d\u043e\u0439. A miss comes back a few times until you have it right twice more."
+                      : fd.kind === "clock"
+                      ? "A time of the day: the words to set as digits on a 24-hour clock, or the clock to put into words. Every minute of the day comes up, in random order. A miss comes back a few times until you have it right twice more."
                       : fd.kind === "num"
-                      ? "A number in digits, and the case to put it in — with singular or plural, gender and animacy where the form depends on them. Type the number in words."
+                      ? "A number written out in English (seventy-third), and the case to put it in — with singular or plural, gender and animacy where the form depends on them. Type it in Russian words. The buttons choose cardinals, ordinals or both."
                       : "A verb with a conjugation table on Wiktionary, and a person and number in a tense — or a gender in the past. Type the form."}
                   </p>
                   {fd.kind === "num" && (
@@ -16866,15 +16936,15 @@ quizMode ? (
                     {fd.q && (
                       <>
                         <div className="cd-s">
-                          <span lang="ru" className={"fd-word" + (fd.kind === "num" ? " fd-digit" : "")}>{fd.q.word}</span>
+                          {fd.q.mode === "say" ? <ClockFace hhmm={fd.q.face} label={fd.q.pod} /> : <span lang={fd.kind === "num" ? "en" : "ru"} className={"fd-word" + (fd.kind === "num" || fd.kind === "frac" ? " fd-digit" : "")}>{fd.q.word}</span>}
                           {fd.q.en ? <span className="fd-en"> — {fd.q.en}</span> : null}
                         </div>
-                        <div className="cd-lemma">Write the <strong>{fd.q.ask}</strong>{fd.q.prefix ? <span className="fd-hint"> — the future of an imperfective verb is <span lang="ru">быть</span> and the infinitive: the <span lang="ru">{fd.q.prefix}</span> is given</span> : null}</div>
+                        <div className="cd-lemma">{fd.kind === "clock" || fd.kind === "frac" ? null : fd.kind === "num" ? "In Russian, put it in the " : "Write the "}{fd.kind === "clock" || fd.kind === "frac" ? fd.q.ask : <strong>{fd.q.ask}</strong>}{fd.q.prefix ? <span className="fd-hint"> — the future of an imperfective verb is <span lang="ru">быть</span> and the infinitive: the <span lang="ru">{fd.q.prefix}</span> is given</span> : null}</div>
                         <form className="fd-form" onSubmit={function(e){ e.preventDefault(); if (!fd.checked) { fdCheck(); return; } if (fd.fix && fd.q.answers.indexOf(fdNorm(fd.fixInput)) < 0) return; fdLoad(fd.kind); }}>
                           {fd.q.pronoun ? <span className="fd-pre" lang="ru">{fd.q.pronoun}{fd.q.prefix ? " " + fd.q.prefix : ""}</span> : null}
                           <input type="text" lang="ru" className={"crs-in fd-in" + (fd.checked ? (fd.right ? " ok" : " bad") : "")} value={fd.input}
                             autoFocus autoComplete="off" autoCapitalize="off" spellCheck={false} readOnly={fd.checked || fd.busy}
-                            placeholder={fd.q.prefix ? "the infinitive" : "Type the form"}
+                            placeholder={fd.q.prefix ? "the infinitive" : fd.kind === "clock" ? (fd.q.mode === "set" ? "20:35" : "the time in words") : fd.kind === "frac" ? "the fraction in words" : "Type the form"}
                             onChange={function(e){ var v = e.target.value; setFd(function(st){ return st ? Object.assign({}, st, { input: v }) : st; }); }} />
                           {!fd.checked
                             ? <button type="submit" className="btn-p fd-btn" disabled={!fdNorm(fd.input)}>Check</button>
@@ -16883,7 +16953,7 @@ quizMode ? (
                         {fd.checked && (
                           <div className="cd-fb">
                             <div className={"cd-fb-h" + (fd.right ? " ok" : " bad")}>{fd.right ? "Correct" : "Not quite"}</div>
-                            <div className="cd-fb-x">{fd.kind === "num" ? "In words, " : "The "}{fd.q.ask} {fd.kind === "num" ? "" : "of "}<b lang="ru">{fd.q.word}</b> is <b lang="ru">{fd.q.pronoun ? fd.q.pronoun + " " : ""}{fd.q.shown}</b>.</div>
+                            {fd.kind === "frac" ? <div className="cd-fb-x"><b>{fd.q.word}</b> is <b lang="ru">{fd.q.shown}</b>.<div className="fd-note" style={{margin:"6px 0 0"}}>{fd.q.rule}</div></div> : fd.kind === "clock" ? <div className="cd-fb-x">{fd.q.mode === "set" ? <>The time <b lang="ru">{fd.q.word}</b> is <b>{fd.q.shown}</b>.</> : <>This time is <b lang="ru">{fd.q.shown}</b>.</>}<div className="fd-note" style={{margin:"6px 0 0"}} lang="ru">{fd.q.rule}</div></div> : <div className="cd-fb-x">{fd.kind === "num" ? "In Russian, " : "The "}{fd.kind === "num" ? <b>{fd.q.word}</b> : <>{fd.q.ask} of <b lang="ru">{fd.q.word}</b></>}{fd.kind === "num" ? " (" + fd.q.ask + ")" : ""} is <b lang="ru">{fd.q.pronoun ? fd.q.pronoun + " " : ""}{fd.q.shown}</b>.</div>}
                             {fd.fix && (
                               <div className="fd-fix">
                                 <div className="cd-fb-x">Type it correctly to go on — it will come back in a few questions.</div>
@@ -16901,7 +16971,11 @@ quizMode ? (
                         {fd.q.again && !fd.checked && <p className="fd-note" style={{margin:"6px 0 0"}}>You missed this one earlier — answer it right {fd.q.rep ? fd.q.rep.need : 2} more time{fd.q.rep && fd.q.rep.need === 1 ? "" : "s"} and it is done. Repeats are not scored.</p>}
                       </>
                     )}
-                    {fd.kind === "num"
+                    {fd.kind === "frac"
+                      ? <p className="fd-note">Stress marks and ё/е are not held against you. Rule: the DLI Grammar Reference Book, Lesson 98 (public domain); every word is a dictionary form (OpenCorpora, CC BY-SA 4.0) put together by that rule.</p>
+                      : fd.kind === "clock"
+                      ? <p className="fd-note">Stress marks and ё/е are not held against you. Rules: the DLI Grammar Reference Book, Lessons 40, 73 and 74 (public domain); every time in words is dictionary forms (OpenCorpora, CC BY-SA 4.0) put together by those rules.</p>
+                      : fd.kind === "num"
                       ? <p className="fd-note">Stress marks and ё/е are not held against you. Forms: the OpenCorpora dictionary (CC BY-SA 4.0), put together by the rules of the DLI Grammar Reference Book (public domain).</p>
                       : <p className="fd-note">Right answers count on the leaderboard. Stress marks and ё/е are not held against you. Source: <a href={"https://en.wiktionary.org/wiki/" + encodeURIComponent((fd.q && fd.q.word) || "")} target="_blank" rel="noopener">Wiktionary</a>.</p>}
                   </div>
@@ -18063,6 +18137,10 @@ quizMode ? (
           .crs-t.stk tbody th{display:block;background:rgba(138,59,30,.09);color:#8a3b1e;font-size:13px;border-bottom:1px solid rgba(42,31,20,.12);padding:6px 11px}
           .crs-t.stk td{display:block;border-bottom:1px solid rgba(42,31,20,.07);padding:6px 11px;background:transparent !important}
           .crs-t.stk tr>td:last-child{border-bottom:0}
+          .crs-t.fit{table-layout:auto;width:100%}
+          .crs-t.fit th,.crs-t.fit td{padding:4px 5px;font-size:13.5px;line-height:1.3;white-space:nowrap;overflow-wrap:normal;text-transform:none;letter-spacing:0}
+          .crs-t.fit thead th{font-size:12px}
+          .crs-t.fit tbody th{white-space:nowrap}
           .crs-t.stk td[data-l]::before{content:attr(data-l);display:block;font-family:'IBM Plex Sans',sans-serif;font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:rgba(42,31,20,.5);margin-bottom:1px}
         }
         .crs-exw{display:flex;flex-direction:column;gap:10px;margin-top:6px;padding-top:6px;border-top:1px solid rgba(42,31,20,.15)}
@@ -18722,7 +18800,7 @@ quizMode ? (
         .fd-wrap{max-width:680px;margin:0 auto;padding:18px 16px 32px}
         .fd-lead{font-family:var(--serif);font-size:14px;color:var(--ink-2);line-height:1.55;text-align:center;margin:0 0 6px}
         .fd-word{font-weight:600}
-        .fd-digit{font-size:40px;font-family:var(--display)}
+        .fd-digit{font-size:30px;line-height:1.15;font-family:var(--display);overflow-wrap:anywhere}
         .fd-modes{display:flex;gap:8px;justify-content:center;margin:10px 0 2px}
         .fd-mode{font-family:var(--sans);font-size:12.5px;padding:5px 14px;border:1px solid var(--ink-3);background:transparent;color:var(--ink-2);border-radius:99px;cursor:pointer}
         .fd-mode.on{background:var(--ink);color:var(--paper,#f5f0e8);border-color:var(--ink)}
@@ -28412,11 +28490,11 @@ quizMode ? (
                       b.rows.forEach(function(r){ mx = Math.max(mx, String(r[cj] == null ? "" : r[cj]).replace(/\*/g, "").length); });
                       wide += mx + 3;
                     }
-                    var stack = ncol >= 3 && wide > 34;
+                    var stack = !b.fit && ncol >= 3 && wide > 34;      // fit: a chart written to fit a phone screen stays a table
                     return (
                       <div key={i} className="crs-tw">
                         {b.caption && <div className="crs-cap">{rich(b.caption)}</div>}
-                        <table className={"crs-t" + (stack ? " stk" : "")}>
+                        <table className={"crs-t" + (stack ? " stk" : "") + (b.fit ? " fit" : "")}>
                           {hasHead && <thead><tr>{heads.map(function(h, k){ return <th key={k}>{rich(b.head[k])}</th>; })}</tr></thead>}
                           <tbody>{b.rows.map(function(r, k){
                             return <tr key={k}>{r.map(function(c, j){ return j === 0 && b.rowHeads ? <th key={j}>{rich(c)}</th> : <td key={j} lang="ru" data-l={heads[j] || undefined}>{rich(c)}</td>; })}</tr>;

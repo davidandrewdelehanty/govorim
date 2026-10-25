@@ -7,6 +7,7 @@ the verb has a stress that two independent sources (OpenRussian, Koziev) agree o
 import gzip, io, json, glob, os, re, sys, collections
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import paradigms as P
+import orverbs as OR
 M = P.M
 ACUTE = "́"
 VOW = "аеёиоуыэюя"
@@ -39,8 +40,16 @@ def aspect_of(inf):
     return asp
 def lexeme(inf):
     return P._lemma(inf, "INFN").lexeme
-def forms_for(inf, pf):
-    lex = lexeme(inf)
+def entry_lexeme(inf, ans=None):
+    """The forms of the dictionary entry of `inf` that holds the answer (писать «write» has пишу, not писаю of the other entry), else all entries merged."""
+    if ans:
+        for p in M.parse(inf):
+            if p.tag.POS == "INFN" and p.normal_form == inf:
+                lx = p.lexeme
+                if any(fold(f.word) == fold(ans) for f in lx): return lx
+    return lexeme(inf)
+def forms_for(inf, pf, ans=None):
+    lex = entry_lexeme(inf, ans)
     tense = "futr" if pf else "pres"
     pres = []
     for num, per, pro in PERSONS:
@@ -53,7 +62,11 @@ def fold(w): return w.lower().replace("ё", "е")
 # the dictionary lists both aspects for these (a perfective and an imperfective entry spelt alike): the aspect of the sentence's reading
 PAST_ASPECT = {"родиться": "pf.", "образоваться": "pf.", "перерезать": "pf.", "отрезать": "pf.", "использовать": "impf./pf.",
                "конфисковать": "impf./pf.", "жениться": "impf./pf.", "считать": "impf.", "замыкать": "impf.", "разбегаться": "impf.", "простираться": "impf."}
-def aspect(inf, kind):
+def aspect(inf, kind, ans=None):
+    ent = OR.entry(inf, ans)
+    if ent and ent["aspect"]:
+        if ent["aspect"] == "impf./pf.": return "impf." if kind == "pres" else "impf./pf."
+        return ent["aspect"]
     asp = aspect_of(inf)
     if len(asp) == 1: return next(iter(asp))
     return "impf." if kind == "pres" else PAST_ASPECT.get(inf, "impf.")
@@ -69,9 +82,17 @@ def label_from(why):
     pm = re.match(r"(1st|2nd|3rd)?\s*person (singular|plural)$", who)
     if not pm: return None
     return dict(kind="pres", who=(pm.group(1) or "3rd") + " " + ("sg." if pm.group(2) == "singular" else "pl."), paren=paren or "", tail=tail or "")
+PERS_WHO = ["1st sg.", "2nd sg.", "3rd sg.", "1st pl.", "2nd pl.", "3rd pl."]
 def analyze(inf, ans):
-    """{(kind, who)} the answer can be, from the dictionary's forms of the verb."""
+    """{(kind, who)} the answer can be: the slot of the OpenRussian table it fills, else the dictionary's forms of the verb."""
     out = set()
+    ent = OR.entry(inf, ans)
+    if ent:
+        for i, ws in enumerate(ent["pres"]):
+            if any(OR.fold(w) == OR.fold(ans) for w in ws): out.add(("pres", PERS_WHO[i]))
+        for i, ws in enumerate(ent["past"]):
+            if any(OR.fold(w) == OR.fold(ans) for w in ws): out.add(("past", ["m.", "f.", "n.", "pl."][i]))
+        if out: return out
     try: lex = lexeme(inf)
     except Exception: return out
     for f in lex:
@@ -86,6 +107,26 @@ def analyze(inf, ans):
 def cap(s): return s[:1].upper() + s[1:]
 # the blank is an imperative, though the lesson's earlier note called it a present form (Не входите! — «go in»)
 IMPERATIVE = {("входить", "входите"), ("грузить", "грузите"), ("зубрить", "зубрите"), ("положить", "положи"), ("положить", "положите"), ("ложиться", "ложитесь")}
+def rule_tail(inf, ans, kind, who):
+    """The DLI's own one-line rules: the type of a present ending (е / и), and how the past is made."""
+    a = fold(ans)
+    if kind == "past":
+        end = {"m.": "л", "f.": "ла", "n.": "ло", "pl.": "ли"}[who]
+        stem = fold(inf)
+        stem = stem[:-2] if stem.endswith("ся") else stem
+        reg = fold(stem[:-2] + end) if stem.endswith("ть") else None
+        refl = fold(inf).endswith("ся")
+        reg_full = (reg + ("ся" if end in ("л", "ла", "ло", "ли") and who in ("m.", "pl.") and False else "")) if reg else None
+        if reg and a.startswith(reg[:-len(end)] if False else reg) : return "Drop -ть, add %s." % ("-" + end) if not refl else "Drop -ться, add -%s%s." % (end, "ся" if who in ("m.", "pl.") else "сь")
+        return "Irregular past stem: the past is not made by dropping -ть." if not (reg and a.startswith(reg)) else ""
+    if who.startswith("1st sg"): return ""
+    typ = None
+    for e1, t in (("ешься", "e"), ("ёшься", "e"), ("ишься", "i"), ("ется", "e"), ("ётся", "e"), ("ится", "i"), ("емся", "e"), ("ёмся", "e"), ("имся", "i"), ("етесь", "e"), ("ётесь", "e"), ("итесь", "i"),
+                  ("утся", "e"), ("ются", "e"), ("атся", "i"), ("ятся", "i"), ("ешь", "e"), ("ёшь", "e"), ("ишь", "i"), ("ете", "e"), ("ёте", "e"), ("ите", "i"), ("ем", "e"), ("ём", "e"), ("им", "i"),
+                  ("ет", "e"), ("ёт", "e"), ("ит", "i"), ("ут", "e"), ("ют", "e"), ("ат", "i"), ("ят", "i")):
+        if a.endswith(fold(e1)): typ = (e1, t); break
+    if not typ: return ""
+    return "Ending -%s belongs to the %s conjugation." % (typ[0], "first (е)" if typ[1] == "e" else "second (и)")
 def build(e, stats):
     q = e["q"]
     m = re.search(r"___ \(([а-яё]+(?:ся|сь)?)\)", q)
@@ -104,37 +145,44 @@ def build(e, stats):
     elif lab and not got: key = (lab["kind"], lab["who"])        # impersonal verbs the dictionary has no forms for (светает)
     else: stats["ambiguous"] += 1; stats["amb:%s:%s:%s" % (inf, ans, sorted(got))] += 0; return False
     kind, who = key
-    a = aspect(inf, "past" if kind == "past" else "pres")
+    a = aspect(inf, "past" if kind == "past" else "pres", ans)
     if kind == "impr" and inf == "положить": a = "pf."
     tense = "past " if kind == "past" else "imper. " if kind == "impr" else ("pres. " if a != "pf." else "fut. ")
     tag = "%s, %s%s" % (a, tense, who)
     e["q"] = q[:m.start()] + "___ (%s, %s)" % (inf, tag) + q[m.end():]
     stats["tagged"] += 1
-    if not e.get("why"): return True                           # the exam shows no notes
-    try: pres, past = forms_for(inf, a == "pf.")
-    except Exception: stats["notindict"] += 1; return True
-    if not got or any(not ws for ws in pres) or not all(past):
-        stats["no forms line"] += 1; return True               # impersonal or defective verb: the old note stays
-    mk_p = marked(pres); mk_s = marked(past)
-    full = mk_p is not None and mk_s is not None
-    if full: stats["stressed"] += 1
+    if not e.get("why") and not e.get("_note"): return True      # the exam shows no notes
+    ent = OR.entry(inf, ans)
+    if ent:
+        pres, past = ent["pres"], ent["past"]
+        mk_p, mk_s, full = pres, past, True
+        if any(not ws for ws in pres) or not all(past): stats["no forms line"] += 1; return True
+        stats["stressed"] += 1
+    else:
+        try: pres, past = forms_for(inf, a == "pf.", ans)
+        except Exception: stats["notindict"] += 1; return True
+        if not got or any(not ws for ws in pres) or not all(past):
+            stats["no forms line"] += 1; return True               # impersonal or defective verb: the old note stays
+        mk_p = marked(pres); mk_s = marked(past)
+        full = mk_p is not None and mk_s is not None
+        if full: stats["stressed"] += 1
     pl = ["%s %s" % (pro, " / ".join(ws)) for (num, per, pro), ws in zip(PERSONS, mk_p if full else pres)]
     imp_txt = ""
     if kind == "impr":
-        im = [P._pick(lexeme(inf), "VERB", "impr", "excl", n) for n in ("sing", "plur")]
-        mi = marked(im) if full else None
-        im = mi or im
+        im = ent["impr"] if ent else [P._pick(entry_lexeme(inf, ans), "VERB", "impr", "excl", n) for n in ("sing", "plur")]
+        if not ent:
+            mi = marked(im) if full else None
+            im = mi or im
         imp_txt = "imperative: ты %s · вы %s.  " % tuple(" / ".join(x) for x in im)
     head = "**%s → %s** (%s)" % (inf, e["answers"][0], tag)
     if lab:
         tail = (" " + cap(lab["paren"].strip("()")) + ".") if lab["paren"] else ""
         rule = cap(lab["tail"].strip())
     else:
-        tail = ""; rule = ""
-    # the old note's own rule text when it could not be read: keep it
-    if lab is None and e.get("why"): rule = ""
+        tail = ""; rule = rule_tail(inf, ans, kind, who) if e.get("_note") else ""
+    e.pop("_note", None)
     forms = "Forms — %s%s: %s; past: %s." % (imp_txt.replace(".  ", "; "), "future" if a == "pf." else "present", " · ".join(pl), " · ".join(" / ".join(ws) for ws in (mk_s if full else past)))
-    e["why"] = "%s.%s%s %s  — OpenCorpora dictionary (CC BY-SA 4.0)." % (head, tail, (" " + rule) if rule else "", forms)
+    e["why"] = "%s.%s%s %s  — %s." % (head, tail, (" " + rule) if rule else "", forms, "OpenRussian (CC BY-SA 4.0)" if ent else "OpenCorpora dictionary (CC BY-SA 4.0)")
     stats["done"] += 1
     return True
 def walk(o, out):
