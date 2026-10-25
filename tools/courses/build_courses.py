@@ -84,6 +84,10 @@ for _meta, _secs in prep_course.COURSE_DEFS:
 import story_course
 for _meta, _secs in story_course.COURSE_DEFS:
     COURSES.append(dict(_meta, modules=[], order=None, sections=_secs))
+# Retired Oct 25 2026: «stories» deleted; compare + complex folded into inter2 and numerals into count
+# (finished files, not rebuilt). Never write them again as separate courses.
+RETIRED_COURSES = {"stories", "compare", "complex", "numerals"}
+COURSES[:] = [_c for _c in COURSES if _c["id"] not in RETIRED_COURSES]
 for _c in COURSES:
     if _c["id"] == "time":
         _c["sections"] = case_courses.TIME_MORE

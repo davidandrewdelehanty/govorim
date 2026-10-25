@@ -28185,15 +28185,6 @@ quizMode ? (
                         exam at the end of a course for the big one. Your place is saved{me ? " to your account" : " on this device — sign in to keep it everywhere"}.
                       </p>
                       {(function(){
-                        var LEVELS = ["Beginner", "Intermediate", "Advanced", "Dates and Times"];
-                        var BLURB = {
-                          "Beginner": "The cases, one at a time, the verb and its endings, counting, and the tables to look things up in.",
-                          "Intermediate": "Aspect, participles and gerunds, comparison, pronouns, the complex sentence, numerals in their cases, the tenses.",
-                          "Advanced": "Grammar in the texts themselves — the classic stories, the advanced topics, and the grammar as Russian names it.",
-                          "Dates and Times": "The clock, the calendar and every construction for when: at five, on Tuesday, in May, a week ago.",
-                        };
-                        var byLevel = {};
-                        COURSE_OUTLINE.forEach(function(c){ var l = LEVELS.indexOf(c.level) >= 0 ? c.level : "Intermediate"; (byLevel[l] = byLevel[l] || []).push(c); });
                         var card = function(c) {
                           var st = courseState(c, courseProg);
                           var exam = (c.sections || []).filter(function(s){ return s.exam; })[0];
@@ -28211,23 +28202,9 @@ quizMode ? (
                             </button>
                           );
                         };
-                        return LEVELS.filter(function(l){ return byLevel[l]; }).map(function(l){
-                          var cs = byLevel[l];
-                          var open = !!crsGroupOpen[l];
-                          var done = cs.filter(function(c){ var st = courseState(c, courseProg); return st.of && st.done === st.of; }).length;
-                          var passed = cs.filter(function(c){ var ex = (c.sections || []).filter(function(s){ return s.exam; })[0]; var r = ex && courseProg[c.id + "/" + ex.id]; return !!(r && r.done); }).length;
-                          return (
-                            <div key={l} className={"crs-group" + (open ? " open" : "")}>
-                              <button type="button" className="crs-group-h" onClick={function(){ toggleCrsGroup(l); }} aria-expanded={open}>
-                                <span className="crs-group-arrow">{open ? "▾" : "▸"}</span>
-                                <span className="crs-group-t">{l}</span>
-                                <span className="crs-group-n">{cs.length} course{cs.length === 1 ? "" : "s"}{passed ? " · " + passed + " exam" + (passed === 1 ? "" : "s") + " passed" : done ? " · " + done + " finished" : ""}</span>
-                                {!open && <span className="crs-group-b">{BLURB[l]}</span>}
-                              </button>
-                              {open && <div className="crs-list">{cs.map(card)}</div>}
-                            </div>
-                          );
-                        });
+                        // One list, A to Z by title — no Beginner / Intermediate / Advanced groups.
+                        var all = COURSE_OUTLINE.slice().sort(function(a, b){ return String(a.title || "").localeCompare(String(b.title || ""), "en", { sensitivity: "base" }); });
+                        return <div className="crs-list">{all.map(card)}</div>;
                       })()}
                     </div>
                   );
