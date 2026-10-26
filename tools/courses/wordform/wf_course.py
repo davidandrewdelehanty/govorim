@@ -252,6 +252,7 @@ def add(sec_id, title, blocks, exercises, sub=None, set_size=12):
 def intro():
     t = S["texts"]["enwiki_word_formation"]
     first = next((x for x in t.split("\n\n") if "prefixes" in x and "{|" not in x), "")
+    first = re.sub(r"^\s*=+[^=\n]+=+\s*", "", first)
     first = WT.render(re.sub(r"\{\{Unreferenced[^}]*\}\}", "", first)).split("For example:")[0].strip()
     rows = []
     for line in t.split("\n"):

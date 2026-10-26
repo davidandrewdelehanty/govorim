@@ -5075,7 +5075,7 @@ export default [
    {
     "id": "m02-arrive-leave-practice-2",
     "title": "Practice 2: Arriving and leaving",
-    "n": 7
+    "n": 6
    },
    {
     "id": "m03-approach-reach",
@@ -5100,7 +5100,7 @@ export default [
    {
     "id": "m04-across-past-practice",
     "title": "Practice: Across, through and past",
-    "n": 10
+    "n": 7
    },
    {
     "id": "m05-around",
@@ -5110,7 +5110,7 @@ export default [
    {
     "id": "m05-around-practice",
     "title": "Practice: Around and near",
-    "n": 9
+    "n": 8
    },
    {
     "id": "m06-down-together-apart",
@@ -5120,7 +5120,7 @@ export default [
    {
     "id": "m06-down-together-apart-practice",
     "title": "Practice: Down, together and apart",
-    "n": 15
+    "n": 14
    },
    {
     "id": "m07-behind-onto",
@@ -5130,7 +5130,7 @@ export default [
    {
     "id": "m07-behind-onto-practice",
     "title": "Practice: Behind, onto and covering",
-    "n": 13
+    "n": 12
    },
    {
     "id": "m08-adding",
@@ -5165,7 +5165,7 @@ export default [
    {
     "id": "m10-result-practice-2",
     "title": "Practice 2: Doing it fully, to the end",
-    "n": 9
+    "n": 7
    },
    {
     "id": "m11-whole",
@@ -5175,7 +5175,7 @@ export default [
    {
     "id": "m11-whole-practice",
     "title": "Practice: Over the whole thing",
-    "n": 9
+    "n": 7
    },
    {
     "id": "m12-loss",
@@ -5265,7 +5265,7 @@ export default [
    {
     "id": "t02-for-a-while-practice",
     "title": "Practice: For a while",
-    "n": 15
+    "n": 13
    },
    {
     "id": "x01-doer",
@@ -5620,12 +5620,7 @@ export default [
    {
     "id": "r06-govorit-practice-2",
     "title": "Practice 2: The family of говори́ть",
-    "n": 12
-   },
-   {
-    "id": "r06-govorit-practice-3",
-    "title": "Practice 3: The family of говори́ть",
-    "n": 5
+    "n": 15
    },
    {
     "id": "r07-skazat",
@@ -5800,7 +5795,7 @@ export default [
    {
     "id": "r16-chitat-practice-3",
     "title": "Practice 3: The family of чита́ть",
-    "n": 9
+    "n": 6
    },
    {
     "id": "r17-zhit",
@@ -5890,7 +5885,7 @@ export default [
    {
     "id": "r22-bezhat-practice-3",
     "title": "Practice 3: The family of бежа́ть",
-    "n": 6
+    "n": 4
    },
    {
     "id": "r23-letet",
@@ -5980,7 +5975,7 @@ export default [
    {
     "id": "r27-stoyat-practice-3",
     "title": "Practice 3: The family of стоя́ть",
-    "n": 11
+    "n": 10
    },
    {
     "id": "r28-lezhat",
