@@ -5021,7 +5021,7 @@ export default [
   "short": "Word formation",
   "mark": "Сл",
   "blurb": "",
-  "credit": "Lesson text quoted from the English Wiktionary (each prefix's, suffix's and word's entry: senses, definitions, etymologies, derived and related terms; CC BY-SA 4.0), the English Wikipedia's «Russian grammar» § Word formation and the Russian Wikipedia's «Вид (лингвистика)» (CC BY-SA 4.0); exercises: sentences and translations from Tatoeba (CC BY 2.0 FR)",
+  "credit": "Meanings and their example words from the Russian Wiktionary (each prefix's and suffix's «Значение», and each root's «Родственные слова») and the English Wiktionary (senses, definitions, etymologies); the English Wikipedia's «Russian grammar» (§ Word formation, § Prefixed motion verbs); all CC BY-SA 4.0. Exercises: sentences and translations from Tatoeba (CC BY 2.0 FR)",
   "creditUrl": "https://en.wiktionary.org/wiki/Appendix:Russian_prefixes",
   "license": "CC BY-SA 4.0 · CC BY 2.0 FR",
   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5033,374 +5033,494 @@ export default [
     "n": 0
    },
    {
-    "id": "p01-in-out",
-    "title": "в- and вы-",
+    "id": "m00-motion",
+    "title": "Prefixes on verbs of motion",
     "n": 0
    },
    {
-    "id": "p01-in-out-practice",
-    "title": "Practice 1: в- and вы-",
+    "id": "m00-motion-practice",
+    "title": "Practice 1: Prefixes on verbs of motion",
     "n": 12
    },
    {
-    "id": "p01-in-out-practice-2",
-    "title": "Practice 2: в- and вы-",
-    "n": 12
+    "id": "m00-motion-practice-2",
+    "title": "Practice 2: Prefixes on verbs of motion",
+    "n": 9
    },
    {
-    "id": "p02-arrive-leave",
-    "title": "при- and у-",
+    "id": "m01-in-out-up",
+    "title": "Moving in, out and up",
     "n": 0
    },
    {
-    "id": "p02-arrive-leave-practice",
-    "title": "Practice 1: при- and у-",
+    "id": "m01-in-out-up-practice",
+    "title": "Practice 1: Moving in, out and up",
     "n": 12
    },
    {
-    "id": "p02-arrive-leave-practice-2",
-    "title": "Practice 2: при- and у-",
-    "n": 14
+    "id": "m01-in-out-up-practice-2",
+    "title": "Practice 2: Moving in, out and up",
+    "n": 12
    },
    {
-    "id": "p03-near-away",
-    "title": "под- and от-",
+    "id": "m02-arrive-leave",
+    "title": "Arriving and leaving",
     "n": 0
    },
    {
-    "id": "p03-near-away-practice",
-    "title": "Practice 1: под- and от-",
+    "id": "m02-arrive-leave-practice",
+    "title": "Practice 1: Arriving and leaving",
     "n": 12
    },
    {
-    "id": "p03-near-away-practice-2",
-    "title": "Practice 2: под- and от-",
-    "n": 12
-   },
-   {
-    "id": "p03-near-away-practice-3",
-    "title": "Practice 3: под- and от-",
+    "id": "m02-arrive-leave-practice-2",
+    "title": "Practice 2: Arriving and leaving",
     "n": 8
    },
    {
-    "id": "p04-across-through",
-    "title": "пере- and про-",
+    "id": "m03-approach-reach",
+    "title": "Approaching, moving off, reaching",
     "n": 0
    },
    {
-    "id": "p04-across-through-practice",
-    "title": "Practice 1: пере- and про-",
+    "id": "m03-approach-reach-practice",
+    "title": "Practice 1: Approaching, moving off, reaching",
     "n": 12
    },
    {
-    "id": "p04-across-through-practice-2",
-    "title": "Practice 2: пере- and про-",
-    "n": 12
-   },
-   {
-    "id": "p04-across-through-practice-3",
-    "title": "Practice 3: пере- and про-",
-    "n": 12
-   },
-   {
-    "id": "p05-reach-around",
-    "title": "до- and о-, об-",
-    "n": 0
-   },
-   {
-    "id": "p05-reach-around-practice",
-    "title": "Practice 1: до- and о-, об-",
-    "n": 12
-   },
-   {
-    "id": "p05-reach-around-practice-2",
-    "title": "Practice 2: до- and о-, об-",
+    "id": "m03-approach-reach-practice-2",
+    "title": "Practice 2: Approaching, moving off, reaching",
     "n": 13
    },
    {
-    "id": "p06-up-down",
-    "title": "вз-, воз- and с-",
+    "id": "m04-across-past",
+    "title": "Across, through and past",
     "n": 0
    },
    {
-    "id": "p06-up-down-practice",
-    "title": "Practice 1: вз-, воз- and с-",
-    "n": 12
+    "id": "m04-across-past-practice",
+    "title": "Practice: Across, through and past",
+    "n": 10
    },
    {
-    "id": "p06-up-down-practice-2",
-    "title": "Practice 2: вз-, воз- and с-",
-    "n": 12
-   },
-   {
-    "id": "p06-up-down-practice-3",
-    "title": "Practice 3: вз-, воз- and с-",
-    "n": 7
-   },
-   {
-    "id": "p07-apart-out",
-    "title": "раз- and из-",
+    "id": "m05-around",
+    "title": "Around and near",
     "n": 0
    },
    {
-    "id": "p07-apart-out-practice",
-    "title": "Practice 1: раз- and из-",
-    "n": 12
+    "id": "m05-around-practice",
+    "title": "Practice: Around and near",
+    "n": 10
    },
    {
-    "id": "p07-apart-out-practice-2",
-    "title": "Practice 2: раз- and из-",
-    "n": 8
-   },
-   {
-    "id": "p08-onto-behind",
-    "title": "на- and за-",
+    "id": "m06-down-together-apart",
+    "title": "Down, together and apart",
     "n": 0
    },
    {
-    "id": "p08-onto-behind-practice",
-    "title": "Practice 1: на- and за-",
+    "id": "m06-down-together-apart-practice",
+    "title": "Practice 1: Down, together and apart",
     "n": 12
    },
    {
-    "id": "p08-onto-behind-practice-2",
-    "title": "Practice 2: на- and за-",
+    "id": "m06-down-together-apart-practice-2",
+    "title": "Practice 2: Down, together and apart",
+    "n": 4
+   },
+   {
+    "id": "m07-behind-onto",
+    "title": "Behind, onto and covering",
+    "n": 0
+   },
+   {
+    "id": "m07-behind-onto-practice",
+    "title": "Practice: Behind, onto and covering",
+    "n": 13
+   },
+   {
+    "id": "m08-adding",
+    "title": "Adding to",
+    "n": 0
+   },
+   {
+    "id": "m08-adding-practice",
+    "title": "Practice: Adding to",
+    "n": 6
+   },
+   {
+    "id": "m09-ahead",
+    "title": "In advance",
+    "n": 0
+   },
+   {
+    "id": "m09-ahead-practice",
+    "title": "Practice: In advance",
+    "n": 4
+   },
+   {
+    "id": "m10-result",
+    "title": "Doing it fully, to the end",
+    "n": 0
+   },
+   {
+    "id": "m10-result-practice",
+    "title": "Practice 1: Doing it fully, to the end",
     "n": 12
    },
    {
-    "id": "p08-onto-behind-practice-3",
-    "title": "Practice 3: на- and за-",
-    "n": 7
+    "id": "m10-result-practice-2",
+    "title": "Practice 2: Doing it fully, to the end",
+    "n": 12
    },
    {
-    "id": "p09-po",
-    "title": "по-",
+    "id": "m11-whole",
+    "title": "Over the whole thing",
     "n": 0
    },
    {
-    "id": "p09-po-practice",
-    "title": "Practice: по-",
-    "n": 15
-   },
-   {
-    "id": "p10-pre-pred",
-    "title": "пре- and пред-",
-    "n": 0
-   },
-   {
-    "id": "p10-pre-pred-practice",
-    "title": "Practice: пре- and пред-",
+    "id": "m11-whole-practice",
+    "title": "Practice: Over the whole thing",
     "n": 11
    },
    {
+    "id": "m12-loss",
+    "title": "Losing, using up, cutting off",
+    "n": 0
+   },
+   {
+    "id": "m12-loss-practice",
+    "title": "Practice: Losing, using up, cutting off",
+    "n": 12
+   },
+   {
+    "id": "m13-states",
+    "title": "Holding on, settling in, coming round",
+    "n": 0
+   },
+   {
+    "id": "m13-states-practice",
+    "title": "Practice 1: Holding on, settling in, coming round",
+    "n": 12
+   },
+   {
+    "id": "m13-states-practice-2",
+    "title": "Practice 2: Holding on, settling in, coming round",
+    "n": 9
+   },
+   {
+    "id": "m14-perfective",
+    "title": "Just making the verb perfective",
+    "n": 0
+   },
+   {
+    "id": "m14-perfective-practice",
+    "title": "Practice: Just making the verb perfective",
+    "n": 5
+   },
+   {
+    "id": "m15-times",
+    "title": "Twice, three times",
+    "n": 0
+   },
+   {
+    "id": "m15-times-practice",
+    "title": "Practice: Twice, three times",
+    "n": 6
+   },
+   {
+    "id": "m16-nouns-adjectives",
+    "title": "Before, above, with, without, half, very",
+    "n": 0
+   },
+   {
+    "id": "m16-nouns-adjectives-practice",
+    "title": "Practice: Before, above, with, without, half, very",
+    "n": 8
+   },
+   {
+    "id": "m17-adverbs",
+    "title": "Adverbs of place, time and manner",
+    "n": 0
+   },
+   {
+    "id": "m17-adverbs-practice",
+    "title": "Practice 1: Adverbs of place, time and manner",
+    "n": 12
+   },
+   {
+    "id": "m17-adverbs-practice-2",
+    "title": "Practice 2: Adverbs of place, time and manner",
+    "n": 9
+   },
+   {
     "id": "t01-beginning",
-    "title": "«To begin doing»: за- and others",
+    "title": "Beginning an action",
     "n": 0
    },
    {
     "id": "t01-beginning-practice",
-    "title": "Practice: «To begin doing»: за- and others",
-    "n": 13
+    "title": "Practice 1: Beginning an action",
+    "n": 12
+   },
+   {
+    "id": "t01-beginning-practice-2",
+    "title": "Practice 2: Beginning an action",
+    "n": 4
    },
    {
     "id": "t02-for-a-while",
-    "title": "«For a while»: по- and про-",
+    "title": "For a while",
     "n": 0
    },
    {
     "id": "t02-for-a-while-practice",
-    "title": "Practice 1: «For a while»: по- and про-",
+    "title": "Practice 1: For a while",
     "n": 12
    },
    {
     "id": "t02-for-a-while-practice-2",
-    "title": "Practice 2: «For a while»: по- and про-",
+    "title": "Practice 2: For a while",
     "n": 4
    },
    {
+    "id": "x01-doer",
+    "title": "Someone who does or is something",
+    "n": 0
+   },
+   {
+    "id": "x01-doer-practice",
+    "title": "Practice 1: Someone who does or is something",
+    "n": 12
+   },
+   {
+    "id": "x01-doer-practice-2",
+    "title": "Practice 2: Someone who does or is something",
+    "n": 12
+   },
+   {
+    "id": "x01-doer-practice-3",
+    "title": "Practice 3: Someone who does or is something",
+    "n": 12
+   },
+   {
+    "id": "x01-doer-practice-4",
+    "title": "Practice 4: Someone who does or is something",
+    "n": 12
+   },
+   {
+    "id": "x01-doer-practice-5",
+    "title": "Practice 5: Someone who does or is something",
+    "n": 10
+   },
+   {
+    "id": "x02-women",
+    "title": "Women",
+    "n": 0
+   },
+   {
+    "id": "x02-women-practice",
+    "title": "Practice: Women",
+    "n": 5
+   },
+   {
+    "id": "x03-places-things",
+    "title": "Places, things and results",
+    "n": 0
+   },
+   {
+    "id": "x03-places-things-practice",
+    "title": "Practice: Places, things and results",
+    "n": 10
+   },
+   {
+    "id": "x04-little",
+    "title": "Small and dear",
+    "n": 0
+   },
+   {
+    "id": "x04-little-practice",
+    "title": "Practice: Small and dear",
+    "n": 6
+   },
+   {
+    "id": "x05-quality",
+    "title": "Qualities: nouns from adjectives",
+    "n": 0
+   },
+   {
+    "id": "x05-quality-practice",
+    "title": "Practice 1: Qualities: nouns from adjectives",
+    "n": 12
+   },
+   {
+    "id": "x05-quality-practice-2",
+    "title": "Practice 2: Qualities: nouns from adjectives",
+    "n": 12
+   },
+   {
+    "id": "x05-quality-practice-3",
+    "title": "Practice 3: Qualities: nouns from adjectives",
+    "n": 12
+   },
+   {
+    "id": "x05-quality-practice-4",
+    "title": "Practice 4: Qualities: nouns from adjectives",
+    "n": 13
+   },
+   {
+    "id": "x07-action",
+    "title": "Actions and their results: nouns from verbs",
+    "n": 0
+   },
+   {
+    "id": "x07-action-practice",
+    "title": "Practice 1: Actions and their results: nouns from verbs",
+    "n": 12
+   },
+   {
+    "id": "x07-action-practice-2",
+    "title": "Practice 2: Actions and their results: nouns from verbs",
+    "n": 12
+   },
+   {
+    "id": "x07-action-practice-3",
+    "title": "Practice 3: Actions and their results: nouns from verbs",
+    "n": 12
+   },
+   {
+    "id": "x07-action-practice-4",
+    "title": "Practice 4: Actions and their results: nouns from verbs",
+    "n": 12
+   },
+   {
+    "id": "x07-action-practice-5",
+    "title": "Practice 5: Actions and their results: nouns from verbs",
+    "n": 12
+   },
+   {
+    "id": "x07-action-practice-6",
+    "title": "Practice 6: Actions and their results: nouns from verbs",
+    "n": 15
+   },
+   {
+    "id": "x08-relating",
+    "title": "Adjectives: «of, to do with»",
+    "n": 0
+   },
+   {
+    "id": "x08-relating-practice",
+    "title": "Practice 1: Adjectives: «of, to do with»",
+    "n": 12
+   },
+   {
+    "id": "x08-relating-practice-2",
+    "title": "Practice 2: Adjectives: «of, to do with»",
+    "n": 12
+   },
+   {
+    "id": "x08-relating-practice-3",
+    "title": "Practice 3: Adjectives: «of, to do with»",
+    "n": 12
+   },
+   {
+    "id": "x08-relating-practice-4",
+    "title": "Practice 4: Adjectives: «of, to do with»",
+    "n": 12
+   },
+   {
+    "id": "x08-relating-practice-5",
+    "title": "Practice 5: Adjectives: «of, to do with»",
+    "n": 12
+   },
+   {
+    "id": "x08-relating-practice-6",
+    "title": "Practice 6: Adjectives: «of, to do with»",
+    "n": 11
+   },
+   {
+    "id": "x09-having",
+    "title": "Adjectives: «having, inclined to»",
+    "n": 0
+   },
+   {
+    "id": "x09-having-practice",
+    "title": "Practice 1: Adjectives: «having, inclined to»",
+    "n": 12
+   },
+   {
+    "id": "x09-having-practice-2",
+    "title": "Practice 2: Adjectives: «having, inclined to»",
+    "n": 6
+   },
+   {
+    "id": "x10-verbs",
+    "title": "Verbs from nouns and adjectives",
+    "n": 0
+   },
+   {
+    "id": "x10-verbs-practice",
+    "title": "Practice 1: Verbs from nouns and adjectives",
+    "n": 12
+   },
+   {
+    "id": "x10-verbs-practice-2",
+    "title": "Practice 2: Verbs from nouns and adjectives",
+    "n": 15
+   },
+   {
+    "id": "x11-adverbs",
+    "title": "Adverbs in -о",
+    "n": 0
+   },
+   {
+    "id": "x11-adverbs-practice",
+    "title": "Practice 1: Adverbs in -о",
+    "n": 12
+   },
+   {
+    "id": "x11-adverbs-practice-2",
+    "title": "Practice 2: Adverbs in -о",
+    "n": 8
+   },
+   {
     "id": "s01-yvat",
-    "title": "-ывать and -ивать",
+    "title": "The imperfective in -ывать and -ивать",
     "n": 0
    },
    {
     "id": "s01-yvat-practice",
-    "title": "Practice 1: -ывать and -ивать",
+    "title": "Practice 1: The imperfective in -ывать and -ивать",
     "n": 12
    },
    {
     "id": "s01-yvat-practice-2",
-    "title": "Practice 2: -ывать and -ивать",
+    "title": "Practice 2: The imperfective in -ывать and -ивать",
     "n": 12
    },
    {
     "id": "s01-yvat-practice-3",
-    "title": "Practice 3: -ывать and -ивать",
+    "title": "Practice 3: The imperfective in -ывать and -ивать",
     "n": 6
    },
    {
     "id": "s02-vat",
-    "title": "-вать",
+    "title": "The imperfective in -вать",
     "n": 0
    },
    {
     "id": "s02-vat-practice",
-    "title": "Practice 1: -вать",
+    "title": "Practice 1: The imperfective in -вать",
     "n": 12
    },
    {
     "id": "s02-vat-practice-2",
-    "title": "Practice 2: -вать",
+    "title": "Practice 2: The imperfective in -вать",
     "n": 12
    },
    {
     "id": "s02-vat-practice-3",
-    "title": "Practice 3: -вать",
+    "title": "Practice 3: The imperfective in -вать",
     "n": 6
-   },
-   {
-    "id": "s03-nut",
-    "title": "-нуть",
-    "n": 0
-   },
-   {
-    "id": "s03-nut-practice",
-    "title": "Practice 1: -нуть",
-    "n": 12
-   },
-   {
-    "id": "s03-nut-practice-2",
-    "title": "Practice 2: -нуть",
-    "n": 4
-   },
-   {
-    "id": "s04-ovat",
-    "title": "-овать and -евать",
-    "n": 0
-   },
-   {
-    "id": "s04-ovat-practice",
-    "title": "Practice: -овать and -евать",
-    "n": 10
-   },
-   {
-    "id": "s05-nie",
-    "title": "-ение and -ание",
-    "n": 0
-   },
-   {
-    "id": "s05-nie-practice",
-    "title": "Practice 1: -ение and -ание",
-    "n": 12
-   },
-   {
-    "id": "s05-nie-practice-2",
-    "title": "Practice 2: -ение and -ание",
-    "n": 12
-   },
-   {
-    "id": "s05-nie-practice-3",
-    "title": "Practice 3: -ение and -ание",
-    "n": 5
-   },
-   {
-    "id": "s06-tel",
-    "title": "-тель",
-    "n": 0
-   },
-   {
-    "id": "s06-tel-practice",
-    "title": "Practice 1: -тель",
-    "n": 12
-   },
-   {
-    "id": "s06-tel-practice-2",
-    "title": "Practice 2: -тель",
-    "n": 4
-   },
-   {
-    "id": "s07-ost",
-    "title": "-ость",
-    "n": 0
-   },
-   {
-    "id": "s07-ost-practice",
-    "title": "Practice: -ость",
-    "n": 15
-   },
-   {
-    "id": "s08-stvo",
-    "title": "-ство and -ие",
-    "n": 0
-   },
-   {
-    "id": "s08-stvo-practice",
-    "title": "Practice: -ство and -ие",
-    "n": 8
-   },
-   {
-    "id": "s09-nik",
-    "title": "-ник, -ец, -щик, -чик",
-    "n": 0
-   },
-   {
-    "id": "s09-nik-practice",
-    "title": "Practice: -ник, -ец, -щик, -чик",
-    "n": 13
-   },
-   {
-    "id": "s10-ka",
-    "title": "-ка, -ок, -ик",
-    "n": 0
-   },
-   {
-    "id": "s10-ka-practice",
-    "title": "Practice 1: -ка, -ок, -ик",
-    "n": 12
-   },
-   {
-    "id": "s10-ka-practice-2",
-    "title": "Practice 2: -ка, -ок, -ик",
-    "n": 12
-   },
-   {
-    "id": "s10-ka-practice-3",
-    "title": "Practice 3: -ка, -ок, -ик",
-    "n": 6
-   },
-   {
-    "id": "s11-ny",
-    "title": "-ный, -ной, -ский",
-    "n": 0
-   },
-   {
-    "id": "s11-ny-practice",
-    "title": "Practice 1: -ный, -ной, -ский",
-    "n": 12
-   },
-   {
-    "id": "s11-ny-practice-2",
-    "title": "Practice 2: -ный, -ной, -ский",
-    "n": 12
-   },
-   {
-    "id": "s11-ny-practice-3",
-    "title": "Practice 3: -ный, -ной, -ский",
-    "n": 6
-   },
-   {
-    "id": "s12-livy",
-    "title": "-ливый, -ивый, -тельный",
-    "n": 0
-   },
-   {
-    "id": "s12-livy-practice",
-    "title": "Practice 1: -ливый, -ивый, -тельный",
-    "n": 12
-   },
-   {
-    "id": "s12-livy-practice-2",
-    "title": "Practice 2: -ливый, -ивый, -тельный",
-    "n": 8
    },
    {
     "id": "r01-sled",
@@ -5409,8 +5529,13 @@ export default [
    },
    {
     "id": "r01-sled-practice",
-    "title": "Practice: The family of след",
-    "n": 11
+    "title": "Practice 1: The family of след",
+    "n": 12
+   },
+   {
+    "id": "r01-sled-practice-2",
+    "title": "Practice 2: The family of след",
+    "n": 7
    },
    {
     "id": "r02-khod",
@@ -5428,6 +5553,11 @@ export default [
     "n": 12
    },
    {
+    "id": "r02-khod-practice-3",
+    "title": "Practice 3: The family of ход",
+    "n": 13
+   },
+   {
     "id": "r03-vesti",
     "title": "The family of вести́",
     "n": 0
@@ -5440,12 +5570,12 @@ export default [
    {
     "id": "r03-vesti-practice-2",
     "title": "Practice 2: The family of вести́",
-    "n": 11
+    "n": 12
    },
    {
     "id": "r03-vesti-practice-3",
     "title": "Practice 3: The family of вести́",
-    "n": 11
+    "n": 9
    },
    {
     "id": "r04-nesti",
@@ -5460,27 +5590,27 @@ export default [
    {
     "id": "r04-nesti-practice-2",
     "title": "Practice 2: The family of нести́",
-    "n": 13
-   },
-   {
-    "id": "r05-pisat",
-    "title": "The family of писа́ть",
-    "n": 0
-   },
-   {
-    "id": "r05-pisat-practice",
-    "title": "Practice 1: The family of писа́ть",
-    "n": 11
-   },
-   {
-    "id": "r05-pisat-practice-2",
-    "title": "Practice 2: The family of писа́ть",
     "n": 12
    },
    {
-    "id": "r05-pisat-practice-3",
-    "title": "Practice 3: The family of писа́ть",
-    "n": 5
+    "id": "r04-nesti-practice-3",
+    "title": "Practice 3: The family of нести́",
+    "n": 7
+   },
+   {
+    "id": "r05-pisat-1",
+    "title": "The family of писа́ть (письмо, писа́тель)",
+    "n": 0
+   },
+   {
+    "id": "r05-pisat-1-practice",
+    "title": "Practice 1: The family of писа́ть (письмо, писа́тель)",
+    "n": 12
+   },
+   {
+    "id": "r05-pisat-1-practice-2",
+    "title": "Practice 2: The family of писа́ть (письмо, писа́тель)",
+    "n": 14
    },
    {
     "id": "r06-govorit",
@@ -5500,7 +5630,7 @@ export default [
    {
     "id": "r06-govorit-practice-3",
     "title": "Practice 3: The family of говори́ть",
-    "n": 4
+    "n": 6
    },
    {
     "id": "r07-skazat",
@@ -5509,348 +5639,468 @@ export default [
    },
    {
     "id": "r07-skazat-practice",
-    "title": "Practice 1: The family of сказа́ть",
+    "title": "Practice: The family of сказа́ть",
+    "n": 5
+   },
+   {
+    "id": "r08-delo",
+    "title": "The family of дело",
+    "n": 0
+   },
+   {
+    "id": "r08-delo-practice",
+    "title": "Practice 1: The family of дело",
     "n": 12
    },
    {
-    "id": "r07-skazat-practice-2",
-    "title": "Practice 2: The family of сказа́ть",
-    "n": 8
+    "id": "r08-delo-practice-2",
+    "title": "Practice 2: The family of дело",
+    "n": 12
    },
    {
-    "id": "r08-stavit",
+    "id": "r08-delo-practice-3",
+    "title": "Practice 3: The family of дело",
+    "n": 13
+   },
+   {
+    "id": "r09-stavit",
     "title": "The family of ста́вить",
     "n": 0
    },
    {
-    "id": "r08-stavit-practice",
+    "id": "r09-stavit-practice",
     "title": "Practice 1: The family of ста́вить",
     "n": 12
    },
    {
-    "id": "r08-stavit-practice-2",
+    "id": "r09-stavit-practice-2",
     "title": "Practice 2: The family of ста́вить",
-    "n": 11
+    "n": 12
    },
    {
-    "id": "r08-stavit-practice-3",
-    "title": "Practice 3: The family of ста́вить",
-    "n": 7
-   },
-   {
-    "id": "r09-stat",
-    "title": "The family of стать",
+    "id": "r10-stat-1",
+    "title": "The family of стать (переста́ть, установи́ть)",
     "n": 0
    },
    {
-    "id": "r09-stat-practice",
-    "title": "Practice 1: The family of стать",
-    "n": 12
+    "id": "r10-stat-1-practice",
+    "title": "Practice: The family of стать (переста́ть, установи́ть)",
+    "n": 13
    },
    {
-    "id": "r09-stat-practice-2",
-    "title": "Practice 2: The family of стать",
-    "n": 12
-   },
-   {
-    "id": "r09-stat-practice-3",
-    "title": "Practice 3: The family of стать",
-    "n": 12
-   },
-   {
-    "id": "r09-stat-practice-4",
-    "title": "Practice 4: The family of стать",
-    "n": 5
-   },
-   {
-    "id": "r10-polozhit",
+    "id": "r11-polozhit",
     "title": "The family of положи́ть",
     "n": 0
    },
    {
-    "id": "r10-polozhit-practice",
-    "title": "Practice: The family of положи́ть",
-    "n": 14
-   },
-   {
-    "id": "r11-znat",
-    "title": "The family of знать",
-    "n": 0
-   },
-   {
-    "id": "r11-znat-practice",
-    "title": "Practice 1: The family of знать",
+    "id": "r11-polozhit-practice",
+    "title": "Practice 1: The family of положи́ть",
     "n": 12
    },
    {
-    "id": "r11-znat-practice-2",
-    "title": "Practice 2: The family of знать",
+    "id": "r11-polozhit-practice-2",
+    "title": "Practice 2: The family of положи́ть",
+    "n": 12
+   },
+   {
+    "id": "r11-polozhit-practice-3",
+    "title": "Practice 3: The family of положи́ть",
+    "n": 12
+   },
+   {
+    "id": "r11-polozhit-practice-4",
+    "title": "Practice 4: The family of положи́ть",
+    "n": 5
+   },
+   {
+    "id": "r12-mysl",
+    "title": "The family of мысль",
+    "n": 0
+   },
+   {
+    "id": "r12-mysl-practice",
+    "title": "Practice 1: The family of мысль",
+    "n": 12
+   },
+   {
+    "id": "r12-mysl-practice-2",
+    "title": "Practice 2: The family of мысль",
     "n": 10
    },
    {
-    "id": "r12-brat",
+    "id": "r13-videt",
+    "title": "The family of ви́деть",
+    "n": 0
+   },
+   {
+    "id": "r13-videt-practice",
+    "title": "Practice 1: The family of ви́деть",
+    "n": 12
+   },
+   {
+    "id": "r13-videt-practice-2",
+    "title": "Practice 2: The family of ви́деть",
+    "n": 4
+   },
+   {
+    "id": "r14-brat",
     "title": "The family of брать",
     "n": 0
    },
    {
-    "id": "r12-brat-practice",
+    "id": "r14-brat-practice",
     "title": "Practice 1: The family of брать",
     "n": 12
    },
    {
-    "id": "r12-brat-practice-2",
+    "id": "r14-brat-practice-2",
     "title": "Practice 2: The family of брать",
     "n": 12
    },
    {
-    "id": "r12-brat-practice-3",
+    "id": "r14-brat-practice-3",
     "title": "Practice 3: The family of брать",
-    "n": 14
+    "n": 12
    },
    {
-    "id": "r13-dat",
+    "id": "r15-dat",
     "title": "The family of дать",
     "n": 0
    },
    {
-    "id": "r13-dat-practice",
+    "id": "r15-dat-practice",
     "title": "Practice 1: The family of дать",
-    "n": 10
+    "n": 12
    },
    {
-    "id": "r13-dat-practice-2",
+    "id": "r15-dat-practice-2",
     "title": "Practice 2: The family of дать",
     "n": 12
    },
    {
-    "id": "r13-dat-practice-3",
+    "id": "r15-dat-practice-3",
     "title": "Practice 3: The family of дать",
-    "n": 12
+    "n": 15
    },
    {
-    "id": "r13-dat-practice-4",
-    "title": "Practice 4: The family of дать",
-    "n": 6
-   },
-   {
-    "id": "r14-chitat",
+    "id": "r16-chitat",
     "title": "The family of чита́ть",
     "n": 0
    },
    {
-    "id": "r14-chitat-practice",
+    "id": "r16-chitat-practice",
     "title": "Practice 1: The family of чита́ть",
     "n": 12
    },
    {
-    "id": "r14-chitat-practice-2",
+    "id": "r16-chitat-practice-2",
     "title": "Practice 2: The family of чита́ть",
-    "n": 7
+    "n": 8
    },
    {
-    "id": "r15-zhit",
+    "id": "r17-zhit",
     "title": "The family of жить",
     "n": 0
    },
    {
-    "id": "r15-zhit-practice",
+    "id": "r17-zhit-practice",
     "title": "Practice 1: The family of жить",
     "n": 12
    },
    {
-    "id": "r15-zhit-practice-2",
+    "id": "r17-zhit-practice-2",
     "title": "Practice 2: The family of жить",
-    "n": 7
+    "n": 12
    },
    {
-    "id": "r16-slovo",
+    "id": "r18-slovo",
     "title": "The family of слово",
     "n": 0
    },
    {
-    "id": "r16-slovo-practice",
-    "title": "Practice: The family of слово",
-    "n": 8
+    "id": "r18-slovo-practice",
+    "title": "Practice 1: The family of слово",
+    "n": 12
    },
    {
-    "id": "r17-derzhat",
+    "id": "r18-slovo-practice-2",
+    "title": "Practice 2: The family of слово",
+    "n": 4
+   },
+   {
+    "id": "r19-derzhat",
     "title": "The family of держа́ть",
     "n": 0
    },
    {
-    "id": "r17-derzhat-practice",
+    "id": "r19-derzhat-practice",
     "title": "Practice: The family of держа́ть",
-    "n": 12
+    "n": 13
    },
    {
-    "id": "r18-zvat",
-    "title": "The family of звать",
-    "n": 0
-   },
-   {
-    "id": "r18-zvat-practice",
-    "title": "Practice: The family of звать",
-    "n": 15
-   },
-   {
-    "id": "r19-bit",
+    "id": "r20-bit",
     "title": "The family of бить",
     "n": 0
    },
    {
-    "id": "r19-bit-practice",
+    "id": "r20-bit-practice",
     "title": "Practice 1: The family of бить",
     "n": 12
    },
    {
-    "id": "r19-bit-practice-2",
+    "id": "r20-bit-practice-2",
     "title": "Practice 2: The family of бить",
+    "n": 8
+   },
+   {
+    "id": "r21-chuvstvo",
+    "title": "The family of чу́вство",
+    "n": 0
+   },
+   {
+    "id": "r21-chuvstvo-practice",
+    "title": "Practice: The family of чу́вство",
     "n": 12
    },
    {
-    "id": "r20-bezhat",
+    "id": "r22-bezhat",
     "title": "The family of бежа́ть",
     "n": 0
    },
    {
-    "id": "r20-bezhat-practice",
+    "id": "r22-bezhat-practice",
     "title": "Practice 1: The family of бежа́ть",
     "n": 12
    },
    {
-    "id": "r20-bezhat-practice-2",
+    "id": "r22-bezhat-practice-2",
     "title": "Practice 2: The family of бежа́ть",
-    "n": 12
+    "n": 15
    },
    {
-    "id": "r20-bezhat-practice-3",
-    "title": "Practice 3: The family of бежа́ть",
-    "n": 8
+    "id": "r23-letet",
+    "title": "The family of лете́ть",
+    "n": 0
    },
    {
-    "id": "r21-glyadet",
+    "id": "r23-letet-practice",
+    "title": "Practice: The family of лете́ть",
+    "n": 10
+   },
+   {
+    "id": "r24-glyadet",
     "title": "The family of гляде́ть",
     "n": 0
    },
    {
-    "id": "r21-glyadet-practice",
+    "id": "r24-glyadet-practice",
     "title": "Practice 1: The family of гляде́ть",
     "n": 12
    },
    {
-    "id": "r21-glyadet-practice-2",
+    "id": "r24-glyadet-practice-2",
     "title": "Practice 2: The family of гляде́ть",
-    "n": 11
+    "n": 12
    },
    {
-    "id": "r22-past",
-    "title": "The family of пасть",
+    "id": "r24-glyadet-practice-3",
+    "title": "Practice 3: The family of гляде́ть",
+    "n": 12
+   },
+   {
+    "id": "r25-ruka",
+    "title": "The family of рука",
     "n": 0
    },
    {
-    "id": "r22-past-practice",
-    "title": "Practice: The family of пасть",
-    "n": 5
+    "id": "r25-ruka-practice",
+    "title": "Practice 1: The family of рука",
+    "n": 12
    },
    {
-    "id": "r23-stoyat",
+    "id": "r25-ruka-practice-2",
+    "title": "Practice 2: The family of рука",
+    "n": 12
+   },
+   {
+    "id": "r25-ruka-practice-3",
+    "title": "Practice 3: The family of рука",
+    "n": 9
+   },
+   {
+    "id": "r26-past-2",
+    "title": "The family of пасть (попа́сть, упа́сть)",
+    "n": 0
+   },
+   {
+    "id": "r26-past-2-practice",
+    "title": "Practice 1: The family of пасть (попа́сть, упа́сть)",
+    "n": 12
+   },
+   {
+    "id": "r26-past-2-practice-2",
+    "title": "Practice 2: The family of пасть (попа́сть, упа́сть)",
+    "n": 12
+   },
+   {
+    "id": "r26-past-2-practice-3",
+    "title": "Practice 3: The family of пасть (попа́сть, упа́сть)",
+    "n": 10
+   },
+   {
+    "id": "r27-stoyat",
     "title": "The family of стоя́ть",
     "n": 0
    },
    {
-    "id": "r23-stoyat-practice",
+    "id": "r27-stoyat-practice",
     "title": "Practice 1: The family of стоя́ть",
     "n": 12
    },
    {
-    "id": "r23-stoyat-practice-2",
+    "id": "r27-stoyat-practice-2",
     "title": "Practice 2: The family of стоя́ть",
-    "n": 4
+    "n": 12
    },
    {
-    "id": "r24-kryt",
+    "id": "r27-stoyat-practice-3",
+    "title": "Practice 3: The family of стоя́ть",
+    "n": 9
+   },
+   {
+    "id": "r28-lezhat",
+    "title": "The family of лежа́ть",
+    "n": 0
+   },
+   {
+    "id": "r28-lezhat-practice",
+    "title": "Practice 1: The family of лежа́ть",
+    "n": 12
+   },
+   {
+    "id": "r28-lezhat-practice-2",
+    "title": "Practice 2: The family of лежа́ть",
+    "n": 12
+   },
+   {
+    "id": "r28-lezhat-practice-3",
+    "title": "Practice 3: The family of лежа́ть",
+    "n": 12
+   },
+   {
+    "id": "r28-lezhat-practice-4",
+    "title": "Practice 4: The family of лежа́ть",
+    "n": 5
+   },
+   {
+    "id": "r29-kryt",
     "title": "The family of крыть",
     "n": 0
    },
    {
-    "id": "r24-kryt-practice",
+    "id": "r29-kryt-practice",
     "title": "Practice 1: The family of крыть",
-    "n": 10
-   },
-   {
-    "id": "r24-kryt-practice-2",
-    "title": "Practice 2: The family of крыть",
-    "n": 11
-   },
-   {
-    "id": "r25-pomnit",
-    "title": "The family of по́мнить",
-    "n": 0
-   },
-   {
-    "id": "r25-pomnit-practice",
-    "title": "Practice 1: The family of по́мнить",
     "n": 12
    },
    {
-    "id": "r25-pomnit-practice-2",
-    "title": "Practice 2: The family of по́мнить",
-    "n": 13
+    "id": "r29-kryt-practice-2",
+    "title": "Practice 2: The family of крыть",
+    "n": 12
    },
    {
-    "id": "r26-uchit",
+    "id": "r29-kryt-practice-3",
+    "title": "Practice 3: The family of крыть",
+    "n": 12
+   },
+   {
+    "id": "r30-uchit",
     "title": "The family of учи́ть",
     "n": 0
    },
    {
-    "id": "r26-uchit-practice",
+    "id": "r30-uchit-practice",
     "title": "Practice 1: The family of учи́ть",
     "n": 12
    },
    {
-    "id": "r26-uchit-practice-2",
+    "id": "r30-uchit-practice-2",
     "title": "Practice 2: The family of учи́ть",
-    "n": 9
+    "n": 12
    },
    {
-    "id": "r27-prosit",
+    "id": "r30-uchit-practice-3",
+    "title": "Practice 3: The family of учи́ть",
+    "n": 6
+   },
+   {
+    "id": "r31-prosit",
     "title": "The family of проси́ть",
     "n": 0
    },
    {
-    "id": "r27-prosit-practice",
-    "title": "Practice 1: The family of проси́ть",
+    "id": "r31-prosit-practice",
+    "title": "Practice: The family of проси́ть",
     "n": 12
    },
    {
-    "id": "r27-prosit-practice-2",
-    "title": "Practice 2: The family of проси́ть",
-    "n": 10
-   },
-   {
-    "id": "r28-mir",
-    "title": "The family of мир",
+    "id": "r32-mir-2",
+    "title": "The family of мир (мирско́й, всеми́рный)",
     "n": 0
    },
    {
-    "id": "r28-mir-practice",
-    "title": "Practice: The family of мир",
-    "n": 6
+    "id": "r32-mir-2-practice",
+    "title": "Practice: The family of мир (мирско́й, всеми́рный)",
+    "n": 5
    },
    {
-    "id": "r29-rod",
+    "id": "r33-svet-1",
+    "title": "The family of свет (освети́ть, свеча)",
+    "n": 0
+   },
+   {
+    "id": "r33-svet-1-practice",
+    "title": "Practice 1: The family of свет (освети́ть, свеча)",
+    "n": 12
+   },
+   {
+    "id": "r33-svet-1-practice-2",
+    "title": "Practice 2: The family of свет (освети́ть, свеча)",
+    "n": 11
+   },
+   {
+    "id": "r34-rod",
     "title": "The family of род",
     "n": 0
    },
    {
-    "id": "r29-rod-practice",
-    "title": "Practice: The family of род",
+    "id": "r34-rod-practice",
+    "title": "Practice 1: The family of род",
+    "n": 12
+   },
+   {
+    "id": "r34-rod-practice-2",
+    "title": "Practice 2: The family of род",
     "n": 11
+   },
+   {
+    "id": "r35-obraz-1",
+    "title": "The family of о́браз (вообрази́ть, разнообра́зный)",
+    "n": 0
+   },
+   {
+    "id": "r35-obraz-1-practice",
+    "title": "Practice 1: The family of о́браз (вообрази́ть, разнообра́зный)",
+    "n": 12
+   },
+   {
+    "id": "r35-obraz-1-practice-2",
+    "title": "Practice 2: The family of о́браз (вообрази́ть, разнообра́зный)",
+    "n": 5
    },
    {
     "id": "exam",
     "title": "Exam",
-    "n": 265,
+    "n": 334,
     "exam": true
    }
   ]

@@ -4,8 +4,8 @@
 Every link is one the English Wiktionary documents (CC BY-SA 4.0) — nothing is inferred from spelling:
   * «made from»: the words a word's etymology says it is built on ({{af}}, {{surf}}, {{deverbal}}, {{back-form}} …);
   * «built on it»: the words whose etymology names this word;
-  * «same root»: the root families of the Word Formation course (a root entry's Derived/Related terms, kept only
-    where each word's own etymology links it to the family).
+  * «same root»: the root families of the Word Formation course (the Russian Wiktionary's «Родственные слова», one family
+    per homonym).
 Each family word carries Wiktionary's part of speech and first definition. Common words only (library frequency).
 
 Writes public/vocab/families/index.json and fNN.json, sharded by the same FNV-1a hash as the Tatoeba shards, so the
@@ -46,11 +46,9 @@ def main():
     for w, bs in links.items():
         for b in bs: built_on[b].add(w)
     fam_of = collections.defaultdict(set)
-    import glob as _g
-    taught = {json.load(io.open(f, encoding="utf-8"))["title"] for f in _g.glob(os.path.join(ROOT, "public", "courses", "wordform", "r*.json"))}
-    for r in C.ROOTS:
-        if r not in C.WORDS or ("The family of %s" % C.acc(r)) not in taught: continue      # only the families the course teaches (and its review checked)
-        f = C.family(r)
+    # only the root families the course teaches (wf_course.py writes them), one per homonym
+    for t in json.load(io.open(os.path.join(HERE, "wf_taught.json"), encoding="utf-8")):
+        f = t["words"]
         for w in f: fam_of[w] |= set(f)
     out = {}
     for w in words:

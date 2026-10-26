@@ -19,7 +19,7 @@ prefix, a suffix or a root only when Wiktionary's etymology for that word says s
     python3 tools/courses/wordform/wf_course.py          # writes public/courses/wordform/ and the outline entry
 The source snapshot is wf_src.json beside this file (fetched from Wiktionary/Wikipedia/Tatoeba; see its "note").
 """
-import io, json, os, re, random, sys, glob, collections
+import io, sys, json, os, re, random, sys, glob, collections
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.abspath(os.path.join(HERE, "..", "..", ".."))
@@ -263,45 +263,14 @@ def intro():
     blocks = [LEAD("How Russian words are built: a prefix, a root, suffixes, an ending."), P(first)]
     if rows: blocks += [T(["Word", "Meaning"], rows[:12], caption="One root, мысл-, and the words built on it")]
     blocks += [NOTE("Quoted from the English Wikipedia, «Russian grammar» § Word formation (CC BY-SA 4.0)."),
-               P("This course takes the commonest prefixes, suffixes and roots one at a time. For each, the lesson quotes what the "
-                 "English Wiktionary says it means, then lists the common words Wiktionary builds with it, each with Wiktionary's own "
-                 "account of how it is made and what it means. The practice uses real sentences from Tatoeba with their English.")]
+               P("One prefix can carry several meanings: у- in уйти́ means “away”, but not in every word that starts with у-. So this course "
+                 "groups prefixes and suffixes by meaning, and puts a word under a meaning only where a dictionary lists it there: the "
+                 "Russian Wiktionary's numbered meanings of each prefix and suffix with their examples, the English Wiktionary's, and the "
+                 "English Wikipedia's table of prefixed verbs of motion. Roots come last, as the families the Russian Wiktionary lists, "
+                 "one family per meaning where a root has two. The practice uses real sentences from Tatoeba with their English.")]
     add("w00-intro", "How Russian words are built", blocks, [])
 
-# ═══ 1. Prefixes, grouped by meaning ════════════════════════════════════════════════════════════════════════════
-PREFIX_MODULES = [
-    ("p01-in-out", "в- and вы-", [("в", ["в", "во"], [0, 1]), ("вы", ["вы"], [0, 1])]),
-    ("p02-arrive-leave", "при- and у-", [("при", ["при"], [0, 1, 2, 3]), ("у", ["у"], [0, 1])]),
-    ("p03-near-away", "под- and от-", [("под", ["под", "подо"], [1, 0, 2, 3, 4, 5]), ("от", ["от", "ото"], [0])]),
-    ("p04-across-through", "пере- and про-", [("пере", ["пере"], [0, 1, 2, 3, 4]), ("про", ["про"], [0, 2, 3, 5, 6])]),
-    ("p05-reach-around", "до- and о-, об-", [("до", ["до"], [0, 1]), ("о", ["о", "об", "обо"], [2, 3, 4, 0, 1])]),
-    ("p06-up-down", "вз-, воз- and с-", [("вз", ["вз", "вс", "взо"], [0, 1]), ("воз", ["воз", "вос"], [0, 1]), ("с", ["с", "со"], [1, 2, 0])]),
-    ("p07-apart-out", "раз- and из-", [("раз", ["раз", "рас", "разо"], [0, 1, 2, 3]), ("из", ["из", "ис", "изо"], [0, 1, 2])]),
-    ("p08-onto-behind", "на- and за-", [("на", ["на"], [0, 1, 2]), ("за", ["за"], [0, 1, 2, 4, 5])]),
-    ("p09-po", "по-", [("по", ["по"], [0, 1])]),
-    ("p10-pre-pred", "пре- and пред-", [("пре", ["пре"], [0, 1]), ("пред", ["пред", "предо"], [0])]),
-]
-def prefix_module(mid, title, parts, rnd):
-    blocks, exs, allw = [LEAD(title)], [], []
-    for p, variants, keep in parts:
-        entry = S["prefix"].get(p)
-        blocks.append(H("%s" % ", ".join(v + "-" for v in variants)))
-        blocks += sense_blocks(p, entry, keep)
-        blocks.append(NOTE("The senses of the prefix, with the entry's own examples: %s, «%s-» (https://en.wiktionary.org/wiki/%s-#Russian)." % (WK, p, p)))
-        ws = with_prefix(variants)[:14]
-        if ws:
-            blocks.append(word_table(ws))
-            blocks.append(NOTE("Common words %s builds with %s, each with its etymology and definitions as %s gives them." % (WK, " / ".join(v + "-" for v in variants), WK)))
-        allw += [(w, p) for w in ws]
-    # practice: real sentences; the options are the same base with other prefixes
-    for w, p in allw:
-        if pos(w) != "verb": continue
-        sib = same_base(w)
-        others = [x for x in sib if aspect(x) == aspect(w)] + [x for x in sib if aspect(x) != aspect(w)]
-        exs += mc_sentence(w, others, rnd, 2, "Which prefix? The English says which word it is.")
-    ms = match_sets([w for w, _ in allw], rnd)
-    exs = interleave(exs, ms)
-    add(mid, title, blocks, exs)
+# ═══ 1. Prefixes and suffixes, grouped by meaning: wf_meaning_build.py (installed in main) ═══════════════════════
 
 def interleave(a, b):
     out, j = [], 0
@@ -314,22 +283,23 @@ def interleave(a, b):
 # ═══ 2. Patterns the definitions show ═══════════════════════════════════════════════════════════════════════════
 INCEPTIVE = r"\b(begin|start)s? to\b|\bstart(?:s)? \w+ing\b|\bburst (?:out|into)\b|\bbreak into\b|\bbegin \w+ing\b"
 WHILE = r"\(for a while\)|\bfor a while\b|\bfor a bit\b|\bfor some time\b|\(a little\)"
-def theme(mid, title, quote_parts, rx, rnd, intro_text, limit=8000):
+def theme(mid, title, refs, rx, rnd, intro_text, limit=8000):
     blocks = [LEAD(title)]
-    for p, keep in quote_parts:
-        sv = senses(S["prefix"].get(p), keep, p + "-")
-        if sv:
-            blocks.append(H(p + "-"))
-            blocks.append({"t": "list", "items": [s["text"] + ("" if not s["ex"] else " — " + "; ".join(s["ex"][:2])) for s in sv]})
-            blocks.append(NOTE("%s, «%s-» (https://en.wiktionary.org/wiki/%s-#Russian)." % (WK, p, p)))
+    listed = []
+    for ref in refs:
+        r = resolve(ref)
+        if r and r["all"]:
+            blocks += sense_block(r)
+            listed += [w for w in r["words"] if w not in listed]
     ws = by_def(rx, limit=limit)
+    ws = listed + [w for w in ws if w not in listed]
     blocks.append(P(intro_text))
     groups = collections.OrderedDict()
-    for w in ws: groups.setdefault(af_plain(w)[0], []).append(w)
+    for w in ws[len(listed):]: groups.setdefault(af_plain(w)[0], []).append(w)
     for p, g in sorted(groups.items(), key=lambda kv: -len(kv[1])):
         blocks.append(H("with " + p))
         blocks.append(word_table(g[:12]))
-    blocks.append(NOTE("Every word here is one whose own definition in %s says so; its etymology is %s's." % (WK, WK)))
+    blocks.append(NOTE("Every word in these tables is one whose own definition in %s says so; its etymology is %s's." % (WK, WK)))
     exs = []
     for w in ws:
         a = af_plain(w); base = [x for x in a[1:] if not x.startswith("-")]
@@ -388,75 +358,85 @@ def etym_links(w):
             a = plain(re.sub(r"<[^>]*>|[\[\]()]", "", a)).strip()
             if a and not a.startswith("-") and not a.endswith("-"): out.add(a)
     return out
+def root_families(root):
+    """The Russian Wiktionary's root families for a word, one per homonym (мир «world» and мир «peace» are two):
+    the words its «Родственные слова» list, kept where the English Wiktionary has them and they are common."""
+    out = []
+    seen_t = set()
+    fams = list((S["ru"]["families"].get(root) or {}).values())
+    for f in fams:
+        key = tuple(f["templates"]) or tuple(f["words"][:3])
+        if key in seen_t: continue
+        seen_t.add(key)
+        nf = set((_B.get("famblock") or {}).get(root, []))
+        ws = [w for w in f["words"] if w in WORDS and defs(w) and ok(w) and rank(w) <= FAMILY and w not in nf]
+        if root in WORDS and root not in ws and root in f["words"]: ws.insert(0, root)
+        out.append({"words": sorted(set(ws), key=lambda w: (w != root, rank(w))), "all": f["words"], "templates": f["templates"]})
+    return out
 def family(root):
-    r = S["roots"].get(root) or {}
-    listed = set(r.get("derived", [])) | set(r.get("related", [])) | set(r.get("dv", [])) | set(S["dv"].get(root, []))
-    fam = {root}
-    listed = {w for w in listed if w in WORDS and rank(w) <= FAMILY and defs(w) and ok(w)}
-    changed = True
-    while changed:
-        changed = False
-        for w in sorted(listed - fam):
-            parts = set(af_plain(w)) | etym_links(w)
-            if w in r.get("dv", []) or w in S["dv"].get(root, []) or parts & fam or root in plain((WORDS[w].get("etym") or "")):
-                fam.add(w); changed = True
-    return sorted(fam, key=rank)
+    """All words of the root's taught families (used by the define popup)."""
+    out = []
+    for f in root_families(root): out += f["words"]
+    return sorted(set(out), key=rank)
 ROOTS = ["след", "ход", "вести", "нести", "писать", "говорить", "сказать", "дело", "ставить", "стать", "положить", "мысль",
          "знать", "видеть", "брать", "дать", "читать", "жить", "сила", "слово", "держать", "звать", "бить", "чувство",
          "бежать", "лететь", "глядеть", "рука", "пасть", "сидеть", "стоять", "лежать", "крыть", "помнить", "учить",
          "просить", "решить", "мир", "свет", "род", "образ"]
+TAUGHT = []
 TR = dict(zip("абвгдеёжзийклмнопрстуфхцчшщъыьэюя", ["a","b","v","g","d","e","yo","zh","z","i","y","k","l","m","n","o","p","r","s","t","u","f","kh","ts","ch","sh","shch","","y","","e","yu","ya"]))
 def translit(w): return "".join(TR.get(c, c) for c in w.lower())
 def root_module(n, root, rnd):
-    fam = family(root)
-    fam = [w for w in fam if w == root or rank(w) <= FAMILY][:20]
-    if len(fam) < 6: return False
-    title = "The family of %s" % acc(root)
-    blocks = [LEAD(title)]
-    et = etymology(root)
-    if et:
-        blocks += [H("Where %s comes from" % acc(root)), P(et), NOTE("%s, «%s», Etymology (%s)." % (WK, root, cite(root)))]
-    blocks += [H("The family"), word_table(fam, ("word", "pos", "built", "meaning")),
-               NOTE("The words %s lists under «%s» as derived or related terms, which its own etymologies link to the family; "
-                    "common words only." % (WK, root))]
-    exs = []
-    for w in fam:
-        same_pos = [x for x in fam if x != w and pos(x) == pos(w)]
-        exs += mc_sentence(w, same_pos, rnd, 2, "One family: which of its words fits?")
-    exs = interleave(exs, match_sets(fam, rnd))
-    if len(exs) < 5: return False
-    add("r%02d-%s" % (n, translit(root)), title, blocks, exs)
-    return True
+    fams = root_families(root)
+    made = 0
+    for k, f in enumerate(fams):
+        fam = f["words"][:20]
+        if len(fam) < 6: continue
+        title = "The family of %s" % acc(root)
+        if len(fams) > 1:      # the root word has homonyms: name this family by two common words only it has
+            others = set(w for j, x in enumerate(fams) if j != k for w in x["all"])
+            own = [w for w in fam if w != root and w not in others][:2]
+            title += " (%s)" % ", ".join(acc(w) for w in own)
+        blocks = [LEAD(title)]
+        et = etymology(root)
+        if et and len(fams) == 1:
+            blocks += [H("Where %s comes from" % acc(root)), P(et), NOTE("%s, «%s», Etymology (%s)." % (WK, root, cite(root)))]
+        blocks += [H("The family"), word_table(fam, ("word", "pos", "built", "meaning")),
+                   NOTE("The words the %s lists as related to «%s»%s (its «Родственные слова», https://ru.wiktionary.org/wiki/%s), "
+                        "common ones only; part of speech, make-up and meaning from the English Wiktionary." %
+                        ("Russian Wiktionary", root, " in this sense" if len(fams) > 1 else "", root))]
+        exs = []
+        for w in fam:
+            same_pos = [x for x in fam if x != w and pos(x) == pos(w)]
+            exs += mc_sentence(w, same_pos, rnd, 2, "One family: which of its words fits?")
+        exs = interleave(exs, match_sets(fam, rnd))
+        if len(exs) < 5: continue
+        add("r%02d-%s%s" % (n + made, translit(root), "-%d" % (k + 1) if len(fams) > 1 else ""), title, blocks, exs)
+        TAUGHT.append({"root": root, "title": title, "words": fam})
+        made += 1
+    return made
 
 def main():
+    import wf_meaning_build, wf_meanings as MN
+    wf_meaning_build.install(sys.modules[__name__])
     rnd = random.Random("wordform")
     intro()
-    for mid, title, parts in PREFIX_MODULES:
-        prefix_module(mid, title, parts, rnd)
-    theme("t01-beginning", "«To begin doing»: за- and others", [("за", [1])], INCEPTIVE, rnd,
-          "Words whose definition in Wiktionary is «to begin to …», «to start …ing» or «to burst out …»:")
-    theme("t02-for-a-while", "«For a while»: по- and про-", [("по", [1]), ("про", [5])], WHILE, rnd,
-          "Words whose definition in Wiktionary is «… for a while», «… for some time» or «… a little»:")
-    vid = S["texts"]["ruwiki_vid_imperfectivation"]
-    para = ""      # the Wikipedia paragraph misquotes Pushkin; left out
-    suffix_module("s01-yvat", "-ывать and -ивать", ["-ывать", "-ивать"], rnd, "the imperfective",
-                  extra_blocks=([P(para), NOTE("Russian Wikipedia, «Вид (лингвистика)» (CC BY-SA 4.0).")] if para else []),
+    motion_module(rnd)
+    for mid, title, refs in MN.PREFIX_MEANINGS:
+        meaning_module(mid, title, refs, rnd)
+    theme("t01-beginning", "Beginning an action", MN.BEGIN_REFS, INCEPTIVE, rnd,
+          "Words whose own definition in Wiktionary is «to begin to …», «to start …ing» or «to burst out …»:")
+    theme("t02-for-a-while", "For a while", MN.WHILE_REFS, WHILE, rnd,
+          "Words whose own definition in Wiktionary is «… for a while», «… for some time» or «… a little»:")
+    for mid, title, refs in MN.SUFFIX_MEANINGS:
+        meaning_module(mid, title, refs, rnd)
+    suffix_module("s01-yvat", "The imperfective in -ывать and -ивать", ["-ывать", "-ивать"], rnd, "the imperfective",
                   limit=8000, fill_q="%s (perfective) → imperfective: ___", aspect_pair=True)
-    suffix_module("s02-vat", "-вать", ["-вать"], rnd, "the imperfective", limit=8000,
+    suffix_module("s02-vat", "The imperfective in -вать", ["-вать"], rnd, "the imperfective", limit=8000,
                   fill_q="%s (perfective) → imperfective: ___", aspect_pair=True)
-    suffix_module("s03-nut", "-нуть", ["-нуть"], rnd, "the verb", limit=8000)
-    suffix_module("s04-ovat", "-овать and -евать", ["-овать", "-евать"], rnd, "the verb", limit=8000)
-    suffix_module("s05-nie", "-ение and -ание", ["-ние", "-ение", "-ание"], rnd, "the noun")
-    suffix_module("s06-tel", "-тель", ["-тель"], rnd, "the noun")
-    suffix_module("s07-ost", "-ость", ["-ость"], rnd, "the noun")
-    suffix_module("s08-stvo", "-ство and -ие", ["-ство", "-ие"], rnd, "the noun")
-    suffix_module("s09-nik", "-ник, -ец, -щик, -чик", ["-ник", "-ец", "-щик", "-чик"], rnd, "the noun")
-    suffix_module("s10-ka", "-ка, -ок, -ик", ["-ка", "-ок", "-ик"], rnd, "the noun")
-    suffix_module("s11-ny", "-ный, -ной, -ский", ["-ный", "-ной", "-ский", "-ской"], rnd, "the adjective")
-    suffix_module("s12-livy", "-ливый, -ивый, -тельный", ["-ливый", "-ивый", "-тельный"], rnd, "the adjective")
-    n = 0
+    n = 1
     for root in ROOTS:
-        if root in WORDS and root_module(n + 1, root, rnd): n += 1
+        if root in WORDS: n += root_module(n, root, rnd)
+    io.open(os.path.join(HERE, "wf_taught.json"), "w", encoding="utf-8").write(json.dumps(TAUGHT, ensure_ascii=False))
     write()
 
 def write():
@@ -469,9 +449,9 @@ def write():
     cur = json.loads(t[k + 15:].rstrip().rstrip(";"))
     cur = [m for m in cur if m["id"] != "wordform"]
     meta = {"id": "wordform", "title": "Word Formation", "short": "Word formation", "mark": "Сл", "blurb": "",
-            "credit": "Lesson text quoted from the English Wiktionary (each prefix's, suffix's and word's entry: senses, definitions, etymologies, "
-                      "derived and related terms; CC BY-SA 4.0), the English Wikipedia's «Russian grammar» § Word formation and the Russian Wikipedia's "
-                      "«Вид (лингвистика)» (CC BY-SA 4.0); exercises: sentences and translations from Tatoeba (CC BY 2.0 FR)",
+            "credit": "Meanings and their example words from the Russian Wiktionary (each prefix's and suffix's «Значение», and each root's "
+                      "«Родственные слова») and the English Wiktionary (senses, definitions, etymologies); the English Wikipedia's «Russian grammar» "
+                      "(§ Word formation, § Prefixed motion verbs); all CC BY-SA 4.0. Exercises: sentences and translations from Tatoeba (CC BY 2.0 FR)",
             "creditUrl": "https://en.wiktionary.org/wiki/Appendix:Russian_prefixes", "license": "CC BY-SA 4.0 · CC BY 2.0 FR",
             "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/", "level": "Intermediate", "sections": OUTLINE}
     cur.append(meta)
