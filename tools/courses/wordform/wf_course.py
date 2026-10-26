@@ -166,22 +166,68 @@ def content_words(w):
         for t in re.findall(r"[a-z']+", WT.render(d).lower()):
             if t not in STOP and len(t) > 2: out.add(t)
     return out
+_MA = None
+def _morph():
+    global _MA
+    if _MA is None:
+        import pymorphy3; _MA = pymorphy3.MorphAnalyzer()
+    return _MA
+def form_grams(tok, lemma):
+    """Every reading the OpenCorpora dictionary (pymorphy3) gives the sentence's word as a form of this lemma:
+    [(part of speech, grammemes)] — tense, person, number, gender, mood, case …"""
+    M = _morph()
+    out = []
+    for p in M.parse(tok.lower()):
+        if p.normal_form.replace("ё", "е") != lemma.replace("ё", "е"): continue
+        g = {x for x in (p.tag.tense, p.tag.person, p.tag.number, p.tag.gender, p.tag.mood, p.tag.case, p.tag.voice,
+                         getattr(p.tag, "involvement", None)) if x}
+        if p.tag.POS in ("INFN", "ADJS", "PRTS", "PRTF", "GRND", "COMP"): g.add(p.tag.POS)
+        if (p.tag.POS, g) not in out: out.append((p.tag.POS, frozenset(g)))
+    return out or None
+def _inflect1(lemma, posx, g):
+    M = _morph()
+    want = {"INFN": ("INFN", "VERB"), "VERB": ("INFN", "VERB"), "GRND": ("INFN", "VERB"), "PRTF": ("INFN", "VERB"), "PRTS": ("INFN", "VERB"),
+            "ADJF": ("ADJF",), "ADJS": ("ADJF",), "COMP": ("ADJF",), "NOUN": ("NOUN",)}.get(posx)
+    if not want: return None
+    out = set()
+    for p in M.parse(lemma):
+        if p.normal_form.replace("ё", "е") != lemma.replace("ё", "е") or p.tag.POS not in want: continue
+        try:
+            x = p.inflect(set(g))
+        except Exception:
+            x = None
+        if x and x.tag.POS == posx: out.add(x.word)
+    return out.pop() if len(out) == 1 else None
+def inflect_to(lemma, readings):
+    """lemma in the sentence word's form, or None: whichever reading of the sentence's word is meant, the dictionary must
+    give one and the same form (a perfective has no present tense; an ambiguous case that would differ is refused)."""
+    fs = {_inflect1(lemma, posx, g) for posx, g in readings}
+    return fs.pop() if len(fs) == 1 and None not in fs else None
+
 def mc_sentence(answer, distractors, rnd, n=2, label=""):
-    """Real sentences with the word left out; the English says which word it is; the options are words of one family."""
+    """Real sentences with the word left out; the English says which word it is; the options are words of one family,
+    each put into the same form as the sentence's word (вошёл · вышел · пришёл · пошёл)."""
     exs = []
     if not ok(answer) or homograph(answer) or answer in NO_MC: return exs
     keyw = content_words(answer)
     distractors = [d for d in distractors if d != answer and ok(d) and not homograph(d) and not (content_words(d) & keyw)]
-    opts0 = [answer] + distractors[:3]
-    if len(opts0) < 3: return exs
+    if len(distractors) < 2: return exs
     for ru, en, tok, sid, eid in sentences_for(answer, n):
-        opts = list(opts0); rnd.shuffle(opts)
+        fg = form_grams(tok, answer)
+        if not fg: continue
+        forms = {answer: tok.lower()}
+        for d in distractors:
+            f = inflect_to(d, fg)
+            if f and f not in forms.values(): forms[d] = f
+            if len(forms) == 4: break
+        if len(forms) < 3: continue
+        opts = list(forms); rnd.shuffle(opts)
         why = "**%s** — %s" % (tok, acc(answer))
         a = aspect(answer)
         if a in ASP: why += " (%s)" % ASP[a]
         why += ": %s." % gloss(answer, 4)
         if built(answer): why += " %s: %s." % (WK, built(answer))
-        exs.append({"type": "mc", "q": en, "ru": ru, "options": [acc(o) for o in opts], "answer": opts.index(answer),
+        exs.append({"type": "mc", "q": en, "ru": ru, "options": [forms[o] for o in opts], "answer": opts.index(answer),
                     "why": why, "context": label})
     return exs
 
@@ -416,7 +462,7 @@ def root_module(n, root, rnd):
             exs += mc_sentence(w, same_pos, rnd, 2, "One family: which of its words fits?")
         exs = interleave(exs, match_sets(fam, rnd))
         if len(exs) < 5: continue
-        add("r%02d-%s%s" % (n + made, translit(root), "-%d" % (k + 1) if len(fams) > 1 else ""), title, blocks, exs)
+        add("r%02d-%s%s" % (n, translit(root), "-%d" % (k + 1) if len(fams) > 1 else ""), title, blocks, exs)
         TAUGHT.append({"root": root, "title": title, "words": fam})
         made += 1
     return made
@@ -439,9 +485,8 @@ def main():
                   limit=8000, fill_q="%s (perfective) → imperfective: ___", aspect_pair=True)
     suffix_module("s02-vat", "The imperfective in -вать", ["-вать"], rnd, "the imperfective", limit=8000,
                   fill_q="%s (perfective) → imperfective: ___", aspect_pair=True)
-    n = 1
-    for root in ROOTS:
-        if root in WORDS: n += root_module(n, root, rnd)
+    for i, root in enumerate(ROOTS):        # the module id follows the root's place in ROOTS, so ids stay put when a root drops out
+        if root in WORDS: root_module(i + 1, root, rnd)
     io.open(os.path.join(HERE, "wf_taught.json"), "w", encoding="utf-8").write(json.dumps(TAUGHT, ensure_ascii=False))
     write()
 

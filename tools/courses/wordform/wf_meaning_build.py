@@ -148,7 +148,7 @@ def install(C):
         rnd.shuffle(labels)
         opts = [mine["label"]] + labels[:3]; rnd.shuffle(opts)
         who = ("The " + RUW) if mine.get("ru") else WK
-        return {"type": "mc", "q": "What does %s add in %s (“%s”)?" % (mine["m"], acc(w), gloss1(w)), "options": opts,
+        return {"type": "mc", "q": "What does %s add in %s?" % (mine["m"], acc(w)), "options": opts,
                 "answer": opts.index(mine["label"]), "why": "%s lists %s under this meaning of %s. Source: %s." % (who, acc(w), mine["m"], mine["src"])}
 
     def meaning_module(mid, title, refs, rnd, lead=None):
