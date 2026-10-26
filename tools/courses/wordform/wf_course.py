@@ -182,6 +182,7 @@ def form_grams(tok, lemma):
         g = {x for x in (p.tag.tense, p.tag.person, p.tag.number, p.tag.gender, p.tag.mood, p.tag.case, p.tag.voice,
                          getattr(p.tag, "involvement", None)) if x}
         if p.tag.POS in ("INFN", "ADJS", "PRTS", "PRTF", "GRND", "COMP"): g.add(p.tag.POS)
+        if p.tag.aspect: g.add(p.tag.aspect)                       # an option of the other aspect would give the answer away
         if (p.tag.POS, g) not in out: out.append((p.tag.POS, frozenset(g)))
     return out or None
 def _inflect1(lemma, posx, g):
@@ -192,11 +193,16 @@ def _inflect1(lemma, posx, g):
     out = set()
     for p in M.parse(lemma):
         if p.normal_form.replace("ё", "е") != lemma.replace("ё", "е") or p.tag.POS not in want: continue
+        if p.tag.aspect and p.tag.aspect not in g: continue
         try:
-            x = p.inflect(set(g))
+            x = p.inflect(set(g) - {"perf", "impf"})
         except Exception:
             x = None
-        if x and x.tag.POS == posx: out.add(x.word)
+        if not x or x.tag.POS != posx or not M.word_is_known(x.word): continue
+        # read the generated word back: the dictionary must know it as this lemma in exactly this form
+        if any(q.normal_form.replace("ё", "е") == lemma.replace("ё", "е") and set(g) <= set(str(q.tag).replace(" ", ",").split(","))
+               for q in M.parse(x.word)):
+            out.add(x.word)
     return out.pop() if len(out) == 1 else None
 def _complete(posx, g):
     """A reading must pin the form down: a present/future verb needs its person and number, a past one its gender or
