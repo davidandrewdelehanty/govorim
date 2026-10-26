@@ -19952,7 +19952,23 @@ quizMode ? (
         .crs-t td{padding:7px 10px;border-bottom:1px solid var(--rule-soft);line-height:1.5}
         .crs-t tr:last-child td,.crs-t tr:last-child th{border-bottom:1px solid var(--ink)}
         .crs-t b{color:var(--rubric);font-weight:600}
-        .crs-t td:first-child:not(th){white-space:nowrap}
+        .crs-t.n1 td:first-child:not(th){white-space:nowrap}
+        .crs-tw{max-width:100%}
+        /* On a phone, a table too wide for the screen becomes a column of
+           entries: hairline rules between rows, each cell under its own
+           small-caps column label, nothing to scroll sideways. */
+        @media (max-width:640px){
+          .crs-t td{overflow-wrap:break-word}
+          .crs-t.stk{border-top:0;border-radius:0;overflow:visible}
+          .crs-t.stk tr{margin:0;padding:11px 2px 12px;border:0;border-bottom:1px solid var(--rule-soft);border-radius:0;background:transparent}
+          .crs-t.stk tbody tr:first-child{border-top:1px solid var(--ink)}
+          .crs-t.stk tbody tr:last-child{border-bottom:1px solid var(--ink)}
+          .crs-t.stk td,.crs-t.stk tr:last-child td{padding:0;border:0;white-space:normal;line-height:1.5;font-size:16px}
+          .crs-t.stk td+td{margin-top:7px}
+          .crs-t.stk tbody th{background:transparent;color:var(--rubric);padding:0 0 5px;border:0;font-family:var(--sans);font-size:11px;letter-spacing:.1em;text-transform:uppercase;white-space:normal}
+          .crs-t.stk td[data-l]::before{font-family:var(--sans);font-size:9.5px;font-weight:500;letter-spacing:.14em;color:var(--ink-3);margin-bottom:2px}
+          .crs-t.stk td[lang="ru"]{color:var(--ink)}
+        }
         /* Tappable words: the book's faint dotted line, quieter still here
            where almost every word is Russian, and the rubric on hover. */
         .crs-body .rw{border-bottom:1px dotted var(--ink-4);cursor:pointer}
@@ -28837,11 +28853,18 @@ quizMode ? (
                       b.rows.forEach(function(r){ mx = Math.max(mx, String(r[cj] == null ? "" : r[cj]).replace(/\*/g, "").length); });
                       wide += mx + 3;
                     }
-                    var stack = !b.fit && ncol >= 3 && wide > 34;      // fit: a chart written to fit a phone screen stays a table
+                    // fit: a chart written to fit a phone screen stays a table. Two-column
+                    // tables stack too once their text is too long to sit side by side.
+                    var stack = !b.fit && ncol >= 2 && wide > 34;
+                    // Only a short first column (a form, a case name) is kept on one line;
+                    // a sentence there would push the other columns off the screen.
+                    var first1 = 0;
+                    b.rows.forEach(function(r){ first1 = Math.max(first1, String(r[0] == null ? "" : r[0]).replace(/\*/g, "").length); });
+                    var n1 = first1 <= 16;
                     return (
                       <div key={i} className="crs-tw">
                         {b.caption && <div className="crs-cap">{rich(b.caption)}</div>}
-                        <table className={"crs-t" + (stack ? " stk" : "") + (b.fit ? " fit" : "")}>
+                        <table className={"crs-t" + (stack ? " stk" : "") + (b.fit ? " fit" : "") + (n1 ? " n1" : "")}>
                           {hasHead && <thead><tr>{heads.map(function(h, k){ return <th key={k}>{rich(b.head[k])}</th>; })}</tr></thead>}
                           <tbody>{b.rows.map(function(r, k){
                             return <tr key={k}>{r.map(function(c, j){ return j === 0 && b.rowHeads ? <th key={j}>{rich(c)}</th> : <td key={j} lang="ru" data-l={heads[j] || undefined}>{rich(c)}</td>; })}</tr>;
