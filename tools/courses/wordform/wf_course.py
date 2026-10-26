@@ -39,7 +39,11 @@ WK = "Wiktionary"
 # is left out altogether; a flagged sentence is not used; a word whose first definition misled is kept out of matching.
 _B = json.load(io.open(os.path.join(HERE, "wf_review_blocks.json"), encoding="utf-8")) if os.path.exists(os.path.join(HERE, "wf_review_blocks.json")) else {}
 BLOCK_W, BLOCK_S, BLOCK_M = set(_B.get("words", {})), set(_B.get("sentences", [])), set(_B.get("match", []))
-def ok(w): return w not in BLOCK_W
+NO_MC, BAD_TEXT, NO_ETYM = set(_B.get("nomc", [])), list(_B.get("text", [])), set(_B.get("noetym", []))
+def clean_text(t): return t and not any(b in t for b in BAD_TEXT)
+MEANING = set(_B.get("meaning", {}))          # a word whose shown definition misled: left out (a root module keeps its own root)
+LINKS, FAM_GLOSS = set(_B.get("links", {})), set(_B.get("famgloss", {}))
+def ok(w): return w not in BLOCK_W and w not in MEANING
 
 def plain(w): return ACC.sub("", w or "")
 def ent(w): return (WORDS.get(w) or {}).get("entries") or []
@@ -53,24 +57,37 @@ def pos(w):
     e = ent(w); return (e[0]["pos"] if e else "").lower()
 def aspect(w):
     e = ent(w); return e[0].get("aspect") if e and e[0]["pos"] == "Verb" else None
+def _good_def(d):
+    if "{{" in d or "}}" in d: return False
+    r = WT.render(d)
+    if r.count("(") != r.count(")") or "()" in r.replace(" ", "") or not re.search(r"[a-z]{3}", re.sub(r"\([^)]*\)", "", r)): return False
+    return True
 def defs(w):
     e = ent(w)
-    return [d for d in (e[0]["defs"] if e else []) if "{{" not in d and "}}" not in d]
+    return [d for d in (e[0]["defs"] if e else []) if _good_def(d)]
+def homograph(w):
+    """Two Wiktionary entries of one part of speech (проводи́ть «spend» / «see off»): a sentence cannot say which is meant."""
+    e = (WORDS.get(w) or {}).get("entries") or []
+    c = collections.Counter(x["pos"] for x in e)
+    return any(n > 1 for n in c.values())
+def lab(t): return re.sub(r",\s*_\s*,\s*", " ", t)
 def gloss(w, n=3):
-    ds = [WT.render(d).lstrip(": ").strip() for d in defs(w)[:n]]
+    ds = [lab(WT.render(d)).lstrip(": ").strip() for d in defs(w)[:n]]
     return "; ".join(d for d in ds if d)
 def gloss1(w):
-    ds = defs(w); return WT.render(ds[0]).lstrip(": ").strip() if ds else ""
+    ds = defs(w); return lab(WT.render(ds[0])).lstrip(": ").strip() if ds else ""
 def af(w): return [re.sub(r"<[^>]*>", "", p) for p in (WORDS.get(w) or {}).get("af") or [] if p]
-def af_plain(w): return [plain(p) for p in af(w)]
+def af_plain(w): return [plain(WT.render(p)) for p in af(w)]
 def built(w):
-    a = af(w)
+    a = [WT.render(x) for x in af(w)]
     return " + ".join(a) if len(a) >= 2 else ""
 def etymology(w):
+    if w in NO_ETYM: return ""
     t = (WORDS.get(w) or {}).get("etym") or ""
     if not t: return ""
     try:
-        return WT.render(t, strict=True)
+        r = WT.render(t, strict=True)
+        return r if clean_text(r) else ""
     except WT.Unknown:
         return ""
 def cite(w): return "https://en.wiktionary.org/wiki/" + w + "#Russian"
@@ -99,10 +116,11 @@ def senses(entry_text, keep=None, affix=None):
             out.append({"text": WT.render(line[2:]), "ex": []})
         elif line.startswith("#:") and out:
             r = WT.render(line[2:])
-            if r and "→" in r: out[-1]["ex"].append(r)
+            if r and "→" in r and clean_text(r): out[-1]["ex"].append(r)
     if keep is not None:
         out = [out[k] for k in keep if k < len(out)]
-    return out
+    # a sense that is only labels with no example ("(takes numeral, produces nouns)") says nothing; a flagged one is dropped
+    return [o for o in out if clean_text(o["text"]) and (o["ex"] or re.search(r"[a-z]{3}", re.sub(r"\([^)]*\)", "", o["text"])))]
 def usage_notes(entry_text):
     m = re.search(r"====Usage notes====\n(.*?)(?=\n====|\Z)", entry_text or "", re.S)
     if not m: return []
@@ -110,8 +128,9 @@ def usage_notes(entry_text):
     for line in m.group(1).split("\n"):
         line = line.strip()
         if not line or line.startswith("{|") or line.startswith("|") or line.startswith("!"): continue
+        if re.match(r"^[*\s]*[:;]", line): continue
         r = WT.render(re.sub(r"^\*+\s*", "", line))
-        if r and len(r) > 25: paras.append(r)
+        if r and len(r) > 25 and clean_text(r) and not r.startswith(":"): paras.append(r)
     return paras
 def sense_blocks(label, entry_text, keep=None):
     sv = senses(entry_text, keep, label if label.startswith("-") else label + "-")
@@ -126,11 +145,12 @@ USED_SENT = set()
 def sentences_for(w, n=2):
     out = []
     for ru, en, sid, eid, i, tok in SENTS.get(w, []):
-        if ru in USED_SENT or ru in BLOCK_S: continue
+        if ru in USED_SENT: continue
         toks = list(WORD_RE.finditer(ru))
         if i >= len(toks) or toks[i].group(0) != tok: continue
         if sum(1 for t in toks if t.group(0).lower() == tok.lower()) != 1: continue
         m = toks[i]
+        if ru[:m.start()] + "___" + ru[m.end():] in BLOCK_S: continue
         out.append((ru[:m.start()] + "___" + ru[m.end():], en, tok, sid, eid))
         USED_SENT.add(ru)
         if len(out) >= n: break
@@ -149,9 +169,9 @@ def content_words(w):
 def mc_sentence(answer, distractors, rnd, n=2, label=""):
     """Real sentences with the word left out; the English says which word it is; the options are words of one family."""
     exs = []
-    if not ok(answer): return exs
+    if not ok(answer) or homograph(answer) or answer in NO_MC: return exs
     keyw = content_words(answer)
-    distractors = [d for d in distractors if d != answer and ok(d) and not (content_words(d) & keyw)]
+    distractors = [d for d in distractors if d != answer and ok(d) and not homograph(d) and not (content_words(d) & keyw)]
     opts0 = [answer] + distractors[:3]
     if len(opts0) < 3: return exs
     for ru, en, tok, sid, eid in sentences_for(answer, n):
@@ -231,7 +251,7 @@ def add(sec_id, title, blocks, exercises, sub=None, set_size=12):
 # ═══ 0. How Russian words are built ═════════════════════════════════════════════════════════════════════════════
 def intro():
     t = S["texts"]["enwiki_word_formation"]
-    first = t.split("\n\n")[1] if "\n\n" in t else t
+    first = next((x for x in t.split("\n\n") if "prefixes" in x and "{|" not in x), "")
     first = WT.render(re.sub(r"\{\{Unreferenced[^}]*\}\}", "", first)).split("For example:")[0].strip()
     rows = []
     for line in t.split("\n"):
@@ -326,7 +346,7 @@ def pairs_with(suffixes, limit=8000):
         if len(a) == 2 and a[1] in suffixes and a[0] in WORDS and ok(w) and min(rank(w), rank(a[0])) <= limit:
             out.append((a[0], w))
     return sorted(out, key=lambda p: min(rank(p[0]), rank(p[1])))
-def suffix_module(mid, title, sfx, rnd, kind, extra_blocks=(), limit=COMMON, fill_q=None):
+def suffix_module(mid, title, sfx, rnd, kind, extra_blocks=(), limit=COMMON, fill_q=None, aspect_pair=False):
     blocks = [LEAD(title)]
     for s in sfx:
         e = S["suffix"].get(s)
@@ -337,7 +357,11 @@ def suffix_module(mid, title, sfx, rnd, kind, extra_blocks=(), limit=COMMON, fil
         if un: blocks += [P(x) for x in un[:3]]
         blocks.append(NOTE("%s, «%s» (https://en.wiktionary.org/wiki/%s#Russian)." % (WK, s, s)))
     blocks += list(extra_blocks)
-    prs = pairs_with(set(sfx), limit)[:24]
+    prs = pairs_with(set(sfx), limit)
+    if aspect_pair:      # only where Wiktionary's headwords say perfective → imperfective
+        def partners(w): return {plain(x) for e in ent(w) for x in (e.get("pf") or []) for x in x.split(",")}
+        prs = [(a, b) for a, b in prs if aspect(a) == "pf" and aspect(b) == "impf" and a in partners(b)]
+    prs = prs[:24]
     if prs:
         blocks.append(T(["From", "", "Word", "Meaning (Wiktionary)"],
                         [["**%s**" % acc(a), "→", "**%s**" % acc(b), gloss(b, 1)] for a, b in prs]))
@@ -414,12 +438,12 @@ def main():
     theme("t02-for-a-while", "«For a while»: по- and про-", [("по", [1]), ("про", [5])], WHILE, rnd,
           "Words whose definition in Wiktionary is «… for a while», «… for some time» or «… a little»:")
     vid = S["texts"]["ruwiki_vid_imperfectivation"]
-    para = WT.render(vid.split("\n", 1)[1].split("\n\n")[0]) if "\n" in vid else ""
+    para = ""      # the Wikipedia paragraph misquotes Pushkin; left out
     suffix_module("s01-yvat", "-ывать and -ивать", ["-ывать", "-ивать"], rnd, "the imperfective",
                   extra_blocks=([P(para), NOTE("Russian Wikipedia, «Вид (лингвистика)» (CC BY-SA 4.0).")] if para else []),
-                  limit=8000, fill_q="%s (perfective) → imperfective: ___")
+                  limit=8000, fill_q="%s (perfective) → imperfective: ___", aspect_pair=True)
     suffix_module("s02-vat", "-вать", ["-вать"], rnd, "the imperfective", limit=8000,
-                  fill_q="%s (perfective) → imperfective: ___")
+                  fill_q="%s (perfective) → imperfective: ___", aspect_pair=True)
     suffix_module("s03-nut", "-нуть", ["-нуть"], rnd, "the verb", limit=8000)
     suffix_module("s04-ovat", "-овать and -евать", ["-овать", "-евать"], rnd, "the verb", limit=8000)
     suffix_module("s05-nie", "-ение and -ание", ["-ние", "-ение", "-ание"], rnd, "the noun")

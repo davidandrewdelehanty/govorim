@@ -5045,7 +5045,7 @@ export default [
    {
     "id": "p01-in-out-practice-2",
     "title": "Practice 2: в- and вы-",
-    "n": 14
+    "n": 12
    },
    {
     "id": "p02-arrive-leave",
@@ -5060,12 +5060,7 @@ export default [
    {
     "id": "p02-arrive-leave-practice-2",
     "title": "Practice 2: при- and у-",
-    "n": 12
-   },
-   {
-    "id": "p02-arrive-leave-practice-3",
-    "title": "Practice 3: при- and у-",
-    "n": 8
+    "n": 14
    },
    {
     "id": "p03-near-away",
@@ -5108,11 +5103,6 @@ export default [
     "n": 12
    },
    {
-    "id": "p04-across-through-practice-4",
-    "title": "Practice 4: пере- and про-",
-    "n": 6
-   },
-   {
     "id": "p05-reach-around",
     "title": "до- and о-, об-",
     "n": 0
@@ -5145,7 +5135,7 @@ export default [
    {
     "id": "p06-up-down-practice-3",
     "title": "Practice 3: вз-, воз- and с-",
-    "n": 9
+    "n": 7
    },
    {
     "id": "p07-apart-out",
@@ -5160,7 +5150,7 @@ export default [
    {
     "id": "p07-apart-out-practice-2",
     "title": "Practice 2: раз- and из-",
-    "n": 13
+    "n": 8
    },
    {
     "id": "p08-onto-behind",
@@ -5189,13 +5179,8 @@ export default [
    },
    {
     "id": "p09-po-practice",
-    "title": "Practice 1: по-",
-    "n": 12
-   },
-   {
-    "id": "p09-po-practice-2",
-    "title": "Practice 2: по-",
-    "n": 4
+    "title": "Practice: по-",
+    "n": 15
    },
    {
     "id": "p10-pre-pred",
@@ -5205,7 +5190,7 @@ export default [
    {
     "id": "p10-pre-pred-practice",
     "title": "Practice: пре- and пред-",
-    "n": 13
+    "n": 11
    },
    {
     "id": "t01-beginning",
@@ -5214,13 +5199,8 @@ export default [
    },
    {
     "id": "t01-beginning-practice",
-    "title": "Practice 1: «To begin doing»: за- and others",
-    "n": 12
-   },
-   {
-    "id": "t01-beginning-practice-2",
-    "title": "Practice 2: «To begin doing»: за- and others",
-    "n": 5
+    "title": "Practice: «To begin doing»: за- and others",
+    "n": 13
    },
    {
     "id": "t02-for-a-while",
@@ -5235,7 +5215,7 @@ export default [
    {
     "id": "t02-for-a-while-practice-2",
     "title": "Practice 2: «For a while»: по- and про-",
-    "n": 9
+    "n": 4
    },
    {
     "id": "s01-yvat",
@@ -5300,7 +5280,7 @@ export default [
    {
     "id": "s04-ovat-practice",
     "title": "Practice: -овать and -евать",
-    "n": 11
+    "n": 10
    },
    {
     "id": "s05-nie",
@@ -5335,7 +5315,7 @@ export default [
    {
     "id": "s06-tel-practice-2",
     "title": "Practice 2: -тель",
-    "n": 5
+    "n": 4
    },
    {
     "id": "s07-ost",
@@ -5344,13 +5324,8 @@ export default [
    },
    {
     "id": "s07-ost-practice",
-    "title": "Practice 1: -ость",
-    "n": 12
-   },
-   {
-    "id": "s07-ost-practice-2",
-    "title": "Practice 2: -ость",
-    "n": 4
+    "title": "Practice: -ость",
+    "n": 15
    },
    {
     "id": "s08-stvo",
@@ -5360,7 +5335,7 @@ export default [
    {
     "id": "s08-stvo-practice",
     "title": "Practice: -ство and -ие",
-    "n": 9
+    "n": 8
    },
    {
     "id": "s09-nik",
@@ -5390,7 +5365,7 @@ export default [
    {
     "id": "s10-ka-practice-3",
     "title": "Practice 3: -ка, -ок, -ик",
-    "n": 5
+    "n": 6
    },
    {
     "id": "s11-ny",
@@ -5434,13 +5409,8 @@ export default [
    },
    {
     "id": "r01-sled-practice",
-    "title": "Practice 1: The family of след",
-    "n": 12
-   },
-   {
-    "id": "r01-sled-practice-2",
-    "title": "Practice 2: The family of след",
-    "n": 7
+    "title": "Practice: The family of след",
+    "n": 14
    },
    {
     "id": "r02-khod",
@@ -5455,12 +5425,7 @@ export default [
    {
     "id": "r02-khod-practice-2",
     "title": "Practice 2: The family of ход",
-    "n": 12
-   },
-   {
-    "id": "r02-khod-practice-3",
-    "title": "Practice 3: The family of ход",
-    "n": 5
+    "n": 13
    },
    {
     "id": "r03-vesti",
@@ -5480,12 +5445,7 @@ export default [
    {
     "id": "r03-vesti-practice-3",
     "title": "Practice 3: The family of вести́",
-    "n": 12
-   },
-   {
-    "id": "r03-vesti-practice-4",
-    "title": "Practice 4: The family of вести́",
-    "n": 5
+    "n": 11
    },
    {
     "id": "r04-nesti",
@@ -5500,12 +5460,7 @@ export default [
    {
     "id": "r04-nesti-practice-2",
     "title": "Practice 2: The family of нести́",
-    "n": 12
-   },
-   {
-    "id": "r04-nesti-practice-3",
-    "title": "Practice 3: The family of нести́",
-    "n": 8
+    "n": 13
    },
    {
     "id": "r05-pisat",
@@ -5525,7 +5480,7 @@ export default [
    {
     "id": "r05-pisat-practice-3",
     "title": "Practice 3: The family of писа́ть",
-    "n": 15
+    "n": 5
    },
    {
     "id": "r06-govorit",
@@ -5545,7 +5500,7 @@ export default [
    {
     "id": "r06-govorit-practice-3",
     "title": "Practice 3: The family of говори́ть",
-    "n": 7
+    "n": 4
    },
    {
     "id": "r07-skazat",
@@ -5560,7 +5515,7 @@ export default [
    {
     "id": "r07-skazat-practice-2",
     "title": "Practice 2: The family of сказа́ть",
-    "n": 9
+    "n": 8
    },
    {
     "id": "r08-stavit",
@@ -5580,7 +5535,7 @@ export default [
    {
     "id": "r08-stavit-practice-3",
     "title": "Practice 3: The family of ста́вить",
-    "n": 11
+    "n": 8
    },
    {
     "id": "r09-stat",
@@ -5614,13 +5569,8 @@ export default [
    },
    {
     "id": "r10-polozhit-practice",
-    "title": "Practice 1: The family of положи́ть",
-    "n": 12
-   },
-   {
-    "id": "r10-polozhit-practice-2",
-    "title": "Practice 2: The family of положи́ть",
-    "n": 4
+    "title": "Practice: The family of положи́ть",
+    "n": 14
    },
    {
     "id": "r11-znat",
@@ -5655,7 +5605,7 @@ export default [
    {
     "id": "r12-brat-practice-3",
     "title": "Practice 3: The family of брать",
-    "n": 15
+    "n": 14
    },
    {
     "id": "r13-dat",
@@ -5680,7 +5630,7 @@ export default [
    {
     "id": "r13-dat-practice-4",
     "title": "Practice 4: The family of дать",
-    "n": 7
+    "n": 6
    },
    {
     "id": "r14-chitat",
@@ -5695,7 +5645,7 @@ export default [
    {
     "id": "r14-chitat-practice-2",
     "title": "Practice 2: The family of чита́ть",
-    "n": 13
+    "n": 7
    },
    {
     "id": "r15-zhit",
@@ -5730,7 +5680,7 @@ export default [
    {
     "id": "r17-derzhat-practice",
     "title": "Practice: The family of держа́ть",
-    "n": 13
+    "n": 12
    },
    {
     "id": "r18-zvat",
@@ -5739,13 +5689,8 @@ export default [
    },
    {
     "id": "r18-zvat-practice",
-    "title": "Practice 1: The family of звать",
-    "n": 12
-   },
-   {
-    "id": "r18-zvat-practice-2",
-    "title": "Practice 2: The family of звать",
-    "n": 4
+    "title": "Practice: The family of звать",
+    "n": 15
    },
    {
     "id": "r19-bit",
@@ -5760,7 +5705,7 @@ export default [
    {
     "id": "r19-bit-practice-2",
     "title": "Practice 2: The family of бить",
-    "n": 15
+    "n": 12
    },
    {
     "id": "r20-bezhat",
@@ -5780,7 +5725,7 @@ export default [
    {
     "id": "r20-bezhat-practice-3",
     "title": "Practice 3: The family of бежа́ть",
-    "n": 10
+    "n": 8
    },
    {
     "id": "r21-glyadet",
@@ -5795,7 +5740,7 @@ export default [
    {
     "id": "r21-glyadet-practice-2",
     "title": "Practice 2: The family of гляде́ть",
-    "n": 13
+    "n": 11
    },
    {
     "id": "r22-past",
@@ -5804,133 +5749,108 @@ export default [
    },
    {
     "id": "r22-past-practice",
-    "title": "Practice 1: The family of пасть",
-    "n": 12
+    "title": "Practice: The family of пасть",
+    "n": 5
    },
    {
-    "id": "r22-past-practice-2",
-    "title": "Practice 2: The family of пасть",
-    "n": 6
-   },
-   {
-    "id": "r23-sidet",
-    "title": "The family of сиде́ть",
-    "n": 0
-   },
-   {
-    "id": "r23-sidet-practice",
-    "title": "Practice: The family of сиде́ть",
-    "n": 10
-   },
-   {
-    "id": "r24-stoyat",
+    "id": "r23-stoyat",
     "title": "The family of стоя́ть",
     "n": 0
    },
    {
-    "id": "r24-stoyat-practice",
+    "id": "r23-stoyat-practice",
     "title": "Practice 1: The family of стоя́ть",
     "n": 12
    },
    {
-    "id": "r24-stoyat-practice-2",
+    "id": "r23-stoyat-practice-2",
     "title": "Practice 2: The family of стоя́ть",
-    "n": 8
+    "n": 4
    },
    {
-    "id": "r25-kryt",
+    "id": "r24-kryt",
     "title": "The family of крыть",
     "n": 0
    },
    {
-    "id": "r25-kryt-practice",
+    "id": "r24-kryt-practice",
     "title": "Practice 1: The family of крыть",
     "n": 12
    },
    {
-    "id": "r25-kryt-practice-2",
+    "id": "r24-kryt-practice-2",
     "title": "Practice 2: The family of крыть",
-    "n": 15
+    "n": 12
    },
    {
-    "id": "r26-pomnit",
+    "id": "r25-pomnit",
     "title": "The family of по́мнить",
     "n": 0
    },
    {
-    "id": "r26-pomnit-practice",
+    "id": "r25-pomnit-practice",
     "title": "Practice 1: The family of по́мнить",
     "n": 12
    },
    {
-    "id": "r26-pomnit-practice-2",
+    "id": "r25-pomnit-practice-2",
     "title": "Practice 2: The family of по́мнить",
-    "n": 12
+    "n": 13
    },
    {
-    "id": "r26-pomnit-practice-3",
-    "title": "Practice 3: The family of по́мнить",
-    "n": 5
-   },
-   {
-    "id": "r27-uchit",
+    "id": "r26-uchit",
     "title": "The family of учи́ть",
     "n": 0
    },
    {
-    "id": "r27-uchit-practice",
+    "id": "r26-uchit-practice",
     "title": "Practice 1: The family of учи́ть",
     "n": 12
    },
    {
-    "id": "r27-uchit-practice-2",
+    "id": "r26-uchit-practice-2",
     "title": "Practice 2: The family of учи́ть",
     "n": 9
    },
    {
-    "id": "r28-prosit",
+    "id": "r27-prosit",
     "title": "The family of проси́ть",
     "n": 0
    },
    {
-    "id": "r28-prosit-practice",
+    "id": "r27-prosit-practice",
     "title": "Practice 1: The family of проси́ть",
     "n": 12
    },
    {
-    "id": "r28-prosit-practice-2",
+    "id": "r27-prosit-practice-2",
     "title": "Practice 2: The family of проси́ть",
-    "n": 11
+    "n": 10
    },
    {
-    "id": "r29-mir",
+    "id": "r28-mir",
     "title": "The family of мир",
     "n": 0
    },
    {
-    "id": "r29-mir-practice",
+    "id": "r28-mir-practice",
     "title": "Practice: The family of мир",
     "n": 6
    },
    {
-    "id": "r30-rod",
+    "id": "r29-rod",
     "title": "The family of род",
     "n": 0
    },
    {
-    "id": "r30-rod-practice",
-    "title": "Practice 1: The family of род",
-    "n": 12
-   },
-   {
-    "id": "r30-rod-practice-2",
-    "title": "Practice 2: The family of род",
-    "n": 5
+    "id": "r29-rod-practice",
+    "title": "Practice: The family of род",
+    "n": 13
    },
    {
     "id": "exam",
     "title": "Exam",
-    "n": 270,
+    "n": 265,
     "exam": true
    }
   ]

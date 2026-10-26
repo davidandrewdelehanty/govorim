@@ -65,7 +65,13 @@ def tmpl(a, strict):
         return " + ".join(p + (" (“" + g + "”)" if g else "") for p, g in zip(parts, glosses))
     if name in ("gloss", "gl"): return "(" + render(pos[0]) + ")" if pos else ""
     if name in ("q", "qualifier", "i", "qq"): return "(" + ", ".join(render(p) for p in pos) + ")"
-    if name in ("lb", "lbl", "label"): return "(" + ", ".join(p for p in pos[1:] if p not in ("_",)) .replace(", _,", "") + ")"
+    if name in ("lb", "lbl", "label"):
+        # Wiktionary joins labels with commas, except that "_" joins its neighbours with a space: (imperfective, _, only) → (imperfective only)
+        out = ""
+        for k, p in enumerate(pos[1:]):
+            if p == "_": out += " "; continue
+            out += ("" if not out or out.endswith(" ") else ", ") + p
+        return "(" + out.strip() + ")" if out.strip() else ""
     if name in ("n-g", "ng", "non-gloss"): return render(pos[0]) if pos else ""
     if name in ("w", "W"): return render(kw.get("2") or (pos[1] if len(pos) > 1 else pos[0] if pos else ""))
     if name in ("glossary",): return pos[-1] if pos else ""
@@ -85,8 +91,10 @@ def tmpl(a, strict):
         res = shown[-1]; srcs = shown[:-1]
         aff = AFFIX.get("v")
         first = parts[0].lstrip("!") if parts else ""
-        if aff and not (first.endswith("-") or first.startswith("-") and name == "sufex"):
-            srcs = [aff] + srcs if name == "prefex" else srcs + [aff]
+        if aff and name == "prefex" and not first.endswith("-"):
+            srcs = [aff] + srcs
+        if aff and name == "sufex" and not any(x.lstrip("!").startswith("-") for x in parts[:-1]):
+            srcs = srcs + [aff]
         return " + ".join(srcs) + " → " + res
     if name in ("alternative form of", "alt form"): return "alternative form of " + (pos[1] if len(pos) > 1 else "")
     if strict: raise Unknown(name)
@@ -114,4 +122,5 @@ def render(s, strict=False):
     s = re.sub(r"[ \t]+", " ", s).strip()
     s = re.sub(r"\s+([,.;:])", r"\1", s)
     s = re.sub(r"\.\.+$", ".", s)
+    s = re.sub(r"\(\s*\)", "", s).replace("  ", " ").strip()
     return s

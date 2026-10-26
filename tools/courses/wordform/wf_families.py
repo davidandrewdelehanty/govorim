@@ -30,20 +30,27 @@ def fnv1a(s):
         h ^= ord(ch); h = (h * 0x01000193) & 0xFFFFFFFF
     return h
 
+def short(g, n=110):
+    """Never cut a definition mid-word: keep whole senses up to n characters, or nothing."""
+    if len(g) <= n: return g
+    cut = max(g.rfind("; ", 0, n), g.rfind(", ", 0, n))
+    return g[:cut] if cut > 20 and g[:cut].count("(") == g[:cut].count(")") else ""
+
 def item(w, rel):
-    return [C.acc(w), C.pos(w), C.gloss1(w)[:110], rel]
+    return [C.acc(w), C.pos(w), short(C.gloss1(w)), rel]
 
 def main():
     words = [w for w in C.WORDS if C.defs(w) and C.ok(w)]
-    links = {w: {x for x in C.etym_links(w) if x in C.WORDS and x != w and C.ok(x)} for w in words}
+    links = {w: {x for x in C.etym_links(w) if x in C.WORDS and x != w and C.ok(x) and "%s>%s" % (w, x) not in C.LINKS} for w in words}
     built_on = collections.defaultdict(set)
     for w, bs in links.items():
         for b in bs: built_on[b].add(w)
     fam_of = collections.defaultdict(set)
+    import glob as _g
+    taught = {json.load(io.open(f, encoding="utf-8"))["title"] for f in _g.glob(os.path.join(ROOT, "public", "courses", "wordform", "r*.json"))}
     for r in C.ROOTS:
-        if r not in C.WORDS: continue
+        if r not in C.WORDS or ("The family of %s" % C.acc(r)) not in taught: continue      # only the families the course teaches (and its review checked)
         f = C.family(r)
-        if len(f) < 4: continue
         for w in f: fam_of[w] |= set(f)
     out = {}
     for w in words:
@@ -51,6 +58,8 @@ def main():
         for rel, group in (("made from", links.get(w, ())), ("built on it", built_on.get(w, ())), ("same root", fam_of.get(w, ()))):
             for x in sorted(group, key=C.rank):
                 if x in seen or not C.defs(x) or (C.rank(x) > SHOW and rel != "made from"): continue
+                if x in C.FAM_GLOSS or not short(C.gloss1(x)): continue               # the review found its first definition misleading
+                if len(C.ent(x)) > 1: continue                                       # several entries (мир «peace» / «world»): which one is meant is not documented
                 seen.add(x); rows.append(item(x, rel))
         if rows: out[w] = rows[:MAX]
     os.makedirs(OUT, exist_ok=True)
