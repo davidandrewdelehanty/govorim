@@ -198,9 +198,19 @@ def _inflect1(lemma, posx, g):
             x = None
         if x and x.tag.POS == posx: out.add(x.word)
     return out.pop() if len(out) == 1 else None
+def _complete(posx, g):
+    """A reading must pin the form down: a present/future verb needs its person and number, a past one its gender or
+    plural, a noun or adjective its case (impersonal светает has no person, so it cannot be matched)."""
+    if posx == "VERB":
+        if g & {"pres", "futr"} and not (g & {"1per", "2per", "3per"} and g & {"sing", "plur"}): return False
+        if "past" in g and not (g & {"masc", "femn", "neut", "plur"}): return False
+        if "impr" in g and not (g & {"sing", "plur"}): return False
+    if posx in ("NOUN", "ADJF", "PRTF") and not (g & {"nomn", "gent", "datv", "accs", "ablt", "loct", "voct", "gen2", "acc2", "loc2"}): return False
+    return True
 def inflect_to(lemma, readings):
     """lemma in the sentence word's form, or None: whichever reading of the sentence's word is meant, the dictionary must
     give one and the same form (a perfective has no present tense; an ambiguous case that would differ is refused)."""
+    if not all(_complete(posx, g) for posx, g in readings): return None
     fs = {_inflect1(lemma, posx, g) for posx, g in readings}
     return fs.pop() if len(fs) == 1 and None not in fs else None
 

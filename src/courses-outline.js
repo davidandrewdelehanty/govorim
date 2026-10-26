@@ -5734,13 +5734,8 @@ export default [
    },
    {
     "id": "r18-zhit-practice",
-    "title": "Practice 1: The family of жить",
-    "n": 12
-   },
-   {
-    "id": "r18-zhit-practice-2",
-    "title": "Practice 2: The family of жить",
-    "n": 5
+    "title": "Practice: The family of жить",
+    "n": 15
    },
    {
     "id": "r20-slovo",
@@ -5945,7 +5940,7 @@ export default [
    {
     "id": "r39-svet-1-practice",
     "title": "Practice: The family of свет (освети́ть, свеча)",
-    "n": 11
+    "n": 9
    },
    {
     "id": "r40-rod",
