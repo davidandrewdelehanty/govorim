@@ -15309,6 +15309,86 @@ export default function App() {
     })();
   }, [localLoaded, syncedFromServer]);
 
+  // One-time repair (Oct 26 2026). While the define stack still fell back to
+  // machine translation, a word no dictionary found was saved under the form
+  // that was tapped («надбавляет», «пожимаясь») with whatever MyMemory made of
+  // it ("increases", "shaking") — and now and then under a wrong word
+  // altogether («выдь» became «выдуй», "blow"). Those cards say so in their
+  // grammar line. Each is looked up again, by the form actually tapped, through
+  // today's stack (lemma table first, no MT); when a dictionary answers, the
+  // card is re-filed under the dictionary form with the dictionary's meaning,
+  // keeping its review history, sentences and forms. A card nothing answers is
+  // left as it is. Once per device, after the server's list has arrived.
+  useEffect(function() {
+    if (!localLoaded || (me && !syncedFromServer)) return;
+    var FLAG = "gv_mtcards_v1";
+    try { if (localStorage.getItem(FLAG) === "done") return; } catch (e) { return; }
+    var isMT = function(v){ return /machine translation|\bmatch \d+%|confidence \d+%|back-translates as|looked up as /i.test(String((v && v.grammar) || "")); };
+    var idOf = function(v){ return String(v._key || v.id || v.created || v.ru); };
+    var todo = [];
+    [["v", vocabRef.current || vocab], ["l", learned]].forEach(function(pair){
+      (pair[1] || []).forEach(function(v){
+        if (!v || !v.ru || /\s/.test(String(v.ru).trim()) || !isMT(v)) return;
+        var tapped = (Array.isArray(v.forms) && v.forms[0]) ||
+          ((v.sentences || []).map(function(x){ return x && x.f; }).filter(Boolean)[0]) || v.ru;
+        todo.push({ list: pair[0], id: idOf(v), word: String(tapped).trim() });
+      });
+    });
+    if (!todo.length) { try { localStorage.setItem(FLAG, "done"); } catch (e) {} return; }
+    var cancelled = false;
+    (async function() {
+      var fixes = { v: {}, l: {} };
+      for (var i = 0; i < todo.length && !cancelled; i++) {
+        var t = todo[i], data = null;
+        try {
+          // Straight to the server, past the device's definition cache, and
+          // with a fresh URL so no CDN copy of the old MT answer comes back.
+          var r = await authFetch("/api/define?word=" + encodeURIComponent(t.word) + "&fresh=mt1");
+          if (r.ok) data = await r.json();
+        } catch (e) { data = null; }
+        if (data && data.translation && data.definitionSource !== "mt" && !data.mtAssisted) fixes[t.list][t.id] = { data: data, word: t.word };
+        await new Promise(function(res){ setTimeout(res, 300); });
+      }
+      if (cancelled) return;
+      var norm = function(x){ return String(x || "").toLowerCase().replace(/́/g, "").replace(/ё/g, "е").trim(); };
+      var repair = function(list, tag) {
+        var out = (list || []).slice(), changed = 0;
+        out.slice().forEach(function(v) {
+          var fx = v && fixes[tag][idOf(v)];
+          if (!fx) return;
+          var e = formatVocabEntry(fx.data, fx.word);
+          var forms = (Array.isArray(v.forms) ? v.forms : []).concat([fx.word], (v.sentences || []).map(function(x){ return x && x.f; }))
+            .map(norm).filter(function(f, k, a){ return f && f !== norm(e.lemma) && a.indexOf(f) === k; });
+          var fixed = Object.assign({}, v, {
+            ru: e.ru, lemma: e.lemma, en: e.en, pos: e.pos || v.pos || "", aspect: e.aspect, grammar: e.grammar,
+            example: e.example, exampleTranslation: e.exampleTranslation, forms: forms.slice(-40),
+            mtFixedFrom: v.ru + " — " + (v.en || "")
+          });
+          var at = out.indexOf(v);
+          var into = findVocabMatch(out.filter(function(x){ return x !== v; }), fixed);
+          if (into) {
+            // The real word already has a card: its sentences and forms join it.
+            var sents = (into.sentences || []).slice();
+            (v.sentences || []).forEach(function(y){
+              if (y && y.s && !sents.some(function(z){ return String(z.s).trim() === String(y.s).trim(); })) sents.push(y);
+            });
+            var f2 = (into.forms || []).concat(forms).filter(function(f, k, a){ return f && a.indexOf(f) === k; });
+            out[out.indexOf(into)] = Object.assign({}, into, { sentences: sents.slice(-3), forms: f2.slice(-40) });
+            out.splice(at, 1);
+          } else {
+            out[at] = fixed;
+          }
+          changed++;
+        });
+        return changed ? out : list;
+      };
+      setVocab(function(list){ return repair(list, "v"); });
+      setLearned(function(list){ return repair(list, "l"); });
+      try { localStorage.setItem(FLAG, "done"); } catch (e) {}
+    })();
+    return function(){ cancelled = true; };
+  }, [localLoaded, syncedFromServer]);
+
   // One-time clean-up for one reader, at their request (Oct 11 2026): the
   // Bible bookmarks outside Genesis go. Bookmarks live on the device, so this
   // runs on each of their devices once. Genesis is the first fifty chapters
