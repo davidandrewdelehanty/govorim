@@ -16,7 +16,9 @@ def install(C):
 
     def ru_url(m): return "https://ru.wiktionary.org/wiki/" + m
     def en_url(m): return "https://en.wiktionary.org/wiki/" + m + "#Russian"
-    def common(w): return w in WORDS and bool(defs(w)) and ok(w) and rank(w) <= C.FAMILY
+    def common(w):
+        # a word with several dictionary entries (пропасть «precipice» / пропасть «to vanish») cannot be glossed without guessing which
+        return w in WORDS and bool(defs(w)) and ok(w) and rank(w) <= C.FAMILY and len(C.ent(w)) <= 1
     def en_entry(key): return S["suffix"].get(key) if key.startswith("-") else S["prefix"].get(key)
     def en_sense_list(key):
         e = en_entry(key)
@@ -24,8 +26,8 @@ def install(C):
     def trim_en(t):
         """The English Wiktionary's sense line without its grammatical framing: «(used with verbs) out (describing …)» → «out»."""
         t = re.sub(r"^\((?:used )?with verbs\)\s*", "", t)
-        t = re.sub(r"\s*\(describing [^)]*\)\s*$", "", t)
-        return t.strip()
+        t2 = re.sub(r"\s*\(describing [^)]*\)\s*$", "", t).strip()
+        return t2 or re.sub(r"^\((.*)\)$", r"\1", t.strip())
     def group_of(p):
         p = p.strip("-")
         for g in MN.PREFIX_GROUPS:
@@ -53,8 +55,8 @@ def install(C):
             sv = RU["senses"].get(m) or []
             if n >= len(sv) or not label: return None
             s = sv[n]
-            words = [w for w in s["ex"] if fits(w, m)]
-            bad = any(x in s["text"] for x in ("[[", "{{", "???"))
+            words = list(dict.fromkeys(w for w in s["ex"] if fits(w, m)))
+            bad = any(x in s["text"] for x in ("[[", "{{", "???")) or not C.clean_text(s["text"])
             return {"m": m, "label": label, "quote": "" if bad else s["text"], "src": "%s, «%s», meaning %d (%s)" % (RUW, m, n + 1, ru_url(m)),
                     "all": words, "words": [w for w in words if common(w)], "base": s.get("base", {}), "ru": True}
         if kind == "en":
@@ -168,7 +170,8 @@ def install(C):
                         exs += C.mc_sentence(w, sib, rnd, 2, "Which prefix? The English says which word it is.")
                 else:
                     b = r["base"].get(w)
-                    if b and b in WORDS and b != w and w not in NO_FILL:
+                    # the base must also be what the English Wiktionary's etymology builds the word on
+                    if b and b in WORDS and b != w and w not in NO_FILL and (b in C.af_plain(w) or b in C.etym_links(w)):
                         exs.append({"type": "fill", "q": "%s → ___" % acc(b), "answers": [w, acc(w)], "hint": "the %s in %s" % (pos(w) or "word", r["m"]),
                                     "why": "**%s** — %s. Source: %s." % (acc(w), gloss(w, 1), r["src"])})
                     same = [x for rr in rs for x in rr["words"] if x != w and pos(x) == pos(w)]

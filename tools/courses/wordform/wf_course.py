@@ -291,8 +291,10 @@ def theme(mid, title, refs, rx, rnd, intro_text, limit=8000):
         if r and r["all"]:
             blocks += sense_block(r)
             listed += [w for w in r["words"] if w not in listed]
-    ws = by_def(rx, limit=limit)
+    NT = set(_B.get("notheme", {}))
+    ws = [w for w in by_def(rx, limit=limit) if w not in NT and len(ent(w)) <= 1]
     ws = listed + [w for w in ws if w not in listed]
+    blocks.append(H("More words, from their own definitions"))
     blocks.append(P(intro_text))
     groups = collections.OrderedDict()
     for w in ws[len(listed):]: groups.setdefault(af_plain(w)[0], []).append(w)
@@ -330,9 +332,11 @@ def suffix_module(mid, title, sfx, rnd, kind, extra_blocks=(), limit=COMMON, fil
     prs = pairs_with(set(sfx), limit)
     if aspect_pair:      # only where Wiktionary's headwords say perfective → imperfective
         def partners(w): return {plain(x) for e in ent(w) for x in (e.get("pf") or []) for x in x.split(",")}
-        prs = [(a, b) for a, b in prs if aspect(a) == "pf" and aspect(b) == "impf" and a in partners(b)]
+        NP = set(_B.get("nopair", {}))
+        prs = [(a, b) for a, b in prs if aspect(a) == "pf" and aspect(b) == "impf" and a in partners(b) and b not in NP]
     prs = prs[:24]
     if prs:
+        blocks.append(H("Pairs: " + " and ".join(sfx)))
         blocks.append(T(["From", "", "Word", "Meaning (Wiktionary)"],
                         [["**%s**" % acc(a), "→", "**%s**" % acc(b), gloss(b, 1)] for a, b in prs]))
         blocks.append(NOTE("Pairs from %s's etymologies: each right-hand word is the left-hand word + %s, as %s records it." % (WK, " / ".join(sfx), WK)))
@@ -369,7 +373,8 @@ def root_families(root):
         if key in seen_t: continue
         seen_t.add(key)
         nf = set((_B.get("famblock") or {}).get(root, []))
-        ws = [w for w in f["words"] if w in WORDS and defs(w) and ok(w) and rank(w) <= FAMILY and w not in nf]
+        ws = [w for w in f["words"] if w in WORDS and defs(w) and ok(w) and rank(w) <= FAMILY and w not in nf
+              and (w == root or len(ent(w)) <= 1)]      # a word with several entries cannot be glossed without guessing which
         if root in WORDS and root not in ws and root in f["words"]: ws.insert(0, root)
         out.append({"words": sorted(set(ws), key=lambda w: (w != root, rank(w))), "all": f["words"], "templates": f["templates"]})
     return out
