@@ -5845,6 +5845,48 @@ export default function App() {
     return [];
   };
 
+  // Word families — the define popup's «same family» row. Built offline by
+  // tools/courses/wordform/wf_families.py from the English Wiktionary only:
+  // the words a word's etymology says it is made from, the words whose
+  // etymology names it, and the Word Formation course's root families. Sharded
+  // with the same hash as the Tatoeba shards; one small file per lookup.
+  var [famShards, setFamShards] = useState({});
+  var famMeta = useRef(null);
+  var famTried = useRef({});
+  var loadFamilies = async function(lemma) {
+    var key = String(lemma || "").replace(/\u0301/g, "").toLowerCase().trim();
+    if (!key) return;
+    try {
+      if (!famMeta.current) {
+        if (famTried.current.__meta) return;
+        famTried.current.__meta = true;
+        var mr = await fetch("/vocab/families/index.json");
+        if (!mr.ok) return;
+        famMeta.current = await mr.json();
+      }
+      var n = (famMeta.current && famMeta.current.shards) || 0;
+      if (!n) return;
+      var shard = fnv1a(key) % n;
+      if (famTried.current[shard]) return;
+      famTried.current[shard] = true;
+      var r = await fetch("/vocab/families/f" + (shard < 10 ? "0" : "") + shard + ".json");
+      if (!r.ok) return;
+      var data = await r.json();
+      setFamShards(function(cur){ var next = Object.assign({}, cur); next[shard] = data; return next; });
+    } catch (e) { /* the family row is a garnish, never a blocker */ }
+  };
+  var famFor = function(lemma) {
+    var n = famMeta.current && famMeta.current.shards;
+    if (!n) return [];
+    var k = String(lemma || "").replace(/\u0301/g, "").toLowerCase().trim();
+    var tries = [k, k.replace(/ё/g, "е")];
+    for (var i = 0; i < tries.length; i++) {
+      var sh = famShards[fnv1a(tries[i]) % n];
+      if (sh && sh[tries[i]]) return sh[tries[i]];
+    }
+    return [];
+  };
+
   // The deck's example for a word or its lemma, as {ru, en} — or nothing.
   // A sentence from the deck is a GENERAL example: it shows the word's
   // commonest sense, which is not necessarily the sense the reader just met.
@@ -12359,6 +12401,7 @@ export default function App() {
       // Fetch this lemma's Tatoeba shard in the background, so "See other
       // examples" has something to show the moment it is tapped.
       loadTatoeba((data && data.lemma) || clean);
+      loadFamilies((data && data.lemma) || clean);
       // If this word is already saved, remember the form the reader just
       // clicked. Generated paradigms miss the irregulars (пишу from писать,
       // люблю from любить); a form the reader has actually looked up is
@@ -12472,6 +12515,7 @@ export default function App() {
     setPopup(function(p){ return p ? Object.assign({},p,{loading:true,error:null}) : null; });
     try {
       var data = await fetchDef(lemma);
+      loadFamilies((data && data.lemma) || lemma);
       // A participle read as an adjective («заломленный») is filed by the
       // dictionaries under its verb, so the lookup comes back as заломить and
       // the reader would see the verb they just chose against. Keep the
@@ -18259,6 +18303,15 @@ quizMode ? (
         .pread.on .pread-pos{color:#1e7a3c}
         .pread-lem{font-size:16px;font-weight:600;line-height:1.15}
         .pread-note{font-size:11.5px;font-style:italic;color:rgba(42,31,20,.6)}
+        .pfam{margin:12px 0 4px;padding-top:10px;border-top:1px solid rgba(42,31,20,.12)}
+        .pfam-h{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(42,31,20,.55);margin-bottom:6px}
+        .pfam-list{display:flex;flex-direction:column;gap:4px}
+        .pfam-w{display:grid;grid-template-columns:auto 1fr;column-gap:10px;row-gap:1px;align-items:baseline;text-align:left;background:none;border:1px solid rgba(42,31,20,.12);border-radius:6px;padding:6px 9px;cursor:pointer;font:inherit;color:inherit}
+        .pfam-w:hover{background:rgba(42,31,20,.05)}
+        .pfam-ru{font-weight:600;font-size:15px}
+        .pfam-pos{font-size:11px;color:rgba(42,31,20,.55);font-style:italic}
+        .pfam-en{grid-column:1 / -1;font-size:13px;color:rgba(42,31,20,.8)}
+        .pfam-src{font-size:10.5px;color:rgba(42,31,20,.45);margin-top:6px}
         .play-speaker{color:#2a1f14;font-weight:600;letter-spacing:.04em;border-bottom:none !important;cursor:default !important}
         .play-speaker:hover{color:#2a1f14 !important;background:none !important}
         .play-dash{color:rgba(42,31,20,.45);padding:0 4px;font-weight:300}
@@ -30088,6 +30141,33 @@ quizMode ? (
                             )}
                           </div>
                         )}
+                      </div>
+                    );
+                  })()}
+                  {(function(){
+                    // The word's family — чувствовать brings чувство (noun) with
+                    // its meaning — so a look-up teaches the words around it.
+                    var lemF = String(popup.data.baseLemma || popup.data.lemma || popup.word || "").replace(/\u0301/g, "").trim();
+                    var fam = famFor(lemF);
+                    if (!fam.length) return null;
+                    var REL = { "made from": "made from", "built on it": "built on it", "same root": "same family" };
+                    return (
+                      <div className="pfam">
+                        <div className="pfam-h">Same family</div>
+                        <div className="pfam-list">
+                          {fam.map(function(f, i){
+                            var bareF = String(f[0]).replace(/\u0301/g, "");
+                            return (
+                              <button key={i} type="button" className="pfam-w" title={REL[f[3]] || ""}
+                                      onClick={function(){ switchReading(bareF, { pos: f[1] }); }}>
+                                <span className="pfam-ru" lang="ru">{f[0]}</span>
+                                <span className="pfam-pos">{f[1]}{f[3] ? " \u00b7 " + (REL[f[3]] || f[3]) : ""}</span>
+                                <span className="pfam-en">{f[2]}</span>
+                              </button>
+                            );
+                          })}
+                        </div>
+                        <div className="pfam-src">From Wiktionary's etymologies and word lists \u00b7 <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noreferrer">CC BY-SA 4.0</a></div>
                       </div>
                     );
                   })()}
