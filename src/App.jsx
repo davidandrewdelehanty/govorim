@@ -12870,8 +12870,8 @@ export default function App() {
   // where the form depends on them) → the word. public/vocab/numeral-forms.json
   // is written by tools/courses/gen_numeral_drill.py from the OpenCorpora forms.
   var fdNumRef = useRef(null);
-  var fdNumMode = useRef("both");                      // "card" | "ord" | "both"
-  var [fdMode, setFdMode] = useState("both");
+  var fdNumMode = useRef("card");                      // "card" | "ord"
+  var [fdMode, setFdMode] = useState("card");
   var FD_CASE_EN = { nomn: "nominative", gent: "genitive", datv: "dative", accs: "accusative", ablt: "instrumental", loct: "prepositional" };
   // The number written out in English (seventy-third, two hundred and five): the ordinal/cardinal choice is made
   // with the buttons above the drill, so the question itself only needs the English words, the case, number and gender.
@@ -12902,28 +12902,61 @@ export default function App() {
       return irregular[w] || (/y$/.test(w) ? w.slice(0, -1) + "ieth" : w + "th");
     });
   };
+  // The ordinal table: первый and третий in every case, gender and number, read from the drill's own forms (OpenCorpora).
+  var fdOrdTable = function() {
+    var j = fdNumRef.current;
+    if (!j || !j.o) return <p className="fd-note">Loading the table…</p>;
+    var cell = function(n, c, col) {
+      var g = col === "p" ? "" : col, num = col === "p" ? "p" : "s";
+      var find = function(cs, an) {
+        for (var i = 0; i < j.o.length; i++) { var it = j.o[i]; if (it[0] === n && it[1] === cs && it[2] === g && it[3] === num && it[4] === an) return it[5].join(", "); }
+        return "";
+      };
+      if (c === "accs-i") return (col === "f" ? find("accs", "") : find("nomn", ""));
+      if (c === "accs-a") return (col === "m" || col === "p") ? find("accs", "a") : (col === "f" ? find("accs", "") : find("nomn", ""));
+      return find(c, "");
+    };
+    var rows = [["Nom.", "nomn"], ["Gen.", "gent"], ["Dat.", "datv"], ["Acc. (inanim.)", "accs-i"], ["Acc. (animate)", "accs-a"], ["Instr.", "ablt"], ["Prep.", "loct"]];
+    return (
+      <div className="nd-intro">
+        {[1, 3].map(function(n){ return (
+          <div key={n} className="crs-tw"><table className="crs-t nd-t">
+            <caption>{n === 1 ? "первый (first)" : "третий (third)"}</caption>
+            <thead><tr><th></th><th>masculine</th><th>feminine</th><th>neuter</th><th>plural</th></tr></thead>
+            <tbody>{rows.map(function(r){ return <tr key={r[1]}><th>{r[0]}</th>{["m", "f", "n", "p"].map(function(col){ return <td key={col} lang="ru">{cell(n, r[1], col)}</td>; })}</tr>; })}</tbody>
+          </table></div>); })}
+        <ul className="crs-list">
+          <li>«In compound ordinal numerals only the last element is actually an ordinal, and only this element is declined.»</li>
+        </ul>
+        <p className="crs-credit">Forms: the OpenCorpora dictionary (CC BY-SA 4.0). Note: the DLI Grammar Reference Book, Lesson 72 (public domain).</p>
+      </div>
+    );
+  };
   var fdMakeNum = function() {
     var load = fdNumRef.current ? Promise.resolve(fdNumRef.current)
       : fetch("/vocab/numeral-forms.json").then(function(r){ return r.json(); }).then(function(j){ fdNumRef.current = j; return j; });
     return load.then(function(j){
       var m = fdNumMode.current;
-      var ord = m === "ord" || (m === "both" && Math.random() < 0.5);
+      var ord = m === "ord";
       var list = ord ? j.o : j.c;
       if (!list || !list.length) return { err: "The numeral forms could not be loaded." };
       var it = list[Math.floor(Math.random() * list.length)];
       var ask = [FD_CASE_EN[it[1]] + (it[4] === "a" ? " (animate)" : it[4] === "i" ? " (inanimate)" : "")];
       if (it[3]) ask.push(it[3] === "p" ? "plural" : "singular");
-      if (it[2]) ask.push({ m: "masculine", f: "feminine", n: "neuter" }[it[2]]);
-      return { kind: "num", word: fdEnNum(it[0], ord), en: "", ask: ask.join(" "), answers: it[5].map(fdNorm), shown: it[5].join(", "), note: "" };
+      var gen = it[2] ? { m: "masculine", f: "feminine", n: "neuter" }[it[2]] : "";
+      // an ordinal agrees like an adjective (genitive singular feminine); a cardinal is told the gender of the noun it counts
+      var askS = ord ? ask.concat(gen ? [gen] : []).join(" ") : ask.join(" ") + (gen ? ", with a " + gen + " noun" : "");
+      return { kind: "num", word: fdEnNum(it[0], ord), en: "", ask: askS, answers: it[5].map(fdNorm), shown: it[5].join(", "), note: "" };
     }).catch(function(){ return { err: "The numeral forms could not be loaded." }; });
   };
-  var fdSetNumMode = function(m) {
+  // Cardinals and ordinals are two separate drills, each started from its own card.
+  var fdStartNum = function(m) {
     fdNumMode.current = m;
     setFdMode(m);
-    fdRepeat.current = [];
-    fdNext.current = null;
-    fdLoad("num");
+    setFdTable(false);
+    fdStart("num");
   };
+  var [fdTable, setFdTable] = useState(false);       // the declension table, shown on request
   // Clock practice: a time of the day, asked one of two ways — the words to be typed as digits, or the clock to be put into words.
   // public/vocab/clock-times.json is written by tools/courses/gen_clock_drill.py (dictionary forms put together by the DLI rules).
   var fdClockRef = useRef(null);
@@ -16885,9 +16918,12 @@ export default function App() {
         {!termDrill && card("Conjugation practice",
           "A verb with a conjugation table on Wiktionary, and a person and number in a tense \u2014 or a gender in the past. Type the form. Right answers count on the leaderboard.",
           function(){ fdStart("conj"); })}
-        {!termDrill && card("Numeral practice",
-          "Cardinals and ordinals: put a number into the case given, in Russian words. Misses come back until you have them.",
-          function(){ fdStart("num"); })}
+        {!termDrill && card("Cardinal numbers",
+          "A cardinal number (thirty-five) and the case to put it in, with the gender of the noun it counts \u2014 type it in Russian words. A table is a tap away. Misses come back until you have them.",
+          function(){ fdStartNum("card"); })}
+        {!termDrill && card("Ordinal numbers",
+          "An ordinal number (seventy-third) and the case, singular or plural and gender to put it in \u2014 type it in Russian words. A table is a tap away. Misses come back until you have them.",
+          function(){ fdStartNum("ord"); })}
         {!termDrill && card("Clock practice",
           "Every time of the day: the words to set as digits on a 24-hour clock, or the clock to put into words \u2014 \u043f\u044f\u0442\u044c \u043c\u0438\u043d\u0443\u0442 \u0442\u0440\u0435\u0442\u044c\u0435\u0433\u043e, \u0431\u0435\u0437 \u0434\u0435\u0441\u044f\u0442\u0438 \u0442\u0440\u0438. A miss comes back a few times until you have it right twice more.",
           function(){ fdStart("clock"); })}
@@ -17218,7 +17254,7 @@ quizMode ? (
               // ── Declension / conjugation practice ───────────────────────
               <>
                 <div className="phdr">
-                  <span className="pti">{fd.kind === "decl" ? "Declension practice" : fd.kind === "num" ? "Numeral practice" : fd.kind === "clock" ? "Clock practice" : fd.kind === "frac" ? "Fractions practice" : "Conjugation practice"}</span>
+                  <span className="pti">{fd.kind === "decl" ? "Declension practice" : fd.kind === "num" ? (fdMode === "ord" ? "Ordinal numbers" : "Cardinal numbers") : fd.kind === "clock" ? "Clock practice" : fd.kind === "frac" ? "Fractions practice" : "Conjugation practice"}</span>
                   <button className="ab" onClick={fdStop}>← Back</button>
                 </div>
                 <div className="fd-wrap">
@@ -17230,16 +17266,33 @@ quizMode ? (
                       : fd.kind === "clock"
                       ? "A time of the day: the words to set as digits on a 24-hour clock, or the clock to put into words. Every minute of the day comes up, in random order. A miss comes back a few times until you have it right twice more."
                       : fd.kind === "num"
-                      ? "A number written out in English (seventy-third), and the case to put it in — with singular or plural, gender and animacy where the form depends on them. Type it in Russian words. The buttons choose cardinals, ordinals or both."
+                      ? (fdMode === "ord"
+                        ? "An ordinal number written out in English (seventy-third), and the case, singular or plural and gender to put it in — animacy too in the accusative. Type it in Russian words."
+                        : "A cardinal number written out in English (thirty-five), the case to put it in, and the gender of the noun it counts — animacy too in the accusative. Type it in Russian words.")
                       : "A verb with a conjugation table on Wiktionary, and a person and number in a tense — or a gender in the past. Type the form."}
                   </p>
                   {fd.kind === "num" && (
                     <div className="fd-modes">
-                      {[["both", "Both"], ["card", "Cardinals"], ["ord", "Ordinals"]].map(function(mm){
-                        return <button key={mm[0]} type="button" className={"fd-mode" + (fdMode === mm[0] ? " on" : "")} onClick={function(){ if (fdMode !== mm[0]) fdSetNumMode(mm[0]); }}>{mm[1]}</button>;
-                      })}
+                      <button type="button" className={"fd-mode" + (fdTable ? " on" : "")} onClick={function(){ setFdTable(!fdTable); }}>
+                        {fdTable ? "Hide the declension table" : "Show the declension table"}
+                      </button>
                     </div>
                   )}
+                  {fd.kind === "num" && fdTable && (fdMode === "ord" ? fdOrdTable() : (
+                    <div className="nd-intro">
+                      {DLI_NUM_TABLES.map(function(t, k){ return (
+                        <div key={k} className="crs-tw"><table className="crs-t nd-t">
+                          <caption>{t[0]}</caption>
+                          <tbody>{t[1].map(function(r, ri){ return <tr key={ri}><th>{r[0]}</th>{r.slice(1).map(function(c, ci){ return <td key={ci} lang="ru">{c}</td>; })}</tr>; })}</tbody>
+                        </table></div>); })}
+                      <ul className="crs-list">
+                        <li>Numerals ending in soft sign (5–20 and 30) are declined like feminine nouns ending in soft sign (<i>ночь, площадь</i> etc.).</li>
+                        <li>Note that there are only two forms: 1) N. &amp; A. <i>сорок, девяносто, сто</i>; 2) In all other cases — <i>сорока, девяноста, ста</i>.</li>
+                        <li>Note that each component of a compound numeral is declined separately.</li>
+                      </ul>
+                      <p className="crs-credit">Tables and notes: the DLI Grammar Reference Book, Lessons 70–72 (public domain).</p>
+                    </div>
+                  ))}
                   <div className="cd">
                     <div className="cd-top">
                       <span>Right: {fd.nRight} / {fd.n}</span>

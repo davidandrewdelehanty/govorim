@@ -32,10 +32,12 @@ def card_genders(n):
 
 
 def cardinals():
+    """Every item names the gender of the noun counted, even where the numeral's form is the same for all three
+    (тридцати пяти книг / столов / окон): the learner is always told the whole form, never left to guess."""
     out = []
     for n in NUMS:
-        for g in card_genders(n):
-            gl = G1[g] if (len(card_genders(n)) > 1) else ""
+        for g in ("masc", "femn", "neut"):
+            gl = G1[g]
             try:
                 nom = G.cardinal(n, "nomn", g)
                 for c in CASES:
