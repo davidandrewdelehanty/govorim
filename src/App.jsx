@@ -2468,6 +2468,72 @@ function linguaLibreUrl(word, lang) {
   return LL_MEM[key];
 }
 
+// A small ♪ on a match-game card: the word's Wiktionary recording (Commons
+// Ru-<word>.ogg, Lingua Libre's as backup — the same files the review cards
+// play). A verb card with both aspects («садиться / сесть») plays each in
+// turn. The button appears only once a file has actually loaded, so a word
+// with no recording shows nothing; no synthetic voice stands in. Its clicks
+// stop at the button, so listening never places a meaning on the card.
+function MatchSound({ word }) {
+  var [ok, setOk] = useState(false);
+  var [playing, setPlaying] = useState(false);
+  var clipsRef = useRef([]);
+  var genRef = useRef(0);
+  useEffect(function() {
+    setOk(false); setPlaying(false);
+    var dead = false;
+    var heads = String(word || "").split(/\s*[\/,]\s*/)
+      .map(function(w){ return w.replace(/́/g, "").trim(); })
+      .filter(function(w){ return w && !/\s/.test(w); });
+    var clips = heads.map(function(h) {
+      var c = { ok: false, el: null };
+      try {
+        var a = new Audio();
+        a.preload = "auto";
+        a.onloadedmetadata = function(){ if (dead) return; c.ok = true; setOk(true); };
+        var triedLL = false;
+        a.onerror = function(){
+          if (dead || triedLL) return;
+          triedLL = true;
+          linguaLibreUrl(h).then(function(u){ if (!dead && u) a.src = u; });
+        };
+        a.src = "https://commons.wikimedia.org/wiki/Special:FilePath/" + encodeURIComponent("Ru-" + h + ".ogg");
+        c.el = a;
+      } catch (e) {}
+      return c;
+    });
+    clipsRef.current = clips;
+    return function() {
+      dead = true; genRef.current++;
+      clips.forEach(function(c){ try { if (c.el) { c.el.pause(); c.el.removeAttribute("src"); } } catch (e) {} });
+    };
+  }, [word]);
+  if (!ok) return null;
+  var play = function(ev) {
+    ev.stopPropagation(); ev.preventDefault();
+    var gen = ++genRef.current;
+    var list = clipsRef.current.filter(function(c){ return c.ok && c.el; });
+    var i = 0;
+    var next = function() {
+      if (gen !== genRef.current) return;
+      if (i >= list.length) { setPlaying(false); return; }
+      var a = list[i++].el;
+      try {
+        a.currentTime = 0;
+        a.onended = function(){ setTimeout(next, 350); };
+        var p = a.play();
+        if (p && p.catch) p.catch(function(){ setPlaying(false); });
+      } catch (e) { setPlaying(false); }
+    };
+    setPlaying(true);
+    next();
+  };
+  return (
+    <button type="button" className={"vm-snd" + (playing ? " on" : "")} title="Listen" aria-label={"Pronounce " + word}
+            onClick={play} onPointerDown={function(e){ e.stopPropagation(); }} draggable={false}>♪</button>
+  );
+}
+
 // Which of these Commons files exist, in one request: { name: url } for the
 // ones that do. Used to find recordings (Ru-<form>.ogg, En-us-<word>.ogg)
 // without a 404 per guess. Remembered for the session.
@@ -5336,47 +5402,122 @@ export default function App() {
   // The match game: four words, four meanings, drag each meaning onto its
   // word; a round counts only when all four sit right at once.
   var [matchGame, setMatchGame]       = useState(null);   // { pool, round, order, map, status, wrongIdx, rounds, won } | null
-  var startMatch = function(pool) {
+  // The match game on the saved words is a review session like the
+  // multiple-choice quiz, under the same Anki rules and the same scheduler:
+  // only what is due today is dealt (words met in their learning steps whose
+  // next step has come, then new words up to the day's limit of new ones,
+  // then reviews up to the day's limit of reviews), and each word's first
+  // placement in a round is its answer — Good if it went on the right word,
+  // Again if not. The scheduler hears it exactly as it hears a quiz answer,
+  // so a word moves towards retirement (and retires) the same way, and the
+  // day's counts and learning steps are shared with the quiz. "Study more"
+  // goes past the limits with the least-secure words, as the quiz's does.
+  //
+  // A round is four words of one kind: nouns with nouns, verbs with verbs —
+  // and in the grammar course the terms with their definitions, never mixed.
+  // When a kind has a due word or three left over, the round is made up with
+  // that kind's other words; those fill-ins are practice only and are not
+  // answers to the scheduler. A course's own cards are not scheduled at all.
+  var startMatch = function(pool, more) {
     var own = Array.isArray(pool) ? pool : null;      // a course's own cards, not the vocabulary
     var words = own ? own.filter(function(v){ return v && v.ru && v.en; })
       : dropCommonWords(vocabL, function(v){ return v && v.ru; }).filter(function(v){ return v && v.en; });
     if (words.length < 4) { alert(own ? "The match game needs at least four cards." : "The match game needs at least four saved words with an English meaning."); return; }
     var now = Date.now();
     var shuf = function(a){ a = a.slice(); for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; };
-    // A round is four words of one kind: nouns with nouns, verbs with verbs —
-    // and in the grammar course the terms with their definitions, then the
-    // abbreviations with their terms, never mixed. Each kind is dealt in
-    // fours; the odd one, two or three left at the end of a kind sit this
-    // game out rather than share a round with another kind. Within a kind,
-    // what is due comes first; the kinds with something due come first.
-    var due = own ? [] : dueWords(words, now), dueKeys = {};
-    due.forEach(function(v){ dueKeys[v._key || v.id || v.ru] = true; });
-    var kinds = {}, order = [];
-    words.forEach(function(v){
-      var k = String(v.pos || "").toLowerCase().trim() || "\u2014";
-      if (!kinds[k]) { kinds[k] = { due: [], rest: [] }; order.push(k); }
-      (dueKeys[v._key || v.id || v.ru] ? kinds[k].due : kinds[k].rest).push(v);
-    });
-    order = shuf(order).sort(function(a, b){ return (kinds[b].due.length > 0) - (kinds[a].due.length > 0); });
-    var deck = [];
-    order.forEach(function(k){
-      var list = shuf(kinds[k].due).concat(shuf(kinds[k].rest));
-      deck = deck.concat(list.slice(0, Math.floor(list.length / 4) * 4));
-    });
-    if (deck.length < 4) { alert(own ? "The match game needs four cards of one kind." : "The match game needs at least four saved words of one part of speech (four nouns, say), each with an English meaning."); return; }
+    var keyOf = function(v){ return v._key || v.id || v.ru; };
+    var kindOf = function(v){ return String(v.pos || "").toLowerCase().trim() || "—"; };
+    var deck = [], from = {}, learnKind = {};
+    if (own) {
+      var kinds0 = {}, order0 = [];
+      words.forEach(function(v){ var k = kindOf(v); if (!kinds0[k]) { kinds0[k] = []; order0.push(k); } kinds0[k].push(v); });
+      shuf(order0).forEach(function(k){ var list = shuf(kinds0[k]); deck = deck.concat(list.slice(0, Math.floor(list.length / 4) * 4)); });
+      if (deck.length < 4) { alert("The match game needs four cards of one kind."); return; }
+    } else {
+      var byKey = {};
+      words.forEach(function(v){ byKey[keyOf(v)] = v; });
+      var picked = [];
+      if (more) {
+        weakestWords(words, now).forEach(function(v){ picked.push(v); from[keyOf(v)] = "extra"; });
+      } else {
+        var day = rvDayCounts(now);
+        var inLearn = {};
+        rvLoadLearn().forEach(function(l){
+          if (!byKey[l.key]) return;
+          inLearn[l.key] = 1;
+          if ((l.dueAt || 0) <= now + LEARN_AHEAD_MIN * 60000) { picked.push(byKey[l.key]); from[l.key] = "learn"; learnKind[l.key] = l.kind; }
+        });
+        var due = dueWords(words, now).filter(function(v){ return !inLearn[keyOf(v)]; });
+        due.filter(function(v){ return !(v.srs && v.srs.S); }).slice(0, Math.max(0, NEW_PER_DAY - day.newSeen))
+          .forEach(function(v){ picked.push(v); from[keyOf(v)] = "new"; });
+        due.filter(function(v){ return v.srs && v.srs.S; }).slice(0, Math.max(0, REVIEWS_PER_DAY - day.revSeen))
+          .forEach(function(v){ picked.push(v); from[keyOf(v)] = "review"; });
+      }
+      // Into rounds of one kind, the most urgent first; a short last round of
+      // a kind is made up with that kind's least-secure words not already in.
+      var kinds = {}, order = [];
+      picked.forEach(function(v){ var k = kindOf(v); if (!kinds[k]) { kinds[k] = []; order.push(k); } kinds[k].push(v); });
+      order.forEach(function(k){
+        var list = kinds[k], short = (4 - list.length % 4) % 4;
+        if (short) {
+          var fill = weakestWords(words.filter(function(v){ return kindOf(v) === k && !from[keyOf(v)]; }), now).slice(0, short);
+          if (fill.length < short) list = list.slice(0, Math.floor(list.length / 4) * 4);   // too few of this kind to make a round
+          else fill.forEach(function(v){ list = list.concat([v]); from[keyOf(v)] = from[keyOf(v)] || "filler"; });
+        }
+        deck = deck.concat(list);
+      });
+      if (deck.length < 4) {
+        // Nothing due today: the game says so, with "Study more" beside it.
+        setQuizMenu(false);
+        setMatchGame({ pool: [], round: [], order: [], map: {}, status: "done", rounds: 0, won: 0, src: null,
+          from: {}, learnKind: {}, nothingDue: !more, retiredNow: [] });
+        return;
+      }
+    }
     setQuizMenu(false);
-    setMatchGame(Object.assign(dealMatch(deck, 0, 0), { src: own }));
+    setMatchGame(Object.assign(dealMatch(deck, 0, 0), { src: own, from: from, learnKind: learnKind, more: !!more, retiredNow: [] }));
   };
   var dealMatch = function(pool, rounds, won) {
     if (pool.length < 4) return { pool: pool, round: [], order: [], map: {}, status: "done", rounds: rounds, won: won };
     var round = pool.slice(0, 4);
     var order = [0, 1, 2, 3];
     for (var i = 3; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = order[i]; order[i] = order[j]; order[j] = t; }
-    return { pool: pool.slice(4), round: round, order: order, map: {}, status: "", wrongIdx: [], rounds: rounds, won: won, sel: null };
+    return { pool: pool.slice(4), round: round, order: order, map: {}, status: "", wrongIdx: [], rounds: rounds, won: won, sel: null, tries: 0 };
+  };
+  // A round's answers, into the scheduler — once per word, on the round's
+  // first check: right where it was placed right, wrong where it was not.
+  // Learning steps and the day's counts as the quiz keeps them (rvAnswer).
+  var matchGrade = function(g, wrong) {
+    if (g.src) return;
+    var now = Date.now();
+    var learn = rvLoadLearn();
+    g.round.forEach(function(v, wi){
+      var key = v._key || v.id || v.ru;
+      var src = (g.from || {})[key];
+      if (!src || src === "filler") return;
+      var correct = wrong.indexOf(wi) < 0;
+      var isNew = !(v.srs && v.srs.S);
+      recordAnswer(key, correct);
+      if (correct && isLearned(srsReview(v.srs, true, now))) g.retiredNow.push(v.ru);
+      if (src === "new") rvBumpDay("newSeen");
+      if (src === "review") rvBumpDay("revSeen");
+      var prev = learn.filter(function(l){ return l.key === key; })[0];
+      learn = learn.filter(function(l){ return l.key !== key; });
+      var kind = src === "learn" ? ((g.learnKind || {})[key] || (prev && prev.kind) || "relearn")
+        : (src === "new" || (src === "extra" && isNew) ? "new" : "relearn");
+      var steps = kind === "new" ? LEARN_STEPS_MIN : RELEARN_STEPS_MIN;
+      if (!correct) {
+        learn.push({ key: key, kind: kind, step: 0, dueAt: now + steps[0] * 60000 });
+      } else if (src === "new" || (src === "extra" && isNew) || src === "learn") {
+        var nextStep = src === "learn" ? ((prev && prev.step) || 0) + 1 : 1;
+        if (nextStep < steps.length) learn.push({ key: key, kind: kind, step: nextStep, dueAt: now + steps[nextStep] * 60000 });
+      }
+    });
+    rvSaveLearn(learn);
   };
   // A meaning dropped on a word. When all four are placed the round is
-  // checked: all right, and every word is recorded as answered right; any
-  // wrong, and the wrong ones come loose, the words recorded as missed.
+  // checked: all right, and the round counts; any wrong, and the wrong ones
+  // come loose to be placed again. Only the first check is graded.
   var placeMatch = function(mi, wi) {
     var g = matchGame;
     if (!g || g.status === "right") return;
@@ -5385,17 +5526,23 @@ export default function App() {
     map[wi] = mi;
     if (Object.keys(map).length < 4) { setMatchGame(Object.assign({}, g, { map: map, sel: null, status: "" })); return; }
     var wrong = Object.keys(map).filter(function(k){ return map[k] !== +k; }).map(Number);
+    var retiredNow = (g.retiredNow || []).slice();
+    if (!g.tries) matchGrade(Object.assign({}, g, { retiredNow: retiredNow }), wrong);
     if (!wrong.length) {
-      // Recorded once each, as answered right — only a round with no miss counts.
-      if (!g.tries && !g.src) g.round.forEach(function(v){ recordAnswer(v._key || v.id || v.ru, true); });
       if (!g.tries) bumpToday(g.src ? "terms" : "match", g.src ? g.round.length : 1);   // the day's goals
       if (!g.tries && g.src) bumpToday("termsOk", g.round.length);     // right answers, for the leaderboard
-      setMatchGame(Object.assign({}, g, { map: map, sel: null, status: "right", won: g.won + (g.tries ? 0 : 1), rounds: g.rounds + 1 }));
+      setMatchGame(Object.assign({}, g, { map: map, sel: null, status: "right", won: g.won + (g.tries ? 0 : 1), rounds: g.rounds + 1, retiredNow: retiredNow }));
       return;
     }
     wrong.forEach(function(k){ delete map[k]; });
-    if (!g.tries && !g.src) wrong.forEach(function(k){ recordAnswer(g.round[k]._key || g.round[k].id || g.round[k].ru, false); });
-    setMatchGame(Object.assign({}, g, { map: map, sel: null, status: "wrong", wrongIdx: wrong, tries: (g.tries || 0) + 1 }));
+    setMatchGame(Object.assign({}, g, { map: map, sel: null, status: "wrong", wrongIdx: wrong, tries: (g.tries || 0) + 1, retiredNow: retiredNow }));
+  };
+  // "Next four" / "Skip these": the next round, carrying the session along.
+  var nextMatch = function(skip) {
+    setMatchGame(function(g){
+      return Object.assign(dealMatch(g.pool, g.rounds + (skip ? 1 : 0), g.won),
+        { src: g.src, from: g.from, learnKind: g.learnKind, more: g.more, retiredNow: g.retiredNow || [] });
+    });
   };
   var [quizQuestions, setQuizQuestions] = useState([]);
   var [quizIdx, setQuizIdx]           = useState(0);
@@ -16603,7 +16750,7 @@ export default function App() {
           termDrill ? "Quick recall test. Each question shows a term with four definitions to choose from; a miss comes back a minute later." : (none ? "Quick recall test on your saved words \u2014 save some words while you read and it opens here." : "Quick recall test. Each question shows a Russian word with 4 English meaning options (from same-pos vocabulary)."),
           function(){ startQuiz(null, termDrill ? termDrill.cards : null); }, none)}
         {card("Match",
-          termDrill ? "Four terms on the left, their definitions on the right. Drag each definition onto its term \u2014 the round counts when all four are right at once." : (none ? "Four words on the left, their meanings on the right \u2014 it opens once you have saved some words." : "Four words on the left, their meanings on the right. Drag each meaning onto its word \u2014 the round counts when all four are right at once."),
+          termDrill ? "Four terms on the left, their definitions on the right. Drag each definition onto its term \u2014 the round counts when all four are right at once." : (none ? "Four words on the left, their meanings on the right \u2014 it opens once you have saved some words." : "Your words due today, four at a time, meanings on the right. Drag each meaning onto its word \u2014 a word placed right on the first go counts as a right answer, just as in the quiz, and moves it towards retirement."),
           function(){ startMatch(termDrill ? termDrill.cards : null); }, none)}
         {!termDrill && card("Grammar terms",
           "The words a Russian grammar, dictionary or teacher uses \u2014 \u043f\u0430\u0434\u0435\u0436, \u0433\u043b\u0430\u0433\u043e\u043b, \u0441\u043e\u0432\u0435\u0440\u0448\u0435\u043d\u043d\u044b\u0439 \u0432\u0438\u0434 \u2014 against their definitions, as a quiz or the match game. Nothing is scheduled or saved.",
@@ -16883,13 +17030,21 @@ quizMode ? (
                 </div>
                 {matchGame.status === "done" ? (
                   <div className="vm-done">
-                    <div className="vm-done-n">{matchGame.won} / {matchGame.rounds}</div>
-                    <div className="vm-done-t">rounds right at the first try. {matchGame.pool.length ? "" : (matchGame.src ? "That was every card." : "That was every word with a meaning.")}</div>
+                    {matchGame.nothingDue && !matchGame.rounds ? (
+                      <div className="vm-done-t">Nothing is due today — every saved word is scheduled for later. Study more goes on with the least-secure words.</div>
+                    ) : (<>
+                      <div className="vm-done-n">{matchGame.won} / {matchGame.rounds}</div>
+                      <div className="vm-done-t">rounds right at the first try. {matchGame.pool.length ? "" : (matchGame.src ? "That was every card." : matchGame.more ? "That was every word still to learn." : "That was everything due today.")}</div>
+                    </>)}
+                    {!matchGame.src && (matchGame.retiredNow || []).length > 0 && (
+                      <div className="vm-done-t">Retired this session: <span lang="ru">{matchGame.retiredNow.join(", ")}</span></div>
+                    )}
+                    {!matchGame.src && <button className="btn-p vm-next" onClick={function(){ startMatch(null, true); }}>Study more →</button>}
                     {matchGame.src && termDrill && matchGame.rounds > 0 && (function(){
                       var pct = Math.round(100 * matchGame.won / matchGame.rounds);
                       return <div className={"rv-drill-score" + (pct >= DRILL_PASS ? " ok" : "")}><b>{pct}%</b></div>;
                     })()}
-                    <button className="crs-retry" onClick={function(){ startMatch(matchGame.src); }}>Play again</button>
+                    {matchGame.src && <button className="crs-retry" onClick={function(){ startMatch(matchGame.src); }}>Play again</button>}
                   </div>
                 ) : (
                   <div className="vm-wrap">
@@ -16904,7 +17059,7 @@ quizMode ? (
                               onDragOver={function(ev){ ev.preventDefault(); }}
                               onDrop={function(ev){ ev.preventDefault(); var m = parseInt((ev.dataTransfer && ev.dataTransfer.getData("text/plain")) || matchGame.sel, 10); if (!isNaN(m)) placeMatch(m, wi); }}
                               onClick={function(){ if (matchGame.sel !== null && matchGame.sel !== undefined) placeMatch(matchGame.sel, wi); else if (filled && matchGame.status !== "right") { setMatchGame(function(g){ var map = Object.assign({}, g.map); delete map[wi]; return Object.assign({}, g, { map: map, status: "" }); }); } }}>
-                              <span className="vm-ru" lang="ru">{v.ru}</span>
+                              <span className="vm-ru-row"><span className="vm-ru" lang="ru">{v.ru}</span><MatchSound word={v.ru} /></span>
                               {filled && <span className="vm-en-in">{matchGame.round[mi].en}</span>}
                             </div>
                           );
@@ -16929,8 +17084,8 @@ quizMode ? (
                       {matchGame.status === "wrong" && <span className="vm-msg bad">{(matchGame.wrongIdx || []).length} in the wrong place — those meanings are loose again.</span>}
                       {matchGame.status === "right" && <span className="vm-msg ok">All four right ✓</span>}
                       {matchGame.status !== "right" && <span className="vm-msg">Drag a meaning onto its word, or tap one and then the other.</span>}
-                      {matchGame.status === "right" && <button className="btn-p vm-next" onClick={function(){ setMatchGame(function(g){ return Object.assign(dealMatch(g.pool, g.rounds, g.won), { src: g.src }); }); }}>Next four →</button>}
-                      {matchGame.status !== "right" && <button className="crs-retry" onClick={function(){ setMatchGame(function(g){ return Object.assign(dealMatch(g.pool, g.rounds + 1, g.won), { src: g.src }); }); }}>Skip these →</button>}
+                      {matchGame.status === "right" && <button className="btn-p vm-next" onClick={function(){ nextMatch(false); }}>Next four →</button>}
+                      {matchGame.status !== "right" && <button className="crs-retry" onClick={function(){ nextMatch(true); }}>Skip these →</button>}
                     </div>
                   </div>
                 )}
@@ -19962,6 +20117,9 @@ quizMode ? (
         .vm-board.ok .vm-word{border-color:#2e6e50}
         .vm-word.shook{border-color:var(--rubric);animation:crs-shake .35s}
         .vm-ru{font-family:var(--serif);font-size:19px;color:var(--ink)}
+        .vm-ru-row{display:flex;align-items:center;justify-content:space-between;gap:10px}
+        .vm-snd{flex:none;width:34px;height:34px;border:1px solid var(--rule);background:transparent;color:var(--ink-2);font-size:16px;line-height:1;cursor:pointer;padding:0;display:flex;align-items:center;justify-content:center}
+        .vm-snd:hover,.vm-snd.on{border-color:var(--ink);color:var(--ink)}
         .vm-en-in{font-family:var(--sans);font-size:12.5px;color:var(--ink-2)}
         .vm-def{min-height:56px;padding:10px 12px;border:1px solid var(--rule);background:var(--paper);font-family:var(--serif);font-size:15.5px;line-height:1.4;color:var(--ink);cursor:grab;user-select:none;display:flex;align-items:center;transition:opacity .12s,border-color .12s}
         .vm-def:hover{border-color:var(--ink)}
