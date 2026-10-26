@@ -481,6 +481,11 @@ def main(argv=None):
         fix_errors.main(["--apply"])       # markup, spacing, duplicates, typos, back-formed hints (audit_deep.py found them)
     except ImportError:
         print("fix_errors skipped (pymorphy3 not installed)")
+    try:
+        import inflect_options
+        inflect_options.main(["--apply"])  # mc options in the blank's own form, dictionary form in brackets: «вошёл (войти́)»
+    except ImportError:
+        print("inflect_options skipped (pymorphy3 not installed)")
     if True:
         # it drops exercises (verb/adverb readings, case conflicts): recount the sections
         for meta in outline:
@@ -556,6 +561,11 @@ def build_only(only, outline):
         fix_errors.main(["--apply", "--course", only])       # markup, spacing, duplicates, typos, back-formed hints (audit_deep.py found them)
     except ImportError:
         print("fix_errors skipped (pymorphy3 not installed)")
+    try:
+        import inflect_options
+        inflect_options.main(["--apply", "--course", only])  # mc options in the blank's own form, dictionary form in brackets
+    except ImportError:
+        print("inflect_options skipped (pymorphy3 not installed)")
     for meta in outline:
         kept = []
         for o in meta["sections"]:

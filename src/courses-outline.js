@@ -5410,7 +5410,7 @@ export default [
    {
     "id": "r01-sled-practice",
     "title": "Practice: The family of след",
-    "n": 14
+    "n": 11
    },
    {
     "id": "r02-khod",
@@ -5425,7 +5425,7 @@ export default [
    {
     "id": "r02-khod-practice-2",
     "title": "Practice 2: The family of ход",
-    "n": 13
+    "n": 12
    },
    {
     "id": "r03-vesti",
@@ -5440,7 +5440,7 @@ export default [
    {
     "id": "r03-vesti-practice-2",
     "title": "Practice 2: The family of вести́",
-    "n": 12
+    "n": 11
    },
    {
     "id": "r03-vesti-practice-3",
@@ -5470,7 +5470,7 @@ export default [
    {
     "id": "r05-pisat-practice",
     "title": "Practice 1: The family of писа́ть",
-    "n": 12
+    "n": 11
    },
    {
     "id": "r05-pisat-practice-2",
@@ -5530,12 +5530,12 @@ export default [
    {
     "id": "r08-stavit-practice-2",
     "title": "Practice 2: The family of ста́вить",
-    "n": 12
+    "n": 11
    },
    {
     "id": "r08-stavit-practice-3",
     "title": "Practice 3: The family of ста́вить",
-    "n": 8
+    "n": 7
    },
    {
     "id": "r09-stat",
@@ -5585,7 +5585,7 @@ export default [
    {
     "id": "r11-znat-practice-2",
     "title": "Practice 2: The family of знать",
-    "n": 11
+    "n": 10
    },
    {
     "id": "r12-brat",
@@ -5615,7 +5615,7 @@ export default [
    {
     "id": "r13-dat-practice",
     "title": "Practice 1: The family of дать",
-    "n": 12
+    "n": 10
    },
    {
     "id": "r13-dat-practice-2",
@@ -5670,7 +5670,7 @@ export default [
    {
     "id": "r16-slovo-practice",
     "title": "Practice: The family of слово",
-    "n": 9
+    "n": 8
    },
    {
     "id": "r17-derzhat",
@@ -5775,12 +5775,12 @@ export default [
    {
     "id": "r24-kryt-practice",
     "title": "Practice 1: The family of крыть",
-    "n": 12
+    "n": 10
    },
    {
     "id": "r24-kryt-practice-2",
     "title": "Practice 2: The family of крыть",
-    "n": 12
+    "n": 11
    },
    {
     "id": "r25-pomnit",
@@ -5845,7 +5845,7 @@ export default [
    {
     "id": "r29-rod-practice",
     "title": "Practice: The family of род",
-    "n": 13
+    "n": 11
    },
    {
     "id": "exam",
