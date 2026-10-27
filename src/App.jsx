@@ -6692,7 +6692,7 @@ export default function App() {
     { k: "frac", f: "frac", label: "Fractions practice", one: "answer", tab: "vocab", go: "frac", btn: "Practise →", set: "Fractions practice", max: 1000 },
     { k: "count", f: "count", label: "Counting objects", one: "answer", tab: "vocab", go: "count", btn: "Practise →", set: "Counting objects (Grammar page)", max: 1000 },
     { k: "numcase", f: "numcase", label: "Numerals in cases", one: "answer", tab: "vocab", go: "numcase", btn: "Practise →", set: "Numerals in cases (Grammar page)", max: 1000 },
-    { k: "verbs", f: "verbs", label: "Verb practice", one: "answer", tab: "vocab", go: "verbs", btn: "Practise →", set: "Verb practice — the ▶ Practice quizzes on the Grammar page", max: 1000 },
+    { k: "verbs", f: "verbs", label: "Verb practice", one: "answer", tab: "vocab", go: "conj", btn: "Practise →", set: "Verb practice — conjugation practice (the Grammar page's verb quizzes count too)", max: 1000 },
     { k: "book", f: "book", label: "Exercises in the reader", one: "answer", tab: "chat", go: "read", btn: "Read →", set: "Exercises in the reader — a book's own Exercises tab", max: 1000 },
     { k: "course", f: "course", label: "Course exercises right", one: "exercise", tab: "courses", go: "courses", btn: "Courses →", set: "Course exercises right", max: 1000 },
     { k: "sections", f: "sections", label: "Course sections finished", one: "section", tab: "courses", go: "courses", btn: "Courses →", set: "Course sections to finish", max: 100 },
@@ -7188,6 +7188,7 @@ export default function App() {
     });
     bumpToday("drills", 1);
     bumpToday(kind, 1);
+    if (kind === "conj") bumpToday("verbs", 1);     // the Verb practice goal opens this drill, so it counts here too
   };
   // The same words, filed under the book they were read in.
   var bumpTodayBook = function(key, n) {
@@ -13211,7 +13212,7 @@ export default function App() {
       wrong: retryNow ? String(fd.input || "").trim() : "",
       n: fd.n + (rep ? 0 : 1), nRight: fd.nRight + (!rep && right ? 1 : 0) }));
     if (rep) return;
-    if (fd.kind === "num" || fd.kind === "clock" || fd.kind === "frac") { if (right) bumpToday(fd.kind + "Ok", 1); bumpToday(fd.kind, 1); bumpToday("practiced", 1); bumpToday("numbers", 1); bumpToday("drills", 1); return; }
+    if (fd.kind === "num" || fd.kind === "clock" || fd.kind === "frac") { if (right) { bumpToday(fd.kind + "Ok", 1); bumpToday("practicedOk", 1); } bumpToday(fd.kind, 1); bumpToday("practiced", 1); bumpToday("numbers", 1); bumpToday("drills", 1); return; }
     recordFormDrill(fd.kind, right);
   };
   // The Case drills, opened from the same menu.
@@ -13275,7 +13276,7 @@ export default function App() {
           order = z.order.slice();
           order.splice(Math.min(order.length, z.i + 1 + repGap(gvAgain.step)), 0, gvBase);
         }
-        if (!gvRp) { bumpToday("practiced", 1); bumpToday("verbs", 1); }
+        if (!gvRp) { bumpToday("practiced", 1); bumpToday("verbs", 1); if (ok) { bumpToday("verbsOk", 1); bumpToday("practicedOk", 1); } }
       }
       return Object.assign({}, z, { order: order, picked: z.picked.concat([k]), right: z.right + (first && ok && !gvRp ? 1 : 0), answered: z.answered + (first && !gvRp ? 1 : 0) });
     });
@@ -13328,7 +13329,8 @@ export default function App() {
         ndRep.current.push({ mode: nd.mode, item: ndBase, need: ndAgain.need, step: ndAgain.step, due: ndSteps.current + repGap(ndAgain.step) });
       }
     }
-    if (first && !ndRp) { bumpToday("practiced", 1); bumpToday("numbers", 1); bumpToday(nd.mode === "numcase" ? "numcase" : "count", 1); }
+    if (first && !ndRp) { bumpToday("practiced", 1); bumpToday("numbers", 1); bumpToday(nd.mode === "numcase" ? "numcase" : "count", 1);
+      if (ok) { bumpToday(nd.mode === "numcase" ? "numcaseOk" : "countOk", 1); bumpToday("practicedOk", 1); } }
     if (!ndRp) setNdStats(function(m){
       var s0 = m[nd.mode], s1 = Object.assign({}, s0);
       if (first) { s1.total++; if (ok) s1.right++; }
@@ -15116,6 +15118,7 @@ export default function App() {
       setVocab(function(list){ return list.map(function(v){ return (v._key || v.id || v.ru) === key ? next : v; }); });
     }
     bumpToday("practiced", 1);
+    if (correct) bumpToday("practicedOk", 1);     // the Cards reviewed board counts right answers (from Oct 28 2026)
   };
   // Back from retired to active, keeping its schedule: the next review lands
   // where the scheduler last put it, not at "new".
@@ -24631,7 +24634,7 @@ quizMode ? (
                   {(targetLang === "en" ? [
                     { key: "wordsEn", h: "English words read", sub: "words read while studying English, counted as each paragraph scrolls past", unit: "words" },
                   ] : [
-                    { key: "reviewed", h: "Cards reviewed", sub: "every answer given in vocabulary review, right or wrong", unit: "cards" },
+                    { key: "reviewed", h: "Cards reviewed", sub: "right answers in vocabulary review (until 28 October 2026 every answer counted)", unit: "cards" },
                     { key: "words", h: "Words read", sub: "Russian words read, counted as you go — a short story counts what it is, and so does a novel", unit: "words" },
                     { key: "drills", h: "Case drills right", sub: "every right answer in a case drill, from any book", unit: "right answers" },
                     { key: "decl", h: "Declensions right", sub: "every noun put in the right case and number in declension practice", unit: "right answers" },
@@ -24642,7 +24645,11 @@ quizMode ? (
                     { key: "numRight", h: "Numerals right", sub: "every number typed right in numeral practice, cardinal or ordinal", unit: "right answers" },
                     { key: "clockRight", h: "Clock times right", sub: "every time put right in clock practice, as digits or in words", unit: "right answers" },
                     { key: "fracRight", h: "Fractions right", sub: "every fraction written right in words in fractions practice", unit: "right answers" },
-                    { key: "exRight", h: "Course exercises right", sub: "course exercises answered right, each counted the first time it is right", unit: "right answers" },
+                    { key: "exRight", h: "Course exercises right", sub: "course exercises and exam questions answered right, each counted the first time it is right", unit: "right answers" },
+                    { key: "bookRight", h: "Chapter exercises right", sub: "right first answers in a book chapter's own case and reading exercises", unit: "right answers" },
+                    { key: "verbsRight", h: "Verb quiz right", sub: "right first answers in the Grammar tab's verb quiz", unit: "right answers" },
+                    { key: "countRight", h: "Counting right", sub: "right first answers in the Grammar tab's counting objects drill", unit: "right answers" },
+                    { key: "numcaseRight", h: "Numbers in cases right", sub: "right first answers in the Grammar tab's numbers-in-cases drill", unit: "right answers" },
                     { key: "songs", h: "Songs listened to", sub: "different songs played in the Music tab — each song counts once", unit: "songs" },
                     { key: "courses", h: "Courses completed", sub: "courses finished in the Courses tab — the exam passed, or every section done where there is no exam", unit: "courses" },
                   ]).map(function(col){
@@ -28156,7 +28163,7 @@ quizMode ? (
                                       // A wrong pick stays — Try Again! — until the right one; only the first pick scores.
                                       var first = exMiss.length === 0;
                                       if (first) bumpToday("book", 1);
-                                      if (isCorrect) { setExSelected(opt); if (first) setExScore(function(s){ return s + 1; }); }
+                                      if (isCorrect) { setExSelected(opt); if (first) { setExScore(function(s){ return s + 1; }); bumpToday("bookOk", 1); } }
                                       else setExMiss(exMiss.concat([opt]));
                                     }} style={{background:bg,border:"1px solid "+brd,color:col,padding:"13px 18px",borderRadius:10,fontSize:18,fontFamily:"'Literata',serif",cursor: answered ? "default" : "pointer",textAlign:"left",transition:"all .15s"}}>
                                       <span style={{display:"inline-block",width:20,color:"rgba(42,31,20,.45)",fontFamily:"'IBM Plex Sans',sans-serif",fontSize:13}}>{String.fromCharCode(65 + i)}.</span>
