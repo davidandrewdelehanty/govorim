@@ -13135,7 +13135,7 @@ export default function App() {
       setFd(function(st){
         if (!st || st.kind !== kind) return st;
         return Object.assign({}, st, { q: q.err ? null : q, err: q.err || "", busy: false, input: "", checked: false, right: false, fix: false, fixInput: "",
-                                       retry: false, retried: false, tries: 0, reveal: false });
+                                       retry: false, retried: false, tries: 0, reveal: false, wrong: "" });
       });
       if (!q.err && !rep && !fdNext.current) fdPrefetch(kind);
     });
@@ -13175,7 +13175,7 @@ export default function App() {
     // is typed right. Only the first try is scored; the retries are practice.
     if (fd.kind === "num" && fd.retry) {
       if (right) setFd(Object.assign({}, fd, { checked: true, right: true, retry: false, retried: true }));
-      else setFd(Object.assign({}, fd, { input: "", tries: (fd.tries || 1) + 1 }));
+      else setFd(Object.assign({}, fd, { input: "", tries: (fd.tries || 1) + 1, wrong: String(fd.input || "").trim() }));
       return;
     }
     var fix = !right && fd.kind === "conj";
@@ -13188,6 +13188,7 @@ export default function App() {
     var retryNow = !right && fd.kind === "num";
     setFd(Object.assign({}, fd, { checked: !retryNow, right: right, fix: fix, fixInput: "", steps: steps,
       retry: retryNow, tries: retryNow ? 1 : 0, reveal: false, input: retryNow ? "" : fd.input,
+      wrong: retryNow ? String(fd.input || "").trim() : "",
       n: fd.n + (rep ? 0 : 1), nRight: fd.nRight + (!rep && right ? 1 : 0) }));
     if (rep) return;
     if (fd.kind === "num" || fd.kind === "clock" || fd.kind === "frac") { if (right) bumpToday(fd.kind + "Ok", 1); bumpToday(fd.kind, 1); bumpToday("practiced", 1); bumpToday("numbers", 1); bumpToday("drills", 1); return; }
@@ -17391,6 +17392,7 @@ quizMode ? (
                         {fd.retry && !fd.checked && (
                           <div className="cd-fb">
                             <div key={fd.tries} className="cd-fb-h bad fd-again">Try Again!</div>
+                            {fd.wrong ? <div className="fd-wrong">You wrote: <span lang="ru">{fd.wrong}</span></div> : null}
                             {fd.reveal
                               ? <div className="cd-fb-x">It is <b lang="ru">{fd.q.shown}</b> — type it to go on.</div>
                               : <button type="button" className="crs-retry" style={{marginLeft:0}} onClick={function(){ setFd(function(st){ return st ? Object.assign({}, st, { reveal: true }) : st; }); }}>Show the answer</button>}
@@ -19258,6 +19260,8 @@ quizMode ? (
         .fd-digit{font-size:30px;line-height:1.15;font-family:var(--display);overflow-wrap:anywhere}
         .fd-modes{display:flex;gap:8px;justify-content:center;margin:10px 0 2px}
         .fd-again{animation:fdAgain .35s ease}
+        .fd-wrong{font-size:15px;line-height:1.4;margin:4px 0 8px;white-space:normal;overflow-wrap:anywhere;word-break:break-word}
+        .fd-wrong span{text-decoration:line-through;text-decoration-color:rgba(160,40,30,.7);font-weight:600}
         @keyframes fdAgain{0%{transform:translateX(0)}25%{transform:translateX(-6px)}50%{transform:translateX(6px)}75%{transform:translateX(-3px)}100%{transform:translateX(0)}}
         .nt-over{position:fixed;inset:0;z-index:300;background:rgba(26,22,17,.55);display:flex;align-items:center;justify-content:center;padding:12px;box-sizing:border-box}
         .nt-box{background:var(--paper,#fbf8f2);color:var(--ink,#1a1612);border:1px solid rgba(42,31,20,.2);border-radius:14px;width:100%;max-width:720px;max-height:calc(100dvh - 24px);max-height:calc(100vh - 24px);display:flex;flex-direction:column;overflow:hidden;box-sizing:border-box}
