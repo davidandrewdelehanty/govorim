@@ -17322,11 +17322,20 @@ quizMode ? (
                   {fd.kind === "num" && (
                     <div className="fd-modes">
                       <button type="button" className={"fd-mode" + (fdTable ? " on" : "")} onClick={function(){ setFdTable(!fdTable); }}>
-                        {fdTable ? "Hide the declension table" : "Show the declension table"}
+                        Show the declension table
                       </button>
                     </div>
                   )}
-                  {fd.kind === "num" && fdTable && (fdMode === "ord" ? fdOrdTable() : (
+                  {fd.kind === "num" && fdTable && (
+                    // A popup that fits the screen and scrolls inside; the page behind it does not move.
+                    <div className="nt-over" onClick={function(e){ if (e.target === e.currentTarget) setFdTable(false); }}>
+                      <div className="nt-box" role="dialog" aria-modal="true" aria-label="Declension table">
+                        <div className="nt-head">
+                          <span className="nt-title">{fdMode === "ord" ? "Ordinal numbers: declension" : "Cardinal numbers: declension"}</span>
+                          <button type="button" className="nt-x" onClick={function(){ setFdTable(false); }} aria-label="Close">×</button>
+                        </div>
+                        <div className="nt-body">
+                  {(fdMode === "ord" ? fdOrdTable() : (
                     <div className="nd-intro">
                       {DLI_NUM_TABLES.map(function(t, k){ return (
                         <div key={k} className="crs-tw"><table className="crs-t nd-t">
@@ -17341,6 +17350,10 @@ quizMode ? (
                       <p className="crs-credit">Tables and notes: the DLI Grammar Reference Book, Lessons 70–72 (public domain).</p>
                     </div>
                   ))}
+                        </div>
+                      </div>
+                    </div>
+                  )}
                   <div className="cd">
                     <div className="cd-top">
                       <span>Right: {fd.nRight} / {fd.n}</span>
@@ -19226,6 +19239,14 @@ quizMode ? (
         .fd-word{font-weight:600}
         .fd-digit{font-size:30px;line-height:1.15;font-family:var(--display);overflow-wrap:anywhere}
         .fd-modes{display:flex;gap:8px;justify-content:center;margin:10px 0 2px}
+        .nt-over{position:fixed;inset:0;z-index:300;background:rgba(26,22,17,.55);display:flex;align-items:center;justify-content:center;padding:12px;box-sizing:border-box}
+        .nt-box{background:var(--paper,#fbf8f2);color:var(--ink,#1a1612);border:1px solid rgba(42,31,20,.2);border-radius:14px;width:100%;max-width:720px;max-height:calc(100dvh - 24px);max-height:calc(100vh - 24px);display:flex;flex-direction:column;overflow:hidden;box-sizing:border-box}
+        @supports (height:100dvh){.nt-box{max-height:calc(100dvh - 24px)}}
+        .nt-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 12px 8px 16px;border-bottom:1px solid rgba(42,31,20,.14);flex:0 0 auto}
+        .nt-title{font-family:var(--sans);font-size:13px;letter-spacing:.04em}
+        .nt-x{font-size:24px;line-height:1;background:none;border:0;color:inherit;cursor:pointer;padding:2px 8px}
+        .nt-body{overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding:10px 12px 14px;flex:1 1 auto;min-height:0}
+        .nt-body .crs-tw{overflow-x:auto;max-width:100%}
         .fd-mode{font-family:var(--sans);font-size:12.5px;padding:5px 14px;border:1px solid var(--ink-3);background:transparent;color:var(--ink-2);border-radius:99px;cursor:pointer}
         .fd-mode.on{background:var(--ink);color:var(--paper,#f5f0e8);border-color:var(--ink)}
         .fd-en{font-size:16px;color:var(--ink-2)}
