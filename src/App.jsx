@@ -12968,7 +12968,8 @@ export default function App() {
       var it = list[Math.floor(Math.random() * list.length)];
       var ask = [FD_CASE_EN[it[1]] + (it[4] === "a" ? " (animate)" : it[4] === "i" ? " (inanimate)" : "")];
       if (it[3]) ask.push(it[3] === "p" ? "plural" : "singular");
-      var gen = it[2] ? { m: "masculine", f: "feminine", n: "neuter" }[it[2]] : "";
+      // "mn" is two genders that share the form (двадцати одного: masculine or neuter)
+      var gen = String(it[2] || "").split("").map(function(c){ return { m: "masculine", f: "feminine", n: "neuter" }[c]; }).filter(Boolean).join(" or ");
       // an ordinal agrees like an adjective (genitive singular feminine); a cardinal is told the gender of the noun it counts
       var askS = ord ? ask.concat(gen ? [gen] : []).join(" ") : ask.join(" ") + (gen ? ", with a " + gen + " noun" : "");
       return { kind: "num", word: fdEnNum(it[0], ord), en: "", ask: askS, answers: it[5].map(fdNorm), shown: it[5].join(", "), note: "" };
@@ -16966,7 +16967,7 @@ export default function App() {
           "A verb with a conjugation table on Wiktionary, and a person and number in a tense \u2014 or a gender in the past. Type the form. Right answers count on the leaderboard.",
           function(){ fdStart("conj"); })}
         {!termDrill && card("Cardinal numbers",
-          "A cardinal number (thirty-five) and the case to put it in, with the gender of the noun it counts \u2014 type it in Russian words. A table is a tap away. Misses come back until you have them.",
+          "A cardinal number (thirty-five) and the case to put it in \u2014 type it in Russian words. A table is a tap away. Misses come back until you have them.",
           function(){ fdStartNum("card"); })}
         {!termDrill && card("Ordinal numbers",
           "An ordinal number (seventy-third) and the case, singular or plural and gender to put it in \u2014 type it in Russian words. A table is a tap away. Misses come back until you have them.",
@@ -17315,7 +17316,7 @@ quizMode ? (
                       : fd.kind === "num"
                       ? (fdMode === "ord"
                         ? "An ordinal number written out in English (seventy-third), and the case, singular or plural and gender to put it in — animacy too in the accusative. Type it in Russian words."
-                        : "A cardinal number written out in English (thirty-five), the case to put it in, and the gender of the noun it counts — animacy too in the accusative. Type it in Russian words.")
+                        : "A cardinal number written out in English (thirty-five) and the case to put it in — with the gender of the noun it counts, and animacy in the accusative, only where they change the number's form. Type it in Russian words.")
                       : "A verb with a conjugation table on Wiktionary, and a person and number in a tense — or a gender in the past. Type the form."}
                   </p>
                   {fd.kind === "num" && (
