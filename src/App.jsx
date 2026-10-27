@@ -13128,11 +13128,25 @@ export default function App() {
         row("future", t.future);
         if (t.past) {
           [["m", "masculine singular"], ["f", "feminine singular"], ["n", "neuter singular"], ["pl", "plural"]].forEach(function(g){
-            if (t.past[g[0]]) cells.push({ ask: g[1] + ", past tense" + asp, shown: t.past[g[0]], pronoun: FD_PRON_PAST[g[0]] });
+            if (t.past[g[0]]) cells.push({ ask: g[1] + ", past tense" + asp, shown: t.past[g[0]], pronoun: FD_PRON_PAST[g[0]], past: g[0] });
           });
         }
         if (!cells.length) continue;
-        var cell = cells[Math.floor(Math.random() * cells.length)];
+        // Forms that follow the rule are not worth drilling as often: a past made by
+        // dropping -ть and adding -л/-ла/-ло/-ли (-лся/-лась/-лось/-лись after -ться),
+        // and the imperfective future, буду + the infinitive. They come up about a
+        // tenth as often; an irregular past (шёл, мог, нёс, умер) keeps its full weight.
+        var inf = fdNorm(t.infinitive || w.ru);
+        var refl = /ться$/.test(inf), stem = inf.replace(/ться$|ть$/, "");
+        var regularPast = function(c) {
+          if (!c.past || !/(ть|ться)$/.test(inf)) return false;
+          var want = stem + { m: "л", f: "ла", n: "ло", pl: "ли" }[c.past] + (refl ? (c.past === "m" ? "ся" : "сь") : "");
+          var forms = fdAnswers(c.shown);
+          return forms.length > 0 && forms.every(function(x){ return x === want; });
+        };
+        var weight = function(c) { return (c.compound || regularPast(c)) ? 0.1 : 1; };
+        var total = cells.reduce(function(a, c){ return a + weight(c); }, 0), roll = Math.random() * total, cell = cells[cells.length - 1];
+        for (var ci = 0; ci < cells.length; ci++) { roll -= weight(cells[ci]); if (roll < 0) { cell = cells[ci]; break; } }
         // the full phrase typed out («буду читать») is right too
         var answers = cell.answers || fdAnswers(cell.shown);
         if (cell.compound) answers = answers.concat(fdAnswers(cell.shown));
