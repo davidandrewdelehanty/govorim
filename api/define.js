@@ -1145,11 +1145,12 @@ export default async function handler(req, res) {
       // settled here — lemma and part of speech, homographs as readings — with
       // no guessing and no round trip to Wikimedia. A form it only guessed
       // from the ending joins the rule-based guesses below, to be checked.
-      let pmGuess = [];
+      let pmGuess = [], pmKnown = false;
       if (process.env.PYMORPHY_LEMMAS !== "0") {
         let pm = null;
         try { pm = pymorphyLemmas(lower); } catch (e) { trace.push("pymorphy:error " + ((e && e.message) || e)); }
         if (pm && pm.known) {
+          pmKnown = true;
           lemmas = pm.readings.map(function (r) { return r.lemma; })
             .filter(function (l, i, a) { return a.indexOf(l) === i; }).slice(0, 3);
           if (lemmas.length >= 2 || (lemmas.length === 1 && pm.readings.length >= 2)) {
@@ -1275,7 +1276,12 @@ export default async function handler(req, res) {
       // Last automatic tier, and the one that actually knows жаргон. Its
       // definitions are Russian unless the entry carries a Перевод block.
       if (process.env.RUWIKT_FALLBACK !== "0" && timeLeft() > 1500) {
-        const ruCands = candsWith(lemma);
+        // A form pymorphy KNOWS goes to Викисловарь by its headword first:
+        // that page is what the card is filed under, and a form page there
+        // would leave the card under the tapped form.
+        const ruCands = pmKnown
+          ? lemmas.concat(candsWith(lemma)).filter(function (w, i, a) { return w && a.indexOf(w) === i; })
+          : candsWith(lemma);
         let ruWikt = null;
         try {
           ruWikt = await ruWiktionaryLookup(ruCands, word, ctrl.signal, timeLeft);
@@ -1303,22 +1309,41 @@ export default async function handler(req, res) {
             //    defines «поистаскать» as «истаскать (всё или многое)», and
             //    «истаскать» is "to wear out" in the English Wiktionary. Follow
             //    it rather than guess.
+            //    The same goes for a sense that only names another word —
+            //    «свойство по значению прилагательного чрезвычайный» — and for
+            //    a gloss that lists one-word synonyms among its phrases:
+            //    «отужинать» is «принять участие в ужине; поужинать», and
+            //    «поужинать» is "to have supper" in the English Wiktionary.
+            //    The popup says whose English it is.
             const ptr = /^(?:то же,? что(?: и)?\s+)?([\u0400-\u04ff-]{3,})\.?$/i.exec(bareGloss);
-            const ptrWord = ptr ? ptr[1].toLowerCase() : "";
-            let hop = null;
-            if (ptrWord && ptrWord !== lower && ptrWord !== deyo && wiktEnabled && timeLeft() > 2000) {
+            const ref = /^(свойство|действие|состояние|процесс|результат)(?: действия)? по значению(?: прилагательного| глагола)?\s+([\u0400-\u04ff-]{3,})/i.exec(bareGloss);
+            const REF_EN = { "свойство": "the quality of being: ", "действие": "the act of: ", "состояние": "the state of: ",
+                             "процесс": "the process of: ", "результат": "the result of: " };
+            const self = [lower, deyo, String(ruWikt.lemma || "").toLowerCase()];
+            const ptrs = [];
+            if (ptr) ptrs.push(ptr[1].toLowerCase());
+            if (ref) ptrs.push(ref[2].toLowerCase());
+            ruGloss.replace(/\([^)]*\)/g, " ").split(/[;,]/).forEach(function (seg) {
+              const w = seg.trim().toLowerCase();
+              if (/^[\u0400-\u04ff-]{3,}$/.test(w)) ptrs.push(w);
+            });
+            let hop = null, ptrWord = "";
+            for (const pw of ptrs.filter(function (w, i, a) { return a.indexOf(w) === i && self.indexOf(w) < 0; }).slice(0, 3)) {
+              if (!wiktEnabled || timeLeft() < 2000) break;
               try {
-                hop = await wiktionaryLookup([ptrWord], word, ctrl.signal, timeLeft, []);
+                hop = await wiktionaryLookup([pw], word, ctrl.signal, timeLeft, []);
               } catch (e) {
                 if (e && e.name === "AbortError") throw e;
                 trace.push("ruwikt:pointer-error " + ((e && e.message) || e));
               }
               if (hop && (hop.weakFormOf || !hop.translation)) hop = null;
+              if (hop) { ptrWord = pw; break; }
             }
             if (hop) {
               ruWikt.definitionRu = ruGloss;
-              ruWikt.translation = hop.translation;
-              ruWikt.grammar = [ruWikt.grammar, "English from the entry for " + ptrWord]
+              ruWikt.translation = (ref && ref[2].toLowerCase() === ptrWord ? REF_EN[ref[1].toLowerCase()] : "") + hop.translation;
+              ruWikt.grammar = [String(ruWikt.grammar || "").replace(/^Russian definition — no English in Викисловарь(?: · )?/, ""),
+                                "English from the entry for " + ptrWord]
                 .filter(Boolean).join(" · ");
               trace.push("ruwikt:pointer " + ptrWord);
             } else if (process.env.DEFINE_MT === "1" && timeLeft() > 1500) {

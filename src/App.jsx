@@ -5418,10 +5418,19 @@ export default function App() {
   // When a kind has a due word or three left over, the round is made up with
   // that kind's other words; those fill-ins are practice only and are not
   // answers to the scheduler. A course's own cards are not scheduled at all.
+  // A saved card fit to review: an English meaning from a dictionary. A card
+  // whose meaning is Викисловарь's Russian, or a machine-translation guess
+  // from before the dictionaries-only rule, would be a match against nothing
+  // the reader can check — it waits until a lookup files it properly.
+  var cardReviewable = function(v) {
+    if (!v || !v.ru || !v.en) return false;
+    if (targetLang !== "en" && !/[A-Za-z]/.test(String(v.en))) return false;
+    return !/machine translation|\bmatch \d+%|confidence \d+%|back-translates as|Russian definition — no English/i.test(String(v.grammar || ""));
+  };
   var startMatch = function(pool, more) {
     var own = Array.isArray(pool) ? pool : null;      // a course's own cards, not the vocabulary
     var words = own ? own.filter(function(v){ return v && v.ru && v.en; })
-      : dropCommonWords(vocabL, function(v){ return v && v.ru; }).filter(function(v){ return v && v.en; });
+      : dropCommonWords(vocabL, function(v){ return v && v.ru; }).filter(cardReviewable);
     if (words.length < 4) { alert(own ? "The match game needs at least four cards." : "The match game needs at least four saved words with an English meaning."); return; }
     var now = Date.now();
     var shuf = function(a){ a = a.slice(); for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; };
@@ -12104,7 +12113,10 @@ export default function App() {
   // (see api/define.js isSlangEntry) — every def3 answer may be one of those.
   // def5: Oct 9 2026 — verb forms reached through Wiktionary had been saved
   // under the clicked form («сядет») with no aspect; fixed in api/define.js.
-  var DEF_CACHE_PREFIX = "def8:";
+  // def9: Oct 27 2026 — Викисловарь answers are filed under the headword its
+  // redirect lands on, and a Russian-only entry borrows English from a word it
+  // names (see api/define.js); every def8 answer may predate that.
+  var DEF_CACHE_PREFIX = "def9:";
   // Whether the word being looked up is in a song. Set by defWord for the
   // popup it opens; the later look-ups from that popup (another reading, the
   // ё spelling) inherit it. Songs are the only place the блатной жаргон
@@ -12141,7 +12153,8 @@ export default function App() {
         var dead = [];
         for (var i = 0; i < localStorage.length; i++) {
           var k = localStorage.key(i);
-          if (k && (k.indexOf("def:") === 0 || k.indexOf("def2:") === 0 || k.indexOf("def3:") === 0 || k.indexOf("def4:") === 0)) dead.push(k);
+          if (k && (k.indexOf("def:") === 0 || k.indexOf("def2:") === 0 || k.indexOf("def3:") === 0 || k.indexOf("def4:") === 0 ||
+            k.indexOf("def5:") === 0 || k.indexOf("def6:") === 0 || k.indexOf("def7:") === 0 || k.indexOf("def8:") === 0)) dead.push(k);
         }
         dead.forEach(function(k){ localStorage.removeItem(k); });
       } catch (_) {}
@@ -12170,7 +12183,8 @@ export default function App() {
     var yandexDown = null;
     var defTrace = null;
     try {
-      var r = await authFetch("/api/define?word=" + encodeURIComponent(clean) + (song ? "&song=1" : "") + (bible ? "&bible=1" : ""));
+      // &v= keeps CDN copies of answers from before the def9 change out.
+      var r = await authFetch("/api/define?word=" + encodeURIComponent(clean) + (song ? "&song=1" : "") + (bible ? "&bible=1" : "") + "&v=9");
       if (r.ok) {
         var data = await r.json();
         if (data && data.translation) {
@@ -14578,8 +14592,9 @@ export default function App() {
     // Known-words stoplist first: saved words that are among the ~500 most
     // common are never quizzed. They stay in the vocab list (still visible,
     // still usable in chat practice) — they just aren't tested.
-    var quizVocab = own || dropCommonWords(vocabL, function(v){ return v && v.ru; });
-    var commonSkipped = own ? 0 : vocabL.length - quizVocab.length;
+    var notCommon = own ? null : dropCommonWords(vocabL, function(v){ return v && v.ru; });
+    var quizVocab = own || notCommon.filter(cardReviewable);
+    var commonSkipped = own ? 0 : vocabL.length - notCommon.length;
 
     // Group vocab by normalized pos. A word needs `en` (the English meaning to
     // quiz on) and `pos` (so we can find same-category distractors) to qualify.
@@ -15065,7 +15080,7 @@ export default function App() {
     });
   };
   var dueNow = useMemo(function(){
-    return dueWords(dropCommonWords(vocabL, function(v){ return v && v.ru; }).filter(function(v){ return v && v.en && v.pos; }), Date.now()).length;
+    return dueWords(dropCommonWords(vocabL, function(v){ return v && v.ru; }).filter(function(v){ return v && v.en && v.pos && cardReviewable(v); }), Date.now()).length;
   }, [vocab, targetLang]);
 
   // Badges — see computeBadges. The toast announces one the moment it is
@@ -15398,9 +15413,18 @@ export default function App() {
   // left as it is. Once per device, after the server's list has arrived.
   useEffect(function() {
     if (!localLoaded || (me && !syncedFromServer)) return;
-    var FLAG = "gv_mtcards_v1";
+    // v2 (Oct 27 2026): also the cards whose meaning is Викисловарь's Russian
+    // and that sit under the tapped form («отужинали», «истомился») — the
+    // define stack now follows Викисловарь's redirect to the headword and
+    // borrows English from a word the Russian definition names — and, once
+    // more, the MT cards the first pass could not find a dictionary for.
+    var FLAG = "gv_mtcards_v2";
     try { if (localStorage.getItem(FLAG) === "done") return; } catch (e) { return; }
-    var isMT = function(v){ return /machine translation|\bmatch \d+%|confidence \d+%|back-translates as|looked up as /i.test(String((v && v.grammar) || "")); };
+    var isMT = function(v){
+      if (!v || v.site === "en" || !/[\u0400-\u04ff]/.test(String(v.ru || ""))) return false;
+      if (/machine translation|\bmatch \d+%|confidence \d+%|back-translates as|looked up as |Russian definition — no English/i.test(String(v.grammar || ""))) return true;
+      return !!v.en && !/[A-Za-z]/.test(String(v.en));
+    };
     var idOf = function(v){ return String(v._key || v.id || v.created || v.ru); };
     var todo = [];
     [["v", vocabRef.current || vocab], ["l", learned]].forEach(function(pair){
@@ -15408,7 +15432,7 @@ export default function App() {
         if (!v || !v.ru || /\s/.test(String(v.ru).trim()) || !isMT(v)) return;
         var tapped = (Array.isArray(v.forms) && v.forms[0]) ||
           ((v.sentences || []).map(function(x){ return x && x.f; }).filter(Boolean)[0]) || v.ru;
-        todo.push({ list: pair[0], id: idOf(v), word: String(tapped).trim() });
+        todo.push({ list: pair[0], id: idOf(v), word: String(tapped).trim(), ru: v.ru });
       });
     });
     if (!todo.length) { try { localStorage.setItem(FLAG, "done"); } catch (e) {} return; }
@@ -15420,10 +15444,15 @@ export default function App() {
         try {
           // Straight to the server, past the device's definition cache, and
           // with a fresh URL so no CDN copy of the old MT answer comes back.
-          var r = await authFetch("/api/define?word=" + encodeURIComponent(t.word) + "&fresh=mt1");
+          var r = await authFetch("/api/define?word=" + encodeURIComponent(t.word) + "&fresh=v9");
           if (r.ok) data = await r.json();
         } catch (e) { data = null; }
-        if (data && data.translation && data.definitionSource !== "mt" && !data.mtAssisted) fixes[t.list][t.id] = { data: data, word: t.word };
+        // Taken when it brings an English meaning, or at least the headword
+        // the card should have been filed under.
+        var nrm = function(x){ return String(x || "").toLowerCase().replace(/\u0301/g, "").replace(/ё/g, "е").trim(); };
+        if (data && data.translation && data.definitionSource !== "mt" && !data.mtAssisted &&
+            (/[A-Za-z]/.test(String(data.translation)) || (data.lemma && nrm(data.lemma) !== nrm(t.ru))))
+          fixes[t.list][t.id] = { data: data, word: t.word };
         await new Promise(function(res){ setTimeout(res, 300); });
       }
       if (cancelled) return;
