@@ -17454,6 +17454,7 @@ quizMode ? (
                         <form className="fd-form" onSubmit={function(e){ e.preventDefault(); if (!fd.checked) { fdCheck(); return; } if (fd.fix && fd.q.answers.indexOf(fdNorm(fd.fixInput)) < 0) return; fdLoad(fd.kind); }}>
                           {fd.q.pronoun ? <span className="fd-pre" lang="ru">{fd.q.pronoun}{fd.q.prefix ? " " + fd.q.prefix : ""}</span> : null}
                           <input type="text" lang="ru" className={"crs-in fd-in" + (fd.checked ? (fd.right ? " ok" : " bad") : "")} value={fd.input}
+                            style={(fd.input || "").length > 18 ? { fontSize: Math.max(0.68, 18 / (fd.input || "").length).toFixed(3) + "em" } : undefined}
                             autoFocus autoComplete="off" autoCapitalize="off" spellCheck={false} readOnly={fd.checked || fd.busy}
                             placeholder={fd.q.prefix ? "the infinitive" : fd.kind === "clock" ? (fd.q.mode === "set" ? "20:35" : "the time in words") : fd.kind === "frac" ? "the fraction in words" : "Type the form"}
                             onChange={function(e){ var v = e.target.value; setFd(function(st){ return st ? Object.assign({}, st, { input: v }) : st; }); }} />
@@ -17480,6 +17481,7 @@ quizMode ? (
                                 <form className="fd-form" onSubmit={function(e){ e.preventDefault(); if (fd.q.answers.indexOf(fdNorm(fd.fixInput)) >= 0) fdLoad(fd.kind); }}>
                                   {fd.q.pronoun ? <span className="fd-pre" lang="ru">{fd.q.pronoun}{fd.q.prefix ? " " + fd.q.prefix : ""}</span> : null}
                                   <input type="text" lang="ru" className={"crs-in fd-in" + (fd.q.answers.indexOf(fdNorm(fd.fixInput)) >= 0 ? " ok" : "")} value={fd.fixInput || ""}
+                                    style={(fd.fixInput || "").length > 18 ? { fontSize: Math.max(0.68, 18 / (fd.fixInput || "").length).toFixed(3) + "em" } : undefined}
                                     autoFocus autoComplete="off" autoCapitalize="off" spellCheck={false}
                                     placeholder={fd.q.prefix ? "the infinitive" : "Type the correct form"}
                                     onChange={function(e){ var v = e.target.value; setFd(function(st){ return st ? Object.assign({}, st, { fixInput: v }) : st; }); }} />
@@ -20273,6 +20275,9 @@ quizMode ? (
         input[type="text"].crs-in:focus,.crs-in:focus{border-bottom-color:var(--rubric);background:var(--paper-3);outline:none}
         input[type="text"].crs-in.ok,.crs-in.ok{border-bottom-color:#2e6e50;background:transparent;color:#1d5a37}
         input[type="text"].crs-in.bad,.crs-in.bad,.crs-stream .crs-in.bad{border-bottom:1.5px solid var(--rubric);background:var(--rubric-soft);color:var(--rubric);box-shadow:none}
+        /* Practice-drill answer box: the width:auto above left it at the browser's ~20-character default,
+           clipping long answers (шестьюдесятью двумя). It fills its row instead; long answers shrink (fdInSize). */
+        input[type="text"].crs-in.fd-in{display:block;flex:1 1 260px;width:100%;max-width:560px;min-width:0;margin:0;text-align:center;text-overflow:clip}
         /* Save to vocabulary: a small mark beside a construction or a phrase. */
         .crs-save{font-family:var(--sans);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);background:none;
           border:1px solid var(--rule);border-radius:0;padding:4px 8px 3px;cursor:pointer;line-height:1;white-space:nowrap;transition:color .12s,border-color .12s;align-self:center}
