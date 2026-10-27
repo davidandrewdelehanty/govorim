@@ -6258,6 +6258,12 @@ export default function App() {
   // effect below runs even when nothing else about the view has changed.
   var [jumpTick, setJumpTick] = useState(0);
   var [vocabCollapsed, setVocabCollapsed] = useState({});
+  // How the saved words are listed: grouped by part of speech, or in one list,
+  // closest to retiring first. Kept per browser.
+  var [vocabOrder, setVocabOrder] = useState(function(){
+    try { return localStorage.getItem("gv_vocab_order_v1") === "retire" ? "retire" : "pos"; } catch (e) { return "pos"; }
+  });
+  useEffect(function(){ try { localStorage.setItem("gv_vocab_order_v1", vocabOrder); } catch (e) {} }, [vocabOrder]);
   // Tracks recent uploads (last MAX_UPLOADS) so the library view can show them
   // alongside the preset books. Each entry is metadata; full content lives at
   // storage[UPLOAD_BOOK_PREFIX + id].
@@ -15252,15 +15258,22 @@ export default function App() {
   // three answers right. Strength is the one that takes time — it grows only
   // when a review comes after a real gap, so answering a word right ten times
   // in one sitting moves it hardly at all; that is the spacing working.
+  // One number for how far along a word is: the three conditions of isLearned
+  // averaged, each as the share of its target reached. 1 is retirement; a word
+  // never reviewed is 0. The same number orders the list «closest to retiring».
+  var retireShare = function(v) {
+    var srs = v && v.srs;
+    if (!srs || !srs.S) return 0;
+    var run = Math.min(srs.run || 0, 3), reps = srs.reps || 0;
+    return (Math.min(1, srs.S / LEARNED_STABILITY_DAYS) + Math.min(1, reps / 4) + Math.min(1, run / 3)) / 3;
+  };
   var srsProgress = function(v, compact) {
     var srs = v && v.srs;
     if (v && v.learnedAt) return <div className="srsp srsp-done">Learned · retired from your deck</div>;
     if (!srs || !srs.S) return <div className="srsp srsp-new"><b>0%</b> of the way to retiring · not reviewed yet; it retires once you would remember it for {LEARNED_STABILITY_DAYS} days — usually about four right answers, spread over two months</div>;
     var S = srs.S;
     var run = Math.min(srs.run || 0, 3), reps = srs.reps || 0;
-    // One number for how far along it is: the three conditions of isLearned
-    // averaged, each as the share of its target reached. 100% is retirement.
-    var share = (Math.min(1, S / LEARNED_STABILITY_DAYS) + Math.min(1, reps / 4) + Math.min(1, run / 3)) / 3;
+    var share = retireShare(v);
     var pct = Math.max(2, Math.min(100, Math.round(share * 100)));
     var dueIn = srs.due ? Math.round((srs.due - Date.now()) / 86400000) : null;
     var next = dueIn === null ? "" : dueIn <= 0 ? "due now" : dueIn === 1 ? "next review tomorrow" : "next review in " + dueIn + " days";
@@ -28344,8 +28357,27 @@ quizMode ? (
                           </div>
                         );
                       };
+                      var orderBar = (
+                        <div className="fd-modes" style={{justifyContent:"flex-start",margin:"0 0 12px"}}>
+                          {[["pos", "By part of speech"], ["retire", "Closest to retiring"]].map(function(o){
+                            return <button key={o[0]} type="button" className={"fd-mode" + (vocabOrder === o[0] ? " on" : "")}
+                              onClick={function(){ setVocabOrder(o[0]); }}>{o[1]}</button>;
+                          })}
+                        </div>
+                      );
+                      if (vocabOrder === "retire") {
+                        // One list, the word nearest retirement first; level words by whichever review is due sooner.
+                        var byNear = vocab.slice().sort(function(a, b){
+                          var d = retireShare(b) - retireShare(a);
+                          if (Math.abs(d) > 1e-9) return d;
+                          var da = (a.srs && a.srs.due) || Infinity, db = (b.srs && b.srs.due) || Infinity;
+                          return da - db;
+                        });
+                        return <div className="ilist">{orderBar}{byNear.map(renderCard)}</div>;
+                      }
                       return (
                         <div className="ilist">
+                          {orderBar}
                           {order.map(function(g){
                             var words = groups[g];
                             var collapsed = !!vocabCollapsed[g];
