@@ -12991,15 +12991,22 @@ export default function App() {
       : fetch("/vocab/clock-times.json").then(function(r){ return r.json(); }).then(function(j){ fdClockRef.current = j; return j; });
     return load.then(function(j){
       var it = j.t[Math.floor(Math.random() * j.t.length)];
-      var rule = ((j.why && j.why[it[1]]) || "") + " " + ((j.why && j.why.h24) || "");
-      if (!it[8] && Math.random() < 0.5) {
-        var ans = [];
-        it[3].forEach(function(a){ ans.push(fdNorm(a)); it[4].forEach(function(pd){ ans.push(fdNorm(a + " " + pd)); }); });
-        it[5].forEach(function(a){ ans.push(fdNorm(a)); });
-        return { kind: "clock", mode: "say", face: it[6], pod: it[7], word: "", en: "", ask: "Write this time in words, the way it is said (\u043f\u044f\u0442\u044c \u043c\u0438\u043d\u0443\u0442 \u0442\u0440\u0435\u0442\u044c\u0435\u0433\u043e). You may leave off \u0443\u0442\u0440\u0430 / \u0434\u043d\u044f / \u0432\u0435\u0447\u0435\u0440\u0430 / \u043d\u043e\u0447\u0438; the 24-hour way (\u0447\u0435\u0442\u044b\u0440\u043d\u0430\u0434\u0446\u0430\u0442\u044c \u043f\u044f\u0442\u044c) counts too.",
-                 answers: ans, shown: it[3][0] + " " + it[7], rule: rule, note: "" };
+      // Both ways round use the 24-hour clock, the way timetables, the radio and offices say it in Russia
+      // (DLI Lesson 73): 14:05 is четырнадцать ноль пять, never «пять минут третьего дня».
+      var rule = (j.why && j.why.h24) || "";
+      var mm = +it[0].slice(3);
+      var w24 = it[5].filter(function(a){ return !/ноль ноль ноль/.test(a); });
+      if (!w24.length) return fdMakeClock();
+      var plain = function(a){ return !/час|минут|ровно/.test(a); };
+      // The wording to show: «четырнадцать ноль ноль» on the hour (DLI's own example; «ноль часов» at midnight), «десять ноль семь» for a single-digit minute, else «девять тридцать».
+      var canon = (mm === 0 ? (w24.filter(function(a){ return plain(a) && / ноль ноль$/.test(a); })[0] || w24.filter(function(a){ return /час/.test(a) && !/ровно/.test(a); })[0]) : null)
+        || (mm < 10 ? w24.filter(function(a){ return plain(a) && / ноль \S+$/.test(a); })[0] : null)
+        || w24.filter(plain)[0] || w24[0];
+      if (Math.random() < 0.5) {
+        return { kind: "clock", mode: "say", word: it[0], en: "", ask: "Write this time in words, the 24-hour way: 14:05 is \u0447\u0435\u0442\u044b\u0440\u043d\u0430\u0434\u0446\u0430\u0442\u044c \u043d\u043e\u043b\u044c \u043f\u044f\u0442\u044c. \u0447\u0430\u0441\u043e\u0432 and \u043c\u0438\u043d\u0443\u0442 may be put in or left out.",
+                 answers: w24.map(fdNorm), shown: canon, rule: rule, note: "" };
       }
-      return { kind: "clock", mode: "set", word: it[2][Math.floor(Math.random() * it[2].length)], en: "", ask: "Type this time as digits on a 24-hour clock, like 20:35.",
+      return { kind: "clock", mode: "set", word: canon, en: "", ask: "Type this time as digits on the 24-hour clock, like 20:35.",
                answers: [it[0].replace(":", "")], shown: it[0], rule: rule, note: "" };
     }).catch(function(){ return { err: "The clock times could not be loaded." }; });
   };
@@ -13173,7 +13180,7 @@ export default function App() {
     var right = fd.q.answers.indexOf(given) >= 0;
     // Numerals: a miss keeps the same number on screen ("Try Again!") until it
     // is typed right. Only the first try is scored; the retries are practice.
-    if (fd.kind === "num" && fd.retry) {
+    if ((fd.kind === "num" || fd.kind === "clock") && fd.retry) {
       if (right) setFd(Object.assign({}, fd, { checked: true, right: true, retry: false, retried: true }));
       else setFd(Object.assign({}, fd, { input: "", tries: (fd.tries || 1) + 1, wrong: String(fd.input || "").trim() }));
       return;
@@ -13185,7 +13192,7 @@ export default function App() {
     delete baseQ.again; delete baseQ.rep;
     var again = repNext(right, rep);
     if (again) fdRepeat.current.push({ q: baseQ, due: steps + repGap(again.step), need: again.need, step: again.step });
-    var retryNow = !right && fd.kind === "num";
+    var retryNow = !right && (fd.kind === "num" || fd.kind === "clock");
     setFd(Object.assign({}, fd, { checked: !retryNow, right: right, fix: fix, fixInput: "", steps: steps,
       retry: retryNow, tries: retryNow ? 1 : 0, reveal: false, input: retryNow ? "" : fd.input,
       wrong: retryNow ? String(fd.input || "").trim() : "",
@@ -16984,7 +16991,7 @@ export default function App() {
           "An ordinal number (seventy-third) and the case, singular or plural and gender to put it in \u2014 type it in Russian words. A table is a tap away. Misses come back until you have them.",
           function(){ fdStartNum("ord"); })}
         {!termDrill && card("Clock practice",
-          "Every time of the day: the words to set as digits on a 24-hour clock, or the clock to put into words \u2014 \u043f\u044f\u0442\u044c \u043c\u0438\u043d\u0443\u0442 \u0442\u0440\u0435\u0442\u044c\u0435\u0433\u043e, \u0431\u0435\u0437 \u0434\u0435\u0441\u044f\u0442\u0438 \u0442\u0440\u0438. A miss comes back a few times until you have it right twice more.",
+          "Every minute of the day on the 24-hour clock: the words to type as digits (\u0447\u0435\u0442\u044b\u0440\u043d\u0430\u0434\u0446\u0430\u0442\u044c \u043d\u043e\u043b\u044c \u043f\u044f\u0442\u044c \u2192 14:05), or the digits to write in words. A miss stays until you have it right.",
           function(){ fdStart("clock"); })}
         {!termDrill && card("Fractions practice",
           "A fraction in digits \u2014 write it in words: \u0442\u0440\u0438 \u0432\u043e\u0441\u044c\u043c\u044b\u0445, \u043f\u044f\u0442\u044c \u0441 \u043f\u043e\u043b\u043e\u0432\u0438\u043d\u043e\u0439. Numerators are cardinal, denominators ordinal. A miss comes back a few times until you have it right twice more.",
@@ -17323,7 +17330,7 @@ quizMode ? (
                       : fd.kind === "frac"
                       ? "A fraction in digits \u2014 write it in words: \u0442\u0440\u0438 \u0432\u043e\u0441\u044c\u043c\u044b\u0445, \u043f\u044f\u0442\u044c \u0441 \u043f\u043e\u043b\u043e\u0432\u0438\u043d\u043e\u0439. A miss comes back a few times until you have it right twice more."
                       : fd.kind === "clock"
-                      ? "A time of the day: the words to set as digits on a 24-hour clock, or the clock to put into words. Every minute of the day comes up, in random order. A miss comes back a few times until you have it right twice more."
+                      ? "Every minute of the day on the 24-hour clock, the way Russian timetables and announcements say it: the words to type as digits (\u0447\u0435\u0442\u044b\u0440\u043d\u0430\u0434\u0446\u0430\u0442\u044c \u043d\u043e\u043b\u044c \u043f\u044f\u0442\u044c \u2192 14:05), or the digits to write in words. A miss stays until you have it right."
                       : fd.kind === "num"
                       ? (fdMode === "ord"
                         ? "An ordinal number written out in English (seventy-third), and the case, singular or plural and gender to put it in — animacy too in the accusative. Type it in Russian words."
@@ -17375,7 +17382,7 @@ quizMode ? (
                     {fd.q && (
                       <>
                         <div className="cd-s">
-                          {fd.q.mode === "say" ? <ClockFace hhmm={fd.q.face} label={fd.q.pod} /> : <span lang={fd.kind === "num" ? "en" : "ru"} className={"fd-word" + (fd.kind === "num" || fd.kind === "frac" ? " fd-digit" : "")}>{fd.q.word}</span>}
+                          <span lang={fd.kind === "num" || (fd.kind === "clock" && fd.q.mode === "say") ? "en" : "ru"} className={"fd-word" + (fd.kind === "num" || fd.kind === "frac" || (fd.kind === "clock" && fd.q.mode === "say") ? " fd-digit" : "")}>{fd.q.word}</span>
                           {fd.q.en ? <span className="fd-en"> — {fd.q.en}</span> : null}
                         </div>
                         <div className="cd-lemma">{fd.kind === "clock" || fd.kind === "frac" ? null : fd.kind === "num" ? "In Russian, put it in the " : "Write the "}{fd.kind === "clock" || fd.kind === "frac" ? fd.q.ask : <strong>{fd.q.ask}</strong>}{fd.q.prefix ? <span className="fd-hint"> — the future of an imperfective verb is <span lang="ru">быть</span> and the infinitive: the <span lang="ru">{fd.q.prefix}</span> is given</span> : null}</div>
@@ -17422,7 +17429,7 @@ quizMode ? (
                     {fd.kind === "frac"
                       ? <p className="fd-note">Stress marks and ё/е are not held against you. Rule: the DLI Grammar Reference Book, Lesson 98 (public domain); every word is a dictionary form (OpenCorpora, CC BY-SA 4.0) put together by that rule.</p>
                       : fd.kind === "clock"
-                      ? <p className="fd-note">Stress marks and ё/е are not held against you. Rules: the DLI Grammar Reference Book, Lessons 40, 73 and 74 (public domain); every time in words is dictionary forms (OpenCorpora, CC BY-SA 4.0) put together by those rules.</p>
+                      ? <p className="fd-note">Stress marks and ё/е are not held against you. Rule: the DLI Grammar Reference Book, Lesson 73, the 24-hour system (public domain); every time in words is dictionary forms (OpenCorpora, CC BY-SA 4.0) put together by it.</p>
                       : fd.kind === "num"
                       ? <p className="fd-note">Stress marks and ё/е are not held against you. Forms: the OpenCorpora dictionary (CC BY-SA 4.0), put together by the rules of the DLI Grammar Reference Book (public domain).</p>
                       : <p className="fd-note">Right answers count on the leaderboard. Stress marks and ё/е are not held against you. Source: <a href={"https://en.wiktionary.org/wiki/" + encodeURIComponent((fd.q && fd.q.word) || "")} target="_blank" rel="noopener">Wiktionary</a>.</p>}
