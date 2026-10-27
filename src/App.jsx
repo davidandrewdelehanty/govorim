@@ -13134,7 +13134,8 @@ export default function App() {
       if (seq !== fdSeq.current) return;
       setFd(function(st){
         if (!st || st.kind !== kind) return st;
-        return Object.assign({}, st, { q: q.err ? null : q, err: q.err || "", busy: false, input: "", checked: false, right: false, fix: false, fixInput: "" });
+        return Object.assign({}, st, { q: q.err ? null : q, err: q.err || "", busy: false, input: "", checked: false, right: false, fix: false, fixInput: "",
+                                       retry: false, retried: false, tries: 0, reveal: false });
       });
       if (!q.err && !rep && !fdNext.current) fdPrefetch(kind);
     });
@@ -13170,6 +13171,13 @@ export default function App() {
     if (fd.kind === "clock" && fd.q.mode === "set") { given = String(fd.input || "").replace(/\D/g, ""); if (given.length === 3) given = "0" + given; }
     if (!given) return;
     var right = fd.q.answers.indexOf(given) >= 0;
+    // Numerals: a miss keeps the same number on screen ("Try Again!") until it
+    // is typed right. Only the first try is scored; the retries are practice.
+    if (fd.kind === "num" && fd.retry) {
+      if (right) setFd(Object.assign({}, fd, { checked: true, right: true, retry: false, retried: true }));
+      else setFd(Object.assign({}, fd, { input: "", tries: (fd.tries || 1) + 1 }));
+      return;
+    }
     var fix = !right && fd.kind === "conj";
     var rep = fd.q.rep || null;
     var steps = (fd.steps || 0) + 1;
@@ -13177,7 +13185,9 @@ export default function App() {
     delete baseQ.again; delete baseQ.rep;
     var again = repNext(right, rep);
     if (again) fdRepeat.current.push({ q: baseQ, due: steps + repGap(again.step), need: again.need, step: again.step });
-    setFd(Object.assign({}, fd, { checked: true, right: right, fix: fix, fixInput: "", steps: steps,
+    var retryNow = !right && fd.kind === "num";
+    setFd(Object.assign({}, fd, { checked: !retryNow, right: right, fix: fix, fixInput: "", steps: steps,
+      retry: retryNow, tries: retryNow ? 1 : 0, reveal: false, input: retryNow ? "" : fd.input,
       n: fd.n + (rep ? 0 : 1), nRight: fd.nRight + (!rep && right ? 1 : 0) }));
     if (rep) return;
     if (fd.kind === "num" || fd.kind === "clock" || fd.kind === "frac") { if (right) bumpToday(fd.kind + "Ok", 1); bumpToday(fd.kind, 1); bumpToday("practiced", 1); bumpToday("numbers", 1); bumpToday("drills", 1); return; }
@@ -17378,9 +17388,17 @@ quizMode ? (
                             ? <button type="submit" className="btn-p fd-btn" disabled={!fdNorm(fd.input)}>Check</button>
                             : <button type="submit" className="btn-p fd-btn" disabled={fd.busy || (fd.fix && fd.q.answers.indexOf(fdNorm(fd.fixInput)) < 0)}>Next →</button>}
                         </form>
+                        {fd.retry && !fd.checked && (
+                          <div className="cd-fb">
+                            <div key={fd.tries} className="cd-fb-h bad fd-again">Try Again!</div>
+                            {fd.reveal
+                              ? <div className="cd-fb-x">It is <b lang="ru">{fd.q.shown}</b> — type it to go on.</div>
+                              : <button type="button" className="crs-retry" style={{marginLeft:0}} onClick={function(){ setFd(function(st){ return st ? Object.assign({}, st, { reveal: true }) : st; }); }}>Show the answer</button>}
+                          </div>
+                        )}
                         {fd.checked && (
                           <div className="cd-fb">
-                            <div className={"cd-fb-h" + (fd.right ? " ok" : " bad")}>{fd.right ? "Correct" : "Not quite"}</div>
+                            <div className={"cd-fb-h" + (fd.right ? " ok" : " bad")}>{fd.right ? (fd.retried ? "Correct — got it this time" : "Correct") : "Not quite"}</div>
                             {fd.kind === "frac" ? <div className="cd-fb-x"><b>{fd.q.word}</b> is <b lang="ru">{fd.q.shown}</b>.<div className="fd-note" style={{margin:"6px 0 0"}}>{fd.q.rule}</div></div> : fd.kind === "clock" ? <div className="cd-fb-x">{fd.q.mode === "set" ? <>The time <b lang="ru">{fd.q.word}</b> is <b>{fd.q.shown}</b>.</> : <>This time is <b lang="ru">{fd.q.shown}</b>.</>}<div className="fd-note" style={{margin:"6px 0 0"}} lang="ru">{fd.q.rule}</div></div> : <div className="cd-fb-x">{fd.kind === "num" ? "In Russian, " : "The "}{fd.kind === "num" ? <b>{fd.q.word}</b> : <>{fd.q.ask} of <b lang="ru">{fd.q.word}</b></>}{fd.kind === "num" ? " (" + fd.q.ask + ")" : ""} is <b lang="ru">{fd.q.pronoun ? fd.q.pronoun + " " : ""}{fd.q.shown}</b>.</div>}
                             {fd.fix && (
                               <div className="fd-fix">
@@ -19239,6 +19257,8 @@ quizMode ? (
         .fd-word{font-weight:600}
         .fd-digit{font-size:30px;line-height:1.15;font-family:var(--display);overflow-wrap:anywhere}
         .fd-modes{display:flex;gap:8px;justify-content:center;margin:10px 0 2px}
+        .fd-again{animation:fdAgain .35s ease}
+        @keyframes fdAgain{0%{transform:translateX(0)}25%{transform:translateX(-6px)}50%{transform:translateX(6px)}75%{transform:translateX(-3px)}100%{transform:translateX(0)}}
         .nt-over{position:fixed;inset:0;z-index:300;background:rgba(26,22,17,.55);display:flex;align-items:center;justify-content:center;padding:12px;box-sizing:border-box}
         .nt-box{background:var(--paper,#fbf8f2);color:var(--ink,#1a1612);border:1px solid rgba(42,31,20,.2);border-radius:14px;width:100%;max-width:720px;max-height:calc(100dvh - 24px);max-height:calc(100vh - 24px);display:flex;flex-direction:column;overflow:hidden;box-sizing:border-box}
         @supports (height:100dvh){.nt-box{max-height:calc(100dvh - 24px)}}
