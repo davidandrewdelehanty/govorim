@@ -10589,7 +10589,7 @@ export default function App() {
   var cdTopUp = function(ix) {
     if (cdFetching.current || !ix) return;
     cdFetching.current = true;
-    cdFetchMore(ix, 5).then(function(qs){
+    cdFetchMore(ix, 8).then(function(qs){
       cdFetching.current = false;
       if (qs.length) setCdQs(function(prev){ return prev.concat(qs); });
     });
@@ -10639,7 +10639,12 @@ export default function App() {
   var cdNextQ = function() {
     setCdSel(null);
     setCdIdx(function(i){ return i + 1; });
-    if (cdQs.length - (cdIdx + 1) <= 3) cdTopUp(cdIndex);
+    // Top up by the NEW sentences still ahead, not the queue's length: a missed
+    // drill comes back several times, and counting those repeats as "still to
+    // come" held off fresh sentences until the queue was nearly empty — so a
+    // reader who missed a few went round the same handful over and over.
+    var fresh = cdQs.slice(cdIdx + 1).filter(function(x){ return !x.rep; }).length;
+    if (fresh <= 4) cdTopUp(cdIndex);
   };
   var cdFinish = function() {
     if (cdAns > 0) recordDrill(0, 0, null, 1);
