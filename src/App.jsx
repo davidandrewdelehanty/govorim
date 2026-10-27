@@ -13015,20 +13015,19 @@ export default function App() {
       : fetch("/vocab/clock-times.json").then(function(r){ return r.json(); }).then(function(j){ fdClockRef.current = j; return j; });
     return load.then(function(j){
       var it = j.t[Math.floor(Math.random() * j.t.length)];
-      // Both ways round use the 24-hour clock, the way timetables, the radio and offices say it in Russia
-      // (DLI Lesson 73): 14:05 is четырнадцать ноль пять, never «пять минут третьего дня».
-      var rule = (j.why && j.why.h24) || "";
-      var mm = +it[0].slice(3);
-      var w24 = it[5].filter(function(a){ return !/ноль ноль ноль/.test(a); });
-      if (!w24.length) return fdMakeClock();
-      var plain = function(a){ return !/час|минут|ровно/.test(a); };
-      // The wording to show: «четырнадцать ноль ноль» on the hour (DLI's own example; «ноль часов» at midnight), «десять ноль семь» for a single-digit minute, else «девять тридцать».
-      var canon = (mm === 0 ? (w24.filter(function(a){ return plain(a) && / ноль ноль$/.test(a); })[0] || w24.filter(function(a){ return /час/.test(a) && !/ровно/.test(a); })[0]) : null)
-        || (mm < 10 ? w24.filter(function(a){ return plain(a) && / ноль \S+$/.test(a); })[0] : null)
-        || w24.filter(plain)[0] || w24[0];
+      // The everyday way Russians say the time (DLI Lessons 40, 73, 74): 20:09 is «девять минут девятого вечера»,
+      // 14:30 «половина третьего дня», 13:40 «без двадцати два дня» — never the timetable reading «двадцать ноль девять».
+      // The digits stay on the 24-hour clock; утра / дня / вечера / ночи is what tells morning from evening in the words.
+      var rule = (j.why && j.why[it[1]]) || "";
+      var pods = it[4] || [];
+      var everyday = it[3].slice();
+      it[3].forEach(function(a){ pods.forEach(function(p){ everyday.push(a + " " + p); }); });
+      // The wording to show: the first of the set-wordings that carries a part of the day (no 24-hour reading)
+      var canon = it[2].filter(function(a){ return pods.some(function(p){ return a.slice(-p.length - 1) === " " + p; }); })[0]
+        || (it[3][0] + (it[7] ? " " + it[7] : ""));
       if (Math.random() < 0.5) {
-        return { kind: "clock", mode: "say", word: it[0], en: "", ask: "Write this time in words, the 24-hour way: 14:05 is \u0447\u0435\u0442\u044b\u0440\u043d\u0430\u0434\u0446\u0430\u0442\u044c \u043d\u043e\u043b\u044c \u043f\u044f\u0442\u044c. \u0447\u0430\u0441\u043e\u0432 and \u043c\u0438\u043d\u0443\u0442 may be put in or left out.",
-                 answers: w24.map(fdNorm), shown: canon, rule: rule, note: "" };
+        return { kind: "clock", mode: "say", word: it[0], en: "", ask: "Write this time in words, the everyday way: 14:05 is \u043f\u044f\u0442\u044c \u043c\u0438\u043d\u0443\u0442 \u0442\u0440\u0435\u0442\u044c\u0435\u0433\u043e \u0434\u043d\u044f. \u0443\u0442\u0440\u0430 / \u0434\u043d\u044f / \u0432\u0435\u0447\u0435\u0440\u0430 / \u043d\u043e\u0447\u0438 may be put in or left out.",
+                 answers: everyday.map(fdNorm), shown: canon, rule: rule, note: "" };
       }
       return { kind: "clock", mode: "set", word: canon, en: "", ask: "Type this time as digits on the 24-hour clock, like 20:35.",
                answers: [it[0].replace(":", "")], shown: it[0], rule: rule, note: "" };
@@ -17048,7 +17047,7 @@ export default function App() {
           "An ordinal number (seventy-third) and the case, singular or plural and gender to put it in \u2014 type it in Russian words. A table is a tap away. Misses come back until you have them.",
           function(){ fdStartNum("ord"); })}
         {!termDrill && card("Clock practice",
-          "Every minute of the day on the 24-hour clock: the words to type as digits (\u0447\u0435\u0442\u044b\u0440\u043d\u0430\u0434\u0446\u0430\u0442\u044c \u043d\u043e\u043b\u044c \u043f\u044f\u0442\u044c \u2192 14:05), or the digits to write in words. A miss stays until you have it right.",
+          "Every minute of the day, said the everyday Russian way: the words to type as 24-hour digits (\u043f\u044f\u0442\u044c \u043c\u0438\u043d\u0443\u0442 \u0442\u0440\u0435\u0442\u044c\u0435\u0433\u043e \u0434\u043d\u044f \u2192 14:05), or the digits to write in words. A miss stays until you have it right.",
           function(){ fdStart("clock"); })}
         {!termDrill && card("Fractions practice",
           "A fraction in digits \u2014 write it in words: \u0442\u0440\u0438 \u0432\u043e\u0441\u044c\u043c\u044b\u0445, \u043f\u044f\u0442\u044c \u0441 \u043f\u043e\u043b\u043e\u0432\u0438\u043d\u043e\u0439. Numerators are cardinal, denominators ordinal. A miss comes back a few times until you have it right twice more.",
@@ -17395,7 +17394,7 @@ quizMode ? (
                       : fd.kind === "frac"
                       ? "A fraction in digits \u2014 write it in words: \u0442\u0440\u0438 \u0432\u043e\u0441\u044c\u043c\u044b\u0445, \u043f\u044f\u0442\u044c \u0441 \u043f\u043e\u043b\u043e\u0432\u0438\u043d\u043e\u0439. A miss comes back a few times until you have it right twice more."
                       : fd.kind === "clock"
-                      ? "Every minute of the day on the 24-hour clock, the way Russian timetables and announcements say it: the words to type as digits (\u0447\u0435\u0442\u044b\u0440\u043d\u0430\u0434\u0446\u0430\u0442\u044c \u043d\u043e\u043b\u044c \u043f\u044f\u0442\u044c \u2192 14:05), or the digits to write in words. A miss stays until you have it right."
+                      ? "Every minute of the day, said the everyday Russian way: the words to type as 24-hour digits (\u043f\u044f\u0442\u044c \u043c\u0438\u043d\u0443\u0442 \u0442\u0440\u0435\u0442\u044c\u0435\u0433\u043e \u0434\u043d\u044f \u2192 14:05), or the digits to write in words. A miss stays until you have it right."
                       : fd.kind === "num"
                       ? (fdMode === "ord"
                         ? "An ordinal number written out in English (seventy-third), and the case, singular or plural and gender to put it in — animacy too in the accusative. Type it in Russian words."
@@ -17496,7 +17495,7 @@ quizMode ? (
                     {fd.kind === "frac"
                       ? <p className="fd-note">Stress marks and ё/е are not held against you. Rule: the DLI Grammar Reference Book, Lesson 98 (public domain); every word is a dictionary form (OpenCorpora, CC BY-SA 4.0) put together by that rule.</p>
                       : fd.kind === "clock"
-                      ? <p className="fd-note">Stress marks and ё/е are not held against you. Rule: the DLI Grammar Reference Book, Lesson 73, the 24-hour system (public domain); every time in words is dictionary forms (OpenCorpora, CC BY-SA 4.0) put together by it.</p>
+                      ? <p className="fd-note">Stress marks and ё/е are not held against you. Rules: the DLI Grammar Reference Book, Lessons 40, 73 and 74 (public domain); every time in words is dictionary forms (OpenCorpora, CC BY-SA 4.0) put together by it.</p>
                       : fd.kind === "num"
                       ? <p className="fd-note">Stress marks and ё/е are not held against you. Forms: the OpenCorpora dictionary (CC BY-SA 4.0), put together by the rules of the DLI Grammar Reference Book (public domain).</p>
                       : <p className="fd-note">Right answers count on the leaderboard. Stress marks and ё/е are not held against you. Source: <a href={"https://en.wiktionary.org/wiki/" + encodeURIComponent((fd.q && fd.q.word) || "")} target="_blank" rel="noopener">Wiktionary</a>.</p>}
