@@ -5556,6 +5556,7 @@ export default function App() {
   var [quizQuestions, setQuizQuestions] = useState([]);
   var [quizIdx, setQuizIdx]           = useState(0);
   var [quizSelected, setQuizSelected] = useState(null);
+  var [rvMiss, setRvMiss] = useState([]);   // options tried and wrong on this card (Try Again!)
   var [quizScore, setQuizScore]       = useState(0);
   var [quizSkipNote, setQuizSkipNote] = useState("");
   var [quizDue, setQuizDue]           = useState(0);    // how many of this session's words were actually due
@@ -5590,6 +5591,7 @@ export default function App() {
   var [exQuestions, setExQuestions] = useState([]);
   var [exIdx, setExIdx]           = useState(0);
   var [exSelected, setExSelected] = useState(null);
+  var [exMiss, setExMiss] = useState([]);   // options tried and wrong on this question (Try Again!)
   var [exScore, setExScore]       = useState(0);
             // Exercise audio clips: play the snippet of the recording for a question's
   // sentence, located in the current chapter's word_timings. exPlaying = the id
@@ -9281,7 +9283,7 @@ export default function App() {
   // keyed by the same book-chapter as the audio (e.g. "01-01" = Genesis 1).
   // Resets the exercise view whenever the chapter changes.
   useEffect(function() {
-    setExData(null); setExCat("menu"); setExSelected(null); setExIdx(0); setExScore(0);
+    setExData(null); setExCat("menu"); setExSelected(null); setExMiss([]); setExIdx(0); setExScore(0);
     stopExClip();
     // Exercises are keyed to the READING chapter (from the FB2), not the audio —
     // audio is only for listening. PREFERRED key: "<bookslug>__ch<cidx>" derived
@@ -9351,7 +9353,7 @@ export default function App() {
     var qs = exShuffle(exData.cases).map(function(q) {
       return Object.assign({}, q, { options: exShuffle(q.options || []) });
     });
-    setExQuestions(qs); setExIdx(0); setExSelected(null); setExScore(0); setExCat("grammar");
+    setExQuestions(qs); setExIdx(0); setExSelected(null); setExMiss([]); setExScore(0); setExCat("grammar");
   };
 
   // Start (or restart) the reading-comprehension quiz (English questions).
@@ -9370,7 +9372,7 @@ export default function App() {
     var qs = exShuffle(exData.reading).map(function(q) {
       return Object.assign({}, q, { options: exShuffle(q.options || []) });
     });
-    setExQuestions(qs); setExIdx(0); setExSelected(null); setExScore(0); setExCat("reading");
+    setExQuestions(qs); setExIdx(0); setExSelected(null); setExMiss([]); setExScore(0); setExCat("reading");
   };
 
   // ── Frequency Vocab Bank quiz logic ─────────────────────────────────────
@@ -10498,6 +10500,7 @@ export default function App() {
   var [cdQs, setCdQs]       = useState([]);
   var [cdIdx, setCdIdx]     = useState(0);
   var [cdSel, setCdSel]     = useState(null);
+  var [cdMiss, setCdMiss]   = useState([]);    // options tried and wrong on this question (Try Again!)
   var [cdAns, setCdAns]     = useState(0);     // answered this session
   var [cdRight, setCdRight] = useState(0);     // answered right this session
   var [cdOver, setCdOver]   = useState(false); // Finish pressed
@@ -10595,7 +10598,7 @@ export default function App() {
     });
   };
   var startCaseDrills = function() {
-    setCdErr(""); setCdOver(false); setCdAns(0); setCdRight(0); setCdSel(null);
+    setCdErr(""); setCdOver(false); setCdAns(0); setCdRight(0); setCdSel(null); setCdMiss([]);
     setCdQs([]); setCdIdx(0);
     var go = function(ix) {
       setCdBusy(true);
@@ -10619,7 +10622,17 @@ export default function App() {
   var cdAnswer = function(q, opt) {
     if (cdSel !== null) return;
     var right = opt === q.correct;
-    setCdSel(opt);
+    // A wrong pick keeps the question on screen — Try Again! — until the right
+    // one is picked. Only the first pick is scored and scheduled.
+    var first = cdMiss.length === 0;
+    if (!right) {
+      if (cdMiss.indexOf(opt) >= 0) return;
+      setCdMiss(cdMiss.concat([opt]));
+      if (!first) return;
+    } else {
+      setCdSel(opt);
+      if (!first) return;
+    }
     // A miss comes back (3, then 6, then 10 questions on) until it has been
     // answered right 2 more times; repeats are practice and are not scored.
     var again = repNext(right, q.rep || null);
@@ -10637,7 +10650,7 @@ export default function App() {
     bumpToday("cases", 1);
   };
   var cdNextQ = function() {
-    setCdSel(null);
+    setCdSel(null); setCdMiss([]);
     setCdIdx(function(i){ return i + 1; });
     // Top up by the NEW sentences still ahead, not the queue's length: a missed
     // drill comes back several times, and counting those repeats as "still to
@@ -13180,19 +13193,19 @@ export default function App() {
     var right = fd.q.answers.indexOf(given) >= 0;
     // Numerals: a miss keeps the same number on screen ("Try Again!") until it
     // is typed right. Only the first try is scored; the retries are practice.
-    if ((fd.kind === "num" || fd.kind === "clock") && fd.retry) {
+    if (fd.retry) {
       if (right) setFd(Object.assign({}, fd, { checked: true, right: true, retry: false, retried: true }));
       else setFd(Object.assign({}, fd, { input: "", tries: (fd.tries || 1) + 1, wrong: String(fd.input || "").trim() }));
       return;
     }
-    var fix = !right && fd.kind === "conj";
+    var fix = false;          // the old "type it correctly to go on" step: Try Again! does that job for every drill now
     var rep = fd.q.rep || null;
     var steps = (fd.steps || 0) + 1;
     var baseQ = Object.assign({}, fd.q);
     delete baseQ.again; delete baseQ.rep;
     var again = repNext(right, rep);
     if (again) fdRepeat.current.push({ q: baseQ, due: steps + repGap(again.step), need: again.need, step: again.step });
-    var retryNow = !right && (fd.kind === "num" || fd.kind === "clock");
+    var retryNow = !right;
     setFd(Object.assign({}, fd, { checked: !retryNow, right: right, fix: fix, fixInput: "", steps: steps,
       retry: retryNow, tries: retryNow ? 1 : 0, reveal: false, input: retryNow ? "" : fd.input,
       wrong: retryNow ? String(fd.input || "").trim() : "",
@@ -13374,18 +13387,19 @@ export default function App() {
                     className={"crs-in" + (nd.status === "right" ? " ok" : nd.status === "wrong" ? " bad" : "")}
                     value={nd.val} readOnly={nd.status === "right"} size={Math.max(10, Math.min(40, (it.show || "").length + 4))}
                     onChange={function(ev){ setNd(Object.assign({}, nd, { val: ev.target.value, status: nd.status === "right" ? "right" : "" })); }}
-                    onKeyDown={function(ev){ if (ev.key === "Enter") { if (nd.status === "right" || nd.shown) nextNum(mode); else checkNum(); } }} />) : null}</Fragment>; })}
+                    onKeyDown={function(ev){ if (ev.key === "Enter") { if (nd.status === "right") nextNum(mode); else checkNum(); } }} />) : null}</Fragment>; })}
                 {nd.status !== "right" && <button type="button" className="crs-chk" onClick={checkNum}>Check</button>}
                 {nd.status === "right" && <span className="crs-tick">✓</span>}
               </div>
               {it.src ? <div className="crs-hint">— {it.src}</div> : null}
-              {nd.status === "wrong" && nd.tries >= 2 && !nd.shown && (
+              {nd.status === "wrong" && <div key={nd.tries} className="cd-fb-h bad fd-again" style={{marginTop:8}}>Try Again!</div>}
+              {nd.status === "wrong" && !nd.shown && (
                 <button type="button" className="crs-show" onClick={function(){ setNd(Object.assign({}, nd, { shown: true })); }}>Show the answer</button>
               )}
               {(nd.shown || nd.status === "right") && (
-                <div className="crs-why"><b lang="ru">{it.show}</b>{it.src ? "" : " — sentence and translation from Tatoeba (CC BY 2.0 FR)."}</div>
+                <div className="crs-why"><b lang="ru">{it.show}</b>{it.src ? "" : " — sentence and translation from Tatoeba (CC BY 2.0 FR)."}{nd.status !== "right" ? " Type it in to go on." : ""}</div>
               )}
-              {(nd.status === "right" || nd.shown) && (
+              {nd.status === "right" && (
                 <button type="button" className="btn-p nd-next" onClick={function(){ nextNum(mode); }}>Next →</button>
               )}
             </div>
@@ -14698,7 +14712,7 @@ export default function App() {
     var skipNote = commonSkipped > 0 ? commonSkipped + " word(s) skipped — already on your known-words list." : "";
     setQuizSkipNote(skipNote);
     setQuizLearnedNow([]);
-    setQuizSelected(null);
+    setQuizSelected(null); setRvMiss([]);
     setQuizMenu(false);
     var first = rvDraw({
       started: now, filterPos: filterPos, groups: groups, shuffle: shuffle, pool: own,
@@ -14864,7 +14878,14 @@ export default function App() {
     var now = Date.now();
     var c = rv.cur;
     var correct = opt === c.q.correct;
-    setQuizSelected(opt);
+    // A wrong pick keeps the card on screen — Try Again! — until the right one
+    // is picked. Only the first pick is scored and scheduled.
+    if (rvMiss.length) {
+      if (correct) setQuizSelected(opt);
+      else if (rvMiss.indexOf(opt) < 0) setRvMiss(rvMiss.concat([opt]));
+      return;
+    }
+    if (correct) setQuizSelected(opt); else setRvMiss([opt]);
     bumpToday(rv.pool ? "terms" : "quiz", 1);     // the day's goals
     if (correct) bumpToday(rv.pool ? "termsOk" : "quizOk", 1);     // right answers, for the leaderboard
     if (!rv.pool) {                       // a course's cards are not scheduled or counted
@@ -14894,13 +14915,13 @@ export default function App() {
     });
   };
   var rvNext = function() {
-    setQuizSelected(null);
+    setQuizSelected(null); setRvMiss([]);
     setRv(function(s){ return s ? rvDraw(s, Date.now()) : s; });
   };
   // Past the day's limits, for as long as you want: everything still in the
   // queues, then the least-secure words, weakest first.
   var rvStudyMore = function() {
-    setQuizSelected(null);
+    setQuizSelected(null); setRvMiss([]);
     setRv(function(s){
       if (!s) return s;
       var keyOf = function(v){ return v._key || v.id || v.ru; };
@@ -14929,7 +14950,7 @@ export default function App() {
   var rvRemove = function(key) {
     setRvConfirm(null);
     setVocab(function(list){ return list.filter(function(v){ return (v._key || v.id || v.ru) !== key; }); });
-    setQuizSelected(null);
+    setQuizSelected(null); setRvMiss([]);
     setRv(function(s){
       if (!s) return s;
       var gone = function(k){ return k !== key; };
@@ -16824,17 +16845,25 @@ export default function App() {
                       <div className="cd-opts" data-noxl="1" lang="ru">
                         {q.options.map(function(opt, i){
                           var cls = "cd-opt";
-                          if (answered) cls += opt === q.correct ? " ok" : (opt === cdSel ? " bad" : " dim");
+                          var missed = cdMiss.indexOf(opt) >= 0;
+                          if (answered) cls += opt === q.correct ? " ok" : (missed ? " bad" : " dim");
+                          else if (missed) cls += " bad";
                           return (
-                            <button key={i} className={cls} disabled={answered} onClick={function(){ cdAnswer(q, opt); }}>
+                            <button key={i} className={cls} disabled={answered || missed} onClick={function(){ cdAnswer(q, opt); }}>
                               <span className="cd-k">{String.fromCharCode(65 + i)}.</span>{opt}
                             </button>
                           );
                         })}
                       </div>
+                      {!answered && cdMiss.length > 0 && (
+                        <div className="cd-fb">
+                          <div key={cdMiss.length} className="cd-fb-h bad fd-again">Try Again!</div>
+                          <div className="fd-wrong">You picked: <span lang="ru">{cdMiss[cdMiss.length - 1]}</span></div>
+                        </div>
+                      )}
                       {answered && (
                         <div className="cd-fb">
-                          <div className={"cd-fb-h" + (wasRight ? " ok" : " bad")}>{wasRight ? "Correct" : "Not quite"}{q.case ? " — " + q.case : ""}</div>
+                          <div className="cd-fb-h ok">{cdMiss.length ? "Correct — got it this time" : "Correct"}{q.case ? " — " + q.case : ""}</div>
                           {q.explain && <div className="cd-fb-x">{q.explain}</div>}
                         </div>
                       )}
@@ -17196,14 +17225,22 @@ quizMode ? (
                           var isCorrect = opt === q.correct;
                           var isPicked  = opt === quizSelected;
                           var cls = "rv-opt";
-                          if (answered) cls += isCorrect ? " ok" : (isPicked ? " bad" : " dim");
+                          var isMissed = rvMiss.indexOf(opt) >= 0;
+                          if (answered) cls += isCorrect ? " ok" : (isMissed ? " bad" : " dim");
+                          else if (isMissed) cls += " bad";
                           return (
-                            <button key={i} className={cls} disabled={answered} onClick={function(){ rvAnswer(opt); }}>
+                            <button key={i} className={cls} disabled={answered || isMissed} onClick={function(){ rvAnswer(opt); }}>
                               <span className="rv-opt-k">{i + 1}</span>{opt}
                             </button>
                           );
                         })}
                       </div>
+                      {!answered && rvMiss.length > 0 && (
+                        <div style={{marginTop:16,textAlign:"center"}}>
+                          <div key={rvMiss.length} className="cd-fb-h bad fd-again">Try Again!</div>
+                          <div className="fd-wrong">You picked: <span>{rvMiss[rvMiss.length - 1]}</span></div>
+                        </div>
+                      )}
                       {answered && (
                         <div style={{marginTop:24,textAlign:"center"}}>
                           <button className="btn-p" style={{maxWidth:280}} onClick={rvNext}>Next →</button>
@@ -28109,18 +28146,18 @@ quizMode ? (
                               <div data-noxl="1" style={{display:"flex",flexDirection:"column",gap:10,maxWidth:520,margin:"0 auto"}}>
                                 {q.options.map(function(opt, i) {
                                   var isCorrect = opt === q.correct;
-                                  var isPicked  = opt === exSelected;
+                                  var isPicked  = exMiss.indexOf(opt) >= 0;
                                   var bg = "rgba(42,31,20,.05)", brd = "rgba(42,31,20,.16)", col = "#000";
-                                  if (answered) {
-                                    if (isCorrect)     { bg = "rgba(90,133,86,.18)"; brd = "rgba(90,133,86,.6)"; col = "#2f5a2a"; }
-                                    else if (isPicked) { bg = "rgba(157,70,48,.18)"; brd = "rgba(157,70,48,.6)"; col = "#9d4630"; }
-                                    else               { col = "rgba(42,31,20,.4)"; }
-                                  }
+                                  if (answered && isCorrect) { bg = "rgba(90,133,86,.18)"; brd = "rgba(90,133,86,.6)"; col = "#2f5a2a"; }
+                                  else if (isPicked)         { bg = "rgba(157,70,48,.18)"; brd = "rgba(157,70,48,.6)"; col = "#9d4630"; }
+                                  else if (answered)         { col = "rgba(42,31,20,.4)"; }
                                   return (
-                                    <button key={i} disabled={answered} onClick={function(){
-                                      setExSelected(opt);
-                                      bumpToday("book", 1);
-                                      if (isCorrect) setExScore(function(s){ return s + 1; });
+                                    <button key={i} disabled={answered || isPicked} onClick={function(){
+                                      // A wrong pick stays — Try Again! — until the right one; only the first pick scores.
+                                      var first = exMiss.length === 0;
+                                      if (first) bumpToday("book", 1);
+                                      if (isCorrect) { setExSelected(opt); if (first) setExScore(function(s){ return s + 1; }); }
+                                      else setExMiss(exMiss.concat([opt]));
                                     }} style={{background:bg,border:"1px solid "+brd,color:col,padding:"13px 18px",borderRadius:10,fontSize:18,fontFamily:"'Literata',serif",cursor: answered ? "default" : "pointer",textAlign:"left",transition:"all .15s"}}>
                                       <span style={{display:"inline-block",width:20,color:"rgba(42,31,20,.45)",fontFamily:"'IBM Plex Sans',sans-serif",fontSize:13}}>{String.fromCharCode(65 + i)}.</span>
                                       {opt}
@@ -28129,11 +28166,17 @@ quizMode ? (
                                 })}
                               </div>
 
+                              {!answered && exMiss.length > 0 && (
+                                <div style={{maxWidth:520,margin:"16px auto 0",textAlign:"center"}}>
+                                  <div key={exMiss.length} className="cd-fb-h bad fd-again">Try Again!</div>
+                                  <div className="fd-wrong">You picked: <span lang="ru">{exMiss[exMiss.length - 1]}</span></div>
+                                </div>
+                              )}
                               {/* Feedback: case name + explanation */}
                               {answered && (
                                 <div style={{maxWidth:520,margin:"18px auto 0",background:"rgba(42,31,20,.05)",border:"1px solid rgba(42,31,20,.14)",borderRadius:10,padding:"14px 16px"}}>
                                   <div style={{fontSize:15,fontWeight:600,color: wasRight ? "#2f5a2a" : "#9d4630",marginBottom:6}}>
-                                    {wasRight ? "Correct" : "Not quite"}{!isReading && q.case ? " — " + q.case : ""}
+                                    {exMiss.length ? "Correct — got it this time" : "Correct"}{!isReading && q.case ? " — " + q.case : ""}
                                   </div>
                                   <div style={{fontSize:14,color:"rgba(42,31,20,.7)",lineHeight:1.55}}>{q.explain}</div>
                                 </div>
@@ -28149,7 +28192,7 @@ quizMode ? (
                                       recordDrill(exQuestions.length, exScore, bookMeta);
                                     }
                                     setExIdx(function(i){ return i + 1; });
-                                    setExSelected(null);
+                                    setExSelected(null); setExMiss([]);
                                   }}>
                                     {exIdx + 1 < exQuestions.length ? "Next →" : "See results"}
                                   </button>
