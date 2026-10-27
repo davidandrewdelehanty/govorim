@@ -6643,10 +6643,20 @@ export default function App() {
   // `remindAm` the morning one. Both go to the reader's devices as push
   // messages when they have turned them on (see the push code below).
   var GOALS_DEFAULT = { words: GOAL_WORDS, cards: GOAL_CARDS, quiz: 0, match: 0, terms: 0, decl: 0, conj: 0, drills: 10, numbers: 0,
-                        num: 0, clock: 0, frac: 0, count: 0, numcase: 0, verbs: 0, book: 0,
+                        num: 0, numCard: 0, numOrd: 0, clock: 0, frac: 0, count: 0, numcase: 0, verbs: 0, book: 0,
                         course: 10, sections: 1, remind: "17:00", remindAm: "08:00", notify: false, emailRemind: false, alertEmail: "", tz: "", updatedAt: 0 };
   var [goals, setGoalsRaw] = useState(GOALS_DEFAULT);
   var goalsLoaded = useRef(false);
+  // Goals set before the list was split (Oct 27 2026): Numeral practice becomes Cardinal numbers, the
+  // all-numbers row and the old "Verb practice" (which opened conjugation) move to the rows that replace them.
+  useEffect(function(){
+    if (!goalsLoaded.current) return;
+    var p = {};
+    if ((goals.num || 0) > 0) { if (!(goals.numCard > 0)) p.numCard = goals.num; p.num = 0; }
+    if ((goals.numbers || 0) > 0) { if (!(goals.numCard > 0) && !p.numCard) p.numCard = goals.numbers; p.numbers = 0; }
+    if (!goals.verbsSplit) { p.verbsSplit = 1; if ((goals.verbs || 0) > 0 && !(goals.conj > 0)) { p.conj = goals.verbs; p.verbs = 0; } }
+    if (Object.keys(p).length) setGoals(p);
+  }, [goals]);
   var [alertEmailErr, setAlertEmailErr] = useState("");
   var setGoals = function(patch) {
     setGoalsRaw(function(g){ return Object.assign({}, g, patch, { updatedAt: Date.now() }); });
@@ -6677,22 +6687,23 @@ export default function App() {
   // so the admin panel can say who uses it.
   useEffect(function(){ if (tab === "my") bumpToday("myOpen", 1); }, [tab]);
   // `go` is where the row's button takes the reader; `btn` what it says.
+  // One row per exercise, each opening that exercise itself.
   var GOAL_ROWS = [
     { k: "words", f: "read", label: "Words read", one: "word", tab: "chat", go: "read", btn: "Read →", set: "Words to read", max: 100000 },
     { k: "cards", f: "practiced", label: "Vocabulary reviewed", one: "card", tab: "vocab", go: "review", btn: "Review →", set: "Vocabulary cards to review (any exercise)", max: 1000 },
-    { k: "quiz", f: "quiz", label: "Multiple-choice quiz answers", one: "answer", tab: "vocab", go: "review", btn: "Quiz →", set: "Multiple-choice quiz answers", max: 1000 },
-    { k: "match", f: "match", label: "Match rounds won", one: "round", tab: "vocab", go: "review", btn: "Match →", set: "Match rounds to win", max: 1000 },
+    { k: "quiz", f: "quiz", label: "Multiple-choice quiz answers", one: "answer", tab: "vocab", go: "quiz", btn: "Quiz →", set: "Multiple-choice quiz answers", max: 1000 },
+    { k: "match", f: "match", label: "Match rounds won", one: "round", tab: "vocab", go: "match", btn: "Match →", set: "Match rounds to win", max: 1000 },
     { k: "terms", f: "terms", label: "Grammar terms answered", one: "term", tab: "vocab", go: "terms", btn: "Practise →", set: "Grammar terms to answer", max: 1000 },
-    { k: "decl", f: "decl", label: "Declension practice (typing the form)", one: "answer", tab: "vocab", go: "decl", btn: "Practise →", set: "Declension practice — forms typed", max: 1000 },
-    { k: "conj", f: "conj", label: "Conjugation practice (typing the form)", one: "answer", tab: "vocab", go: "conj", btn: "Practise →", set: "Conjugation practice — forms typed", max: 1000 },
-    { k: "drills", f: "cases", label: "Case-drill questions", one: "question", tab: "drills", go: "cases", btn: "Drill →", set: "Case-drill questions", max: 1000 },
-    { k: "numbers", f: "numbers", label: "Counting and numeral drills", one: "answer", tab: "vocab", go: "numbers", btn: "Practise →", set: "Counting and numeral drills — all of them together", max: 1000 },
-    { k: "num", f: "num", label: "Numeral practice", one: "answer", tab: "vocab", go: "num", btn: "Practise →", set: "Numeral practice — numbers in words", max: 1000 },
+    { k: "decl", f: "decl", label: "Declension practice", one: "answer", tab: "vocab", go: "decl", btn: "Practise →", set: "Declension practice — forms typed", max: 1000 },
+    { k: "conj", f: "conj", label: "Conjugation practice", one: "answer", tab: "vocab", go: "conj", btn: "Practise →", set: "Conjugation practice — forms typed", max: 1000 },
+    { k: "drills", f: "cases", label: "Case drills", one: "question", tab: "drills", go: "cases", btn: "Drill →", set: "Case-drill questions", max: 1000 },
+    { k: "numCard", f: "numCard", label: "Cardinal numbers", one: "answer", tab: "vocab", go: "numCard", btn: "Practise →", set: "Cardinal numbers — typed in words", max: 1000 },
+    { k: "numOrd", f: "numOrd", label: "Ordinal numbers", one: "answer", tab: "vocab", go: "numOrd", btn: "Practise →", set: "Ordinal numbers — typed in words", max: 1000 },
     { k: "clock", f: "clock", label: "Clock practice", one: "answer", tab: "vocab", go: "clock", btn: "Practise →", set: "Clock practice — telling the time", max: 1000 },
     { k: "frac", f: "frac", label: "Fractions practice", one: "answer", tab: "vocab", go: "frac", btn: "Practise →", set: "Fractions practice", max: 1000 },
-    { k: "count", f: "count", label: "Counting objects", one: "answer", tab: "vocab", go: "count", btn: "Practise →", set: "Counting objects (Grammar page)", max: 1000 },
-    { k: "numcase", f: "numcase", label: "Numerals in cases", one: "answer", tab: "vocab", go: "numcase", btn: "Practise →", set: "Numerals in cases (Grammar page)", max: 1000 },
-    { k: "verbs", f: "verbs", label: "Verb practice", one: "answer", tab: "vocab", go: "conj", btn: "Practise →", set: "Verb practice — conjugation practice (the Grammar page's verb quizzes count too)", max: 1000 },
+    { k: "count", f: "count", label: "Counting objects", one: "answer", tab: "vocab", go: "count", btn: "Practise →", set: "Counting objects (on the Grammar page)", max: 1000 },
+    { k: "numcase", f: "numcase", label: "Numerals in cases", one: "answer", tab: "vocab", go: "numcase", btn: "Practise →", set: "Numerals in cases (on the Grammar page)", max: 1000 },
+    { k: "verbs", f: "verbs", label: "Verb quizzes", one: "answer", tab: "vocab", go: "verbs", btn: "Practise →", set: "Verb quizzes (the ▶ Practice quizzes on the Grammar page)", max: 1000 },
     { k: "book", f: "book", label: "Exercises in the reader", one: "answer", tab: "chat", go: "read", btn: "Read →", set: "Exercises in the reader — a book's own Exercises tab", max: 1000 },
     { k: "course", f: "course", label: "Course exercises right", one: "exercise", tab: "courses", go: "courses", btn: "Courses →", set: "Course exercises right", max: 1000 },
     { k: "sections", f: "sections", label: "Course sections finished", one: "section", tab: "courses", go: "courses", btn: "Courses →", set: "Course sections to finish", max: 100 },
@@ -7188,7 +7199,6 @@ export default function App() {
     });
     bumpToday("drills", 1);
     bumpToday(kind, 1);
-    if (kind === "conj") bumpToday("verbs", 1);     // the Verb practice goal opens this drill, so it counts here too
   };
   // The same words, filed under the book they were read in.
   var bumpTodayBook = function(key, n) {
@@ -13212,6 +13222,7 @@ export default function App() {
       wrong: retryNow ? String(fd.input || "").trim() : "",
       n: fd.n + (rep ? 0 : 1), nRight: fd.nRight + (!rep && right ? 1 : 0) }));
     if (rep) return;
+    if (fd.kind === "num") bumpToday(fdNumMode.current === "ord" ? "numOrd" : "numCard", 1);
     if (fd.kind === "num" || fd.kind === "clock" || fd.kind === "frac") { if (right) { bumpToday(fd.kind + "Ok", 1); bumpToday("practicedOk", 1); } bumpToday(fd.kind, 1); bumpToday("practiced", 1); bumpToday("numbers", 1); bumpToday("drills", 1); return; }
     recordFormDrill(fd.kind, right);
   };
@@ -28538,7 +28549,7 @@ quizMode ? (
                   if (go === "read") { setTab("chat"); return; }
                   if (go === "courses") { setTab("courses"); return; }
                   setTab("vocab");
-                  if (go === "numbers" || go === "count" || go === "numcase" || go === "verbs") {
+                  if (go === "count" || go === "numcase" || go === "verbs") {
                     setVocabSec("grammar"); setGramSec(go === "numcase" ? "numcase" : go === "verbs" ? "freq" : "count"); getVerbIdx(); loadExamples();
                     return;
                   }
@@ -28546,7 +28557,11 @@ quizMode ? (
                   clearVocabView();
                   setQuizMenu(false);
                   if (go === "cases") openCaseDrills();
-                  else if (go === "decl" || go === "conj" || go === "num" || go === "clock" || go === "frac") fdStart(go);
+                  else if (go === "quiz") startQuiz(null);
+                  else if (go === "match") startMatch(null);
+                  else if (go === "numCard") fdStartNum("card");
+                  else if (go === "numOrd") fdStartNum("ord");
+                  else if (go === "decl" || go === "conj" || go === "clock" || go === "frac") fdStart(go);
                   else if (go === "terms") startTermsFromVocab();
                 };
                 var num = function(k, max) {
