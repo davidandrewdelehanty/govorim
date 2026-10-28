@@ -13044,8 +13044,10 @@ export default function App() {
       var canon = it[2].filter(function(a){ return pods.some(function(p){ return a.slice(-p.length - 1) === " " + p; }); })[0]
         || (it[3][0] + (it[7] ? " " + it[7] : ""));
       if (Math.random() < 0.5) {
-        return { kind: "clock", mode: "say", word: it[0], en: "", ask: "Write this time in words, the everyday way: 14:05 is \u043f\u044f\u0442\u044c \u043c\u0438\u043d\u0443\u0442 \u0442\u0440\u0435\u0442\u044c\u0435\u0433\u043e \u0434\u043d\u044f. \u0443\u0442\u0440\u0430 / \u0434\u043d\u044f / \u0432\u0435\u0447\u0435\u0440\u0430 / \u043d\u043e\u0447\u0438 may be put in or left out.",
-                 answers: everyday.map(fdNorm), shown: canon, rule: rule, note: "" };
+        // The official 24-hour reading (DLI Lesson 73: «четырнадцать ноль ноль») is accepted too — it is how a 24-hour time is read aloud.
+        var a24 = it[5] || [];
+        return { kind: "clock", mode: "say", word: it[0], en: "", ask: "Write this time in words: the everyday way (14:05 is \u043f\u044f\u0442\u044c \u043c\u0438\u043d\u0443\u0442 \u0442\u0440\u0435\u0442\u044c\u0435\u0433\u043e \u0434\u043d\u044f \u2014 \u0443\u0442\u0440\u0430 / \u0434\u043d\u044f / \u0432\u0435\u0447\u0435\u0440\u0430 / \u043d\u043e\u0447\u0438 may be left out), or the official 24-hour reading (\u0447\u0435\u0442\u044b\u0440\u043d\u0430\u0434\u0446\u0430\u0442\u044c \u043d\u043e\u043b\u044c \u043f\u044f\u0442\u044c).",
+                 answers: everyday.concat(a24).map(fdNorm), shown: canon, a24: a24[0] || "", ck: it[1], clk: it[6] || "", why: j.why || {}, rule: rule, note: "" };
       }
       return { kind: "clock", mode: "set", word: canon, en: "", ask: "Type this time as digits on the 24-hour clock, like 20:35.",
                answers: [it[0].replace(":", "")], shown: it[0], rule: rule, note: "" };
@@ -13227,6 +13229,50 @@ export default function App() {
     setVocabDrill(null);
     setFd(null);
   };
+  // Clock practice, words written for a time: what went wrong in a miss, with the DLI rule it broke. Only the common slips are
+  // named — a 24-hour hour inside the everyday wording, an ordinal after «без», a cardinal hour past the hour, and the hour
+  // off by one (past the hour and «без» both count toward the NEXT hour).
+  var fdClockMiss = function(q, raw) {
+    if (!q || q.kind !== "clock" || q.mode !== "say") return [];
+    var t = " " + String(raw || "").toLowerCase().replace(/\u0451/g, "\u0435").replace(/[^\u0430-\u044f]+/g, " ").trim() + " ";
+    var w = t.trim().split(" ");
+    var why = q.why || {}, out = [];
+    var add = function(tip, key) { out.push({ tip: tip, quote: why[key] || "" }); };
+    var ORD = ["", "\u043f\u0435\u0440\u0432\u043e\u0433\u043e", "\u0432\u0442\u043e\u0440\u043e\u0433\u043e", "\u0442\u0440\u0435\u0442\u044c\u0435\u0433\u043e", "\u0447\u0435\u0442\u0432\u0435\u0440\u0442\u043e\u0433\u043e", "\u043f\u044f\u0442\u043e\u0433\u043e", "\u0448\u0435\u0441\u0442\u043e\u0433\u043e",
+               "\u0441\u0435\u0434\u044c\u043c\u043e\u0433\u043e", "\u0432\u043e\u0441\u044c\u043c\u043e\u0433\u043e", "\u0434\u0435\u0432\u044f\u0442\u043e\u0433\u043e", "\u0434\u0435\u0441\u044f\u0442\u043e\u0433\u043e", "\u043e\u0434\u0438\u043d\u043d\u0430\u0434\u0446\u0430\u0442\u043e\u0433\u043e", "\u0434\u0432\u0435\u043d\u0430\u0434\u0446\u0430\u0442\u043e\u0433\u043e"];
+    var CARD = ["", "\u0447\u0430\u0441", "\u0434\u0432\u0430", "\u0442\u0440\u0438", "\u0447\u0435\u0442\u044b\u0440\u0435", "\u043f\u044f\u0442\u044c", "\u0448\u0435\u0441\u0442\u044c", "\u0441\u0435\u043c\u044c", "\u0432\u043e\u0441\u0435\u043c\u044c", "\u0434\u0435\u0432\u044f\u0442\u044c", "\u0434\u0435\u0441\u044f\u0442\u044c", "\u043e\u0434\u0438\u043d\u043d\u0430\u0434\u0446\u0430\u0442\u044c", "\u0434\u0432\u0435\u043d\u0430\u0434\u0446\u0430\u0442\u044c"];
+    var PODS = { "\u0443\u0442\u0440\u0430": 1, "\u0434\u043d\u044f": 1, "\u0432\u0435\u0447\u0435\u0440\u0430": 1, "\u043d\u043e\u0447\u0438": 1 };
+    var h = parseInt(String(q.clk || "").split(":")[0], 10) || 0, nx = h % 12 + 1;
+    var bez = w[0] === "\u0431\u0435\u0437";
+    // the hour words: after «без» everything past the minutes (genitive: -и, четверти, одной, минут/минуты); else the last word
+    var hw = w.filter(function(x){ return !PODS[x]; });
+    var hour = "";
+    if (bez) {
+      var k = 1;
+      while (k < hw.length && (/\u0438$/.test(hw[k]) || hw[k] === "\u043e\u0434\u043d\u043e\u0439" || /^\u043c\u0438\u043d\u0443\u0442/.test(hw[k]))) k++;
+      hour = hw.slice(k).join(" ");
+    } else hour = hw.slice(-1)[0] || "";
+    var BIG = "(\u0442\u0440\u0438\u043d\u0430\u0434\u0446\u0430\u0442|\u0447\u0435\u0442\u044b\u0440\u043d\u0430\u0434\u0446\u0430\u0442|\u043f\u044f\u0442\u043d\u0430\u0434\u0446\u0430\u0442|\u0448\u0435\u0441\u0442\u043d\u0430\u0434\u0446\u0430\u0442|\u0441\u0435\u043c\u043d\u0430\u0434\u0446\u0430\u0442|\u0432\u043e\u0441\u0435\u043c\u043d\u0430\u0434\u0446\u0430\u0442|\u0434\u0435\u0432\u044f\u0442\u043d\u0430\u0434\u0446\u0430\u0442|\u0434\u0432\u0430\u0434\u0446\u0430\u0442)";
+    var bigOrd = new RegExp(" " + BIG + "\u043e\u0433\u043e | \u0434\u0432\u0430\u0434\u0446\u0430\u0442\u044c (\u043f\u0435\u0440\u0432\u043e\u0433\u043e|\u0432\u0442\u043e\u0440\u043e\u0433\u043e|\u0442\u0440\u0435\u0442\u044c\u0435\u0433\u043e|\u0447\u0435\u0442\u0432\u0435\u0440\u0442\u043e\u0433\u043e) ").test(t);
+    var bigCard = bez && new RegExp("^" + BIG + "\u044c( |$)").test(hour);
+    var everydayWords = bez || / \u043c\u0438\u043d\u0443\u0442| \u0447\u0435\u0442\u0432\u0435\u0440\u0442\u044c | \u043f\u043e\u043b\u043e\u0432\u0438\u043d\u0430 | \u043f\u043e\u043b/.test(t);
+    var ordAfterBez = bez && /(\u043e\u0433\u043e|\u0435\u0433\u043e)( |$)/.test(hour);
+    if ((bigOrd || bigCard) && everydayWords)
+      add("The everyday wording is on the 12-hour clock: " + q.word + " is \u00ab" + q.shown + "\u00bb, and \u0443\u0442\u0440\u0430 / \u0434\u043d\u044f / \u0432\u0435\u0447\u0435\u0440\u0430 / \u043d\u043e\u0447\u0438 tell the time of day. A 24-hour hour is only read officially, as two plain numbers with no \u0431\u0435\u0437 and no ordinal" + (q.a24 ? ": \u00ab" + q.a24 + "\u00bb." : "."), "on");
+    if (ordAfterBez)
+      add("After \u0431\u0435\u0437 the hour is a cardinal in the nominative (\u0431\u0435\u0437 \u043f\u044f\u0442\u0438 \u0442\u0440\u0438), not an ordinal \u2014 the genitive ordinal is for the minutes past the hour (\u043f\u044f\u0442\u044c \u043c\u0438\u043d\u0443\u0442 \u0442\u0440\u0435\u0442\u044c\u0435\u0433\u043e).", "to");
+    if (h && !bigOrd && !bigCard && !ordAfterBez) {
+      if ((q.ck === "past" || q.ck === "half") && !bez) {
+        if (CARD.indexOf(hour) > 0 || hour === "\u043e\u0434\u0438\u043d")
+          add("Past the hour, the hour is the ordinal of the next hour in the genitive: " + h + ":05 is \u043f\u044f\u0442\u044c \u043c\u0438\u043d\u0443\u0442 " + ORD[nx] + ".", "past");
+        else if (hour === ORD[h])
+          add("Past the hour counts toward the next one: it is " + ORD[nx] + ", not " + ORD[h] + ".", "past");
+      }
+      if (q.ck === "to" && bez && (hour === CARD[h] || (h === 1 && hour === "\u043e\u0434\u0438\u043d")))
+        add("\u0411\u0435\u0437 counts down to the coming hour: it is \u0431\u0435\u0437 \u2026 " + CARD[nx] + ", not " + CARD[h] + ".", "to");
+    }
+    return out;
+  };
   var fdCheck = function() {
     if (!fd || !fd.q || fd.checked) return;
     var given = fdNorm(fd.input);
@@ -13237,7 +13283,7 @@ export default function App() {
     // is typed right. Only the first try is scored; the retries are practice.
     if (fd.retry) {
       if (right) setFd(Object.assign({}, fd, { checked: true, right: true, retry: false, retried: true }));
-      else setFd(Object.assign({}, fd, { input: "", tries: (fd.tries || 1) + 1, wrong: String(fd.input || "").trim() }));
+      else setFd(Object.assign({}, fd, { input: "", tries: (fd.tries || 1) + 1, wrong: String(fd.input || "").trim(), miss: fdClockMiss(fd.q, fd.input) }));
       return;
     }
     var fix = false;          // the old "type it correctly to go on" step: Try Again! does that job for every drill now
@@ -13250,7 +13296,7 @@ export default function App() {
     var retryNow = !right;
     setFd(Object.assign({}, fd, { checked: !retryNow, right: right, fix: fix, fixInput: "", steps: steps,
       retry: retryNow, tries: retryNow ? 1 : 0, reveal: false, input: retryNow ? "" : fd.input,
-      wrong: retryNow ? String(fd.input || "").trim() : "",
+      wrong: retryNow ? String(fd.input || "").trim() : "", miss: retryNow ? fdClockMiss(fd.q, fd.input) : [],
       n: fd.n + (rep ? 0 : 1), nRight: fd.nRight + (!rep && right ? 1 : 0) }));
     if (rep) return;
     if (fd.kind === "num") bumpToday(fdNumMode.current === "ord" ? "numOrd" : "numCard", 1);
@@ -17065,7 +17111,7 @@ export default function App() {
           "An ordinal number (seventy-third) and the case, singular or plural and gender to put it in \u2014 type it in Russian words. A table is a tap away. Misses come back until you have them.",
           function(){ fdStartNum("ord"); })}
         {!termDrill && card("Clock practice",
-          "Every minute of the day, said the everyday Russian way: the words to type as 24-hour digits (\u043f\u044f\u0442\u044c \u043c\u0438\u043d\u0443\u0442 \u0442\u0440\u0435\u0442\u044c\u0435\u0433\u043e \u0434\u043d\u044f \u2192 14:05), or the digits to write in words. A miss stays until you have it right.",
+          "Every minute of the day, said the everyday Russian way: the words to type as 24-hour digits (\u043f\u044f\u0442\u044c \u043c\u0438\u043d\u0443\u0442 \u0442\u0440\u0435\u0442\u044c\u0435\u0433\u043e \u0434\u043d\u044f \u2192 14:05), or the digits to write in words \u2014 the everyday way, or the official 24-hour reading (\u0447\u0435\u0442\u044b\u0440\u043d\u0430\u0434\u0446\u0430\u0442\u044c \u043f\u044f\u0442\u044c\u0434\u0435\u0441\u044f\u0442 \u0447\u0435\u0442\u044b\u0440\u0435). A miss stays until you have it right.",
           function(){ fdStart("clock"); })}
         {!termDrill && card("Fractions practice",
           "A fraction in digits \u2014 write it in words: \u0442\u0440\u0438 \u0432\u043e\u0441\u044c\u043c\u044b\u0445, \u043f\u044f\u0442\u044c \u0441 \u043f\u043e\u043b\u043e\u0432\u0438\u043d\u043e\u0439. Numerators are cardinal, denominators ordinal. A miss comes back a few times until you have it right twice more.",
@@ -17412,7 +17458,7 @@ quizMode ? (
                       : fd.kind === "frac"
                       ? "A fraction in digits \u2014 write it in words: \u0442\u0440\u0438 \u0432\u043e\u0441\u044c\u043c\u044b\u0445, \u043f\u044f\u0442\u044c \u0441 \u043f\u043e\u043b\u043e\u0432\u0438\u043d\u043e\u0439. A miss comes back a few times until you have it right twice more."
                       : fd.kind === "clock"
-                      ? "Every minute of the day, said the everyday Russian way: the words to type as 24-hour digits (\u043f\u044f\u0442\u044c \u043c\u0438\u043d\u0443\u0442 \u0442\u0440\u0435\u0442\u044c\u0435\u0433\u043e \u0434\u043d\u044f \u2192 14:05), or the digits to write in words. A miss stays until you have it right."
+                      ? "Every minute of the day, said the everyday Russian way: the words to type as 24-hour digits (\u043f\u044f\u0442\u044c \u043c\u0438\u043d\u0443\u0442 \u0442\u0440\u0435\u0442\u044c\u0435\u0433\u043e \u0434\u043d\u044f \u2192 14:05), or the digits to write in words \u2014 the everyday way, or the official 24-hour reading (\u0447\u0435\u0442\u044b\u0440\u043d\u0430\u0434\u0446\u0430\u0442\u044c \u043f\u044f\u0442\u044c\u0434\u0435\u0441\u044f\u0442 \u0447\u0435\u0442\u044b\u0440\u0435). A miss stays until you have it right."
                       : fd.kind === "num"
                       ? (fdMode === "ord"
                         ? "An ordinal number in a sentence — the preposition in front sets the case, and the noun after it shows the gender, number and animacy: \u043a\u043e _____ (2) \u0431\u0443\u0442\u044b\u043b\u043a\u0435 \u043f\u0438\u0432\u0430. Type the number in Russian words."
@@ -17488,8 +17534,10 @@ quizMode ? (
                           <div className="cd-fb">
                             <div key={fd.tries} className="cd-fb-h bad fd-again">Try Again!</div>
                             {fd.wrong ? <div className="fd-wrong">You wrote: <span lang="ru">{fd.wrong}</span></div> : null}
+                            {(fd.miss || []).map(function(m, mi){ return (
+                              <div key={mi} className="fd-note" style={{margin:"4px 0 8px"}}>{m.tip}{m.quote ? <div style={{marginTop:4,opacity:.8,fontSize:"0.92em"}} lang="ru">{m.quote}</div> : null}</div>); })}
                             {fd.reveal
-                              ? <div className="cd-fb-x">It is <b lang="ru">{fd.q.shown}</b> — type it to go on.</div>
+                              ? <div className="cd-fb-x">It is <b lang="ru">{fd.q.shown}</b>{fd.q.a24 ? <> (or, read officially, <b lang="ru">{fd.q.a24}</b>)</> : null} — type it to go on.</div>
                               : <button type="button" className="crs-retry" style={{marginLeft:0}} onClick={function(){ setFd(function(st){ return st ? Object.assign({}, st, { reveal: true }) : st; }); }}>Show the answer</button>}
                           </div>
                         )}
