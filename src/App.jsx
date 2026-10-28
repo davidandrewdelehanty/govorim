@@ -12996,7 +12996,23 @@ export default function App() {
       var gen = String(it[2] || "").split("").map(function(c){ return { m: "masculine", f: "feminine", n: "neuter" }[c]; }).filter(Boolean).join(" or ");
       // an ordinal agrees like an adjective (genitive singular feminine); a cardinal is told the gender of the noun it counts
       var askS = ord ? ask.concat(gen ? [gen] : []).join(" ") : ask.join(" ") + (gen ? ", with a " + gen + " noun" : "");
-      return { kind: "num", word: fdEnNum(it[0], ord), en: "", ask: askS, answers: it[5].map(fdNorm), shown: it[5].join(", "), note: "" };
+      // The sentence: a frame whose preposition requires the case, the blank, and one of four objects (бутылка пива,
+      // стакан, яблоко, кот) in the form the number calls for — both written by gen_numeral_drill.py from OpenCorpora.
+      var sent = null;
+      if (it[6] && it[7] && j.nn && j.fr) {
+        var frs = j.fr[ord && it[1] === "nomn" ? "nomn_o" : it[1]] || [];
+        var fr = frs[Math.floor(Math.random() * frs.length)];
+        var nk = it[7].charAt(Math.floor(Math.random() * it[7].length));
+        var noun = j.nn[nk] && j.nn[nk][it[6]];
+        if (fr && noun) {
+          var a0 = String(it[5][0] || "").toLowerCase(), pr = fr[1];
+          if (pr === "\u0441" && /^([\u0441\u0437\u0448\u0436][\u0431\u0432\u0433\u0434\u0436\u0437\u0439\u043a\u043b\u043c\u043d\u043f\u0440\u0441\u0442\u0444\u0445\u0446\u0447\u0448\u0449]|\u0432\u0442|\u043c\u043d)/.test(a0)) pr = "\u0441\u043e";   // со второй, со ста
+          else if (pr === "\u043a" && /^(\u0432\u0442|\u043c\u043d|\u0432\u0441)/.test(a0)) pr = "\u043a\u043e";   // ко второму
+          else if (pr === "\u043e" && /^[\u0430\u043e\u0443\u044d\u0438\u044b]/.test(a0)) pr = "\u043e\u0431";   // об одном
+          sent = { pre: [fr[0], pr].filter(Boolean).join(" "), post: noun + fr[2] };
+        }
+      }
+      return { kind: "num", word: fdEnNum(it[0], ord), num: it[0], sent: sent, en: "", ask: askS, answers: it[5].map(fdNorm), shown: it[5].join(", "), note: "" };
     }).catch(function(){ return { err: "The numeral forms could not be loaded." }; });
   };
   // Cardinals and ordinals are two separate drills, each started from its own card.
@@ -17397,8 +17413,8 @@ quizMode ? (
                       ? "Every minute of the day, said the everyday Russian way: the words to type as 24-hour digits (\u043f\u044f\u0442\u044c \u043c\u0438\u043d\u0443\u0442 \u0442\u0440\u0435\u0442\u044c\u0435\u0433\u043e \u0434\u043d\u044f \u2192 14:05), or the digits to write in words. A miss stays until you have it right."
                       : fd.kind === "num"
                       ? (fdMode === "ord"
-                        ? "An ordinal number written out in English (seventy-third), and the case, singular or plural and gender to put it in — animacy too in the accusative. Type it in Russian words."
-                        : "A cardinal number written out in English (thirty-five) and the case to put it in — with the gender of the noun it counts, and animacy in the accusative, only where they change the number's form. Type it in Russian words.")
+                        ? "An ordinal number in a sentence — the preposition in front sets the case, and the noun after it shows the gender, number and animacy: \u043a\u043e _____ (2) \u0431\u0443\u0442\u044b\u043b\u043a\u0435 \u043f\u0438\u0432\u0430. Type the number in Russian words."
+                        : "A cardinal number in a sentence — the preposition in front sets the case, and the noun after it shows the gender and animacy: \u0441 _____ (75) \u0431\u0443\u0442\u044b\u043b\u043a\u0430\u043c\u0438 \u043f\u0438\u0432\u0430. Type the number in Russian words.")
                       : "A verb with a conjugation table on Wiktionary, and a person and number in a tense — or a gender in the past. Type the form."}
                   </p>
                   {fd.kind === "num" && (
@@ -17445,7 +17461,12 @@ quizMode ? (
                     {fd.busy && !fd.q && !fd.err && <p className="cd-msg">{fd.kind === "decl" ? "Picking a noun…" : fd.kind === "num" ? "Picking a number…" : "Picking a verb…"}</p>}
                     {fd.q && (
                       <>
-                        <div className="cd-s">
+                        {fd.kind === "num" && fd.q.sent ? (
+                          <div className="cd-s fd-sent" lang="ru">
+                            {fd.q.sent.pre} <span className="fd-blank">{fd.checked && fd.right ? fd.q.shown.split(", ")[0] : "_____"}</span> <span className="fd-num" lang="en">({fd.q.num})</span> {fd.q.sent.post}
+                          </div>
+                        ) : null}
+                        <div className={"cd-s" + (fd.kind === "num" && fd.q.sent ? " fd-sub" : "")}>
                           <span lang={fd.kind === "num" || (fd.kind === "clock" && fd.q.mode === "say") ? "en" : "ru"} className={"fd-word" + (fd.kind === "num" || fd.kind === "frac" || (fd.kind === "clock" && fd.q.mode === "say") ? " fd-digit" : "")}>{fd.q.word}</span>
                           {fd.q.en ? <span className="fd-en"> — {fd.q.en}</span> : null}
                         </div>
@@ -17473,7 +17494,7 @@ quizMode ? (
                         {fd.checked && (
                           <div className="cd-fb">
                             <div className={"cd-fb-h" + (fd.right ? " ok" : " bad")}>{fd.right ? (fd.retried ? "Correct — got it this time" : "Correct") : "Not quite"}</div>
-                            {fd.kind === "frac" ? <div className="cd-fb-x"><b>{fd.q.word}</b> is <b lang="ru">{fd.q.shown}</b>.<div className="fd-note" style={{margin:"6px 0 0"}}>{fd.q.rule}</div></div> : fd.kind === "clock" ? <div className="cd-fb-x">{fd.q.mode === "set" ? <>The time <b lang="ru">{fd.q.word}</b> is <b>{fd.q.shown}</b>.</> : <>This time is <b lang="ru">{fd.q.shown}</b>.</>}<div className="fd-note" style={{margin:"6px 0 0"}} lang="ru">{fd.q.rule}</div></div> : <div className="cd-fb-x">{fd.kind === "num" ? "In Russian, " : "The "}{fd.kind === "num" ? <b>{fd.q.word}</b> : <>{fd.q.ask} of <b lang="ru">{fd.q.word}</b></>}{fd.kind === "num" ? " (" + fd.q.ask + ")" : ""} is <b lang="ru">{fd.q.pronoun ? fd.q.pronoun + " " : ""}{fd.q.shown}</b>.</div>}
+                            {fd.kind === "frac" ? <div className="cd-fb-x"><b>{fd.q.word}</b> is <b lang="ru">{fd.q.shown}</b>.<div className="fd-note" style={{margin:"6px 0 0"}}>{fd.q.rule}</div></div> : fd.kind === "clock" ? <div className="cd-fb-x">{fd.q.mode === "set" ? <>The time <b lang="ru">{fd.q.word}</b> is <b>{fd.q.shown}</b>.</> : <>This time is <b lang="ru">{fd.q.shown}</b>.</>}<div className="fd-note" style={{margin:"6px 0 0"}} lang="ru">{fd.q.rule}</div></div> : <div className="cd-fb-x">{fd.kind === "num" ? "In Russian, " : "The "}{fd.kind === "num" ? <b>{fd.q.word}</b> : <>{fd.q.ask} of <b lang="ru">{fd.q.word}</b></>}{fd.kind === "num" ? " (" + fd.q.ask + ")" : ""} is <b lang="ru">{fd.q.pronoun ? fd.q.pronoun + " " : ""}{fd.q.shown}</b>.{fd.kind === "num" && fd.q.sent ? <div className="fd-note" style={{margin:"6px 0 0"}} lang="ru">{fd.q.sent.pre} <b>{fd.q.shown.split(", ")[0]}</b> {fd.q.sent.post}</div> : null}</div>}
                             {fd.fix && (
                               <div className="fd-fix">
                                 <div className="cd-fb-x">Type it correctly to go on — it will come back in a few questions.</div>
@@ -19331,6 +19352,10 @@ quizMode ? (
         .fd-lead{font-family:var(--serif);font-size:14px;color:var(--ink-2);line-height:1.55;text-align:center;margin:0 0 6px}
         .fd-word{font-weight:600}
         .fd-digit{font-size:30px;line-height:1.15;font-family:var(--display);overflow-wrap:anywhere}
+        .fd-sent{font-size:22px;line-height:1.4;font-family:var(--display);overflow-wrap:anywhere;margin-bottom:6px}
+        .fd-blank{font-weight:600;border-bottom:2px solid currentColor;padding:0 2px}
+        .fd-num{font-weight:600;opacity:.75}
+        .fd-sub .fd-digit{font-size:17px;opacity:.75}
         .fd-modes{display:flex;gap:8px;justify-content:center;margin:10px 0 2px}
         .fd-again{animation:fdAgain .35s ease}
         .fd-wrong{font-size:15px;line-height:1.4;margin:4px 0 8px;white-space:normal;overflow-wrap:anywhere;word-break:break-word}
