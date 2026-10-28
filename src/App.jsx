@@ -12990,6 +12990,8 @@ export default function App() {
       var list = ord ? j.o : j.c;
       if (!list || !list.length) return { err: "The numeral forms could not be loaded." };
       var it = list[Math.floor(Math.random() * list.length)];
+      // Plural ordinals (седьмые коты) read oddly in a sentence: drawn about 1 time in 100 instead of 1 in 4.
+      for (var pt = 0; ord && it[3] === "p" && Math.random() > 0.03 && pt < 30; pt++) it = list[Math.floor(Math.random() * list.length)];
       var ask = [FD_CASE_EN[it[1]] + (it[4] === "a" ? " (animate)" : it[4] === "i" ? " (inanimate)" : "")];
       if (it[3]) ask.push(it[3] === "p" ? "plural" : "singular");
       // "mn" is two genders that share the form (двадцати одного: masculine or neuter)
