@@ -24752,8 +24752,6 @@ quizMode ? (
                     { key: "exRight", h: "Course exercises right", sub: "course exercises and exam questions answered right, each counted the first time it is right", unit: "right answers" },
                     { key: "bookRight", h: "Chapter exercises right", sub: "right first answers in a book chapter's own case and reading exercises", unit: "right answers" },
                     { key: "verbsRight", h: "Verb quiz right", sub: "right first answers in the Grammar tab's verb quiz", unit: "right answers" },
-                    { key: "countRight", h: "Counting right", sub: "right first answers in the Grammar tab's counting objects drill", unit: "right answers" },
-                    { key: "numcaseRight", h: "Numbers in cases right", sub: "right first answers in the Grammar tab's numbers-in-cases drill", unit: "right answers" },
                     { key: "songs", h: "Songs listened to", sub: "different songs played in the Music tab — each song counts once", unit: "songs" },
                     { key: "courses", h: "Courses completed", sub: "courses finished in the Courses tab — the exam passed, or every section done where there is no exam", unit: "courses" },
                   ]).map(function(col){
