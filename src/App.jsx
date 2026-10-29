@@ -24746,7 +24746,7 @@ quizMode ? (
                     { key: "quizRight", h: "Quiz answers right", sub: "every right answer in the multiple-choice quiz on your saved words", unit: "right answers" },
                     { key: "matchWon", h: "Match rounds won", sub: "rounds of the match game with all four right at the first try", unit: "rounds" },
                     { key: "termsRight", h: "Grammar terms right", sub: "right answers in the grammar terms quiz and match game", unit: "right answers" },
-                    { key: "numRight", h: "Numerals right", sub: "every number typed right in numeral practice, cardinal or ordinal", unit: "right answers" },
+                    { key: "numRight", h: "Numerals right", sub: "every number typed right in numeral practice, cardinal or ordinal, and right first answers in the Grammar tab's counting and numbers-in-cases drills", unit: "right answers" },
                     { key: "clockRight", h: "Clock times right", sub: "every time put right in clock practice, as digits or in words", unit: "right answers" },
                     { key: "fracRight", h: "Fractions right", sub: "every fraction written right in words in fractions practice", unit: "right answers" },
                     { key: "exRight", h: "Course exercises right", sub: "course exercises and exam questions answered right, each counted the first time it is right", unit: "right answers" },
