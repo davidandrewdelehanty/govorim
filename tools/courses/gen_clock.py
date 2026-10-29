@@ -190,6 +190,11 @@ def main():
     drills = []
     for h in range(24):
         for m in range(60):
+            # past the half the time is told «без …» — drilled on the five-minute
+            # marks only (без пяти, без десяти … без двадцати пяти); 2:37 is not
+            # asked at all
+            if m > 30 and m % 5:
+                continue
             d = say(h, m)
             e = {"hhmm": "%02d:%02d" % (h, m), "k": kind(m), "q": d["main"], "sets": d["sets"],
                  "a": d["tw"], "pods": d["pods"], "a24": d["t24"],
@@ -200,7 +205,7 @@ def main():
                 e["noSay"] = 1
             drills.append(e)
     table = []
-    for h, m in [(14, 0), (14, 5), (14, 15), (14, 21), (14, 30), (14, 40), (14, 45), (14, 59), (1, 0), (0, 10), (12, 30), (23, 55)]:
+    for h, m in [(14, 0), (14, 5), (14, 15), (14, 21), (14, 30), (14, 40), (14, 45), (1, 0), (0, 10), (12, 30), (23, 55)]:
         d = say(h, m)
         t24 = [a for a in d["t24"] if a.startswith(card(h) if h else "ноль")][0]
         table.append(["%02d:%02d" % (h, m), d["main"], t24])

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-"""Telling the Time — one page of DLI's rules, then a drill for every minute of the
-day, asked in random order, alternating: the time in Russian words, set it on a 24-hour digital clock; the
+"""Telling the Time — one page of DLI's rules, then a drill for every minute up to the half and every
+five minutes after it, asked in random order, alternating: the time in Russian words, set it on a 24-hour digital clock; the
 clock, write the time in words.
 
 The words are dictionary forms put together by the rules quoted below
@@ -96,7 +96,7 @@ SECTIONS = [SEC("ck0-rules", "How the time is told", [
 drills = [drill(d) for d in D["drills"]]
 SECTIONS.append(dict(SEC("ck-practice", "Clock practice",
                          [NOTE(u"One time at a time: set the clock, then say the next one, as long as you like. "
-                               u"There is a question for every minute of the day, in a new order each time you open this page. "
+                               u"There is a question for every minute up to the half hour and for every five minutes after it, in a new order each time you open this page. "
                                u"Every time here is made from dictionary forms by the rules on the first page.")],
                          drills, sub="as many as you like"), stream=True,
                     prompts={"set": PROMPT_SET, "say": PROMPT_SAY}))
