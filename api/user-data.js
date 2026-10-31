@@ -1962,7 +1962,13 @@ async function handleGroup(req, res, user, action) {
       const it = cleanAnnot(body.item);
       if (!it) return res.status(400).json({ error: "That annotation could not be read." });
       const now = Date.now();
-      let refused = "";
+      // The author's own clock at the moment of the edit. A highlight made
+      // with a note goes out as two writes a second apart — the bare mark,
+      // then the note — and the first can reach the server last, wiping the
+      // note. Writes from one author are ordered by this, so a late older
+      // write is dropped instead of landing on top of a newer one.
+      const clientAt = Math.floor(Number(body.item && body.item.updatedAt) || 0);
+      let refused = "", stale = false;
       const g = await r2Update(gkey(gid), function (cur) {
         if (!cur || cur.deleted) { refused = "No such group."; return undefined; }
         if (cur.closed || cur.ended) { refused = "This group read is closed — its notes stay, but it takes no new ones."; return undefined; }
@@ -1978,7 +1984,9 @@ async function handleGroup(req, res, user, action) {
         if (!prev && Object.keys(cur.items).length >= GROUP_ITEM_CAP) { refused = "This group's page is full."; return undefined; }
         const bookKeyOk = cur.own ? true : (!it.bookKey || it.bookKey.indexOf(cur.filename) === 0);
         if (!bookKeyOk) { refused = "That annotation is for another book."; return undefined; }
+        if (prev && prev.clientAt && clientAt && clientAt < prev.clientAt) { stale = true; return undefined; }
         it.updatedAt = now;
+        if (clientAt) it.clientAt = clientAt;
         it.by = prev && prev.by ? prev.by : { uid: me.uid, name: me.name, avatar: me.avatar };
         cur.items[it.id] = it;
         cur.lastActive = now;
@@ -1986,6 +1994,7 @@ async function handleGroup(req, res, user, action) {
       });
       if (refused) return res.status(400).json({ error: refused });
       if (!g || g.deleted) return res.status(404).json({ error: "No such group." });
+      if (stale) return res.status(200).json({ ok: true, stale: true, item: (g.items || {})[it.id] || null });
       // The public list only needs to move when the count does.
       try { await refreshIndex(g); } catch (e) {}
       return res.status(200).json({ ok: true, item: g.items[it.id] });

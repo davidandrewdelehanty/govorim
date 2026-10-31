@@ -10055,6 +10055,8 @@ export default function App() {
   var [grpOwner, setGrpOwner]       = useState(false);
   var [grpErr, setGrpErr]           = useState("");
   var grpSince                      = useRef(0);
+  var grpPending                    = useRef({});   // item id → updatedAt of our newest unsent edit
+  var grpSendQ                      = useRef({});   // item id → the write in flight, so writes go in order
   var [showGroups, setShowGroups]   = useState(false);
   var [groupsList, setGroupsList]   = useState(null);
   var [groupsLoad, setGroupsLoad]   = useState(false);
@@ -10149,7 +10151,13 @@ export default function App() {
           if (d.items && d.items.length) {
             setGrpItems(function(m) {
               var n = Object.assign({}, m);
-              d.items.forEach(function(it){ n[it.id] = it; });   // the server is the authority
+              d.items.forEach(function(it){
+                // The server is the authority — except over an edit of ours
+                // still on its way there.
+                var p = grpPending.current[it.id];
+                if (p && (it.clientAt || 0) < p) return;
+                n[it.id] = it;
+              });
               return n;
             });
           }
@@ -10364,14 +10372,30 @@ export default function App() {
     if (el) el.scrollTop = el.scrollHeight;
   }, [chatOpen, grp && grp.id]);
 
+  // A mark made with a note is two writes in quick succession — the bare
+  // highlight, then the note. Each item's writes go out one after another,
+  // and an answer (or a poll) carrying an older copy than the newest local
+  // edit is ignored, so the note can never be overwritten by the bare mark.
   var putGroupItem = function(item) {
-    authFetch("/api/user-data?group=put", {
-      method: "POST", headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ id: grp.id, item: item }),
-    }).then(function(r){ return r.json().then(function(d){ return { ok: r.ok, d: d }; }); })
-      .then(function(res) {
+    var id = item.id, at = item.updatedAt || Date.now();
+    grpPending.current[id] = at;
+    var prevSend = grpSendQ.current[id] || Promise.resolve();
+    var gid = grp.id;
+    var send = prevSend.catch(function(){}).then(function() {
+      return authFetch("/api/user-data?group=put", {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: gid, item: item }),
+      });
+    }).then(function(r){ return r.json().then(function(d){ return { ok: r.ok, d: d }; }); });
+    grpSendQ.current[id] = send;
+    send.then(function(res) {
+        var newest = grpPending.current[id] === at;
+        if (newest) { delete grpPending.current[id]; delete grpSendQ.current[id]; }
         if (res.ok && res.d.item) {
+          if (!newest || res.d.stale) return;
           setGrpItems(function(m){ var n = Object.assign({}, m); n[res.d.item.id] = res.d.item; return n; });
+        } else if (res.ok) {
+          return;
         } else {
           setGrpErr((res.d && res.d.error) || "Could not share that.");
         }
